@@ -36,6 +36,9 @@
     <ClCompile Include="scene.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Fonts.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\external\glad\include\glad\glad.h">
@@ -48,6 +51,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="scene.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Fonts.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

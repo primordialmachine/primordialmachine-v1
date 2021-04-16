@@ -8,9 +8,11 @@ extern "C" {
 
 #include <stdlib.h>
 #include <stdio.h>
+
 #include <Windows.h>
 
 #include "scene1.h"
+#include "Fonts.h"
 
 #include <glad/glad.h>
 
@@ -19,12 +21,14 @@ extern "C" {
 
 #include <linmath.h>
 
+#include <ft2build.h>
+#include FT_FREETYPE_H
+
   static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
   {
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
       glfwSetWindowShouldClose(window, GLFW_TRUE);
   }
-
 
   int main()
   {
@@ -53,9 +57,17 @@ extern "C" {
     }
     glfwSwapInterval(1);
 
+    if (Machine_Fonts_startup()) {
+      fprintf(stderr, "%s:%d: text_startup() failed\n", __FILE__, __LINE__);
+      glfwDestroyWindow(window);
+      glfwTerminate();
+      return EXIT_FAILURE;
+    }
+
     Scene* scene = Scene1_create();
     if (!scene) {
       fprintf(stderr, "%s:%d: Scene1_create() failed\n", __FILE__, __LINE__);
+      Machine_Fonts_shutdown();
       glfwDestroyWindow(window);
       glfwTerminate();
       return EXIT_FAILURE;
@@ -63,6 +75,7 @@ extern "C" {
     if (Scene_startup(scene)) {
       fprintf(stderr, "%s:%d: Scene_startup() failed\n", __FILE__, __LINE__);
       Scene_destroy(scene);
+      Machine_Fonts_shutdown();
       glfwDestroyWindow(window);
       glfwTerminate();
       return EXIT_FAILURE;
@@ -73,9 +86,10 @@ extern "C" {
       int width, height;
       glfwGetFramebufferSize(window, &width, &height);
       if (Scene_update(scene, (float)width, (float)height)) {
-        fprintf(stderr, "%s:%d: scene1_startup() failed\n", __FILE__, __LINE__);
+        fprintf(stderr, "%s:%d: Scene_update() failed\n", __FILE__, __LINE__);
         Scene_shutdown(scene);
         Scene_destroy(scene);
+        Machine_Fonts_shutdown();
         glfwDestroyWindow(window);
         glfwTerminate();
         return EXIT_FAILURE;
@@ -87,6 +101,7 @@ extern "C" {
 
     Scene_shutdown(scene);
     Scene_destroy(scene);
+    Machine_Fonts_shutdown();
     glfwDestroyWindow(window);
     glfwTerminate();
 

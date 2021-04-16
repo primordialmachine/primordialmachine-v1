@@ -10,6 +10,8 @@
 
 #include <linmath.h>
 
+#include "Fonts.h"
+
 static const struct
 {
   float x, y;
@@ -22,33 +24,41 @@ static const struct
 };
 
 static const char* vertex_shader_text =
-"#version 110\n"
-"uniform mat4 MVP;\n"
-"attribute vec3 vCol;\n"
-"attribute vec2 vPos;\n"
-"varying vec3 color;\n"
-"void main()\n"
-"{\n"
-"    gl_Position = MVP * vec4(vPos, 0.0, 1.0);\n"
-"    color = vCol;\n"
-"}\n";
+  "#version 110\n"
+  "uniform mat4 mvp;\n"
+  "attribute vec3 vertex_color;\n"
+  "attribute vec2 vertex_position;\n"
+  "varying vec3 color;\n"
+  "void main()\n"
+  "{\n"
+  "    gl_Position = mvp * vec4(vertex_position, 0.0, 1.0);\n"
+  "    color = vertex_color;\n"
+  "}\n";
 
 static const char* fragment_shader_text =
-"#version 110\n"
-"varying vec3 color;\n"
-"void main()\n"
-"{\n"
-"    gl_FragColor = vec4(color, 1.0);\n"
-"}\n";
+  "#version 110\n"
+  "varying vec3 color;\n"
+  "void main()\n"
+  "{\n"
+  "    gl_FragColor = vec4(color, 1.0);\n"
+  "}\n";
 
 typedef struct Scene1 {
   Scene parent;
 
   GLuint vertex_buffer, vertex_shader, fragment_shader, program;
   GLint mvp_location, vpos_location, vcol_location;
+  Machine_Fonts_Font* font;
 } Scene1;
 
 static int Scene1_startup(Scene1* scene) {
+
+  scene->font = Machine_Fonts_createFont("RobotoSlab-Regular.ttf", 12);
+  if (!scene->font) {
+    return 1;
+  }
+
+
   glGenBuffers(1, &scene->vertex_buffer);
   glBindBuffer(GL_ARRAY_BUFFER, scene->vertex_buffer);
   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
@@ -66,9 +76,9 @@ static int Scene1_startup(Scene1* scene) {
   glAttachShader(scene->program, scene->fragment_shader);
   glLinkProgram(scene->program);
 
-  scene->mvp_location = glGetUniformLocation(scene->program, "MVP");
-  scene->vpos_location = glGetAttribLocation(scene->program, "vPos");
-  scene->vcol_location = glGetAttribLocation(scene->program, "vCol");
+  scene->mvp_location = glGetUniformLocation(scene->program, "mvp");
+  scene->vpos_location = glGetAttribLocation(scene->program, "vertex_position");
+  scene->vcol_location = glGetAttribLocation(scene->program, "vertex_color");
 
   glEnableVertexAttribArray(scene->vpos_location);
   glVertexAttribPointer(scene->vpos_location, 2, GL_FLOAT, GL_FALSE,
@@ -102,13 +112,48 @@ static int Scene1_update(Scene1* scene, float width, float height) {
 }
 
 static void Scene1_shutdown(Scene1* scene) {
+  if (scene->font) {
+    Machine_Fonts_Font_destroy(scene->font);
+    scene->font = NULL;
+  }
+  if (scene->program) {
+    glDeleteProgram(scene->program);
+    scene->program = 0;
+  }
+  if (scene->vertex_shader) {
+    glDeleteShader(scene->vertex_shader);
+    scene->vertex_shader = 0;
+  }
+  if (scene->fragment_shader) {
+    glDeleteShader(scene->fragment_shader);
+    scene->fragment_shader = 0;
+  }
+}
+
+int Scene1_construct(Scene1* self) {
+  self->font = NULL;
+  ((Scene*)self)->startup = (Scene_StartupCallback*)&Scene1_startup;
+  ((Scene*)self)->update = (Scene_UpdateCallback*)&Scene1_update;
+  ((Scene*)self)->shutdown = (Scene_ShutdownCallback*)&Scene1_shutdown;
+  return 0;
+}
+
+void Scene1_destruct(Scene1* self) {
 }
 
 Scene* Scene1_create() {
-  Scene* scene = malloc(sizeof(Scene1));
-  if (!scene) return NULL;
-  scene->startup = &Scene1_startup;
-  scene->update = &Scene1_update;
-  scene->shutdown = &Scene1_shutdown;
+  Scene1* scene = malloc(sizeof(Scene1));
+  if (!scene) {
+    return NULL;
+  }
+  if (Scene1_construct(scene)) {
+    free(scene);
+    return NULL;
+  }
+#if 0
+  scene->startup = (Scene_StartupCallback *)&Scene1_startup;
+  scene->update = (Scene_UpdateCallback *)&Scene1_update;
+  scene->shutdown = (Scene_ShutdownCallback *)&Scene1_shutdown;
+#endif
   return scene;
 }
