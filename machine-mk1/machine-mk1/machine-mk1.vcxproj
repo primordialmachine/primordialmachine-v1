@@ -92,19 +92,39 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\external\glad\src\glad.c" />
+    <ClCompile Include="Binding.c" />
+    <ClCompile Include="Scene4.c" />
+    <ClCompile Include="UtilitiesGL.c" />
     <ClCompile Include="Images.c" />
     <ClCompile Include="main.c" />
-    <ClCompile Include="scene.c" />
-    <ClCompile Include="scene1.c" />
+    <ClCompile Include="Buffer.c" />
+    <ClCompile Include="Scene.c" />
+    <ClCompile Include="Scene1.c" />
     <ClCompile Include="Fonts.c" />
+    <ClCompile Include="Scene2.c" />
+    <ClCompile Include="Scene3.c" />
+    <ClCompile Include="ShaderProgram.c" />
+    <ClCompile Include="Machine.c" />
+    <ClCompile Include="Texture.c" />
+    <ClCompile Include="VertexDescriptor.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\external\glad\include\glad\glad.h" />
     <ClInclude Include="..\external\glad\include\KHR\khrplatform.h" />
+    <ClInclude Include="Binding.h" />
+    <ClInclude Include="Scene4.h" />
+    <ClInclude Include="UtilitiesGL.h" />
     <ClInclude Include="Images.h" />
-    <ClInclude Include="scene.h" />
-    <ClInclude Include="scene1.h" />
+    <ClInclude Include="Buffer.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="Scene1.h" />
     <ClInclude Include="Fonts.h" />
+    <ClInclude Include="Scene2.h" />
+    <ClInclude Include="Scene3.h" />
+    <ClInclude Include="ShaderProgram.h" />
+    <ClInclude Include="Machine.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="VertexDescriptor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

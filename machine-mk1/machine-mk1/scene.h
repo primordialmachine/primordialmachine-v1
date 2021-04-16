@@ -3,11 +3,11 @@
 
 typedef struct Scene Scene;
 
-typedef int Scene_StartupCallback(Scene* scene);
+typedef int Scene_StartupCallback(Scene* self);
 
-typedef int Scene_UpdateCallback(Scene* scene, float width, float height);
+typedef int Scene_UpdateCallback(Scene* self, float width, float height);
 
-typedef void Scene_ShutdownCallback(Scene* scene);
+typedef void Scene_ShutdownCallback(Scene* self);
 
 struct Scene {
 
@@ -16,15 +16,18 @@ struct Scene {
   Scene_UpdateCallback* update;
 
   Scene_ShutdownCallback* shutdown;
-
 };
+
+void Scene_visit(Scene* self);
+
+int Scene_construct(Scene* self);
+
+void Scene_destruct(Scene* self);
 
 int Scene_startup(Scene* scene);
 
-int Scene_update(Scene* scene, float width, float height);
+int Scene_update(Scene* self, float width, float height);
 
-void Scene_shutdown(Scene* scene);
-
-void Scene_destroy(Scene* scene);
+void Scene_shutdown(Scene* self);
 
 #endif // MACHINE_SCENE_H_INCLUDED

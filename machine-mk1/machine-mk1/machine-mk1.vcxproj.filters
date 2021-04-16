@@ -22,6 +22,15 @@
     <Filter Include="Headerdateien\KHR">
       <UniqueIdentifier>{4d56762f-bd08-4d7f-85e8-9d987a32074e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Quelldateien\KHR">
+      <UniqueIdentifier>{721f2e6a-ac16-458b-9993-6abcd9052e9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\GUI">
+      <UniqueIdentifier>{381816a8-0288-4185-b352-35c2d0034912}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\GUI">
+      <UniqueIdentifier>{2ca08a41-8bf1-45f3-9302-220460a24764}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -30,16 +39,46 @@
     <ClCompile Include="..\external\glad\src\glad.c">
       <Filter>Quelldateien\glad</Filter>
     </ClCompile>
-    <ClCompile Include="scene1.c">
+    <ClCompile Include="Scene1.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="scene.c">
+    <ClCompile Include="Scene.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Fonts.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Images.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene2.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Machine.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Buffer.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderProgram.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene3.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexDescriptor.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Binding.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="UtilitiesGL.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene4.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,16 +89,46 @@
     <ClInclude Include="..\external\glad\include\KHR\khrplatform.h">
       <Filter>Headerdateien\KHR</Filter>
     </ClInclude>
-    <ClInclude Include="scene1.h">
+    <ClInclude Include="Scene1.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="scene.h">
+    <ClInclude Include="Scene.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Fonts.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Images.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene2.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Machine.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Buffer.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderProgram.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene3.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexDescriptor.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Binding.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="UtilitiesGL.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene4.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
