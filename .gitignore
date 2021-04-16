@@ -48,3 +48,7 @@ Thumbs.db
 *.mov
 *.wmv
 
+# Machine MK1.
+machine-mk1/.vs/
+machine-mk1/products/
+machine-mk1/intermediates/
