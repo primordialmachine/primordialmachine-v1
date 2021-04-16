@@ -1,3 +1,7 @@
+/**
+ * @author Michael Heilmann (<michaelheilmann@primordialmachine.com>)
+ * @copyright Copyright (c) 2021 Michael Heilmann. All rights reservied.
+ */
 #include "Fonts.h"
 
 #include <stdio.h>
@@ -49,12 +53,18 @@ Machine_Fonts_Font* Machine_Fonts_createFont(const char *path, int pointSize) {
   if (!font) {
     return NULL;
   }
+  FT_Error error = FT_New_Face(library, path, 0, &font->face);
+  if (error) {
+    free(font);
+    return NULL;
+  }
   font->referenceCount = 1;
   return font;
 }
 
 void Machine_Fonts_Font_destroy(Machine_Fonts_Font* font) {
   if (0 == --font->referenceCount) {
+    FT_Done_Face(font->face);
     free(font);
     Machine_Fonts_shutdown();
   }

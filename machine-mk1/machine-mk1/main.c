@@ -13,6 +13,7 @@ extern "C" {
 
 #include "scene1.h"
 #include "Fonts.h"
+#include "Images.h"
 
 #include <glad/glad.h>
 
@@ -58,7 +59,14 @@ extern "C" {
     glfwSwapInterval(1);
 
     if (Machine_Fonts_startup()) {
-      fprintf(stderr, "%s:%d: text_startup() failed\n", __FILE__, __LINE__);
+      fprintf(stderr, "%s:%d: Machine_Fonts_startup() failed\n", __FILE__, __LINE__);
+      glfwDestroyWindow(window);
+      glfwTerminate();
+      return EXIT_FAILURE;
+    }
+    if (Machine_Images_startup()) {
+      fprintf(stderr, "%s:%d: Machine_Images_startup() failed\n", __FILE__, __LINE__);
+      Machine_Fonts_shutdown();
       glfwDestroyWindow(window);
       glfwTerminate();
       return EXIT_FAILURE;
@@ -67,6 +75,7 @@ extern "C" {
     Scene* scene = Scene1_create();
     if (!scene) {
       fprintf(stderr, "%s:%d: Scene1_create() failed\n", __FILE__, __LINE__);
+      Machine_Images_shutdown();
       Machine_Fonts_shutdown();
       glfwDestroyWindow(window);
       glfwTerminate();
@@ -75,6 +84,7 @@ extern "C" {
     if (Scene_startup(scene)) {
       fprintf(stderr, "%s:%d: Scene_startup() failed\n", __FILE__, __LINE__);
       Scene_destroy(scene);
+      Machine_Images_shutdown();
       Machine_Fonts_shutdown();
       glfwDestroyWindow(window);
       glfwTerminate();
@@ -89,6 +99,7 @@ extern "C" {
         fprintf(stderr, "%s:%d: Scene_update() failed\n", __FILE__, __LINE__);
         Scene_shutdown(scene);
         Scene_destroy(scene);
+        Machine_Images_shutdown();
         Machine_Fonts_shutdown();
         glfwDestroyWindow(window);
         glfwTerminate();
@@ -101,6 +112,7 @@ extern "C" {
 
     Scene_shutdown(scene);
     Scene_destroy(scene);
+    Machine_Images_shutdown();
     Machine_Fonts_shutdown();
     glfwDestroyWindow(window);
     glfwTerminate();

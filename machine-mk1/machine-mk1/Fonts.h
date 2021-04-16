@@ -1,17 +1,21 @@
+/**
+ * @author Michael Heilmann (<michaelheilmann@primordialmachine.com>)
+ * @copyright Copyright (c) 2021 Michael Heilmann. All rights reservied.
+ */
 #if !defined(MACHINE_FONTS_H_INCLUDED)
 #define MACHINE_FONTS_H_INCLUDED
 
 typedef struct Machine_Fonts_Font Machine_Fonts_Font;
 
 /**
- * Increment the text module by @a 1.
+ * Increment the fonts module by @a 1.
  * FAILS if the reference count is INT_MAX.
  * @return @a 0 on success, a non-zero value on failure.
  */
 int Machine_Fonts_startup();
 
 /**
- * Decrement the text module by @a 1.
+ * Decrement the fonts module by @a 1.
  * UNDEFINED if the reference count is @a 0.
  */
 void Machine_Fonts_shutdown();

@@ -150,10 +150,5 @@ Scene* Scene1_create() {
     free(scene);
     return NULL;
   }
-#if 0
-  scene->startup = (Scene_StartupCallback *)&Scene1_startup;
-  scene->update = (Scene_UpdateCallback *)&Scene1_update;
-  scene->shutdown = (Scene_ShutdownCallback *)&Scene1_shutdown;
-#endif
-  return scene;
+  return (Scene *)scene;
 }
