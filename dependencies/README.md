@@ -15,6 +15,15 @@ Open `build/freetype.sln`.
 Perform the release and debug builds.
 You can find the corresponding libraries in `build/Release/freetype.lib` and `build/Debug/freetyped.lib`, respectively.
 You can find the required includes in `include`.
+
+## Building zlib
+Enter the `zlib-1.2.11` directory.
+Type `cmake .`.
+Open `zlib.sln`.
+Perform the release and debug builds.
+You can find the corresponding libraries `Release/zlibstatic.lib` and `Debug/zlibstaticd.lib`, respectively.
+You can find the required includes in `.`.
+
 ## Building LibPNG
 Enter the `zlib-1.2.11` directory.
 
