@@ -31,6 +31,12 @@
     <Filter Include="Quelldateien\GUI">
       <UniqueIdentifier>{2ca08a41-8bf1-45f3-9302-220460a24764}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Text">
+      <UniqueIdentifier>{78b19d05-7333-492a-a39d-c49877138b2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Text">
+      <UniqueIdentifier>{7fb3eb57-ead2-4b86-b321-8887aa2790b1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -81,6 +87,12 @@
     <ClCompile Include="Scene4.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Text\LayoutLine.c">
+      <Filter>Quelldateien\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Text\Layout.c">
+      <Filter>Quelldateien\Text</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\external\glad\include\glad\glad.h">
@@ -130,6 +142,12 @@
     </ClInclude>
     <ClInclude Include="Scene4.h">
       <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Text\LayoutLine.h">
+      <Filter>Headerdateien\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Text\Layout.h">
+      <Filter>Headerdateien\Text</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -5,6 +5,8 @@
 #if !defined(MACHINE_FONTS_H_INCLUDED)
 #define MACHINE_FONTS_H_INCLUDED
 
+#include "Text/LayoutLine.h"
+#include "Text/Layout.h"
 #include "Binding.h"
 #include "Texture.h"
 #include <linmath.h>
@@ -64,6 +66,13 @@ static inline void rect2_add_point(rect2* r, vec2 p) {
   }
 }
 
+/**
+ * @brief Get the baseline distance.
+ * @param self This font.
+ * @return The baseline distance.
+ */
+float Machine_Font_getBaselineDistance(Machine_Fonts_Font* self);
+
 void Machine_Font_getBounds(Machine_Fonts_Font* self, vec2 position, rect2* bounds);
 
 /**
@@ -76,8 +85,8 @@ void Machine_Font_draw(Machine_Fonts_Font *self, vec2 position, vec3 color, floa
 /**
  * @brief Parse text into lines.
  * @param text The text.
- * @return The list of lines.
+ * @return The list of lines (Machine_Scribe_TextLine).
  */
-Machine_PointerArray* Machine_Text_toLines(const char* text);
+Machine_PointerArray* Machine_Text_toLines(Machine_String *text);
 
 #endif // MACHINE_FONTS_H_INCLUDED

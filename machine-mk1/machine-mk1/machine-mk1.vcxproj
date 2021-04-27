@@ -94,6 +94,8 @@
     <ClCompile Include="..\external\glad\src\glad.c" />
     <ClCompile Include="Binding.c" />
     <ClCompile Include="Scene4.c" />
+    <ClCompile Include="Text\LayoutLine.c" />
+    <ClCompile Include="Text\Layout.c" />
     <ClCompile Include="UtilitiesGL.c" />
     <ClCompile Include="Images.c" />
     <ClCompile Include="main.c" />
@@ -113,6 +115,8 @@
     <ClInclude Include="..\external\glad\include\KHR\khrplatform.h" />
     <ClInclude Include="Binding.h" />
     <ClInclude Include="Scene4.h" />
+    <ClInclude Include="Text\LayoutLine.h" />
+    <ClInclude Include="Text\Layout.h" />
     <ClInclude Include="UtilitiesGL.h" />
     <ClInclude Include="Images.h" />
     <ClInclude Include="Buffer.h" />

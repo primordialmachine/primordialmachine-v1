@@ -327,6 +327,13 @@ Machine_Fonts_Font* Machine_Fonts_createFont(const char* path, int pointSize) {
 
 #include <inttypes.h>
 
+#if 0
+struct Machine_Text_TextLine {
+  int start;
+  int length;
+};
+#endif
+
 static bool isWhitespace(uint32_t codepoint) {
   return codepoint == ' '
       || codepoint == '\t';
@@ -334,6 +341,10 @@ static bool isWhitespace(uint32_t codepoint) {
 
 static bool isNewline(uint32_t codepoint) {
   return codepoint == '\n';
+}
+
+float Machine_Font_getBaselineDistance(Machine_Fonts_Font* self) {
+  return self->baselineDistance;
 }
 
 void Machine_Font_getBounds(Machine_Fonts_Font* self, vec2 position, rect2* bounds) {
@@ -430,108 +441,77 @@ void Machine_Font_draw(Machine_Fonts_Font* self, vec2 position, vec3 color, floa
   if (texture_location == -1) return;
 
   const char* text = "AgBC X\nY";
-  float posx = position[0], posy = position[1];
-  for (size_t i = 0, n = strlen(text); i < n; ++i) {
-    uint32_t codepoint = text[i];
-    if (isWhitespace(codepoint)) {
-      codepoint = ' ';
-    } else if (isNewline(codepoint)) {
-      codepoint = ' ';
-    }
-    Node* node = Map_get(self->map, codepoint);
-    if (node == NULL) {
-      Machine_log(Machine_LogFlags_ToWarnings, __FILE__, __LINE__, "%"PRIu32" not found\n", text[i]);
-      continue;
-    }
+  float posx, posy;
 
-    float l = 0.f + posx + node->l;
-
-    float t;
-  #if defined(Y_UP)
-    t = 0.f + posy + (node->h - node->t);
-  #else
-    t = 0.f + posy - (node->h - node->t);
-  #endif
-
-  #if defined(Y_UP)
-    const struct {
-      float x, y;
-      float u, v;
-    }
-    vertices[] =
-    {
-      { l,            t,            0.f, 1.f }, // left/bottom
-      { l + node->w,  t,            1.f, 1.f }, // right/bottom
-      { l,            t - node->h,  0.f, 0.f }, // left/top
-      { l + node->w,  t - node->h,  1.f, 0.f }, // right/top
-    };
-  #else
-    const struct {
-      float x, y;
-      float u, v;
-  }
-    vertices[] =
-    {
-      { l,            t,            0.f, 1.f }, // left/bottom
-      { l + node->w,  t,            1.f, 1.f }, // right/bottom
-      { l,            t + node->h,  0.f, 0.f }, // left/top
-      { l + node->w,  t + node->h,  1.f, 0.f }, // right/top
-    };
-  #endif
-
-    Machine_FloatBuffer_setData(self->vertices, sizeof(vertices) / sizeof(float), vertices);
-
-    glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-    glUniform1i(texture_location, 0);
-    glActiveTexture(GL_TEXTURE0 + 0);
-    glBindTexture(GL_TEXTURE_2D, node->texture->id);
-    Machine_UtilitiesGl_call(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, &indices));
-    posx += (node->advancex);
-    posy += (node->advancey);
-  }
-}
-
-typedef struct Line Line;
-struct Line {
-  int start;
-  int length;
-};
-
-Line* Line_create(int start, int length) {
-  if (start < 0 || length < 0) {
-    Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
-  }
-  Line *self = Machine_allocate(sizeof(Line), NULL, NULL);
-  if (!self) {
-    Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
-  }
-  self->start = start;
-  self->length = length;
-  return self;
-}
-
-Machine_PointerArray* Machine_Text_toLines(const char* text) {
-  Machine_PointerArray* lines = Machine_PointerArray_create();
-  int lineStart = 0, lineEnd = 0;
-  while (text[lineEnd] != '\0') {
-    // terminates a line
-    if (text[lineEnd] == '\n' || text[lineEnd] == '\r') {
-      int old = text[lineEnd];
-      lineEnd++;
-      if (old != text[lineEnd] && (text[lineEnd] == '\n' || text[lineEnd] == '\r')) {
-        lineEnd++;
+  posx = position[0];
+  posy = position[1];
+  Machine_PointerArray* textLines = Machine_Text_toLines(Machine_String_create(text, strlen(text)));
+  for (size_t i = 0, n = Machine_PointerArray_getSize(textLines); i < n; ++i) {
+    Machine_Text_LayoutLine* textLine = (Machine_Text_LayoutLine*)Machine_PointerArray_getAt(textLines, i);
+    for (size_t j = textLine->start, m = textLine->start + textLine->length; j < m; ++j) {
+      uint32_t codepoint = text[j];
+      if (isWhitespace(codepoint)) {
+        codepoint = ' ';
+      } else if (isNewline(codepoint)) {
+        continue;/*Skip.*/
       }
-      Line *line = Line_create(lineStart, lineEnd - lineStart);
-      Machine_PointerArray_append(lines, line);
-      lineStart = lineEnd;
+      Node* node = Map_get(self->map, codepoint);
+      if (node == NULL) {
+        Machine_log(Machine_LogFlags_ToWarnings, __FILE__, __LINE__, "%"PRIu32" not found\n", text[i]);
+        continue;
+      }
+
+      float l = 0.f + posx + node->l;
+
+      float t;
+    #if defined(Y_UP)
+      t = 0.f + posy + (node->h - node->t);
+    #else
+      t = 0.f + posy - (node->h - node->t);
+    #endif
+
+    #if defined(Y_UP)
+      const struct {
+        float x, y;
+        float u, v;
+      }
+      vertices[] =
+      {
+        { l,            t,            0.f, 1.f }, // left/bottom
+        { l + node->w,  t,            1.f, 1.f }, // right/bottom
+        { l,            t - node->h,  0.f, 0.f }, // left/top
+        { l + node->w,  t - node->h,  1.f, 0.f }, // right/top
+      };
+    #else
+      const struct {
+        float x, y;
+        float u, v;
+      }
+      vertices[] =
+      {
+        { l,            t,            0.f, 1.f }, // left/bottom
+        { l + node->w,  t,            1.f, 1.f }, // right/bottom
+        { l,            t + node->h,  0.f, 0.f }, // left/top
+        { l + node->w,  t + node->h,  1.f, 0.f }, // right/top
+      };
+    #endif
+
+      Machine_FloatBuffer_setData(self->vertices, sizeof(vertices) / sizeof(float), vertices);
+
+      glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+      glUniform1i(texture_location, 0);
+      glActiveTexture(GL_TEXTURE0 + 0);
+      glBindTexture(GL_TEXTURE_2D, node->texture->id);
+      Machine_UtilitiesGl_call(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, &indices));
+      posx += (node->advancex);
+      posy += (node->advancey);
     }
-    lineEnd++;
+    posx = position[0];
+    posy += Machine_Font_getBaselineDistance(self);
   }
-  if (lineStart != lineEnd) {
-    Line *line = Line_create(lineStart, lineEnd - lineStart);
-    Machine_PointerArray_append(lines, line);
-  }
-  return lines;
+}
+
+Machine_PointerArray* Machine_Text_toLines(Machine_String *text) {
+  Machine_Text_Layout* layout = Machine_Text_Layout_create(text);
+  return layout->lines;
 }
