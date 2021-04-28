@@ -73,14 +73,24 @@ static inline void rect2_add_point(rect2* r, vec2 p) {
  */
 float Machine_Font_getBaselineDistance(Machine_Fonts_Font* self);
 
-void Machine_Font_getBounds(Machine_Fonts_Font* self, vec2 position, rect2* bounds);
+/**
+ * @brief Get the information of an unicode codepoint.
+ * @param self This font.
+ * @param codepoint The unicode codepoint.
+ * @param bounds A pointer to a <code>rect2</code> variable.
+ * @param advance A pointer to a <code>vec2</code> variable.
+ * @param texture The texture.
+ */
+bool Machine_Font_getCodePointInfo(Machine_Fonts_Font* self, uint32_t codepoint, rect2* bounds, vec2 advance, Machine_Texture** texture);
+
+void Machine_Font_getBounds(Machine_Fonts_Font* self, const char *text, vec2 position, rect2* bounds);
 
 /**
  * @brief Render a string.
  * @remark '\t' is replaced ' '. '\n' is replaced by ' '.
  * @param self This font.
  */
-void Machine_Font_draw(Machine_Fonts_Font *self, vec2 position, vec3 color, float width, float height);
+void Machine_Font_draw(Machine_Fonts_Font *self, const char *text, vec2 position, vec3 color, float width, float height);
 
 /**
  * @brief Parse text into lines.

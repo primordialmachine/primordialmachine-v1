@@ -10,6 +10,10 @@
 #include "Texture.h"
 #include "ShaderProgram.h"
 
+#include <inttypes.h>
+
+#define Y_UP (1)
+
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
@@ -42,8 +46,7 @@ struct Map {
   size_t size, capacity;
 };
 
-static void Map_visit(Map *self)
-{
+static void Map_visit(Map* self) {
   for (size_t i = 0, n = self->capacity; i < n; ++i) {
     Node* node = self->buckets[i];
     while (node) {
@@ -53,8 +56,7 @@ static void Map_visit(Map *self)
   }
 }
 
-static void Map_finalize(Map* self)
-{
+static void Map_finalize(Map* self) {
   for (size_t i = 0, n = self->capacity; i < n; ++i) {
     while (self->buckets[i]) {
       Node* node = self->buckets[i];
@@ -70,7 +72,7 @@ static void Map_finalize(Map* self)
 }
 
 static Map* Map_create() {
-  Map *self = Machine_allocate(sizeof(Map), (Machine_VisitCallback*)&Map_visit, (Machine_FinalizeCallback*)&Map_finalize);
+  Map* self = Machine_allocate(sizeof(Map), (Machine_VisitCallback*)&Map_visit, (Machine_FinalizeCallback*)&Map_finalize);
   if (!self) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
@@ -107,13 +109,13 @@ static void Map_set(Map* self, uint32_t codepoint, float l, float t, float w, fl
       Machine_jump();
     }
   }
-  
+
   Node* node = malloc(sizeof(Node));
   if (!node) {
     Machine_setStatus(Machine_Status_InvalidOperation);
     Machine_jump();
   }
-  
+
   node->codepoint = codepoint;
   node->texture = texture;
   node->l = l;
@@ -218,7 +220,7 @@ Machine_Fonts_Font* Machine_Fonts_createFont(const char* path, int pointSize) {
   if (Machine_Fonts_startup()) {
     return NULL;
   }
-  Machine_Fonts_Font* font = Machine_allocate(sizeof(Machine_Fonts_Font), (Machine_VisitCallback *)&Machine_Fonts_Font_visit, (Machine_FinalizeCallback *) & Machine_Fonts_Font_finalize);
+  Machine_Fonts_Font* font = Machine_allocate(sizeof(Machine_Fonts_Font), (Machine_VisitCallback*)&Machine_Fonts_Font_visit, (Machine_FinalizeCallback*)&Machine_Fonts_Font_finalize);
   if (!font) {
     Machine_Fonts_shutdown();
     return NULL;
@@ -256,7 +258,8 @@ Machine_Fonts_Font* Machine_Fonts_createFont(const char* path, int pointSize) {
     Machine_Binding_set(font->binding, Machine_String_create("vertex_texture_coordinate_1", strlen("vertex_texture_coordinate_1") + 1), 1);
 
     Machine_popJumpTarget();
-  } else {
+  }
+  else {
     Machine_popJumpTarget();
     FT_Done_Face(font->face);
     font->face = NULL;
@@ -325,15 +328,6 @@ Machine_Fonts_Font* Machine_Fonts_createFont(const char* path, int pointSize) {
   return font;
 }
 
-#include <inttypes.h>
-
-#if 0
-struct Machine_Text_TextLine {
-  int start;
-  int length;
-};
-#endif
-
 static bool isWhitespace(uint32_t codepoint) {
   return codepoint == ' '
       || codepoint == '\t';
@@ -347,71 +341,63 @@ float Machine_Font_getBaselineDistance(Machine_Fonts_Font* self) {
   return self->baselineDistance;
 }
 
-void Machine_Font_getBounds(Machine_Fonts_Font* self, vec2 position, rect2* bounds) {
-#define Y_UP
-  const char* text = "AgBC X\nY";
-  float posx = position[0], posy = position[1];
-  bounds->l = posx;
+bool Machine_Font_getCodePointInfo(Machine_Fonts_Font* self, uint32_t codepoint, rect2* bounds, vec2 advance, Machine_Texture** texture) {
+  if (isWhitespace(codepoint)) {
+    codepoint = ' ';
+  } else if (isNewline(codepoint)) {
+    return false;
+  }
+  Node* node = Map_get(self->map, codepoint);
+  if (node == NULL) {
+    Machine_log(Machine_LogFlags_ToWarnings, __FILE__, __LINE__, "%"PRIu32" not found\n", codepoint);
+    return false;
+  }
+  bounds->l = node->l;
+  bounds->b = node->t;
+  bounds->w = node->w;
+  bounds->h = node->h;
+  *texture = node->texture;
+  advance[0] = node->advancex;
+  advance[1] = node->advancey;
+  return true;
+}
+
+void Machine_Font_getBounds(Machine_Fonts_Font* self, const char* text, vec2 position, rect2* bounds) {
+
+  vec2 pos;
+  vec2_dup(pos, position);
+
+  bounds->l = pos[0];
   bounds->w = 0.f;
-  bounds->b = posy;
+  bounds->b = pos[1];
   bounds->h = 0.f;
+
   for (size_t i = 0, n = strlen(text); i < n; ++i) {
     uint32_t codepoint = text[i];
-    if (isWhitespace(codepoint)) {
-      codepoint = ' ';
-    }
-    else if (isNewline(codepoint)) {
-      codepoint = ' ';
-    }
-    Node* node = Map_get(self->map, codepoint);
-    if (node == NULL) {
-      Machine_log(Machine_LogFlags_ToWarnings, __FILE__, __LINE__, "%"PRIu32" not found\n", text[i]);
-      continue;
-    }
+    rect2 symbolBounds;
+    vec2 symbolAdvance;
+    Machine_Texture* texture;
+    bool skip = !Machine_Font_getCodePointInfo(self, codepoint, &symbolBounds, symbolAdvance, &texture);
+    if (skip) continue;
 
-    float l = 0.f + posx + node->l;
+    float l = pos[0] + symbolBounds.l;
   #if defined(Y_UP)
-    float t = 0.f + posy + (node->h - node->t);
+    float t = pos[1] + (symbolBounds.h - symbolBounds.b);
   #else
-    float t = 0.f + posy - (node->h - node->t);
+    float t = posy - (symbolBounds.h - symbolBounds.b);
   #endif
 
-  #if defined(Y_UP)
-    const struct {
-      float x, y;
-    }
-    vertices[] =
-    {
-      { l,            t,            }, // left/bottom
-      { l + node->w,  t,            }, // right/bottom
-      { l,            t - node->h,  }, // left/top
-      { l + node->w,  t - node->h,  }, // right/top
-    };
-  #else
-    const struct {
-      float x, y;
-    }
-    vertices[] =
-    {
-      { l,            t,            }, // left/bottom
-      { l + node->w,  t,            }, // right/bottom
-      { l,            t + node->h,  }, // left/top
-      { l + node->w,  t + node->h,  }, // right/top
-    };
-  #endif
-    vec2 min = { l,t };
-    vec2 max = { l + node->w, t + node->h };
-    
+    vec2 min = { l, t };
+    vec2 max = { l + symbolBounds.w, t + symbolBounds.h };
+
     rect2_add_point(bounds, min);
     rect2_add_point(bounds, max);
 
-    posx += (node->advancex);
-    posy += (node->advancey);
+    vec2_add(pos, pos, symbolAdvance);
   }
 }
 
-void Machine_Font_draw(Machine_Fonts_Font* self, vec2 position, vec3 color, float width, float height) {
-#define Y_UP
+void Machine_Font_draw(Machine_Fonts_Font* self, const char* text, vec2 position, vec3 color, float width, float height) {
   // Set the viewport and clear its color buffer.
   float ratio = width / height;
   Machine_UtilitiesGl_call(glViewport(0, 0, width, height));
@@ -440,78 +426,67 @@ void Machine_Font_draw(Machine_Fonts_Font* self, vec2 position, vec3 color, floa
   GLint texture_location = glGetUniformLocation(self->shader->programId, "texture_1");
   if (texture_location == -1) return;
 
-  const char* text = "AgBC X\nY";
-  float posx, posy;
+  glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
-  posx = position[0];
-  posy = position[1];
-  Machine_PointerArray* textLines = Machine_Text_toLines(Machine_String_create(text, strlen(text)));
-  for (size_t i = 0, n = Machine_PointerArray_getSize(textLines); i < n; ++i) {
-    Machine_Text_LayoutLine* textLine = (Machine_Text_LayoutLine*)Machine_PointerArray_getAt(textLines, i);
+  vec2 pos;
+  vec2_dup(pos, position);
+
+  Machine_Text_Layout* layout = Machine_Text_Layout_create(Machine_String_create(text, strlen(text)));
+  for (size_t i = 0, n = Machine_PointerArray_getSize(layout->lines); i < n; ++i) {
+    Machine_Text_LayoutLine* textLine = (Machine_Text_LayoutLine*)Machine_PointerArray_getAt(layout->lines, i);
     for (size_t j = textLine->start, m = textLine->start + textLine->length; j < m; ++j) {
       uint32_t codepoint = text[j];
-      if (isWhitespace(codepoint)) {
-        codepoint = ' ';
-      } else if (isNewline(codepoint)) {
-        continue;/*Skip.*/
-      }
-      Node* node = Map_get(self->map, codepoint);
-      if (node == NULL) {
-        Machine_log(Machine_LogFlags_ToWarnings, __FILE__, __LINE__, "%"PRIu32" not found\n", text[i]);
-        continue;
-      }
+      rect2 symbolBounds;
+      vec2 symbolAdvance;
+      Machine_Texture* symbolTexture;
+      bool skip = !Machine_Font_getCodePointInfo(self, codepoint, &symbolBounds, symbolAdvance, &symbolTexture);
+      if (skip) continue;
 
-      float l = 0.f + posx + node->l;
-
+      float l = .5f + pos[0] + symbolBounds.l;
       float t;
     #if defined(Y_UP)
-      t = 0.f + posy + (node->h - node->t);
+      t = .5f + pos[1] + (symbolBounds.h - symbolBounds.b);
     #else
-      t = 0.f + posy - (node->h - node->t);
+      t = .5f + pos[1] - (symbolBounds.h - symbolBounds.b);
     #endif
 
     #if defined(Y_UP)
       const struct {
         float x, y;
         float u, v;
-      }
-      vertices[] =
-      {
-        { l,            t,            0.f, 1.f }, // left/bottom
-        { l + node->w,  t,            1.f, 1.f }, // right/bottom
-        { l,            t - node->h,  0.f, 0.f }, // left/top
-        { l + node->w,  t - node->h,  1.f, 0.f }, // right/top
+      } vertices[] = {
+        { l,                   t,                   0.f, 1.f }, // left/bottom
+        { l + symbolBounds.w,  t,                   1.f, 1.f }, // right/bottom
+        { l,                   t - symbolBounds.h,  0.f, 0.f }, // left/top
+        { l + symbolBounds.w,  t - symbolBounds.h,  1.f, 0.f }, // right/top
       };
     #else
       const struct {
         float x, y;
         float u, v;
-      }
-      vertices[] =
-      {
-        { l,            t,            0.f, 1.f }, // left/bottom
-        { l + node->w,  t,            1.f, 1.f }, // right/bottom
-        { l,            t + node->h,  0.f, 0.f }, // left/top
-        { l + node->w,  t + node->h,  1.f, 0.f }, // right/top
+      } vertices[] = {
+        { l,                   t,                   0.f, 1.f }, // left/bottom
+        { l + symbolBounds.w,  t,                   1.f, 1.f }, // right/bottom
+        { l,                   t + symbolBounds.h,  0.f, 0.f }, // left/top
+        { l + symbolBounds.w,  t + symbolBounds.h,  1.f, 0.f }, // right/top
       };
     #endif
 
       Machine_FloatBuffer_setData(self->vertices, sizeof(vertices) / sizeof(float), vertices);
 
-      glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
       glUniform1i(texture_location, 0);
       glActiveTexture(GL_TEXTURE0 + 0);
-      glBindTexture(GL_TEXTURE_2D, node->texture->id);
+      glBindTexture(GL_TEXTURE_2D, symbolTexture->id);
       Machine_UtilitiesGl_call(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, &indices));
-      posx += (node->advancex);
-      posy += (node->advancey);
-    }
-    posx = position[0];
-    posy += Machine_Font_getBaselineDistance(self);
+
+      vec2_add(pos, pos, symbolAdvance);
+      }
+    pos[0] = position[0];
+    pos[1] += Machine_Font_getBaselineDistance(self);
   }
 }
 
-Machine_PointerArray* Machine_Text_toLines(Machine_String *text) {
+Machine_PointerArray* Machine_Text_toLines(Machine_String* text) {
   Machine_Text_Layout* layout = Machine_Text_Layout_create(text);
   return layout->lines;
 }

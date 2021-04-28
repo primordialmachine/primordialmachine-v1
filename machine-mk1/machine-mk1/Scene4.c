@@ -59,9 +59,11 @@ static int Scene4_startup(Scene4* scene) {
 static int Scene4_update(Scene4* scene, float width, float height) {
   vec3 color = { 0.1f, 0.1f, 0.1f };
   vec2 center = { width * 0.5f, height * 0.5f };
-  
+
+  const char* text = "AgBC X\nY";
+
   rect2 r;
-  Machine_Font_getBounds(scene->font, center, &r);
+  Machine_Font_getBounds(scene->font, text, center, &r);
 
   vec2 c;
   rect2_get_center(&r, c);
@@ -69,8 +71,8 @@ static int Scene4_update(Scene4* scene, float width, float height) {
   vec2_sub(d, center, c);// vec2 d = { center[0] - c2[0], center[1] - c2[1] };
   
   vec2 position;
-  vec2_add(position, center, d);// = { center[0] + d[0], center[1] + d[1] };
-  Machine_Font_draw(scene->font, position, color, width, height);
+  vec2_add(position, center, d);// = { center[0] + d[0], center[1] + d[1] };;
+  Machine_Font_draw(scene->font, text, position, color, width, height);
   return 0;
 }
 
