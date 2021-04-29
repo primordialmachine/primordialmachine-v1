@@ -11,6 +11,50 @@
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+typedef struct Stack {
+  Machine_Value* elements;
+  size_t size, capacity;
+} Stack;
+
+static int Stack_initialize(Stack* self) {
+  self->elements = malloc(sizeof(Machine_Value) * 8);
+  if (!self->elements) {
+    return Machine_Status_AllocationFailed;
+  }
+  for (size_t i = 0; i < 8; ++i) {
+    Machine_Value_setVoid(self->elements + i, Machine_VoidValue_VOID);
+  }
+  self->size = 0;
+  self->capacity = 8;
+  return 0;
+}
+
+static void Stack_uninitialize(Stack* self) {
+  if (self->elements) {
+    free(self->elements);
+    self->elements = NULL;
+  }
+}
+
+int Stack_create(Stack **stack) {
+  Stack *stack0 = malloc(sizeof(Stack));
+  if (!stack0) {
+    return Machine_Status_AllocationFailed;
+  }
+  int result = Stack_initialize(stack0);
+  if (result) {
+    free(stack0);
+    return result;
+  }
+  *stack = stack0;
+  return 0;
+}
+
+void Stack_destroy(Stack* stack) {
+  Stack_uninitialize(stack);
+  free(stack);
+}
+
 static Machine_StatusValue g_status = Machine_Status_Success;
 
 Machine_StatusValue Machine_getStatus() {
@@ -23,8 +67,14 @@ void Machine_setStatus(Machine_StatusValue status) {
 
 static Machine_Tag* g_objects = NULL;
 static Machine_Tag* g_gray = NULL;
+static Stack *g_stack = NULL;
 
 int Machine_startup() {
+  int result;
+  result = Stack_create(&g_stack);
+  if (result) {
+    return result;
+  }
   return 0;
 }
 
@@ -169,6 +219,69 @@ bool Machine_getRoot(void* object) {
 
 void Machine_shutdown() {
   Machine_update();
+  Stack_destroy(g_stack);
+  g_stack = NULL;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+static void Stack_ensureFreeCapacity(Stack* self, size_t requiredFreeCapacity) {
+  size_t availableFreeCapacity = self->capacity - self->size;
+  if (availableFreeCapacity < requiredFreeCapacity) {
+    size_t requiredAdditionalCapacity = requiredFreeCapacity - availableFreeCapacity;
+    size_t maximalCapacity = SIZE_MAX / sizeof(Machine_Value);
+    size_t availableAdditionalCapacity = maximalCapacity - self->capacity;
+    if (availableAdditionalCapacity < requiredAdditionalCapacity) {
+      Machine_setStatus(Machine_Status_AllocationFailed);
+      Machine_jump();
+    }
+    // TODO: This ensures that we have enough free capacity in any case.
+    // However, we should try to allocate more to avoid reallocating over and over.
+    size_t newCapacity = self->capacity + requiredAdditionalCapacity;
+    Machine_Value *newElements = realloc(self->elements, sizeof(Machine_Value) * newCapacity);
+    if (newElements) {
+      Machine_setStatus(Machine_Status_AllocationFailed);
+      Machine_jump();
+    }
+    self->elements = newElements;
+    self->capacity = newCapacity;
+  }
+}
+
+void Machine_loadBoolean(Machine_BooleanValue value) {
+  Stack_ensureFreeCapacity(g_stack, 1);
+  Machine_Value_setBoolean(g_stack->elements + g_stack->size, value);
+  g_stack->size++;
+}
+
+void Machine_loadInteger(Machine_IntegerValue value) {
+  Stack_ensureFreeCapacity(g_stack, 1);
+  Machine_Value_setInteger(g_stack->elements + g_stack->size, value);
+  g_stack->size++;
+}
+
+void Machine_loadForeignProcedure(Machine_ForeignProcedureValue value) {
+  Stack_ensureFreeCapacity(g_stack, 1);
+  Machine_Value_setForeignProcedure(g_stack->elements + g_stack->size, value);
+  g_stack->size++;
+}
+
+void Machine_loadReal(Machine_RealValue value) {
+  Stack_ensureFreeCapacity(g_stack, 1);
+  Machine_Value_setReal(g_stack->elements + g_stack->size, value);
+  g_stack->size++;
+}
+
+void Machine_loadString(Machine_StringValue value) {
+  Stack_ensureFreeCapacity(g_stack, 1);
+  Machine_Value_setString(g_stack->elements + g_stack->size, value);
+  g_stack->size++;
+}
+
+void Machine_loadVoid(Machine_VoidValue value) {
+  Stack_ensureFreeCapacity(g_stack, 1);
+  Machine_Value_setVoid(g_stack->elements + g_stack->size, value);
+  g_stack->size++;
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

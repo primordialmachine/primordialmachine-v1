@@ -338,6 +338,38 @@ INLINE bool Machine_Value_isVoid(Machine_Value* self) {
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+/// @brief Load a <code>Boolean</code> value on the stack.
+/// @param value The value.
+/// @error Machine_Status_StackOverflow The stack is full.
+void Machine_loadBoolean(Machine_BooleanValue value);
+
+/// @brief Load an <code>Integer</code> value on the stack.
+/// @param value The value.
+/// @error Machine_Status_StackOverflow The stack is full.
+void Machine_loadInteger(Machine_IntegerValue value);
+
+/// @brief Load a <code>ForeignProcedure</code> value on the stack.
+/// @param value The value.
+/// @error Machine_Status_StackOverflow The stack is full.
+void Machine_loadForeignProcedure(Machine_ForeignProcedureValue value);
+
+/// @brief Load a <code>Real</code> value on the stack.
+/// @param value The value.
+/// @error Machine_Status_StackOverflow The stack is full.
+void Machine_loadReal(Machine_RealValue value);
+
+/// @brief Load a <code>String</code> value on the stack.
+/// @param value The value.
+/// @error Machine_Status_StackOverflow The stack is full.
+void Machine_loadString(Machine_StringValue value);
+
+/// @brief Load a <code>Void</code> value on the stack.
+/// @param value The value.
+/// @error Machine_Status_StackOverflow The stack is full.
+void Machine_loadVoid(Machine_VoidValue value);
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
 /** C level representation of a string. */
 typedef struct Machine_String Machine_String;
 
