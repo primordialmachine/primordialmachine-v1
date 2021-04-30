@@ -11,16 +11,24 @@
 typedef struct Machine_Text_LayoutLine Machine_Text_LayoutLine;
 
 struct Machine_Text_LayoutLine {
-  
-  /**
-   * @brief Index into Machine_Text_Layout::text.
-   */
+
+  /** @brief Index into Machine_Text_Layout::text. */
   int start;
 
-  /**
-   * @brief The length of the line.
-   */
+  /** @brief The length of the line. */
   int length;
+
+  /** @brief The position, in points, of this line. */
+  float left;
+
+  /** @brief The position, in points, of this line. */
+  float top;
+
+  /** @brief The width, in points, of this line. */
+  float width;
+
+  /** @brief The height, in points, of this line. */
+  float height;
 
 };
 

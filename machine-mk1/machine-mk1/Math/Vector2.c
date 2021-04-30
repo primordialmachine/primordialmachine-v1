@@ -1,0 +1,73 @@
+#include "./../Math/Vector2.h"
+
+struct Machine_Math_Vector2 {
+  float x, y;
+};
+
+static void Machine_Math_Vector2_construct(Machine_Math_Vector2* self, size_t numberOfArguments, const Machine_Value* arguments) {
+  self->x = 0.f;
+  self->y = 0.f;
+}
+
+Machine_ClassType* Machine_Math_Vector2_getClassType() {
+  return
+    Machine_createClassType
+      (
+        NULL,
+        sizeof(Machine_Math_Vector2),
+        (Machine_ClassObjectVisitCallback*)NULL,
+        (Machine_ClassObjectConstructCallback*)&Machine_Math_Vector2_construct,
+        (Machine_ClassObjectDestructCallback*)NULL
+      );
+}
+
+
+Machine_Math_Vector2* Machine_Math_Vector2_create() {
+  Machine_ClassType* ty = Machine_Math_Vector2_getClassType();
+  static const size_t NUMBER_OF_ARGUMENTS = 0;
+  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_VoidValue_VOID } };
+  Machine_Math_Vector2* self = (Machine_Math_Vector2*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  return self;
+}
+
+void Machine_Math_Vector2_set(Machine_Math_Vector2* self, float x, float y) {
+  self->x = x;
+  self->y = y;
+}
+
+float Machine_Math_Vector2_getX(Machine_Math_Vector2* self) {
+  return self->x;
+}
+
+float Machine_Math_Vector2_getY(Machine_Math_Vector2* self) {
+  return self->y;
+}
+
+void Machine_Math_Vector2_add(Machine_Math_Vector2* c, Machine_Math_Vector2* a, Machine_Math_Vector2* b) {
+  c->x = a->x + b->x;
+  c->y = a->y + b->y;
+}
+
+Machine_Math_Vector2* Machine_Math_Vector2_sum(Machine_Math_Vector2* a, Machine_Math_Vector2* b) {
+  Machine_Math_Vector2* c = Machine_Math_Vector2_create();
+  Machine_Math_Vector2_set(c, a->x + b->x,
+                              a->y + b->y);
+  return c;
+}
+
+void Machine_Math_Vector2_subtract(Machine_Math_Vector2* c, Machine_Math_Vector2* a, Machine_Math_Vector2* b) {
+  c->x = a->x - b->x;
+  c->y = a->y - b->y;
+}
+
+Machine_Math_Vector2* Machine_Math_Vector2_difference(Machine_Math_Vector2* a, Machine_Math_Vector2* b) {
+  Machine_Math_Vector2* c = Machine_Math_Vector2_create();
+  Machine_Math_Vector2_set(c, a->x - b->x,
+                              a->y - b->y);
+  return c;
+}
+
+float Machine_Math_Vector2_dot(Machine_Math_Vector2* c) {
+  return c->x * c->x
+       + c->y * c->y;
+}

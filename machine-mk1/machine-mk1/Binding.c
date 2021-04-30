@@ -197,3 +197,11 @@ void Machine_Binding_bindVector4(Machine_Binding* self, Machine_String* name, co
   }
   Machine_UtilitiesGl_call(glUniformMatrix4fv(location, 1, GL_FALSE, (GLfloat const*)value));
 }
+
+void Machine_Binding_bindSampler(Machine_Binding* self, Machine_String* name, const size_t value) {
+  GLint location = glGetUniformLocation(self->program->programId, Machine_String_getBytes(name));
+  if (location == -1) {
+    return;
+  }
+  Machine_UtilitiesGl_call(glUniform1i(location, value));
+}

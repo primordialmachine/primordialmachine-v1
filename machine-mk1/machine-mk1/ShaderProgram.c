@@ -266,10 +266,6 @@ Machine_ShaderProgram_generate
 Machine_ShaderProgram*
 Machine_ShaderProgram_generateTextShader
   (
-    bool withMeshColor,
-    bool withVertexColor,
-    bool withTextureCoordinate,
-    bool withTexture
   )
 {
   Machine_StringBuffer* code = Machine_StringBuffer_create();

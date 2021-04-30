@@ -56,4 +56,12 @@ void Machine_Binding_bindVector3(Machine_Binding* self, Machine_String* name, co
  */
 void Machine_Binding_bindVector4(Machine_Binding* self, Machine_String* name, const vec4 value);
 
+/**
+ * @brief Bind a texture unit index to a texture sampler.
+ * @param self This binding.
+ * @param name The name of the constant.
+ * @param value The value.
+ */
+void Machine_Binding_bindSampler(Machine_Binding* self, Machine_String* name, const size_t value);
+
 #endif // MACHINE_BINDING_H_INCLUDED

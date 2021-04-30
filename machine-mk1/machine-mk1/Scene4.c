@@ -42,7 +42,7 @@ static int Scene4_startup(Scene4* scene) {
   Machine_JumpTarget jumpTarget;
   Machine_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
-    scene->font = Machine_Fonts_createFont("RobotoSlab-Regular.ttf", 11);
+    scene->font = Machine_Fonts_createFont("RobotoSlab-Regular.ttf", 20);
     if (!scene->font) {
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();
@@ -57,22 +57,23 @@ static int Scene4_startup(Scene4* scene) {
 }
 
 static int Scene4_update(Scene4* scene, float width, float height) {
-  vec3 color = { 0.1f, 0.1f, 0.1f };
+  Machine_Math_Vector3* color = Machine_Math_Vector3_create();
+  Machine_Math_Vector3_set(color, .1f, .1f, .1f);
   vec2 center = { width * 0.5f, height * 0.5f };
 
-  const char* text = "AgBC X\nY";
+  const char* text = "Nanobox IV\n400 units of unprimed nanites.";
+  Machine_Text_Layout* layout = Machine_Text_Layout_create(Machine_String_create(text, strlen(text)), scene->font);
 
-  rect2 r;
-  Machine_Font_getBounds(scene->font, text, center, &r);
-
-  vec2 c;
-  rect2_get_center(&r, c);
-  vec2 d;
-  vec2_sub(d, center, c);// vec2 d = { center[0] - c2[0], center[1] - c2[1] };
-  
-  vec2 position;
-  vec2_add(position, center, d);// = { center[0] + d[0], center[1] + d[1] };;
-  Machine_Font_draw(scene->font, text, position, color, width, height);
+  Machine_Math_Rectangle2* bounds = Machine_Text_Layout_getBounds(layout);
+  Machine_Math_Rectangle2_setCenter(bounds, center[0], center[1]);
+  {
+    Machine_Text_Layout_setColor(layout, color);
+  }
+  {
+    Machine_Math_Vector2* leftTop = Machine_Math_Rectangle2_getLeftTop(bounds);
+    Machine_Text_Layout_setPosition(layout, leftTop);
+  }
+  Machine_Text_Layout_render(layout, width, height);
   return 0;
 }
 

@@ -16,7 +16,7 @@
 #include "Texture.h"
 #include "VertexDescriptor.h"
 #include "Binding.h"
-
+#include "Video.h"
 
 
 static const struct {
@@ -126,7 +126,7 @@ static int Scene3_update(Scene3* scene, float width, float height) {
   mat4x4_mul(mvp, p, m);
 
   Machine_Binding_activate(scene->binding);
-  Machine_UtilitiesGl_call(glUseProgram(scene->shaderProgram->programId));
+  Machine_Video_bindShaderProgram(scene->shaderProgram);
   Machine_Binding_bindMatrix4x4(scene->binding, Machine_String_create("mvp", strlen("mvp") + 1), mvp);
   glUniform1i(scene->texture_location, 0);
   glActiveTexture(GL_TEXTURE0 + 0);

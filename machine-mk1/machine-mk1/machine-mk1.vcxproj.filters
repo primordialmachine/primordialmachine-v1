@@ -25,17 +25,17 @@
     <Filter Include="Quelldateien\KHR">
       <UniqueIdentifier>{721f2e6a-ac16-458b-9993-6abcd9052e9d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headerdateien\GUI">
-      <UniqueIdentifier>{381816a8-0288-4185-b352-35c2d0034912}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Quelldateien\GUI">
-      <UniqueIdentifier>{2ca08a41-8bf1-45f3-9302-220460a24764}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Headerdateien\Text">
       <UniqueIdentifier>{78b19d05-7333-492a-a39d-c49877138b2a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Quelldateien\Text">
       <UniqueIdentifier>{7fb3eb57-ead2-4b86-b321-8887aa2790b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Math">
+      <UniqueIdentifier>{381816a8-0288-4185-b352-35c2d0034912}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Math">
+      <UniqueIdentifier>{2ca08a41-8bf1-45f3-9302-220460a24764}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +93,18 @@
     <ClCompile Include="Text\Layout.c">
       <Filter>Quelldateien\Text</Filter>
     </ClCompile>
+    <ClCompile Include="Math\Vector2.c">
+      <Filter>Quelldateien\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Vector3.c">
+      <Filter>Quelldateien\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Rectangle2.c">
+      <Filter>Quelldateien\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Video.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\external\glad\include\glad\glad.h">
@@ -148,6 +160,18 @@
     </ClInclude>
     <ClInclude Include="Text\Layout.h">
       <Filter>Headerdateien\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector2.h">
+      <Filter>Headerdateien\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector3.h">
+      <Filter>Headerdateien\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Rectangle2.h">
+      <Filter>Headerdateien\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Video.h">
+      <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -83,13 +83,11 @@ Machine_ShaderProgram_generate
     bool withTexture
   );
 
+/// @brief 
+/// @return 
 Machine_ShaderProgram*
 Machine_ShaderProgram_generateTextShader
   (
-    bool withMeshColor,
-    bool withVertexColor,
-    bool withTextureCoordinate,
-    bool withTexture
   );
 
 #endif // MACHINE_SHADERPROGRAM_H_INCLUDED

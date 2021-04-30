@@ -57,7 +57,7 @@ static inline void rect2_add_point(rect2* r, vec2 p) {
 
   if (r->b > p[1]) {
     float d = r->b - p[1];
-    r->b = p[0];
+    r->b = p[1];
     r->h += d;
   }
 
@@ -73,30 +73,35 @@ static inline void rect2_add_point(rect2* r, vec2 p) {
  */
 float Machine_Font_getBaselineDistance(Machine_Fonts_Font* self);
 
-/**
- * @brief Get the information of an unicode codepoint.
- * @param self This font.
- * @param codepoint The unicode codepoint.
- * @param bounds A pointer to a <code>rect2</code> variable.
- * @param advance A pointer to a <code>vec2</code> variable.
- * @param texture The texture.
- */
+/// @brief Get the information of an unicode codepoint.
+/// @param self This font.
+/// @param codepoint The unicode codepoint.
+/// @param bounds A pointer to a <code>rect2</code> variable.
+/// @param advance A pointer to a <code>vec2</code> variable.
+/// @param texture The texture.
 bool Machine_Font_getCodePointInfo(Machine_Fonts_Font* self, uint32_t codepoint, rect2* bounds, vec2 advance, Machine_Texture** texture);
 
-void Machine_Font_getBounds(Machine_Fonts_Font* self, const char *text, vec2 position, rect2* bounds);
+/// @brief Get the binding to be used when rendering the font.
+/// @param self This font.
+/// @return The binding.
+Machine_Binding* Machine_Font_getBinding(Machine_Fonts_Font* self);
+
+/// @brief Get the shader program.
+/// @param self This font.
+/// @return The shader program.
+Machine_ShaderProgram* Machine_Font_getShaderProgram(Machine_Fonts_Font *self);
+
+/// @brief Get the buffer.
+/// @param self This font.
+/// @return The shader program.
+Machine_FloatBuffer* Machine_Font_getFloatBuffer(Machine_Fonts_Font* self);
 
 /**
- * @brief Render a string.
- * @remark '\t' is replaced ' '. '\n' is replaced by ' '.
+ * @brief Get the bounds of the specified text.
  * @param self This font.
- */
-void Machine_Font_draw(Machine_Fonts_Font *self, const char *text, vec2 position, vec3 color, float width, float height);
-
-/**
- * @brief Parse text into lines.
  * @param text The text.
- * @return The list of lines (Machine_Scribe_TextLine).
+ * @param bounds A pointer to a <code>rect2</code> variable.
  */
-Machine_PointerArray* Machine_Text_toLines(Machine_String *text);
+void Machine_Font_getBounds(Machine_Fonts_Font* self, const char* text, rect2* bounds);
 
 #endif // MACHINE_FONTS_H_INCLUDED

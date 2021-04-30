@@ -93,6 +93,9 @@
   <ItemGroup>
     <ClCompile Include="..\external\glad\src\glad.c" />
     <ClCompile Include="Binding.c" />
+    <ClCompile Include="Math\Rectangle2.c" />
+    <ClCompile Include="Math\Vector2.c" />
+    <ClCompile Include="Math\Vector3.c" />
     <ClCompile Include="Scene4.c" />
     <ClCompile Include="Text\LayoutLine.c" />
     <ClCompile Include="Text\Layout.c" />
@@ -109,11 +112,15 @@
     <ClCompile Include="Machine.c" />
     <ClCompile Include="Texture.c" />
     <ClCompile Include="VertexDescriptor.c" />
+    <ClCompile Include="Video.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\external\glad\include\glad\glad.h" />
     <ClInclude Include="..\external\glad\include\KHR\khrplatform.h" />
     <ClInclude Include="Binding.h" />
+    <ClInclude Include="Math\Rectangle2.h" />
+    <ClInclude Include="Math\Vector2.h" />
+    <ClInclude Include="Math\Vector3.h" />
     <ClInclude Include="Scene4.h" />
     <ClInclude Include="Text\LayoutLine.h" />
     <ClInclude Include="Text\Layout.h" />
@@ -129,6 +136,7 @@
     <ClInclude Include="Machine.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="VertexDescriptor.h" />
+    <ClInclude Include="Video.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

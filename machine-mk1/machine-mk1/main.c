@@ -17,6 +17,7 @@ extern "C" {
 #include "Scene2.h"
 #include "Scene3.h"
 #include "Scene4.h"
+#include "Video.h"
 #include "Fonts.h"
 #include "Images.h"
 #include "Machine.h"
@@ -115,23 +116,15 @@ extern "C" {
     // Set clear color.
     glClearColor(0.9f, 0.9f, 0.9f, 1.f);
 
-    if (Machine_Fonts_startup()) {
-      fprintf(stderr, "%s:%d: Machine_Fonts_startup() failed\n", __FILE__, __LINE__);
-      glfwDestroyWindow(window);
-      glfwTerminate();
-      return EXIT_FAILURE;
-    }
-    if (Machine_Images_startup()) {
-      fprintf(stderr, "%s:%d: Machine_Images_startup() failed\n", __FILE__, __LINE__);
-      Machine_Fonts_shutdown();
+    if (Machine_Video_startup()) {
+      fprintf(stderr, "%s:%d: Machine_Video_startup() failed\n", __FILE__, __LINE__);
       glfwDestroyWindow(window);
       glfwTerminate();
       return EXIT_FAILURE;
     }
     if (Machine_startup()) {
       fprintf(stderr, "%s:%d: Machine_startup() failed\n", __FILE__, __LINE__);
-      Machine_Images_shutdown();
-      Machine_Fonts_shutdown();
+      Machine_Video_shutdown();
       glfwDestroyWindow(window);
       glfwTerminate();
       return EXIT_FAILURE;
@@ -139,8 +132,7 @@ extern "C" {
     if (loadIcons(window)) {
       fprintf(stderr, "%s:%d: loadIcons() failed\n", __FILE__, __LINE__);
       Machine_shutdown();
-      Machine_Images_shutdown();
-      Machine_Fonts_shutdown();
+      Machine_Video_shutdown();
       glfwDestroyWindow(window);
       glfwTerminate();
       return EXIT_FAILURE;
@@ -150,8 +142,7 @@ extern "C" {
     if (!scene) {
       fprintf(stderr, "%s:%d: Scene1_create() failed\n", __FILE__, __LINE__);
       Machine_shutdown();
-      Machine_Images_shutdown();
-      Machine_Fonts_shutdown();
+      Machine_Video_shutdown();
       glfwDestroyWindow(window);
       glfwTerminate();
       return EXIT_FAILURE;
@@ -162,8 +153,7 @@ extern "C" {
       fprintf(stderr, "%s:%d: Scene_startup() failed\n", __FILE__, __LINE__);
       Machine_setRoot(scene, false);
       Machine_shutdown();
-      Machine_Images_shutdown();
-      Machine_Fonts_shutdown();
+      Machine_Video_shutdown();
       glfwDestroyWindow(window);
       glfwTerminate();
       return EXIT_FAILURE;
@@ -179,8 +169,7 @@ extern "C" {
         Scene_shutdown(scene);
         Machine_setRoot(scene, false);
         Machine_shutdown();
-        Machine_Images_shutdown();
-        Machine_Fonts_shutdown();
+        Machine_Video_shutdown();
         glfwDestroyWindow(window);
         glfwTerminate();
         return EXIT_FAILURE;
@@ -194,8 +183,7 @@ extern "C" {
     Scene_shutdown(scene);
     Machine_setRoot(scene, false);
     Machine_shutdown();
-    Machine_Images_shutdown();
-    Machine_Fonts_shutdown();
+    Machine_Video_shutdown();
     glfwDestroyWindow(window);
     glfwTerminate();
 
