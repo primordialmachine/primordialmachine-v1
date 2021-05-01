@@ -1,3 +1,6 @@
+/// @file Math/Rectangle2.h
+/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
+/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #if !defined(MACHINE_MATH_RECTANGLE2_H_INCLUDED)
 #define MACHINE_MATH_RECTANGLE2_H_INCLUDED
 
@@ -5,6 +8,11 @@
 typedef struct Machine_Math_Vector2 Machine_Math_Vector2;
 typedef struct Machine_Math_Vector3 Machine_Math_Vector3;
 
+/// C-level definition of a 2D rectangle.
+/// The HLL-level definition is
+/// @code
+/// class Machine.Math.Rectangle2 { ... }
+/// @endcode
 typedef struct Machine_Math_Rectangle2 Machine_Math_Rectangle2;
 
 Machine_Math_Rectangle2* Machine_Math_Rectangle2_create();

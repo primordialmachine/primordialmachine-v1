@@ -1,8 +1,16 @@
+/// @file Math/Vector3.h
+/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
+/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #if !defined(MACHINE_MATH_VECTOR3_H_INCLUDED)
 #define MACHINE_MATH_VECTOR3_H_INCLUDED
 
 #include "./../Machine.h"
 
+/// C-level definition of a 3D vector.
+/// The HLL-level definition is
+/// @code
+/// class Machine.Math.Vector3 { ... }
+/// @endcode
 typedef struct Machine_Math_Vector3 Machine_Math_Vector3;
 
 Machine_Math_Vector3* Machine_Math_Vector3_create();
