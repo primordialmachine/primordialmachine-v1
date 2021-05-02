@@ -99,6 +99,7 @@ extern "C" {
       glfwTerminate();
       return EXIT_FAILURE;
     }
+    glfwMaximizeWindow(window);
 
     glfwSetKeyCallback(window, key_callback);
 

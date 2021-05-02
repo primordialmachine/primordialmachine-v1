@@ -26,6 +26,7 @@ void Machine_Math_Rectangle2_setPosition(Machine_Math_Rectangle2* self, Machine_
 /// @param self This rectangle.
 /// @param size The size.
 void Machine_Math_Rectangle2_setSize(Machine_Math_Rectangle2* self, Machine_Math_Vector2* size);
+Machine_Math_Vector2* Machine_Math_Rectangle2_getSize(Machine_Math_Rectangle2* self);
 
 /// @brief Get the center of this rectangle.
 /// @param self This rectangle.

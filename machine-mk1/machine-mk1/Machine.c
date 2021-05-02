@@ -68,6 +68,7 @@ void Machine_setStatus(Machine_StatusValue status) {
 static Machine_Tag* g_objects = NULL;
 static Machine_Tag* g_gray = NULL;
 static Stack *g_stack = NULL;
+static size_t g_objectCount = 0;
 
 int Machine_startup() {
   int result;
@@ -138,11 +139,14 @@ static void visit(Machine_Tag* tag) {
   SET_GRAY(tag);
 }
 
-void Machine_update() {
-  // Color all objects white. Add root objects to gray list.
+static void rungc(size_t* live, size_t *dead) {
+  (*live) = 0;
+  (*dead) = 0;
+
+  // Color all objects white. Add root objects or objects with a lock count greater than 0 to the gray list.
   for (Machine_Tag* object = g_objects; NULL != object; object = object->next) {
     SET_WHITE(object);
-    if (IS_ROOT(object)) {
+    if (IS_ROOT(object) || object->lockCount > 0) {
       object->gray = g_gray;
       g_gray = object;
       SET_GRAY(object);
@@ -167,15 +171,23 @@ void Machine_update() {
         object->finalize(object + 1);
       }
       if ((object->flags & Machine_Flag_Class) == Machine_Flag_Class) {
-        free(((Machine_ClassObjectTag *)(object + 1)) - 1);
+        free(((Machine_ClassObjectTag*)(object + 1)) - 1);
       } else {
         free(object);
       }
+      g_objectCount--;
+      (*dead)++;
     } else {
       previous = &current->next;
       current = current->next;
+      (*live)++;
     }
   }
+}
+
+void Machine_update() {
+  size_t live, dead;
+  rungc(&live, &dead);
 }
 
 void* Machine_allocate(size_t size, Machine_VisitCallback* visit, Machine_FinalizeCallback* finalize) {
@@ -183,7 +195,9 @@ void* Machine_allocate(size_t size, Machine_VisitCallback* visit, Machine_Finali
   if (!t) {
     return NULL;
   }
+  g_objectCount++;
   memset(t, 0, sizeof(Machine_Tag) + size);
+  t->lockCount = 0;
   t->flags = Machine_Flag_White;
   t->size = size;
   t->visit = visit;
@@ -202,6 +216,16 @@ void Machine_visit(void* object) {
   }
 }
 
+void Machine_lock(void* object) {
+  Machine_Tag *tag = ((Machine_Tag*)object) - 1;
+  tag->lockCount++;
+}
+
+void Machine_unlock(void* object) {
+  Machine_Tag* tag = ((Machine_Tag*)object) - 1;
+  tag->lockCount--;
+}
+
 void Machine_setRoot(void* object, bool isRoot) {
   Machine_Tag* tag = ((Machine_Tag*)object) - 1;
   if (isRoot) {
@@ -217,8 +241,20 @@ bool Machine_getRoot(void* object) {
   return Machine_Flag_Root == (tag->flags & Machine_Flag_Root);
 }
 
+#include <stdio.h>
+
 void Machine_shutdown() {
-  Machine_update();
+  size_t MAX_RUN = 8;
+  size_t live, dead, run = 0;
+  
+  do {
+    rungc(&live, &dead);
+  } while (live > 0 && run < MAX_RUN);
+
+  if (live > 0) {
+    fprintf(stderr, "warning %zu live objects remaining\n", live);
+  }
+
   Stack_destroy(g_stack);
   g_stack = NULL;
 }
@@ -358,8 +394,14 @@ static void Machine_ClassType_visit(Machine_ClassType* self) {
   }
 }
 
+static void Machine_ClassType_finalize(Machine_ClassType* self) {
+  if (self->parent) {
+    Machine_unlock(self->parent);
+  }
+}
+
 Machine_ClassType* Machine_createClassType(Machine_ClassType* parent, size_t size, Machine_ClassObjectVisitCallback* visit, Machine_ClassObjectConstructCallback* construct, Machine_ClassObjectDestructCallback* destruct) {
-  Machine_ClassType *classType = Machine_allocate(sizeof(Machine_ClassType), (Machine_VisitCallback *)&Machine_ClassType_visit, NULL);
+  Machine_ClassType *classType = Machine_allocate(sizeof(Machine_ClassType), (Machine_VisitCallback *)&Machine_ClassType_visit, (Machine_FinalizeCallback *)&Machine_ClassType_finalize);
   if (!classType) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
@@ -368,6 +410,10 @@ Machine_ClassType* Machine_createClassType(Machine_ClassType* parent, size_t siz
   classType->visit = visit;
   classType->construct = construct;
   classType->destruct = destruct;
+  classType->parent = parent;
+  if (parent) {
+    Machine_lock(classType->parent);
+  }
   return classType;
 }
 
@@ -399,6 +445,8 @@ static void Machine_ClassObject_finalize(void* self) {
     }
     classType = classType->parent;
   }
+  // NOW release the class type.
+  Machine_unlock(classObjectTag->classType);
 }
 
 Machine_Object* Machine_allocateClassObject(Machine_ClassType* type, size_t numberOfArguments, const Machine_Value* arguments) {
@@ -407,6 +455,7 @@ Machine_Object* Machine_allocateClassObject(Machine_ClassType* type, size_t numb
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
+  g_objectCount++;
   memset(t, 0, sizeof(Machine_ClassObjectTag) + type->size);
   t->tag.flags = Machine_Flag_White | Machine_Flag_Class;
   t->tag.size = type->size;
@@ -415,6 +464,7 @@ Machine_Object* Machine_allocateClassObject(Machine_ClassType* type, size_t numb
   t->tag.next = g_objects; g_objects = &t->tag;
   t->tag.gray = NULL;
   t->classType = type;
+  Machine_lock(t->classType);
 
   type->construct((void *)(t + 1), numberOfArguments, arguments);
 
@@ -500,7 +550,7 @@ Machine_String *Machine_StringBuffer_toString(Machine_StringBuffer* self) {
 void Machine_log(int flags, const char* file, int line, const char* format, ...) {
   va_list arguments;
   va_start(arguments, format);
-  fprintf(stdout, "%s:%d: ", __FILE__, __LINE__);
+  fprintf(stdout, "%s:%d: ", file, line);
   vfprintf(stdout, format, arguments);
   va_end(arguments);
 }

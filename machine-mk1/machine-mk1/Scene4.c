@@ -10,6 +10,7 @@
 #include <linmath.h>
 
 #include "Fonts.h"
+#include "Shape2.h"
 #include "Images.h"
 #include "Buffer.h"
 #include "ShaderProgram.h"
@@ -24,6 +25,10 @@ typedef struct Scene4 Scene4;
 struct Scene4 {
   Scene parent;
   Machine_Fonts_Font* font;
+  struct {
+    Machine_Rectangle2* background;
+    Machine_Text_Layout* text;
+  } label1;
 };
 
 void Scene4_destruct(Scene4* self);
@@ -31,6 +36,12 @@ void Scene4_destruct(Scene4* self);
 static void Scene4_visit(Scene4* self) {
   if (self->font) {
     Machine_visit(self->font);
+  }
+  if (self->label1.background) {
+    Machine_visit(self->label1.background);
+  }
+  if (self->label1.text) {
+    Machine_visit(self->label1.text);
   }
 }
 
@@ -47,6 +58,11 @@ static int Scene4_startup(Scene4* scene) {
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();
     }
+    scene->label1.background = Machine_Rectangle2_create();
+    {
+      const char* text = "Nanobox IV\n400 units of unprimed nanites.";
+      scene->label1.text = Machine_Text_Layout_create(Machine_String_create(text, strlen(text)), scene->font);
+    }
     Machine_popJumpTarget();
     return 0;
   }
@@ -56,24 +72,72 @@ static int Scene4_startup(Scene4* scene) {
   }
 }
 
-static int Scene4_update(Scene4* scene, float width, float height) {
+static void updateText1(Scene4* scene, float width, float height) {
   Machine_Math_Vector3* color = Machine_Math_Vector3_create();
   Machine_Math_Vector3_set(color, .1f, .1f, .1f);
-  vec2 center = { width * 0.5f, height * 0.5f };
 
-  const char* text = "Nanobox IV\n400 units of unprimed nanites.";
+  Machine_Math_Rectangle2* bounds = Machine_Text_Layout_getBounds(scene->label1.text);
+  Machine_Math_Vector2* size = Machine_Math_Rectangle2_getSize(bounds);
+  Machine_Math_Vector2* halfSize = Machine_Math_Vector2_clone(size);
+  Machine_Math_Vector2_set(halfSize, Machine_Math_Vector2_getX(halfSize) * 0.5f, Machine_Math_Vector2_getY(halfSize) * 0.5f);
+  
+  Machine_Math_Vector2* CENTER = Machine_Math_Vector2_create();
+  Machine_Math_Vector2_set(CENTER, width * 0.5f, height * 0.5f);
+  Machine_Math_Vector2* POSITION = Machine_Math_Vector2_difference(CENTER, halfSize);
+
+  Machine_Text_Layout_setPosition(scene->label1.text, POSITION);
+  {
+    Machine_Text_Layout_setColor(scene->label1.text, color);
+  }
+  Machine_Text_Layout_render(scene->label1.text, width, height);
+}
+
+static void updateText2(Scene4* scene, float width, float height) {
+  Machine_Math_Vector2* MARGIN = Machine_Math_Vector2_create();
+  Machine_Math_Vector2_set(MARGIN, 5.f, 5.f);
+
+  Machine_Math_Vector3* COLOR = Machine_Math_Vector3_create();
+  Machine_Math_Vector3_set(COLOR, .1f, .1f, .1f);
+
+  const char* text = "15 of 15";
   Machine_Text_Layout* layout = Machine_Text_Layout_create(Machine_String_create(text, strlen(text)), scene->font);
 
   Machine_Math_Rectangle2* bounds = Machine_Text_Layout_getBounds(layout);
-  Machine_Math_Rectangle2_setCenter(bounds, center[0], center[1]);
+  Machine_Math_Vector2* leftTop = Machine_Math_Rectangle2_getLeftTop(bounds);
+  if (Machine_Math_Vector2_getX(leftTop) < 0.f) {
+    Machine_Math_Vector2_set(leftTop, -Machine_Math_Vector2_getX(leftTop), Machine_Math_Vector2_getY(leftTop));
+  }
+  if (Machine_Math_Vector2_getY(leftTop) < 0.f) {
+    Machine_Math_Vector2_set(leftTop, Machine_Math_Vector2_getX(leftTop), -Machine_Math_Vector2_getY(leftTop));
+  }
+  Machine_Math_Vector2_add(leftTop, leftTop, MARGIN);
   {
-    Machine_Text_Layout_setColor(layout, color);
+    Machine_Text_Layout_setColor(layout, COLOR);
   }
   {
-    Machine_Math_Vector2* leftTop = Machine_Math_Rectangle2_getLeftTop(bounds);
     Machine_Text_Layout_setPosition(layout, leftTop);
   }
   Machine_Text_Layout_render(layout, width, height);
+}
+
+static int Scene4_update(Scene4* scene, float width, float height) {
+  // Set the viewport and clear its color buffer.
+  Machine_UtilitiesGl_call(glViewport(0, 0, width, height));
+  Machine_UtilitiesGl_call(glClear(GL_COLOR_BUFFER_BIT));
+
+  Machine_Math_Vector2* v = Machine_Math_Vector2_create();
+
+  Machine_Math_Vector2_set(v, width * 0.25f, height * 0.25f);
+  Machine_Rectangle2_setPosition(scene->label1.background, v);
+
+  Machine_Math_Vector2_set(v, width * 0.5f, height * 0.5f);
+  Machine_Rectangle2_setSize(scene->label1.background, v);
+
+  Machine_Shape2_render((Machine_Shape2*)scene->label1.background, width, height);
+
+  updateText1(scene, width, height);
+  updateText2(scene, width, height);
+
   return 0;
 }
 

@@ -22,7 +22,6 @@ Machine_ClassType* Machine_Math_Vector3_getClassType() {
       );
 }
 
-
 Machine_Math_Vector3* Machine_Math_Vector3_create() {
   Machine_ClassType* ty = Machine_Math_Vector3_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
@@ -31,22 +30,16 @@ Machine_Math_Vector3* Machine_Math_Vector3_create() {
   return self;
 }
 
-void Machine_Math_Vector3_set(Machine_Math_Vector3* self, float x, float y, float z) {
-  self->x = x;
-  self->y = y;
-  self->z = z;
+Machine_Math_Vector3* Machine_Math_Vector3_clone(Machine_Math_Vector3* self) {
+  Machine_Math_Vector3* other = Machine_Math_Vector3_create();
+  Machine_Math_Vector3_copy(other, self);
+  return other;
 }
 
-float Machine_Math_Vector3_getX(Machine_Math_Vector3* self) {
-  return self->x;
-}
-
-float Machine_Math_Vector3_getY(Machine_Math_Vector3* self) {
-  return self->y;
-}
-
-float Machine_Math_Vector3_getZ(Machine_Math_Vector3* self) {
-  return self->z;
+void Machine_Math_Vector3_copy(Machine_Math_Vector3* self, const Machine_Math_Vector3* other) {
+  self->x = other->x;
+  self->y = other->y;
+  self->z = other->z;
 }
 
 void Machine_Math_Vector3_add(Machine_Math_Vector3* c, Machine_Math_Vector3* a, Machine_Math_Vector3* b) {
@@ -81,4 +74,24 @@ float Machine_Math_Vector3_dot(Machine_Math_Vector3* c) {
   return c->x * c->x
        + c->y * c->y
        + c->z * c->z;
+}
+
+
+
+void Machine_Math_Vector3_set(Machine_Math_Vector3* self, float x, float y, float z) {
+  self->x = x;
+  self->y = y;
+  self->z = z;
+}
+
+float Machine_Math_Vector3_getX(Machine_Math_Vector3* self) {
+  return self->x;
+}
+
+float Machine_Math_Vector3_getY(Machine_Math_Vector3* self) {
+  return self->y;
+}
+
+float Machine_Math_Vector3_getZ(Machine_Math_Vector3* self) {
+  return self->z;
 }

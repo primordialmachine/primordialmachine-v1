@@ -32,11 +32,13 @@ Machine_Text_Layout* Machine_Text_Layout_create(Machine_String* text, Machine_Fo
 /// @param self This text layout.
 /// @param position The position.
 void Machine_Text_Layout_setPosition(Machine_Text_Layout* self, Machine_Math_Vector2 *position);
+Machine_Math_Vector2* Machine_Text_Layout_getPosition(Machine_Text_Layout* self);
 
 /// @brief Set the color of this layout.
 /// @param self This text layout.
 /// @param color The color.
 void Machine_Text_Layout_setColor(Machine_Text_Layout* self, Machine_Math_Vector3* color);
+Machine_Math_Vector3* Machine_Text_Layout_getColor(Machine_Text_Layout* self);
 
 /// @brief Get the bounds of this text layout.
 /// @param self This text layout.

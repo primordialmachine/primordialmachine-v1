@@ -21,7 +21,6 @@ Machine_ClassType* Machine_Math_Vector2_getClassType() {
       );
 }
 
-
 Machine_Math_Vector2* Machine_Math_Vector2_create() {
   Machine_ClassType* ty = Machine_Math_Vector2_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
@@ -30,17 +29,15 @@ Machine_Math_Vector2* Machine_Math_Vector2_create() {
   return self;
 }
 
-void Machine_Math_Vector2_set(Machine_Math_Vector2* self, float x, float y) {
-  self->x = x;
-  self->y = y;
+Machine_Math_Vector2* Machine_Math_Vector2_clone(Machine_Math_Vector2* self) {
+  Machine_Math_Vector2* other = Machine_Math_Vector2_create();
+  Machine_Math_Vector2_copy(other, self);
+  return other;
 }
 
-float Machine_Math_Vector2_getX(Machine_Math_Vector2* self) {
-  return self->x;
-}
-
-float Machine_Math_Vector2_getY(Machine_Math_Vector2* self) {
-  return self->y;
+void Machine_Math_Vector2_copy(Machine_Math_Vector2* self, const Machine_Math_Vector2* other) {
+  self->x = other->x;
+  self->y = other->y;
 }
 
 void Machine_Math_Vector2_add(Machine_Math_Vector2* c, Machine_Math_Vector2* a, Machine_Math_Vector2* b) {
@@ -70,4 +67,19 @@ Machine_Math_Vector2* Machine_Math_Vector2_difference(Machine_Math_Vector2* a, M
 float Machine_Math_Vector2_dot(Machine_Math_Vector2* c) {
   return c->x * c->x
        + c->y * c->y;
+}
+
+
+
+void Machine_Math_Vector2_set(Machine_Math_Vector2* self, float x, float y) {
+  self->x = x;
+  self->y = y;
+}
+
+float Machine_Math_Vector2_getX(Machine_Math_Vector2* self) {
+  return self->x;
+}
+
+float Machine_Math_Vector2_getY(Machine_Math_Vector2* self) {
+  return self->y;
 }

@@ -135,7 +135,8 @@ typedef struct Machine_Tag Machine_Tag;
 struct Machine_Tag {
   Machine_Tag* next;
   Machine_Tag* gray;
-  uint8_t flags;
+  uint64_t lockCount;
+  uint32_t flags;
   size_t size;
   Machine_VisitCallback* visit;
   Machine_FinalizeCallback* finalize;
@@ -172,6 +173,14 @@ void* Machine_allocate(size_t size, Machine_VisitCallback *visit, Machine_Finali
  * @undefined Invoked outside of visit callback.
  */
 void Machine_visit(void* object);
+
+/// @brief Increment the lock count of an object.
+/// @param object A pointer to the object.
+void Machine_lock(void* object);
+
+/// @brief Decrement the lock count of an object.
+/// @param object A pointer to the object.
+void Machine_unlock(void* object);
 
 /**
  * @brief Set if an object is marked as a root object.

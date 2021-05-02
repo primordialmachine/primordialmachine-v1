@@ -113,7 +113,7 @@ static void measure(Machine_Math_Vector2 *position, Machine_Fonts_Font* font, Ma
     layoutLine->top = lineBounds.b;
     layoutLine->height = lineBounds.h;
 
-    cursorPosition[0] = 0.f;
+    cursorPosition[0] = position0[0];
     cursorPosition[1] += Machine_Font_getBaselineDistance(font);
   }
 }
@@ -146,8 +146,12 @@ void Machine_Text_Layout_setPosition(Machine_Text_Layout* self, Machine_Math_Vec
     Machine_setStatus(Machine_Status_InvalidArgument);
     Machine_jump();
   }
-  self->position = position;
+  Machine_Math_Vector2_copy(self->position, position);
   measure(self->position, self->font, self->text, self->lines, self->yup);
+}
+
+Machine_Math_Vector2* Machine_Text_Layout_getPosition(Machine_Text_Layout* self) {
+  return Machine_Math_Vector2_clone(self->position);
 }
 
 void Machine_Text_Layout_setColor(Machine_Text_Layout* self, Machine_Math_Vector3* color) {
@@ -155,7 +159,11 @@ void Machine_Text_Layout_setColor(Machine_Text_Layout* self, Machine_Math_Vector
     Machine_setStatus(Machine_Status_InvalidArgument);
     Machine_jump();
   }
-  self->color = color;
+  Machine_Math_Vector3_copy(self->color, color);
+}
+
+Machine_Math_Vector3* Machine_Text_Layout_getColor(Machine_Text_Layout* self) {
+  return Machine_Math_Vector3_clone(self->color);
 }
 
 Machine_Math_Rectangle2* Machine_Text_Layout_getBounds(Machine_Text_Layout* self) {
@@ -193,10 +201,6 @@ Machine_Math_Rectangle2* Machine_Text_Layout_getBounds(Machine_Text_Layout* self
 }
 
 void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float height) {
-  // Set the viewport and clear its color buffer.
-  Machine_UtilitiesGl_call(glViewport(0, 0, width, height));
-  Machine_UtilitiesGl_call(glClear(GL_COLOR_BUFFER_BIT));
-
 #if defined(WITH_SNAPTOGRID)
   // Snap to pixel (ensure there are no artifacts).
   vec2 position0 = { floorf(Machine_Math_Vector2_getX(self->position)),
@@ -281,7 +285,7 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
 
       vec2_add(cursorPosition, cursorPosition, symbolAdvance);
     }
-    cursorPosition[0] = Machine_Math_Vector2_getX(self->position);
+    cursorPosition[0] = position0[0];
     cursorPosition[1] += Machine_Font_getBaselineDistance(self->font);
   }
 }

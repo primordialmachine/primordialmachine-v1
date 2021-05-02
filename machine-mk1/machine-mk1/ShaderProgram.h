@@ -20,6 +20,12 @@ struct Machine_Input {
   Machine_InputType type;
 };
 
+typedef enum Machine_ProgramKind {
+  Machine_ProgramKind_VERTEX,
+  Machine_ProgramKind_GEOMETRY,
+  Machine_ProgramKind_FRAGMENT,
+} Machine_ProgramKind;
+
 Machine_Input* Machine_Input_create(Machine_String* name, Machine_InputType type);
 
 typedef struct Machine_ShaderProgram Machine_ShaderProgram;
@@ -27,6 +33,7 @@ typedef struct Machine_ShaderProgram Machine_ShaderProgram;
 struct Machine_ShaderProgram {
   GLuint programId;
   GLuint vertexProgramId;
+  GLuint geometryProgramId;
   GLuint fragmentProgramId;
   struct {
     Machine_Input** e;
@@ -34,9 +41,9 @@ struct Machine_ShaderProgram {
   } inputs;
 };
 
-Machine_ShaderProgram* Machine_ShaderProgram_create(GLuint programId, GLuint vertexProgramId, GLuint fragmentProgramId);
+Machine_ShaderProgram* Machine_ShaderProgram_create(GLuint programId, GLuint vertexProgramId, GLuint geometryProgramId, GLuint fragmentProgramId);
 
-Machine_ShaderProgram* Machine_ShaderProgram_create2(const char* vertexProgramText, const char* fragmentProgramText);
+Machine_ShaderProgram* Machine_ShaderProgram_create2(const char* vertexProgramText, const char* geometryProgramText, const char* fragmentProgramText);
 
 /**
  * @brief
@@ -83,10 +90,19 @@ Machine_ShaderProgram_generate
     bool withTexture
   );
 
-/// @brief 
-/// @return 
+/// @brief Shader program to render 2D text.
+/// Provides <code>vec3 mesh_color</code> to colorize the text.
+/// @return The shader program.
 Machine_ShaderProgram*
 Machine_ShaderProgram_generateTextShader
+  (
+  );
+
+/// @brief Shader program to render 2D rectangle.
+/// Provides <code>vec3 mesh_color</code> to colorize the rectangle.
+/// @return The shader program.
+Machine_ShaderProgram*
+Machine_ShaderProgram_generateRectangleShader
   (
   );
 

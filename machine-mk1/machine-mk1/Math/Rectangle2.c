@@ -44,6 +44,12 @@ void Machine_Math_Rectangle2_setSize(Machine_Math_Rectangle2* self, Machine_Math
   self->h = Machine_Math_Vector2_getY(size);
 }
 
+Machine_Math_Vector2* Machine_Math_Rectangle2_getSize(Machine_Math_Rectangle2* self) {
+  Machine_Math_Vector2* size = Machine_Math_Vector2_create();
+  Machine_Math_Vector2_set(size, self->w, self->h);
+  return size;
+}
+
 Machine_Math_Vector2 *Machine_Math_Rectangle2_getCenter(Machine_Math_Rectangle2 *self) {
   Machine_Math_Vector2 *center = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(center, self->x + self->w * 0.5f, self->y + self->h * 0.5f);

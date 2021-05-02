@@ -1,5 +1,9 @@
 #include "UtilitiesGL.h"
 
+const char* Machine_UtilitiesGl_toString(GLenum error);
+
+Machine_StatusValue Machine_UtilitiesGl_toStatus(GLenum error);
+
 const char* Machine_UtilitiesGl_toString(GLenum error) {
   switch (error) {
   case GL_INVALID_ENUM: {
@@ -60,4 +64,14 @@ Machine_StatusValue Machine_UtilitiesGl_toStatus(GLenum error) {
   default:
     return Machine_Status_Success;
   };
+}
+
+void Machine_UtilitiesGl_postCall(const char *file, int line, const char *function) {
+  GLenum errorCode = glGetError();
+  if (errorCode) {
+    const char* error = Machine_UtilitiesGl_toString(errorCode);
+    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "%s failed with %s\n", function, error);
+    Machine_setStatus(Machine_UtilitiesGl_toStatus(errorCode));
+    Machine_jump();
+  }
 }

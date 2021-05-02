@@ -17,8 +17,6 @@
 #include "Binding.h"
 #include <inttypes.h>
 
-#define Y_UP (1)
-
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
@@ -201,11 +199,6 @@ void Machine_Fonts_Font_finalize(Machine_Fonts_Font* self) {
   Machine_Fonts_shutdown();
 }
 
-static const uint8_t indices[] = {
-  0, 1, 2,
-  2, 1, 3,
-};
-
 Machine_Fonts_Font* Machine_Fonts_createFont(const char* path, int pointSize) {
   if (Machine_Fonts_startup()) {
     return NULL;
@@ -364,51 +357,4 @@ Machine_ShaderProgram* Machine_Font_getShaderProgram(Machine_Fonts_Font* self) {
 
 Machine_FloatBuffer* Machine_Font_getFloatBuffer(Machine_Fonts_Font* self) {
   return self->vertices;
-}
-
-void Machine_Font_getBounds(Machine_Fonts_Font* self, const char* text, rect2* bounds) {
-  vec2 position = { 0.f, 0.f };
-  vec2 linePosition = { 0.f, 0.f };
-
-  rect2 layoutBounds;
-  layoutBounds.l = linePosition[0];
-  layoutBounds.b = linePosition[1];
-  layoutBounds.w = 0.f;
-  layoutBounds.h = 0.f;
-
-  Machine_Text_Layout* layout = Machine_Text_Layout_create(Machine_String_create(text, strlen(text)), self);
-  for (size_t i = 0, n = Machine_PointerArray_getSize(layout->lines); i < n; ++i) {
-    Machine_Text_LayoutLine* textLine = (Machine_Text_LayoutLine*)Machine_PointerArray_getAt(layout->lines, i);
-    for (size_t j = textLine->start, m = textLine->start + textLine->length; j < m; ++j) {
-      uint32_t codepoint = text[j];
-      rect2 symbolBounds;
-      vec2 symbolAdvance;
-      Machine_Texture* symbolTexture;
-      bool skip = !Machine_Font_getCodePointInfo(self, codepoint, &symbolBounds, symbolAdvance, &symbolTexture);
-      if (skip) continue;
-
-      float l = linePosition[0] + symbolBounds.l;
-      float t;
-    #if defined(Y_UP)
-      t = linePosition[1] + (symbolBounds.h - symbolBounds.b);
-    #else
-      t = linePosition[1] - (symbolBounds.h - symbolBounds.b);
-    #endif
-
-      vec2 min = { l, t };
-      vec2 max = { l + symbolBounds.w, t + symbolBounds.h };
-
-      rect2_add_point(&layoutBounds, min);
-      rect2_add_point(&layoutBounds, max);
-
-      vec2_add(linePosition, linePosition, symbolAdvance);
-    }
-    linePosition[0] = position[0];
-    linePosition[1] += Machine_Font_getBaselineDistance(self);
-  }
-
-  bounds->b = layoutBounds.b;
-  bounds->l = layoutBounds.l;
-  bounds->w = layoutBounds.w;
-  bounds->h = layoutBounds.h;
 }

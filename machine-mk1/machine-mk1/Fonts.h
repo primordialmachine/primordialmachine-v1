@@ -39,11 +39,6 @@ typedef struct rect2 {
   float w, h;
 } rect2;
 
-static inline void rect2_get_center(rect2* r, vec2 c) {
-  c[0] = r->l + r->w * 0.5f;
-  c[1] = r->b + r->h * 0.5f;
-}
-
 static inline void rect2_add_point(rect2* r, vec2 p) {
   if (r->l > p[0]) {
     float d = r->l - p[0];
@@ -95,13 +90,5 @@ Machine_ShaderProgram* Machine_Font_getShaderProgram(Machine_Fonts_Font *self);
 /// @param self This font.
 /// @return The shader program.
 Machine_FloatBuffer* Machine_Font_getFloatBuffer(Machine_Fonts_Font* self);
-
-/**
- * @brief Get the bounds of the specified text.
- * @param self This font.
- * @param text The text.
- * @param bounds A pointer to a <code>rect2</code> variable.
- */
-void Machine_Font_getBounds(Machine_Fonts_Font* self, const char* text, rect2* bounds);
 
 #endif // MACHINE_FONTS_H_INCLUDED
