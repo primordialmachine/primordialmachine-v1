@@ -5,6 +5,7 @@
 #include <assert.h>
 #include <malloc.h>
 #include <memory.h>
+#include <stdio.h>
 #include <string.h>
 
 
@@ -240,8 +241,6 @@ bool Machine_getRoot(void* object) {
   Machine_Tag* tag = ((Machine_Tag*)object) - 1;
   return Machine_Flag_Root == (tag->flags & Machine_Flag_Root);
 }
-
-#include <stdio.h>
 
 void Machine_shutdown() {
   size_t MAX_RUN = 8;
@@ -608,6 +607,10 @@ Machine_PointerArray* Machine_PointerArray_create() {
   static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_VoidValue_VOID } };
   Machine_PointerArray* self = (Machine_PointerArray *)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
+}
+
+void Machine_PointerArray_clear(Machine_PointerArray* self) {
+  self->size = 0;
 }
 
 void *Machine_PointerArray_getAt(Machine_PointerArray* self, size_t index) {

@@ -29,6 +29,9 @@ struct Scene4 {
     Machine_Rectangle2* background;
     Machine_Text_Layout* text;
   } label1;
+  struct {
+    Machine_Text_Layout* text;
+  } label2;
 };
 
 void Scene4_destruct(Scene4* self);
@@ -42,6 +45,9 @@ static void Scene4_visit(Scene4* self) {
   }
   if (self->label1.text) {
     Machine_visit(self->label1.text);
+  }
+  if (self->label2.text) {
+    Machine_visit(self->label2.text);
   }
 }
 
@@ -61,7 +67,13 @@ static int Scene4_startup(Scene4* scene) {
     scene->label1.background = Machine_Rectangle2_create();
     {
       const char* text = "Nanobox IV\n400 units of unprimed nanites.";
-      scene->label1.text = Machine_Text_Layout_create(Machine_String_create(text, strlen(text)), scene->font);
+      scene->label1.text = Machine_Text_Layout_create(Machine_String_create("", strlen("")), scene->font);
+      Machine_Text_Layout_setText(scene->label1.text, Machine_String_create(text, strlen(text)));
+    }
+    {
+      const char* text = "15 of 15";
+      scene->label2.text = Machine_Text_Layout_create(Machine_String_create("", strlen("")), scene->font);
+      Machine_Text_Layout_setText(scene->label2.text, Machine_String_create(text, strlen(text)));
     }
     Machine_popJumpTarget();
     return 0;

@@ -141,6 +141,23 @@ Machine_Text_Layout* Machine_Text_Layout_create(Machine_String* text, Machine_Fo
   return self;
 }
 
+void Machine_Text_Layout_setText(Machine_Text_Layout* self, Machine_String* text) {
+  if (!self || !text) {
+    Machine_setStatus(Machine_Status_InvalidArgument);
+    Machine_jump();
+  }
+  if (!Machine_String_equalTo(self->text, text)) {
+    self->text = text;
+    Machine_PointerArray_clear(self->lines);
+    parse(self->text, self->lines);
+    measure(self->position, self->font, self->text, self->lines, self->yup);
+  }
+}
+
+Machine_String* Machine_Text_Layout_getText(Machine_Text_Layout* self) {
+  return self->text;
+}
+
 void Machine_Text_Layout_setPosition(Machine_Text_Layout* self, Machine_Math_Vector2* position) {
   if (position == NULL) {
     Machine_setStatus(Machine_Status_InvalidArgument);
@@ -150,8 +167,8 @@ void Machine_Text_Layout_setPosition(Machine_Text_Layout* self, Machine_Math_Vec
   measure(self->position, self->font, self->text, self->lines, self->yup);
 }
 
-Machine_Math_Vector2* Machine_Text_Layout_getPosition(Machine_Text_Layout* self) {
-  return Machine_Math_Vector2_clone(self->position);
+const Machine_Math_Vector2* Machine_Text_Layout_getPosition(Machine_Text_Layout* self) {
+  return self->position;
 }
 
 void Machine_Text_Layout_setColor(Machine_Text_Layout* self, Machine_Math_Vector3* color) {
@@ -162,11 +179,11 @@ void Machine_Text_Layout_setColor(Machine_Text_Layout* self, Machine_Math_Vector
   Machine_Math_Vector3_copy(self->color, color);
 }
 
-Machine_Math_Vector3* Machine_Text_Layout_getColor(Machine_Text_Layout* self) {
-  return Machine_Math_Vector3_clone(self->color);
+const Machine_Math_Vector3* Machine_Text_Layout_getColor(Machine_Text_Layout* self) {
+  return self->color;
 }
 
-Machine_Math_Rectangle2* Machine_Text_Layout_getBounds(Machine_Text_Layout* self) {
+const Machine_Math_Rectangle2* Machine_Text_Layout_getBounds(Machine_Text_Layout* self) {
 
 #if defined(WITH_SNAPTOGRID)
   // Snap to pixel (ensure there are no artifacts).

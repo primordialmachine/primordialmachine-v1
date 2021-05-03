@@ -542,6 +542,12 @@ typedef struct Machine_PointerArray Machine_PointerArray;
 Machine_PointerArray* Machine_PointerArray_create();
 
 /**
+ * @brief Clear this object array.
+ * @param self A pointer to this object array.
+ */
+void Machine_PointerArray_clear(Machine_PointerArray* self);
+
+/**
  * @brief Get the object at the specified index in this object array.
  * @return A pointer to the object or the null pointer.
  * @error Machine_Status_IndexOutOfBounds @a index is smaller than @a 0 or greater than @a n where @a n is the size of this object array.
