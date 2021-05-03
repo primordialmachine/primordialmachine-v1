@@ -72,7 +72,6 @@ static int Scene2_startup(Scene2* scene) {
     Machine_FloatBuffer_setData(scene->vertices, sizeof(vertices) / sizeof(float), vertices);
 
     scene->shaderProgram = Machine_ShaderProgram_generate(true, false, false);
-    Machine_setRoot(scene->shaderProgram, true);
 
     scene->mvp_location = glGetUniformLocation(scene->shaderProgram->programId, "mvp");
 
@@ -81,7 +80,6 @@ static int Scene2_startup(Scene2* scene) {
     Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_RfGfBf);
 
     scene->binding = Machine_Binding_create(scene->shaderProgram, vd, scene->vertices);
-    Machine_setRoot(scene->binding, true);
     Machine_Binding_set(scene->binding, Machine_String_create_noraise("vertex_position", strlen("vertex_position") + 1), 0);
     Machine_Binding_set(scene->binding, Machine_String_create_noraise("vertex_color", strlen("vertex_color") + 1), 1);
 
