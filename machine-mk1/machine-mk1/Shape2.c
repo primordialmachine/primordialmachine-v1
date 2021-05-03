@@ -47,6 +47,7 @@ struct Machine_Rectangle2 {
   Machine_ShaderProgram* shader;
   Machine_FloatBuffer* vertices;
   Machine_Binding* binding;
+  Machine_Math_Vector3* color;
 };
 
 void Machine_Rectangle2_visit(Machine_Rectangle2* self) {
@@ -64,6 +65,9 @@ void Machine_Rectangle2_visit(Machine_Rectangle2* self) {
   }
   if (self->binding) {
     Machine_visit(self->binding);
+  }
+  if (self->color) {
+    Machine_visit(self->color);
   }
 }
 
@@ -133,6 +137,9 @@ void Machine_Rectangle2_construct(Machine_Rectangle2* self, size_t numberOfArgum
 
   self->binding = Machine_Binding_create(self->shader, vertexDescriptor, self->vertices);
   Machine_Binding_set(self->binding, Machine_String_create("vertex_position", strlen("vertex_position") + 1), 0);
+
+  self->color = Machine_Math_Vector3_create();
+  Machine_Math_Vector3_set(self->color, 1.f, 1.f, 1.f);
 }
 
 Machine_ClassType* Machine_Rectangle2_getClassType() {
@@ -155,10 +162,26 @@ Machine_Rectangle2* Machine_Rectangle2_create() {
   return self;
 }
 
+void Machine_Rectangle2_setColor(Machine_Rectangle2* self, Machine_Math_Vector3* color) {
+  Machine_Math_Vector3_copy(self->color, color);
+}
+
+const Machine_Math_Vector3* Machine_Rectangle2_getColor(Machine_Rectangle2* self) {
+  return self->color;
+}
+
 void Machine_Rectangle2_setSize(Machine_Rectangle2* self, Machine_Math_Vector2* size) {
   Machine_Math_Vector2_copy(self->size, size);
 }
 
+const Machine_Math_Vector2* Machine_Rectangle2_getSize(Machine_Rectangle2* self) {
+  return self->size;
+}
+
 void Machine_Rectangle2_setPosition(Machine_Rectangle2* self, Machine_Math_Vector2* position) {
   Machine_Math_Vector2_copy(self->position, position);
+}
+
+const Machine_Math_Vector2* Machine_Rectangle2_getPosition(Machine_Rectangle2* self) {
+  return self->position;
 }
