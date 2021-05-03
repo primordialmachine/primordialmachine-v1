@@ -70,10 +70,10 @@ Machine_Math_Vector3* Machine_Math_Vector3_difference(Machine_Math_Vector3* a, M
   return c;
 }
 
-float Machine_Math_Vector3_dot(Machine_Math_Vector3* c) {
-  return c->x * c->x
-       + c->y * c->y
-       + c->z * c->z;
+float Machine_Math_Vector3_dot(const Machine_Math_Vector3* a, const Machine_Math_Vector3* b) {
+  return a->x * b->x
+       + a->y * b->y
+       + a->z * b->z;
 }
 
 
@@ -84,14 +84,14 @@ void Machine_Math_Vector3_set(Machine_Math_Vector3* self, float x, float y, floa
   self->z = z;
 }
 
-float Machine_Math_Vector3_getX(Machine_Math_Vector3* self) {
+float Machine_Math_Vector3_getX(const Machine_Math_Vector3* self) {
   return self->x;
 }
 
-float Machine_Math_Vector3_getY(Machine_Math_Vector3* self) {
+float Machine_Math_Vector3_getY(const Machine_Math_Vector3* self) {
   return self->y;
 }
 
-float Machine_Math_Vector3_getZ(Machine_Math_Vector3* self) {
+float Machine_Math_Vector3_getZ(const Machine_Math_Vector3* self) {
   return self->z;
 }

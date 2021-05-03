@@ -36,17 +36,21 @@ Machine_Math_Vector3* Machine_Math_Vector3_sum(Machine_Math_Vector3* a, Machine_
 void Machine_Math_Vector3_subtract(Machine_Math_Vector3* c, Machine_Math_Vector3* a, Machine_Math_Vector3* b);
 Machine_Math_Vector3* Machine_Math_Vector3_sum(Machine_Math_Vector3* a, Machine_Math_Vector3* b);
 
-float Machine_Math_Vector3_dot(Machine_Math_Vector3* c);
+/// @brief Compute the dot product of two vectors.
+/// @param a The first vector.
+/// @param b The second vector.
+/// @return The dot product of the vectors.
+float Machine_Math_Vector3_dot(Machine_Math_Vector3* a, Machine_Math_Vector3* b);
 
 
 
-void Machine_Math_Vector3_set(Machine_Math_Vector3* self, float x, float y, float z);
+void Machine_Math_Vector3_set(Machine_Math_Vector3* a, float x, float y, float z);
 
-float Machine_Math_Vector3_getX(Machine_Math_Vector3* self);
+float Machine_Math_Vector3_getX(const Machine_Math_Vector3* a);
 
-float Machine_Math_Vector3_getY(Machine_Math_Vector3* self);
+float Machine_Math_Vector3_getY(const Machine_Math_Vector3* a);
 
-float Machine_Math_Vector3_getZ(Machine_Math_Vector3* self);
+float Machine_Math_Vector3_getZ(const Machine_Math_Vector3* a);
 
 
 

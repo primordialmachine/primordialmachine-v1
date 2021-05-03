@@ -36,15 +36,19 @@ Machine_Math_Vector2* Machine_Math_Vector2_sum(Machine_Math_Vector2* a, Machine_
 void Machine_Math_Vector2_subtract(Machine_Math_Vector2* c, Machine_Math_Vector2* a, Machine_Math_Vector2* b);
 Machine_Math_Vector2* Machine_Math_Vector2_difference(Machine_Math_Vector2* a, Machine_Math_Vector2* b);
 
-float Machine_Math_Vector2_dot(Machine_Math_Vector2* c);
+/// @brief Compute the dot product of two vectors.
+/// @param a The first vector.
+/// @param b The second vector.
+/// @return The dot product of the vectors.
+float Machine_Math_Vector2_dot(const Machine_Math_Vector2* a, const Machine_Math_Vector2* b);
 
 
 
-void Machine_Math_Vector2_set(Machine_Math_Vector2* self, float x, float y);
+void Machine_Math_Vector2_set(Machine_Math_Vector2* a, float x, float y);
 
-float Machine_Math_Vector2_getX(Machine_Math_Vector2* self);
+float Machine_Math_Vector2_getX(const Machine_Math_Vector2* a);
 
-float Machine_Math_Vector2_getY(Machine_Math_Vector2* self);
+float Machine_Math_Vector2_getY(const Machine_Math_Vector2* a);
 
 
 

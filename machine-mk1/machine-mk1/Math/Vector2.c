@@ -64,9 +64,9 @@ Machine_Math_Vector2* Machine_Math_Vector2_difference(Machine_Math_Vector2* a, M
   return c;
 }
 
-float Machine_Math_Vector2_dot(Machine_Math_Vector2* c) {
-  return c->x * c->x
-       + c->y * c->y;
+float Machine_Math_Vector2_dot(const Machine_Math_Vector2* a, const Machine_Math_Vector2* b) {
+  return a->x * b->x
+       + a->y * b->y;
 }
 
 
@@ -76,10 +76,10 @@ void Machine_Math_Vector2_set(Machine_Math_Vector2* self, float x, float y) {
   self->y = y;
 }
 
-float Machine_Math_Vector2_getX(Machine_Math_Vector2* self) {
+float Machine_Math_Vector2_getX(const Machine_Math_Vector2* self) {
   return self->x;
 }
 
-float Machine_Math_Vector2_getY(Machine_Math_Vector2* self) {
+float Machine_Math_Vector2_getY(const Machine_Math_Vector2* self) {
   return self->y;
 }
