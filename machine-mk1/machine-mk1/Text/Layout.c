@@ -246,13 +246,13 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
   Machine_Binding_activate(binding);
   Machine_Video_bindShaderProgram(shaderProgram);
   {
-    vec3 x = { Machine_Math_Vector3_getX(self->color), Machine_Math_Vector3_getY(self->color), Machine_Math_Vector3_getZ(self->color) };
-    Machine_Binding_bindVector3(binding, Machine_String_create("mesh_color", strlen("mesh_color") + 1), x);
+    Machine_Binding_bindVector3(binding, Machine_String_create("mesh_color", strlen("mesh_color") + 1), self->color);
   }
   Machine_Binding_bindMatrix4x4(binding, Machine_String_create("mvp", strlen("mvp") + 1), wvp);
 
   glDisable(GL_DEPTH_TEST);
-  glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+  glEnable(GL_BLEND);
 
   vec2 cursorPosition = { position0[0], position0[1] };
 
