@@ -28,7 +28,7 @@ Machine_Rectangle2* Machine_Rectangle2_create();
 /// @brief Set the color of this rectangle.
 /// @param self This rectangle. 
 /// @param color The color.
-void Machine_Rectangle2_setColor(Machine_Rectangle2* self, Machine_Math_Vector3* color);
+void Machine_Rectangle2_setColor(Machine_Rectangle2* self, const Machine_Math_Vector3* color);
 
 /// @brief Get the color of this rectangle.
 /// @param self This rectangle.
@@ -39,7 +39,7 @@ const Machine_Math_Vector3* Machine_Rectangle2_getColor(Machine_Rectangle2* self
 /// @param self This rectangle.
 /// @param size The size.
 /// @todo Validate arguments.
-void Machine_Rectangle2_setSize(Machine_Rectangle2* self, Machine_Math_Vector2* size);
+void Machine_Rectangle2_setSize(Machine_Rectangle2* self, const Machine_Math_Vector2* size);
 
 /// @brief Get the size of this rectangle.
 /// @param self This rectangle.
@@ -51,7 +51,7 @@ const Machine_Math_Vector2* Machine_Rectangle2_getSize(Machine_Rectangle2* self)
 /// @param self This rectangle.
 /// @param position The position.
 /// @todo Validate arguments.
-void Machine_Rectangle2_setPosition(Machine_Rectangle2* self, Machine_Math_Vector2* position);
+void Machine_Rectangle2_setPosition(Machine_Rectangle2* self, const Machine_Math_Vector2* position);
 
 /// @brief Get the position of this rectangle.
 /// @param self This rectangle.

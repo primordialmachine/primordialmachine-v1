@@ -56,7 +56,7 @@ const Machine_Math_Vector2* Machine_Text_Layout_getPosition(Machine_Text_Layout*
 /// @brief Set the color of this text layout.
 /// @param self This text layout.
 /// @param color The color.
-void Machine_Text_Layout_setColor(Machine_Text_Layout* self, Machine_Math_Vector3* color);
+void Machine_Text_Layout_setColor(Machine_Text_Layout* self, const Machine_Math_Vector3* color);
 
 /// @brief Get the color of this text layout.
 /// @param self This text layout.

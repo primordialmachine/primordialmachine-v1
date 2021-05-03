@@ -171,7 +171,7 @@ const Machine_Math_Vector2* Machine_Text_Layout_getPosition(Machine_Text_Layout*
   return self->position;
 }
 
-void Machine_Text_Layout_setColor(Machine_Text_Layout* self, Machine_Math_Vector3* color) {
+void Machine_Text_Layout_setColor(Machine_Text_Layout* self, const Machine_Math_Vector3* color) {
   if (color == NULL) {
     Machine_setStatus(Machine_Status_InvalidArgument);
     Machine_jump();

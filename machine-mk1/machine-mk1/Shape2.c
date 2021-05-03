@@ -161,7 +161,7 @@ Machine_Rectangle2* Machine_Rectangle2_create() {
   return self;
 }
 
-void Machine_Rectangle2_setColor(Machine_Rectangle2* self, Machine_Math_Vector3* color) {
+void Machine_Rectangle2_setColor(Machine_Rectangle2* self, const Machine_Math_Vector3* color) {
   Machine_Math_Vector3_copy(self->color, color);
 }
 
@@ -169,7 +169,7 @@ const Machine_Math_Vector3* Machine_Rectangle2_getColor(Machine_Rectangle2* self
   return self->color;
 }
 
-void Machine_Rectangle2_setSize(Machine_Rectangle2* self, Machine_Math_Vector2* size) {
+void Machine_Rectangle2_setSize(Machine_Rectangle2* self, const Machine_Math_Vector2* size) {
   Machine_Math_Vector2_copy(self->size, size);
 }
 
@@ -177,7 +177,7 @@ const Machine_Math_Vector2* Machine_Rectangle2_getSize(Machine_Rectangle2* self)
   return self->size;
 }
 
-void Machine_Rectangle2_setPosition(Machine_Rectangle2* self, Machine_Math_Vector2* position) {
+void Machine_Rectangle2_setPosition(Machine_Rectangle2* self, const Machine_Math_Vector2* position) {
   Machine_Math_Vector2_copy(self->position, position);
 }
 
