@@ -28,6 +28,9 @@ static void visit(Machine_Text_Layout* self) {
   if (self->lines) {
     Machine_visit(self->lines);
   }
+  if (self->bounds) {
+    Machine_visit(self->bounds);
+  }
 }
 
 static void parse(Machine_String* text, Machine_PointerArray* lines) {
@@ -67,7 +70,7 @@ static void measure(Machine_Math_Vector2 *position, Machine_Fonts_Font* font, Ma
                      (Machine_Math_Vector2_getY(position)) };
 #endif
 
-  vec2 cursorPosition = { position0[0], position0[1] };
+  vec2 cursorPosition = { 0, 0 };
 
   for (size_t i = 0, n = Machine_PointerArray_getSize(lines); i < n; ++i) {
     Machine_Text_LayoutLine* layoutLine = (Machine_Text_LayoutLine*)Machine_PointerArray_getAt(lines, i);
@@ -113,8 +116,14 @@ static void measure(Machine_Math_Vector2 *position, Machine_Fonts_Font* font, Ma
     layoutLine->top = lineBounds.b;
     layoutLine->height = lineBounds.h;
 
-    cursorPosition[0] = position0[0];
+    cursorPosition[0] = 0;
     cursorPosition[1] += Machine_Font_getBaselineDistance(font);
+  }
+
+  for (size_t i = 0, n = Machine_PointerArray_getSize(lines); i < n; ++i) {
+    Machine_Text_LayoutLine* layoutLine = (Machine_Text_LayoutLine*)Machine_PointerArray_getAt(lines, i);
+    layoutLine->top += position0[1];
+    layoutLine->left += position0[0];
   }
 }
 
@@ -218,6 +227,19 @@ const Machine_Math_Rectangle2* Machine_Text_Layout_getBounds(Machine_Text_Layout
 }
 
 void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float height) {
+  if (self->renderLayoutBounds) {
+    if (!self->bounds) {
+      self->bounds = Machine_Rectangle2_create();
+    }
+    Machine_Math_Rectangle2* visualBounds = Machine_Text_Layout_getBounds(self);
+    Machine_Rectangle2_setPosition(self->bounds, Machine_Math_Rectangle2_getLeftTop(visualBounds));
+    Machine_Rectangle2_setSize(self->bounds, Machine_Math_Rectangle2_getSize(visualBounds));
+    Machine_Math_Vector3* color = Machine_Math_Vector3_create();
+    Machine_Math_Vector3_set(color, .3f, .6f, .3f);
+    Machine_Rectangle2_setColor(self->bounds, color);
+    Machine_Shape2_render((Machine_Shape2*)self->bounds, width, height);
+  }
+
 #if defined(WITH_SNAPTOGRID)
   // Snap to pixel (ensure there are no artifacts).
   vec2 position0 = { floorf(Machine_Math_Vector2_getX(self->position)),
@@ -305,5 +327,14 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
     cursorPosition[0] = position0[0];
     cursorPosition[1] += Machine_Font_getBaselineDistance(self->font);
   }
+
+
 }
 
+void Machine_Text_Layout_setRenderLayoutBoundsEnabled(Machine_Text_Layout* self, bool renderLayoutBounds) {
+  self->renderLayoutBounds = renderLayoutBounds;
+}
+
+bool Machine_Text_Layout_getRenderLayoutBoundsEnabled(Machine_Text_Layout* self) {
+  return self->renderLayoutBounds;
+}
