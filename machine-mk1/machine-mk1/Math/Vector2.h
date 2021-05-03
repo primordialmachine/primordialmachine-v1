@@ -36,6 +36,13 @@ Machine_Math_Vector2* Machine_Math_Vector2_sum(Machine_Math_Vector2* a, Machine_
 void Machine_Math_Vector2_subtract(Machine_Math_Vector2* c, Machine_Math_Vector2* a, Machine_Math_Vector2* b);
 Machine_Math_Vector2* Machine_Math_Vector2_difference(Machine_Math_Vector2* a, Machine_Math_Vector2* b);
 
+/// @brief Compute the component-wise product of two vectors.
+/// @param c The vector to store the result in.
+/// @param a The first vector.
+/// @param b The second vector.
+void Machine_Math_Vector2_multiply(Machine_Math_Vector2* c, Machine_Math_Vector2* a, Machine_Math_Vector2* b);
+Machine_Math_Vector2* Machine_Math_Vector2_product(Machine_Math_Vector2* a, Machine_Math_Vector2* b);
+
 /// @brief Compute the dot product of two vectors.
 /// @param a The first vector.
 /// @param b The second vector.

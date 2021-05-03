@@ -70,6 +70,20 @@ Machine_Math_Vector3* Machine_Math_Vector3_difference(Machine_Math_Vector3* a, M
   return c;
 }
 
+void Machine_Math_Vector3_multiply(Machine_Math_Vector3* c, Machine_Math_Vector3* a, Machine_Math_Vector3* b) {
+  c->x = a->x * b->x;
+  c->y = a->y * b->y;
+  c->z = a->z * b->z;
+}
+
+Machine_Math_Vector3* Machine_Math_Vector3_product(Machine_Math_Vector3* a, Machine_Math_Vector3* b) {
+  Machine_Math_Vector3* c = Machine_Math_Vector3_create();
+  Machine_Math_Vector3_set(c, a->x * b->x,
+                              a->y * b->y,
+                              a->z * b->z);
+  return c;
+}
+
 float Machine_Math_Vector3_dot(const Machine_Math_Vector3* a, const Machine_Math_Vector3* b) {
   return a->x * b->x
        + a->y * b->y

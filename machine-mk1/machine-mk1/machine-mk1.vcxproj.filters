@@ -108,6 +108,9 @@
     <ClCompile Include="Shape2.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Math\Vector4.c">
+      <Filter>Quelldateien\Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\external\glad\include\glad\glad.h">
@@ -178,6 +181,9 @@
     </ClInclude>
     <ClInclude Include="Shape2.h">
       <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector4.h">
+      <Filter>Headerdateien\Math</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

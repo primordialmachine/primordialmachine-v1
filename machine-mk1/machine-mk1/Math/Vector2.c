@@ -64,6 +64,18 @@ Machine_Math_Vector2* Machine_Math_Vector2_difference(Machine_Math_Vector2* a, M
   return c;
 }
 
+void Machine_Math_Vector2_multiply(Machine_Math_Vector2* c, Machine_Math_Vector2* a, Machine_Math_Vector2* b) {
+  c->x = a->x * b->x;
+  c->y = a->y * b->y;
+}
+
+Machine_Math_Vector2* Machine_Math_Vector2_product(Machine_Math_Vector2* a, Machine_Math_Vector2* b) {
+  Machine_Math_Vector2* c = Machine_Math_Vector2_create();
+  Machine_Math_Vector2_set(c, a->x * b->x,
+                              a->y * b->y);
+  return c;
+}
+
 float Machine_Math_Vector2_dot(const Machine_Math_Vector2* a, const Machine_Math_Vector2* b) {
   return a->x * b->x
        + a->y * b->y;

@@ -96,6 +96,7 @@
     <ClCompile Include="Math\Rectangle2.c" />
     <ClCompile Include="Math\Vector2.c" />
     <ClCompile Include="Math\Vector3.c" />
+    <ClCompile Include="Math\Vector4.c" />
     <ClCompile Include="Scene4.c" />
     <ClCompile Include="Shape2.c" />
     <ClCompile Include="Text\LayoutLine.c" />
@@ -122,6 +123,7 @@
     <ClInclude Include="Math\Rectangle2.h" />
     <ClInclude Include="Math\Vector2.h" />
     <ClInclude Include="Math\Vector3.h" />
+    <ClInclude Include="Math\Vector4.h" />
     <ClInclude Include="Scene4.h" />
     <ClInclude Include="Shape2.h" />
     <ClInclude Include="Text\LayoutLine.h" />
