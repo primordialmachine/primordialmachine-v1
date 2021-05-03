@@ -71,8 +71,7 @@ static int Scene2_startup(Scene2* scene) {
     scene->vertices = Machine_FloatBuffer_create();
     Machine_FloatBuffer_setData(scene->vertices, sizeof(vertices) / sizeof(float), vertices);
 
-    scene->shaderProgram = Machine_ShaderProgram_generate(true, false, false);
-
+    scene->shaderProgram = Machine_ShaderProgram_generate(false, true, false, false);
     scene->mvp_location = glGetUniformLocation(scene->shaderProgram->programId, "mvp");
 
     Machine_VertexDescriptor* vd = Machine_VertexDescriptor_create();

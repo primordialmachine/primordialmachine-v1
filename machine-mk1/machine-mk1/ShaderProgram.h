@@ -78,6 +78,7 @@ Machine_Input* Machine_ShaderProgram_getInput(Machine_ShaderProgram* self, size_
 bool Machine_ShaderProgram_setInput(Machine_ShaderProgram* self, Machine_String* name, Machine_InputType type);
 
 /**
+ * @param withMeshColor <code>uniform vec3 mesh_color</code>
  * @param withVertexColor <code>attribute vec3 vertex_color</code>
  * @param withTextureCoordinate <code>attribute vec2 vertex_texture_coordinate</code>
  * @param withTexture <code>uniform sampler2D texture;</code>. @a withTextureCoordinate must be @a true if this is @a true.
@@ -85,6 +86,7 @@ bool Machine_ShaderProgram_setInput(Machine_ShaderProgram* self, Machine_String*
 Machine_ShaderProgram*
 Machine_ShaderProgram_generate
   (
+    bool withMeshColor,
     bool withVertexColor,
     bool withTextureCoordinate,
     bool withTexture

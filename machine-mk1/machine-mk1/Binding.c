@@ -174,20 +174,22 @@ void Machine_Binding_bindMatrix4x4(Machine_Binding* self, Machine_String* name, 
   Machine_UtilitiesGl_call(glUniformMatrix4fv(location, 1, GL_FALSE, (GLfloat const*)*value));
 }
 
-void Machine_Binding_bindVector2(Machine_Binding* self, Machine_String* name, const vec2 value) {
+void Machine_Binding_bindVector2(Machine_Binding* self, Machine_String* name, const Machine_Math_Vector2* value) {
   GLint location = glGetUniformLocation(self->program->programId, Machine_String_getBytes(name));
   if (location == -1) {
     return;
   }
-  Machine_UtilitiesGl_call(glUniform2fv(location, 1, GL_FALSE, (GLfloat const*)value));
+  const GLfloat temporary[] = { Machine_Math_Vector2_getX(value), Machine_Math_Vector2_getY(value) };
+  Machine_UtilitiesGl_call(glUniform2fv(location, 1, temporary));
 }
 
-void Machine_Binding_bindVector3(Machine_Binding* self, Machine_String* name, const vec3 value) {
+void Machine_Binding_bindVector3(Machine_Binding* self, const Machine_String* name, const Machine_Math_Vector3* value) {
   GLint location = glGetUniformLocation(self->program->programId, Machine_String_getBytes(name));
   if (location == -1) {
     return;
   }
-  Machine_UtilitiesGl_call(glUniform3fv(location, 1, GL_FALSE, (GLfloat const*)value));
+  const GLfloat temporary[] = { Machine_Math_Vector3_getX(value), Machine_Math_Vector3_getY(value), Machine_Math_Vector3_getZ(value) };
+  Machine_UtilitiesGl_call(glUniform3fv(location, 1, temporary));
 }
 
 void Machine_Binding_bindVector4(Machine_Binding* self, Machine_String* name, const vec4 value) {
@@ -195,7 +197,7 @@ void Machine_Binding_bindVector4(Machine_Binding* self, Machine_String* name, co
   if (location == -1) {
     return;
   }
-  Machine_UtilitiesGl_call(glUniform4fv(location, 1, GL_FALSE, (GLfloat const*)value));
+  Machine_UtilitiesGl_call(glUniform4fv(location, 1, (GLfloat const*)value));
 }
 
 void Machine_Binding_bindSampler(Machine_Binding* self, Machine_String* name, const size_t value) {

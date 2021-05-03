@@ -230,6 +230,7 @@ bool Machine_ShaderProgram_setInput(Machine_ShaderProgram* self, Machine_String*
 Machine_ShaderProgram*
 Machine_ShaderProgram_generate
   (
+    bool withMeshColor,
     bool withVertexColor,
     bool withTextureCoordinate,
     bool withTexture
@@ -242,8 +243,11 @@ Machine_ShaderProgram_generate
 
   // Vertex program.
   Machine_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"
-                                           "uniform mat4 mvp;\n"
+                                           "uniform mat4 mvp = mat4(1);\n"
                                            "attribute vec2 vertex_position;\n"));
+  if (withMeshColor) {
+    Machine_StringBuffer_appendBytes(code, T("uniform vec3 mesh_color = vec3(1.f, 1.f, 1.f);\n"));
+  }
   if (withVertexColor) {
     Machine_StringBuffer_appendBytes(code, T("attribute vec3 vertex_color;\n"));
   }
@@ -261,10 +265,12 @@ Machine_ShaderProgram_generate
                                            "{\n"
                                            "    gl_Position = mvp * vec4(vertex_position, 0.0, 1.0);\n"));
 
+  Machine_StringBuffer_appendBytes(code, T("    color = vec3(1.0, 1.0, 1.0);\n"));
+  if (withMeshColor) {
+    Machine_StringBuffer_appendBytes(code, T("    color = mesh_color;\n"));
+  }
   if (withVertexColor) {
     Machine_StringBuffer_appendBytes(code, T("    color = vertex_color;\n"));
-  } else {
-    Machine_StringBuffer_appendBytes(code, T("    color = vec3(1.0, 1.0, 1.0);\n"));
   }
   if (withTextureCoordinate) {
     Machine_StringBuffer_appendBytes(code, T("    texture_coordinate_1 = vertex_texture_coordinate_1;\n"));

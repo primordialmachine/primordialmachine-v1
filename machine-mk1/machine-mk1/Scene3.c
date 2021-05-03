@@ -88,7 +88,7 @@ static int Scene3_startup(Scene3* scene) {
     scene->vertices = Machine_FloatBuffer_create();
     Machine_FloatBuffer_setData(scene->vertices, sizeof(vertices) / sizeof(float), vertices);
 
-    scene->shaderProgram = Machine_ShaderProgram_generate(true, true, true);
+    scene->shaderProgram = Machine_ShaderProgram_generate(false, true, true, true);
     scene->mvp_location = glGetUniformLocation(scene->shaderProgram->programId, "mvp");
     scene->texture_location = glGetUniformLocation(scene->shaderProgram->programId, "texture_1");
 

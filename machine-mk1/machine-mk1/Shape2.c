@@ -111,8 +111,7 @@ void Machine_Rectangle2_render(Machine_Rectangle2* self, float width, float heig
     Machine_Binding_bindMatrix4x4(self->binding, Machine_String_create("mvp", strlen("mvp") + 1), wvp);
   }
   {
-    vec3 x = { 1.f, 0.f, 0.f };
-    Machine_Binding_bindVector3(self->binding, Machine_String_create("mesh_color", strlen("mesh_color") + 1), x);
+    Machine_Binding_bindVector3(self->binding, Machine_String_create("mesh_color", strlen("mesh_color") + 1), self->color);
   }
 
   static const uint8_t indices[] = {
@@ -130,7 +129,7 @@ void Machine_Rectangle2_construct(Machine_Rectangle2* self, size_t numberOfArgum
   ((Machine_Shape2*)self)->render = (void(*)(Machine_Shape2*, float, float))&Machine_Rectangle2_render;
 
   self->vertices = Machine_FloatBuffer_create();
-  self->shader = Machine_ShaderProgram_generate(false, false, false);
+  self->shader = Machine_ShaderProgram_generate(true, false, false, false);
 
   Machine_VertexDescriptor* vertexDescriptor = Machine_VertexDescriptor_create();
   Machine_VertexDescriptor_append(vertexDescriptor, Machine_VertexElementSemantics_XfYf);
