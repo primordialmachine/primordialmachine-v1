@@ -17,7 +17,7 @@
 #include "Texture.h"
 #include "VertexDescriptor.h"
 #include "Binding.h"
-
+#include "GUI/TextLabel.h"
 
 
 typedef struct Scene4 Scene4;
@@ -32,6 +32,8 @@ struct Scene4 {
   struct {
     Machine_Text_Layout* text;
   } label2;
+  /// @brief Text label #1.
+  Machine_GUI_TextLabel* textLabel1;
 };
 
 void Scene4_destruct(Scene4* self);
@@ -48,6 +50,9 @@ static void Scene4_visit(Scene4* self) {
   }
   if (self->label2.text) {
     Machine_visit(self->label2.text);
+  }
+  if (self->textLabel1) {
+    Machine_visit(self->textLabel1);
   }
 }
 
@@ -82,6 +87,11 @@ static int Scene4_startup(Scene4* scene) {
       Machine_Math_Vector3_set(color, .1f, .1f, .1f);
       Machine_Text_Layout_setColor(scene->label2.text, color);
       Machine_Text_Layout_setRenderVisualBoundsEnabled(scene->label2.text, true);
+    }
+    scene->textLabel1 = Machine_GUI_TextLabel_create();
+    {
+      const char* text = "Nanobox IV\n400 units of unprimed nanites.";
+      Machine_GUI_TextLabel_setText(scene->textLabel1, Machine_String_create(text, strlen(text)));
     }
     Machine_popJumpTarget();
     return 0;
@@ -119,7 +129,25 @@ static void updateText2(Scene4* scene, float width, float height) {
   Machine_Math_Vector2* oldPosition = Machine_Text_Layout_getPosition(scene->label2.text);
   Machine_Math_Vector2* newPosition = Machine_Math_Vector2_sum(oldPosition, delta);
   Machine_Text_Layout_setPosition(scene->label2.text, newPosition);
+
   Machine_Text_Layout_render(scene->label2.text, width, height);
+}
+
+static void updateText3(Scene4* scene, float width, float height) {
+  Machine_Math_Vector2* MARGIN = Machine_Math_Vector2_create();
+  Machine_Math_Vector2_set(MARGIN, 5.f, height * 0.5f);
+  Machine_Math_Vector2* SIZE = Machine_Math_Vector2_create();
+  Machine_Math_Vector2_set(SIZE, 64, 64);
+
+  Machine_GUI_TextLabel_setSize(scene->textLabel1, SIZE);
+  Machine_Math_Rectangle2* bounds = Machine_GUI_TextLabel_getRectangle(scene->textLabel1);
+  Machine_Math_Vector2* leftTop = Machine_Math_Rectangle2_getLeftTop(bounds);
+  Machine_Math_Vector2* delta = Machine_Math_Vector2_difference(MARGIN, leftTop);
+  Machine_Math_Vector2* oldPosition = Machine_GUI_TextLabel_getPosition(scene->textLabel1);
+  Machine_Math_Vector2* newPosition = Machine_Math_Vector2_sum(oldPosition, delta);
+  Machine_GUI_TextLabel_setPosition(scene->textLabel1, newPosition);
+
+  Machine_GUI_TextLabel_render(scene->textLabel1, width, height);
 }
 
 static int Scene4_update(Scene4* scene, float width, float height) {
@@ -129,6 +157,7 @@ static int Scene4_update(Scene4* scene, float width, float height) {
 
   updateText1(scene, width, height);
   updateText2(scene, width, height);
+  updateText3(scene, width, height);
 
   return 0;
 }
