@@ -108,7 +108,7 @@ void Machine_Rectangle2_render(Machine_Rectangle2* self, float width, float heig
   Machine_Binding_activate(self->binding);
   Machine_Video_bindShaderProgram(self->shader);
   {
-    Machine_Binding_bindMatrix4x4(self->binding, Machine_String_create("mvp", strlen("mvp") + 1), wvp);
+    Machine_Binding_bindMatrix4x4(self->binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), wvp);
   }
   {
     Machine_Binding_bindVector3(self->binding, Machine_String_create("mesh_color", strlen("mesh_color") + 1), self->color);

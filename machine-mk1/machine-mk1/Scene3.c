@@ -89,7 +89,7 @@ static int Scene3_startup(Scene3* scene) {
     Machine_FloatBuffer_setData(scene->vertices, sizeof(vertices) / sizeof(float), vertices);
 
     scene->shaderProgram = Machine_ShaderProgram_generate(false, true, true, true);
-    scene->mvp_location = glGetUniformLocation(scene->shaderProgram->programId, "mvp");
+    scene->mvp_location = glGetUniformLocation(scene->shaderProgram->programId, "modelToProjectionMatrix");
     scene->texture_location = glGetUniformLocation(scene->shaderProgram->programId, "texture_1");
 
     Machine_VertexDescriptor* vd = Machine_VertexDescriptor_create();
@@ -127,7 +127,7 @@ static int Scene3_update(Scene3* scene, float width, float height) {
 
   Machine_Binding_activate(scene->binding);
   Machine_Video_bindShaderProgram(scene->shaderProgram);
-  Machine_Binding_bindMatrix4x4(scene->binding, Machine_String_create("mvp", strlen("mvp") + 1), mvp);
+  Machine_Binding_bindMatrix4x4(scene->binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), mvp);
   glUniform1i(scene->texture_location, 0);
   glActiveTexture(GL_TEXTURE0 + 0);
   glBindTexture(GL_TEXTURE_2D, scene->texture->id);

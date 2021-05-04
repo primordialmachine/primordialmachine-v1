@@ -37,7 +37,8 @@ static void defineMatrixUniforms(Machine_StringBuffer* code, bool modelToWorld, 
     Machine_StringBuffer_appendBytes(code, T("uniform mat4 viewToProjectionMatrix;\n"));
   }
   if (modelToProjection) {
-    Machine_StringBuffer_appendBytes(code, T("uniform mat4 mvp = mat4(1);\n"));
+    //Machine_StringBuffer_appendBytes(code, T("uniform mat4 modelToProjectionMatrix;\n"));
+    Machine_StringBuffer_appendBytes(code, T("uniform mat4 modelToProjectionMatrix = mat4(1);\n"));
   }
 #undef T
 }
@@ -289,7 +290,7 @@ Machine_ShaderProgram_generate
   
   Machine_StringBuffer_appendBytes(code, T("void main()\n"
                                            "{\n"
-                                           "    gl_Position = mvp * vec4(vertex_position, 0.0, 1.0);\n"));
+                                           "    gl_Position = modelToProjectionMatrix * vec4(vertex_position, 0.0, 1.0);\n"));
 
   Machine_StringBuffer_appendBytes(code, T("    color = vec3(1.0, 1.0, 1.0);\n"));
   if (withMeshColor) {
@@ -374,7 +375,7 @@ Machine_ShaderProgram_generateTextShader
 
   Machine_StringBuffer_appendBytes(code, T("void main()\n"
                                            "{\n"
-                                           "    gl_Position = mvp * vec4(vertex_position, 0.0, 1.0);\n"));
+                                           "    gl_Position = modelToProjectionMatrix * vec4(vertex_position, 0.0, 1.0);\n"));
   Machine_StringBuffer_appendBytes(code, T("    vertex.texture_coordinate_1 = vertex_texture_coordinate_1;\n"));
   Machine_StringBuffer_appendBytes(code, T("    vertex.color = mesh_color;\n"));
 
@@ -455,7 +456,7 @@ Machine_ShaderProgram_generateRectangleShader
 
   Machine_StringBuffer_appendBytes(code, T("void main()\n"
                                            "{\n"
-                                           "    gl_Position = mvp * vec4(vertex_position, 0.0, 1.0);\n"));
+                                           "    gl_Position = modelToProjectionMatrix * vec4(vertex_position, 0.0, 1.0);\n"));
   Machine_StringBuffer_appendBytes(code, T("    fragment_color = mesh_color;\n"));
 
   Machine_StringBuffer_appendBytes(code, T("}\n"));

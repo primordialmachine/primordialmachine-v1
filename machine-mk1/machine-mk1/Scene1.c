@@ -66,7 +66,7 @@ static int Scene1_startup(Scene1* scene) {
     Machine_FloatBuffer_setData(scene->vertices, sizeof(vertices) / sizeof(float), vertices);
 
     scene->shaderProgram = Machine_ShaderProgram_generate(false, true, false, false);
-    scene->mvp_location = glGetUniformLocation(scene->shaderProgram->programId, "mvp");
+    scene->mvp_location = glGetUniformLocation(scene->shaderProgram->programId, "modelToProjectionMatrix");
 
     Machine_VertexDescriptor* vd = Machine_VertexDescriptor_create();
     Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_XfYf);
@@ -103,7 +103,7 @@ static int Scene1_update(Scene1* scene, float width, float height) {
 
   Machine_Binding_activate(scene->binding);
   Machine_Video_bindShaderProgram(scene->shaderProgram);
-  Machine_Binding_bindMatrix4x4(scene->binding, Machine_String_create("mvp", strlen("mvp") + 1), mvp);
+  Machine_Binding_bindMatrix4x4(scene->binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), mvp);
   glDrawArrays(GL_TRIANGLES, 0, 3);
 
   return 0;
