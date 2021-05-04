@@ -17,6 +17,8 @@ typedef struct Machine_Math_Rectangle2 Machine_Math_Rectangle2;
 
 Machine_Math_Rectangle2* Machine_Math_Rectangle2_create();
 
+void Machine_Math_Rectangle2_copy(Machine_Math_Rectangle2* self, Machine_Math_Rectangle2* other);
+
 /// @brief Set the position of this rectangle.
 /// @param self This rectangle.
 /// @param position The position.

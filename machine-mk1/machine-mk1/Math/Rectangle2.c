@@ -34,6 +34,13 @@ Machine_Math_Rectangle2* Machine_Math_Rectangle2_create() {
   return self;
 }
 
+void Machine_Math_Rectangle2_copy(Machine_Math_Rectangle2* self, Machine_Math_Rectangle2* other) {
+  self->x = other->x;
+  self->y = other->y;
+  self->w = other->w;
+  self->h = other->h;
+}
+
 void Machine_Math_Rectangle2_setPosition(Machine_Math_Rectangle2* self, Machine_Math_Vector2* position) {
   self->x = Machine_Math_Vector2_getX(position);
   self->y = Machine_Math_Vector2_getY(position);

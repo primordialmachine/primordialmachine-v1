@@ -47,7 +47,7 @@ Machine_Math_Vector3* Machine_Math_Vector3_product(Machine_Math_Vector3* a, Mach
 /// @param a The first vector.
 /// @param b The second vector.
 /// @return The dot product of the vectors.
-float Machine_Math_Vector3_dot(Machine_Math_Vector3* a, Machine_Math_Vector3* b);
+float Machine_Math_Vector3_dot(const Machine_Math_Vector3* a, const Machine_Math_Vector3* b);
 
 
 
