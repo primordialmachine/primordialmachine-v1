@@ -72,7 +72,7 @@ static int Scene4_startup(Scene4* scene) {
       Machine_Math_Vector3* color = Machine_Math_Vector3_create();
       Machine_Math_Vector3_set(color, .1f, .1f, .1f);
       Machine_Text_Layout_setColor(scene->label1.text, color);
-      Machine_Text_Layout_setRenderLayoutBoundsEnabled(scene->label1.text, true);
+      Machine_Text_Layout_setRenderVisualBoundsEnabled(scene->label1.text, true);
     }
     {
       const char* text = "13 of 18 units\n7 of 9 units";
@@ -81,7 +81,7 @@ static int Scene4_startup(Scene4* scene) {
       Machine_Math_Vector3* color = Machine_Math_Vector3_create();
       Machine_Math_Vector3_set(color, .1f, .1f, .1f);
       Machine_Text_Layout_setColor(scene->label2.text, color);
-      Machine_Text_Layout_setRenderLayoutBoundsEnabled(scene->label2.text, true);
+      Machine_Text_Layout_setRenderVisualBoundsEnabled(scene->label2.text, true);
     }
     Machine_popJumpTarget();
     return 0;

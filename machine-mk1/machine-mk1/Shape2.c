@@ -161,6 +161,13 @@ Machine_Rectangle2* Machine_Rectangle2_create() {
   return self;
 }
 
+Machine_Math_Rectangle2* Machine_Rectangle2_getRectangle(Machine_Rectangle2* self) {
+  Machine_Math_Rectangle2* rectangle =  Machine_Math_Rectangle2_create();
+  Machine_Math_Rectangle2_setPosition(rectangle, self->position);
+  Machine_Math_Rectangle2_setSize(rectangle, self->size);
+  return rectangle;
+}
+
 void Machine_Rectangle2_setColor(Machine_Rectangle2* self, const Machine_Math_Vector3* color) {
   Machine_Math_Vector3_copy(self->color, color);
 }

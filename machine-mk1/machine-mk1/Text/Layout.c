@@ -28,8 +28,8 @@ static void visit(Machine_Text_Layout* self) {
   if (self->lines) {
     Machine_visit(self->lines);
   }
-  if (self->bounds) {
-    Machine_visit(self->bounds);
+  if (self->visualBounds) {
+    Machine_visit(self->visualBounds);
   }
 }
 
@@ -227,17 +227,17 @@ const Machine_Math_Rectangle2* Machine_Text_Layout_getBounds(Machine_Text_Layout
 }
 
 void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float height) {
-  if (self->renderLayoutBounds) {
-    if (!self->bounds) {
-      self->bounds = Machine_Rectangle2_create();
+  if (self->renderVisualBounds) {
+    if (!self->visualBounds) {
+      self->visualBounds = Machine_Rectangle2_create();
     }
     Machine_Math_Rectangle2* visualBounds = Machine_Text_Layout_getBounds(self);
-    Machine_Rectangle2_setPosition(self->bounds, Machine_Math_Rectangle2_getLeftTop(visualBounds));
-    Machine_Rectangle2_setSize(self->bounds, Machine_Math_Rectangle2_getSize(visualBounds));
+    Machine_Rectangle2_setPosition(self->visualBounds, Machine_Math_Rectangle2_getLeftTop(visualBounds));
+    Machine_Rectangle2_setSize(self->visualBounds, Machine_Math_Rectangle2_getSize(visualBounds));
     Machine_Math_Vector3* color = Machine_Math_Vector3_create();
     Machine_Math_Vector3_set(color, .3f, .6f, .3f);
-    Machine_Rectangle2_setColor(self->bounds, color);
-    Machine_Shape2_render((Machine_Shape2*)self->bounds, width, height);
+    Machine_Rectangle2_setColor(self->visualBounds, color);
+    Machine_Shape2_render((Machine_Shape2*)self->visualBounds, width, height);
   }
 
 #if defined(WITH_SNAPTOGRID)
@@ -331,10 +331,10 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
 
 }
 
-void Machine_Text_Layout_setRenderLayoutBoundsEnabled(Machine_Text_Layout* self, bool renderLayoutBounds) {
-  self->renderLayoutBounds = renderLayoutBounds;
+void Machine_Text_Layout_setRenderVisualBoundsEnabled(Machine_Text_Layout* self, bool renderVisualBounds) {
+  self->renderVisualBounds = renderVisualBounds;
 }
 
-bool Machine_Text_Layout_getRenderLayoutBoundsEnabled(Machine_Text_Layout* self) {
-  return self->renderLayoutBounds;
+bool Machine_Text_Layout_getRenderVisualBoundsEnabled(Machine_Text_Layout* self) {
+  return self->renderVisualBounds;
 }

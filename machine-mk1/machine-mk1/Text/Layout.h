@@ -26,11 +26,13 @@ struct Machine_Text_Layout {
   Machine_PointerArray* lines;
   bool yup;
 
-  /// @brief If rendering layout bounds is enabled.
+
+
+  /// @brief If rendering visual bounds is enabled.
   /// Default is @a false.
-  bool renderLayoutBounds;
-  /// @brief Shape used to render bounds.
-  Machine_Rectangle2* bounds;
+  bool renderVisualBounds;
+  /// @brief Shape used to render the visual bounds.
+  Machine_Rectangle2* visualBounds;
 };
 
 /// @brief Create a layout with the specified text.
@@ -81,15 +83,19 @@ const Machine_Math_Rectangle2* Machine_Text_Layout_getBounds(Machine_Text_Layout
 /// @param height The height of the viewport.
 void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float height);
 
-/// @brief Set if layout bounds shall be rendered.
-/// @param self This text layout.
-/// @param @a true if text layout bounds shall be rendered, @a false otherwise.
-void Machine_Text_Layout_setRenderLayoutBoundsEnabled(Machine_Text_Layout* self, bool renderLayoutBounds);
 
-/// @brief Get if layout bounds shall be rendered.
+
+/// @brief Set if visual bounds shall be rendered.
 /// @param self This text layout.
-/// @return @a true if text layout bounds shall be rendered, @a false otherwise.
+/// @param @a true if visual bounds shall be rendered, @a false otherwise.
+void Machine_Text_Layout_setRenderVisualBoundsEnabled(Machine_Text_Layout* self, bool renderVisualBounds);
+
+/// @brief Get if visual bounds shall be rendered.
+/// @param self This text layout.
+/// @return @a true if visual bounds shall be rendered, @a false otherwise.
 /// @default @a false
-bool Machine_Text_Layout_getRenderLayoutBoundsEnabled(Machine_Text_Layout* self);
+bool Machine_Text_Layout_getRenderVisualBoundsEnabled(Machine_Text_Layout* self);
+
+
 
 #endif // MACHINE_TEXT_LAYOUT_H_INCLUDED

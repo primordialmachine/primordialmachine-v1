@@ -16,6 +16,32 @@ static void Machine_Input_visit(Machine_Input* self) {
   }
 }
 
+/// @brief Write code for selected uniforms.
+/// @param code The target string buffer.
+/// @param modelToWorld Add uniform <code>uniform mat4 modelToWorldMatrix</code>.
+/// @param worldToView Add uniform <code>uniform mat4 worldToViewMatrix</code>.
+/// @param viewToProjection Add uniform <code>uniform mat4 viewToProjectionMatrix</code>.
+/// @param modelToProjection Add uniform <code>uniform mat4 modelToProjectionMatrix</code>.
+static void defineMatrixUniforms(Machine_StringBuffer* code, bool modelToWorld, bool worldToView, bool viewToProjection, bool modelToProjection) {
+#define T(t) t, strlen(t)
+  // model -> world
+  if (modelToWorld) {
+    Machine_StringBuffer_appendBytes(code, T("uniform mat4 modelToWorldMatrix;\n"));
+  }
+  // world -> view
+  if (worldToView) {
+    Machine_StringBuffer_appendBytes(code, T("uniform mat4 worldToViewMatrix;\n"));
+  }
+  // view -> projection
+  if (viewToProjection) {
+    Machine_StringBuffer_appendBytes(code, T("uniform mat4 viewToProjectionMatrix;\n"));
+  }
+  if (modelToProjection) {
+    Machine_StringBuffer_appendBytes(code, T("uniform mat4 mvp = mat4(1);\n"));
+  }
+#undef T
+}
+
 Machine_Input* Machine_Input_create(Machine_String* name, Machine_InputType type) {
   Machine_Input* self = Machine_allocate(sizeof(Machine_Input), (void (*)(void*)) & Machine_Input_visit, NULL);
   if (!self) {
@@ -243,8 +269,8 @@ Machine_ShaderProgram_generate
 
   // Vertex program.
   Machine_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"
-                                           "uniform mat4 mvp = mat4(1);\n"
                                            "attribute vec2 vertex_position;\n"));
+  defineMatrixUniforms(code, false, false, false, true);
   if (withMeshColor) {
     Machine_StringBuffer_appendBytes(code, T("uniform vec3 mesh_color = vec3(1.f, 1.f, 1.f);\n"));
   }
@@ -340,7 +366,7 @@ Machine_ShaderProgram_generateTextShader
   Machine_StringBuffer_appendBytes(code, T("  vec3 color;\n"));
   Machine_StringBuffer_appendBytes(code, T("} vertex;\n"));
 
-  Machine_StringBuffer_appendBytes(code, T("uniform mat4 mvp;\n"));
+  defineMatrixUniforms(code, false, false, false, true);
   Machine_StringBuffer_appendBytes(code, T("uniform vec3 mesh_color;\n"));
 
   Machine_StringBuffer_appendBytes(code, T("in vec2 vertex_position;\n"));
@@ -421,7 +447,7 @@ Machine_ShaderProgram_generateRectangleShader
   // Vertex shader.
   Machine_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
 
-  Machine_StringBuffer_appendBytes(code, T("uniform mat4 mvp;\n"));
+  defineMatrixUniforms(code, false, false, false, true);
   Machine_StringBuffer_appendBytes(code, T("uniform vec3 mesh_color;\n"));
   Machine_StringBuffer_appendBytes(code, T("out vec3 fragment_color;\n"));
   Machine_StringBuffer_appendBytes(code, T("in vec2 vertex_position;\n"));
