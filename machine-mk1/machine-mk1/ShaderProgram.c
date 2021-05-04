@@ -16,6 +16,15 @@ static void Machine_Input_visit(Machine_Input* self) {
   }
 }
 
+static void defineFloatConstants(Machine_StringBuffer* code) {
+#define T(t) t, strlen(t)
+  Machine_StringBuffer_appendBytes(code, T("#define FLT_MAX 3.402823466e+38" "\n"));
+  Machine_StringBuffer_appendBytes(code, T("#define FLT_MIN 1.175494351e-38" "\n"));
+  Machine_StringBuffer_appendBytes(code, T("#define DBL_MAX 1.7976931348623158e+308" "\n"));
+  Machine_StringBuffer_appendBytes(code, T("#define DBL_MIN 2.2250738585072014e-308" "\n"));
+#undef T
+}
+
 /// @brief Write code for selected uniforms.
 /// @param code The target string buffer.
 /// @param modelToWorld Add uniform <code>uniform mat4 modelToWorldMatrix</code>.
@@ -269,9 +278,14 @@ Machine_ShaderProgram_generate
 #define TZ(t) t, strlen(t) + 1
 
   // Vertex program.
-  Machine_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"
-                                           "attribute vec2 vertex_position;\n"));
+  Machine_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
+
+  defineFloatConstants(code);
   defineMatrixUniforms(code, false, false, false, true);
+  
+  Machine_StringBuffer_appendBytes(code, T("attribute vec2 vertex_position;\n"));
+
+
   if (withMeshColor) {
     Machine_StringBuffer_appendBytes(code, T("uniform vec3 mesh_color = vec3(1.f, 1.f, 1.f);\n"));
   }
@@ -362,22 +376,41 @@ Machine_ShaderProgram_generateTextShader
   // Vertex shader.
   Machine_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
 
+  defineFloatConstants(code);
+
+  static const bool withClipDistance = true;
+
   Machine_StringBuffer_appendBytes(code, T("out struct VS2GS {\n"));
   Machine_StringBuffer_appendBytes(code, T("  vec2 texture_coordinate_1;\n"));
   Machine_StringBuffer_appendBytes(code, T("  vec3 color;\n"));
   Machine_StringBuffer_appendBytes(code, T("} vertex;\n"));
 
-  defineMatrixUniforms(code, false, false, false, true);
+  defineMatrixUniforms(code, true, false, false, true);
   Machine_StringBuffer_appendBytes(code, T("uniform vec3 mesh_color;\n"));
 
   Machine_StringBuffer_appendBytes(code, T("in vec2 vertex_position;\n"));
   Machine_StringBuffer_appendBytes(code, T("in vec2 vertex_texture_coordinate_1;\n"));
+  
+  if (withClipDistance) {
+    Machine_StringBuffer_appendBytes(code, T("uniform vec4 clipPlane0;\n"));
+    Machine_StringBuffer_appendBytes(code, T("uniform vec4 clipPlane1;\n"));
+    Machine_StringBuffer_appendBytes(code, T("uniform vec4 clipPlane2;\n"));
+    Machine_StringBuffer_appendBytes(code, T("uniform vec4 clipPlane3;\n"));
+    Machine_StringBuffer_appendBytes(code, T("out float gl_ClipDistance[4];\n"));
+  }
 
   Machine_StringBuffer_appendBytes(code, T("void main()\n"
                                            "{\n"
+                                           "    vec4 worldPosition = modelToWorldMatrix * vec4(vertex_position, 0.0, 1.0);\n"
                                            "    gl_Position = modelToProjectionMatrix * vec4(vertex_position, 0.0, 1.0);\n"));
   Machine_StringBuffer_appendBytes(code, T("    vertex.texture_coordinate_1 = vertex_texture_coordinate_1;\n"));
   Machine_StringBuffer_appendBytes(code, T("    vertex.color = mesh_color;\n"));
+  if (withClipDistance) {
+    Machine_StringBuffer_appendBytes(code, T("    gl_ClipDistance[0] = -dot(worldPosition, clipPlane0);\n"));
+    Machine_StringBuffer_appendBytes(code, T("    gl_ClipDistance[1] = -dot(worldPosition, clipPlane1);\n"));
+    Machine_StringBuffer_appendBytes(code, T("    gl_ClipDistance[2] = +FLT_MAX;\n"));
+    Machine_StringBuffer_appendBytes(code, T("    gl_ClipDistance[3] = +FLT_MAX;\n"));
+  }
 
   Machine_StringBuffer_appendBytes(code, T("}\n"));
   Machine_StringBuffer_appendBytes(code, "", 1);
@@ -401,6 +434,13 @@ Machine_ShaderProgram_generateTextShader
   Machine_StringBuffer_appendBytes(code, T("    gl_Position = gl_in[i].gl_Position;\n"));
   Machine_StringBuffer_appendBytes(code, T("    fragment.texture_coordinate_1 = vertex[i].texture_coordinate_1;\n"));
   Machine_StringBuffer_appendBytes(code, T("    fragment.color = vertex[i].color;\n"));
+  if (withClipDistance) {
+    Machine_StringBuffer_appendBytes(code, T("  gl_ClipDistance[0] = gl_in[i].gl_ClipDistance[0];\n"));
+    Machine_StringBuffer_appendBytes(code, T("  gl_ClipDistance[1] = gl_in[i].gl_ClipDistance[1];\n"));
+    Machine_StringBuffer_appendBytes(code, T("  gl_ClipDistance[2] = gl_in[i].gl_ClipDistance[2];\n"));
+    Machine_StringBuffer_appendBytes(code, T("  gl_ClipDistance[3] = gl_in[i].gl_ClipDistance[3];\n"));
+  }
+
   Machine_StringBuffer_appendBytes(code, T(" EmitVertex(); } EndPrimitive();}\n"));
   Machine_StringBuffer_appendBytes(code, "", 1);
   g = Machine_StringBuffer_toString(code);
@@ -447,6 +487,8 @@ Machine_ShaderProgram_generateRectangleShader
 
   // Vertex shader.
   Machine_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
+
+  defineFloatConstants(code);
 
   defineMatrixUniforms(code, false, false, false, true);
   Machine_StringBuffer_appendBytes(code, T("uniform vec3 mesh_color;\n"));

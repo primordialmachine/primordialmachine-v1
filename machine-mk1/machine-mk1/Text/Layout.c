@@ -31,6 +31,9 @@ static void visit(Machine_Text_Layout* self) {
   if (self->visualBounds) {
     Machine_visit(self->visualBounds);
   }
+  if (self->clipRectangle) {
+    Machine_visit(self->clipRectangle);
+  }
 }
 
 static void parse(Machine_String* text, Machine_PointerArray* lines) {
@@ -150,48 +153,6 @@ Machine_Text_Layout* Machine_Text_Layout_create(Machine_String* text, Machine_Fo
   return self;
 }
 
-void Machine_Text_Layout_setText(Machine_Text_Layout* self, Machine_String* text) {
-  if (!self || !text) {
-    Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
-  }
-  if (!Machine_String_equalTo(self->text, text)) {
-    self->text = text;
-    Machine_PointerArray_clear(self->lines);
-    parse(self->text, self->lines);
-    measure(self->position, self->font, self->text, self->lines, self->yup);
-  }
-}
-
-Machine_String* Machine_Text_Layout_getText(Machine_Text_Layout* self) {
-  return self->text;
-}
-
-void Machine_Text_Layout_setPosition(Machine_Text_Layout* self, Machine_Math_Vector2* position) {
-  if (position == NULL) {
-    Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
-  }
-  Machine_Math_Vector2_copy(self->position, position);
-  measure(self->position, self->font, self->text, self->lines, self->yup);
-}
-
-const Machine_Math_Vector2* Machine_Text_Layout_getPosition(Machine_Text_Layout* self) {
-  return self->position;
-}
-
-void Machine_Text_Layout_setColor(Machine_Text_Layout* self, const Machine_Math_Vector3* color) {
-  if (color == NULL) {
-    Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
-  }
-  Machine_Math_Vector3_copy(self->color, color);
-}
-
-const Machine_Math_Vector3* Machine_Text_Layout_getColor(Machine_Text_Layout* self) {
-  return self->color;
-}
-
 const Machine_Math_Rectangle2* Machine_Text_Layout_getBounds(Machine_Text_Layout* self) {
 
 #if defined(WITH_SNAPTOGRID)
@@ -227,13 +188,19 @@ const Machine_Math_Rectangle2* Machine_Text_Layout_getBounds(Machine_Text_Layout
 }
 
 void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float height) {
+  if (self->clipRectangle) {
+    glEnable(GL_CLIP_DISTANCE0);
+    glEnable(GL_CLIP_DISTANCE1);
+    glEnable(GL_CLIP_DISTANCE2);
+    glEnable(GL_CLIP_DISTANCE3);
+  }
   if (self->renderVisualBounds) {
     if (!self->visualBounds) {
       self->visualBounds = Machine_Rectangle2_create();
     }
-    Machine_Math_Rectangle2* visualBounds = Machine_Text_Layout_getBounds(self);
-    Machine_Rectangle2_setPosition(self->visualBounds, Machine_Math_Rectangle2_getLeftTop(visualBounds));
-    Machine_Rectangle2_setSize(self->visualBounds, Machine_Math_Rectangle2_getSize(visualBounds));
+    Machine_Math_Rectangle2* bounds = Machine_Text_Layout_getBounds(self);
+    Machine_Rectangle2_setPosition(self->visualBounds, Machine_Math_Rectangle2_getLeftTop(bounds));
+    Machine_Rectangle2_setSize(self->visualBounds, Machine_Math_Rectangle2_getSize(bounds));
     Machine_Math_Vector3* color = Machine_Math_Vector3_create();
     Machine_Math_Vector3_set(color, .3f, .6f, .3f);
     Machine_Rectangle2_setColor(self->visualBounds, color);
@@ -267,10 +234,29 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
 
   Machine_Binding_activate(binding);
   Machine_Video_bindShaderProgram(shaderProgram);
-  {
-    Machine_Binding_bindVector3(binding, Machine_String_create("mesh_color", strlen("mesh_color") + 1), self->color);
+  if (self->clipRectangle) {
+    Machine_Math_Vector2* position = Machine_Math_Rectangle2_getLeftTop(self->clipRectangle);
+    Machine_Math_Vector2* size = Machine_Math_Rectangle2_getSize(self->clipRectangle);
+    {
+      vec3 n = { -1, 0, 0 };
+      vec3 p = { Machine_Math_Vector2_getX(position), 0, 0 };
+      float d = -vec3_mul_inner(n, p);
+
+      vec4 x = { -1, 0, 0, d };
+      Machine_Binding_bindVector4(binding, Machine_String_create("clipPlane0", strlen("clipPlane0") + 1), x);
+    }
+    {
+      vec3 n = { +1, 0, 0 };
+      vec3 p = { Machine_Math_Vector2_getX(position) + Machine_Math_Vector2_getX(size), 0, 0 };
+      float d = -vec3_mul_inner(n, p);
+
+      vec4 x = { +1, 0, 0, d };
+      Machine_Binding_bindVector4(binding, Machine_String_create("clipPlane1", strlen("clipPlane1") + 1), x);
+    }
   }
-  Machine_Binding_bindMatrix4x4(binding, Machine_String_create("mvp", strlen("mvp") + 1), wvp);
+  Machine_Binding_bindVector3(binding, Machine_String_create("mesh_color", strlen("mesh_color") + 1), self->color);
+  Machine_Binding_bindMatrix4x4(binding, Machine_String_create("modelToWorldMatrix", strlen("modelToWorldMatrix") + 1), world);
+  Machine_Binding_bindMatrix4x4(binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), wvp);
 
   glDisable(GL_DEPTH_TEST);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -328,8 +314,61 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
     cursorPosition[1] += Machine_Font_getBaselineDistance(self->font);
   }
 
-
+  glDisable(GL_CLIP_DISTANCE3);
+  glDisable(GL_CLIP_DISTANCE2);
+  glDisable(GL_CLIP_DISTANCE1);
+  glDisable(GL_CLIP_DISTANCE0);
 }
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+void Machine_Text_Layout_setText(Machine_Text_Layout* self, Machine_String* text) {
+  if (!self || !text) {
+    Machine_setStatus(Machine_Status_InvalidArgument);
+    Machine_jump();
+  }
+  if (!Machine_String_equalTo(self->text, text)) {
+    self->text = text;
+    Machine_PointerArray_clear(self->lines);
+    parse(self->text, self->lines);
+    measure(self->position, self->font, self->text, self->lines, self->yup);
+  }
+}
+
+Machine_String* Machine_Text_Layout_getText(Machine_Text_Layout* self) {
+  return self->text;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+void Machine_Text_Layout_setPosition(Machine_Text_Layout* self, Machine_Math_Vector2* position) {
+  if (position == NULL) {
+    Machine_setStatus(Machine_Status_InvalidArgument);
+    Machine_jump();
+  }
+  Machine_Math_Vector2_copy(self->position, position);
+  measure(self->position, self->font, self->text, self->lines, self->yup);
+}
+
+const Machine_Math_Vector2* Machine_Text_Layout_getPosition(Machine_Text_Layout* self) {
+  return self->position;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+void Machine_Text_Layout_setColor(Machine_Text_Layout* self, const Machine_Math_Vector3* color) {
+  if (color == NULL) {
+    Machine_setStatus(Machine_Status_InvalidArgument);
+    Machine_jump();
+  }
+  Machine_Math_Vector3_copy(self->color, color);
+}
+
+const Machine_Math_Vector3* Machine_Text_Layout_getColor(Machine_Text_Layout* self) {
+  return self->color;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 void Machine_Text_Layout_setRenderVisualBoundsEnabled(Machine_Text_Layout* self, bool renderVisualBounds) {
   self->renderVisualBounds = renderVisualBounds;
@@ -337,4 +376,24 @@ void Machine_Text_Layout_setRenderVisualBoundsEnabled(Machine_Text_Layout* self,
 
 bool Machine_Text_Layout_getRenderVisualBoundsEnabled(Machine_Text_Layout* self) {
   return self->renderVisualBounds;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+void Machine_Text_Layout_setClipRectangle(Machine_Text_Layout* self, Machine_Math_Rectangle2* clipRectangle) {
+  if (clipRectangle) {
+    if (!self->clipRectangle) {
+      Machine_Math_Rectangle2 * temporary = Machine_Math_Rectangle2_create();
+      Machine_Math_Rectangle2_copy(temporary, clipRectangle);
+      self->clipRectangle = temporary;
+    } else {
+      Machine_Math_Rectangle2_copy(self->clipRectangle, clipRectangle);
+    }
+  } else {
+    self->clipRectangle = NULL;
+  }
+}
+
+Machine_Math_Rectangle2* Machine_Text_Layout_getClipRectangle(Machine_Text_Layout* self) {
+  return self->clipRectangle;
 }

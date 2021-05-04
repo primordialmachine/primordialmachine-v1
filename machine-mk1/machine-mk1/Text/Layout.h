@@ -26,6 +26,9 @@ struct Machine_Text_Layout {
   Machine_PointerArray* lines;
   bool yup;
 
+  /// @brief Pointer to the clip rectangle or the null pointer.
+  /// Default is the null pointer.
+  Machine_Math_Rectangle2* clipRectangle;
 
 
   /// @brief If rendering visual bounds is enabled.
@@ -42,36 +45,6 @@ struct Machine_Text_Layout {
 /// @param font The font.
 Machine_Text_Layout* Machine_Text_Layout_create(Machine_String* text, Machine_Fonts_Font *font);
 
-/// @brief Set the text of this text layout.
-/// @param self This text layout.
-/// @param text The text.
-void Machine_Text_Layout_setText(Machine_Text_Layout* self, Machine_String* text);
-
-/// @brief Get the text of this text layout.
-/// @param self This text layout.
-/// @return The text.
-Machine_String* Machine_Text_Layout_getText(Machine_Text_Layout* self);
-
-/// @brief Set the position of this text layout.
-/// @param self This text layout.
-/// @param position The position.
-void Machine_Text_Layout_setPosition(Machine_Text_Layout* self, Machine_Math_Vector2 *position);
-
-/// @brief Get the position of this text layout.
-/// @param self This text layout.
-/// @return The position.
-const Machine_Math_Vector2* Machine_Text_Layout_getPosition(Machine_Text_Layout* self);
-
-/// @brief Set the color of this text layout.
-/// @param self This text layout.
-/// @param color The color.
-void Machine_Text_Layout_setColor(Machine_Text_Layout* self, const Machine_Math_Vector3* color);
-
-/// @brief Get the color of this text layout.
-/// @param self This text layout.
-/// @return The color.
-const Machine_Math_Vector3* Machine_Text_Layout_getColor(Machine_Text_Layout* self);
-
 /// @brief Get the bounds of this text layout.
 /// @param self This text layout.
 /// @return The bounds of this text layout.
@@ -83,7 +56,43 @@ const Machine_Math_Rectangle2* Machine_Text_Layout_getBounds(Machine_Text_Layout
 /// @param height The height of the viewport.
 void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float height);
 
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+/// @brief Set the text of this text layout.
+/// @param self This text layout.
+/// @param text The text.
+void Machine_Text_Layout_setText(Machine_Text_Layout* self, Machine_String* text);
+
+/// @brief Get the text of this text layout.
+/// @param self This text layout.
+/// @return The text.
+Machine_String* Machine_Text_Layout_getText(Machine_Text_Layout* self);
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/// @brief Set the position of this text layout.
+/// @param self This text layout.
+/// @param position The position.
+void Machine_Text_Layout_setPosition(Machine_Text_Layout* self, Machine_Math_Vector2 *position);
+
+/// @brief Get the position of this text layout.
+/// @param self This text layout.
+/// @return The position.
+const Machine_Math_Vector2* Machine_Text_Layout_getPosition(Machine_Text_Layout* self);
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/// @brief Set the color of this text layout.
+/// @param self This text layout.
+/// @param color The color.
+void Machine_Text_Layout_setColor(Machine_Text_Layout* self, const Machine_Math_Vector3* color);
+
+/// @brief Get the color of this text layout.
+/// @param self This text layout.
+/// @return The color.
+const Machine_Math_Vector3* Machine_Text_Layout_getColor(Machine_Text_Layout* self);
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /// @brief Set if visual bounds shall be rendered.
 /// @param self This text layout.
@@ -96,6 +105,12 @@ void Machine_Text_Layout_setRenderVisualBoundsEnabled(Machine_Text_Layout* self,
 /// @default @a false
 bool Machine_Text_Layout_getRenderVisualBoundsEnabled(Machine_Text_Layout* self);
 
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+void Machine_Text_Layout_setClipRectangle(Machine_Text_Layout* self, Machine_Math_Rectangle2* clipRectangle);
+
+Machine_Math_Rectangle2* Machine_Text_Layout_getClipRectangle(Machine_Text_Layout* self);
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 #endif // MACHINE_TEXT_LAYOUT_H_INCLUDED

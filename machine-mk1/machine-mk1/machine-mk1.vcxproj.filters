@@ -37,6 +37,12 @@
     <Filter Include="Quelldateien\Math">
       <UniqueIdentifier>{2ca08a41-8bf1-45f3-9302-220460a24764}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Quelldateien\GUI">
+      <UniqueIdentifier>{dbdb8879-7fb4-4c39-8dec-c75157e42509}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\GUI">
+      <UniqueIdentifier>{b13bf37e-a3ec-4965-8bfb-749f841012ad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -107,6 +113,9 @@
     </ClCompile>
     <ClCompile Include="Shape2.c">
       <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\TextLabel.c">
+      <Filter>Quelldateien\GUI</Filter>
     </ClCompile>
     <ClCompile Include="Math\Vector4.c">
       <Filter>Quelldateien\Math</Filter>
@@ -181,6 +190,9 @@
     </ClInclude>
     <ClInclude Include="Shape2.h">
       <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\TextLabel.h">
+      <Filter>Headerdateien\GUI</Filter>
     </ClInclude>
     <ClInclude Include="Math\Vector4.h">
       <Filter>Headerdateien\Math</Filter>

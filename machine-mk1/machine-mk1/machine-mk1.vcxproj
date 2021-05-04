@@ -93,6 +93,7 @@
   <ItemGroup>
     <ClCompile Include="..\external\glad\src\glad.c" />
     <ClCompile Include="Binding.c" />
+    <ClCompile Include="GUI\TextLabel.c" />
     <ClCompile Include="Math\Rectangle2.c" />
     <ClCompile Include="Math\Vector2.c" />
     <ClCompile Include="Math\Vector3.c" />
@@ -120,6 +121,7 @@
     <ClInclude Include="..\external\glad\include\glad\glad.h" />
     <ClInclude Include="..\external\glad\include\KHR\khrplatform.h" />
     <ClInclude Include="Binding.h" />
+    <ClInclude Include="GUI\TextLabel.h" />
     <ClInclude Include="Math\Rectangle2.h" />
     <ClInclude Include="Math\Vector2.h" />
     <ClInclude Include="Math\Vector3.h" />
