@@ -161,6 +161,11 @@ Machine_Rectangle2* Machine_Rectangle2_create() {
   return self;
 }
 
+void Machine_Rectangle2_setRectangle(Machine_Rectangle2* self, Machine_Math_Rectangle2* rectangle) {
+  Machine_Math_Vector2_copy(self->position, Machine_Math_Rectangle2_getLeftTop(rectangle));
+  Machine_Math_Vector2_copy(self->size, Machine_Math_Rectangle2_getSize(rectangle));
+}
+
 Machine_Math_Rectangle2* Machine_Rectangle2_getRectangle(Machine_Rectangle2* self) {
   Machine_Math_Rectangle2* rectangle =  Machine_Math_Rectangle2_create();
   Machine_Math_Rectangle2_setPosition(rectangle, self->position);

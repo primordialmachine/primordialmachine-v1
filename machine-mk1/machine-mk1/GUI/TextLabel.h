@@ -12,6 +12,10 @@ Machine_GUI_TextLabel* Machine_GUI_TextLabel_create();
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+Machine_Math_Vector2* Machine_GUI_TextLabel_getBestSize(Machine_GUI_TextLabel* self);
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
 /// @brief Set the text.
 /// @param self This text label.
 /// @param text The text.
@@ -72,9 +76,14 @@ const Machine_Math_Vector2* Machine_GUI_TextLabel_getSize(Machine_GUI_TextLabel*
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+/// @brief Set the bounds.
+/// @param self This text label.
+/// @param rectangle The rectangle.
+void Machine_GUI_TextLabel_setRectangle(Machine_GUI_TextLabel* self, Machine_Math_Rectangle2* rectangle);
+
 /// @brief Get the bounds.
 /// @param self This text label.
-/// @return The bounds.
+/// @return The rectangle.
 const Machine_Math_Rectangle2* Machine_GUI_TextLabel_getRectangle(Machine_GUI_TextLabel* self);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

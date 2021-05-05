@@ -26,6 +26,14 @@ void Machine_Rectangle2_construct(Machine_Rectangle2* self, size_t numberOfArgum
 /// @todo Should be <code>..._create(Machine_Rectangle2* self, size_t numberOfArguments, const Machine_Value* arguments)</code>.
 Machine_Rectangle2* Machine_Rectangle2_create();
 
+/// @brief Set  the rectangle.
+/// @param self This rectangle.
+/// @param rectangle The rectangle.
+void Machine_Rectangle2_setRectangle(Machine_Rectangle2* self, Machine_Math_Rectangle2* rectangle);
+
+/// @brief Get the rectangle.
+/// @param self This rectangle.
+/// @return The rectangle.
 Machine_Math_Rectangle2* Machine_Rectangle2_getRectangle(Machine_Rectangle2* self);
 
 /// @brief Set the color of this rectangle.

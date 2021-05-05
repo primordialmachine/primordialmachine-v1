@@ -43,6 +43,12 @@ Machine_GUI_TextLabel* Machine_GUI_TextLabel_create() {
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+Machine_Math_Vector2* Machine_GUI_TextLabel_getBestSize(Machine_GUI_TextLabel* self) {
+  return Machine_Math_Rectangle2_getSize(Machine_Text_Layout_getBounds(self->foreground));
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
 void Machine_GUI_TextLabel_setText(Machine_GUI_TextLabel* self, Machine_String* text) {
   Machine_Text_Layout_setText(self->foreground, text);
 }
@@ -92,6 +98,10 @@ const Machine_Math_Vector2* Machine_GUI_TextLabel_getSize(Machine_GUI_TextLabel*
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+void Machine_GUI_TextLabel_setRectangle(Machine_GUI_TextLabel* self, Machine_Math_Rectangle2 *rectangle) {
+  Machine_Rectangle2_setRectangle(self->background, rectangle);
+}
 
 const Machine_Math_Rectangle2* Machine_GUI_TextLabel_getRectangle(Machine_GUI_TextLabel* self) {
   return Machine_Rectangle2_getRectangle(self->background);
