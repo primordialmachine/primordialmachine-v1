@@ -75,49 +75,54 @@ static void measure(Machine_Math_Vector2 *position, Machine_Fonts_Font* font, Ma
 
   vec2 cursorPosition = { 0, 0 };
 
+  Machine_Math_Rectangle2* lineBounds = Machine_Math_Rectangle2_create();
+
   for (size_t i = 0, n = Machine_PointerArray_getSize(lines); i < n; ++i) {
     Machine_Text_LayoutLine* layoutLine = (Machine_Text_LayoutLine*)Machine_PointerArray_getAt(lines, i);
     const char* bytes = Machine_String_getBytes(text);
 
-    rect2 lineBounds;
-    lineBounds.l = cursorPosition[0];
-    lineBounds.w = 0.f;
-    lineBounds.b = cursorPosition[1];
-    lineBounds.h = 0.f;
+    Machine_Math_Vector2* position = Machine_Math_Vector2_create();
+    Machine_Math_Vector2_set(position, cursorPosition[0], cursorPosition[1]);
+    Machine_Math_Vector2* size = Machine_Math_Vector2_create();
+    Machine_Math_Vector2_set(size, 0.f, 0.f);
 
+    Machine_Math_Rectangle2_setPosition(lineBounds, position);
+    Machine_Math_Rectangle2_setSize(lineBounds, size);
+
+    Machine_Math_Rectangle2* symbolBounds = Machine_Math_Rectangle2_create();
     for (size_t j = layoutLine->start, m = layoutLine->start + layoutLine->length; j < m; ++j) {
       uint32_t codepoint = bytes[j];
-      rect2 symbolBounds;
       vec2 symbolAdvance;
       Machine_Texture* symbolTexture;
-      bool skip = !Machine_Font_getCodePointInfo(font, codepoint, &symbolBounds, symbolAdvance, &symbolTexture);
+      bool skip = !Machine_Font_getCodePointInfo(font, codepoint, symbolBounds, symbolAdvance, &symbolTexture);
       if (skip) {
         continue;
       }
 
-      float l = cursorPosition[0] + symbolBounds.l;
-      float r = l + symbolBounds.w;
+      float l = cursorPosition[0] + Machine_Math_Vector2_getX(Machine_Math_Rectangle2_getLeftTop(symbolBounds));
+      float r = l + Machine_Math_Vector2_getX(Machine_Math_Rectangle2_getSize(symbolBounds));
       float t, b;
       if (yup) {
-        t = cursorPosition[1] + (symbolBounds.h - symbolBounds.b);
-        b = t - symbolBounds.h;
+        t = cursorPosition[1] + (Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(symbolBounds)) - Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getLeftTop(symbolBounds)));
+        b = t - Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(symbolBounds));
       } else {
-        t = cursorPosition[1] - (symbolBounds.h - symbolBounds.b);
-        b = t + symbolBounds.h;
+        t = cursorPosition[1] - (Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(symbolBounds)) - Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getLeftTop(symbolBounds)));
+        b = t + Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(symbolBounds));
       }
 
-      vec2 min = { l, t };
-      vec2 max = { r, b };
-
-      rect2_add_point(&lineBounds, min);
-      rect2_add_point(&lineBounds, max);
+      Machine_Math_Vector2* min = Machine_Math_Vector2_create();
+      Machine_Math_Vector2_set(min, l, t);
+      Machine_Math_Vector2* max = Machine_Math_Vector2_create();
+      Machine_Math_Vector2_set(max, r, b);
+      Machine_Math_Rectangle2_addPoint(lineBounds, min);
+      Machine_Math_Rectangle2_addPoint(lineBounds, max);
 
       vec2_add(cursorPosition, cursorPosition, symbolAdvance);
     }
-    layoutLine->left = lineBounds.l;
-    layoutLine->width = lineBounds.w;
-    layoutLine->top = lineBounds.b;
-    layoutLine->height = lineBounds.h;
+    layoutLine->left = Machine_Math_Vector2_getX(Machine_Math_Rectangle2_getLeftTop(lineBounds));
+    layoutLine->width = Machine_Math_Vector2_getX(Machine_Math_Rectangle2_getSize(lineBounds));
+    layoutLine->top = Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getLeftTop(lineBounds));
+    layoutLine->height = Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(lineBounds));
 
     cursorPosition[0] = 0;
     cursorPosition[1] += Machine_Font_getBaselineDistance(font);
@@ -266,25 +271,25 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
 
   const char* bytes = Machine_String_getBytes(self->text);
 
+  Machine_Math_Rectangle2* symbolBounds = Machine_Math_Rectangle2_create();
   for (size_t i = 0, n = Machine_PointerArray_getSize(self->lines); i < n; ++i) {
     Machine_Text_LayoutLine* layoutLine = (Machine_Text_LayoutLine*)Machine_PointerArray_getAt(self->lines, i);
     for (size_t j = layoutLine->start, m = layoutLine->start + layoutLine->length; j < m; ++j) {
       uint32_t codepoint = bytes[j];
-      rect2 symbolBounds;
       vec2 symbolAdvance;
       Machine_Texture* symbolTexture;
-      bool skip = !Machine_Font_getCodePointInfo(self->font, codepoint, &symbolBounds, symbolAdvance, &symbolTexture);
+      bool skip = !Machine_Font_getCodePointInfo(self->font, codepoint, symbolBounds, symbolAdvance, &symbolTexture);
       if (skip) continue;
 
-      float l = OFFSET_X + cursorPosition[0] + symbolBounds.l;
-      float r = l + symbolBounds.w;
+      float l = OFFSET_X + cursorPosition[0] + Machine_Math_Vector2_getX(Machine_Math_Rectangle2_getLeftTop(symbolBounds));
+      float r = l + Machine_Math_Vector2_getX(Machine_Math_Rectangle2_getSize(symbolBounds));
       float t, b;
     #if defined(Y_UP)
-      t = OFFSET_Y + cursorPosition[1] + (symbolBounds.h - symbolBounds.b);
-      b = t - symbolBounds.h;
+      t = OFFSET_Y + cursorPosition[1] + (Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(symbolBounds)) - Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getLeftTop(symbolBounds)));
+      b = t - Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(symbolBounds));
     #else
-      t = OFFSET_Y + cursorPosition[1] - (symbolBounds.h - symbolBounds.b);
-      b = t + symbolBounds.h;
+      t = OFFSET_Y + cursorPosition[1] - (Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(symbolBounds)) - symbolBounds.b);
+      b = t + Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(symbolBounds));
     #endif
 
       const struct {

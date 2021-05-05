@@ -34,33 +34,6 @@ void Machine_Fonts_shutdown();
  */
 Machine_Fonts_Font* Machine_Fonts_createFont(const char* path, int pointSize);
 
-typedef struct rect2 {
-  float l, b;
-  float w, h;
-} rect2;
-
-static inline void rect2_add_point(rect2* r, vec2 p) {
-  if (r->l > p[0]) {
-    float d = r->l - p[0];
-    r->l = p[0];
-    r->w += d;
-  }
-  
-  if (r->l + r->w < p[0]) {
-    r->w = p[0] - r->l;
-  }
-
-  if (r->b > p[1]) {
-    float d = r->b - p[1];
-    r->b = p[1];
-    r->h += d;
-  }
-
-  if (r->b + r->h < p[1]) {
-    r->h = p[1] - r->b;
-  }
-}
-
 /**
  * @brief Get the baseline distance.
  * @param self This font.
@@ -74,7 +47,7 @@ float Machine_Font_getBaselineDistance(Machine_Fonts_Font* self);
 /// @param bounds A pointer to a <code>rect2</code> variable.
 /// @param advance A pointer to a <code>vec2</code> variable.
 /// @param texture The texture.
-bool Machine_Font_getCodePointInfo(Machine_Fonts_Font* self, uint32_t codepoint, rect2* bounds, vec2 advance, Machine_Texture** texture);
+bool Machine_Font_getCodePointInfo(Machine_Fonts_Font* self, uint32_t codepoint, Machine_Math_Rectangle2 *bounds, vec2 advance, Machine_Texture** texture);
 
 /// @brief Get the binding to be used when rendering the font.
 /// @param self This font.

@@ -326,7 +326,7 @@ float Machine_Font_getBaselineDistance(Machine_Fonts_Font* self) {
   return self->baselineDistance;
 }
 
-bool Machine_Font_getCodePointInfo(Machine_Fonts_Font* self, uint32_t codepoint, rect2* bounds, vec2 advance, Machine_Texture** texture) {
+bool Machine_Font_getCodePointInfo(Machine_Fonts_Font* self, uint32_t codepoint, Machine_Math_Rectangle2* bounds, vec2 advance, Machine_Texture** texture) {
   if (isWhitespace(codepoint)) {
     codepoint = ' ';
   } else if (isNewline(codepoint)) {
@@ -337,10 +337,11 @@ bool Machine_Font_getCodePointInfo(Machine_Fonts_Font* self, uint32_t codepoint,
     Machine_log(Machine_LogFlags_ToWarnings, __FILE__, __LINE__, "%"PRIu32" not found\n", codepoint);
     return false;
   }
-  bounds->l = node->bearingx;
-  bounds->b = node->bearingy;
-  bounds->w = node->w;
-  bounds->h = node->h;
+  Machine_Math_Vector2* v = Machine_Math_Vector2_create();
+  Machine_Math_Vector2_set(v, node->bearingx, node->bearingy);
+  Machine_Math_Rectangle2_setPosition(bounds, v);
+  Machine_Math_Vector2_set(v, node->w, node->h);
+  Machine_Math_Rectangle2_setSize(bounds, v);
   *texture = node->texture;
   advance[0] = node->advancex;
   advance[1] = node->advancey;
