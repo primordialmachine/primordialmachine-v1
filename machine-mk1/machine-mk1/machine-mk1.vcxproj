@@ -60,9 +60,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/linmath;$(SolutionDir)external/freetype/include;$(SolutionDir)external/libpng/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/linmath;$(SolutionDir)external/freetype/include;$(SolutionDir)external/libpng/include;$(SolutionDir)core</AdditionalIncludeDirectories>
       <LanguageStandard_C>stdc11</LanguageStandard_C>
-      <LanguageStandard>Default</LanguageStandard>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -79,7 +80,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/linmath;$(SolutionDir)external/freetype/include;$(SolutionDir)external/libpng/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/linmath;$(SolutionDir)external/freetype/include;$(SolutionDir)external/libpng/include;$(SolutionDir)core</AdditionalIncludeDirectories>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -93,11 +97,8 @@
   <ItemGroup>
     <ClCompile Include="..\external\glad\src\glad.c" />
     <ClCompile Include="Binding.c" />
+    <ClCompile Include="GUI\Border.c" />
     <ClCompile Include="GUI\TextLabel.c" />
-    <ClCompile Include="Math\Rectangle2.c" />
-    <ClCompile Include="Math\Vector2.c" />
-    <ClCompile Include="Math\Vector3.c" />
-    <ClCompile Include="Math\Vector4.c" />
     <ClCompile Include="Scene4.c" />
     <ClCompile Include="Scene5.c" />
     <ClCompile Include="Shape2.c" />
@@ -113,7 +114,6 @@
     <ClCompile Include="Scene2.c" />
     <ClCompile Include="Scene3.c" />
     <ClCompile Include="ShaderProgram.c" />
-    <ClCompile Include="Machine.c" />
     <ClCompile Include="Texture.c" />
     <ClCompile Include="VertexDescriptor.c" />
     <ClCompile Include="Video.c" />
@@ -122,11 +122,8 @@
     <ClInclude Include="..\external\glad\include\glad\glad.h" />
     <ClInclude Include="..\external\glad\include\KHR\khrplatform.h" />
     <ClInclude Include="Binding.h" />
+    <ClInclude Include="GUI\Border.h" />
     <ClInclude Include="GUI\TextLabel.h" />
-    <ClInclude Include="Math\Rectangle2.h" />
-    <ClInclude Include="Math\Vector2.h" />
-    <ClInclude Include="Math\Vector3.h" />
-    <ClInclude Include="Math\Vector4.h" />
     <ClInclude Include="Scene4.h" />
     <ClInclude Include="Scene5.h" />
     <ClInclude Include="Shape2.h" />
@@ -141,10 +138,14 @@
     <ClInclude Include="Scene2.h" />
     <ClInclude Include="Scene3.h" />
     <ClInclude Include="ShaderProgram.h" />
-    <ClInclude Include="Machine.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="VertexDescriptor.h" />
     <ClInclude Include="Video.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\core\machine-mk1-core.vcxproj">
+      <Project>{f34866d8-3093-4b44-a225-7da2b5cd8e83}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

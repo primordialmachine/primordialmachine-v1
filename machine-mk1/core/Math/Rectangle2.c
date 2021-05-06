@@ -1,6 +1,6 @@
-#include "./../Math/Rectangle2.h"
+#include "Math/Rectangle2.h"
 
-#include "./../Math/Vector2.h"
+#include "Math/Vector2.h"
 
 struct Machine_Math_Rectangle2 {
   float x, y;

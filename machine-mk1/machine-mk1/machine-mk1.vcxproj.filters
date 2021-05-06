@@ -31,12 +31,6 @@
     <Filter Include="Quelldateien\Text">
       <UniqueIdentifier>{7fb3eb57-ead2-4b86-b321-8887aa2790b1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headerdateien\Math">
-      <UniqueIdentifier>{381816a8-0288-4185-b352-35c2d0034912}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Quelldateien\Math">
-      <UniqueIdentifier>{2ca08a41-8bf1-45f3-9302-220460a24764}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Quelldateien\GUI">
       <UniqueIdentifier>{dbdb8879-7fb4-4c39-8dec-c75157e42509}</UniqueIdentifier>
     </Filter>
@@ -64,9 +58,6 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Scene2.c">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Machine.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Buffer.c">
@@ -99,15 +90,6 @@
     <ClCompile Include="Text\Layout.c">
       <Filter>Quelldateien\Text</Filter>
     </ClCompile>
-    <ClCompile Include="Math\Vector2.c">
-      <Filter>Quelldateien\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Math\Vector3.c">
-      <Filter>Quelldateien\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Math\Rectangle2.c">
-      <Filter>Quelldateien\Math</Filter>
-    </ClCompile>
     <ClCompile Include="Video.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -117,11 +99,11 @@
     <ClCompile Include="GUI\TextLabel.c">
       <Filter>Quelldateien\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="Math\Vector4.c">
-      <Filter>Quelldateien\Math</Filter>
-    </ClCompile>
     <ClCompile Include="Scene4.c">
       <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\Border.c">
+      <Filter>Quelldateien\GUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -144,9 +126,6 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Scene2.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Machine.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Buffer.h">
@@ -179,15 +158,6 @@
     <ClInclude Include="Text\Layout.h">
       <Filter>Headerdateien\Text</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Vector2.h">
-      <Filter>Headerdateien\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\Vector3.h">
-      <Filter>Headerdateien\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\Rectangle2.h">
-      <Filter>Headerdateien\Math</Filter>
-    </ClInclude>
     <ClInclude Include="Video.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -197,11 +167,11 @@
     <ClInclude Include="GUI\TextLabel.h">
       <Filter>Headerdateien\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Vector4.h">
-      <Filter>Headerdateien\Math</Filter>
-    </ClInclude>
     <ClInclude Include="Scene4.h">
       <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Border.h">
+      <Filter>Headerdateien\GUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

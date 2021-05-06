@@ -1,4 +1,4 @@
-#include "./../Math/Vector2.h"
+#include "Math/Vector2.h"
 
 struct Machine_Math_Vector2 {
   float x, y;

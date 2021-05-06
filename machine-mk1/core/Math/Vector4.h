@@ -4,7 +4,7 @@
 #if !defined(MACHINE_MATH_VECTOR4_H_INCLUDED)
 #define MACHINE_MATH_VECTOR4_H_INCLUDED
 
-#include "./../Machine.h"
+#include "Machine.h"
 
 /// C-level definition of a 3D vector.
 /// The HLL-level definition is

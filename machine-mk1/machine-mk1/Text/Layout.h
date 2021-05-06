@@ -1,11 +1,9 @@
 #if !defined(MACHINE_TEXT_LAYOUT_H_INCLUDED)
 #define MACHINE_TEXT_LAYOUT_H_INCLUDED
 
-#include "./../Machine.h"
-#include "./../Math/Rectangle2.h"
+#include "Machine.h"
+#include "Math.h"
 #include "./../Shape2.h"
-#include "./../Math/Vector2.h"
-#include "./../Math/Vector3.h"
 typedef struct Machine_Fonts_Font Machine_Fonts_Font;
 
 /// @brief 
