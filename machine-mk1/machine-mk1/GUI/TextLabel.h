@@ -1,9 +1,12 @@
+/// @file GUI/TextLabel.h
+/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
+/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #if !defined(MACHINE_GUI_TEXTLABEL_H_INCLUDED)
 #define MACHINE_GUI_TEXTLABEL_H_INCLUDED
 
 #include "./../Fonts.h"
 
-/// @brief A label to display a text or an image.
+/// @brief A label to display a text.
 typedef struct Machine_GUI_TextLabel Machine_GUI_TextLabel;
 
 /// @brief Create a label with default values.
