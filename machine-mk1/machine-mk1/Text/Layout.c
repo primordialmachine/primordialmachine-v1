@@ -63,7 +63,7 @@ static void parse(Machine_String* text, Machine_PointerArray* lines) {
   }
 }
 
-static void measure(Machine_Math_Vector2 *position, Machine_Fonts_Font* font, Machine_String* text, Machine_PointerArray* lines, bool yup) {
+static void updateLinesBounds(Machine_Math_Vector2 *position, Machine_Fonts_Font* font, Machine_String* text, Machine_PointerArray* lines, bool yup) {
 #if defined(WITH_SNAPTOGRID)
   // Snap to pixel (ensure there are no artifacts).
   vec2 position0 = { floorf(Machine_Math_Vector2_getX(position)),
@@ -135,31 +135,7 @@ static void measure(Machine_Math_Vector2 *position, Machine_Fonts_Font* font, Ma
   }
 }
 
-Machine_Text_Layout* Machine_Text_Layout_create(Machine_String* text, Machine_Fonts_Font* font) {
-  if (text == NULL) {
-    Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
-  }
-  Machine_Text_Layout* self = Machine_allocate(sizeof(Machine_Text_Layout), (Machine_VisitCallback*)&visit, NULL);
-  if (!self) {
-    Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
-  }
-  self->color = Machine_Math_Vector3_create();
-  Machine_Math_Vector3_set(self->color, 0.f, 0.f, 0.f);
-  self->position = Machine_Math_Vector2_create();
-  Machine_Math_Vector2_set(self->position, 0.f, 0.f);
-  self->font = font;
-  self->text = text;
-  self->lines = Machine_PointerArray_create();
-  self->yup = true;
-  parse(self->text, self->lines);
-  measure(self->position, self->font, self->text, self->lines, self->yup);
-  return self;
-}
-
-const Machine_Math_Rectangle2* Machine_Text_Layout_getBounds(Machine_Text_Layout* self) {
-
+static void updateBounds(Machine_Text_Layout* self) {
 #if defined(WITH_SNAPTOGRID)
   // Snap to pixel (ensure there are no artifacts).
   vec2 position0 = { floorf(Machine_Math_Vector2_getX(self->position)),
@@ -189,10 +165,70 @@ const Machine_Math_Rectangle2* Machine_Text_Layout_getBounds(Machine_Text_Layout
     cursorPosition[1] += Machine_Font_getBaselineDistance(self->font);
   }
 
-  return bounds;
+  if (!self->visualBounds) {
+    self->visualBounds = Machine_Rectangle2_create();
+  }
+  Machine_Rectangle2_setRectangle(self->visualBounds, bounds);
+}
+
+Machine_Text_Layout* Machine_Text_Layout_create(Machine_String* text, Machine_Fonts_Font* font) {
+  if (text == NULL) {
+    Machine_setStatus(Machine_Status_InvalidArgument);
+    Machine_jump();
+  }
+  Machine_Text_Layout* self = Machine_allocate(sizeof(Machine_Text_Layout), (Machine_VisitCallback*)&visit, NULL);
+  if (!self) {
+    Machine_setStatus(Machine_Status_AllocationFailed);
+    Machine_jump();
+  }
+  self->color = Machine_Math_Vector3_create();
+  Machine_Math_Vector3_set(self->color, 0.f, 0.f, 0.f);
+  self->position = Machine_Math_Vector2_create();
+  Machine_Math_Vector2_set(self->position, 0.f, 0.f);
+  self->font = font;
+  self->text = text;
+  self->lines = Machine_PointerArray_create();
+  self->yup = true;
+  self->flags |= LINES_DIRTY;
+  return self;
+}
+
+const Machine_Math_Rectangle2* Machine_Text_Layout_getBounds(Machine_Text_Layout* self) {
+  if ((self->flags & LINES_DIRTY) == LINES_DIRTY) {
+    Machine_PointerArray_clear(self->lines);
+    parse(self->text, self->lines);
+    self->flags |= LINE_BOUNDS_DIRTY;
+    self->flags &= ~LINES_DIRTY;
+  }
+  if ((self->flags & LINE_BOUNDS_DIRTY) == LINE_BOUNDS_DIRTY) {
+    updateLinesBounds(self->position, self->font, self->text, self->lines, self->yup);
+    self->flags |= BOUNDS_DIRTY;
+    self->flags &= ~LINE_BOUNDS_DIRTY;
+  }
+  if ((self->flags & BOUNDS_DIRTY) == BOUNDS_DIRTY) {
+    updateBounds(self);
+    self->flags &= ~BOUNDS_DIRTY;
+  }
+  return Machine_Rectangle2_getRectangle(self->visualBounds);
 }
 
 void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float height) {
+  if ((self->flags & LINES_DIRTY) == LINES_DIRTY) {
+    Machine_PointerArray_clear(self->lines);
+    parse(self->text, self->lines);
+    self->flags |= LINE_BOUNDS_DIRTY;
+    self->flags &= ~LINES_DIRTY;
+  }
+  if ((self->flags & LINE_BOUNDS_DIRTY) == LINE_BOUNDS_DIRTY) {
+    updateLinesBounds(self->position, self->font, self->text, self->lines, self->yup);
+    self->flags |= BOUNDS_DIRTY;
+    self->flags &= ~LINE_BOUNDS_DIRTY;
+  }
+  if ((self->flags & BOUNDS_DIRTY) == BOUNDS_DIRTY) {
+    updateBounds(self);
+    self->flags &= ~BOUNDS_DIRTY;
+  }
+
   if (self->clipRectangle) {
     glEnable(GL_CLIP_DISTANCE0);
     glEnable(GL_CLIP_DISTANCE1);
@@ -201,11 +237,8 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
   }
   if (self->renderVisualBounds) {
     if (!self->visualBounds) {
-      self->visualBounds = Machine_Rectangle2_create();
+      updateBounds(self);
     }
-    Machine_Math_Rectangle2* bounds = Machine_Text_Layout_getBounds(self);
-    Machine_Rectangle2_setPosition(self->visualBounds, Machine_Math_Rectangle2_getLeftTop(bounds));
-    Machine_Rectangle2_setSize(self->visualBounds, Machine_Math_Rectangle2_getSize(bounds));
     Machine_Math_Vector3* color = Machine_Math_Vector3_create();
     Machine_Math_Vector3_set(color, .3f, .6f, .3f);
     Machine_Rectangle2_setColor(self->visualBounds, color);
@@ -217,8 +250,8 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
   vec2 position0 = { floorf(Machine_Math_Vector2_getX(self->position)),
                      floorf(Machine_Math_Vector2_getY(self->position)) };
 #else
-  vec2 position0 = { (Machine_Math_Vector2_getX(self->position)),
-                     (Machine_Math_Vector2_getY(self->position)) };
+  vec2 position0 = { Machine_Math_Vector2_getX(self->position),
+                     Machine_Math_Vector2_getY(self->position) };
 #endif
 
   // Set the world matrix, view matrix, and projection matrix.
@@ -334,9 +367,7 @@ void Machine_Text_Layout_setText(Machine_Text_Layout* self, Machine_String* text
   }
   if (!Machine_String_equalTo(self->text, text)) {
     self->text = text;
-    Machine_PointerArray_clear(self->lines);
-    parse(self->text, self->lines);
-    measure(self->position, self->font, self->text, self->lines, self->yup);
+    self->flags |= LINES_DIRTY | LINE_BOUNDS_DIRTY | BOUNDS_DIRTY;
   }
 }
 
@@ -352,7 +383,7 @@ void Machine_Text_Layout_setPosition(Machine_Text_Layout* self, Machine_Math_Vec
     Machine_jump();
   }
   Machine_Math_Vector2_copy(self->position, position);
-  measure(self->position, self->font, self->text, self->lines, self->yup);
+  self->flags |= LINE_BOUNDS_DIRTY | BOUNDS_DIRTY;
 }
 
 const Machine_Math_Vector2* Machine_Text_Layout_getPosition(Machine_Text_Layout* self) {

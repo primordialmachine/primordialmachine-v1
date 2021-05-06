@@ -15,6 +15,10 @@ typedef struct Machine_Fonts_Font Machine_Fonts_Font;
 /// - <code>position</code>: The position of the cursor at which the first symbol of the first line is rendered.
 typedef struct Machine_Text_Layout Machine_Text_Layout;
 
+#define LINES_DIRTY (1)
+#define LINE_BOUNDS_DIRTY (2)
+#define BOUNDS_DIRTY (4)
+
 struct Machine_Text_Layout {
   /// @brief The position of this layout.
   Machine_Math_Vector2* position;
@@ -25,6 +29,9 @@ struct Machine_Text_Layout {
   Machine_String* text;
   Machine_PointerArray* lines;
   bool yup;
+
+  /// @brief Combination of layout flags.
+  uint8_t flags;
 
   /// @brief Pointer to the clip rectangle or the null pointer.
   /// Default is the null pointer.
