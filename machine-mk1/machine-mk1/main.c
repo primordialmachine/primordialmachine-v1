@@ -17,6 +17,7 @@ extern "C" {
 #include "Scene2.h"
 #include "Scene3.h"
 #include "Scene4.h"
+#include "Scene5.h"
 #include "Video.h"
 #include "Fonts.h"
 #include "Images.h"
@@ -150,35 +151,31 @@ extern "C" {
     }
     Machine_setRoot(scene, true);
 
-    if (Scene_startup(scene)) {
-      fprintf(stderr, "%s:%d: Scene_startup() failed\n", __FILE__, __LINE__);
-      Machine_setRoot(scene, false);
-      Machine_shutdown();
-      Machine_Video_shutdown();
-      glfwDestroyWindow(window);
-      glfwTerminate();
-      return EXIT_FAILURE;
-    }
-
-    Machine_update();
-
-    while (!glfwWindowShouldClose(window)) {
-      int width, height;
-      glfwGetFramebufferSize(window, &width, &height);
-      if (Scene_update(scene, (float)width, (float)height)) {
-        fprintf(stderr, "%s:%d: Scene_update() failed\n", __FILE__, __LINE__);
-        Scene_shutdown(scene);
-        Machine_setRoot(scene, false);
-        Machine_shutdown();
-        Machine_Video_shutdown();
-        glfwDestroyWindow(window);
-        glfwTerminate();
-        return EXIT_FAILURE;
-      }
+    Scene_startup(scene);
+    Machine_JumpTarget jumpTarget;
+    Machine_pushJumpTarget(&jumpTarget);
+    if (!setjmp(jumpTarget.environment)) {
 
       Machine_update();
-      glfwSwapBuffers(window);
-      glfwPollEvents();
+
+      int oldWidth, oldHeight;
+      glfwGetFramebufferSize(window, &oldWidth, &oldHeight);
+      Scene_onCanvaSizeChanged(scene, (float)oldWidth, (float)oldHeight);
+
+      while (!glfwWindowShouldClose(window)) {
+        int newWidth, newHeight;
+        glfwGetFramebufferSize(window, &newWidth, &newHeight);
+        if (oldWidth != newWidth || oldHeight != newHeight) {
+          Scene_onCanvaSizeChanged(scene, (float)newWidth, (float)newHeight);
+          oldWidth = newWidth;
+          oldHeight = newHeight;
+        }
+        Scene_update(scene, (float)oldWidth, (float)oldHeight);
+        Machine_update();
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+      }
+      Machine_popJumpTarget();
     }
 
     Scene_shutdown(scene);

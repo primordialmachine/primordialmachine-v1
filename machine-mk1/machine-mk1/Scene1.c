@@ -58,36 +58,26 @@ static void Scene1_finalize(Scene1* self) {
   Scene1_destruct(self);
 }
 
-static int Scene1_startup(Scene1* scene) {
-  Machine_JumpTarget jumpTarget;
-  Machine_pushJumpTarget(&jumpTarget);
-  if (!setjmp(jumpTarget.environment)) {
-    scene->vertices = Machine_FloatBuffer_create();
-    Machine_FloatBuffer_setData(scene->vertices, sizeof(vertices) / sizeof(float), vertices);
+static void Scene1_startup(Scene1* scene) {
+  scene->vertices = Machine_FloatBuffer_create();
+  Machine_FloatBuffer_setData(scene->vertices, sizeof(vertices) / sizeof(float), vertices);
 
-    scene->shaderProgram = Machine_ShaderProgram_generate(false, true, false, false);
-    scene->mvp_location = glGetUniformLocation(scene->shaderProgram->programId, "modelToProjectionMatrix");
+  scene->shaderProgram = Machine_ShaderProgram_generate(false, true, false, false);
+  scene->mvp_location = glGetUniformLocation(scene->shaderProgram->programId, "modelToProjectionMatrix");
 
-    Machine_VertexDescriptor* vd = Machine_VertexDescriptor_create();
-    Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_XfYf);
-    Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_RfGfBf);
+  Machine_VertexDescriptor* vd = Machine_VertexDescriptor_create();
+  Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_XfYf);
+  Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_RfGfBf);
 
-    scene->binding = Machine_Binding_create(scene->shaderProgram, vd, scene->vertices);
-    Machine_Binding_set(scene->binding, Machine_String_create_noraise("vertex_position", strlen("vertex_position") + 1), 0);
-    Machine_Binding_set(scene->binding, Machine_String_create_noraise("vertex_color", strlen("vertex_color") + 1), 1);
-
-    Machine_popJumpTarget();
-    return 0;
-  }
-  else {
-    Machine_popJumpTarget();
-    return 1;
-  }
-
-  return 0;
+  scene->binding = Machine_Binding_create(scene->shaderProgram, vd, scene->vertices);
+  Machine_Binding_set(scene->binding, Machine_String_create_noraise("vertex_position", strlen("vertex_position") + 1), 0);
+  Machine_Binding_set(scene->binding, Machine_String_create_noraise("vertex_color", strlen("vertex_color") + 1), 1);
 }
 
-static int Scene1_update(Scene1* scene, float width, float height) {
+static void Scene1_onCanvasSizeChanged(Scene1* self, float width, float height) {
+}
+
+static void Scene1_update(Scene1* self, float width, float height) {
   float ratio;
   mat4x4 m, p, mvp;
 
@@ -101,24 +91,23 @@ static int Scene1_update(Scene1* scene, float width, float height) {
   mat4x4_ortho(p, -ratio, ratio, -1.f, 1.f, 1.f, -1.f);
   mat4x4_mul(mvp, p, m);
 
-  Machine_Binding_activate(scene->binding);
-  Machine_Video_bindShaderProgram(scene->shaderProgram);
-  Machine_Binding_bindMatrix4x4(scene->binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), mvp);
+  Machine_Binding_activate(self->binding);
+  Machine_Video_bindShaderProgram(self->shaderProgram);
+  Machine_Binding_bindMatrix4x4(self->binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), mvp);
   glDrawArrays(GL_TRIANGLES, 0, 3);
-
-  return 0;
 }
 
-static void Scene1_shutdown(Scene1* scene) {
-  scene->vertices = NULL;
-  scene->shaderProgram = NULL;
-  scene->binding = NULL;
+static void Scene1_shutdown(Scene1* self) {
+  self->vertices = NULL;
+  self->shaderProgram = NULL;
+  self->binding = NULL;
 }
 
 int Scene1_construct(Scene1* self) {
   if (Scene_construct((Scene*)self)) {
     return 1;
   }
+  ((Scene*)self)->onCanvasSizeChanged = (Scene_OnCanvaSizeChangedCallback*)&Scene1_onCanvasSizeChanged;
   ((Scene*)self)->startup = (Scene_StartupCallback*)&Scene1_startup;
   ((Scene*)self)->update = (Scene_UpdateCallback*)&Scene1_update;
   ((Scene*)self)->shutdown = (Scene_ShutdownCallback*)&Scene1_shutdown;

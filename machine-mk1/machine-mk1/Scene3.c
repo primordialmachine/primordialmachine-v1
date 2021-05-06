@@ -74,44 +74,35 @@ static void Scene3_finalize(Scene3* self) {
   Scene3_destruct(self);
 }
 
-static int Scene3_startup(Scene3* scene) {
-  Machine_JumpTarget jumpTarget;
-  Machine_pushJumpTarget(&jumpTarget);
-  if (!setjmp(jumpTarget.environment)) {
-
-    if (Machine_Images_createImage("test-transparency-1.png", &scene->image)) {
-      Machine_setStatus(Machine_Status_AllocationFailed);
-      Machine_jump();
-    }
-    scene->texture = Machine_Texture_create(scene->image);
-
-    scene->vertices = Machine_FloatBuffer_create();
-    Machine_FloatBuffer_setData(scene->vertices, sizeof(vertices) / sizeof(float), vertices);
-
-    scene->shaderProgram = Machine_ShaderProgram_generate(false, true, true, true);
-    scene->mvp_location = glGetUniformLocation(scene->shaderProgram->programId, "modelToProjectionMatrix");
-    scene->texture_location = glGetUniformLocation(scene->shaderProgram->programId, "texture_1");
-
-    Machine_VertexDescriptor* vd = Machine_VertexDescriptor_create();
-    Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_XfYf);
-    Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_RfGfBf);
-    Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_UfVf);
-
-    scene->binding = Machine_Binding_create(scene->shaderProgram, vd, scene->vertices);
-    Machine_Binding_set(scene->binding, Machine_String_create("vertex_position", strlen("vertex_position") + 1), 0);
-    Machine_Binding_set(scene->binding, Machine_String_create("vertex_color", strlen("vertex_color") + 1), 1);
-    Machine_Binding_set(scene->binding, Machine_String_create("vertex_texture_coordinate_1", strlen("vertex_texture_coordinate_1") + 1), 2);
-
-    Machine_popJumpTarget();
-    return 0;
+static void Scene3_startup(Scene3* scene) {
+  if (Machine_Images_createImage("test-transparency-1.png", &scene->image)) {
+    Machine_setStatus(Machine_Status_AllocationFailed);
+    Machine_jump();
   }
-  else {
-    Machine_popJumpTarget();
-    return 1;
-  }
+  scene->texture = Machine_Texture_create(scene->image);
+
+  scene->vertices = Machine_FloatBuffer_create();
+  Machine_FloatBuffer_setData(scene->vertices, sizeof(vertices) / sizeof(float), vertices);
+
+  scene->shaderProgram = Machine_ShaderProgram_generate(false, true, true, true);
+  scene->mvp_location = glGetUniformLocation(scene->shaderProgram->programId, "modelToProjectionMatrix");
+  scene->texture_location = glGetUniformLocation(scene->shaderProgram->programId, "texture_1");
+
+  Machine_VertexDescriptor* vd = Machine_VertexDescriptor_create();
+  Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_XfYf);
+  Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_RfGfBf);
+  Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_UfVf);
+
+  scene->binding = Machine_Binding_create(scene->shaderProgram, vd, scene->vertices);
+  Machine_Binding_set(scene->binding, Machine_String_create("vertex_position", strlen("vertex_position") + 1), 0);
+  Machine_Binding_set(scene->binding, Machine_String_create("vertex_color", strlen("vertex_color") + 1), 1);
+  Machine_Binding_set(scene->binding, Machine_String_create("vertex_texture_coordinate_1", strlen("vertex_texture_coordinate_1") + 1), 2);
 }
 
-static int Scene3_update(Scene3* scene, float width, float height) {
+static void Scene3_onCanvasSizeChanged(Scene3* self, float width, float height) {
+}
+
+static void Scene3_update(Scene3* self, float width, float height) {
   float ratio;
   mat4x4 m, p, mvp;
 
@@ -125,15 +116,13 @@ static int Scene3_update(Scene3* scene, float width, float height) {
   mat4x4_ortho(p, -ratio, ratio, -1.f, 1.f, 1.f, -1.f);
   mat4x4_mul(mvp, p, m);
 
-  Machine_Binding_activate(scene->binding);
-  Machine_Video_bindShaderProgram(scene->shaderProgram);
-  Machine_Binding_bindMatrix4x4(scene->binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), mvp);
-  glUniform1i(scene->texture_location, 0);
+  Machine_Binding_activate(self->binding);
+  Machine_Video_bindShaderProgram(self->shaderProgram);
+  Machine_Binding_bindMatrix4x4(self->binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), mvp);
+  glUniform1i(self->texture_location, 0);
   glActiveTexture(GL_TEXTURE0 + 0);
-  glBindTexture(GL_TEXTURE_2D, scene->texture->id);
+  glBindTexture(GL_TEXTURE_2D, self->texture->id);
   Machine_UtilitiesGl_call(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, &indices));
-
-  return 0;
 }
 
 static void Scene3_shutdown(Scene3* self) {
@@ -148,6 +137,7 @@ int Scene3_construct(Scene3* self) {
   if (Scene_construct((Scene*)self)) {
     return 1;
   }
+  ((Scene*)self)->onCanvasSizeChanged = (Scene_OnCanvaSizeChangedCallback*)&Scene3_onCanvasSizeChanged;
   ((Scene*)self)->startup = (Scene_StartupCallback*)&Scene3_startup;
   ((Scene*)self)->update = (Scene_UpdateCallback*)&Scene3_update;
   ((Scene*)self)->shutdown = (Scene_ShutdownCallback*)&Scene3_shutdown;

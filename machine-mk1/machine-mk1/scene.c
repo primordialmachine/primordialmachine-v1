@@ -10,14 +10,18 @@ int Scene_construct(Scene* self) {
 
 void Scene_destruct(Scene* self) {}
 
-int Scene_startup(Scene* scene) {
-  return scene->startup(scene);
+void Scene_startup(Scene* self) {
+  self->startup(self);
 }
 
-int Scene_update(Scene* scene, float width, float height) {
-  return scene->update(scene, width, height);
+void Scene_onCanvaSizeChanged(Scene* self, float width, float height) {
+  self->onCanvasSizeChanged(self, width, height);
 }
 
-void Scene_shutdown(Scene* scene) {
-  scene->shutdown(scene);
+void Scene_update(Scene* self, float width, float height) {
+  self->update(self, width, height);
+}
+
+void Scene_shutdown(Scene* self) {
+  self->shutdown(self);
 }
