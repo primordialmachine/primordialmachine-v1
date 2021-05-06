@@ -21,3 +21,7 @@ configuration:
 build:
     parallel: true                       # enable MSBuild parallel builds
     project: machine-mk1/machine-mk1.sln # path to Visual Studio solution or project
+    
+# If one matrix entry fails, all entries fails (https://www.appveyor.com/docs/build-configuration#failing-strategy).
+matrix:
+    fast_finish: true
