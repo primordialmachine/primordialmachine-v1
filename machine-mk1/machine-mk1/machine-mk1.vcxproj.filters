@@ -90,7 +90,7 @@
     <ClCompile Include="UtilitiesGL.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Scene4.c">
+    <ClCompile Include="Scene5.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Text\LayoutLine.c">
@@ -119,6 +119,9 @@
     </ClCompile>
     <ClCompile Include="Math\Vector4.c">
       <Filter>Quelldateien\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene4.c">
+      <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -167,7 +170,7 @@
     <ClInclude Include="UtilitiesGL.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Scene4.h">
+    <ClInclude Include="Scene5.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Text\LayoutLine.h">
@@ -196,6 +199,9 @@
     </ClInclude>
     <ClInclude Include="Math\Vector4.h">
       <Filter>Headerdateien\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene4.h">
+      <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

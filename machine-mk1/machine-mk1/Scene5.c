@@ -1,0 +1,168 @@
+#include "Scene5.h"
+
+
+
+#include <stddef.h>
+#include <malloc.h>
+
+#include "UtilitiesGl.h"
+
+#include <linmath.h>
+
+#include "Fonts.h"
+#include "Shape2.h"
+#include "Images.h"
+#include "Buffer.h"
+#include "ShaderProgram.h"
+#include "Texture.h"
+#include "VertexDescriptor.h"
+#include "Binding.h"
+#include "GUI/TextLabel.h"
+
+
+typedef struct Scene5 Scene5;
+
+struct Scene5 {
+  Scene parent;
+  Machine_Fonts_Font* font;
+  /// @brief Text label #1.
+  Machine_GUI_TextLabel* textLabel1;
+  /// @brief Text label #2.
+  Machine_GUI_TextLabel* textLabel2;
+  /// @brief Text label #3.
+  Machine_GUI_TextLabel* textLabel3;
+};
+
+void Scene5_destruct(Scene5* self);
+
+static void Scene5_visit(Scene5* self) {
+  if (self->font) {
+    Machine_visit(self->font);
+  }
+  if (self->textLabel1) {
+    Machine_visit(self->textLabel1);
+  }
+  if (self->textLabel2) {
+    Machine_visit(self->textLabel2);
+  }
+  if (self->textLabel3) {
+    Machine_visit(self->textLabel3);
+  }
+}
+
+static void Scene5_finalize(Scene5* self) {
+  Scene5_destruct(self);
+}
+
+static void Scene5_startup(Scene5* scene) {
+  scene->font = Machine_Fonts_createFont("RobotoSlab-Regular.ttf", 20);
+  //
+  scene->textLabel1 = Machine_GUI_TextLabel_create();
+  {
+    const char* text = "Nanobox IV\n400 units of unprimed nanites.";
+    Machine_GUI_TextLabel_setText(scene->textLabel1, Machine_String_create(text, strlen(text)));
+  }
+  //
+  scene->textLabel2 = Machine_GUI_TextLabel_create();
+  {
+    const char* text = "13 of 18 units\n7 of 9 units";
+    Machine_GUI_TextLabel_setText(scene->textLabel2, Machine_String_create(text, strlen(text)));
+  }
+  //
+  scene->textLabel3 = Machine_GUI_TextLabel_create();
+  {
+    const char* text = "Nanobox IV\n400 units of unprimed nanites.";
+    Machine_GUI_TextLabel_setText(scene->textLabel3, Machine_String_create(text, strlen(text)));
+  }
+}
+
+static void updateText1(Scene5* scene, float width, float height) {
+  Machine_Math_Vector2* HALF = Machine_Math_Vector2_create();
+  Machine_Math_Vector2_set(HALF, 0.5f, 0.5f);
+  Machine_Math_Vector2* CANVAS_SIZE = Machine_Math_Vector2_create();
+  Machine_Math_Vector2_set(CANVAS_SIZE, width, height);
+  Machine_Math_Vector2* CANVAS_HALF_SIZE = Machine_Math_Vector2_product(CANVAS_SIZE, HALF);
+  Machine_Math_Vector2* CANVAS_CENTER = Machine_Math_Vector2_clone(CANVAS_HALF_SIZE);
+  // Set the size to the best size.
+  Machine_Math_Vector2* size = Machine_GUI_TextLabel_getBestSize(scene->textLabel1);
+  Machine_GUI_TextLabel_setSize(scene->textLabel1, size);
+  // Get the bounds.
+  Machine_Math_Rectangle2* bounds = Machine_GUI_TextLabel_getRectangle(scene->textLabel1);
+  Machine_Math_Vector2* center = Machine_Math_Rectangle2_getCenter(bounds);
+  Machine_Math_Vector2* delta = Machine_Math_Vector2_difference(CANVAS_CENTER, center);
+  Machine_Math_Vector2* oldPosition = Machine_GUI_TextLabel_getPosition(scene->textLabel1);
+  Machine_Math_Vector2* newPosition = Machine_Math_Vector2_sum(oldPosition, delta);
+  Machine_GUI_TextLabel_setPosition(scene->textLabel1, newPosition);
+}
+
+static void updateText2(Scene5* scene, float width, float height) {
+  Machine_Math_Vector2* MARGIN = Machine_Math_Vector2_create();
+  Machine_Math_Vector2_set(MARGIN, 5.f, 5.f);
+  // Set the size to the best size.
+  Machine_Math_Vector2* size = Machine_GUI_TextLabel_getBestSize(scene->textLabel2);
+  Machine_GUI_TextLabel_setSize(scene->textLabel2, size);
+  // Set the position to the margins.
+  Machine_GUI_TextLabel_setPosition(scene->textLabel2, MARGIN);
+}
+
+static void updateText3(Scene5* scene, float width, float height) {
+  Machine_Math_Vector2* MARGIN = Machine_Math_Vector2_create();
+  Machine_Math_Vector2_set(MARGIN, 5.f, height * 0.5f);
+  Machine_Math_Vector2* SIZE = Machine_Math_Vector2_create();
+  Machine_Math_Vector2_set(SIZE, 64, 64);
+
+  Machine_GUI_TextLabel_setSize(scene->textLabel3, SIZE);
+  Machine_Math_Rectangle2* bounds = Machine_GUI_TextLabel_getRectangle(scene->textLabel3);
+  Machine_Math_Vector2* leftTop = Machine_Math_Rectangle2_getLeftTop(bounds);
+  Machine_Math_Vector2* delta = Machine_Math_Vector2_difference(MARGIN, leftTop);
+  Machine_Math_Vector2* oldPosition = Machine_GUI_TextLabel_getPosition(scene->textLabel3);
+  Machine_Math_Vector2* newPosition = Machine_Math_Vector2_sum(oldPosition, delta);
+  Machine_GUI_TextLabel_setPosition(scene->textLabel3, newPosition);
+}
+
+static void Scene5_onCanvasSizeChanged(Scene5* self, float width, float height) {
+  updateText1(self, width, height);
+  updateText2(self, width, height);
+  updateText3(self, width, height);
+}
+
+static void Scene5_update(Scene5* self, float width, float height) {
+  // Set the viewport and clear its color buffer.
+  Machine_UtilitiesGl_call(glViewport(0, 0, width, height));
+  Machine_UtilitiesGl_call(glClear(GL_COLOR_BUFFER_BIT));
+
+  Machine_GUI_TextLabel_render(self->textLabel1, width, height);
+  Machine_GUI_TextLabel_render(self->textLabel2, width, height);
+  Machine_GUI_TextLabel_render(self->textLabel3, width, height);
+}
+
+static void Scene5_shutdown(Scene5* scene) {
+  scene->font = NULL;
+}
+
+int Scene5_construct(Scene5* self) {
+  if (Scene_construct((Scene*)self)) {
+    return 1;
+  }
+  ((Scene*)self)->onCanvasSizeChanged = (Scene_OnCanvaSizeChangedCallback*)&Scene5_onCanvasSizeChanged;
+  ((Scene*)self)->startup = (Scene_StartupCallback*)&Scene5_startup;
+  ((Scene*)self)->update = (Scene_UpdateCallback*)&Scene5_update;
+  ((Scene*)self)->shutdown = (Scene_ShutdownCallback*)&Scene5_shutdown;
+  return 0;
+}
+
+void Scene5_destruct(Scene5* self) {
+  self->font = NULL;
+  Scene_destruct((Scene*)self);
+}
+
+Scene* Scene5_create() {
+  Scene5* scene = Machine_allocate(sizeof(Scene5), (void (*)(void*)) & Scene5_visit, (void (*)(void*)) & Scene5_finalize);
+  if (!scene) {
+    return NULL;
+  }
+  if (Scene5_construct(scene)) {
+    return NULL;
+  }
+  return (Scene*)scene;
+}

@@ -99,6 +99,7 @@
     <ClCompile Include="Math\Vector3.c" />
     <ClCompile Include="Math\Vector4.c" />
     <ClCompile Include="Scene4.c" />
+    <ClCompile Include="Scene5.c" />
     <ClCompile Include="Shape2.c" />
     <ClCompile Include="Text\LayoutLine.c" />
     <ClCompile Include="Text\Layout.c" />
@@ -127,6 +128,7 @@
     <ClInclude Include="Math\Vector3.h" />
     <ClInclude Include="Math\Vector4.h" />
     <ClInclude Include="Scene4.h" />
+    <ClInclude Include="Scene5.h" />
     <ClInclude Include="Shape2.h" />
     <ClInclude Include="Text\LayoutLine.h" />
     <ClInclude Include="Text\Layout.h" />
