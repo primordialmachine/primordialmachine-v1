@@ -1,0 +1,23 @@
+# AppVeyor configuration for AppVeyor project "primordialmachine".
+clone_depth: 1
+
+# Build worker image (VM template).
+image: Visual Studio 2019
+
+# Build branch "master" only.
+branches:
+  only:
+    - master
+
+# Build platform "x64".
+platform:
+    - x64
+
+# Build configurations "Debug" and "Release".
+configuration:
+    - Debug
+    - Release
+
+build:
+    parallel: true                       # enable MSBuild parallel builds
+    project: machine-mk1/machine-mk1.sln # path to Visual Studio solution or project
