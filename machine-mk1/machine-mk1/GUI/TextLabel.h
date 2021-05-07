@@ -7,7 +7,7 @@
 #include "./../Fonts.h"
 
 /// @brief A label to display a text.
-typedef struct Machine_GUI_TextLabel Machine_GUI_TextLabel;
+MACHINE_DECLARE_CLASSTYPE(Machine_GUI_TextLabel)
 
 /// @brief Create a label with default values.
 /// @return The label.

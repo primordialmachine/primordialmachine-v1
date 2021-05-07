@@ -9,7 +9,7 @@
 /// @brief A border around any widget.
 /// The default color is (0.1f, 0.1f, 0.1f).
 /// The default width is 0.
-typedef struct Machine_GUI_Border Machine_GUI_Border;
+MACHINE_DECLARE_CLASSTYPE(Machine_GUI_Border)
 
 /// @brief Create a label with default values.
 /// @return The label.

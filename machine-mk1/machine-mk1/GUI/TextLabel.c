@@ -24,16 +24,22 @@ void Machine_GUI_TextLabel_construct(Machine_GUI_TextLabel* self, size_t numberO
   self->background = Machine_Rectangle2_create();
 }
 
+MACHINE_DEFINE_CLASSTYPE(Machine_GUI_TextLabel)
+
 Machine_ClassType* Machine_GUI_TextLabel_getClassType() {
-  return
-    Machine_createClassType
-      (
-        NULL,
-        sizeof(Machine_GUI_TextLabel),
-        (Machine_ClassObjectVisitCallback*)&Machine_GUI_TextLabel_visit,
-        (Machine_ClassObjectConstructCallback*)&Machine_GUI_TextLabel_construct,
-        (Machine_ClassObjectDestructCallback*)NULL
-      );
+  if (!g_Machine_GUI_TextLabel_ClassType) {
+    g_Machine_GUI_TextLabel_ClassType =
+      Machine_createClassType
+        (
+          NULL,
+          sizeof(Machine_GUI_TextLabel),
+          (Machine_ClassTypeRemovedCallback*)&Machine_GUI_TextLabel_onTypeDestroyed,
+          (Machine_ClassObjectVisitCallback*)&Machine_GUI_TextLabel_visit,
+          (Machine_ClassObjectConstructCallback*)&Machine_GUI_TextLabel_construct,
+          (Machine_ClassObjectDestructCallback*)NULL
+        );
+  }
+  return g_Machine_GUI_TextLabel_ClassType;
 }
 
 Machine_GUI_TextLabel* Machine_GUI_TextLabel_create() {

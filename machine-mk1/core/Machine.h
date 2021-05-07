@@ -438,6 +438,9 @@ typedef struct Machine_ClassObjectTag {
   Machine_Tag tag;
 } Machine_ClassObjectTag;
 
+/// @brief Invoked when the class type is removed.
+typedef void (Machine_ClassTypeRemovedCallback)();
+
 /**
  * @brief Type of an object visit callback.
  * @param self A pointer to the object.
@@ -464,7 +467,7 @@ typedef void (Machine_ClassObjectDestructCallback)(void* self);
  * @param destruct Pointer to a Machine_ObjectDestructCallback function or a null pointer.
  * @retrn A pointer to the classed type.
  */
-Machine_ClassType* Machine_createClassType(Machine_ClassType* parent, size_t size, Machine_ClassObjectVisitCallback* visit, Machine_ClassObjectConstructCallback* construct, Machine_ClassObjectDestructCallback* destruct);
+Machine_ClassType* Machine_createClassType(Machine_ClassType* parent, size_t size, Machine_ClassTypeRemovedCallback* typeRemoved, Machine_ClassObjectVisitCallback* visit, Machine_ClassObjectConstructCallback* construct, Machine_ClassObjectDestructCallback* destruct);
 
 /**
  * @brief Create an object.
@@ -474,10 +477,24 @@ Machine_ClassType* Machine_createClassType(Machine_ClassType* parent, size_t siz
  */
 Machine_Object *Machine_allocateClassObject(Machine_ClassType* type, size_t numberOfArguments, const Machine_Value* arguments);
 
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+void Machine_setClassType(void* object, Machine_ClassType* classType);
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-typedef struct Machine_StringBuffer Machine_StringBuffer;
+#define MACHINE_DECLARE_CLASSTYPE(NAME) \
+  typedef struct NAME NAME; \
+  Machine_ClassType *NAME##_getClassType();
+
+#define MACHINE_DEFINE_CLASSTYPE(NAME) \
+  static Machine_ClassType *g_##NAME##_ClassType = NULL; \
+\
+  static void NAME##_onTypeDestroyed() { \
+    g_##NAME##_ClassType = NULL; \
+  }
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+MACHINE_DECLARE_CLASSTYPE(Machine_StringBuffer)
 
 /**
  * @brief Create a string buffer.
@@ -532,7 +549,7 @@ void Machine_log(int flags, const char* file, int line, const char* format, ...)
 /**
  * @brief An array of pointers to objects or null pointers.
  */
-typedef struct Machine_PointerArray Machine_PointerArray;
+MACHINE_DECLARE_CLASSTYPE(Machine_PointerArray)
 
 /**
  * @brief Create an object array.

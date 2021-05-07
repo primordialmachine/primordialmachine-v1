@@ -8,8 +8,6 @@
 #include <stdio.h>
 #include <string.h>
 
-
-
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 typedef struct Stack {
@@ -382,6 +380,7 @@ size_t Machine_String_getNumberOfBytes(Machine_String* self) {
 struct Machine_ClassType {
   Machine_ClassType* parent;
   size_t size;
+  Machine_ClassTypeRemovedCallback* typeRemoved;
   Machine_ClassObjectVisitCallback* visit;
   Machine_ClassObjectConstructCallback* construct;
   Machine_ClassObjectDestructCallback* destruct;
@@ -397,15 +396,19 @@ static void Machine_ClassType_finalize(Machine_ClassType* self) {
   if (self->parent) {
     Machine_unlock(self->parent);
   }
+  if (self->typeRemoved) {
+    self->typeRemoved();
+  }
 }
 
-Machine_ClassType* Machine_createClassType(Machine_ClassType* parent, size_t size, Machine_ClassObjectVisitCallback* visit, Machine_ClassObjectConstructCallback* construct, Machine_ClassObjectDestructCallback* destruct) {
+Machine_ClassType* Machine_createClassType(Machine_ClassType* parent, size_t size, Machine_ClassTypeRemovedCallback *typeRemoved, Machine_ClassObjectVisitCallback* visit, Machine_ClassObjectConstructCallback* construct, Machine_ClassObjectDestructCallback* destruct) {
   Machine_ClassType *classType = Machine_allocate(sizeof(Machine_ClassType), (Machine_VisitCallback *)&Machine_ClassType_visit, (Machine_FinalizeCallback *)&Machine_ClassType_finalize);
   if (!classType) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
   classType->size = size;
+  classType->typeRemoved = typeRemoved;
   classType->visit = visit;
   classType->construct = construct;
   classType->destruct = destruct;
@@ -446,6 +449,21 @@ static void Machine_ClassObject_finalize(void* self) {
   }
   // NOW release the class type.
   Machine_unlock(classObjectTag->classType);
+}
+
+void Machine_setClassType(void* object, Machine_ClassType* classType) {
+#if defined(_DEBUG)
+  Machine_Tag* tag = ((Machine_Tag*)object) - 1;
+  assert((tag->flags & Machine_Flag_Class) == Machine_Flag_Class);
+#endif
+  Machine_ClassObjectTag* classObjectTag = ((Machine_ClassObjectTag*)object) - 1;
+  if (classType) {
+    Machine_lock(classType);
+  }
+  if (classObjectTag->classType) {
+    Machine_unlock(classObjectTag->classType);
+  }
+  classObjectTag->classType = classType;
 }
 
 Machine_Object* Machine_allocateClassObject(Machine_ClassType* type, size_t numberOfArguments, const Machine_Value* arguments) {
@@ -492,16 +510,22 @@ static void Machine_StringBuffer_destruct(Machine_StringBuffer* self) {
   }
 }
 
+MACHINE_DEFINE_CLASSTYPE(Machine_StringBuffer)
+
 Machine_ClassType* Machine_StringBuffer_getClassType() {
-  return
-    Machine_createClassType
-      (
-        NULL,
-        sizeof(Machine_StringBuffer),
-        (Machine_ClassObjectVisitCallback*)NULL,
-        (Machine_ClassObjectConstructCallback*)&Machine_StringBuffer_construct,
-        (Machine_ClassObjectDestructCallback*)&Machine_StringBuffer_destruct
-      );
+  if (!g_Machine_StringBuffer_ClassType) {
+    g_Machine_StringBuffer_ClassType =
+      Machine_createClassType
+        (
+          NULL,
+          sizeof(Machine_StringBuffer),
+          (Machine_ClassTypeRemovedCallback*)&Machine_StringBuffer_onTypeDestroyed,
+          (Machine_ClassObjectVisitCallback*)NULL,
+          (Machine_ClassObjectConstructCallback*)&Machine_StringBuffer_construct,
+          (Machine_ClassObjectDestructCallback*)&Machine_StringBuffer_destruct
+        );
+  }
+  return g_Machine_StringBuffer_ClassType;
 }
 
 Machine_StringBuffer* Machine_StringBuffer_create() {
@@ -589,16 +613,22 @@ static void Machine_PointerArray_destruct(Machine_PointerArray* self) {
   }
 }
 
+MACHINE_DEFINE_CLASSTYPE(Machine_PointerArray)
+
 Machine_ClassType* Machine_PointerArray_getClassType() {
-  return
-    Machine_createClassType
-      (
-        NULL,
-        sizeof(Machine_PointerArray),
-        (Machine_ClassObjectVisitCallback*)&Machine_PointerArray_visit,
-        (Machine_ClassObjectConstructCallback*)&Machine_PointerArray_construct,
-        (Machine_ClassObjectDestructCallback*)&Machine_PointerArray_destruct
-      );
+  if (!g_Machine_PointerArray_ClassType) {
+    g_Machine_PointerArray_ClassType =
+      Machine_createClassType
+        (
+          NULL,
+          sizeof(Machine_PointerArray),
+          (Machine_ClassTypeRemovedCallback*)&Machine_PointerArray_onTypeDestroyed,
+          (Machine_ClassObjectVisitCallback*)&Machine_PointerArray_visit,
+          (Machine_ClassObjectConstructCallback*)&Machine_PointerArray_construct,
+          (Machine_ClassObjectDestructCallback*)&Machine_PointerArray_destruct
+        );
+  }
+  return g_Machine_PointerArray_ClassType;
 }
 
 Machine_PointerArray* Machine_PointerArray_create() {

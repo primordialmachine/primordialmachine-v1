@@ -12,17 +12,22 @@ static void Machine_GUI_Border_visit(Machine_GUI_Border* self);
 
 static void Machine_GUI_Border_construct(Machine_GUI_Border* self, size_t numberOfArguments, const Machine_Value* arguments);
 
+MACHINE_DEFINE_CLASSTYPE(Machine_GUI_Border)
 
 Machine_ClassType* Machine_GUI_Border_getClassType() {
-  return
-    Machine_createClassType
-      (
-        NULL,
-        sizeof(Machine_GUI_Border),
-        (Machine_ClassObjectVisitCallback*)&Machine_GUI_Border_visit,
-        (Machine_ClassObjectConstructCallback*)&Machine_GUI_Border_construct,
-        (Machine_ClassObjectDestructCallback*)NULL
-      );
+  if (!g_Machine_GUI_Border_ClassType) {
+    g_Machine_GUI_Border_ClassType =
+      Machine_createClassType
+        (
+          NULL,
+          sizeof(Machine_GUI_Border),
+          (Machine_ClassTypeRemovedCallback*)&Machine_GUI_Border_onTypeDestroyed,
+          (Machine_ClassObjectVisitCallback*)&Machine_GUI_Border_visit,
+          (Machine_ClassObjectConstructCallback*)&Machine_GUI_Border_construct,
+          (Machine_ClassObjectDestructCallback*)NULL
+        );
+  }
+  return g_Machine_GUI_Border_ClassType;
 }
 
 static void Machine_GUI_Border_visit(Machine_GUI_Border* self) {

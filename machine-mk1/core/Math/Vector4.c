@@ -11,16 +11,22 @@ static void Machine_Math_Vector4_construct(Machine_Math_Vector4* self, size_t nu
   self->w = 0.f;
 }
 
+MACHINE_DEFINE_CLASSTYPE(Machine_Math_Vector4)
+
 Machine_ClassType* Machine_Math_Vector4_getClassType() {
-  return
-    Machine_createClassType
-      (
-        NULL,
-        sizeof(Machine_Math_Vector4),
-        (Machine_ClassObjectVisitCallback*)NULL,
-        (Machine_ClassObjectConstructCallback*)&Machine_Math_Vector4_construct,
-        (Machine_ClassObjectDestructCallback*)NULL
-      );
+  if (!g_Machine_Math_Vector4_ClassType) {
+    g_Machine_Math_Vector4_ClassType =
+      Machine_createClassType
+        (
+          NULL,
+          sizeof(Machine_Math_Vector4),
+          (Machine_ClassTypeRemovedCallback*)&Machine_Math_Vector4_onTypeDestroyed,
+          (Machine_ClassObjectVisitCallback*)NULL,
+          (Machine_ClassObjectConstructCallback*)&Machine_Math_Vector4_construct,
+          (Machine_ClassObjectDestructCallback*)NULL
+        );
+  }
+  return g_Machine_Math_Vector4_ClassType;
 }
 
 Machine_Math_Vector4* Machine_Math_Vector4_create() {

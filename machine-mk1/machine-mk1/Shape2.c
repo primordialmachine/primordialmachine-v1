@@ -20,16 +20,22 @@ static void Machine_Shape2_visit(Machine_Shape2* self) {
 void Machine_Shape2_construct(Machine_Shape2* self, size_t numberOfArguments, const Machine_Value* arguments) {
 }
 
+MACHINE_DEFINE_CLASSTYPE(Machine_Shape2)
+
 Machine_ClassType* Machine_Shape2_getClassType() {
-  return
-    Machine_createClassType
-      (
-        NULL,
-        sizeof(Machine_Shape2),
-        (Machine_ClassObjectVisitCallback*)&Machine_Shape2_visit,
-        (Machine_ClassObjectConstructCallback*)&Machine_Shape2_construct,
-        (Machine_ClassObjectDestructCallback*)NULL
-      );
+  if (!g_Machine_Shape2_ClassType) {
+    g_Machine_Shape2_ClassType =
+      Machine_createClassType
+        (
+          NULL,
+          sizeof(Machine_Shape2),
+          (Machine_ClassTypeRemovedCallback*)&Machine_Shape2_onTypeDestroyed,
+          (Machine_ClassObjectVisitCallback*)&Machine_Shape2_visit,
+          (Machine_ClassObjectConstructCallback*)&Machine_Shape2_construct,
+          (Machine_ClassObjectDestructCallback*)NULL
+        );
+  }
+  return g_Machine_Shape2_ClassType;
 }
 
 void Machine_Shape2_render(Machine_Shape2* self, float width, float height) {
@@ -141,16 +147,22 @@ void Machine_Rectangle2_construct(Machine_Rectangle2* self, size_t numberOfArgum
   Machine_Math_Vector3_set(self->color, 1.f, 1.f, 1.f);
 }
 
+MACHINE_DEFINE_CLASSTYPE(Machine_Rectangle2)
+
 Machine_ClassType* Machine_Rectangle2_getClassType() {
-  return
-    Machine_createClassType
-      (
-        Machine_Shape2_getClassType(),
-        sizeof(Machine_Rectangle2),
-        (Machine_ClassObjectVisitCallback*)&Machine_Rectangle2_visit,
-        (Machine_ClassObjectConstructCallback*)&Machine_Rectangle2_construct,
-        (Machine_ClassObjectDestructCallback*)NULL
-      );
+  if (!g_Machine_Rectangle2_ClassType) {
+    g_Machine_Rectangle2_ClassType =
+      Machine_createClassType
+        (
+          Machine_Shape2_getClassType(),
+          sizeof(Machine_Rectangle2),
+          (Machine_ClassTypeRemovedCallback*)&Machine_Shape2_onTypeDestroyed,
+          (Machine_ClassObjectVisitCallback*)&Machine_Rectangle2_visit,
+          (Machine_ClassObjectConstructCallback*)&Machine_Rectangle2_construct,
+          (Machine_ClassObjectDestructCallback*)NULL
+        );
+  }
+  return g_Machine_Rectangle2_ClassType;
 }
 
 Machine_Rectangle2* Machine_Rectangle2_create() {
