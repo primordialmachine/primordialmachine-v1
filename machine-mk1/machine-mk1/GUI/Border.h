@@ -4,16 +4,27 @@
 #if !defined(MACHINE_GUI_BORDER_H_INCLUDED)
 #define MACHINE_GUI_BORDER_H_INCLUDED
 
-#include "_Math.h"
+#include "./../GUI/Widget.h"
 
 /// @brief A border around any widget.
 /// The default color is (0.1f, 0.1f, 0.1f).
-/// The default width is 0.
+/// The default width is 1.
+/// @extends Machine.GUI.Widget
 MACHINE_DECLARE_CLASSTYPE(Machine_GUI_Border)
 
 /// @brief Create a label with default values.
 /// @return The label.
 Machine_GUI_Border* Machine_GUI_Border_create();
+
+/// @brief Get the child.
+/// @param self This border.
+/// @return A pointer to the child if any, a null pointer otherwise.
+Machine_GUI_Widget* Machine_GUI_Widget_getChild(Machine_GUI_Border* self);
+
+/// @brief Set the child.
+/// @param self This border.
+/// @param child A pointer to the child if any, a null pointer otherwise.
+void Machine_GUI_Border_setChild(Machine_GUI_Border* self, Machine_GUI_Widget* child);
 
 /// @brief Get the color of this border.
 /// @param self This border.
@@ -36,4 +47,3 @@ float Machine_GUI_Border_getBorderWidth(Machine_GUI_Border* self);
 void Machine_GUI_Border_setBorderWidth(Machine_GUI_Border* self, float width);
 
 #endif // MACHINE_GUI_BORDER_H_INCLUDED
-

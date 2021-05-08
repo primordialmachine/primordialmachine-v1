@@ -3,8 +3,13 @@
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #include "./../GUI/TextLabel.h"
 #include "./../Shape2.h"
+#include "./../GUI/Widget.h"
+
+
+
 
 struct Machine_GUI_TextLabel {
+  Machine_GUI_Widget parent;
   Machine_Text_Layout* foreground;
   Machine_Rectangle2* background;
 };
@@ -19,9 +24,12 @@ static void Machine_GUI_TextLabel_visit(Machine_GUI_TextLabel* self) {
 }
 
 void Machine_GUI_TextLabel_construct(Machine_GUI_TextLabel* self, size_t numberOfArguments, const Machine_Value* arguments) {
+  Machine_GUI_Widget_construct((Machine_GUI_Widget*)self, numberOfArguments, arguments);
   Machine_Fonts_Font *font = Machine_Fonts_createFont("RobotoSlab-Regular.ttf", 20);
   self->foreground = Machine_Text_Layout_create(Machine_String_create("", strlen("")), font);
   self->background = Machine_Rectangle2_create();
+  ((Machine_GUI_Widget*)self)->render = (void (*)(Machine_GUI_Widget *, float, float))&Machine_GUI_TextLabel_render;
+  Machine_setClassType(self, Machine_GUI_TextLabel_getClassType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_GUI_TextLabel)
@@ -119,7 +127,6 @@ const Machine_Math_Rectangle2* Machine_GUI_TextLabel_getRectangle(Machine_GUI_Te
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 void Machine_GUI_TextLabel_render(Machine_GUI_TextLabel* self, float width, float height) {
-
   // TODO: Only do this layouting if necessary.
   Machine_Math_Rectangle2* clipRect = Machine_Rectangle2_getRectangle(self->background);
   Machine_Math_Vector2* widgetCenter = Machine_Math_Rectangle2_getCenter(Machine_Rectangle2_getRectangle(self->background));

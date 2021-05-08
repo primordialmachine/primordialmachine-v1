@@ -3,9 +3,14 @@
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #include "./../GUI/Border.h"
 
+
+
+
 struct Machine_GUI_Border {
+  Machine_GUI_Widget parent;
   Machine_Math_Vector3* color;
   float width;
+  Machine_GUI_Widget* child;
 };
 
 static void Machine_GUI_Border_visit(Machine_GUI_Border* self);
@@ -34,11 +39,23 @@ static void Machine_GUI_Border_visit(Machine_GUI_Border* self) {
   if (self->color) {
     Machine_visit(self->color);
   }
+  if (self->child) {
+    Machine_visit(self->child);
+  }
+}
+
+static void Machine_GUI_Border_render(Machine_GUI_Border* self, float width, float height) {
+  if (self->child) {
+    Machine_GUI_Widget_render(self->child, width, height);
+  }
 }
 
 static void Machine_GUI_Border_construct(Machine_GUI_Border* self, size_t numberOfArguments, const Machine_Value* arguments) {
+  Machine_GUI_Widget_construct((Machine_GUI_Widget*)self, numberOfArguments, arguments);
   self->width = 1.f;
   self->color = Machine_Math_Vector3_create(0.1f, 0.1f, 0.1f);
+  ((Machine_GUI_Widget*)self)->render = (void (*)(Machine_GUI_Widget*, float, float)) &Machine_GUI_Border_render;
+  Machine_setClassType(self, Machine_GUI_Border_getClassType());
 }
 
 Machine_GUI_Border* Machine_GUI_Border_create() {
@@ -47,6 +64,14 @@ Machine_GUI_Border* Machine_GUI_Border_create() {
   static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_VoidValue_VOID } };
   Machine_GUI_Border* self = (Machine_GUI_Border*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
+}
+
+Machine_GUI_Widget* Machine_GUI_Widget_getChild(Machine_GUI_Border* self) {
+  return self->child;
+}
+
+void Machine_GUI_Border_setChild(Machine_GUI_Border* self, Machine_GUI_Widget *child) {
+  self->child = child;
 }
 
 const Machine_Math_Vector3* Machine_GUI_Border_getBorderColor(Machine_GUI_Border* self) {

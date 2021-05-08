@@ -7,8 +7,6 @@
 
 #include "UtilitiesGl.h"
 
-#include <linmath.h>
-
 #include "Fonts.h"
 #include "Shape2.h"
 #include "Images.h"
@@ -18,6 +16,7 @@
 #include "VertexDescriptor.h"
 #include "Binding.h"
 #include "GUI/TextLabel.h"
+#include "GUI/Border.h"
 
 
 typedef struct Scene5 Scene5;
@@ -27,10 +26,13 @@ struct Scene5 {
   Machine_Fonts_Font* font;
   /// @brief Text label #1.
   Machine_GUI_TextLabel* textLabel1;
+  Machine_GUI_Border* border1;
   /// @brief Text label #2.
   Machine_GUI_TextLabel* textLabel2;
+  Machine_GUI_Border* border2;
   /// @brief Text label #3.
   Machine_GUI_TextLabel* textLabel3;
+  Machine_GUI_Border* border3;
 };
 
 void Scene5_destruct(Scene5* self);
@@ -39,14 +41,26 @@ static void Scene5_visit(Scene5* self) {
   if (self->font) {
     Machine_visit(self->font);
   }
+
   if (self->textLabel1) {
     Machine_visit(self->textLabel1);
   }
+  if (self->border1) {
+    Machine_visit(self->border1);
+  }
+  
   if (self->textLabel2) {
     Machine_visit(self->textLabel2);
   }
+  if (self->border2) {
+    Machine_visit(self->border2);
+  }
+  
   if (self->textLabel3) {
     Machine_visit(self->textLabel3);
+  }
+  if (self->border3) {
+    Machine_visit(self->border3);
   }
 }
 
@@ -62,18 +76,24 @@ static void Scene5_startup(Scene5* scene) {
     const char* text = "Nanobox IV\n400 units of unprimed nanites.";
     Machine_GUI_TextLabel_setText(scene->textLabel1, Machine_String_create(text, strlen(text)));
   }
+  scene->border1 = Machine_GUI_Border_create();
+  Machine_GUI_Border_setChild(scene->border1, (Machine_GUI_Widget*)scene->textLabel1);
   //
   scene->textLabel2 = Machine_GUI_TextLabel_create();
   {
     const char* text = "13 of 18 units\n7 of 9 units";
     Machine_GUI_TextLabel_setText(scene->textLabel2, Machine_String_create(text, strlen(text)));
   }
+  scene->border2 = Machine_GUI_Border_create();
+  Machine_GUI_Border_setChild(scene->border2, (Machine_GUI_Widget*)scene->textLabel2);
   //
   scene->textLabel3 = Machine_GUI_TextLabel_create();
   {
     const char* text = "Nanobox IV\n400 units of unprimed nanites.";
     Machine_GUI_TextLabel_setText(scene->textLabel3, Machine_String_create(text, strlen(text)));
   }
+  scene->border3 = Machine_GUI_Border_create();
+  Machine_GUI_Border_setChild(scene->border3, (Machine_GUI_Widget*)scene->textLabel3);
 }
 
 static void updateText1(Scene5* scene, float width, float height) {
@@ -131,9 +151,9 @@ static void Scene5_update(Scene5* self, float width, float height) {
   Machine_UtilitiesGl_call(glViewport(0, 0, width, height));
   Machine_UtilitiesGl_call(glClear(GL_COLOR_BUFFER_BIT));
 
-  Machine_GUI_TextLabel_render(self->textLabel1, width, height);
-  Machine_GUI_TextLabel_render(self->textLabel2, width, height);
-  Machine_GUI_TextLabel_render(self->textLabel3, width, height);
+  Machine_GUI_Widget_render((Machine_GUI_Widget*)self->border1, width, height);
+  Machine_GUI_Widget_render((Machine_GUI_Widget*)self->border2, width, height);
+  Machine_GUI_Widget_render((Machine_GUI_Widget*)self->border3, width, height);
 }
 
 static void Scene5_shutdown(Scene5* scene) {

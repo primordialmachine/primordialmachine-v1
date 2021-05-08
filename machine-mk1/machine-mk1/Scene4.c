@@ -18,6 +18,7 @@
 #include "VertexDescriptor.h"
 #include "Binding.h"
 #include "GUI/TextLabel.h"
+#include "GUI/Widget.h"
 
 
 typedef struct Scene4 Scene4;
@@ -139,7 +140,7 @@ static void Scene4_update(Scene4* self, float width, float height) {
 
   Machine_Text_Layout_render(self->text1, width, height);
   Machine_Text_Layout_render(self->text2, width, height);
-  Machine_GUI_TextLabel_render(self->textLabel3, width, height);
+  Machine_GUI_Widget_render(self->textLabel3, width, height);
 }
 
 static void Scene4_shutdown(Scene4* self) {

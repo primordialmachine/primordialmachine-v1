@@ -7,6 +7,7 @@
 #include "./../Fonts.h"
 
 /// @brief A label to display a text.
+/// @extends Machine.GUI.Widget
 MACHINE_DECLARE_CLASSTYPE(Machine_GUI_TextLabel)
 
 /// @brief Create a label with default values.

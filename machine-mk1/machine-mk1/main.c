@@ -140,9 +140,9 @@ extern "C" {
       return EXIT_FAILURE;
     }
 
-    Scene* scene = Scene4_create();
+    Scene* scene = Scene5_create();
     if (!scene) {
-      fprintf(stderr, "%s:%d: Scene4_create() failed\n", __FILE__, __LINE__);
+      fprintf(stderr, "%s:%d: Scene5_create() failed\n", __FILE__, __LINE__);
       Machine_shutdown();
       Machine_Video_shutdown();
       glfwDestroyWindow(window);
