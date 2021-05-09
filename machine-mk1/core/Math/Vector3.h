@@ -13,6 +13,10 @@
 /// @endcode
 typedef struct Machine_Math_Vector3 Machine_Math_Vector3;
 
+struct Machine_Math_Vector3 {
+  float x, y, z;
+};
+
 Machine_Math_Vector3* Machine_Math_Vector3_create();
 
 Machine_Math_Vector3* Machine_Math_Vector3_clone(Machine_Math_Vector3* self);

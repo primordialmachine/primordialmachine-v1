@@ -1,9 +1,5 @@
 #include "Math/Vector2.h"
 
-struct Machine_Math_Vector2 {
-  float x, y;
-};
-
 static void Machine_Math_Vector2_construct(Machine_Math_Vector2* self, size_t numberOfArguments, const Machine_Value* arguments) {
   self->x = 0.f;
   self->y = 0.f;

@@ -13,6 +13,10 @@
 /// @endcode
 typedef struct Machine_Math_Vector2 Machine_Math_Vector2;
 
+struct Machine_Math_Vector2 {
+  float x, y;
+};
+
 Machine_Math_Vector2* Machine_Math_Vector2_create();
 
 Machine_Math_Vector2* Machine_Math_Vector2_clone(const Machine_Math_Vector2 *self);

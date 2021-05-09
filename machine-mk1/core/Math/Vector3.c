@@ -1,9 +1,5 @@
 #include "Math/Vector3.h"
 
-struct Machine_Math_Vector3 {
-  float x, y, z;
-};
-
 static void Machine_Math_Vector3_construct(Machine_Math_Vector3* self, size_t numberOfArguments, const Machine_Value* arguments) {
   self->x = 0.f;
   self->y = 0.f;

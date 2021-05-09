@@ -2,11 +2,6 @@
 
 #include "Math/Vector2.h"
 
-struct Machine_Math_Rectangle2 {
-  float x, y;
-  float w, h;
-};
-
 static void Machine_Math_Rectangle2_construct(Machine_Math_Rectangle2* self, size_t numberOfArguments, const Machine_Value* arguments) {
   self->x = 0.f;
   self->y = 0.f;

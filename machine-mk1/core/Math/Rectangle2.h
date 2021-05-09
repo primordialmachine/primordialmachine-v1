@@ -15,6 +15,11 @@ typedef struct Machine_Math_Vector3 Machine_Math_Vector3;
 /// @endcode
 typedef struct Machine_Math_Rectangle2 Machine_Math_Rectangle2;
 
+struct Machine_Math_Rectangle2 {
+  float x, y;
+  float w, h;
+};
+
 Machine_Math_Rectangle2* Machine_Math_Rectangle2_create();
 
 Machine_Math_Rectangle2* Machine_Math_Rectangle2_clone(const Machine_Math_Rectangle2* self);

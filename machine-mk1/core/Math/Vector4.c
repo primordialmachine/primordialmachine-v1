@@ -1,9 +1,5 @@
 #include "Math/Vector4.h"
 
-struct Machine_Math_Vector4 {
-  float x, y, z, w;
-};
-
 static void Machine_Math_Vector4_construct(Machine_Math_Vector4* self, size_t numberOfArguments, const Machine_Value* arguments) {
   self->x = 0.f;
   self->y = 0.f;
