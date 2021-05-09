@@ -15,7 +15,7 @@ typedef struct Machine_Math_Vector2 Machine_Math_Vector2;
 
 Machine_Math_Vector2* Machine_Math_Vector2_create();
 
-Machine_Math_Vector2* Machine_Math_Vector2_clone(Machine_Math_Vector2 *self);
+Machine_Math_Vector2* Machine_Math_Vector2_clone(const Machine_Math_Vector2 *self);
 
 /// @brief Copy the values of another vector into this vector.
 /// @param self This vector.
@@ -26,22 +26,22 @@ void Machine_Math_Vector2_copy(Machine_Math_Vector2* self, const Machine_Math_Ve
 /// @param c The vector to store the result in.
 /// @param a The first vector.
 /// @param b The second vector.
-void Machine_Math_Vector2_add(Machine_Math_Vector2* c, Machine_Math_Vector2* a, Machine_Math_Vector2* b);
-Machine_Math_Vector2* Machine_Math_Vector2_sum(Machine_Math_Vector2* a, Machine_Math_Vector2* b);
+void Machine_Math_Vector2_add(Machine_Math_Vector2* c, const Machine_Math_Vector2* a, const Machine_Math_Vector2* b);
+Machine_Math_Vector2* Machine_Math_Vector2_sum(const Machine_Math_Vector2* a, const Machine_Math_Vector2* b);
 
 /// @brief Compute the difference of two vectors.
 /// @param c The vector to store the result in.
 /// @param a The first vector.
 /// @param b The second vector.
-void Machine_Math_Vector2_subtract(Machine_Math_Vector2* c, Machine_Math_Vector2* a, Machine_Math_Vector2* b);
-Machine_Math_Vector2* Machine_Math_Vector2_difference(Machine_Math_Vector2* a, Machine_Math_Vector2* b);
+void Machine_Math_Vector2_subtract(Machine_Math_Vector2* c, const Machine_Math_Vector2* a, const Machine_Math_Vector2* b);
+Machine_Math_Vector2* Machine_Math_Vector2_difference(const Machine_Math_Vector2* a, const Machine_Math_Vector2* b);
 
 /// @brief Compute the component-wise product of two vectors.
 /// @param c The vector to store the result in.
 /// @param a The first vector.
 /// @param b The second vector.
-void Machine_Math_Vector2_multiply(Machine_Math_Vector2* c, Machine_Math_Vector2* a, Machine_Math_Vector2* b);
-Machine_Math_Vector2* Machine_Math_Vector2_product(Machine_Math_Vector2* a, Machine_Math_Vector2* b);
+void Machine_Math_Vector2_multiply(Machine_Math_Vector2* c, const Machine_Math_Vector2* a, const Machine_Math_Vector2* b);
+Machine_Math_Vector2* Machine_Math_Vector2_product(const Machine_Math_Vector2* a, const Machine_Math_Vector2* b);
 
 /// @brief Compute the dot product of two vectors.
 /// @param a The first vector.

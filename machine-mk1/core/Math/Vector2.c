@@ -35,7 +35,7 @@ Machine_Math_Vector2* Machine_Math_Vector2_create() {
   return self;
 }
 
-Machine_Math_Vector2* Machine_Math_Vector2_clone(Machine_Math_Vector2* self) {
+Machine_Math_Vector2* Machine_Math_Vector2_clone(const Machine_Math_Vector2* self) {
   Machine_Math_Vector2* other = Machine_Math_Vector2_create();
   Machine_Math_Vector2_copy(other, self);
   return other;
@@ -46,36 +46,36 @@ void Machine_Math_Vector2_copy(Machine_Math_Vector2* self, const Machine_Math_Ve
   self->y = other->y;
 }
 
-void Machine_Math_Vector2_add(Machine_Math_Vector2* c, Machine_Math_Vector2* a, Machine_Math_Vector2* b) {
+void Machine_Math_Vector2_add(Machine_Math_Vector2* c, const Machine_Math_Vector2* a, const Machine_Math_Vector2* b) {
   c->x = a->x + b->x;
   c->y = a->y + b->y;
 }
 
-Machine_Math_Vector2* Machine_Math_Vector2_sum(Machine_Math_Vector2* a, Machine_Math_Vector2* b) {
+Machine_Math_Vector2* Machine_Math_Vector2_sum(const Machine_Math_Vector2* a, const Machine_Math_Vector2* b) {
   Machine_Math_Vector2* c = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(c, a->x + b->x,
                               a->y + b->y);
   return c;
 }
 
-void Machine_Math_Vector2_subtract(Machine_Math_Vector2* c, Machine_Math_Vector2* a, Machine_Math_Vector2* b) {
+void Machine_Math_Vector2_subtract(Machine_Math_Vector2* c, const Machine_Math_Vector2* a, const Machine_Math_Vector2* b) {
   c->x = a->x - b->x;
   c->y = a->y - b->y;
 }
 
-Machine_Math_Vector2* Machine_Math_Vector2_difference(Machine_Math_Vector2* a, Machine_Math_Vector2* b) {
+Machine_Math_Vector2* Machine_Math_Vector2_difference(const Machine_Math_Vector2* a, const Machine_Math_Vector2* b) {
   Machine_Math_Vector2* c = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(c, a->x - b->x,
                               a->y - b->y);
   return c;
 }
 
-void Machine_Math_Vector2_multiply(Machine_Math_Vector2* c, Machine_Math_Vector2* a, Machine_Math_Vector2* b) {
+void Machine_Math_Vector2_multiply(Machine_Math_Vector2* c, const Machine_Math_Vector2* a, const Machine_Math_Vector2* b) {
   c->x = a->x * b->x;
   c->y = a->y * b->y;
 }
 
-Machine_Math_Vector2* Machine_Math_Vector2_product(Machine_Math_Vector2* a, Machine_Math_Vector2* b) {
+Machine_Math_Vector2* Machine_Math_Vector2_product(const Machine_Math_Vector2* a, const Machine_Math_Vector2* b) {
   Machine_Math_Vector2* c = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(c, a->x * b->x,
                               a->y * b->y);
