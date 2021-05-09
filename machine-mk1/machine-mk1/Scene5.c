@@ -18,20 +18,20 @@
 #include "GUI/TextLabel.h"
 #include "GUI/Border.h"
 
+static const float OUTER_BORDER_SIZE = 4.f;
+static const float INNER_BORDER_SIZE = 16.f;
+
 
 typedef struct Scene5 Scene5;
 
 struct Scene5 {
   Scene parent;
   Machine_Fonts_Font* font;
-  /// @brief Text label #1.
-  Machine_GUI_TextLabel* textLabel1;
+  /// @brief Border of text label #1.
   Machine_GUI_Border* border1;
-  /// @brief Text label #2.
-  Machine_GUI_TextLabel* textLabel2;
+  /// @brief Border of text label #2.
   Machine_GUI_Border* border2;
-  /// @brief Text label #3.
-  Machine_GUI_TextLabel* textLabel3;
+  /// @brief Border of text label #3.
   Machine_GUI_Border* border3;
 };
 
@@ -41,23 +41,11 @@ static void Scene5_visit(Scene5* self) {
   if (self->font) {
     Machine_visit(self->font);
   }
-
-  if (self->textLabel1) {
-    Machine_visit(self->textLabel1);
-  }
   if (self->border1) {
     Machine_visit(self->border1);
   }
-  
-  if (self->textLabel2) {
-    Machine_visit(self->textLabel2);
-  }
   if (self->border2) {
     Machine_visit(self->border2);
-  }
-  
-  if (self->textLabel3) {
-    Machine_visit(self->textLabel3);
   }
   if (self->border3) {
     Machine_visit(self->border3);
@@ -68,40 +56,53 @@ static void Scene5_finalize(Scene5* self) {
   Scene5_destruct(self);
 }
 
+static Machine_GUI_Widget* create(const char* text, Machine_Fonts_Font *font) {
+  Machine_GUI_TextLabel* label;
+  //
+  label = Machine_GUI_TextLabel_create();
+  {
+    Machine_GUI_TextLabel_setText(label, Machine_String_create(text, strlen(text)));
+  }
+
+  Machine_Math_Vector2* sz = Machine_Math_Vector2_create();
+  Machine_Math_Vector2_set(sz, 5.5, 5.f);
+
+  Machine_GUI_Border* border0 = Machine_GUI_Border_create();
+  Machine_GUI_Border_setBorderWidth(border0, INNER_BORDER_SIZE);
+  Machine_GUI_Border_setChild(border0, (Machine_GUI_Widget *)label);
+  Machine_Math_Vector3* color = Machine_Math_Vector3_create();
+  Machine_Math_Vector3_set(color, 1.f, 1.f, 1.f);
+  Machine_GUI_Border_setBorderColor(border0, color);
+
+  Machine_GUI_Border *border1 = Machine_GUI_Border_create();
+  Machine_GUI_Border_setBorderWidth(border1, OUTER_BORDER_SIZE);
+  //Machine_Math_Vector3_set(color, 0.f, 0.5f, 0.5f);
+  //Machine_GUI_Border_setBorderColor(border1, color);
+  Machine_GUI_Border_setChild(border1, (Machine_GUI_Widget*)border0);
+  
+  
+  return border1;
+}
+
 static void Scene5_startup(Scene5* scene) {
   scene->font = Machine_Fonts_createFont("RobotoSlab-Regular.ttf", 20);
   //
-  scene->textLabel1 = Machine_GUI_TextLabel_create();
-  {
-    const char* text = "Nanobox IV\n400 units of unprimed nanites.";
-    Machine_GUI_TextLabel_setText(scene->textLabel1, Machine_String_create(text, strlen(text)));
-  }
-  scene->border1 = Machine_GUI_Border_create();
-  Machine_GUI_Border_setBorderWidth(scene->border1, 50.f);
-  Machine_GUI_Border_setChild(scene->border1, (Machine_GUI_Widget*)scene->textLabel1);
+  scene->border1 = create("Nanobox IV\n400 units of unprimed nanites.", scene->font);
   //
-  scene->textLabel2 = Machine_GUI_TextLabel_create();
-  {
-    const char* text = "13 of 18 units\n7 of 9 units";
-    Machine_GUI_TextLabel_setText(scene->textLabel2, Machine_String_create(text, strlen(text)));
-  }
-  scene->border2 = Machine_GUI_Border_create();
-  Machine_GUI_Border_setBorderWidth(scene->border2, 50.f);
-  Machine_GUI_Border_setChild(scene->border2, (Machine_GUI_Widget*)scene->textLabel2);
+  scene->border2 = create("13 of 18 units\n7 of 9 units", scene->font);
   //
-  scene->textLabel3 = Machine_GUI_TextLabel_create();
-  {
-    const char* text = "Nanobox IV\n400 units of unprimed nanites.";
-    Machine_GUI_TextLabel_setText(scene->textLabel3, Machine_String_create(text, strlen(text)));
-  }
-  scene->border3 = Machine_GUI_Border_create();
-  Machine_GUI_Border_setBorderWidth(scene->border3, 50.f);
-  Machine_GUI_Border_setChild(scene->border3, (Machine_GUI_Widget*)scene->textLabel3);
+  scene->border3 = create("Nanobox IV\n400 units of unprimed nanites.", scene->font);
 }
 
-static Machine_Math_Vector2 *getBorderWidths() {
+static Machine_Math_Vector2 *getOuterBorderWidths() {
   Machine_Math_Vector2* v = Machine_Math_Vector2_create();
-  Machine_Math_Vector2_set(v, 50.f, 50.f);
+  Machine_Math_Vector2_set(v, OUTER_BORDER_SIZE, OUTER_BORDER_SIZE);
+  return v;
+}
+
+static Machine_Math_Vector2* getInnerBorderWidths() {
+  Machine_Math_Vector2* v = Machine_Math_Vector2_create();
+  Machine_Math_Vector2_set(v, INNER_BORDER_SIZE, INNER_BORDER_SIZE);
   return v;
 }
 
@@ -114,7 +115,6 @@ static void updateText1(Scene5* scene, float width, float height) {
   Machine_Math_Vector2* CANVAS_CENTER = Machine_Math_Vector2_clone(CANVAS_HALF_SIZE);
   // Set the size to the best size.
   const Machine_Math_Vector2* size = Machine_GUI_Widget_getPreferredSize(scene->border1);
-  size = Machine_Math_Vector2_sum(size, getBorderWidths());
   Machine_GUI_Widget_setSize((Machine_GUI_Widget*)scene->border1, size);
   // Get the bounds.
   Machine_Math_Rectangle2* bounds = Machine_GUI_Widget_getRectangle((Machine_GUI_Widget*)scene->border1);
@@ -130,7 +130,6 @@ static void updateText2(Scene5* scene, float width, float height) {
   Machine_Math_Vector2_set(MARGIN, 5.f, 5.f);
   // Set the size to the best size.
   const Machine_Math_Vector2* size = Machine_GUI_Widget_getPreferredSize(scene->border2);
-  size = Machine_Math_Vector2_sum(size, getBorderWidths());
   Machine_GUI_Widget_setSize((Machine_GUI_Widget*)scene->border2, size);
   // Set the position to the margins.
   Machine_GUI_Widget_setPosition((Machine_GUI_Widget*)scene->border2, MARGIN);
@@ -141,7 +140,6 @@ static void updateText3(Scene5* scene, float width, float height) {
   Machine_Math_Vector2_set(MARGIN, 5.f, height * 0.5f);
   Machine_Math_Vector2* SIZE = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(SIZE, 64, 64);
-  SIZE = Machine_Math_Vector2_sum(SIZE, getBorderWidths());
   Machine_GUI_Widget_setSize((Machine_GUI_Widget*)scene->border3, SIZE);
   const Machine_Math_Rectangle2* bounds = Machine_GUI_Widget_getRectangle((Machine_GUI_Widget*)scene->border3);
   const Machine_Math_Vector2* leftTop = Machine_Math_Rectangle2_getPosition(bounds);

@@ -77,48 +77,14 @@ static void Machine_GUI_Border_render(Machine_GUI_Border* self, float width, flo
     if (self->childDirty) {
       Machine_Math_Rectangle2* rectangle = Machine_Math_Rectangle2_clone(self->rectangle);
       Machine_Math_Rectangle2_inset(rectangle, self->width, self->width, self->width, self->width);
-      Machine_GUI_Widget_setRectangle(self->child, self->rectangle);
+      Machine_GUI_Widget_setRectangle(self->child, rectangle);
       self->childDirty = false;
     }
     Machine_GUI_Widget_render(self->child, width, height);
     
     Machine_Rectangle2_setColor(self->borderRectangle, self->color);
     if (self->width > 0.f) {
-      { // LEFT
-        Machine_Math_Rectangle2* r = Machine_Math_Rectangle2_create();
-
-        //
-        Machine_Math_Vector2* position = Machine_Math_Vector2_create();
-        Machine_Math_Vector2_copy(position, Machine_Math_Rectangle2_getPosition(self->rectangle));
-
-        //
-        Machine_Math_Vector2* size = Machine_Math_Vector2_create();
-        Machine_Math_Vector2_set(size, self->width, Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(self->rectangle)));
-        
-        Machine_Math_Rectangle2_setPosition(r, position);
-        Machine_Math_Rectangle2_setSize(r, size);
-
-        Machine_Rectangle2_setRectangle(self->borderRectangle, r);
-        Machine_Shape2_render(self->borderRectangle, width, height);
-      }
-      { // RIGHT
-        Machine_Math_Rectangle2* r = Machine_Math_Rectangle2_create();
-
-        //
-        Machine_Math_Vector2* position = Machine_Math_Vector2_create();
-        Machine_Math_Vector2_set(position, Machine_Math_Rectangle2_getMaxX(self->rectangle) - self->width, Machine_Math_Rectangle2_getMinY(self->rectangle));
-
-        //
-        Machine_Math_Vector2* size = Machine_Math_Vector2_create();
-        Machine_Math_Vector2_set(size, self->width, Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(self->rectangle)));
-
-        Machine_Math_Rectangle2_setPosition(r, position);
-        Machine_Math_Rectangle2_setSize(r, size);
-
-        Machine_Rectangle2_setRectangle(self->borderRectangle, r);
-        Machine_Shape2_render(self->borderRectangle, width, height);
-      }
-      { // TOP
+      { // left/top
         Machine_Math_Rectangle2* r = Machine_Math_Rectangle2_create();
 
         //
@@ -127,7 +93,7 @@ static void Machine_GUI_Border_render(Machine_GUI_Border* self, float width, flo
 
         //
         Machine_Math_Vector2* size = Machine_Math_Vector2_create();
-        Machine_Math_Vector2_set(size, Machine_Math_Vector2_getX(Machine_Math_Rectangle2_getSize(self->rectangle)), self->width);
+        Machine_Math_Vector2_set(size, self->width, self->width);
 
         Machine_Math_Rectangle2_setPosition(r, position);
         Machine_Math_Rectangle2_setSize(r, size);
@@ -135,7 +101,24 @@ static void Machine_GUI_Border_render(Machine_GUI_Border* self, float width, flo
         Machine_Rectangle2_setRectangle(self->borderRectangle, r);
         Machine_Shape2_render(self->borderRectangle, width, height);
       }
-      { // BOTTOM
+      { // right/top
+        Machine_Math_Rectangle2* r = Machine_Math_Rectangle2_create();
+
+        //
+        Machine_Math_Vector2* position = Machine_Math_Vector2_create();
+        Machine_Math_Vector2_set(position, Machine_Math_Rectangle2_getMaxX(self->rectangle) - self->width, Machine_Math_Rectangle2_getMinY(self->rectangle));
+
+        //
+        Machine_Math_Vector2* size = Machine_Math_Vector2_create();
+        Machine_Math_Vector2_set(size, self->width, self->width);
+
+        Machine_Math_Rectangle2_setPosition(r, position);
+        Machine_Math_Rectangle2_setSize(r, size);
+
+        Machine_Rectangle2_setRectangle(self->borderRectangle, r);
+        Machine_Shape2_render(self->borderRectangle, width, height);
+      }
+      { // left/bottom
         Machine_Math_Rectangle2* r = Machine_Math_Rectangle2_create();
 
         //
@@ -144,7 +127,92 @@ static void Machine_GUI_Border_render(Machine_GUI_Border* self, float width, flo
 
         //
         Machine_Math_Vector2* size = Machine_Math_Vector2_create();
-        Machine_Math_Vector2_set(size, Machine_Math_Vector2_getX(Machine_Math_Rectangle2_getSize(self->rectangle)), self->width);
+        Machine_Math_Vector2_set(size, self->width, self->width);
+
+        Machine_Math_Rectangle2_setPosition(r, position);
+        Machine_Math_Rectangle2_setSize(r, size);
+
+        Machine_Rectangle2_setRectangle(self->borderRectangle, r);
+        Machine_Shape2_render(self->borderRectangle, width, height);
+      }
+      { // right/bottom
+        Machine_Math_Rectangle2* r = Machine_Math_Rectangle2_create();
+
+        //
+        Machine_Math_Vector2* position = Machine_Math_Vector2_create();
+        Machine_Math_Vector2_set(position, Machine_Math_Rectangle2_getMaxX(self->rectangle) - self->width, Machine_Math_Rectangle2_getMaxY(self->rectangle) - self->width);
+
+        //
+        Machine_Math_Vector2* size = Machine_Math_Vector2_create();
+        Machine_Math_Vector2_set(size, self->width, self->width);
+
+        Machine_Math_Rectangle2_setPosition(r, position);
+        Machine_Math_Rectangle2_setSize(r, size);
+
+        Machine_Rectangle2_setRectangle(self->borderRectangle, r);
+        Machine_Shape2_render(self->borderRectangle, width, height);
+      }
+      { // left side
+        Machine_Math_Rectangle2* r = Machine_Math_Rectangle2_create();
+
+        //
+        Machine_Math_Vector2* position = Machine_Math_Vector2_create();
+        Machine_Math_Vector2_set(position, Machine_Math_Rectangle2_getMinX(self->rectangle), Machine_Math_Rectangle2_getMinY(self->rectangle) + self->width);
+
+        //
+        Machine_Math_Vector2* size = Machine_Math_Vector2_create();
+        Machine_Math_Vector2_set(size, self->width, Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(self->rectangle)) - self->width * 2.f);
+        
+        Machine_Math_Rectangle2_setPosition(r, position);
+        Machine_Math_Rectangle2_setSize(r, size);
+
+        Machine_Rectangle2_setRectangle(self->borderRectangle, r);
+        Machine_Shape2_render(self->borderRectangle, width, height);
+      }
+      { // right side
+        Machine_Math_Rectangle2* r = Machine_Math_Rectangle2_create();
+
+        //
+        Machine_Math_Vector2* position = Machine_Math_Vector2_create();
+        Machine_Math_Vector2_set(position, Machine_Math_Rectangle2_getMaxX(self->rectangle) - self->width, Machine_Math_Rectangle2_getMinY(self->rectangle) + self->width);
+
+        //
+        Machine_Math_Vector2* size = Machine_Math_Vector2_create();
+        Machine_Math_Vector2_set(size, self->width, Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(self->rectangle)) - self->width * 2.f);
+
+        Machine_Math_Rectangle2_setPosition(r, position);
+        Machine_Math_Rectangle2_setSize(r, size);
+
+        Machine_Rectangle2_setRectangle(self->borderRectangle, r);
+        Machine_Shape2_render(self->borderRectangle, width, height);
+      }
+      { // top side
+        Machine_Math_Rectangle2* r = Machine_Math_Rectangle2_create();
+
+        //
+        Machine_Math_Vector2* position = Machine_Math_Vector2_create();
+        Machine_Math_Vector2_set(position, Machine_Math_Rectangle2_getMinX(self->rectangle) + self->width, Machine_Math_Rectangle2_getMinY(self->rectangle));
+
+        //
+        Machine_Math_Vector2* size = Machine_Math_Vector2_create();
+        Machine_Math_Vector2_set(size, Machine_Math_Vector2_getX(Machine_Math_Rectangle2_getSize(self->rectangle)) - self->width * 2.f, self->width);
+
+        Machine_Math_Rectangle2_setPosition(r, position);
+        Machine_Math_Rectangle2_setSize(r, size);
+
+        Machine_Rectangle2_setRectangle(self->borderRectangle, r);
+        Machine_Shape2_render(self->borderRectangle, width, height);
+      }
+      { // bottom side
+        Machine_Math_Rectangle2* r = Machine_Math_Rectangle2_create();
+
+        //
+        Machine_Math_Vector2* position = Machine_Math_Vector2_create();
+        Machine_Math_Vector2_set(position, Machine_Math_Rectangle2_getMinX(self->rectangle) + self->width, Machine_Math_Rectangle2_getMaxY(self->rectangle) - self->width);
+
+        //
+        Machine_Math_Vector2* size = Machine_Math_Vector2_create();
+        Machine_Math_Vector2_set(size, Machine_Math_Vector2_getX(Machine_Math_Rectangle2_getSize(self->rectangle)) - self->width * 2.f, self->width);
 
         Machine_Math_Rectangle2_setPosition(r, position);
         Machine_Math_Rectangle2_setSize(r, size);
