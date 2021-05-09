@@ -81,8 +81,8 @@ static void alignLeftTop(Machine_Text_Layout* layout, float width, float height)
   Machine_Math_Vector2* MARGIN = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(MARGIN, 5.f, 5.f);
 
-  Machine_Math_Rectangle2* bounds = Machine_Text_Layout_getBounds(layout);
-  Machine_Math_Vector2* position = Machine_Math_Rectangle2_getPosition(bounds);
+  const Machine_Math_Rectangle2* bounds = Machine_Text_Layout_getBounds(layout);
+  const Machine_Math_Vector2* position = Machine_Math_Rectangle2_getPosition(bounds);
   Machine_Math_Vector2* delta = Machine_Math_Vector2_difference(MARGIN, position);
   Machine_Math_Vector2* position2 = Machine_Math_Vector2_sum(Machine_Text_Layout_getPosition(layout), delta);
   Machine_Text_Layout_setPosition(layout, position2);
@@ -96,11 +96,11 @@ static void alignCenter(Machine_Text_Layout* layout, float width, float height) 
   Machine_Math_Vector2* CANVAS_HALF_SIZE = Machine_Math_Vector2_product(CANVAS_SIZE, HALF);
   Machine_Math_Vector2* CANVAS_CENTER = Machine_Math_Vector2_clone(CANVAS_HALF_SIZE);
 
-  Machine_Math_Rectangle2* bounds = Machine_Text_Layout_getBounds(layout);
-  Machine_Math_Vector2* center = Machine_Math_Rectangle2_getCenter(bounds);
+  const Machine_Math_Rectangle2* bounds = Machine_Text_Layout_getBounds(layout);
+  const Machine_Math_Vector2* center = Machine_Math_Rectangle2_getCenter(bounds);
   Machine_Math_Vector2* delta = Machine_Math_Vector2_difference(CANVAS_CENTER, center);
-  Machine_Math_Vector2* oldPosition = Machine_Text_Layout_getPosition(layout);
-  Machine_Math_Vector2* newPosition = Machine_Math_Vector2_sum(oldPosition, delta);
+  const Machine_Math_Vector2* oldPosition = Machine_Text_Layout_getPosition(layout);
+  const Machine_Math_Vector2* newPosition = Machine_Math_Vector2_sum(oldPosition, delta);
   Machine_Text_Layout_setPosition(layout, newPosition);
 }
 
@@ -118,13 +118,13 @@ static void updateText3(Scene4* self, float width, float height) {
   Machine_Math_Vector2* SIZE = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(SIZE, 64, 64);
 
-  Machine_GUI_TextLabel_setSize(self->textLabel3, SIZE);
-  Machine_Math_Rectangle2* bounds = Machine_GUI_TextLabel_getRectangle(self->textLabel3);
-  Machine_Math_Vector2* leftTop = Machine_Math_Rectangle2_getPosition(bounds);
+  Machine_GUI_Widget_setSize((Machine_GUI_Widget*)self->textLabel3, SIZE);
+  const Machine_Math_Rectangle2* bounds = Machine_GUI_Widget_getRectangle((Machine_GUI_Widget *)self->textLabel3);
+  const Machine_Math_Vector2* leftTop = Machine_Math_Rectangle2_getPosition(bounds);
   Machine_Math_Vector2* delta = Machine_Math_Vector2_difference(MARGIN, leftTop);
-  Machine_Math_Vector2* oldPosition = Machine_GUI_TextLabel_getPosition(self->textLabel3);
-  Machine_Math_Vector2* newPosition = Machine_Math_Vector2_sum(oldPosition, delta);
-  Machine_GUI_TextLabel_setPosition(self->textLabel3, newPosition);
+  const Machine_Math_Vector2* oldPosition = Machine_GUI_Widget_getPosition((Machine_GUI_Widget *)self->textLabel3);
+  const Machine_Math_Vector2* newPosition = Machine_Math_Vector2_sum(oldPosition, delta);
+  Machine_GUI_Widget_setPosition((Machine_GUI_Widget*)self->textLabel3, newPosition);
 }
 
 static void Scene4_onCanvasSizeChanged(Scene4* self, float width, float height) {

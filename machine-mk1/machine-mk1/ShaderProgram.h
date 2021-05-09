@@ -98,6 +98,7 @@ Machine_ShaderProgram_generate
 Machine_ShaderProgram*
 Machine_ShaderProgram_generateTextShader
   (
+    bool highPrecision
   );
 
 /// @brief Shader program to render 2D rectangle.

@@ -229,7 +229,7 @@ Machine_Fonts_Font* Machine_Fonts_createFont(const char* path, int pointSize) {
   if (!setjmp(jumpTarget.environment)) {
     font->map = Map_create();
     font->vertices = Machine_FloatBuffer_create();
-    font->shader = Machine_ShaderProgram_generateTextShader();
+    font->shader = Machine_ShaderProgram_generateTextShader(true);
 
     Machine_VertexDescriptor* vertexDescriptor = Machine_VertexDescriptor_create();
     Machine_VertexDescriptor_append(vertexDescriptor, Machine_VertexElementSemantics_XfYf);

@@ -366,6 +366,7 @@ Machine_ShaderProgram_generate
 Machine_ShaderProgram*
 Machine_ShaderProgram_generateTextShader
   (
+    bool highPrecision
   )
 {
   Machine_StringBuffer* code = Machine_StringBuffer_create();
@@ -375,6 +376,9 @@ Machine_ShaderProgram_generateTextShader
 
   // Vertex shader.
   Machine_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
+  if (highPrecision) {
+    Machine_StringBuffer_appendBytes(code, T("precision highp float;\n"));
+  }
 
   defineFloatConstants(code);
 
@@ -419,6 +423,9 @@ Machine_ShaderProgram_generateTextShader
 
   // Geometry program.
   Machine_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
+  if (highPrecision) {
+    Machine_StringBuffer_appendBytes(code, T("precision highp float;\n"));
+  }
   Machine_StringBuffer_appendBytes(code, T("in struct VS2GS {\n"));
   Machine_StringBuffer_appendBytes(code, T("  vec2 texture_coordinate_1;\n"));
   Machine_StringBuffer_appendBytes(code, T("  vec3 color;\n"));
@@ -448,6 +455,9 @@ Machine_ShaderProgram_generateTextShader
 
   // Fragment shader.
   Machine_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
+  if (highPrecision) {
+    Machine_StringBuffer_appendBytes(code, T("precision highp float;\n"));
+  }
   Machine_StringBuffer_appendBytes(code, T("in struct GS2FS {\n"));
   Machine_StringBuffer_appendBytes(code, T("  vec2 texture_coordinate_1;\n"));
   Machine_StringBuffer_appendBytes(code, T("  vec3 color;\n"));

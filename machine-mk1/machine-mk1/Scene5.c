@@ -77,6 +77,7 @@ static void Scene5_startup(Scene5* scene) {
     Machine_GUI_TextLabel_setText(scene->textLabel1, Machine_String_create(text, strlen(text)));
   }
   scene->border1 = Machine_GUI_Border_create();
+  Machine_GUI_Border_setBorderWidth(scene->border1, 50.f);
   Machine_GUI_Border_setChild(scene->border1, (Machine_GUI_Widget*)scene->textLabel1);
   //
   scene->textLabel2 = Machine_GUI_TextLabel_create();
@@ -85,6 +86,7 @@ static void Scene5_startup(Scene5* scene) {
     Machine_GUI_TextLabel_setText(scene->textLabel2, Machine_String_create(text, strlen(text)));
   }
   scene->border2 = Machine_GUI_Border_create();
+  Machine_GUI_Border_setBorderWidth(scene->border2, 50.f);
   Machine_GUI_Border_setChild(scene->border2, (Machine_GUI_Widget*)scene->textLabel2);
   //
   scene->textLabel3 = Machine_GUI_TextLabel_create();
@@ -93,7 +95,14 @@ static void Scene5_startup(Scene5* scene) {
     Machine_GUI_TextLabel_setText(scene->textLabel3, Machine_String_create(text, strlen(text)));
   }
   scene->border3 = Machine_GUI_Border_create();
+  Machine_GUI_Border_setBorderWidth(scene->border3, 50.f);
   Machine_GUI_Border_setChild(scene->border3, (Machine_GUI_Widget*)scene->textLabel3);
+}
+
+static Machine_Math_Vector2 *getBorderWidths() {
+  Machine_Math_Vector2* v = Machine_Math_Vector2_create();
+  Machine_Math_Vector2_set(v, 50.f, 50.f);
+  return v;
 }
 
 static void updateText1(Scene5* scene, float width, float height) {
@@ -104,25 +113,27 @@ static void updateText1(Scene5* scene, float width, float height) {
   Machine_Math_Vector2* CANVAS_HALF_SIZE = Machine_Math_Vector2_product(CANVAS_SIZE, HALF);
   Machine_Math_Vector2* CANVAS_CENTER = Machine_Math_Vector2_clone(CANVAS_HALF_SIZE);
   // Set the size to the best size.
-  Machine_Math_Vector2* size = Machine_GUI_TextLabel_getBestSize(scene->textLabel1);
-  Machine_GUI_TextLabel_setSize(scene->textLabel1, size);
+  const Machine_Math_Vector2* size = Machine_GUI_Widget_getPreferredSize(scene->border1);
+  size = Machine_Math_Vector2_sum(size, getBorderWidths());
+  Machine_GUI_Widget_setSize((Machine_GUI_Widget*)scene->border1, size);
   // Get the bounds.
-  Machine_Math_Rectangle2* bounds = Machine_GUI_TextLabel_getRectangle(scene->textLabel1);
+  Machine_Math_Rectangle2* bounds = Machine_GUI_Widget_getRectangle((Machine_GUI_Widget*)scene->border1);
   Machine_Math_Vector2* center = Machine_Math_Rectangle2_getCenter(bounds);
   Machine_Math_Vector2* delta = Machine_Math_Vector2_difference(CANVAS_CENTER, center);
-  Machine_Math_Vector2* oldPosition = Machine_GUI_TextLabel_getPosition(scene->textLabel1);
-  Machine_Math_Vector2* newPosition = Machine_Math_Vector2_sum(oldPosition, delta);
-  Machine_GUI_TextLabel_setPosition(scene->textLabel1, newPosition);
+  const Machine_Math_Vector2* oldPosition = Machine_GUI_Widget_getPosition((Machine_GUI_Widget*)scene->border1);
+  const Machine_Math_Vector2* newPosition = Machine_Math_Vector2_sum(oldPosition, delta);
+  Machine_GUI_Widget_setPosition((Machine_GUI_Widget*)scene->border1, newPosition);
 }
 
 static void updateText2(Scene5* scene, float width, float height) {
   Machine_Math_Vector2* MARGIN = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(MARGIN, 5.f, 5.f);
   // Set the size to the best size.
-  Machine_Math_Vector2* size = Machine_GUI_TextLabel_getBestSize(scene->textLabel2);
-  Machine_GUI_TextLabel_setSize(scene->textLabel2, size);
+  const Machine_Math_Vector2* size = Machine_GUI_Widget_getPreferredSize(scene->border2);
+  size = Machine_Math_Vector2_sum(size, getBorderWidths());
+  Machine_GUI_Widget_setSize((Machine_GUI_Widget*)scene->border2, size);
   // Set the position to the margins.
-  Machine_GUI_TextLabel_setPosition(scene->textLabel2, MARGIN);
+  Machine_GUI_Widget_setPosition((Machine_GUI_Widget*)scene->border2, MARGIN);
 }
 
 static void updateText3(Scene5* scene, float width, float height) {
@@ -130,14 +141,14 @@ static void updateText3(Scene5* scene, float width, float height) {
   Machine_Math_Vector2_set(MARGIN, 5.f, height * 0.5f);
   Machine_Math_Vector2* SIZE = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(SIZE, 64, 64);
-
-  Machine_GUI_TextLabel_setSize(scene->textLabel3, SIZE);
-  Machine_Math_Rectangle2* bounds = Machine_GUI_TextLabel_getRectangle(scene->textLabel3);
-  Machine_Math_Vector2* leftTop = Machine_Math_Rectangle2_getPosition(bounds);
+  SIZE = Machine_Math_Vector2_sum(SIZE, getBorderWidths());
+  Machine_GUI_Widget_setSize((Machine_GUI_Widget*)scene->border3, SIZE);
+  const Machine_Math_Rectangle2* bounds = Machine_GUI_Widget_getRectangle((Machine_GUI_Widget*)scene->border3);
+  const Machine_Math_Vector2* leftTop = Machine_Math_Rectangle2_getPosition(bounds);
   Machine_Math_Vector2* delta = Machine_Math_Vector2_difference(MARGIN, leftTop);
-  Machine_Math_Vector2* oldPosition = Machine_GUI_TextLabel_getPosition(scene->textLabel3);
+  const Machine_Math_Vector2* oldPosition = Machine_GUI_Widget_getPosition((Machine_GUI_Widget*)scene->border3);
   Machine_Math_Vector2* newPosition = Machine_Math_Vector2_sum(oldPosition, delta);
-  Machine_GUI_TextLabel_setPosition(scene->textLabel3, newPosition);
+  Machine_GUI_Widget_setPosition((Machine_GUI_Widget*)scene->border3, newPosition);
 }
 
 static void Scene5_onCanvasSizeChanged(Scene5* self, float width, float height) {

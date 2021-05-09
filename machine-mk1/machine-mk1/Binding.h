@@ -32,7 +32,7 @@ void Machine_Binding_activate(Machine_Binding* self);
  * @param name The name of the constant.
  * @param value The value.
  */
-void Machine_Binding_bindMatrix4x4(Machine_Binding* self, Machine_String* name, const mat4x4 value);
+void Machine_Binding_bindMatrix4x4(Machine_Binding* self, const Machine_String* name, const mat4x4 value);
 
 /**
  * @brief Bind a vector to a constant.
@@ -56,7 +56,7 @@ void Machine_Binding_bindVector3(Machine_Binding* self, const Machine_String* na
  * @param name The name of the constant.
  * @param value The value.
  */
-void Machine_Binding_bindVector4(Machine_Binding* self, Machine_String* name, const vec4 value);
+void Machine_Binding_bindVector4(Machine_Binding* self, const Machine_String* name, const vec4 value);
 
 /**
  * @brief Bind a texture unit index to a texture sampler.
@@ -64,6 +64,6 @@ void Machine_Binding_bindVector4(Machine_Binding* self, Machine_String* name, co
  * @param name The name of the constant.
  * @param value The value.
  */
-void Machine_Binding_bindSampler(Machine_Binding* self, Machine_String* name, const size_t value);
+void Machine_Binding_bindSampler(Machine_Binding* self, const Machine_String* name, const size_t value);
 
 #endif // MACHINE_BINDING_H_INCLUDED

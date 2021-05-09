@@ -166,7 +166,7 @@ void Machine_Binding_activate(Machine_Binding* self) {
   }
 }
 
-void Machine_Binding_bindMatrix4x4(Machine_Binding* self, Machine_String* name, const mat4x4 value) {
+void Machine_Binding_bindMatrix4x4(Machine_Binding* self, const Machine_String* name, const mat4x4 value) {
   GLint location = glGetUniformLocation(self->program->programId, Machine_String_getBytes(name));
   if (location == -1) {
     return;
@@ -192,7 +192,7 @@ void Machine_Binding_bindVector3(Machine_Binding* self, const Machine_String* na
   Machine_UtilitiesGl_call(glUniform3fv(location, 1, temporary));
 }
 
-void Machine_Binding_bindVector4(Machine_Binding* self, Machine_String* name, const vec4 value) {
+void Machine_Binding_bindVector4(Machine_Binding* self, const Machine_String* name, const vec4 value) {
   GLint location = glGetUniformLocation(self->program->programId, Machine_String_getBytes(name));
   if (location == -1) {
     return;
@@ -200,7 +200,7 @@ void Machine_Binding_bindVector4(Machine_Binding* self, Machine_String* name, co
   Machine_UtilitiesGl_call(glUniform4fv(location, 1, (GLfloat const*)value));
 }
 
-void Machine_Binding_bindSampler(Machine_Binding* self, Machine_String* name, const size_t value) {
+void Machine_Binding_bindSampler(Machine_Binding* self, const Machine_String* name, const size_t value) {
   GLint location = glGetUniformLocation(self->program->programId, Machine_String_getBytes(name));
   if (location == -1) {
     return;
