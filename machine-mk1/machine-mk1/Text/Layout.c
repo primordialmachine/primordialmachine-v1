@@ -99,14 +99,14 @@ static void updateLinesBounds(Machine_Math_Vector2 *position, Machine_Fonts_Font
         continue;
       }
 
-      float l = cursorPosition[0] + Machine_Math_Vector2_getX(Machine_Math_Rectangle2_getLeftTop(symbolBounds));
+      float l = cursorPosition[0] + Machine_Math_Vector2_getX(Machine_Math_Rectangle2_getPosition(symbolBounds));
       float r = l + Machine_Math_Vector2_getX(Machine_Math_Rectangle2_getSize(symbolBounds));
       float t, b;
       if (yup) {
-        t = cursorPosition[1] + (Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(symbolBounds)) - Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getLeftTop(symbolBounds)));
+        t = cursorPosition[1] + (Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(symbolBounds)) - Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getPosition(symbolBounds)));
         b = t - Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(symbolBounds));
       } else {
-        t = cursorPosition[1] - (Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(symbolBounds)) - Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getLeftTop(symbolBounds)));
+        t = cursorPosition[1] - (Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(symbolBounds)) - Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getPosition(symbolBounds)));
         b = t + Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(symbolBounds));
       }
 
@@ -119,9 +119,9 @@ static void updateLinesBounds(Machine_Math_Vector2 *position, Machine_Fonts_Font
 
       vec2_add(cursorPosition, cursorPosition, symbolAdvance);
     }
-    layoutLine->left = Machine_Math_Vector2_getX(Machine_Math_Rectangle2_getLeftTop(lineBounds));
+    layoutLine->left = Machine_Math_Vector2_getX(Machine_Math_Rectangle2_getPosition(lineBounds));
     layoutLine->width = Machine_Math_Vector2_getX(Machine_Math_Rectangle2_getSize(lineBounds));
-    layoutLine->top = Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getLeftTop(lineBounds));
+    layoutLine->top = Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getPosition(lineBounds));
     layoutLine->height = Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(lineBounds));
 
     cursorPosition[0] = 0;
@@ -273,7 +273,7 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
   Machine_Binding_activate(binding);
   Machine_Video_bindShaderProgram(shaderProgram);
   if (self->clipRectangle) {
-    Machine_Math_Vector2* position = Machine_Math_Rectangle2_getLeftTop(self->clipRectangle);
+    Machine_Math_Vector2* position = Machine_Math_Rectangle2_getPosition(self->clipRectangle);
     Machine_Math_Vector2* size = Machine_Math_Rectangle2_getSize(self->clipRectangle);
     {
       vec3 n = { -1, 0, 0 };
@@ -314,11 +314,11 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
       bool skip = !Machine_Font_getCodePointInfo(self->font, codepoint, symbolBounds, symbolAdvance, &symbolTexture);
       if (skip) continue;
 
-      float l = OFFSET_X + cursorPosition[0] + Machine_Math_Vector2_getX(Machine_Math_Rectangle2_getLeftTop(symbolBounds));
+      float l = OFFSET_X + cursorPosition[0] + Machine_Math_Vector2_getX(Machine_Math_Rectangle2_getPosition(symbolBounds));
       float r = l + Machine_Math_Vector2_getX(Machine_Math_Rectangle2_getSize(symbolBounds));
       float t, b;
     #if defined(Y_UP)
-      t = OFFSET_Y + cursorPosition[1] + (Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(symbolBounds)) - Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getLeftTop(symbolBounds)));
+      t = OFFSET_Y + cursorPosition[1] + (Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(symbolBounds)) - Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getPosition(symbolBounds)));
       b = t - Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(symbolBounds));
     #else
       t = OFFSET_Y + cursorPosition[1] - (Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(symbolBounds)) - symbolBounds.b);

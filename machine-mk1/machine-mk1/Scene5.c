@@ -133,7 +133,7 @@ static void updateText3(Scene5* scene, float width, float height) {
 
   Machine_GUI_TextLabel_setSize(scene->textLabel3, SIZE);
   Machine_Math_Rectangle2* bounds = Machine_GUI_TextLabel_getRectangle(scene->textLabel3);
-  Machine_Math_Vector2* leftTop = Machine_Math_Rectangle2_getLeftTop(bounds);
+  Machine_Math_Vector2* leftTop = Machine_Math_Rectangle2_getPosition(bounds);
   Machine_Math_Vector2* delta = Machine_Math_Vector2_difference(MARGIN, leftTop);
   Machine_Math_Vector2* oldPosition = Machine_GUI_TextLabel_getPosition(scene->textLabel3);
   Machine_Math_Vector2* newPosition = Machine_Math_Vector2_sum(oldPosition, delta);

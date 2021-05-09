@@ -174,7 +174,7 @@ void Machine_Binding_bindMatrix4x4(Machine_Binding* self, Machine_String* name, 
   Machine_UtilitiesGl_call(glUniformMatrix4fv(location, 1, GL_FALSE, (GLfloat const*)*value));
 }
 
-void Machine_Binding_bindVector2(Machine_Binding* self, Machine_String* name, const Machine_Math_Vector2* value) {
+void Machine_Binding_bindVector2(Machine_Binding* self, const Machine_String* name, const Machine_Math_Vector2* value) {
   GLint location = glGetUniformLocation(self->program->programId, Machine_String_getBytes(name));
   if (location == -1) {
     return;

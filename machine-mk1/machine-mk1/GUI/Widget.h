@@ -2,7 +2,7 @@
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #if !defined(MACHINE_GUI_WIDGET_H_INCLUDED)
-#define MACHINE_WIDGET_H_INCLUDED
+#define MACHINE_GUI_WIDGET_H_INCLUDED
 
 #include "_Math.h"
 
@@ -22,4 +22,4 @@ void Machine_GUI_Widget_construct(Machine_GUI_Widget* self, size_t numberOfArgum
 // @todo Add and use Machine.GUI.Widget.render.
 void Machine_GUI_Widget_render(Machine_GUI_Widget* self, float width, float height);
 
-#endif // MACHINE_WIDGET_H_INCLUDED
+#endif // MACHINE_GUI_WIDGET_H_INCLUDED

@@ -40,7 +40,7 @@ void Machine_Binding_bindMatrix4x4(Machine_Binding* self, Machine_String* name, 
  * @param name The name of the constant.
  * @param value The value.
  */
-void Machine_Binding_bindVector2(Machine_Binding* self, Machine_String* name, const Machine_Math_Vector2* value);
+void Machine_Binding_bindVector2(Machine_Binding* self, const Machine_String* name, const Machine_Math_Vector2* value);
 
 /**
  * @brief Bind a vector to a constant.
@@ -48,7 +48,7 @@ void Machine_Binding_bindVector2(Machine_Binding* self, Machine_String* name, co
  * @param name The name of the constant.
  * @param value The value.
  */
-void Machine_Binding_bindVector3(Machine_Binding* self, Machine_String* name, const Machine_Math_Vector3* value);
+void Machine_Binding_bindVector3(Machine_Binding* self, const Machine_String* name, const Machine_Math_Vector3* value);
 
 /**
  * @brief Bind a vector to a constant.

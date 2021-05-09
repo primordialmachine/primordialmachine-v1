@@ -82,7 +82,7 @@ static void alignLeftTop(Machine_Text_Layout* layout, float width, float height)
   Machine_Math_Vector2_set(MARGIN, 5.f, 5.f);
 
   Machine_Math_Rectangle2* bounds = Machine_Text_Layout_getBounds(layout);
-  Machine_Math_Vector2* position = Machine_Math_Rectangle2_getLeftTop(bounds);
+  Machine_Math_Vector2* position = Machine_Math_Rectangle2_getPosition(bounds);
   Machine_Math_Vector2* delta = Machine_Math_Vector2_difference(MARGIN, position);
   Machine_Math_Vector2* position2 = Machine_Math_Vector2_sum(Machine_Text_Layout_getPosition(layout), delta);
   Machine_Text_Layout_setPosition(layout, position2);
@@ -120,7 +120,7 @@ static void updateText3(Scene4* self, float width, float height) {
 
   Machine_GUI_TextLabel_setSize(self->textLabel3, SIZE);
   Machine_Math_Rectangle2* bounds = Machine_GUI_TextLabel_getRectangle(self->textLabel3);
-  Machine_Math_Vector2* leftTop = Machine_Math_Rectangle2_getLeftTop(bounds);
+  Machine_Math_Vector2* leftTop = Machine_Math_Rectangle2_getPosition(bounds);
   Machine_Math_Vector2* delta = Machine_Math_Vector2_difference(MARGIN, leftTop);
   Machine_Math_Vector2* oldPosition = Machine_GUI_TextLabel_getPosition(self->textLabel3);
   Machine_Math_Vector2* newPosition = Machine_Math_Vector2_sum(oldPosition, delta);
@@ -140,7 +140,7 @@ static void Scene4_update(Scene4* self, float width, float height) {
 
   Machine_Text_Layout_render(self->text1, width, height);
   Machine_Text_Layout_render(self->text2, width, height);
-  Machine_GUI_Widget_render(self->textLabel3, width, height);
+  Machine_GUI_Widget_render((Machine_GUI_Widget *)self->textLabel3, width, height);
 }
 
 static void Scene4_shutdown(Scene4* self) {
