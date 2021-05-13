@@ -108,7 +108,8 @@ void Machine_pushJumpTarget(Machine_JumpTarget *jumpTarget);
 void Machine_popJumpTarget();
 
 /**
- * @brief Jump to a jump target.
+ * @brief Jump to the top of the jump target stack.
+ * @warning Undefined if the jump target stack is empty.
  */
 __declspec(noreturn) void Machine_jump();
 
@@ -490,6 +491,14 @@ void Machine_setClassType(void* object, Machine_ClassType* classType);
 \
   static void NAME##_onTypeDestroyed() { \
     g_##NAME##_ClassType = NULL; \
+  }
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+#define MACHINE_ASSERT_NOTNULL(e) \
+  if (!(e)) \
+  { \
+    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "e == NULL\n"); \
   }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

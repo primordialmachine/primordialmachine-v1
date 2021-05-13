@@ -101,6 +101,24 @@ float Machine_Math_Vector4_dot(const Machine_Math_Vector4* a, const Machine_Math
        + a->w * b->w;
 }
 
+void Machine_Math_Vector4_maxima(Machine_Math_Vector4* c, const Machine_Math_Vector4* a, const Machine_Math_Vector4* b) {
+#define MAX(x,y) ((x) > (y) ? (x) : (y)) 
+  c->x = MAX(a->x, b->x);
+  c->y = MAX(a->y, b->y);
+  c->z = MAX(a->z, b->z);
+  c->w = MAX(a->w, b->w);
+#undef MAX
+}
+
+void Machine_Math_Vector4_minima(Machine_Math_Vector4* c, const Machine_Math_Vector4* a, const Machine_Math_Vector4* b) {
+#define MIN(x,y) ((x) < (y) ? (x) : (y))
+  c->x = MIN(a->x, b->x);
+  c->y = MIN(a->y, b->y);
+  c->z = MIN(a->z, b->z);
+  c->w = MIN(a->w, b->w);
+#undef MIN
+}
+
 
 
 void Machine_Math_Vector4_set(Machine_Math_Vector4* self, float x, float y, float z, float w) {

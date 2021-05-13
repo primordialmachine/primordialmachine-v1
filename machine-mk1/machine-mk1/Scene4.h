@@ -3,6 +3,10 @@
 
 #include "scene.h"
 
-Scene* Scene4_create();
+typedef struct Scene4 Scene4;
+
+void Scene4_construct(Scene4* self, size_t numberOfArguments, const Machine_Value* arguments);
+
+Scene4* Scene4_create();
 
 #endif // SCENE4_H_INCLUDED

@@ -30,12 +30,6 @@ void Machine_GUI_Widget_construct(Machine_GUI_Widget* self, size_t numberOfArgum
   Machine_setClassType(self, Machine_GUI_Widget_getClassType());
 }
 
-#define MACHINE_ASSERT_NOTNULL(e) \
-  if (!(e)) \
-  { \
-    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "e == NULL\n"); \
-  }
-
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 void Machine_GUI_Widget_render(Machine_GUI_Widget* self, float width, float height) {

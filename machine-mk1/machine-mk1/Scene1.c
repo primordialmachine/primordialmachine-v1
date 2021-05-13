@@ -30,8 +30,6 @@ vertices[] =
     {   0.f,  0.6f, 0.f, 0.f, 1.f }
 };
 
-typedef struct Scene1 Scene1;
-
 struct Scene1 {
   Scene parent;
   Machine_ShaderProgram* shaderProgram;
@@ -58,7 +56,25 @@ static void Scene1_finalize(Scene1* self) {
   Scene1_destruct(self);
 }
 
-static void Scene1_startup(Scene1* scene) {
+MACHINE_DEFINE_CLASSTYPE(Scene1)
+
+Machine_ClassType* Scene1_getClassType() {
+  if (!g_Scene1_ClassType) {
+    g_Scene1_ClassType =
+      Machine_createClassType
+        (
+          Scene_getClassType(),
+          sizeof(Scene1),
+          (Machine_ClassTypeRemovedCallback*)&Scene1_onTypeDestroyed,
+          (Machine_ClassObjectVisitCallback*)&Scene1_visit,
+          (Machine_ClassObjectConstructCallback*)&Scene1_construct,
+          (Machine_ClassObjectDestructCallback*)NULL
+        );
+  }
+  return g_Scene1_ClassType;
+}
+
+static void Scene1_onStartup(Scene1* scene) {
   scene->vertices = Machine_FloatBuffer_create();
   Machine_FloatBuffer_setData(scene->vertices, sizeof(vertices) / sizeof(float), vertices);
 
@@ -77,7 +93,7 @@ static void Scene1_startup(Scene1* scene) {
 static void Scene1_onCanvasSizeChanged(Scene1* self, float width, float height) {
 }
 
-static void Scene1_update(Scene1* self, float width, float height) {
+static void Scene1_onUpdate(Scene1* self, float width, float height) {
   float ratio;
   mat4x4 m, p, mvp;
 
@@ -97,21 +113,18 @@ static void Scene1_update(Scene1* self, float width, float height) {
   glDrawArrays(GL_TRIANGLES, 0, 3);
 }
 
-static void Scene1_shutdown(Scene1* self) {
+static void Scene1_onShutdown(Scene1* self) {
   self->vertices = NULL;
   self->shaderProgram = NULL;
   self->binding = NULL;
 }
 
-int Scene1_construct(Scene1* self) {
-  if (Scene_construct((Scene*)self)) {
-    return 1;
-  }
+void Scene1_construct(Scene1* self, size_t numberOfArguments, const Machine_Value* arguments) {
+  Scene_construct((Scene*)self, numberOfArguments, arguments);
   ((Scene*)self)->onCanvasSizeChanged = (Scene_OnCanvaSizeChangedCallback*)&Scene1_onCanvasSizeChanged;
-  ((Scene*)self)->startup = (Scene_StartupCallback*)&Scene1_startup;
-  ((Scene*)self)->update = (Scene_UpdateCallback*)&Scene1_update;
-  ((Scene*)self)->shutdown = (Scene_ShutdownCallback*)&Scene1_shutdown;
-  return 0;
+  ((Scene*)self)->onStartup = (Scene_OnStartupCallback*)&Scene1_onStartup;
+  ((Scene*)self)->onUpdate = (Scene_OnUpdateCallback*)&Scene1_onUpdate;
+  ((Scene*)self)->onShutdown = (Scene_OnShutdownCallback*)&Scene1_onShutdown;
 }
 
 void Scene1_destruct(Scene1* self) {
@@ -121,13 +134,14 @@ void Scene1_destruct(Scene1* self) {
   Scene_destruct((Scene*)self);
 }
 
-Scene* Scene1_create() {
-  Scene1* scene = Machine_allocate(sizeof(Scene1), (void (*)(void*)) & Scene1_visit, (void (*)(void*)) & Scene1_finalize);
+Scene1* Scene1_create() {
+  Machine_ClassType* ty = Scene1_getClassType();
+  static const size_t NUMBER_OF_ARGUMENTS = 0;
+  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_VoidValue_VOID } };
+  Scene1* scene = Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   if (!scene) {
-    return NULL;
+    Machine_setStatus(Machine_Status_AllocationFailed);
+    Machine_jump();
   }
-  if (Scene1_construct(scene)) {
-    return NULL;
-  }
-  return (Scene*)scene;
+  return scene;
 }

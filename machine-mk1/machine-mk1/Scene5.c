@@ -16,23 +16,24 @@
 #include "VertexDescriptor.h"
 #include "Binding.h"
 #include "GUI/TextLabel.h"
+#include "GUI/TextButton.h"
 #include "GUI/Border.h"
+#include "GUI/WidgetList.h"
+
 
 static const float OUTER_BORDER_SIZE = 4.f;
 static const float INNER_BORDER_SIZE = 16.f;
 
 
-typedef struct Scene5 Scene5;
-
 struct Scene5 {
   Scene parent;
   Machine_Fonts_Font* font;
-  /// @brief Border of text label #1.
-  Machine_GUI_Border* border1;
-  /// @brief Border of text label #2.
-  Machine_GUI_Border* border2;
-  /// @brief Border of text label #3.
-  Machine_GUI_Border* border3;
+  /// @brief The main menu (start game, options, exit, credits).
+  Machine_GUI_WidgetList* mainMenu;
+  /// @brief Label #2.
+  Machine_GUI_Widget* label2;
+  /// @brief Label #3.
+  Machine_GUI_Widget* label3;
 };
 
 void Scene5_destruct(Scene5* self);
@@ -41,14 +42,14 @@ static void Scene5_visit(Scene5* self) {
   if (self->font) {
     Machine_visit(self->font);
   }
-  if (self->border1) {
-    Machine_visit(self->border1);
+  if (self->mainMenu) {
+    Machine_visit(self->mainMenu);
   }
-  if (self->border2) {
-    Machine_visit(self->border2);
+  if (self->label2) {
+    Machine_visit(self->label2);
   }
-  if (self->border3) {
-    Machine_visit(self->border3);
+  if (self->label3) {
+    Machine_visit(self->label3);
   }
 }
 
@@ -56,97 +57,151 @@ static void Scene5_finalize(Scene5* self) {
   Scene5_destruct(self);
 }
 
-static Machine_GUI_Widget* create(const char* text, Machine_Fonts_Font *font) {
-  Machine_GUI_TextLabel* label;
-  //
-  label = Machine_GUI_TextLabel_create();
-  {
-    Machine_GUI_TextLabel_setText(label, Machine_String_create(text, strlen(text)));
+MACHINE_DEFINE_CLASSTYPE(Scene5)
+
+Machine_ClassType* Scene5_getClassType() {
+  if (!g_Scene5_ClassType) {
+    g_Scene5_ClassType =
+        Machine_createClassType
+        (
+          Scene_getClassType(),
+          sizeof(Scene5),
+          (Machine_ClassTypeRemovedCallback*)&Scene5_onTypeDestroyed,
+          (Machine_ClassObjectVisitCallback*)&Scene5_visit,
+          (Machine_ClassObjectConstructCallback*)&Scene5_construct,
+          (Machine_ClassObjectDestructCallback*)NULL
+        );
   }
+  return g_Scene5_ClassType;
+}
+
+static Machine_GUI_Widget* createTextLabel(const char* text, Machine_Fonts_Font *font) {
+  Machine_GUI_TextLabel* widget;
+  //
+  widget = Machine_GUI_TextLabel_create();
+  Machine_GUI_TextLabel_setText(widget, Machine_String_create(text, strlen(text)));
 
   Machine_Math_Vector2* sz = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(sz, 5.5, 5.f);
 
   Machine_GUI_Border* border0 = Machine_GUI_Border_create();
   Machine_GUI_Border_setBorderWidth(border0, INNER_BORDER_SIZE);
-  Machine_GUI_Border_setChild(border0, (Machine_GUI_Widget *)label);
+  Machine_GUI_Border_setChild(border0, (Machine_GUI_Widget *)widget);
   Machine_Math_Vector3* color = Machine_Math_Vector3_create();
   Machine_Math_Vector3_set(color, 1.f, 1.f, 1.f);
   Machine_GUI_Border_setBorderColor(border0, color);
 
   Machine_GUI_Border *border1 = Machine_GUI_Border_create();
   Machine_GUI_Border_setBorderWidth(border1, OUTER_BORDER_SIZE);
-  //Machine_Math_Vector3_set(color, 0.f, 0.5f, 0.5f);
-  //Machine_GUI_Border_setBorderColor(border1, color);
   Machine_GUI_Border_setChild(border1, (Machine_GUI_Widget*)border0);
   
-  
-  return border1;
+  return (Machine_GUI_Widget*)border1;
 }
+
+static Machine_GUI_Widget* createTextButton(const char* text, Machine_Fonts_Font* font) {
+  Machine_GUI_TextButton* widget;
+  //
+  widget = Machine_GUI_TextButton_create();
+  Machine_GUI_TextButton_setText(widget, Machine_String_create(text, strlen(text)));
+
+  Machine_Math_Vector2* sz = Machine_Math_Vector2_create();
+  Machine_Math_Vector2_set(sz, 5.5, 5.f);
+
+  Machine_GUI_Border* border0 = Machine_GUI_Border_create();
+  Machine_GUI_Border_setBorderWidth(border0, INNER_BORDER_SIZE);
+  Machine_GUI_Border_setChild(border0, (Machine_GUI_Widget*)widget);
+  Machine_Math_Vector3* color = Machine_Math_Vector3_create();
+  Machine_Math_Vector3_set(color, 1.f, 1.f, 1.f);
+  Machine_GUI_Border_setBorderColor(border0, color);
+
+  Machine_GUI_Border* border1 = Machine_GUI_Border_create();
+  Machine_GUI_Border_setBorderWidth(border1, OUTER_BORDER_SIZE);
+  Machine_GUI_Border_setChild(border1, (Machine_GUI_Widget*)border0);
+
+  return (Machine_GUI_Widget*)border1;
+}
+
 
 static void Scene5_startup(Scene5* scene) {
   scene->font = Machine_Fonts_createFont("RobotoSlab-Regular.ttf", 20);
   //
-  scene->border1 = create("Nanobox IV\n400 units of unprimed nanites.", scene->font);
+  scene->mainMenu = Machine_GUI_WidgetList_create();
+  Machine_GUI_WidgetList_append(scene->mainMenu, createTextButton("Start Game", scene->font));
+  Machine_GUI_WidgetList_append(scene->mainMenu, createTextButton("Options", scene->font));
+  Machine_GUI_WidgetList_append(scene->mainMenu, createTextButton("Exit Game", scene->font));
+  Machine_GUI_WidgetList_append(scene->mainMenu, createTextButton("Credits", scene->font));
   //
-  scene->border2 = create("13 of 18 units\n7 of 9 units", scene->font);
+  scene->label2 = createTextLabel("Server Version 1.0\nClient Version 1.0", scene->font);
   //
-  scene->border3 = create("Nanobox IV\n400 units of unprimed nanites.", scene->font);
+  scene->label3 = createTextLabel("Nanobox IV\n400 units of unprimed nanites.", scene->font);
 }
 
-static Machine_Math_Vector2 *getOuterBorderWidths() {
-  Machine_Math_Vector2* v = Machine_Math_Vector2_create();
-  Machine_Math_Vector2_set(v, OUTER_BORDER_SIZE, OUTER_BORDER_SIZE);
-  return v;
-}
-
-static Machine_Math_Vector2* getInnerBorderWidths() {
-  Machine_Math_Vector2* v = Machine_Math_Vector2_create();
-  Machine_Math_Vector2_set(v, INNER_BORDER_SIZE, INNER_BORDER_SIZE);
-  return v;
+/// @brief Compute the rectangle of all widgets.
+/// @param widgets The list widgets.
+/// @return The rectangle.
+/// @error The widget list is empty.
+static Machine_Math_Rectangle2* Machine_GUI_WidgetList_getRectangle(Machine_GUI_WidgetList* widgets) {
+  size_t i = 0;
+  Machine_GUI_Widget* widget = Machine_GUI_WidgetList_getAt(widgets, i); // Raises index out of bounds error if empty.
+  Machine_Math_Rectangle2* rectangle = Machine_Math_Rectangle2_clone(Machine_GUI_Widget_getRectangle(widget));
+  i++;
+  for (size_t n = Machine_GUI_WidgetList_getSize(widgets); i < n; ++i) {
+    widget = (Machine_GUI_Widget*)Machine_GUI_WidgetList_getAt(widgets, i);
+    const Machine_Math_Rectangle2* widgetRectangle = Machine_GUI_Widget_getRectangle(widget);
+    Machine_Math_Rectangle2_addRectangle(rectangle, widgetRectangle);
+  }
+  return rectangle;
 }
 
 static void updateText1(Scene5* scene, float width, float height) {
+  // Compute component-wise maxima vector of the preferred sizes of the n buttons.
+  Machine_Math_Vector2* preferredSize = Machine_Math_Vector2_clone(Machine_GUI_Widget_getPreferredSize(Machine_GUI_WidgetList_getAt(scene->mainMenu, 0)));
+  for (size_t i = 1, n = Machine_GUI_WidgetList_getSize(scene->mainMenu); i < n; ++i) {
+    Machine_Math_Vector2_maxima(preferredSize, preferredSize, Machine_GUI_Widget_getPreferredSize(Machine_GUI_WidgetList_getAt(scene->mainMenu, i)));
+  }
+
   Machine_Math_Vector2* HALF = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(HALF, 0.5f, 0.5f);
   Machine_Math_Vector2* CANVAS_SIZE = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(CANVAS_SIZE, width, height);
   Machine_Math_Vector2* CANVAS_HALF_SIZE = Machine_Math_Vector2_product(CANVAS_SIZE, HALF);
   Machine_Math_Vector2* CANVAS_CENTER = Machine_Math_Vector2_clone(CANVAS_HALF_SIZE);
-  // Set the size to the best size.
-  const Machine_Math_Vector2* size = Machine_GUI_Widget_getPreferredSize(scene->border1);
-  Machine_GUI_Widget_setSize((Machine_GUI_Widget*)scene->border1, size);
-  // Get the bounds.
-  Machine_Math_Rectangle2* bounds = Machine_GUI_Widget_getRectangle((Machine_GUI_Widget*)scene->border1);
-  Machine_Math_Vector2* center = Machine_Math_Rectangle2_getCenter(bounds);
-  Machine_Math_Vector2* delta = Machine_Math_Vector2_difference(CANVAS_CENTER, center);
-  const Machine_Math_Vector2* oldPosition = Machine_GUI_Widget_getPosition((Machine_GUI_Widget*)scene->border1);
-  const Machine_Math_Vector2* newPosition = Machine_Math_Vector2_sum(oldPosition, delta);
-  Machine_GUI_Widget_setPosition((Machine_GUI_Widget*)scene->border1, newPosition);
+
+  //Machine_PointerArray* widgets = Machine_PointerArray_create();
+  for (size_t i = 0, n = Machine_GUI_WidgetList_getSize(scene->mainMenu); i < n; ++i) {
+    Machine_GUI_Widget_setSize(Machine_GUI_WidgetList_getAt(scene->mainMenu, i), preferredSize);
+  }
+  Machine_GUI_WidgetList_centerVertically(scene->mainMenu, Machine_Math_Vector2_getX(CANVAS_CENTER));
+  Machine_GUI_WidgetList_layoutColumn(scene->mainMenu, 5.f);
+  Machine_Math_Rectangle2* rectangle = Machine_GUI_WidgetList_getRectangle(scene->mainMenu);
+  
+  const Machine_Math_Vector2* c = Machine_Math_Rectangle2_getCenter(rectangle);
+  Machine_Math_Vector2* d = Machine_Math_Vector2_difference(CANVAS_CENTER, c);
+  Machine_GUI_WidgetList_translate(scene->mainMenu, d);
 }
 
 static void updateText2(Scene5* scene, float width, float height) {
   Machine_Math_Vector2* MARGIN = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(MARGIN, 5.f, 5.f);
   // Set the size to the best size.
-  const Machine_Math_Vector2* size = Machine_GUI_Widget_getPreferredSize(scene->border2);
-  Machine_GUI_Widget_setSize((Machine_GUI_Widget*)scene->border2, size);
+  const Machine_Math_Vector2* size = Machine_GUI_Widget_getPreferredSize(scene->label2);
+  Machine_GUI_Widget_setSize((Machine_GUI_Widget*)scene->label2, size);
   // Set the position to the margins.
-  Machine_GUI_Widget_setPosition((Machine_GUI_Widget*)scene->border2, MARGIN);
+  Machine_GUI_Widget_setPosition((Machine_GUI_Widget*)scene->label2, MARGIN);
 }
 
 static void updateText3(Scene5* scene, float width, float height) {
   Machine_Math_Vector2* MARGIN = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(MARGIN, 5.f, height * 0.5f);
   Machine_Math_Vector2* SIZE = Machine_Math_Vector2_create();
-  Machine_Math_Vector2_set(SIZE, 64, 64);
-  Machine_GUI_Widget_setSize((Machine_GUI_Widget*)scene->border3, SIZE);
-  const Machine_Math_Rectangle2* bounds = Machine_GUI_Widget_getRectangle((Machine_GUI_Widget*)scene->border3);
+  Machine_Math_Vector2_set(SIZE, 128, 128);
+  Machine_GUI_Widget_setSize((Machine_GUI_Widget*)scene->label3, SIZE);
+  const Machine_Math_Rectangle2* bounds = Machine_GUI_Widget_getRectangle((Machine_GUI_Widget*)scene->label3);
   const Machine_Math_Vector2* leftTop = Machine_Math_Rectangle2_getPosition(bounds);
   Machine_Math_Vector2* delta = Machine_Math_Vector2_difference(MARGIN, leftTop);
-  const Machine_Math_Vector2* oldPosition = Machine_GUI_Widget_getPosition((Machine_GUI_Widget*)scene->border3);
+  const Machine_Math_Vector2* oldPosition = Machine_GUI_Widget_getPosition((Machine_GUI_Widget*)scene->label3);
   Machine_Math_Vector2* newPosition = Machine_Math_Vector2_sum(oldPosition, delta);
-  Machine_GUI_Widget_setPosition((Machine_GUI_Widget*)scene->border3, newPosition);
+  Machine_GUI_Widget_setPosition((Machine_GUI_Widget*)scene->label3, newPosition);
 }
 
 static void Scene5_onCanvasSizeChanged(Scene5* self, float width, float height) {
@@ -160,24 +215,24 @@ static void Scene5_update(Scene5* self, float width, float height) {
   Machine_UtilitiesGl_call(glViewport(0, 0, width, height));
   Machine_UtilitiesGl_call(glClear(GL_COLOR_BUFFER_BIT));
 
-  Machine_GUI_Widget_render((Machine_GUI_Widget*)self->border1, width, height);
-  Machine_GUI_Widget_render((Machine_GUI_Widget*)self->border2, width, height);
-  Machine_GUI_Widget_render((Machine_GUI_Widget*)self->border3, width, height);
+  for (size_t i = 0, n = Machine_GUI_WidgetList_getSize(self->mainMenu); i < n; ++i) {
+    Machine_GUI_Widget* widget = Machine_GUI_WidgetList_getAt(self->mainMenu, i);
+    Machine_GUI_Widget_render(widget, width, height);
+  }
+  Machine_GUI_Widget_render((Machine_GUI_Widget*)self->label2, width, height);
+  Machine_GUI_Widget_render((Machine_GUI_Widget*)self->label3, width, height);
 }
 
 static void Scene5_shutdown(Scene5* scene) {
   scene->font = NULL;
 }
 
-int Scene5_construct(Scene5* self) {
-  if (Scene_construct((Scene*)self)) {
-    return 1;
-  }
+void Scene5_construct(Scene5* self, size_t numberOfArguments, const Machine_Value* arguments) {
+  Scene_construct((Scene*)self, numberOfArguments, arguments);
   ((Scene*)self)->onCanvasSizeChanged = (Scene_OnCanvaSizeChangedCallback*)&Scene5_onCanvasSizeChanged;
-  ((Scene*)self)->startup = (Scene_StartupCallback*)&Scene5_startup;
-  ((Scene*)self)->update = (Scene_UpdateCallback*)&Scene5_update;
-  ((Scene*)self)->shutdown = (Scene_ShutdownCallback*)&Scene5_shutdown;
-  return 0;
+  ((Scene*)self)->onStartup = (Scene_OnStartupCallback*)&Scene5_startup;
+  ((Scene*)self)->onUpdate = (Scene_OnUpdateCallback*)&Scene5_update;
+  ((Scene*)self)->onShutdown = (Scene_OnShutdownCallback*)&Scene5_shutdown;
 }
 
 void Scene5_destruct(Scene5* self) {
@@ -185,13 +240,14 @@ void Scene5_destruct(Scene5* self) {
   Scene_destruct((Scene*)self);
 }
 
-Scene* Scene5_create() {
-  Scene5* scene = Machine_allocate(sizeof(Scene5), (void (*)(void*)) & Scene5_visit, (void (*)(void*)) & Scene5_finalize);
+Scene5* Scene5_create() {
+  Machine_ClassType* ty = Scene5_getClassType();
+  static const size_t NUMBER_OF_ARGUMENTS = 0;
+  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_VoidValue_VOID } };
+  Scene5* scene = Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   if (!scene) {
-    return NULL;
+    Machine_setStatus(Machine_Status_AllocationFailed);
+    Machine_jump();
   }
-  if (Scene5_construct(scene)) {
-    return NULL;
-  }
-  return (Scene*)scene;
+  return scene;
 }

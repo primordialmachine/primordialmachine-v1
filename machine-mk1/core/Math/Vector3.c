@@ -92,6 +92,22 @@ float Machine_Math_Vector3_dot(const Machine_Math_Vector3* a, const Machine_Math
        + a->z * b->z;
 }
 
+void Machine_Math_Vector3_maxima(Machine_Math_Vector3* c, const Machine_Math_Vector3* a, const Machine_Math_Vector3* b) {
+#define MAX(x,y) ((x) > (y) ? (x) : (y)) 
+  c->x = MAX(a->x, b->x);
+  c->y = MAX(a->y, b->y);
+  c->z = MAX(a->z, b->z);
+#undef MAX
+}
+
+void Machine_Math_Vector3_minima(Machine_Math_Vector3* c, const Machine_Math_Vector3* a, const Machine_Math_Vector3* b) {
+#define MIN(x,y) ((x) < (y) ? (x) : (y))
+  c->x = MIN(a->x, b->x);
+  c->y = MIN(a->y, b->y);
+  c->z = MIN(a->z, b->z);
+#undef MIN
+}
+
 
 
 void Machine_Math_Vector3_set(Machine_Math_Vector3* self, float x, float y, float z) {

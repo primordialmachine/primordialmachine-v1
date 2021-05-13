@@ -21,8 +21,6 @@
 #include "GUI/Widget.h"
 
 
-typedef struct Scene4 Scene4;
-
 struct Scene4 {
   Scene parent;
   Machine_Fonts_Font* font;
@@ -55,7 +53,25 @@ static void Scene4_finalize(Scene4* self) {
   Scene4_destruct(self);
 }
 
-static void Scene4_startup(Scene4* scene) {
+MACHINE_DEFINE_CLASSTYPE(Scene4)
+
+Machine_ClassType* Scene4_getClassType() {
+  if (!g_Scene4_ClassType) {
+    g_Scene4_ClassType =
+      Machine_createClassType
+        (
+          Scene_getClassType(),
+          sizeof(Scene4),
+          (Machine_ClassTypeRemovedCallback*)&Scene4_onTypeDestroyed,
+          (Machine_ClassObjectVisitCallback*)&Scene4_visit,
+          (Machine_ClassObjectConstructCallback*)&Scene4_construct,
+          (Machine_ClassObjectDestructCallback*)NULL
+        );
+  }
+  return g_Scene4_ClassType;
+}
+
+static void Scene4_onStartup(Scene4* scene) {
   scene->font = Machine_Fonts_createFont("RobotoSlab-Regular.ttf", 20);
   //
   scene->text1 = Machine_Text_Layout_create(Machine_String_create("", strlen("")), scene->font);
@@ -133,7 +149,7 @@ static void Scene4_onCanvasSizeChanged(Scene4* self, float width, float height) 
   updateText3(self, width, height);
 }
 
-static void Scene4_update(Scene4* self, float width, float height) {
+static void Scene4_onUpdate(Scene4* self, float width, float height) {
   // Set the viewport and clear its color buffer.
   Machine_UtilitiesGl_call(glViewport(0, 0, width, height));
   Machine_UtilitiesGl_call(glClear(GL_COLOR_BUFFER_BIT));
@@ -143,19 +159,16 @@ static void Scene4_update(Scene4* self, float width, float height) {
   Machine_GUI_Widget_render((Machine_GUI_Widget *)self->textLabel3, width, height);
 }
 
-static void Scene4_shutdown(Scene4* self) {
+static void Scene4_onShutdown(Scene4* self) {
   self->font = NULL;
 }
 
-int Scene4_construct(Scene4* self) {
-  if (Scene_construct((Scene*)self)) {
-    return 1;
-  }
+void Scene4_construct(Scene4* self, size_t numberOfArguments, const Machine_Value* arguments) {
+  Scene_construct((Scene*)self, numberOfArguments, arguments);
   ((Scene*)self)->onCanvasSizeChanged = (Scene_OnCanvaSizeChangedCallback*)&Scene4_onCanvasSizeChanged;
-  ((Scene*)self)->startup = (Scene_StartupCallback*)&Scene4_startup;
-  ((Scene*)self)->update = (Scene_UpdateCallback*)&Scene4_update;
-  ((Scene*)self)->shutdown = (Scene_ShutdownCallback*)&Scene4_shutdown;
-  return 0;
+  ((Scene*)self)->onStartup = (Scene_OnStartupCallback*)&Scene4_onStartup;
+  ((Scene*)self)->onUpdate = (Scene_OnUpdateCallback*)&Scene4_onUpdate;
+  ((Scene*)self)->onShutdown = (Scene_OnShutdownCallback*)&Scene4_onShutdown;
 }
 
 void Scene4_destruct(Scene4* self) {
@@ -163,13 +176,14 @@ void Scene4_destruct(Scene4* self) {
   Scene_destruct((Scene*)self);
 }
 
-Scene* Scene4_create() {
-  Scene4* scene = Machine_allocate(sizeof(Scene4), (void (*)(void*)) & Scene4_visit, (void (*)(void*)) & Scene4_finalize);
+Scene4* Scene4_create() {
+  Machine_ClassType* ty = Scene4_getClassType();
+  static const size_t NUMBER_OF_ARGUMENTS = 0;
+  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_VoidValue_VOID } };
+  Scene4* scene = Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   if (!scene) {
-    return NULL;
+    Machine_setStatus(Machine_Status_AllocationFailed);
+    Machine_jump();
   }
-  if (Scene4_construct(scene)) {
-    return NULL;
-  }
-  return (Scene*)scene;
+  return scene;
 }

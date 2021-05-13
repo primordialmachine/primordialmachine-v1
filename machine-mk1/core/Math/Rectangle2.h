@@ -56,10 +56,25 @@ const Machine_Math_Vector2* Machine_Math_Rectangle2_getCenter(const Machine_Math
 /// @param point The point.
 void Machine_Math_Rectangle2_addPoint(Machine_Math_Rectangle2* self, const Machine_Math_Vector2* point);
 
+/// @brief Add a rectangle to this rectangle.
+/// @param self This rectangle.
+/// @param rectangle The rectangle.
+void Machine_Math_Rectangle2_addRectangle(Machine_Math_Rectangle2* self, const Machine_Math_Rectangle2* rectangle);
+
 /// @brief Translate this rectangle such that its center is the specified point.
 /// @param self This rectangle.
 /// @param x, y The point.
 void Machine_Math_Rectangle2_setCenter(Machine_Math_Rectangle2* self, float x, float y);
+
+/// @brief Get the minimum of this rectangle.
+/// @param self This rectangle.
+/// @return The minimum.
+Machine_Math_Vector2* Machine_Math_Rectangle2_getMin(const Machine_Math_Rectangle2* self);
+
+/// @brief Get the maximum of this rectangle.
+/// @param self This rectangle.
+/// @return The maximum.
+Machine_Math_Vector2* Machine_Math_Rectangle2_getMax(const Machine_Math_Rectangle2* self);
 
 /// @brief Get the minimum of this rectangle along the x-axis.
 /// @param self This rectangle.

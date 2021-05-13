@@ -97,6 +97,8 @@
   <ItemGroup>
     <ClCompile Include="..\external\glad\src\glad.c" />
     <ClCompile Include="Binding.c" />
+    <ClCompile Include="GUI\WidgetList.c" />
+    <ClCompile Include="GUI\TextButton.c" />
     <ClCompile Include="GUI\Widget.c" />
     <ClCompile Include="GUI\Border.c" />
     <ClCompile Include="GUI\TextLabel.c" />
@@ -123,6 +125,8 @@
     <ClInclude Include="..\external\glad\include\glad\glad.h" />
     <ClInclude Include="..\external\glad\include\KHR\khrplatform.h" />
     <ClInclude Include="Binding.h" />
+    <ClInclude Include="GUI\WidgetList.h" />
+    <ClInclude Include="GUI\TextButton.h" />
     <ClInclude Include="GUI\Widget.h" />
     <ClInclude Include="GUI\Border.h" />
     <ClInclude Include="GUI\TextLabel.h" />

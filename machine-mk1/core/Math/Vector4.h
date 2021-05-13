@@ -53,6 +53,18 @@ Machine_Math_Vector4* Machine_Math_Vector4_product(Machine_Math_Vector4* a, Mach
 /// @return The dot product of the vectors.
 float Machine_Math_Vector4_dot(const Machine_Math_Vector4* a, const Machine_Math_Vector4* b);
 
+/// @brief Get the component-wise maxima vector of two vectors i.e. a vector \f$c_i = \max(a_i,b_i)\f$
+/// @param c The vector to store the result in.
+/// @param a The first vector.
+/// @param b The second vector.
+void Machine_Math_Vector4_maxima(Machine_Math_Vector4* c, const Machine_Math_Vector4* a, const Machine_Math_Vector4* b);
+
+/// @brief Get the component-wise minima vector of two vectors i.e. a vector \f$c_i = \min(a_i,b_i)\f$
+/// @param c The vector to store the result in.
+/// @param a The first vector.
+/// @param b The second vector.
+void Machine_Math_Vector4_minima(Machine_Math_Vector4* c, const Machine_Math_Vector4* a, const Machine_Math_Vector4* b);
+
 
 
 void Machine_Math_Vector4_set(Machine_Math_Vector4* a, float x, float y, float z, float w);

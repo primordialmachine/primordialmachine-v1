@@ -37,8 +37,6 @@ static const uint8_t indices[] = {
   2, 1, 3,
 };
 
-typedef struct Scene3 Scene3;
-
 struct Scene3 {
   Scene parent;
   Machine_ShaderProgram* shaderProgram;
@@ -72,6 +70,24 @@ static void Scene3_visit(Scene3* self) {
 
 static void Scene3_finalize(Scene3* self) {
   Scene3_destruct(self);
+}
+
+MACHINE_DEFINE_CLASSTYPE(Scene3)
+
+Machine_ClassType* Scene3_getClassType() {
+  if (!g_Scene3_ClassType) {
+    g_Scene3_ClassType =
+      Machine_createClassType
+        (
+          Scene_getClassType(),
+          sizeof(Scene3),
+          (Machine_ClassTypeRemovedCallback*)&Scene3_onTypeDestroyed,
+          (Machine_ClassObjectVisitCallback*)&Scene3_visit,
+          (Machine_ClassObjectConstructCallback*)&Scene3_construct,
+          (Machine_ClassObjectDestructCallback*)NULL
+        );
+  }
+  return g_Scene3_ClassType;
 }
 
 static void Scene3_startup(Scene3* scene) {
@@ -133,15 +149,12 @@ static void Scene3_shutdown(Scene3* self) {
   self->binding = NULL;
 }
 
-int Scene3_construct(Scene3* self) {
-  if (Scene_construct((Scene*)self)) {
-    return 1;
-  }
+void Scene3_construct(Scene3* self, size_t numberOfArguments, const Machine_Value* arguments) {
+  Scene_construct((Scene*)self, numberOfArguments, arguments);
   ((Scene*)self)->onCanvasSizeChanged = (Scene_OnCanvaSizeChangedCallback*)&Scene3_onCanvasSizeChanged;
-  ((Scene*)self)->startup = (Scene_StartupCallback*)&Scene3_startup;
-  ((Scene*)self)->update = (Scene_UpdateCallback*)&Scene3_update;
-  ((Scene*)self)->shutdown = (Scene_ShutdownCallback*)&Scene3_shutdown;
-  return 0;
+  ((Scene*)self)->onStartup = (Scene_OnStartupCallback*)&Scene3_startup;
+  ((Scene*)self)->onUpdate = (Scene_OnUpdateCallback*)&Scene3_update;
+  ((Scene*)self)->onShutdown = (Scene_OnShutdownCallback*)&Scene3_shutdown;
 }
 
 void Scene3_destruct(Scene3* self) {
@@ -153,13 +166,14 @@ void Scene3_destruct(Scene3* self) {
   Scene_destruct((Scene*)self);
 }
 
-Scene* Scene3_create() {
-  Scene3* scene = Machine_allocate(sizeof(Scene3), (void (*)(void*)) & Scene3_visit, (void (*)(void*)) & Scene3_finalize);
+Scene3* Scene3_create() {
+  Machine_ClassType* ty = Scene3_getClassType();
+  static const size_t NUMBER_OF_ARGUMENTS = 0;
+  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_VoidValue_VOID } };
+  Scene3* scene = Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   if (!scene) {
-    return NULL;
+    Machine_setStatus(Machine_Status_AllocationFailed);
+    Machine_jump();
   }
-  if (Scene3_construct(scene)) {
-    return NULL;
-  }
-  return (Scene*)scene;
+  return scene;
 }

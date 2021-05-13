@@ -83,6 +83,20 @@ float Machine_Math_Vector2_dot(const Machine_Math_Vector2* a, const Machine_Math
        + a->y * b->y;
 }
 
+void Machine_Math_Vector2_maxima(Machine_Math_Vector2* c, const Machine_Math_Vector2* a, const Machine_Math_Vector2* b) {
+#define MAX(x,y) ((x) > (y) ? (x) : (y)) 
+  c->x = MAX(a->x, b->x);
+  c->y = MAX(a->y, b->y);
+#undef MAX
+}
+
+void Machine_Math_Vector2_minima(Machine_Math_Vector2* c, const Machine_Math_Vector2* a, const Machine_Math_Vector2* b) {
+#define MIN(x,y) ((x) < (y) ? (x) : (y))
+  c->x = MIN(a->x, b->x);
+  c->y = MIN(a->y, b->y);
+#undef MIN
+}
+
 
 
 void Machine_Math_Vector2_set(Machine_Math_Vector2* self, float x, float y) {

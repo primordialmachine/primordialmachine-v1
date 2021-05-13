@@ -27,17 +27,28 @@ extern "C" {
 
 #include <linmath.h>
 
+  static Scene* g_scene = NULL;
 
 
   static int loadIcons(GLFWwindow* window) {
     static const char* PATHS[] = {
+    #define WINDOWS10_BLURRYICONHACK (1)
+    #if WINDOWS10_BLURRYICONHACK == 0
       "primordialmachine-16x16.png",
+      "primordialmachine-20x20.png",
+    #endif
       "primordialmachine-24x24.png",
       "primordialmachine-32x32.png",
+      "primordialmachine-40x40.png",
+      "primordialmachine-48x48.png",
       "primordialmachine-64x64.png",
+      "primordialmachine-96x96.png",
       "primordialmachine-110x110.png",
       "primordialmachine-114x114.png",
       "primordialmachine-135x135.png",
+      "primordialmachine-140x140.png",
+      "primordialmachine-180x180.png",
+      "primordialmachine-256x256.png",
     };
   #define N (sizeof(PATHS) / sizeof(const char*))
     Machine_Images_Image* IMAGES[N] = { NULL };
@@ -86,6 +97,39 @@ extern "C" {
       glfwSetWindowShouldClose(window, GLFW_TRUE);
   }
 
+  static void cursor_position_callback(GLFWwindow* window, double x, double y) {
+    Machine_JumpTarget jumpTarget;
+    Machine_pushJumpTarget(&jumpTarget);
+    if (!setjmp(jumpTarget.environment)) {
+      Machine_log(Machine_LogFlags_ToInformations, __FILE__, __LINE__, "mouse pointer moved at (%g, %g)\n", x, y);
+      Machine_popJumpTarget();
+    }
+    else {
+      Machine_popJumpTarget();
+    }
+  }
+
+  static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
+    Machine_JumpTarget jumpTarget;
+    Machine_pushJumpTarget(&jumpTarget);
+    if (!setjmp(jumpTarget.environment)) {
+      if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) {
+        double x, y;
+        glfwGetCursorPos(window, &x, &y);
+        Machine_log(Machine_LogFlags_ToInformations, __FILE__, __LINE__, "mouse button pressed at (%g, %g)\n", x, y);
+      }
+      else if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE) {
+        double x, y;
+        glfwGetCursorPos(window, &x, &y);
+        Machine_log(Machine_LogFlags_ToInformations, __FILE__, __LINE__, "mouse button released at (%g, %g)\n", x, y);
+      }
+      Machine_popJumpTarget();
+    }
+    else {
+      Machine_popJumpTarget();
+    }
+  }
+
   int main() {
     if (!glfwInit()) {
       fprintf(stderr, "%s:%d: glfwInit() failed\n", __FILE__, __LINE__);
@@ -103,6 +147,8 @@ extern "C" {
     glfwMaximizeWindow(window);
 
     glfwSetKeyCallback(window, key_callback);
+    glfwSetMouseButtonCallback(window, mouse_button_callback);
+    glfwSetCursorPosCallback(window, cursor_position_callback);
 
     glfwMakeContextCurrent(window);
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
@@ -140,7 +186,7 @@ extern "C" {
       return EXIT_FAILURE;
     }
 
-    Scene* scene = Scene5_create();
+    Scene* scene = (Scene *)Scene5_create();
     if (!scene) {
       fprintf(stderr, "%s:%d: Scene5_create() failed\n", __FILE__, __LINE__);
       Machine_shutdown();
@@ -151,7 +197,7 @@ extern "C" {
     }
     Machine_setRoot(scene, true);
 
-    Scene_startup(scene);
+    Scene_onStartup(scene);
     Machine_JumpTarget jumpTarget;
     Machine_pushJumpTarget(&jumpTarget);
     if (!setjmp(jumpTarget.environment)) {
@@ -170,15 +216,18 @@ extern "C" {
           oldWidth = newWidth;
           oldHeight = newHeight;
         }
-        Scene_update(scene, (float)oldWidth, (float)oldHeight);
+        Scene_onUpdate(scene, (float)oldWidth, (float)oldHeight);
         Machine_update();
         glfwSwapBuffers(window);
         glfwPollEvents();
+        if (Machine_getStatus() != Machine_Status_Success) {
+          Machine_jump();
+        }
       }
       Machine_popJumpTarget();
     }
 
-    Scene_shutdown(scene);
+    Scene_onShutdown(scene);
     Machine_setRoot(scene, false);
     Machine_shutdown();
     Machine_Video_shutdown();

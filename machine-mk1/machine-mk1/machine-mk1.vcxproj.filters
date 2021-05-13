@@ -108,6 +108,12 @@
     <ClCompile Include="GUI\Widget.c">
       <Filter>Quelldateien\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="GUI\TextButton.c">
+      <Filter>Quelldateien\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\WidgetList.c">
+      <Filter>Quelldateien\GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\external\glad\include\glad\glad.h">
@@ -177,6 +183,12 @@
       <Filter>Headerdateien\GUI</Filter>
     </ClInclude>
     <ClInclude Include="GUI\Widget.h">
+      <Filter>Headerdateien\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\TextButton.h">
+      <Filter>Headerdateien\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\WidgetList.h">
       <Filter>Headerdateien\GUI</Filter>
     </ClInclude>
   </ItemGroup>

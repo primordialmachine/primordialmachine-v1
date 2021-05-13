@@ -99,9 +99,26 @@ void Machine_Math_Rectangle2_addPoint(Machine_Math_Rectangle2* self, const Machi
   }
 }
 
+void Machine_Math_Rectangle2_addRectangle(Machine_Math_Rectangle2* self, const Machine_Math_Rectangle2* rectangle) {
+  Machine_Math_Rectangle2_addPoint(self, Machine_Math_Rectangle2_getMin(rectangle));
+  Machine_Math_Rectangle2_addPoint(self, Machine_Math_Rectangle2_getMax(rectangle));
+}
+
 void Machine_Math_Rectangle2_setCenter(Machine_Math_Rectangle2* self, float x, float y) {
   self->x = x - self->w * .5f;
   self->y = y - self->h * .5f;
+}
+
+Machine_Math_Vector2* Machine_Math_Rectangle2_getMin(const Machine_Math_Rectangle2* self) {
+  Machine_Math_Vector2* p = Machine_Math_Vector2_create();
+  Machine_Math_Vector2_set(p, self->x, self->y);
+  return p;
+}
+
+Machine_Math_Vector2* Machine_Math_Rectangle2_getMax(const Machine_Math_Rectangle2* self) {
+  Machine_Math_Vector2* p = Machine_Math_Vector2_create();
+  Machine_Math_Vector2_set(p, self->x + self->w, self->y + self->h);
+  return p;
 }
 
 float Machine_Math_Rectangle2_getMinX(const Machine_Math_Rectangle2* self) {

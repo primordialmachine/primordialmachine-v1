@@ -46,7 +46,7 @@ Machine_ClassType* Machine_GUI_Border_getClassType() {
     g_Machine_GUI_Border_ClassType =
       Machine_createClassType
         (
-          NULL,
+          Machine_GUI_Widget_getClassType(),
           sizeof(Machine_GUI_Border),
           (Machine_ClassTypeRemovedCallback*)&Machine_GUI_Border_onTypeDestroyed,
           (Machine_ClassObjectVisitCallback*)&Machine_GUI_Border_visit,
