@@ -19,6 +19,12 @@
     <Filter Include="Quelldateien\Math">
       <UniqueIdentifier>{81ded2be-d177-442d-be19-8b8e3a5872aa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Runtime">
+      <UniqueIdentifier>{63b42912-e12f-4727-a93d-c06cf4b310d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Runtime">
+      <UniqueIdentifier>{f40b0be6-7171-4e7e-a276-f05094bbbcb3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Machine.c">
@@ -35,6 +41,18 @@
     </ClCompile>
     <ClCompile Include="Math\Vector4.c">
       <Filter>Quelldateien\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="_Math.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="_Runtime.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Runtime\PointerArray.c">
+      <Filter>Quelldateien\Runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="Runtime\StringBuffer.c">
+      <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +73,15 @@
     </ClInclude>
     <ClInclude Include="Math\Vector4.h">
       <Filter>Headerdateien\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="_Runtime.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\PointerArray.h">
+      <Filter>Headerdateien\Runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\StringBuffer.h">
+      <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -355,7 +355,7 @@ Machine_String* Machine_String_create(const char* p, size_t n) {
 }
 
 
-bool Machine_String_equalTo(Machine_String* self, Machine_String* other) {
+bool Machine_String_equalTo(const Machine_String* self, const Machine_String* other) {
   if (self == other) return true;
   if (self->n == other->n && self->hashValue == other->hashValue) {
     return !memcmp(self->p, other->p, self->n);
@@ -363,15 +363,15 @@ bool Machine_String_equalTo(Machine_String* self, Machine_String* other) {
   return false;
 }
 
-size_t Machine_String_getHashValue(Machine_String* self) {
+size_t Machine_String_getHashValue(const Machine_String* self) {
   return self->hashValue;
 }
 
-const char* Machine_String_getBytes(Machine_String* self) {
+const char* Machine_String_getBytes(const Machine_String* self) {
   return self->p;
 }
 
-size_t Machine_String_getNumberOfBytes(Machine_String* self) {
+size_t Machine_String_getNumberOfBytes(const Machine_String* self) {
   return self->n;
 }
 
@@ -489,81 +489,6 @@ Machine_Object* Machine_allocateClassObject(Machine_ClassType* type, size_t numb
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-struct Machine_StringBuffer {
-  char* p;
-  size_t s; /**< The size. */
-  size_t c; /**< The capacity.  */
-};
-
-static void Machine_StringBuffer_construct(Machine_StringBuffer* self, size_t numberOfArguments, const Machine_Value* arguments) {
-  self->p = NULL;
-  self->s = 0;
-  self->c = 0;
-}
-
-static void Machine_StringBuffer_destruct(Machine_StringBuffer* self) {
-  if (self->p) {
-    free(self->p);
-    self->p = NULL;
-  }
-}
-
-MACHINE_DEFINE_CLASSTYPE(Machine_StringBuffer)
-
-Machine_ClassType* Machine_StringBuffer_getClassType() {
-  if (!g_Machine_StringBuffer_ClassType) {
-    g_Machine_StringBuffer_ClassType =
-      Machine_createClassType
-        (
-          NULL,
-          sizeof(Machine_StringBuffer),
-          (Machine_ClassTypeRemovedCallback*)&Machine_StringBuffer_onTypeDestroyed,
-          (Machine_ClassObjectVisitCallback*)NULL,
-          (Machine_ClassObjectConstructCallback*)&Machine_StringBuffer_construct,
-          (Machine_ClassObjectDestructCallback*)&Machine_StringBuffer_destruct
-        );
-  }
-  return g_Machine_StringBuffer_ClassType;
-}
-
-Machine_StringBuffer* Machine_StringBuffer_create() {
-  Machine_ClassType* ty = Machine_StringBuffer_getClassType();
-  static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_VoidValue_VOID } };
-  Machine_StringBuffer* self = (Machine_StringBuffer *)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
-  return self;
-}
-
-void Machine_StringBuffer_appendBytes(Machine_StringBuffer* self, const char* p, size_t n) {
-  if (n == 0) {
-    return;
-  }
-  size_t fc = self->c - self->s;
-  if (fc < n) {
-    size_t ac = n - fc; // additional capacity
-    char *p = realloc(self->p, self->c + ac);
-    if (!p) {
-      Machine_setStatus(Machine_Status_AllocationFailed);
-      Machine_jump();
-    }
-    self->p = p;
-    self->c = self->c + ac;
-  }
-  memcpy(self->p + self->s, p, n);
-  self->s += n;
-}
-
-void Machine_StringBuffer_clear(Machine_StringBuffer* self) {
-  self->s = 0;
-}
-
-Machine_String *Machine_StringBuffer_toString(Machine_StringBuffer* self) {
-  return Machine_String_create(self->p, self->s);
-}
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 #if defined(MACHINE_WITH_LOG) && 1 == MACHINE_WITH_LOG
 
@@ -581,122 +506,3 @@ void Machine_log(int flags, const char* file, int line, const char* format, ...)
 #endif
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-#define Machine_PointerArray_MaximalCapacity SIZE_MAX / sizeof(void *)
-
-struct Machine_PointerArray {
-  void** elements;
-  size_t size, capacity;
-};
-
-static void Machine_PointerArray_visit(Machine_PointerArray* self) {
-  if (self->elements) {
-    for (size_t i = 0, n = self->size; i < n; ++i) {
-      void *element = self->elements[i];
-      if (element) {
-        Machine_visit(element);
-      }
-    }
-  }
-}
-
-static void Machine_PointerArray_construct(Machine_PointerArray* self, size_t numberOfArguments, const Machine_Value* arguments) {
-  self->elements = NULL;
-  self->size = 0;
-  self->capacity = 0;
-}
-
-static void Machine_PointerArray_destruct(Machine_PointerArray* self) {
-  if (self->elements) {
-    free(self->elements);
-    self->elements = NULL;
-  }
-}
-
-MACHINE_DEFINE_CLASSTYPE(Machine_PointerArray)
-
-Machine_ClassType* Machine_PointerArray_getClassType() {
-  if (!g_Machine_PointerArray_ClassType) {
-    g_Machine_PointerArray_ClassType =
-      Machine_createClassType
-        (
-          NULL,
-          sizeof(Machine_PointerArray),
-          (Machine_ClassTypeRemovedCallback*)&Machine_PointerArray_onTypeDestroyed,
-          (Machine_ClassObjectVisitCallback*)&Machine_PointerArray_visit,
-          (Machine_ClassObjectConstructCallback*)&Machine_PointerArray_construct,
-          (Machine_ClassObjectDestructCallback*)&Machine_PointerArray_destruct
-        );
-  }
-  return g_Machine_PointerArray_ClassType;
-}
-
-Machine_PointerArray* Machine_PointerArray_create() {
-  Machine_ClassType* ty = Machine_PointerArray_getClassType();
-  static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_VoidValue_VOID } };
-  Machine_PointerArray* self = (Machine_PointerArray *)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
-  return self;
-}
-
-void Machine_PointerArray_clear(Machine_PointerArray* self) {
-  self->size = 0;
-}
-
-void *Machine_PointerArray_getAt(Machine_PointerArray* self, size_t index) {
-  if (!self){
-    Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
-  }
-  if (index >= self->size) {
-    Machine_setStatus(Machine_Status_IndexOutOfBounds);
-    Machine_jump();
-  }
-  return self->elements[index];
-}
-
-size_t Machine_PointerArray_getSize(Machine_PointerArray* self) {
-  if (!self){
-    Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
-  }
-  return self->size;
-}
-
-void Machine_PointerArray_prepend(Machine_PointerArray* self, void* pointer) {
-  Machine_PointerArray_insert(self, 0, pointer);
-}
-
-void Machine_PointerArray_append(Machine_PointerArray* self, void* pointer) {
-  if (!self) {
-    Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
-  }
-  Machine_PointerArray_insert(self, self->size, pointer);
-}
-
-void Machine_PointerArray_insert(Machine_PointerArray* self, size_t index, void *pointer) {
-  if (!self) {
-    Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
-  }
-  if ((self->capacity - self->size) == 0) {
-    if (self->capacity == Machine_PointerArray_MaximalCapacity) {
-      Machine_setStatus(Machine_Status_AllocationFailed);
-      Machine_jump();
-    }
-    size_t newCapacity = self->capacity + 1;
-    void *newElements = realloc(self->elements, sizeof(void*) * newCapacity);
-    if (!newElements) {
-      Machine_setStatus(Machine_Status_AllocationFailed);
-      Machine_jump();
-    }
-    self->elements = newElements;
-    self->capacity = newCapacity;
-  }
-  if (index < self->size) {
-    memmove(self->elements + index + 1, self->elements + index + 0, sizeof(void *) * (self->size - index));
-  }
-  self->elements[index] = pointer;
-  self->size++;
-}

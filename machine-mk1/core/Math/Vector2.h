@@ -4,7 +4,7 @@
 #if !defined(MACHINE_MATH_VECTOR2_H_INCLUDED)
 #define MACHINE_MATH_VECTOR2_H_INCLUDED
 
-#include "Machine.h"
+#include "_Runtime.h"
 
 /// C-level definition of a 2D vector.
 /// The HLL-level definition is

@@ -248,7 +248,6 @@ typedef struct Machine_Value {
 
 #define INLINE static inline
 
-
 INLINE void Machine_Value_setBoolean(Machine_Value* self, Machine_BooleanValue value) {
   self->tag = Machine_ValueFlag_Boolean;
   self->booleanValue = value;
@@ -346,6 +345,16 @@ INLINE bool Machine_Value_isVoid(Machine_Value* self) {
   return self->tag == Machine_ValueFlag_Void;
 }
 
+INLINE void Machine_Value_visit(Machine_Value* self) {
+  switch (self->tag) {
+    case Machine_ValueFlag_Object:
+      Machine_visit(self->objectValue);
+    break;
+    case Machine_ValueFlag_String:
+      Machine_visit(self->stringValue);
+    break;
+  };
+}
 
 #undef INLINE
 
@@ -407,14 +416,14 @@ Machine_String* Machine_String_create(const char* p, size_t n);
  * @param other The other string.
  * @return @a true if this string string is equal to the other string.
  */
-bool Machine_String_equalTo(Machine_String* self, Machine_String* other);
+bool Machine_String_equalTo(const Machine_String* self, const Machine_String* other);
 
 /**
  * @brief Get the hash value of this string.
  * @param self This string.
  * @return The hash value of this string.
  */
-size_t Machine_String_getHashValue(Machine_String *self);
+size_t Machine_String_getHashValue(const Machine_String *self);
 
 /**
  * @brief Get the Bytes of this string.
@@ -423,8 +432,8 @@ size_t Machine_String_getHashValue(Machine_String *self);
  * @warning The pointer remains valid only as long as the string object is valid.
  * @warning The memory pointed to may not be modified.
  */
-const char* Machine_String_getBytes(Machine_String* self);
-size_t Machine_String_getNumberOfBytes(Machine_String* self);
+const char* Machine_String_getBytes(const Machine_String* self);
+size_t Machine_String_getNumberOfBytes(const Machine_String* self);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -502,36 +511,6 @@ void Machine_setClassType(void* object, Machine_ClassType* classType);
   }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-MACHINE_DECLARE_CLASSTYPE(Machine_StringBuffer)
-
-/**
- * @brief Create a string buffer.
- * @param p, n The Bytes.
- * @return The string buffer.
- */
-Machine_StringBuffer* Machine_StringBuffer_create();
-
-/**
- * @brief Append Bytes to this string buffer.
- * @param self This string bufffer
- * @param p, n The Bytes.
- */
-void Machine_StringBuffer_appendBytes(Machine_StringBuffer* self, const char *p, size_t n);
-
-/**
- * @brief Clear this string buffer.
- * @param self This string buffer.
- */
-void Machine_StringBuffer_clear(Machine_StringBuffer* self);
-
-/**
- * @brief Get the contents of this string buffer as a string.
- * @param self This string buffer.
- * @return The string.
- */
-Machine_String* Machine_StringBuffer_toString(Machine_StringBuffer* self);
-
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /**
@@ -554,63 +533,6 @@ void Machine_log(int flags, const char* file, int line, const char* format, ...)
 #endif
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-/**
- * @brief An array of pointers to objects or null pointers.
- */
-MACHINE_DECLARE_CLASSTYPE(Machine_PointerArray)
-
-/**
- * @brief Create an object array.
- * @return The object array.
- * @error Machine_Status_AllocationFailed An allocation failed.
- */
-Machine_PointerArray* Machine_PointerArray_create();
-
-/**
- * @brief Clear this object array.
- * @param self A pointer to this object array.
- */
-void Machine_PointerArray_clear(Machine_PointerArray* self);
-
-/**
- * @brief Get the object at the specified index in this object array.
- * @return A pointer to the object or the null pointer.
- * @error Machine_Status_IndexOutOfBounds @a index is smaller than @a 0 or greater than @a n where @a n is the size of this object array.
- * @error Machine_Status_InvalidArgument @a self is null.
- */
-void *Machine_PointerArray_getAt(Machine_PointerArray* self, size_t index);
-
-/**
- * @brief Get the size of this object array.
- * @param self This object array.
- * @return The size of this object array.
- * @error Machine_Status_InvalidArgument @a self is null.
- */
-size_t Machine_PointerArray_getSize(Machine_PointerArray* self);
-
-/**
- * @brief Prepend a pointer to this pointer array.
- * @param self This pointer array.
- * @param pointer The pointer.
- */
-void Machine_PointerArray_prepend(Machine_PointerArray* self, void* pointer);
-
-/**
- * @brief Append a pointer to this pointer array.
- * @param self This pointer array.
- * @param pointer The pointer.
- */
-void Machine_PointerArray_append(Machine_PointerArray* self, void* pointer);
-
-/**
- * @brief Insert a pointer into this pointer array at the specified index.
- * @param self This pointer array.
- * @param index The index.
- * @param pointer The pointer.
- */
-void Machine_PointerArray_insert(Machine_PointerArray* self, size_t index, void* pointer);
-
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 #endif // MACHINE_H_INCLUDED

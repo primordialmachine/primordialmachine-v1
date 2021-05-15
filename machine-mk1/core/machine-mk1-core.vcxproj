@@ -16,14 +16,21 @@
     <ClCompile Include="Math\Vector2.c" />
     <ClCompile Include="Math\Vector3.c" />
     <ClCompile Include="Math\Vector4.c" />
+    <ClCompile Include="Runtime\PointerArray.c" />
+    <ClCompile Include="Runtime\StringBuffer.c" />
+    <ClCompile Include="_Math.c" />
+    <ClCompile Include="_Runtime.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Machine.h" />
+    <ClInclude Include="Runtime\PointerArray.h" />
+    <ClInclude Include="Runtime\StringBuffer.h" />
     <ClInclude Include="_Math.h" />
     <ClInclude Include="Math\Rectangle2.h" />
     <ClInclude Include="Math\Vector2.h" />
     <ClInclude Include="Math\Vector3.h" />
     <ClInclude Include="Math\Vector4.h" />
+    <ClInclude Include="_Runtime.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
