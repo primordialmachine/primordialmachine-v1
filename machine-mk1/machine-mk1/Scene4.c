@@ -116,7 +116,7 @@ static void alignCenter(Machine_Text_Layout* layout, float width, float height) 
   const Machine_Math_Vector2* center = Machine_Math_Rectangle2_getCenter(bounds);
   Machine_Math_Vector2* delta = Machine_Math_Vector2_difference(CANVAS_CENTER, center);
   const Machine_Math_Vector2* oldPosition = Machine_Text_Layout_getPosition(layout);
-  const Machine_Math_Vector2* newPosition = Machine_Math_Vector2_sum(oldPosition, delta);
+  Machine_Math_Vector2* newPosition = Machine_Math_Vector2_sum(oldPosition, delta);
   Machine_Text_Layout_setPosition(layout, newPosition);
 }
 
@@ -180,7 +180,7 @@ Scene4* Scene4_create() {
   Machine_ClassType* ty = Scene4_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_VoidValue_VOID } };
-  Scene4* scene = Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Scene4* scene = (Scene4*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   if (!scene) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();

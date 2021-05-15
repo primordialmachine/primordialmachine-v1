@@ -82,7 +82,7 @@ Machine_ClassType* Scene2_getClassType() {
 
 static void Scene2_onStartup(Scene2* scene) {
   scene->vertices = Machine_FloatBuffer_create();
-  Machine_FloatBuffer_setData(scene->vertices, sizeof(vertices) / sizeof(float), vertices);
+  Machine_FloatBuffer_setData(scene->vertices, sizeof(vertices) / sizeof(float), (const float *)vertices);
 
   scene->shaderProgram = Machine_ShaderProgram_generate(false, true, false, false);
   scene->mvp_location = glGetUniformLocation(scene->shaderProgram->programId, "modelToProjectionMatrix");
@@ -144,7 +144,7 @@ Scene2* Scene2_create() {
   Machine_ClassType* ty = Scene2_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_VoidValue_VOID } };
-  Scene2* scene = Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Scene2* scene = (Scene2*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   if (!scene) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
