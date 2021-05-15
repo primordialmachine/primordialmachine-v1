@@ -166,7 +166,7 @@ void Machine_GUI_TextLabel_render(Machine_GUI_TextLabel* self, float width, floa
   if (self->childDirty) {
     // TODO: Only do this layouting if necessary.
     Machine_Math_Rectangle2* clipRect = Machine_Rectangle2_getRectangle(self->background);
-    Machine_Math_Vector2* widgetCenter = Machine_Math_Rectangle2_getCenter(Machine_Rectangle2_getRectangle(self->background));
+    const Machine_Math_Vector2* widgetCenter = Machine_Math_Rectangle2_getCenter(Machine_Rectangle2_getRectangle(self->background));
 
     const Machine_Math_Rectangle2* textBounds = Machine_Text_Layout_getBounds(self->foreground);
     const Machine_Math_Vector2* textCenter = Machine_Math_Rectangle2_getCenter(textBounds);

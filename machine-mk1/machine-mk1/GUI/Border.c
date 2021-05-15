@@ -305,7 +305,7 @@ static void Machine_GUI_Border_setSize(Machine_GUI_Border* self, const Machine_M
 }
 
 static const Machine_Math_Vector2* Machine_GUI_Border_getPreferredSize(Machine_GUI_Border* self) {
-  Machine_Math_Vector2* preferredSize = self->child ? Machine_GUI_Widget_getPreferredSize(self->child) : Machine_Math_Vector2_create();
+  const Machine_Math_Vector2* preferredSize = self->child ? Machine_GUI_Widget_getPreferredSize(self->child) : Machine_Math_Vector2_create();
   Machine_Math_Vector2* borderSize = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(borderSize, self->width * 2.f, self->width * 2.f);
   return Machine_Math_Vector2_sum(preferredSize, borderSize);

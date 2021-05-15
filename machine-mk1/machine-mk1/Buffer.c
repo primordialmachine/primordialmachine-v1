@@ -107,7 +107,7 @@ Machine_FloatBuffer* Machine_FloatBuffer_create() {
   return self;
 }
 
-void Machine_FloatBuffer_setData(Machine_FloatBuffer* self, size_t n, float* p) {
+void Machine_FloatBuffer_setData(Machine_FloatBuffer* self, size_t n, const float* p) {
   float *t = realloc(self->p, n * sizeof(float));
   if (!t) {
     Machine_setStatus(Machine_Status_AllocationFailed);

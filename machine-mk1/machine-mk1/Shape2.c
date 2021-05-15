@@ -109,7 +109,7 @@ void Machine_Rectangle2_render(Machine_Rectangle2* self, float width, float heig
     { r, t, }, // right/top
   };
 
-  Machine_FloatBuffer_setData(self->vertices, sizeof(VERTICES) / sizeof(float), VERTICES);
+  Machine_FloatBuffer_setData(self->vertices, sizeof(VERTICES) / sizeof(float), (const float *)VERTICES);
 
   Machine_Binding_activate(self->binding);
   Machine_Video_bindShaderProgram(self->shader);

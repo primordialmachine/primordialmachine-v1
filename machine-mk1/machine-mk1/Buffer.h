@@ -52,7 +52,7 @@ Machine_FloatBuffer* Machine_FloatBuffer_create();
  * @param n The number of float values.
  * @param p The float values.
  */
-void Machine_FloatBuffer_setData(Machine_FloatBuffer* self, size_t n, float* p);
+void Machine_FloatBuffer_setData(Machine_FloatBuffer* self, size_t n, const float* p);
 
 /**
  * @brief Get the floats.

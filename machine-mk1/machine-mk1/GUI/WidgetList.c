@@ -50,5 +50,5 @@ Machine_GUI_Widget* Machine_GUI_WidgetList_getAt(Machine_GUI_WidgetList* self, s
 }
 
 void Machine_GUI_WidgetList_append(Machine_GUI_WidgetList* self, Machine_GUI_Widget* widget) {
-  return Machine_PointerArray_append(self->backing, widget);
+  Machine_PointerArray_append(self->backing, widget);
 }
