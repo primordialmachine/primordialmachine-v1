@@ -54,6 +54,15 @@
     <ClCompile Include="Runtime\StringBuffer.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
+    <ClCompile Include="Runtime\List.c">
+      <Filter>Quelldateien\Runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="Runtime\Map.c">
+      <Filter>Quelldateien\Runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="Runtime\Collection.c">
+      <Filter>Quelldateien\Runtime</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_Math.h">
@@ -81,6 +90,15 @@
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\StringBuffer.h">
+      <Filter>Headerdateien\Runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\List.h">
+      <Filter>Headerdateien\Runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\Map.h">
+      <Filter>Headerdateien\Runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\Collection.h">
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
   </ItemGroup>

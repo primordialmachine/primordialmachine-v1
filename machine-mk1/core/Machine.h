@@ -18,8 +18,13 @@ typedef int Machine_StatusValue;
 #define Machine_VoidValue_VOID (0)
 typedef int Machine_VoidValue;
 
+/// @brief The C-level representation of a <code>true</code> value.
 #define Machine_BooleanValue_TRUE (true)
+
+/// @brief The C-level representation of a <code>false</code> value.
 #define Machine_BooleanValue_FALSE (false)
+
+/// @brief The C-level representation of the <code>Boolean</code> type.
 typedef bool Machine_BooleanValue;
 
 typedef uint32_t Machine_IntegerValue;

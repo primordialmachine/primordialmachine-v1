@@ -25,6 +25,8 @@ void Machine_PointerArray_clear(Machine_PointerArray* self);
 
 /**
  * @brief Get the object at the specified index in this object array.
+ * @param self A pointer to this object array.
+ * @param index The index.
  * @return A pointer to the object or the null pointer.
  * @error Machine_Status_IndexOutOfBounds @a index is smaller than @a 0 or greater than @a n where @a n is the size of this object array.
  * @error Machine_Status_InvalidArgument @a self is null.

@@ -16,6 +16,9 @@
     <ClCompile Include="Math\Vector2.c" />
     <ClCompile Include="Math\Vector3.c" />
     <ClCompile Include="Math\Vector4.c" />
+    <ClCompile Include="Runtime\Collection.c" />
+    <ClCompile Include="Runtime\List.c" />
+    <ClCompile Include="Runtime\Map.c" />
     <ClCompile Include="Runtime\PointerArray.c" />
     <ClCompile Include="Runtime\StringBuffer.c" />
     <ClCompile Include="_Math.c" />
@@ -23,6 +26,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Machine.h" />
+    <ClInclude Include="Runtime\Collection.h" />
+    <ClInclude Include="Runtime\List.h" />
+    <ClInclude Include="Runtime\Map.h" />
     <ClInclude Include="Runtime\PointerArray.h" />
     <ClInclude Include="Runtime\StringBuffer.h" />
     <ClInclude Include="_Math.h" />
