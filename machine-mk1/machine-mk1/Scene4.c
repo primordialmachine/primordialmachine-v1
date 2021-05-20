@@ -54,22 +54,7 @@ static void Scene4_finalize(Scene4* self) {
 }
 
 MACHINE_DEFINE_CLASSTYPE(Scene4)
-
-Machine_ClassType* Scene4_getClassType() {
-  if (!g_Scene4_ClassType) {
-    g_Scene4_ClassType =
-      Machine_createClassType
-        (
-          Scene_getClassType(),
-          sizeof(Scene4),
-          (Machine_ClassTypeRemovedCallback*)&Scene4_onTypeDestroyed,
-          (Machine_ClassObjectVisitCallback*)&Scene4_visit,
-          (Machine_ClassObjectConstructCallback*)&Scene4_construct,
-          (Machine_ClassObjectDestructCallback*)NULL
-        );
-  }
-  return g_Scene4_ClassType;
-}
+MACHINE_DEFINE_CLASSTYPE_EX(Scene4, Scene, &Scene4_visit, &Scene4_construct, NULL)
 
 static void Scene4_onStartup(Scene4* scene) {
   scene->font = Machine_Fonts_createFont("RobotoSlab-Regular.ttf", 20);

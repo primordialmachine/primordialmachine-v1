@@ -1,5 +1,5 @@
+#define MACHINE_RUNTIME_PRIVATE (1)
 #include "Machine.h"
-
 
 
 #include <assert.h>
@@ -317,6 +317,61 @@ void Machine_loadVoid(Machine_VoidValue value) {
   g_stack->size++;
 }
 
+#include <stdlib.h>
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+bool Machine_Value_isEqualTo(const Machine_Value* x, const Machine_Value* y) {
+  if (x->tag != y->tag) {
+    return false;
+  }
+  switch (x->tag) {
+  case Machine_ValueFlag_Object:
+    return Machine_Object_isEqualTo(x->objectValue, y->objectValue);
+  case Machine_ValueFlag_String:
+    return Machine_String_isEqualTo(x->stringValue, y->stringValue);
+  case Machine_ValueFlag_Void:
+    return true;
+  case Machine_ValueFlag_Real:
+    return x->realValue == y->realValue;
+  case Machine_ValueFlag_Integer:
+    return x->integerValue == y->integerValue;
+  case Machine_ValueFlag_Boolean:
+    return x->booleanValue == y->booleanValue;
+  case Machine_ValueFlag_ForeignProcedure:
+    return x->foreignProcedureValue == y->foreignProcedureValue;
+  #if defined(_DEBUG)
+  default:
+    fprintf(stderr, "%s:%d: unreachable code reached\n", __FILE__, __LINE__);
+    exit(EXIT_FAILURE);
+  #endif
+  };
+}
+
+size_t Machine_Value_getHashValue(const Machine_Value* self) {
+  switch (self->tag) {
+  case Machine_ValueFlag_Object:
+    return Machine_Object_getHashValue(self->objectValue);
+  case Machine_ValueFlag_String:
+    return Machine_String_getHashValue(self->stringValue);
+  case Machine_ValueFlag_Void:
+    return 37;
+  case Machine_ValueFlag_Real:
+    return 37;
+  case Machine_ValueFlag_Integer:
+    return (size_t)self->integerValue;
+  case Machine_ValueFlag_Boolean:
+    return self->booleanValue ? 37 : 54;
+  case Machine_ValueFlag_ForeignProcedure:
+    return (uintptr_t)self->foreignProcedureValue;
+  #if defined(_DEBUG)
+  default:
+    fprintf(stderr, "%s:%d: unreachable code reached\n", __FILE__, __LINE__);
+    exit(EXIT_FAILURE);
+  #endif
+  };
+}
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 struct Machine_String {
@@ -355,7 +410,7 @@ Machine_String* Machine_String_create(const char* p, size_t n) {
 }
 
 
-bool Machine_String_equalTo(const Machine_String* self, const Machine_String* other) {
+bool Machine_String_isEqualTo(const Machine_String* self, const Machine_String* other) {
   if (self == other) return true;
   if (self->n == other->n && self->hashValue == other->hashValue) {
     return !memcmp(self->p, other->p, self->n);
@@ -376,6 +431,14 @@ size_t Machine_String_getNumberOfBytes(const Machine_String* self) {
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+static size_t Machine_Object_getHashValueImpl(const Machine_Object* self) {
+  return (size_t)(uintptr_t)self;
+}
+
+static bool Machine_Object_isEqualToImpl(const Machine_Object* x, const Machine_Object* y) {
+  return x == y;
+}
 
 struct Machine_ClassType {
   Machine_ClassType* parent;
@@ -399,6 +462,35 @@ static void Machine_ClassType_finalize(Machine_ClassType* self) {
   if (self->typeRemoved) {
     self->typeRemoved();
   }
+}
+
+static Machine_ClassType * g_Machine_Object_ClassType = NULL;
+static void Machine_Object_onTypeDestroyed() {
+  g_Machine_Object_ClassType = NULL;
+}
+
+Machine_ClassType* Machine_Object_getClassType() {
+  if (!g_Machine_Object_ClassType) {
+    g_Machine_Object_ClassType =
+      Machine_createClassType
+        (
+          NULL,
+          sizeof(Machine_Object),
+          (Machine_ClassTypeRemovedCallback*)&Machine_Object_onTypeDestroyed,
+          (Machine_ClassObjectVisitCallback*)NULL,
+          (Machine_ClassObjectConstructCallback*)&Machine_Object_construct,
+          (Machine_ClassObjectDestructCallback*)NULL
+        );
+  }
+  return g_Machine_Object_ClassType;
+}
+
+void Machine_Object_construct(Machine_Object* self, size_t numberOfArguments, const Machine_Value* arguments)
+{
+  MACHINE_ASSERT_NOTNULL(self);
+  self->getHashValue = &Machine_Object_getHashValueImpl;
+  self->isEqualTo = &Machine_Object_isEqualToImpl;
+  Machine_setClassType(self, Machine_Object_getClassType());
 }
 
 Machine_ClassType* Machine_createClassType(Machine_ClassType* parent, size_t size, Machine_ClassTypeRemovedCallback *typeRemoved, Machine_ClassObjectVisitCallback* visit, Machine_ClassObjectConstructCallback* construct, Machine_ClassObjectDestructCallback* destruct) {
@@ -482,10 +574,19 @@ Machine_Object* Machine_allocateClassObject(Machine_ClassType* type, size_t numb
   t->tag.gray = NULL;
   t->classType = type;
   Machine_lock(t->classType);
-
+  ((Machine_Object*)(t + 1))->getHashValue = &Machine_Object_getHashValueImpl;
+  ((Machine_Object*)(t + 1))->isEqualTo = &Machine_Object_isEqualToImpl;
   type->construct((void *)(t + 1), numberOfArguments, arguments);
 
   return (void*)(t + 1);
+}
+
+size_t Machine_Object_getHashValue(const Machine_Object* self) {
+  return self->getHashValue(self);
+}
+
+bool Machine_Object_isEqualTo(const Machine_Object* self, const Machine_Object* other) {
+  return self->isEqualTo(self, other);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

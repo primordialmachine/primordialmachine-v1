@@ -1,28 +1,16 @@
+#define MACHINE_MATH_PRIVATE (1)
 #include "Math/Vector3.h"
 
 static void Machine_Math_Vector3_construct(Machine_Math_Vector3* self, size_t numberOfArguments, const Machine_Value* arguments) {
+  Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->x = 0.f;
   self->y = 0.f;
   self->z = 0.f;
+  Machine_setClassType(self, Machine_Math_Vector3_getClassType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Math_Vector3)
-
-Machine_ClassType* Machine_Math_Vector3_getClassType() {
-  if (!g_Machine_Math_Vector3_ClassType) {
-    g_Machine_Math_Vector3_ClassType =
-      Machine_createClassType
-        (
-          NULL,
-          sizeof(Machine_Math_Vector3),
-          (Machine_ClassTypeRemovedCallback*)&Machine_Math_Vector3_onTypeDestroyed,
-          (Machine_ClassObjectVisitCallback*)NULL,
-          (Machine_ClassObjectConstructCallback*)&Machine_Math_Vector3_construct,
-          (Machine_ClassObjectDestructCallback*)NULL
-        );
-  }
-  return g_Machine_Math_Vector3_ClassType;
-}
+MACHINE_DEFINE_CLASSTYPE_EX(Machine_Math_Vector3, Machine_Object, NULL, &Machine_Math_Vector3_construct, NULL)
 
 Machine_Math_Vector3* Machine_Math_Vector3_create() {
   Machine_ClassType* ty = Machine_Math_Vector3_getClassType();

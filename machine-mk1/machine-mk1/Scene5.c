@@ -58,22 +58,7 @@ static void Scene5_finalize(Scene5* self) {
 }
 
 MACHINE_DEFINE_CLASSTYPE(Scene5)
-
-Machine_ClassType* Scene5_getClassType() {
-  if (!g_Scene5_ClassType) {
-    g_Scene5_ClassType =
-        Machine_createClassType
-        (
-          Scene_getClassType(),
-          sizeof(Scene5),
-          (Machine_ClassTypeRemovedCallback*)&Scene5_onTypeDestroyed,
-          (Machine_ClassObjectVisitCallback*)&Scene5_visit,
-          (Machine_ClassObjectConstructCallback*)&Scene5_construct,
-          (Machine_ClassObjectDestructCallback*)NULL
-        );
-  }
-  return g_Scene5_ClassType;
-}
+MACHINE_DEFINE_CLASSTYPE_EX(Scene5, Scene, &Scene5_visit, &Scene5_construct, NULL)
 
 static Machine_GUI_Widget* createTextLabel(const char* text, Machine_Fonts_Font *font) {
   Machine_GUI_TextLabel* widget;

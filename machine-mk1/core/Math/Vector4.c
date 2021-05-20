@@ -1,29 +1,17 @@
+#define MACHINE_MATH_PRIVATE (1)
 #include "Math/Vector4.h"
 
 static void Machine_Math_Vector4_construct(Machine_Math_Vector4* self, size_t numberOfArguments, const Machine_Value* arguments) {
+  Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->x = 0.f;
   self->y = 0.f;
   self->z = 0.f;
   self->w = 0.f;
+  Machine_setClassType(self, Machine_Math_Vector4_getClassType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Math_Vector4)
-
-Machine_ClassType* Machine_Math_Vector4_getClassType() {
-  if (!g_Machine_Math_Vector4_ClassType) {
-    g_Machine_Math_Vector4_ClassType =
-      Machine_createClassType
-        (
-          NULL,
-          sizeof(Machine_Math_Vector4),
-          (Machine_ClassTypeRemovedCallback*)&Machine_Math_Vector4_onTypeDestroyed,
-          (Machine_ClassObjectVisitCallback*)NULL,
-          (Machine_ClassObjectConstructCallback*)&Machine_Math_Vector4_construct,
-          (Machine_ClassObjectDestructCallback*)NULL
-        );
-  }
-  return g_Machine_Math_Vector4_ClassType;
-}
+MACHINE_DEFINE_CLASSTYPE_EX(Machine_Math_Vector4, Machine_Object, NULL, &Machine_Math_Vector4_construct, NULL)
 
 Machine_Math_Vector4* Machine_Math_Vector4_create() {
   Machine_ClassType* ty = Machine_Math_Vector4_getClassType();

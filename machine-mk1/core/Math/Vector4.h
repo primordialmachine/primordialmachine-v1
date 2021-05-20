@@ -4,16 +4,21 @@
 #if !defined(MACHINE_MATH_VECTOR4_H_INCLUDED)
 #define MACHINE_MATH_VECTOR4_H_INCLUDED
 
-#include "Machine.h"
+#if !defined(MACHINE_MATH_PRIVATE)
+#error("Do not include this file directly, include `_Math.h` instead.")
+#endif
+
+#include "_Runtime.h"
 
 /// C-level definition of a 3D vector.
 /// The HLL-level definition is
 /// @code
 /// class Machine.Math.Vector4 { ... }
 /// @endcode
-typedef struct Machine_Math_Vector4 Machine_Math_Vector4;
+MACHINE_DECLARE_CLASSTYPE(Machine_Math_Vector4)
 
 struct Machine_Math_Vector4 {
+  Machine_Object parent;
   float x, y, z, w;
 };
 

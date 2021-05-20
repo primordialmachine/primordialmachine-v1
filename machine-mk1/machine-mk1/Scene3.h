@@ -1,9 +1,11 @@
 #if !defined(SCENE3_H_INCLUDED)
 #define SCENE3_H_INCLUDED
 
-#include "scene.h"
 
-typedef struct Scene3 Scene3;
+#include "Scene.h"
+
+
+MACHINE_DECLARE_CLASSTYPE(Scene3)
 
 void Scene3_construct(Scene3* self, size_t numberOfArguments, const Machine_Value* arguments);
 

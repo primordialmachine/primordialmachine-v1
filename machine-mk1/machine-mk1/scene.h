@@ -1,7 +1,7 @@
 #if !defined(MACHINE_SCENE_H_INCLUDED)
 #define MACHINE_SCENE_H_INCLUDED
 
-#include "Machine.h"
+#include "_Runtime.h"
 
 MACHINE_DECLARE_CLASSTYPE(Scene)
 

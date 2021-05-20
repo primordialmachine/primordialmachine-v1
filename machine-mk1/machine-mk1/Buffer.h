@@ -2,13 +2,10 @@
 #define MACHINE_BUFFER_H_INCLUDED
 
 
-
-#include "Machine.h"
 #include "UtilitiesGL.h"
 
 
-
-typedef struct Machine_Uint8Buffer Machine_Uint8Buffer;
+MACHINE_DECLARE_CLASSTYPE(Machine_Uint8Buffer)
 
 /**
  * @brief Create a managed mesh.

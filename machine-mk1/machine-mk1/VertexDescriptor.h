@@ -2,10 +2,7 @@
 #define MACHINE_VERTEXDESCRIPTOR_H_INCLUDED
 
 
-
-#include "_Runtime.h"
 #include "UtilitiesGL.h"
-
 
 
 /**
@@ -33,7 +30,7 @@ enum Machine_VertexElementSemantics {
     Machine_VertexElementSemantics_UfVf,
 };
 
-typedef struct Machine_VertexDescriptor Machine_VertexDescriptor;
+MACHINE_DECLARE_CLASSTYPE(Machine_VertexDescriptor)
 
 /**
  * @brief Create a vertex descriptor.

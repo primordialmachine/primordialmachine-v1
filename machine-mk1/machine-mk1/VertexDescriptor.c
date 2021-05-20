@@ -12,17 +12,42 @@
 
 
 struct Machine_VertexDescriptor {
+  Machine_Object parent;
   size_t n;
   Machine_VertexElementSemantics* p;
 };
 
 #if defined(TRACE_VISIT) && (1) == TRACE_VISIT
-static void visit(Machine_VertexDescriptor* self) {
+static void Machine_VertexDescriptor_visit(Machine_VertexDescriptor* self);
+#endif
+
+static void Machine_VertexDescriptor_construct(Machine_VertexDescriptor* self, size_t numberOfArguments, const Machine_Value* arguments);
+
+static void Machine_VertexDescriptor_destruct(Machine_VertexDescriptor* self);
+
+MACHINE_DEFINE_CLASSTYPE(Machine_VertexDescriptor)
+
+#if defined(TRACE_VISIT) && (1) == TRACE_VISIT
+MACHINE_DEFINE_CLASSTYPE_EX(Machine_VertexDescriptor, Machine_Object, &Machine_VertexDescriptor_visit, &Machine_VertexDescriptor_construct, &Machine_VertexDescriptor_destruct)
+#else
+MACHINE_DEFINE_CLASSTYPE_EX(Machine_VertexDescriptor, Machine_Object, NULL, &Machine_VertexDescriptor_construct, &Machine_VertexDescriptor_destruct)
+#endif
+
+#if defined(TRACE_VISIT) && (1) == TRACE_VISIT
+static void Machine_VertexDescriptor_visit(Machine_VertexDescriptor* self) {
   Machine_log(Machine_LogFlags_ToTrace, __FILE__, __LINE__, "Machine.VertexDescriptor.visit()\n");
 }
 #endif
 
-static void finalize(Machine_VertexDescriptor* self) {
+static void Machine_VertexDescriptor_construct(Machine_VertexDescriptor* self, size_t numberOfArguments, const Machine_Value* arguments) {
+  Machine_Object_construct((Machine_Object *)self, numberOfArguments, arguments);
+  self->n = 0;
+  self->p = NULL;
+  Machine_setClassType(self, Machine_VertexDescriptor_getClassType());
+}
+
+
+static void Machine_VertexDescriptor_destruct(Machine_VertexDescriptor* self) {
   if (self->p) {
     free(self->p);
     self->p = NULL;
@@ -30,14 +55,14 @@ static void finalize(Machine_VertexDescriptor* self) {
 }
 
 Machine_VertexDescriptor* Machine_VertexDescriptor_create() {
+  Machine_ClassType* ty = Machine_VertexDescriptor_getClassType();
+  static const size_t NUMBER_OF_ARGUMENTS = 0;
+  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_VoidValue_VOID } };
 #if defined(TRACE_VISIT) && (1) == TRACE_VISIT
-  Machine_VertexDescriptor* self = Machine_allocate(sizeof(Machine_VertexDescriptor), (void (*)(void*)) & visit, (void (*)(void*)) & finalize);
+  Machine_VertexDescriptor* self = (Machine_VertexDescriptor *)Machine_allocateClassObjec(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
 #else
-  Machine_VertexDescriptor* self = Machine_allocate(sizeof(Machine_VertexDescriptor), NULL, (void (*)(void*)) & finalize);
+  Machine_VertexDescriptor* self = (Machine_VertexDescriptor *)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
 #endif
-  if (!self) return NULL;
-  self->n = 0;
-  self->p = NULL;
   return self;
 }
 

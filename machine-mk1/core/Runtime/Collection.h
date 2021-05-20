@@ -1,11 +1,16 @@
 #if !defined(MACHINE_RUNTIME_COLLECTION_H_INCLUDED)
 #define MACHINE_RUNTIME_COLLECTION_H_INCLUDED
 
+#if !defined(MACHINE_RUNTIME_PRIVATE)
+#error("Do not include this file directly, include `_Runtime.h` instead.")
+#endif
+
 #include "./../Machine.h"
 
 MACHINE_DECLARE_CLASSTYPE(Machine_Collection)
 
 struct Machine_Collection {
+  Machine_Object parent;
   void(*clear)(Machine_Collection* self);
   size_t(*getSize)(const Machine_Collection* self);
 };

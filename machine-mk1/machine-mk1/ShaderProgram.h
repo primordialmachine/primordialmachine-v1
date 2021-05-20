@@ -2,10 +2,7 @@
 #define MACHINE_SHADERPROGRAM_H_INCLUDED
 
 
-
-#include "Machine.h"
 #include "UtilitiesGL.h"
-
 
 
 typedef enum Machine_InputType {
@@ -13,9 +10,10 @@ typedef enum Machine_InputType {
   Machine_InputType_Vector3,
 } Machine_InputType;
 
-typedef struct Machine_Input Machine_Input;
+MACHINE_DECLARE_CLASSTYPE(Machine_Input)
 
 struct Machine_Input {
+  Machine_Object parent;
   Machine_String* name;
   Machine_InputType type;
 };
@@ -28,9 +26,10 @@ typedef enum Machine_ProgramKind {
 
 Machine_Input* Machine_Input_create(Machine_String* name, Machine_InputType type);
 
-typedef struct Machine_ShaderProgram Machine_ShaderProgram;
+MACHINE_DECLARE_CLASSTYPE(Machine_ShaderProgram)
 
 struct Machine_ShaderProgram {
+  Machine_Object parent;
   GLuint programId;
   GLuint vertexProgramId;
   GLuint geometryProgramId;

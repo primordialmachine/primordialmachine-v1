@@ -10,6 +10,7 @@
 MACHINE_DECLARE_CLASSTYPE(Machine_GUI_Widget)
 
 struct Machine_GUI_Widget {
+  Machine_Object parent;
   void (*render)(Machine_GUI_Widget* self, float width, float height);
   
   const Machine_Math_Rectangle2* (*getRectangle)(Machine_GUI_Widget* self);
@@ -80,6 +81,34 @@ const Machine_Math_Rectangle2* Machine_GUI_Widget_getRectangle(Machine_GUI_Widge
 /// @param self This widget.
 /// @return The preferred size.
 const Machine_Math_Vector2* Machine_GUI_Widget_getPreferredSize(Machine_GUI_Widget* self);
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/// @brief Get the name of this widget.
+/// @param self This widget.
+/// @return The name of this widget if any, null otherwise.
+Machine_String* Machine_GUI_Widget_getName(Machine_GUI_Widget* self);
+
+/// @brief Set the name of this widge.t
+/// @param self This widget.
+/// @param name The name of this widget if any, null otherwise.
+void Machine_GUI_Widget_setName(Machine_GUI_Widget* self, Machine_String* name);
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/// @brief Subscribe to an event.
+/// @param self This widget.
+/// @param name The name of the event.
+/// @param context The context.
+/// @param callback The callback.
+void Machine_GUI_Widget_subscribe(Machine_GUI_Widget* self, Machine_String *name, void *context, void (*callback)(void *context));
+
+/// @brief Unsubscribe from an event.
+/// @param self This widget.
+/// @param name The name of the event.
+/// @param context The context.
+/// @param callback The callback.
+void Machine_GUI_Widget_unsubscribe(Machine_GUI_Widget* self, Machine_String *name, void *context, void (*callback)(void* context));
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 

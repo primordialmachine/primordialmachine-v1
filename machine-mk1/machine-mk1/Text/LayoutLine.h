@@ -8,9 +8,10 @@
 /**
  * @brief A text layout line.
  */
-typedef struct Machine_Text_LayoutLine Machine_Text_LayoutLine;
+MACHINE_DECLARE_CLASSTYPE(Machine_Text_LayoutLine)
 
 struct Machine_Text_LayoutLine {
+  Machine_Object parent;
 
   /** @brief Index into Machine_Text_Layout::text. */
   int start;

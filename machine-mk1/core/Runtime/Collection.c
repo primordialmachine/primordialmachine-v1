@@ -1,25 +1,11 @@
+#define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/Collection.h"
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Collection)
-
-Machine_ClassType* Machine_Collection_getClassType() {
-  if (!g_Machine_Collection_ClassType) {
-    g_Machine_Collection_ClassType =
-      Machine_createClassType
-        (
-          NULL,
-          sizeof(Machine_Collection),
-          (Machine_ClassTypeRemovedCallback*)&Machine_Collection_onTypeDestroyed,
-          (Machine_ClassObjectVisitCallback*)NULL,
-          (Machine_ClassObjectConstructCallback*)&Machine_Collection_construct,
-          (Machine_ClassObjectDestructCallback*)NULL
-        );
-  }
-  return g_Machine_Collection_ClassType;
-}
+MACHINE_DEFINE_CLASSTYPE_EX(Machine_Collection, Machine_Object, NULL, &Machine_Collection_construct, NULL)
 
 void Machine_Collection_construct(Machine_Collection* self, size_t numberOfArguments, const Machine_Value* arguments) {
-  MACHINE_ASSERT_NOTNULL(self);
+  Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   Machine_setClassType(self, Machine_Collection_getClassType());
 }
 

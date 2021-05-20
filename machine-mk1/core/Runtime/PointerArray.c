@@ -1,5 +1,6 @@
+#define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/PointerArray.h"
-
+#include "Runtime/List.h"
 
 #include <malloc.h>
 #include <memory.h>
@@ -7,52 +8,35 @@
 
 #define Machine_PointerArray_MaximalCapacity SIZE_MAX / sizeof(void *)
 
+static void Machine_PointerArray_visit(Machine_PointerArray* self);
+
+static void Machine_PointerArray_construct(Machine_PointerArray* self, size_t numberOfArguments, const Machine_Value* arguments);
+
+static void Machine_PointerArray_destruct(Machine_PointerArray* self);
+
+MACHINE_DEFINE_CLASSTYPE(Machine_PointerArray)
+
 struct Machine_PointerArray {
-  void** elements;
-  size_t size, capacity;
+  Machine_Object parent;
+  Machine_List* list;
 };
 
+MACHINE_DEFINE_CLASSTYPE_EX(Machine_PointerArray, Machine_Object, &Machine_PointerArray_visit, &Machine_PointerArray_construct, &Machine_PointerArray_destruct)
+
 static void Machine_PointerArray_visit(Machine_PointerArray* self) {
-  if (self->elements) {
-    for (size_t i = 0, n = self->size; i < n; ++i) {
-      void *element = self->elements[i];
-      if (element) {
-        Machine_visit(element);
-      }
-    }
+  if (self->list) {
+    Machine_visit(self->list);
   }
 }
 
 static void Machine_PointerArray_construct(Machine_PointerArray* self, size_t numberOfArguments, const Machine_Value* arguments) {
-  self->elements = NULL;
-  self->size = 0;
-  self->capacity = 0;
+  Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
+  self->list = Machine_List_create();
+  Machine_setClassType(self, Machine_PointerArray_getClassType());
 }
 
-static void Machine_PointerArray_destruct(Machine_PointerArray* self) {
-  if (self->elements) {
-    free(self->elements);
-    self->elements = NULL;
-  }
-}
-
-MACHINE_DEFINE_CLASSTYPE(Machine_PointerArray)
-
-Machine_ClassType* Machine_PointerArray_getClassType() {
-  if (!g_Machine_PointerArray_ClassType) {
-    g_Machine_PointerArray_ClassType =
-      Machine_createClassType
-        (
-          NULL,
-          sizeof(Machine_PointerArray),
-          (Machine_ClassTypeRemovedCallback*)&Machine_PointerArray_onTypeDestroyed,
-          (Machine_ClassObjectVisitCallback*)&Machine_PointerArray_visit,
-          (Machine_ClassObjectConstructCallback*)&Machine_PointerArray_construct,
-          (Machine_ClassObjectDestructCallback*)&Machine_PointerArray_destruct
-        );
-  }
-  return g_Machine_PointerArray_ClassType;
-}
+static void Machine_PointerArray_destruct(Machine_PointerArray* self)
+{/*Intentionally empty.*/}
 
 Machine_PointerArray* Machine_PointerArray_create() {
   Machine_ClassType* ty = Machine_PointerArray_getClassType();
@@ -63,19 +47,20 @@ Machine_PointerArray* Machine_PointerArray_create() {
 }
 
 void Machine_PointerArray_clear(Machine_PointerArray* self) {
-  self->size = 0;
+  Machine_Collection_clear((Machine_Collection *)self->list);
 }
 
 void *Machine_PointerArray_getAt(Machine_PointerArray* self, size_t index) {
-  if (!self){
-    Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
+  MACHINE_ASSERT_NOTNULL(self);
+  Machine_Value v = Machine_List_getAt(self->list, index);
+  if (!Machine_Value_isObject(&v)) {
+    if (!Machine_Value_isVoid(&v)) {
+      Machine_setStatus(Machine_Status_InvalidOperation);
+      Machine_jump();
+    }
+    return NULL;
   }
-  if (index >= self->size) {
-    Machine_setStatus(Machine_Status_IndexOutOfBounds);
-    Machine_jump();
-  }
-  return self->elements[index];
+  return Machine_Value_getObject(&v);
 }
 
 size_t Machine_PointerArray_getSize(Machine_PointerArray* self) {
@@ -83,7 +68,7 @@ size_t Machine_PointerArray_getSize(Machine_PointerArray* self) {
     Machine_setStatus(Machine_Status_InvalidArgument);
     Machine_jump();
   }
-  return self->size;
+  return Machine_Collection_getSize((Machine_Collection*)self->list);
 }
 
 void Machine_PointerArray_prepend(Machine_PointerArray* self, void* pointer) {
@@ -91,35 +76,28 @@ void Machine_PointerArray_prepend(Machine_PointerArray* self, void* pointer) {
 }
 
 void Machine_PointerArray_append(Machine_PointerArray* self, void* pointer) {
-  if (!self) {
-    Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
+  MACHINE_ASSERT_NOTNULL(self);
+  if (!pointer) {
+    Machine_Value v;
+    Machine_Value_setVoid(&v, Machine_VoidValue_VOID);
+    Machine_List_append(self->list, v);
+  } else {
+    Machine_Value v;
+    Machine_Value_setObject(&v, pointer);
+    Machine_List_append(self->list, v);
   }
-  Machine_PointerArray_insert(self, self->size, pointer);
 }
 
 void Machine_PointerArray_insert(Machine_PointerArray* self, size_t index, void *pointer) {
-  if (!self) {
-    Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
+  MACHINE_ASSERT_NOTNULL(self);
+  if (!pointer) {
+    Machine_Value v;
+    Machine_Value_setVoid(&v, Machine_VoidValue_VOID);
+    Machine_List_insertAt(self->list, index, v);
   }
-  if ((self->capacity - self->size) == 0) {
-    if (self->capacity == Machine_PointerArray_MaximalCapacity) {
-      Machine_setStatus(Machine_Status_AllocationFailed);
-      Machine_jump();
-    }
-    size_t newCapacity = self->capacity + 1;
-    void *newElements = realloc(self->elements, sizeof(void*) * newCapacity);
-    if (!newElements) {
-      Machine_setStatus(Machine_Status_AllocationFailed);
-      Machine_jump();
-    }
-    self->elements = newElements;
-    self->capacity = newCapacity;
+  else {
+    Machine_Value v;
+    Machine_Value_setObject(&v, pointer);
+    Machine_List_insertAt(self->list, index, v);
   }
-  if (index < self->size) {
-    memmove(self->elements + index + 1, self->elements + index + 0, sizeof(void *) * (self->size - index));
-  }
-  self->elements[index] = pointer;
-  self->size++;
 }

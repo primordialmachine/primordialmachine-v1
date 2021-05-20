@@ -1,3 +1,4 @@
+#define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/StringBuffer.h"
 
 
@@ -6,15 +7,18 @@
 
 
 struct Machine_StringBuffer {
+  Machine_Object parent;
   char* p;
   size_t s; /**< The size. */
   size_t c; /**< The capacity.  */
 };
 
 static void Machine_StringBuffer_construct(Machine_StringBuffer* self, size_t numberOfArguments, const Machine_Value* arguments) {
+  Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->p = NULL;
   self->s = 0;
   self->c = 0;
+  Machine_setClassType(self, Machine_StringBuffer_getClassType());
 }
 
 static void Machine_StringBuffer_destruct(Machine_StringBuffer* self) {
@@ -25,22 +29,7 @@ static void Machine_StringBuffer_destruct(Machine_StringBuffer* self) {
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_StringBuffer)
-
-Machine_ClassType* Machine_StringBuffer_getClassType() {
-  if (!g_Machine_StringBuffer_ClassType) {
-    g_Machine_StringBuffer_ClassType =
-      Machine_createClassType
-        (
-          NULL,
-          sizeof(Machine_StringBuffer),
-          (Machine_ClassTypeRemovedCallback*)&Machine_StringBuffer_onTypeDestroyed,
-          (Machine_ClassObjectVisitCallback*)NULL,
-          (Machine_ClassObjectConstructCallback*)&Machine_StringBuffer_construct,
-          (Machine_ClassObjectDestructCallback*)&Machine_StringBuffer_destruct
-        );
-  }
-  return g_Machine_StringBuffer_ClassType;
-}
+MACHINE_DEFINE_CLASSTYPE_EX(Machine_StringBuffer, Machine_Object, NULL, &Machine_StringBuffer_construct, &Machine_StringBuffer_destruct)
 
 Machine_StringBuffer* Machine_StringBuffer_create() {
   Machine_ClassType* ty = Machine_StringBuffer_getClassType();

@@ -3,12 +3,11 @@
 
 
 
-#include "Machine.h"
+#include "_Runtime.h"
 #include "Buffer.h"
 #include "ShaderProgram.h"
 #include "VertexDescriptor.h"
-#include "Math/Vector2.h"
-#include "Math/Vector3.h"
+#include "_Math.h"
 #include <linmath.h>
 
 
@@ -16,7 +15,7 @@
 /// @brief Binding between shader program inputs and vertex elements.
 /// Not EVERY vertex element needs to have a corresponding shader program input.
 /// However EVERY shader program input needs to have a corresponding vertex element.
-typedef struct Machine_Binding Machine_Binding;
+MACHINE_DECLARE_CLASSTYPE(Machine_Binding)
 
 Machine_Binding* Machine_Binding_create(Machine_ShaderProgram* program, Machine_VertexDescriptor* vertexDescriptor, Machine_FloatBuffer* buffer);
 

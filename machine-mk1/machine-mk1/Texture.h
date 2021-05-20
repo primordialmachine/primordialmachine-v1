@@ -2,16 +2,14 @@
 #define MACHINE_TEXTURE_H_INCLUDED
 
 
-
-#include "Machine.h"
 #include "Images.h"
 #include "UtilitiesGL.h"
 
 
-
-typedef struct Machine_Texture Machine_Texture;
+MACHINE_DECLARE_CLASSTYPE(Machine_Texture);
 
 struct Machine_Texture {
+  Machine_Object parent;
   GLuint id;
 };
 

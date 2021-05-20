@@ -4,6 +4,10 @@
 #if !defined(MACHINE_H_INCLUDED)
 #define MACHINE_H_INCLUDED
 
+#if !defined(MACHINE_RUNTIME_PRIVATE)
+#error("Do not include this file directly, include `_Runtime.h` instead.")
+#endif
+
 #include <stddef.h>
 #include <stdbool.h>
 #include <stdint.h>
@@ -43,41 +47,33 @@ typedef Machine_Value(*Machine_ForeignProcedureValue)(size_t numberOfArguments, 
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-/**
- * Symbolic constant for a status variable value.
- * Indicates success. Guaranteed to be 0.
- */
+/// @brief Symbolic constant for a status variable value.
+/// That value indicates success. Guaranteed to be 0.
 #define Machine_Status_Success (0)
 
-/**
- * Symbolic constant for a status variable value.
- * Indicates an allocation failed.
- */
+/// @brief Symbolic constant for a status variable value.
+/// That value indicates an allocation failed.
 #define Machine_Status_AllocationFailed (1)
 
-/**
- * Symbolic constant for a status variable value.
- * Indicates an invalid argument.
- */
+/// @brief Symbolic constant for a status variable value.
+/// That value indicates an invalid argument.
 #define Machine_Status_InvalidArgument (2)
 
-/**
- * Symbolic constant for a status variable value.
- * Indicates an invalid operation.
- */
+/// @brief Symbolic constant for a status variable value.
+/// That value indicates an invalid operation.
 #define Machine_Status_InvalidOperation (3)
 
-/**
- * Symbolic constant for a status variable value.
- * Indicates an index is out of bounds.
- */
+/// @brief Symbolic constant for a status variable value.
+/// That value indicates an index is out of bounds.
 #define Machine_Status_IndexOutOfBounds (4)
 
- /**
-  * Symbolic constant for a status variable value.
-  * Indicates a capacity is exhausted.
-  */
+/// @brief Symbolic constant for a status variable value.
+/// That value indicates a capacity is exhausted.
 #define Machine_Status_CapacityExhausted (5)
+
+/// @brief Symbolic constant for a status variable value.
+/// That value indicates that something is not yet implemented.
+#define Machine_Status_NotYetImplemented (6)
 
 /**
  * Get the value of the status variable.
@@ -258,11 +254,11 @@ INLINE void Machine_Value_setBoolean(Machine_Value* self, Machine_BooleanValue v
   self->booleanValue = value;
 }
 
-INLINE Machine_BooleanValue Machine_Value_getBoolean(Machine_Value* self) {
+INLINE Machine_BooleanValue Machine_Value_getBoolean(const Machine_Value* self) {
   return self->booleanValue;
 }
 
-INLINE bool Machine_Value_isBoolean(Machine_Value* self) {
+INLINE bool Machine_Value_isBoolean(const Machine_Value* self) {
   return self->tag == Machine_ValueFlag_Boolean;
 }
 
@@ -272,7 +268,7 @@ INLINE void Machine_Value_setInteger(Machine_Value* self, Machine_IntegerValue v
   self->integerValue = value;
 }
 
-INLINE Machine_IntegerValue Machine_Value_getInteger(Machine_Value* self) {
+INLINE Machine_IntegerValue Machine_Value_getInteger(const Machine_Value* self) {
   return self->integerValue;
 }
 
@@ -286,11 +282,11 @@ INLINE void Machine_Value_setObject(Machine_Value* self, Machine_ObjectValue val
   self->objectValue = value;
 }
 
-INLINE Machine_ObjectValue Machine_Value_getObject(Machine_Value* self) {
+INLINE Machine_ObjectValue Machine_Value_getObject(const Machine_Value* self) {
   return self->objectValue;
 }
 
-INLINE bool Machine_Value_isObject(Machine_Value* self) {
+INLINE bool Machine_Value_isObject(const Machine_Value* self) {
   return self->tag == Machine_ValueFlag_Object;
 }
 
@@ -300,11 +296,11 @@ INLINE void Machine_Value_setForeignProcedure(Machine_Value* self, Machine_Forei
   self->foreignProcedureValue = value;
 }
 
-INLINE Machine_ForeignProcedureValue Machine_Value_getForeignProcedure(Machine_Value* self) {
+INLINE Machine_ForeignProcedureValue Machine_Value_getForeignProcedure(const Machine_Value* self) {
   return self->foreignProcedureValue;
 }
 
-INLINE bool Machine_Value_isForeignProcedure(Machine_Value* self) {
+INLINE bool Machine_Value_isForeignProcedure(const Machine_Value* self) {
   return self->tag == Machine_ValueFlag_ForeignProcedure;
 }
 
@@ -314,11 +310,11 @@ INLINE void Machine_Value_setReal(Machine_Value* self, Machine_RealValue value) 
   self->realValue = value;
 }
 
-INLINE Machine_RealValue Machine_Value_getReal(Machine_Value* self) {
+INLINE Machine_RealValue Machine_Value_getReal(const Machine_Value* self) {
   return self->realValue;
 }
 
-INLINE bool Machine_Value_isReal(Machine_Value* self) {
+INLINE bool Machine_Value_isReal(const Machine_Value* self) {
   return self->tag == Machine_ValueFlag_Real;
 }
 
@@ -328,11 +324,11 @@ INLINE void Machine_Value_setString(Machine_Value* self, Machine_StringValue val
   self->stringValue = value;
 }
 
-INLINE Machine_StringValue Machine_Value_getString(Machine_Value* self) {
+INLINE Machine_StringValue Machine_Value_getString(const Machine_Value* self) {
   return self->stringValue;
 }
 
-INLINE bool Machine_Value_isString(Machine_Value* self) {
+INLINE bool Machine_Value_isString(const Machine_Value* self) {
   return self->tag == Machine_ValueFlag_String;
 }
 
@@ -342,11 +338,11 @@ INLINE void Machine_Value_setVoid(Machine_Value* self, Machine_VoidValue value) 
   self->voidValue = value;
 }
 
-INLINE Machine_VoidValue Machine_Value_getVoid(Machine_Value* self) {
+INLINE Machine_VoidValue Machine_Value_getVoid(const Machine_Value* self) {
   return self->voidValue;
 }
 
-INLINE bool Machine_Value_isVoid(Machine_Value* self) {
+INLINE bool Machine_Value_isVoid(const Machine_Value* self) {
   return self->tag == Machine_ValueFlag_Void;
 }
 
@@ -360,6 +356,10 @@ INLINE void Machine_Value_visit(Machine_Value* self) {
     break;
   };
 }
+
+bool Machine_Value_isEqualTo(const Machine_Value* x, const Machine_Value* y);
+
+size_t Machine_Value_getHashValue(const Machine_Value* x);
 
 #undef INLINE
 
@@ -421,7 +421,7 @@ Machine_String* Machine_String_create(const char* p, size_t n);
  * @param other The other string.
  * @return @a true if this string string is equal to the other string.
  */
-bool Machine_String_equalTo(const Machine_String* self, const Machine_String* other);
+bool Machine_String_isEqualTo(const Machine_String* self, const Machine_String* other);
 
 /**
  * @brief Get the hash value of this string.
@@ -476,6 +476,30 @@ typedef void (Machine_ClassObjectConstructCallback)(void* self, size_t numberOfA
  */
 typedef void (Machine_ClassObjectDestructCallback)(void* self);
 
+typedef struct Machine_Object {
+  size_t(*getHashValue)(const Machine_Object* x);
+  bool(*isEqualTo)(const Machine_Object* x, const Machine_Object* y);
+} Machine_Object;
+
+Machine_ClassType* Machine_Object_getClassType();
+
+/// @brief Get the hash value of this object.
+/// @param self This object.
+/// @return The hash value.
+size_t Machine_Object_getHashValue(const Machine_Object* self);
+
+/// @brief Get if an object is equal to another object.
+/// @param self This object.
+/// @param other The other object.
+/// @return @a true if this object is equal to another object, @a false otherwise.
+bool Machine_Object_isEqualTo(const Machine_Object* self, const Machine_Object* other);
+
+/// @brief Construct this object.
+/// @param self This object.
+/// @param numberOfArguments The number of arguments.
+/// @param arguments The arguments.
+void Machine_Object_construct(Machine_Object* self, size_t numberOfArguments, const Machine_Value* arguments);
+
 /**
  * @param visit Pointer to a Machine_ObjectVisitCallback function or a null pointer.
  * @param construct Pointer to a Machine_ObjectConstructCallback function or a null pointer.
@@ -505,6 +529,23 @@ void Machine_setClassType(void* object, Machine_ClassType* classType);
 \
   static void NAME##_onTypeDestroyed() { \
     g_##NAME##_ClassType = NULL; \
+  }
+
+#define MACHINE_DEFINE_CLASSTYPE_EX(THIS_TYPE, PARENT_TYPE, VISIT, CONSTRUCT, DESTRUCT) \
+  Machine_ClassType* THIS_TYPE##_getClassType() { \
+    if (!g_##THIS_TYPE##_ClassType) { \
+      g_##THIS_TYPE##_ClassType = \
+        Machine_createClassType \
+          ( \
+            PARENT_TYPE##_getClassType(), \
+            sizeof(THIS_TYPE), \
+            (Machine_ClassTypeRemovedCallback*)&THIS_TYPE##_onTypeDestroyed, \
+            (Machine_ClassObjectVisitCallback*)VISIT, \
+            (Machine_ClassObjectConstructCallback*)CONSTRUCT, \
+            (Machine_ClassObjectDestructCallback*)DESTRUCT \
+          ); \
+    } \
+    return g_##THIS_TYPE##_ClassType; \
   }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

@@ -1,7 +1,9 @@
 #if !defined(MACHINE_SHAPE2_H_INCLUDED)
 #define MACHINE_SHAPE2_H_INCLUDED
 
+
 #include "_Math.h"
+
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 

@@ -4,27 +4,12 @@
 #include "./../GUI/Widget.h"
 
 
-
+static void Machine_GUI_Widget_visit(Machine_GUI_Widget* self);
 
 MACHINE_DEFINE_CLASSTYPE(Machine_GUI_Widget)
+MACHINE_DEFINE_CLASSTYPE_EX(Machine_GUI_Widget, Machine_Object, &Machine_GUI_Widget_visit, &Machine_GUI_Widget_construct, NULL)
 
 static void Machine_GUI_Widget_visit(Machine_GUI_Widget *self) {}
-
-Machine_ClassType* Machine_GUI_Widget_getClassType() {
-  if (!g_Machine_GUI_Widget_ClassType) {
-    g_Machine_GUI_Widget_ClassType =
-      Machine_createClassType
-        (
-          NULL,
-          sizeof(Machine_GUI_Widget),
-          (Machine_ClassTypeRemovedCallback*)&Machine_GUI_Widget_onTypeDestroyed,
-          (Machine_ClassObjectVisitCallback*)&Machine_GUI_Widget_visit,
-          (Machine_ClassObjectConstructCallback*)&Machine_GUI_Widget_construct,
-          (Machine_ClassObjectDestructCallback*)NULL
-        );
-  }
-  return g_Machine_GUI_Widget_ClassType;
-}
 
 void Machine_GUI_Widget_construct(Machine_GUI_Widget* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_setClassType(self, Machine_GUI_Widget_getClassType());

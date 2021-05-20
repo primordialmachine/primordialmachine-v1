@@ -63,22 +63,7 @@ void Machine_GUI_TextButton_construct(Machine_GUI_TextButton* self, size_t numbe
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_GUI_TextButton)
-
-Machine_ClassType* Machine_GUI_TextButton_getClassType() {
-  if (!g_Machine_GUI_TextButton_ClassType) {
-    g_Machine_GUI_TextButton_ClassType =
-      Machine_createClassType
-        (
-          Machine_GUI_Widget_getClassType(),
-          sizeof(Machine_GUI_TextButton),
-          (Machine_ClassTypeRemovedCallback*)&Machine_GUI_TextButton_onTypeDestroyed,
-          (Machine_ClassObjectVisitCallback*)&Machine_GUI_TextButton_visit,
-          (Machine_ClassObjectConstructCallback*)&Machine_GUI_TextButton_construct,
-          (Machine_ClassObjectDestructCallback*)NULL
-        );
-  }
-  return g_Machine_GUI_TextButton_ClassType;
-}
+MACHINE_DEFINE_CLASSTYPE_EX(Machine_GUI_TextButton, Machine_GUI_Widget, &Machine_GUI_TextButton_visit, &Machine_GUI_TextButton_construct, NULL)
 
 Machine_GUI_TextButton* Machine_GUI_TextButton_create() {
   Machine_ClassType* ty = Machine_GUI_TextButton_getClassType();
@@ -166,7 +151,7 @@ static void Machine_GUI_TextButton_render(Machine_GUI_TextButton* self, float wi
   if (self->childDirty) {
     // TODO: Only do this layouting if necessary.
     Machine_Math_Rectangle2* clipRect = Machine_Rectangle2_getRectangle(self->background);
-    Machine_Math_Vector2* widgetCenter = Machine_Math_Rectangle2_getCenter(Machine_Rectangle2_getRectangle(self->background));
+    const Machine_Math_Vector2* widgetCenter = Machine_Math_Rectangle2_getCenter(Machine_Rectangle2_getRectangle(self->background));
 
     const Machine_Math_Rectangle2* textBounds = Machine_Text_Layout_getBounds(self->foreground);
     const Machine_Math_Vector2* textCenter = Machine_Math_Rectangle2_getCenter(textBounds);

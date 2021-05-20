@@ -4,6 +4,10 @@
 #if !defined(MACHINE_MATH_VECTOR2_H_INCLUDED)
 #define MACHINE_MATH_VECTOR2_H_INCLUDED
 
+#if !defined(MACHINE_MATH_PRIVATE)
+#error("Do not include this file directly, include `_Math.h` instead.")
+#endif
+
 #include "_Runtime.h"
 
 /// C-level definition of a 2D vector.
@@ -11,9 +15,10 @@
 /// @code
 /// class Machine.Math.Vector2 { ... }
 /// @endcode
-typedef struct Machine_Math_Vector2 Machine_Math_Vector2;
+MACHINE_DECLARE_CLASSTYPE(Machine_Math_Vector2)
 
 struct Machine_Math_Vector2 {
+  Machine_Object parent;
   float x, y;
 };
 

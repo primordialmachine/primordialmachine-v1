@@ -40,22 +40,7 @@ static void Machine_GUI_Border_setSize(Machine_GUI_Border* self, const Machine_M
 static const Machine_Math_Vector2* Machine_GUI_Border_getPreferredSize(Machine_GUI_Border* self);
 
 MACHINE_DEFINE_CLASSTYPE(Machine_GUI_Border)
-
-Machine_ClassType* Machine_GUI_Border_getClassType() {
-  if (!g_Machine_GUI_Border_ClassType) {
-    g_Machine_GUI_Border_ClassType =
-      Machine_createClassType
-        (
-          Machine_GUI_Widget_getClassType(),
-          sizeof(Machine_GUI_Border),
-          (Machine_ClassTypeRemovedCallback*)&Machine_GUI_Border_onTypeDestroyed,
-          (Machine_ClassObjectVisitCallback*)&Machine_GUI_Border_visit,
-          (Machine_ClassObjectConstructCallback*)&Machine_GUI_Border_construct,
-          (Machine_ClassObjectDestructCallback*)NULL
-        );
-  }
-  return g_Machine_GUI_Border_ClassType;
-}
+MACHINE_DEFINE_CLASSTYPE_EX(Machine_GUI_Border, Machine_GUI_Widget, &Machine_GUI_Border_visit, &Machine_GUI_Border_construct, NULL)
 
 static void Machine_GUI_Border_visit(Machine_GUI_Border* self) {
   if (self->color) {
@@ -99,7 +84,7 @@ static void Machine_GUI_Border_render(Machine_GUI_Border* self, float width, flo
         Machine_Math_Rectangle2_setSize(r, size);
 
         Machine_Rectangle2_setRectangle(self->borderRectangle, r);
-        Machine_Shape2_render(self->borderRectangle, width, height);
+        Machine_Shape2_render((Machine_Shape2*)self->borderRectangle, width, height);
       }
       { // right/top
         Machine_Math_Rectangle2* r = Machine_Math_Rectangle2_create();
@@ -116,7 +101,7 @@ static void Machine_GUI_Border_render(Machine_GUI_Border* self, float width, flo
         Machine_Math_Rectangle2_setSize(r, size);
 
         Machine_Rectangle2_setRectangle(self->borderRectangle, r);
-        Machine_Shape2_render(self->borderRectangle, width, height);
+        Machine_Shape2_render((Machine_Shape2*)self->borderRectangle, width, height);
       }
       { // left/bottom
         Machine_Math_Rectangle2* r = Machine_Math_Rectangle2_create();
@@ -133,7 +118,7 @@ static void Machine_GUI_Border_render(Machine_GUI_Border* self, float width, flo
         Machine_Math_Rectangle2_setSize(r, size);
 
         Machine_Rectangle2_setRectangle(self->borderRectangle, r);
-        Machine_Shape2_render(self->borderRectangle, width, height);
+        Machine_Shape2_render((Machine_Shape2*)self->borderRectangle, width, height);
       }
       { // right/bottom
         Machine_Math_Rectangle2* r = Machine_Math_Rectangle2_create();
@@ -150,7 +135,7 @@ static void Machine_GUI_Border_render(Machine_GUI_Border* self, float width, flo
         Machine_Math_Rectangle2_setSize(r, size);
 
         Machine_Rectangle2_setRectangle(self->borderRectangle, r);
-        Machine_Shape2_render(self->borderRectangle, width, height);
+        Machine_Shape2_render((Machine_Shape2*)self->borderRectangle, width, height);
       }
       { // left side
         Machine_Math_Rectangle2* r = Machine_Math_Rectangle2_create();
@@ -184,7 +169,7 @@ static void Machine_GUI_Border_render(Machine_GUI_Border* self, float width, flo
         Machine_Math_Rectangle2_setSize(r, size);
 
         Machine_Rectangle2_setRectangle(self->borderRectangle, r);
-        Machine_Shape2_render(self->borderRectangle, width, height);
+        Machine_Shape2_render((Machine_Shape2*)self->borderRectangle, width, height);
       }
       { // top side
         Machine_Math_Rectangle2* r = Machine_Math_Rectangle2_create();
@@ -201,7 +186,7 @@ static void Machine_GUI_Border_render(Machine_GUI_Border* self, float width, flo
         Machine_Math_Rectangle2_setSize(r, size);
 
         Machine_Rectangle2_setRectangle(self->borderRectangle, r);
-        Machine_Shape2_render(self->borderRectangle, width, height);
+        Machine_Shape2_render((Machine_Shape2*)self->borderRectangle, width, height);
       }
       { // bottom side
         Machine_Math_Rectangle2* r = Machine_Math_Rectangle2_create();
@@ -218,7 +203,7 @@ static void Machine_GUI_Border_render(Machine_GUI_Border* self, float width, flo
         Machine_Math_Rectangle2_setSize(r, size);
 
         Machine_Rectangle2_setRectangle(self->borderRectangle, r);
-        Machine_Shape2_render(self->borderRectangle, width, height);
+        Machine_Shape2_render((Machine_Shape2*)self->borderRectangle, width, height);
       }
     }
   }

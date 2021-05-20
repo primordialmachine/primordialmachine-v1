@@ -11,13 +11,14 @@ typedef struct Machine_Fonts_Font Machine_Fonts_Font;
 /// - <code>color</color>:   The color.
 /// - <code>font</code>:     The font.
 /// - <code>position</code>: The position of the cursor at which the first symbol of the first line is rendered.
-typedef struct Machine_Text_Layout Machine_Text_Layout;
+MACHINE_DECLARE_CLASSTYPE(Machine_Text_Layout);
 
 #define LINES_DIRTY (1)
 #define LINE_BOUNDS_DIRTY (2)
 #define BOUNDS_DIRTY (4)
 
 struct Machine_Text_Layout {
+  Machine_Object parent;
   /// @brief The position of this layout.
   Machine_Math_Vector2* position;
   /// @brief The color of this layout.

@@ -11,7 +11,7 @@
 #include "Texture.h"
 #include <linmath.h>
 
-typedef struct Machine_Fonts_Font Machine_Fonts_Font;
+MACHINE_DECLARE_CLASSTYPE(Machine_Fonts_Font)
 
 /**
  * Increment the fonts module by @a 1.

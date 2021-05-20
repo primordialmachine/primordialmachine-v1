@@ -1,7 +1,6 @@
 #include "./Shape2.h"
 
-#include "./Math/Vector2.h"
-#include "./Math/Vector3.h"
+#include "_Math.h"
 #include "./Binding.h"
 #include "./Video.h"
 #include "./VertexDescriptor.h"
@@ -11,32 +10,20 @@
 #include "./ShaderProgram.h"
 
 struct Machine_Shape2 {
+  Machine_Object parent;
   void (*render)(Machine_Shape2* self, float width, float height);
 };
 
-static void Machine_Shape2_visit(Machine_Shape2* self) {
-}
+static void Machine_Shape2_visit(Machine_Shape2* self)
+{/*Intentionally empty.*/}
 
 void Machine_Shape2_construct(Machine_Shape2* self, size_t numberOfArguments, const Machine_Value* arguments) {
+  Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
+  Machine_setClassType(self, Machine_Shape2_getClassType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Shape2)
-
-Machine_ClassType* Machine_Shape2_getClassType() {
-  if (!g_Machine_Shape2_ClassType) {
-    g_Machine_Shape2_ClassType =
-      Machine_createClassType
-        (
-          NULL,
-          sizeof(Machine_Shape2),
-          (Machine_ClassTypeRemovedCallback*)&Machine_Shape2_onTypeDestroyed,
-          (Machine_ClassObjectVisitCallback*)&Machine_Shape2_visit,
-          (Machine_ClassObjectConstructCallback*)&Machine_Shape2_construct,
-          (Machine_ClassObjectDestructCallback*)NULL
-        );
-  }
-  return g_Machine_Shape2_ClassType;
-}
+MACHINE_DEFINE_CLASSTYPE_EX(Machine_Shape2, Machine_Object, &Machine_Shape2_visit, Machine_Shape2_construct, NULL)
 
 void Machine_Shape2_render(Machine_Shape2* self, float width, float height) {
   if (!self || !self->render) {
@@ -145,25 +132,11 @@ void Machine_Rectangle2_construct(Machine_Rectangle2* self, size_t numberOfArgum
 
   self->color = Machine_Math_Vector3_create();
   Machine_Math_Vector3_set(self->color, 1.f, 1.f, 1.f);
+  Machine_setClassType(self, Machine_Rectangle2_getClassType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Rectangle2)
-
-Machine_ClassType* Machine_Rectangle2_getClassType() {
-  if (!g_Machine_Rectangle2_ClassType) {
-    g_Machine_Rectangle2_ClassType =
-      Machine_createClassType
-        (
-          Machine_Shape2_getClassType(),
-          sizeof(Machine_Rectangle2),
-          (Machine_ClassTypeRemovedCallback*)&Machine_Shape2_onTypeDestroyed,
-          (Machine_ClassObjectVisitCallback*)&Machine_Rectangle2_visit,
-          (Machine_ClassObjectConstructCallback*)&Machine_Rectangle2_construct,
-          (Machine_ClassObjectDestructCallback*)NULL
-        );
-  }
-  return g_Machine_Rectangle2_ClassType;
-}
+MACHINE_DEFINE_CLASSTYPE_EX(Machine_Rectangle2, Machine_Shape2, &Machine_Rectangle2_visit, &Machine_Rectangle2_construct, NULL)
 
 Machine_Rectangle2* Machine_Rectangle2_create() {
   Machine_ClassType* ty = Machine_Rectangle2_getClassType();

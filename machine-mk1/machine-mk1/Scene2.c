@@ -63,22 +63,7 @@ static void Scene2_finalize(Scene2* self) {
 }
 
 MACHINE_DEFINE_CLASSTYPE(Scene2)
-
-Machine_ClassType* Scene2_getClassType() {
-  if (!g_Scene2_ClassType) {
-    g_Scene2_ClassType =
-      Machine_createClassType
-        (
-          Scene_getClassType(),
-          sizeof(Scene2),
-          (Machine_ClassTypeRemovedCallback*)&Scene2_onTypeDestroyed,
-          (Machine_ClassObjectVisitCallback*)&Scene2_visit,
-          (Machine_ClassObjectConstructCallback*)&Scene2_construct,
-          (Machine_ClassObjectDestructCallback*)NULL
-        );
-  }
-  return g_Scene2_ClassType;
-}
+MACHINE_DEFINE_CLASSTYPE_EX(Scene2, Scene, &Scene2_visit, &Scene2_construct, NULL)
 
 static void Scene2_onStartup(Scene2* scene) {
   scene->vertices = Machine_FloatBuffer_create();

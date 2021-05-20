@@ -52,14 +52,22 @@ static void defineMatrixUniforms(Machine_StringBuffer* code, bool modelToWorld, 
 #undef T
 }
 
+static void Machine_Input_construct(Machine_Input* self, size_t numberOfArguments, const Machine_Value* arguments) {
+  Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
+  self->name = Machine_Value_getString(&arguments[0]);
+  self->type = Machine_Value_getInteger(&arguments[1]);
+  Machine_setClassType(self, Machine_Input_getClassType());
+}
+
+MACHINE_DEFINE_CLASSTYPE(Machine_Input)
+MACHINE_DEFINE_CLASSTYPE_EX(Machine_Input, Machine_Object, &Machine_Input_visit, &Machine_Input_construct, NULL)
+
 Machine_Input* Machine_Input_create(Machine_String* name, Machine_InputType type) {
-  Machine_Input* self = Machine_allocate(sizeof(Machine_Input), (void (*)(void*)) & Machine_Input_visit, NULL);
-  if (!self) {
-    Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
-  }
-  self->name = name;
-  self->type = type;
+  Machine_ClassType* ty = Machine_Input_getClassType();
+  Machine_Value arguments[2];
+  Machine_Value_setString(&arguments[0], name);
+  Machine_Value_setInteger(&arguments[1], type);
+  Machine_Input* self = Machine_allocateClassObject(ty, 2, arguments);
   return self;
 }
 
@@ -246,7 +254,7 @@ Machine_Input* Machine_ShaderProgram_getInput(Machine_ShaderProgram* self, size_
 bool Machine_ShaderProgram_setInput(Machine_ShaderProgram* self, Machine_String* name, Machine_InputType type) {
   for (size_t i = 0, n = self->inputs.n; i < n; ++i) {
     Machine_Input* input = self->inputs.e[i];
-    if (Machine_String_equalTo(input->name, name)) {
+    if (Machine_String_isEqualTo(input->name, name)) {
       input->type = type;
       return true;
     }

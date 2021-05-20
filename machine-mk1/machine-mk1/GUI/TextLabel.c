@@ -63,22 +63,7 @@ void Machine_GUI_TextLabel_construct(Machine_GUI_TextLabel* self, size_t numberO
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_GUI_TextLabel)
-
-Machine_ClassType* Machine_GUI_TextLabel_getClassType() {
-  if (!g_Machine_GUI_TextLabel_ClassType) {
-    g_Machine_GUI_TextLabel_ClassType =
-      Machine_createClassType
-        (
-          Machine_GUI_Widget_getClassType(),
-          sizeof(Machine_GUI_TextLabel),
-          (Machine_ClassTypeRemovedCallback*)&Machine_GUI_TextLabel_onTypeDestroyed,
-          (Machine_ClassObjectVisitCallback*)&Machine_GUI_TextLabel_visit,
-          (Machine_ClassObjectConstructCallback*)&Machine_GUI_TextLabel_construct,
-          (Machine_ClassObjectDestructCallback*)NULL
-        );
-  }
-  return g_Machine_GUI_TextLabel_ClassType;
-}
+MACHINE_DEFINE_CLASSTYPE_EX(Machine_GUI_TextLabel, Machine_GUI_Widget, &Machine_GUI_TextLabel_visit, &Machine_GUI_TextLabel_construct, NULL)
 
 Machine_GUI_TextLabel* Machine_GUI_TextLabel_create() {
   Machine_ClassType* ty = Machine_GUI_TextLabel_getClassType();

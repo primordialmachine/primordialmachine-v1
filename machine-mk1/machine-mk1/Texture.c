@@ -1,12 +1,15 @@
 #include "Texture.h"
 
 
-
-static void Machine_Texture_finalize(Machine_Texture* self) {
+static void Machine_Texture_destruct(Machine_Texture* self) {
   if (self->id) {
     glDeleteTextures(1, &self->id);
     self->id = 0;
   }
+}
+
+static void Machine_Texture_finalize(Machine_Texture* self) {
+  Machine_Texture_destruct(self);
 }
 
 Machine_Texture* Machine_Texture_create(Machine_Images_Image* image) {

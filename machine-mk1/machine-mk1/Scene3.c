@@ -73,22 +73,7 @@ static void Scene3_finalize(Scene3* self) {
 }
 
 MACHINE_DEFINE_CLASSTYPE(Scene3)
-
-Machine_ClassType* Scene3_getClassType() {
-  if (!g_Scene3_ClassType) {
-    g_Scene3_ClassType =
-      Machine_createClassType
-        (
-          Scene_getClassType(),
-          sizeof(Scene3),
-          (Machine_ClassTypeRemovedCallback*)&Scene3_onTypeDestroyed,
-          (Machine_ClassObjectVisitCallback*)&Scene3_visit,
-          (Machine_ClassObjectConstructCallback*)&Scene3_construct,
-          (Machine_ClassObjectDestructCallback*)NULL
-        );
-  }
-  return g_Scene3_ClassType;
-}
+MACHINE_DEFINE_CLASSTYPE_EX(Scene3, Scene, &Scene3_visit, &Scene3_construct, NULL)
 
 static void Scene3_startup(Scene3* scene) {
   if (Machine_Images_createImage("test-transparency-1.png", &scene->image)) {

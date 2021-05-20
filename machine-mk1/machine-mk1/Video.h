@@ -1,7 +1,7 @@
 #if !defined(MACHINE_VIDEO_H_INCLUDED)
 #define MACHINE_VIDEO_H_INCLUDED
 
-#include "Machine.h"
+#include "_Runtime.h"
 typedef struct Machine_Texture Machine_Texture;
 typedef struct Machine_ShaderProgram Machine_ShaderProgram;
 

@@ -5,7 +5,9 @@
 #if !defined(MACHINE_IMAGES_H_INCLUDED)
 #define MACHINE_IMAGES_H_INCLUDED
 
-typedef struct Machine_Images_Image Machine_Images_Image;
+#include "_Runtime.h"
+
+MACHINE_DECLARE_CLASSTYPE(Machine_Images_Image)
 
 typedef enum Machine_Images_PixelFormat {
   

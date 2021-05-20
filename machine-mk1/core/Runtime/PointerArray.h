@@ -1,6 +1,9 @@
 #if !defined(MACHINE_RUNTIME_POINTERARRAY_H_INCLUDED)
 #define MACHINE_RUNTIME_POINTERARRAY_H_INCLUDED
 
+#if !defined(MACHINE_RUNTIME_PRIVATE)
+#error("Do not include this file directly, include `_Runtime.h` instead.")
+#endif
 
 #include "./../Machine.h"
 

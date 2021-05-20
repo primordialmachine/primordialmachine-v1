@@ -4,6 +4,10 @@
 #if !defined(MACHINE_MATH_RECTANGLE2_H_INCLUDED)
 #define MACHINE_MATH_RECTANGLE2_H_INCLUDED
 
+#if !defined(MACHINE_MATH_PRIVATE)
+#error("Do not include this file directly, include `_Math.h` instead.")
+#endif
+
 #include "_Runtime.h"
 typedef struct Machine_Math_Vector2 Machine_Math_Vector2;
 typedef struct Machine_Math_Vector3 Machine_Math_Vector3;
@@ -13,9 +17,10 @@ typedef struct Machine_Math_Vector3 Machine_Math_Vector3;
 /// @code
 /// class Machine.Math.Rectangle2 { ... }
 /// @endcode
-typedef struct Machine_Math_Rectangle2 Machine_Math_Rectangle2;
+MACHINE_DECLARE_CLASSTYPE(Machine_Math_Rectangle2)
 
 struct Machine_Math_Rectangle2 {
+  Machine_Object parent;
   float x, y;
   float w, h;
 };

@@ -365,7 +365,7 @@ void Machine_Text_Layout_setText(Machine_Text_Layout* self, Machine_String* text
     Machine_setStatus(Machine_Status_InvalidArgument);
     Machine_jump();
   }
-  if (!Machine_String_equalTo(self->text, text)) {
+  if (!Machine_String_isEqualTo(self->text, text)) {
     self->text = text;
     self->flags |= LINES_DIRTY | LINE_BOUNDS_DIRTY | BOUNDS_DIRTY;
   }

@@ -38,6 +38,7 @@ Machine_Binding_Node* Machine_Binding_Node_create(Machine_String* name, size_t i
 }
 
 struct Machine_Binding {
+  Machine_Object parent;
   Machine_Binding_Node* nodes;
   Machine_ShaderProgram* program;
   Machine_VertexDescriptor* vertexDescriptor;
@@ -86,7 +87,7 @@ Machine_Binding* Machine_Binding_create(Machine_ShaderProgram *program, Machine_
 bool Machine_Binding_set(Machine_Binding* self, Machine_String* name, size_t index) {
   Machine_Binding_Node* node = self->nodes;
   while (node) {
-    if (Machine_String_equalTo(node->name, name)) {
+    if (Machine_String_isEqualTo(node->name, name)) {
       node->index = index;
       self->dirty = true;
       return true;
@@ -102,7 +103,7 @@ bool Machine_Binding_set(Machine_Binding* self, Machine_String* name, size_t ind
 size_t Machine_Binding_get(Machine_Binding* self, Machine_String* name) {
   Machine_Binding_Node* node = self->nodes;
   while (node) {
-    if (Machine_String_equalTo(node->name, name)) {
+    if (Machine_String_isEqualTo(node->name, name)) {
       return node->index;
     }
     node = node->next;
