@@ -13,22 +13,23 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{f979d1c3-9323-41f7-9c34-f05f7516103a}</ProjectGuid>
+    <ProjectGuid>{D18EE412-E5AE-4B7B-B291-46231DCA6511}</ProjectGuid>
     <RootNamespace>rtxviz</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
-    <ProjectName>machine-mk1</ProjectName>
+    <ProjectName>machine-mk1-input</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -46,11 +47,13 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/linmath;$(SolutionDir)external/freetype/include;$(SolutionDir)external/libpng/include;$(SolutionDir)core;$(SolutionDir)math;$(SolutionDir)input</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/linmath;$(SolutionDir)external/freetype/include;$(SolutionDir)external/libpng/include;$(SolutionDir)core;$(SolutionDir)math</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -62,7 +65,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/linmath;$(SolutionDir)external/freetype/include;$(SolutionDir)external/libpng/include;$(SolutionDir)core;$(SolutionDir)math;$(SolutionDir)input</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/linmath;$(SolutionDir)external/freetype/include;$(SolutionDir)external/libpng/include;$(SolutionDir)core;$(SolutionDir)math</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -71,67 +74,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\external\glad\src\glad.c" />
-    <ClCompile Include="Binding.c" />
-    <ClCompile Include="GUI\WidgetList.c" />
-    <ClCompile Include="GUI\TextButton.c" />
-    <ClCompile Include="GUI\Widget.c" />
-    <ClCompile Include="GUI\Border.c" />
-    <ClCompile Include="GUI\TextLabel.c" />
-    <ClCompile Include="Scene4.c" />
-    <ClCompile Include="Scene5.c" />
-    <ClCompile Include="Shape2.c" />
-    <ClCompile Include="Text\LayoutLine.c" />
-    <ClCompile Include="Text\Layout.c" />
-    <ClCompile Include="UtilitiesGL.c" />
-    <ClCompile Include="Images.c" />
-    <ClCompile Include="main.c" />
-    <ClCompile Include="Buffer.c" />
-    <ClCompile Include="Scene.c" />
-    <ClCompile Include="Scene1.c" />
-    <ClCompile Include="Fonts.c" />
-    <ClCompile Include="Scene2.c" />
-    <ClCompile Include="Scene3.c" />
-    <ClCompile Include="ShaderProgram.c" />
-    <ClCompile Include="Texture.c" />
-    <ClCompile Include="VertexDescriptor.c" />
-    <ClCompile Include="Video.c" />
-    <ClCompile Include="Video\CanvasSizeChangedEvent.c" />
+    <ClCompile Include="Input\MouseButtonEvent.c" />
+    <ClCompile Include="Input\MousePointerEvent.c" />
+    <ClCompile Include="_Input.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\external\glad\include\glad\glad.h" />
-    <ClInclude Include="..\external\glad\include\KHR\khrplatform.h" />
-    <ClInclude Include="Binding.h" />
-    <ClInclude Include="GUI\WidgetList.h" />
-    <ClInclude Include="GUI\TextButton.h" />
-    <ClInclude Include="GUI\Widget.h" />
-    <ClInclude Include="GUI\Border.h" />
-    <ClInclude Include="GUI\TextLabel.h" />
-    <ClInclude Include="Scene4.h" />
-    <ClInclude Include="Scene5.h" />
-    <ClInclude Include="Shape2.h" />
-    <ClInclude Include="Text\LayoutLine.h" />
-    <ClInclude Include="Text\Layout.h" />
-    <ClInclude Include="UtilitiesGL.h" />
-    <ClInclude Include="Images.h" />
-    <ClInclude Include="Buffer.h" />
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="Scene1.h" />
-    <ClInclude Include="Fonts.h" />
-    <ClInclude Include="Scene2.h" />
-    <ClInclude Include="Scene3.h" />
-    <ClInclude Include="ShaderProgram.h" />
-    <ClInclude Include="Texture.h" />
-    <ClInclude Include="VertexDescriptor.h" />
-    <ClInclude Include="Video.h" />
-    <ClInclude Include="Video\CanvasSizeChangedEvent.h" />
+    <ClInclude Include="Input\MouseButtonEvent.h" />
+    <ClInclude Include="Input\MousePointerEvent.h" />
+    <ClInclude Include="_Input.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\core\machine-mk1-core.vcxproj">
       <Project>{f34866d8-3093-4b44-a225-7da2b5cd8e83}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\input\machine-mk1-input.vcxproj">
-      <Project>{d18ee412-e5ae-4b7b-b291-46231dca6511}</Project>
     </ProjectReference>
     <ProjectReference Include="..\math\machine-mk1-math.vcxproj">
       <Project>{681c50f0-37bf-4661-bf5a-21a29abf2b63}</Project>

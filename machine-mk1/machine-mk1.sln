@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-core", "core\ma
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-math", "math\machine-mk1-math.vcxproj", "{681C50F0-37BF-4661-BF5A-21A29ABF2B63}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-input", "input\machine-mk1-input.vcxproj", "{D18EE412-E5AE-4B7B-B291-46231DCA6511}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -27,6 +29,10 @@ Global
 		{681C50F0-37BF-4661-BF5A-21A29ABF2B63}.Debug|x64.Build.0 = Debug|x64
 		{681C50F0-37BF-4661-BF5A-21A29ABF2B63}.Release|x64.ActiveCfg = Release|x64
 		{681C50F0-37BF-4661-BF5A-21A29ABF2B63}.Release|x64.Build.0 = Release|x64
+		{D18EE412-E5AE-4B7B-B291-46231DCA6511}.Debug|x64.ActiveCfg = Debug|x64
+		{D18EE412-E5AE-4B7B-B291-46231DCA6511}.Debug|x64.Build.0 = Debug|x64
+		{D18EE412-E5AE-4B7B-B291-46231DCA6511}.Release|x64.ActiveCfg = Release|x64
+		{D18EE412-E5AE-4B7B-B291-46231DCA6511}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
