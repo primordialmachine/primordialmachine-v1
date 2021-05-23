@@ -2,42 +2,34 @@
 
 #include <malloc.h>
 
-// TODO: Make static.
-void Scene_visit(Scene* self) {}
+static void Scene_destruct(Scene* self);
 
-static void onMousePointerEvent(Scene* self, float x, float y);
+static void Scene_visit(Scene* self);
 
-static void onMouseButtonEvent(Scene* self, float x, float y, int button, int action);
+static void onMousePointerEvent(Scene* self, Machine_MousePointerEvent *event);
+
+static void onMouseButtonEvent(Scene* self, Machine_MouseButtonEvent *event);
 
 void Scene_construct(Scene* self, size_t numberOfArguments, const Machine_Value *arguments) {
   self->onMouseButtonEvent = &onMouseButtonEvent;
   self->onMousePointerEvent = &onMousePointerEvent;
 }
 
-void Scene_destruct(Scene* self) {}
-
-MACHINE_DEFINE_CLASSTYPE(Scene)
-
-Machine_ClassType* Scene_getClassType() {
-  if (!g_Scene_ClassType) {
-    g_Scene_ClassType =
-      Machine_createClassType
-      (
-        NULL,
-        sizeof(Scene),
-        (Machine_ClassTypeRemovedCallback*)&Scene_onTypeDestroyed,
-        (Machine_ClassObjectVisitCallback*)&Scene_visit,
-        (Machine_ClassObjectConstructCallback*)&Scene_construct,
-        (Machine_ClassObjectDestructCallback*)NULL
-      );
-  }
-  return g_Scene_ClassType;
-}
-
-static void onMousePointerEvent(Scene* self, float x, float y)
+// TODO: Make static.
+void Scene_destruct(Scene* self)
 {/*Intentionally empty.*/}
 
-static void onMouseButtonEvent(Scene* self, float x, float y, int button, int action)
+// TODO: Make static.
+static void Scene_visit(Scene* self)
+{/*Intentionally empty.*/}
+
+MACHINE_DEFINE_CLASSTYPE(Scene)
+MACHINE_DEFINE_CLASSTYPE_EX(Scene, Machine_Object, &Scene_visit, &Scene_construct, &Scene_destruct)
+
+static void onMousePointerEvent(Scene* self, Machine_MousePointerEvent *event)
+{/*Intentionally empty.*/}
+
+static void onMouseButtonEvent(Scene* self, Machine_MouseButtonEvent *event)
 {/*Intentionally empty.*/}
 
 void Scene_onStartup(Scene* self) {
@@ -46,22 +38,22 @@ void Scene_onStartup(Scene* self) {
   self->onStartup(self);
 }
 
-void Scene_onCanvaSizeChanged(Scene* self, float width, float height) {
+void Scene_onCanvasSizeChanged(Scene* self, Machine_CanvasSizeChangedEvent* event) {
   MACHINE_ASSERT_NOTNULL(self);
   MACHINE_ASSERT_NOTNULL(self->onCanvasSizeChanged);
-  self->onCanvasSizeChanged(self, width, height);
+  self->onCanvasSizeChanged(self, event);
 }
 
-void Scene_onMousePointerEvent(Scene* self, float x, float y) {
+void Scene_onMousePointerEvent(Scene* self, Machine_MousePointerEvent *event) {
   MACHINE_ASSERT_NOTNULL(self);
   MACHINE_ASSERT_NOTNULL(self->onMousePointerEvent);
-  self->onMousePointerEvent(self, x, y);
+  self->onMousePointerEvent(self, event);
 }
 
-void Scene_onMouseButtonEvent(Scene* self, float x, float y, int index, int action) {
+void Scene_onMouseButtonEvent(Scene* self, Machine_MouseButtonEvent *event) {
   MACHINE_ASSERT_NOTNULL(self);
   MACHINE_ASSERT_NOTNULL(self->onMouseButtonEvent);
-  self->onMouseButtonEvent(self, x, y, index, action);
+  self->onMouseButtonEvent(self, event);
 }
 
 void Scene_onUpdate(Scene* self, float width, float height) {

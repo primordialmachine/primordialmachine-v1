@@ -206,13 +206,13 @@ extern "C" {
 
       int oldWidth, oldHeight;
       glfwGetFramebufferSize(window, &oldWidth, &oldHeight);
-      Scene_onCanvaSizeChanged(scene, (float)oldWidth, (float)oldHeight);
+      Scene_onCanvasSizeChanged(scene, Machine_CanvasSizeChangedEvent_create((float)oldWidth, (float)oldHeight));
 
       while (!glfwWindowShouldClose(window)) {
         int newWidth, newHeight;
         glfwGetFramebufferSize(window, &newWidth, &newHeight);
         if (oldWidth != newWidth || oldHeight != newHeight) {
-          Scene_onCanvaSizeChanged(scene, (float)newWidth, (float)newHeight);
+          Scene_onCanvasSizeChanged(scene, Machine_CanvasSizeChangedEvent_create((float)newWidth, (float)newHeight));
           oldWidth = newWidth;
           oldHeight = newHeight;
         }

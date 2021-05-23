@@ -128,10 +128,10 @@ static void updateText3(Scene4* self, float width, float height) {
   Machine_GUI_Widget_setPosition((Machine_GUI_Widget*)self->textLabel3, newPosition);
 }
 
-static void Scene4_onCanvasSizeChanged(Scene4* self, float width, float height) {
-  updateText1(self, width, height);
-  updateText2(self, width, height);
-  updateText3(self, width, height);
+static void Scene4_onCanvasSizeChanged(Scene4* self, Machine_CanvasSizeChangedEvent* event) {
+  updateText1(self, event->width, event->height);
+  updateText2(self, event->width, event->height);
+  updateText3(self, event->width, event->height);
 }
 
 static void Scene4_onUpdate(Scene4* self, float width, float height) {
@@ -158,7 +158,6 @@ void Scene4_construct(Scene4* self, size_t numberOfArguments, const Machine_Valu
 
 void Scene4_destruct(Scene4* self) {
   self->font = NULL;
-  Scene_destruct((Scene*)self);
 }
 
 Scene4* Scene4_create() {

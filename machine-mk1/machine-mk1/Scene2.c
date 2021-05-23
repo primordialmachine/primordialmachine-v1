@@ -81,7 +81,7 @@ static void Scene2_onStartup(Scene2* scene) {
   Machine_Binding_set(scene->binding, Machine_String_create_noraise("vertex_color", strlen("vertex_color") + 1), 1);
 }
 
-static void Scene2_onCanvasSizeChanged(Scene2* self, float width, float height) {
+static void Scene2_onCanvasSizeChanged(Scene2* self, Machine_CanvasSizeChangedEvent* event) {
 }
 
 static void Scene2_onUpdate(Scene2* self, float width, float height) {
@@ -122,7 +122,6 @@ void Scene2_destruct(Scene2* self) {
   self->binding = NULL;
   self->shaderProgram = NULL;
   self->vertices = NULL;
-  Scene_destruct((Scene*)self);
 }
 
 Scene2* Scene2_create() {

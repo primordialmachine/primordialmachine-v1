@@ -100,7 +100,7 @@ static void Scene3_startup(Scene3* scene) {
   Machine_Binding_set(scene->binding, Machine_String_create("vertex_texture_coordinate_1", strlen("vertex_texture_coordinate_1") + 1), 2);
 }
 
-static void Scene3_onCanvasSizeChanged(Scene3* self, float width, float height) {
+static void Scene3_onCanvasSizeChanged(Scene3* self, Machine_CanvasSizeChangedEvent* event) {
 }
 
 static void Scene3_update(Scene3* self, float width, float height) {
@@ -148,7 +148,6 @@ void Scene3_destruct(Scene3* self) {
   self->texture = NULL;
   self->shaderProgram = NULL;
   self->vertices = NULL;
-  Scene_destruct((Scene*)self);
 }
 
 Scene3* Scene3_create() {
