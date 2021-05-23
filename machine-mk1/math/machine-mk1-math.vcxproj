@@ -11,27 +11,28 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Machine.c" />
-    <ClCompile Include="Runtime\Collection.c" />
-    <ClCompile Include="Runtime\List.c" />
-    <ClCompile Include="Runtime\Map.c" />
-    <ClCompile Include="Runtime\PointerArray.c" />
-    <ClCompile Include="Runtime\StringBuffer.c" />
-    <ClCompile Include="_Runtime.c" />
+    <ClCompile Include="Math\Rectangle2.c" />
+    <ClCompile Include="Math\Vector2.c" />
+    <ClCompile Include="Math\Vector3.c" />
+    <ClCompile Include="Math\Vector4.c" />
+    <ClCompile Include="_Math.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Machine.h" />
-    <ClInclude Include="Runtime\Collection.h" />
-    <ClInclude Include="Runtime\List.h" />
-    <ClInclude Include="Runtime\Map.h" />
-    <ClInclude Include="Runtime\PointerArray.h" />
-    <ClInclude Include="Runtime\StringBuffer.h" />
-    <ClInclude Include="_Runtime.h" />
+    <ClInclude Include="_Math.h" />
+    <ClInclude Include="Math\Rectangle2.h" />
+    <ClInclude Include="Math\Vector2.h" />
+    <ClInclude Include="Math\Vector3.h" />
+    <ClInclude Include="Math\Vector4.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\core\machine-mk1-core.vcxproj">
+      <Project>{f34866d8-3093-4b44-a225-7da2b5cd8e83}</Project>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{f34866d8-3093-4b44-a225-7da2b5cd8e83}</ProjectGuid>
+    <ProjectGuid>{681C50F0-37BF-4661-BF5A-21A29ABF2B63}</ProjectGuid>
     <RootNamespace>machinemk1core</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -72,19 +73,22 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)core</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)core;$(SolutionDir)math</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
       </SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
-    <Lib />
+    <Lib>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)core</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)core;$(SolutionDir)math</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>

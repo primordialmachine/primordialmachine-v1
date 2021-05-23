@@ -133,6 +133,9 @@
     <ProjectReference Include="..\core\machine-mk1-core.vcxproj">
       <Project>{f34866d8-3093-4b44-a225-7da2b5cd8e83}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\math\machine-mk1-math.vcxproj">
+      <Project>{681c50f0-37bf-4661-bf5a-21a29abf2b63}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

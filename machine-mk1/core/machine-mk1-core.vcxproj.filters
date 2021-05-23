@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Headerdateien\Math">
-      <UniqueIdentifier>{6542d882-6aa1-467e-91d0-0b13183c9878}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Quelldateien\Math">
-      <UniqueIdentifier>{81ded2be-d177-442d-be19-8b8e3a5872aa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Headerdateien\Runtime">
       <UniqueIdentifier>{63b42912-e12f-4727-a93d-c06cf4b310d8}</UniqueIdentifier>
     </Filter>
@@ -28,21 +22,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Machine.c">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Math\Rectangle2.c">
-      <Filter>Quelldateien\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Math\Vector2.c">
-      <Filter>Quelldateien\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Math\Vector3.c">
-      <Filter>Quelldateien\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Math\Vector4.c">
-      <Filter>Quelldateien\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="_Math.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="_Runtime.c">
@@ -65,23 +44,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="_Math.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Machine.h">
       <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\Rectangle2.h">
-      <Filter>Headerdateien\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\Vector2.h">
-      <Filter>Headerdateien\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\Vector3.h">
-      <Filter>Headerdateien\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\Vector4.h">
-      <Filter>Headerdateien\Math</Filter>
     </ClInclude>
     <ClInclude Include="_Runtime.h">
       <Filter>Headerdateien</Filter>
