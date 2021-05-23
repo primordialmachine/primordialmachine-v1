@@ -37,6 +37,12 @@
     <Filter Include="Headerdateien\GUI">
       <UniqueIdentifier>{b13bf37e-a3ec-4965-8bfb-749f841012ad}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Input">
+      <UniqueIdentifier>{6bc2d811-f1a6-4bf4-b2c0-e5ded07d9fa1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Input">
+      <UniqueIdentifier>{865876d2-8184-4787-bd75-7cc839dec033}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -114,6 +120,12 @@
     <ClCompile Include="GUI\WidgetList.c">
       <Filter>Quelldateien\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="Input\MouseButtonEvent.c">
+      <Filter>Quelldateien\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\MousePointerEvent.c">
+      <Filter>Quelldateien\Input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\external\glad\include\glad\glad.h">
@@ -190,6 +202,15 @@
     </ClInclude>
     <ClInclude Include="GUI\WidgetList.h">
       <Filter>Headerdateien\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\MouseButtonEvent.h">
+      <Filter>Headerdateien\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\MousePointerEvent.h">
+      <Filter>Headerdateien\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="_Input.h">
+      <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

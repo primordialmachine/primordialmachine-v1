@@ -102,6 +102,8 @@
     <ClCompile Include="GUI\Widget.c" />
     <ClCompile Include="GUI\Border.c" />
     <ClCompile Include="GUI\TextLabel.c" />
+    <ClCompile Include="Input\MouseButtonEvent.c" />
+    <ClCompile Include="Input\MousePointerEvent.c" />
     <ClCompile Include="Scene4.c" />
     <ClCompile Include="Scene5.c" />
     <ClCompile Include="Shape2.c" />
@@ -130,6 +132,8 @@
     <ClInclude Include="GUI\Widget.h" />
     <ClInclude Include="GUI\Border.h" />
     <ClInclude Include="GUI\TextLabel.h" />
+    <ClInclude Include="Input\MouseButtonEvent.h" />
+    <ClInclude Include="Input\MousePointerEvent.h" />
     <ClInclude Include="Scene4.h" />
     <ClInclude Include="Scene5.h" />
     <ClInclude Include="Shape2.h" />
@@ -147,6 +151,7 @@
     <ClInclude Include="Texture.h" />
     <ClInclude Include="VertexDescriptor.h" />
     <ClInclude Include="Video.h" />
+    <ClInclude Include="_Input.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\core\machine-mk1-core.vcxproj">
