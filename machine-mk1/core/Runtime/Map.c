@@ -89,6 +89,7 @@ static void set(Machine_Map* self, Machine_Value key, Machine_Value value) {
   }
   node->key = key;
   node->value = value;
+  node->hashValue = hashValue;
   node->next = pimpl->buckets[hashIndex];
   pimpl->buckets[hashIndex] = node;
   pimpl->size++;
@@ -153,8 +154,8 @@ void Machine_Map_construct(Machine_Map* self, size_t numberOfArguments, const Ma
   self->pimpl = pimpl;
   self->get = &get;
   self->set = &set;
-  ((Machine_Collection*)self)->getSize = &getSize;
-  ((Machine_Collection*)self)->clear = &clear;
+  ((Machine_Collection*)self)->getSize = (size_t (*)(const Machine_Collection *))&getSize;
+  ((Machine_Collection*)self)->clear = (void (*)(Machine_Collection *))&clear;
   Machine_setClassType(self, Machine_Map_getClassType());
 }
 
