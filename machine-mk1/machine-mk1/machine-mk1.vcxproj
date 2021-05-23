@@ -98,6 +98,7 @@
     <ClCompile Include="Texture.c" />
     <ClCompile Include="VertexDescriptor.c" />
     <ClCompile Include="Video.c" />
+    <ClCompile Include="Video\CanvasSizeChangedEvent.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\external\glad\include\glad\glad.h" />
@@ -127,6 +128,7 @@
     <ClInclude Include="Texture.h" />
     <ClInclude Include="VertexDescriptor.h" />
     <ClInclude Include="Video.h" />
+    <ClInclude Include="Video\CanvasSizeChangedEvent.h" />
     <ClInclude Include="_Input.h" />
   </ItemGroup>
   <ItemGroup>
