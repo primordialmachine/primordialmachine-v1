@@ -75,6 +75,10 @@ typedef Machine_Value(*Machine_ForeignProcedureValue)(size_t numberOfArguments, 
 /// That value indicates that something is not yet implemented.
 #define Machine_Status_NotYetImplemented (6)
 
+/// @brief Symbolic constant for a status variable value.
+/// The value indicates that the environment failed.
+#define Machine_Status_EnvironmentFailed (7)
+
 /**
  * Get the value of the status variable.
  * @return The value.
