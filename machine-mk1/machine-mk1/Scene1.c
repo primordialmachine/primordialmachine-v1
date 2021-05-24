@@ -121,7 +121,7 @@ void Scene1_destruct(Scene1* self) {
 Scene1* Scene1_create() {
   Machine_ClassType* ty = Scene1_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_VoidValue_VOID } };
+  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Scene1* scene = (Scene1*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   if (!scene) {
     Machine_setStatus(Machine_Status_AllocationFailed);

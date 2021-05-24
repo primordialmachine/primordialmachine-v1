@@ -8,89 +8,23 @@
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
 
-#include <stddef.h>
-#include <stdbool.h>
-#include <stdint.h>
+#include "./Runtime/PrimitiveTypes.h"
+#include "./Runtime/Status.h"
 #include <setjmp.h>
 
-typedef size_t Machine_SizeValue;
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-typedef int Machine_StatusValue;
+/// @brief The C-level representation of the <code>String</code> type.
+typedef struct Machine_String Machine_String;
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-#define Machine_VoidValue_VOID (0)
-typedef int Machine_VoidValue;
-
-/// @brief The C-level representation of a <code>true</code> value.
-#define Machine_BooleanValue_TRUE (true)
-
-/// @brief The C-level representation of a <code>false</code> value.
-#define Machine_BooleanValue_FALSE (false)
-
-/// @brief The C-level representation of the <code>Boolean</code> type.
-typedef bool Machine_BooleanValue;
-
-typedef uint32_t Machine_IntegerValue;
-
-typedef float Machine_RealValue;
-
-typedef struct Machine_String Machine_String;
-typedef Machine_String* Machine_StringValue;
-
+/// @brief The C-level representation of the <code>Object</code> type.
 typedef struct Machine_Object Machine_Object;
-typedef Machine_Object* Machine_ObjectValue;
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 typedef struct Machine_Value Machine_Value;
-
-typedef Machine_Value(*Machine_ForeignProcedureValue)(size_t numberOfArguments, const Machine_Value* arguments);
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-/// @brief Symbolic constant for a status variable value.
-/// That value indicates success. Guaranteed to be 0.
-#define Machine_Status_Success (0)
-
-/// @brief Symbolic constant for a status variable value.
-/// That value indicates an allocation failed.
-#define Machine_Status_AllocationFailed (1)
-
-/// @brief Symbolic constant for a status variable value.
-/// That value indicates an invalid argument.
-#define Machine_Status_InvalidArgument (2)
-
-/// @brief Symbolic constant for a status variable value.
-/// That value indicates an invalid operation.
-#define Machine_Status_InvalidOperation (3)
-
-/// @brief Symbolic constant for a status variable value.
-/// That value indicates an index is out of bounds.
-#define Machine_Status_IndexOutOfBounds (4)
-
-/// @brief Symbolic constant for a status variable value.
-/// That value indicates a capacity is exhausted.
-#define Machine_Status_CapacityExhausted (5)
-
-/// @brief Symbolic constant for a status variable value.
-/// That value indicates that something is not yet implemented.
-#define Machine_Status_NotYetImplemented (6)
-
-/// @brief Symbolic constant for a status variable value.
-/// The value indicates that the environment failed.
-#define Machine_Status_EnvironmentFailed (7)
-
-/**
- * Get the value of the status variable.
- * @return The value.
- * @default #Machine_Status_Success
- */
-Machine_StatusValue Machine_getStatus();
-
-/**
- * Set the value of the status variable.
- * @param status The value.
- */
-void Machine_setStatus(Machine_StatusValue status);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -116,7 +50,7 @@ void Machine_popJumpTarget();
  * @brief Jump to the top of the jump target stack.
  * @warning Undefined if the jump target stack is empty.
  */
-__declspec(noreturn) void Machine_jump();
+NORETURN void Machine_jump();
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -233,32 +167,31 @@ typedef struct Machine_Value {
 
   union {
 
-    Machine_BooleanValue booleanValue;
+    Machine_Boolean booleanValue;
 
-    Machine_IntegerValue integerValue;
+    Machine_Integer integerValue;
 
-    Machine_ObjectValue objectValue;
+    Machine_Object* objectValue;
 
-    Machine_ForeignProcedureValue foreignProcedureValue;
+    Machine_ForeignProcedure* foreignProcedureValue;
 
-    Machine_RealValue realValue;
+    Machine_Real realValue;
 
-    Machine_StringValue stringValue;
+    Machine_String* stringValue;
 
-    Machine_VoidValue voidValue;
+    Machine_Void voidValue;
 
   };
 
 } Machine_Value;
 
-#define INLINE static inline
 
-INLINE void Machine_Value_setBoolean(Machine_Value* self, Machine_BooleanValue value) {
+INLINE void Machine_Value_setBoolean(Machine_Value* self, Machine_Boolean value) {
   self->tag = Machine_ValueFlag_Boolean;
   self->booleanValue = value;
 }
 
-INLINE Machine_BooleanValue Machine_Value_getBoolean(const Machine_Value* self) {
+INLINE Machine_Boolean Machine_Value_getBoolean(const Machine_Value* self) {
   return self->booleanValue;
 }
 
@@ -267,12 +200,12 @@ INLINE bool Machine_Value_isBoolean(const Machine_Value* self) {
 }
 
 
-INLINE void Machine_Value_setInteger(Machine_Value* self, Machine_IntegerValue value) {
+INLINE void Machine_Value_setInteger(Machine_Value* self, Machine_Integer value) {
   self->tag = Machine_ValueFlag_Integer;
   self->integerValue = value;
 }
 
-INLINE Machine_IntegerValue Machine_Value_getInteger(const Machine_Value* self) {
+INLINE Machine_Integer Machine_Value_getInteger(const Machine_Value* self) {
   return self->integerValue;
 }
 
@@ -281,12 +214,12 @@ INLINE bool Machine_Value_isInteger(Machine_Value* self) {
 }
 
 
-INLINE void Machine_Value_setObject(Machine_Value* self, Machine_ObjectValue value) {
+INLINE void Machine_Value_setObject(Machine_Value* self, Machine_Object* value) {
   self->tag = Machine_ValueFlag_Object;
   self->objectValue = value;
 }
 
-INLINE Machine_ObjectValue Machine_Value_getObject(const Machine_Value* self) {
+INLINE Machine_Object* Machine_Value_getObject(const Machine_Value* self) {
   return self->objectValue;
 }
 
@@ -295,12 +228,12 @@ INLINE bool Machine_Value_isObject(const Machine_Value* self) {
 }
 
 
-INLINE void Machine_Value_setForeignProcedure(Machine_Value* self, Machine_ForeignProcedureValue value) {
+INLINE void Machine_Value_setForeignProcedure(Machine_Value* self, Machine_ForeignProcedure* value) {
   self->tag = Machine_ValueFlag_ForeignProcedure;
   self->foreignProcedureValue = value;
 }
 
-INLINE Machine_ForeignProcedureValue Machine_Value_getForeignProcedure(const Machine_Value* self) {
+INLINE Machine_ForeignProcedure* Machine_Value_getForeignProcedure(const Machine_Value* self) {
   return self->foreignProcedureValue;
 }
 
@@ -309,12 +242,12 @@ INLINE bool Machine_Value_isForeignProcedure(const Machine_Value* self) {
 }
 
 
-INLINE void Machine_Value_setReal(Machine_Value* self, Machine_RealValue value) {
+INLINE void Machine_Value_setReal(Machine_Value* self, Machine_Real value) {
   self->tag = Machine_ValueFlag_Real;
   self->realValue = value;
 }
 
-INLINE Machine_RealValue Machine_Value_getReal(const Machine_Value* self) {
+INLINE Machine_Real Machine_Value_getReal(const Machine_Value* self) {
   return self->realValue;
 }
 
@@ -323,12 +256,12 @@ INLINE bool Machine_Value_isReal(const Machine_Value* self) {
 }
 
 
-INLINE void Machine_Value_setString(Machine_Value* self, Machine_StringValue value) {
+INLINE void Machine_Value_setString(Machine_Value* self, Machine_String* value) {
   self->tag = Machine_ValueFlag_String;
   self->stringValue = value;
 }
 
-INLINE Machine_StringValue Machine_Value_getString(const Machine_Value* self) {
+INLINE Machine_String* Machine_Value_getString(const Machine_Value* self) {
   return self->stringValue;
 }
 
@@ -337,12 +270,12 @@ INLINE bool Machine_Value_isString(const Machine_Value* self) {
 }
 
 
-INLINE void Machine_Value_setVoid(Machine_Value* self, Machine_VoidValue value) {
+INLINE void Machine_Value_setVoid(Machine_Value* self, Machine_Void value) {
   self->tag = Machine_ValueFlag_Void;
   self->voidValue = value;
 }
 
-INLINE Machine_VoidValue Machine_Value_getVoid(const Machine_Value* self) {
+INLINE Machine_Void Machine_Value_getVoid(const Machine_Value* self) {
   return self->voidValue;
 }
 
@@ -365,39 +298,43 @@ bool Machine_Value_isEqualTo(const Machine_Value* x, const Machine_Value* y);
 
 size_t Machine_Value_getHashValue(const Machine_Value* x);
 
-#undef INLINE
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /// @brief Load a <code>Boolean</code> value on the stack.
 /// @param value The value.
 /// @error Machine_Status_StackOverflow The stack is full.
-void Machine_loadBoolean(Machine_BooleanValue value);
+void Machine_loadBoolean(Machine_Boolean value);
 
 /// @brief Load an <code>Integer</code> value on the stack.
 /// @param value The value.
 /// @error Machine_Status_StackOverflow The stack is full.
-void Machine_loadInteger(Machine_IntegerValue value);
+void Machine_loadInteger(Machine_Integer value);
 
 /// @brief Load a <code>ForeignProcedure</code> value on the stack.
 /// @param value The value.
 /// @error Machine_Status_StackOverflow The stack is full.
-void Machine_loadForeignProcedure(Machine_ForeignProcedureValue value);
+void Machine_loadForeignProcedure(Machine_ForeignProcedure* value);
+
+/// @brief Load an <code>Object</code> value on the stack.
+/// @param value The value.
+/// @error Machine_Status_StackOverflow The stack is full.
+void Machine_loadObject(Machine_Object* value);
 
 /// @brief Load a <code>Real</code> value on the stack.
 /// @param value The value.
 /// @error Machine_Status_StackOverflow The stack is full.
-void Machine_loadReal(Machine_RealValue value);
+void Machine_loadReal(Machine_Real value);
 
 /// @brief Load a <code>String</code> value on the stack.
 /// @param value The value.
 /// @error Machine_Status_StackOverflow The stack is full.
-void Machine_loadString(Machine_StringValue value);
+void Machine_loadString(Machine_String* value);
 
 /// @brief Load a <code>Void</code> value on the stack.
 /// @param value The value.
 /// @error Machine_Status_StackOverflow The stack is full.
-void Machine_loadVoid(Machine_VoidValue value);
+void Machine_loadVoid(Machine_Void value);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -520,7 +457,15 @@ Machine_ClassType* Machine_createClassType(Machine_ClassType* parent, size_t siz
  */
 Machine_Object *Machine_allocateClassObject(Machine_ClassType* type, size_t numberOfArguments, const Machine_Value* arguments);
 
-void Machine_setClassType(void* object, Machine_ClassType* classType);
+/// @brief Set the class type of an object.
+/// @param object The object.
+/// @param classType The class type.
+void Machine_setClassType(Machine_Object* object, Machine_ClassType* classType);
+
+/// @brief Get the class type of an object.
+/// @param object The object.
+/// @return The class type.
+Machine_ClassType* Machine_getClassType(Machine_Object* object);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 

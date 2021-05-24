@@ -9,7 +9,7 @@ static void Machine_Math_Rectangle2_construct(Machine_Math_Rectangle2* self, siz
   self->y = 0.f;
   self->w = 0.f;
   self->h = 0.f;
-  Machine_setClassType(self, Machine_Math_Rectangle2_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Math_Rectangle2_getClassType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Math_Rectangle2)
@@ -18,7 +18,7 @@ MACHINE_DEFINE_CLASSTYPE_EX(Machine_Math_Rectangle2, Machine_Object, NULL, &Mach
 Machine_Math_Rectangle2* Machine_Math_Rectangle2_create() {
   Machine_ClassType* ty = Machine_Math_Rectangle2_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_VoidValue_VOID } };
+  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_Math_Rectangle2* self = (Machine_Math_Rectangle2*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

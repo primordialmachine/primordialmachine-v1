@@ -43,7 +43,7 @@ static void Machine_VertexDescriptor_construct(Machine_VertexDescriptor* self, s
   Machine_Object_construct((Machine_Object *)self, numberOfArguments, arguments);
   self->n = 0;
   self->p = NULL;
-  Machine_setClassType(self, Machine_VertexDescriptor_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_VertexDescriptor_getClassType());
 }
 
 
@@ -57,7 +57,7 @@ static void Machine_VertexDescriptor_destruct(Machine_VertexDescriptor* self) {
 Machine_VertexDescriptor* Machine_VertexDescriptor_create() {
   Machine_ClassType* ty = Machine_VertexDescriptor_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_VoidValue_VOID } };
+  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
 #if defined(TRACE_VISIT) && (1) == TRACE_VISIT
   Machine_VertexDescriptor* self = (Machine_VertexDescriptor *)Machine_allocateClassObjec(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
 #else

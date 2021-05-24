@@ -6,7 +6,7 @@ MACHINE_DEFINE_CLASSTYPE_EX(Machine_Collection, Machine_Object, NULL, &Machine_C
 
 void Machine_Collection_construct(Machine_Collection* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  Machine_setClassType(self, Machine_Collection_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Collection_getClassType());
 }
 
 void Machine_Collection_clear(Machine_Collection* self) {

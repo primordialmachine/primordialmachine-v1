@@ -56,7 +56,7 @@ static void Machine_Input_construct(Machine_Input* self, size_t numberOfArgument
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->name = Machine_Value_getString(&arguments[0]);
   self->type = Machine_Value_getInteger(&arguments[1]);
-  Machine_setClassType(self, Machine_Input_getClassType());
+  Machine_setClassType((Machine_Object *)self, Machine_Input_getClassType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Input)
@@ -67,7 +67,7 @@ Machine_Input* Machine_Input_create(Machine_String* name, Machine_InputType type
   Machine_Value arguments[2];
   Machine_Value_setString(&arguments[0], name);
   Machine_Value_setInteger(&arguments[1], type);
-  Machine_Input* self = Machine_allocateClassObject(ty, 2, arguments);
+  Machine_Input* self = (Machine_Input *)Machine_allocateClassObject(ty, 2, arguments);
   return self;
 }
 

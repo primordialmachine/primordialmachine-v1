@@ -12,8 +12,9 @@ static void Machine_GUI_WidgetList_visit(Machine_GUI_WidgetList* self) {
 }
 
 void Machine_GUI_WidgetList_construct(Machine_GUI_WidgetList* self, size_t numberOfArguments, const Machine_Value* arguments) {
+  Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->backing = Machine_PointerArray_create();
-  Machine_setClassType(self, Machine_GUI_WidgetList_getClassType());
+  Machine_setClassType((Machine_Object *)self, Machine_GUI_WidgetList_getClassType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_GUI_WidgetList)
@@ -22,7 +23,7 @@ MACHINE_DEFINE_CLASSTYPE_EX(Machine_GUI_WidgetList, Machine_Object, &Machine_GUI
 Machine_GUI_WidgetList* Machine_GUI_WidgetList_create() {
   Machine_ClassType* ty = Machine_GUI_WidgetList_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_VoidValue_VOID } };
+  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_GUI_WidgetList* self = (Machine_GUI_WidgetList*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

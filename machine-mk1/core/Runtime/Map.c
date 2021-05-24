@@ -108,7 +108,7 @@ static Machine_Value get(Machine_Map* self, Machine_Value key) {
     }
   }
   Machine_Value value;
-  Machine_Value_setVoid(&value, Machine_VoidValue_VOID);
+  Machine_Value_setVoid(&value, Machine_Void_Void);
   return value;
 }
 
@@ -156,13 +156,13 @@ void Machine_Map_construct(Machine_Map* self, size_t numberOfArguments, const Ma
   self->set = &set;
   ((Machine_Collection*)self)->getSize = (size_t (*)(const Machine_Collection *))&getSize;
   ((Machine_Collection*)self)->clear = (void (*)(Machine_Collection *))&clear;
-  Machine_setClassType(self, Machine_Map_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Map_getClassType());
 }
 
 Machine_Map* Machine_Map_create() {
   Machine_ClassType* ty = Machine_Map_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_VoidValue_VOID } };
+  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_Map* self = (Machine_Map*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

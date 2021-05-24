@@ -13,7 +13,7 @@ struct Machine_StringBuffer {
 static void Machine_StringBuffer_construct(Machine_StringBuffer* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->byteBuffer = Machine_ByteBuffer_create();
-  Machine_setClassType(self, Machine_StringBuffer_getClassType());
+  Machine_setClassType((Machine_Object *)self, Machine_StringBuffer_getClassType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_StringBuffer)
@@ -22,7 +22,7 @@ MACHINE_DEFINE_CLASSTYPE_EX(Machine_StringBuffer, Machine_Object, NULL, &Machine
 Machine_StringBuffer* Machine_StringBuffer_create() {
   Machine_ClassType* ty = Machine_StringBuffer_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_VoidValue_VOID } };
+  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_StringBuffer* self = (Machine_StringBuffer *)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

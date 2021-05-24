@@ -16,7 +16,7 @@ static void Machine_ByteBuffer_construct(Machine_ByteBuffer* self, size_t number
   self->p = NULL;
   self->s = 0;
   self->c = 0;
-  Machine_setClassType(self, Machine_ByteBuffer_getClassType());
+  Machine_setClassType((Machine_Object *)self, Machine_ByteBuffer_getClassType());
 }
 
 static void Machine_ByteBuffer_destruct(Machine_ByteBuffer* self) {
@@ -32,7 +32,7 @@ MACHINE_DEFINE_CLASSTYPE_EX(Machine_ByteBuffer, Machine_Object, NULL, &Machine_B
 Machine_ByteBuffer* Machine_ByteBuffer_create() {
   Machine_ClassType* ty = Machine_ByteBuffer_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_VoidValue_VOID } };
+  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_ByteBuffer* self = (Machine_ByteBuffer*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

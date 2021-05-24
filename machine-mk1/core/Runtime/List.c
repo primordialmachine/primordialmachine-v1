@@ -34,7 +34,7 @@ static void Machine_List_construct(Machine_List* self, size_t numberOfArguments,
   self->size = 0;
   self->capacity = 0;
   self->elements = NULL;
-  Machine_setClassType(self, Machine_List_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_List_getClassType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_List)
@@ -107,7 +107,7 @@ static void Machine_List_destruct(Machine_List* self) {
 Machine_List* Machine_List_create() {
   Machine_ClassType* ty = Machine_List_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_VoidValue_VOID } };
+  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_List* self = (Machine_List*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

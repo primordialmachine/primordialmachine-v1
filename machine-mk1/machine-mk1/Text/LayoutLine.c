@@ -9,7 +9,7 @@ void Machine_Text_LayoutLine_construct(Machine_Text_LayoutLine* self, size_t num
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->start = Machine_Value_getInteger(&arguments[0]);
   self->length = Machine_Value_getInteger(&arguments[1]);
-  Machine_setClassType(self, Machine_Text_LayoutLine_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Text_LayoutLine_getClassType());
 }
 
 Machine_Text_LayoutLine* Machine_Text_LayoutLine_create(int start, int length) {

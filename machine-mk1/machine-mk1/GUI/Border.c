@@ -152,7 +152,7 @@ static void Machine_GUI_Border_render(Machine_GUI_Border* self, float width, flo
         Machine_Math_Rectangle2_setSize(r, size);
 
         Machine_Rectangle2_setRectangle(self->borderRectangle, r);
-        Machine_Shape2_render(self->borderRectangle, width, height);
+        Machine_Shape2_render((Machine_Shape2 *)self->borderRectangle, width, height);
       }
       { // right side
         Machine_Math_Rectangle2* r = Machine_Math_Rectangle2_create();
@@ -224,13 +224,13 @@ static void Machine_GUI_Border_construct(Machine_GUI_Border* self, size_t number
   ((Machine_GUI_Widget*)self)->setSize = (void (*)(Machine_GUI_Widget*, const Machine_Math_Vector2*)) & Machine_GUI_Border_setSize;
   ((Machine_GUI_Widget*)self)->getSize = (const Machine_Math_Vector2 * (*)(Machine_GUI_Widget*)) & Machine_GUI_Border_getSize;
   ((Machine_GUI_Widget*)self)->getPreferredSize = (const Machine_Math_Vector2 * (*)(Machine_GUI_Widget*)) & Machine_GUI_Border_getPreferredSize;
-  Machine_setClassType(self, Machine_GUI_Border_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_GUI_Border_getClassType());
 }
 
 Machine_GUI_Border* Machine_GUI_Border_create() {
   Machine_ClassType* ty = Machine_GUI_Border_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_VoidValue_VOID } };
+  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_GUI_Border* self = (Machine_GUI_Border*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

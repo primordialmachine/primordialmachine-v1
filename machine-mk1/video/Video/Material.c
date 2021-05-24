@@ -18,13 +18,13 @@ void Machine_Material_construct(Machine_Material* self, size_t numberOfArguments
   self->incomingBlendFunction = Machine_BlendFunction_IncomingAlpha;
   self->depthTestFunction = Machine_DepthTestFunction_Always;
   self->depthWriteEnabled = false;
-  Machine_setClassType(self, Machine_Material_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Material_getClassType());
 }
 
 Machine_Material* Machine_Material_create() {
   Machine_ClassType* ty = Machine_Material_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_VoidValue_VOID } };
+  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_Material* self = (Machine_Material*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

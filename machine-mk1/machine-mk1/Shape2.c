@@ -19,7 +19,7 @@ static void Machine_Shape2_visit(Machine_Shape2* self)
 
 void Machine_Shape2_construct(Machine_Shape2* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  Machine_setClassType(self, Machine_Shape2_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Shape2_getClassType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Shape2)
@@ -132,7 +132,7 @@ void Machine_Rectangle2_construct(Machine_Rectangle2* self, size_t numberOfArgum
 
   self->color = Machine_Math_Vector3_create();
   Machine_Math_Vector3_set(self->color, 1.f, 1.f, 1.f);
-  Machine_setClassType(self, Machine_Rectangle2_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Rectangle2_getClassType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Rectangle2)
@@ -141,7 +141,7 @@ MACHINE_DEFINE_CLASSTYPE_EX(Machine_Rectangle2, Machine_Shape2, &Machine_Rectang
 Machine_Rectangle2* Machine_Rectangle2_create() {
   Machine_ClassType* ty = Machine_Rectangle2_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_VoidValue_VOID } };
+  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_Rectangle2* self = (Machine_Rectangle2*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

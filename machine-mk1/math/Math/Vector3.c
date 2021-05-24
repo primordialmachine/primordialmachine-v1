@@ -6,7 +6,7 @@ static void Machine_Math_Vector3_construct(Machine_Math_Vector3* self, size_t nu
   self->x = 0.f;
   self->y = 0.f;
   self->z = 0.f;
-  Machine_setClassType(self, Machine_Math_Vector3_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Math_Vector3_getClassType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Math_Vector3)
@@ -15,7 +15,7 @@ MACHINE_DEFINE_CLASSTYPE_EX(Machine_Math_Vector3, Machine_Object, NULL, &Machine
 Machine_Math_Vector3* Machine_Math_Vector3_create() {
   Machine_ClassType* ty = Machine_Math_Vector3_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_VoidValue_VOID } };
+  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_Math_Vector3* self = (Machine_Math_Vector3*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

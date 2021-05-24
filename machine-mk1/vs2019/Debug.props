@@ -36,6 +36,7 @@
       <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <TreatSpecificWarningsAsErrors>4133</TreatSpecificWarningsAsErrors>
     </ClCompile>
     <Link>
       <OptimizeReferences>false</OptimizeReferences>

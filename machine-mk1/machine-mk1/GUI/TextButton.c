@@ -59,7 +59,7 @@ void Machine_GUI_TextButton_construct(Machine_GUI_TextButton* self, size_t numbe
   ((Machine_GUI_Widget*)self)->setSize = (void (*)(Machine_GUI_Widget*, const Machine_Math_Vector2*)) & Machine_GUI_TextButton_setSize;
   ((Machine_GUI_Widget*)self)->getSize = (const Machine_Math_Vector2 * (*)(Machine_GUI_Widget*)) & Machine_GUI_TextButton_getSize;
   ((Machine_GUI_Widget*)self)->getPreferredSize = (const Machine_Math_Vector2 * (*)(Machine_GUI_Widget*)) & Machine_GUI_TextButton_getPreferredSize;
-  Machine_setClassType(self, Machine_GUI_TextButton_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_GUI_TextButton_getClassType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_GUI_TextButton)
@@ -68,7 +68,7 @@ MACHINE_DEFINE_CLASSTYPE_EX(Machine_GUI_TextButton, Machine_GUI_Widget, &Machine
 Machine_GUI_TextButton* Machine_GUI_TextButton_create() {
   Machine_ClassType* ty = Machine_GUI_TextButton_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_VoidValue_VOID } };
+  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_GUI_TextButton* self = (Machine_GUI_TextButton*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

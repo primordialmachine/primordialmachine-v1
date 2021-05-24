@@ -12,7 +12,8 @@ MACHINE_DEFINE_CLASSTYPE_EX(Machine_GUI_Widget, Machine_Object, &Machine_GUI_Wid
 static void Machine_GUI_Widget_visit(Machine_GUI_Widget *self) {}
 
 void Machine_GUI_Widget_construct(Machine_GUI_Widget* self, size_t numberOfArguments, const Machine_Value* arguments) {
-  Machine_setClassType(self, Machine_GUI_Widget_getClassType());
+  Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
+  Machine_setClassType((Machine_Object*)self, Machine_GUI_Widget_getClassType());
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

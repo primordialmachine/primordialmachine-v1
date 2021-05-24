@@ -21,7 +21,7 @@ static int Stack_initialize(Stack* self) {
     return Machine_Status_AllocationFailed;
   }
   for (size_t i = 0; i < 8; ++i) {
-    Machine_Value_setVoid(self->elements + i, Machine_VoidValue_VOID);
+    Machine_Value_setVoid(self->elements + i, Machine_Void_Void);
   }
   self->size = 0;
   self->capacity = 8;
@@ -54,16 +54,6 @@ void Stack_destroy(Stack* stack) {
   free(stack);
 }
 
-static Machine_StatusValue g_status = Machine_Status_Success;
-
-Machine_StatusValue Machine_getStatus() {
-  return g_status;
-}
-
-void Machine_setStatus(Machine_StatusValue status) {
-  g_status = status;
-}
-
 static Machine_Tag* g_objects = NULL;
 static Machine_Tag* g_gray = NULL;
 static Stack *g_stack = NULL;
@@ -91,7 +81,7 @@ void Machine_popJumpTarget() {
   g_jumpTargets = g_jumpTargets->previous;
 }
 
-__declspec(noreturn) void Machine_jump() {
+NORETURN void Machine_jump() {
   longjmp(g_jumpTargets->environment, -1);
 }
 
@@ -281,37 +271,43 @@ static void Stack_ensureFreeCapacity(Stack* self, size_t requiredFreeCapacity) {
   }
 }
 
-void Machine_loadBoolean(Machine_BooleanValue value) {
+void Machine_loadBoolean(Machine_Boolean value) {
   Stack_ensureFreeCapacity(g_stack, 1);
   Machine_Value_setBoolean(g_stack->elements + g_stack->size, value);
   g_stack->size++;
 }
 
-void Machine_loadInteger(Machine_IntegerValue value) {
+void Machine_loadInteger(Machine_Integer value) {
   Stack_ensureFreeCapacity(g_stack, 1);
   Machine_Value_setInteger(g_stack->elements + g_stack->size, value);
   g_stack->size++;
 }
 
-void Machine_loadForeignProcedure(Machine_ForeignProcedureValue value) {
+void Machine_loadForeignProcedure(Machine_ForeignProcedure* value) {
   Stack_ensureFreeCapacity(g_stack, 1);
   Machine_Value_setForeignProcedure(g_stack->elements + g_stack->size, value);
   g_stack->size++;
 }
 
-void Machine_loadReal(Machine_RealValue value) {
+void Machine_loadObject(Machine_Object* value) {
+  Stack_ensureFreeCapacity(g_stack, 1);
+  Machine_Value_setObject(g_stack->elements + g_stack->size, value);
+  g_stack->size++;
+}
+
+void Machine_loadReal(Machine_Real value) {
   Stack_ensureFreeCapacity(g_stack, 1);
   Machine_Value_setReal(g_stack->elements + g_stack->size, value);
   g_stack->size++;
 }
 
-void Machine_loadString(Machine_StringValue value) {
+void Machine_loadString(Machine_String* value) {
   Stack_ensureFreeCapacity(g_stack, 1);
   Machine_Value_setString(g_stack->elements + g_stack->size, value);
   g_stack->size++;
 }
 
-void Machine_loadVoid(Machine_VoidValue value) {
+void Machine_loadVoid(Machine_Void value) {
   Stack_ensureFreeCapacity(g_stack, 1);
   Machine_Value_setVoid(g_stack->elements + g_stack->size, value);
   g_stack->size++;
@@ -331,15 +327,15 @@ bool Machine_Value_isEqualTo(const Machine_Value* x, const Machine_Value* y) {
   case Machine_ValueFlag_String:
     return Machine_String_isEqualTo(x->stringValue, y->stringValue);
   case Machine_ValueFlag_Void:
-    return true;
+    return Machine_Void_isEqualTo(x->voidValue, y->voidValue);
   case Machine_ValueFlag_Real:
-    return x->realValue == y->realValue;
+    return Machine_Real_isEqualTo(x->realValue, y->realValue);
   case Machine_ValueFlag_Integer:
-    return x->integerValue == y->integerValue;
+    return Machine_Integer_isEqualTo(x->integerValue, y->integerValue);
   case Machine_ValueFlag_Boolean:
-    return x->booleanValue == y->booleanValue;
+    return Machine_Boolean_isEqualTo(x->booleanValue, y->booleanValue);
   case Machine_ValueFlag_ForeignProcedure:
-    return x->foreignProcedureValue == y->foreignProcedureValue;
+    return Machine_ForeignProcedure_isEqualTo(x->foreignProcedureValue, y->foreignProcedureValue);
   #if defined(_DEBUG)
   default:
     fprintf(stderr, "%s:%d: unreachable code reached\n", __FILE__, __LINE__);
@@ -355,15 +351,15 @@ size_t Machine_Value_getHashValue(const Machine_Value* self) {
   case Machine_ValueFlag_String:
     return Machine_String_getHashValue(self->stringValue);
   case Machine_ValueFlag_Void:
-    return 37;
+    return Machine_Void_getHashValue(self->voidValue);
   case Machine_ValueFlag_Real:
-    return 37;
+    return Machine_Real_getHashValue(self->realValue);
   case Machine_ValueFlag_Integer:
-    return (size_t)self->integerValue;
+    return Machine_Integer_getHashValue(self->integerValue);
   case Machine_ValueFlag_Boolean:
-    return self->booleanValue ? 37 : 54;
+    return Machine_Boolean_getHashValue(self->booleanValue);
   case Machine_ValueFlag_ForeignProcedure:
-    return (uintptr_t)self->foreignProcedureValue;
+    return Machine_ForeignProcedure_getHashValue(self->foreignProcedureValue);
   #if defined(_DEBUG)
   default:
     fprintf(stderr, "%s:%d: unreachable code reached\n", __FILE__, __LINE__);
@@ -543,7 +539,7 @@ static void Machine_ClassObject_finalize(void* self) {
   Machine_unlock(classObjectTag->classType);
 }
 
-void Machine_setClassType(void* object, Machine_ClassType* classType) {
+void Machine_setClassType(Machine_Object* object, Machine_ClassType* classType) {
 #if defined(_DEBUG)
   Machine_Tag* tag = ((Machine_Tag*)object) - 1;
   assert((tag->flags & Machine_Flag_Class) == Machine_Flag_Class);
@@ -556,6 +552,15 @@ void Machine_setClassType(void* object, Machine_ClassType* classType) {
     Machine_unlock(classObjectTag->classType);
   }
   classObjectTag->classType = classType;
+}
+
+Machine_ClassType* Machine_getClassType(Machine_Object* object) {
+#if defined(_DEBUG)
+  Machine_Tag* tag = ((Machine_Tag*)object) - 1;
+  assert((tag->flags & Machine_Flag_Class) == Machine_Flag_Class);
+#endif
+  Machine_ClassObjectTag* classObjectTag = ((Machine_ClassObjectTag*)object) - 1;
+  return classObjectTag->classType;
 }
 
 Machine_Object* Machine_allocateClassObject(Machine_ClassType* type, size_t numberOfArguments, const Machine_Value* arguments) {

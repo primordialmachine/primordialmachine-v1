@@ -12,7 +12,7 @@ static void Machine_CanvasSizeChangedEvent_construct(Machine_CanvasSizeChangedEv
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->width = Machine_Value_getReal(&arguments[0]);
   self->height = Machine_Value_getReal(&arguments[1]);
-  Machine_setClassType(self, Machine_CanvasSizeChangedEvent_getClassType());
+  Machine_setClassType((Machine_Object *)self, Machine_CanvasSizeChangedEvent_getClassType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_CanvasSizeChangedEvent)

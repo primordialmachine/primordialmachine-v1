@@ -12,7 +12,7 @@ static void Machine_MousePointerEvent_construct(Machine_MousePointerEvent* self,
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->x = Machine_Value_getReal(&arguments[0]);
   self->y = Machine_Value_getReal(&arguments[1]);
-  Machine_setClassType(self, Machine_MousePointerEvent_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_MousePointerEvent_getClassType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_MousePointerEvent)
