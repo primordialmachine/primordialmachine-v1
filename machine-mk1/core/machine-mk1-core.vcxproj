@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Machine.c" />
+    <ClCompile Include="Runtime\ByteBuffer.c" />
     <ClCompile Include="Runtime\Collection.c" />
     <ClCompile Include="Runtime\List.c" />
     <ClCompile Include="Runtime\Map.c" />
@@ -21,6 +22,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Machine.h" />
+    <ClInclude Include="Runtime\ByteBuffer.h" />
     <ClInclude Include="Runtime\Collection.h" />
     <ClInclude Include="Runtime\List.h" />
     <ClInclude Include="Runtime\Map.h" />

@@ -12,7 +12,6 @@ MACHINE_DECLARE_CLASSTYPE(Machine_StringBuffer)
 
 /**
  * @brief Create a string buffer.
- * @param p, n The Bytes.
  * @return The string buffer.
  */
 Machine_StringBuffer* Machine_StringBuffer_create();
