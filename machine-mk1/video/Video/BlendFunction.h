@@ -2,7 +2,7 @@
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #if !defined(MACHINE_VIDEO_BLENDFUNCTION_H_INCLUDED)
-#define MACHINE_VIDEO_BLENDFUCTION_H_INCLUDED
+#define MACHINE_VIDEO_BLENDFUNCTION_H_INCLUDED
 
 #if !defined(MACHINE_VIDEO_PRIVATE)
 #error("Do not include this file directly, include `_Video.h` instead.")
@@ -39,4 +39,4 @@ enum Machine_BlendFunction {
 
 };
 
-#endif // MACHINE_VIDEO_BLENDFUCTION_H_INCLUDED
+#endif // MACHINE_VIDEO_BLENDFUNCTION_H_INCLUDED

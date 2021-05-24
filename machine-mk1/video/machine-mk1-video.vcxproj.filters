@@ -42,6 +42,9 @@
     <ClCompile Include="Video\DepthTestFunction.c">
       <Filter>Quelldateien\Video</Filter>
     </ClCompile>
+    <ClCompile Include="Video\Material.c">
+      <Filter>Quelldateien\Video</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_Video.h">
@@ -63,6 +66,9 @@
       <Filter>Headerdateien\Video</Filter>
     </ClInclude>
     <ClInclude Include="Video\DepthTestFunction.h">
+      <Filter>Headerdateien\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="Video\Material.h">
       <Filter>Headerdateien\Video</Filter>
     </ClInclude>
   </ItemGroup>

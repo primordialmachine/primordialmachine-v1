@@ -8,6 +8,7 @@
 #include "Video/BlendFunction.h"
 #include "Video/CanvasSizeChangedEvent.h"
 #include "Video/DepthTestFunction.h"
+#include "Video/Material.h"
 #include "Video/PixelFormat.h"
 #include "Video/ProgramKind.h"
 #include "Video/VertexElementSemantics.h"

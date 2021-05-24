@@ -1,21 +1,19 @@
 #include "Video.h"
 
 #include <stdio.h>
-#include "Images.h"
-#include "Fonts.h"
+#include "Texture.h"
 #include "ShaderProgram.h"
 
 static GLFWwindow* g_window = NULL;
+
 static struct {
   float r, g, b, a;
 } g_clearColor = { 0.9f, 0.9f, 0.9f, 1.f };
 
-static Machine_BlendFunction g_existingBlendFunction = Machine_BlendFunction_OneMinusIncomingAlpha;
-static Machine_BlendFunction g_incomingBlendFunction = Machine_BlendFunction_IncomingAlpha;
+static Machine_Material* g_material = NULL;
 
-static Machine_DepthTestFunction g_depthTestFunction = Machine_DepthTestFunction_Always;
 static float g_clearDepth = 1.f;
-static bool g_depthWriteEnabled = false;
+
 
 /// @EXTENSION 
 static GLenum Machine_BlendFunction_toGL(Machine_BlendFunction self) {
@@ -58,8 +56,6 @@ static GLenum Machine_DepthTestFunction_toGL(Machine_DepthTestFunction self) {
 }
 
 int Machine_Video_startup() {
-  int result;
-
   if (!glfwInit()) {
     fprintf(stderr, "%s:%d: glfwInit() failed\n", __FILE__, __LINE__);
     return 1;
@@ -75,58 +71,60 @@ int Machine_Video_startup() {
   }
 
   glfwMakeContextCurrent(Machine_Video_getMainWindow());
+  glfwSwapInterval(1);
+
   if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
     fprintf(stderr, "%s:%d: gladLoadGLLoader() failed\n", __FILE__, __LINE__);
+    glfwMakeContextCurrent(NULL);
     glfwDestroyWindow(g_window);
     g_window = NULL;
     glfwTerminate();
     return 1;
   }
 
-  // Enable depth testing.
-  // Fragments always pass.
-  glEnable(GL_DEPTH_TEST);
-  glDepthFunc(Machine_DepthTestFunction_toGL(g_depthTestFunction));
-  
-  // Disable depth writing.
-  glDepthMask(g_depthWriteEnabled ? GL_TRUE : GL_FALSE);
+  {
+    Machine_JumpTarget jumpTarget;
+    Machine_pushJumpTarget(&jumpTarget);
+    if (!setjmp(jumpTarget.environment)) {
+      g_material = Machine_Material_create();
+      Machine_lock(g_material);
 
-  // Enable blending.
-  glEnable(GL_BLEND);
-  glBlendFunc(Machine_BlendFunction_toGL(g_incomingBlendFunction), Machine_BlendFunction_toGL(g_existingBlendFunction));
+      // Enable depth testing.
+      // Fragments always pass.
+      glEnable(GL_DEPTH_TEST);
+      glDepthFunc(Machine_DepthTestFunction_toGL(Machine_Material_getDepthTestFunction(g_material)));
 
-  // Set clear color.
-  glClearColor(g_clearColor.r, g_clearColor.g, g_clearColor.b, g_clearColor.a);
+      // Disable depth writing.
+      glDepthMask(Machine_Material_getDepthWriteEnabled(g_material) ? GL_TRUE : GL_FALSE);
 
-  glfwSwapInterval(1);
+      // Enable blending.
+      glEnable(GL_BLEND);
+      glBlendFunc(Machine_BlendFunction_toGL(Machine_Material_getIncomingBlendFunction(g_material)), Machine_BlendFunction_toGL(Machine_Material_getExistingBlendFunction(g_material)));
 
-
-  result = Machine_Images_startup();
-  if (result) {
-    fprintf(stderr, "%s:%d: Machine_Images_startup() failed\n", __FILE__, __LINE__);
-    glfwMakeContextCurrent(NULL);
-    glfwDestroyWindow(g_window);
-    g_window = NULL;
-    glfwTerminate();
-    return result;
-  }
-  result = Machine_Fonts_startup();
-  if (result) {
-    fprintf(stderr, "%s:%d: Machine_Fonts_startup() failed\n", __FILE__, __LINE__);
-    Machine_Images_shutdown();
-    glfwMakeContextCurrent(NULL);
-    glfwDestroyWindow(g_window);
-    g_window = NULL;
-    glfwTerminate();
-    return result;
+      // Set clear color.
+      glClearColor(g_clearColor.r, g_clearColor.g, g_clearColor.b, g_clearColor.a);
+      
+      Machine_popJumpTarget();
+    } else {
+      Machine_popJumpTarget();
+      if (g_material) {
+        Machine_unlock(g_material);
+        g_material = NULL;
+      }
+      glfwMakeContextCurrent(NULL);
+      glfwDestroyWindow(g_window);
+      g_window = NULL;
+      glfwTerminate();
+      return 1;
+    }
   }
 
   return 0;
 }
 
 void Machine_Video_shutdown() {
-  Machine_Fonts_shutdown();
-  Machine_Images_shutdown();
+  Machine_unlock(g_material);
+  g_material = NULL;
   glfwMakeContextCurrent(NULL);
   glfwDestroyWindow(g_window);
   g_window = NULL;
@@ -159,42 +157,42 @@ Machine_Math_Vector4* Machine_Video_getClearColor() {
 
 
 void Machine_Video_setIncomingBlendFunction(Machine_BlendFunction incomingBlendFunction) {
-  g_incomingBlendFunction = incomingBlendFunction;
-  glBlendFunc(Machine_BlendFunction_toGL(g_incomingBlendFunction), Machine_BlendFunction_toGL(g_existingBlendFunction));
+  Machine_Material_setIncomingBlendFunction(g_material, incomingBlendFunction);
+  glBlendFunc(Machine_BlendFunction_toGL(Machine_Material_getIncomingBlendFunction(g_material)), Machine_BlendFunction_toGL(Machine_Material_getExistingBlendFunction(g_material)));
 }
 
 Machine_BlendFunction Machine_Video_getIncomingBlendFunction() {
-  return g_incomingBlendFunction;
+  return Machine_Material_getIncomingBlendFunction(g_material);
 }
 
 
 void Machine_Video_setExistingBlendFunction(Machine_BlendFunction existingBlendFunction) {
-  g_existingBlendFunction = existingBlendFunction;
-  glBlendFunc(Machine_BlendFunction_toGL(g_incomingBlendFunction), Machine_BlendFunction_toGL(g_existingBlendFunction));
+  Machine_Material_setExistingBlendFunction(g_material, existingBlendFunction);
+  glBlendFunc(Machine_BlendFunction_toGL(Machine_Material_getIncomingBlendFunction(g_material)), Machine_BlendFunction_toGL(Machine_Material_getExistingBlendFunction(g_material)));
 }
 
 Machine_BlendFunction Machine_Video_getExistingBlendFunction() {
-  return g_existingBlendFunction;
+  return Machine_Material_getExistingBlendFunction(g_material);
 }
 
 
 void Machine_Video_setDepthWriteEnabled(bool depthWriteEnabled) {
-  g_depthWriteEnabled = depthWriteEnabled;
-  glDepthMask(g_depthWriteEnabled ? GL_TRUE : GL_FALSE);
+  Machine_Material_setDepthWriteEnabled(g_material, depthWriteEnabled);
+  glDepthMask(Machine_Material_getDepthWriteEnabled(g_material) ? GL_TRUE : GL_FALSE);
 }
 
 bool Machine_Video_getDepthWriteEnabled() {
-  return g_depthWriteEnabled;
+  return Machine_Material_getDepthWriteEnabled(g_material);
 }
 
 
 void Machine_Video_setDepthTestFunction(Machine_DepthTestFunction depthTestFunction) {
-  g_depthTestFunction = depthTestFunction;
-  glDepthFunc(Machine_DepthTestFunction_toGL(g_depthTestFunction));
+  Machine_Material_setDepthTestFunction(g_material, depthTestFunction);
+  glDepthFunc(Machine_DepthTestFunction_toGL(Machine_Material_getDepthTestFunction(g_material)));
 }
 
 Machine_DepthTestFunction Machine_Video_getDepthTestFunction() {
-  return g_depthTestFunction;
+  return Machine_Material_getDepthTestFunction(g_material);
 }
 
 

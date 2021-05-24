@@ -77,6 +77,7 @@
     <ClCompile Include="Video\BlendFunction.c" />
     <ClCompile Include="Video\CanvasSizeChangedEvent.c" />
     <ClCompile Include="Video\DepthTestFunction.c" />
+    <ClCompile Include="Video\Material.c" />
     <ClCompile Include="Video\PixelFormat.c" />
     <ClCompile Include="Video\ProgramKind.c" />
     <ClCompile Include="Video\VertexElementSemantics.c" />
@@ -86,6 +87,7 @@
     <ClInclude Include="Video\BlendFunction.h" />
     <ClInclude Include="Video\CanvasSizeChangedEvent.h" />
     <ClInclude Include="Video\DepthTestFunction.h" />
+    <ClInclude Include="Video\Material.h" />
     <ClInclude Include="Video\PixelFormat.h" />
     <ClInclude Include="Video\ProgramKind.h" />
     <ClInclude Include="Video\VertexElementSemantics.h" />
