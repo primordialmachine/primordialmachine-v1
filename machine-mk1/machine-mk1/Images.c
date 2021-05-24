@@ -8,31 +8,12 @@
 #include <string.h>
 #include <malloc.h>
 #include <png.h>
-#include "Machine.h"
 
-
-static uint8_t getBytesPerPixel(Machine_Images_PixelFormat self) {
-  switch (self) {
-  case Machine_Images_PixelFormat_RGB:
-    return 3;
-  case Machine_Images_PixelFormat_RGBA:
-    return 4;
-  case Machine_Images_PixelFormat_BGR:
-    return 3;
-  case Machine_Images_PixelFormat_BGRA:
-    return 4;
-  case Machine_Images_PixelFormat_GRAYSCALE:
-    return 1;
-  default:
-    Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
-  };
-}
 
 struct Machine_Images_Image {
   int width;
   int height;
-  Machine_Images_PixelFormat pixelFormat;
+  Machine_PixelFormat pixelFormat;
   void* pixels;
 };
 
@@ -42,7 +23,7 @@ int Machine_Images_Image_getSize(Machine_Images_Image* self, int* width, int* he
   return 0;
 }
 
-Machine_Images_PixelFormat Machine_Images_Image_getPixelFormat(Machine_Images_Image* self) {
+Machine_PixelFormat Machine_Images_Image_getPixelFormat(Machine_Images_Image* self) {
   return self->pixelFormat;
 }
 
@@ -175,10 +156,10 @@ int Machine_Images_createImage(const char* path, Machine_Images_Image** image) {
   image1->height = height;
   switch (color_type) {
   case PNG_COLOR_TYPE_RGBA:
-    image1->pixelFormat = Machine_Images_PixelFormat_RGBA;
+    image1->pixelFormat = Machine_PixelFormat_RGBA;
     break;
   case PNG_COLOR_TYPE_RGB:
-    image1->pixelFormat = Machine_Images_PixelFormat_RGB;
+    image1->pixelFormat = Machine_PixelFormat_RGB;
     break;
   default:
     free(row_pointers);
@@ -197,7 +178,7 @@ int Machine_Images_createImage(const char* path, Machine_Images_Image** image) {
   return 0;
 }
 
-int Machine_Images_createImageDirect(Machine_Images_PixelFormat pixelFormat, int width, int height, void* pixels, Machine_Images_Image** image) {
+int Machine_Images_createImageDirect(Machine_PixelFormat pixelFormat, int width, int height, void* pixels, Machine_Images_Image** image) {
   if (Machine_Images_startup()) {
     return 1;
   }
@@ -211,12 +192,12 @@ int Machine_Images_createImageDirect(Machine_Images_PixelFormat pixelFormat, int
   image1->width = width;
   image1->height = height;
   image1->pixelFormat = pixelFormat;
-  image1->pixels = malloc(width * height * getBytesPerPixel(pixelFormat));
+  image1->pixels = malloc(width * height * Machine_PixelFormat_getBytesPerPixel(pixelFormat));
   if (!image1->pixels) {
     Machine_Images_shutdown();
     return 1;
   }
-  memcpy(image1->pixels, pixels, width * height * getBytesPerPixel(pixelFormat));
+  memcpy(image1->pixels, pixels, width * height * Machine_PixelFormat_getBytesPerPixel(pixelFormat));
   
   *image = image1;
 

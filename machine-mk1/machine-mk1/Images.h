@@ -5,21 +5,9 @@
 #if !defined(MACHINE_IMAGES_H_INCLUDED)
 #define MACHINE_IMAGES_H_INCLUDED
 
-#include "_Runtime.h"
+#include "_Video.h"
 
 MACHINE_DECLARE_CLASSTYPE(Machine_Images_Image)
-
-typedef enum Machine_Images_PixelFormat {
-  
-  Machine_Images_PixelFormat_RGB,
-  Machine_Images_PixelFormat_RGBA,
-  
-  Machine_Images_PixelFormat_BGR,
-  Machine_Images_PixelFormat_BGRA,
-
-  Machine_Images_PixelFormat_GRAYSCALE,
-
-} Machine_Images_PixelFormat;
 
 /**
  * @brief Get the size, in pixels, of this image.
@@ -38,7 +26,7 @@ int Machine_Images_Image_getSize(Machine_Images_Image* self, int* width, int* he
  * Not dereferenced on failure.
  * @return @a 0 on success, a non-zero value on failure.
  */
-Machine_Images_PixelFormat Machine_Images_Image_getPixelFormat(Machine_Images_Image* self);
+Machine_PixelFormat Machine_Images_Image_getPixelFormat(Machine_Images_Image* self);
 
 /**
  * @brief Get the pixel format of the image.
@@ -69,6 +57,6 @@ void Machine_Images_shutdown();
  */
 int Machine_Images_createImage(const char* path, Machine_Images_Image** image);
 
-int Machine_Images_createImageDirect(Machine_Images_PixelFormat pixelFormat, int width, int height, void *pixels, Machine_Images_Image** image);
+int Machine_Images_createImageDirect(Machine_PixelFormat pixelFormat, int width, int height, void *pixels, Machine_Images_Image** image);
 
 #endif // MACHINE_IMAGES_H_INCLUDED

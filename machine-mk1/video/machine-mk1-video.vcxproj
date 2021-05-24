@@ -75,10 +75,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Video\CanvasSizeChangedEvent.c" />
+    <ClCompile Include="Video\PixelFormat.c" />
+    <ClCompile Include="Video\ProgramKind.c" />
+    <ClCompile Include="Video\VertexElementSemantics.c" />
     <ClCompile Include="_Video.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Video\CanvasSizeChangedEvent.h" />
+    <ClInclude Include="Video\PixelFormat.h" />
+    <ClInclude Include="Video\ProgramKind.h" />
+    <ClInclude Include="Video\VertexElementSemantics.h" />
     <ClInclude Include="_Video.h" />
   </ItemGroup>
   <ItemGroup>

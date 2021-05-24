@@ -120,10 +120,6 @@
     <ClCompile Include="GUI\WidgetList.c">
       <Filter>Quelldateien\GUI</Filter>
     </ClCompile>
-    </ClCompile>
-    <ClCompile Include="Video\CanvasSizeChangedEvent.c">
-      <Filter>Quelldateien\Video</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\external\glad\include\glad\glad.h">
@@ -200,10 +196,6 @@
     </ClInclude>
     <ClInclude Include="GUI\WidgetList.h">
       <Filter>Headerdateien\GUI</Filter>
-    </ClInclude>
-    </ClInclude>
-    <ClInclude Include="Video\CanvasSizeChangedEvent.h">
-      <Filter>Headerdateien\Video</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

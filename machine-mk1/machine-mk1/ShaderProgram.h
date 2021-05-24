@@ -3,6 +3,7 @@
 
 
 #include "UtilitiesGL.h"
+#include "_Video.h"
 
 
 typedef enum Machine_InputType {
@@ -17,12 +18,6 @@ struct Machine_Input {
   Machine_String* name;
   Machine_InputType type;
 };
-
-typedef enum Machine_ProgramKind {
-  Machine_ProgramKind_VERTEX,
-  Machine_ProgramKind_GEOMETRY,
-  Machine_ProgramKind_FRAGMENT,
-} Machine_ProgramKind;
 
 Machine_Input* Machine_Input_create(Machine_String* name, Machine_InputType type);
 

@@ -3,32 +3,8 @@
 
 
 #include "UtilitiesGL.h"
+#include "_Video.h"
 
-
-/**
- * @brief Semantics of a vertex element.
- */
-typedef enum Machine_VertexElementSemantics Machine_VertexElementSemantics;
-
-enum Machine_VertexElementSemantics {
-  /**
-   * @brief Vertex element consists of sub-elements "x" and "y" in that order.
-   * All sub-elements are of type float.
-   */
-  Machine_VertexElementSemantics_XfYf,
-
-  /**
-   * @brief Vertex element consists of sub-elements "r", "g", and "b" in that order.
-   * All sub-elements are of type float and within the bounds of 0 (inclusive) and 1 (inclusive).
-   */
-   Machine_VertexElementSemantics_RfGfBf,
-
-   /**
-    * @brief Vertex element consists of sub-elements "u" and "v" in that order.
-    * All sub-elements are of type float.
-    */
-    Machine_VertexElementSemantics_UfVf,
-};
 
 MACHINE_DECLARE_CLASSTYPE(Machine_VertexDescriptor)
 

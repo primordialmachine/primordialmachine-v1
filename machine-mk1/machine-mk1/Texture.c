@@ -29,33 +29,33 @@ Machine_Texture* Machine_Texture_create(Machine_Images_Image* image) {
   
   int width, height;
   Machine_Images_Image_getSize(image, &width, &height);
-  Machine_Images_PixelFormat pixelFormat = Machine_Images_Image_getPixelFormat(image);
+  Machine_PixelFormat pixelFormat = Machine_Images_Image_getPixelFormat(image);
   void* pixels = Machine_Images_Image_getPixels(image);
 
 
   Machine_UtilitiesGl_call(glPixelStorei(GL_UNPACK_ALIGNMENT, 1));
   switch (pixelFormat) {
-  case Machine_Images_PixelFormat_BGR:
+  case Machine_PixelFormat_BGR:
     Machine_UtilitiesGl_call(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width,
                              height, 0, GL_BGR, GL_UNSIGNED_BYTE,
                              pixels));
     break;
-  case Machine_Images_PixelFormat_BGRA:
+  case Machine_PixelFormat_BGRA:
     Machine_UtilitiesGl_call(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width,
                              height, 0, GL_BGRA, GL_UNSIGNED_BYTE,
                              pixels));
     break;
-  case Machine_Images_PixelFormat_RGB:
+  case Machine_PixelFormat_RGB:
     Machine_UtilitiesGl_call(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width,
                              height, 0, GL_RGB, GL_UNSIGNED_BYTE,
                              pixels));
     break;
-  case Machine_Images_PixelFormat_RGBA:
+  case Machine_PixelFormat_RGBA:
     Machine_UtilitiesGl_call(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width,
                              height, 0, GL_RGBA, GL_UNSIGNED_BYTE,
                              pixels));
     break;
-  case Machine_Images_PixelFormat_GRAYSCALE:
+  case Machine_PixelFormat_GRAYSCALE:
     Machine_UtilitiesGl_call(glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, width,
                                           height, 0, GL_RED, GL_UNSIGNED_BYTE,
                                           pixels));

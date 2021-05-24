@@ -27,12 +27,30 @@
     <ClCompile Include="Video\CanvasSizeChangedEvent.c">
       <Filter>Quelldateien\Video</Filter>
     </ClCompile>
+    <ClCompile Include="Video\ProgramKind.c">
+      <Filter>Quelldateien\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="Video\VertexElementSemantics.c">
+      <Filter>Quelldateien\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="Video\PixelFormat.c">
+      <Filter>Quelldateien\Video</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_Video.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Video\CanvasSizeChangedEvent.h">
+      <Filter>Headerdateien\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="Video\ProgramKind.h">
+      <Filter>Headerdateien\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="Video\VertexElementSemantics.h">
+      <Filter>Headerdateien\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="Video\PixelFormat.h">
       <Filter>Headerdateien\Video</Filter>
     </ClInclude>
   </ItemGroup>
