@@ -38,6 +38,14 @@ Machine_ByteBuffer* Machine_ByteBuffer_create() {
 }
 
 void Machine_ByteBuffer_appendBytes(Machine_ByteBuffer* self, const char* p, size_t n) {
+  Machine_ByteBuffer_insertBytesAt(self, self->s, p, n);
+}
+
+void Machine_ByteBuffer_prependBytes(Machine_ByteBuffer* self, const char* p, size_t n) {
+  Machine_ByteBuffer_insertBytesAt(self, 0, p, n);
+}
+
+void Machine_ByteBuffer_insertBytesAt(Machine_ByteBuffer* self, size_t i, const char* p, size_t n) {
   if (n == 0) {
     return;
   }
@@ -52,7 +60,10 @@ void Machine_ByteBuffer_appendBytes(Machine_ByteBuffer* self, const char* p, siz
     self->p = p;
     self->c = self->c + ac;
   }
-  memcpy(self->p + self->s, p, n);
+  if (i < n) {
+    memmove(self->p + i + n, self->p + i, self->s - i);
+  }
+  memcpy(self->p + i, p, n);
   self->s += n;
 }
 

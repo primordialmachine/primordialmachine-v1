@@ -15,9 +15,20 @@ MACHINE_DECLARE_CLASSTYPE(Machine_ByteBuffer)
 Machine_ByteBuffer* Machine_ByteBuffer_create();
 
 /// @brief Append Bytes to this Byte buffer.
-/// @param self This Byte bufffer
+/// @param self This Byte buffer.
 /// @param p, n The Bytes.
 void Machine_ByteBuffer_appendBytes(Machine_ByteBuffer* self, const char* p, size_t n);
+
+/// @brief Prepend Bytes to this Byte buffer.
+/// @param self This Byte buffer.
+/// @param p, n The Bytes.
+void Machine_ByteBuffer_prependBytes(Machine_ByteBuffer* self, const char* p, size_t n);
+
+/// @brief Insert Bytes to this Byte buffer.
+/// @param self This Byte buffer.
+/// @param i The index at which to insert the Bytes.
+/// @param p, n The Bytes.
+void Machine_ByteBuffer_insertBytesAt(Machine_ByteBuffer* self, size_t i, const char* p, size_t n);
 
 /// @brief Clear this Byte buffer.
 /// @param self This Byte buffer.

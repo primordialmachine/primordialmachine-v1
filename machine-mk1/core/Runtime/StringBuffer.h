@@ -16,12 +16,21 @@ MACHINE_DECLARE_CLASSTYPE(Machine_StringBuffer)
  */
 Machine_StringBuffer* Machine_StringBuffer_create();
 
-/**
- * @brief Append Bytes to this string buffer.
- * @param self This string bufffer
- * @param p, n The Bytes.
- */
+/// @brief Append Bytes to this string buffer.
+/// @param self This string buffer.
+/// @param p, n The Bytes.
 void Machine_StringBuffer_appendBytes(Machine_StringBuffer* self, const char *p, size_t n);
+
+/// @brief Prepend Bytes to the string buffer.
+/// @param self This string buffer.
+/// @param p, n The Bytes.
+void Machine_StringBuffer_prependBytes(Machine_StringBuffer* self, const char* p, size_t n);
+
+/// @brief Insert Bytes to this string buffer.
+/// @param self This string buffer.
+/// @param i The index at which to insert the Bytes.
+/// @param p, n The Bytes.
+void Machine_StringBuffer_insertBytesAt(Machine_StringBuffer* self, size_t i, const char* p, size_t n);
 
 /**
  * @brief Clear this string buffer.
