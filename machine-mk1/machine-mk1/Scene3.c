@@ -76,10 +76,7 @@ MACHINE_DEFINE_CLASSTYPE(Scene3)
 MACHINE_DEFINE_CLASSTYPE_EX(Scene3, Scene, &Scene3_visit, &Scene3_construct, NULL)
 
 static void Scene3_startup(Scene3* scene) {
-  if (Machine_Images_createImage("test-transparency-1.png", &scene->image)) {
-    Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
-  }
+  scene->image = Machine_Images_createImage("test-transparency-1.png");
   scene->texture = Machine_Texture_create(scene->image);
 
   scene->vertices = Machine_FloatBuffer_create();

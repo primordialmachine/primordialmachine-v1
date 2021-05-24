@@ -298,12 +298,7 @@ Machine_Fonts_Font* Machine_Fonts_createFont(const char* path, int pointSize) {
       Machine_setStatus(Machine_Status_InvalidOperation);
       Machine_jump();
     }
-    Machine_Images_Image* image;
-    int result = Machine_Images_createImageDirect(Machine_Images_PixelFormat_GRAYSCALE, font->face->glyph->bitmap.width, font->face->glyph->bitmap.rows, font->face->glyph->bitmap.buffer, &image);
-    if (result) {
-      Machine_setStatus(result);
-      Machine_jump();
-    }
+    Machine_Images_Image* image = Machine_Images_createImageDirect(Machine_PixelFormat_GRAYSCALE, font->face->glyph->bitmap.width, font->face->glyph->bitmap.rows, font->face->glyph->bitmap.buffer);
     Machine_Texture* texture = Machine_Texture_create(image);
     Map_set(font->map, codepoint,
             font->face->glyph->bitmap_left, font->face->glyph->bitmap_top,

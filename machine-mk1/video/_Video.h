@@ -5,7 +5,9 @@
 #define MACHINE__VIDEO_H_INCLUDED
 
 #define MACHINE_VIDEO_PRIVATE (1)
+#include "Video/BlendFunction.h"
 #include "Video/CanvasSizeChangedEvent.h"
+#include "Video/DepthTestFunction.h"
 #include "Video/PixelFormat.h"
 #include "Video/ProgramKind.h"
 #include "Video/VertexElementSemantics.h"

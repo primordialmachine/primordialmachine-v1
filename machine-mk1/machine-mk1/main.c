@@ -1,7 +1,6 @@
-/**
- * @author Michael Heilmann (<michaelheilmann@primordialmachine.com>)
- * @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
- */
+/// @file Main.c
+/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
+/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #if defined(__cplusplus)
 extern "C" {
 #endif
@@ -10,8 +9,6 @@ extern "C" {
 
 #include <stdlib.h>
 #include <stdio.h>
-
-#include <Windows.h>
 
 #include "Scene1.h"
 #include "Scene2.h"
@@ -23,14 +20,9 @@ extern "C" {
 #include "Images.h"
 #include "Machine.h"
 
-#include "UtilitiesGL.h"
-
-#include <linmath.h>
-
   static Scene* g_scene = NULL;
 
-
-  static int loadIcons(GLFWwindow* window) {
+  static void loadIcons(GLFWwindow* window) {
     static const char* PATHS[] = {
     #define WINDOWS10_BLURRYICONHACK (1)
     #if WINDOWS10_BLURRYICONHACK == 0
@@ -50,46 +42,54 @@ extern "C" {
       "primordialmachine-180x180.png",
       "primordialmachine-256x256.png",
     };
+
   #define N (sizeof(PATHS) / sizeof(const char*))
+
     Machine_Images_Image* IMAGES[N] = { NULL };
     size_t i;
 
-    i = 0;
-    for (; i < N; ++i) {
-      if (Machine_Images_createImage(PATHS[i], &IMAGES[i])) {
-        while (i > 0) {
-          if (IMAGES[i - 1]) {
-            IMAGES[i - 1] = NULL;
-          }
-          i--;
+    Machine_JumpTarget jt;
+    Machine_pushJumpTarget(&jt);
+    if (!setjmp(jt.environment)) {
+
+      i = 0;
+      for (; i < N; ++i) {
+        IMAGES[i] = Machine_Images_createImage(PATHS[i]);
+      }
+
+      GLFWimage images[N];
+      for (size_t i = 0, n = N; i < N; ++i) {
+        int w, h;
+        void* p;
+        Machine_Images_Image_getSize(IMAGES[i], &w, &h);
+        p = Machine_Images_Image_getPixels(IMAGES[i]);
+        images[i].width = w;
+        images[i].height = h;
+        images[i].pixels = p;
+      }
+      glfwSetWindowIcon(window, N, images);
+
+      // Cleanup.
+      for (size_t i = N; i > 0; --i) {
+        if (IMAGES[i - 1]) {
+          IMAGES[i - 1] = NULL;
         }
-        fprintf(stderr, "%s:%d: Machine_Images_createImage() failed\n", __FILE__, __LINE__);
-        return 1;
+      }
+      Machine_popJumpTarget();
+    }
+    else {
+      Machine_popJumpTarget();
+
+      // Cleanup.
+      for (size_t i = N; i > 0; --i) {
+        if (IMAGES[i - 1]) {
+          IMAGES[i - 1] = NULL;
+        }
       }
     }
 
-    GLFWimage images[N];
-    i = 0;
-    for (; i < N; ++i) {
-      int w, h;
-      void* p;
-      Machine_Images_Image_getSize(IMAGES[i], &w, &h);
-      p = Machine_Images_Image_getPixels(IMAGES[i]);
-      images[i].width = w;
-      images[i].height = h;
-      images[i].pixels = p;
-    }
-    glfwSetWindowIcon(window, N, images);
-
-    i = N;
-    while (i > 0) {
-      if (IMAGES[i - 1]) {
-        IMAGES[i - 1] = NULL;
-      }
-      i--;
-    }
   #undef N
-    return 0;
+
   }
 
   static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
@@ -103,8 +103,7 @@ extern "C" {
     if (!setjmp(jumpTarget.environment)) {
       Machine_log(Machine_LogFlags_ToInformations, __FILE__, __LINE__, "mouse pointer moved at (%g, %g)\n", x, y);
       Machine_popJumpTarget();
-    }
-    else {
+    } else {
       Machine_popJumpTarget();
     }
   }
@@ -130,111 +129,101 @@ extern "C" {
     }
   }
 
-  int main() {
-    if (!glfwInit()) {
-      fprintf(stderr, "%s:%d: glfwInit() failed\n", __FILE__, __LINE__);
-      return EXIT_FAILURE;
+  static void run(Scene* scene, GLFWwindow* window) {
+    int oldWidth, oldHeight;
+    glfwGetFramebufferSize(window, &oldWidth, &oldHeight);
+
+    while (!glfwWindowShouldClose(window)) {
+      int newWidth, newHeight;
+      glfwGetFramebufferSize(window, &newWidth, &newHeight);
+      if (oldWidth != newWidth || oldHeight != newHeight) {
+        Scene_onCanvasSizeChanged(scene, Machine_CanvasSizeChangedEvent_create((float)newWidth, (float)newHeight));
+        oldWidth = newWidth;
+        oldHeight = newHeight;
+      }
+      Scene_onUpdate(scene, (float)oldWidth, (float)oldHeight);
+      Machine_update();
+      glfwSwapBuffers(window);
+      glfwPollEvents();
+      if (Machine_getStatus() != Machine_Status_Success) {
+        Machine_jump();
+      }
     }
+  }
 
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
-    GLFWwindow* window = glfwCreateWindow(640, 480, "My Title", NULL, NULL);
-    if (!window) {
-      fprintf(stderr, "%s:%d: glfwCreateWindow() failed\n", __FILE__, __LINE__);
-      glfwTerminate();
-      return EXIT_FAILURE;
-    }
-    glfwMaximizeWindow(window);
-
-    glfwSetKeyCallback(window, key_callback);
-    glfwSetMouseButtonCallback(window, mouse_button_callback);
-    glfwSetCursorPosCallback(window, cursor_position_callback);
-
-    glfwMakeContextCurrent(window);
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-      fprintf(stderr, "%s:%d: gladLoadGLLoader() failed\n", __FILE__, __LINE__);
-      glfwDestroyWindow(window);
-      glfwTerminate();
-      return EXIT_FAILURE;
-    }
-    glfwSwapInterval(1);
-    // Enable blending.
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    // Set clear color.
-    glClearColor(0.9f, 0.9f, 0.9f, 1.f);
-
+  int main0() {
     if (Machine_Video_startup()) {
       fprintf(stderr, "%s:%d: Machine_Video_startup() failed\n", __FILE__, __LINE__);
-      glfwDestroyWindow(window);
-      glfwTerminate();
       return EXIT_FAILURE;
     }
+    glfwMaximizeWindow(Machine_Video_getMainWindow());
+    {
+      Machine_JumpTarget jumpTarget;
+      Machine_pushJumpTarget(&jumpTarget);
+      if (!setjmp(jumpTarget.environment)) {
+        loadIcons(Machine_Video_getMainWindow());
+        Machine_popJumpTarget();
+      }
+      else {
+        Machine_popJumpTarget();
+        Machine_Video_shutdown();
+        return EXIT_FAILURE;
+      }
+    }
+    glfwSetKeyCallback(Machine_Video_getMainWindow(), key_callback);
+    glfwSetMouseButtonCallback(Machine_Video_getMainWindow(), mouse_button_callback);
+    glfwSetCursorPosCallback(Machine_Video_getMainWindow(), cursor_position_callback);
+
+    Machine_JumpTarget jumpTarget1; // To shutdown video.
+    Machine_pushJumpTarget(&jumpTarget1);
+    if (!setjmp(jumpTarget1.environment)) {
+      g_scene = (Scene*)Scene5_create();
+      Scene_onStartup(g_scene);
+
+      Machine_JumpTarget jumpTarget2; // To shutdown scene.
+      Machine_pushJumpTarget(&jumpTarget2);
+      if (!setjmp(jumpTarget2.environment)) {
+        Machine_setRoot(g_scene, true);
+        Machine_update();
+
+        int width, height;
+        glfwGetFramebufferSize(Machine_Video_getMainWindow(), &width, &height);
+        Scene_onCanvasSizeChanged(g_scene, Machine_CanvasSizeChangedEvent_create((float)width, (float)height));
+
+        run(g_scene, Machine_Video_getMainWindow());
+        Machine_popJumpTarget();
+
+        Machine_setRoot(g_scene, false);
+        Scene* s = g_scene;
+        g_scene = NULL;
+        Scene_onShutdown(s);
+      } else {
+        Machine_setRoot(g_scene, false);
+        Scene* s = g_scene;
+        g_scene = NULL;
+        Scene_onShutdown(s);
+        Machine_popJumpTarget();
+        Machine_jump();
+      }
+
+      Machine_popJumpTarget();
+      Machine_Video_shutdown();
+      return EXIT_SUCCESS;
+    } else {    
+      Machine_popJumpTarget();
+      Machine_Video_shutdown();
+      return EXIT_FAILURE;
+    }
+  }
+
+  int main() {
     if (Machine_startup()) {
       fprintf(stderr, "%s:%d: Machine_startup() failed\n", __FILE__, __LINE__);
-      Machine_Video_shutdown();
-      glfwDestroyWindow(window);
-      glfwTerminate();
       return EXIT_FAILURE;
     }
-    if (loadIcons(window)) {
-      fprintf(stderr, "%s:%d: loadIcons() failed\n", __FILE__, __LINE__);
-      Machine_shutdown();
-      Machine_Video_shutdown();
-      glfwDestroyWindow(window);
-      glfwTerminate();
-      return EXIT_FAILURE;
-    }
-
-    Scene* scene = (Scene *)Scene5_create();
-    if (!scene) {
-      fprintf(stderr, "%s:%d: Scene5_create() failed\n", __FILE__, __LINE__);
-      Machine_shutdown();
-      Machine_Video_shutdown();
-      glfwDestroyWindow(window);
-      glfwTerminate();
-      return EXIT_FAILURE;
-    }
-    Machine_setRoot(scene, true);
-
-    Scene_onStartup(scene);
-    Machine_JumpTarget jumpTarget;
-    Machine_pushJumpTarget(&jumpTarget);
-    if (!setjmp(jumpTarget.environment)) {
-
-      Machine_update();
-
-      int oldWidth, oldHeight;
-      glfwGetFramebufferSize(window, &oldWidth, &oldHeight);
-      Scene_onCanvasSizeChanged(scene, Machine_CanvasSizeChangedEvent_create((float)oldWidth, (float)oldHeight));
-
-      while (!glfwWindowShouldClose(window)) {
-        int newWidth, newHeight;
-        glfwGetFramebufferSize(window, &newWidth, &newHeight);
-        if (oldWidth != newWidth || oldHeight != newHeight) {
-          Scene_onCanvasSizeChanged(scene, Machine_CanvasSizeChangedEvent_create((float)newWidth, (float)newHeight));
-          oldWidth = newWidth;
-          oldHeight = newHeight;
-        }
-        Scene_onUpdate(scene, (float)oldWidth, (float)oldHeight);
-        Machine_update();
-        glfwSwapBuffers(window);
-        glfwPollEvents();
-        if (Machine_getStatus() != Machine_Status_Success) {
-          Machine_jump();
-        }
-      }
-      Machine_popJumpTarget();
-    }
-
-    Scene_onShutdown(scene);
-    Machine_setRoot(scene, false);
+    int exitCode = main0();
     Machine_shutdown();
-    Machine_Video_shutdown();
-    glfwDestroyWindow(window);
-    glfwTerminate();
-
-    return EXIT_SUCCESS;
+    return exitCode;
   }
 
 #if defined(__cplusplus)

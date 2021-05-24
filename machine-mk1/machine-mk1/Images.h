@@ -35,7 +35,7 @@ Machine_PixelFormat Machine_Images_Image_getPixelFormat(Machine_Images_Image* se
  * Not dereferenced on failure.
  * @return @a 0 on success, a non-zero value on failure.
  */
-void *Machine_Images_Image_getPixels(Machine_Images_Image* self);
+void* Machine_Images_Image_getPixels(Machine_Images_Image* self);
 
 /**
  * Increment the image module by @a 1.
@@ -55,8 +55,8 @@ void Machine_Images_shutdown();
  * @param path The path.
  * @return A pointer to the image on success, null on failure.
  */
-int Machine_Images_createImage(const char* path, Machine_Images_Image** image);
+Machine_Images_Image* Machine_Images_createImage(const char* path);
 
-int Machine_Images_createImageDirect(Machine_PixelFormat pixelFormat, int width, int height, void *pixels, Machine_Images_Image** image);
+Machine_Images_Image* Machine_Images_createImageDirect(Machine_PixelFormat pixelFormat, int width, int height, void* pixels);
 
 #endif // MACHINE_IMAGES_H_INCLUDED

@@ -11,6 +11,7 @@
 
 
 struct Machine_Images_Image {
+  Machine_Object parent;
   int width;
   int height;
   Machine_PixelFormat pixelFormat;
@@ -27,7 +28,7 @@ Machine_PixelFormat Machine_Images_Image_getPixelFormat(Machine_Images_Image* se
   return self->pixelFormat;
 }
 
-void *Machine_Images_Image_getPixels(Machine_Images_Image* self) {
+void* Machine_Images_Image_getPixels(Machine_Images_Image* self) {
   return self->pixels;
 }
 
@@ -62,9 +63,13 @@ void Machine_Images_Image_finalize(Machine_Images_Image* image) {
   Machine_Images_shutdown();
 }
 
-int Machine_Images_createImage(const char* path, Machine_Images_Image** image) {
-  if (Machine_Images_startup()) {
-    return 1;
+Machine_Images_Image* Machine_Images_createImage(const char* path) {
+  int status;
+
+  status = Machine_Images_startup();
+  if (status) {
+    Machine_setStatus(status);
+    Machine_jump();
   }
 
   int y, width, height;
@@ -83,35 +88,49 @@ int Machine_Images_createImage(const char* path, Machine_Images_Image** image) {
   if (!fp) {
     Machine_Images_shutdown();
     fprintf(stderr, "[read_png_file] File %s could not be opened for reading", path);
-    return 1;
+    Machine_setStatus(Machine_Status_EnvironmentFailed);
+    Machine_jump();
   }
   fread(header, 1, 8, fp);
   if (png_sig_cmp(header, 0, 8)) {
     Machine_Images_shutdown();
+    fclose(fp);
+    fp = NULL;
     fprintf(stderr, "[read_png_file] File %s is not recognized as a PNG file", path);
-    return 1;
+    Machine_setStatus(Machine_Status_EnvironmentFailed);
+    Machine_jump();
   }
 
   //
   png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
   if (!png_ptr) {
+    fclose(fp);
+    fp = NULL;
     Machine_Images_shutdown();
     fprintf(stderr, "[read_png_file] png_create_read_struct failed");
-    return 1;
+    Machine_setStatus(Machine_Status_EnvironmentFailed);
+    Machine_jump();
   }
 
   info_ptr = png_create_info_struct(png_ptr);
   if (!info_ptr) {
+    fclose(fp);
+    fp = NULL;
+    png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
     Machine_Images_shutdown();
     fprintf(stderr, "[read_png_file] png_create_info_struct failed");
-    return 1;
+    Machine_setStatus(Machine_Status_EnvironmentFailed);
+    Machine_jump();
   }
 
   if (setjmp(png_jmpbuf(png_ptr))) {
+    fclose(fp);
+    fp = NULL;
     png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
     Machine_Images_shutdown();
     fprintf(stderr, "[read_png_file] Error during init_io");
-    return 1;
+    Machine_setStatus(Machine_Status_EnvironmentFailed);
+    Machine_jump();
   }
 
   png_init_io(png_ptr, fp);
@@ -131,26 +150,49 @@ int Machine_Images_createImage(const char* path, Machine_Images_Image** image) {
 
   /* read file */
   if (setjmp(png_jmpbuf(png_ptr))) {
+    fclose(fp);
+    fp = NULL;
+    png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
     Machine_Images_shutdown();
     fprintf(stderr, "[read_png_file] Error during read_image");
-    return 1;
+    Machine_setStatus(Machine_Status_EnvironmentFailed);
+    Machine_jump();
   }
 
   png_byte* pixels = malloc(png_get_rowbytes(png_ptr, info_ptr) * height);
+  if (!pixels) {
+    fclose(fp);
+    fp = NULL;
+    png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
+    Machine_Images_shutdown();
+    Machine_setStatus(Machine_Status_EnvironmentFailed);
+    Machine_jump();
+  }
   row_pointers = (png_bytep*)malloc(sizeof(png_bytep) * height);
+  if (!row_pointers) {
+    free(pixels);
+    fclose(fp);
+    fp = NULL;
+    png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
+    Machine_Images_shutdown();
+    Machine_setStatus(Machine_Status_EnvironmentFailed);
+    Machine_jump();
+  }
   for (y = 0; y < height; y++)
     row_pointers[y] = pixels + y * png_get_rowbytes(png_ptr, info_ptr);
 
   png_read_image(png_ptr, row_pointers);
 
   fclose(fp);
+  fp = NULL;
+  png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
+  free(row_pointers);
 
   Machine_Images_Image* image1 = Machine_allocate(sizeof(Machine_Images_Image), NULL, (void (*)(void*)) & Machine_Images_Image_finalize);
   if (!image1) {
-    free(row_pointers);
     Machine_Images_shutdown();
-    png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
-    return 1;
+    Machine_setStatus(Machine_Status_EnvironmentFailed);
+    Machine_jump();
   }
   image1->width = width;
   image1->height = height;
@@ -162,44 +204,46 @@ int Machine_Images_createImage(const char* path, Machine_Images_Image** image) {
     image1->pixelFormat = Machine_PixelFormat_RGB;
     break;
   default:
-    free(row_pointers);
+    free(pixels);
     free(image1);
     image1 = NULL;
     Machine_Images_shutdown();
-    png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
     fprintf(stderr, "[read_png_file] Unsupported png color type (%d) for image file %s\n", (int)color_type, path);
-    return 1;
+    Machine_setStatus(Machine_Status_EnvironmentFailed);
+    Machine_jump();
   };
+
   image1->pixels = pixels;
-  png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
 
-  *image = image1;
-
-  return 0;
-}
-
-int Machine_Images_createImageDirect(Machine_PixelFormat pixelFormat, int width, int height, void* pixels, Machine_Images_Image** image) {
-  if (Machine_Images_startup()) {
-    return 1;
+  return image1;
   }
-  
+
+Machine_Images_Image* Machine_Images_createImageDirect(Machine_PixelFormat pixelFormat, int width, int height, void* pixels) {
+  int status;
+
+  status = Machine_Images_startup();
+  if (status) {
+    Machine_setStatus(status);
+    Machine_jump();
+  }
+
   Machine_Images_Image* image1 = Machine_allocate(sizeof(Machine_Images_Image), NULL, (void (*)(void*)) & Machine_Images_Image_finalize);
   if (!image1) {
     Machine_Images_shutdown();
-    return 1;
+    Machine_setStatus(Machine_Status_AllocationFailed);
+    Machine_jump();
   }
-  
+
   image1->width = width;
   image1->height = height;
   image1->pixelFormat = pixelFormat;
   image1->pixels = malloc(width * height * Machine_PixelFormat_getBytesPerPixel(pixelFormat));
   if (!image1->pixels) {
     Machine_Images_shutdown();
-    return 1;
+    Machine_setStatus(Machine_Status_AllocationFailed);
+    Machine_jump();
   }
   memcpy(image1->pixels, pixels, width * height * Machine_PixelFormat_getBytesPerPixel(pixelFormat));
-  
-  *image = image1;
 
-  return 0;
+  return image1;
 }

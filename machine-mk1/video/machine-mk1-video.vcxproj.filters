@@ -36,6 +36,12 @@
     <ClCompile Include="Video\PixelFormat.c">
       <Filter>Quelldateien\Video</Filter>
     </ClCompile>
+    <ClCompile Include="Video\BlendFunction.c">
+      <Filter>Quelldateien\Video</Filter>
+    </ClCompile>
+    <ClCompile Include="Video\DepthTestFunction.c">
+      <Filter>Quelldateien\Video</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_Video.h">
@@ -51,6 +57,12 @@
       <Filter>Headerdateien\Video</Filter>
     </ClInclude>
     <ClInclude Include="Video\PixelFormat.h">
+      <Filter>Headerdateien\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="Video\BlendFunction.h">
+      <Filter>Headerdateien\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="Video\DepthTestFunction.h">
       <Filter>Headerdateien\Video</Filter>
     </ClInclude>
   </ItemGroup>

@@ -296,10 +296,11 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
   Machine_Binding_bindMatrix4x4(binding, Machine_String_create("modelToWorldMatrix", strlen("modelToWorldMatrix") + 1), world);
   Machine_Binding_bindMatrix4x4(binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), wvp);
 
-  glDisable(GL_DEPTH_TEST);
-  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-  glEnable(GL_BLEND);
-
+  Machine_Video_setDepthTestFunction(Machine_DepthTestFunction_Always);
+  Machine_Video_setDepthWriteEnabled(false);
+  Machine_Video_setIncomingBlendFunction(Machine_BlendFunction_IncomingAlpha);
+  Machine_Video_setExistingBlendFunction(Machine_BlendFunction_OneMinusIncomingAlpha);
+  
   vec2 cursorPosition = { position0[0], position0[1] };
 
   const char* bytes = Machine_String_getBytes(self->text);
