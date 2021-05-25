@@ -49,10 +49,6 @@ static void Scene4_visit(Scene4* self) {
   }
 }
 
-static void Scene4_finalize(Scene4* self) {
-  Scene4_destruct(self);
-}
-
 MACHINE_DEFINE_CLASSTYPE(Scene4)
 MACHINE_DEFINE_CLASSTYPE_EX(Scene4, Scene, &Scene4_visit, &Scene4_construct, NULL)
 
@@ -154,6 +150,7 @@ void Scene4_construct(Scene4* self, size_t numberOfArguments, const Machine_Valu
   ((Scene*)self)->onStartup = (Scene_OnStartupCallback*)&Scene4_onStartup;
   ((Scene*)self)->onUpdate = (Scene_OnUpdateCallback*)&Scene4_onUpdate;
   ((Scene*)self)->onShutdown = (Scene_OnShutdownCallback*)&Scene4_onShutdown;
+  Machine_setClassType((Machine_Object*)self, Scene4_getClassType());
 }
 
 void Scene4_destruct(Scene4* self) {

@@ -11,8 +11,10 @@ static void onMousePointerEvent(Scene* self, Machine_MousePointerEvent *event);
 static void onMouseButtonEvent(Scene* self, Machine_MouseButtonEvent *event);
 
 void Scene_construct(Scene* self, size_t numberOfArguments, const Machine_Value *arguments) {
+  Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->onMouseButtonEvent = &onMouseButtonEvent;
   self->onMousePointerEvent = &onMousePointerEvent;
+  Machine_setClassType((Machine_Object*)self, Scene_getClassType());
 }
 
 // TODO: Make static.
