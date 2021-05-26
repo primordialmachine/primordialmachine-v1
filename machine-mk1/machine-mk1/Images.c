@@ -218,7 +218,7 @@ Machine_Images_Image* Machine_Images_createImage(const char* path) {
   return image1;
   }
 
-Machine_Images_Image* Machine_Images_createImageDirect(Machine_PixelFormat pixelFormat, int width, int height, void* pixels) {
+Machine_Images_Image* Machine_Images_createImageDirect(Machine_PixelFormat pixelFormat, int width, int height, Machine_ByteBuffer* pixels) {
   int status;
 
   status = Machine_Images_startup();
@@ -243,7 +243,7 @@ Machine_Images_Image* Machine_Images_createImageDirect(Machine_PixelFormat pixel
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
-  memcpy(image1->pixels, pixels, width * height * Machine_PixelFormat_getBytesPerPixel(pixelFormat));
+  memcpy(image1->pixels, Machine_ByteBuffer_getBytes(pixels), width * height * Machine_PixelFormat_getBytesPerPixel(pixelFormat));
 
   return image1;
 }

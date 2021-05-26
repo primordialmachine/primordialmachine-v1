@@ -292,13 +292,16 @@ Machine_Fonts_Font* Machine_Fonts_createFont(const char* path, int pointSize) {
     '+',
     '-',
   };
+  Machine_ByteBuffer* temporary = Machine_ByteBuffer_create();
   for (size_t i = 0, n = sizeof(codepoints) / sizeof(uint32_t); i < n; ++i) {
     const uint32_t codepoint = codepoints[i];
     if (FT_Load_Char(font->face, codepoint, FT_LOAD_RENDER)) {
       Machine_setStatus(Machine_Status_InvalidOperation);
       Machine_jump();
     }
-    Machine_Images_Image* image = Machine_Images_createImageDirect(Machine_PixelFormat_GRAYSCALE, font->face->glyph->bitmap.width, font->face->glyph->bitmap.rows, font->face->glyph->bitmap.buffer);
+    Machine_ByteBuffer_clear(temporary);
+    Machine_ByteBuffer_appendBytes(temporary, font->face->glyph->bitmap.buffer, (size_t)(font->face->glyph->bitmap.width * font->face->glyph->bitmap.rows));
+    Machine_Images_Image* image = Machine_Images_createImageDirect(Machine_PixelFormat_GRAYSCALE, font->face->glyph->bitmap.width, font->face->glyph->bitmap.rows, temporary);
     Machine_Texture* texture = Machine_Texture_create(image);
     Map_set(font->map, codepoint,
             font->face->glyph->bitmap_left, font->face->glyph->bitmap_top,

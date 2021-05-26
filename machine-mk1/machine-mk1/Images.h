@@ -57,6 +57,6 @@ void Machine_Images_shutdown();
  */
 Machine_Images_Image* Machine_Images_createImage(const char* path);
 
-Machine_Images_Image* Machine_Images_createImageDirect(Machine_PixelFormat pixelFormat, int width, int height, void* pixels);
+Machine_Images_Image* Machine_Images_createImageDirect(Machine_PixelFormat pixelFormat, int width, int height, Machine_ByteBuffer* pixels);
 
 #endif // MACHINE_IMAGES_H_INCLUDED
