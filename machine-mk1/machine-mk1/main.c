@@ -54,7 +54,7 @@ extern "C" {
 
       i = 0;
       for (; i < N; ++i) {
-        IMAGES[i] = Machine_Images_createImage(PATHS[i]);
+        IMAGES[i] = Machine_Images_createImage(Machine_String_create(PATHS[i], strlen(PATHS[i])));
       }
 
       GLFWimage images[N];

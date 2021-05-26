@@ -63,7 +63,7 @@ void Machine_Images_Image_finalize(Machine_Images_Image* image) {
   Machine_Images_shutdown();
 }
 
-Machine_Images_Image* Machine_Images_createImage(const char* path) {
+Machine_Images_Image* Machine_Images_createImage(Machine_String *path) {
   int status;
 
   status = Machine_Images_startup();
@@ -84,8 +84,15 @@ Machine_Images_Image* Machine_Images_createImage(const char* path) {
   char header[8];    // 8 is the maximum size that can be checked
 
   // Open file, check header
-  FILE* fp = fopen(path, "rb");
-  if (!fp) {
+  FILE* fp;
+  
+  Machine_JumpTarget jt;
+  Machine_pushJumpTarget(&jt);
+  if (!setjmp(jt.environment)) {
+    fp = Machine_openFileRead(path);
+    Machine_popJumpTarget();
+  } else {
+    Machine_popJumpTarget();
     Machine_Images_shutdown();
     fprintf(stderr, "[read_png_file] File %s could not be opened for reading", path);
     Machine_setStatus(Machine_Status_EnvironmentFailed);
@@ -94,7 +101,7 @@ Machine_Images_Image* Machine_Images_createImage(const char* path) {
   fread(header, 1, 8, fp);
   if (png_sig_cmp(header, 0, 8)) {
     Machine_Images_shutdown();
-    fclose(fp);
+    Machine_closeFile(fp);
     fp = NULL;
     fprintf(stderr, "[read_png_file] File %s is not recognized as a PNG file", path);
     Machine_setStatus(Machine_Status_EnvironmentFailed);
@@ -104,7 +111,7 @@ Machine_Images_Image* Machine_Images_createImage(const char* path) {
   //
   png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
   if (!png_ptr) {
-    fclose(fp);
+    Machine_closeFile(fp);
     fp = NULL;
     Machine_Images_shutdown();
     fprintf(stderr, "[read_png_file] png_create_read_struct failed");
@@ -114,7 +121,7 @@ Machine_Images_Image* Machine_Images_createImage(const char* path) {
 
   info_ptr = png_create_info_struct(png_ptr);
   if (!info_ptr) {
-    fclose(fp);
+    Machine_closeFile(fp);
     fp = NULL;
     png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
     Machine_Images_shutdown();
@@ -124,7 +131,7 @@ Machine_Images_Image* Machine_Images_createImage(const char* path) {
   }
 
   if (setjmp(png_jmpbuf(png_ptr))) {
-    fclose(fp);
+    Machine_closeFile(fp);
     fp = NULL;
     png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
     Machine_Images_shutdown();
@@ -150,7 +157,7 @@ Machine_Images_Image* Machine_Images_createImage(const char* path) {
 
   /* read file */
   if (setjmp(png_jmpbuf(png_ptr))) {
-    fclose(fp);
+    Machine_closeFile(fp);
     fp = NULL;
     png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
     Machine_Images_shutdown();
@@ -161,7 +168,7 @@ Machine_Images_Image* Machine_Images_createImage(const char* path) {
 
   png_byte* pixels = malloc(png_get_rowbytes(png_ptr, info_ptr) * height);
   if (!pixels) {
-    fclose(fp);
+    Machine_closeFile(fp);
     fp = NULL;
     png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
     Machine_Images_shutdown();
@@ -171,7 +178,7 @@ Machine_Images_Image* Machine_Images_createImage(const char* path) {
   row_pointers = (png_bytep*)malloc(sizeof(png_bytep) * height);
   if (!row_pointers) {
     free(pixels);
-    fclose(fp);
+    Machine_closeFile(fp);
     fp = NULL;
     png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
     Machine_Images_shutdown();
@@ -183,7 +190,7 @@ Machine_Images_Image* Machine_Images_createImage(const char* path) {
 
   png_read_image(png_ptr, row_pointers);
 
-  fclose(fp);
+  Machine_closeFile(fp);
   fp = NULL;
   png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
   free(row_pointers);

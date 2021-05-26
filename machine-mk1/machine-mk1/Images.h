@@ -55,7 +55,7 @@ void Machine_Images_shutdown();
  * @param path The path.
  * @return A pointer to the image on success, null on failure.
  */
-Machine_Images_Image* Machine_Images_createImage(const char* path);
+Machine_Images_Image* Machine_Images_createImage(Machine_String* path);
 
 Machine_Images_Image* Machine_Images_createImageDirect(Machine_PixelFormat pixelFormat, int width, int height, Machine_ByteBuffer* pixels);
 
