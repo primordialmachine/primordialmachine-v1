@@ -338,51 +338,6 @@ void Machine_loadVoid(Machine_Void value);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-/** C level representation of a string. */
-typedef struct Machine_String Machine_String;
-
-/**
- * @brief Create a string.
- * @param p, n The Bytes.
- * @return The string on success, null on failure.
- * @deprecated Use Machine_String_create.
- */
-Machine_String *Machine_String_create_noraise(const char* p, size_t n);
-
-/**
- * @brief Create a string.
- * @param p, n The Bytes.
- * @return The string.
- */
-Machine_String* Machine_String_create(const char* p, size_t n);
-
-/**
- * @brief Get if this string is equal to another string.
- * @param self This string.
- * @param other The other string.
- * @return @a true if this string string is equal to the other string.
- */
-bool Machine_String_isEqualTo(const Machine_String* self, const Machine_String* other);
-
-/**
- * @brief Get the hash value of this string.
- * @param self This string.
- * @return The hash value of this string.
- */
-size_t Machine_String_getHashValue(const Machine_String *self);
-
-/**
- * @brief Get the Bytes of this string.
- * @param self A pointer to this string.
- * @return A pointer to the Bytes of this string.
- * @warning The pointer remains valid only as long as the string object is valid.
- * @warning The memory pointed to may not be modified.
- */
-const char* Machine_String_getBytes(const Machine_String* self);
-size_t Machine_String_getNumberOfBytes(const Machine_String* self);
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
 /** C level representation of a class type. */
 typedef struct Machine_ClassType Machine_ClassType;
 

@@ -19,6 +19,7 @@
     <ClCompile Include="Runtime\PointerArray.c" />
     <ClCompile Include="Runtime\PrimitiveTypes.c" />
     <ClCompile Include="Runtime\Status.c" />
+    <ClCompile Include="Runtime\String.c" />
     <ClCompile Include="Runtime\StringBuffer.c" />
     <ClCompile Include="_Runtime.c" />
   </ItemGroup>
@@ -31,6 +32,7 @@
     <ClInclude Include="Runtime\Map.h" />
     <ClInclude Include="Runtime\PointerArray.h" />
     <ClInclude Include="Runtime\Status.h" />
+    <ClInclude Include="Runtime\String.h" />
     <ClInclude Include="Runtime\StringBuffer.h" />
     <ClInclude Include="_Runtime.h" />
   </ItemGroup>

@@ -5,6 +5,7 @@
 #include "Runtime/StringBuffer.h"
 
 
+#include "Runtime/String.h"
 #include "Runtime/ByteBuffer.h"
 
 

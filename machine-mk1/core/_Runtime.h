@@ -3,6 +3,7 @@
 
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Machine.h"
+#include "Runtime/String.h"
 #include "Runtime/PointerArray.h"
 #include "Runtime/StringBuffer.h"
 #undef MACHINE_RUNTIME_PRIVATE

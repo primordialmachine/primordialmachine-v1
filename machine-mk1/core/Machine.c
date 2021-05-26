@@ -2,6 +2,9 @@
 #include "Machine.h"
 
 
+#include "Runtime/String.h"
+
+
 #include <assert.h>
 #include <malloc.h>
 #include <memory.h>
@@ -366,64 +369,6 @@ size_t Machine_Value_getHashValue(const Machine_Value* self) {
     exit(EXIT_FAILURE);
   #endif
   };
-}
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-struct Machine_String {
-  size_t hashValue;
-  size_t n;
-  char p[];
-};
-
-Machine_String* Machine_String_create_noraise(const char* p, size_t n) {
-  Machine_String* self = Machine_allocate(sizeof(Machine_String) + n, NULL, NULL);
-  if (!self) {
-    return NULL;
-  }
-  memcpy(self->p, p, n);
-  self->n = n;
-  self->hashValue = n;
-  for (size_t i = 0; i < n; ++i) {
-    self->hashValue = p[i] + self->hashValue * 37;
-  }
-  return self;
-}
-
-Machine_String* Machine_String_create(const char* p, size_t n) {
-  Machine_String* self = Machine_allocate(sizeof(Machine_String) + n, NULL, NULL);
-  if (!self) {
-    Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
-  }
-  memcpy(self->p, p, n);
-  self->n = n;
-  self->hashValue = n;
-  for (size_t i = 0; i < n; ++i) {
-    self->hashValue = p[i] + self->hashValue * 37;
-  }
-  return self;
-}
-
-
-bool Machine_String_isEqualTo(const Machine_String* self, const Machine_String* other) {
-  if (self == other) return true;
-  if (self->n == other->n && self->hashValue == other->hashValue) {
-    return !memcmp(self->p, other->p, self->n);
-  }
-  return false;
-}
-
-size_t Machine_String_getHashValue(const Machine_String* self) {
-  return self->hashValue;
-}
-
-const char* Machine_String_getBytes(const Machine_String* self) {
-  return self->p;
-}
-
-size_t Machine_String_getNumberOfBytes(const Machine_String* self) {
-  return self->n;
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
