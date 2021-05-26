@@ -94,7 +94,7 @@ Machine_Images_Image* Machine_Images_createImage(Machine_String *path) {
   } else {
     Machine_popJumpTarget();
     Machine_Images_shutdown();
-    fprintf(stderr, "[read_png_file] File %s could not be opened for reading", path);
+    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "[read_png_file] file could not be opened for reading\n");
     Machine_setStatus(Machine_Status_EnvironmentFailed);
     Machine_jump();
   }
@@ -103,7 +103,7 @@ Machine_Images_Image* Machine_Images_createImage(Machine_String *path) {
     Machine_Images_shutdown();
     Machine_closeFile(fp);
     fp = NULL;
-    fprintf(stderr, "[read_png_file] File %s is not recognized as a PNG file", path);
+    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "[read_png_file] file is not recognized as a PNG file\n");
     Machine_setStatus(Machine_Status_EnvironmentFailed);
     Machine_jump();
   }
@@ -114,7 +114,7 @@ Machine_Images_Image* Machine_Images_createImage(Machine_String *path) {
     Machine_closeFile(fp);
     fp = NULL;
     Machine_Images_shutdown();
-    fprintf(stderr, "[read_png_file] png_create_read_struct failed");
+    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "[read_png_file] png_create_read_struct failed\n");
     Machine_setStatus(Machine_Status_EnvironmentFailed);
     Machine_jump();
   }
@@ -125,7 +125,7 @@ Machine_Images_Image* Machine_Images_createImage(Machine_String *path) {
     fp = NULL;
     png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
     Machine_Images_shutdown();
-    fprintf(stderr, "[read_png_file] png_create_info_struct failed");
+    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "[read_png_file] png_create_info_struct failed");
     Machine_setStatus(Machine_Status_EnvironmentFailed);
     Machine_jump();
   }
@@ -135,7 +135,7 @@ Machine_Images_Image* Machine_Images_createImage(Machine_String *path) {
     fp = NULL;
     png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
     Machine_Images_shutdown();
-    fprintf(stderr, "[read_png_file] Error during init_io");
+    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "[read_png_file] init_io/png_set_sig_bytes/png_read_info/png_set_interlaced_handling/png_read_update_info failed");
     Machine_setStatus(Machine_Status_EnvironmentFailed);
     Machine_jump();
   }
@@ -161,7 +161,7 @@ Machine_Images_Image* Machine_Images_createImage(Machine_String *path) {
     fp = NULL;
     png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
     Machine_Images_shutdown();
-    fprintf(stderr, "[read_png_file] Error during read_image");
+    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "[read_png_file] error during read_image");
     Machine_setStatus(Machine_Status_EnvironmentFailed);
     Machine_jump();
   }
@@ -215,7 +215,7 @@ Machine_Images_Image* Machine_Images_createImage(Machine_String *path) {
     free(image1);
     image1 = NULL;
     Machine_Images_shutdown();
-    fprintf(stderr, "[read_png_file] Unsupported png color type (%d) for image file %s\n", (int)color_type, path);
+    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "[read_png_file] Unsupported png color type (%d) for image file\n", (int)color_type);
     Machine_setStatus(Machine_Status_EnvironmentFailed);
     Machine_jump();
   };
