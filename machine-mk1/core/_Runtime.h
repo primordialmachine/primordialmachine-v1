@@ -5,6 +5,7 @@
 #include "Machine.h"
 #include "Runtime/ByteBuffer.h"
 #include "Runtime/IO.h"
+#include "Runtime/List.h"
 #include "Runtime/String.h"
 #include "Runtime/PointerArray.h"
 #include "Runtime/StringBuffer.h"
