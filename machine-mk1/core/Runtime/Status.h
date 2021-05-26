@@ -4,6 +4,10 @@
 #if !defined(MACHINE_RUNTIME_STATUS_H_INCLUDED)
 #define MACHINE_RUNTIME_STATUS_H_INCLUDED
 
+#if !defined(MACHINE_RUNTIME_PRIVATE)
+#error("Do not include this file directly, include `_Runtime.h` instead.")
+#endif
+
 /// @brief Type of a status variable values.
 typedef int Machine_StatusValue;
 
