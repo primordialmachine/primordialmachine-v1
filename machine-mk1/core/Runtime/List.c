@@ -22,6 +22,18 @@ static size_t getSize(const Machine_List* self);
 
 static void clear(Machine_List* self);
 
+#if defined(Machine_List_withReverse) && Machine_List_withReverse == 1
+
+static void reverse(Machine_List* self);
+
+#endif
+
+#if defined(Machine_List_withSlice) && Machine_List_withSlice == 1
+
+static Machine_List* slice(Machine_List* self, size_t start, size_t length);
+
+#endif
+
 static void Machine_List_visit(Machine_List* self);
 
 static void Machine_List_destruct(Machine_List* self);
@@ -34,6 +46,12 @@ static void Machine_List_construct(Machine_List* self, size_t numberOfArguments,
   self->prepend = &prepend;
   self->insertAt = &insertAt;
   self->getAt = &getAt;
+#if defined(Machine_List_withReverse) && Machine_List_withReverse == 1
+  self->reverse = &reverse;
+#endif
+#if defined(Machine_List_withSlice) && Machine_List_withSlice == 1
+  self->slice = &slice;
+#endif
   self->size = 0;
   self->capacity = 0;
   self->elements = NULL;
@@ -134,3 +152,21 @@ void Machine_List_insertAt(Machine_List* self, size_t index, Machine_Value value
   MACHINE_ASSERT_NOTNULL(self);
   self->insertAt(self, index, value);
 }
+
+#if defined(Machine_List_withReverse) && Machine_List_withReverse == 1
+
+void Machine_List_reverse(Machine_List* self) {
+  MACHINE_ASSERT_NOTNULL(self);
+  self->reverse(self);
+}
+
+#endif
+
+#if defined(Machine_List_withSlice) && Machine_List_withSlice == 1
+
+Machine_List* Machine_List_slice(Machine_List* self, size_t start, size_t length) {
+  MACHINE_ASSERT_NOTNULL(self);
+  return self->slice(self, start, index);
+}
+
+#endif

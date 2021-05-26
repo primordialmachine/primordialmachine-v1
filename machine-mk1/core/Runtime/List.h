@@ -11,6 +11,7 @@
 #include "./Runtime/Collection.h"
 
 #define Machine_List_withReverse (0)
+#define Machine_List_withSlice (0)
 
 MACHINE_DECLARE_CLASSTYPE(Machine_List)
 
@@ -25,6 +26,9 @@ struct Machine_List {
   void(*append)(Machine_List* self, Machine_Value value);
 #if defined(Machine_List_withReverse) && Machine_List_withReverse == 1
   void(*reverse)(Machine_List* self);
+#endif
+#if defined(Machine_List_withSlice) && Machine_List_withSlice == 1
+  Machine_List* (*slice)(Machine_List* self, size_t start, size_t length);
 #endif
 };
 
@@ -70,6 +74,17 @@ void Machine_List_insertAt(Machine_List* self, size_t index, Machine_Value value
 /// @param self This list.
 /// @abstract
 void Machine_List_reverse(Machine_List* self);
+
+#endif
+
+#if defined(Machine_List_withSlice) && Machine_List_withSlice == 1
+
+/// @brief Slice this list.
+/// @param self This list.
+/// @param start The start index of the slice.
+/// @param length The length of the slice.
+/// @return The slice.
+Machine_List* Machine_List_slice(Machine_List* self, size_t start, size_t length);
 
 #endif
 
