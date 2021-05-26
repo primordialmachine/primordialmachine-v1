@@ -1,3 +1,6 @@
+/// @file Runtime/ByteBuffer.h
+/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
+/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #if !defined(MACHINE_RUNTIME_BYTEBUFFER_H_INCLUDED)
 #define MACHINE_RUNTIME_BYTEBUFFER_H_INCLUDED
 
