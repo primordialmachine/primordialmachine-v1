@@ -51,6 +51,14 @@ typedef int Machine_StatusValue;
 /// That value indicates something is too long.
 #define Machine_Status_TooLong (9)
 
+/// @brief Symbolic constant for a status variable value.
+/// That value indicates the occurrence of a lexical error.
+#define Machine_Status_LexicalError (10)
+
+/// @brief Symbolic constant for a status variable value.
+/// That value indicates the occurrence of a syntactical error.
+#define Machine_Status_SyntacticalError (11)
+
 /// @brief Get the value of the status variable.
 /// @return The value.
 /// @default #Machine_Status_Success
