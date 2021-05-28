@@ -63,7 +63,7 @@ void Machine_ByteBuffer_insertBytesAt(Machine_ByteBuffer* self, size_t i, const 
     self->p = p;
     self->c = self->c + ac;
   }
-  if (i < n) {
+  if (i < self->s) {
     memmove(self->p + i + n, self->p + i, self->s - i);
   }
   memcpy(self->p + i, p, n);
