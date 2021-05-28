@@ -81,3 +81,10 @@ const char* Machine_ByteBuffer_getBytes(const Machine_ByteBuffer* self) {
 size_t Machine_ByteBuffer_getNumberOfBytes(const Machine_ByteBuffer* self) {
   return self->s;
 }
+
+bool Machine_ByteBuffer_compareBytes(const Machine_ByteBuffer* self, const char* p, size_t n) {
+  if (n != self->s) {
+    return false;
+  }
+  return !memcmp(self->p, p, n);
+}

@@ -47,5 +47,10 @@ const char* Machine_ByteBuffer_getBytes(const Machine_ByteBuffer* self);
 /// @return The number of Bytes of this Byte buffer.
 size_t Machine_ByteBuffer_getNumberOfBytes(const Machine_ByteBuffer* self);
 
+/// @brief Compare the Bytes of this Byte buffer to the specified Bytes.
+/// @param self This Byte buffer.
+/// @param p, n The specified Bytes.
+/// @return @a true if the Bytes are equal, @a false otherwise.
+bool Machine_ByteBuffer_compareBytes(const Machine_ByteBuffer* self, const char* p, size_t n);
 
 #endif // MACHINE_RUNTIME_BYTEBUFFER_H_INCLUDED
