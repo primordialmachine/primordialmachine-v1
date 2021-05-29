@@ -81,7 +81,7 @@ static void insertAt(Machine_List* self, size_t index, Machine_Value value) {
     if (self->capacity < maximalCapacity / 2) {
       newCapacity = self->capacity > 0 ? self->capacity * 2 : 8;
     }
-    void* newElements = realloc(self->elements, sizeof(void*) * newCapacity);
+    void* newElements = realloc(self->elements, sizeof(Machine_Value) * newCapacity);
     if (!newElements) {
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();
@@ -90,7 +90,7 @@ static void insertAt(Machine_List* self, size_t index, Machine_Value value) {
     self->capacity = newCapacity;
   }
   if (index < self->size) {
-    memmove(self->elements + index + 1, self->elements + index + 0, sizeof(void*) * (self->size - index));
+    memmove(self->elements + index + 1, self->elements + index + 0, sizeof(Machine_Value) * (self->size - index));
   }
   self->elements[index] = value;
   self->size++;
