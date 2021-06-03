@@ -57,6 +57,9 @@
     <ClCompile Include="Runtime\IO.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
+    <ClCompile Include="Runtime\Pair.c">
+      <Filter>Quelldateien\Runtime</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Machine.h">
@@ -93,6 +96,9 @@
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\IO.h">
+      <Filter>Headerdateien\Runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\Pair.h">
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
   </ItemGroup>

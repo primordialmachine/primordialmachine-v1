@@ -7,6 +7,7 @@
 #include "Runtime/IO.h"
 #include "Runtime/List.h"
 #include "Runtime/String.h"
+#include "Runtime/Pair.h"
 #include "Runtime/PointerArray.h"
 #include "Runtime/StringBuffer.h"
 #undef MACHINE_RUNTIME_PRIVATE
