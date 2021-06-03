@@ -454,10 +454,20 @@ Machine_ClassType* Machine_getClassType(Machine_Object* object);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+#define MACHINE_ASSERT(e, s) \
+  if (!(e)) \
+  { \
+    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "assertion `%s` failed\n", #e); \
+    Machine_setStatus(s); \
+    Machine_jump(); \
+  }
+
 #define MACHINE_ASSERT_NOTNULL(e) \
   if (!(e)) \
   { \
-    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "e == NULL\n"); \
+    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "assertion `%s != NULL' failed\n", #e); \
+    Machine_setStatus(Machine_Status_ArgumentNull); \
+    Machine_jump(); \
   }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
