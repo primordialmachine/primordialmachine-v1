@@ -59,6 +59,14 @@ typedef int Machine_StatusValue;
 /// That value indicates the occurrence of a syntactical error.
 #define Machine_Status_SyntacticalError (11)
 
+/// @brief Symbolic constant for a status variable value.
+/// That value indicates an pointer argument is null.
+#define Machine_Status_ArgumentNull (13)
+
+/// @brief Symbolic constant for a status variable value.
+/// That value indicates an invalid number of arguments.
+#define Machine_Status_InvalidNumberOfArguments (14)
+
 /// @brief Get the value of the status variable.
 /// @return The value.
 /// @default #Machine_Status_Success
