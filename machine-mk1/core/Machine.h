@@ -8,6 +8,7 @@
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
 
+#include "./Runtime/Log.h"
 #include "./Runtime/PrimitiveTypes.h"
 #include "./Runtime/Status.h"
 #include <setjmp.h>
@@ -470,28 +471,6 @@ Machine_ClassType* Machine_getClassType(Machine_Object* object);
     Machine_jump(); \
   }
 
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-/**
- * @brief If defined and @a 1, then logging functionality is compiled into the machine.
- */
-#define MACHINE_WITH_LOG (1)
-
-#if defined(MACHINE_WITH_LOG) && 1 == MACHINE_WITH_LOG
-
-#define Machine_LogFlags_ToErrors (2)
-#define Machine_LogFlags_ToWarnings (1)
-#define Machine_LogFlags_ToInformations (0)
-
-/**
- * @brief Write a log message.
- * @param flags Bitwise or of Machine_LogFlags_* constants.
- */
-void Machine_log(int flags, const char* file, int line, const char* format, ...);
-
-#endif
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 #endif // MACHINE_H_INCLUDED

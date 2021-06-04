@@ -540,20 +540,3 @@ bool Machine_Object_isEqualTo(const Machine_Object* self, const Machine_Object* 
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-#if defined(MACHINE_WITH_LOG) && 1 == MACHINE_WITH_LOG
-
-#include <stdio.h>
-#include <stdarg.h>
-
-void Machine_log(int flags, const char* file, int line, const char* format, ...) {
-  va_list arguments;
-  va_start(arguments, format);
-  fprintf(stdout, "%s:%d: ", file, line);
-  vfprintf(stdout, format, arguments);
-  va_end(arguments);
-}
-
-#endif
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

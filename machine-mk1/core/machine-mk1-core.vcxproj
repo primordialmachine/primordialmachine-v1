@@ -16,6 +16,7 @@
     <ClCompile Include="Runtime\Collection.c" />
     <ClCompile Include="Runtime\IO.c" />
     <ClCompile Include="Runtime\List.c" />
+    <ClCompile Include="Runtime\Log.c" />
     <ClCompile Include="Runtime\Map.c" />
     <ClCompile Include="Runtime\Pair.c" />
     <ClCompile Include="Runtime\PointerArray.c" />
@@ -29,7 +30,9 @@
     <ClInclude Include="Machine.h" />
     <ClInclude Include="Runtime\ByteBuffer.h" />
     <ClInclude Include="Runtime\Collection.h" />
+    <ClInclude Include="Runtime\Configuration.h" />
     <ClInclude Include="Runtime\IO.h" />
+    <ClInclude Include="Runtime\Log.h" />
     <ClInclude Include="Runtime\Pair.h" />
     <ClInclude Include="Runtime\PrimitiveTypes.h" />
     <ClInclude Include="Runtime\List.h" />
