@@ -11,6 +11,10 @@
 #include "./../Machine.h"
 #include <stdio.h>
 
+#include "./../Runtime/IO/FileAccessMode.h"
+#include "./../Runtime/IO/ExistingFilePolicy.h"
+#include "./../Runtime/IO/NonExistingFilePolicy.h"
+
 /// @brief Open a file for reading.
 /// @param path The path.
 /// @return The file descriptor.

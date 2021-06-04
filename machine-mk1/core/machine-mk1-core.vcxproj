@@ -33,6 +33,9 @@
     <ClInclude Include="Runtime\Collection.h" />
     <ClInclude Include="Runtime\Configuration.h" />
     <ClInclude Include="Runtime\IO.h" />
+    <ClInclude Include="Runtime\IO\ExistingFilePolicy.h" />
+    <ClInclude Include="Runtime\IO\FileAccessMode.h" />
+    <ClInclude Include="Runtime\IO\NonExistingFilePolicy.h" />
     <ClInclude Include="Runtime\Log.h" />
     <ClInclude Include="Runtime\Pair.h" />
     <ClInclude Include="Runtime\PrimitiveTypes.h" />

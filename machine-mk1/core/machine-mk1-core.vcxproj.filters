@@ -19,6 +19,12 @@
     <Filter Include="Quelldateien\Runtime">
       <UniqueIdentifier>{f40b0be6-7171-4e7e-a276-f05094bbbcb3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Runtime\IO">
+      <UniqueIdentifier>{82efd535-74da-4b12-a95b-23d5f0294a4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Runtime\IO">
+      <UniqueIdentifier>{4455e3c1-14c8-4689-978a-1dd9f18005ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Machine.c">
@@ -115,6 +121,15 @@
     </ClInclude>
     <ClInclude Include="Runtime\Configuration.h">
       <Filter>Headerdateien\Runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\IO\NonExistingFilePolicy.h">
+      <Filter>Headerdateien\Runtime\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\IO\FileAccessMode.h">
+      <Filter>Headerdateien\Runtime\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\IO\ExistingFilePolicy.h">
+      <Filter>Headerdateien\Runtime\IO</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
