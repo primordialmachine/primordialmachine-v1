@@ -24,6 +24,7 @@
     <ClCompile Include="Runtime\Status.c" />
     <ClCompile Include="Runtime\String.c" />
     <ClCompile Include="Runtime\StringBuffer.c" />
+    <ClCompile Include="Runtime\Value.c" />
     <ClCompile Include="_Runtime.c" />
   </ItemGroup>
   <ItemGroup>
@@ -41,6 +42,7 @@
     <ClInclude Include="Runtime\Status.h" />
     <ClInclude Include="Runtime\String.h" />
     <ClInclude Include="Runtime\StringBuffer.h" />
+    <ClInclude Include="Runtime\Value.h" />
     <ClInclude Include="_Runtime.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

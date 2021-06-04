@@ -60,6 +60,9 @@
     <ClCompile Include="Runtime\Pair.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
+    <ClCompile Include="Runtime\Value.c">
+      <Filter>Quelldateien\Runtime</Filter>
+    </ClCompile>
     <ClCompile Include="Runtime\Log.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
@@ -102,6 +105,9 @@
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\Pair.h">
+      <Filter>Headerdateien\Runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\Value.h">
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\Log.h">
