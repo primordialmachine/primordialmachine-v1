@@ -58,7 +58,6 @@ static void Scene2_visit(Scene2* self) {
   }
 }
 
-MACHINE_DEFINE_CLASSTYPE(Scene2)
 MACHINE_DEFINE_CLASSTYPE_EX(Scene2, Scene, &Scene2_visit, &Scene2_construct, NULL)
 
 static void Scene2_onStartup(Scene2* scene) {

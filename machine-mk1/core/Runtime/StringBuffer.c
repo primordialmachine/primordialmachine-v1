@@ -20,7 +20,6 @@ static void Machine_StringBuffer_construct(Machine_StringBuffer* self, size_t nu
   Machine_setClassType((Machine_Object *)self, Machine_StringBuffer_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_StringBuffer)
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_StringBuffer, Machine_Object, NULL, &Machine_StringBuffer_construct, NULL)
 
 Machine_StringBuffer* Machine_StringBuffer_create() {

@@ -22,7 +22,6 @@ void Machine_Shape2_construct(Machine_Shape2* self, size_t numberOfArguments, co
   Machine_setClassType((Machine_Object*)self, Machine_Shape2_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Shape2)
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_Shape2, Machine_Object, &Machine_Shape2_visit, Machine_Shape2_construct, NULL)
 
 void Machine_Shape2_render(Machine_Shape2* self, float width, float height) {
@@ -135,7 +134,6 @@ void Machine_Rectangle2_construct(Machine_Rectangle2* self, size_t numberOfArgum
   Machine_setClassType((Machine_Object*)self, Machine_Rectangle2_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Rectangle2)
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_Rectangle2, Machine_Shape2, &Machine_Rectangle2_visit, &Machine_Rectangle2_construct, NULL)
 
 Machine_Rectangle2* Machine_Rectangle2_create() {

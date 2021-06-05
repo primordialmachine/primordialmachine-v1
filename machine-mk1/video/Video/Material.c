@@ -6,7 +6,6 @@
 
 static void Machine_Material_visit(Machine_Material* self);
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Material)
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_Material, Machine_Object, &Machine_Material_visit, &Machine_Material_construct, NULL)
 
 static void Machine_Material_visit(Machine_Material* self)

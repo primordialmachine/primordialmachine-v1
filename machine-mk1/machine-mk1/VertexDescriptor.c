@@ -25,8 +25,6 @@ static void Machine_VertexDescriptor_construct(Machine_VertexDescriptor* self, s
 
 static void Machine_VertexDescriptor_destruct(Machine_VertexDescriptor* self);
 
-MACHINE_DEFINE_CLASSTYPE(Machine_VertexDescriptor)
-
 #if defined(TRACE_VISIT) && (1) == TRACE_VISIT
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_VertexDescriptor, Machine_Object, &Machine_VertexDescriptor_visit, &Machine_VertexDescriptor_construct, &Machine_VertexDescriptor_destruct)
 #else

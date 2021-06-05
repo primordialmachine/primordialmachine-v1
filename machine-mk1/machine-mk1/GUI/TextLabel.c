@@ -62,7 +62,6 @@ void Machine_GUI_TextLabel_construct(Machine_GUI_TextLabel* self, size_t numberO
   Machine_setClassType((Machine_Object*)self, Machine_GUI_TextLabel_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_GUI_TextLabel)
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_GUI_TextLabel, Machine_GUI_Widget, &Machine_GUI_TextLabel_visit, &Machine_GUI_TextLabel_construct, NULL)
 
 Machine_GUI_TextLabel* Machine_GUI_TextLabel_create() {

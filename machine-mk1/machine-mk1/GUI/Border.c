@@ -39,7 +39,6 @@ static void Machine_GUI_Border_setSize(Machine_GUI_Border* self, const Machine_M
 
 static const Machine_Math_Vector2* Machine_GUI_Border_getPreferredSize(Machine_GUI_Border* self);
 
-MACHINE_DEFINE_CLASSTYPE(Machine_GUI_Border)
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_GUI_Border, Machine_GUI_Widget, &Machine_GUI_Border_visit, &Machine_GUI_Border_construct, NULL)
 
 static void Machine_GUI_Border_visit(Machine_GUI_Border* self) {

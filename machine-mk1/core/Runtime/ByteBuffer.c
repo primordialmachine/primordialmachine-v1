@@ -29,7 +29,6 @@ static void Machine_ByteBuffer_destruct(Machine_ByteBuffer* self) {
   }
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_ByteBuffer)
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_ByteBuffer, Machine_Object, NULL, &Machine_ByteBuffer_construct, &Machine_ByteBuffer_destruct)
 
 Machine_ByteBuffer* Machine_ByteBuffer_create() {

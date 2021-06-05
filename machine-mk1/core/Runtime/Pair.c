@@ -9,7 +9,6 @@
 #include <memory.h>
 
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Pair)
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_Pair, Machine_Object, NULL, &Machine_Pair_construct, NULL)
 
 void Machine_Pair_construct(Machine_Pair* self, size_t numberOfArguments, const Machine_Value* arguments) {

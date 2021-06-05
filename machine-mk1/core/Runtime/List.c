@@ -58,7 +58,6 @@ static void Machine_List_construct(Machine_List* self, size_t numberOfArguments,
   Machine_setClassType((Machine_Object*)self, Machine_List_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_List)
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_List, Machine_Collection, &Machine_List_visit, &Machine_List_construct, &Machine_List_destruct)
 
 static void append(Machine_List* self, Machine_Value value) {

@@ -132,7 +132,6 @@ static void clear(Machine_Map* self) {
   }
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Map)
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_Map, Machine_Collection, NULL, &Machine_Map_construct, NULL)
 
 void Machine_Map_construct(Machine_Map* self, size_t numberOfArguments, const Machine_Value* arguments) {

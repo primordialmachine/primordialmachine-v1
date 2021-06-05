@@ -25,7 +25,6 @@ void Scene_destruct(Scene* self)
 static void Scene_visit(Scene* self)
 {/*Intentionally empty.*/}
 
-MACHINE_DEFINE_CLASSTYPE(Scene)
 MACHINE_DEFINE_CLASSTYPE_EX(Scene, Machine_Object, &Scene_visit, &Scene_construct, &Scene_destruct)
 
 static void onMousePointerEvent(Scene* self, Machine_MousePointerEvent *event)

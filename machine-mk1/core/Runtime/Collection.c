@@ -4,7 +4,6 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/Collection.h"
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Collection)
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_Collection, Machine_Object, NULL, &Machine_Collection_construct, NULL)
 
 void Machine_Collection_construct(Machine_Collection* self, size_t numberOfArguments, const Machine_Value* arguments) {

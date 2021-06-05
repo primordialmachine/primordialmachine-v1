@@ -275,14 +275,14 @@ Machine_ClassType* Machine_getClassType(Machine_Object* object);
   typedef struct NAME NAME; \
   Machine_ClassType *NAME##_getClassType();
 
-#define MACHINE_DEFINE_CLASSTYPE(NAME) \
-  static Machine_ClassType *g_##NAME##_ClassType = NULL; \
-\
-  static void NAME##_onTypeDestroyed() { \
-    g_##NAME##_ClassType = NULL; \
-  }
-
 #define MACHINE_DEFINE_CLASSTYPE_EX(THIS_TYPE, PARENT_TYPE, VISIT, CONSTRUCT, DESTRUCT) \
+\
+  static Machine_ClassType *g_##THIS_TYPE##_ClassType = NULL; \
+\
+  static void THIS_TYPE##_onTypeDestroyed() { \
+    g_##THIS_TYPE##_ClassType = NULL; \
+  } \
+\
   Machine_ClassType* THIS_TYPE##_getClassType() { \
     if (!g_##THIS_TYPE##_ClassType) { \
       g_##THIS_TYPE##_ClassType = \

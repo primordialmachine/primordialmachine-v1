@@ -17,7 +17,6 @@ static void Machine_MouseButtonEvent_construct(Machine_MouseButtonEvent* self, s
   Machine_setClassType((Machine_Object*)self, Machine_MouseButtonEvent_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_MouseButtonEvent)
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_MouseButtonEvent, Machine_Object, &Machine_MouseButtonEvent_visit, &Machine_MouseButtonEvent_construct, NULL)
 
 Machine_MouseButtonEvent* Machine_MouseButtonEvent_create(int button, int action, float x, float y) {

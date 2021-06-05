@@ -62,7 +62,6 @@ void Machine_GUI_TextButton_construct(Machine_GUI_TextButton* self, size_t numbe
   Machine_setClassType((Machine_Object*)self, Machine_GUI_TextButton_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_GUI_TextButton)
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_GUI_TextButton, Machine_GUI_Widget, &Machine_GUI_TextButton_visit, &Machine_GUI_TextButton_construct, NULL)
 
 Machine_GUI_TextButton* Machine_GUI_TextButton_create() {

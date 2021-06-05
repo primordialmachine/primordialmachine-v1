@@ -15,7 +15,6 @@ static void Machine_CanvasSizeChangedEvent_construct(Machine_CanvasSizeChangedEv
   Machine_setClassType((Machine_Object *)self, Machine_CanvasSizeChangedEvent_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_CanvasSizeChangedEvent)
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_CanvasSizeChangedEvent, Machine_Object, &Machine_CanvasSizeChangedEvent_visit, &Machine_CanvasSizeChangedEvent_construct, NULL)
 
 Machine_CanvasSizeChangedEvent* Machine_CanvasSizeChangedEvent_create(float width, float height) {

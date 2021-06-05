@@ -10,7 +10,6 @@ static void Machine_Math_Vector4_construct(Machine_Math_Vector4* self, size_t nu
   Machine_setClassType((Machine_Object *)self, Machine_Math_Vector4_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Math_Vector4)
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_Math_Vector4, Machine_Object, NULL, &Machine_Math_Vector4_construct, NULL)
 
 Machine_Math_Vector4* Machine_Math_Vector4_create() {

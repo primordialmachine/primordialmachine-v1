@@ -12,7 +12,6 @@ static void Machine_Math_Rectangle2_construct(Machine_Math_Rectangle2* self, siz
   Machine_setClassType((Machine_Object*)self, Machine_Math_Rectangle2_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Math_Rectangle2)
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_Math_Rectangle2, Machine_Object, NULL, &Machine_Math_Rectangle2_construct, NULL)
 
 Machine_Math_Rectangle2* Machine_Math_Rectangle2_create() {

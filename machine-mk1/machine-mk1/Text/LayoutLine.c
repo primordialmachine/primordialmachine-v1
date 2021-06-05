@@ -2,7 +2,6 @@
 
 void Machine_Text_LayoutLine_construct(Machine_Text_LayoutLine* self, size_t numberOfArguments, const Machine_Value* arguments);
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Text_LayoutLine)
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_Text_LayoutLine, Machine_Object, NULL, &Machine_Text_LayoutLine_construct, NULL)
 
 void Machine_Text_LayoutLine_construct(Machine_Text_LayoutLine* self, size_t numberOfArguments, const Machine_Value* arguments) {

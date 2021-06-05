@@ -53,7 +53,6 @@ static void Scene5_visit(Scene5* self) {
   }
 }
 
-MACHINE_DEFINE_CLASSTYPE(Scene5)
 MACHINE_DEFINE_CLASSTYPE_EX(Scene5, Scene, &Scene5_visit, &Scene5_construct, NULL)
 
 static Machine_GUI_Widget* createTextLabel(const char* text, Machine_Fonts_Font *font) {

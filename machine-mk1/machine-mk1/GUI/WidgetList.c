@@ -17,7 +17,6 @@ void Machine_GUI_WidgetList_construct(Machine_GUI_WidgetList* self, size_t numbe
   Machine_setClassType((Machine_Object *)self, Machine_GUI_WidgetList_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_GUI_WidgetList)
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_GUI_WidgetList, Machine_Object, &Machine_GUI_WidgetList_visit, &Machine_GUI_WidgetList_construct, NULL)
 
 Machine_GUI_WidgetList* Machine_GUI_WidgetList_create() {

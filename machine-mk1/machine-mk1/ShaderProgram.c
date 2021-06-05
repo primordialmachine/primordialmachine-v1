@@ -59,7 +59,6 @@ static void Machine_Input_construct(Machine_Input* self, size_t numberOfArgument
   Machine_setClassType((Machine_Object *)self, Machine_Input_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Input)
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_Input, Machine_Object, &Machine_Input_visit, &Machine_Input_construct, NULL)
 
 Machine_Input* Machine_Input_create(Machine_String* name, Machine_InputType type) {

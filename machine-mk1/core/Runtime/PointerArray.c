@@ -14,8 +14,6 @@ static void Machine_PointerArray_construct(Machine_PointerArray* self, size_t nu
 
 static void Machine_PointerArray_destruct(Machine_PointerArray* self);
 
-MACHINE_DEFINE_CLASSTYPE(Machine_PointerArray)
-
 struct Machine_PointerArray {
   Machine_Object parent;
   Machine_List* list;
