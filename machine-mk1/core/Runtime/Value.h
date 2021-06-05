@@ -142,9 +142,9 @@ INLINE bool Machine_Value_isReal(const Machine_Value* self) {
 
 
 
-INLINE void Machine_Value_setString(Machine_Value* self, Machine_String* value) {
+INLINE void Machine_Value_setString(Machine_Value* self, const Machine_String* value) {
   self->tag = Machine_ValueFlag_String;
-  self->stringValue = value;
+  self->stringValue = (Machine_String*)value;
 }
 
 INLINE Machine_String* Machine_Value_getString(const Machine_Value* self) {

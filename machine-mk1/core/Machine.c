@@ -339,11 +339,8 @@ bool Machine_Value_isEqualTo(const Machine_Value* x, const Machine_Value* y) {
     return Machine_Boolean_isEqualTo(x->booleanValue, y->booleanValue);
   case Machine_ValueFlag_ForeignProcedure:
     return Machine_ForeignProcedure_isEqualTo(x->foreignProcedureValue, y->foreignProcedureValue);
-  #if defined(_DEBUG)
   default:
-    fprintf(stderr, "%s:%d: unreachable code reached\n", __FILE__, __LINE__);
-    exit(EXIT_FAILURE);
-  #endif
+    MACHINE_ASSERT_UNREACHABLE();
   };
 }
 
@@ -363,11 +360,8 @@ size_t Machine_Value_getHashValue(const Machine_Value* self) {
     return Machine_Boolean_getHashValue(self->booleanValue);
   case Machine_ValueFlag_ForeignProcedure:
     return Machine_ForeignProcedure_getHashValue(self->foreignProcedureValue);
-  #if defined(_DEBUG)
   default:
-    fprintf(stderr, "%s:%d: unreachable code reached\n", __FILE__, __LINE__);
-    exit(EXIT_FAILURE);
-  #endif
+    MACHINE_ASSERT_UNREACHABLE();
   };
 }
 

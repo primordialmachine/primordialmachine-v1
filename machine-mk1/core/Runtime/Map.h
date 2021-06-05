@@ -45,6 +45,6 @@ void Machine_Map_set(Machine_Map* self, Machine_Value key, Machine_Value value);
 /// @param self This map.
 /// @param key The key.
 /// @return The value for the key if any. If no value for that key exists, the void value is returned.
-Machine_Value Machine_Map_get(Machine_Map* self, Machine_Value key);
+Machine_Value Machine_Map_get(const Machine_Map* self, Machine_Value key);
 
 #endif // MACHINE_RUNTIME_MAP_H_INCLUDED

@@ -16,16 +16,6 @@
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-/// @brief The C-level representation of the <code>String</code> type.
-typedef struct Machine_String Machine_String;
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-/// @brief The C-level representation of the <code>Object</code> type.
-typedef struct Machine_Object Machine_Object;
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
 typedef struct Machine_Value Machine_Value;
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -227,6 +217,8 @@ typedef void (Machine_ClassObjectConstructCallback)(void* self, size_t numberOfA
  */
 typedef void (Machine_ClassObjectDestructCallback)(void* self);
 
+typedef struct Machine_Object Machine_Object;
+
 typedef struct Machine_Object {
   size_t(*getHashValue)(const Machine_Object* x);
   bool(*isEqualTo)(const Machine_Object* x, const Machine_Object* y);
@@ -324,6 +316,11 @@ Machine_ClassType* Machine_getClassType(Machine_Object* object);
     Machine_setStatus(Machine_Status_ArgumentNull); \
     Machine_jump(); \
   }
+
+#define MACHINE_ASSERT_UNREACHABLE() \
+    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "unreachable program point reached\n"); \
+    Machine_setStatus(Machine_Status_UnreachableProgramPointReached); \
+    Machine_jump(); \
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 

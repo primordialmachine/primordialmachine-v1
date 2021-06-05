@@ -175,7 +175,7 @@ void Machine_Map_set(Machine_Map* self, Machine_Value key, Machine_Value value) 
   self->set(self, key, value);
 }
 
-Machine_Value Machine_Map_get(Machine_Map* self, Machine_Value key) {
+Machine_Value Machine_Map_get(const Machine_Map* self, Machine_Value key) {
   MACHINE_ASSERT_NOTNULL(self);
   return self->get(self, key);
 }

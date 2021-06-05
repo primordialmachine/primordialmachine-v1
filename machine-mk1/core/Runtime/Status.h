@@ -60,6 +60,10 @@ typedef int Machine_StatusValue;
 #define Machine_Status_SyntacticalError (11)
 
 /// @brief Symbolic constant for a status variable value.
+/// The value indicates a program point was reached which should not be reached.
+#define Machine_Status_UnreachableProgramPointReached (13)
+
+/// @brief Symbolic constant for a status variable value.
 /// That value indicates an pointer argument is null.
 #define Machine_Status_ArgumentNull (13)
 
