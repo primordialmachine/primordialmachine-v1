@@ -72,6 +72,18 @@
     <ClCompile Include="Runtime\Log.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
+    <ClCompile Include="Runtime\IO\_FileHandle.c">
+      <Filter>Quelldateien\Runtime\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="Runtime\IO\_FileMapping.c">
+      <Filter>Quelldateien\Runtime\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="Runtime\IO\getFileContents.c">
+      <Filter>Quelldateien\Runtime\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="Runtime\IO\setFileContents.c">
+      <Filter>Quelldateien\Runtime\IO</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Machine.h">
@@ -129,6 +141,18 @@
       <Filter>Headerdateien\Runtime\IO</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\IO\ExistingFilePolicy.h">
+      <Filter>Headerdateien\Runtime\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\IO\_FileHandle.h">
+      <Filter>Headerdateien\Runtime\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\IO\_FileMapping.h">
+      <Filter>Headerdateien\Runtime\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\IO\getFileContents.h">
+      <Filter>Headerdateien\Runtime\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\IO\setFileContents.h">
       <Filter>Headerdateien\Runtime\IO</Filter>
     </ClInclude>
   </ItemGroup>

@@ -15,6 +15,10 @@
     <ClCompile Include="Runtime\ByteBuffer.c" />
     <ClCompile Include="Runtime\Collection.c" />
     <ClCompile Include="Runtime\IO.c" />
+    <ClCompile Include="Runtime\IO\getFileContents.c" />
+    <ClCompile Include="Runtime\IO\setFileContents.c" />
+    <ClCompile Include="Runtime\IO\_FileHandle.c" />
+    <ClCompile Include="Runtime\IO\_FileMapping.c" />
     <ClCompile Include="Runtime\List.c" />
     <ClCompile Include="Runtime\Log.c" />
     <ClCompile Include="Runtime\Map.c" />
@@ -35,7 +39,11 @@
     <ClInclude Include="Runtime\IO.h" />
     <ClInclude Include="Runtime\IO\ExistingFilePolicy.h" />
     <ClInclude Include="Runtime\IO\FileAccessMode.h" />
+    <ClInclude Include="Runtime\IO\getFileContents.h" />
+    <ClInclude Include="Runtime\IO\setFileContents.h" />
+    <ClInclude Include="Runtime\IO\_FileHandle.h" />
     <ClInclude Include="Runtime\IO\NonExistingFilePolicy.h" />
+    <ClInclude Include="Runtime\IO\_FileMapping.h" />
     <ClInclude Include="Runtime\Log.h" />
     <ClInclude Include="Runtime\Pair.h" />
     <ClInclude Include="Runtime\PrimitiveTypes.h" />
