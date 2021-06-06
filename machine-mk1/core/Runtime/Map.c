@@ -99,8 +99,8 @@ static void set(Machine_Map* self, Machine_Value key, Machine_Value value) {
   maybeResize(self);
 }
 
-static Machine_Value get(Machine_Map* self, Machine_Value key) {
-  Map* pimpl = (Map*)self->pimpl;
+static Machine_Value get(const Machine_Map* self, Machine_Value key) {
+  const Map* pimpl = (const Map*)self->pimpl;
   size_t hashValue = Machine_Value_getHashValue(&key);
   size_t hashIndex = hashValue % pimpl->capacity;
   for (Node* node = pimpl->buckets[hashIndex]; NULL != node; node = node->next) {

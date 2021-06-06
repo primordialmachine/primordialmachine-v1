@@ -17,7 +17,7 @@ struct Machine_Map {
   Machine_Collection parent;
   void* pimpl;
   void (*set)(Machine_Map* self, Machine_Value key, Machine_Value value);
-  Machine_Value(*get)(Machine_Map* self, Machine_Value key);
+  Machine_Value(*get)(const Machine_Map* self, Machine_Value key);
 };
 
 /// @brief Construct this map.

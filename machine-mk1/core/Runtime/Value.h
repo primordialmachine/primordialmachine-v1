@@ -91,7 +91,7 @@ INLINE Machine_Integer Machine_Value_getInteger(const Machine_Value* self) {
   return self->integerValue;
 }
 
-INLINE bool Machine_Value_isInteger(Machine_Value* self) {
+INLINE bool Machine_Value_isInteger(const Machine_Value* self) {
   return self->tag == Machine_ValueFlag_Integer;
 }
 
