@@ -7,8 +7,8 @@
 #include "./../GUI/Widget.h"
 
 /// @brief A border around any widget.
-/// The default color is (0.1f, 0.1f, 0.1f).
-/// The default width is 1.
+/// The default color is <code>(0.1, 0.1, 0.1)</code>.
+/// The default width is <code>1</code>.
 /// @extends Machine.GUI.Widget
 MACHINE_DECLARE_CLASSTYPE(Machine_GUI_Border)
 
