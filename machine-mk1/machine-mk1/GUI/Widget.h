@@ -13,16 +13,16 @@ struct Machine_GUI_Widget {
   Machine_Object parent;
   void (*render)(Machine_GUI_Widget* self, float width, float height);
   
-  const Machine_Math_Rectangle2* (*getRectangle)(Machine_GUI_Widget* self);
+  const Machine_Math_Rectangle2* (*getRectangle)(const Machine_GUI_Widget* self);
   void (*setRectangle)(Machine_GUI_Widget* self, const Machine_Math_Rectangle2* rectangle);
   
-  const Machine_Math_Vector2* (*getPosition)(Machine_GUI_Widget* self);
+  const Machine_Math_Vector2* (*getPosition)(const Machine_GUI_Widget* self);
   void (*setPosition)(Machine_GUI_Widget* self, const Machine_Math_Vector2* position);
 
-  const Machine_Math_Vector2* (*getSize)(Machine_GUI_Widget* self);
+  const Machine_Math_Vector2* (*getSize)(const Machine_GUI_Widget* self);
   void (*setSize)(Machine_GUI_Widget* self, const Machine_Math_Vector2* size);
 
-  const Machine_Math_Vector2* (*getPreferredSize)(Machine_GUI_Widget* self);
+  const Machine_Math_Vector2* (*getPreferredSize)(const Machine_GUI_Widget* self);
 };
 
 /// @brief Construct this widget.
@@ -49,7 +49,7 @@ void Machine_GUI_Widget_setPosition(Machine_GUI_Widget* self, const Machine_Math
 /// @brief Get the position.
 /// @param self This widget.
 /// @return The position.
-const Machine_Math_Vector2* Machine_GUI_Widget_getPosition(Machine_GUI_Widget* self);
+const Machine_Math_Vector2* Machine_GUI_Widget_getPosition(const Machine_GUI_Widget* self);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -61,7 +61,7 @@ void Machine_GUI_Widget_setSize(Machine_GUI_Widget* self, const Machine_Math_Vec
 /// @brief Get the size.
 /// @param self This widget.
 /// @return The size.
-const Machine_Math_Vector2* Machine_GUI_Widget_getSize(Machine_GUI_Widget* self);
+const Machine_Math_Vector2* Machine_GUI_Widget_getSize(const Machine_GUI_Widget* self);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -73,14 +73,14 @@ void Machine_GUI_Widget_setRectangle(Machine_GUI_Widget* self, const Machine_Mat
 /// @brief Get the rectangle.
 /// @param self This widget.
 /// @return The rectangle.
-const Machine_Math_Rectangle2* Machine_GUI_Widget_getRectangle(Machine_GUI_Widget* self);
+const Machine_Math_Rectangle2* Machine_GUI_Widget_getRectangle(const Machine_GUI_Widget* self);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /// @brief Get the preferred size.
 /// @param self This widget.
 /// @return The preferred size.
-const Machine_Math_Vector2* Machine_GUI_Widget_getPreferredSize(Machine_GUI_Widget* self);
+const Machine_Math_Vector2* Machine_GUI_Widget_getPreferredSize(const Machine_GUI_Widget* self);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 

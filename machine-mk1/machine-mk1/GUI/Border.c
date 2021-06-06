@@ -25,19 +25,19 @@ static void Machine_GUI_Border_visit(Machine_GUI_Border* self);
 
 static void Machine_GUI_Border_construct(Machine_GUI_Border* self, size_t numberOfArguments, const Machine_Value* arguments);
 
-static const Machine_Math_Rectangle2* Machine_GUI_Border_getRectangle(Machine_GUI_Border* self);
+static const Machine_Math_Rectangle2* Machine_GUI_Border_getRectangle(const Machine_GUI_Border* self);
 
 static void Machine_GUI_Border_setRectangle(Machine_GUI_Border* self, const Machine_Math_Rectangle2* rectangle);
 
-static const Machine_Math_Vector2* Machine_GUI_Border_getPosition(Machine_GUI_Border* self);
+static const Machine_Math_Vector2* Machine_GUI_Border_getPosition(const Machine_GUI_Border* self);
 
 static void Machine_GUI_Border_setPosition(Machine_GUI_Border* self, const Machine_Math_Vector2* position);
 
-static const Machine_Math_Vector2* Machine_GUI_Border_getSize(Machine_GUI_Border* self);
+static const Machine_Math_Vector2* Machine_GUI_Border_getSize(const Machine_GUI_Border* self);
 
 static void Machine_GUI_Border_setSize(Machine_GUI_Border* self, const Machine_Math_Vector2* size);
 
-static const Machine_Math_Vector2* Machine_GUI_Border_getPreferredSize(Machine_GUI_Border* self);
+static const Machine_Math_Vector2* Machine_GUI_Border_getPreferredSize(const Machine_GUI_Border* self);
 
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_GUI_Border, Machine_GUI_Widget, &Machine_GUI_Border_visit, &Machine_GUI_Border_construct, NULL)
 
@@ -217,12 +217,12 @@ static void Machine_GUI_Border_construct(Machine_GUI_Border* self, size_t number
   self->childDirty = true;
   ((Machine_GUI_Widget*)self)->render = (void (*)(Machine_GUI_Widget*, float, float)) &Machine_GUI_Border_render;
   ((Machine_GUI_Widget*)self)->setRectangle = (void (*)(Machine_GUI_Widget*, const Machine_Math_Rectangle2*)) & Machine_GUI_Border_setRectangle;
-  ((Machine_GUI_Widget*)self)->getRectangle = (const Machine_Math_Rectangle2 * (*)(Machine_GUI_Widget*)) & Machine_GUI_Border_getRectangle;
+  ((Machine_GUI_Widget*)self)->getRectangle = (const Machine_Math_Rectangle2 * (*)(const Machine_GUI_Widget*)) & Machine_GUI_Border_getRectangle;
   ((Machine_GUI_Widget*)self)->setPosition = (void (*)(Machine_GUI_Widget*, const Machine_Math_Vector2*)) & Machine_GUI_Border_setPosition;
-  ((Machine_GUI_Widget*)self)->getPosition = (const Machine_Math_Vector2 * (*)(Machine_GUI_Widget*)) & Machine_GUI_Border_getPosition;
+  ((Machine_GUI_Widget*)self)->getPosition = (const Machine_Math_Vector2 * (*)(const Machine_GUI_Widget*)) & Machine_GUI_Border_getPosition;
   ((Machine_GUI_Widget*)self)->setSize = (void (*)(Machine_GUI_Widget*, const Machine_Math_Vector2*)) & Machine_GUI_Border_setSize;
-  ((Machine_GUI_Widget*)self)->getSize = (const Machine_Math_Vector2 * (*)(Machine_GUI_Widget*)) & Machine_GUI_Border_getSize;
-  ((Machine_GUI_Widget*)self)->getPreferredSize = (const Machine_Math_Vector2 * (*)(Machine_GUI_Widget*)) & Machine_GUI_Border_getPreferredSize;
+  ((Machine_GUI_Widget*)self)->getSize = (const Machine_Math_Vector2 * (*)(const Machine_GUI_Widget*)) & Machine_GUI_Border_getSize;
+  ((Machine_GUI_Widget*)self)->getPreferredSize = (const Machine_Math_Vector2 * (*)(const Machine_GUI_Widget*)) & Machine_GUI_Border_getPreferredSize;
   Machine_setClassType((Machine_Object*)self, Machine_GUI_Border_getClassType());
 }
 
@@ -245,7 +245,7 @@ void Machine_GUI_Border_setChild(Machine_GUI_Border* self, Machine_GUI_Widget *c
   }
 }
 
-const Machine_Math_Vector3* Machine_GUI_Border_getBorderColor(Machine_GUI_Border* self) {
+const Machine_Math_Vector3* Machine_GUI_Border_getBorderColor(const Machine_GUI_Border* self) {
   return self->color;
 }
 
@@ -253,7 +253,7 @@ void Machine_GUI_Border_setBorderColor(Machine_GUI_Border* self, Machine_Math_Ve
   Machine_Math_Vector3_copy(self->color, color);
 }
 
-float Machine_GUI_Border_getBorderWidth(Machine_GUI_Border* self) {
+float Machine_GUI_Border_getBorderWidth(const Machine_GUI_Border* self) {
   return self->width;
 }
 
@@ -261,7 +261,7 @@ void Machine_GUI_Border_setBorderWidth(Machine_GUI_Border* self, float width) {
   self->width = width;
 }
 
-static const Machine_Math_Rectangle2* Machine_GUI_Border_getRectangle(Machine_GUI_Border* self) {
+static const Machine_Math_Rectangle2* Machine_GUI_Border_getRectangle(const Machine_GUI_Border* self) {
   return self->rectangle;
 }
 
@@ -270,7 +270,7 @@ static void Machine_GUI_Border_setRectangle(Machine_GUI_Border* self, const Mach
   self->childDirty = true;
 }
 
-static const Machine_Math_Vector2* Machine_GUI_Border_getPosition(Machine_GUI_Border* self) {
+static const Machine_Math_Vector2* Machine_GUI_Border_getPosition(const Machine_GUI_Border* self) {
   return Machine_Math_Rectangle2_getPosition(self->rectangle);
 }
 
@@ -279,7 +279,7 @@ static void Machine_GUI_Border_setPosition(Machine_GUI_Border* self, const Machi
   self->childDirty = true;
 }
 
-static const Machine_Math_Vector2* Machine_GUI_Border_getSize(Machine_GUI_Border* self) {
+static const Machine_Math_Vector2* Machine_GUI_Border_getSize(const Machine_GUI_Border* self) {
   return Machine_Math_Rectangle2_getSize(self->rectangle);
 }
 
@@ -288,7 +288,7 @@ static void Machine_GUI_Border_setSize(Machine_GUI_Border* self, const Machine_M
   self->childDirty = true;
 }
 
-static const Machine_Math_Vector2* Machine_GUI_Border_getPreferredSize(Machine_GUI_Border* self) {
+static const Machine_Math_Vector2* Machine_GUI_Border_getPreferredSize(const Machine_GUI_Border* self) {
   const Machine_Math_Vector2* preferredSize = self->child ? Machine_GUI_Widget_getPreferredSize(self->child) : Machine_Math_Vector2_create();
   Machine_Math_Vector2* borderSize = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(borderSize, self->width * 2.f, self->width * 2.f);

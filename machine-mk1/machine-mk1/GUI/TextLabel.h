@@ -24,7 +24,7 @@ void Machine_GUI_TextLabel_setText(Machine_GUI_TextLabel* self, Machine_String* 
 /// @brief Get the text.
 /// @param self This text label.
 /// @return The text.
-Machine_String* Machine_GUI_TextLabel_getText(Machine_GUI_TextLabel* self);
+Machine_String* Machine_GUI_TextLabel_getText(const Machine_GUI_TextLabel* self);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -36,7 +36,7 @@ void Machine_GUI_TextLabel_setBackgroundColor(Machine_GUI_TextLabel* self, const
 /// @brief Get the background color.
 /// @param self This text label.
 /// @return The background color.
-const Machine_Math_Vector3* Machine_GUI_TextLabel_getBackgroundColor(Machine_GUI_TextLabel *self);
+const Machine_Math_Vector3* Machine_GUI_TextLabel_getBackgroundColor(const Machine_GUI_TextLabel *self);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -48,7 +48,7 @@ void Machine_GUI_TextLabel_setForegroundColor(Machine_GUI_TextLabel* self, const
 /// @brief Set the foreground color.
 /// @param self This text label.
 /// @return The foreground color.
-const Machine_Math_Vector3* Machine_GUI_TextLabel_getForegroundColor(Machine_GUI_TextLabel* self);
+const Machine_Math_Vector3* Machine_GUI_TextLabel_getForegroundColor(const Machine_GUI_TextLabel* self);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 

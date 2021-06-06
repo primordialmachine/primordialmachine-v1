@@ -36,7 +36,7 @@ void Machine_GUI_TextButton_setBackgroundColor(Machine_GUI_TextButton* self, con
 /// @brief Get the background color.
 /// @param self This text label.
 /// @return The background color.
-const Machine_Math_Vector3* Machine_GUI_TextButton_getBackgroundColor(Machine_GUI_TextButton* self);
+const Machine_Math_Vector3* Machine_GUI_TextButton_getBackgroundColor(const Machine_GUI_TextButton* self);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -48,7 +48,7 @@ void Machine_GUI_TextButton_setForegroundColor(Machine_GUI_TextButton* self, con
 /// @brief Set the foreground color.
 /// @param self This text label.
 /// @return The foreground color.
-const Machine_Math_Vector3* Machine_GUI_TextButton_getForegroundColor(Machine_GUI_TextButton* self);
+const Machine_Math_Vector3* Machine_GUI_TextButton_getForegroundColor(const Machine_GUI_TextButton* self);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 

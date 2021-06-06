@@ -29,7 +29,7 @@ void Machine_GUI_Border_setChild(Machine_GUI_Border* self, Machine_GUI_Widget* c
 /// @brief Get the color of this border.
 /// @param self This border.
 /// @return The color.
-const Machine_Math_Vector3* Machine_GUI_Border_getBorderColor(Machine_GUI_Border* self);
+const Machine_Math_Vector3* Machine_GUI_Border_getBorderColor(const Machine_GUI_Border* self);
 
 /// @brief Set the color of this border.
 /// @param self This border.
@@ -39,7 +39,7 @@ void Machine_GUI_Border_setBorderColor(Machine_GUI_Border *self, Machine_Math_Ve
 /// @brief Get the border width.
 /// @param self This border.
 /// @return The border width.
-float Machine_GUI_Border_getBorderWidth(Machine_GUI_Border* self);
+float Machine_GUI_Border_getBorderWidth(const Machine_GUI_Border* self);
 
 /// @brief Set the border width.
 /// @param self This border.

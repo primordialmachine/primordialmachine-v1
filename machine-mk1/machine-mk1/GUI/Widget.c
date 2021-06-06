@@ -32,7 +32,7 @@ void Machine_GUI_Widget_setPosition(Machine_GUI_Widget* self, const Machine_Math
   self->setPosition(self, position);
 }
 
-const Machine_Math_Vector2* Machine_GUI_Widget_getPosition(Machine_GUI_Widget* self) {
+const Machine_Math_Vector2* Machine_GUI_Widget_getPosition(const Machine_GUI_Widget* self) {
   MACHINE_ASSERT_NOTNULL(self);
   MACHINE_ASSERT_NOTNULL(self->getPosition);
   return self->getPosition(self);
@@ -47,7 +47,7 @@ void Machine_GUI_Widget_setSize(Machine_GUI_Widget* self, const Machine_Math_Vec
   self->setSize(self, size);
 }
 
-const Machine_Math_Vector2* Machine_GUI_Widget_getSize(Machine_GUI_Widget* self) {
+const Machine_Math_Vector2* Machine_GUI_Widget_getSize(const Machine_GUI_Widget* self) {
   MACHINE_ASSERT_NOTNULL(self);
   return self->getSize(self);
 }
@@ -61,7 +61,7 @@ void Machine_GUI_Widget_setRectangle(Machine_GUI_Widget* self, const Machine_Mat
   self->setRectangle(self, rectangle);
 }
 
-const Machine_Math_Rectangle2* Machine_GUI_Widget_getRectangle(Machine_GUI_Widget* self) {
+const Machine_Math_Rectangle2* Machine_GUI_Widget_getRectangle(const Machine_GUI_Widget* self) {
   MACHINE_ASSERT_NOTNULL(self);
   MACHINE_ASSERT_NOTNULL(self->getRectangle);
   return self->getRectangle(self);
@@ -69,7 +69,7 @@ const Machine_Math_Rectangle2* Machine_GUI_Widget_getRectangle(Machine_GUI_Widge
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-const Machine_Math_Vector2* Machine_GUI_Widget_getPreferredSize(Machine_GUI_Widget* self) {
+const Machine_Math_Vector2* Machine_GUI_Widget_getPreferredSize(const Machine_GUI_Widget* self) {
   MACHINE_ASSERT_NOTNULL(self);
   MACHINE_ASSERT_NOTNULL(self->getPreferredSize);
   return self->getPreferredSize(self);

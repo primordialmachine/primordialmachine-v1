@@ -31,17 +31,17 @@ static void Machine_GUI_TextButton_visit(Machine_GUI_TextButton* self) {
 
 static void Machine_GUI_TextButton_setPosition(Machine_GUI_TextButton* self, const Machine_Math_Vector2* position);
 
-static const Machine_Math_Vector2* Machine_GUI_TextButton_getPosition(Machine_GUI_TextButton* self);
+static const Machine_Math_Vector2* Machine_GUI_TextButton_getPosition(const Machine_GUI_TextButton* self);
 
 static void Machine_GUI_TextButton_setSize(Machine_GUI_TextButton* self, const Machine_Math_Vector2* size);
 
-static const Machine_Math_Vector2* Machine_GUI_TextButton_getSize(Machine_GUI_TextButton* self);
+static const Machine_Math_Vector2* Machine_GUI_TextButton_getSize(const Machine_GUI_TextButton* self);
 
 static void Machine_GUI_TextButton_setRectangle(Machine_GUI_TextButton* self, const Machine_Math_Rectangle2* rectangle);
 
-static const Machine_Math_Rectangle2* Machine_GUI_TextButton_getRectangle(Machine_GUI_TextButton* self);
+static const Machine_Math_Rectangle2* Machine_GUI_TextButton_getRectangle(const Machine_GUI_TextButton* self);
 
-static const Machine_Math_Vector2* Machine_GUI_TextButton_getPreferredSize(Machine_GUI_TextButton* self);
+static const Machine_Math_Vector2* Machine_GUI_TextButton_getPreferredSize(const Machine_GUI_TextButton* self);
 
 static void Machine_GUI_TextButton_render(Machine_GUI_TextButton* self, float width, float height);
 
@@ -53,12 +53,12 @@ void Machine_GUI_TextButton_construct(Machine_GUI_TextButton* self, size_t numbe
   self->childDirty = true;
   ((Machine_GUI_Widget*)self)->render = (void (*)(Machine_GUI_Widget*, float, float)) & Machine_GUI_TextButton_render;
   ((Machine_GUI_Widget*)self)->setRectangle = (void (*)(Machine_GUI_Widget*, const Machine_Math_Rectangle2*)) & Machine_GUI_TextButton_setRectangle;
-  ((Machine_GUI_Widget*)self)->getRectangle = (const Machine_Math_Rectangle2 * (*)(Machine_GUI_Widget*)) & Machine_GUI_TextButton_getRectangle;
+  ((Machine_GUI_Widget*)self)->getRectangle = (const Machine_Math_Rectangle2 * (*)(const Machine_GUI_Widget*)) & Machine_GUI_TextButton_getRectangle;
   ((Machine_GUI_Widget*)self)->setPosition = (void (*)(Machine_GUI_Widget*, const Machine_Math_Vector2*)) & Machine_GUI_TextButton_setPosition;
-  ((Machine_GUI_Widget*)self)->getPosition = (const Machine_Math_Vector2 * (*)(Machine_GUI_Widget*)) & Machine_GUI_TextButton_getPosition;
+  ((Machine_GUI_Widget*)self)->getPosition = (const Machine_Math_Vector2 * (*)(const Machine_GUI_Widget*)) & Machine_GUI_TextButton_getPosition;
   ((Machine_GUI_Widget*)self)->setSize = (void (*)(Machine_GUI_Widget*, const Machine_Math_Vector2*)) & Machine_GUI_TextButton_setSize;
-  ((Machine_GUI_Widget*)self)->getSize = (const Machine_Math_Vector2 * (*)(Machine_GUI_Widget*)) & Machine_GUI_TextButton_getSize;
-  ((Machine_GUI_Widget*)self)->getPreferredSize = (const Machine_Math_Vector2 * (*)(Machine_GUI_Widget*)) & Machine_GUI_TextButton_getPreferredSize;
+  ((Machine_GUI_Widget*)self)->getSize = (const Machine_Math_Vector2 * (*)(const Machine_GUI_Widget*)) & Machine_GUI_TextButton_getSize;
+  ((Machine_GUI_Widget*)self)->getPreferredSize = (const Machine_Math_Vector2 * (*)(const Machine_GUI_Widget*)) & Machine_GUI_TextButton_getPreferredSize;
   Machine_setClassType((Machine_Object*)self, Machine_GUI_TextButton_getClassType());
 }
 
@@ -74,7 +74,7 @@ Machine_GUI_TextButton* Machine_GUI_TextButton_create() {
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-static const Machine_Math_Vector2* Machine_GUI_TextButton_getPreferredSize(Machine_GUI_TextButton* self) {
+static const Machine_Math_Vector2* Machine_GUI_TextButton_getPreferredSize(const Machine_GUI_TextButton* self) {
   return Machine_Math_Rectangle2_getSize(Machine_Text_Layout_getBounds(self->foreground));
 }
 
@@ -96,7 +96,7 @@ void Machine_GUI_TextButton_setBackgroundColor(Machine_GUI_TextButton* self, con
   self->childDirty = true;
 }
 
-const Machine_Math_Vector3* Machine_GUI_TextButton_getBackgroundColor(Machine_GUI_TextButton* self) {
+const Machine_Math_Vector3* Machine_GUI_TextButton_getBackgroundColor(const Machine_GUI_TextButton* self) {
   return Machine_Rectangle2_getColor(self->background);
 }
 
@@ -107,7 +107,7 @@ void Machine_GUI_TextButton_setForegroundColor(Machine_GUI_TextButton* self, con
   self->childDirty = true;
 }
 
-const Machine_Math_Vector3* Machine_GUI_TextButton_getForegroundColor(Machine_GUI_TextButton* self) {
+const Machine_Math_Vector3* Machine_GUI_TextButton_getForegroundColor(const Machine_GUI_TextButton* self) {
   return Machine_Text_Layout_getColor(self->foreground);
 }
 
@@ -118,7 +118,7 @@ static void Machine_GUI_TextButton_setPosition(Machine_GUI_TextButton* self, con
   self->childDirty = true;
 }
 
-static const Machine_Math_Vector2* Machine_GUI_TextButton_getPosition(Machine_GUI_TextButton* self) {
+static const Machine_Math_Vector2* Machine_GUI_TextButton_getPosition(const Machine_GUI_TextButton* self) {
   return Machine_Rectangle2_getPosition(self->background);
 }
 
@@ -129,7 +129,7 @@ static void Machine_GUI_TextButton_setSize(Machine_GUI_TextButton* self, const M
   self->childDirty = true;
 }
 
-static const Machine_Math_Vector2* Machine_GUI_TextButton_getSize(Machine_GUI_TextButton* self) {
+static const Machine_Math_Vector2* Machine_GUI_TextButton_getSize(const Machine_GUI_TextButton* self) {
   return Machine_Rectangle2_getSize(self->background);
 }
 
@@ -140,7 +140,7 @@ static void Machine_GUI_TextButton_setRectangle(Machine_GUI_TextButton* self, co
   self->childDirty = true;
 }
 
-static const Machine_Math_Rectangle2* Machine_GUI_TextButton_getRectangle(Machine_GUI_TextButton* self) {
+static const Machine_Math_Rectangle2* Machine_GUI_TextButton_getRectangle(const Machine_GUI_TextButton* self) {
   return Machine_Rectangle2_getRectangle(self->background);
 }
 
