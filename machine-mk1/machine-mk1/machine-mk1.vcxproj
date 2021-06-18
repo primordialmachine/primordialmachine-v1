@@ -51,7 +51,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/linmath;$(SolutionDir)external/freetype/include;$(SolutionDir)external/libpng/include;$(SolutionDir)core;$(SolutionDir)math;$(SolutionDir)input;$(SolutionDir)video</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external/freetype/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/linmath;$(SolutionDir)external/libpng/include;$(SolutionDir)core;$(SolutionDir)gdl;$(SolutionDir)input;$(SolutionDir)math;$(SolutionDir)video;$(SolutionDir)signals</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -63,7 +63,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/linmath;$(SolutionDir)external/freetype/include;$(SolutionDir)external/libpng/include;$(SolutionDir)core;$(SolutionDir)math;$(SolutionDir)input;$(SolutionDir)video</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external/freetype/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/linmath;$(SolutionDir)external/libpng/include;$(SolutionDir)core;$(SolutionDir)gdl;$(SolutionDir)input;$(SolutionDir)math;$(SolutionDir)video;$(SolutionDir)signals</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -134,6 +134,9 @@
     </ProjectReference>
     <ProjectReference Include="..\math\machine-mk1-math.vcxproj">
       <Project>{681c50f0-37bf-4661-bf5a-21a29abf2b63}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\signals\machine-mk1-signals.vcxproj">
+      <Project>{849b7daf-7563-43b6-9131-fda4995767f0}</Project>
     </ProjectReference>
     <ProjectReference Include="..\video\machine-mk1-video.vcxproj">
       <Project>{ea697f45-b77e-4384-8bf1-6001586e058c}</Project>
