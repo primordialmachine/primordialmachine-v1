@@ -21,23 +21,26 @@ typedef struct Machine_Object Machine_Object;
 /// @brief See Machine_Value::flags for more information.
 #define Machine_ValueFlag_Boolean (1)
 
-/** @brief See Machine_Value::flags for more information. */
-#define Machine_ValueFlag_Integer (2)
+/// @brief See Machine_Value::flags for more information.
+#define Machine_ValueFlag_Function (2)
 
-/** @brief See Machine_Value::flags for more information. */
-#define Machine_ValueFlag_Object (3)
+/// @brief See Machine_Value::flags for more information.
+#define Machine_ValueFlag_Integer (3)
 
-/** @brief See Machine_Value::flags for more information. */
-#define Machine_ValueFlag_ForeignProcedure (4)
+/// @brief See Machine_Value::flags for more information.
+#define Machine_ValueFlag_Object (4)
 
-/** @brief See Machine_Value::flags for more information. */
-#define Machine_ValueFlag_Real (5)
+/// @brief See Machine_Value::flags for more information.
+#define Machine_ValueFlag_ForeignProcedure (5)
 
-/** @brief See Machine_Value::flags for more information. */
-#define Machine_ValueFlag_String (6)
+/// @brief See Machine_Value::flags for more information.
+#define Machine_ValueFlag_Real (6)
 
-/** @brief See Machine_Value::flags for more information. */
-#define Machine_ValueFlag_Void (7)
+/// @brief See Machine_Value::flags for more information.
+#define Machine_ValueFlag_String (7)
+
+/// @brief See Machine_Value::flags for more information.
+#define Machine_ValueFlag_Void (8)
 
 
 
