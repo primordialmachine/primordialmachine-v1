@@ -18,6 +18,10 @@ static void insertAt(Machine_List* self, size_t index, Machine_Value value);
 
 static Machine_Value getAt(const Machine_List* self, size_t index);
 
+static void removeAt(Machine_List* self, size_t index);
+
+static void removeAtFast(Machine_List* self, size_t index);
+
 static size_t getSize(const Machine_List* self);
 
 static void clear(Machine_List* self);
@@ -46,6 +50,8 @@ static void Machine_List_construct(Machine_List* self, size_t numberOfArguments,
   self->prepend = &prepend;
   self->insertAt = &insertAt;
   self->getAt = &getAt;
+  self->removeAt = &removeAt;
+  self->removeAtFast = &removeAtFast;
 #if defined(Machine_List_withReverse) && Machine_List_withReverse == 1
   self->reverse = &reverse;
 #endif
@@ -111,6 +117,26 @@ static Machine_Value getAt(const Machine_List* self, size_t index) {
   return self->elements[index];
 }
 
+static void removeAt(Machine_List* self, size_t index) {
+  if (index >= self->size) {
+    Machine_setStatus(Machine_Status_IndexOutOfBounds);
+    Machine_jump();
+  }
+  if (index < self->size - 1) {
+    memmove(self->elements + index + 0, self->elements + index + 1, sizeof(Machine_Value) * (self->size - index - 1));
+  }
+  self->size--;
+}
+
+static void removeAtFast(Machine_List* self, size_t index) {
+  if (index >= self->size) {
+    Machine_setStatus(Machine_Status_IndexOutOfBounds);
+    Machine_jump();
+  }
+  self->elements[index] = self->elements[self->size - 1];
+  self->size--;
+}
+
 static void Machine_List_visit(Machine_List* self) {
   for (size_t i = 0, n = self->size; i < n; ++i) {
     Machine_Value_visit(&(self->elements[i]));
@@ -150,6 +176,16 @@ void Machine_List_append(Machine_List* self, Machine_Value value) {
 void Machine_List_insertAt(Machine_List* self, size_t index, Machine_Value value) {
   MACHINE_ASSERT_NOTNULL(self);
   self->insertAt(self, index, value);
+}
+
+void Machine_List_removeAt(Machine_List* self, size_t index) {
+  MACHINE_ASSERT_NOTNULL(self);
+  self->removeAt(self, index);
+}
+
+void Machine_List_removeAtFast(Machine_List* self, size_t index) {
+  MACHINE_ASSERT_NOTNULL(self);
+  self->removeAtFast(self, index);
 }
 
 #if defined(Machine_List_withReverse) && Machine_List_withReverse == 1

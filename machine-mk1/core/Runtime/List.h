@@ -24,6 +24,8 @@ struct Machine_List {
   void(*insertAt)(Machine_List* self, size_t index, Machine_Value value);
   void(*prepend)(Machine_List* self, Machine_Value value);
   void(*append)(Machine_List* self, Machine_Value value);
+  void(*removeAt)(Machine_List* self, size_t index);
+  void(*removeAtFast)(Machine_List* self, size_t index);
 #if defined(Machine_List_withReverse) && Machine_List_withReverse == 1
   void(*reverse)(Machine_List* self);
 #endif
@@ -67,6 +69,18 @@ void Machine_List_append(Machine_List* self, Machine_Value value);
 /// @param value The value.
 /// @abstract
 void Machine_List_insertAt(Machine_List* self, size_t index, Machine_Value value);
+
+/// @brief Remove the value at the specified index in this list.
+/// This MAY NOT change the order of elements.
+/// @param self A pointer to this list.
+/// @param index The index.
+void Machine_List_removeAt(Machine_List* self, size_t index);
+
+/// @brief Remove the value at the specified index in this list.
+/// This MAY change the order of elements.
+/// @param self A pointer to this list.
+/// @param index The index.
+void Machine_List_removeAtFast(Machine_List* self, size_t index);
 
 #if defined(Machine_List_withReverse) && Machine_List_withReverse == 1
 
