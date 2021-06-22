@@ -67,8 +67,8 @@ static Machine_GUI_Widget* createTextLabel(const char* text, Machine_Fonts_Font 
   Machine_GUI_Border* border0 = Machine_GUI_Border_create();
   Machine_GUI_Border_setBorderWidth(border0, INNER_BORDER_SIZE);
   Machine_GUI_Border_setChild(border0, (Machine_GUI_Widget *)widget);
-  Machine_Math_Vector3* color = Machine_Math_Vector3_create();
-  Machine_Math_Vector3_set(color, 1.f, 1.f, 1.f);
+  Machine_Math_Vector4* color = Machine_Math_Vector4_create();
+  Machine_Math_Vector4_set(color, 1.f, 1.f, 1.f, 1.f);
   Machine_GUI_Border_setBorderColor(border0, color);
 
   Machine_GUI_Border *border1 = Machine_GUI_Border_create();
@@ -90,8 +90,8 @@ static Machine_GUI_Widget* createTextButton(const char* text, Machine_Fonts_Font
   Machine_GUI_Border* border0 = Machine_GUI_Border_create();
   Machine_GUI_Border_setBorderWidth(border0, INNER_BORDER_SIZE);
   Machine_GUI_Border_setChild(border0, (Machine_GUI_Widget*)widget);
-  Machine_Math_Vector3* color = Machine_Math_Vector3_create();
-  Machine_Math_Vector3_set(color, 1.f, 1.f, 1.f);
+  Machine_Math_Vector4* color = Machine_Math_Vector4_create();
+  Machine_Math_Vector4_set(color, 1.f, 1.f, 1.f, 1.f);
   Machine_GUI_Border_setBorderColor(border0, color);
 
   Machine_GUI_Border* border1 = Machine_GUI_Border_create();

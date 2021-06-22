@@ -249,12 +249,14 @@ void Machine_GUI_Border_setChild(Machine_GUI_Border* self, Machine_GUI_Widget *c
   }
 }
 
-const Machine_Math_Vector3* Machine_GUI_Border_getBorderColor(const Machine_GUI_Border* self) {
-  return self->color;
+const Machine_Math_Vector4* Machine_GUI_Border_getBorderColor(const Machine_GUI_Border* self) {
+  Machine_Math_Vector4* temporary = Machine_Math_Vector4_create();
+  Machine_Math_Vector4_set(temporary, Machine_Math_Vector3_getX(self->color), Machine_Math_Vector3_getY(self->color), Machine_Math_Vector3_getZ(self->color), 1.f);
+  return temporary;
 }
 
-void Machine_GUI_Border_setBorderColor(Machine_GUI_Border* self, Machine_Math_Vector3* color) {
-  Machine_Math_Vector3_copy(self->color, color);
+void Machine_GUI_Border_setBorderColor(Machine_GUI_Border* self, const Machine_Math_Vector4* color) {
+  Machine_Math_Vector3_set(self->color, Machine_Math_Vector4_getX(color), Machine_Math_Vector4_getY(color), Machine_Math_Vector4_getZ(color));
 }
 
 float Machine_GUI_Border_getBorderWidth(const Machine_GUI_Border* self) {

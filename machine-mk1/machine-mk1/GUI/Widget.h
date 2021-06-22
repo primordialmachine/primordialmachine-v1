@@ -5,12 +5,16 @@
 #define MACHINE_GUI_WIDGET_H_INCLUDED
 
 #include "_Math.h"
+#include "_Signals.h"
 
 /// @brief Base of all widgets.
 MACHINE_DECLARE_CLASSTYPE(Machine_GUI_Widget)
 
 struct Machine_GUI_Widget {
   Machine_Object parent;
+
+  Machine_List* connections;
+
   void (*render)(Machine_GUI_Widget* self, float width, float height);
   
   const Machine_Math_Rectangle2* (*getRectangle)(const Machine_GUI_Widget* self);
@@ -101,15 +105,17 @@ void Machine_GUI_Widget_setName(Machine_GUI_Widget* self, Machine_String* name);
 /// @param name The name of the event.
 /// @param context The context.
 /// @param callback The callback.
-void Machine_GUI_Widget_subscribe(Machine_GUI_Widget* self, Machine_String *name, void *context, void (*callback)(void *context));
+void Machine_GUI_Widget_subscribe(Machine_GUI_Widget* self, Machine_String *name, Machine_Object* context, Machine_ForeignProcedure* callback);
 
 /// @brief Unsubscribe from an event.
 /// @param self This widget.
 /// @param name The name of the event.
 /// @param context The context.
-/// @param callback The callback.
-void Machine_GUI_Widget_unsubscribe(Machine_GUI_Widget* self, Machine_String *name, void *context, void (*callback)(void* context));
+/// @param callback The callback. [context:Machine.Object,arguments:M
+void Machine_GUI_Widget_unsubscribe(Machine_GUI_Widget* self, Machine_String *name, Machine_Object *context, Machine_ForeignProcedure* callback);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+void Machine_GUI_Widget_emitSignal(Machine_GUI_Widget* self, Machine_String* name, size_t numberOfArguments, const Machine_Value* arguments);
 
 #endif // MACHINE_GUI_WIDGET_H_INCLUDED
