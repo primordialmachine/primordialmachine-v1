@@ -13,6 +13,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-input", "input\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-video", "video\machine-mk1-video.vcxproj", "{EA697F45-B77E-4384-8BF1-6001586E058C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-gdl", "gdl\machine-mk1-gdl.vcxproj", "{A45E158D-8DB9-4D07-9642-A79C583A5DD1}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-gdl-test", "gdl-test\gdl-test.vcxproj", "{D9A5876E-A5C4-46A9-904B-696974BADA99}"
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-signals", "signals\machine-mk1-signals.vcxproj", "{849B7DAF-7563-43B6-9131-FDA4995767F0}"
 EndProject
 Global
@@ -41,6 +45,14 @@ Global
 		{EA697F45-B77E-4384-8BF1-6001586E058C}.Debug|x64.Build.0 = Debug|x64
 		{EA697F45-B77E-4384-8BF1-6001586E058C}.Release|x64.ActiveCfg = Release|x64
 		{EA697F45-B77E-4384-8BF1-6001586E058C}.Release|x64.Build.0 = Release|x64
+		{A45E158D-8DB9-4D07-9642-A79C583A5DD1}.Debug|x64.ActiveCfg = Debug|x64
+		{A45E158D-8DB9-4D07-9642-A79C583A5DD1}.Debug|x64.Build.0 = Debug|x64
+		{A45E158D-8DB9-4D07-9642-A79C583A5DD1}.Release|x64.ActiveCfg = Release|x64
+		{A45E158D-8DB9-4D07-9642-A79C583A5DD1}.Release|x64.Build.0 = Release|x64
+		{D9A5876E-A5C4-46A9-904B-696974BADA99}.Debug|x64.ActiveCfg = Debug|x64
+		{D9A5876E-A5C4-46A9-904B-696974BADA99}.Debug|x64.Build.0 = Debug|x64
+		{D9A5876E-A5C4-46A9-904B-696974BADA99}.Release|x64.ActiveCfg = Release|x64
+		{D9A5876E-A5C4-46A9-904B-696974BADA99}.Release|x64.Build.0 = Release|x64
 		{849B7DAF-7563-43B6-9131-FDA4995767F0}.Debug|x64.ActiveCfg = Debug|x64
 		{849B7DAF-7563-43B6-9131-FDA4995767F0}.Debug|x64.Build.0 = Debug|x64
 		{849B7DAF-7563-43B6-9131-FDA4995767F0}.Release|x64.ActiveCfg = Release|x64

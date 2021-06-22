@@ -71,6 +71,11 @@ typedef int Machine_StatusValue;
 /// That value indicates an invalid number of arguments.
 #define Machine_Status_InvalidNumberOfArguments (14)
 
+/// @brief Symbolic constant for a status variable value.
+/// That value indicates a conversion failed.
+#define Machine_Status_ConversionFailed (16)
+
+
 /// @brief Get the value of the status variable.
 /// @return The value.
 /// @default #Machine_Status_Success
