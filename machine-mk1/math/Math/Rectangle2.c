@@ -150,3 +150,8 @@ void Machine_Math_Rectangle2_inset(Machine_Math_Rectangle2* self, float minx, fl
   self->w = maxx0 - minx0;
   self->h = maxy0 - miny0;
 }
+
+void Machine_Math_Rectangle2_translate(Machine_Math_Rectangle2* self, const Machine_Math_Vector2* t) {
+  self->x += Machine_Math_Vector2_getX(t);
+  self->y += Machine_Math_Vector2_getY(t);
+}

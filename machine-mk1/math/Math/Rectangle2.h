@@ -110,4 +110,9 @@ float Machine_Math_Rectangle2_getMaxY(const Machine_Math_Rectangle2* self);
 /// @error @a minx, @a miny, @a maxx, or @a maxy is negative.
 void Machine_Math_Rectangle2_inset(Machine_Math_Rectangle2* self, float minx, float miny, float maxx, float maxy);
 
+/// @brief Translate this rectangle.
+/// @param self This rectangle.
+/// @param t The translation vector.
+void Machine_Math_Rectangle2_translate(Machine_Math_Rectangle2* self, const Machine_Math_Vector2* t);
+
 #endif // MACHINE_MATH_RECTANGLE2_H_INCLUDED
