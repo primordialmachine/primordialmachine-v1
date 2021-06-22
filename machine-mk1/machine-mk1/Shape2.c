@@ -39,7 +39,7 @@ struct Machine_Rectangle2 {
   Machine_ShaderProgram* shader;
   Machine_FloatBuffer* vertices;
   Machine_Binding* binding;
-  Machine_Math_Vector3* color;
+  Machine_Math_Vector4* color;
 };
 
 void Machine_Rectangle2_visit(Machine_Rectangle2* self) {
@@ -103,7 +103,7 @@ void Machine_Rectangle2_render(Machine_Rectangle2* self, float width, float heig
     Machine_Binding_bindMatrix4x4(self->binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), wvp);
   }
   {
-    Machine_Binding_bindVector3(self->binding, Machine_String_create("mesh_color", strlen("mesh_color") + 1), self->color);
+    Machine_Binding_bindVector4(self->binding, Machine_String_create("mesh_color", strlen("mesh_color") + 1), self->color);
   }
 
   static const uint8_t indices[] = {
@@ -121,7 +121,7 @@ void Machine_Rectangle2_construct(Machine_Rectangle2* self, size_t numberOfArgum
   ((Machine_Shape2*)self)->render = (void(*)(Machine_Shape2*, float, float))&Machine_Rectangle2_render;
 
   self->vertices = Machine_FloatBuffer_create();
-  self->shader = Machine_ShaderProgram_generate(true, false, false, false);
+  self->shader = Machine_ShaderProgram_generateShape2d();
 
   Machine_VertexDescriptor* vertexDescriptor = Machine_VertexDescriptor_create();
   Machine_VertexDescriptor_append(vertexDescriptor, Machine_VertexElementSemantics_XfYf);
@@ -129,8 +129,8 @@ void Machine_Rectangle2_construct(Machine_Rectangle2* self, size_t numberOfArgum
   self->binding = Machine_Binding_create(self->shader, vertexDescriptor, self->vertices);
   Machine_Binding_set(self->binding, Machine_String_create("vertex_position", strlen("vertex_position") + 1), 0);
 
-  self->color = Machine_Math_Vector3_create();
-  Machine_Math_Vector3_set(self->color, 1.f, 1.f, 1.f);
+  self->color = Machine_Math_Vector4_create();
+  Machine_Math_Vector4_set(self->color, 1.f, 1.f, 1.f, 1.f);
   Machine_setClassType((Machine_Object*)self, Machine_Rectangle2_getClassType());
 }
 
@@ -156,11 +156,11 @@ Machine_Math_Rectangle2* Machine_Rectangle2_getRectangle(const Machine_Rectangle
   return rectangle;
 }
 
-void Machine_Rectangle2_setColor(Machine_Rectangle2* self, const Machine_Math_Vector3* color) {
-  Machine_Math_Vector3_copy(self->color, color);
+void Machine_Rectangle2_setColor(Machine_Rectangle2* self, const Machine_Math_Vector4* color) {
+  Machine_Math_Vector4_copy(self->color, color);
 }
 
-const Machine_Math_Vector3* Machine_Rectangle2_getColor(const Machine_Rectangle2* self) {
+const Machine_Math_Vector4* Machine_Rectangle2_getColor(const Machine_Rectangle2* self) {
   return self->color;
 }
 

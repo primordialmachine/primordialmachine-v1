@@ -239,8 +239,8 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
     if (!self->visualBounds) {
       updateBounds(self);
     }
-    Machine_Math_Vector3* color = Machine_Math_Vector3_create();
-    Machine_Math_Vector3_set(color, .3f, .6f, .3f);
+    Machine_Math_Vector4* color = Machine_Math_Vector4_create();
+    Machine_Math_Vector4_set(color, .3f, .6f, .3f, 1.f);
     Machine_Rectangle2_setColor(self->visualBounds, color);
     Machine_Shape2_render((Machine_Shape2*)self->visualBounds, width, height);
   }
@@ -281,7 +281,7 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
       float d = -vec3_mul_inner(n, p);
 
       vec4 x = { -1, 0, 0, d };
-      Machine_Binding_bindVector4(binding, Machine_String_create("clipPlane0", strlen("clipPlane0") + 1), x);
+      Machine_Binding_bindVector4f(binding, Machine_String_create("clipPlane0", strlen("clipPlane0") + 1), x);
     }
     {
       vec3 n = { +1, 0, 0 };
@@ -289,7 +289,7 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
       float d = -vec3_mul_inner(n, p);
 
       vec4 x = { +1, 0, 0, d };
-      Machine_Binding_bindVector4(binding, Machine_String_create("clipPlane1", strlen("clipPlane1") + 1), x);
+      Machine_Binding_bindVector4f(binding, Machine_String_create("clipPlane1", strlen("clipPlane1") + 1), x);
     }
   }
   Machine_Binding_bindVector3(binding, Machine_String_create("mesh_color", strlen("mesh_color") + 1), self->color);

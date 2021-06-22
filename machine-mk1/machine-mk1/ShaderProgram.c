@@ -371,6 +371,66 @@ Machine_ShaderProgram_generate
 }
 
 Machine_ShaderProgram*
+Machine_ShaderProgram_generateShape2d
+  (
+  )
+{
+  Machine_StringBuffer* code = Machine_StringBuffer_create();
+  Machine_String* v, * g, * f;
+#define T(t) t, strlen(t)
+#define TZ(t) t, strlen(t) + 1
+
+  // Vertex program.
+  Machine_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
+
+  defineFloatConstants(code);
+  defineMatrixUniforms(code, false, false, false, true);
+
+  Machine_StringBuffer_appendBytes(code, T("attribute vec2 vertex_position;\n"));
+
+
+  Machine_StringBuffer_appendBytes(code, T("uniform vec4 mesh_color = vec4(1.f, 1.f, 1.f, 1.f);\n"));
+
+
+  Machine_StringBuffer_appendBytes(code, T("out vec4 color;\n"));
+
+  Machine_StringBuffer_appendBytes(code, T("void main()\n"
+                                           "{\n"
+                                           "    gl_Position = modelToProjectionMatrix * vec4(vertex_position, 0.0, 1.0);\n"));
+
+  Machine_StringBuffer_appendBytes(code, T("    color = mesh_color;\n"));
+
+  Machine_StringBuffer_appendBytes(code, T("}\n"));
+  Machine_StringBuffer_appendBytes(code, "", 1);
+  v = Machine_StringBuffer_toString(code);
+  Machine_StringBuffer_clear(code);
+
+  // Geometry program.
+  Machine_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
+  g = Machine_StringBuffer_toString(code);
+  Machine_StringBuffer_clear(code);
+
+  // Fragment program.
+  Machine_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
+  Machine_StringBuffer_appendBytes(code, T("in vec4 color;\n"));
+  Machine_StringBuffer_appendBytes(code, T("void main()\n"
+                                           "{\n"));
+  Machine_StringBuffer_appendBytes(code, T("    gl_FragColor = color;\n"));
+  Machine_StringBuffer_appendBytes(code, T("}\n"));
+  Machine_StringBuffer_appendBytes(code, "", 1);
+  f = Machine_StringBuffer_toString(code);
+  Machine_StringBuffer_clear(code);
+
+  Machine_ShaderProgram* shaderProgram = Machine_ShaderProgram_create2(Machine_String_getBytes(v), NULL,/*Machine_String_getBytes(g),*/ Machine_String_getBytes(f));
+  Machine_ShaderProgram_setInput(shaderProgram, Machine_String_create(TZ("vertex_position")),
+                                 Machine_InputType_Vector2);
+  return shaderProgram;
+
+#undef TZ
+#undef T
+}
+
+Machine_ShaderProgram*
 Machine_ShaderProgram_generateTextShader
   (
     bool highPrecision

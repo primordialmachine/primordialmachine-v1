@@ -66,7 +66,11 @@ static void Machine_GUI_Border_render(Machine_GUI_Border* self, float width, flo
     }
     Machine_GUI_Widget_render(self->child, width, height);
     
-    Machine_Rectangle2_setColor(self->borderRectangle, self->color);
+    {
+      Machine_Math_Vector4* temporary = Machine_Math_Vector4_create();
+      Machine_Math_Vector4_set(temporary, Machine_Math_Vector3_getX(self->color), Machine_Math_Vector3_getY(self->color), Machine_Math_Vector3_getZ(self->color), 1.f);
+      Machine_Rectangle2_setColor(self->borderRectangle, temporary);
+    }
     if (self->width > 0.f) {
       { // left/top
         Machine_Math_Rectangle2* r = Machine_Math_Rectangle2_create();

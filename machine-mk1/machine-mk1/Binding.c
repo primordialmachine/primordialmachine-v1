@@ -193,7 +193,16 @@ void Machine_Binding_bindVector3(Machine_Binding* self, const Machine_String* na
   Machine_UtilitiesGl_call(glUniform3fv(location, 1, temporary));
 }
 
-void Machine_Binding_bindVector4(Machine_Binding* self, const Machine_String* name, const vec4 value) {
+void Machine_Binding_bindVector4(Machine_Binding* self, const Machine_String* name, const Machine_Math_Vector4* value) {
+  GLint location = glGetUniformLocation(self->program->programId, Machine_String_getBytes(name));
+  if (location == -1) {
+    return;
+  }
+  const GLfloat temporary[] = { Machine_Math_Vector4_getX(value), Machine_Math_Vector4_getY(value), Machine_Math_Vector4_getZ(value), Machine_Math_Vector4_getW(value) };
+  Machine_UtilitiesGl_call(glUniform4fv(location, 1, temporary));
+}
+
+DEPRECATED void Machine_Binding_bindVector4f(Machine_Binding* self, const Machine_String* name, const vec4 value) {
   GLint location = glGetUniformLocation(self->program->programId, Machine_String_getBytes(name));
   if (location == -1) {
     return;

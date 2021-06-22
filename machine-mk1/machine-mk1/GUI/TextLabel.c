@@ -92,12 +92,17 @@ Machine_String* Machine_GUI_TextLabel_getText(const Machine_GUI_TextLabel* self)
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 void Machine_GUI_TextLabel_setBackgroundColor(Machine_GUI_TextLabel* self, const Machine_Math_Vector3* backgroundColor) {
-  Machine_Rectangle2_setColor(self->background, backgroundColor);
+  Machine_Math_Vector4* temporary = Machine_Math_Vector4_create();
+  Machine_Math_Vector4_set(temporary, Machine_Math_Vector3_getX(backgroundColor), Machine_Math_Vector3_getY(backgroundColor), Machine_Math_Vector3_getZ(backgroundColor), 1.f);
+  Machine_Rectangle2_setColor(self->background, temporary);
   self->childDirty = true;
 }
 
 const Machine_Math_Vector3* Machine_GUI_TextLabel_getBackgroundColor(const Machine_GUI_TextLabel* self) {
-  return Machine_Rectangle2_getColor(self->background);
+  const Machine_Math_Vector4* v4 = Machine_Rectangle2_getColor(self->background);
+  Machine_Math_Vector3* v3 = Machine_Math_Vector3_create();
+  Machine_Math_Vector3_set(v3, Machine_Math_Vector4_getX(v4), Machine_Math_Vector4_getY(v4), Machine_Math_Vector4_getZ(v4));
+  return v3;
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

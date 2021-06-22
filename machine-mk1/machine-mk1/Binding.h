@@ -55,7 +55,12 @@ void Machine_Binding_bindVector3(Machine_Binding* self, const Machine_String* na
  * @param name The name of the constant.
  * @param value The value.
  */
-void Machine_Binding_bindVector4(Machine_Binding* self, const Machine_String* name, const vec4 value);
+void Machine_Binding_bindVector4(Machine_Binding* self, const Machine_String* name, const Machine_Math_Vector4* value);
+
+/**
+ * @todo Remove this.
+ */
+DEPRECATED void Machine_Binding_bindVector4f(Machine_Binding* self, const Machine_String* name, const vec4 value);
 
 /**
  * @brief Bind a texture unit index to a texture sampler.

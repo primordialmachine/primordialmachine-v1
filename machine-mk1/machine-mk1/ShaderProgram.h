@@ -86,6 +86,13 @@ Machine_ShaderProgram_generate
     bool withTexture
   );
 
+/// @brief Create a shader program for rendering an untextured, colored, rectangle.
+/// @return The shader program.
+Machine_ShaderProgram*
+Machine_ShaderProgram_generateShape2d
+  (
+  );
+
 /// @brief Shader program to render 2D text.
 /// Provides <code>vec3 mesh_color</code> to colorize the text.
 /// @return The shader program.

@@ -17,8 +17,9 @@ void Machine_Shape2_render(Machine_Shape2* self, float width, float height);
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /// C-level representation of a rectangle.
-/// The default position is 0,0.
-/// The default size is 0,0.
+/// The default position is (0,0).
+/// The default size is (0,0).
+/// The default color is (1,1,1,1).
 /// @extends Machine_Shape2
 MACHINE_DECLARE_CLASSTYPE(Machine_Rectangle2);
 
@@ -40,12 +41,12 @@ Machine_Math_Rectangle2* Machine_Rectangle2_getRectangle(const Machine_Rectangle
 /// @brief Set the color of this rectangle.
 /// @param self This rectangle. 
 /// @param color The color.
-void Machine_Rectangle2_setColor(Machine_Rectangle2* self, const Machine_Math_Vector3* color);
+void Machine_Rectangle2_setColor(Machine_Rectangle2* self, const Machine_Math_Vector4* color);
 
 /// @brief Get the color of this rectangle.
 /// @param self This rectangle.
 /// @return The color.
-const Machine_Math_Vector3* Machine_Rectangle2_getColor(const Machine_Rectangle2* self);
+const Machine_Math_Vector4* Machine_Rectangle2_getColor(const Machine_Rectangle2* self);
 
 /// @brief Set the size of this rectangle.
 /// @param self This rectangle.
