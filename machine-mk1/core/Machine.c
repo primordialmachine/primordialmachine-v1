@@ -502,6 +502,15 @@ Machine_ClassType* Machine_getClassType(Machine_Object* object) {
   return classObjectTag->classType;
 }
 
+bool Machine_isSubTypeOf(const Machine_ClassType* subType, const Machine_ClassType* superType) {
+  const Machine_ClassType* currentType = subType;
+  while (currentType != NULL) {
+    if (currentType == superType) return true;
+    currentType = currentType->parent;
+  }
+  return false;
+}
+
 Machine_Object* Machine_allocateClassObject(Machine_ClassType* type, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_ClassObjectTag* t = malloc(sizeof(Machine_ClassObjectTag) + type->size);
   if (!t) {

@@ -269,6 +269,18 @@ void Machine_setClassType(Machine_Object* object, Machine_ClassType* classType);
 /// @return The class type.
 Machine_ClassType* Machine_getClassType(Machine_Object* object);
 
+/// @brief Get if the specified type "subType" is a sub-type of the specified type "superType".
+/// @param subType, superType The specified types.
+/// @return @a true if the specified type "subType" is a sub-type of the specified type "superType", @a false otherwise.
+bool Machine_isSubTypeOf(const Machine_ClassType *subType, const Machine_ClassType *superType);
+
+/// @brief Get if the specified type "superType" is a super-type of the specified type "subType".
+/// @param superType, subType The specified types.
+/// @return @a true if the specified type "superType" is a super-type of the specified type "subType", @a false otherwise.
+static inline bool Machine_isSuperTypeOf(const Machine_ClassType* superType, const Machine_ClassType* subType) {
+  return Machine_isSubTypeOf(subType, superType);
+}
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 #define MACHINE_DECLARE_CLASSTYPE(NAME) \
