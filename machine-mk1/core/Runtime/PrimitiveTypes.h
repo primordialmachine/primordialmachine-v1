@@ -22,6 +22,11 @@
 #endif
 #define NORETURN __declspec(noreturn)
 
+#if defined(DEPRECATED)
+#error('DEPRECATED already defined')
+#endif
+#define DEPRECATED
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /// @brief The C-level representation of the <code>void</code> value.
