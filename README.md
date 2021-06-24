@@ -37,7 +37,7 @@ The instructions below allow you to run the technology demo - trivial technology
 
 ## License
 *Last Men Standing* is made available publicly under the
-[GNU AGPLv3 License](https://github.com/primordialmachine/primordialmachine/LICENSE).
+[GNU AGPLv3 License](https://github.com/primordialmachine/primordialmachine/blob/master/LICENSE).
 
 ## Contact
 Developers can usually be found in the Primordial Machine Gitter channel:
