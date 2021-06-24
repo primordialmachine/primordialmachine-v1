@@ -1,7 +1,7 @@
 #include "Video.h"
 
 #include <stdio.h>
-#include "Texture.h"
+#include "GL/Texture.h"
 #include "ShaderProgram.h"
 
 static GLFWwindow* g_window = NULL;
@@ -132,8 +132,9 @@ void Machine_Video_shutdown() {
 }
 
 void Machine_Video_bindTexture(size_t textureUnit, Machine_Texture* texture) {
+  Machine_GL_Texture* textureGL = (Machine_GL_Texture*)texture;
   Machine_UtilitiesGl_call(glActiveTexture(GL_TEXTURE0 + textureUnit));
-  Machine_UtilitiesGl_call(glBindTexture(GL_TEXTURE_2D, texture->id));
+  Machine_UtilitiesGl_call(glBindTexture(GL_TEXTURE_2D, textureGL->id));
 }
 
 void Machine_Video_bindShaderProgram(Machine_ShaderProgram* shaderProgram) {

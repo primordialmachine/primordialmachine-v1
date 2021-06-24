@@ -78,6 +78,10 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)GL\</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)GL\</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="GL\Texture.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)GL\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)GL\</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="GUI\BorderModel.c" />
     <ClCompile Include="GUI\WidgetList.c" />
     <ClCompile Include="GUI\TextButton.c" />
@@ -98,7 +102,6 @@
     <ClCompile Include="Scene2.c" />
     <ClCompile Include="Scene3.c" />
     <ClCompile Include="ShaderProgram.c" />
-    <ClCompile Include="Texture.c" />
     <ClCompile Include="VertexDescriptor.c" />
     <ClCompile Include="Video.c" />
   </ItemGroup>
@@ -107,6 +110,7 @@
     <ClInclude Include="..\external\glad\include\KHR\khrplatform.h" />
     <ClInclude Include="Binding.h" />
     <ClInclude Include="GL\Buffer.h" />
+    <ClInclude Include="GL\Texture.h" />
     <ClInclude Include="GUI\BorderModel.h" />
     <ClInclude Include="GUI\WidgetList.h" />
     <ClInclude Include="GUI\TextButton.h" />
@@ -126,7 +130,6 @@
     <ClInclude Include="Scene2.h" />
     <ClInclude Include="Scene3.h" />
     <ClInclude Include="ShaderProgram.h" />
-    <ClInclude Include="Texture.h" />
     <ClInclude Include="VertexDescriptor.h" />
     <ClInclude Include="Video.h" />
   </ItemGroup>

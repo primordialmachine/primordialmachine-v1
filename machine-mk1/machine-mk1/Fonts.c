@@ -8,12 +8,12 @@
 
 #include "Video.h"
 #include "Machine.h"
-#include "Texture.h"
+#include "_Video.h"
+#include "GL/Buffer.h"
+#include "GL/Texture.h"
 #include "ShaderProgram.h"
 
 #include <linmath.h>
-#include "Texture.h"
-#include "GL/Buffer.h"
 #include "VertexDescriptor.h"
 #include "Binding.h"
 #include <inttypes.h>
@@ -303,7 +303,7 @@ Machine_Fonts_Font* Machine_Fonts_createFont(const char* path, int pointSize) {
     Machine_ByteBuffer_clear(temporary);
     Machine_ByteBuffer_appendBytes(temporary, font->face->glyph->bitmap.buffer, (size_t)(font->face->glyph->bitmap.width * font->face->glyph->bitmap.rows));
     Machine_Images_Image* image = Machine_Images_createImageDirect(Machine_PixelFormat_GRAYSCALE, font->face->glyph->bitmap.width, font->face->glyph->bitmap.rows, temporary);
-    Machine_Texture* texture = Machine_Texture_create(image);
+    Machine_Texture* texture = (Machine_Texture *)Machine_GL_Texture_create(image);
     Map_set(font->map, codepoint,
             font->face->glyph->bitmap_left, font->face->glyph->bitmap_top,
             font->face->glyph->bitmap.width, font->face->glyph->bitmap.rows,

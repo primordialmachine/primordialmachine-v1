@@ -8,7 +8,7 @@
 #include "Text/LayoutLine.h"
 #include "Text/Layout.h"
 #include "Binding.h"
-#include "Texture.h"
+#include "_Video.h"
 #include <linmath.h>
 
 MACHINE_DECLARE_CLASSTYPE(Machine_Fonts_Font)

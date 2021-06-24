@@ -12,8 +12,8 @@
 #include "Fonts.h"
 #include "Images.h"
 #include "GL/Buffer.h"
+#include "GL/Texture.h"
 #include "ShaderProgram.h"
-#include "Texture.h"
 #include "VertexDescriptor.h"
 #include "Binding.h"
 #include "Video.h"
@@ -72,7 +72,7 @@ MACHINE_DEFINE_CLASSTYPE_EX(Scene3, Scene, &Scene3_visit, &Scene3_construct, NUL
 
 static void Scene3_startup(Scene3* scene) {
   scene->image = Machine_Images_createImage(Machine_String_create("test-transparency-1.png", strlen("test-transparency-1.png")));
-  scene->texture = Machine_Texture_create(scene->image);
+  scene->texture = (Machine_Texture *)Machine_GL_Texture_create(scene->image);
 
   scene->vertices = (Machine_FloatBuffer *)Machine_GL_FloatBuffer_create();
   Machine_VideoBuffer_setData((Machine_VideoBuffer*)scene->vertices, sizeof(vertices), (void const *)vertices);
@@ -113,8 +113,7 @@ static void Scene3_update(Scene3* self, float width, float height) {
   Machine_Video_bindShaderProgram(self->shaderProgram);
   Machine_Binding_bindMatrix4x4(self->binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), mvp);
   glUniform1i(self->texture_location, 0);
-  glActiveTexture(GL_TEXTURE0 + 0);
-  glBindTexture(GL_TEXTURE_2D, self->texture->id);
+  Machine_Video_bindTexture(0, self->texture);
   Machine_UtilitiesGl_call(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, &indices));
 }
 

@@ -12,6 +12,7 @@
 #include "Video/Material.h"
 #include "Video/PixelFormat.h"
 #include "Video/ProgramKind.h"
+#include "Video/Texture.h"
 #include "Video/VertexElementSemantics.h"
 #undef MACHINE_VIDEO_PRIVATE
 

@@ -48,6 +48,9 @@
     <ClCompile Include="Video\Buffer.c">
       <Filter>Quelldateien\Video</Filter>
     </ClCompile>
+    <ClCompile Include="Video\Texture.c">
+      <Filter>Quelldateien\Video</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_Video.h">
@@ -72,6 +75,9 @@
       <Filter>Headerdateien\Video</Filter>
     </ClInclude>
     <ClInclude Include="Video\Material.h">
+      <Filter>Headerdateien\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="Video\Texture.h">
       <Filter>Headerdateien\Video</Filter>
     </ClInclude>
     <ClInclude Include="Video\Buffer.h">
