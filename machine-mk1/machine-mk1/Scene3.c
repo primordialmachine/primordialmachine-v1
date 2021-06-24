@@ -10,7 +10,7 @@
 #include <linmath.h>
 
 #include "Fonts.h"
-#include "Images.h"
+#include "_Images.h"
 #include "GL/Buffer.h"
 #include "GL/Texture.h"
 #include "ShaderProgram.h"
@@ -71,7 +71,7 @@ static void Scene3_visit(Scene3* self) {
 MACHINE_DEFINE_CLASSTYPE_EX(Scene3, Scene, &Scene3_visit, &Scene3_construct, NULL)
 
 static void Scene3_startup(Scene3* scene) {
-  scene->image = Machine_Images_createImage(Machine_String_create("test-transparency-1.png", strlen("test-transparency-1.png")));
+  scene->image = Machine_Images_createImageFromPath(Machine_String_create("test-transparency-1.png", strlen("test-transparency-1.png")));
   scene->texture = (Machine_Texture *)Machine_GL_Texture_create(scene->image);
 
   scene->vertices = (Machine_FloatBuffer *)Machine_GL_FloatBuffer_create();

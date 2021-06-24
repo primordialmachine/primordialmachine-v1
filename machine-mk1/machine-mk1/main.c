@@ -17,7 +17,7 @@ extern "C" {
 #include "Scene5.h"
 #include "Video.h"
 #include "Fonts.h"
-#include "Images.h"
+#include "_Images.h"
 #include "Machine.h"
 
   static Scene* g_scene = NULL;
@@ -54,7 +54,7 @@ extern "C" {
 
       i = 0;
       for (; i < N; ++i) {
-        IMAGES[i] = Machine_Images_createImage(Machine_String_create(PATHS[i], strlen(PATHS[i])));
+        IMAGES[i] = Machine_Images_createImageFromPath(Machine_String_create(PATHS[i], strlen(PATHS[i])));
       }
 
       GLFWimage images[N];

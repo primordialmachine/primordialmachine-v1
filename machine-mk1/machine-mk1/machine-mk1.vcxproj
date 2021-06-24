@@ -51,7 +51,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)external/freetype/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/linmath;$(SolutionDir)external/libpng/include;$(SolutionDir)core;$(SolutionDir)gdl;$(SolutionDir)input;$(SolutionDir)math;$(SolutionDir)video;$(SolutionDir)signals</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external/freetype/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/linmath;$(SolutionDir)gdl;$(SolutionDir)images;$(SolutionDir)input;$(SolutionDir)video;$(SolutionDir)math;$(SolutionDir)signals;$(SolutionDir)core</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -63,7 +63,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)external/freetype/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/linmath;$(SolutionDir)external/libpng/include;$(SolutionDir)core;$(SolutionDir)gdl;$(SolutionDir)input;$(SolutionDir)math;$(SolutionDir)video;$(SolutionDir)signals</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external/freetype/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/linmath;$(SolutionDir)gdl;$(SolutionDir)images;$(SolutionDir)input;$(SolutionDir)video;$(SolutionDir)math;$(SolutionDir)signals;$(SolutionDir)core</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -94,7 +94,6 @@
     <ClCompile Include="Text\LayoutLine.c" />
     <ClCompile Include="Text\Layout.c" />
     <ClCompile Include="UtilitiesGL.c" />
-    <ClCompile Include="Images.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="Scene.c" />
     <ClCompile Include="Scene1.c" />
@@ -123,7 +122,6 @@
     <ClInclude Include="Text\LayoutLine.h" />
     <ClInclude Include="Text\Layout.h" />
     <ClInclude Include="UtilitiesGL.h" />
-    <ClInclude Include="Images.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scene1.h" />
     <ClInclude Include="Fonts.h" />
@@ -136,6 +134,9 @@
   <ItemGroup>
     <ProjectReference Include="..\core\machine-mk1-core.vcxproj">
       <Project>{f34866d8-3093-4b44-a225-7da2b5cd8e83}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\images\machine-mk1-images.vcxproj">
+      <Project>{f0b732b5-824d-40ab-aa0a-a067b6a852f9}</Project>
     </ProjectReference>
     <ProjectReference Include="..\input\machine-mk1-input.vcxproj">
       <Project>{d18ee412-e5ae-4b7b-b291-46231dca6511}</Project>
