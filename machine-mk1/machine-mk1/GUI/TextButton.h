@@ -11,8 +11,8 @@
 /// @extends Machine.GUI.Widget
 MACHINE_DECLARE_CLASSTYPE(Machine_GUI_TextButton)
 
-/// @brief Create a label with default values.
-/// @return The label.
+/// @brief Create a text button with default values.
+/// @return The text button.
 Machine_GUI_TextButton* Machine_GUI_TextButton_create();
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
