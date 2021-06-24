@@ -67,7 +67,13 @@ INLINE bool Machine_Boolean_isEqualTo(Machine_Boolean x, Machine_Boolean y) {
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /// @brief The C-level representation of the <code>Integer</code> type.
-typedef uint32_t Machine_Integer;
+typedef int32_t Machine_Integer;
+
+/// @brief The greatest <code>Integer</code> value.
+#define Machine_Integer_Greatest INT32_MAX
+
+/// @brief The least <code>Integer</code> value.
+#define Machine_Integer_Least INT32_MIN
 
 INLINE size_t Machine_Integer_getHashValue(Machine_Integer x) {
   return (size_t)x;
