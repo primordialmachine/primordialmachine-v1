@@ -75,6 +75,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Video\BlendFunction.c" />
+    <ClCompile Include="Video\Buffer.c" />
     <ClCompile Include="Video\CanvasSizeChangedEvent.c" />
     <ClCompile Include="Video\DepthTestFunction.c" />
     <ClCompile Include="Video\Material.c" />
@@ -85,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Video\BlendFunction.h" />
+    <ClInclude Include="Video\Buffer.h" />
     <ClInclude Include="Video\CanvasSizeChangedEvent.h" />
     <ClInclude Include="Video\DepthTestFunction.h" />
     <ClInclude Include="Video\Material.h" />

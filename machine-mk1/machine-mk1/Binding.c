@@ -140,17 +140,17 @@ void Machine_Binding_activate(Machine_Binding* self) {
           switch (semantics) {
           case Machine_VertexElementSemantics_XfYf:
             glEnableVertexAttribArray(i);
-            glBindBuffer(GL_ARRAY_BUFFER, Machine_FloatBuffer_getId(self->buffer));
+            glBindBuffer(GL_ARRAY_BUFFER, *(GLuint*)Machine_VideoBuffer_getId((Machine_VideoBuffer *)self->buffer));
             glVertexAttribPointer(inputIndex, 2, GL_FLOAT, GL_FALSE, vertexSize, (void*)offset);
             break;
           case Machine_VertexElementSemantics_RfGfBf:
             glEnableVertexAttribArray(i);
-            glBindBuffer(GL_ARRAY_BUFFER, Machine_FloatBuffer_getId(self->buffer));
+            glBindBuffer(GL_ARRAY_BUFFER, *(GLuint*)Machine_VideoBuffer_getId((Machine_VideoBuffer *)self->buffer));
             glVertexAttribPointer(inputIndex, 3, GL_FLOAT, GL_FALSE, vertexSize, (void*)offset);
             break;
           case Machine_VertexElementSemantics_UfVf:
             Machine_UtilitiesGl_call(glEnableVertexAttribArray(i));
-            Machine_UtilitiesGl_call(glBindBuffer(GL_ARRAY_BUFFER, Machine_FloatBuffer_getId(self->buffer)));
+            Machine_UtilitiesGl_call(glBindBuffer(GL_ARRAY_BUFFER, *(GLuint*)Machine_VideoBuffer_getId((Machine_VideoBuffer *)self->buffer)));
             Machine_UtilitiesGl_call(glVertexAttribPointer(inputIndex, 2, GL_FLOAT, GL_FALSE, vertexSize, (void*)offset));
             break;
           };

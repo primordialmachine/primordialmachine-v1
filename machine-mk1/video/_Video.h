@@ -6,6 +6,7 @@
 
 #define MACHINE_VIDEO_PRIVATE (1)
 #include "Video/BlendFunction.h"
+#include "Video/Buffer.h"
 #include "Video/CanvasSizeChangedEvent.h"
 #include "Video/DepthTestFunction.h"
 #include "Video/Material.h"

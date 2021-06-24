@@ -336,7 +336,7 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
         { r,  b,  1.f, 0.f }, // right/top
       };
 
-      Machine_FloatBuffer_setData(Machine_Font_getFloatBuffer(self->font), sizeof(vertices) / sizeof(float), (const float *)vertices);
+      Machine_VideoBuffer_setData((Machine_VideoBuffer *)Machine_Font_getFloatBuffer(self->font), sizeof(vertices), (void const *)vertices);
 
       static const uint8_t indices[] = {
         0, 1, 2,

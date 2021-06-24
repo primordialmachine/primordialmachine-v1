@@ -3,6 +3,7 @@
 #include "_Math.h"
 #include "./Binding.h"
 #include "./Video.h"
+#include "GL/Buffer.h"
 #include "./VertexDescriptor.h"
 #include "./UtilitiesGL.h"
 #include <linmath.h>
@@ -95,7 +96,7 @@ void Machine_Rectangle2_render(Machine_Rectangle2* self, float width, float heig
     { r, t, }, // right/top
   };
 
-  Machine_FloatBuffer_setData(self->vertices, sizeof(VERTICES) / sizeof(float), (const float *)VERTICES);
+  Machine_VideoBuffer_setData((Machine_VideoBuffer*)self->vertices, sizeof(VERTICES), (void const *)VERTICES);
 
   Machine_Binding_activate(self->binding);
   Machine_Video_bindShaderProgram(self->shader);
@@ -120,7 +121,7 @@ void Machine_Rectangle2_construct(Machine_Rectangle2* self, size_t numberOfArgum
   self->size = Machine_Math_Vector2_create();
   ((Machine_Shape2*)self)->render = (void(*)(Machine_Shape2*, float, float))&Machine_Rectangle2_render;
 
-  self->vertices = Machine_FloatBuffer_create();
+  self->vertices = (Machine_FloatBuffer *)Machine_GL_FloatBuffer_create();
   self->shader = Machine_ShaderProgram_generateShape2d();
 
   Machine_VertexDescriptor* vertexDescriptor = Machine_VertexDescriptor_create();

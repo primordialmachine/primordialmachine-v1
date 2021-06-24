@@ -11,7 +11,7 @@
 
 #include "Fonts.h"
 #include "Images.h"
-#include "Buffer.h"
+#include "GL/Buffer.h"
 #include "ShaderProgram.h"
 #include "Texture.h"
 #include "VertexDescriptor.h"
@@ -74,8 +74,8 @@ static void Scene3_startup(Scene3* scene) {
   scene->image = Machine_Images_createImage(Machine_String_create("test-transparency-1.png", strlen("test-transparency-1.png")));
   scene->texture = Machine_Texture_create(scene->image);
 
-  scene->vertices = Machine_FloatBuffer_create();
-  Machine_FloatBuffer_setData(scene->vertices, sizeof(vertices) / sizeof(float), (const float *)vertices);
+  scene->vertices = (Machine_FloatBuffer *)Machine_GL_FloatBuffer_create();
+  Machine_VideoBuffer_setData((Machine_VideoBuffer*)scene->vertices, sizeof(vertices), (void const *)vertices);
 
   scene->shaderProgram = Machine_ShaderProgram_generate(false, true, true, true);
   scene->mvp_location = glGetUniformLocation(scene->shaderProgram->programId, "modelToProjectionMatrix");

@@ -74,6 +74,10 @@
   <ItemGroup>
     <ClCompile Include="..\external\glad\src\glad.c" />
     <ClCompile Include="Binding.c" />
+    <ClCompile Include="GL\Buffer.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)GL\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)GL\</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="GUI\BorderModel.c" />
     <ClCompile Include="GUI\WidgetList.c" />
     <ClCompile Include="GUI\TextButton.c" />
@@ -88,7 +92,6 @@
     <ClCompile Include="UtilitiesGL.c" />
     <ClCompile Include="Images.c" />
     <ClCompile Include="main.c" />
-    <ClCompile Include="Buffer.c" />
     <ClCompile Include="Scene.c" />
     <ClCompile Include="Scene1.c" />
     <ClCompile Include="Fonts.c" />
@@ -103,6 +106,7 @@
     <ClInclude Include="..\external\glad\include\glad\glad.h" />
     <ClInclude Include="..\external\glad\include\KHR\khrplatform.h" />
     <ClInclude Include="Binding.h" />
+    <ClInclude Include="GL\Buffer.h" />
     <ClInclude Include="GUI\BorderModel.h" />
     <ClInclude Include="GUI\WidgetList.h" />
     <ClInclude Include="GUI\TextButton.h" />
@@ -116,7 +120,6 @@
     <ClInclude Include="Text\Layout.h" />
     <ClInclude Include="UtilitiesGL.h" />
     <ClInclude Include="Images.h" />
-    <ClInclude Include="Buffer.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scene1.h" />
     <ClInclude Include="Fonts.h" />

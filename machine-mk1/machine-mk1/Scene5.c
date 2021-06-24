@@ -10,7 +10,7 @@
 #include "Fonts.h"
 #include "Shape2.h"
 #include "Images.h"
-#include "Buffer.h"
+#include "GL/Buffer.h"
 #include "ShaderProgram.h"
 #include "Texture.h"
 #include "VertexDescriptor.h"

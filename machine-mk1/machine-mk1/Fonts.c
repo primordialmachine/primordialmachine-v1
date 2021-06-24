@@ -13,6 +13,7 @@
 
 #include <linmath.h>
 #include "Texture.h"
+#include "GL/Buffer.h"
 #include "VertexDescriptor.h"
 #include "Binding.h"
 #include <inttypes.h>
@@ -228,7 +229,7 @@ Machine_Fonts_Font* Machine_Fonts_createFont(const char* path, int pointSize) {
   Machine_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
     font->map = Map_create();
-    font->vertices = Machine_FloatBuffer_create();
+    font->vertices = (Machine_FloatBuffer *)Machine_GL_FloatBuffer_create();
     font->shader = Machine_ShaderProgram_generateTextShader(true);
 
     Machine_VertexDescriptor* vertexDescriptor = Machine_VertexDescriptor_create();
