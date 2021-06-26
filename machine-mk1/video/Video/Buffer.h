@@ -6,6 +6,10 @@
 
 
 
+#if !defined(MACHINE_VIDEO_PRIVATE)
+#error("Do not include this file directly, include `_Video.h` instead.")
+#endif
+
 #include "_Runtime.h"
 
 
