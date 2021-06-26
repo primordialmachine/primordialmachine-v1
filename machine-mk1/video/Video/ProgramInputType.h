@@ -14,7 +14,7 @@
 
 
 
-/// @brief An enumeration of types of shader constants.
+/// @brief An enumeration of types of shader inputs.
 typedef enum Machine_ProgramInputType Machine_ProgramInputType;
 
 enum Machine_ProgramInputType {
