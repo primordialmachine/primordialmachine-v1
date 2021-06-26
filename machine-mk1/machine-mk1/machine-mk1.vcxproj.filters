@@ -72,9 +72,6 @@
     <ClCompile Include="Scene3.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="VertexDescriptor.c">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="Binding.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -147,9 +144,6 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Scene3.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="VertexDescriptor.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Binding.h">

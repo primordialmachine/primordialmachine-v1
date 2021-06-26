@@ -13,7 +13,6 @@
 #include "GL/Buffer.h"
 #include "GL/Texture.h"
 #include "ShaderProgram.h"
-#include "VertexDescriptor.h"
 #include "Binding.h"
 #include "GUI/TextLabel.h"
 #include "GUI/TextButton.h"

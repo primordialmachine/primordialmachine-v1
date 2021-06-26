@@ -4,7 +4,6 @@
 #include "./Binding.h"
 #include "./Video.h"
 #include "GL/Buffer.h"
-#include "./VertexDescriptor.h"
 #include "./UtilitiesGL.h"
 #include <linmath.h>
 #include <stdio.h>

@@ -3,7 +3,6 @@
 
 
 #include "ShaderProgram.h"
-#include "VertexDescriptor.h"
 
 
 

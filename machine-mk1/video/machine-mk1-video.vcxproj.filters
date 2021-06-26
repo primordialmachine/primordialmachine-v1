@@ -57,6 +57,9 @@
     <ClCompile Include="Video\ProgramInput.c">
       <Filter>Quelldateien\Video</Filter>
     </ClCompile>
+    <ClCompile Include="Video\VertexDescriptor.c">
+      <Filter>Quelldateien\Video</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_Video.h">
@@ -93,6 +96,9 @@
       <Filter>Headerdateien\Video</Filter>
     </ClInclude>
     <ClInclude Include="Video\ProgramInput.h">
+      <Filter>Headerdateien\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="Video\VertexDescriptor.h">
       <Filter>Headerdateien\Video</Filter>
     </ClInclude>
   </ItemGroup>

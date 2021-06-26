@@ -14,7 +14,6 @@
 #include "GL/Buffer.h"
 #include "GL/Texture.h"
 #include "ShaderProgram.h"
-#include "VertexDescriptor.h"
 #include "Binding.h"
 #include "Video.h"
 

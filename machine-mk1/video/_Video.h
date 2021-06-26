@@ -15,6 +15,7 @@
 #include "Video/ProgramInput.h"
 #include "Video/ProgramInputType.h"
 #include "Video/Texture.h"
+#include "Video/VertexDescriptor.h"
 #include "Video/VertexElementSemantics.h"
 #undef MACHINE_VIDEO_PRIVATE
 

@@ -101,7 +101,6 @@
     <ClCompile Include="Scene2.c" />
     <ClCompile Include="Scene3.c" />
     <ClCompile Include="ShaderProgram.c" />
-    <ClCompile Include="VertexDescriptor.c" />
     <ClCompile Include="Video.c" />
   </ItemGroup>
   <ItemGroup>
@@ -128,7 +127,6 @@
     <ClInclude Include="Scene2.h" />
     <ClInclude Include="Scene3.h" />
     <ClInclude Include="ShaderProgram.h" />
-    <ClInclude Include="VertexDescriptor.h" />
     <ClInclude Include="Video.h" />
   </ItemGroup>
   <ItemGroup>

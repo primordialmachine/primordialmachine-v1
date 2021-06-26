@@ -14,7 +14,6 @@
 #include "ShaderProgram.h"
 
 #include <linmath.h>
-#include "VertexDescriptor.h"
 #include "Binding.h"
 #include <inttypes.h>
 

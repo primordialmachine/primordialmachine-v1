@@ -1,9 +1,18 @@
-#if !defined(MACHINE_VERTEXDESCRIPTOR_H_INCLUDED)
-#define MACHINE_VERTEXDESCRIPTOR_H_INCLUDED
+/// @file Video/VertexDescriptor.h
+/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
+/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
+#if !defined(MACHINE_VIDEO_VERTEXDESCRIPTOR_H_INCLUDED)
+#define MACHINE_VIDEO_VERTEXDESCRIPTOR_H_INCLUDED
 
 
-#include "UtilitiesGL.h"
-#include "_Video.h"
+
+#if !defined(MACHINE_VIDEO_PRIVATE)
+#error("Do not include this file directly, include `_Video.h` instead.")
+#endif
+
+#include "_Runtime.h"
+#include "./../Video/VertexElementSemantics.h"
+
 
 
 MACHINE_DECLARE_CLASSTYPE(Machine_VertexDescriptor)
@@ -41,4 +50,4 @@ void Machine_VertexDescriptor_append(Machine_VertexDescriptor* self, Machine_Ver
 void Machine_VertexDescriptor_prepend(Machine_VertexDescriptor* self, Machine_VertexElementSemantics semantics);
 
 
-#endif // MACHINE_VERTEXDESCRIPTOR_H_INCLUDED
+#endif // MACHINE_VIDEO_VERTEXDESCRIPTOR_H_INCLUDED
