@@ -80,6 +80,8 @@
     <ClCompile Include="Video\DepthTestFunction.c" />
     <ClCompile Include="Video\Material.c" />
     <ClCompile Include="Video\PixelFormat.c" />
+    <ClCompile Include="Video\ProgramInput.c" />
+    <ClCompile Include="Video\ProgramInputType.c" />
     <ClCompile Include="Video\ProgramKind.c" />
     <ClCompile Include="Video\Texture.c" />
     <ClCompile Include="Video\VertexElementSemantics.c" />
@@ -92,6 +94,8 @@
     <ClInclude Include="Video\DepthTestFunction.h" />
     <ClInclude Include="Video\Material.h" />
     <ClInclude Include="Video\PixelFormat.h" />
+    <ClInclude Include="Video\ProgramInput.h" />
+    <ClInclude Include="Video\ProgramInputType.h" />
     <ClInclude Include="Video\ProgramKind.h" />
     <ClInclude Include="Video\Texture.h" />
     <ClInclude Include="Video\VertexElementSemantics.h" />
