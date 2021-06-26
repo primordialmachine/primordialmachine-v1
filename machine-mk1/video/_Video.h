@@ -13,6 +13,7 @@
 #include "Video/PixelFormat.h"
 #include "Video/ProgramKind.h"
 #include "Video/ProgramInput.h"
+#include "Video/ProgramInputKind.h"
 #include "Video/ProgramInputType.h"
 #include "Video/Texture.h"
 #include "Video/VertexDescriptor.h"
