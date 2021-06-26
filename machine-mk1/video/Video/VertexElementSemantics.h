@@ -4,9 +4,13 @@
 #if !defined(MACHINE_VIDEO_VERTEXELEMENTSEMANTICS_H_INCLUDED)
 #define MACHINE_VIDEO_VERTEXELEMENTSEMANTICS_H_INCLUDED
 
+
+
 #if !defined(MACHINE_VIDEO_PRIVATE)
 #error("Do not include this file directly, include `_Video.h` instead.")
 #endif
+
+
 
 /// @brief Semantics of a vertex element.
 typedef enum Machine_VertexElementSemantics Machine_VertexElementSemantics;
@@ -24,5 +28,7 @@ enum Machine_VertexElementSemantics {
   /// All sub-elements are of type float.
   Machine_VertexElementSemantics_UfVf,
 };
+
+
 
 #endif // MACHINE_VIDEO_VERTEXELEMENTSEMANTICS_H_INCLUDED

@@ -10,9 +10,8 @@
 #error("Do not include this file directly, include `_Video.h` instead.")
 #endif
 
-
-
 #include "./../Video/ProgramInputType.h"
+
 
 
 /// @brief Description of a constant or variable input to a program.

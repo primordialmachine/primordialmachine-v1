@@ -4,11 +4,15 @@
 #if !defined(MACHINE_VIDEO_DEPTHTESTFUNCTION_H_INCLUDED)
 #define MACHINE_VIDEO_DEPTHTESTFUNCTION_H_INCLUDED
 
+
+
 #if !defined(MACHINE_VIDEO_PRIVATE)
 #error("Do not include this file directly, include `_Video.h` instead.")
 #endif
 
 #include "_Runtime.h"
+
+
 
 /// @brief Enumeration of depth test functions.
 /// @remark
@@ -44,5 +48,7 @@ enum Machine_DepthTestFunction {
   Machine_DepthTestFunction_Never,
 
 };
+
+
 
 #endif // MACHINE_VIDEO_DEPTHTESTFUNCTION_H_INCLUDED

@@ -74,4 +74,6 @@ void Machine_FloatBuffer_construct(Machine_FloatBuffer* self, size_t numberOfArg
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+
+
 #endif // MACHINE_VIDEO_BUFFER_H_INCLUDED

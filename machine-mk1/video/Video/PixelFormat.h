@@ -4,11 +4,15 @@
 #if !defined(MACHINE_VIDEO_PIXELFORMAT_H_INCLUDED)
 #define MACHINE_VIDEO_PIXELFORMAT_H_INCLUDED
 
+
+
 #if !defined(MACHINE_VIDEO_PRIVATE)
 #error("Do not include this file directly, include `_Video.h` instead.")
 #endif
 
 #include "_Runtime.h"
+
+
 
 typedef enum Machine_PixelFormat Machine_PixelFormat;
 
@@ -46,5 +50,7 @@ static inline uint8_t Machine_PixelFormat_getBytesPerPixel(Machine_PixelFormat s
     Machine_jump();
   };
 }
+
+
 
 #endif // MACHINE_VIDEO_PIXELFORMAT_H_INCLUDED

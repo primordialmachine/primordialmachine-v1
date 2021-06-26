@@ -10,8 +10,6 @@
 #error("Do not include this file directly, include `_Video.h` instead.")
 #endif
 
-
-
 #include "_Runtime.h"
 
 

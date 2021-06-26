@@ -4,11 +4,15 @@
 #if !defined(MACHINE_VIDEO_BLENDFUNCTION_H_INCLUDED)
 #define MACHINE_VIDEO_BLENDFUNCTION_H_INCLUDED
 
+
+
 #if !defined(MACHINE_VIDEO_PRIVATE)
 #error("Do not include this file directly, include `_Video.h` instead.")
 #endif
 
 #include "_Runtime.h"
+
+
 
 /// @brief Enumeration of blend functions.
 /// @remarks
@@ -38,5 +42,7 @@ enum Machine_BlendFunction {
   Machine_BlendFunction_One,
 
 };
+
+
 
 #endif // MACHINE_VIDEO_BLENDFUNCTION_H_INCLUDED
