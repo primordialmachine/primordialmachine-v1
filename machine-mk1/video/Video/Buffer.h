@@ -14,8 +14,6 @@
 
 
 
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
 MACHINE_DECLARE_CLASSTYPE(Machine_VideoBuffer)
 
 struct Machine_VideoBuffer {
@@ -29,6 +27,8 @@ struct Machine_VideoBuffer {
   size_t (*getSize)(const Machine_VideoBuffer* self);
   const void* (*getId)(const Machine_VideoBuffer* self);
 };
+
+void Machine_VideoBuffer_construct(Machine_VideoBuffer* self, size_t numberOfArguments, const Machine_Value* arguments);
 
 /// @brief Set the Bytes of this video buffer.
 /// @param self This video buffer.
@@ -51,28 +51,6 @@ size_t Machine_VideoBuffer_getSize(const Machine_VideoBuffer* self);
 /// @return A pointer to the backend-specific data of this video buffer.
 /// @remark For an OpenGL backend this is a pointer to a GLuint read-only variable.
 const void* Machine_VideoBuffer_getId(const Machine_VideoBuffer* self);
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-MACHINE_DECLARE_CLASSTYPE(Machine_Uint8Buffer)
-
-struct Machine_Uint8Buffer {
-  Machine_VideoBuffer __parent;
-};
-
-void Machine_Uint8Buffer_construct(Machine_Uint8Buffer* self, size_t numberOfArguments, const Machine_Value* arguments);
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-MACHINE_DECLARE_CLASSTYPE(Machine_FloatBuffer)
-
-struct Machine_FloatBuffer {
-  Machine_VideoBuffer __parent;
-};
-
-void Machine_FloatBuffer_construct(Machine_FloatBuffer* self, size_t numberOfArguments, const Machine_Value* arguments);
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 
 

@@ -62,6 +62,6 @@ Machine_ShaderProgram* Machine_Font_getShaderProgram(Machine_Fonts_Font *self);
 /// @brief Get the buffer.
 /// @param self This font.
 /// @return The shader program.
-Machine_FloatBuffer* Machine_Font_getFloatBuffer(Machine_Fonts_Font* self);
+Machine_VideoBuffer* Machine_Font_getVideoBuffer(Machine_Fonts_Font* self);
 
 #endif // MACHINE_FONTS_H_INCLUDED

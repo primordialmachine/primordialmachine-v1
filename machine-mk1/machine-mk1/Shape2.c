@@ -37,7 +37,7 @@ struct Machine_Rectangle2 {
   Machine_Math_Vector2* position;
   Machine_Math_Vector2* size;
   Machine_ShaderProgram* shader;
-  Machine_FloatBuffer* vertices;
+  Machine_VideoBuffer* vertices;
   Machine_Binding* binding;
   Machine_Math_Vector4* color;
 };
@@ -95,7 +95,7 @@ void Machine_Rectangle2_render(Machine_Rectangle2* self, float width, float heig
     { r, t, }, // right/top
   };
 
-  Machine_VideoBuffer_setData((Machine_VideoBuffer*)self->vertices, sizeof(VERTICES), (void const *)VERTICES);
+  Machine_VideoBuffer_setData(self->vertices, sizeof(VERTICES), (void const *)VERTICES);
 
   Machine_Binding_activate(self->binding);
   Machine_Video_bindShaderProgram(self->shader);
@@ -120,7 +120,7 @@ void Machine_Rectangle2_construct(Machine_Rectangle2* self, size_t numberOfArgum
   self->size = Machine_Math_Vector2_create();
   ((Machine_Shape2*)self)->render = (void(*)(Machine_Shape2*, float, float))&Machine_Rectangle2_render;
 
-  self->vertices = (Machine_FloatBuffer *)Machine_GL_FloatBuffer_create();
+  self->vertices = (Machine_VideoBuffer *)Machine_GL_VideoBuffer_create();
   self->shader = Machine_ShaderProgram_generateShape2d();
 
   Machine_VertexDescriptor* vertexDescriptor = Machine_VertexDescriptor_create();

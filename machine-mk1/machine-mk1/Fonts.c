@@ -145,7 +145,7 @@ struct Machine_Fonts_Font {
   float baselineDistance;
 
   Machine_ShaderProgram* shader;
-  Machine_FloatBuffer* vertices;
+  Machine_VideoBuffer* vertices;
   Machine_Binding* binding;
 };
 
@@ -228,7 +228,7 @@ Machine_Fonts_Font* Machine_Fonts_createFont(const char* path, int pointSize) {
   Machine_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
     font->map = Map_create();
-    font->vertices = (Machine_FloatBuffer *)Machine_GL_FloatBuffer_create();
+    font->vertices = (Machine_VideoBuffer *)Machine_GL_VideoBuffer_create();
     font->shader = Machine_ShaderProgram_generateTextShader(true);
 
     Machine_VertexDescriptor* vertexDescriptor = Machine_VertexDescriptor_create();
@@ -354,6 +354,6 @@ Machine_ShaderProgram* Machine_Font_getShaderProgram(Machine_Fonts_Font* self) {
   return self->shader;
 }
 
-Machine_FloatBuffer* Machine_Font_getFloatBuffer(Machine_Fonts_Font* self) {
+Machine_VideoBuffer* Machine_Font_getVideoBuffer(Machine_Fonts_Font* self) {
   return self->vertices;
 }

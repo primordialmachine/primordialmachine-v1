@@ -42,7 +42,7 @@ struct Scene3 {
   GLint mvp_location;
   GLint texture_location;
   Machine_Binding* binding;
-  Machine_FloatBuffer* vertices;
+  Machine_VideoBuffer* vertices;
   Machine_Images_Image* image;
   Machine_Texture* texture;
 };
@@ -73,8 +73,8 @@ static void Scene3_startup(Scene3* scene) {
   scene->image = Machine_Images_createImageFromPath(Machine_String_create("test-transparency-1.png", strlen("test-transparency-1.png")));
   scene->texture = (Machine_Texture *)Machine_GL_Texture_create(scene->image);
 
-  scene->vertices = (Machine_FloatBuffer *)Machine_GL_FloatBuffer_create();
-  Machine_VideoBuffer_setData((Machine_VideoBuffer*)scene->vertices, sizeof(vertices), (void const *)vertices);
+  scene->vertices = (Machine_VideoBuffer *)Machine_GL_VideoBuffer_create();
+  Machine_VideoBuffer_setData(scene->vertices, sizeof(vertices), (void const *)vertices);
 
   scene->shaderProgram = Machine_ShaderProgram_generate(false, true, true, true);
   scene->mvp_location = glGetUniformLocation(scene->shaderProgram->programId, "modelToProjectionMatrix");

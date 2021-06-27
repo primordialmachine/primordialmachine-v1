@@ -40,7 +40,7 @@ struct Scene2 {
   Machine_ShaderProgram* shaderProgram;
   GLint mvp_location;
   Machine_Binding* binding;
-  Machine_FloatBuffer* vertices;
+  Machine_VideoBuffer* vertices;
 };
 
 static void Scene2_destruct(Scene2* self);
@@ -60,8 +60,8 @@ static void Scene2_visit(Scene2* self) {
 MACHINE_DEFINE_CLASSTYPE_EX(Scene2, Scene, &Scene2_visit, &Scene2_construct, NULL)
 
 static void Scene2_onStartup(Scene2* scene) {
-  scene->vertices = (Machine_FloatBuffer *)Machine_GL_FloatBuffer_create();
-  Machine_VideoBuffer_setData((Machine_VideoBuffer *)scene->vertices, sizeof(vertices), (void const *)vertices);
+  scene->vertices = (Machine_VideoBuffer *)Machine_GL_VideoBuffer_create();
+  Machine_VideoBuffer_setData(scene->vertices, sizeof(vertices), (void const *)vertices);
 
   scene->shaderProgram = Machine_ShaderProgram_generate(false, true, false, false);
   scene->mvp_location = glGetUniformLocation(scene->shaderProgram->programId, "modelToProjectionMatrix");

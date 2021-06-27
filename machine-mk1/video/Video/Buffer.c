@@ -11,8 +11,6 @@
 
 
 
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
 static void Machine_VideoBuffer_destruct(Machine_VideoBuffer* self) {
   if (self->p) {
     free(self->p);
@@ -61,29 +59,3 @@ size_t Machine_VideoBuffer_getSize(Machine_VideoBuffer const* self) {
 void const* Machine_VideoBuffer_getId(Machine_VideoBuffer const* self) {
   return self->getId(self);
 }
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-static void Machine_Uint8Buffer_destruct(Machine_Uint8Buffer* self)
-{}
-
-void Machine_Uint8Buffer_construct(Machine_Uint8Buffer* self, size_t numberOfArguments, const Machine_Value* arguments) {
-  Machine_VideoBuffer_construct((Machine_VideoBuffer*)self, numberOfArguments, arguments);
-  Machine_setClassType((Machine_Object*)self, Machine_Uint8Buffer_getClassType());
-}
-
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_Uint8Buffer, Machine_VideoBuffer, NULL, &Machine_Uint8Buffer_construct, &Machine_Uint8Buffer_destruct)
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-static void Machine_FloatBuffer_destruct(Machine_FloatBuffer* self)
-{}
-
-void Machine_FloatBuffer_construct(Machine_FloatBuffer* self, size_t numberOfArguments, const Machine_Value* arguments) {
-  Machine_VideoBuffer_construct((Machine_VideoBuffer*)self, numberOfArguments, arguments);
-  Machine_setClassType((Machine_Object*)self, Machine_FloatBuffer_getClassType());
-}
-
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_FloatBuffer, Machine_VideoBuffer, NULL, &Machine_FloatBuffer_construct, &Machine_FloatBuffer_destruct)
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
