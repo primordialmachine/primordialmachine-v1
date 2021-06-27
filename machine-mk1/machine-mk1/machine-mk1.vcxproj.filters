@@ -120,6 +120,9 @@
     <ClCompile Include="GL\Texture.c">
       <Filter>Quelldateien\GL</Filter>
     </ClCompile>
+    <ClCompile Include="_GUI.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\external\glad\include\glad\glad.h">
@@ -193,6 +196,9 @@
     </ClInclude>
     <ClInclude Include="GL\Texture.h">
       <Filter>Headerdateien\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="_GUI.h">
+      <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -102,6 +102,7 @@
     <ClCompile Include="Scene3.c" />
     <ClCompile Include="ShaderProgram.c" />
     <ClCompile Include="Video.c" />
+    <ClCompile Include="_GUI.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\external\glad\include\glad\glad.h" />
@@ -128,6 +129,7 @@
     <ClInclude Include="Scene3.h" />
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="Video.h" />
+    <ClInclude Include="_GUI.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\core\machine-mk1-core.vcxproj">
