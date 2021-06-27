@@ -22,6 +22,10 @@ enum Machine_ProgramInputType {
   Machine_ProgramInputType_Vector2,
   /// @brief A three element single precision floating point vector.
   Machine_ProgramInputType_Vector3,
+  /// @brief A four element single precision floating point vector.
+  Machine_ProgramInputType_Vector4,
+  /// @brief A two dimensional sampler.
+  Machine_ProgramInputType_Sampler2,
 };
 
 
