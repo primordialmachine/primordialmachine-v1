@@ -4,21 +4,19 @@
 
 #include <stddef.h>
 #include <malloc.h>
-
+#include <linmath.h>
 #include "UtilitiesGl.h"
 
-#include "Fonts.h"
-#include "Shape2.h"
+#include "_GUI.h"
 #include "_Images.h"
+#include "_Video.h"
 #include "GL/Buffer.h"
 #include "GL/Texture.h"
-#include "ShaderProgram.h"
-#include "Binding.h"
-#include "GUI/TextLabel.h"
-#include "GUI/TextButton.h"
-#include "GUI/Border.h"
-#include "GUI/WidgetList.h"
 
+#include "Binding.h"
+#include "Fonts.h"
+#include "Shape2.h"
+#include "Video.h"
 
 static const float OUTER_BORDER_SIZE = 4.f;
 static const float INNER_BORDER_SIZE = 16.f;
