@@ -15,6 +15,7 @@
 #include "Video/ProgramInput.h"
 #include "Video/ProgramInputKind.h"
 #include "Video/ProgramInputType.h"
+#include "Video/ShaderProgram.h"
 #include "Video/Texture.h"
 #include "Video/VertexDescriptor.h"
 #include "Video/VertexElementSemantics.h"

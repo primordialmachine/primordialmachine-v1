@@ -1,20 +1,244 @@
-#include "ShaderProgram.h"
+#include "./../GL/ShaderProgram.h"
 
 
 
-#include <malloc.h>
-#include <string.h>
+static void Machine_GL_ShaderProgram_visit(Machine_GL_ShaderProgram* self) {
+  if (self->inputs) {
+    Machine_visit(self->inputs);
+  }
+}
+
+static void Machine_GL_ShaderProgram_destruct(Machine_GL_ShaderProgram* self) {
+  if (self->fragmentProgramId) {
+    glDeleteShader(self->fragmentProgramId);
+    self->fragmentProgramId = 0;
+  }
+  if (self->geometryProgramId) {
+    glDeleteShader(self->geometryProgramId);
+    self->geometryProgramId = 0;
+  }
+  if (self->vertexProgramId) {
+    glDeleteShader(self->vertexProgramId);
+    self->vertexProgramId = 0;
+  }
+  if (self->fragmentProgramId) {
+    glDeleteShader(self->fragmentProgramId);
+    self->fragmentProgramId = 0;
+  }
+}
+
+static size_t Machine_GL_ShaderProgram_getNumberOfInputsImpl(Machine_GL_ShaderProgram const* self) {
+  return Machine_Collection_getSize((Machine_Collection*)self->inputs);
+}
+
+static Machine_ProgramInput* Machine_GL_ShaderProgram_getInputAtImpl(Machine_GL_ShaderProgram const* self, size_t index) {
+  Machine_Value temporary = Machine_List_getAt(self->inputs, index);
+  return (Machine_ProgramInput*)Machine_Value_getObject(&temporary);
+}
+
+static bool Machine_GL_ShaderProgram_addUpdateInputImpl(Machine_GL_ShaderProgram* self, Machine_String* name, Machine_ProgramInputType type, Machine_ProgramInputKind kind) {
+  for (size_t i = 0, n = Machine_ShaderProgram_getNumberOfInputs((Machine_ShaderProgram *)self); i < n; ++i) {
+    Machine_ProgramInput* input = Machine_ShaderProgram_getInputAt((Machine_ShaderProgram *)self, i);
+    if (Machine_String_isEqualTo(input->name, name)) {
+      input->type = type;
+      input->kind = kind;
+      return true;
+    }
+  }
+  Machine_ProgramInput* input = Machine_ProgramInput_create(name, type, kind);
+  Machine_Value temporary;
+  Machine_Value_setObject(&temporary, (Machine_Object*)input);
+  Machine_List_append(self->inputs, temporary);
+  return false;
+}
+
+static GLuint compileShader(const char* programText, Machine_ProgramKind programKind) {
+  GLuint id;
+
+  switch (programKind) {
+  case Machine_ProgramKind_Fragment:
+    id = glCreateShader(GL_FRAGMENT_SHADER);
+    break;
+  case Machine_ProgramKind_Geometry:
+    id = glCreateShader(GL_GEOMETRY_SHADER);
+    break;
+  case Machine_ProgramKind_Vertex:
+    id = glCreateShader(GL_VERTEX_SHADER);
+    break;
+  default:
+    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "shader compilation failed\n");
+    return 0;
+  };
+  glShaderSource(id, 1, &programText, NULL);
+  glCompileShader(id);
+  GLint result;
+  glGetShaderiv(id, GL_COMPILE_STATUS, &result);
+  if (result == GL_FALSE) {
+  #define SHADER_EMIT_LOG_IF_COMPILATION_FAILED
+
+  #if defined(SHADER_EMIT_LOG_IF_COMPILATION_FAILED)
+    GLint log_length;
+    glGetShaderiv(id, GL_INFO_LOG_LENGTH, &log_length);
+    char* buffer = malloc(sizeof(char) * log_length + 1);
+    if (buffer) {
+      glGetShaderInfoLog(id, log_length, NULL, buffer);
+      free(buffer);
+    }
+  #endif
+
+  #undef SHADER_EMIT_LOG_IF_COMPILATION_FAILED
+
+    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "shader compilation failed\n");
+    glDeleteProgram(id);
+    id = 0;
+    return 0;
+  }
+
+  return id;
+}
+
+static void constructFromText(Machine_GL_ShaderProgram* self, const char* vertexProgramText, const char* geometryProgramText, const char* fragmentProgramText) {
+  GLuint vertexShaderId = 0, geometryShaderId = 0, fragmentShaderId = 0, programId = 0;
+
+#define ON_ERROR() \
+  if (programId) { \
+    glDeleteProgram(programId); \
+    programId = 0; \
+  } \
+\
+  if (fragmentShaderId) { \
+    glDeleteShader(fragmentShaderId); \
+    fragmentShaderId = 0; \
+  } \
+\
+  if (geometryShaderId) { \
+    glDeleteShader(geometryShaderId); \
+    geometryShaderId = 0; \
+  } \
+\
+  if (vertexShaderId) { \
+    glDeleteShader(vertexShaderId); \
+    vertexShaderId = 0; \
+  } \
+\
+  Machine_setStatus(Machine_Status_EnvironmentFailed); \
+  Machine_jump();
+
+  GLint result;
+
+  vertexShaderId = compileShader(vertexProgramText, Machine_ProgramKind_Vertex);
+  if (vertexShaderId == 0) {
+    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "vertex shader compilation failed\n");
+    ON_ERROR();
+  }
+
+  if (geometryProgramText) {
+    geometryShaderId = compileShader(geometryProgramText, Machine_ProgramKind_Geometry);
+    if (geometryShaderId == 0) {
+      Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "geometry shader compilation failed\n");
+      ON_ERROR();
+    }
+  }
+
+  fragmentShaderId = compileShader(fragmentProgramText, Machine_ProgramKind_Fragment);
+  if (fragmentShaderId == 0) {
+    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "fragment shader compilation failed\n");
+    ON_ERROR();
+  }
+
+  programId = glCreateProgram();
+  if (vertexShaderId) {
+    glAttachShader(programId, vertexShaderId);
+  }
+  if (geometryShaderId) {
+    glAttachShader(programId, geometryShaderId);
+  }
+  if (fragmentShaderId) {
+    glAttachShader(programId, fragmentShaderId);
+  }
+  glLinkProgram(programId);
+  glGetProgramiv(programId, GL_LINK_STATUS, &result);
+  if (result == GL_FALSE) {
+  #define PROGRAM_EMIT_LOG_IF_LINKING_FAILED
+
+  #if defined(PROGRAM_EMIT_LOG_IF_LINKING_FAILED)
+    GLint log_length;
+    glGetProgramiv(programId, GL_INFO_LOG_LENGTH, &log_length);
+    char* buffer = malloc(sizeof(char) * log_length + 1);
+    if (buffer) {
+      glGetProgramInfoLog(programId, log_length, NULL, buffer);
+      free(buffer);
+    }
+  #endif
+
+  #undef PROGRAM_EMIT_LOG_IF_LINKING_FAILED
+
+    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "program linking failed\n");
+    ON_ERROR();
+  }
+
+  self->programId = programId;
+  self->vertexProgramId = vertexShaderId;
+  self->geometryProgramId = geometryShaderId;
+  self->fragmentProgramId = fragmentShaderId;
+  self->inputs = Machine_List_create();
+  ((Machine_ShaderProgram*)self)->getNumberOfInputs = (size_t(*)(Machine_ShaderProgram const *))&Machine_GL_ShaderProgram_getNumberOfInputsImpl;
+  ((Machine_ShaderProgram*)self)->getInputAt = (Machine_ProgramInput *(*)(Machine_ShaderProgram const*, size_t)) &Machine_GL_ShaderProgram_getInputAtImpl;
+  ((Machine_ShaderProgram*)self)->addUpdateInput = (bool (*)(Machine_ShaderProgram *, Machine_String *, Machine_ProgramInputType, Machine_ProgramInputKind))&Machine_GL_ShaderProgram_addUpdateInputImpl;
+}
 
 
+void Machine_GL_ShaderProgram_construct(Machine_GL_ShaderProgram* self, size_t numberOfArguments, const Machine_Value* arguments) {
+  Machine_ShaderProgram_construct((Machine_ShaderProgram*)self, numberOfArguments, arguments);
+  if (numberOfArguments != 3) {
+    Machine_setStatus(Machine_Status_InvalidNumberOfArguments);
+    Machine_jump();
+  }
+  Machine_String* v = NULL, * g = NULL, * f = NULL;
+  if (!Machine_Value_isVoid(arguments + 0)) {
+    v = Machine_Extensions_getStringArgument(numberOfArguments, arguments, 0);
+  }
+  if (!Machine_Value_isVoid(arguments + 1)) {
+    g = Machine_Extensions_getStringArgument(numberOfArguments, arguments, 1);
+  }
+  if (!Machine_Value_isVoid(arguments + 2)) {
+    f = Machine_Extensions_getStringArgument(numberOfArguments, arguments, 2);
+  }
+  constructFromText(self, v ? Machine_String_getBytes(v) : NULL,
+                    g ? Machine_String_getBytes(g) : NULL,
+                    f ? Machine_String_getBytes(f) : NULL);
+  Machine_setClassType((Machine_Object*)self, Machine_GL_ShaderProgram_getClassType());
+}
+
+MACHINE_DEFINE_CLASSTYPE_EX(Machine_GL_ShaderProgram, Machine_ShaderProgram, Machine_GL_ShaderProgram_visit, Machine_GL_ShaderProgram_construct, Machine_GL_ShaderProgram_destruct)
+
+Machine_GL_ShaderProgram* Machine_GL_ShaderProgram_create(Machine_String* vertexProgramText, Machine_String* geometryProgramText, Machine_String* fragmentProgramText) {
+  Machine_ClassType* ty = Machine_GL_ShaderProgram_getClassType();
+
+  static const size_t numberOfArguments = 3;
+  Machine_Value arguments[3];
+
+  if (vertexProgramText != NULL)
+    Machine_Value_setString(&arguments[0], vertexProgramText);
+  else
+    Machine_Value_setVoid(&arguments[0], Machine_Void_Void);
+
+  if (geometryProgramText != NULL)
+    Machine_Value_setString(&arguments[1], geometryProgramText);
+  else
+    Machine_Value_setVoid(&arguments[1], Machine_Void_Void);
+
+  if (fragmentProgramText != NULL)
+    Machine_Value_setString(&arguments[2], fragmentProgramText);
+  else
+    Machine_Value_setVoid(&arguments[2], Machine_Void_Void);
+
+  Machine_GL_ShaderProgram* self = (Machine_GL_ShaderProgram*)Machine_allocateClassObject(ty, numberOfArguments, arguments);
+  return self;
+}
 
 /// The shader version string (for fragment, geometry, and vertex shaders).
 #define GLSL_VERSION_STRING "#version 330 core"
-
-static void Machine_Input_visit(Machine_Input* self) {
-  if (self->name) {
-    Machine_visit(self->name);
-  }
-}
 
 static void defineFloatConstants(Machine_StringBuffer* code) {
 #define T(t) t, strlen(t)
@@ -52,226 +276,9 @@ static void defineMatrixUniforms(Machine_StringBuffer* code, bool modelToWorld, 
 #undef T
 }
 
-static void Machine_Input_construct(Machine_Input* self, size_t numberOfArguments, const Machine_Value* arguments) {
-  Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  self->name = Machine_Value_getString(&arguments[0]);
-  self->type = Machine_Value_getInteger(&arguments[1]);
-  Machine_setClassType((Machine_Object *)self, Machine_Input_getClassType());
-}
-
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_Input, Machine_Object, &Machine_Input_visit, &Machine_Input_construct, NULL)
-
-Machine_Input* Machine_Input_create(Machine_String* name, Machine_InputType type) {
-  Machine_ClassType* ty = Machine_Input_getClassType();
-  Machine_Value arguments[2];
-  Machine_Value_setString(&arguments[0], name);
-  Machine_Value_setInteger(&arguments[1], type);
-  Machine_Input* self = (Machine_Input *)Machine_allocateClassObject(ty, 2, arguments);
-  return self;
-}
-
-static void Machine_ShaderProgram_visit(Machine_ShaderProgram* self) {
-  for (size_t i = 0, n = self->inputs.n; i < n; ++i) {
-    Machine_Input* input = self->inputs.e[i];
-    Machine_visit(input);
-  }
-}
-
-static void Machine_ShaderProgram_finalize(Machine_ShaderProgram* self) {
-  if (self->fragmentProgramId) {
-    glDeleteShader(self->fragmentProgramId);
-    self->fragmentProgramId = 0;
-  }
-  if (self->geometryProgramId) {
-    glDeleteShader(self->geometryProgramId);
-    self->geometryProgramId = 0;
-  }
-  if (self->vertexProgramId) {
-    glDeleteShader(self->vertexProgramId);
-    self->vertexProgramId = 0;
-  }
-  if (self->fragmentProgramId) {
-    glDeleteShader(self->fragmentProgramId);
-    self->fragmentProgramId = 0;
-  }
-  if (self->inputs.e) {
-    free(self->inputs.e);
-    self->inputs.e = NULL;
-  }
-}
-
-Machine_ShaderProgram* Machine_ShaderProgram_create(GLuint programId, GLuint vertexProgramId, GLuint geometryProgramId, GLuint fragmentProgramId) {
-  Machine_ShaderProgram* self = Machine_allocate(sizeof(Machine_ShaderProgram),
-                                                 (Machine_VisitCallback*)&Machine_ShaderProgram_visit,
-                                                 (Machine_FinalizeCallback*)&Machine_ShaderProgram_finalize);
-  if (!self) {
-    return NULL;
-  }
-  self->programId = programId;
-  self->vertexProgramId = vertexProgramId;
-  self->geometryProgramId = geometryProgramId;
-  self->fragmentProgramId = fragmentProgramId;
-  self->inputs.n = 0;
-  self->inputs.e = NULL;
-  return self;
-}
-
-static GLuint compileShader(const char* programText, Machine_ProgramKind programKind) {
-  GLuint id;
-
-  switch (programKind) {
-  case Machine_ProgramKind_Fragment:
-    id = glCreateShader(GL_FRAGMENT_SHADER);
-    break;
-  case Machine_ProgramKind_Geometry:
-    id = glCreateShader(GL_GEOMETRY_SHADER);
-    break;
-  case Machine_ProgramKind_Vertex:
-    id = glCreateShader(GL_VERTEX_SHADER);
-    break;
-  default:
-    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "shader compilation failed\n");
-    return 0;
-  };
-  glShaderSource(id, 1, &programText, NULL);
-  glCompileShader(id);
-  GLint result;
-  glGetShaderiv(id, GL_COMPILE_STATUS, &result);
-  if (result == GL_FALSE) {
-  #define SHADER_EMIT_LOG_IF_COMPILATION_FAILED
-
-  #if defined(SHADER_EMIT_LOG_IF_COMPILATION_FAILED)
-    GLint log_length;
-    glGetShaderiv(id, GL_INFO_LOG_LENGTH, &log_length);
-    char *buffer = malloc(sizeof(char) * log_length + 1);
-    if (buffer) {
-      glGetShaderInfoLog(id, log_length, NULL, buffer);
-      free(buffer);
-    }
-  #endif
-
-  #undef SHADER_EMIT_LOG_IF_COMPILATION_FAILED
-
-    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "shader compilation failed\n");
-    glDeleteProgram(id);
-    id = 0;
-    return 0;
-  }
-
-  return id;
-}
-
-Machine_ShaderProgram* Machine_ShaderProgram_create2(const char* vertexProgramText, const char *geometryProgramText, const char* fragmentProgramText) {
-  GLuint vertexShaderId = 0, geometryShaderId = 0, fragmentShaderId = 0, programId = 0;
-
-  GLint result;
-
-  vertexShaderId = compileShader(vertexProgramText, Machine_ProgramKind_Vertex); 
-  if (vertexShaderId == 0) {
-    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "vertex shader compilation failed\n");
-    goto ERROR;
-  }
-
-  if (geometryProgramText) {
-    geometryShaderId = compileShader(geometryProgramText, Machine_ProgramKind_Geometry);
-    if (geometryShaderId == 0) {
-      Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "geometry shader compilation failed\n");
-      goto ERROR;
-    }
-  }
-
-  fragmentShaderId = compileShader(fragmentProgramText, Machine_ProgramKind_Fragment);
-  if (fragmentShaderId == 0) {
-    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "fragment shader compilation failed\n");
-    goto ERROR;
-  }
-
-  programId = glCreateProgram();
-  if (vertexShaderId) {
-    glAttachShader(programId, vertexShaderId);
-  }
-  if (geometryShaderId) {
-    glAttachShader(programId, geometryShaderId);
-  }
-  if (fragmentShaderId) {
-    glAttachShader(programId, fragmentShaderId);
-  }
-  glLinkProgram(programId);
-  glGetProgramiv(programId, GL_LINK_STATUS, &result);
-  if (result == GL_FALSE) {
-  #define PROGRAM_EMIT_LOG_IF_LINKING_FAILED
-
-  #if defined(PROGRAM_EMIT_LOG_IF_LINKING_FAILED)
-    GLint log_length;
-    glGetProgramiv(programId, GL_INFO_LOG_LENGTH, &log_length);
-    char* buffer = malloc(sizeof(char) * log_length + 1);
-    if (buffer) {
-      glGetProgramInfoLog(programId, log_length, NULL, buffer);
-      free(buffer);
-    }
-  #endif
-
-  #undef PROGRAM_EMIT_LOG_IF_LINKING_FAILED
-
-    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "program linking failed\n");
-    goto ERROR;
-  }
-
-  Machine_ShaderProgram* program = Machine_ShaderProgram_create(programId, vertexShaderId, geometryShaderId, fragmentShaderId);
-  if (!program) {
-    goto ERROR;
-  }
-  return program;
-ERROR:
-  if (programId) {
-    glDeleteProgram(programId);
-    programId = 0;
-  }
-  if (fragmentShaderId) {
-    glDeleteShader(fragmentShaderId);
-    fragmentShaderId = 0;
-  }
-  if (geometryShaderId) {
-    glDeleteShader(geometryShaderId);
-    geometryShaderId = 0;
-  }
-  if (vertexShaderId) {
-    glDeleteShader(vertexShaderId);
-    vertexShaderId = 0;
-  }
-  return NULL;
-}
-
-size_t Machine_ShaderProgram_getNumberOfInputs(Machine_ShaderProgram* self) {
-  return self->inputs.n;
-}
-
-Machine_Input* Machine_ShaderProgram_getInput(Machine_ShaderProgram* self, size_t index) {
-  return self->inputs.e[index];
-}
-
-bool Machine_ShaderProgram_setInput(Machine_ShaderProgram* self, Machine_String* name, Machine_InputType type) {
-  for (size_t i = 0, n = self->inputs.n; i < n; ++i) {
-    Machine_Input* input = self->inputs.e[i];
-    if (Machine_String_isEqualTo(input->name, name)) {
-      input->type = type;
-      return true;
-    }
-  }
-  Machine_Input* input = Machine_Input_create(name, type);
-  Machine_Input** e = realloc(self->inputs.e, (self->inputs.n + 1) * sizeof(Machine_Input*));
-  if (!e) {
-    Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
-  }
-  self->inputs.e = e;
-  e[self->inputs.n] = input;
-  self->inputs.n++;
-  return false;
-}
 
 Machine_ShaderProgram*
-Machine_ShaderProgram_generate
+Machine_GL_ShaderProgram_generateDefaultShader
   (
     bool withMeshColor,
     bool withVertexColor,
@@ -289,7 +296,7 @@ Machine_ShaderProgram_generate
 
   defineFloatConstants(code);
   defineMatrixUniforms(code, false, false, false, true);
-  
+
   Machine_StringBuffer_appendBytes(code, T("attribute vec2 vertex_position;\n"));
 
 
@@ -308,7 +315,7 @@ Machine_ShaderProgram_generate
   if (withTextureCoordinate) {
     Machine_StringBuffer_appendBytes(code, T("out vec2 texture_coordinate_1;\n"));
   }
-  
+
   Machine_StringBuffer_appendBytes(code, T("void main()\n"
                                            "{\n"
                                            "    gl_Position = modelToProjectionMatrix * vec4(vertex_position, 0.0, 1.0);\n"));
@@ -345,7 +352,8 @@ Machine_ShaderProgram_generate
                                            "{\n"));
   if (withTextureCoordinate && withTexture) {
     Machine_StringBuffer_appendBytes(code, T("    gl_FragColor = texture2D(texture_1, texture_coordinate_1);\n"));
-  } else {
+  }
+  else {
     Machine_StringBuffer_appendBytes(code, T("    gl_FragColor = vec4(color, 1.0);\n"));
   }
   Machine_StringBuffer_appendBytes(code, T("}\n"));
@@ -353,16 +361,16 @@ Machine_ShaderProgram_generate
   f = Machine_StringBuffer_toString(code);
   Machine_StringBuffer_clear(code);
 
-  Machine_ShaderProgram* shaderProgram = Machine_ShaderProgram_create2(Machine_String_getBytes(v), NULL,/*Machine_String_getBytes(g),*/ Machine_String_getBytes(f));
-  Machine_ShaderProgram_setInput(shaderProgram, Machine_String_create(TZ("vertex_position")),
-                                 Machine_InputType_Vector2);
+  Machine_ShaderProgram* shaderProgram = (Machine_ShaderProgram *)Machine_GL_ShaderProgram_create(v, NULL, f);
+  Machine_ShaderProgram_addUpdateInput(shaderProgram, Machine_String_create(TZ("vertex_position")),
+                                       Machine_ProgramInputType_Vector2, Machine_ProgramInputKind_Variable);
   if (withVertexColor) {
-    Machine_ShaderProgram_setInput(shaderProgram, Machine_String_create(TZ("vertex_color")),
-                                   Machine_InputType_Vector3);
+    Machine_ShaderProgram_addUpdateInput(shaderProgram, Machine_String_create(TZ("vertex_color")),
+                                          Machine_ProgramInputType_Vector3, Machine_ProgramInputKind_Variable);
   }
   if (withTextureCoordinate) {
-    Machine_ShaderProgram_setInput(shaderProgram, Machine_String_create(TZ("vertex_texture_coordinate_1")),
-                                   Machine_InputType_Vector2);
+    Machine_ShaderProgram_addUpdateInput(shaderProgram, Machine_String_create(TZ("vertex_texture_coordinate_1")),
+                                          Machine_ProgramInputType_Vector2, Machine_ProgramInputKind_Variable);
   }
   return shaderProgram;
 
@@ -371,7 +379,7 @@ Machine_ShaderProgram_generate
 }
 
 Machine_ShaderProgram*
-Machine_ShaderProgram_generateShape2d
+Machine_GL_ShaderProgram_generateShape2Shader
   (
   )
 {
@@ -421,9 +429,9 @@ Machine_ShaderProgram_generateShape2d
   f = Machine_StringBuffer_toString(code);
   Machine_StringBuffer_clear(code);
 
-  Machine_ShaderProgram* shaderProgram = Machine_ShaderProgram_create2(Machine_String_getBytes(v), NULL,/*Machine_String_getBytes(g),*/ Machine_String_getBytes(f));
-  Machine_ShaderProgram_setInput(shaderProgram, Machine_String_create(TZ("vertex_position")),
-                                 Machine_InputType_Vector2);
+  Machine_ShaderProgram* shaderProgram = (Machine_ShaderProgram*)Machine_GL_ShaderProgram_create(v, NULL, f);
+  Machine_ShaderProgram_addUpdateInput(shaderProgram, Machine_String_create(TZ("vertex_position")),
+                                       Machine_ProgramInputType_Vector2, Machine_ProgramInputKind_Variable);
   return shaderProgram;
 
 #undef TZ
@@ -431,7 +439,7 @@ Machine_ShaderProgram_generateShape2d
 }
 
 Machine_ShaderProgram*
-Machine_ShaderProgram_generateTextShader
+Machine_GL_ShaderProgram_generateText2Shader
   (
     bool highPrecision
   )
@@ -461,7 +469,7 @@ Machine_ShaderProgram_generateTextShader
 
   Machine_StringBuffer_appendBytes(code, T("in vec2 vertex_position;\n"));
   Machine_StringBuffer_appendBytes(code, T("in vec2 vertex_texture_coordinate_1;\n"));
-  
+
   if (withClipDistance) {
     Machine_StringBuffer_appendBytes(code, T("uniform vec4 clipPlane0;\n"));
     Machine_StringBuffer_appendBytes(code, T("uniform vec4 clipPlane1;\n"));
@@ -531,7 +539,7 @@ Machine_ShaderProgram_generateTextShader
   Machine_StringBuffer_appendBytes(code, T("} fragment;\n"));
 
   Machine_StringBuffer_appendBytes(code, T("uniform sampler2D texture_1;\n"));
-  
+
   Machine_StringBuffer_appendBytes(code, T("void main()\n"
                                            "{\n"));
   Machine_StringBuffer_appendBytes(code, T("    float a = texture2D(texture_1, fragment.texture_coordinate_1).r;\n"));
@@ -541,63 +549,11 @@ Machine_ShaderProgram_generateTextShader
   f = Machine_StringBuffer_toString(code);
   Machine_StringBuffer_clear(code);
 
-  Machine_ShaderProgram* shaderProgram = Machine_ShaderProgram_create2(Machine_String_getBytes(v), Machine_String_getBytes(g), Machine_String_getBytes(f));
-  Machine_ShaderProgram_setInput(shaderProgram, Machine_String_create(TZ("vertex_position")),
-                                 Machine_InputType_Vector2);
-  Machine_ShaderProgram_setInput(shaderProgram, Machine_String_create(TZ("vertex_texture_coordinate_1")),
-                                 Machine_InputType_Vector2);
-  return shaderProgram;
-
-#undef TZ
-#undef T
-}
-
-Machine_ShaderProgram*
-Machine_ShaderProgram_generateRectangleShader
-  (
-  )
-{
-  Machine_StringBuffer* code = Machine_StringBuffer_create();
-  Machine_String* v, * g, * f;
-#define T(t) t, strlen(t)
-#define TZ(t) t, strlen(t) + 1
-
-  // Vertex shader.
-  Machine_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
-
-  defineFloatConstants(code);
-
-  defineMatrixUniforms(code, false, false, false, true);
-  Machine_StringBuffer_appendBytes(code, T("uniform vec3 mesh_color;\n"));
-  Machine_StringBuffer_appendBytes(code, T("out vec3 fragment_color;\n"));
-  Machine_StringBuffer_appendBytes(code, T("in vec2 vertex_position;\n"));
-
-
-  Machine_StringBuffer_appendBytes(code, T("void main()\n"
-                                           "{\n"
-                                           "    gl_Position = modelToProjectionMatrix * vec4(vertex_position, 0.0, 1.0);\n"));
-  Machine_StringBuffer_appendBytes(code, T("    fragment_color = mesh_color;\n"));
-
-  Machine_StringBuffer_appendBytes(code, T("}\n"));
-  Machine_StringBuffer_appendBytes(code, "", 1);
-  v = Machine_StringBuffer_toString(code);
-  Machine_StringBuffer_clear(code);
-
-  // Fragment shader.
-  Machine_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
-  Machine_StringBuffer_appendBytes(code, T("in vec3 fragment_color;\n"));
- 
-  Machine_StringBuffer_appendBytes(code, T("void main()\n"
-                                           "{\n"));
-  Machine_StringBuffer_appendBytes(code, T("    gl_FragColor = vec4(fragment_color, 1.f);\n"));
-  Machine_StringBuffer_appendBytes(code, T("}\n"));
-  Machine_StringBuffer_appendBytes(code, "", 1);
-  f = Machine_StringBuffer_toString(code);
-  Machine_StringBuffer_clear(code);
-
-  Machine_ShaderProgram* shaderProgram = Machine_ShaderProgram_create2(Machine_String_getBytes(v), NULL, Machine_String_getBytes(f));
-  Machine_ShaderProgram_setInput(shaderProgram, Machine_String_create(TZ("vertex_position")),
-                                 Machine_InputType_Vector2);
+  Machine_ShaderProgram* shaderProgram = (Machine_ShaderProgram*)Machine_GL_ShaderProgram_create(v, g, f);
+  Machine_ShaderProgram_addUpdateInput(shaderProgram, Machine_String_create(TZ("vertex_position")),
+                                       Machine_ProgramInputType_Vector2, Machine_ProgramInputKind_Variable);
+  Machine_ShaderProgram_addUpdateInput(shaderProgram, Machine_String_create(TZ("vertex_texture_coordinate_1")),
+                                       Machine_ProgramInputType_Vector2, Machine_ProgramInputKind_Variable);
   return shaderProgram;
 
 #undef TZ

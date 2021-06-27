@@ -29,7 +29,14 @@ Machine_Texture* Machine_Video_createTextureFromImage(Machine_Images_Image* imag
 
 /// @brief Create an empty buffer.
 /// @return The buffer.
-Machine_VideoBuffer* Machine_Video_createBuffer();
+Machine_VideoBuffer * Machine_Video_createBuffer();
+
+/// @brief Create a shader program.
+/// @param vertexProgramText The vertex program text.
+/// @param geometryProgramText The geometry program text.
+/// @param fragmentProgramText The fragment program text.
+/// @return The shader program.
+Machine_ShaderProgram* Machine_Video_createShaderProgram(Machine_String *vertexProgramText, Machine_String* geometryProgramText, Machine_String* fragmentProgramText);
 
 /// @brief Assign a texture unit.
 /// @param unit The index of the texture unit.

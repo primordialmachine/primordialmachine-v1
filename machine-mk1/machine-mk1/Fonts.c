@@ -9,7 +9,7 @@
 #include "Video.h"
 #include "Machine.h"
 #include "_Video.h"
-#include "ShaderProgram.h"
+#include "GL/ShaderProgram.h"
 
 #include <linmath.h>
 #include "Binding.h"
@@ -227,7 +227,7 @@ Machine_Fonts_Font* Machine_Fonts_createFont(const char* path, int pointSize) {
   if (!setjmp(jumpTarget.environment)) {
     font->map = Map_create();
     font->vertices = Machine_Video_createBuffer();
-    font->shader = Machine_ShaderProgram_generateTextShader(true);
+    font->shader = Machine_GL_ShaderProgram_generateText2Shader(true);
 
     Machine_VertexDescriptor* vertexDescriptor = Machine_VertexDescriptor_create();
     Machine_VertexDescriptor_append(vertexDescriptor, Machine_VertexElementSemantics_XfYf);
