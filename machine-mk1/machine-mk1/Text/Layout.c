@@ -279,17 +279,20 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
       vec3 n = { -1, 0, 0 };
       vec3 p = { Machine_Math_Vector2_getX(position), 0, 0 };
       float d = -vec3_mul_inner(n, p);
-
-      vec4 x = { -1, 0, 0, d };
-      Machine_Binding_bindVector4f(binding, Machine_String_create("clipPlane0", strlen("clipPlane0") + 1), x);
+      //vec4 x = { -1, 0, 0, d };
+      Machine_Math_Vector4* x = Machine_Math_Vector4_create();
+      Machine_Math_Vector4_set(x, -1, 0, 0, d);
+      Machine_Binding_bindVector4(binding, Machine_String_create("clipPlane0", strlen("clipPlane0") + 1), x);
     }
     {
       vec3 n = { +1, 0, 0 };
       vec3 p = { Machine_Math_Vector2_getX(position) + Machine_Math_Vector2_getX(size), 0, 0 };
       float d = -vec3_mul_inner(n, p);
 
-      vec4 x = { +1, 0, 0, d };
-      Machine_Binding_bindVector4f(binding, Machine_String_create("clipPlane1", strlen("clipPlane1") + 1), x);
+      //vec4 x = { +1, 0, 0, d };
+      Machine_Math_Vector4* x = Machine_Math_Vector4_create();
+      Machine_Math_Vector4_set(x, +1, 0, 0, d);
+      Machine_Binding_bindVector4(binding, Machine_String_create("clipPlane1", strlen("clipPlane1") + 1), x);
     }
   }
   Machine_Binding_bindVector3(binding, Machine_String_create("mesh_color", strlen("mesh_color") + 1), self->color);

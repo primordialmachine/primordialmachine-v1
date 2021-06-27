@@ -10,8 +10,6 @@
 #include "_GUI.h"
 #include "_Images.h"
 #include "_Video.h"
-#include "GL/Buffer.h"
-#include "GL/Texture.h"
 
 #include "Binding.h"
 #include "Fonts.h"
@@ -55,8 +53,8 @@ static void Scene1_visit(Scene1* self) {
 MACHINE_DEFINE_CLASSTYPE_EX(Scene1, Scene, &Scene1_visit, &Scene1_construct, NULL)
 
 static void Scene1_onStartup(Scene1* scene) {
-  scene->vertices = (Machine_VideoBuffer *)Machine_GL_VideoBuffer_create();
-  Machine_VideoBuffer_setData((Machine_VideoBuffer *)scene->vertices, sizeof(vertices), (void const *)vertices);
+  scene->vertices = Machine_Video_createBuffer();
+  Machine_VideoBuffer_setData(scene->vertices, sizeof(vertices), (void const *)vertices);
 
   scene->shaderProgram = Machine_ShaderProgram_generate(false, true, false, false);
   scene->mvp_location = glGetUniformLocation(scene->shaderProgram->programId, "modelToProjectionMatrix");
@@ -66,8 +64,8 @@ static void Scene1_onStartup(Scene1* scene) {
   Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_RfGfBf);
 
   scene->binding = Machine_Binding_create(scene->shaderProgram, vd, scene->vertices);
-  Machine_Binding_set(scene->binding, Machine_String_create_noraise("vertex_position", strlen("vertex_position") + 1), 0);
-  Machine_Binding_set(scene->binding, Machine_String_create_noraise("vertex_color", strlen("vertex_color") + 1), 1);
+  Machine_Binding_setVariableBinding(scene->binding, Machine_String_create_noraise("vertex_position", strlen("vertex_position") + 1), 0);
+  Machine_Binding_setVariableBinding(scene->binding, Machine_String_create_noraise("vertex_color", strlen("vertex_color") + 1), 1);
 }
 
 static void Scene1_onCanvasSizeChanged(Scene1* self, Machine_CanvasSizeChangedEvent *event) {

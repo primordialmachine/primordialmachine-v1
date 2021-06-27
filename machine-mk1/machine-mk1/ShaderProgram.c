@@ -120,13 +120,13 @@ static GLuint compileShader(const char* programText, Machine_ProgramKind program
   GLuint id;
 
   switch (programKind) {
-  case Machine_ProgramKind_FRAGMENT:
+  case Machine_ProgramKind_Fragment:
     id = glCreateShader(GL_FRAGMENT_SHADER);
     break;
-  case Machine_ProgramKind_GEOMETRY:
+  case Machine_ProgramKind_Geometry:
     id = glCreateShader(GL_GEOMETRY_SHADER);
     break;
-  case Machine_ProgramKind_VERTEX:
+  case Machine_ProgramKind_Vertex:
     id = glCreateShader(GL_VERTEX_SHADER);
     break;
   default:
@@ -166,21 +166,21 @@ Machine_ShaderProgram* Machine_ShaderProgram_create2(const char* vertexProgramTe
 
   GLint result;
 
-  vertexShaderId = compileShader(vertexProgramText, Machine_ProgramKind_VERTEX); 
+  vertexShaderId = compileShader(vertexProgramText, Machine_ProgramKind_Vertex); 
   if (vertexShaderId == 0) {
     Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "vertex shader compilation failed\n");
     goto ERROR;
   }
 
   if (geometryProgramText) {
-    geometryShaderId = compileShader(geometryProgramText, Machine_ProgramKind_GEOMETRY);
+    geometryShaderId = compileShader(geometryProgramText, Machine_ProgramKind_Geometry);
     if (geometryShaderId == 0) {
       Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "geometry shader compilation failed\n");
       goto ERROR;
     }
   }
 
-  fragmentShaderId = compileShader(fragmentProgramText, Machine_ProgramKind_FRAGMENT);
+  fragmentShaderId = compileShader(fragmentProgramText, Machine_ProgramKind_Fragment);
   if (fragmentShaderId == 0) {
     Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "fragment shader compilation failed\n");
     goto ERROR;

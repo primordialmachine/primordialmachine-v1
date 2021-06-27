@@ -10,8 +10,6 @@
 #include "_GUI.h"
 #include "_Images.h"
 #include "_Video.h"
-#include "GL/Buffer.h"
-#include "GL/Texture.h"
 
 #include "Binding.h"
 #include "Fonts.h"
@@ -72,9 +70,9 @@ MACHINE_DEFINE_CLASSTYPE_EX(Scene3, Scene, &Scene3_visit, &Scene3_construct, NUL
 
 static void Scene3_startup(Scene3* scene) {
   scene->image = Machine_Images_createImageFromPath(Machine_String_create("test-transparency-1.png", strlen("test-transparency-1.png")));
-  scene->texture = (Machine_Texture *)Machine_GL_Texture_create(scene->image);
+  scene->texture = Machine_Video_createTextureFromImage(scene->image);
 
-  scene->vertices = (Machine_VideoBuffer *)Machine_GL_VideoBuffer_create();
+  scene->vertices = Machine_Video_createBuffer();
   Machine_VideoBuffer_setData(scene->vertices, sizeof(vertices), (void const *)vertices);
 
   scene->shaderProgram = Machine_ShaderProgram_generate(false, true, true, true);
@@ -87,9 +85,9 @@ static void Scene3_startup(Scene3* scene) {
   Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_UfVf);
 
   scene->binding = Machine_Binding_create(scene->shaderProgram, vd, scene->vertices);
-  Machine_Binding_set(scene->binding, Machine_String_create("vertex_position", strlen("vertex_position") + 1), 0);
-  Machine_Binding_set(scene->binding, Machine_String_create("vertex_color", strlen("vertex_color") + 1), 1);
-  Machine_Binding_set(scene->binding, Machine_String_create("vertex_texture_coordinate_1", strlen("vertex_texture_coordinate_1") + 1), 2);
+  Machine_Binding_setVariableBinding(scene->binding, Machine_String_create("vertex_position", strlen("vertex_position") + 1), 0);
+  Machine_Binding_setVariableBinding(scene->binding, Machine_String_create("vertex_color", strlen("vertex_color") + 1), 1);
+  Machine_Binding_setVariableBinding(scene->binding, Machine_String_create("vertex_texture_coordinate_1", strlen("vertex_texture_coordinate_1") + 1), 2);
 }
 
 static void Scene3_onCanvasSizeChanged(Scene3* self, Machine_CanvasSizeChangedEvent* event) {

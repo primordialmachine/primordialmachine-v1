@@ -9,8 +9,6 @@
 #include "Video.h"
 #include "Machine.h"
 #include "_Video.h"
-#include "GL/Buffer.h"
-#include "GL/Texture.h"
 #include "ShaderProgram.h"
 
 #include <linmath.h>
@@ -228,7 +226,7 @@ Machine_Fonts_Font* Machine_Fonts_createFont(const char* path, int pointSize) {
   Machine_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
     font->map = Map_create();
-    font->vertices = (Machine_VideoBuffer *)Machine_GL_VideoBuffer_create();
+    font->vertices = Machine_Video_createBuffer();
     font->shader = Machine_ShaderProgram_generateTextShader(true);
 
     Machine_VertexDescriptor* vertexDescriptor = Machine_VertexDescriptor_create();
@@ -236,8 +234,8 @@ Machine_Fonts_Font* Machine_Fonts_createFont(const char* path, int pointSize) {
     Machine_VertexDescriptor_append(vertexDescriptor, Machine_VertexElementSemantics_UfVf);
 
     font->binding = Machine_Binding_create(font->shader, vertexDescriptor, font->vertices);
-    Machine_Binding_set(font->binding, Machine_String_create("vertex_position", strlen("vertex_position") + 1), 0);
-    Machine_Binding_set(font->binding, Machine_String_create("vertex_texture_coordinate_1", strlen("vertex_texture_coordinate_1") + 1), 1);
+    Machine_Binding_setVariableBinding(font->binding, Machine_String_create("vertex_position", strlen("vertex_position") + 1), 0);
+    Machine_Binding_setVariableBinding(font->binding, Machine_String_create("vertex_texture_coordinate_1", strlen("vertex_texture_coordinate_1") + 1), 1);
 
     Machine_popJumpTarget();
   }
@@ -302,7 +300,7 @@ Machine_Fonts_Font* Machine_Fonts_createFont(const char* path, int pointSize) {
     Machine_ByteBuffer_clear(temporary);
     Machine_ByteBuffer_appendBytes(temporary, font->face->glyph->bitmap.buffer, (size_t)(font->face->glyph->bitmap.width * font->face->glyph->bitmap.rows));
     Machine_Images_Image* image = Machine_Images_createImageDirect(Machine_PixelFormat_GRAYSCALE, font->face->glyph->bitmap.width, font->face->glyph->bitmap.rows, temporary);
-    Machine_Texture* texture = (Machine_Texture *)Machine_GL_Texture_create(image);
+    Machine_Texture* texture = Machine_Video_createTextureFromImage(image);
     Map_set(font->map, codepoint,
             font->face->glyph->bitmap_left, font->face->glyph->bitmap_top,
             font->face->glyph->bitmap.width, font->face->glyph->bitmap.rows,

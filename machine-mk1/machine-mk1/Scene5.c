@@ -10,8 +10,6 @@
 #include "_GUI.h"
 #include "_Images.h"
 #include "_Video.h"
-#include "GL/Buffer.h"
-#include "GL/Texture.h"
 
 #include "Binding.h"
 #include "Fonts.h"

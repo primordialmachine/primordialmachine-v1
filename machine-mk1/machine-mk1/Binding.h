@@ -3,7 +3,6 @@
 
 
 
-#include "_Runtime.h"
 #include "_Video.h"
 #include "ShaderProgram.h"
 #include "_Math.h"
@@ -18,9 +17,18 @@ MACHINE_DECLARE_CLASSTYPE(Machine_Binding)
 
 Machine_Binding* Machine_Binding_create(Machine_ShaderProgram* program, Machine_VertexDescriptor* vertexDescriptor, Machine_VideoBuffer* buffer);
 
-bool Machine_Binding_set(Machine_Binding* self, Machine_String* name, size_t index);
+/// @brief Bind the vertex element of the specified index to the input of the specified name.
+/// @param self This binding.
+/// @param name The name of the input.
+/// @param index The index of the vertex element.
+/// @return The index of the vertex element.
+bool Machine_Binding_setVariableBinding(Machine_Binding* self, Machine_String* name, size_t index);
 
-size_t Machine_Binding_get(Machine_Binding* self, Machine_String* name);
+/// @brief Get the index of the vertex element bound to the input of the specified name.
+/// @param self This binding.
+/// @param name The name of the input.
+/// @return The index of the vertex element.
+size_t Machine_Binding_getVariableBinding(Machine_Binding const* self, Machine_String* name);
 
 void Machine_Binding_activate(Machine_Binding* self);
 

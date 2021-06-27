@@ -83,7 +83,7 @@ Machine_Binding* Machine_Binding_create(Machine_ShaderProgram *program, Machine_
   return self;
 }
 
-bool Machine_Binding_set(Machine_Binding* self, Machine_String* name, size_t index) {
+bool Machine_Binding_setVariableBinding(Machine_Binding* self, Machine_String* name, size_t index) {
   Machine_Binding_Node* node = self->nodes;
   while (node) {
     if (Machine_String_isEqualTo(node->name, name)) {
@@ -99,7 +99,7 @@ bool Machine_Binding_set(Machine_Binding* self, Machine_String* name, size_t ind
   return false;
 }
 
-size_t Machine_Binding_get(Machine_Binding* self, Machine_String* name) {
+size_t Machine_Binding_getVariableBinding(Machine_Binding const* self, Machine_String* name) {
   Machine_Binding_Node* node = self->nodes;
   while (node) {
     if (Machine_String_isEqualTo(node->name, name)) {
@@ -131,7 +131,7 @@ void Machine_Binding_activate(Machine_Binding* self) {
         Machine_Input* input = Machine_ShaderProgram_getInput(self->program, i);
         // We have an input.
         // Next, get the index of the vertex element.
-        size_t vertexElementIndex = Machine_Binding_get(self, input->name);
+        size_t vertexElementIndex = Machine_Binding_getVariableBinding(self, input->name);
         GLint inputIndex = glGetAttribLocation(self->program->programId, Machine_String_getBytes(input->name));
         if (inputIndex != -1) {
           Machine_VertexElementSemantics semantics = Machine_VertexDescriptor_getElementSemantics(self->vertexDescriptor, vertexElementIndex);

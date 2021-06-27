@@ -3,7 +3,6 @@
 #include "_Math.h"
 #include "./Binding.h"
 #include "./Video.h"
-#include "GL/Buffer.h"
 #include "./UtilitiesGL.h"
 #include <linmath.h>
 #include <stdio.h>
@@ -120,14 +119,14 @@ void Machine_Rectangle2_construct(Machine_Rectangle2* self, size_t numberOfArgum
   self->size = Machine_Math_Vector2_create();
   ((Machine_Shape2*)self)->render = (void(*)(Machine_Shape2*, float, float))&Machine_Rectangle2_render;
 
-  self->vertices = (Machine_VideoBuffer *)Machine_GL_VideoBuffer_create();
+  self->vertices = Machine_Video_createBuffer();
   self->shader = Machine_ShaderProgram_generateShape2d();
 
   Machine_VertexDescriptor* vertexDescriptor = Machine_VertexDescriptor_create();
   Machine_VertexDescriptor_append(vertexDescriptor, Machine_VertexElementSemantics_XfYf);
 
   self->binding = Machine_Binding_create(self->shader, vertexDescriptor, self->vertices);
-  Machine_Binding_set(self->binding, Machine_String_create("vertex_position", strlen("vertex_position") + 1), 0);
+  Machine_Binding_setVariableBinding(self->binding, Machine_String_create("vertex_position", strlen("vertex_position") + 1), 0);
 
   self->color = Machine_Math_Vector4_create();
   Machine_Math_Vector4_set(self->color, 1.f, 1.f, 1.f, 1.f);

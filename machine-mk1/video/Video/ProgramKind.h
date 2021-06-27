@@ -18,13 +18,13 @@ typedef enum Machine_ProgramKind Machine_ProgramKind;
 enum Machine_ProgramKind {
 
   /// @brief A vertex program.
-  Machine_ProgramKind_VERTEX,
+  Machine_ProgramKind_Vertex,
 
   /// @brief A geometry program.
-  Machine_ProgramKind_GEOMETRY,
+  Machine_ProgramKind_Geometry,
 
   /// @brief A fragment program.
-  Machine_ProgramKind_FRAGMENT,
+  Machine_ProgramKind_Fragment,
 
 };
 

@@ -1,10 +1,11 @@
 #if !defined(MACHINE_VIDEO_H_INCLUDED)
 #define MACHINE_VIDEO_H_INCLUDED
 
+#include "_Images.h"
 #include "_Math.h"
 #include "_Video.h"
 #include "./UtilitiesGL.h"
-typedef struct Machine_Texture Machine_Texture;
+typedef struct Machine_Images_Image Machine_Images_Image;
 typedef struct Machine_ShaderProgram Machine_ShaderProgram;
 
 /// @brief Increment the video module by @a 1.
@@ -20,6 +21,15 @@ int Machine_Video_startup();
 /// @brief Decrement the video module by @a 1.
 /// UNDEFINED if the reference count is @a 0.
 void Machine_Video_shutdown();
+
+/// @brief Create a texture from an image.
+/// @param image The image.
+/// @return The texture.
+Machine_Texture* Machine_Video_createTextureFromImage(Machine_Images_Image* image);
+
+/// @brief Create an empty buffer.
+/// @return The buffer.
+Machine_VideoBuffer* Machine_Video_createBuffer();
 
 /// @brief Assign a texture unit.
 /// @param unit The index of the texture unit.
