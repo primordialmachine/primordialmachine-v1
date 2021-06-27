@@ -52,6 +52,12 @@
     <Filter Include="Headerdateien\GL">
       <UniqueIdentifier>{46f02884-f218-40c7-9a9c-259f0b378235}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Quelldateien\GUI\GDL">
+      <UniqueIdentifier>{f491aa1b-4ce9-4869-b3cb-db4122bf885f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\GUI\GDL">
+      <UniqueIdentifier>{2bd23f27-1712-4f30-baf9-c43598b63859}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -131,6 +137,12 @@
     </ClCompile>
     <ClCompile Include="_GUI.c">
       <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\GDL\Context.c">
+      <Filter>Quelldateien\GUI\GDL</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\GDL\Context.c">
+      <Filter>Quelldateien\GUI\GDL</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -212,10 +224,16 @@
     <ClInclude Include="_GUI.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="GUI\GDL\Context.h">
+      <Filter>Headerdateien\GUI\GDL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="GUI\Signals\Context.i">
       <Filter>Quelldateien\GUI\Signals</Filter>
+    </None>
+    <None Include="GUI\GDL\Context.i">
+      <Filter>Quelldateien\GUI\GDL</Filter>
     </None>
   </ItemGroup>
 </Project>
