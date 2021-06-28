@@ -43,7 +43,7 @@ Machine_Math_Vector4* Machine_Math_Vector4_sum(Machine_Math_Vector4* a, Machine_
 /// @param a The first vector.
 /// @param b The second vector.
 void Machine_Math_Vector4_subtract(Machine_Math_Vector4* c, Machine_Math_Vector4* a, Machine_Math_Vector4* b);
-Machine_Math_Vector4* Machine_Math_Vector4_sum(Machine_Math_Vector4* a, Machine_Math_Vector4* b);
+Machine_Math_Vector4* Machine_Math_Vector4_difference(Machine_Math_Vector4* a, Machine_Math_Vector4* b);
 
 /// @brief Compute the component-wise product of two vectors.
 /// @param c The vector to store the result in.

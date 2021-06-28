@@ -43,7 +43,7 @@ Machine_Math_Vector3* Machine_Math_Vector3_sum(Machine_Math_Vector3* a, Machine_
 /// @param a The first vector.
 /// @param b The second vector.
 void Machine_Math_Vector3_subtract(Machine_Math_Vector3* c, Machine_Math_Vector3* a, Machine_Math_Vector3* b);
-Machine_Math_Vector3* Machine_Math_Vector3_sum(Machine_Math_Vector3* a, Machine_Math_Vector3* b);
+Machine_Math_Vector3* Machine_Math_Vector3_difference(Machine_Math_Vector3* a, Machine_Math_Vector3* b);
 
 /// @brief Compute the component-wise product of two vectors.
 /// @param c The vector to store the result in.
