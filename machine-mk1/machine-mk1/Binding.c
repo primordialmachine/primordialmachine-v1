@@ -207,6 +207,14 @@ void Machine_Binding_bindMatrix4x4(Machine_Binding* self, Machine_String* name, 
   Machine_UtilitiesGl_call(glUniformMatrix4fv(location, 1, GL_FALSE, (GLfloat const*)*value));
 }
 
+void Machine_Binding_bindMatrix4(Machine_Binding* self, Machine_String* name, const Machine_Math_Matrix4* value) {
+  GLint location = glGetUniformLocation(((Machine_GL_ShaderProgram*)(self->program))->programId, Machine_String_getBytes(name));
+  if (location == -1) {
+    return;
+  }
+  Machine_UtilitiesGl_call(glUniformMatrix4fv(location, 1, GL_TRUE, (GLfloat const*)value->e));
+}
+
 void Machine_Binding_bindVector2(Machine_Binding* self, Machine_String* name, const Machine_Math_Vector2* value) {
   Machine_Binding_Node* node = self->nodes;
   while (node) {

@@ -37,6 +37,7 @@ void Machine_Binding_activate(Machine_Binding* self);
 /// @param value The value.
 /// @error The specified name does not denote a constant.
 void Machine_Binding_bindMatrix4x4(Machine_Binding* self, Machine_String* name, const mat4x4 value);
+void Machine_Binding_bindMatrix4(Machine_Binding* self, Machine_String* name, const Machine_Math_Matrix4* value);
 
 /// @brief Bind a vector to a constant.
 /// @param self This binding.
