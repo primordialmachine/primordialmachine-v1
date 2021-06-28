@@ -1,6 +1,9 @@
 #include "./../GL/ShaderProgram.h"
 
 
+#include <malloc.h>
+#include <string.h>
+
 
 static void Machine_GL_ShaderProgram_visit(Machine_GL_ShaderProgram* self) {
   if (self->inputs) {
