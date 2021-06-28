@@ -1,6 +1,12 @@
 #define MACHINE_MATH_PRIVATE (1)
 #include "Math/Matrix4.h"
 
+
+
+#include <math.h>
+
+
+
 #define BEGINFOREACH() \
   for (size_t i = 0; i < 4; ++i) { \
     for (size_t j = 0; j < 4; ++j) {
@@ -125,8 +131,6 @@ Machine_Math_Matrix4* Machine_Math_Matrix4_product(Machine_Math_Matrix4* a, Mach
   return c;
 }
 
-#include <math.h>
-
 void Machine_Math_Matrix4_rotateZ(Machine_Math_Matrix4* a, float d) {
   float c = cosf(d),
         s = sinf(d);
@@ -142,13 +146,4 @@ void Machine_Math_Matrix4_rotateZ(Machine_Math_Matrix4* a, float d) {
   a->e[0][3] = a->e[1][3] = a->e[2][3] = 0.f;
 
   a->e[2][2] = a->e[3][3] = 1.f;
-
-#if 0
-  mat4x4 R = {
-    {   c,   s, 0.f, 0.f},
-    {  -s,   c, 0.f, 0.f},
-    { 0.f, 0.f, 1.f, 0.f},
-    { 0.f, 0.f, 0.f, 1.f}
-  };
-#endif
 }
