@@ -4,7 +4,7 @@
 
 #include <stddef.h>
 #include <malloc.h>
-#include <linmath.h>
+#include <string.h>
 #include "UtilitiesGl.h"
 
 #include "_GUI.h"

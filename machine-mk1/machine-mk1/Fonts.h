@@ -5,10 +5,13 @@
 #if !defined(MACHINE_FONTS_H_INCLUDED)
 #define MACHINE_FONTS_H_INCLUDED
 
+
+
 #include "Text/LayoutLine.h"
 #include "Text/Layout.h"
 #include "Binding.h"
 #include "_Video.h"
+
 
 
 MACHINE_DECLARE_CLASSTYPE(Machine_Fonts_Font)
@@ -45,9 +48,10 @@ float Machine_Font_getBaselineDistance(Machine_Fonts_Font* self);
 /// @param self This font.
 /// @param codepoint The unicode codepoint.
 /// @param bounds A pointer to a <code>rect2</code> variable.
-/// @param advance A pointer to a <code>vec2</code> variable.
+/// @param advance A pointer to a <code>Machine_Math_Vector2</code> object.
+/// The object is assigned the advance.
 /// @param texture The texture.
-bool Machine_Font_getCodePointInfo(Machine_Fonts_Font* self, uint32_t codepoint, Machine_Math_Rectangle2 *bounds, vec2 advance, Machine_Texture** texture);
+bool Machine_Font_getCodePointInfo(Machine_Fonts_Font* self, uint32_t codepoint, Machine_Math_Rectangle2 *bounds, Machine_Math_Vector2* advance, Machine_Texture** texture);
 
 /// @brief Get the binding to be used when rendering the font.
 /// @param self This font.

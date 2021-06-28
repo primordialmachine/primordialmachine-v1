@@ -4,8 +4,8 @@
 #include "./Binding.h"
 #include "./Video.h"
 #include "./UtilitiesGL.h"
-#include <linmath.h>
 #include <stdio.h>
+#include <string.h>
 #include "GL/ShaderProgram.h"
 
 struct Machine_Shape2 {
@@ -66,17 +66,19 @@ void Machine_Rectangle2_render(Machine_Rectangle2* self, float width, float heig
   float ratio = width / height;
 
   // Set the world matrix, view matrix, and projection matrix.
-  mat4x4 world, view, projection, wvp;
-  mat4x4_identity(world); // world matrix is identity.
-  mat4x4_identity(view); // view matrix is identity.
+  Machine_Math_Matrix4 *world2, *view2, *projection2, *wvp2;
+  world2 = Machine_Math_Matrix4_create(); Machine_Math_Matrix4_setIdentity(world2); // world matrix is identity.
+  view2 = Machine_Math_Matrix4_create(); Machine_Math_Matrix4_setIdentity(view2); // view matrix is identity.
+  projection2 = Machine_Math_Matrix4_create();
 #if defined(true)
-  mat4x4_ortho(projection, 0.f, width, height, 0.f, 1.f, -1.f); // projection matrix
+  Machine_Math_Matrix4_setOrtho(projection2, 0.f, width, height, 0.f, 1.f, -1.f); // projection matrix
 #else
-  mat4x4_ortho(projection, 0.f, width, 0.f, height, 1.f, -1.f); // projection matrix
+  Machine_Math_Matrix4_setOrtho(projection2, 0.f, width, 0.f, height, 1.f, -1.f); // projection matrix
 #endif
   // Compute combined world view projection matrix.
-  mat4x4_mul(wvp, projection, view);
-  mat4x4_mul(wvp, wvp, world);
+  wvp2 = Machine_Math_Matrix4_create();
+  Machine_Math_Matrix4_multiply(wvp2, projection2, view2);
+  Machine_Math_Matrix4_multiply(wvp2, wvp2, world2);
 
   float l = Machine_Math_Vector2_getX(self->position);
   float r = l + Machine_Math_Vector2_getX(self->size);
@@ -99,7 +101,7 @@ void Machine_Rectangle2_render(Machine_Rectangle2* self, float width, float heig
   Machine_Binding_activate(self->binding);
   Machine_Video_bindShaderProgram(self->shader);
   {
-    Machine_Binding_bindMatrix4x4(self->binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), wvp);
+    Machine_Binding_bindMatrix4(self->binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), wvp2);
   }
   {
     Machine_Binding_bindVector4(self->binding, Machine_String_create("mesh_color", strlen("mesh_color") + 1), self->color);

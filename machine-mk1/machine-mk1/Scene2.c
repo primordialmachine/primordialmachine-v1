@@ -4,7 +4,7 @@
 
 #include <stddef.h>
 #include <malloc.h>
-#include <linmath.h>
+#include <string.h>
 #include "UtilitiesGl.h"
 
 #include "_GUI.h"
@@ -80,22 +80,19 @@ static void Scene2_onCanvasSizeChanged(Scene2* self, Machine_CanvasSizeChangedEv
 }
 
 static void Scene2_onUpdate(Scene2* self, float width, float height) {
-  float ratio;
-  mat4x4 m, p, mvp;
-
-  ratio = width / height;
+  float ratio = width / height;
 
   glViewport(0, 0, width, height);
   glClear(GL_COLOR_BUFFER_BIT);
 
-  mat4x4_identity(m);
-  mat4x4_rotate_Z(m, m, (float)glfwGetTime());
-  mat4x4_ortho(p, -ratio, ratio, -1.f, 1.f, 1.f, -1.f);
-  mat4x4_mul(mvp, p, m);
+  Machine_Math_Matrix4* m2 = Machine_Math_Matrix4_create(); Machine_Math_Matrix4_rotateZ(m2, (float)glfwGetTime());
+  Machine_Math_Matrix4* p2 = Machine_Math_Matrix4_create(); Machine_Math_Matrix4_setOrtho(p2, -ratio, +ratio, -1.f, +1.f, 1.f, -1.f);
+  Machine_Math_Matrix4* mvp2 = Machine_Math_Matrix4_product(p2, m2);
 
   Machine_Binding_activate(self->binding);
   Machine_Video_bindShaderProgram(self->shaderProgram);
-  Machine_Binding_bindMatrix4x4(self->binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), mvp);
+  Machine_Binding_bindMatrix4(self->binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), mvp2);
+
   glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, &indices);
 }
 

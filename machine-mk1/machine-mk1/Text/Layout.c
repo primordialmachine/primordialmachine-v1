@@ -3,6 +3,8 @@
 #include "./../Fonts.h"
 #include "./../Video.h"
 #include "./../Text/LayoutLine.h"
+#include <string.h>
+#include <linmath.h>
 
 static const float OFFSET_X = 0.f;
 
@@ -63,18 +65,18 @@ static void parse(Machine_String* text, Machine_PointerArray* lines) {
   }
 }
 
-static void updateLinesBounds(Machine_Math_Vector2 *position, Machine_Fonts_Font* font, Machine_String* text, Machine_PointerArray* lines, bool yup) {
+static void updateLinesBounds(Machine_Math_Vector2* position, Machine_Fonts_Font* font, Machine_String* text, Machine_PointerArray* lines, bool yup) {
+  Machine_Math_Vector2* position0 = Machine_Math_Vector2_create();
 #if defined(WITH_SNAPTOGRID)
   // Snap to pixel (ensure there are no artifacts).
-  vec2 position0 = { floorf(Machine_Math_Vector2_getX(position)),
-                     floorf(Machine_Math_Vector2_getY(position)) };
+  Machine_Math_Vector2_set(position0, floorf(Machine_Math_Vector2_getX(position)),
+                                      floorf(Machine_Math_Vector2_getY(position)));
 #else
-  vec2 position0 = { (Machine_Math_Vector2_getX(position)),
-                     (Machine_Math_Vector2_getY(position)) };
+  Machine_Math_Vector2_set(position0, (Machine_Math_Vector2_getX(position)),
+                                      (Machine_Math_Vector2_getY(position)));
 #endif
 
-  vec2 cursorPosition = { 0, 0 };
-
+  Machine_Math_Vector2* cursorPosition = Machine_Math_Vector2_create();
   Machine_Math_Rectangle2* lineBounds = Machine_Math_Rectangle2_create();
 
   for (size_t i = 0, n = Machine_PointerArray_getSize(lines); i < n; ++i) {
@@ -82,31 +84,31 @@ static void updateLinesBounds(Machine_Math_Vector2 *position, Machine_Fonts_Font
     const char* bytes = Machine_String_getBytes(text);
 
     Machine_Math_Vector2* position = Machine_Math_Vector2_create();
-    Machine_Math_Vector2_set(position, cursorPosition[0], cursorPosition[1]);
+    Machine_Math_Vector2_copy(position, cursorPosition);
     Machine_Math_Vector2* size = Machine_Math_Vector2_create();
     Machine_Math_Vector2_set(size, 0.f, 0.f);
 
     Machine_Math_Rectangle2_setPosition(lineBounds, position);
     Machine_Math_Rectangle2_setSize(lineBounds, size);
 
+    Machine_Math_Vector2* symbolAdvance = Machine_Math_Vector2_create();
     Machine_Math_Rectangle2* symbolBounds = Machine_Math_Rectangle2_create();
     for (size_t j = layoutLine->start, m = layoutLine->start + layoutLine->length; j < m; ++j) {
       uint32_t codepoint = bytes[j];
-      vec2 symbolAdvance;
       Machine_Texture* symbolTexture;
       bool skip = !Machine_Font_getCodePointInfo(font, codepoint, symbolBounds, symbolAdvance, &symbolTexture);
       if (skip) {
         continue;
       }
 
-      float l = cursorPosition[0] + Machine_Math_Vector2_getX(Machine_Math_Rectangle2_getPosition(symbolBounds));
+      float l = Machine_Math_Vector2_getX(cursorPosition) + Machine_Math_Vector2_getX(Machine_Math_Rectangle2_getPosition(symbolBounds));
       float r = l + Machine_Math_Vector2_getX(Machine_Math_Rectangle2_getSize(symbolBounds));
       float t, b;
       if (yup) {
-        t = cursorPosition[1] + (Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(symbolBounds)) - Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getPosition(symbolBounds)));
+        t = Machine_Math_Vector2_getY(cursorPosition) + (Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(symbolBounds)) - Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getPosition(symbolBounds)));
         b = t - Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(symbolBounds));
       } else {
-        t = cursorPosition[1] - (Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(symbolBounds)) - Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getPosition(symbolBounds)));
+        t = Machine_Math_Vector2_getY(cursorPosition) - (Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(symbolBounds)) - Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getPosition(symbolBounds)));
         b = t + Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(symbolBounds));
       }
 
@@ -117,39 +119,40 @@ static void updateLinesBounds(Machine_Math_Vector2 *position, Machine_Fonts_Font
       Machine_Math_Rectangle2_addPoint(lineBounds, min);
       Machine_Math_Rectangle2_addPoint(lineBounds, max);
 
-      vec2_add(cursorPosition, cursorPosition, symbolAdvance);
+      Machine_Math_Vector2_add(cursorPosition, cursorPosition, symbolAdvance);
     }
     layoutLine->left = Machine_Math_Vector2_getX(Machine_Math_Rectangle2_getPosition(lineBounds));
     layoutLine->width = Machine_Math_Vector2_getX(Machine_Math_Rectangle2_getSize(lineBounds));
     layoutLine->top = Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getPosition(lineBounds));
     layoutLine->height = Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(lineBounds));
 
-    cursorPosition[0] = 0;
-    cursorPosition[1] += Machine_Font_getBaselineDistance(font);
+    Machine_Math_Vector2_set(cursorPosition, 0.f,  Machine_Math_Vector2_getY(cursorPosition) + Machine_Font_getBaselineDistance(font));
   }
 
   for (size_t i = 0, n = Machine_PointerArray_getSize(lines); i < n; ++i) {
     Machine_Text_LayoutLine* layoutLine = (Machine_Text_LayoutLine*)Machine_PointerArray_getAt(lines, i);
-    layoutLine->top += position0[1];
-    layoutLine->left += position0[0];
+    layoutLine->top += Machine_Math_Vector2_getY(position0);
+    layoutLine->left += Machine_Math_Vector2_getX(position0);
   }
 }
 
 static void updateBounds(Machine_Text_Layout* self) {
+  Machine_Math_Vector2* position0 = Machine_Math_Vector2_create();
 #if defined(WITH_SNAPTOGRID)
   // Snap to pixel (ensure there are no artifacts).
-  vec2 position0 = { floorf(Machine_Math_Vector2_getX(self->position)),
-                     floorf(Machine_Math_Vector2_getY(self->position)) };
+  Machine_Math_Vector2_set(position0, floorf(Machine_Math_Vector2_getX(self->position)),
+                                      floorf(Machine_Math_Vector2_getY(self->position)));
 #else
-  vec2 position0 = { (Machine_Math_Vector2_getX(self->position)),
-                     (Machine_Math_Vector2_getY(self->position)) };
+  Machine_Math_Vector2_set(position0, (Machine_Math_Vector2_getX(self->position)),
+                                      (Machine_Math_Vector2_getY(self->position)));
 #endif
 
-  vec2 cursorPosition = { position0[0], position0[1] };
+  Machine_Math_Vector2* cursorPosition = Machine_Math_Vector2_create();
+  Machine_Math_Vector2_copy(cursorPosition, position0);
 
   Machine_Math_Rectangle2* bounds = Machine_Math_Rectangle2_create();
   Machine_Math_Vector2* p = Machine_Math_Vector2_create();
-  Machine_Math_Vector2_set(p, cursorPosition[0], cursorPosition[1]);
+  Machine_Math_Vector2_copy(p, cursorPosition);
   Machine_Math_Rectangle2_setPosition(bounds, p);
 
   const char* bytes = Machine_String_getBytes(self->text);
@@ -161,8 +164,8 @@ static void updateBounds(Machine_Text_Layout* self) {
     Machine_Math_Vector2_set(p, layoutLine->left + layoutLine->width, layoutLine->top + layoutLine->height);
     Machine_Math_Rectangle2_addPoint(bounds, p);
 
-    cursorPosition[0] = Machine_Math_Vector2_getX(self->position);
-    cursorPosition[1] += Machine_Font_getBaselineDistance(self->font);
+    Machine_Math_Vector2_set(cursorPosition, Machine_Math_Vector2_getX(self->position),
+                                             Machine_Math_Vector2_getY(cursorPosition) + Machine_Font_getBaselineDistance(self->font));
   }
 
   if (!self->visualBounds) {
@@ -255,17 +258,18 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
 #endif
 
   // Set the world matrix, view matrix, and projection matrix.
-  mat4x4 world, view, projection, wvp;
-  mat4x4_identity(world); // world matrix is identity.
-  mat4x4_identity(view); // view matrix is identity.
+  Machine_Math_Matrix4* world2, * view2, * projection2, * wvp2;
+  world2 = Machine_Math_Matrix4_create(); Machine_Math_Matrix4_setIdentity(world2); // world matrix is identity.
+  view2 = Machine_Math_Matrix4_create(); Machine_Math_Matrix4_setIdentity(view2); // view matrix is identity.
+  projection2 = Machine_Math_Matrix4_create();
 #if defined(Y_UP)
-  mat4x4_ortho(projection, 0.f, width, height, 0.f, 1.f, -1.f); // projection matrix
+  Machine_Math_Matrix4_setOrtho(projection2, 0.f, width, height, 0.f, 1.f, -1.f); // projection matrix
 #else
-  mat4x4_ortho(projection, 0.f, width, 0.f, height, 1.f, -1.f); // projection matrix
+  Machine_Math_Matrix4_setOrtho(projection2, 0.f, width, 0.f, height, 1.f, -1.f); // projection matrix
 #endif
-  // Compute combined world view projection matrix.
-  mat4x4_mul(wvp, projection, view);
-  mat4x4_mul(wvp, wvp, world);
+  wvp2 = Machine_Math_Matrix4_create();
+  Machine_Math_Matrix4_multiply(wvp2, projection2, view2);
+  Machine_Math_Matrix4_multiply(wvp2, wvp2, world2);
 
   Machine_ShaderProgram* shaderProgram = Machine_Font_getShaderProgram(self->font);
   Machine_Binding* binding = Machine_Font_getBinding(self->font);
@@ -276,44 +280,41 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
     Machine_Math_Vector2* position = Machine_Math_Rectangle2_getPosition(self->clipRectangle);
     const Machine_Math_Vector2* size = Machine_Math_Rectangle2_getSize(self->clipRectangle);
     {
-      vec3 n = { -1, 0, 0 };
-      vec3 p = { Machine_Math_Vector2_getX(position), 0, 0 };
-      float d = -vec3_mul_inner(n, p);
-      //vec4 x = { -1, 0, 0, d };
+      Machine_Math_Vector3* n2 = Machine_Math_Vector3_create(); Machine_Math_Vector3_set(n2, -1.0f, 0.0f, 0.0f);
+      Machine_Math_Vector3* p2 = Machine_Math_Vector3_create(); Machine_Math_Vector3_set(p2, Machine_Math_Vector2_getX(position), 0.0f, 0.0f);
+      float d = -Machine_Math_Vector3_dot(n2, p2);
       Machine_Math_Vector4* x = Machine_Math_Vector4_create();
       Machine_Math_Vector4_set(x, -1, 0, 0, d);
       Machine_Binding_bindVector4(binding, Machine_String_create("clipPlane0", strlen("clipPlane0") + 1), x);
     }
     {
-      vec3 n = { +1, 0, 0 };
-      vec3 p = { Machine_Math_Vector2_getX(position) + Machine_Math_Vector2_getX(size), 0, 0 };
-      float d = -vec3_mul_inner(n, p);
-
-      //vec4 x = { +1, 0, 0, d };
+      Machine_Math_Vector3* n2 = Machine_Math_Vector3_create(); Machine_Math_Vector3_set(n2, +1.0f, 0.0f, 0.0f);
+      Machine_Math_Vector3* p2 = Machine_Math_Vector3_create(); Machine_Math_Vector3_set(p2, Machine_Math_Vector2_getX(position) + Machine_Math_Vector2_getX(size), 0.0f, 0.0f);
+      float d = -Machine_Math_Vector3_dot(n2, p2);
       Machine_Math_Vector4* x = Machine_Math_Vector4_create();
       Machine_Math_Vector4_set(x, +1, 0, 0, d);
       Machine_Binding_bindVector4(binding, Machine_String_create("clipPlane1", strlen("clipPlane1") + 1), x);
     }
   }
   Machine_Binding_bindVector3(binding, Machine_String_create("mesh_color", strlen("mesh_color") + 1), self->color);
-  Machine_Binding_bindMatrix4x4(binding, Machine_String_create("modelToWorldMatrix", strlen("modelToWorldMatrix") + 1), world);
-  Machine_Binding_bindMatrix4x4(binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), wvp);
+  Machine_Binding_bindMatrix4(binding, Machine_String_create("modelToWorldMatrix", strlen("modelToWorldMatrix") + 1), world2);
+  Machine_Binding_bindMatrix4(binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), wvp2);
 
   Machine_Video_setDepthTestFunction(Machine_DepthTestFunction_Always);
   Machine_Video_setDepthWriteEnabled(false);
   Machine_Video_setIncomingBlendFunction(Machine_BlendFunction_IncomingAlpha);
   Machine_Video_setExistingBlendFunction(Machine_BlendFunction_OneMinusIncomingAlpha);
-  
+
   vec2 cursorPosition = { position0[0], position0[1] };
 
   const char* bytes = Machine_String_getBytes(self->text);
 
+  Machine_Math_Vector2* symbolAdvance = Machine_Math_Vector2_create();
   Machine_Math_Rectangle2* symbolBounds = Machine_Math_Rectangle2_create();
   for (size_t i = 0, n = Machine_PointerArray_getSize(self->lines); i < n; ++i) {
     Machine_Text_LayoutLine* layoutLine = (Machine_Text_LayoutLine*)Machine_PointerArray_getAt(self->lines, i);
     for (size_t j = layoutLine->start, m = layoutLine->start + layoutLine->length; j < m; ++j) {
       uint32_t codepoint = bytes[j];
-      vec2 symbolAdvance;
       Machine_Texture* symbolTexture;
       bool skip = !Machine_Font_getCodePointInfo(self->font, codepoint, symbolBounds, symbolAdvance, &symbolTexture);
       if (skip) continue;
@@ -350,7 +351,8 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
       Machine_Binding_bindSampler(binding, Machine_String_create("texture_1", strlen("texture_1")), UNIT);
       Machine_UtilitiesGl_call(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, &indices));
 
-      vec2_add(cursorPosition, cursorPosition, symbolAdvance);
+      cursorPosition[0] += Machine_Math_Vector2_getX(symbolAdvance);
+      cursorPosition[1] += Machine_Math_Vector2_getY(symbolAdvance);
     }
     cursorPosition[0] = position0[0];
     cursorPosition[1] += Machine_Font_getBaselineDistance(self->font);

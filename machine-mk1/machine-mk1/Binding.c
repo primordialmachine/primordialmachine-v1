@@ -199,14 +199,6 @@ void Machine_Binding_activate(Machine_Binding* self) {
   }
 }
 
-void Machine_Binding_bindMatrix4x4(Machine_Binding* self, Machine_String* name, const mat4x4 value) {
-  GLint location = glGetUniformLocation(((Machine_GL_ShaderProgram *)(self->program))->programId, Machine_String_getBytes(name));
-  if (location == -1) {
-    return;
-  }
-  Machine_UtilitiesGl_call(glUniformMatrix4fv(location, 1, GL_FALSE, (GLfloat const*)*value));
-}
-
 void Machine_Binding_bindMatrix4(Machine_Binding* self, Machine_String* name, const Machine_Math_Matrix4* value) {
   GLint location = glGetUniformLocation(((Machine_GL_ShaderProgram*)(self->program))->programId, Machine_String_getBytes(name));
   if (location == -1) {

@@ -9,6 +9,7 @@ extern "C" {
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 #include "Scene1.h"
 #include "Scene2.h"

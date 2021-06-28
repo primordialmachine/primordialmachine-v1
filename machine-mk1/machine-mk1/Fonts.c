@@ -11,7 +11,6 @@
 #include "_Video.h"
 #include "GL/ShaderProgram.h"
 
-#include <linmath.h>
 #include "Binding.h"
 #include <inttypes.h>
 
@@ -322,7 +321,7 @@ float Machine_Font_getBaselineDistance(Machine_Fonts_Font* self) {
   return self->baselineDistance;
 }
 
-bool Machine_Font_getCodePointInfo(Machine_Fonts_Font* self, uint32_t codepoint, Machine_Math_Rectangle2* bounds, vec2 advance, Machine_Texture** texture) {
+bool Machine_Font_getCodePointInfo(Machine_Fonts_Font* self, uint32_t codepoint, Machine_Math_Rectangle2* bounds, Machine_Math_Vector2* advance, Machine_Texture** texture) {
   if (isWhitespace(codepoint)) {
     codepoint = ' ';
   } else if (isNewline(codepoint)) {
@@ -339,8 +338,7 @@ bool Machine_Font_getCodePointInfo(Machine_Fonts_Font* self, uint32_t codepoint,
   Machine_Math_Vector2_set(v, node->w, node->h);
   Machine_Math_Rectangle2_setSize(bounds, v);
   *texture = node->texture;
-  advance[0] = node->advancex;
-  advance[1] = node->advancey;
+  Machine_Math_Vector2_set(advance, node->advancex, node->advancey);
   return true;
 }
 
