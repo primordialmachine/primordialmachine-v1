@@ -5,6 +5,7 @@
 #include "_Math.h"
 #include "_Video.h"
 #include "./UtilitiesGL.h"
+typedef struct Machine_Binding Machine_Binding;
 typedef struct Machine_Images_Image Machine_Images_Image;
 typedef struct Machine_ShaderProgram Machine_ShaderProgram;
 
@@ -37,6 +38,13 @@ Machine_VideoBuffer * Machine_Video_createBuffer();
 /// @param fragmentProgramText The fragment program text.
 /// @return The shader program.
 Machine_ShaderProgram* Machine_Video_createShaderProgram(Machine_String *vertexProgramText, Machine_String* geometryProgramText, Machine_String* fragmentProgramText);
+
+/// @brief Create a binding.
+/// @param program The program.
+/// @param vertexDescriptor The vertex descriptor.
+/// @param buffer The buffer.
+/// @return The binding.
+Machine_Binding* Machine_Video_createBinding(Machine_ShaderProgram* program, Machine_VertexDescriptor* vertexDescriptor, Machine_VideoBuffer* buffer);
 
 /// @brief Assign a texture unit.
 /// @param unit The index of the texture unit.

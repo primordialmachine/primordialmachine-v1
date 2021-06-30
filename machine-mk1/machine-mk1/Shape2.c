@@ -1,7 +1,6 @@
 #include "./Shape2.h"
 
 #include "_Math.h"
-#include "./Binding.h"
 #include "./Video.h"
 #include "./UtilitiesGL.h"
 #include <stdio.h>
@@ -127,7 +126,7 @@ void Machine_Rectangle2_construct(Machine_Rectangle2* self, size_t numberOfArgum
   Machine_VertexDescriptor* vertexDescriptor = Machine_VertexDescriptor_create();
   Machine_VertexDescriptor_append(vertexDescriptor, Machine_VertexElementSemantics_XfYf);
 
-  self->binding = Machine_Binding_create(self->shader, vertexDescriptor, self->vertices);
+  self->binding = Machine_Video_createBinding(self->shader, vertexDescriptor, self->vertices);
   Machine_Binding_setVariableBinding(self->binding, Machine_String_create("vertex_position", strlen("vertex_position") + 1), 0);
 
   self->color = Machine_Math_Vector4_create();

@@ -10,8 +10,6 @@
 #include "Machine.h"
 #include "_Video.h"
 #include "GL/ShaderProgram.h"
-
-#include "Binding.h"
 #include <inttypes.h>
 
 #include <ft2build.h>
@@ -232,7 +230,7 @@ Machine_Fonts_Font* Machine_Fonts_createFont(const char* path, int pointSize) {
     Machine_VertexDescriptor_append(vertexDescriptor, Machine_VertexElementSemantics_XfYf);
     Machine_VertexDescriptor_append(vertexDescriptor, Machine_VertexElementSemantics_UfVf);
 
-    font->binding = Machine_Binding_create(font->shader, vertexDescriptor, font->vertices);
+    font->binding = Machine_Video_createBinding(font->shader, vertexDescriptor, font->vertices);
     Machine_Binding_setVariableBinding(font->binding, Machine_String_create("vertex_position", strlen("vertex_position") + 1), 0);
     Machine_Binding_setVariableBinding(font->binding, Machine_String_create("vertex_texture_coordinate_1", strlen("vertex_texture_coordinate_1") + 1), 1);
 

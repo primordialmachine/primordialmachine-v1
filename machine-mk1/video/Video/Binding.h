@@ -1,19 +1,59 @@
-#if !defined(MACHINE_BINDING_H_INCLUDED)
-#define MACHINE_BINDING_H_INCLUDED
+/// @file Video/Binding.h
+/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
+/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
+#if !defined(MACHINE_VIDEO_BINDING_H_INCLUDED)
+#define MACHINE_VIDEO_BINDING_H_INCLUDED
 
 
 
-#include "_Video.h"
+#if !defined(MACHINE_VIDEO_PRIVATE)
+#error("Do not include this file directly, include `_Video.h` instead.")
+#endif
+
+typedef struct Machine_ShaderProgram Machine_ShaderProgram;
+typedef struct Machine_VertexDescriptor Machine_VertexDescriptor;
+typedef struct Machine_VideoBuffer Machine_VideoBuffer;
 #include "_Math.h"
 
 
+
+MACHINE_DECLARE_CLASSTYPE(Machine_Binding_Node)
+
+struct Machine_Binding_Node {
+  Machine_Object __parent;
+  Machine_Binding_Node* next;
+  bool isVariable;
+  Machine_String* name;
+  Machine_Value value;
+};
+
+Machine_Binding_Node* Machine_Binding_Node_create(Machine_String* name, size_t index);
+
+Machine_Binding_Node* Machine_Binding_Node_createConstant(Machine_String* name, Machine_Value const* value);
 
 /// @brief Binding between shader program inputs and vertex elements.
 /// Not EVERY vertex element needs to have a corresponding shader program input.
 /// However EVERY shader program input needs to have a corresponding vertex element.
 MACHINE_DECLARE_CLASSTYPE(Machine_Binding)
 
-Machine_Binding* Machine_Binding_create(Machine_ShaderProgram* program, Machine_VertexDescriptor* vertexDescriptor, Machine_VideoBuffer* buffer);
+struct Machine_Binding {
+  Machine_Object parent;
+  Machine_Binding_Node* nodes;
+  Machine_ShaderProgram* program;
+  Machine_VertexDescriptor* vertexDescriptor;
+  Machine_VideoBuffer* buffer;
+  bool dirty;
+  bool (*setVariableBinding)(Machine_Binding* self, Machine_String* name, size_t index);
+  size_t(*getVariableBinding)(Machine_Binding const* self, Machine_String* name);
+  void (*bindMatrix4)(Machine_Binding* self, Machine_String* name, Machine_Math_Matrix4 const* value);
+  void (*bindVector2)(Machine_Binding* self, Machine_String* name, Machine_Math_Vector2 const* value);
+  void (*bindVector3)(Machine_Binding* self, Machine_String* name, Machine_Math_Vector3 const* value);
+  void (*bindVector4)(Machine_Binding* self, Machine_String* name, Machine_Math_Vector4 const* value);
+  void (*bindSampler)(Machine_Binding* self, Machine_String* name, size_t const value);
+  void (*activate)(Machine_Binding* self);
+};
+
+void Machine_Binding_construct(Machine_Binding* self, size_t numberOfArguments, const Machine_Value* arguments);
 
 /// @brief Bind the vertex element of the specified index to the input of the specified name.
 /// @param self This binding.
@@ -64,4 +104,4 @@ void Machine_Binding_bindVector4(Machine_Binding* self, Machine_String* name, co
 /// @param value The value.
 void Machine_Binding_bindSampler(Machine_Binding* self, Machine_String* name, const size_t value);
 
-#endif // MACHINE_BINDING_H_INCLUDED
+#endif // MACHINE_VIDEO_BINDING_H_INCLUDED

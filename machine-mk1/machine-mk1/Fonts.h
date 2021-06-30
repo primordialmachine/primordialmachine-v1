@@ -9,7 +9,6 @@
 
 #include "Text/LayoutLine.h"
 #include "Text/Layout.h"
-#include "Binding.h"
 #include "_Video.h"
 
 

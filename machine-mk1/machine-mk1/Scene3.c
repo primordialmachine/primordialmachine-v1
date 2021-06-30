@@ -11,7 +11,6 @@
 #include "_Images.h"
 #include "_Video.h"
 
-#include "Binding.h"
 #include "Fonts.h"
 #include "Shape2.h"
 #include "Video.h"
@@ -86,7 +85,7 @@ static void Scene3_startup(Scene3* scene) {
   Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_RfGfBf);
   Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_UfVf);
 
-  scene->binding = Machine_Binding_create(scene->shaderProgram, vd, scene->vertices);
+  scene->binding = Machine_Video_createBinding(scene->shaderProgram, vd, scene->vertices);
   Machine_Binding_setVariableBinding(scene->binding, Machine_String_create("vertex_position", strlen("vertex_position") + 1), 0);
   Machine_Binding_setVariableBinding(scene->binding, Machine_String_create("vertex_color", strlen("vertex_color") + 1), 1);
   Machine_Binding_setVariableBinding(scene->binding, Machine_String_create("vertex_texture_coordinate_1", strlen("vertex_texture_coordinate_1") + 1), 2);

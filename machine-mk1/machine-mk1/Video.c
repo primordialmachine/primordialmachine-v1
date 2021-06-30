@@ -3,6 +3,7 @@
 
 
 #include <stdio.h>
+#include "GL/Binding.h"
 #include "GL/Buffer.h"
 #include "GL/ShaderProgram.h"
 #include "GL/Texture.h"
@@ -108,7 +109,7 @@ int Machine_Video_startup() {
 
       // Set clear color.
       glClearColor(g_clearColor.r, g_clearColor.g, g_clearColor.b, g_clearColor.a);
-      
+
       Machine_popJumpTarget();
     } else {
       Machine_popJumpTarget();
@@ -148,6 +149,10 @@ Machine_ShaderProgram* Machine_Video_createShaderProgram(Machine_String* vertexP
   return (Machine_ShaderProgram*)Machine_GL_ShaderProgram_create(vertexProgramText, geometryProgramText, fragmentProgramText);
 }
 
+Machine_Binding* Machine_Video_createBinding(Machine_ShaderProgram* program, Machine_VertexDescriptor* vertexDescriptor, Machine_VideoBuffer* buffer) {
+  return (Machine_Binding*)Machine_GL_Binding_create(program, vertexDescriptor, buffer);
+}
+
 void Machine_Video_bindTexture(size_t textureUnit, Machine_Texture* texture) {
   Machine_GL_Texture* textureGL = (Machine_GL_Texture*)texture;
   Machine_UtilitiesGl_call(glActiveTexture(GL_TEXTURE0 + textureUnit));
@@ -155,7 +160,7 @@ void Machine_Video_bindTexture(size_t textureUnit, Machine_Texture* texture) {
 }
 
 void Machine_Video_bindShaderProgram(Machine_ShaderProgram* shaderProgram) {
-  Machine_UtilitiesGl_call(glUseProgram(((Machine_GL_ShaderProgram *)shaderProgram)->programId));
+  Machine_UtilitiesGl_call(glUseProgram(((Machine_GL_ShaderProgram*)shaderProgram)->programId));
 }
 
 

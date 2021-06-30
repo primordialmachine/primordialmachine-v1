@@ -73,7 +73,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\external\glad\src\glad.c" />
-    <ClCompile Include="Binding.c" />
+    <ClCompile Include="GL\Binding.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)GL\</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)GL\</ObjectFileName>
+    </ClCompile>
     <ClCompile Include="GL\Buffer.c">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)GL\</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)GL\</ObjectFileName>
@@ -115,7 +118,7 @@
   <ItemGroup>
     <ClInclude Include="..\external\glad\include\glad\glad.h" />
     <ClInclude Include="..\external\glad\include\KHR\khrplatform.h" />
-    <ClInclude Include="Binding.h" />
+    <ClInclude Include="GL\Binding.h" />
     <ClInclude Include="GL\Buffer.h" />
     <ClInclude Include="GL\ShaderProgram.h" />
     <ClInclude Include="GL\Texture.h" />

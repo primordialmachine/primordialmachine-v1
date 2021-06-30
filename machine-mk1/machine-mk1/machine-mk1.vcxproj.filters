@@ -81,9 +81,6 @@
     <ClCompile Include="Scene3.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Binding.c">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="UtilitiesGL.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -144,6 +141,9 @@
     <ClCompile Include="GL\ShaderProgram.c">
       <Filter>Quelldateien\GL</Filter>
     </ClCompile>
+    <ClCompile Include="GL\Binding.c">
+      <Filter>Quelldateien\GL</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\external\glad\include\glad\glad.h">
@@ -165,9 +165,6 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Scene3.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Binding.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="UtilitiesGL.h">
@@ -225,6 +222,9 @@
       <Filter>Headerdateien\GUI\GDL</Filter>
     </ClInclude>
     <ClInclude Include="GL\ShaderProgram.h">
+      <Filter>Headerdateien\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="GL\Binding.h">
       <Filter>Headerdateien\GL</Filter>
     </ClInclude>
   </ItemGroup>

@@ -11,7 +11,6 @@
 #include "_Images.h"
 #include "_Video.h"
 
-#include "Binding.h"
 #include "Fonts.h"
 #include "Shape2.h"
 #include "Video.h"

@@ -66,6 +66,9 @@
     <ClCompile Include="Video\ShaderProgram.c">
       <Filter>Quelldateien\Video</Filter>
     </ClCompile>
+    <ClCompile Include="Video\Binding.c">
+      <Filter>Quelldateien\Video</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_Video.h">
@@ -111,6 +114,9 @@
       <Filter>Headerdateien\Video</Filter>
     </ClInclude>
     <ClInclude Include="Video\ShaderProgram.h">
+      <Filter>Headerdateien\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="Video\Binding.h">
       <Filter>Headerdateien\Video</Filter>
     </ClInclude>
   </ItemGroup>

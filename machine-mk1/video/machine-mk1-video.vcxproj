@@ -74,6 +74,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Video\Binding.c" />
     <ClCompile Include="Video\BlendFunction.c" />
     <ClCompile Include="Video\Buffer.c" />
     <ClCompile Include="Video\CanvasSizeChangedEvent.c" />
@@ -91,6 +92,7 @@
     <ClCompile Include="_Video.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Video\Binding.h" />
     <ClInclude Include="Video\BlendFunction.h" />
     <ClInclude Include="Video\Buffer.h" />
     <ClInclude Include="Video\CanvasSizeChangedEvent.h" />

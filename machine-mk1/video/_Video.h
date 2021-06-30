@@ -5,6 +5,7 @@
 #define MACHINE__VIDEO_H_INCLUDED
 
 #define MACHINE_VIDEO_PRIVATE (1)
+#include "Video/Binding.h"
 #include "Video/BlendFunction.h"
 #include "Video/Buffer.h"
 #include "Video/CanvasSizeChangedEvent.h"
