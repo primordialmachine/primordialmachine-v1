@@ -36,12 +36,20 @@ Machine_StringBuffer* Machine_StringBuffer_create() {
   return self;
 }
 
-void Machine_StringBuffer_appendBytes(Machine_StringBuffer* self, const char* p, size_t n) {
+void Machine_StringBuffer_appendBytes(Machine_StringBuffer* self, char const* p, size_t n) {
   Machine_ByteBuffer_appendBytes(self->byteBuffer, p, n);
+}
+
+void Machine_StringBuffer_appendString(Machine_StringBuffer* self, Machine_String const* s) {
+  Machine_ByteBuffer_appendBytes(self->byteBuffer, Machine_String_getBytes(s), Machine_String_getNumberOfBytes(s));
 }
 
 void Machine_StringBuffer_prependBytes(Machine_StringBuffer* self, const char* p, size_t n) {
   Machine_ByteBuffer_prependBytes(self->byteBuffer, p, n);
+}
+
+void Machine_StringBuffer_prependString(Machine_StringBuffer* self, Machine_String const* s) {
+  Machine_ByteBuffer_prependBytes(self->byteBuffer, Machine_String_getBytes(s), Machine_String_getNumberOfBytes(s));
 }
 
 void Machine_StringBuffer_insertBytesAt(Machine_StringBuffer* self, size_t i, const char* p, size_t n) {

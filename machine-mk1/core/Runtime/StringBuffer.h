@@ -29,12 +29,22 @@ Machine_StringBuffer* Machine_StringBuffer_create();
 /// @brief Append Bytes to this string buffer.
 /// @param self This string buffer.
 /// @param p, n The Bytes.
-void Machine_StringBuffer_appendBytes(Machine_StringBuffer* self, const char *p, size_t n);
+void Machine_StringBuffer_appendBytes(Machine_StringBuffer* self, char const *p, size_t n);
+
+/// @brief Append a string to this string buffer.
+/// @param self This string buffer.
+/// @param s the string.
+void Machine_StringBuffer_appendString(Machine_StringBuffer* self, Machine_String const* s);
 
 /// @brief Prepend Bytes to the string buffer.
 /// @param self This string buffer.
 /// @param p, n The Bytes.
-void Machine_StringBuffer_prependBytes(Machine_StringBuffer* self, const char* p, size_t n);
+void Machine_StringBuffer_prependBytes(Machine_StringBuffer* self, char const* p, size_t n);
+
+/// @brief Prepend a string to this string buffer.
+/// @param self This string buffer.
+/// @param s the string.
+void Machine_StringBuffer_prependString(Machine_StringBuffer* self, Machine_String const* s);
 
 /// @brief Insert Bytes to this string buffer.
 /// @param self This string buffer.
