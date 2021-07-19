@@ -336,12 +336,12 @@ Machine_GL_ShaderProgram_generateDefaultShader
 
   Machine_StringBuffer_appendBytes(code, T("}\n"));
   Machine_StringBuffer_appendBytes(code, "", 1);
-  v = Machine_StringBuffer_toString(code);
+  v = Machine_Object_toString((Machine_Object *)code);
   Machine_StringBuffer_clear(code);
 
   // Geometry program.
   Machine_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
-  g = Machine_StringBuffer_toString(code);
+  g = Machine_Object_toString((Machine_Object *)code);
   Machine_StringBuffer_clear(code);
 
   // Fragment program.
@@ -361,7 +361,7 @@ Machine_GL_ShaderProgram_generateDefaultShader
   }
   Machine_StringBuffer_appendBytes(code, T("}\n"));
   Machine_StringBuffer_appendBytes(code, "", 1);
-  f = Machine_StringBuffer_toString(code);
+  f = Machine_Object_toString((Machine_Object *)code);
   Machine_StringBuffer_clear(code);
 
   Machine_ShaderProgram* shaderProgram = (Machine_ShaderProgram *)Machine_GL_ShaderProgram_create(v, NULL, f);
@@ -413,12 +413,12 @@ Machine_GL_ShaderProgram_generateShape2Shader
 
   Machine_StringBuffer_appendBytes(code, T("}\n"));
   Machine_StringBuffer_appendBytes(code, "", 1);
-  v = Machine_StringBuffer_toString(code);
+  v = Machine_Object_toString((Machine_Object *)code);
   Machine_StringBuffer_clear(code);
 
   // Geometry program.
   Machine_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
-  g = Machine_StringBuffer_toString(code);
+  g = Machine_Object_toString((Machine_Object *)code);
   Machine_StringBuffer_clear(code);
 
   // Fragment program.
@@ -429,7 +429,7 @@ Machine_GL_ShaderProgram_generateShape2Shader
   Machine_StringBuffer_appendBytes(code, T("    gl_FragColor = color;\n"));
   Machine_StringBuffer_appendBytes(code, T("}\n"));
   Machine_StringBuffer_appendBytes(code, "", 1);
-  f = Machine_StringBuffer_toString(code);
+  f = Machine_Object_toString((Machine_Object *)code);
   Machine_StringBuffer_clear(code);
 
   Machine_ShaderProgram* shaderProgram = (Machine_ShaderProgram*)Machine_GL_ShaderProgram_create(v, NULL, f);
@@ -496,7 +496,7 @@ Machine_GL_ShaderProgram_generateText2Shader
 
   Machine_StringBuffer_appendBytes(code, T("}\n"));
   Machine_StringBuffer_appendBytes(code, "", 1);
-  v = Machine_StringBuffer_toString(code);
+  v = Machine_Object_toString((Machine_Object *)code);
   Machine_StringBuffer_clear(code);
 
   // Geometry program.
@@ -528,7 +528,7 @@ Machine_GL_ShaderProgram_generateText2Shader
 
   Machine_StringBuffer_appendBytes(code, T(" EmitVertex(); } EndPrimitive();}\n"));
   Machine_StringBuffer_appendBytes(code, "", 1);
-  g = Machine_StringBuffer_toString(code);
+  g = Machine_Object_toString((Machine_Object *)code);
   Machine_StringBuffer_clear(code);
 
   // Fragment shader.
@@ -549,7 +549,7 @@ Machine_GL_ShaderProgram_generateText2Shader
   Machine_StringBuffer_appendBytes(code, T("    gl_FragColor = vec4(fragment.color.r, fragment.color.g, fragment.color.b, a);\n"));
   Machine_StringBuffer_appendBytes(code, T("}\n"));
   Machine_StringBuffer_appendBytes(code, "", 1);
-  f = Machine_StringBuffer_toString(code);
+  f = Machine_Object_toString((Machine_Object *)code);
   Machine_StringBuffer_clear(code);
 
   Machine_ShaderProgram* shaderProgram = (Machine_ShaderProgram*)Machine_GL_ShaderProgram_create(v, g, f);

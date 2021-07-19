@@ -21,7 +21,7 @@ void Machine_GL_Texture_construct_fromImage(Machine_GL_Texture* self, Machine_Im
   Machine_UtilitiesGl_call(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
   Machine_UtilitiesGl_call(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
 
-  int width, height;
+  Machine_Integer width, height;
   Machine_Images_Image_getSize(image, &width, &height);
   Machine_PixelFormat pixelFormat = Machine_Images_Image_getPixelFormat(image);
   void* pixels = Machine_Images_Image_getPixels(image);

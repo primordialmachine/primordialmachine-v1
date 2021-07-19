@@ -60,7 +60,7 @@ extern "C" {
 
       GLFWimage images[N];
       for (size_t i = 0, n = N; i < N; ++i) {
-        int w, h;
+        Machine_Integer w, h;
         void* p;
         Machine_Images_Image_getSize(IMAGES[i], &w, &h);
         p = Machine_Images_Image_getPixels(IMAGES[i]);
