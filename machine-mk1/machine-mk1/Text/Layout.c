@@ -349,7 +349,7 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
       static const size_t UNIT = 0;
       Machine_Video_bindTexture(0, symbolTexture);
       Machine_Binding_bindSampler(binding, Machine_String_create("texture_1", strlen("texture_1")), UNIT);
-      Machine_UtilitiesGl_call(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, &indices));
+      Machine_Video_drawIndirect(0, 6, indices);
 
       cursorPosition[0] += Machine_Math_Vector2_getX(symbolAdvance);
       cursorPosition[1] += Machine_Math_Vector2_getY(symbolAdvance);
