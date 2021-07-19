@@ -110,7 +110,7 @@ static void Scene3_update(Scene3* self, float width, float height) {
   glUniform1i(self->texture_location, 0);
   Machine_Video_bindTexture(0, self->texture);
 
-  Machine_UtilitiesGl_call(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, &indices));
+  Machine_Video_drawIndirect(0, 6, indices);
 }
 
 static void Scene3_shutdown(Scene3* self) {

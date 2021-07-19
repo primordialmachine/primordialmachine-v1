@@ -86,7 +86,7 @@ static void Scene1_onUpdate(Scene1* self, float width, float height) {
   Machine_Video_bindShaderProgram(self->shaderProgram);
   Machine_Binding_bindMatrix4(self->binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), mvp2);
 
-  glDrawArrays(GL_TRIANGLES, 0, 3);
+  Machine_Video_drawDirect(0, 3);
 }
 
 static void Scene1_onShutdown(Scene1* self) {
