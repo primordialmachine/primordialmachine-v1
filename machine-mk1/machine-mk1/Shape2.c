@@ -111,7 +111,7 @@ void Machine_Rectangle2_render(Machine_Rectangle2* self, float width, float heig
     2, 1, 3,
   };
 
-  glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, &indices);
+  Machine_Video_drawIndirect(0, 6, indices);
 }
 
 void Machine_Rectangle2_construct(Machine_Rectangle2* self, size_t numberOfArguments, const Machine_Value* arguments) {
