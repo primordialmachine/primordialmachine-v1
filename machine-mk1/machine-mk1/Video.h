@@ -119,6 +119,10 @@ void Machine_Video_setViewportRectangle(Machine_Real left, Machine_Real bottom, 
 /// @param width, height Pointers to variables receiving the width and height of the viewport rectangle.
 void Machine_Video_getViewportRectangle(Machine_Real* left, Machine_Real* bottom, Machine_Real* width, Machine_Real* height);
 
+/// @brief Get the maximal number of clip distance coordinates.
+/// @return The number of clip distances.
+Machine_Integer Machine_Video_getMaximalClipDistanceCount();
+
 /// @brief Set if the clip distance of the specified index is enabled.
 /// @param index The index. Must be greater than or equal @a 0 and smaller than Machine_Video_getMaximalClipDistanceCount();
 /// @param enabled @a true to enable the clip distance the specified index, @a false to disable it.

@@ -297,6 +297,10 @@ void Machine_Video_getViewportRectangle(Machine_Real *left, Machine_Real *bottom
   *height = g_viewport.height;
 }
 
+Machine_Integer Machine_Video_getMaximalClipDistanceCount() {
+  return g_clipDistances->n;
+}
+
 void Machine_Video_setClipDistanceEnabled(Machine_Integer index, Machine_Boolean enabled) {
   if (index < 0 || index >= Machine_Video_getMaximalClipDistanceCount()) {
     Machine_setStatus(Machine_Status_IndexOutOfBounds);
