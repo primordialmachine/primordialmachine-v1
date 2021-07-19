@@ -74,11 +74,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Input\KeyboardKeys.c" />
     <ClCompile Include="Input\MouseButtonEvent.c" />
     <ClCompile Include="Input\MousePointerEvent.c" />
     <ClCompile Include="_Input.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Input\KeyboardKeys.h" />
     <ClInclude Include="Input\MouseButtonEvent.h" />
     <ClInclude Include="Input\MousePointerEvent.h" />
     <ClInclude Include="_Input.h" />
@@ -90,6 +92,9 @@
     <ProjectReference Include="..\math\machine-mk1-math.vcxproj">
       <Project>{681c50f0-37bf-4661-bf5a-21a29abf2b63}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Input\KeyboardKeys.i" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

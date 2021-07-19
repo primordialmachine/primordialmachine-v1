@@ -30,6 +30,9 @@
     <ClCompile Include="_Input.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Input\KeyboardKeys.c">
+      <Filter>Quelldateien\Input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Input\MouseButtonEvent.h">
@@ -41,5 +44,13 @@
     <ClInclude Include="_Input.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Input\KeyboardKeys.h">
+      <Filter>Headerdateien\Input</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Input\KeyboardKeys.i">
+      <Filter>Quelldateien\Input</Filter>
+    </None>
   </ItemGroup>
 </Project>
