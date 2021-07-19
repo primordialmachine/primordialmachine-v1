@@ -17,14 +17,14 @@ MACHINE_DECLARE_CLASSTYPE(Machine_MousePointerEvent)
 
 struct Machine_MousePointerEvent {
   Machine_Object parent;
-  float x;
-  float y;
+  Machine_Real x;
+  Machine_Real y;
 };
 
 /// @brief Create a mouse pointer event.
 /// @param x The position of the mouse pointer along the x-axis.
 /// @param y The position of the mouse pointer along the y-axis.
 /// @return The mouse pointer event.
-Machine_MousePointerEvent* Machine_MousePointerEvent_create(float x, float y);
+Machine_MousePointerEvent* Machine_MousePointerEvent_create(Machine_Real x, Machine_Real y);
 
 #endif // MACHINE_MOUSEPOINTEREVENT_H_INCLUDED

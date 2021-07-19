@@ -4,20 +4,47 @@
 #define MACHINE_INPUT_PRIVATE (1)
 #include "./../Input/MousePointerEvent.h"
 
+
+
+#include <string.h>
+
+
+
 static void Machine_MousePointerEvent_visit(Machine_MousePointerEvent* self) {
   /*Intentionally empty.*/
+}
+
+static Machine_String* Machine_MousePointerEvent_toStringImpl(Machine_MousePointerEvent const* self) {
+  Machine_StringBuffer* stringBuffer = Machine_StringBuffer_create();
+
+  Machine_StringBuffer_appendBytes(stringBuffer, "{ ", strlen("{ "));
+
+  Machine_StringBuffer_appendBytes(stringBuffer, "type: 'mouse-pointer-event'", strlen("type: 'mouse-pointer-event'"));
+  Machine_StringBuffer_appendBytes(stringBuffer, ", ", strlen(", "));
+
+  Machine_StringBuffer_appendBytes(stringBuffer, "x: ", strlen("x: "));
+  Machine_StringBuffer_appendString(stringBuffer, Machine_Real_toString(self->x));
+  Machine_StringBuffer_appendBytes(stringBuffer, ", ", strlen(", "));
+
+  Machine_StringBuffer_appendBytes(stringBuffer, "y: ", strlen("y: "));
+  Machine_StringBuffer_appendString(stringBuffer, Machine_Real_toString(self->y));
+
+  Machine_StringBuffer_appendBytes(stringBuffer, " }", strlen(" }"));
+
+  return Machine_Object_toString((Machine_Object *)stringBuffer);
 }
 
 static void Machine_MousePointerEvent_construct(Machine_MousePointerEvent* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->x = Machine_Value_getReal(&arguments[0]);
   self->y = Machine_Value_getReal(&arguments[1]);
+  ((Machine_Object*)self)->toString = (Machine_String * (*)(Machine_Object const*)) & Machine_MousePointerEvent_toStringImpl;
   Machine_setClassType((Machine_Object*)self, Machine_MousePointerEvent_getClassType());
 }
 
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_MousePointerEvent, Machine_Object, &Machine_MousePointerEvent_visit, &Machine_MousePointerEvent_construct, NULL)
 
-Machine_MousePointerEvent* Machine_MousePointerEvent_create(float x, float y) {
+Machine_MousePointerEvent* Machine_MousePointerEvent_create(Machine_Real x, Machine_Real y) {
   Machine_ClassType* ty = Machine_MousePointerEvent_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 2;
   Machine_Value ARGUMENTS[2];
