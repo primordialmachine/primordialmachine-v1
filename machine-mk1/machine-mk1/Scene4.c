@@ -127,8 +127,8 @@ static void Scene4_onCanvasSizeChanged(Scene4* self, Machine_CanvasSizeChangedEv
 
 static void Scene4_onUpdate(Scene4* self, float width, float height) {
   // Set the viewport and clear its color buffer.
-  Machine_UtilitiesGl_call(glViewport(0, 0, width, height));
-  Machine_UtilitiesGl_call(glClear(GL_COLOR_BUFFER_BIT));
+  Machine_Video_setViewportRectangle(0, 0, width, height);
+  Machine_Video_clearColorBuffer();
 
   Machine_Text_Layout_render(self->text1, width, height);
   Machine_Text_Layout_render(self->text2, width, height);

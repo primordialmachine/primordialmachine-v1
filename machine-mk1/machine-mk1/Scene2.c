@@ -81,8 +81,8 @@ static void Scene2_onCanvasSizeChanged(Scene2* self, Machine_CanvasSizeChangedEv
 static void Scene2_onUpdate(Scene2* self, float width, float height) {
   float ratio = width / height;
 
-  glViewport(0, 0, width, height);
-  glClear(GL_COLOR_BUFFER_BIT);
+  Machine_Video_setViewportRectangle(0, 0, width, height);
+  Machine_Video_clearColorBuffer();
 
   Machine_Math_Matrix4* m2 = Machine_Math_Matrix4_create(); Machine_Math_Matrix4_rotateZ(m2, (float)glfwGetTime());
   Machine_Math_Matrix4* p2 = Machine_Math_Matrix4_create(); Machine_Math_Matrix4_setOrtho(p2, -ratio, +ratio, -1.f, +1.f, 1.f, -1.f);

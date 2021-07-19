@@ -186,8 +186,8 @@ static void Scene5_onCanvasSizeChanged(Scene5* self, Machine_CanvasSizeChangedEv
 
 static void Scene5_update(Scene5* self, float width, float height) {
   // Set the viewport and clear its color buffer.
-  Machine_UtilitiesGl_call(glViewport(0, 0, width, height));
-  Machine_UtilitiesGl_call(glClear(GL_COLOR_BUFFER_BIT));
+  Machine_Video_setViewportRectangle(0, 0, width, height);
+  Machine_Video_clearColorBuffer();
 
   for (size_t i = 0, n = Machine_GUI_WidgetList_getSize(self->mainMenu); i < n; ++i) {
     Machine_GUI_Widget* widget = Machine_GUI_WidgetList_getAt(self->mainMenu, i);
