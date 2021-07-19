@@ -2,6 +2,7 @@
 
 
 
+#include <malloc.h>
 #include <stdio.h>
 #include "GL/Binding.h"
 #include "GL/Buffer.h"
@@ -11,6 +12,17 @@
 
 
 static GLFWwindow* g_window = NULL;
+
+typedef struct _ClipDistance {
+  bool enabled;
+} _ClipDistance;
+
+typedef struct _ClipDistances {
+  size_t n;
+  _ClipDistance* a;
+} _ClipDistances;
+
+static _ClipDistances* g_clipDistances = NULL;
 
 static struct {
   float r, g, b, a;
@@ -99,6 +111,31 @@ int Machine_Video_startup() {
       g_material = Machine_Material_create();
       Machine_lock(g_material);
 
+      {
+        GLint v;
+        Machine_UtilitiesGl_call(glGetIntegerv(GL_MAX_CLIP_DISTANCES, &v));
+        if (v <= 0) {
+          Machine_setStatus(Machine_Status_EnvironmentFailed);
+          Machine_jump();
+        }
+        g_clipDistances = malloc(sizeof(_ClipDistances));
+        if (!g_clipDistances) {
+          Machine_setStatus(Machine_Status_AllocationFailed);
+          Machine_jump();
+        }
+        g_clipDistances->a = malloc(((size_t)v) * sizeof(_ClipDistance));
+        if (!g_clipDistances->a) {
+          free(g_clipDistances);
+          g_clipDistances = NULL;
+          Machine_setStatus(Machine_Status_AllocationFailed);
+          Machine_jump();
+        }
+        g_clipDistances->n = (size_t)v;
+        for (size_t i = 0; i < g_clipDistances->n; ++i) {
+          g_clipDistances->a[i].enabled = false;
+        }
+      }
+
       // Enable depth testing.
       // Fragments always pass.
       glEnable(GL_DEPTH_TEST);
@@ -117,6 +154,12 @@ int Machine_Video_startup() {
       Machine_popJumpTarget();
     } else {
       Machine_popJumpTarget();
+      if (g_clipDistances) {
+        free(g_clipDistances->a);
+        g_clipDistances->a = NULL;
+        free(g_clipDistances);
+        g_clipDistances = NULL;
+      }
       if (g_material) {
         Machine_unlock(g_material);
         g_material = NULL;
@@ -133,6 +176,12 @@ int Machine_Video_startup() {
 }
 
 void Machine_Video_shutdown() {
+  if (g_clipDistances) {
+    free(g_clipDistances->a);
+    g_clipDistances->a = NULL;
+    free(g_clipDistances);
+    g_clipDistances = NULL;
+  }
   Machine_unlock(g_material);
   g_material = NULL;
   glfwMakeContextCurrent(NULL);
@@ -246,6 +295,28 @@ void Machine_Video_getViewportRectangle(Machine_Real *left, Machine_Real *bottom
   *bottom = g_viewport.bottom;
   *width = g_viewport.width;
   *height = g_viewport.height;
+}
+
+void Machine_Video_setClipDistanceEnabled(Machine_Integer index, Machine_Boolean enabled) {
+  if (index < 0 || index >= Machine_Video_getMaximalClipDistanceCount()) {
+    Machine_setStatus(Machine_Status_IndexOutOfBounds);
+    Machine_jump();
+  }
+  g_clipDistances->a[index].enabled = enabled;
+  if (enabled) {
+    glEnable(GL_CLIP_DISTANCE0 + index);
+  }
+  else {
+    glDisable(GL_CLIP_DISTANCE0 + index);
+  }
+}
+
+Machine_Boolean Machine_Video_getClipDistanceEnabled(Machine_Integer index) {
+  if (index < 0 || index >= Machine_Video_getMaximalClipDistanceCount()) {
+    Machine_setStatus(Machine_Status_IndexOutOfBounds);
+    Machine_jump();
+  }
+  return g_clipDistances->a[index].enabled;
 }
 
 void Machine_Video_clearColorBuffer() {

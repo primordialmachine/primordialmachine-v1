@@ -119,6 +119,16 @@ void Machine_Video_setViewportRectangle(Machine_Real left, Machine_Real bottom, 
 /// @param width, height Pointers to variables receiving the width and height of the viewport rectangle.
 void Machine_Video_getViewportRectangle(Machine_Real* left, Machine_Real* bottom, Machine_Real* width, Machine_Real* height);
 
+/// @brief Set if the clip distance of the specified index is enabled.
+/// @param index The index. Must be greater than or equal @a 0 and smaller than Machine_Video_getMaximalClipDistanceCount();
+/// @param enabled @a true to enable the clip distance the specified index, @a false to disable it.
+void Machine_Video_setClipDistanceEnabled(Machine_Integer index, Machine_Boolean enabled);
+
+/// @brief Get if the clip distance of the specified index is enabled.
+/// @param index The index.
+/// @return @a true if the clip distance of the specified index is enabled, @a false if it is disabled.
+Machine_Boolean Machine_Video_getClipDistanceEnabled(Machine_Integer index);
+
 /// @brief Clear the color buffer.
 /// A sub-rectangle of the color buffer is cleared.
 /// That sub-rectangle is the current viewport rectangle.
