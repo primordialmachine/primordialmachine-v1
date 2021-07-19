@@ -220,8 +220,9 @@ typedef void (Machine_ClassObjectDestructCallback)(void* self);
 typedef struct Machine_Object Machine_Object;
 
 typedef struct Machine_Object {
-  size_t(*getHashValue)(const Machine_Object* x);
-  bool(*isEqualTo)(const Machine_Object* x, const Machine_Object* y);
+  size_t(*getHashValue)(Machine_Object const* self);
+  Machine_Boolean(*isEqualTo)(Machine_Object const* self, Machine_Object const* other);
+  Machine_String*(*toString)(Machine_Object const* self);
 } Machine_Object;
 
 Machine_ClassType* Machine_Object_getClassType();
@@ -229,13 +230,18 @@ Machine_ClassType* Machine_Object_getClassType();
 /// @brief Get the hash value of this object.
 /// @param self This object.
 /// @return The hash value.
-size_t Machine_Object_getHashValue(const Machine_Object* self);
+size_t Machine_Object_getHashValue(Machine_Object const* self);
 
 /// @brief Get if an object is equal to another object.
 /// @param self This object.
 /// @param other The other object.
 /// @return @a true if this object is equal to another object, @a false otherwise.
-bool Machine_Object_isEqualTo(const Machine_Object* self, const Machine_Object* other);
+Machine_Boolean Machine_Object_isEqualTo(Machine_Object const* self, Machine_Object const* other);
+
+/// @brief Convert an object to a <code>String</code> value.
+/// @param self This object.
+/// @return The <code>String</code> value.
+Machine_String* Machine_Object_toString(Machine_Object const* self);
 
 /// @brief Construct this object.
 /// @param self This object.

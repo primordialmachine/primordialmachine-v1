@@ -367,13 +367,20 @@ size_t Machine_Value_getHashValue(const Machine_Value* self) {
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-static size_t Machine_Object_getHashValueImpl(const Machine_Object* self) {
+static size_t Machine_Object_getHashValueImpl(Machine_Object const * self) {
   return (size_t)(uintptr_t)self;
 }
 
-static bool Machine_Object_isEqualToImpl(const Machine_Object* x, const Machine_Object* y) {
-  return x == y;
+static Machine_Boolean Machine_Object_isEqualToImpl(Machine_Object const* self, Machine_Object const* other) {
+  return self == other;
 }
+
+static Machine_String* Machine_Object_toStringImpl(Machine_Object const* self) {
+  static_assert(INTPTR_MAX <= Machine_Integer_Greatest, "Machine_Integer can not represent an identity value");
+  static_assert(INTPTR_MIN >= Machine_Integer_Least, "Machine_Integer can not represent an identity value");
+  return Machine_Integer_toString((Machine_Integer)(intptr_t)self);
+}
+
 
 struct Machine_ClassType {
   Machine_ClassType* parent;
@@ -529,17 +536,22 @@ Machine_Object* Machine_allocateClassObject(Machine_ClassType* type, size_t numb
   Machine_lock(t->classType);
   ((Machine_Object*)(t + 1))->getHashValue = &Machine_Object_getHashValueImpl;
   ((Machine_Object*)(t + 1))->isEqualTo = &Machine_Object_isEqualToImpl;
+  ((Machine_Object*)(t + 1))->toString = &Machine_Object_toStringImpl;
   type->construct((void *)(t + 1), numberOfArguments, arguments);
 
   return (void*)(t + 1);
 }
 
-size_t Machine_Object_getHashValue(const Machine_Object* self) {
+size_t Machine_Object_getHashValue(Machine_Object const* self) {
   return self->getHashValue(self);
 }
 
-bool Machine_Object_isEqualTo(const Machine_Object* self, const Machine_Object* other) {
+Machine_Boolean Machine_Object_isEqualTo(Machine_Object const* self, Machine_Object const* other) {
   return self->isEqualTo(self, other);
+}
+
+Machine_String* Machine_Object_toString(Machine_Object const* self) {
+  return self->toString(self);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

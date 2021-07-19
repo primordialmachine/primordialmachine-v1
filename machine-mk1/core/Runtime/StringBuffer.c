@@ -14,9 +14,15 @@ struct Machine_StringBuffer {
   Machine_ByteBuffer* byteBuffer;
 };
 
+static Machine_String* Machine_StringBuffer_toStringImpl(Machine_StringBuffer const* self) {
+  return Machine_String_create(Machine_ByteBuffer_getBytes(self->byteBuffer), Machine_ByteBuffer_getNumberOfBytes(self->byteBuffer));
+}
+
+
 static void Machine_StringBuffer_construct(Machine_StringBuffer* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->byteBuffer = Machine_ByteBuffer_create();
+  ((Machine_Object*)self)->toString = (Machine_String *(*)(Machine_Object const*)) & Machine_StringBuffer_toStringImpl;
   Machine_setClassType((Machine_Object *)self, Machine_StringBuffer_getClassType());
 }
 
@@ -44,8 +50,4 @@ void Machine_StringBuffer_insertBytesAt(Machine_StringBuffer* self, size_t i, co
 
 void Machine_StringBuffer_clear(Machine_StringBuffer* self) {
   Machine_ByteBuffer_clear(self->byteBuffer);
-}
-
-Machine_String *Machine_StringBuffer_toString(Machine_StringBuffer* self) {
-  return Machine_String_create(Machine_ByteBuffer_getBytes(self->byteBuffer), Machine_ByteBuffer_getNumberOfBytes(self->byteBuffer));
 }
