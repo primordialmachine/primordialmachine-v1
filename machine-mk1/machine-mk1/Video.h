@@ -114,6 +114,11 @@ Machine_Real Machine_Video_getClearDepth();
 /// @param width, height The width and height of the viewport rectangle.
 void Machine_Video_setViewportRectangle(Machine_Real left, Machine_Real bottom, Machine_Real width, Machine_Real height);
 
+/// @brief Get the current viewport rectangle.
+/// @param left, bottom Pointers to variables receiving the lower left corner of the viewport rectangle.
+/// @param width, height Pointers to variables receiving the width and height of the viewport rectangle.
+void Machine_Video_getViewportRectangle(Machine_Real* left, Machine_Real* bottom, Machine_Real* width, Machine_Real* height);
+
 /// @brief Render @a n consecutive vertices starting with the vertex at (zero-based) index @a 0.
 void Machine_Video_drawDirect(Machine_Integer i, Machine_Integer n);
 

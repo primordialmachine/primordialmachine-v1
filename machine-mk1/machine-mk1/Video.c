@@ -241,6 +241,13 @@ void Machine_Video_setViewportRectangle(Machine_Real left, Machine_Real bottom, 
   glScissor(left, bottom, width, height);
 }
 
+void Machine_Video_getViewportRectangle(Machine_Real *left, Machine_Real *bottom, Machine_Real *width, Machine_Real *height) {
+  *left = g_viewport.left;
+  *bottom = g_viewport.bottom;
+  *width = g_viewport.width;
+  *height = g_viewport.height;
+}
+
 void Machine_Video_drawDirect(Machine_Integer i, Machine_Integer n) {
   if (i < 0 || n < 0) {
     Machine_setStatus(Machine_Status_InvalidArgument);
