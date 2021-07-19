@@ -18,7 +18,7 @@ static struct {
 
 static Machine_Material* g_material = NULL;
 
-static float g_clearDepth = 1.f;
+static Machine_Real g_clearDepth = 1.f;
 
 
 /// @EXTENSION 
@@ -219,12 +219,12 @@ Machine_DepthTestFunction Machine_Video_getDepthTestFunction() {
 }
 
 
-void Machine_Video_setClearDepth(float clearDepth) {
+void Machine_Video_setClearDepth(Machine_Real clearDepth) {
   g_clearDepth = clearDepth;
   glClearDepth(g_clearDepth);
 }
 
-float Machine_Video_getClearDepth() {
+Machine_Real Machine_Video_getClearDepth() {
   return g_clearDepth;
 }
 

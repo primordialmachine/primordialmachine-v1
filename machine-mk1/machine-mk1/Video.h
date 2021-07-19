@@ -103,11 +103,11 @@ Machine_DepthTestFunction Machine_Video_getDepthTestFunction();
 
 /// @brief Set the clear depth.
 /// @param clearDepth The clear depth.
-void Machine_Video_setClearDepth(float clearDepth);
+void Machine_Video_setClearDepth(Machine_Real clearDepth);
 
 /// @brief Get the clear depth.
 /// @return The clear depth.
-float Machine_Video_getClearDepth();
+Machine_Real Machine_Video_getClearDepth();
 
 
 GLFWwindow* Machine_Video_getMainWindow();
