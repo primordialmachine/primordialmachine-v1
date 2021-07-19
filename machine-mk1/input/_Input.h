@@ -5,6 +5,7 @@
 #define MACHINE__INPUT_H_INCLUDED
 
 #define MACHINE_INPUT_PRIVATE (1)
+#include "Input/KeyboardKeyEvent.h"
 #include "Input/MouseButtonEvent.h"
 #include "Input/MousePointerEvent.h"
 #undef MACHINE_INPUT_PRIVATE

@@ -74,12 +74,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Input\KeyboardKeyEvent.c" />
     <ClCompile Include="Input\KeyboardKeys.c" />
     <ClCompile Include="Input\MouseButtonEvent.c" />
     <ClCompile Include="Input\MousePointerEvent.c" />
     <ClCompile Include="_Input.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Input\KeyboardKeyEvent.h" />
     <ClInclude Include="Input\KeyboardKeys.h" />
     <ClInclude Include="Input\MouseButtonEvent.h" />
     <ClInclude Include="Input\MousePointerEvent.h" />
