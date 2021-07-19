@@ -248,6 +248,13 @@ void Machine_Video_getViewportRectangle(Machine_Real *left, Machine_Real *bottom
   *height = g_viewport.height;
 }
 
+void Machine_Video_clearDepthBuffer() {
+  Machine_UtilitiesGl_call(glViewport(g_viewport.left, g_viewport.bottom, g_viewport.width, g_viewport.height));
+  Machine_UtilitiesGl_call(glScissor(g_viewport.left, g_viewport.bottom, g_viewport.width, g_viewport.height));
+  Machine_UtilitiesGl_call(glEnable(GL_SCISSOR_TEST));
+  Machine_UtilitiesGl_call(glClear(GL_DEPTH_BUFFER_BIT));
+}
+
 void Machine_Video_drawDirect(Machine_Integer i, Machine_Integer n) {
   if (i < 0 || n < 0) {
     Machine_setStatus(Machine_Status_InvalidArgument);
