@@ -119,6 +119,12 @@ void Machine_Video_setViewportRectangle(Machine_Real left, Machine_Real bottom, 
 /// @param width, height Pointers to variables receiving the width and height of the viewport rectangle.
 void Machine_Video_getViewportRectangle(Machine_Real* left, Machine_Real* bottom, Machine_Real* width, Machine_Real* height);
 
+/// @brief Clear the color buffer.
+/// A sub-rectangle of the color buffer is cleared.
+/// That sub-rectangle is the current viewport rectangle.
+/// The value the color buffer is clear with is the current color clear value.
+void Machine_Video_clearColorBuffer();
+
 /// @brief Clear the sub-rectangle of the depth buffer specified by the current viewport using the current clear depth value.
 /// A sub-rectangle of the depth buffer is cleared.
 /// That sub-rectangle is the current viewport rectangle.
