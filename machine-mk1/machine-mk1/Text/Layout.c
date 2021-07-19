@@ -233,10 +233,10 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
   }
 
   if (self->clipRectangle) {
-    glEnable(GL_CLIP_DISTANCE0);
-    glEnable(GL_CLIP_DISTANCE1);
-    glEnable(GL_CLIP_DISTANCE2);
-    glEnable(GL_CLIP_DISTANCE3);
+    Machine_Video_setClipDistanceEnabled(0, true);
+    Machine_Video_setClipDistanceEnabled(1, true);
+    Machine_Video_setClipDistanceEnabled(2, true);
+    Machine_Video_setClipDistanceEnabled(3, true);
   }
   if (self->renderVisualBounds) {
     if (!self->visualBounds) {
@@ -357,11 +357,10 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
     cursorPosition[0] = position0[0];
     cursorPosition[1] += Machine_Font_getBaselineDistance(self->font);
   }
-
-  glDisable(GL_CLIP_DISTANCE3);
-  glDisable(GL_CLIP_DISTANCE2);
-  glDisable(GL_CLIP_DISTANCE1);
-  glDisable(GL_CLIP_DISTANCE0);
+  Machine_Video_setClipDistanceEnabled(3, false);
+  Machine_Video_setClipDistanceEnabled(2, false);
+  Machine_Video_setClipDistanceEnabled(1, false);
+  Machine_Video_setClipDistanceEnabled(0, false);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
