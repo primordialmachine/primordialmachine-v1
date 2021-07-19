@@ -20,6 +20,10 @@ static Machine_Material* g_material = NULL;
 
 static Machine_Real g_clearDepth = 1.f;
 
+static struct {
+  Machine_Real left, bottom, width, height;
+} g_viewport = { 0.f, 0.f, 0.f, 0.f };
+
 
 /// @EXTENSION 
 static GLenum Machine_BlendFunction_toGL(Machine_BlendFunction self) {
@@ -226,6 +230,15 @@ void Machine_Video_setClearDepth(Machine_Real clearDepth) {
 
 Machine_Real Machine_Video_getClearDepth() {
   return g_clearDepth;
+}
+
+void Machine_Video_setViewportRectangle(Machine_Real left, Machine_Real bottom, Machine_Real width, Machine_Real height) {
+  g_viewport.left = left;
+  g_viewport.bottom = bottom;
+  g_viewport.width = width;
+  g_viewport.height = height;
+  glViewport(left, bottom, width, height);
+  glScissor(left, bottom, width, height);
 }
 
 void Machine_Video_drawDirect(Machine_Integer i, Machine_Integer n) {
