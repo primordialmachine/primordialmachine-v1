@@ -91,7 +91,7 @@ Machine_Integer Machine_GDL_Node_toInteger(Machine_GDL_Node* self, Machine_GDL_C
   memcpy(buffer, Machine_String_getBytes(self->text), n);
   buffer[n] = '\0';
   Machine_Integer v;
-  if (sscanf(buffer, "%"SCNi32, &v) != 1) {
+  if (sscanf(buffer, "%"SCNd64, &v) != 1) {
     Machine_setStatus(Machine_Status_InvalidOperation); // TODO: Should be "ConversionFailed".
     Machine_jump();
   }
