@@ -109,8 +109,14 @@ void Machine_Video_setClearDepth(Machine_Real clearDepth);
 /// @return The clear depth.
 Machine_Real Machine_Video_getClearDepth();
 
+/// @brief Render @a n consecutive vertices starting with the vertex at (zero-based) index @a 0.
+void Machine_Video_drawDirect(Machine_Integer i, Machine_Integer n);
+
+/// @brief Render @a n consecutive indices starting with the index at (zero-based) index @a 0.
+void Machine_Video_drawIndirect(Machine_Integer i, Machine_Integer n, uint8_t const* indices);
 
 GLFWwindow* Machine_Video_getMainWindow();
+
 
 
 #endif // MACHINE_VIDEO_H_INCLUDED

@@ -228,6 +228,25 @@ Machine_Real Machine_Video_getClearDepth() {
   return g_clearDepth;
 }
 
+void Machine_Video_drawDirect(Machine_Integer i, Machine_Integer n) {
+  if (i < 0 || n < 0) {
+    Machine_setStatus(Machine_Status_InvalidArgument);
+    Machine_jump();
+  }
+  if (n > 0) {
+    Machine_UtilitiesGl_call(glDrawArrays(GL_TRIANGLES, i, n));
+  }
+}
+
+void Machine_Video_drawIndirect(Machine_Integer i, Machine_Integer n, uint8_t const* indices) {
+  if (i < 0 || n < 0) {
+    Machine_setStatus(Machine_Status_InvalidArgument);
+    Machine_jump();
+  }
+  if (n > 0) {
+    Machine_UtilitiesGl_call(glDrawElements(GL_TRIANGLES, n, GL_UNSIGNED_BYTE, indices + i));
+  }
+}
 
 GLFWwindow* Machine_Video_getMainWindow() {
   return g_window;
