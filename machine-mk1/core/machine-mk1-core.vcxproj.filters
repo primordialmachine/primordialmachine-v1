@@ -87,6 +87,9 @@
     <ClCompile Include="Runtime\Arguments.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
+    <ClCompile Include="Runtime\ConvertPrimitiveTypes.c">
+      <Filter>Quelldateien\Runtime</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Machine.h">
@@ -159,6 +162,9 @@
       <Filter>Headerdateien\Runtime\IO</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\Arguments.h">
+      <Filter>Headerdateien\Runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\ConvertPrimitiveTypes.h">
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
   </ItemGroup>

@@ -13,6 +13,7 @@
 
 
 #include "Runtime/PrimitiveTypes.h"
+#include "Runtime/ConvertPrimitiveTypes.h"
 typedef struct Machine_String Machine_String;
 typedef struct Machine_Object Machine_Object;
 

@@ -15,6 +15,7 @@
     <ClCompile Include="Runtime\Arguments.c" />
     <ClCompile Include="Runtime\ByteBuffer.c" />
     <ClCompile Include="Runtime\Collection.c" />
+    <ClCompile Include="Runtime\ConvertPrimitiveTypes.c" />
     <ClCompile Include="Runtime\IO.c" />
     <ClCompile Include="Runtime\IO\getFileContents.c" />
     <ClCompile Include="Runtime\IO\setFileContents.c" />
@@ -38,6 +39,7 @@
     <ClInclude Include="Runtime\ByteBuffer.h" />
     <ClInclude Include="Runtime\Collection.h" />
     <ClInclude Include="Runtime\Configuration.h" />
+    <ClInclude Include="Runtime\ConvertPrimitiveTypes.h" />
     <ClInclude Include="Runtime\IO.h" />
     <ClInclude Include="Runtime\IO\ExistingFilePolicy.h" />
     <ClInclude Include="Runtime\IO\FileAccessMode.h" />
