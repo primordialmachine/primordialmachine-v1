@@ -39,8 +39,6 @@ static const uint8_t indices[] = {
 struct Scene3 {
   Scene parent;
   Machine_ShaderProgram* shaderProgram;
-  GLint mvp_location;
-  GLint texture_location;
   Machine_Binding* binding;
   Machine_VideoBuffer* vertices;
   Machine_Images_Image* image;
@@ -77,8 +75,6 @@ static void Scene3_startup(Scene3* scene) {
   Machine_VideoBuffer_setData(scene->vertices, sizeof(vertices), (void const *)vertices);
 
   scene->shaderProgram = Machine_GL_ShaderProgram_generateDefaultShader(false, true, true, true);
-  scene->mvp_location = glGetUniformLocation(((Machine_GL_ShaderProgram*)(scene->shaderProgram))->programId, "modelToProjectionMatrix");
-  scene->texture_location = glGetUniformLocation(((Machine_GL_ShaderProgram*)(scene->shaderProgram))->programId, "texture_1");
 
   Machine_VertexDescriptor* vd = Machine_VertexDescriptor_create();
   Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_XfYf);
@@ -107,7 +103,7 @@ static void Scene3_update(Scene3* self, float width, float height) {
   Machine_Binding_activate(self->binding);
   Machine_Video_bindShaderProgram(self->shaderProgram);
   Machine_Binding_bindMatrix4(self->binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), mvp2);
-  glUniform1i(self->texture_location, 0);
+  Machine_Binding_bindSampler(self->binding, Machine_String_create("texture_1", strlen("texture_1")), 0);
   Machine_Video_bindTexture(0, self->texture);
 
   Machine_Video_drawIndirect(0, 6, indices);

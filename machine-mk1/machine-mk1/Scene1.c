@@ -32,7 +32,6 @@ vertices[] =
 struct Scene1 {
   Scene parent;
   Machine_ShaderProgram* shaderProgram;
-  GLint mvp_location;
   Machine_Binding* binding;
   Machine_VideoBuffer* vertices;
 };
@@ -58,7 +57,6 @@ static void Scene1_onStartup(Scene1* scene) {
   Machine_VideoBuffer_setData(scene->vertices, sizeof(vertices), (void const *)vertices);
 
   scene->shaderProgram = Machine_GL_ShaderProgram_generateDefaultShader(false, true, false, false);
-  scene->mvp_location = glGetUniformLocation(((Machine_GL_ShaderProgram *)(scene->shaderProgram))->programId, "modelToProjectionMatrix");
 
   Machine_VertexDescriptor* vd = Machine_VertexDescriptor_create();
   Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_XfYf);
