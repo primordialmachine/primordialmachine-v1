@@ -217,6 +217,9 @@ typedef void (Machine_ClassObjectConstructCallback)(void* self, size_t numberOfA
  */
 typedef void (Machine_ClassObjectDestructCallback)(void* self);
 
+/** @todo Transitional hack. Remove! */
+typedef struct Machine_Object Machine_Object_Class;
+
 typedef struct Machine_Object Machine_Object;
 
 typedef struct Machine_Object {
@@ -291,6 +294,7 @@ static inline bool Machine_isSuperTypeOf(const Machine_ClassType* superType, con
 
 #define MACHINE_DECLARE_CLASSTYPE(NAME) \
   typedef struct NAME NAME; \
+  typedef NAME NAME##_Class; /** @todo Transitional hack. Remove! */ \
   Machine_ClassType *NAME##_getClassType();
 
 #define MACHINE_DEFINE_CLASSTYPE_EX(THIS_TYPE, PARENT_TYPE, VISIT, CONSTRUCT, DESTRUCT) \

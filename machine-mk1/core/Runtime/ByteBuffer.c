@@ -14,11 +14,15 @@ struct Machine_ByteBuffer {
   size_t c; ///< The capacity.
 };
 
+static void Machine_ByteBuffer_constructClass(Machine_ByteBuffer_Class *self)
+{/*Intentionally empty.*/}
+
 static void Machine_ByteBuffer_construct(Machine_ByteBuffer* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->p = NULL;
   self->s = 0;
   self->c = 0;
+  Machine_ByteBuffer_constructClass(self);
   Machine_setClassType((Machine_Object *)self, Machine_ByteBuffer_getClassType());
 }
 

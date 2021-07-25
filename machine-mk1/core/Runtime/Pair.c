@@ -11,11 +11,15 @@
 
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_Pair, Machine_Object, NULL, &Machine_Pair_construct, NULL)
 
+static void Machine_Pair_constructClass(Machine_Pair_Class *self)
+{/*Intentionally empty.*/}
+
 void Machine_Pair_construct(Machine_Pair* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   MACHINE_ASSERT(numberOfArguments == 2, Machine_Status_InvalidNumberOfArguments);
   self->first = arguments[0];
   self->second = arguments[1];
+  Machine_Pair_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_Pair_getClassType());
 }
 

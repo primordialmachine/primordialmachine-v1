@@ -27,9 +27,13 @@ static void Machine_PointerArray_visit(Machine_PointerArray* self) {
   }
 }
 
+static void Machine_PointerArray_constructClass(Machine_PointerArray_Class *self)
+{/*Intentionally empty.*/}
+
 static void Machine_PointerArray_construct(Machine_PointerArray* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->list = Machine_List_create();
+  Machine_PointerArray_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_PointerArray_getClassType());
 }
 

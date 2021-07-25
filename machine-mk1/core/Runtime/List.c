@@ -42,10 +42,9 @@ static void Machine_List_visit(Machine_List* self);
 
 static void Machine_List_destruct(Machine_List* self);
 
-static void Machine_List_construct(Machine_List* self, size_t numberOfArguments, const Machine_Value* arguments) {
-  Machine_Collection_construct((Machine_Collection*)self, numberOfArguments, arguments);
-  ((Machine_Collection*)self)->getSize = (size_t(*)(const Machine_Collection*)) & getSize;
-  ((Machine_Collection*)self)->clear = (void (*)(Machine_Collection*)) & clear;
+static void Machine_List_constructClass(Machine_List_Class* self) {
+  ((Machine_Collection_Class*)self)->getSize = (size_t(*)(const Machine_Collection*)) & getSize;
+  ((Machine_Collection_Class*)self)->clear = (void (*)(Machine_Collection*)) & clear;
   self->append = &append;
   self->prepend = &prepend;
   self->insertAt = &insertAt;
@@ -58,9 +57,14 @@ static void Machine_List_construct(Machine_List* self, size_t numberOfArguments,
 #if defined(Machine_List_withSlice) && Machine_List_withSlice == 1
   self->slice = &slice;
 #endif
+}
+
+static void Machine_List_construct(Machine_List* self, size_t numberOfArguments, const Machine_Value* arguments) {
+  Machine_Collection_construct((Machine_Collection*)self, numberOfArguments, arguments);
   self->size = 0;
   self->capacity = 0;
   self->elements = NULL;
+  Machine_List_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_List_getClassType());
 }
 

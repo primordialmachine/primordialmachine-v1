@@ -134,6 +134,13 @@ static void clear(Machine_Map* self) {
 
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_Map, Machine_Collection, NULL, &Machine_Map_construct, NULL)
 
+static void Machine_Map_constructClass(Machine_Map_Class* self) {
+  self->get = &get;
+  self->set = &set;
+  ((Machine_Collection_Class*)self)->getSize = (size_t(*)(const Machine_Collection*)) & getSize;
+  ((Machine_Collection_Class*)self)->clear = (void (*)(Machine_Collection*)) & clear;
+}
+
 void Machine_Map_construct(Machine_Map* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Collection_construct((Machine_Collection*)self, numberOfArguments, arguments);
   Map* pimpl = malloc(sizeof(Map));
@@ -154,10 +161,7 @@ void Machine_Map_construct(Machine_Map* self, size_t numberOfArguments, const Ma
     pimpl->buckets[i] = NULL;
   }
   self->pimpl = pimpl;
-  self->get = &get;
-  self->set = &set;
-  ((Machine_Collection*)self)->getSize = (size_t (*)(const Machine_Collection *))&getSize;
-  ((Machine_Collection*)self)->clear = (void (*)(Machine_Collection *))&clear;
+  Machine_Map_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_Map_getClassType());
 }
 

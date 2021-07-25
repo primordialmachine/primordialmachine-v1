@@ -18,11 +18,14 @@ static Machine_String* Machine_StringBuffer_toStringImpl(Machine_StringBuffer co
   return Machine_String_create(Machine_ByteBuffer_getBytes(self->byteBuffer), Machine_ByteBuffer_getNumberOfBytes(self->byteBuffer));
 }
 
+static void Machine_StringBuffer_constructClass(Machine_StringBuffer_Class* self) {
+  ((Machine_Object_Class*)self)->toString = (Machine_String * (*)(Machine_Object const*)) & Machine_StringBuffer_toStringImpl;
+}
 
 static void Machine_StringBuffer_construct(Machine_StringBuffer* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->byteBuffer = Machine_ByteBuffer_create();
-  ((Machine_Object*)self)->toString = (Machine_String *(*)(Machine_Object const*)) & Machine_StringBuffer_toStringImpl;
+  Machine_StringBuffer_constructClass(self);
   Machine_setClassType((Machine_Object *)self, Machine_StringBuffer_getClassType());
 }
 

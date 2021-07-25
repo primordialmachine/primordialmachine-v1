@@ -6,8 +6,12 @@
 
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_Collection, Machine_Object, NULL, &Machine_Collection_construct, NULL)
 
+static void Machine_Collection_constructClass(Machine_Collection_Class *self)
+{/*Intentionally empty.*/}
+
 void Machine_Collection_construct(Machine_Collection* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
+  Machine_Collection_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_Collection_getClassType());
 }
 
