@@ -14,7 +14,7 @@ static const float OFFSET_Y = 0.f;
 
 #define Y_UP (1)
 
-static void visit(Machine_Text_Layout* self) {
+static void Machine_Text_Layout_visit(Machine_Text_Layout* self) {
   if (self->color) {
     Machine_visit(self->color);
   }
@@ -174,25 +174,38 @@ static void updateBounds(Machine_Text_Layout* self) {
   Machine_Rectangle2_setRectangle(self->visualBounds, bounds);
 }
 
+MACHINE_DEFINE_CLASSTYPE_EX(Machine_Text_Layout, Machine_Object, &Machine_Text_Layout_visit, &Machine_Text_Layout_construct, NULL)
+
+void Machine_Text_Layout_construct(Machine_Text_Layout* self, size_t numberOfArguments, Machine_Value const* arguments) {
+  Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
+  self->color = Machine_Math_Vector3_create();
+  Machine_Math_Vector3_set(self->color, 0.f, 0.f, 0.f);
+  self->position = Machine_Math_Vector2_create();
+  Machine_Math_Vector2_set(self->position, 0.f, 0.f);
+  self->text = Machine_Value_getString(arguments + 0);
+  self->font = (Machine_Fonts_Font *)Machine_Value_getObject(arguments + 1);
+  self->lines = Machine_PointerArray_create();
+  self->yup = true;
+  self->flags |= LINES_DIRTY;
+  Machine_setClassType((Machine_Object*)self, Machine_Text_Layout_getClassType());
+}
+
 Machine_Text_Layout* Machine_Text_Layout_create(Machine_String* text, Machine_Fonts_Font* font) {
   if (text == NULL) {
     Machine_setStatus(Machine_Status_InvalidArgument);
     Machine_jump();
   }
-  Machine_Text_Layout* self = Machine_allocate(sizeof(Machine_Text_Layout), (Machine_VisitCallback*)&visit, NULL);
-  if (!self) {
-    Machine_setStatus(Machine_Status_AllocationFailed);
+  if (font == NULL) {
+    Machine_setStatus(Machine_Status_InvalidArgument);
     Machine_jump();
   }
-  self->color = Machine_Math_Vector3_create();
-  Machine_Math_Vector3_set(self->color, 0.f, 0.f, 0.f);
-  self->position = Machine_Math_Vector2_create();
-  Machine_Math_Vector2_set(self->position, 0.f, 0.f);
-  self->font = font;
-  self->text = text;
-  self->lines = Machine_PointerArray_create();
-  self->yup = true;
-  self->flags |= LINES_DIRTY;
+
+  Machine_ClassType* ty = Machine_Text_Layout_getClassType();
+  static const size_t NUMBER_OF_ARGUMENTS = 2;
+  Machine_Value arguments[2];
+  Machine_Value_setString(&arguments[0], text);
+  Machine_Value_setObject(&arguments[1], (Machine_Object *)font);
+  Machine_Text_Layout* self = (Machine_Text_Layout*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments);
   return self;
 }
 
