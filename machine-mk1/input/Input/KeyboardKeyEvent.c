@@ -23,9 +23,8 @@ Machine_String* Machine_KeyboardKeyActions_toString(Machine_KeyboardKeyActions s
   };
 }
 
-static void Machine_KeyboardKeyEvent_visit(Machine_KeyboardKeyEvent* self) {
-  /*Intentionally empty.*/
-}
+static void Machine_KeyboardKeyEvent_visit(Machine_KeyboardKeyEvent* self)
+{/*Intentionally empty.*/}
 
 static Machine_String* Machine_KeyboardKeyEvent_toStringImpl(Machine_KeyboardKeyEvent const* self) {
   Machine_StringBuffer* stringBuffer = Machine_StringBuffer_create();
@@ -48,11 +47,15 @@ static Machine_String* Machine_KeyboardKeyEvent_toStringImpl(Machine_KeyboardKey
   return Machine_Object_toString((Machine_Object *)stringBuffer);
 }
 
+static void Machine_KeyboardKeyEvent_constructClass(Machine_KeyboardKeyEvent_Class* self) {
+  ((Machine_Object_Class*)self)->toString = (Machine_String * (*)(Machine_Object const*)) & Machine_KeyboardKeyEvent_toStringImpl;
+}
+
 static void Machine_KeyboardKeyEvent_construct(Machine_KeyboardKeyEvent* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->key = Machine_Value_getInteger(&arguments[0]);
   self->keyAction = Machine_Value_getInteger(&arguments[1]);
-  ((Machine_Object*)self)->toString = (Machine_String * (*)(Machine_Object const*)) & Machine_KeyboardKeyEvent_toStringImpl;
+  Machine_KeyboardKeyEvent_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_KeyboardKeyEvent_getClassType());
 }
 

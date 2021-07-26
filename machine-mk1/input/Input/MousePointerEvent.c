@@ -10,9 +10,8 @@
 
 
 
-static void Machine_MousePointerEvent_visit(Machine_MousePointerEvent* self) {
-  /*Intentionally empty.*/
-}
+static void Machine_MousePointerEvent_visit(Machine_MousePointerEvent* self)
+{/*Intentionally empty.*/}
 
 static Machine_String* Machine_MousePointerEvent_toStringImpl(Machine_MousePointerEvent const* self) {
   Machine_StringBuffer* stringBuffer = Machine_StringBuffer_create();
@@ -34,11 +33,15 @@ static Machine_String* Machine_MousePointerEvent_toStringImpl(Machine_MousePoint
   return Machine_Object_toString((Machine_Object *)stringBuffer);
 }
 
+static void Machine_MousePointerEvent_constructClass(Machine_MousePointerEvent_Class* self) {
+  ((Machine_Object_Class*)self)->toString = (Machine_String * (*)(Machine_Object const*)) & Machine_MousePointerEvent_toStringImpl;
+}
+
 static void Machine_MousePointerEvent_construct(Machine_MousePointerEvent* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->x = Machine_Value_getReal(&arguments[0]);
   self->y = Machine_Value_getReal(&arguments[1]);
-  ((Machine_Object*)self)->toString = (Machine_String * (*)(Machine_Object const*)) & Machine_MousePointerEvent_toStringImpl;
+  Machine_MousePointerEvent_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_MousePointerEvent_getClassType());
 }
 

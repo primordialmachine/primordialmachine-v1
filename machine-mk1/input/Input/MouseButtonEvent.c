@@ -52,13 +52,17 @@ static Machine_String* Machine_MouseButtonEvent_toStringImpl(Machine_MouseButton
   return Machine_Object_toString((Machine_Object *)stringBuffer);
 }
 
+static void Machine_MouseButtonEvent_constructClass(Machine_MouseButtonEvent_Class* self) {
+  ((Machine_Object_Class*)self)->toString = (Machine_String * (*)(Machine_Object const*)) & Machine_MouseButtonEvent_toStringImpl;
+}
+
 static void Machine_MouseButtonEvent_construct(Machine_MouseButtonEvent* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->button = Machine_Value_getInteger(&arguments[0]);
   self->action = Machine_Value_getInteger(&arguments[1]);
   self->x = Machine_Value_getReal(&arguments[2]);
   self->y = Machine_Value_getReal(&arguments[3]);
-  ((Machine_Object*)self)->toString = (Machine_String * (*)(Machine_Object const*)) & Machine_MouseButtonEvent_toStringImpl;
+  Machine_MouseButtonEvent_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_MouseButtonEvent_getClassType());
 }
 
