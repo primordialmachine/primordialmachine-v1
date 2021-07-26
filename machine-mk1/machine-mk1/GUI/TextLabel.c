@@ -34,11 +34,7 @@ static void Machine_GUI_TextLabel_visit(Machine_GUI_TextLabel* self) {
 
 static void Machine_GUI_TextLabel_setPosition(Machine_GUI_TextLabel* self, const Machine_Math_Vector2* position);
 
-static const Machine_Math_Vector2* Machine_GUI_TextLabel_getPosition(const Machine_GUI_TextLabel* self);
-
 static void Machine_GUI_TextLabel_setSize(Machine_GUI_TextLabel* self, const Machine_Math_Vector2* size);
-
-static const Machine_Math_Vector2* Machine_GUI_TextLabel_getSize(const Machine_GUI_TextLabel* self);
 
 static void Machine_GUI_TextLabel_setRectangle(Machine_GUI_TextLabel* self, const Machine_Math_Rectangle2* rectangle);
 
@@ -53,9 +49,7 @@ static void Machine_GUI_TextLabel_constructClass(Machine_GUI_TextLabel_Class* se
   ((Machine_GUI_Widget_Class*)self)->setRectangle = (void (*)(Machine_GUI_Widget*, const Machine_Math_Rectangle2*)) & Machine_GUI_TextLabel_setRectangle;
   ((Machine_GUI_Widget_Class*)self)->getRectangle = (const Machine_Math_Rectangle2 * (*)(const Machine_GUI_Widget*)) & Machine_GUI_TextLabel_getRectangle;
   ((Machine_GUI_Widget_Class*)self)->setPosition = (void (*)(Machine_GUI_Widget*, const Machine_Math_Vector2*)) & Machine_GUI_TextLabel_setPosition;
-  ((Machine_GUI_Widget_Class*)self)->getPosition = (const Machine_Math_Vector2 * (*)(const Machine_GUI_Widget*)) & Machine_GUI_TextLabel_getPosition;
   ((Machine_GUI_Widget_Class*)self)->setSize = (void (*)(Machine_GUI_Widget*, const Machine_Math_Vector2*)) & Machine_GUI_TextLabel_setSize;
-  ((Machine_GUI_Widget_Class*)self)->getSize = (const Machine_Math_Vector2 * (*)(const Machine_GUI_Widget*)) & Machine_GUI_TextLabel_getSize;
   ((Machine_GUI_Widget_Class*)self)->getPreferredSize = (const Machine_Math_Vector2 * (*)(const Machine_GUI_Widget*)) & Machine_GUI_TextLabel_getPreferredSize;
 }
 
@@ -73,9 +67,10 @@ MACHINE_DEFINE_CLASSTYPE_EX(Machine_GUI_TextLabel, Machine_GUI_Widget, &Machine_
 
 Machine_GUI_TextLabel* Machine_GUI_TextLabel_create(Machine_GUI_Context* context) {
   Machine_ClassType* ty = Machine_GUI_TextLabel_getClassType();
-  static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
-  Machine_GUI_TextLabel* self = (Machine_GUI_TextLabel*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  static const size_t NUMBER_OF_ARGUMENTS = 1;
+  Machine_Value arguments[1];
+  Machine_Value_setObject(&arguments[0], (Machine_Object*)context);
+  Machine_GUI_TextLabel* self = (Machine_GUI_TextLabel*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments);
   return self;
 }
 
@@ -125,19 +120,11 @@ void Machine_GUI_TextLabel_setPosition(Machine_GUI_TextLabel* self, const Machin
   self->childDirty = true;
 }
 
-const Machine_Math_Vector2* Machine_GUI_TextLabel_getPosition(const Machine_GUI_TextLabel* self) {
-  return Machine_Rectangle2_getPosition(self->background);
-}
-
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 void Machine_GUI_TextLabel_setSize(Machine_GUI_TextLabel* self, const Machine_Math_Vector2* size) {
   Machine_Rectangle2_setSize(self->background, size);
   self->childDirty = true;
-}
-
-const Machine_Math_Vector2* Machine_GUI_TextLabel_getSize(const Machine_GUI_TextLabel* self) {
-  return Machine_Rectangle2_getSize(self->background);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

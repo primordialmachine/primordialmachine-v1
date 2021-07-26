@@ -2,6 +2,7 @@
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #include "./../GUI/Widget.h"
+#include "./../GUI/Context.h"
 
 
 static void Machine_GUI_Widget_visit(Machine_GUI_Widget* self);
@@ -12,13 +13,28 @@ static void Machine_GUI_Widget_visit(Machine_GUI_Widget *self) {
   if (self->connections) {
     Machine_visit(self->connections);
   }
+  if (self->context) {
+    Machine_visit(self->context);
+  }
 }
 
-static void Machine_GUI_Widget_constructClass(Machine_GUI_Widget_Class *self)
-{/*Intentionally empty.*/}
+static const Machine_Math_Vector2* Machine_GUI_Widget_getPositionImpl(const Machine_GUI_Widget* self) {
+  return Machine_Math_Rectangle2_getPosition(Machine_GUI_Widget_getRectangle(self));
+}
+
+static const Machine_Math_Vector2* Machine_GUI_Widget_getSizeImpl(const Machine_GUI_Widget* self) {
+  return Machine_Math_Rectangle2_getSize(Machine_GUI_Widget_getRectangle(self));
+}
+
+static void Machine_GUI_Widget_constructClass(Machine_GUI_Widget_Class *self) {
+  ((Machine_GUI_Widget_Class*)self)->getPosition = (const Machine_Math_Vector2 * (*)(const Machine_GUI_Widget*)) & Machine_GUI_Widget_getPositionImpl;
+  ((Machine_GUI_Widget_Class*)self)->getSize = (const Machine_Math_Vector2 * (*)(const Machine_GUI_Widget*)) & Machine_GUI_Widget_getSizeImpl;
+}
 
 void Machine_GUI_Widget_construct(Machine_GUI_Widget* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
+  MACHINE_ASSERT(numberOfArguments == 1, Machine_Status_InvalidNumberOfArguments);
+  self->context = (Machine_GUI_Context*)Machine_Value_getObject(&arguments[0]);
   Machine_GUI_Widget_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_GUI_Widget_getClassType());
 }
@@ -123,5 +139,21 @@ void Machine_GUI_Widget_emitSignal(Machine_GUI_Widget* self, Machine_String* nam
       }
     }
   }
+}
+
+void Machine_GUI_Widget_emitPositionChangedSignal(Machine_GUI_Widget* self) {
+  Machine_GUI_Signals_Context* signalsContext = self->context->signalsContext;
+  size_t numberOfArguments = 1;
+  Machine_Value arguments[1];
+  Machine_Value_setObject(&arguments[0], (Machine_Object *)self);
+  Machine_GUI_Widget_emitSignal(self, signalsContext->PositionChanged, numberOfArguments, arguments);
+}
+
+void Machine_GUI_Widget_emitSizeChangedSignal(Machine_GUI_Widget* self) {
+  Machine_GUI_Signals_Context* signalsContext = self->context->signalsContext;
+  size_t numberOfArguments = 1;
+  Machine_Value arguments[1];
+  Machine_Value_setObject(&arguments[0], (Machine_Object*)self);
+  Machine_GUI_Widget_emitSignal(self, signalsContext->SizeChanged, numberOfArguments, arguments);
 }
 

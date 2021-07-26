@@ -14,6 +14,9 @@ MACHINE_DECLARE_CLASSTYPE(Machine_GUI_Widget)
 struct Machine_GUI_Widget {
   Machine_Object parent;
 
+  /// @brief The context this widget belongs to.
+  Machine_GUI_Context* context;
+
   Machine_List* connections;
 
   void (*render)(Machine_GUI_Widget* self, float width, float height);
@@ -118,5 +121,9 @@ void Machine_GUI_Widget_unsubscribe(Machine_GUI_Widget* self, Machine_String *na
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 void Machine_GUI_Widget_emitSignal(Machine_GUI_Widget* self, Machine_String* name, size_t numberOfArguments, const Machine_Value* arguments);
+
+void Machine_GUI_Widget_emitPositionChangedSignal(Machine_GUI_Widget* self);
+
+void Machine_GUI_Widget_emitSizeChangedSignal(Machine_GUI_Widget* self);
 
 #endif // MACHINE_GUI_WIDGET_H_INCLUDED
