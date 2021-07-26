@@ -9,6 +9,9 @@ static void Machine_GUI_BorderModel_visit(Machine_GUI_BorderModel* self) {
   }
 }
 
+static void Machine_GUI_BorderModel_constructClass(Machine_GUI_BorderModel_Class *self)
+{/*Intentionally empty.*/}
+
 void Machine_GUI_BorderModel_construct(Machine_GUI_BorderModel* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object *)self, numberOfArguments, arguments);
   self->leftWidth = 1.f;
@@ -17,6 +20,7 @@ void Machine_GUI_BorderModel_construct(Machine_GUI_BorderModel* self, size_t num
   self->bottomWidth = 1.f;
   self->color = Machine_Math_Vector4_create();
   Machine_Math_Vector4_set(self->color, 0.1f, 0.1f, 0.1f, 1.f);
+  Machine_GUI_BorderModel_constructClass(self);
   Machine_setClassType((Machine_Object *)self, Machine_GUI_BorderModel_getClassType());
 }
 

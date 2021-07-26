@@ -48,20 +48,24 @@ static const Machine_Math_Vector2* Machine_GUI_TextLabel_getPreferredSize(const 
 
 static void Machine_GUI_TextLabel_render(Machine_GUI_TextLabel* self, float width, float height);
 
+static void Machine_GUI_TextLabel_constructClass(Machine_GUI_TextLabel_Class* self) {
+  ((Machine_GUI_Widget_Class*)self)->render = (void (*)(Machine_GUI_Widget*, float, float)) & Machine_GUI_TextLabel_render;
+  ((Machine_GUI_Widget_Class*)self)->setRectangle = (void (*)(Machine_GUI_Widget*, const Machine_Math_Rectangle2*)) & Machine_GUI_TextLabel_setRectangle;
+  ((Machine_GUI_Widget_Class*)self)->getRectangle = (const Machine_Math_Rectangle2 * (*)(const Machine_GUI_Widget*)) & Machine_GUI_TextLabel_getRectangle;
+  ((Machine_GUI_Widget_Class*)self)->setPosition = (void (*)(Machine_GUI_Widget*, const Machine_Math_Vector2*)) & Machine_GUI_TextLabel_setPosition;
+  ((Machine_GUI_Widget_Class*)self)->getPosition = (const Machine_Math_Vector2 * (*)(const Machine_GUI_Widget*)) & Machine_GUI_TextLabel_getPosition;
+  ((Machine_GUI_Widget_Class*)self)->setSize = (void (*)(Machine_GUI_Widget*, const Machine_Math_Vector2*)) & Machine_GUI_TextLabel_setSize;
+  ((Machine_GUI_Widget_Class*)self)->getSize = (const Machine_Math_Vector2 * (*)(const Machine_GUI_Widget*)) & Machine_GUI_TextLabel_getSize;
+  ((Machine_GUI_Widget_Class*)self)->getPreferredSize = (const Machine_Math_Vector2 * (*)(const Machine_GUI_Widget*)) & Machine_GUI_TextLabel_getPreferredSize;
+}
+
 void Machine_GUI_TextLabel_construct(Machine_GUI_TextLabel* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_GUI_Widget_construct((Machine_GUI_Widget*)self, numberOfArguments, arguments);
   Machine_Fonts_Font *font = Machine_Fonts_createFont("RobotoSlab-Regular.ttf", 20);
   self->foreground = Machine_Text_Layout_create(Machine_String_create("", strlen("")), font);
   self->background = Machine_Rectangle2_create();
   self->childDirty = true;
-  ((Machine_GUI_Widget*)self)->render = (void (*)(Machine_GUI_Widget *, float, float))&Machine_GUI_TextLabel_render;
-  ((Machine_GUI_Widget*)self)->setRectangle = (void (*)(Machine_GUI_Widget*, const Machine_Math_Rectangle2*)) & Machine_GUI_TextLabel_setRectangle;
-  ((Machine_GUI_Widget*)self)->getRectangle = (const Machine_Math_Rectangle2 * (*)(const Machine_GUI_Widget*)) & Machine_GUI_TextLabel_getRectangle;
-  ((Machine_GUI_Widget*)self)->setPosition= (void (*)(Machine_GUI_Widget*, const Machine_Math_Vector2*)) & Machine_GUI_TextLabel_setPosition;
-  ((Machine_GUI_Widget*)self)->getPosition = (const Machine_Math_Vector2 * (*)(const Machine_GUI_Widget*)) & Machine_GUI_TextLabel_getPosition;
-  ((Machine_GUI_Widget*)self)->setSize = (void (*)(Machine_GUI_Widget*, const Machine_Math_Vector2*)) & Machine_GUI_TextLabel_setSize;
-  ((Machine_GUI_Widget*)self)->getSize = (const Machine_Math_Vector2 * (*)(const Machine_GUI_Widget*)) & Machine_GUI_TextLabel_getSize;
-  ((Machine_GUI_Widget*)self)->getPreferredSize = (const Machine_Math_Vector2 * (*)(const Machine_GUI_Widget*)) & Machine_GUI_TextLabel_getPreferredSize;
+  Machine_GUI_TextLabel_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_GUI_TextLabel_getClassType());
 }
 

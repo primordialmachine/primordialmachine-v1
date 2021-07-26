@@ -11,9 +11,13 @@ static void Machine_GUI_WidgetList_visit(Machine_GUI_WidgetList* self) {
   }
 }
 
+static void Machine_GUI_WidgetList_constructClass(Machine_GUI_WidgetList* self)
+{/*Intentionally empty.*/}
+
 void Machine_GUI_WidgetList_construct(Machine_GUI_WidgetList* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->backing = Machine_PointerArray_create();
+  Machine_GUI_WidgetList_constructClass(self);
   Machine_setClassType((Machine_Object *)self, Machine_GUI_WidgetList_getClassType());
 }
 

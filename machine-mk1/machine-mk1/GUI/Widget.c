@@ -14,8 +14,12 @@ static void Machine_GUI_Widget_visit(Machine_GUI_Widget *self) {
   }
 }
 
+static void Machine_GUI_Widget_constructClass(Machine_GUI_Widget_Class *self)
+{/*Intentionally empty.*/}
+
 void Machine_GUI_Widget_construct(Machine_GUI_Widget* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
+  Machine_GUI_Widget_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_GUI_Widget_getClassType());
 }
 
