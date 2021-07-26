@@ -1,16 +1,20 @@
-/// @file Runtime/Pair.h
+/// @file Collections/Pair.h
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#if !defined(MACHINE_RUNTIME_PAIR_H_INCLUDED)
-#define MACHINE_RUNTIME_PAIR_H_INCLUDED
+#if !defined(MACHINE_COLLECTIONS_PAIR_H_INCLUDED)
+#define MACHINE_COLLECTIONS_PAIR_H_INCLUDED
 
-#if !defined(MACHINE_RUNTIME_PRIVATE)
-#error("Do not include this file directly, include `_Runtime.h` instead.")
+
+
+#if !defined(MACHINE_COLLECTIONS_PRIVATE)
+#error("Do not include this file directly, include `_Collections.h` instead.")
 #endif
 
-#include "./Runtime/Collection.h"
+#include "./Collections/Collection.h"
 
-/// @brief A map.
+
+
+/// @brief A pair.
 MACHINE_DECLARE_CLASSTYPE(Machine_Pair)
 
 struct Machine_Pair {
@@ -35,4 +39,6 @@ Machine_Pair* Machine_Pair_create(Machine_Value first, Machine_Value second);
 /// @return The value.
 Machine_Value Machine_Pair_get(Machine_Pair* self, Machine_Integer index);
 
-#endif // MACHINE_RUNTIME_PAIR_H_INCLUDED
+
+
+#endif // MACHINE_COLLECTIONS_PAIR_H_INCLUDED

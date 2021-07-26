@@ -11,49 +11,30 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Machine.c" />
-    <ClCompile Include="Runtime\Arguments.c" />
-    <ClCompile Include="Runtime\ByteBuffer.c" />
-    <ClCompile Include="Runtime\ConvertPrimitiveTypes.c" />
-    <ClCompile Include="Runtime\IO.c" />
-    <ClCompile Include="Runtime\IO\getFileContents.c" />
-    <ClCompile Include="Runtime\IO\setFileContents.c" />
-    <ClCompile Include="Runtime\IO\_FileHandle.c" />
-    <ClCompile Include="Runtime\IO\_FileMapping.c" />
-    <ClCompile Include="Runtime\Log.c" />
-    <ClCompile Include="Runtime\PrimitiveTypes.c" />
-    <ClCompile Include="Runtime\Status.c" />
-    <ClCompile Include="Runtime\String.c" />
-    <ClCompile Include="Runtime\StringBuffer.c" />
-    <ClCompile Include="Runtime\Value.c" />
-    <ClCompile Include="_Runtime.c" />
+    <ClCompile Include="Collections\Collection.c" />
+    <ClCompile Include="Collections\List.c" />
+    <ClCompile Include="Collections\Map.c" />
+    <ClCompile Include="Collections\Pair.c" />
+    <ClCompile Include="Collections\PointerArray.c" />
+    <ClCompile Include="_Collections.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Machine.h" />
-    <ClInclude Include="Runtime\Arguments.h" />
-    <ClInclude Include="Runtime\ByteBuffer.h" />
-    <ClInclude Include="Runtime\Configuration.h" />
-    <ClInclude Include="Runtime\ConvertPrimitiveTypes.h" />
-    <ClInclude Include="Runtime\IO.h" />
-    <ClInclude Include="Runtime\IO\ExistingFilePolicy.h" />
-    <ClInclude Include="Runtime\IO\FileAccessMode.h" />
-    <ClInclude Include="Runtime\IO\getFileContents.h" />
-    <ClInclude Include="Runtime\IO\setFileContents.h" />
-    <ClInclude Include="Runtime\IO\_FileHandle.h" />
-    <ClInclude Include="Runtime\IO\NonExistingFilePolicy.h" />
-    <ClInclude Include="Runtime\IO\_FileMapping.h" />
-    <ClInclude Include="Runtime\Log.h" />
-    <ClInclude Include="Runtime\PrimitiveTypes.h" />
-    <ClInclude Include="Runtime\Status.h" />
-    <ClInclude Include="Runtime\String.h" />
-    <ClInclude Include="Runtime\StringBuffer.h" />
-    <ClInclude Include="Runtime\Value.h" />
-    <ClInclude Include="_Runtime.h" />
+    <ClInclude Include="Collections\Collection.h" />
+    <ClInclude Include="Collections\List.h" />
+    <ClInclude Include="Collections\Map.h" />
+    <ClInclude Include="Collections\Pair.h" />
+    <ClInclude Include="Collections\PointerArray.h" />
+    <ClInclude Include="_Collections.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\core\machine-mk1-core.vcxproj">
+      <Project>{f34866d8-3093-4b44-a225-7da2b5cd8e83}</Project>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{f34866d8-3093-4b44-a225-7da2b5cd8e83}</ProjectGuid>
+    <ProjectGuid>{6EB4AB0F-86E3-4AB8-850E-449C7A78878B}</ProjectGuid>
     <RootNamespace>machinemk1core</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -94,7 +75,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)core</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)core;$(SolutionDir)core-collections</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -106,7 +87,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)core</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)core;$(SolutionDir)core-collections</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>

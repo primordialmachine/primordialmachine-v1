@@ -1,14 +1,19 @@
-/// @file Runtime/Map.h
+/// @file Collections/Map.h
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#if !defined(MACHINE_RUNTIME_MAP_H_INCLUDED)
-#define MACHINE_RUNTIME_MAP_H_INCLUDED
+#if !defined(MACHINE_COLLECTIONS_MAP_H_INCLUDED)
+#define MACHINE_COLLECTIONS_MAP_H_INCLUDED
 
-#if !defined(MACHINE_RUNTIME_PRIVATE)
-#error("Do not include this file directly, include `_Runtime.h` instead.")
+
+
+#if !defined(MACHINE_COLLECTIONS_PRIVATE)
+#error("Do not include this file directly, include `_Collections.h` instead.")
 #endif
 
-#include "./Runtime/Collection.h"
+#include "./Collections/Collection.h"
+typedef struct Machine_List Machine_List;
+
+
 
 /// @brief A map.
 MACHINE_DECLARE_CLASSTYPE(Machine_Map)
@@ -47,4 +52,9 @@ void Machine_Map_set(Machine_Map* self, Machine_Value key, Machine_Value value);
 /// @return The value for the key if any. If no value for that key exists, the void value is returned.
 Machine_Value Machine_Map_get(const Machine_Map* self, Machine_Value key);
 
-#endif // MACHINE_RUNTIME_MAP_H_INCLUDED
+/// @brief Convert the specified map to a list of key value pairs.
+/// @param self This map.
+/// @return A Machine_List of Machine_Pair values. 
+Machine_List* Machine_Map_toList(const Machine_Map* self);
+
+#endif // MACHINE_COLLECTIONS_MAP_H_INCLUDED

@@ -33,19 +33,7 @@
     <ClCompile Include="_Runtime.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Runtime\PointerArray.c">
-      <Filter>Quelldateien\Runtime</Filter>
-    </ClCompile>
     <ClCompile Include="Runtime\StringBuffer.c">
-      <Filter>Quelldateien\Runtime</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\List.c">
-      <Filter>Quelldateien\Runtime</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Map.c">
-      <Filter>Quelldateien\Runtime</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Collection.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
     <ClCompile Include="Runtime\ByteBuffer.c">
@@ -61,9 +49,6 @@
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
     <ClCompile Include="Runtime\IO.c">
-      <Filter>Quelldateien\Runtime</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Pair.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
     <ClCompile Include="Runtime\Value.c">
@@ -98,19 +83,7 @@
     <ClInclude Include="_Runtime.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Runtime\PointerArray.h">
-      <Filter>Headerdateien\Runtime</Filter>
-    </ClInclude>
     <ClInclude Include="Runtime\StringBuffer.h">
-      <Filter>Headerdateien\Runtime</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\List.h">
-      <Filter>Headerdateien\Runtime</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Map.h">
-      <Filter>Headerdateien\Runtime</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Collection.h">
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\ByteBuffer.h">
@@ -126,9 +99,6 @@
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\IO.h">
-      <Filter>Headerdateien\Runtime</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Pair.h">
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\Value.h">

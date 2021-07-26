@@ -5,8 +5,11 @@
 #define MACHINE_GDL_SYNTACTICAL_NODE_H_INCLUDED
 
 
+
+#include "_Collections.h"
 #include "./../../GDL/Syntactical/NodeKind.h"
 #include "./../../GDL/Context.h"
+
 
 
 MACHINE_DECLARE_CLASSTYPE(Machine_GDL_Node)

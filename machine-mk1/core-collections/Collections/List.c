@@ -1,8 +1,8 @@
-/// @file Runtime/List.c
+/// @file Collection/List.c
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#define MACHINE_RUNTIME_PRIVATE (1)
-#include "Runtime/List.h"
+#define MACHINE_COLLECTIONS_PRIVATE (1)
+#include "Collections/List.h"
 
 
 #include <malloc.h>

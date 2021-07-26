@@ -1,8 +1,8 @@
-/// @file Runtime/Collection.c
+/// @file Collections/Collection.c
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#define MACHINE_RUNTIME_PRIVATE (1)
-#include "Runtime/Collection.h"
+#define MACHINE_COLLECTIONS_PRIVATE (1)
+#include "Collections/Collection.h"
 
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_Collection, Machine_Object, NULL, &Machine_Collection_construct, NULL)
 

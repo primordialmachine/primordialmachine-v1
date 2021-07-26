@@ -1,14 +1,16 @@
-#if !defined(MACHINE_RUNTIME_POINTERARRAY_H_INCLUDED)
-#define MACHINE_RUNTIME_POINTERARRAY_H_INCLUDED
+#if !defined(MACHINE_COLLECTIONS_POINTERARRAY_H_INCLUDED)
+#define MACHINE_COLLECTIONS_POINTERARRAY_H_INCLUDED
 
-#if !defined(MACHINE_RUNTIME_PRIVATE)
-#error("Do not include this file directly, include `_Runtime.h` instead.")
+
+
+#if !defined(MACHINE_COLLECTIONS_PRIVATE)
+#error("Do not include this file directly, include `_Collections.h` instead.")
 #endif
 
-#include "./../Machine.h"
+#include "_Runtime.h"
 
 
-/// @ingroup cex
+
 /// @brief An array of pointers to objects or null pointers.
 MACHINE_DECLARE_CLASSTYPE(Machine_PointerArray)
 
@@ -59,4 +61,5 @@ void Machine_PointerArray_append(Machine_PointerArray* self, void* pointer);
 void Machine_PointerArray_insert(Machine_PointerArray* self, size_t index, void* pointer);
 
 
-#endif // MACHINE_RUNTIME_POINTERARRAY_H_INCLUDED
+
+#endif // MACHINE_COLLECTIONS_POINTERARRAY_H_INCLUDED

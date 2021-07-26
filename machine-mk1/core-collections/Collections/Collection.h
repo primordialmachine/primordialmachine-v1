@@ -1,14 +1,18 @@
-/// @file Runtime/Collection.h
+/// @file Collections/Collection.h
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#if !defined(MACHINE_RUNTIME_COLLECTION_H_INCLUDED)
-#define MACHINE_RUNTIME_COLLECTION_H_INCLUDED
+#if !defined(MACHINE_COLLECTIONS_COLLECTION_H_INCLUDED)
+#define MACHINE_COLLECTIONS_COLLECTION_H_INCLUDED
 
-#if !defined(MACHINE_RUNTIME_PRIVATE)
-#error("Do not include this file directly, include `_Runtime.h` instead.")
+
+
+#if !defined(MACHINE_COLLECTIONS_PRIVATE)
+#error("Do not include this file directly, include `_Collections.h` instead.")
 #endif
 
-#include "./../Machine.h"
+#include "_Runtime.h"
+
+
 
 MACHINE_DECLARE_CLASSTYPE(Machine_Collection)
 
@@ -34,4 +38,6 @@ void Machine_Collection_clear(Machine_Collection* self);
 /// @abstract
 size_t Machine_Collection_getSize(const Machine_Collection* self);
 
-#endif // MACHINE_RUNTIME_COLLECTION_H_INCLUDEd
+
+
+#endif // MACHINE_COLLECTIONS_COLLECTION_H_INCLUDEd

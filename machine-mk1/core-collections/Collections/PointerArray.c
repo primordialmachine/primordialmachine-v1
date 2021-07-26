@@ -1,6 +1,6 @@
-#define MACHINE_RUNTIME_PRIVATE (1)
-#include "Runtime/PointerArray.h"
-#include "Runtime/List.h"
+#define MACHINE_COLLECTIONS_PRIVATE (1)
+#include "Collections/PointerArray.h"
+#include "Collections/List.h"
 
 #include <malloc.h>
 #include <memory.h>

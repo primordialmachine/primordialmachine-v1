@@ -1,8 +1,8 @@
-/// @file Runtime/Pair.c
+/// @file Collections/Pair.c
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#define MACHINE_RUNTIME_PRIVATE (1)
-#include "Runtime/Pair.h"
+#define MACHINE_COLLECTIONS_PRIVATE (1)
+#include "Collections/Pair.h"
 
 
 #include <malloc.h>

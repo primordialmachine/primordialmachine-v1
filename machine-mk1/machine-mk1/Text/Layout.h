@@ -1,7 +1,7 @@
 #if !defined(MACHINE_TEXT_LAYOUT_H_INCLUDED)
 #define MACHINE_TEXT_LAYOUT_H_INCLUDED
 
-
+#include "_Collections.h"
 #include "_Math.h"
 #include "./../Shape2.h"
 typedef struct Machine_Fonts_Font Machine_Fonts_Font;

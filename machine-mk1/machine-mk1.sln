@@ -21,6 +21,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-signals", "sign
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-images", "images\machine-mk1-images.vcxproj", "{F0B732B5-824D-40AB-AA0A-A067B6A852F9}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-core-collections", "core-collections\machine-mk1-core-collections.vcxproj", "{6EB4AB0F-86E3-4AB8-850E-449C7A78878B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -63,6 +65,10 @@ Global
 		{F0B732B5-824D-40AB-AA0A-A067B6A852F9}.Debug|x64.Build.0 = Debug|x64
 		{F0B732B5-824D-40AB-AA0A-A067B6A852F9}.Release|x64.ActiveCfg = Release|x64
 		{F0B732B5-824D-40AB-AA0A-A067B6A852F9}.Release|x64.Build.0 = Release|x64
+		{6EB4AB0F-86E3-4AB8-850E-449C7A78878B}.Debug|x64.ActiveCfg = Debug|x64
+		{6EB4AB0F-86E3-4AB8-850E-449C7A78878B}.Debug|x64.Build.0 = Debug|x64
+		{6EB4AB0F-86E3-4AB8-850E-449C7A78878B}.Release|x64.ActiveCfg = Release|x64
+		{6EB4AB0F-86E3-4AB8-850E-449C7A78878B}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

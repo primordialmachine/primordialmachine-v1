@@ -1,18 +1,23 @@
-/// @file Runtime/List.h
+/// @file Collections/List.h
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#if !defined(MACHINE_RUNTIME_LIST_H_INCLUDED)
-#define MACHINE_RUNTIME_LIST_H_INCLUDED
+#if !defined(MACHINE_COLLECTIONS_LIST_H_INCLUDED)
+#define MACHINE_COLLECTIONS_LIST_H_INCLUDED
 
-#if !defined(MACHINE_RUNTIME_PRIVATE)
-#error("Do not include this file directly, include `_Runtime.h` instead.")
+
+
+#if !defined(MACHINE_COLLECTIONS_PRIVATE)
+#error("Do not include this file directly, include `_Collections.h` instead.")
 #endif
 
-#include "./Runtime/Collection.h"
+#include "./Collections/Collection.h"
+
+
 
 #define Machine_List_withReverse (0)
 #define Machine_List_withSlice (0)
 
+/// @brief A list.
 MACHINE_DECLARE_CLASSTYPE(Machine_List)
 
 struct Machine_List {
@@ -102,4 +107,4 @@ Machine_List* Machine_List_slice(Machine_List* self, size_t start, size_t length
 
 #endif
 
-#endif // MACHINE_RUNTIME_LIST_H_INCLUDED
+#endif // MACHINE_COLLECTIONS_LIST_H_INCLUDED

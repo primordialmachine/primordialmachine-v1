@@ -4,6 +4,7 @@
 #if !defined(MACHINE_GUI_WIDGET_H_INCLUDED)
 #define MACHINE_GUI_WIDGET_H_INCLUDED
 
+#include "_Collections.h"
 #include "_Math.h"
 #include "_Signals.h"
 typedef struct Machine_GUI_Context Machine_GUI_Context;
