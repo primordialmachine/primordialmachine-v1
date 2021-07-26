@@ -144,6 +144,12 @@
     <ClCompile Include="GL\Binding.c">
       <Filter>Quelldateien\GL</Filter>
     </ClCompile>
+    <ClCompile Include="GUI\Context.c">
+      <Filter>Quelldateien\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\LayoutModel.c">
+      <Filter>Quelldateien\GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\external\glad\include\glad\glad.h">
@@ -226,6 +232,12 @@
     </ClInclude>
     <ClInclude Include="GL\Binding.h">
       <Filter>Headerdateien\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Context.h">
+      <Filter>Headerdateien\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\LayoutModel.h">
+      <Filter>Headerdateien\GUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

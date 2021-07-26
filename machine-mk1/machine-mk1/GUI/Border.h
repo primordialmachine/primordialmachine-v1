@@ -12,9 +12,10 @@
 /// @extends Machine.GUI.Widget
 MACHINE_DECLARE_CLASSTYPE(Machine_GUI_Border)
 
-/// @brief Create a label with default values.
-/// @return The label.
-Machine_GUI_Border* Machine_GUI_Border_create();
+/// @brief Create a border with default values.
+/// @param context The GUI context the border belongs to.
+/// @return The border.
+Machine_GUI_Border* Machine_GUI_Border_create(Machine_GUI_Context* context);
 
 /// @brief Get the child.
 /// @param self This border.

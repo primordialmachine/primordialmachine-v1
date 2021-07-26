@@ -71,7 +71,7 @@ void Machine_GUI_TextButton_construct(Machine_GUI_TextButton* self, size_t numbe
 
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_GUI_TextButton, Machine_GUI_Widget, &Machine_GUI_TextButton_visit, &Machine_GUI_TextButton_construct, NULL)
 
-Machine_GUI_TextButton* Machine_GUI_TextButton_create() {
+Machine_GUI_TextButton* Machine_GUI_TextButton_create(Machine_GUI_Context* context) {
   Machine_ClassType* ty = Machine_GUI_TextButton_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };

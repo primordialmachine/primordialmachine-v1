@@ -6,6 +6,7 @@
 
 #include "_Math.h"
 #include "_Signals.h"
+typedef struct Machine_GUI_Context Machine_GUI_Context;
 
 /// @brief Base of all widgets.
 MACHINE_DECLARE_CLASSTYPE(Machine_GUI_Widget)

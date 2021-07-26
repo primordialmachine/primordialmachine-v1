@@ -5,6 +5,7 @@
 #define MACHINE__GUI_H_INCLUDED
 
 #include "GUI/Border.h"
+#include "GUI/Context.h"
 #include "GUI/TextButton.h"
 #include "GUI/TextLabel.h"
 

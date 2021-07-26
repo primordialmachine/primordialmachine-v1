@@ -234,7 +234,7 @@ static void Machine_GUI_Border_construct(Machine_GUI_Border* self, size_t number
   Machine_setClassType((Machine_Object*)self, Machine_GUI_Border_getClassType());
 }
 
-Machine_GUI_Border* Machine_GUI_Border_create() {
+Machine_GUI_Border* Machine_GUI_Border_create(Machine_GUI_Context* context) {
   Machine_ClassType* ty = Machine_GUI_Border_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
