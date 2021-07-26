@@ -21,7 +21,29 @@ configuration:
 build:
     parallel: true                       # enable MSBuild parallel builds
     project: machine-mk1/machine-mk1.sln # path to Visual Studio solution or project
-    
+
 # If one matrix entry fails, all entries fails (https://www.appveyor.com/docs/build-configuration#failing-strategy).
 matrix:
     fast_finish: true
+
+artifacts:
+    - path: machine-mk1\products\x64\Release\machine-mk1\machine-mk1.exe
+      name: machine-mk1-release.exe
+    - path: machine-mk1\products\x64\Debug\machine-mk1\machine-mk1.exe
+      name: machine-mk1-debug.exe
+
+# Execute test scripts.
+test_script:
+    - ps: |
+          $name = 'List Test #1';
+          Write-Host "Begin Test $name";
+          Add-AppveyorTest -Name $name -Filename a.exe -Outcome Running;
+          Update-AppveyorTest -Name $name -Filename a.exe -Outcome Passed -Duration 1000;
+          Write-Host "End Test $name";
+
+    - ps: |
+          $name = 'Map Test #1';
+          Write-Host "Begin Test $name";
+          Add-AppveyorTest -Name "$name" -Filename a.exe -Outcome Running;
+          Update-AppveyorTest -Name "$name" -Filename a.exe -Outcome Passed -Duration 1000;
+          Write-Host "End Test $name";
