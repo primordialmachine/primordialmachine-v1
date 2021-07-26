@@ -49,46 +49,46 @@ static void Scene5_visit(Scene5* self) {
 
 MACHINE_DEFINE_CLASSTYPE_EX(Scene5, Scene, &Scene5_visit, &Scene5_construct, NULL)
 
-static Machine_GUI_Widget* createTextLabel(const char* text, Machine_Fonts_Font *font) {
+static Machine_GUI_Widget* createTextLabel(Machine_GUI_Context *context, const char* text, Machine_Fonts_Font *font) {
   Machine_GUI_TextLabel* widget;
   //
-  widget = Machine_GUI_TextLabel_create();
+  widget = Machine_GUI_TextLabel_create(context);
   Machine_GUI_TextLabel_setText(widget, Machine_String_create(text, strlen(text)));
 
   Machine_Math_Vector2* sz = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(sz, 5.5, 5.f);
 
-  Machine_GUI_Border* border0 = Machine_GUI_Border_create();
+  Machine_GUI_Border* border0 = Machine_GUI_Border_create(context);
   Machine_GUI_Border_setBorderWidth(border0, INNER_BORDER_SIZE);
   Machine_GUI_Border_setChild(border0, (Machine_GUI_Widget *)widget);
   Machine_Math_Vector4* color = Machine_Math_Vector4_create();
   Machine_Math_Vector4_set(color, 1.f, 1.f, 1.f, 1.f);
   Machine_GUI_Border_setBorderColor(border0, color);
 
-  Machine_GUI_Border *border1 = Machine_GUI_Border_create();
+  Machine_GUI_Border *border1 = Machine_GUI_Border_create(context);
   Machine_GUI_Border_setBorderWidth(border1, OUTER_BORDER_SIZE);
   Machine_GUI_Border_setChild(border1, (Machine_GUI_Widget*)border0);
   
   return (Machine_GUI_Widget*)border1;
 }
 
-static Machine_GUI_Widget* createTextButton(const char* text, Machine_Fonts_Font* font) {
+static Machine_GUI_Widget* createTextButton(Machine_GUI_Context *context, const char* text, Machine_Fonts_Font* font) {
   Machine_GUI_TextButton* widget;
   //
-  widget = Machine_GUI_TextButton_create();
+  widget = Machine_GUI_TextButton_create(context);
   Machine_GUI_TextButton_setText(widget, Machine_String_create(text, strlen(text)));
 
   Machine_Math_Vector2* sz = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(sz, 5.5, 5.f);
 
-  Machine_GUI_Border* border0 = Machine_GUI_Border_create();
+  Machine_GUI_Border* border0 = Machine_GUI_Border_create(context);
   Machine_GUI_Border_setBorderWidth(border0, INNER_BORDER_SIZE);
   Machine_GUI_Border_setChild(border0, (Machine_GUI_Widget*)widget);
   Machine_Math_Vector4* color = Machine_Math_Vector4_create();
   Machine_Math_Vector4_set(color, 1.f, 1.f, 1.f, 1.f);
   Machine_GUI_Border_setBorderColor(border0, color);
 
-  Machine_GUI_Border* border1 = Machine_GUI_Border_create();
+  Machine_GUI_Border* border1 = Machine_GUI_Border_create(context);
   Machine_GUI_Border_setBorderWidth(border1, OUTER_BORDER_SIZE);
   Machine_GUI_Border_setChild(border1, (Machine_GUI_Widget*)border0);
 
@@ -97,17 +97,19 @@ static Machine_GUI_Widget* createTextButton(const char* text, Machine_Fonts_Font
 
 
 static void Scene5_startup(Scene5* scene) {
+  Machine_GUI_Context* context = Machine_GUI_Context_create(Machine_GDL_Context_create());
+  //
   scene->font = Machine_Fonts_createFont("RobotoSlab-Regular.ttf", 20);
   //
   scene->mainMenu = Machine_GUI_WidgetList_create();
-  Machine_GUI_WidgetList_append(scene->mainMenu, createTextButton("Start Game", scene->font));
-  Machine_GUI_WidgetList_append(scene->mainMenu, createTextButton("Options", scene->font));
-  Machine_GUI_WidgetList_append(scene->mainMenu, createTextButton("Exit Game", scene->font));
-  Machine_GUI_WidgetList_append(scene->mainMenu, createTextButton("Credits", scene->font));
+  Machine_GUI_WidgetList_append(scene->mainMenu, createTextButton(context, "Start Game", scene->font));
+  Machine_GUI_WidgetList_append(scene->mainMenu, createTextButton(context, "Options", scene->font));
+  Machine_GUI_WidgetList_append(scene->mainMenu, createTextButton(context, "Exit Game", scene->font));
+  Machine_GUI_WidgetList_append(scene->mainMenu, createTextButton(context, "Credits", scene->font));
   //
-  scene->label2 = createTextLabel("Server Version 1.0\nClient Version 1.0", scene->font);
+  scene->label2 = createTextLabel(context, "Server Version 1.0\nClient Version 1.0", scene->font);
   //
-  scene->label3 = createTextLabel("Nanobox IV\n400 units of unprimed nanites.", scene->font);
+  scene->label3 = createTextLabel(context, "Nanobox IV\n400 units of unprimed nanites.", scene->font);
 }
 
 /// @brief Compute the rectangle of all widgets.
