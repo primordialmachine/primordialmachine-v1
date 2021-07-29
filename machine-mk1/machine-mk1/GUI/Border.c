@@ -69,16 +69,19 @@ static void Machine_GUI_Border_render(Machine_GUI_Border* self, float width, flo
       Machine_Rectangle2_setColor(self->borderRectangle, temporary);
     }
     if (self->width > 0.f) {
+      float lw = self->width, tw = self->width;
+      float rw = self->width, bw = self->width;
+      Machine_Math_Rectangle2 const* R = Machine_GUI_Widget_getRectangle((Machine_GUI_Widget*)self);
       { // left/top
         Machine_Math_Rectangle2* r = Machine_Math_Rectangle2_create();
 
         //
         Machine_Math_Vector2* position = Machine_Math_Vector2_create();
-        Machine_Math_Vector2_set(position, Machine_Math_Rectangle2_getMinX(self->rectangle), Machine_Math_Rectangle2_getMinY(self->rectangle));
+        Machine_Math_Vector2_set(position, Machine_Math_Rectangle2_getMinX(R), Machine_Math_Rectangle2_getMinY(R));
 
         //
         Machine_Math_Vector2* size = Machine_Math_Vector2_create();
-        Machine_Math_Vector2_set(size, self->width, self->width);
+        Machine_Math_Vector2_set(size, lw, tw);
 
         Machine_Math_Rectangle2_setPosition(r, position);
         Machine_Math_Rectangle2_setSize(r, size);
@@ -91,11 +94,11 @@ static void Machine_GUI_Border_render(Machine_GUI_Border* self, float width, flo
 
         //
         Machine_Math_Vector2* position = Machine_Math_Vector2_create();
-        Machine_Math_Vector2_set(position, Machine_Math_Rectangle2_getMaxX(self->rectangle) - self->width, Machine_Math_Rectangle2_getMinY(self->rectangle));
+        Machine_Math_Vector2_set(position, Machine_Math_Rectangle2_getMaxX(R) - rw, Machine_Math_Rectangle2_getMinY(R));
 
         //
         Machine_Math_Vector2* size = Machine_Math_Vector2_create();
-        Machine_Math_Vector2_set(size, self->width, self->width);
+        Machine_Math_Vector2_set(size, rw, tw);
 
         Machine_Math_Rectangle2_setPosition(r, position);
         Machine_Math_Rectangle2_setSize(r, size);
@@ -108,11 +111,11 @@ static void Machine_GUI_Border_render(Machine_GUI_Border* self, float width, flo
 
         //
         Machine_Math_Vector2* position = Machine_Math_Vector2_create();
-        Machine_Math_Vector2_set(position, Machine_Math_Rectangle2_getMinX(self->rectangle), Machine_Math_Rectangle2_getMaxY(self->rectangle) - self->width);
+        Machine_Math_Vector2_set(position, Machine_Math_Rectangle2_getMinX(R), Machine_Math_Rectangle2_getMaxY(R) - bw);
 
         //
         Machine_Math_Vector2* size = Machine_Math_Vector2_create();
-        Machine_Math_Vector2_set(size, self->width, self->width);
+        Machine_Math_Vector2_set(size, lw, bw);
 
         Machine_Math_Rectangle2_setPosition(r, position);
         Machine_Math_Rectangle2_setSize(r, size);
@@ -125,11 +128,11 @@ static void Machine_GUI_Border_render(Machine_GUI_Border* self, float width, flo
 
         //
         Machine_Math_Vector2* position = Machine_Math_Vector2_create();
-        Machine_Math_Vector2_set(position, Machine_Math_Rectangle2_getMaxX(self->rectangle) - self->width, Machine_Math_Rectangle2_getMaxY(self->rectangle) - self->width);
+        Machine_Math_Vector2_set(position, Machine_Math_Rectangle2_getMaxX(R) - rw, Machine_Math_Rectangle2_getMaxY(R) - bw);
 
         //
         Machine_Math_Vector2* size = Machine_Math_Vector2_create();
-        Machine_Math_Vector2_set(size, self->width, self->width);
+        Machine_Math_Vector2_set(size, rw, bw);
 
         Machine_Math_Rectangle2_setPosition(r, position);
         Machine_Math_Rectangle2_setSize(r, size);
@@ -142,11 +145,11 @@ static void Machine_GUI_Border_render(Machine_GUI_Border* self, float width, flo
 
         //
         Machine_Math_Vector2* position = Machine_Math_Vector2_create();
-        Machine_Math_Vector2_set(position, Machine_Math_Rectangle2_getMinX(self->rectangle), Machine_Math_Rectangle2_getMinY(self->rectangle) + self->width);
+        Machine_Math_Vector2_set(position, Machine_Math_Rectangle2_getMinX(R), Machine_Math_Rectangle2_getMinY(R) + tw);
 
         //
         Machine_Math_Vector2* size = Machine_Math_Vector2_create();
-        Machine_Math_Vector2_set(size, self->width, Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(self->rectangle)) - self->width * 2.f);
+        Machine_Math_Vector2_set(size, lw, Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(R)) - tw - bw);
         
         Machine_Math_Rectangle2_setPosition(r, position);
         Machine_Math_Rectangle2_setSize(r, size);
@@ -159,11 +162,11 @@ static void Machine_GUI_Border_render(Machine_GUI_Border* self, float width, flo
 
         //
         Machine_Math_Vector2* position = Machine_Math_Vector2_create();
-        Machine_Math_Vector2_set(position, Machine_Math_Rectangle2_getMaxX(self->rectangle) - self->width, Machine_Math_Rectangle2_getMinY(self->rectangle) + self->width);
+        Machine_Math_Vector2_set(position, Machine_Math_Rectangle2_getMaxX(R) - rw, Machine_Math_Rectangle2_getMinY(R) + tw);
 
         //
         Machine_Math_Vector2* size = Machine_Math_Vector2_create();
-        Machine_Math_Vector2_set(size, self->width, Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(self->rectangle)) - self->width * 2.f);
+        Machine_Math_Vector2_set(size, rw, Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getSize(R)) - tw - bw);
 
         Machine_Math_Rectangle2_setPosition(r, position);
         Machine_Math_Rectangle2_setSize(r, size);
@@ -176,11 +179,11 @@ static void Machine_GUI_Border_render(Machine_GUI_Border* self, float width, flo
 
         //
         Machine_Math_Vector2* position = Machine_Math_Vector2_create();
-        Machine_Math_Vector2_set(position, Machine_Math_Rectangle2_getMinX(self->rectangle) + self->width, Machine_Math_Rectangle2_getMinY(self->rectangle));
+        Machine_Math_Vector2_set(position, Machine_Math_Rectangle2_getMinX(R) + lw, Machine_Math_Rectangle2_getMinY(R));
 
         //
         Machine_Math_Vector2* size = Machine_Math_Vector2_create();
-        Machine_Math_Vector2_set(size, Machine_Math_Vector2_getX(Machine_Math_Rectangle2_getSize(self->rectangle)) - self->width * 2.f, self->width);
+        Machine_Math_Vector2_set(size, Machine_Math_Vector2_getX(Machine_Math_Rectangle2_getSize(R)) - lw - rw, tw);
 
         Machine_Math_Rectangle2_setPosition(r, position);
         Machine_Math_Rectangle2_setSize(r, size);
@@ -193,11 +196,11 @@ static void Machine_GUI_Border_render(Machine_GUI_Border* self, float width, flo
 
         //
         Machine_Math_Vector2* position = Machine_Math_Vector2_create();
-        Machine_Math_Vector2_set(position, Machine_Math_Rectangle2_getMinX(self->rectangle) + self->width, Machine_Math_Rectangle2_getMaxY(self->rectangle) - self->width);
+        Machine_Math_Vector2_set(position, Machine_Math_Rectangle2_getMinX(R) + lw, Machine_Math_Rectangle2_getMaxY(R) - bw);
 
         //
         Machine_Math_Vector2* size = Machine_Math_Vector2_create();
-        Machine_Math_Vector2_set(size, Machine_Math_Vector2_getX(Machine_Math_Rectangle2_getSize(self->rectangle)) - self->width * 2.f, self->width);
+        Machine_Math_Vector2_set(size, Machine_Math_Vector2_getX(Machine_Math_Rectangle2_getSize(R)) - lw - rw, bw);
 
         Machine_Math_Rectangle2_setPosition(r, position);
         Machine_Math_Rectangle2_setSize(r, size);
