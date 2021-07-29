@@ -2,10 +2,7 @@
 
 
 
-#include <stddef.h>
-#include <malloc.h>
 #include <string.h>
-#include "UtilitiesGl.h"
 
 #include "_GUI.h"
 #include "_Images.h"

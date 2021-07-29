@@ -2,10 +2,7 @@
 
 
 
-#include <stddef.h>
-#include <malloc.h>
 #include <string.h>
-#include "UtilitiesGl.h"
 
 #include "_GUI.h"
 #include "_Images.h"
@@ -14,7 +11,6 @@
 #include "Fonts.h"
 #include "_Graphics2.h"
 #include "Video.h"
-#include "GL/ShaderProgram.h"
 
 
 
@@ -74,7 +70,7 @@ static void Scene3_startup(Scene3* scene) {
   scene->vertices = Machine_Video_createBuffer();
   Machine_VideoBuffer_setData(scene->vertices, sizeof(vertices), (void const *)vertices);
 
-  scene->shaderProgram = Machine_GL_ShaderProgram_generateDefaultShader(false, true, true, true);
+  scene->shaderProgram = Machine_Video_generateDefaultShader(false, true, true, true);
 
   Machine_VertexDescriptor* vd = Machine_VertexDescriptor_create();
   Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_XfYf);
