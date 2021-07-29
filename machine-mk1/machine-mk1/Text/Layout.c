@@ -4,7 +4,7 @@
 #include "./../Video.h"
 #include "./../Text/LayoutLine.h"
 #include <string.h>
-#include <linmath.h>
+#include <math.h>
 
 static const float OFFSET_X = 0.f;
 
@@ -263,11 +263,11 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
 
 #if defined(WITH_SNAPTOGRID)
   // Snap to pixel (ensure there are no artifacts).
-  vec2 position0 = { floorf(Machine_Math_Vector2_getX(self->position)),
-                     floorf(Machine_Math_Vector2_getY(self->position)) };
+  float position0[] = { floorf(Machine_Math_Vector2_getX(self->position)),
+                        floorf(Machine_Math_Vector2_getY(self->position)) };
 #else
-  vec2 position0 = { Machine_Math_Vector2_getX(self->position),
-                     Machine_Math_Vector2_getY(self->position) };
+  float position0[] = { Machine_Math_Vector2_getX(self->position),
+                        Machine_Math_Vector2_getY(self->position) };
 #endif
 
   // Set the world matrix, view matrix, and projection matrix.
@@ -317,7 +317,7 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
   Machine_Video_setIncomingBlendFunction(Machine_BlendFunction_IncomingAlpha);
   Machine_Video_setExistingBlendFunction(Machine_BlendFunction_OneMinusIncomingAlpha);
 
-  vec2 cursorPosition = { position0[0], position0[1] };
+  float cursorPosition[] = { position0[0], position0[1] };
 
   const char* bytes = Machine_String_getBytes(self->text);
 
