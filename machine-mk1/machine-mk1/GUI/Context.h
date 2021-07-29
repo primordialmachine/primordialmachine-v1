@@ -5,6 +5,7 @@
 
 #include "./../GUI/GDL/Context.h"
 #include "./../GUI/Signals/Context.h"
+#include "./../_Graphics2.h"
 
 
 
@@ -14,6 +15,7 @@ MACHINE_DECLARE_CLASSTYPE(Machine_GUI_Context)
 
 struct Machine_GUI_Context {
   Machine_Object parent;
+  Machine_Context2* context2;
   Machine_GUI_Signals_Context* signalsContext;
   Machine_GUI_GDL_Context* gdlContext;
 };
