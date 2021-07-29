@@ -8,7 +8,7 @@
 
 
 
-void Machine_Rectangle2_visit(Machine_Rectangle2* self) {
+static void Machine_Rectangle2_visit(Machine_Rectangle2* self) {
   if (self->position) {
     Machine_visit(self->position);
   }
@@ -29,7 +29,7 @@ void Machine_Rectangle2_visit(Machine_Rectangle2* self) {
   }
 }
 
-void Machine_Rectangle2_render(Machine_Rectangle2* self, float width, float height) {
+static void Machine_Rectangle2_render(Machine_Rectangle2* self, float width, float height) {
   float ratio = width / height;
 
   // Set the world matrix, view matrix, and projection matrix.
@@ -58,7 +58,7 @@ void Machine_Rectangle2_render(Machine_Rectangle2* self, float width, float heig
   };
 
   struct {
-    float x, y;
+    Machine_Real x, y;
   }
   VERTICES[] =
   {
@@ -81,11 +81,14 @@ void Machine_Rectangle2_render(Machine_Rectangle2* self, float width, float heig
   Machine_Video_drawIndirect(0, 6, indices);
 }
 
+static void Machine_Rectangle2_constructClass(Machine_Rectangle2_Class* self) {
+  ((Machine_Shape2_Class*)self)->render = (void(*)(Machine_Shape2*, float, float)) & Machine_Rectangle2_render;
+}
+
 void Machine_Rectangle2_construct(Machine_Rectangle2* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Shape2_construct((Machine_Shape2*)self, numberOfArguments, arguments);
   self->position = Machine_Math_Vector2_create();
   self->size = Machine_Math_Vector2_create();
-  ((Machine_Shape2*)self)->render = (void(*)(Machine_Shape2*, float, float)) & Machine_Rectangle2_render;
 
   self->vertices = Machine_Video_createBuffer();
   self->shader = Machine_GL_ShaderProgram_generateShape2Shader(false);
@@ -98,6 +101,8 @@ void Machine_Rectangle2_construct(Machine_Rectangle2* self, size_t numberOfArgum
 
   self->color = Machine_Math_Vector4_create();
   Machine_Math_Vector4_set(self->color, 1.f, 1.f, 1.f, 1.f);
+
+  Machine_Rectangle2_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_Rectangle2_getClassType());
 }
 
