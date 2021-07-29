@@ -5,7 +5,7 @@
 
 
 
-#include "./../Shape2.h"
+#include "./../Graphics2/Shape2.h"
 #include "./../GUI/BorderModel.h"
 
 

@@ -12,7 +12,7 @@
 #include "_Video.h"
 
 #include "Fonts.h"
-#include "Shape2.h"
+#include "Graphics2/Shape2.h"
 #include "Video.h"
 
 

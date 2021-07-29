@@ -1,11 +1,11 @@
 #include "./Shape2.h"
 
 #include "_Math.h"
-#include "./Video.h"
-#include "./UtilitiesGL.h"
+#include "./../Video.h"
+#include "./../UtilitiesGL.h"
 #include <stdio.h>
 #include <string.h>
-#include "GL/ShaderProgram.h"
+#include "./../GL/ShaderProgram.h"
 
 struct Machine_Shape2 {
   Machine_Object parent;

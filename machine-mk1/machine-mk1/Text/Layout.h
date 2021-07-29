@@ -3,7 +3,7 @@
 
 #include "_Collections.h"
 #include "_Math.h"
-#include "./../Shape2.h"
+#include "./../Graphics2/Shape2.h"
 typedef struct Machine_Fonts_Font Machine_Fonts_Font;
 
 /// @brief 

@@ -102,9 +102,6 @@
     <ClCompile Include="Video.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Shape2.c">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="GUI\TextLabel.c">
       <Filter>Quelldateien\GUI</Filter>
     </ClCompile>
@@ -165,6 +162,9 @@
     <ClCompile Include="Graphics2\Context2.c">
       <Filter>Quelldateien\Graphics2</Filter>
     </ClCompile>
+    <ClCompile Include="Graphics2\Shape2.c">
+      <Filter>Quelldateien\Graphics2</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\external\glad\include\glad\glad.h">
@@ -201,9 +201,6 @@
       <Filter>Headerdateien\Text</Filter>
     </ClInclude>
     <ClInclude Include="Video.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Shape2.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="GUI\TextLabel.h">
@@ -261,6 +258,9 @@
       <Filter>Headerdateien\GL</Filter>
     </ClInclude>
     <ClInclude Include="Graphics2\Context2.h">
+      <Filter>Headerdateien\Graphics2</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics2\Shape2.h">
       <Filter>Headerdateien\Graphics2</Filter>
     </ClInclude>
   </ItemGroup>

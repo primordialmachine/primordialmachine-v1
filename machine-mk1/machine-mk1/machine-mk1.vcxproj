@@ -92,6 +92,7 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)GL\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="Graphics2\Context2.c" />
+    <ClCompile Include="Graphics2\Shape2.c" />
     <ClCompile Include="GUI\BorderModel.c" />
     <ClCompile Include="GUI\Context.c">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)GUI</ObjectFileName>
@@ -113,7 +114,6 @@
     <ClCompile Include="GUI\TextLabel.c" />
     <ClCompile Include="Scene4.c" />
     <ClCompile Include="Scene5.c" />
-    <ClCompile Include="Shape2.c" />
     <ClCompile Include="Text\LayoutLine.c" />
     <ClCompile Include="Text\Layout.c" />
     <ClCompile Include="UtilitiesGL.c" />
@@ -136,6 +136,7 @@
     <ClInclude Include="GL\ShaderProgram.h" />
     <ClInclude Include="GL\Texture.h" />
     <ClInclude Include="Graphics2\Context2.h" />
+    <ClInclude Include="Graphics2\Shape2.h" />
     <ClInclude Include="GUI\BorderModel.h" />
     <ClInclude Include="GUI\Context.h" />
     <ClInclude Include="GUI\GDL\Context.h" />
@@ -148,7 +149,6 @@
     <ClInclude Include="GUI\TextLabel.h" />
     <ClInclude Include="Scene4.h" />
     <ClInclude Include="Scene5.h" />
-    <ClInclude Include="Shape2.h" />
     <ClInclude Include="Text\LayoutLine.h" />
     <ClInclude Include="Text\Layout.h" />
     <ClInclude Include="UtilitiesGL.h" />
