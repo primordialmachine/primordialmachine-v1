@@ -92,6 +92,7 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)GL\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="Graphics2\Context2.c" />
+    <ClCompile Include="Graphics2\Rectangle2.c" />
     <ClCompile Include="Graphics2\Shape2.c" />
     <ClCompile Include="GUI\BorderModel.c" />
     <ClCompile Include="GUI\Context.c">
@@ -136,6 +137,7 @@
     <ClInclude Include="GL\ShaderProgram.h" />
     <ClInclude Include="GL\Texture.h" />
     <ClInclude Include="Graphics2\Context2.h" />
+    <ClInclude Include="Graphics2\Rectangle2.h" />
     <ClInclude Include="Graphics2\Shape2.h" />
     <ClInclude Include="GUI\BorderModel.h" />
     <ClInclude Include="GUI\Context.h" />

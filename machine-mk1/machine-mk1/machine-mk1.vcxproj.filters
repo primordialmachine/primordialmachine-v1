@@ -165,6 +165,9 @@
     <ClCompile Include="Graphics2\Shape2.c">
       <Filter>Quelldateien\Graphics2</Filter>
     </ClCompile>
+    <ClCompile Include="Graphics2\Rectangle2.c">
+      <Filter>Quelldateien\Graphics2</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\external\glad\include\glad\glad.h">
@@ -261,6 +264,9 @@
       <Filter>Headerdateien\Graphics2</Filter>
     </ClInclude>
     <ClInclude Include="Graphics2\Shape2.h">
+      <Filter>Headerdateien\Graphics2</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics2\Rectangle2.h">
       <Filter>Headerdateien\Graphics2</Filter>
     </ClInclude>
   </ItemGroup>
