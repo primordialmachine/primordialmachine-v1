@@ -17,7 +17,7 @@ struct Machine_Shape2 {
   void (*render)(Machine_Shape2* self, float width, float height);
 };
 
-void Machine_Shape2_construct(Machine_Shape2* self, size_t numberOfArguments, const Machine_Value* arguments);
+void Machine_Shape2_construct(Machine_Shape2* self, size_t numberOfArguments, Machine_Value const* arguments);
 
 void Machine_Shape2_render(Machine_Shape2* self, float width, float height);
 

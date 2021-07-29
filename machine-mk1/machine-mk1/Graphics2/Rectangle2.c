@@ -81,7 +81,7 @@ void Machine_Rectangle2_render(Machine_Rectangle2* self, float width, float heig
   Machine_Video_drawIndirect(0, 6, indices);
 }
 
-void Machine_Rectangle2_construct(Machine_Rectangle2* self, size_t numberOfArguments, const Machine_Value* arguments) {
+void Machine_Rectangle2_construct(Machine_Rectangle2* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Shape2_construct((Machine_Shape2*)self, numberOfArguments, arguments);
   self->position = Machine_Math_Vector2_create();
   self->size = Machine_Math_Vector2_create();
@@ -111,38 +111,38 @@ Machine_Rectangle2* Machine_Rectangle2_create() {
   return self;
 }
 
-void Machine_Rectangle2_setRectangle(Machine_Rectangle2* self, const Machine_Math_Rectangle2* rectangle) {
+void Machine_Rectangle2_setRectangle(Machine_Rectangle2* self, Machine_Math_Rectangle2 const* rectangle) {
   Machine_Math_Vector2_copy(self->position, Machine_Math_Rectangle2_getPosition(rectangle));
   Machine_Math_Vector2_copy(self->size, Machine_Math_Rectangle2_getSize(rectangle));
 }
 
-Machine_Math_Rectangle2* Machine_Rectangle2_getRectangle(const Machine_Rectangle2* self) {
+Machine_Math_Rectangle2* Machine_Rectangle2_getRectangle(Machine_Rectangle2 const* self) {
   Machine_Math_Rectangle2* rectangle = Machine_Math_Rectangle2_create();
   Machine_Math_Rectangle2_setPosition(rectangle, self->position);
   Machine_Math_Rectangle2_setSize(rectangle, self->size);
   return rectangle;
 }
 
-void Machine_Rectangle2_setColor(Machine_Rectangle2* self, const Machine_Math_Vector4* color) {
+void Machine_Rectangle2_setColor(Machine_Rectangle2* self, Machine_Math_Vector4 const* color) {
   Machine_Math_Vector4_copy(self->color, color);
 }
 
-const Machine_Math_Vector4* Machine_Rectangle2_getColor(const Machine_Rectangle2* self) {
+Machine_Math_Vector4 const* Machine_Rectangle2_getColor(Machine_Rectangle2 const* self) {
   return self->color;
 }
 
-void Machine_Rectangle2_setSize(Machine_Rectangle2* self, const Machine_Math_Vector2* size) {
+void Machine_Rectangle2_setSize(Machine_Rectangle2* self, Machine_Math_Vector2 const* size) {
   Machine_Math_Vector2_copy(self->size, size);
 }
 
-const Machine_Math_Vector2* Machine_Rectangle2_getSize(const Machine_Rectangle2* self) {
+Machine_Math_Vector2 const* Machine_Rectangle2_getSize(Machine_Rectangle2 const* self) {
   return self->size;
 }
 
-void Machine_Rectangle2_setPosition(Machine_Rectangle2* self, const Machine_Math_Vector2* position) {
+void Machine_Rectangle2_setPosition(Machine_Rectangle2* self, Machine_Math_Vector2 const* position) {
   Machine_Math_Vector2_copy(self->position, position);
 }
 
-const Machine_Math_Vector2* Machine_Rectangle2_getPosition(const Machine_Rectangle2* self) {
+Machine_Math_Vector2 const* Machine_Rectangle2_getPosition(Machine_Rectangle2 const* self) {
   return self->position;
 }

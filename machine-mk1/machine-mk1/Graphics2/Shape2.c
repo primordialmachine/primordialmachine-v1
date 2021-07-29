@@ -10,7 +10,7 @@
 static void Machine_Shape2_visit(Machine_Shape2* self)
 {/*Intentionally empty.*/}
 
-void Machine_Shape2_construct(Machine_Shape2* self, size_t numberOfArguments, const Machine_Value* arguments) {
+void Machine_Shape2_construct(Machine_Shape2* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   Machine_setClassType((Machine_Object*)self, Machine_Shape2_getClassType());
 }
