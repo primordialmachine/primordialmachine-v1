@@ -58,6 +58,12 @@
     <Filter Include="Headerdateien\GUI\GDL">
       <UniqueIdentifier>{2bd23f27-1712-4f30-baf9-c43598b63859}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Graphics2">
+      <UniqueIdentifier>{d9671a50-b20a-426d-b5b1-c37ef52deabb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Graphics2">
+      <UniqueIdentifier>{59eed884-97c7-455a-a19c-34553b1ef401}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -156,6 +162,9 @@
     <ClCompile Include="GL\CanvasInput.c">
       <Filter>Quelldateien\GL</Filter>
     </ClCompile>
+    <ClCompile Include="Graphics2\Context2.c">
+      <Filter>Quelldateien\Graphics2</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\external\glad\include\glad\glad.h">
@@ -250,6 +259,9 @@
     </ClInclude>
     <ClInclude Include="GL\CanvasInput.h">
       <Filter>Headerdateien\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics2\Context2.h">
+      <Filter>Headerdateien\Graphics2</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

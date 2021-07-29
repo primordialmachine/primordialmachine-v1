@@ -91,6 +91,7 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)GL\</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)GL\</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="Graphics2\Context2.c" />
     <ClCompile Include="GUI\BorderModel.c" />
     <ClCompile Include="GUI\Context.c">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)GUI</ObjectFileName>
@@ -134,6 +135,7 @@
     <ClInclude Include="GL\CanvasInput.h" />
     <ClInclude Include="GL\ShaderProgram.h" />
     <ClInclude Include="GL\Texture.h" />
+    <ClInclude Include="Graphics2\Context2.h" />
     <ClInclude Include="GUI\BorderModel.h" />
     <ClInclude Include="GUI\Context.h" />
     <ClInclude Include="GUI\GDL\Context.h" />
