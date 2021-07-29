@@ -3,8 +3,9 @@
 
 
 
+#include "./../Graphics2/Context2.h"
+#include "./../Video.h"
 #include <string.h>
-#include "./../GL/ShaderProgram.h"
 
 
 
@@ -15,42 +16,18 @@ static void Machine_Rectangle2_visit(Machine_Rectangle2* self) {
   if (self->size) {
     Machine_visit(self->size);
   }
-  if (self->shader) {
-    Machine_visit(self->shader);
-  }
-  if (self->vertices) {
-    Machine_visit(self->vertices);
-  }
-  if (self->binding) {
-    Machine_visit(self->binding);
-  }
   if (self->color) {
     Machine_visit(self->color);
   }
 }
 
-static void Machine_Rectangle2_render(Machine_Rectangle2* self, float width, float height) {
-  float ratio = width / height;
+static void Machine_Rectangle2_render(Machine_Rectangle2* self, Machine_Context2 *context) {
+  Machine_Math_Matrix4 const*wvp2 = Machine_Context2_getModelSpaceToProjectiveSpaceMatrix(context);
 
-  // Set the world matrix, view matrix, and projection matrix.
-  Machine_Math_Matrix4* world2, * view2, * projection2, * wvp2;
-  world2 = Machine_Math_Matrix4_create(); Machine_Math_Matrix4_setIdentity(world2); // world matrix is identity.
-  view2 = Machine_Math_Matrix4_create(); Machine_Math_Matrix4_setIdentity(view2); // view matrix is identity.
-  projection2 = Machine_Math_Matrix4_create();
-#if defined(true)
-  Machine_Math_Matrix4_setOrtho(projection2, 0.f, width, height, 0.f, 1.f, -1.f); // projection matrix
-#else
-  Machine_Math_Matrix4_setOrtho(projection2, 0.f, width, 0.f, height, 1.f, -1.f); // projection matrix
-#endif
-  // Compute combined world view projection matrix.
-  wvp2 = Machine_Math_Matrix4_create();
-  Machine_Math_Matrix4_multiply(wvp2, projection2, view2);
-  Machine_Math_Matrix4_multiply(wvp2, wvp2, world2);
-
-  float l = Machine_Math_Vector2_getX(self->position);
-  float r = l + Machine_Math_Vector2_getX(self->size);
-  float b = Machine_Math_Vector2_getY(self->position);
-  float t = b + Machine_Math_Vector2_getY(self->size);
+  Machine_Real l = Machine_Math_Vector2_getX(self->position);
+  Machine_Real r = l + Machine_Math_Vector2_getX(self->size);
+  Machine_Real b = Machine_Math_Vector2_getY(self->position);
+  Machine_Real t = b + Machine_Math_Vector2_getY(self->size);
 
   static const uint8_t indices[] = {
     0, 1, 2,
@@ -68,36 +45,27 @@ static void Machine_Rectangle2_render(Machine_Rectangle2* self, float width, flo
     { r, t, }, // right/top
   };
 
-  Machine_VideoBuffer_setData(self->vertices, sizeof(VERTICES), (void const*)VERTICES);
+  Machine_VideoBuffer_setData(context->vertices, sizeof(VERTICES), (void const*)VERTICES);
 
-  Machine_Binding_activate(self->binding);
+  Machine_Binding_activate(context->binding);
   {
-    Machine_Binding_bindMatrix4(self->binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), wvp2);
+    Machine_Binding_bindMatrix4(context->binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), wvp2);
   }
   {
-    Machine_Binding_bindVector4(self->binding, Machine_String_create("mesh_color", strlen("mesh_color") + 1), self->color);
+    Machine_Binding_bindVector4(context->binding, Machine_String_create("mesh_color", strlen("mesh_color") + 1), self->color);
   }
 
   Machine_Video_drawIndirect(0, 6, indices);
 }
 
 static void Machine_Rectangle2_constructClass(Machine_Rectangle2_Class* self) {
-  ((Machine_Shape2_Class*)self)->render = (void(*)(Machine_Shape2*, float, float)) & Machine_Rectangle2_render;
+  ((Machine_Shape2_Class*)self)->render = (void(*)(Machine_Shape2*, Machine_Context2*)) & Machine_Rectangle2_render;
 }
 
 void Machine_Rectangle2_construct(Machine_Rectangle2* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Shape2_construct((Machine_Shape2*)self, numberOfArguments, arguments);
   self->position = Machine_Math_Vector2_create();
   self->size = Machine_Math_Vector2_create();
-
-  self->vertices = Machine_Video_createBuffer();
-  self->shader = Machine_GL_ShaderProgram_generateShape2Shader(false);
-
-  Machine_VertexDescriptor* vertexDescriptor = Machine_VertexDescriptor_create();
-  Machine_VertexDescriptor_append(vertexDescriptor, Machine_VertexElementSemantics_XfYf);
-
-  self->binding = Machine_Video_createBinding(self->shader, vertexDescriptor, self->vertices);
-  Machine_Binding_setVariableBinding(self->binding, Machine_String_create("vertex_position", strlen("vertex_position") + 1), 0);
 
   self->color = Machine_Math_Vector4_create();
   Machine_Math_Vector4_set(self->color, 1.f, 1.f, 1.f, 1.f);

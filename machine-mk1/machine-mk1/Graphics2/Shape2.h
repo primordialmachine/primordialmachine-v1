@@ -7,6 +7,7 @@
 #error("Do not include this file directly, include `_Graphics2.h` instead.")
 #endif
 #include "_Math.h"
+typedef struct Machine_Context2 Machine_Context2;
 
 
 
@@ -26,7 +27,7 @@ MACHINE_DECLARE_CLASSTYPE(Machine_Shape2);
 
 struct Machine_Shape2 {
   Machine_Object parent;
-  void (*render)(Machine_Shape2* self, float width, float height);
+  void (*render)(Machine_Shape2* self, Machine_Context2* context);
 };
 
 /// @brief Construct this shape with default values.
@@ -34,7 +35,7 @@ struct Machine_Shape2 {
 /// @param numberOfArguments, arguments The arguments.
 void Machine_Shape2_construct(Machine_Shape2* self, size_t numberOfArguments, Machine_Value const* arguments);
 
-void Machine_Shape2_render(Machine_Shape2* self, float width, float height);
+void Machine_Shape2_render(Machine_Shape2* self, Machine_Context2* context);
 
 
 

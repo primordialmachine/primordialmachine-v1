@@ -7,7 +7,6 @@
 #error("Do not include this file directly, include `_Graphics2.h` instead.")
 #endif
 #include "./../Graphics2/Shape2.h"
-#include "./../Video.h"
 
 
 
@@ -22,9 +21,6 @@ struct Machine_Rectangle2 {
   Machine_Shape2 __parent;
   Machine_Math_Vector2* position;
   Machine_Math_Vector2* size;
-  Machine_ShaderProgram* shader;
-  Machine_VideoBuffer* vertices;
-  Machine_Binding* binding;
   Machine_Math_Vector4* color;
 };
 

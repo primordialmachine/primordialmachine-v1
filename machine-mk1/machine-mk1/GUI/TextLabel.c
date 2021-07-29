@@ -6,6 +6,7 @@
 
 
 #include "./../_Graphics2.h"
+#include "./../GUI/Context.h"
 #include "./../GUI/Widget.h"
 #include <string.h>
 
@@ -156,6 +157,8 @@ void Machine_GUI_TextLabel_render(Machine_GUI_TextLabel* self, float width, floa
 
     self->childDirty = false;
   }
-  Machine_Shape2_render((Machine_Shape2 *)self->background, width, height);
-  Machine_Text_Layout_render(self->foreground, width, height);
+  Machine_Context2* context = ((Machine_GUI_Widget*)self)->context->context2;
+  Machine_Context2_setTargetSize(context, width, height);
+  Machine_Shape2_render((Machine_Shape2 *)self->background, context);
+  Machine_Text_Layout_render(self->foreground, Machine_Context2_getTargetWidth(context), Machine_Context2_getTargetHeight(context));
 }

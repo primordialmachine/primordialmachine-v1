@@ -258,7 +258,9 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
     Machine_Math_Vector4* color = Machine_Math_Vector4_create();
     Machine_Math_Vector4_set(color, .3f, .6f, .3f, 1.f);
     Machine_Rectangle2_setColor(self->visualBounds, color);
-    Machine_Shape2_render((Machine_Shape2*)self->visualBounds, width, height);
+    Machine_Context2* context = Machine_Context2_create();
+    Machine_Context2_setTargetSize(context, width, height);
+    Machine_Shape2_render((Machine_Shape2*)self->visualBounds, context);
   }
 
 #if defined(WITH_SNAPTOGRID)
@@ -271,18 +273,11 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
 #endif
 
   // Set the world matrix, view matrix, and projection matrix.
-  Machine_Math_Matrix4* world2, * view2, * projection2, * wvp2;
-  world2 = Machine_Math_Matrix4_create(); Machine_Math_Matrix4_setIdentity(world2); // world matrix is identity.
-  view2 = Machine_Math_Matrix4_create(); Machine_Math_Matrix4_setIdentity(view2); // view matrix is identity.
-  projection2 = Machine_Math_Matrix4_create();
-#if defined(Y_UP)
-  Machine_Math_Matrix4_setOrtho(projection2, 0.f, width, height, 0.f, 1.f, -1.f); // projection matrix
-#else
-  Machine_Math_Matrix4_setOrtho(projection2, 0.f, width, 0.f, height, 1.f, -1.f); // projection matrix
-#endif
-  wvp2 = Machine_Math_Matrix4_create();
-  Machine_Math_Matrix4_multiply(wvp2, projection2, view2);
-  Machine_Math_Matrix4_multiply(wvp2, wvp2, world2);
+  Machine_Context2* context = Machine_Context2_create();
+  Machine_Context2_setTargetSize(context, width, height);
+  Machine_Context2_setOriginBottomLeft(context, Y_UP);
+  Machine_Math_Matrix4 const* modelSpaceToProjectiveSpace = Machine_Context2_getModelSpaceToProjectiveSpaceMatrix(context);
+  Machine_Math_Matrix4 const* modelSpaceToWorldSpace = Machine_Context2_getModelSpaceToWorldSpaceMatrix(context);
 
   Machine_ShaderProgram* shaderProgram = Machine_Font_getShaderProgram(self->font);
   Machine_Binding* binding = Machine_Font_getBinding(self->font);
@@ -309,8 +304,8 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
     }
   }
   Machine_Binding_bindVector3(binding, Machine_String_create("mesh_color", strlen("mesh_color") + 1), self->color);
-  Machine_Binding_bindMatrix4(binding, Machine_String_create("modelToWorldMatrix", strlen("modelToWorldMatrix") + 1), world2);
-  Machine_Binding_bindMatrix4(binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), wvp2);
+  Machine_Binding_bindMatrix4(binding, Machine_String_create("modelToWorldMatrix", strlen("modelToWorldMatrix") + 1), modelSpaceToWorldSpace);
+  Machine_Binding_bindMatrix4(binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), modelSpaceToProjectiveSpace);
 
   Machine_Video_setDepthTestFunction(Machine_DepthTestFunction_Always);
   Machine_Video_setDepthWriteEnabled(false);
