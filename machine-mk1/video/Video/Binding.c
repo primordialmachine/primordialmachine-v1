@@ -14,11 +14,11 @@
 
 static void Machine_Binding_Node_visit(Machine_Binding_Node* self);
 
-static void Machine_Binding_Node_construct(Machine_Binding_Node* self, size_t numberOfArguments, const Machine_Value* arguments);
+static void Machine_Binding_Node_construct(Machine_Binding_Node* self, size_t numberOfArguments, Machine_Value const* arguments);
 
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_Binding_Node, Machine_Object, Machine_Binding_Node_visit, Machine_Binding_Node_construct, NULL)
 
-static void Machine_Binding_Node_construct(Machine_Binding_Node* self, size_t numberOfArguments, const Machine_Value* arguments) {
+static void Machine_Binding_Node_construct(Machine_Binding_Node* self, size_t numberOfArguments, Machine_Value const* arguments) {
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_Object_construct((Machine_Object*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
@@ -39,30 +39,23 @@ static void Machine_Binding_Node_visit(Machine_Binding_Node* self) {
   Machine_Value_visit(&self->value);
 }
 
-Machine_Binding_Node* Machine_Binding_Node_create(Machine_String* name, size_t index) {
+Machine_Binding_Node* Machine_Binding_Node_create(Machine_String* name, Machine_Boolean isVariable, Machine_Value const* value) {
   size_t numberOfArguments = 3;
   Machine_Value arguments[3];
   Machine_Value_setString(&arguments[0], name);
-  Machine_Value_setBoolean(&arguments[1], true);
-  Machine_Value_setInteger(&arguments[2], index);
-  if (index < 0 || index > Machine_Integer_Greatest) {
-    Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
-  }
+  Machine_Value_setBoolean(&arguments[1], isVariable);
+  arguments[2] = *value;
   Machine_ClassType* ty = Machine_Binding_Node_getClassType();
   Machine_Binding_Node* self = (Machine_Binding_Node*)Machine_allocateClassObject(ty, numberOfArguments, arguments);
   return self;
 }
 
+Machine_Binding_Node* Machine_Binding_Node_createVariable(Machine_String* name, Machine_Value const* value) {
+  return Machine_Binding_Node_create(name, true, value);
+}
+
 Machine_Binding_Node* Machine_Binding_Node_createConstant(Machine_String* name, Machine_Value const* value) {
-  size_t numberOfArguments = 3;
-  Machine_Value arguments[3];
-  Machine_Value_setString(&arguments[0], name);
-  Machine_Value_setBoolean(&arguments[1], false);
-  arguments[2] = *value;
-  Machine_ClassType* ty = Machine_Binding_Node_getClassType();
-  Machine_Binding_Node* self = (Machine_Binding_Node*)Machine_allocateClassObject(ty, numberOfArguments, arguments);
-  return self;
+  return Machine_Binding_Node_create(name, false, value);
 }
 
 static void Machine_Binding_destruct(Machine_Binding* self)
@@ -83,7 +76,7 @@ static void Machine_Binding_visit(Machine_Binding* self) {
   }
 }
 
-void Machine_Binding_construct(Machine_Binding* self, size_t numberOfArguments, const Machine_Value* arguments) {
+void Machine_Binding_construct(Machine_Binding* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->dirty = true;
   self->program = (Machine_ShaderProgram*)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0, Machine_ShaderProgram_getClassType());
@@ -107,22 +100,56 @@ void Machine_Binding_activate(Machine_Binding* self) {
   self->activate(self);
 }
 
-void Machine_Binding_bindMatrix4(Machine_Binding* self, Machine_String* name, const Machine_Math_Matrix4* value) {
+static void addUpdateConstant(Machine_Binding* self, Machine_String* name, Machine_Value const* value) {
+  Machine_Binding_Node* node = self->nodes;
+  while (NULL != node) {
+    if (Machine_String_isEqualTo(node->name, name)) {
+      break;
+    }
+    node = node->next;
+  }
+  if (!node) {
+    node = Machine_Binding_Node_createConstant(name, value);
+    node->next = self->nodes;
+    self->nodes = node;
+  } else {
+    node->name = name;
+    node->value = *value;
+    node->isVariable = false;
+  }
+}
+
+void Machine_Binding_bindMatrix4(Machine_Binding* self, Machine_String* name, Machine_Math_Matrix4 const* value) {
+  Machine_Value temporary;
+  Machine_Value_setObject(&temporary, (Machine_Object*)value);
+  addUpdateConstant(self, name, &temporary);
   self->bindMatrix4(self, name, value);
 }
 
-void Machine_Binding_bindVector2(Machine_Binding* self, Machine_String* name, const Machine_Math_Vector2* value) {
+void Machine_Binding_bindVector2(Machine_Binding* self, Machine_String* name, Machine_Math_Vector2 const* value) {
+  Machine_Value temporary;
+  Machine_Value_setObject(&temporary, (Machine_Object*)value);
+  addUpdateConstant(self, name, &temporary);
   self->bindVector2(self, name, value);
 }
 
 void Machine_Binding_bindVector3(Machine_Binding* self, Machine_String* name, Machine_Math_Vector3 const* value) {
+  Machine_Value temporary;
+  Machine_Value_setObject(&temporary, (Machine_Object*)value);
+  addUpdateConstant(self, name, &temporary);
   self->bindVector3(self, name, value);
 }
 
-void Machine_Binding_bindVector4(Machine_Binding* self, Machine_String* name, const Machine_Math_Vector4* value) {
+void Machine_Binding_bindVector4(Machine_Binding* self, Machine_String* name, Machine_Math_Vector4 const* value) {
+  Machine_Value temporary;
+  Machine_Value_setObject(&temporary, (Machine_Object*)value);
+  addUpdateConstant(self, name, &temporary);
   self->bindVector4(self, name, value);
 }
 
 void Machine_Binding_bindSampler(Machine_Binding* self, Machine_String* name, const size_t value) {
+  Machine_Value temporary;
+  Machine_Value_setInteger(&temporary, (Machine_Integer)value);
+  addUpdateConstant(self, name, &temporary);
   self->bindSampler(self, name, value);
 }

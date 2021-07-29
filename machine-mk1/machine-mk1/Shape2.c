@@ -98,7 +98,6 @@ void Machine_Rectangle2_render(Machine_Rectangle2* self, float width, float heig
   Machine_VideoBuffer_setData(self->vertices, sizeof(VERTICES), (void const *)VERTICES);
 
   Machine_Binding_activate(self->binding);
-  Machine_Video_bindShaderProgram(self->shader);
   {
     Machine_Binding_bindMatrix4(self->binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), wvp2);
   }

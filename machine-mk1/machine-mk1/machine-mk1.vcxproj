@@ -81,6 +81,8 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)GL\</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)GL\</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="GL\Canvas.c" />
+    <ClCompile Include="GL\CanvasInput.c" />
     <ClCompile Include="GL\ShaderProgram.c">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)GL\</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)GL\</ObjectFileName>
@@ -128,6 +130,8 @@
     <ClInclude Include="..\external\glad\include\KHR\khrplatform.h" />
     <ClInclude Include="GL\Binding.h" />
     <ClInclude Include="GL\Buffer.h" />
+    <ClInclude Include="GL\Canvas.h" />
+    <ClInclude Include="GL\CanvasInput.h" />
     <ClInclude Include="GL\ShaderProgram.h" />
     <ClInclude Include="GL\Texture.h" />
     <ClInclude Include="GUI\BorderModel.h" />

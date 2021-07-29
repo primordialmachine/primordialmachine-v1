@@ -4,14 +4,14 @@
 
 #include <malloc.h>
 #include <stdio.h>
+#include "./GL/CanvasInput.h"
+#include "./UtilitiesGL.h"
 #include "GL/Binding.h"
 #include "GL/Buffer.h"
 #include "GL/ShaderProgram.h"
 #include "GL/Texture.h"
 
 
-
-static GLFWwindow* g_window = NULL;
 
 typedef struct _ClipDistance {
   bool enabled;
@@ -25,7 +25,7 @@ typedef struct _ClipDistances {
 static _ClipDistances* g_clipDistances = NULL;
 
 static struct {
-  float r, g, b, a;
+  Machine_Real r, g, b, a;
 } g_clearColor = { 0.9f, 0.9f, 0.9f, 1.f };
 
 static Machine_Material* g_material = NULL;
@@ -77,33 +77,8 @@ static GLenum Machine_DepthTestFunction_toGL(Machine_DepthTestFunction self) {
   };
 }
 
-int Machine_Video_startup() {
-  if (!glfwInit()) {
-    fprintf(stderr, "%s:%d: glfwInit() failed\n", __FILE__, __LINE__);
-    return 1;
-  }
-  glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-  glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
-
-  g_window = glfwCreateWindow(640, 480, "My Title", NULL, NULL);
-  if (!g_window) {
-    fprintf(stderr, "%s:%d: glfwCreateWindow() failed\n", __FILE__, __LINE__);
-    glfwTerminate();
-    return 1;
-  }
-
-  glfwMakeContextCurrent(Machine_Video_getMainWindow());
-  glfwSwapInterval(1);
-
-  if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-    fprintf(stderr, "%s:%d: gladLoadGLLoader() failed\n", __FILE__, __LINE__);
-    glfwMakeContextCurrent(NULL);
-    glfwDestroyWindow(g_window);
-    g_window = NULL;
-    glfwTerminate();
-    return 1;
-  }
-
+void Machine_Video_startup() {
+  Machine_GLFW_startupCanvas();
   {
     Machine_JumpTarget jumpTarget;
     Machine_pushJumpTarget(&jumpTarget);
@@ -164,15 +139,10 @@ int Machine_Video_startup() {
         Machine_unlock(g_material);
         g_material = NULL;
       }
-      glfwMakeContextCurrent(NULL);
-      glfwDestroyWindow(g_window);
-      g_window = NULL;
-      glfwTerminate();
-      return 1;
+      Machine_GLFW_shutdownCanvas();
+      Machine_jump();
     }
   }
-
-  return 0;
 }
 
 void Machine_Video_shutdown() {
@@ -184,10 +154,7 @@ void Machine_Video_shutdown() {
   }
   Machine_unlock(g_material);
   g_material = NULL;
-  glfwMakeContextCurrent(NULL);
-  glfwDestroyWindow(g_window);
-  g_window = NULL;
-  glfwTerminate();
+  Machine_GLFW_shutdownCanvas();
 }
 
 Machine_Texture* Machine_Video_createTextureFromImage(Machine_Images_Image* image) {
@@ -198,7 +165,7 @@ Machine_VideoBuffer* Machine_Video_createBuffer() {
   return (Machine_VideoBuffer*)Machine_GL_VideoBuffer_create();
 }
 
-Machine_ShaderProgram* Machine_Video_createShaderProgram(Machine_String* vertexProgramText, Machine_String* geometryProgramText, Machine_String* fragmentProgramText) {
+Machine_ShaderProgram* Machine_Video_createProgram(Machine_String* vertexProgramText, Machine_String* geometryProgramText, Machine_String* fragmentProgramText) {
   return (Machine_ShaderProgram*)Machine_GL_ShaderProgram_create(vertexProgramText, geometryProgramText, fragmentProgramText);
 }
 
@@ -212,9 +179,6 @@ void Machine_Video_bindTexture(size_t textureUnit, Machine_Texture* texture) {
   Machine_UtilitiesGl_call(glBindTexture(GL_TEXTURE_2D, textureGL->id));
 }
 
-void Machine_Video_bindShaderProgram(Machine_ShaderProgram* shaderProgram) {
-  Machine_UtilitiesGl_call(glUseProgram(((Machine_GL_ShaderProgram*)shaderProgram)->programId));
-}
 
 
 void Machine_Video_setClearColor(Machine_Math_Vector4* clearColor) {
@@ -357,6 +321,22 @@ void Machine_Video_drawIndirect(Machine_Integer i, Machine_Integer n, uint8_t co
   }
 }
 
-GLFWwindow* Machine_Video_getMainWindow() {
-  return g_window;
+Machine_ShaderProgram*
+Machine_Video_generateDefaultShader
+  (
+    bool withMeshColor,
+    bool withVertexColor,
+    bool withTextureCoordinate,
+    bool withTexture
+  )
+{
+  return (Machine_ShaderProgram *)Machine_GL_ShaderProgram_generateDefaultShader(withMeshColor, withVertexColor, withTextureCoordinate, withTexture);
+}
+
+Machine_ShaderProgram* Machine_Video_generateShape2Shader() {
+  return (Machine_ShaderProgram *)Machine_GL_ShaderProgram_generateShape2Shader();
+}
+
+Machine_ShaderProgram* Machine_Video_generateText2Shader(bool highPrecision) {
+  return (Machine_ShaderProgram *)Machine_GL_ShaderProgram_generateText2Shader(highPrecision);
 }

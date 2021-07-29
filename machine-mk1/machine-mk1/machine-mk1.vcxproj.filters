@@ -150,6 +150,12 @@
     <ClCompile Include="GUI\LayoutModel.c">
       <Filter>Quelldateien\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="GL\Canvas.c">
+      <Filter>Quelldateien\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="GL\CanvasInput.c">
+      <Filter>Quelldateien\GL</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\external\glad\include\glad\glad.h">
@@ -238,6 +244,12 @@
     </ClInclude>
     <ClInclude Include="GUI\LayoutModel.h">
       <Filter>Headerdateien\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GL\Canvas.h">
+      <Filter>Headerdateien\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="GL\CanvasInput.h">
+      <Filter>Headerdateien\GL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

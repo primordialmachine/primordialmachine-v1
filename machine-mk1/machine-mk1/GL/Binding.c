@@ -2,6 +2,7 @@
 
 
 
+#include "./../Video.h"
 #include "./../GL/ShaderProgram.h"
 
 
@@ -72,7 +73,9 @@ static bool Machine_Binding_setVariableBindingImpl(Machine_GL_Binding* self, Mac
     node = node->next;
   }
   ((Machine_Binding*)self)->dirty = true;
-  node = Machine_Binding_Node_create(name, index);
+  Machine_Value temporary;
+  Machine_Value_setInteger(&temporary, (Machine_Integer)index);
+  node = Machine_Binding_Node_createVariable(name, &temporary);
   node->next = ((Machine_Binding*)self)->nodes; ((Machine_Binding*)self)->nodes = node;
   return false;
 }
@@ -196,7 +199,6 @@ static void Machine_Binding_activateImpl(Machine_GL_Binding* self) {
       Machine_setStatus(Machine_Status_InvalidArgument);
       Machine_jump();
     }
-
     for (size_t i = 0, j = 0, n = Machine_ShaderProgram_getNumberOfInputs(((Machine_Binding*)self)->program); i < n;) {
       Machine_ProgramInput const* input = Machine_ShaderProgram_getInputAt(((Machine_Binding*)self)->program, i);
       if (input->kind == Machine_ProgramInputKind_Variable) {
@@ -210,12 +212,16 @@ static void Machine_Binding_activateImpl(Machine_GL_Binding* self) {
   else {
     glBindVertexArray(self->id);
   }
+  // Bind the program.
+  Machine_ShaderProgram *program = ((Machine_Binding*)self)->program;
+  Machine_UtilitiesGl_call(glUseProgram(((Machine_GL_ShaderProgram*)program)->programId));
+  // @todo: Update the constant variables.
 }
 
 static void Machine_GL_Binding_construct(Machine_GL_Binding* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Binding_construct((Machine_Binding*)self, numberOfArguments, arguments);
   self->id = 0;
-  ((Machine_Binding*)self)->setVariableBinding = (bool (*)(Machine_Binding *, Machine_String*, size_t))&Machine_Binding_setVariableBindingImpl;
+  ((Machine_Binding*)self)->setVariableBinding = (Machine_Boolean (*)(Machine_Binding *, Machine_String*, size_t))&Machine_Binding_setVariableBindingImpl;
   ((Machine_Binding*)self)->getVariableBinding = (size_t (*)(Machine_Binding const*, Machine_String*)) &Machine_Binding_getVariableBindingImpl;
   ((Machine_Binding*)self)->bindMatrix4 = (void (*)(Machine_Binding *, Machine_String *, Machine_Math_Matrix4 const *))&Machine_Binding_bindMatrix4Impl;
   ((Machine_Binding*)self)->bindVector2 = (void (*)(Machine_Binding*, Machine_String*, Machine_Math_Vector2 const*)) &Machine_Binding_bindVector2Impl;

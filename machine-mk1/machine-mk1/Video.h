@@ -12,12 +12,7 @@ typedef struct Machine_ShaderProgram Machine_ShaderProgram;
 /// @brief Increment the video module by @a 1.
 /// FAILS if the reference count is INT_MAX.
 /// @return @a 0 on success, a non-zero value on failure.
-/// @remarks
-/// Initializing/Uninitializing the video module also
-/// initializes/uninitializes the following modules:
-/// - images
-/// - fonts
-int Machine_Video_startup();
+void Machine_Video_startup();
 
 /// @brief Decrement the video module by @a 1.
 /// UNDEFINED if the reference count is @a 0.
@@ -32,12 +27,12 @@ Machine_Texture* Machine_Video_createTextureFromImage(Machine_Images_Image* imag
 /// @return The buffer.
 Machine_VideoBuffer * Machine_Video_createBuffer();
 
-/// @brief Create a shader program.
+/// @brief Create a program.
 /// @param vertexProgramText The vertex program text.
 /// @param geometryProgramText The geometry program text.
 /// @param fragmentProgramText The fragment program text.
-/// @return The shader program.
-Machine_ShaderProgram* Machine_Video_createShaderProgram(Machine_String *vertexProgramText, Machine_String* geometryProgramText, Machine_String* fragmentProgramText);
+/// @return The program.
+Machine_ShaderProgram* Machine_Video_createProgram(Machine_String *vertexProgramText, Machine_String* geometryProgramText, Machine_String* fragmentProgramText);
 
 /// @brief Create a binding.
 /// @param program The program.
@@ -51,9 +46,6 @@ Machine_Binding* Machine_Video_createBinding(Machine_ShaderProgram* program, Mac
 /// @param texture A pointer to the texture or the null pointer.
 void Machine_Video_bindTexture(size_t unit, Machine_Texture* texture);
 
-/// @brief Assign a shader program.
-/// @param shaderProgram The shader program.
-void Machine_Video_bindShaderProgram(Machine_ShaderProgram* shaderProgram);
 
 
 /// @brief Set the clear color.
@@ -151,7 +143,34 @@ void Machine_Video_drawDirect(Machine_Integer i, Machine_Integer n);
 /// @brief Render @a n consecutive indices starting with the index at (zero-based) index @a 0.
 void Machine_Video_drawIndirect(Machine_Integer i, Machine_Integer n, uint8_t const* indices);
 
-GLFWwindow* Machine_Video_getMainWindow();
+/// @param withMeshColor <code>vec3 mesh_color</code>
+/// @param withVertexColor <code>attribute vec3 vertex_color</code>
+/// @param withTextureCoordinate <code>attribute vec2 vertex_texture_coordinate</code>
+/// @param withTexture <code>uniform sampler2D texture;</code>. @a withTextureCoordinate must be @a true if this is @a true.
+Machine_ShaderProgram*
+Machine_Video_generateDefaultShader
+  (
+    bool withMeshColor,
+    bool withVertexColor,
+    bool withTextureCoordinate,
+    bool withTexture
+  );
+
+/// @brief Create a shader program for rendering an untextured, colored, rectangle.
+/// @return The shader program.
+Machine_ShaderProgram*
+Machine_Video_generateShape2Shader
+  (
+  );
+
+/// @brief Create a shader program for rendering 2D text.
+/// Provides <code>vec3 mesh_color</code> to colorize the text.
+/// @return The shader program.
+Machine_ShaderProgram*
+Machine_Video_generateText2Shader
+  (
+    bool highPrecision
+  );
 
 
 

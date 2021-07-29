@@ -81,7 +81,6 @@ static void Scene1_onUpdate(Scene1* self, float width, float height) {
   Machine_Math_Matrix4* mvp2 = Machine_Math_Matrix4_product(p2, m2);
 
   Machine_Binding_activate(self->binding);
-  Machine_Video_bindShaderProgram(self->shaderProgram);
   Machine_Binding_bindMatrix4(self->binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), mvp2);
 
   Machine_Video_drawDirect(0, 3);

@@ -288,7 +288,6 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
   Machine_Binding* binding = Machine_Font_getBinding(self->font);
 
   Machine_Binding_activate(binding);
-  Machine_Video_bindShaderProgram(shaderProgram);
   if (self->clipRectangle) {
     Machine_Math_Vector2* position = Machine_Math_Rectangle2_getPosition(self->clipRectangle);
     const Machine_Math_Vector2* size = Machine_Math_Rectangle2_getSize(self->clipRectangle);
