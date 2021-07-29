@@ -9,6 +9,7 @@
 #include "_Math.h"
 
 
+
 /// C-level representation of a shape.
 MACHINE_DECLARE_CLASSTYPE(Machine_Shape2);
 

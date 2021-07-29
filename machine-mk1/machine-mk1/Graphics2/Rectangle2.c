@@ -52,6 +52,11 @@ void Machine_Rectangle2_render(Machine_Rectangle2* self, float width, float heig
   float b = Machine_Math_Vector2_getY(self->position);
   float t = b + Machine_Math_Vector2_getY(self->size);
 
+  static const uint8_t indices[] = {
+    0, 1, 2,
+    2, 1, 3,
+  };
+
   struct {
     float x, y;
   }
@@ -72,11 +77,6 @@ void Machine_Rectangle2_render(Machine_Rectangle2* self, float width, float heig
   {
     Machine_Binding_bindVector4(self->binding, Machine_String_create("mesh_color", strlen("mesh_color") + 1), self->color);
   }
-
-  static const uint8_t indices[] = {
-    0, 1, 2,
-    2, 1, 3,
-  };
 
   Machine_Video_drawIndirect(0, 6, indices);
 }

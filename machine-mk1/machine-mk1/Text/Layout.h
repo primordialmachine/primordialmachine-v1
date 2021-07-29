@@ -1,10 +1,14 @@
 #if !defined(MACHINE_TEXT_LAYOUT_H_INCLUDED)
 #define MACHINE_TEXT_LAYOUT_H_INCLUDED
 
+
+
 #include "_Collections.h"
 #include "_Math.h"
 #include "./../_Graphics2.h"
 typedef struct Machine_Fonts_Font Machine_Fonts_Font;
+
+
 
 /// @brief 
 /// @details A layout has several global attributes which are applied to the whole range.
