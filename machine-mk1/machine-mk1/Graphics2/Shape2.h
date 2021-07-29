@@ -35,6 +35,9 @@ struct Machine_Shape2 {
 /// @param numberOfArguments, arguments The arguments.
 void Machine_Shape2_construct(Machine_Shape2* self, size_t numberOfArguments, Machine_Value const* arguments);
 
+/// @brief Render this shape.
+/// @param self This shape.
+/// @param context The context.
 void Machine_Shape2_render(Machine_Shape2* self, Machine_Context2* context);
 
 

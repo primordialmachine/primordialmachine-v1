@@ -13,7 +13,7 @@
 /// C-level representation of a rectangle.
 /// The default position is (0,0).
 /// The default size is (0,0).
-/// The default color is (1,1,1,1).
+/// The default color is opaque white.
 /// @extends Machine_Shape2
 MACHINE_DECLARE_CLASSTYPE(Machine_Rectangle2);
 
