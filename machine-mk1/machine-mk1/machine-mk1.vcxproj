@@ -125,6 +125,7 @@
     <ClCompile Include="Scene2.c" />
     <ClCompile Include="Scene3.c" />
     <ClCompile Include="Video.c" />
+    <ClCompile Include="_Graphics2.c" />
     <ClCompile Include="_GUI.c" />
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +161,7 @@
     <ClInclude Include="Scene2.h" />
     <ClInclude Include="Scene3.h" />
     <ClInclude Include="Video.h" />
+    <ClInclude Include="_Graphics2.h" />
     <ClInclude Include="_GUI.h" />
   </ItemGroup>
   <ItemGroup>

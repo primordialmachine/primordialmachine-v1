@@ -1,8 +1,11 @@
-#if !defined(MACHINE_SHAPE2_H_INCLUDED)
-#define MACHINE_SHAPE2_H_INCLUDED
+#if !defined(MACHINE_GRAPHICS2_SHAPE2_H_INCLUDED)
+#define MACHINE_GRAPHICS2_SHAPE2_H_INCLUDED
 
 
 
+#if !defined(MACHINE_GRAPHICS2_PRIVATE)
+#error("Do not include this file directly, include `_Graphics2.h` instead.")
+#endif
 #include "_Math.h"
 
 
@@ -20,4 +23,4 @@ void Machine_Shape2_render(Machine_Shape2* self, float width, float height);
 
 
 
-#endif // MACHINE_SHAPE2_H_INCLUDED
+#endif // MACHINE_GRAPHICS2_SHAPE2_H_INCLUDED

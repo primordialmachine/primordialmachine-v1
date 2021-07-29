@@ -153,6 +153,9 @@
     <ClCompile Include="GUI\LayoutModel.c">
       <Filter>Quelldateien\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="_Graphics2.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
     <ClCompile Include="GL\Canvas.c">
       <Filter>Quelldateien\GL</Filter>
     </ClCompile>
@@ -253,6 +256,9 @@
     </ClInclude>
     <ClInclude Include="GUI\LayoutModel.h">
       <Filter>Headerdateien\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="_Graphics2.h">
+      <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="GL\Canvas.h">
       <Filter>Headerdateien\GL</Filter>

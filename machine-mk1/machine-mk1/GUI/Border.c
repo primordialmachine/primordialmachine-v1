@@ -5,7 +5,7 @@
 
 
 
-#include "./../Graphics2/Rectangle2.h"
+#include "./../_Graphics2.h"
 #include "./../GUI/BorderModel.h"
 
 

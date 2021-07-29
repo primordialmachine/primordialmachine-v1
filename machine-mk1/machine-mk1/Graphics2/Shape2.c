@@ -1,4 +1,5 @@
-#include "./Shape2.h"
+#define MACHINE_GRAPHICS2_PRIVATE (1)
+#include "./../Graphics2/Shape2.h"
 
 
 

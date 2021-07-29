@@ -12,7 +12,7 @@
 #include "_Video.h"
 
 #include "Fonts.h"
-#include "Graphics2/Shape2.h"
+#include "_Graphics2.h"
 #include "Video.h"
 
 static const float OUTER_BORDER_SIZE = 4.f;

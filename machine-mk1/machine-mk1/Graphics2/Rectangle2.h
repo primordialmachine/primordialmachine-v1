@@ -1,8 +1,11 @@
-#if !defined(MACHINE_RECTANGLE2_H_INCLUDED)
-#define MACHINE_RECTANGLE2_H_INCLUDED
+#if !defined(MACHINE_GRAPHICS2_RECTANGLE2_H_INCLUDED)
+#define MACHINE_GRAPHICS2_RECTANGLE2_H_INCLUDED
 
 
 
+#if !defined(MACHINE_GRAPHICS2_PRIVATE)
+#error("Do not include this file directly, include `_Graphics2.h` instead.")
+#endif
 #include "./../Graphics2/Shape2.h"
 #include "./../Video.h"
 
@@ -76,4 +79,4 @@ const Machine_Math_Vector2* Machine_Rectangle2_getPosition(const Machine_Rectang
 
 
 
-#endif // MACHINE_RECTANGLE2_H_INCLUDED
+#endif // MACHINE_GRAPHICS2_RECTANGLE2_H_INCLUDED

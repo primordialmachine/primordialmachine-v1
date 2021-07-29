@@ -5,7 +5,7 @@
 
 
 
-#include "./../Graphics2/Shape2.h"
+#include "./../_Graphics2.h"
 #include "./../GUI/Widget.h"
 #include <string.h>
 
