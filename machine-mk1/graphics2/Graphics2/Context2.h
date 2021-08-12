@@ -18,6 +18,8 @@ MACHINE_DECLARE_CLASSTYPE(Machine_Context2);
 struct Machine_Context2 {
   Machine_Object parent;
 
+  Machine_VideoContext* videoContext;
+
   /// @brief The combined model space to projection space transformation matrix.
   Machine_Math_Matrix4* modelSpaceToProjectiveSpace;
   /// @brief the combined model space to world space transformation matrix.
@@ -40,7 +42,7 @@ struct Machine_Context2 {
   /// Otherwise:
   /// - the origin is the left/top corner of the render target.
   /// -  the positive x-axis points to the right border, the positive y-axis points to the bottom border.
-  bool originBottomLeft;
+  Machine_Boolean originBottomLeft;
 
   /// @brief The default shader.
   Machine_ShaderProgram* shader;
@@ -63,8 +65,9 @@ struct Machine_Context2 {
 void Machine_Context2_construct(Machine_Context2* self, size_t numberOfArguments, Machine_Value const* arguments);
 
 /// @brief Create a context with default values.
+/// @param videoContext The video context.
 /// @return The context.
-Machine_Context2* Machine_Context2_create();
+Machine_Context2* Machine_Context2_create(Machine_VideoContext* videoContext);
 
 /// @brief Set the width and height of the canvas.
 /// @param self This context.

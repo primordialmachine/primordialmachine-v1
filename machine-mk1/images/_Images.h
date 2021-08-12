@@ -13,25 +13,8 @@
 MACHINE_DECLARE_CLASSTYPE(Machine_Images_Image)
 
 void Machine_Images_Image_constructFromPath(Machine_Images_Image* self, Machine_String* path);
+
 void Machine_Images_Image_constructDirect(Machine_Images_Image* self, Machine_PixelFormat pixelFormat, Machine_Integer width, Machine_Integer height, Machine_ByteBuffer* pixels);
-
-/// @brief Get the size, in pixels, of this image.
-/// @param self This image.
-/// @param [out] width A pointer to an @a int variable receiving the width on success.
-/// Not dereferenced on error.
-/// @param {out] height A pointer to an @a int variable receiving the height on success.
-/// Not dereferenced on error.
-void Machine_Images_Image_getSize(Machine_Images_Image* self, Machine_Integer* width, Machine_Integer* height);
-
-/// @brief Get the pixel format of this image.
-/// @param self This image.
-/// @return The pixel format.
-Machine_PixelFormat Machine_Images_Image_getPixelFormat(Machine_Images_Image* self);
-
-/// @brief Get the pixels of an image.
-/// @param self This image.
-/// @return The pixels.
-void* Machine_Images_Image_getPixels(Machine_Images_Image* self);
 
 /// @brief Create an image from a file.
 /// @param path A pointer to the string denoting the path of the file.

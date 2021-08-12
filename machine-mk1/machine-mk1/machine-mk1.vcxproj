@@ -51,7 +51,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)external/freetype/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/linmath;$(SolutionDir)gdl;$(SolutionDir)images;$(SolutionDir)input;$(SolutionDir)video;$(SolutionDir)math;$(SolutionDir)signals;$(SolutionDir)core-collections;$(SolutionDir)core</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external/freetype/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/linmath;$(SolutionDir)gdl;$(SolutionDir)images;$(SolutionDir)input;$(SolutionDir)graphics2;$(SolutionDir)video;$(SolutionDir)math;$(SolutionDir)signals;$(SolutionDir)core-collections;$(SolutionDir)core</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -63,7 +63,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)external/freetype/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/linmath;$(SolutionDir)gdl;$(SolutionDir)images;$(SolutionDir)input;$(SolutionDir)video;$(SolutionDir)math;$(SolutionDir)signals;$(SolutionDir)core-collections;$(SolutionDir)core</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external/freetype/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/linmath;$(SolutionDir)gdl;$(SolutionDir)images;$(SolutionDir)input;$(SolutionDir)graphics2;$(SolutionDir)video;$(SolutionDir)math;$(SolutionDir)signals;$(SolutionDir)core-collections;$(SolutionDir)core</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -91,9 +91,8 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)GL\</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)GL\</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="Graphics2\Context2.c" />
-    <ClCompile Include="Graphics2\Rectangle2.c" />
-    <ClCompile Include="Graphics2\Shape2.c" />
+    <ClCompile Include="GL\UtilitiesGL.c" />
+    <ClCompile Include="GL\VideoContext.c" />
     <ClCompile Include="GUI\BorderModel.c" />
     <ClCompile Include="GUI\Context.c">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)GUI</ObjectFileName>
@@ -117,7 +116,6 @@
     <ClCompile Include="Scene5.c" />
     <ClCompile Include="Text\LayoutLine.c" />
     <ClCompile Include="Text\Layout.c" />
-    <ClCompile Include="UtilitiesGL.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="Scene.c" />
     <ClCompile Include="Scene1.c" />
@@ -125,7 +123,6 @@
     <ClCompile Include="Scene2.c" />
     <ClCompile Include="Scene3.c" />
     <ClCompile Include="Video.c" />
-    <ClCompile Include="_Graphics2.c" />
     <ClCompile Include="_GUI.c" />
   </ItemGroup>
   <ItemGroup>
@@ -137,9 +134,8 @@
     <ClInclude Include="GL\CanvasInput.h" />
     <ClInclude Include="GL\ShaderProgram.h" />
     <ClInclude Include="GL\Texture.h" />
-    <ClInclude Include="Graphics2\Context2.h" />
-    <ClInclude Include="Graphics2\Rectangle2.h" />
-    <ClInclude Include="Graphics2\Shape2.h" />
+    <ClInclude Include="GL\UtilitiesGL.h" />
+    <ClInclude Include="GL\VideoContext.h" />
     <ClInclude Include="GUI\BorderModel.h" />
     <ClInclude Include="GUI\Context.h" />
     <ClInclude Include="GUI\GDL\Context.h" />
@@ -154,14 +150,12 @@
     <ClInclude Include="Scene5.h" />
     <ClInclude Include="Text\LayoutLine.h" />
     <ClInclude Include="Text\Layout.h" />
-    <ClInclude Include="UtilitiesGL.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scene1.h" />
     <ClInclude Include="Fonts.h" />
     <ClInclude Include="Scene2.h" />
     <ClInclude Include="Scene3.h" />
     <ClInclude Include="Video.h" />
-    <ClInclude Include="_Graphics2.h" />
     <ClInclude Include="_GUI.h" />
   </ItemGroup>
   <ItemGroup>
@@ -170,6 +164,9 @@
     </ProjectReference>
     <ProjectReference Include="..\gdl\machine-mk1-gdl.vcxproj">
       <Project>{a45e158d-8db9-4d07-9642-a79c583a5dd1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\graphics2\machine-mk1-graphics2.vcxproj">
+      <Project>{f4aa48f9-3c29-4cc5-b219-c357284103b2}</Project>
     </ProjectReference>
     <ProjectReference Include="..\images\machine-mk1-images.vcxproj">
       <Project>{f0b732b5-824d-40ab-aa0a-a067b6a852f9}</Project>

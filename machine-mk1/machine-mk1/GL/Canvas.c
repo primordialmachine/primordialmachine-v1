@@ -81,11 +81,11 @@ void Machine_GLFW_setCanvasIcons(Machine_List* images) {
     }
     for (size_t i = 0, n = numberOfImages; i < n; ++i) {
       Machine_Value temporary = Machine_List_getAt(images, i);
-      Machine_Images_Image* image = (Machine_Images_Image*)Machine_Value_getObject(&temporary);
+      Machine_Image* image = (Machine_Image*)Machine_Value_getObject(&temporary);
       Machine_Integer w, h;
-      void* p;
-      Machine_Images_Image_getSize(image, &w, &h);
-      p = Machine_Images_Image_getPixels(image);
+      void const* p;
+      Machine_Image_getSize(image, &w, &h);
+      p = Machine_Image_getPixels(image);
       targetImages[i].width = w;
       targetImages[i].height = h;
       targetImages[i].pixels = p;

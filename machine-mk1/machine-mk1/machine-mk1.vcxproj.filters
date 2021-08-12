@@ -58,12 +58,6 @@
     <Filter Include="Headerdateien\GUI\GDL">
       <UniqueIdentifier>{2bd23f27-1712-4f30-baf9-c43598b63859}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headerdateien\Graphics2">
-      <UniqueIdentifier>{d9671a50-b20a-426d-b5b1-c37ef52deabb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Quelldateien\Graphics2">
-      <UniqueIdentifier>{59eed884-97c7-455a-a19c-34553b1ef401}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -85,9 +79,6 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Scene3.c">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="UtilitiesGL.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Scene5.c">
@@ -153,23 +144,17 @@
     <ClCompile Include="GUI\LayoutModel.c">
       <Filter>Quelldateien\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="_Graphics2.c">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="GL\Canvas.c">
       <Filter>Quelldateien\GL</Filter>
     </ClCompile>
     <ClCompile Include="GL\CanvasInput.c">
       <Filter>Quelldateien\GL</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics2\Context2.c">
-      <Filter>Quelldateien\Graphics2</Filter>
+    <ClCompile Include="GL\VideoContext.c">
+      <Filter>Quelldateien\GL</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics2\Shape2.c">
-      <Filter>Quelldateien\Graphics2</Filter>
-    </ClCompile>
-    <ClCompile Include="Graphics2\Rectangle2.c">
-      <Filter>Quelldateien\Graphics2</Filter>
+    <ClCompile Include="GL\UtilitiesGL.c">
+      <Filter>Quelldateien\GL</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -192,9 +177,6 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Scene3.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="UtilitiesGL.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Scene5.h">
@@ -257,23 +239,17 @@
     <ClInclude Include="GUI\LayoutModel.h">
       <Filter>Headerdateien\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="_Graphics2.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="GL\Canvas.h">
       <Filter>Headerdateien\GL</Filter>
     </ClInclude>
     <ClInclude Include="GL\CanvasInput.h">
       <Filter>Headerdateien\GL</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics2\Context2.h">
-      <Filter>Headerdateien\Graphics2</Filter>
+    <ClInclude Include="GL\VideoContext.h">
+      <Filter>Headerdateien\GL</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics2\Shape2.h">
-      <Filter>Headerdateien\Graphics2</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics2\Rectangle2.h">
-      <Filter>Headerdateien\Graphics2</Filter>
+    <ClInclude Include="GL\UtilitiesGL.h">
+      <Filter>Headerdateien\GL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

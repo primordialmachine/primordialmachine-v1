@@ -13,23 +13,23 @@
 
 
 struct Machine_Images_Image {
-  Machine_Object parent;
+  Machine_Image parent;
   int width;
   int height;
   Machine_PixelFormat pixelFormat;
   void* pixels;
 };
 
-void Machine_Images_Image_getSize(Machine_Images_Image* self, Machine_Integer* width, Machine_Integer* height) {
+static void getSize(Machine_Images_Image const* self, Machine_Integer* width, Machine_Integer* height) {
   *width = self->width;
   *height = self->height;
 }
 
-Machine_PixelFormat Machine_Images_Image_getPixelFormat(Machine_Images_Image* self) {
+static Machine_PixelFormat getPixelFormat(Machine_Images_Image const* self) {
   return self->pixelFormat;
 }
 
-void* Machine_Images_Image_getPixels(Machine_Images_Image* self) {
+static void const* getPixels(Machine_Images_Image const* self) {
   return self->pixels;
 }
 
@@ -57,13 +57,19 @@ void Machine_Images_Image_construct(Machine_Images_Image* self, size_t numberOfA
   }
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_Images_Image, Machine_Object, NULL, &Machine_Images_Image_construct, &Machine_Images_Image_destruct);
+static void constructClass(Machine_Images_Image_Class* self) {
+  ((Machine_Image*)self)->getPixelFormat = (Machine_PixelFormat(*)(Machine_Image const*)) &getPixelFormat;
+  ((Machine_Image*)self)->getPixels = (void const* (*)(Machine_Image const*)) & getPixels;
+  ((Machine_Image*)self)->getSize = (void (*)(Machine_Image const*, Machine_Integer*, Machine_Integer*)) &getSize;
+}
+
+MACHINE_DEFINE_CLASSTYPE_EX(Machine_Images_Image, Machine_Image, NULL, &Machine_Images_Image_construct, &Machine_Images_Image_destruct);
 
 void Machine_Images_Image_constructFromPath(Machine_Images_Image* self, Machine_String* path) {
   // (1) Supertype constructor.
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
-  Machine_Object_construct((Machine_Object*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Machine_Image_construct((Machine_Image *)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   
   // (2) Startup.
   Machine_Images_startup();
@@ -213,7 +219,9 @@ void Machine_Images_Image_constructFromPath(Machine_Images_Image* self, Machine_
 
   self->pixels = pixels;
 
-  // (5) Set class type.
+  // (5) Initialize dispatch.
+  constructClass(self);
+  // (6) Set class type.
   Machine_setClassType((Machine_Object*)self, Machine_Images_Image_getClassType());
 }
 
@@ -221,7 +229,7 @@ void Machine_Images_Image_constructDirect(Machine_Images_Image* self, Machine_Pi
   // (1) Supertype constructor.
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
-  Machine_Object_construct((Machine_Object*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Machine_Image_construct((Machine_Image *)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
 
   // (2) Startup.
   Machine_Images_startup();
@@ -238,7 +246,9 @@ void Machine_Images_Image_constructDirect(Machine_Images_Image* self, Machine_Pi
   }
   memcpy(self->pixels, Machine_ByteBuffer_getBytes(pixels), width * height * Machine_PixelFormat_getBytesPerPixel(pixelFormat));
 
-  // (4) Set class type.
+  // (4) Initialize dispatch.
+  constructClass(self);
+  // (5) Set class type.
   Machine_setClassType((Machine_Object*)self, Machine_Images_Image_getClassType());
 }
 

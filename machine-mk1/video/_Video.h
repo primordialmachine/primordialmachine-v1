@@ -10,6 +10,7 @@
 #include "Video/Buffer.h"
 #include "Video/CanvasSizeChangedEvent.h"
 #include "Video/DepthTestFunction.h"
+#include "Video/Image.h"
 #include "Video/Material.h"
 #include "Video/PixelFormat.h"
 #include "Video/ProgramKind.h"
@@ -20,6 +21,7 @@
 #include "Video/Texture.h"
 #include "Video/VertexDescriptor.h"
 #include "Video/VertexElementSemantics.h"
+#include "Video/VideoContext.h"
 #undef MACHINE_VIDEO_PRIVATE
 
 #endif // MACHINE__VIDEO_H_INCLUDED

@@ -1,7 +1,11 @@
 #define MACHINE_GRAPHICS2_PRIVATE (1)
 #include "./../Graphics2/Context2.h"
-#include "./../Video.h"
+
+
+
 #include <string.h>
+
+
 
 static void Machine_Context2_visit(Machine_Context2* self) {
   if (self->modelSpaceToProjectiveSpace) {
@@ -16,6 +20,9 @@ static void Machine_Context2_visit(Machine_Context2* self) {
   if (self->binding) {
     Machine_visit(self->binding);
   }
+  if (self->videoContext) {
+    Machine_visit(self->videoContext);
+  }
 }
 
 static void Machine_Context2_constructClass(Machine_Context2_Class* self)
@@ -24,8 +31,13 @@ static void Machine_Context2_constructClass(Machine_Context2_Class* self)
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_Context2, Machine_Object, &Machine_Context2_visit, Machine_Context2_construct, NULL)
 
 void Machine_Context2_construct(Machine_Context2* self, size_t numberOfArguments, Machine_Value const* arguments) {
+  MACHINE_ASSERT(numberOfArguments == 1, Machine_Status_InvalidNumberOfArguments);
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  
+
+  Machine_VideoContext* videoContext = (Machine_VideoContext*)Machine_Value_getObject(&arguments[0]);
+
+  self->videoContext = videoContext;
+
   self->width = 0.f;
   self->height = 0.f;
   self->aspectRatio = 0.f;
@@ -39,25 +51,28 @@ void Machine_Context2_construct(Machine_Context2* self, size_t numberOfArguments
   self->originBottomLeft = true;
 
   //
-  self->vertices = Machine_Video_createBuffer();
-  self->shader = Machine_Video_generateShape2Shader(false);
+  self->vertices = Machine_VideoContext_createBuffer(videoContext);
+  self->shader = Machine_VideoContext_generateShape2Shader(videoContext);
 
   Machine_VertexDescriptor* vertexDescriptor = Machine_VertexDescriptor_create();
   Machine_VertexDescriptor_append(vertexDescriptor, Machine_VertexElementSemantics_XfYf);
 
-  self->binding = Machine_Video_createBinding(self->shader, vertexDescriptor, self->vertices);
+  self->binding = Machine_VideoContext_createBinding(videoContext, self->shader, vertexDescriptor, self->vertices);
   Machine_Binding_setVariableBinding(self->binding, Machine_String_create("vertex_position", strlen("vertex_position") + 1), 0);
-  //
 
+
+
+  //
   Machine_Context2_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_Context2_getClassType());
 }
 
-Machine_Context2* Machine_Context2_create() {
+Machine_Context2* Machine_Context2_create(Machine_VideoContext* videoContext) {
   Machine_ClassType* ty = Machine_Context2_getClassType();
-  static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
-  Machine_Context2* self = (Machine_Context2*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  static const size_t NUMBER_OF_ARGUMENTS = 1;
+  Machine_Value arguments[1];
+  Machine_Value_setObject(&arguments[0], (Machine_Object*)videoContext);
+  Machine_Context2* self = (Machine_Context2*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments);
   return self;
 }
 

@@ -5,7 +5,7 @@
 
 
 
-#include "./../_Graphics2.h"
+#include "_Graphics2.h"
 #include "./../GUI/Context.h"
 #include "./../GUI/Widget.h"
 #include <string.h>

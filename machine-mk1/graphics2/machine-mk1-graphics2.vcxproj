@@ -13,9 +13,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{EA697F45-B77E-4384-8BF1-6001586E058C}</ProjectGuid>
+    <ProjectGuid>{F4AA48F9-3C29-4CC5-B219-C357284103B2}</ProjectGuid>
     <RootNamespace>rtxviz</RootNamespace>
-    <ProjectName>machine-mk1-video</ProjectName>
+    <ProjectName>machine-mk1-graphics2</ProjectName>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -53,7 +53,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/linmath;$(SolutionDir)external/freetype/include;$(SolutionDir)external/libpng/include;$(SolutionDir)core;$(SolutionDir)math</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)video;$(SolutionDir)math;$(SolutionDir)core</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -65,7 +65,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/linmath;$(SolutionDir)external/freetype/include;$(SolutionDir)external/libpng/include;$(SolutionDir)core;$(SolutionDir)math</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)video;$(SolutionDir)math;$(SolutionDir)core</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -74,52 +74,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Video\Binding.c" />
-    <ClCompile Include="Video\BlendFunction.c" />
-    <ClCompile Include="Video\Buffer.c" />
-    <ClCompile Include="Video\CanvasSizeChangedEvent.c" />
-    <ClCompile Include="Video\DepthTestFunction.c" />
-    <ClCompile Include="Video\Image.c" />
-    <ClCompile Include="Video\Material.c" />
-    <ClCompile Include="Video\PixelFormat.c" />
-    <ClCompile Include="Video\ProgramInput.c" />
-    <ClCompile Include="Video\ProgramInputKind.c" />
-    <ClCompile Include="Video\ProgramInputType.c" />
-    <ClCompile Include="Video\ProgramKind.c" />
-    <ClCompile Include="Video\ShaderProgram.c" />
-    <ClCompile Include="Video\Texture.c" />
-    <ClCompile Include="Video\VertexDescriptor.c" />
-    <ClCompile Include="Video\VertexElementSemantics.c" />
-    <ClCompile Include="Video\VideoContext.c" />
-    <ClCompile Include="_Video.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Video\Binding.h" />
-    <ClInclude Include="Video\BlendFunction.h" />
-    <ClInclude Include="Video\Buffer.h" />
-    <ClInclude Include="Video\CanvasSizeChangedEvent.h" />
-    <ClInclude Include="Video\DepthTestFunction.h" />
-    <ClInclude Include="Video\Image.h" />
-    <ClInclude Include="Video\Material.h" />
-    <ClInclude Include="Video\PixelFormat.h" />
-    <ClInclude Include="Video\ProgramInput.h" />
-    <ClInclude Include="Video\ProgramInputKind.h" />
-    <ClInclude Include="Video\ProgramInputType.h" />
-    <ClInclude Include="Video\ProgramKind.h" />
-    <ClInclude Include="Video\ShaderProgram.h" />
-    <ClInclude Include="Video\Texture.h" />
-    <ClInclude Include="Video\VertexDescriptor.h" />
-    <ClInclude Include="Video\VertexElementSemantics.h" />
-    <ClInclude Include="Video\VideoContext.h" />
-    <ClInclude Include="_Video.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\core\machine-mk1-core.vcxproj">
       <Project>{f34866d8-3093-4b44-a225-7da2b5cd8e83}</Project>
     </ProjectReference>
     <ProjectReference Include="..\math\machine-mk1-math.vcxproj">
       <Project>{681c50f0-37bf-4661-bf5a-21a29abf2b63}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\video\machine-mk1-video.vcxproj">
+      <Project>{ea697f45-b77e-4384-8bf1-6001586e058c}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Graphics2\Context2.h" />
+    <ClInclude Include="Graphics2\Rectangle2.h" />
+    <ClInclude Include="Graphics2\Shape2.h" />
+    <ClInclude Include="_Graphics2.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Graphics2\Context2.c" />
+    <ClCompile Include="Graphics2\Rectangle2.c" />
+    <ClCompile Include="Graphics2\Shape2.c" />
+    <ClCompile Include="_Graphics2.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -6,6 +6,7 @@
 
 
 
+#include "_Images.h"
 #include "Video.h"
 #include "Machine.h"
 #include "_Video.h"
@@ -223,14 +224,14 @@ Machine_Fonts_Font* Machine_Fonts_createFont(const char* path, int pointSize) {
   Machine_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
     font->map = Map_create();
-    font->vertices = Machine_Video_createBuffer();
-    font->shader = Machine_Video_generateText2Shader(true);
+    font->vertices = Machine_VideoContext_createBuffer(Machine_Video_getContext());
+    font->shader = Machine_VideoContext_generateText2Shader(Machine_Video_getContext(), true);
 
     Machine_VertexDescriptor* vertexDescriptor = Machine_VertexDescriptor_create();
     Machine_VertexDescriptor_append(vertexDescriptor, Machine_VertexElementSemantics_XfYf);
     Machine_VertexDescriptor_append(vertexDescriptor, Machine_VertexElementSemantics_UfVf);
 
-    font->binding = Machine_Video_createBinding(font->shader, vertexDescriptor, font->vertices);
+    font->binding = Machine_VideoContext_createBinding(Machine_Video_getContext(), font->shader, vertexDescriptor, font->vertices);
     Machine_Binding_setVariableBinding(font->binding, Machine_String_create("vertex_position", strlen("vertex_position") + 1), 0);
     Machine_Binding_setVariableBinding(font->binding, Machine_String_create("vertex_texture_coordinate_1", strlen("vertex_texture_coordinate_1") + 1), 1);
 
@@ -296,8 +297,8 @@ Machine_Fonts_Font* Machine_Fonts_createFont(const char* path, int pointSize) {
     }
     Machine_ByteBuffer_clear(temporary);
     Machine_ByteBuffer_appendBytes(temporary, font->face->glyph->bitmap.buffer, (size_t)(font->face->glyph->bitmap.width * font->face->glyph->bitmap.rows));
-    Machine_Images_Image* image = Machine_Images_createImageDirect(Machine_PixelFormat_GRAYSCALE, font->face->glyph->bitmap.width, font->face->glyph->bitmap.rows, temporary);
-    Machine_Texture* texture = Machine_Video_createTextureFromImage(image);
+    Machine_Image* image = (Machine_Image*)Machine_Images_createImageDirect(Machine_PixelFormat_GRAYSCALE, font->face->glyph->bitmap.width, font->face->glyph->bitmap.rows, temporary);
+    Machine_Texture* texture = Machine_VideoContext_createTextureFromImage(Machine_Video_getContext(), image);
     Map_set(font->map, codepoint,
             font->face->glyph->bitmap_left, font->face->glyph->bitmap_top,
             font->face->glyph->bitmap.width, font->face->glyph->bitmap.rows,

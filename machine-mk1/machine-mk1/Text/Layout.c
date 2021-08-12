@@ -1,8 +1,11 @@
 #include "./../Text/Layout.h"
 
+
+
 #include "./../Fonts.h"
 #include "./../Video.h"
 #include "./../Text/LayoutLine.h"
+#include "./../Video.h"
 #include <string.h>
 #include <math.h>
 
@@ -248,10 +251,10 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
   }
 
   if (self->clipRectangle) {
-    Machine_Video_setClipDistanceEnabled(0, true);
-    Machine_Video_setClipDistanceEnabled(1, true);
-    Machine_Video_setClipDistanceEnabled(2, true);
-    Machine_Video_setClipDistanceEnabled(3, true);
+    Machine_VideoContext_setClipDistanceEnabled(Machine_Video_getContext(), 0, true);
+    Machine_VideoContext_setClipDistanceEnabled(Machine_Video_getContext(), 1, true);
+    Machine_VideoContext_setClipDistanceEnabled(Machine_Video_getContext(), 2, true);
+    Machine_VideoContext_setClipDistanceEnabled(Machine_Video_getContext(), 3, true);
   }
   if (self->renderVisualBounds) {
     if (!self->visualBounds) {
@@ -260,7 +263,7 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
     Machine_Math_Vector4* color = Machine_Math_Vector4_create();
     Machine_Math_Vector4_set(color, .3f, .6f, .3f, 1.f);
     Machine_Rectangle2_setColor(self->visualBounds, color);
-    Machine_Context2* context = Machine_Context2_create();
+    Machine_Context2* context = Machine_Context2_create(Machine_Video_getContext());
     Machine_Context2_setTargetSize(context, width, height);
     Machine_Shape2_render((Machine_Shape2*)self->visualBounds, context);
   }
@@ -275,7 +278,7 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
 #endif
 
   // Set the world matrix, view matrix, and projection matrix.
-  Machine_Context2* context = Machine_Context2_create();
+  Machine_Context2* context = Machine_Context2_create(Machine_Video_getContext());
   Machine_Context2_setTargetSize(context, width, height);
   Machine_Context2_setOriginBottomLeft(context, Y_UP);
   Machine_Math_Matrix4 const* modelSpaceToProjectiveSpace = Machine_Context2_getModelSpaceToProjectiveSpaceMatrix(context);
@@ -309,10 +312,10 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
   Machine_Binding_bindMatrix4(binding, Machine_String_create("modelToWorldMatrix", strlen("modelToWorldMatrix") + 1), modelSpaceToWorldSpace);
   Machine_Binding_bindMatrix4(binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), modelSpaceToProjectiveSpace);
 
-  Machine_Video_setDepthTestFunction(Machine_DepthTestFunction_Always);
-  Machine_Video_setDepthWriteEnabled(false);
-  Machine_Video_setIncomingBlendFunction(Machine_BlendFunction_IncomingAlpha);
-  Machine_Video_setExistingBlendFunction(Machine_BlendFunction_OneMinusIncomingAlpha);
+  Machine_VideoContext_setDepthTestFunction(Machine_Video_getContext(), Machine_DepthTestFunction_Always);
+  Machine_VideoContext_setDepthWriteEnabled(Machine_Video_getContext(), false);
+  Machine_VideoContext_setIncomingBlendFunction(Machine_Video_getContext(), Machine_BlendFunction_IncomingAlpha);
+  Machine_VideoContext_setExistingBlendFunction(Machine_Video_getContext(), Machine_BlendFunction_OneMinusIncomingAlpha);
 
   float cursorPosition[] = { position0[0], position0[1] };
 
@@ -356,9 +359,9 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
         2, 1, 3,
       };
       static const size_t UNIT = 0;
-      Machine_Video_bindTexture(0, symbolTexture);
+      Machine_VideoContext_bindTexture(Machine_Video_getContext(), 0, symbolTexture);
       Machine_Binding_bindSampler(binding, Machine_String_create("texture_1", strlen("texture_1")), UNIT);
-      Machine_Video_drawIndirect(0, 6, indices);
+      Machine_VideoContext_drawIndirect(Machine_Video_getContext(), 0, 6, indices);
 
       cursorPosition[0] += Machine_Math_Vector2_getX(symbolAdvance);
       cursorPosition[1] += Machine_Math_Vector2_getY(symbolAdvance);
@@ -366,10 +369,10 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
     cursorPosition[0] = position0[0];
     cursorPosition[1] += Machine_Font_getBaselineDistance(self->font);
   }
-  Machine_Video_setClipDistanceEnabled(3, false);
-  Machine_Video_setClipDistanceEnabled(2, false);
-  Machine_Video_setClipDistanceEnabled(1, false);
-  Machine_Video_setClipDistanceEnabled(0, false);
+  Machine_VideoContext_setClipDistanceEnabled(Machine_Video_getContext(), 3, false);
+  Machine_VideoContext_setClipDistanceEnabled(Machine_Video_getContext(), 2, false);
+  Machine_VideoContext_setClipDistanceEnabled(Machine_Video_getContext(), 1, false);
+  Machine_VideoContext_setClipDistanceEnabled(Machine_Video_getContext(), 0, false);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

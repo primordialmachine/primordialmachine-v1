@@ -5,8 +5,9 @@
 
 
 
-#include "./../_Graphics2.h"
+#include "_Graphics2.h"
 #include "./../GUI/BorderModel.h"
+#include "./../Video.h"
 
 
 
@@ -55,7 +56,7 @@ static void Machine_GUI_Border_visit(Machine_GUI_Border* self) {
 
 static void Machine_GUI_Border_render(Machine_GUI_Border* self, float width, float height) {
   if (self->child) {
-    Machine_Context2* context = Machine_Context2_create();
+    Machine_Context2* context = Machine_Context2_create(Machine_Video_getContext());
     Machine_Context2_setTargetSize(context, width, height);
     if (self->childDirty) {
       Machine_Math_Rectangle2* rectangle = Machine_Math_Rectangle2_clone(self->rectangle);

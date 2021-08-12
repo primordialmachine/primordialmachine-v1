@@ -5,7 +5,7 @@
 
 #include "./../GUI/GDL/Context.h"
 #include "./../GUI/Signals/Context.h"
-#include "./../_Graphics2.h"
+#include "_Graphics2.h"
 
 
 
@@ -23,7 +23,7 @@ struct Machine_GUI_Context {
 /// @brief Create a GUI ontext.
 /// @param context The underlying GDL context.
 /// @return The GUI context.
-Machine_GUI_Context* Machine_GUI_Context_create(Machine_GDL_Context* context);
+Machine_GUI_Context* Machine_GUI_Context_create(Machine_GDL_Context* context, Machine_Context2* context2);
 
 
 

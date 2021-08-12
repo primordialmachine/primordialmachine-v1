@@ -3,8 +3,7 @@
 
 
 
-#include "./../UtilitiesGL.h"
-#include "_Images.h"
+#include "./../GL/UtilitiesGL.h"
 #include "_Video.h"
 
 
@@ -19,7 +18,7 @@ struct Machine_GL_Texture {
 /// @brief Create an OpenGL texture from an image.
 /// @param image A pointer to the image.
 /// @return A pointer to the OpenGL texture.
-Machine_GL_Texture* Machine_GL_Texture_create(Machine_Images_Image* image);
+Machine_GL_Texture* Machine_GL_Texture_create(Machine_Image* image);
 
 
 

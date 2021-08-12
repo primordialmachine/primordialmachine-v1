@@ -10,7 +10,7 @@ extern "C" {
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "UtilitiesGL.h"
+#include "GL/UtilitiesGL.h"
 #include "GL/CanvasInput.h"
 
 #include "Scene1.h"

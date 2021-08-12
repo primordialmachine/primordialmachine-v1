@@ -9,7 +9,7 @@ static void Machine_GL_Texture_destruct(Machine_GL_Texture* self) {
   }
 }
 
-void Machine_GL_Texture_construct_fromImage(Machine_GL_Texture* self, Machine_Images_Image* image) {
+void Machine_GL_Texture_construct_fromImage(Machine_GL_Texture* self, Machine_Image* image) {
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { {Machine_ValueFlag_Void, Machine_Void_Void} };
   Machine_Texture_construct((Machine_Texture*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
@@ -22,9 +22,9 @@ void Machine_GL_Texture_construct_fromImage(Machine_GL_Texture* self, Machine_Im
   Machine_UtilitiesGl_call(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
 
   Machine_Integer width, height;
-  Machine_Images_Image_getSize(image, &width, &height);
-  Machine_PixelFormat pixelFormat = Machine_Images_Image_getPixelFormat(image);
-  void* pixels = Machine_Images_Image_getPixels(image);
+  Machine_Image_getSize((Machine_Image const *)image, &width, &height);
+  Machine_PixelFormat pixelFormat = Machine_Image_getPixelFormat(image);
+  void const* pixels = Machine_Image_getPixels(image);
 
 
   Machine_UtilitiesGl_call(glPixelStorei(GL_UNPACK_ALIGNMENT, 1));
@@ -63,7 +63,7 @@ void Machine_GL_Texture_construct_fromImage(Machine_GL_Texture* self, Machine_Im
 
 void Machine_GL_Texture_construct(Machine_GL_Texture* self, size_t numberOfArguments, const Machine_Value* arguments) {
   if (numberOfArguments == 1) {
-    Machine_Images_Image* image = (Machine_Images_Image*)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0, Machine_Images_Image_getClassType());
+    Machine_Image* image = (Machine_Image*)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0, Machine_Image_getClassType());
     Machine_GL_Texture_construct_fromImage(self, image);
   }
   else {
@@ -75,7 +75,7 @@ void Machine_GL_Texture_construct(Machine_GL_Texture* self, size_t numberOfArgum
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_GL_Texture, Machine_Texture, NULL, &Machine_GL_Texture_construct, &Machine_GL_Texture_destruct)
 
 
-Machine_GL_Texture* Machine_GL_Texture_create(Machine_Images_Image* image) {
+Machine_GL_Texture* Machine_GL_Texture_create(Machine_Image* image) {
   Machine_ClassType* ty = Machine_GL_Texture_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 1;
   Machine_Value ARGUMENTS[1];
