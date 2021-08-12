@@ -45,7 +45,7 @@ static void Scene4_visit(Scene4* self) {
 MACHINE_DEFINE_CLASSTYPE_EX(Scene4, Scene, &Scene4_visit, &Scene4_construct, NULL)
 
 static void Scene4_onStartup(Scene4* scene) {
-  Machine_GUI_Context *context = Machine_GUI_Context_create(Machine_GDL_Context_create());
+  Machine_GUI_Context *context = Machine_GUI_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(Machine_Video_getContext()));
   //
   scene->font = Machine_Fonts_createFont("RobotoSlab-Regular.ttf", 20);
   //
@@ -66,6 +66,10 @@ static void Scene4_onStartup(Scene4* scene) {
     const char* text = "Nanobox IV\n400 units of unprimed nanites.";
     Machine_GUI_TextLabel_setText(scene->textLabel3, Machine_String_create(text, strlen(text)));
   }
+  //
+  Machine_Math_Vector4* c = Machine_Math_Vector4_create();
+  Machine_Math_Vector4_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
+  Machine_VideoContext_setClearColor(Machine_Video_getContext(), c);
 }
 
 static void alignLeftTop(Machine_Text_Layout* layout, float width, float height) {
@@ -126,8 +130,8 @@ static void Scene4_onCanvasSizeChanged(Scene4* self, Machine_CanvasSizeChangedEv
 
 static void Scene4_onUpdate(Scene4* self, float width, float height) {
   // Set the viewport and clear its color buffer.
-  Machine_Video_setViewportRectangle(0, 0, width, height);
-  Machine_Video_clearColorBuffer();
+  Machine_VideoContext_setViewportRectangle(Machine_Video_getContext(), 0, 0, width, height);
+  Machine_VideoContext_clearColorBuffer(Machine_Video_getContext());
 
   Machine_Text_Layout_render(self->text1, width, height);
   Machine_Text_Layout_render(self->text2, width, height);

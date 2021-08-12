@@ -55,18 +55,22 @@ static void Scene2_visit(Scene2* self) {
 MACHINE_DEFINE_CLASSTYPE_EX(Scene2, Scene, &Scene2_visit, &Scene2_construct, NULL)
 
 static void Scene2_onStartup(Scene2* scene) {
-  scene->vertices = Machine_Video_createBuffer();
+  scene->vertices = Machine_VideoContext_createBuffer(Machine_Video_getContext());
   Machine_VideoBuffer_setData(scene->vertices, sizeof(vertices), (void const *)vertices);
 
-  scene->shaderProgram = Machine_Video_generateDefaultShader(false, true, false, false);
+  scene->shaderProgram = Machine_VideoContext_generateDefaultShader(Machine_Video_getContext(), false, true, false, false);
 
   Machine_VertexDescriptor* vd = Machine_VertexDescriptor_create();
   Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_XfYf);
   Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_RfGfBf);
 
-  scene->binding = Machine_Video_createBinding(scene->shaderProgram, vd, scene->vertices);
+  scene->binding = Machine_VideoContext_createBinding(Machine_Video_getContext(), scene->shaderProgram, vd, scene->vertices);
   Machine_Binding_setVariableBinding(scene->binding, Machine_String_create_noraise("vertex_position", strlen("vertex_position") + 1), 0);
   Machine_Binding_setVariableBinding(scene->binding, Machine_String_create_noraise("vertex_color", strlen("vertex_color") + 1), 1);
+
+  Machine_Math_Vector4* c = Machine_Math_Vector4_create();
+  Machine_Math_Vector4_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
+  Machine_VideoContext_setClearColor(Machine_Video_getContext(), c);
 }
 
 static void Scene2_onCanvasSizeChanged(Scene2* self, Machine_CanvasSizeChangedEvent* event) {
@@ -75,17 +79,17 @@ static void Scene2_onCanvasSizeChanged(Scene2* self, Machine_CanvasSizeChangedEv
 static void Scene2_onUpdate(Scene2* self, float width, float height) {
   float ratio = width / height;
 
-  Machine_Video_setViewportRectangle(0, 0, width, height);
-  Machine_Video_clearColorBuffer();
+  Machine_VideoContext_setViewportRectangle(Machine_Video_getContext(), 0, 0, width, height);
+  Machine_VideoContext_clearColorBuffer(Machine_Video_getContext());
 
-  Machine_Math_Matrix4* m2 = Machine_Math_Matrix4_create(); Machine_Math_Matrix4_rotateZ(m2, (float)glfwGetTime());
+  Machine_Math_Matrix4* m2 = Machine_Math_Matrix4_create(); Machine_Math_Matrix4_rotateZ(m2, Machine_Video_getTime());
   Machine_Math_Matrix4* p2 = Machine_Math_Matrix4_create(); Machine_Math_Matrix4_setOrtho(p2, -ratio, +ratio, -1.f, +1.f, 1.f, -1.f);
   Machine_Math_Matrix4* mvp2 = Machine_Math_Matrix4_product(p2, m2);
 
   Machine_Binding_activate(self->binding);
   Machine_Binding_bindMatrix4(self->binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), mvp2);
 
-  Machine_Video_drawIndirect(0, 6, indices);
+  Machine_VideoContext_drawIndirect(Machine_Video_getContext(), 0, 6, indices);
 }
 
 static void Scene2_onShutdown(Scene2* scene) {

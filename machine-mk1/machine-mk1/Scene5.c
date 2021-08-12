@@ -94,7 +94,7 @@ static Machine_GUI_Widget* createTextButton(Machine_GUI_Context *context, const 
 
 
 static void Scene5_startup(Scene5* scene) {
-  Machine_GUI_Context* context = Machine_GUI_Context_create(Machine_GDL_Context_create());
+  Machine_GUI_Context* context = Machine_GUI_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(Machine_Video_getContext()));
   //
   scene->font = Machine_Fonts_createFont("RobotoSlab-Regular.ttf", 20);
   //
@@ -107,6 +107,10 @@ static void Scene5_startup(Scene5* scene) {
   scene->label2 = createTextLabel(context, "Server Version 1.0\nClient Version 1.0", scene->font);
   //
   scene->label3 = createTextLabel(context, "Nanobox IV\n400 units of unprimed nanites.", scene->font);
+  // 
+  Machine_Math_Vector4* c = Machine_Math_Vector4_create();
+  Machine_Math_Vector4_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
+  Machine_VideoContext_setClearColor(Machine_Video_getContext(), c);
 }
 
 /// @brief Compute the rectangle of all widgets.
@@ -124,6 +128,10 @@ static Machine_Math_Rectangle2* Machine_GUI_WidgetList_getRectangle(Machine_GUI_
     Machine_Math_Rectangle2_addRectangle(rectangle, widgetRectangle);
   }
   return rectangle;
+  //
+  Machine_Math_Vector4* c = Machine_Math_Vector4_create();
+  Machine_Math_Vector4_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
+  Machine_VideoContext_setClearColor(Machine_Video_getContext(), c);
 }
 
 static void updateText1(Scene5* scene, float width, float height) {
@@ -185,8 +193,8 @@ static void Scene5_onCanvasSizeChanged(Scene5* self, Machine_CanvasSizeChangedEv
 
 static void Scene5_update(Scene5* self, float width, float height) {
   // Set the viewport and clear its color buffer.
-  Machine_Video_setViewportRectangle(0, 0, width, height);
-  Machine_Video_clearColorBuffer();
+  Machine_VideoContext_setViewportRectangle(Machine_Video_getContext(), 0, 0, width, height);
+  Machine_VideoContext_clearColorBuffer(Machine_Video_getContext());
 
   for (size_t i = 0, n = Machine_GUI_WidgetList_getSize(self->mainMenu); i < n; ++i) {
     Machine_GUI_Widget* widget = Machine_GUI_WidgetList_getAt(self->mainMenu, i);
