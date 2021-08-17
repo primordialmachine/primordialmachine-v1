@@ -2,7 +2,7 @@
 
 
 
-#include "./../Fonts.h"
+#include "_Fonts.h"
 #include "./../Video.h"
 #include "./../Text/LayoutLine.h"
 #include "./../Video.h"
@@ -70,7 +70,7 @@ static void parse(Machine_String* text, Machine_PointerArray* lines) {
   }
 }
 
-static void updateLinesBounds(Machine_Math_Vector2* position, Machine_Fonts_Font* font, Machine_String* text, Machine_PointerArray* lines, bool yup) {
+static void updateLinesBounds(Machine_Math_Vector2* position, Machine_Font* font, Machine_String* text, Machine_PointerArray* lines, bool yup) {
   Machine_Math_Vector2* position0 = Machine_Math_Vector2_create();
 #if defined(WITH_SNAPTOGRID)
   // Snap to pixel (ensure there are no artifacts).
@@ -188,14 +188,14 @@ void Machine_Text_Layout_construct(Machine_Text_Layout* self, size_t numberOfArg
   self->position = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(self->position, 0.f, 0.f);
   self->text = Machine_Value_getString(arguments + 0);
-  self->font = (Machine_Fonts_Font *)Machine_Value_getObject(arguments + 1);
+  self->font = (Machine_Font *)Machine_Value_getObject(arguments + 1);
   self->lines = Machine_PointerArray_create();
   self->yup = true;
   self->flags |= LINES_DIRTY;
   Machine_setClassType((Machine_Object*)self, Machine_Text_Layout_getClassType());
 }
 
-Machine_Text_Layout* Machine_Text_Layout_create(Machine_String* text, Machine_Fonts_Font* font) {
+Machine_Text_Layout* Machine_Text_Layout_create(Machine_String* text, Machine_Font* font) {
   if (text == NULL) {
     Machine_setStatus(Machine_Status_InvalidArgument);
     Machine_jump();
@@ -284,8 +284,8 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
   Machine_Math_Matrix4 const* modelSpaceToProjectiveSpace = Machine_Context2_getModelSpaceToProjectiveSpaceMatrix(context);
   Machine_Math_Matrix4 const* modelSpaceToWorldSpace = Machine_Context2_getModelSpaceToWorldSpaceMatrix(context);
 
-  Machine_ShaderProgram* shaderProgram = Machine_Font_getShaderProgram(self->font);
-  Machine_Binding* binding = Machine_Font_getBinding(self->font);
+  Machine_ShaderProgram* shaderProgram = Machine_Font_getVideoShaderProgram(self->font);
+  Machine_Binding* binding = Machine_Font_getVideoBinding(self->font);
 
   Machine_Binding_activate(binding);
   if (self->clipRectangle) {

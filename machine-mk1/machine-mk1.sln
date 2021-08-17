@@ -25,6 +25,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-core-collection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-graphics2", "graphics2\machine-mk1-graphics2.vcxproj", "{F4AA48F9-3C29-4CC5-B219-C357284103B2}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-fonts", "fonts\machine-mk1-fonts.vcxproj", "{36897CC2-2E49-4CE8-804D-AA172EC849E0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -75,6 +77,10 @@ Global
 		{F4AA48F9-3C29-4CC5-B219-C357284103B2}.Debug|x64.Build.0 = Debug|x64
 		{F4AA48F9-3C29-4CC5-B219-C357284103B2}.Release|x64.ActiveCfg = Release|x64
 		{F4AA48F9-3C29-4CC5-B219-C357284103B2}.Release|x64.Build.0 = Release|x64
+		{36897CC2-2E49-4CE8-804D-AA172EC849E0}.Debug|x64.ActiveCfg = Debug|x64
+		{36897CC2-2E49-4CE8-804D-AA172EC849E0}.Debug|x64.Build.0 = Debug|x64
+		{36897CC2-2E49-4CE8-804D-AA172EC849E0}.Release|x64.ActiveCfg = Release|x64
+		{36897CC2-2E49-4CE8-804D-AA172EC849E0}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

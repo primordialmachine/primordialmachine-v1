@@ -8,7 +8,7 @@
 #include "_Images.h"
 #include "_Video.h"
 
-#include "Fonts.h"
+#include "_Fonts.h"
 #include "_Graphics2.h"
 #include "Video.h"
 
@@ -64,7 +64,7 @@ static void Scene3_visit(Scene3* self) {
 MACHINE_DEFINE_CLASSTYPE_EX(Scene3, Scene, &Scene3_visit, &Scene3_construct, NULL)
 
 static void Scene3_startup(Scene3* scene) {
-  scene->image = (Machine_Image *)Machine_Images_createImageFromPath(Machine_String_create("test-transparency-1.png", strlen("test-transparency-1.png")));
+  scene->image = Machine_ImagesContext_createFromPath(Machines_DefaultImages_createContext(), Machine_String_create("test-transparency-1.png", strlen("test-transparency-1.png")));
   scene->texture = Machine_VideoContext_createTextureFromImage(Machine_Video_getContext(), scene->image);
 
   scene->vertices = Machine_VideoContext_createBuffer(Machine_Video_getContext());

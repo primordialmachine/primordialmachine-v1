@@ -1,5 +1,6 @@
 #include "./../GL/Canvas.h"
 #include "_Images.h"
+#include "_Video.h"
 #include <malloc.h>
 
 static size_t g_referenceCount = 0;

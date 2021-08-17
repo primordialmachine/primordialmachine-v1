@@ -6,7 +6,6 @@
 #include "_Collections.h"
 #include "_Math.h"
 #include "_Graphics2.h"
-typedef struct Machine_Fonts_Font Machine_Fonts_Font;
 
 
 
@@ -28,7 +27,7 @@ struct Machine_Text_Layout {
   /// @brief The color of this layout.
   Machine_Math_Vector3* color;
   /// @brief The font of this layout.
-  Machine_Fonts_Font* font;
+  Machine_Font* font;
   Machine_String* text;
   Machine_PointerArray* lines;
   bool yup;
@@ -55,7 +54,7 @@ void Machine_Text_Layout_construct(Machine_Text_Layout* self, size_t numberOfArg
 /// Default color is <code>(0,0,0)</code>.
 /// @param text The text.
 /// @param font The font.
-Machine_Text_Layout* Machine_Text_Layout_create(Machine_String* text, Machine_Fonts_Font *font);
+Machine_Text_Layout* Machine_Text_Layout_create(Machine_String* text, Machine_Font *font);
 
 /// @brief Get the bounds of this text layout.
 /// @param self This text layout.

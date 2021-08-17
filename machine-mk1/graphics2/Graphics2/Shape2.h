@@ -1,3 +1,6 @@
+/// @file Graphics2/Shape2.h
+/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
+/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #if !defined(MACHINE_GRAPHICS2_SHAPE2_H_INCLUDED)
 #define MACHINE_GRAPHICS2_SHAPE2_H_INCLUDED
 

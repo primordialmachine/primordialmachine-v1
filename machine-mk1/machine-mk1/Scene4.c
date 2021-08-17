@@ -4,11 +4,12 @@
 
 #include <string.h>
 
+#include "./Text/Layout.h"
 #include "_GUI.h"
 #include "_Images.h"
 #include "_Video.h"
 
-#include "Fonts.h"
+#include "_Fonts.h"
 #include "_Graphics2.h"
 #include "Video.h"
 
@@ -16,7 +17,7 @@
 
 struct Scene4 {
   Scene parent;
-  Machine_Fonts_Font* font;
+  Machine_Font* font;
   /// @brief Text layout #1.
   Machine_Text_Layout* text1;
   /// @brief Text label #2.
@@ -47,7 +48,8 @@ MACHINE_DEFINE_CLASSTYPE_EX(Scene4, Scene, &Scene4_visit, &Scene4_construct, NUL
 static void Scene4_onStartup(Scene4* scene) {
   Machine_GUI_Context *context = Machine_GUI_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(Machine_Video_getContext()));
   //
-  scene->font = Machine_Fonts_createFont("RobotoSlab-Regular.ttf", 20);
+  scene->font = Machine_FontsContext_createFont(Machine_DefaultFonts_createContext(Machine_Video_getContext(), Machines_DefaultImages_createContext()),
+                                                Machine_String_create("RobotoSlab-Regular.ttf", strlen("RobotoSlab-Regular.ttf")), 20);
   //
   scene->text1 = Machine_Text_Layout_create(Machine_String_create("", strlen("")), scene->font);
   {

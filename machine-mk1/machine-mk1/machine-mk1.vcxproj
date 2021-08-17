@@ -51,24 +51,24 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)external/freetype/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/linmath;$(SolutionDir)gdl;$(SolutionDir)images;$(SolutionDir)input;$(SolutionDir)graphics2;$(SolutionDir)video;$(SolutionDir)math;$(SolutionDir)signals;$(SolutionDir)core-collections;$(SolutionDir)core</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external/glad/include;$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/linmath;$(SolutionDir)gdl;$(SolutionDir)fonts;$(SolutionDir)images;$(SolutionDir)input;$(SolutionDir)graphics2;$(SolutionDir)video;$(SolutionDir)math;$(SolutionDir)signals;$(SolutionDir)core-collections;$(SolutionDir)core</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)external\glfw\x64\debug;$(SolutionDir)external\freetype\debug;$(SolutionDir)external\libpng\debug;$(SolutionDir)external\zlib\debug</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;freetyped.lib;libpng16_staticd.lib;zlibstaticd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)external\glfw\x64\debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)external/freetype/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/linmath;$(SolutionDir)gdl;$(SolutionDir)images;$(SolutionDir)input;$(SolutionDir)graphics2;$(SolutionDir)video;$(SolutionDir)math;$(SolutionDir)signals;$(SolutionDir)core-collections;$(SolutionDir)core</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external/glad/include;$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/linmath;$(SolutionDir)gdl;$(SolutionDir)fonts;$(SolutionDir)images;$(SolutionDir)input;$(SolutionDir)graphics2;$(SolutionDir)video;$(SolutionDir)math;$(SolutionDir)signals;$(SolutionDir)core-collections;$(SolutionDir)core</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>$(SolutionDir)external\glfw\x64\release;$(SolutionDir)external\freetype\release;$(SolutionDir)external\libpng\release;$(SolutionDir)external\zlib\release</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;freetype.lib;libpng16_static.lib;zlibstatic.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)external\glfw\x64\release</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -119,7 +119,6 @@
     <ClCompile Include="main.c" />
     <ClCompile Include="Scene.c" />
     <ClCompile Include="Scene1.c" />
-    <ClCompile Include="Fonts.c" />
     <ClCompile Include="Scene2.c" />
     <ClCompile Include="Scene3.c" />
     <ClCompile Include="Video.c" />
@@ -152,7 +151,6 @@
     <ClInclude Include="Text\Layout.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scene1.h" />
-    <ClInclude Include="Fonts.h" />
     <ClInclude Include="Scene2.h" />
     <ClInclude Include="Scene3.h" />
     <ClInclude Include="Video.h" />
@@ -161,6 +159,9 @@
   <ItemGroup>
     <ProjectReference Include="..\core\machine-mk1-core.vcxproj">
       <Project>{f34866d8-3093-4b44-a225-7da2b5cd8e83}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\fonts\machine-mk1-fonts.vcxproj">
+      <Project>{36897cc2-2e49-4ce8-804d-aa172ec849e0}</Project>
     </ProjectReference>
     <ProjectReference Include="..\gdl\machine-mk1-gdl.vcxproj">
       <Project>{a45e158d-8db9-4d07-9642-a79c583a5dd1}</Project>

@@ -6,7 +6,11 @@
 
 
 #include "_Graphics2.h"
+#include "_Images.h"
+#include "./../Video.h"
+#include "./../Text/Layout.h"
 #include "./../GUI/Context.h"
+#include "./../GUI/TextLabel.h"
 #include "./../GUI/Widget.h"
 #include <string.h>
 
@@ -56,7 +60,8 @@ static void Machine_GUI_TextLabel_constructClass(Machine_GUI_TextLabel_Class* se
 
 void Machine_GUI_TextLabel_construct(Machine_GUI_TextLabel* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_GUI_Widget_construct((Machine_GUI_Widget*)self, numberOfArguments, arguments);
-  Machine_Fonts_Font *font = Machine_Fonts_createFont("RobotoSlab-Regular.ttf", 20);
+  Machine_Font *font = Machine_FontsContext_createFont(Machine_DefaultFonts_createContext(Machine_Video_getContext(), Machines_DefaultImages_createContext()), 
+                                                       Machine_String_create("RobotoSlab-Regular.ttf", strlen("RobotoSlab-Regular.ttf")), 20);
   self->foreground = Machine_Text_Layout_create(Machine_String_create("", strlen("")), font);
   self->background = Machine_Rectangle2_create();
   self->childDirty = true;

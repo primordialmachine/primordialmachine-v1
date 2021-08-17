@@ -8,7 +8,7 @@
 #include "_Images.h"
 #include "_Video.h"
 
-#include "Fonts.h"
+#include "_Fonts.h"
 #include "_Graphics2.h"
 #include "Video.h"
 
@@ -18,7 +18,7 @@ static const float INNER_BORDER_SIZE = 16.f;
 
 struct Scene5 {
   Scene parent;
-  Machine_Fonts_Font* font;
+  Machine_Font* font;
   /// @brief The main menu (start game, options, exit, credits).
   Machine_GUI_WidgetList* mainMenu;
   /// @brief Label #2.
@@ -46,7 +46,7 @@ static void Scene5_visit(Scene5* self) {
 
 MACHINE_DEFINE_CLASSTYPE_EX(Scene5, Scene, &Scene5_visit, &Scene5_construct, NULL)
 
-static Machine_GUI_Widget* createTextLabel(Machine_GUI_Context *context, const char* text, Machine_Fonts_Font *font) {
+static Machine_GUI_Widget* createTextLabel(Machine_GUI_Context *context, const char* text, Machine_Font *font) {
   Machine_GUI_TextLabel* widget;
   //
   widget = Machine_GUI_TextLabel_create(context);
@@ -69,7 +69,7 @@ static Machine_GUI_Widget* createTextLabel(Machine_GUI_Context *context, const c
   return (Machine_GUI_Widget*)border1;
 }
 
-static Machine_GUI_Widget* createTextButton(Machine_GUI_Context *context, const char* text, Machine_Fonts_Font* font) {
+static Machine_GUI_Widget* createTextButton(Machine_GUI_Context *context, const char* text, Machine_Font* font) {
   Machine_GUI_TextButton* widget;
   //
   widget = Machine_GUI_TextButton_create(context);
@@ -96,7 +96,8 @@ static Machine_GUI_Widget* createTextButton(Machine_GUI_Context *context, const 
 static void Scene5_startup(Scene5* scene) {
   Machine_GUI_Context* context = Machine_GUI_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(Machine_Video_getContext()));
   //
-  scene->font = Machine_Fonts_createFont("RobotoSlab-Regular.ttf", 20);
+  scene->font = Machine_FontsContext_createFont(Machine_DefaultFonts_createContext(Machine_Video_getContext(), Machines_DefaultImages_createContext()),
+                                                Machine_String_create("RobotoSlab-Regular.ttf", strlen("RobotoSlab-Regular.ttf")), 20);
   //
   scene->mainMenu = Machine_GUI_WidgetList_create();
   Machine_GUI_WidgetList_append(scene->mainMenu, createTextButton(context, "Start Game", scene->font));

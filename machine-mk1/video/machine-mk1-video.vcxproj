@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
@@ -79,7 +79,10 @@
     <ClCompile Include="Video\Buffer.c" />
     <ClCompile Include="Video\CanvasSizeChangedEvent.c" />
     <ClCompile Include="Video\DepthTestFunction.c" />
+    <ClCompile Include="Video\Font.c" />
+    <ClCompile Include="Video\FontsContext.c" />
     <ClCompile Include="Video\Image.c" />
+    <ClCompile Include="Video\ImagesContext.c" />
     <ClCompile Include="Video\Material.c" />
     <ClCompile Include="Video\PixelFormat.c" />
     <ClCompile Include="Video\ProgramInput.c" />
@@ -99,7 +102,10 @@
     <ClInclude Include="Video\Buffer.h" />
     <ClInclude Include="Video\CanvasSizeChangedEvent.h" />
     <ClInclude Include="Video\DepthTestFunction.h" />
+    <ClInclude Include="Video\Font.h" />
+    <ClInclude Include="Video\FontsContext.h" />
     <ClInclude Include="Video\Image.h" />
+    <ClInclude Include="Video\ImagesContext.h" />
     <ClInclude Include="Video\Material.h" />
     <ClInclude Include="Video\PixelFormat.h" />
     <ClInclude Include="Video\ProgramInput.h" />

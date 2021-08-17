@@ -5,7 +5,7 @@
 #define MACHINE_GUI_TEXTLABEL_H_INCLUDED
 
 #include "./../GUI/Widget.h"
-#include "./../Fonts.h"
+#include "_Fonts.h"
 
 /// @brief A label with text.
 /// @extends Machine.GUI.Widget

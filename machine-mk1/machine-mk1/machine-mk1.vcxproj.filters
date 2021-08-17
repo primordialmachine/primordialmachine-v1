@@ -72,9 +72,6 @@
     <ClCompile Include="Scene.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Fonts.c">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="Scene2.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -168,9 +165,6 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Fonts.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Scene2.h">

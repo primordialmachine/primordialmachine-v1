@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
@@ -14,6 +14,9 @@
     <ProjectReference Include="..\core\machine-mk1-core.vcxproj">
       <Project>{f34866d8-3093-4b44-a225-7da2b5cd8e83}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\images\machine-mk1-images.vcxproj">
+      <Project>{f0b732b5-824d-40ab-aa0a-a067b6a852f9}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\math\machine-mk1-math.vcxproj">
       <Project>{681c50f0-37bf-4661-bf5a-21a29abf2b63}</Project>
     </ProjectReference>
@@ -22,19 +25,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Image.h" />
-    <ClInclude Include="ImagesContext.h" />
-    <ClInclude Include="_Images.h" />
+    <ClInclude Include="Font.h" />
+    <ClInclude Include="FontsContext.h" />
+    <ClInclude Include="_Fonts.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Image.c" />
-    <ClCompile Include="ImagesContext.c" />
-    <ClCompile Include="_Images.c" />
+    <ClCompile Include="Font.c" />
+    <ClCompile Include="FontsContext.c" />
+    <ClCompile Include="_Fonts.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{F0B732B5-824D-40AB-AA0A-A067B6A852F9}</ProjectGuid>
+    <ProjectGuid>{36897CC2-2E49-4CE8-804D-AA172EC849E0}</ProjectGuid>
     <RootNamespace>machinemk1core</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -75,7 +78,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)external\libpng\include;$(SolutionDir)video;$(SolutionDir)math;$(SolutionDir)core</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external/freetype/include;$(SolutionDir)video;$(SolutionDir)math;$(SolutionDir)core</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -83,14 +86,14 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>libpng16_staticd.lib;zlibstaticd.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)external\libpng\debug;$(SolutionDir)external\zlib\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)external/freetype/debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>freetyped.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)external\libpng\include;$(SolutionDir)video;$(SolutionDir)math;$(SolutionDir)core</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external/freetype/include;$(SolutionDir)video;$(SolutionDir)math;$(SolutionDir)core</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -100,8 +103,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>libpng16_static.lib;zlibstatic.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)external\libpng\release;$(SolutionDir)external\zlib\release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)external/freetype/release</AdditionalLibraryDirectories>
+      <AdditionalDependencies>freetype.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

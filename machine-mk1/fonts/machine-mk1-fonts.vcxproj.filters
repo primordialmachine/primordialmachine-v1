@@ -15,24 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="_Images.h">
+    <ClInclude Include="_Fonts.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="ImagesContext.h">
+    <ClInclude Include="Font.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Image.h">
+    <ClInclude Include="FontsContext.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="_Images.c">
+    <ClCompile Include="_Fonts.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="ImagesContext.c">
+    <ClCompile Include="Font.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Image.c">
+    <ClCompile Include="FontsContext.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

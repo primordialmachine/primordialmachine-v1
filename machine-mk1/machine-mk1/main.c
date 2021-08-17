@@ -19,7 +19,7 @@ extern "C" {
 #include "Scene4.h"
 #include "Scene5.h"
 #include "Video.h"
-#include "Fonts.h"
+#include "_Fonts.h"
 #include "_Images.h"
 #include "_Collections.h"
 #include "_Runtime.h"
@@ -48,7 +48,7 @@ extern "C" {
     };
     Machine_List* vals = Machine_List_create();
     for (size_t i = 0, n = (sizeof(PATHS) / sizeof(const char*)); i < n; ++i) {
-      Machine_Images_Image* image = Machine_Images_createImageFromPath(Machine_String_create(PATHS[i], strlen(PATHS[i])));
+      Machine_Image* image = Machine_ImagesContext_createFromPath(Machines_DefaultImages_createContext(), Machine_String_create(PATHS[i], strlen(PATHS[i])));
       Machine_Value val;
       Machine_Value_setObject(&val, (Machine_Object *)image);
       Machine_List_append(vals, val);
@@ -122,24 +122,16 @@ extern "C" {
 
   int main1() {
     Machine_JumpTarget jumpTarget1;
+    bool videoStartedUp = false;
     Machine_pushJumpTarget(&jumpTarget1);
     if (!setjmp(jumpTarget1.environment)) {
-      Machine_Video_startup();
-      Machine_popJumpTarget();
-    } else {
-      Machine_popJumpTarget();
-      return Machine_getStatus();
-    }
-    Machine_JumpTarget jumpTarget2; // To shutdown video.
-    Machine_pushJumpTarget(&jumpTarget2);
-    if (!setjmp(jumpTarget2.environment)) {
+      Machine_Video_startup(); videoStartedUp = true;
       main0();
-      Machine_popJumpTarget();
+    }
+    Machine_popJumpTarget();
+    if (videoStartedUp) {
       Machine_Video_shutdown();
-    } else {
-      Machine_popJumpTarget();
-      Machine_Video_shutdown();
-      return Machine_getStatus();
+      videoStartedUp = false;
     }
     return Machine_getStatus();
   }
