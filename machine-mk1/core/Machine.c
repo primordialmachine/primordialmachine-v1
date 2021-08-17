@@ -239,6 +239,7 @@ void Machine_shutdown() {
   
   do {
     rungc(&live, &dead);
+    run++;
   } while (live > 0 && run < MAX_RUN);
 
   if (live > 0) {
