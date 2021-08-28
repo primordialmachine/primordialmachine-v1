@@ -233,7 +233,7 @@ const Machine_Math_Rectangle2* Machine_Text_Layout_getBounds(Machine_Text_Layout
   return Machine_Rectangle2_getRectangle(self->visualBounds);
 }
 
-void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float height) {
+void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* context2) {
   if ((self->flags & LINES_DIRTY) == LINES_DIRTY) {
     Machine_PointerArray_clear(self->lines);
     parse(self->text, self->lines);
@@ -264,7 +264,7 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
     Machine_Math_Vector4_set(color, .3f, .6f, .3f, 1.f);
     Machine_Rectangle2_setColor(self->visualBounds, color);
     Machine_Context2* context = Machine_Context2_create(Machine_Video_getContext());
-    Machine_Context2_setTargetSize(context, width, height);
+    Machine_Context2_setTargetSize(context, Machine_Context2_getTargetWidth(context2), Machine_Context2_getTargetHeight(context2));
     Machine_Shape2_render((Machine_Shape2*)self->visualBounds, context);
   }
 
@@ -279,7 +279,7 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float he
 
   // Set the world matrix, view matrix, and projection matrix.
   Machine_Context2* context = Machine_Context2_create(Machine_Video_getContext());
-  Machine_Context2_setTargetSize(context, width, height);
+  Machine_Context2_setTargetSize(context, Machine_Context2_getTargetWidth(context2), Machine_Context2_getTargetHeight(context2));
   Machine_Context2_setOriginBottomLeft(context, Y_UP);
   Machine_Math_Matrix4 const* modelSpaceToProjectiveSpace = Machine_Context2_getModelSpaceToProjectiveSpaceMatrix(context);
   Machine_Math_Matrix4 const* modelSpaceToWorldSpace = Machine_Context2_getModelSpaceToWorldSpaceMatrix(context);

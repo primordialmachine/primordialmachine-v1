@@ -63,9 +63,8 @@ const Machine_Math_Rectangle2* Machine_Text_Layout_getBounds(Machine_Text_Layout
 
 /// @brief Render this text layout.
 /// @param self This text layout.
-/// @param width The width of the viewport.
-/// @param height The height of the viewport.
-void Machine_Text_Layout_render(Machine_Text_Layout* self, float width, float height);
+/// @param context2 The 2D context.
+void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* context2);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 

@@ -17,6 +17,9 @@
 
 struct Scene4 {
   Scene parent;
+  //
+  Machine_GUI_Context* guiContext;
+  //
   Machine_Font* font;
   /// @brief Text layout #1.
   Machine_Text_Layout* text1;
@@ -29,6 +32,9 @@ struct Scene4 {
 void Scene4_destruct(Scene4* self);
 
 static void Scene4_visit(Scene4* self) {
+  if (self->guiContext) {
+    Machine_visit(self->guiContext);
+  }
   if (self->font) {
     Machine_visit(self->font);
   }
@@ -46,7 +52,8 @@ static void Scene4_visit(Scene4* self) {
 MACHINE_DEFINE_CLASSTYPE_EX(Scene4, Scene, &Scene4_visit, &Scene4_construct, NULL)
 
 static void Scene4_onStartup(Scene4* scene) {
-  Machine_GUI_Context *context = Machine_GUI_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(Machine_Video_getContext()));
+  //
+  scene->guiContext = Machine_GUI_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(Machine_Video_getContext()));
   //
   scene->font = Machine_FontsContext_createFont(Machine_DefaultFonts_createContext(Machine_Video_getContext(), Machines_DefaultImages_createContext()),
                                                 Machine_String_create("RobotoSlab-Regular.ttf", strlen("RobotoSlab-Regular.ttf")), 20);
@@ -63,7 +70,7 @@ static void Scene4_onStartup(Scene4* scene) {
     Machine_Text_Layout_setText(scene->text2, Machine_String_create(text, strlen(text)));
   }
   //
-  scene->textLabel3 = Machine_GUI_TextLabel_create(context);
+  scene->textLabel3 = Machine_GUI_TextLabel_create(scene->guiContext);
   {
     const char* text = "Nanobox IV\n400 units of unprimed nanites.";
     Machine_GUI_TextLabel_setText(scene->textLabel3, Machine_String_create(text, strlen(text)));
@@ -125,6 +132,7 @@ static void updateText3(Scene4* self, float width, float height) {
 }
 
 static void Scene4_onCanvasSizeChanged(Scene4* self, Machine_CanvasSizeChangedEvent* event) {
+  Machine_GUI_Context_onCanvasSizechanged(self->guiContext, event);
   updateText1(self, event->width, event->height);
   updateText2(self, event->width, event->height);
   updateText3(self, event->width, event->height);
@@ -135,8 +143,10 @@ static void Scene4_onUpdate(Scene4* self, float width, float height) {
   Machine_VideoContext_setViewportRectangle(Machine_Video_getContext(), 0, 0, width, height);
   Machine_VideoContext_clearColorBuffer(Machine_Video_getContext());
 
-  Machine_Text_Layout_render(self->text1, width, height);
-  Machine_Text_Layout_render(self->text2, width, height);
+  Machine_Context2* context2 = Machine_Context2_create(Machine_Video_getContext());
+  Machine_Context2_setTargetSize(context2, width, height);
+  Machine_Text_Layout_render(self->text1, context2);
+  Machine_Text_Layout_render(self->text2, context2);
   Machine_GUI_Widget_render((Machine_GUI_Widget *)self->textLabel3, width, height);
 }
 

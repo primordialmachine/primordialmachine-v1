@@ -10,7 +10,6 @@
 #include "./../Video.h"
 #include "./../Text/Layout.h"
 #include "./../GUI/Context.h"
-#include "./../GUI/TextLabel.h"
 #include "./../GUI/Widget.h"
 #include <string.h>
 
@@ -21,7 +20,7 @@ struct Machine_GUI_TextLabel {
 
   /// @brief The layout for rendering the text.
   Machine_Text_Layout* foreground;
-  
+
   /// @brief The shape for rendering the background.
   Machine_Rectangle2* background;
 
@@ -49,6 +48,15 @@ static const Machine_Math_Vector2* Machine_GUI_TextLabel_getPreferredSize(const 
 
 static void Machine_GUI_TextLabel_render(Machine_GUI_TextLabel* self, float width, float height);
 
+static Machine_Value boundsChangedCallback(size_t numberOfArguments, const Machine_Value* arguments) {
+  MACHINE_ASSERT(numberOfArguments == 1, Machine_Status_InvalidNumberOfArguments);
+  Machine_GUI_TextLabel* self = (Machine_GUI_TextLabel*)Machine_Value_getObject(&arguments[0]);
+  self->childDirty = true;
+  Machine_Value result;
+  Machine_Value_setVoid(&result, Machine_Void_Void);
+  return result;
+}
+
 static void Machine_GUI_TextLabel_constructClass(Machine_GUI_TextLabel_Class* self) {
   ((Machine_GUI_Widget_Class*)self)->render = (void (*)(Machine_GUI_Widget*, float, float)) & Machine_GUI_TextLabel_render;
   ((Machine_GUI_Widget_Class*)self)->setRectangle = (void (*)(Machine_GUI_Widget*, const Machine_Math_Rectangle2*)) & Machine_GUI_TextLabel_setRectangle;
@@ -60,11 +68,13 @@ static void Machine_GUI_TextLabel_constructClass(Machine_GUI_TextLabel_Class* se
 
 void Machine_GUI_TextLabel_construct(Machine_GUI_TextLabel* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_GUI_Widget_construct((Machine_GUI_Widget*)self, numberOfArguments, arguments);
-  Machine_Font *font = Machine_FontsContext_createFont(Machine_DefaultFonts_createContext(Machine_Video_getContext(), Machines_DefaultImages_createContext()), 
-                                                       Machine_String_create("RobotoSlab-Regular.ttf", strlen("RobotoSlab-Regular.ttf")), 20);
+  Machine_FontsContext* fontsContext = Machine_DefaultFonts_createContext(Machine_Video_getContext(), Machines_DefaultImages_createContext());
+  Machine_Font *font = Machine_FontsContext_createFont(fontsContext, Machine_String_create("RobotoSlab-Regular.ttf", strlen("RobotoSlab-Regular.ttf")), 20);
   self->foreground = Machine_Text_Layout_create(Machine_String_create("", strlen("")), font);
   self->background = Machine_Rectangle2_create();
   self->childDirty = true;
+  Machine_GUI_Widget_subscribe((Machine_GUI_Widget*)self, ((Machine_GUI_Widget*)self)->context->signalsContext->PositionChanged, (Machine_Object *)self, &boundsChangedCallback);
+  Machine_GUI_Widget_subscribe((Machine_GUI_Widget*)self, ((Machine_GUI_Widget*)self)->context->signalsContext->SizeChanged, (Machine_Object*)self, &boundsChangedCallback);
   Machine_GUI_TextLabel_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_GUI_TextLabel_getClassType());
 }
@@ -165,5 +175,5 @@ void Machine_GUI_TextLabel_render(Machine_GUI_TextLabel* self, float width, floa
   Machine_Context2* context = ((Machine_GUI_Widget*)self)->context->context2;
   Machine_Context2_setTargetSize(context, width, height);
   Machine_Shape2_render((Machine_Shape2 *)self->background, context);
-  Machine_Text_Layout_render(self->foreground, Machine_Context2_getTargetWidth(context), Machine_Context2_getTargetHeight(context));
+  Machine_Text_Layout_render(self->foreground, context);
 }
