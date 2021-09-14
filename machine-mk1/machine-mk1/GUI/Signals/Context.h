@@ -1,8 +1,12 @@
 #if !defined(MACHINE_GUI_SIGNALS_CONTEXT_H_INCLUDED)
 #define MACHINE_GUI_SIGNALS_CONTEXT_H_INCLUDED
 
+
+
 #include "_Runtime.h"
 #include "_GDL.h"
+
+
 
 /// @brief A context.
 /// @extends Machine.Object

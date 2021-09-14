@@ -2,7 +2,9 @@
 #define MACHINE_GUI_READER_H_INCLUDED
 
 
+
 #include "./../../GUI/Widget.h"
+
 
 
 /// @brief 
@@ -18,6 +20,7 @@
 /// @return A pointer to the widget.
 /// @todo Restruct visibility to "package".
 Machine_GUI_Widget* Machine_GUI_Reader_readWidget(Machine_GUI_Context* self, const Machine_Map* source);
+
 
 
 #endif // MACHINE_GUI_READER_H_INCLUDED

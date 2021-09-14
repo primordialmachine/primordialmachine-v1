@@ -1,7 +1,11 @@
 #if !defined(MACHINE_GUI_BORDERMODEL_H_INCLUDED)
 #define MACHINE_GUI_BORDERMODEL_H_INCLUDED
 
+
+
 #include "_Math.h"
+
+
 
 /// @brief Border attributes.
 MACHINE_DECLARE_CLASSTYPE(Machine_GUI_BorderModel)

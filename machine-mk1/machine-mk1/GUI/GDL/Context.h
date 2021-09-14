@@ -1,8 +1,12 @@
 #if !defined(MACHINE_GUI_GDL_CONTEXT_H_INCLUDED)
 #define MACHINE_GUI_GDL_CONTEXT_H_INCLUDED
 
+
+
 #include "_Runtime.h"
 #include "_GDL.h"
+
+
 
 /// @brief A context.
 /// @extends Machine.Object
@@ -23,5 +27,8 @@ struct Machine_GUI_GDL_Context {
 /// @brief Create a GUI <-> GDL context.
 /// @return The context.
 Machine_GUI_GDL_Context* Machine_GUI_GDL_Context_create(Machine_GDL_Context *context);
+
+
+
 
 #endif // MACHINE_GUI_GDL_CONTEXT_H_INCLUDED

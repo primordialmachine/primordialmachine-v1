@@ -4,7 +4,11 @@
 #if !defined(MACHINE_GUI_BORDER_H_INCLUDED)
 #define MACHINE_GUI_BORDER_H_INCLUDED
 
+
+
 #include "./../GUI/Widget.h"
+
+
 
 /// @brief A border around any widget.
 /// The default color is <code>(0.1, 0.1, 0.1)</code>.

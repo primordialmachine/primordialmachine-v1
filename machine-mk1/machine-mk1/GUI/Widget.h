@@ -4,10 +4,14 @@
 #if !defined(MACHINE_GUI_WIDGET_H_INCLUDED)
 #define MACHINE_GUI_WIDGET_H_INCLUDED
 
+
+
 #include "_Collections.h"
 #include "_Math.h"
 #include "_Signals.h"
 typedef struct Machine_GUI_Context Machine_GUI_Context;
+
+
 
 /// @brief Base of all widgets.
 MACHINE_DECLARE_CLASSTYPE(Machine_GUI_Widget)
@@ -156,5 +160,7 @@ void Machine_GUI_Widget_emitSignal(Machine_GUI_Widget* self, Machine_String* nam
 void Machine_GUI_Widget_emitPositionChangedSignal(Machine_GUI_Widget* self);
 
 void Machine_GUI_Widget_emitSizeChangedSignal(Machine_GUI_Widget* self);
+
+
 
 #endif // MACHINE_GUI_WIDGET_H_INCLUDED

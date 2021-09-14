@@ -1,9 +1,13 @@
 #if !defined(MACHINE_GUI_GDL_LISTTOVECTOR3_H_INCLUDED)
 #define MACHINE_GUI_GDL_LISTTOVECTOR3_H_INCLUDED
 
+
+
 #include "_Collections.h"
 #include "_Math.h"
 #include "_Runtime.h"
+
+
 
 /// @brief
 /// Convert
@@ -22,5 +26,7 @@ Machine_Math_Vector3* Machine_GUI_GDL_listToVector3(const Machine_List* list);
 /// @param value A pointer to a value.
 /// @return The value of type <code>Real</code>.
 Machine_Math_Vector4* Machine_GUI_GDL_listToVector4(const Machine_List* list);
+
+
 
 #endif // MACHINE_GUI_GDL_LISTTOVECTOR3_H_INCLUDED

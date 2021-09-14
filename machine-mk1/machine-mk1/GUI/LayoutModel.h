@@ -1,7 +1,11 @@
 #if !defined(MACHINE_GUI_LAYOUTMODEL_H_INCLUDED)
 #define MACHINE_GUI_LAYOUTMODEL_H_INCLUDED
 
+
+
 #include "_Math.h"
+
+
 
 /// @brief Denotes how elements layed out along an axis are justified along that axis.
 typedef enum Machine_GUI_Layout_Justification {

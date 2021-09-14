@@ -1,8 +1,12 @@
 #if !defined(MACHINE_GUI_WIDGETLIST_H_INCLUDED)
 #define MACHINE_GUI_WIDGETLIST_H_INCLUDED
 
+
+
 #include "./../GUI/Widget.h"
 #include "./../GUI/LayoutModel.h"
+
+
 
 /// @brief A label to display a text.
 /// @remarks The preferred size of a panel is computed by combining the rectangles of its child nodes.

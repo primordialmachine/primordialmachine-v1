@@ -2,12 +2,15 @@
 #define MACHINE_GUI_READER_PACKAGE_H_INCLUDED
 
 
+
 #include "./../../GUI/Border.h"
 #include "./../../GUI/Group.h"
 #include "./../../GUI/TextButton.h"
 #include "./../../GUI/TextLabel.h"
 
 #if 0
+
+
 /// @brief
 /// <code>
 /// group :
