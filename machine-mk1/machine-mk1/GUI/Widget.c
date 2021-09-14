@@ -118,10 +118,10 @@ void Machine_GUI_Widget_construct(Machine_GUI_Widget* self, size_t numberOfArgum
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-void Machine_GUI_Widget_render(Machine_GUI_Widget* self, float width, float height) {
+void Machine_GUI_Widget_render(Machine_GUI_Widget* self, Machine_Context2* ctx2) {
   MACHINE_ASSERT_NOTNULL(self);
   MACHINE_ASSERT_NOTNULL(self->render);
-  self->render(self, width, height);
+  self->render(self, ctx2);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

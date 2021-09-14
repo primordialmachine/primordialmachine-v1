@@ -45,10 +45,29 @@ void Machine_GUI_Context_onCanvasSizechanged(Machine_GUI_Context* self, Machine_
   Machine_Context2_setTargetSize(self->context2, event->width, event->height);
 }
 
+Machine_Real Machine_GUI_Context_getCanvasWidth(Machine_GUI_Context* self) {
+  return Machine_Context2_getTargetWidth(self->context2);
+}
+
+Machine_Real Machine_GUI_Context_getCanvasHeight(Machine_GUI_Context* self) {
+  return Machine_Context2_getTargetHeight(self->context2);
+}
+
 void Machine_GUI_Context_setRootGroup(Machine_GUI_Context* self, Machine_GUI_Group* rootGroup) {
   self->rootGroup = rootGroup;
 }
 
 Machine_GUI_Group* Machine_GUI_Context_getRootGroup(const Machine_GUI_Context* self) {
   return self->rootGroup;
+}
+
+void Machine_GUI_Context_onRender(Machine_GUI_Context* self) {
+  float targetWidth = Machine_Context2_getTargetWidth(self->context2),
+        targetHeight = Machine_Context2_getTargetHeight(self->context2);
+  if (targetWidth > 0.f && targetHeight > 0.f && self->rootGroup) {
+    Machine_Math_Vector2* canvasSize = Machine_Math_Vector2_create();
+    Machine_Math_Vector2_set(canvasSize, targetWidth, targetHeight);
+    Machine_GUI_Widget_setSize((Machine_GUI_Widget*)self->rootGroup, canvasSize);
+    Machine_GUI_Group_relayout(self->rootGroup, targetWidth, targetHeight);
+  }
 }

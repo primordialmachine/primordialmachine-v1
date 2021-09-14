@@ -2,10 +2,10 @@
 
 
 
+#include "_Graphics2.h"
 #include "_Fonts.h"
 #include "./../Video.h"
 #include "./../Text/LayoutLine.h"
-#include "./../Video.h"
 #include <string.h>
 #include <math.h>
 
@@ -278,11 +278,9 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* con
 #endif
 
   // Set the world matrix, view matrix, and projection matrix.
-  Machine_Context2* context = Machine_Context2_create(Machine_Video_getContext());
-  Machine_Context2_setTargetSize(context, Machine_Context2_getTargetWidth(context2), Machine_Context2_getTargetHeight(context2));
-  Machine_Context2_setOriginBottomLeft(context, Y_UP);
-  Machine_Math_Matrix4 const* modelSpaceToProjectiveSpace = Machine_Context2_getModelSpaceToProjectiveSpaceMatrix(context);
-  Machine_Math_Matrix4 const* modelSpaceToWorldSpace = Machine_Context2_getModelSpaceToWorldSpaceMatrix(context);
+  Machine_Context2_setOriginBottomLeft(context2, Y_UP);
+  Machine_Math_Matrix4 const* modelSpaceToProjectiveSpace = Machine_Context2_getModelSpaceToProjectiveSpaceMatrix(context2);
+  Machine_Math_Matrix4 const* modelSpaceToWorldSpace = Machine_Context2_getModelSpaceToWorldSpaceMatrix(context2);
 
   Machine_ShaderProgram* shaderProgram = Machine_Font_getVideoShaderProgram(self->font);
   Machine_Binding* binding = Machine_Font_getVideoBinding(self->font);

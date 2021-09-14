@@ -88,7 +88,7 @@ void Machine_GLFW_setCanvasIcons(Machine_List* images) {
       p = Machine_Image_getPixels(image);
       targetImages[i].width = w;
       targetImages[i].height = h;
-      targetImages[i].pixels = p;
+      targetImages[i].pixels = (unsigned char *)p;
     }
     glfwSetWindowIcon(g_window, numberOfImages, targetImages);
     if (targetImages) {

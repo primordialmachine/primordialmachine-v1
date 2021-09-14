@@ -121,7 +121,7 @@
     <ClCompile Include="Scene5.c" />
     <ClCompile Include="Text\LayoutLine.c" />
     <ClCompile Include="Text\Layout.c" />
-    <ClCompile Include="main.c" />
+    <ClCompile Include="Main.c" />
     <ClCompile Include="Scene.c" />
     <ClCompile Include="Scene1.c" />
     <ClCompile Include="Scene2.c" />

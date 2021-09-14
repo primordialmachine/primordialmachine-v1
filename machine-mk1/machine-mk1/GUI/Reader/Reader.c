@@ -15,12 +15,8 @@ Machine_GUI_Widget* Machine_GUI_Reader_readWidget(Machine_GUI_Context* self, con
     Machine_jump();
   }
   s = Machine_GUI_Reader_getString(source, guiGdlContext->KIND);
-#if 0
   if (Machine_String_isEqualTo(s, guiGdlContext->GROUP)) {
     return (Machine_GUI_Widget*)Machine_GUI_Reader_readGroup(self, source);
-  }
-#endif
-  if (0) {
   }
   else if (Machine_String_isEqualTo(s, guiGdlContext->TEXTBUTTON)) {
     return (Machine_GUI_Widget*)Machine_GUI_Reader_readTextButton(self, source);

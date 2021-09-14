@@ -21,7 +21,6 @@ static void checkKind(Machine_GUI_Context* self, const Machine_Map* source, Mach
   }
 }
 
-#if 0
 Machine_GUI_LayoutModel* Machine_GUI_Reader_readLayout(Machine_GUI_Context* self, const Machine_Map* source) {
   Machine_GUI_GDL_Context* subContext = self->gdlContext;
   Machine_GUI_LayoutModel* model = Machine_GUI_LayoutModel_create();
@@ -66,9 +65,7 @@ Machine_GUI_LayoutModel* Machine_GUI_Reader_readLayout(Machine_GUI_Context* self
   }
   return model;
 }
-#endif
 
-#if 0
 Machine_GUI_Group* Machine_GUI_Reader_readGroup(Machine_GUI_Context* self, const Machine_Map* source) {
   Machine_GUI_GDL_Context* subContext = self->gdlContext;
   checkKind(self, source, subContext->GROUP);
@@ -92,7 +89,6 @@ Machine_GUI_Group* Machine_GUI_Reader_readGroup(Machine_GUI_Context* self, const
   }
   return widget;
 }
-#endif
 
 Machine_GUI_Border* Machine_GUI_Reader_readBorder(Machine_GUI_Context* self, const Machine_Map* source) {
   Machine_GUI_GDL_Context* subContext = self->gdlContext;

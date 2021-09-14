@@ -9,6 +9,7 @@
 #include "_Collections.h"
 #include "_Math.h"
 #include "_Signals.h"
+#include "_Graphics2.h"
 typedef struct Machine_GUI_Context Machine_GUI_Context;
 
 
@@ -27,7 +28,7 @@ struct Machine_GUI_Widget {
 
   Machine_List* connections;
 
-  void (*render)(Machine_GUI_Widget* self, float width, float height);
+  void (*render)(Machine_GUI_Widget* self, Machine_Context2* ctx2);
   
   const Machine_Math_Rectangle2* (*getRectangle)(const Machine_GUI_Widget* self);
   void (*setRectangle)(Machine_GUI_Widget* self, const Machine_Math_Rectangle2* rectangle);
@@ -58,7 +59,7 @@ void Machine_GUI_Widget_construct(Machine_GUI_Widget* self, size_t numberOfArgum
 /// @param self This widget.
 /// @param width The width of the canvas.
 /// @param height The height of the canvas.
-void Machine_GUI_Widget_render(Machine_GUI_Widget* self, float width, float height);
+void Machine_GUI_Widget_render(Machine_GUI_Widget* self, Machine_Context2* ctx2);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 

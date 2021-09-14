@@ -106,8 +106,10 @@ void Machine_Context2_setOriginBottomLeft(Machine_Context2 *self, Machine_Boolea
 
 /// @brief Get if the origin of the coordinate system is mapped to the bottom/left corner or the top/left corner of the canvas.
 /// @param self This context.
-/// @return @a true if the origin is mapped to the bottom/left corner of th canvas,
+/// @return
+/// @a true if the origin is mapped to the bottom/left corner of th canvas,
 /// @a false if the origin is mapped to the top/left corner of the canvas.
+/// @default @a true
 Machine_Boolean Machine_Context2_getOriginBottomLeft(Machine_Context2 const* self);
 
 

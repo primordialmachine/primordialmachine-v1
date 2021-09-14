@@ -147,7 +147,7 @@ static void Scene4_onUpdate(Scene4* self, float width, float height) {
   Machine_Context2_setTargetSize(context2, width, height);
   Machine_Text_Layout_render(self->text1, context2);
   Machine_Text_Layout_render(self->text2, context2);
-  Machine_GUI_Widget_render((Machine_GUI_Widget *)self->textLabel3, width, height);
+  Machine_GUI_Widget_render((Machine_GUI_Widget *)self->textLabel3, context2);
 }
 
 static void Scene4_onShutdown(Scene4* self) {

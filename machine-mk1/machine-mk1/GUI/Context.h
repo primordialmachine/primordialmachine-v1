@@ -30,6 +30,10 @@ Machine_GUI_Context* Machine_GUI_Context_create(Machine_GDL_Context* gdlContext,
 
 void Machine_GUI_Context_onCanvasSizechanged(Machine_GUI_Context* self, Machine_CanvasSizeChangedEvent* event);
 
+Machine_Real Machine_GUI_Context_getCanvasWidth(Machine_GUI_Context* self);
+
+Machine_Real Machine_GUI_Context_getCanvasHeight(Machine_GUI_Context* self);
+
 /// @brief Set the root group.
 /// @param self This GUI context.
 /// @param rootGroup The root group or null.
@@ -40,5 +44,6 @@ void Machine_GUI_Context_setRootGroup(Machine_GUI_Context* self, Machine_GUI_Gro
 /// @return The root group or null.
 Machine_GUI_Group* Machine_GUI_Context_getRootGroup(const Machine_GUI_Context* self);
 
+void Machine_GUI_Context_onRender(Machine_GUI_Context* self);
 
 #endif // MACHINE_GUI_CONTEXT_H_INCLUDED

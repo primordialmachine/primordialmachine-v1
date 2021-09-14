@@ -8,7 +8,6 @@
 #include "./../../GUI/TextButton.h"
 #include "./../../GUI/TextLabel.h"
 
-#if 0
 
 
 /// @brief
@@ -21,7 +20,6 @@
 /// @return A pointer to the widget.
 /// @todo Restruct visibility to "package".
 Machine_GUI_Group* Machine_GUI_Reader_readGroup(Machine_GUI_Context* self, const Machine_Map* source);
-#endif
 
 /// @brief
 /// <code>
@@ -60,7 +58,6 @@ Machine_GUI_TextButton* Machine_GUI_Reader_readTextButton(Machine_GUI_Context* s
 /// @todo Restruct visibility to "package".
 Machine_GUI_TextLabel* Machine_GUI_Reader_readTextLabel(Machine_GUI_Context* self, const Machine_Map* source);
 
-#if 0
 /// @brief
 /// <code>
 /// layout :
@@ -70,7 +67,6 @@ Machine_GUI_TextLabel* Machine_GUI_Reader_readTextLabel(Machine_GUI_Context* sel
 /// @param source A pointer to the source map.
 /// @return A pointer to the layout model.
 Machine_GUI_LayoutModel* Machine_GUI_Reader_readLayout(Machine_GUI_Context* self, const Machine_Map* source);
-#endif
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
