@@ -183,8 +183,7 @@ void Machine_loadVoid(Machine_Void value);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-/** C level representation of a class type. */
-typedef struct Machine_ClassType Machine_ClassType;
+#include "Runtime/TypeSystem/ClassType.h"
 
 /** @brief Tag flag indicating a class type object tag. */
 #define Machine_Flag_Class (32)
@@ -193,29 +192,6 @@ typedef struct Machine_ClassObjectTag {
   Machine_ClassType* classType;
   Machine_Tag tag;
 } Machine_ClassObjectTag;
-
-/// @brief Invoked when the class type is removed.
-typedef void (Machine_ClassTypeRemovedCallback)();
-
-/**
- * @brief Type of an object visit callback.
- * @param self A pointer to the object.
- */
-typedef void (Machine_ClassObjectVisitCallback)(void* self);
-
-/**
- * @brief Type of an object visiti callback.
- * @param self A pointer to the object.
- * @param numberOfArguments The number of elements in the array pointed to by @a arguments.
- * @param arguments A pointer to an array of @a numberOfArguments arguments.
- */
-typedef void (Machine_ClassObjectConstructCallback)(void* self, size_t numberOfArguments, const Machine_Value* arguments);
-
-/**
- * @brief Type of an object destruct callback.
- * @param self A pointer to the object.
- */
-typedef void (Machine_ClassObjectDestructCallback)(void* self);
 
 /** @todo Transitional hack. Remove! */
 typedef struct Machine_Object Machine_Object_Class;
@@ -251,14 +227,6 @@ Machine_String* Machine_Object_toString(Machine_Object const* self);
 /// @param numberOfArguments The number of arguments.
 /// @param arguments The arguments.
 void Machine_Object_construct(Machine_Object* self, size_t numberOfArguments, const Machine_Value* arguments);
-
-/**
- * @param visit Pointer to a Machine_ObjectVisitCallback function or a null pointer.
- * @param construct Pointer to a Machine_ObjectConstructCallback function or a null pointer.
- * @param destruct Pointer to a Machine_ObjectDestructCallback function or a null pointer.
- * @retrn A pointer to the classed type.
- */
-Machine_ClassType* Machine_createClassType(Machine_ClassType* parent, size_t size, Machine_ClassTypeRemovedCallback* typeRemoved, Machine_ClassObjectVisitCallback* visit, Machine_ClassObjectConstructCallback* construct, Machine_ClassObjectDestructCallback* destruct);
 
 /**
  * @brief Create an object.

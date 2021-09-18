@@ -25,6 +25,12 @@
     <Filter Include="Quelldateien\Runtime\IO">
       <UniqueIdentifier>{4455e3c1-14c8-4689-978a-1dd9f18005ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Runtime\TypeSystem">
+      <UniqueIdentifier>{33496874-4678-40fe-9c69-465df23ca869}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Runtime\TypeSystem">
+      <UniqueIdentifier>{28c9502f-b3b8-4ee0-adc8-c4d862fdc690}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Machine.c">
@@ -74,6 +80,9 @@
     </ClCompile>
     <ClCompile Include="Runtime\ConvertPrimitiveTypes.c">
       <Filter>Quelldateien\Runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="Runtime\TypeSystem\ClassType.c">
+      <Filter>Quelldateien\Runtime\TypeSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -136,6 +145,9 @@
     </ClInclude>
     <ClInclude Include="Runtime\ConvertPrimitiveTypes.h">
       <Filter>Headerdateien\Runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\TypeSystem\ClassType.h">
+      <Filter>Headerdateien\Runtime\TypeSystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -382,31 +382,6 @@ static Machine_String* Machine_Object_toStringImpl(Machine_Object const* self) {
   return Machine_Integer_toString((Machine_Integer)(intptr_t)self);
 }
 
-
-struct Machine_ClassType {
-  Machine_ClassType* parent;
-  size_t size;
-  Machine_ClassTypeRemovedCallback* typeRemoved;
-  Machine_ClassObjectVisitCallback* visit;
-  Machine_ClassObjectConstructCallback* construct;
-  Machine_ClassObjectDestructCallback* destruct;
-};
-
-static void Machine_ClassType_visit(Machine_ClassType* self) {
-  if (self->parent) {
-    Machine_visit(self->parent);
-  }
-}
-
-static void Machine_ClassType_finalize(Machine_ClassType* self) {
-  if (self->parent) {
-    Machine_unlock(self->parent);
-  }
-  if (self->typeRemoved) {
-    self->typeRemoved();
-  }
-}
-
 static Machine_ClassType * g_Machine_Object_ClassType = NULL;
 static void Machine_Object_onTypeDestroyed() {
   g_Machine_Object_ClassType = NULL;
@@ -434,24 +409,6 @@ void Machine_Object_construct(Machine_Object* self, size_t numberOfArguments, co
   self->getHashValue = &Machine_Object_getHashValueImpl;
   self->isEqualTo = &Machine_Object_isEqualToImpl;
   Machine_setClassType(self, Machine_Object_getClassType());
-}
-
-Machine_ClassType* Machine_createClassType(Machine_ClassType* parent, size_t size, Machine_ClassTypeRemovedCallback *typeRemoved, Machine_ClassObjectVisitCallback* visit, Machine_ClassObjectConstructCallback* construct, Machine_ClassObjectDestructCallback* destruct) {
-  Machine_ClassType *classType = Machine_allocate(sizeof(Machine_ClassType), (Machine_VisitCallback *)&Machine_ClassType_visit, (Machine_FinalizeCallback *)&Machine_ClassType_finalize);
-  if (!classType) {
-    Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
-  }
-  classType->size = size;
-  classType->typeRemoved = typeRemoved;
-  classType->visit = visit;
-  classType->construct = construct;
-  classType->destruct = destruct;
-  classType->parent = parent;
-  if (parent) {
-    Machine_lock(classType->parent);
-  }
-  return classType;
 }
 
 static void Machine_ClassObject_visit(void* self) {
