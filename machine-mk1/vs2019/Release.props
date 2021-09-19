@@ -33,7 +33,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <SDLCheck>false</SDLCheck>
       <DebugInformationFormat>None</DebugInformationFormat>
-      <TreatSpecificWarningsAsErrors>4133</TreatSpecificWarningsAsErrors>
+      <TreatSpecificWarningsAsErrors>4133;4090;4013</TreatSpecificWarningsAsErrors>
     </ClCompile>
     <Link>
       <OptimizeReferences>true</OptimizeReferences>
