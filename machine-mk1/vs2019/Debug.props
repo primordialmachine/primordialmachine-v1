@@ -37,6 +37,7 @@
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <TreatSpecificWarningsAsErrors>4133;4090;4013</TreatSpecificWarningsAsErrors>
+      <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
     <Link>
       <OptimizeReferences>false</OptimizeReferences>

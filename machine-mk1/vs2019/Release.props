@@ -34,6 +34,7 @@
       <SDLCheck>false</SDLCheck>
       <DebugInformationFormat>None</DebugInformationFormat>
       <TreatSpecificWarningsAsErrors>4133;4090;4013</TreatSpecificWarningsAsErrors>
+      <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
     <Link>
       <OptimizeReferences>true</OptimizeReferences>
