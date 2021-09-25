@@ -53,7 +53,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/linmath;$(SolutionDir)external/freetype/include;$(SolutionDir)external/libpng/include;$(SolutionDir)core;$(SolutionDir)math</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/freetype/include;$(SolutionDir)external/libpng/include;$(SolutionDir)core;$(SolutionDir)math</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -65,7 +65,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/linmath;$(SolutionDir)external/freetype/include;$(SolutionDir)external/libpng/include;$(SolutionDir)core;$(SolutionDir)math</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/freetype/include;$(SolutionDir)external/libpng/include;$(SolutionDir)core;$(SolutionDir)math</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

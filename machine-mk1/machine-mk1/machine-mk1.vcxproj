@@ -51,7 +51,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)external/glad/include;$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/linmath;$(SolutionDir)gdl;$(SolutionDir)fonts;$(SolutionDir)images;$(SolutionDir)input;$(SolutionDir)graphics2;$(SolutionDir)video;$(SolutionDir)math;$(SolutionDir)signals;$(SolutionDir)core-collections;$(SolutionDir)core</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external/glad/include;$(SolutionDir)external/glfw/x64/include;$(SolutionDir)gdl;$(SolutionDir)fonts;$(SolutionDir)images;$(SolutionDir)input;$(SolutionDir)graphics2;$(SolutionDir)video;$(SolutionDir)math;$(SolutionDir)signals;$(SolutionDir)core-collections;$(SolutionDir)core</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -63,7 +63,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)external/glad/include;$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/linmath;$(SolutionDir)gdl;$(SolutionDir)fonts;$(SolutionDir)images;$(SolutionDir)input;$(SolutionDir)graphics2;$(SolutionDir)video;$(SolutionDir)math;$(SolutionDir)signals;$(SolutionDir)core-collections;$(SolutionDir)core</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external/glad/include;$(SolutionDir)external/glfw/x64/include;$(SolutionDir)gdl;$(SolutionDir)fonts;$(SolutionDir)images;$(SolutionDir)input;$(SolutionDir)graphics2;$(SolutionDir)video;$(SolutionDir)math;$(SolutionDir)signals;$(SolutionDir)core-collections;$(SolutionDir)core</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
