@@ -68,14 +68,16 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <PublicIncludeDirectories>$(SolutionDir)core-collections</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <PublicIncludeDirectories>$(SolutionDir)core-collections</PublicIncludeDirectories>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)core;$(SolutionDir)core-collections</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)core-collections</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -87,7 +89,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)core;$(SolutionDir)core-collections</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)core-collections</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>

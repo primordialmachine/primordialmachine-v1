@@ -46,14 +46,17 @@
     <Import Project="..\vs2019\Release.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PublicIncludeDirectories>$(SolutionDir)input</PublicIncludeDirectories>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <PublicIncludeDirectories>$(SolutionDir)input</PublicIncludeDirectories>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/freetype/include;$(SolutionDir)external/libpng/include;$(SolutionDir)core;$(SolutionDir)math</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/freetype/include;$(SolutionDir)external/libpng/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -65,7 +68,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/freetype/include;$(SolutionDir)external/libpng/include;$(SolutionDir)core;$(SolutionDir)math</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/freetype/include;$(SolutionDir)external/libpng/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -51,7 +51,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)core;$(SolutionDir)core-collections;$(SolutionDir)gdl</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)gdl-test</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -63,7 +63,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)core;$(SolutionDir)core-collections;$(SolutionDir)gdl</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)gdl-test</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -72,6 +72,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ProjectReference Include="..\core-collections\machine-mk1-core-collections.vcxproj">
+      <Project>{6eb4ab0f-86e3-4ab8-850e-449c7a78878b}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\core\machine-mk1-core.vcxproj">
       <Project>{f34866d8-3093-4b44-a225-7da2b5cd8e83}</Project>
     </ProjectReference>

@@ -51,7 +51,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)external/glad/include;$(SolutionDir)external/glfw/x64/include;$(SolutionDir)gdl;$(SolutionDir)fonts;$(SolutionDir)images;$(SolutionDir)input;$(SolutionDir)graphics2;$(SolutionDir)video;$(SolutionDir)math;$(SolutionDir)signals;$(SolutionDir)core-collections;$(SolutionDir)core</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external/glad/include;$(SolutionDir)external/glfw/x64/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -63,7 +63,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)external/glad/include;$(SolutionDir)external/glfw/x64/include;$(SolutionDir)gdl;$(SolutionDir)fonts;$(SolutionDir)images;$(SolutionDir)input;$(SolutionDir)graphics2;$(SolutionDir)video;$(SolutionDir)math;$(SolutionDir)signals;$(SolutionDir)core-collections;$(SolutionDir)core</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external/glad/include;$(SolutionDir)external/glfw/x64/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -136,6 +136,9 @@
     <ClInclude Include="_GUI.h" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\core-collections\machine-mk1-core-collections.vcxproj">
+      <Project>{6eb4ab0f-86e3-4ab8-850e-449c7a78878b}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\core\machine-mk1-core.vcxproj">
       <Project>{f34866d8-3093-4b44-a225-7da2b5cd8e83}</Project>
     </ProjectReference>

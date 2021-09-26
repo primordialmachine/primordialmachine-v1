@@ -71,14 +71,16 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <PublicIncludeDirectories>$(SolutionDir)fonts</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <PublicIncludeDirectories>$(SolutionDir)fonts</PublicIncludeDirectories>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)external/freetype/include;$(SolutionDir)video;$(SolutionDir)math;$(SolutionDir)core</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external/freetype/include;$(SolutionDir)fonts</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -93,7 +95,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)external/freetype/include;$(SolutionDir)video;$(SolutionDir)math;$(SolutionDir)core</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external/freetype/include;$(SolutionDir)fonts</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>

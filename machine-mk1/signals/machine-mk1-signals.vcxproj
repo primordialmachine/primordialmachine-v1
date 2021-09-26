@@ -60,14 +60,16 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <PublicIncludeDirectories>$(SolutionDir)signals</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <PublicIncludeDirectories>$(SolutionDir)signals</PublicIncludeDirectories>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)core;$(SolutionDir)signals</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)signals</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -82,7 +84,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)core;$(SolutionDir)signals</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)signals</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
