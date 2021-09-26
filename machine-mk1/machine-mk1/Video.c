@@ -2,9 +2,9 @@
 
 
 
-#include "GL/VideoContext.h"
-#include "GL/CanvasInput.h"
-#include "GL/ShaderProgram.h"
+#include "Video/GL/VideoContext.h"
+#include "Video/GL/CanvasInput.h"
+#include "Video/GL/ShaderProgram.h"
 
 
 

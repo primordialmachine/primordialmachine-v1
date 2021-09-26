@@ -1,6 +1,11 @@
 #include "./../GL/Canvas.h"
+
+
+
 #include "_Video.h"
 #include <malloc.h>
+
+
 
 static size_t g_referenceCount = 0;
 static GLFWwindow* g_window = NULL;

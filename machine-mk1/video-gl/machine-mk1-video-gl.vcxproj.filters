@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Ressourcendateien">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Quelldateien\Video">
+      <UniqueIdentifier>{865876d2-8184-4787-bd75-7cc839dec033}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Video">
+      <UniqueIdentifier>{6bc2d811-f1a6-4bf4-b2c0-e5ded07d9fa1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Video\GL">
+      <UniqueIdentifier>{89f9f4cd-7eea-45da-ab6d-25bef9f52388}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Video\GL">
+      <UniqueIdentifier>{31fda43a-25e1-4360-9da2-b618627c83be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\external">
+      <UniqueIdentifier>{bae8c362-62d9-4eaf-89df-2fa22919ece1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\external">
+      <UniqueIdentifier>{c6fb4d3a-0dd3-4dbd-b40d-33f1d1bdd16a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\external\glad">
+      <UniqueIdentifier>{67709399-5ea1-4f07-8683-2ea02bbdc44a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\external\glad">
+      <UniqueIdentifier>{bd4d4141-3a93-4586-9675-9cd71f3f192c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Video\GL\Binding.h">
+      <Filter>Headerdateien\Video\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="Video\GL\Buffer.h">
+      <Filter>Headerdateien\Video\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="Video\GL\Canvas.h">
+      <Filter>Headerdateien\Video\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="Video\GL\CanvasInput.h">
+      <Filter>Headerdateien\Video\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="Video\GL\ShaderProgram.h">
+      <Filter>Headerdateien\Video\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="Video\GL\Texture.h">
+      <Filter>Headerdateien\Video\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="Video\GL\UtilitiesGL.h">
+      <Filter>Headerdateien\Video\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="Video\GL\VideoContext.h">
+      <Filter>Headerdateien\Video\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="_Video_GL.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\glad\include\glad\glad.h">
+      <Filter>Headerdateien\external\glad</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Video\GL\Binding.c">
+      <Filter>Quelldateien\Video\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="Video\GL\Buffer.c">
+      <Filter>Quelldateien\Video\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="Video\GL\Canvas.c">
+      <Filter>Quelldateien\Video\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="Video\GL\CanvasInput.c">
+      <Filter>Quelldateien\Video\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="Video\GL\ShaderProgram.c">
+      <Filter>Quelldateien\Video\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="Video\GL\Texture.c">
+      <Filter>Quelldateien\Video\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="Video\GL\UtilitiesGL.c">
+      <Filter>Quelldateien\Video\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="Video\GL\VideoContext.c">
+      <Filter>Quelldateien\Video\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="_Video_GL.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\external\glad\src\glad.c">
+      <Filter>Quelldateien\external\glad</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{C6FF90B2-B9D9-4A80-AFC2-A71B02AA29C2}</ProjectGuid>
+    <RootNamespace>rtxviz</RootNamespace>
+    <ProjectName>machine-mk1-video-gl</ProjectName>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\vs2019\Debug.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\vs2019\Release.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/linmath;$(SolutionDir)external/freetype/include;$(SolutionDir)external/libpng/include;$(SolutionDir)core;$(SolutionDir)math</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)external\glfw\x64\debug;$(SolutionDir)external\freetype\debug;$(SolutionDir)external\libpng\debug;$(SolutionDir)external\zlib\debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;freetyped.lib;libpng16_staticd.lib;zlibstaticd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)external/glfw/x64/include;$(SolutionDir)external/glad/include;$(SolutionDir)external/linmath;$(SolutionDir)external/freetype/include;$(SolutionDir)external/libpng/include;$(SolutionDir)core;$(SolutionDir)math</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>$(SolutionDir)external\glfw\x64\release;$(SolutionDir)external\freetype\release;$(SolutionDir)external\libpng\release;$(SolutionDir)external\zlib\release</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;freetype.lib;libpng16_static.lib;zlibstatic.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\core-collections\machine-mk1-core-collections.vcxproj">
+      <Project>{6eb4ab0f-86e3-4ab8-850e-449c7a78878b}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\core\machine-mk1-core.vcxproj">
+      <Project>{f34866d8-3093-4b44-a225-7da2b5cd8e83}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\input\machine-mk1-input.vcxproj">
+      <Project>{d18ee412-e5ae-4b7b-b291-46231dca6511}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\math\machine-mk1-math.vcxproj">
+      <Project>{681c50f0-37bf-4661-bf5a-21a29abf2b63}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\signals\machine-mk1-signals.vcxproj">
+      <Project>{849b7daf-7563-43b6-9131-fda4995767f0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\video\machine-mk1-video.vcxproj">
+      <Project>{ea697f45-b77e-4384-8bf1-6001586e058c}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\external\glad\include\glad\glad.h" />
+    <ClInclude Include="Video\GL\Binding.h" />
+    <ClInclude Include="Video\GL\Buffer.h" />
+    <ClInclude Include="Video\GL\Canvas.h" />
+    <ClInclude Include="Video\GL\CanvasInput.h" />
+    <ClInclude Include="Video\GL\ShaderProgram.h" />
+    <ClInclude Include="Video\GL\Texture.h" />
+    <ClInclude Include="Video\GL\UtilitiesGL.h" />
+    <ClInclude Include="Video\GL\VideoContext.h" />
+    <ClInclude Include="_Video_GL.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\external\glad\src\glad.c" />
+    <ClCompile Include="Video\GL\Binding.c" />
+    <ClCompile Include="Video\GL\Buffer.c" />
+    <ClCompile Include="Video\GL\Canvas.c" />
+    <ClCompile Include="Video\GL\CanvasInput.c" />
+    <ClCompile Include="Video\GL\ShaderProgram.c" />
+    <ClCompile Include="Video\GL\Texture.c" />
+    <ClCompile Include="Video\GL\UtilitiesGL.c" />
+    <ClCompile Include="Video\GL\VideoContext.c" />
+    <ClCompile Include="_Video_GL.c" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
