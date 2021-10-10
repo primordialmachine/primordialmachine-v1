@@ -29,7 +29,7 @@ struct Machine_GUI_Widget {
   Machine_List* connections;
 
   void (*render)(Machine_GUI_Widget* self, Machine_Context2* ctx2);
-  
+
   const Machine_Math_Rectangle2* (*getRectangle)(const Machine_GUI_Widget* self);
   void (*setRectangle)(Machine_GUI_Widget* self, const Machine_Math_Rectangle2* rectangle);
   const Machine_Math_Rectangle2* (*getCanvasRectangle)(const Machine_GUI_Widget* self);
