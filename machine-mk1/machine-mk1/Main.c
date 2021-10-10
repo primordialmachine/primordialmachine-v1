@@ -18,6 +18,8 @@ extern "C" {
 #include "Scene3.h"
 #include "Scene4.h"
 #include "Scene5.h"
+#include "Scenes/LayoutScene.h"
+#include "Scenes/Rectangle2Scene.h"
 #include "Video.h"
 #include "_Fonts.h"
 #include "_Images.h"

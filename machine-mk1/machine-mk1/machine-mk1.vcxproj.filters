@@ -49,6 +49,12 @@
     <Filter Include="Headerdateien\Video">
       <UniqueIdentifier>{7fc904fb-b93e-4398-9811-486b0de8278f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Scenes">
+      <UniqueIdentifier>{5216b1ae-3fa7-46f9-8ad2-148bc513316c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Scenes">
+      <UniqueIdentifier>{62d7f894-cf69-402e-b5b0-9f570c67670e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.c">
@@ -132,6 +138,12 @@
     <ClCompile Include="GUI\Reader\Reader.package.c">
       <Filter>Quelldateien\GUI\Reader</Filter>
     </ClCompile>
+    <ClCompile Include="Scenes\Rectangle2Scene.c">
+      <Filter>Quelldateien\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\LayoutScene.c">
+      <Filter>Quelldateien\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scene1.h">
@@ -208,6 +220,12 @@
     </ClInclude>
     <ClInclude Include="GUI\Reader\Reader.package.h">
       <Filter>Headerdateien\GUI\Reader</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\Rectangle2Scene.h">
+      <Filter>Headerdateien\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\LayoutScene.h">
+      <Filter>Headerdateien\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
