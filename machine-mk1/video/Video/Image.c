@@ -19,13 +19,13 @@ void Machine_Image_construct(Machine_Image* self, size_t numberOfArguments, cons
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_Image, Machine_Object, NULL, &Machine_Image_construct, &Machine_Image_destruct)
 
 void const* Machine_Image_getPixels(Machine_Image const* self) {
-  return self->getPixels(self);
+  MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_Image, getPixels);
 }
 
 void Machine_Image_getSize(Machine_Image const* self, Machine_Integer* width, Machine_Integer* height) {
-  self->getSize(self, width, height);
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_Image, getSize, width, height);
 }
 
 Machine_PixelFormat Machine_Image_getPixelFormat(Machine_Image const* self) {
-  return self->getPixelFormat(self);
+  MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_Image, getPixelFormat);
 }

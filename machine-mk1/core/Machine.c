@@ -2,14 +2,19 @@
 #include "Machine.h"
 
 
+
 #include "Runtime/String.h"
 
 
-#include <assert.h>
-#include <malloc.h>
-#include <memory.h>
+
+#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <malloc.h>
+#include <memory.h>
+#include <assert.h>
+
+
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -146,7 +151,9 @@ static void rungc(size_t* live, size_t *dead) {
   }
   // Pop objects from gray list, visit them, color them black.
   while (g_gray) {
+    assert(g_gray != NULL);
     Machine_Tag* object = g_gray; g_gray = object->gray;
+    assert(object != NULL);
     if (object->visit) {
       object->visit(object + 1);
     }
@@ -235,7 +242,7 @@ bool Machine_getRoot(void* object) {
 
 void Machine_shutdown() {
   size_t MAX_RUN = 8;
-  size_t live, dead, run = 0;
+  size_t live = 0, dead = 0, run = 0;
   
   do {
     rungc(&live, &dead);
@@ -315,55 +322,6 @@ void Machine_loadVoid(Machine_Void value) {
   Stack_ensureFreeCapacity(g_stack, 1);
   Machine_Value_setVoid(g_stack->elements + g_stack->size, value);
   g_stack->size++;
-}
-
-#include <stdlib.h>
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-bool Machine_Value_isEqualTo(const Machine_Value* x, const Machine_Value* y) {
-  if (x->tag != y->tag) {
-    return false;
-  }
-  switch (x->tag) {
-  case Machine_ValueFlag_Object:
-    return Machine_Object_isEqualTo(x->objectValue, y->objectValue);
-  case Machine_ValueFlag_String:
-    return Machine_String_isEqualTo(x->stringValue, y->stringValue);
-  case Machine_ValueFlag_Void:
-    return Machine_Void_isEqualTo(x->voidValue, y->voidValue);
-  case Machine_ValueFlag_Real:
-    return Machine_Real_isEqualTo(x->realValue, y->realValue);
-  case Machine_ValueFlag_Integer:
-    return Machine_Integer_isEqualTo(x->integerValue, y->integerValue);
-  case Machine_ValueFlag_Boolean:
-    return Machine_Boolean_isEqualTo(x->booleanValue, y->booleanValue);
-  case Machine_ValueFlag_ForeignProcedure:
-    return Machine_ForeignProcedure_isEqualTo(x->foreignProcedureValue, y->foreignProcedureValue);
-  default:
-    MACHINE_ASSERT_UNREACHABLE();
-  };
-}
-
-size_t Machine_Value_getHashValue(const Machine_Value* self) {
-  switch (self->tag) {
-  case Machine_ValueFlag_Object:
-    return Machine_Object_getHashValue(self->objectValue);
-  case Machine_ValueFlag_String:
-    return Machine_String_getHashValue(self->stringValue);
-  case Machine_ValueFlag_Void:
-    return Machine_Void_getHashValue(self->voidValue);
-  case Machine_ValueFlag_Real:
-    return Machine_Real_getHashValue(self->realValue);
-  case Machine_ValueFlag_Integer:
-    return Machine_Integer_getHashValue(self->integerValue);
-  case Machine_ValueFlag_Boolean:
-    return Machine_Boolean_getHashValue(self->booleanValue);
-  case Machine_ValueFlag_ForeignProcedure:
-    return Machine_ForeignProcedure_getHashValue(self->foreignProcedureValue);
-  default:
-    MACHINE_ASSERT_UNREACHABLE();
-  };
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -501,15 +459,15 @@ Machine_Object* Machine_allocateClassObject(Machine_ClassType* type, size_t numb
 }
 
 size_t Machine_Object_getHashValue(Machine_Object const* self) {
-  return self->getHashValue(self);
+  MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_Object, getHashValue);
 }
 
 Machine_Boolean Machine_Object_isEqualTo(Machine_Object const* self, Machine_Object const* other) {
-  return self->isEqualTo(self, other);
+  MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_Object, isEqualTo, other);
 }
 
 Machine_String* Machine_Object_toString(Machine_Object const* self) {
-  return self->toString(self);
+  MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_Object, toString);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

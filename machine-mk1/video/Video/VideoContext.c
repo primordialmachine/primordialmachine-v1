@@ -20,126 +20,128 @@ void Machine_VideoContext_construct(Machine_VideoContext* self, size_t numberOfA
   Machine_setClassType((Machine_Object*)self, Machine_VideoContext_getClassType());
 }
 
+
+
 void Machine_VideoContext_setClearColor(Machine_VideoContext* self, Machine_Math_Vector4 const* clearColor) {
-  self->setClearColor(self, clearColor);
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_VideoContext, setClearColor, clearColor);
 }
 
 Machine_Math_Vector4 const* Machine_VideoContext_getClearColor(Machine_VideoContext const* self) {
-  return self->getClearColor(self);
+  MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_VideoContext, getClearColor);
 }
 
 
 
 void Machine_VideoContext_setIncomingBlendFunction(Machine_VideoContext* self, Machine_BlendFunction incomingBlendFunction) {
-  self->setIncomingBlendFunction(self, incomingBlendFunction);
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_VideoContext, setIncomingBlendFunction, incomingBlendFunction);
 }
 
 Machine_BlendFunction Machine_VideoContext_getIncomingBlendFunction(Machine_VideoContext const* self) {
-  return self->getIncomingBlendFunction(self);
+  MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_VideoContext, getIncomingBlendFunction);
 }
 
 
 
 void Machine_VideoContext_setExistingBlendFunction(Machine_VideoContext* self, Machine_BlendFunction existingBlendFunction) {
-  self->setExistingBlendFunction(self, existingBlendFunction);
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_VideoContext, setExistingBlendFunction, existingBlendFunction);
 }
 
 Machine_BlendFunction Machine_VideoContext_getExistingBlendFunction(Machine_VideoContext const* self) {
-  return self->getExistingBlendFunction(self);
+  MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_VideoContext, getExistingBlendFunction);
 }
 
 
 
 void Machine_VideoContext_setDepthWriteEnabled(Machine_VideoContext* self, Machine_Boolean depthWriteEnabled) {
-  self->setDepthWriteEnabled(self, depthWriteEnabled);
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_VideoContext, setDepthWriteEnabled, depthWriteEnabled);
 }
 
 Machine_Boolean Machine_VideoContext_getDepthWriteEnabled(Machine_VideoContext const* self) {
-  return self->getDepthWriteEnabled(self);
+  MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_VideoContext, getDepthWriteEnabled);
 }
 
 
 
 void Machine_VideoContext_setDepthTestFunction(Machine_VideoContext* self, Machine_DepthTestFunction depthTestFunction) {
-  self->setDepthTestFunction(self, depthTestFunction);
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_VideoContext, setDepthTestFunction, depthTestFunction);
 }
 
 Machine_DepthTestFunction Machine_VideoContext_getDepthTestFunction(Machine_VideoContext const* self) {
-  return self->getDepthTestFunction(self);
+  MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_VideoContext, getDepthTestFunction);
 }
 
 
 
 void Machine_VideoContext_setClearDepth(Machine_VideoContext* self, Machine_Real clearDepth) {
-  self->setClearDepth(self, clearDepth);
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_VideoContext, setClearDepth, clearDepth);
 }
 
 Machine_Real Machine_VideoContext_getClearDepth(Machine_VideoContext const* self) {
-  return self->getClearDepth(self);
+  MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_VideoContext, getClearDepth);
 }
 
 
 
 void Machine_VideoContext_setViewportRectangle(Machine_VideoContext* self, Machine_Real left, Machine_Real bottom, Machine_Real width, Machine_Real height) {
-  self->setViewportRectangle(self, left, bottom, width, height);
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_VideoContext, setViewportRectangle, left, bottom, width, height);
 }
 
 void Machine_VideoContext_getViewportRectangle(Machine_VideoContext const* self, Machine_Real* left, Machine_Real* bottom, Machine_Real* width, Machine_Real* height) {
-  self->getViewportRectangle(self, left, bottom, width, height);
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_VideoContext, getViewportRectangle, left, bottom, width, height);
 }
 
 
 
 Machine_Integer Machine_VideoContext_getMaximalClipDistanceCount(Machine_VideoContext const* self) {
-  return self->getMaximalClipDistanceCount(self);
+  MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_VideoContext, getMaximalClipDistanceCount);
 }
 
 void Machine_VideoContext_setClipDistanceEnabled(Machine_VideoContext* self, Machine_Integer index, Machine_Boolean enabled) {
-  self->setClipDistanceEnabled(self, index, enabled);
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_VideoContext, setClipDistanceEnabled, index, enabled);
 }
 
 Machine_Boolean Machine_VideoContext_getClipDistanceEnabled(Machine_VideoContext const* self, Machine_Integer index) {
-  return self->getClipDistanceEnabled(self, index);
+  MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_VideoContext, getClipDistanceEnabled, index);
 }
 
 
 
 void Machine_VideoContext_clearColorBuffer(Machine_VideoContext* self) {
-  self->clearColorBuffer(self);
+  MACHINE_VIRTUALCALL_NORETURN_NOARGS(Machine_VideoContext, clearColorBuffer);
 }
 
 void Machine_VideoContext_clearDepthBuffer(Machine_VideoContext* self) {
-  self->clearDepthBuffer(self);
+  MACHINE_VIRTUALCALL_NORETURN_NOARGS(Machine_VideoContext, clearDepthBuffer);
 }
 
 Machine_Texture* Machine_VideoContext_createTextureFromImage(Machine_VideoContext* self, Machine_Image* image) {
-  return self->createTextureFromImage(self, image);
+  MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_VideoContext, createTextureFromImage, image);
 }
 
 Machine_VideoBuffer* Machine_VideoContext_createBuffer(Machine_VideoContext* self) {
-  return self->createBuffer(self);
+  MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_VideoContext, createBuffer);
 }
 
 Machine_ShaderProgram* Machine_VideoContext_createProgram(Machine_VideoContext* self, Machine_String* vertexProgramText, Machine_String* geometryProgramText, Machine_String* fragmentProgramText) {
-  return self->createProgram(self, vertexProgramText, geometryProgramText, fragmentProgramText);
+  MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_VideoContext, createProgram, vertexProgramText, geometryProgramText, fragmentProgramText);
 }
 
 Machine_Binding* Machine_VideoContext_createBinding(Machine_VideoContext* self, Machine_ShaderProgram* program, Machine_VertexDescriptor* vertexDescriptor, Machine_VideoBuffer* buffer) {
-  return self->createBinding(self, program, vertexDescriptor, buffer);
+  MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_VideoContext, createBinding, program, vertexDescriptor, buffer);
 }
 
 void Machine_VideoContext_drawDirect(Machine_VideoContext* self, Machine_Integer i, Machine_Integer n) {
-  self->drawDirect(self, i, n);
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_VideoContext, drawDirect, i, n);
 }
 
 void Machine_VideoContext_drawIndirect(Machine_VideoContext* self, Machine_Integer i, Machine_Integer n, uint8_t const* indices) {
-  self->drawIndirect(self, i, n, indices);
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_VideoContext, drawIndirect, i, n, indices);
 }
 
 
 
 void Machine_VideoContext_bindTexture(Machine_VideoContext* self, size_t unit, Machine_Texture* texture) {
-  self->bindTexture(self, unit, texture);
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_VideoContext, bindTexture, unit, texture);
 }
 
 
@@ -154,7 +156,7 @@ Machine_VideoContext_generateDefaultShader
     Machine_Boolean withTexture
   )
 {
-  return self->generateDefaultShader(self, withMeshColor, withVertexColor, withTextureCoordinate, withTexture);
+  MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_VideoContext, generateDefaultShader, withMeshColor, withVertexColor, withTextureCoordinate, withTexture);
 }
 
 Machine_ShaderProgram*
@@ -163,7 +165,7 @@ Machine_VideoContext_generateShape2Shader
     Machine_VideoContext* self
   )
 {
-  return self->generateShape2Shader(self);
+  MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_VideoContext, generateShape2Shader);
 }
 
 Machine_ShaderProgram*
@@ -173,5 +175,5 @@ Machine_VideoContext_generateText2Shader
     Machine_Boolean highPrecision
   )
 {
-  return self->generateText2Shader(self, highPrecision);
+  MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_VideoContext, generateText2Shader, highPrecision);
 }

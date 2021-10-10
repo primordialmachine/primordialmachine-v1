@@ -14,9 +14,9 @@ void Machine_ImagesContext_construct(Machine_ImagesContext* self, size_t numberO
 }
 
 Machine_Image* Machine_ImagesContext_createFromPath(Machine_ImagesContext* self, Machine_String* path) {
-  return self->createFromPath(self, path);
+  MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_ImagesContext, createFromPath, path);
 }
 
 Machine_Image* Machine_ImagesContext_createDirect(Machine_ImagesContext* self, Machine_PixelFormat pixelFormat, Machine_Integer width, Machine_Integer height, Machine_ByteBuffer* pixels) {
-  return self->createDirect(self, pixelFormat, width, height, pixels);
+  MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_ImagesContext, createDirect, pixelFormat, width, height, pixels);
 }

@@ -88,16 +88,16 @@ void Machine_Binding_construct(Machine_Binding* self, size_t numberOfArguments, 
 
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_Binding, Machine_Object, &Machine_Binding_visit, &Machine_Binding_construct, &Machine_Binding_destruct)
 
-bool Machine_Binding_setVariableBinding(Machine_Binding* self, Machine_String* name, size_t index) {
-  return self->setVariableBinding(self, name, index);
+Machine_Boolean Machine_Binding_setVariableBinding(Machine_Binding* self, Machine_String* name, size_t index) {
+  MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_Binding, setVariableBinding, name, index);
 }
 
 size_t Machine_Binding_getVariableBinding(Machine_Binding const* self, Machine_String* name) {
-  return self->getVariableBinding(self, name);
+  MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_Binding, getVariableBinding, name);
 }
 
 void Machine_Binding_activate(Machine_Binding* self) {
-  self->activate(self);
+  MACHINE_VIRTUALCALL_NORETURN_NOARGS(Machine_Binding, activate);
 }
 
 static void addUpdateConstant(Machine_Binding* self, Machine_String* name, Machine_Value const* value) {

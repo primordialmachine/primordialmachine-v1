@@ -72,7 +72,7 @@ MACHINE_DEFINE_CLASSTYPE_EX(Machine_GUI_TextButton, Machine_GUI_Widget, &Machine
 Machine_GUI_TextButton* Machine_GUI_TextButton_create(Machine_GUI_Context* context) {
   Machine_ClassType* ty = Machine_GUI_TextButton_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 1;
-  Machine_Value arguments[1];
+  Machine_Value arguments[1] = { Machine_Value_StaticInitializerVoid() };
   Machine_Value_setObject(&arguments[0], (Machine_Object*)context);
   Machine_GUI_TextButton* self = (Machine_GUI_TextButton*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments);
   return self;

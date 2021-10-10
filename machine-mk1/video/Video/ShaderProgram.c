@@ -22,13 +22,13 @@ void Machine_ShaderProgram_construct(Machine_ShaderProgram* self, size_t numberO
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_ShaderProgram, Machine_Object, Machine_ShaderProgram_visit, Machine_ShaderProgram_construct, Machine_ShaderProgram_destruct)
 
 size_t Machine_ShaderProgram_getNumberOfInputs(Machine_ShaderProgram const* self) {
-  return self->getNumberOfInputs(self);
+  MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_ShaderProgram, getNumberOfInputs);
 }
 
 Machine_ProgramInput* Machine_ShaderProgram_getInputAt(Machine_ShaderProgram const* self, size_t index) {
-  return self->getInputAt(self, index);
+  MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_ShaderProgram, getInputAt, index);
 }
 
-bool Machine_ShaderProgram_addUpdateInput(Machine_ShaderProgram* self, Machine_String* name, Machine_ProgramInputType type, Machine_ProgramInputKind kind) {
-  return self->addUpdateInput(self, name, type, kind);
+Machine_Boolean Machine_ShaderProgram_addUpdateInput(Machine_ShaderProgram* self, Machine_String* name, Machine_ProgramInputType type, Machine_ProgramInputKind kind) {
+  MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_ShaderProgram, addUpdateInput, name, type, kind);
 }

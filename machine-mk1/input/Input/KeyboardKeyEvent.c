@@ -64,7 +64,7 @@ MACHINE_DEFINE_CLASSTYPE_EX(Machine_KeyboardKeyEvent, Machine_Object, &Machine_K
 Machine_KeyboardKeyEvent* Machine_KeyboardKeyEvent_create(Machine_KeyboardKeys key, Machine_KeyboardKeyActions keyAction) {
   Machine_ClassType* ty = Machine_KeyboardKeyEvent_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 2;
-  Machine_Value ARGUMENTS[2];
+  Machine_Value ARGUMENTS[2] = { Machine_Value_StaticInitializerVoid(), Machine_Value_StaticInitializerVoid() };
   Machine_Value_setInteger(&ARGUMENTS[0], key);
   Machine_Value_setInteger(&ARGUMENTS[1], keyAction);
   Machine_KeyboardKeyEvent* self = (Machine_KeyboardKeyEvent*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);

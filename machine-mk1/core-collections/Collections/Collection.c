@@ -16,11 +16,9 @@ void Machine_Collection_construct(Machine_Collection* self, size_t numberOfArgum
 }
 
 void Machine_Collection_clear(Machine_Collection* self) {
-  MACHINE_ASSERT_NOTNULL(self);
-  self->clear(self);
+  MACHINE_VIRTUALCALL_NORETURN_NOARGS(Machine_Collection, clear);
 }
 
 size_t Machine_Collection_getSize(const Machine_Collection* self) {
-  MACHINE_ASSERT_NOTNULL(self);
-  return self->getSize(self);
+  MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_Collection, getSize);
 }

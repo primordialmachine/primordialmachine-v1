@@ -399,5 +399,5 @@ Machine_GL_VideoContext* Machine_GL_VideoContext_create() {
 }
 
 void Machine_GL_VideoContext_write(Machine_GL_VideoContext const* self) {
-  self->write(self);
+  MACHINE_VIRTUALCALL_NORETURN_NOARGS(Machine_GL_VideoContext, write);
 }

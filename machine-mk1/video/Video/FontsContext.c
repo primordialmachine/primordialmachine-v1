@@ -13,5 +13,5 @@ void Machine_FontsContext_construct(Machine_FontsContext* self, size_t numberOfA
 }
 
 Machine_Font* Machine_FontsContext_createFont(Machine_FontsContext* self, Machine_String* path, Machine_Integer pointSize) {
-  return self->createFont(self, path, pointSize);
+  MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_FontsContext, createFont, path, pointSize);
 }

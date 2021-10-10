@@ -175,13 +175,11 @@ Machine_Map* Machine_Map_create() {
 }
 
 void Machine_Map_set(Machine_Map* self, Machine_Value key, Machine_Value value) {
-  MACHINE_ASSERT_NOTNULL(self);
-  self->set(self, key, value);
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_Map, set, key, value);
 }
 
 Machine_Value Machine_Map_get(const Machine_Map* self, Machine_Value key) {
-  MACHINE_ASSERT_NOTNULL(self);
-  return self->get(self, key);
+  MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_Map, get, key);
 }
 
 Machine_List* Machine_Map_toList(const Machine_Map* self) {

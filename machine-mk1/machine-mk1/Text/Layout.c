@@ -207,7 +207,7 @@ Machine_Text_Layout* Machine_Text_Layout_create(Machine_String* text, Machine_Fo
 
   Machine_ClassType* ty = Machine_Text_Layout_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 2;
-  Machine_Value arguments[2];
+  Machine_Value arguments[2] = { Machine_Value_StaticInitializerVoid(), Machine_Value_StaticInitializerVoid() };
   Machine_Value_setString(&arguments[0], text);
   Machine_Value_setObject(&arguments[1], (Machine_Object *)font);
   Machine_Text_Layout* self = (Machine_Text_Layout*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments);

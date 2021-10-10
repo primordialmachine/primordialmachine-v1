@@ -71,7 +71,8 @@ MACHINE_DEFINE_CLASSTYPE_EX(Machine_MouseButtonEvent, Machine_Object, &Machine_M
 Machine_MouseButtonEvent* Machine_MouseButtonEvent_create(int button, int action, Machine_Real x, Machine_Real y) {
   Machine_ClassType* ty = Machine_MouseButtonEvent_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 4;
-  Machine_Value ARGUMENTS[4];
+  Machine_Value ARGUMENTS[4] = { Machine_Value_StaticInitializerVoid(), Machine_Value_StaticInitializerVoid(),
+                                 Machine_Value_StaticInitializerVoid(), Machine_Value_StaticInitializerVoid() };
   Machine_Value_setInteger(&ARGUMENTS[0], button);
   Machine_Value_setInteger(&ARGUMENTS[1], action);
   Machine_Value_setReal(&ARGUMENTS[2], x);

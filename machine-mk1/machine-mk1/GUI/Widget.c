@@ -119,87 +119,61 @@ void Machine_GUI_Widget_construct(Machine_GUI_Widget* self, size_t numberOfArgum
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 void Machine_GUI_Widget_render(Machine_GUI_Widget* self, Machine_Context2* ctx2) {
-  MACHINE_ASSERT_NOTNULL(self);
-  MACHINE_ASSERT_NOTNULL(self->render);
-  self->render(self, ctx2);
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_GUI_Widget, render, ctx2);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 void Machine_GUI_Widget_setPosition(Machine_GUI_Widget* self, const Machine_Math_Vector2* position) {
-  MACHINE_ASSERT_NOTNULL(self);
-  MACHINE_ASSERT_NOTNULL(self->setPosition);
-  MACHINE_ASSERT_NOTNULL(position);
-  self->setPosition(self, position);
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_GUI_Widget, setPosition, position);
 }
 
 const Machine_Math_Vector2* Machine_GUI_Widget_getPosition(const Machine_GUI_Widget* self) {
-  MACHINE_ASSERT_NOTNULL(self);
-  MACHINE_ASSERT_NOTNULL(self->getPosition);
-  return self->getPosition(self);
+  MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_GUI_Widget, getPosition);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 void Machine_GUI_Widget_setSize(Machine_GUI_Widget* self, const Machine_Math_Vector2* size) {
-  MACHINE_ASSERT_NOTNULL(self);
-  MACHINE_ASSERT_NOTNULL(self->setSize);
-  MACHINE_ASSERT_NOTNULL(size);
-  self->setSize(self, size);
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_GUI_Widget, setSize, size);
 }
 
 const Machine_Math_Vector2* Machine_GUI_Widget_getSize(const Machine_GUI_Widget* self) {
-  MACHINE_ASSERT_NOTNULL(self);
-  return self->getSize(self);
+  MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_GUI_Widget, getSize);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 void Machine_GUI_Widget_setRectangle(Machine_GUI_Widget* self, const Machine_Math_Rectangle2* rectangle) {
-  MACHINE_ASSERT_NOTNULL(self);
-  MACHINE_ASSERT_NOTNULL(self->setRectangle);
-  MACHINE_ASSERT_NOTNULL(rectangle);
-  self->setRectangle(self, rectangle);
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_GUI_Widget, setRectangle, rectangle);
 }
 
 const Machine_Math_Rectangle2* Machine_GUI_Widget_getRectangle(const Machine_GUI_Widget* self) {
-  MACHINE_ASSERT_NOTNULL(self);
-  MACHINE_ASSERT_NOTNULL(self->getRectangle);
-  return self->getRectangle(self);
+  MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_GUI_Widget, getRectangle);
 }
 
 const Machine_Math_Rectangle2* Machine_GUI_Widget_getCanvasRectangle(const Machine_GUI_Widget* self) {
-  MACHINE_ASSERT_NOTNULL(self);
-  MACHINE_ASSERT_NOTNULL(self->getCanvasRectangle);
-  return self->getCanvasRectangle(self);
+  MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_GUI_Widget, getCanvasRectangle);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 const Machine_Math_Vector2* Machine_GUI_Widget_getPreferredSize(const Machine_GUI_Widget* self) {
-  MACHINE_ASSERT_NOTNULL(self);
-  MACHINE_ASSERT_NOTNULL(self->getPreferredSize);
-  return self->getPreferredSize(self);
+  MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_GUI_Widget, getPreferredSize);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 const Machine_Math_Vector2* Machine_GUI_Widget_getAbsolutePosition(const Machine_GUI_Widget* self) {
-  MACHINE_ASSERT_NOTNULL(self);
-  MACHINE_ASSERT_NOTNULL(self->getAbsolutePosition);
-  return self->getAbsolutePosition(self);
+  MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_GUI_Widget, getAbsolutePosition);
 }
 
 const Machine_Math_Rectangle2* Machine_GUI_Widget_getAbsoluteRectangle(const Machine_GUI_Widget* self) {
-  MACHINE_ASSERT_NOTNULL(self);
-  MACHINE_ASSERT_NOTNULL(self->getAbsoluteRectangle);
-  return self->getAbsoluteRectangle(self);
+  MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_GUI_Widget, getAbsoluteRectangle);
 }
 
 const Machine_Math_Rectangle2* Machine_GUI_Widget_getAbsoluteCanvasRectangle(const Machine_GUI_Widget* self) {
-  MACHINE_ASSERT_NOTNULL(self);
-  MACHINE_ASSERT_NOTNULL(self->getAbsoluteCanvasRectangle);
-  return self->getAbsoluteCanvasRectangle(self);
+  MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_GUI_Widget, getAbsoluteCanvasRectangle);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

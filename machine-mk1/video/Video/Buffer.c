@@ -45,17 +45,17 @@ void Machine_VideoBuffer_construct(Machine_VideoBuffer* self, size_t numberOfArg
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_VideoBuffer, Machine_Object, NULL, &Machine_VideoBuffer_construct, &Machine_VideoBuffer_destruct)
 
 void Machine_VideoBuffer_setData(Machine_VideoBuffer* self, size_t n, void const* p) {
-  self->setData(self, n, p);
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_VideoBuffer, setData, n, p);
 }
 
 void const* Machine_VideoBuffer_getData(Machine_VideoBuffer const* self) {
-  return self->getData(self);
+  MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_VideoBuffer, getData);
 }
 
 size_t Machine_VideoBuffer_getSize(Machine_VideoBuffer const* self) {
-  return self->getSize(self);
+  MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_VideoBuffer, getSize);
 }
 
 void const* Machine_VideoBuffer_getId(Machine_VideoBuffer const* self) {
-  return self->getId(self);
+  MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_VideoBuffer, getId);
 }

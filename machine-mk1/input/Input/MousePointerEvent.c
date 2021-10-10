@@ -50,7 +50,7 @@ MACHINE_DEFINE_CLASSTYPE_EX(Machine_MousePointerEvent, Machine_Object, &Machine_
 Machine_MousePointerEvent* Machine_MousePointerEvent_create(Machine_Real x, Machine_Real y) {
   Machine_ClassType* ty = Machine_MousePointerEvent_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 2;
-  Machine_Value ARGUMENTS[2];
+  Machine_Value ARGUMENTS[2] = { Machine_Value_StaticInitializerVoid(), Machine_Value_StaticInitializerVoid() };
   Machine_Value_setReal(&ARGUMENTS[0], x);
   Machine_Value_setReal(&ARGUMENTS[1], y);
   Machine_MousePointerEvent* self = (Machine_MousePointerEvent*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);

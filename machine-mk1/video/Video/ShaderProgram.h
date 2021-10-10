@@ -22,7 +22,7 @@ struct Machine_ShaderProgram {
   Machine_Object parent;
   size_t (*getNumberOfInputs)(Machine_ShaderProgram const* self);
   Machine_ProgramInput* (*getInputAt)(Machine_ShaderProgram const* self, size_t index);
-  bool (*addUpdateInput)(Machine_ShaderProgram* self, Machine_String* name, Machine_ProgramInputType type, Machine_ProgramInputKind kind);
+  Machine_Boolean(*addUpdateInput)(Machine_ShaderProgram* self, Machine_String* name, Machine_ProgramInputType type, Machine_ProgramInputKind kind);
 };
 
 void Machine_ShaderProgram_construct(Machine_ShaderProgram* self, size_t numberOfArguments, Machine_Value const* arguments);
@@ -44,7 +44,7 @@ Machine_ProgramInput* Machine_ShaderProgram_getInputAt(Machine_ShaderProgram con
 /// @param type The type of the input.
 /// @param kind The kind of the input.
 /// @return @a true if an existing input was modified, @a false if a new input was added.
-bool Machine_ShaderProgram_addUpdateInput(Machine_ShaderProgram* self, Machine_String* name, Machine_ProgramInputType type, Machine_ProgramInputKind kind);
+Machine_Boolean Machine_ShaderProgram_addUpdateInput(Machine_ShaderProgram* self, Machine_String* name, Machine_ProgramInputType type, Machine_ProgramInputKind kind);
 
 
 

@@ -72,7 +72,7 @@ MACHINE_DEFINE_CLASSTYPE_EX(Machine_GUI_TextLabel, Machine_GUI_Widget, &Machine_
 Machine_GUI_TextLabel* Machine_GUI_TextLabel_create(Machine_GUI_Context* context) {
   Machine_ClassType* ty = Machine_GUI_TextLabel_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 1;
-  Machine_Value arguments[1];
+  Machine_Value arguments[1] = { Machine_Value_StaticInitializerVoid() };
   Machine_Value_setObject(&arguments[0], (Machine_Object*)context);
   Machine_GUI_TextLabel* self = (Machine_GUI_TextLabel*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments);
   return self;

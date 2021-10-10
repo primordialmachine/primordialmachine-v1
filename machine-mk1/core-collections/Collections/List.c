@@ -163,40 +163,33 @@ Machine_List* Machine_List_create() {
 }
 
 Machine_Value Machine_List_getAt(const Machine_List* self, size_t index) {
-  MACHINE_ASSERT_NOTNULL(self);
-  return self->getAt(self, index);
+  MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_List, getAt, index);
 }
 
 void Machine_List_prepend(Machine_List* self, Machine_Value value) {
-  MACHINE_ASSERT_NOTNULL(self);
-  self->prepend(self, value);
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_List, prepend, value);
 }
 
 void Machine_List_append(Machine_List* self, Machine_Value value) {
-  MACHINE_ASSERT_NOTNULL(self);
-  self->append(self, value);
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_List, append, value);
 }
 
 void Machine_List_insertAt(Machine_List* self, size_t index, Machine_Value value) {
-  MACHINE_ASSERT_NOTNULL(self);
-  self->insertAt(self, index, value);
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_List, insertAt, index, value);
 }
 
 void Machine_List_removeAt(Machine_List* self, size_t index) {
-  MACHINE_ASSERT_NOTNULL(self);
-  self->removeAt(self, index);
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_List, removeAt, index);
 }
 
 void Machine_List_removeAtFast(Machine_List* self, size_t index) {
-  MACHINE_ASSERT_NOTNULL(self);
-  self->removeAtFast(self, index);
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_List, removeAtFast, index);
 }
 
 #if defined(Machine_List_withReverse) && Machine_List_withReverse == 1
 
 void Machine_List_reverse(Machine_List* self) {
-  MACHINE_ASSERT_NOTNULL(self);
-  self->reverse(self);
+  MACHINE_VIRTUALCALL_NORETURN_NOARGS(Machine_List, reverse);
 }
 
 #endif
@@ -204,8 +197,7 @@ void Machine_List_reverse(Machine_List* self) {
 #if defined(Machine_List_withSlice) && Machine_List_withSlice == 1
 
 Machine_List* Machine_List_slice(Machine_List* self, size_t start, size_t length) {
-  MACHINE_ASSERT_NOTNULL(self);
-  return self->slice(self, start, index);
+  MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_List, slice, start, length);
 }
 
 #endif

@@ -84,6 +84,8 @@ INLINE bool Machine_Value_isBoolean(const Machine_Value* self) {
   return self->tag == Machine_ValueFlag_Boolean;
 }
 
+#define Machine_Value_StaticInitializerBoolean(v) { Machine_ValueFlag_Boolean, v }
+
 
 
 INLINE void Machine_Value_setInteger(Machine_Value* self, Machine_Integer value) {
@@ -98,6 +100,8 @@ INLINE Machine_Integer Machine_Value_getInteger(const Machine_Value* self) {
 INLINE bool Machine_Value_isInteger(const Machine_Value* self) {
   return self->tag == Machine_ValueFlag_Integer;
 }
+
+#define Machine_Value_StaticInitializerInteger(v) { Machine_ValueFlag_Integer, v }
 
 
 
@@ -114,6 +118,8 @@ INLINE bool Machine_Value_isObject(const Machine_Value* self) {
   return self->tag == Machine_ValueFlag_Object;
 }
 
+#define Machine_Value_StaticInitializerObject(v) { Machine_ValueFlag_Object, v }
+
 
 
 INLINE void Machine_Value_setForeignProcedure(Machine_Value* self, Machine_ForeignProcedure* value) {
@@ -128,6 +134,8 @@ INLINE Machine_ForeignProcedure* Machine_Value_getForeignProcedure(const Machine
 INLINE bool Machine_Value_isForeignProcedure(const Machine_Value* self) {
   return self->tag == Machine_ValueFlag_ForeignProcedure;
 }
+
+#define Machine_Value_StaticInitializerForeignProcedure(v) { Machine_ValueFlag_ForeignProcedure, v }
 
 
 
@@ -144,6 +152,8 @@ INLINE bool Machine_Value_isReal(const Machine_Value* self) {
   return self->tag == Machine_ValueFlag_Real;
 }
 
+#define Machine_Value_StaticInitializerReal(v) { Machine_ValueFlag_Real, v }
+
 
 
 INLINE void Machine_Value_setString(Machine_Value* self, const Machine_String* value) {
@@ -159,6 +169,8 @@ INLINE bool Machine_Value_isString(const Machine_Value* self) {
   return self->tag == Machine_ValueFlag_String;
 }
 
+#define Machine_Value_StaticInitializerString(v) { Machine_ValueFlag_String, v }
+
 
 
 INLINE void Machine_Value_setVoid(Machine_Value* self, Machine_Void value) {
@@ -173,6 +185,16 @@ INLINE Machine_Void Machine_Value_getVoid(const Machine_Value* self) {
 INLINE bool Machine_Value_isVoid(const Machine_Value* self) {
   return self->tag == Machine_ValueFlag_Void;
 }
+
+#define Machine_Value_StaticInitializerVoid() { Machine_ValueFlag_Void, Machine_Void_Void }
+
+
+
+void Machine_Value_visit(Machine_Value* self);
+
+Machine_Boolean Machine_Value_isEqualTo(const Machine_Value* x, const Machine_Value* y);
+
+size_t Machine_Value_getHashValue(const Machine_Value* x);
 
 
 

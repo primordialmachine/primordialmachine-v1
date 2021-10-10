@@ -128,24 +128,6 @@ bool Machine_getRoot(void* object);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-INLINE void Machine_Value_visit(Machine_Value* self) {
-  switch (self->tag) {
-    case Machine_ValueFlag_Object:
-      Machine_visit(self->objectValue);
-    break;
-    case Machine_ValueFlag_String:
-      Machine_visit(self->stringValue);
-    break;
-  };
-}
-
-bool Machine_Value_isEqualTo(const Machine_Value* x, const Machine_Value* y);
-
-size_t Machine_Value_getHashValue(const Machine_Value* x);
-
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
 /// @brief Load a <code>Boolean</code> value on the stack.
 /// @param value The value.
 /// @error Machine_Status_StackOverflow The stack is full.
@@ -311,6 +293,25 @@ static inline bool Machine_isSuperTypeOf(const Machine_ClassType* superType, con
     Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "unreachable program point reached\n"); \
     Machine_setStatus(Machine_Status_UnreachableProgramPointReached); \
     Machine_jump(); \
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+#define __MACHINE_VIRTUALCALL__(TYPENAME, METHODNAME, RETURN, ...) \
+  MACHINE_ASSERT_NOTNULL(self); \
+  MACHINE_ASSERT_NOTNULL(self->METHODNAME); \
+  RETURN self->METHODNAME(__VA_ARGS__);
+
+#define MACHINE_VIRTUALCALL_NORETURN_NOARGS(TYPENAME, METHODNAME) \
+  __MACHINE_VIRTUALCALL__(TYPENAME, METHODNAME, , self);
+
+#define MACHINE_VIRTUALCALL_NORETURN_ARGS(TYPENAME, METHODNAME, ...) \
+  __MACHINE_VIRTUALCALL__(TYPENAME, METHODNAME, , self, __VA_ARGS__);
+
+#define MACHINE_VIRTUALCALL_RETURN_NOARGS(TYPENAME, METHODNAME) \
+  __MACHINE_VIRTUALCALL__(TYPENAME, METHODNAME, return, self);
+
+#define MACHINE_VIRTUALCALL_RETURN_ARGS(TYPENAME, METHODNAME, ...) \
+  __MACHINE_VIRTUALCALL__(TYPENAME, METHODNAME, return, self, __VA_ARGS__);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
