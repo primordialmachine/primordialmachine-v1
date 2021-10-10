@@ -20,8 +20,6 @@ void Machine_VideoContext_construct(Machine_VideoContext* self, size_t numberOfA
   Machine_setClassType((Machine_Object*)self, Machine_VideoContext_getClassType());
 }
 
-
-
 void Machine_VideoContext_setClearColor(Machine_VideoContext* self, Machine_Math_Vector4 const* clearColor) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_VideoContext, setClearColor, clearColor);
 }

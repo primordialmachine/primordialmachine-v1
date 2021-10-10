@@ -103,17 +103,17 @@ Machine_Math_Vector4 const* getClearColor(Machine_GL_VideoContext const* self) {
 
 
 static void setViewportRectangle(Machine_GL_VideoContext* self, Machine_Real left, Machine_Real bottom, Machine_Real width, Machine_Real height) {
-  self->viewport.left = left;
-  self->viewport.bottom = bottom;
-  self->viewport.width = width;
-  self->viewport.height = height;
+  self->viewportRectangle->x = left;
+  self->viewportRectangle->y = bottom;
+  self->viewportRectangle->w = width;
+  self->viewportRectangle->h = height;
 }
 
 static void getViewportRectangle(Machine_GL_VideoContext const* self, Machine_Real* left, Machine_Real* bottom, Machine_Real* width, Machine_Real* height) {
-  *left = self->viewport.left;
-  *bottom = self->viewport.bottom;
-  *width = self->viewport.width;
-  *height = self->viewport.height;
+  *left = self->viewportRectangle->x;
+  *bottom = self->viewportRectangle->y;
+  *width = self->viewportRectangle->w;
+  *height = self->viewportRectangle->h;
 }
 
 
@@ -142,12 +142,18 @@ static void drawIndirect(Machine_GL_VideoContext* self, Machine_Integer i, Machi
 
 static void clearColorBuffer(Machine_GL_VideoContext* self) {
   Machine_GL_VideoContext_write(self);
+  glEnable(GL_SCISSOR_TEST);
+  glScissor(self->viewportRectangle->x, self->viewportRectangle->y, self->viewportRectangle->w, self->viewportRectangle->h);
   Machine_UtilitiesGl_call(glClear(GL_COLOR_BUFFER_BIT));
+  glDisable(GL_SCISSOR_TEST);
 }
 
 static void clearDepthBuffer(Machine_GL_VideoContext* self) {
   Machine_GL_VideoContext_write(self);
+  glEnable(GL_SCISSOR_TEST);
+  glScissor(self->viewportRectangle->x, self->viewportRectangle->y, self->viewportRectangle->w, self->viewportRectangle->h);
   Machine_UtilitiesGl_call(glClear(GL_DEPTH_BUFFER_BIT));
+  glDisable(GL_SCISSOR_TEST);
 }
 
 
@@ -211,8 +217,11 @@ generateText2Shader
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-static void Machine_GL_VideoContext_visit(Machine_GL_VideoContext* self)
-{/*Intentionally empty.*/}
+static void Machine_GL_VideoContext_visit(Machine_GL_VideoContext* self) {
+  if (self->viewportRectangle) {
+    Machine_visit(self->viewportRectangle);
+  }
+}
 
 static void Machine_GL_VideoContext_destruct(Machine_GL_VideoContext* self) {
   if (self->clipDistances) {
@@ -287,10 +296,8 @@ static void write(Machine_GL_VideoContext const* self) {
     enabled ? glEnable(GL_CLIP_DISTANCE0 + i) : glDisable(GL_CLIP_DISTANCE0 + i);
   }
 
-  // Viewport rectangle & scissor rectangle.
-  glViewport(self->viewport.left, self->viewport.bottom, self->viewport.width, self->viewport.height);
-  glEnable(GL_SCISSOR_TEST);
-  glScissor(self->viewport.left, self->viewport.bottom, self->viewport.width, self->viewport.height);
+  // Viewport rectangle.
+  glViewport(self->viewportRectangle->x, self->viewportRectangle->y, self->viewportRectangle->w, self->viewportRectangle->h);
 }
 
 static void Machine_GL_VideoContext_constructClass(Machine_GL_VideoContext_Class* self) {
@@ -356,10 +363,13 @@ void Machine_GL_VideoContext_construct(Machine_GL_VideoContext* self, size_t num
   {
     Machine_Integer width, height;
     Machine_GLFW_getFrameBufferSize(&width, &height);
-    self->viewport.left = 0.f;
-    self->viewport.bottom = 0.f;
-    self->viewport.width = (Machine_Real)width;
-    self->viewport.height = (Machine_Real)height;
+    self->viewportRectangle = Machine_Math_Rectangle2_create();
+    Machine_Math_Vector2* v;
+    v = Machine_Math_Vector2_create();
+    Machine_Math_Vector2_set(v, 0.f, 0.f);
+    Machine_Math_Rectangle2_setPosition(self->viewportRectangle, v);
+    Machine_Math_Vector2_set(v, (Machine_Real)width, (Machine_Real)height);
+    Machine_Math_Rectangle2_setSize(self->viewportRectangle, v);
   }
   {
     GLint v;
@@ -385,7 +395,6 @@ void Machine_GL_VideoContext_construct(Machine_GL_VideoContext* self, size_t num
       self->clipDistances->a[i].enabled = false;
     }
   }
-
   Machine_GL_VideoContext_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_GL_VideoContext_getClassType());
 }

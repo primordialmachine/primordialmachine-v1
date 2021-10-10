@@ -28,7 +28,7 @@ Machine_Material* Machine_Material_create() {
   return self;
 }
 
-void Machine_Material_assign(Machine_Material* self, const Machine_Material* other) {
+void Machine_Material_assign(Machine_Material* self, Machine_Material const* other) {
   if (self != other) {
     self->depthTestFunction = other->depthTestFunction;
     self->depthWriteEnabled = other->depthWriteEnabled;
@@ -42,7 +42,7 @@ void Machine_Material_setExistingBlendFunction(Machine_Material* self, Machine_B
   self->existingBlendFunction = existingBlendFunction;
 }
 
-Machine_BlendFunction Machine_Material_getExistingBlendFunction(const Machine_Material* self) {
+Machine_BlendFunction Machine_Material_getExistingBlendFunction(Machine_Material const* self) {
   return self->existingBlendFunction;
 }
 
@@ -51,7 +51,7 @@ void Machine_Material_setIncomingBlendFunction(Machine_Material* self, Machine_B
   self->incomingBlendFunction = incomingBlendFunction;
 }
 
-Machine_BlendFunction Machine_Material_getIncomingBlendFunction(const Machine_Material* self) {
+Machine_BlendFunction Machine_Material_getIncomingBlendFunction(Machine_Material const* self) {
   return self->incomingBlendFunction;
 }
 
@@ -60,15 +60,15 @@ void Machine_Material_setDepthTestFunction(Machine_Material* self, Machine_Depth
   self->depthTestFunction = depthTestFunction;
 }
 
-Machine_DepthTestFunction Machine_Material_getDepthTestFunction(const Machine_Material* self) {
+Machine_DepthTestFunction Machine_Material_getDepthTestFunction(Machine_Material const* self) {
   return self->depthTestFunction;
 }
 
 
-void Machine_Material_setDepthWriteEnabled(Machine_Material* self, bool depthWriteEnabled) {
+void Machine_Material_setDepthWriteEnabled(Machine_Material* self, Machine_Boolean depthWriteEnabled) {
   self->depthWriteEnabled = depthWriteEnabled;
 }
 
-bool Machine_Material_getDepthWriteEnabled(const Machine_Material* self) {
+Machine_Boolean Machine_Material_getDepthWriteEnabled(Machine_Material const* self) {
   return self->depthWriteEnabled;
 }

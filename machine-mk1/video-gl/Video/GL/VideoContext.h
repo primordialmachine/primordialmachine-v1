@@ -30,10 +30,10 @@ struct Machine_GL_VideoContext {
   Machine_BlendFunction existingBlendFunction; // Default is <code>one minus incoming alpha</code>.
   Machine_BlendFunction incomingBlendFunction; // Default is <code>incoming alpha</code>.
   Machine_GL_VideoContext_ClipDistances* clipDistances; // Default is all clip distances disabled.
-  // Default is left and bottom are both 0 and width and height are the width and height of the target canvas.
-  struct {
-    Machine_Real left, bottom, width, height;
-  } viewport;
+  // The viewport rectangle.
+  // Initially (0,0,w,h) where w and h are the frame buffer width and height.
+  // Specified in frame buffer coordinates where positive x-axis (positive y-axis) is pointing right (up) and the bottom left corner is at (0,0).
+  Machine_Math_Rectangle2* viewportRectangle;
 };
 
 void Machine_GL_VideoContext_construct(Machine_GL_VideoContext* self, size_t numberOfArguments, Machine_Value const* arguments);
