@@ -17,11 +17,9 @@ void Scene_construct(Scene* self, size_t numberOfArguments, const Machine_Value 
   Machine_setClassType((Machine_Object*)self, Scene_getClassType());
 }
 
-// TODO: Make static.
-void Scene_destruct(Scene* self)
+static void Scene_destruct(Scene* self)
 {/*Intentionally empty.*/}
 
-// TODO: Make static.
 static void Scene_visit(Scene* self)
 {/*Intentionally empty.*/}
 

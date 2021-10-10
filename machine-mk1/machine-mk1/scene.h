@@ -39,11 +39,7 @@ struct Scene {
   Scene_OnShutdownCallback* onShutdown;
 };
 
-void Scene_visit(Scene* self);
-
 void Scene_construct(Scene* self, size_t numberOfArguments, const Machine_Value* arguments);
-
-void Scene_destruct(Scene* self);
 
 /// @brief Invoked exactly once before a sequence of calls to onCanvasSizeChanged and update.
 /// @param scene This scene.
