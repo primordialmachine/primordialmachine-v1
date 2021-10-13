@@ -122,9 +122,11 @@ const Machine_Math_Vector3* Machine_GUI_TextLabel_getForegroundColor(const Machi
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-void Machine_GUI_TextLabel_render(Machine_GUI_TextLabel* self, Machine_Context2* ctx2) {
+static void Machine_GUI_TextLabel_render2(Machine_GUI_TextLabel* self, Machine_Real width, Machine_Real height) {
+  Machine_Context2* ctx2 = ((Machine_GUI_Widget*)self)->context->context2;
+  Machine_Context2_setTargetSize(ctx2, width, height);
   if (self->childDirty) {
-    Machine_GUI_Context* ctx = Machine_GUI_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(Machine_Video_getContext()));
+    Machine_GUI_Context* ctx = ((Machine_GUI_Widget*)self)->context;
     Machine_Rectangle2_setRectangle(self->background, ((Machine_GUI_Widget*)self)->rectangle);
     // TODO: Only do this layouting if necessary.
     Machine_Math_Rectangle2* clipRect = Machine_Rectangle2_getRectangle(self->background);
@@ -140,8 +142,10 @@ void Machine_GUI_TextLabel_render(Machine_GUI_TextLabel* self, Machine_Context2*
 
     self->childDirty = false;
   }
-  Machine_Context2* context = ((Machine_GUI_Widget*)self)->context->context2;
-  Machine_Context2_setTargetSize(context, Machine_Context2_getTargetWidth(ctx2), Machine_Context2_getTargetHeight(ctx2));
-  Machine_Shape2_render((Machine_Shape2 *)self->background, context);
-  Machine_Text_Layout_render(self->foreground, context);
+  Machine_Shape2_render((Machine_Shape2*)self->background, ctx2);
+  Machine_Text_Layout_render(self->foreground, ctx2);
+}
+
+void Machine_GUI_TextLabel_render(Machine_GUI_TextLabel* self, Machine_Context2* ctx2) {
+  Machine_GUI_TextLabel_render2(self, Machine_Context2_getTargetWidth(ctx2), Machine_Context2_getTargetHeight(ctx2));
 }
