@@ -14,6 +14,12 @@ struct Machine_StringBuffer {
   Machine_ByteBuffer* byteBuffer;
 };
 
+static void Machine_StringBuffer_visit(Machine_StringBuffer* self) {
+  if (self->byteBuffer) {
+    Machine_visit(self->byteBuffer);
+  }
+}
+
 static Machine_String* Machine_StringBuffer_toStringImpl(Machine_StringBuffer const* self) {
   return Machine_String_create(Machine_ByteBuffer_getBytes(self->byteBuffer), Machine_ByteBuffer_getNumberOfBytes(self->byteBuffer));
 }
@@ -29,7 +35,7 @@ static void Machine_StringBuffer_construct(Machine_StringBuffer* self, size_t nu
   Machine_setClassType((Machine_Object *)self, Machine_StringBuffer_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_StringBuffer, Machine_Object, NULL, &Machine_StringBuffer_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE_EX(Machine_StringBuffer, Machine_Object, &Machine_StringBuffer_visit, &Machine_StringBuffer_construct, NULL)
 
 Machine_StringBuffer* Machine_StringBuffer_create() {
   Machine_ClassType* ty = Machine_StringBuffer_getClassType();
