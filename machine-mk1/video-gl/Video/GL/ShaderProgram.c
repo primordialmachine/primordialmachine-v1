@@ -26,9 +26,9 @@ static void Machine_GL_ShaderProgram_destruct(Machine_GL_ShaderProgram* self) {
     glDeleteShader(self->vertexProgramId);
     self->vertexProgramId = 0;
   }
-  if (self->fragmentProgramId) {
-    glDeleteShader(self->fragmentProgramId);
-    self->fragmentProgramId = 0;
+  if (self->programId) {
+    glDeleteProgram(self->programId);
+    self->programId = 0;
   }
 }
 
@@ -210,8 +210,8 @@ void Machine_GL_ShaderProgram_construct(Machine_GL_ShaderProgram* self, size_t n
     f = Machine_Extensions_getStringArgument(numberOfArguments, arguments, 2);
   }
   constructFromText(self, v ? Machine_String_getBytes(v) : NULL,
-                    g ? Machine_String_getBytes(g) : NULL,
-                    f ? Machine_String_getBytes(f) : NULL);
+                          g ? Machine_String_getBytes(g) : NULL,
+                          f ? Machine_String_getBytes(f) : NULL);
   Machine_setClassType((Machine_Object*)self, Machine_GL_ShaderProgram_getClassType());
 }
 
@@ -490,10 +490,10 @@ Machine_GL_ShaderProgram_generateText2Shader
   Machine_StringBuffer_appendBytes(code, T("    vertex.texture_coordinate_1 = vertex_texture_coordinate_1;\n"));
   Machine_StringBuffer_appendBytes(code, T("    vertex.color = mesh_color;\n"));
   if (withClipDistance) {
-    Machine_StringBuffer_appendBytes(code, T("    gl_ClipDistance[0] = -dot(worldPosition, clipPlane0);\n"));
-    Machine_StringBuffer_appendBytes(code, T("    gl_ClipDistance[1] = -dot(worldPosition, clipPlane1);\n"));
-    Machine_StringBuffer_appendBytes(code, T("    gl_ClipDistance[2] = +FLT_MAX;\n"));
-    Machine_StringBuffer_appendBytes(code, T("    gl_ClipDistance[3] = +FLT_MAX;\n"));
+    Machine_StringBuffer_appendBytes(code, T("    gl_ClipDistance[0] = +dot(worldPosition, clipPlane0);\n"));
+    Machine_StringBuffer_appendBytes(code, T("    gl_ClipDistance[1] = +dot(worldPosition, clipPlane1);\n"));
+    Machine_StringBuffer_appendBytes(code, T("    gl_ClipDistance[2] = +dot(worldPosition, clipPlane2);\n"));
+    Machine_StringBuffer_appendBytes(code, T("    gl_ClipDistance[3] = +dot(worldPosition, clipPlane3);\n"));
   }
 
   Machine_StringBuffer_appendBytes(code, T("}\n"));
@@ -547,8 +547,12 @@ Machine_GL_ShaderProgram_generateText2Shader
 
   Machine_StringBuffer_appendBytes(code, T("void main()\n"
                                            "{\n"));
-  Machine_StringBuffer_appendBytes(code, T("    float a = texture2D(texture_1, fragment.texture_coordinate_1).r;\n"));
-  Machine_StringBuffer_appendBytes(code, T("    gl_FragColor = vec4(fragment.color.r, fragment.color.g, fragment.color.b, a);\n"));
+  Machine_StringBuffer_appendBytes(code, T("    if (gl_ClipDistance[0] < 0 || gl_ClipDistance[1] < 0 || gl_ClipDistance[2] < 0 || gl_ClipDistance[3] < 0) {\n"));
+  Machine_StringBuffer_appendBytes(code, T("        discard;"));
+  Machine_StringBuffer_appendBytes(code, T("    } else {\n"));
+  Machine_StringBuffer_appendBytes(code, T("      float a = texture2D(texture_1, fragment.texture_coordinate_1).r;\n"));
+  Machine_StringBuffer_appendBytes(code, T("      gl_FragColor = vec4(fragment.color.r, fragment.color.g, fragment.color.b, a);\n"));
+  Machine_StringBuffer_appendBytes(code, T("    }\n"));
   Machine_StringBuffer_appendBytes(code, T("}\n"));
   Machine_StringBuffer_appendBytes(code, "", 1);
   f = Machine_Object_toString((Machine_Object *)code);
