@@ -14,6 +14,10 @@
 
 MACHINE_DECLARE_CLASSTYPE(Machine_GDL_Node)
 
+struct Machine_GDL_Node_Class {
+  Machine_Object_Class __parent;
+};
+
 struct Machine_GDL_Node {
   Machine_Object __parent;
 

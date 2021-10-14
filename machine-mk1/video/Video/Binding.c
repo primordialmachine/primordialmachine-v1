@@ -10,13 +10,13 @@
 #include "./../Video/ShaderProgram.h"
 #include "./../Video/VertexDescriptor.h"
 
-
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 static void Machine_Binding_Node_visit(Machine_Binding_Node* self);
 
 static void Machine_Binding_Node_construct(Machine_Binding_Node* self, size_t numberOfArguments, Machine_Value const* arguments);
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_Binding_Node, Machine_Object, Machine_Binding_Node_visit, Machine_Binding_Node_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_Binding_Node, Machine_Object, Machine_Binding_Node_visit, Machine_Binding_Node_construct, NULL, NULL)
 
 static void Machine_Binding_Node_construct(Machine_Binding_Node* self, size_t numberOfArguments, Machine_Value const* arguments) {
   static const size_t NUMBER_OF_ARGUMENTS = 0;
@@ -58,8 +58,18 @@ Machine_Binding_Node* Machine_Binding_Node_createConstant(Machine_String* name, 
   return Machine_Binding_Node_create(name, false, value);
 }
 
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+static void Machine_Binding_constructClass(Machine_Binding_Class* self);
+
+static void Machine_Binding_destruct(Machine_Binding* self);
+
+static void Machine_Binding_visit(Machine_Binding* self);
+
+static void Machine_Binding_addUpdateConstantImpl(Machine_Binding* self, Machine_String* name, Machine_Value const* value);
+
 static void Machine_Binding_destruct(Machine_Binding* self)
-{}
+{/*Intentionally empty.*/}
 
 static void Machine_Binding_visit(Machine_Binding* self) {
   if (self->nodes) {
@@ -86,7 +96,31 @@ void Machine_Binding_construct(Machine_Binding* self, size_t numberOfArguments, 
   Machine_setClassType((Machine_Object*)self, Machine_Binding_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_Binding, Machine_Object, &Machine_Binding_visit, &Machine_Binding_construct, &Machine_Binding_destruct)
+static void Machine_Binding_addUpdateConstantImpl(Machine_Binding* self, Machine_String* name, Machine_Value const* value) {
+  Machine_Binding_Node* node = self->nodes;
+  while (NULL != node) {
+    if (Machine_String_isEqualTo(node->name, name)) {
+      break;
+    }
+    node = node->next;
+  }
+  if (!node) {
+    node = Machine_Binding_Node_createConstant(name, value);
+    node->next = self->nodes;
+    self->nodes = node;
+  }
+  else {
+    node->name = name;
+    node->value = *value;
+    node->isVariable = false;
+  }
+}
+
+MACHINE_DEFINE_CLASSTYPE(Machine_Binding, Machine_Object, &Machine_Binding_visit, &Machine_Binding_construct, &Machine_Binding_destruct, &Machine_Binding_constructClass)
+
+static void Machine_Binding_constructClass(Machine_Binding_Class* self) {
+  self->addUpdateConstant = &Machine_Binding_addUpdateConstantImpl;
+}
 
 Machine_Boolean Machine_Binding_setVariableBinding(Machine_Binding* self, Machine_String* name, size_t index) {
   MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_Binding, setVariableBinding, name, index);
@@ -100,56 +134,26 @@ void Machine_Binding_activate(Machine_Binding* self) {
   MACHINE_VIRTUALCALL_NORETURN_NOARGS(Machine_Binding, activate);
 }
 
-static void addUpdateConstant(Machine_Binding* self, Machine_String* name, Machine_Value const* value) {
-  Machine_Binding_Node* node = self->nodes;
-  while (NULL != node) {
-    if (Machine_String_isEqualTo(node->name, name)) {
-      break;
-    }
-    node = node->next;
-  }
-  if (!node) {
-    node = Machine_Binding_Node_createConstant(name, value);
-    node->next = self->nodes;
-    self->nodes = node;
-  } else {
-    node->name = name;
-    node->value = *value;
-    node->isVariable = false;
-  }
+void Machine_Binding_addUpdateConstant(Machine_Binding* self, Machine_String* name, Machine_Value const* value) {
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_Binding, addUpdateConstant, name, value);
 }
 
 void Machine_Binding_bindMatrix4(Machine_Binding* self, Machine_String* name, Machine_Math_Matrix4 const* value) {
-  Machine_Value temporary;
-  Machine_Value_setObject(&temporary, (Machine_Object*)value);
-  addUpdateConstant(self, name, &temporary);
-  self->bindMatrix4(self, name, value);
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_Binding, bindMatrix4, name, value);
 }
 
 void Machine_Binding_bindVector2(Machine_Binding* self, Machine_String* name, Machine_Math_Vector2 const* value) {
-  Machine_Value temporary;
-  Machine_Value_setObject(&temporary, (Machine_Object*)value);
-  addUpdateConstant(self, name, &temporary);
-  self->bindVector2(self, name, value);
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_Binding, bindVector2, name, value);
 }
 
 void Machine_Binding_bindVector3(Machine_Binding* self, Machine_String* name, Machine_Math_Vector3 const* value) {
-  Machine_Value temporary;
-  Machine_Value_setObject(&temporary, (Machine_Object*)value);
-  addUpdateConstant(self, name, &temporary);
-  self->bindVector3(self, name, value);
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_Binding, bindVector3, name, value);
 }
 
 void Machine_Binding_bindVector4(Machine_Binding* self, Machine_String* name, Machine_Math_Vector4 const* value) {
-  Machine_Value temporary;
-  Machine_Value_setObject(&temporary, (Machine_Object*)value);
-  addUpdateConstant(self, name, &temporary);
-  self->bindVector4(self, name, value);
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_Binding, bindVector4, name, value);
 }
 
 void Machine_Binding_bindSampler(Machine_Binding* self, Machine_String* name, const size_t value) {
-  Machine_Value temporary;
-  Machine_Value_setInteger(&temporary, (Machine_Integer)value);
-  addUpdateConstant(self, name, &temporary);
-  self->bindSampler(self, name, value);
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_Binding, bindSampler, name, value);
 }

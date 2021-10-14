@@ -15,8 +15,12 @@
 
 
 
+struct Machine_GUI_TextButton_Class {
+  Machine_GUI_Widget_Class __parent;
+};
+
 struct Machine_GUI_TextButton {
-  Machine_GUI_Widget parent;
+  Machine_GUI_Widget __parent;
 
   /// @brief The layout for rendering the text.
   Machine_Text_Layout* foreground;
@@ -50,7 +54,7 @@ static Machine_Value boundsChangedCallback(size_t numberOfArguments, const Machi
 }
 
 static void Machine_GUI_TextButton_constructClass(Machine_GUI_TextButton_Class* self) {
-  ((Machine_GUI_Widget_Class*)self)->render = (void (*)(Machine_GUI_Widget*, Machine_Context2 *)) & Machine_GUI_TextButton_render;
+  ((Machine_GUI_Widget_Class*)self)->render = (void (*)(Machine_GUI_Widget*, Machine_Context2*)) & Machine_GUI_TextButton_render;
   ((Machine_GUI_Widget_Class*)self)->getPreferredSize = (const Machine_Math_Vector2 * (*)(const Machine_GUI_Widget*)) & Machine_GUI_TextButton_getPreferredSize;
 }
 
@@ -63,11 +67,10 @@ void Machine_GUI_TextButton_construct(Machine_GUI_TextButton* self, size_t numbe
   self->childDirty = true;
   Machine_GUI_Widget_subscribe((Machine_GUI_Widget*)self, ((Machine_GUI_Widget*)self)->context->signalsContext->PositionChanged, (Machine_Object*)self, &boundsChangedCallback);
   Machine_GUI_Widget_subscribe((Machine_GUI_Widget*)self, ((Machine_GUI_Widget*)self)->context->signalsContext->SizeChanged, (Machine_Object*)self, &boundsChangedCallback);
-  Machine_GUI_TextButton_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_GUI_TextButton_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_GUI_TextButton, Machine_GUI_Widget, &Machine_GUI_TextButton_visit, &Machine_GUI_TextButton_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_GUI_TextButton, Machine_GUI_Widget, &Machine_GUI_TextButton_visit, &Machine_GUI_TextButton_construct, NULL, &Machine_GUI_TextButton_constructClass)
 
 Machine_GUI_TextButton* Machine_GUI_TextButton_create(Machine_GUI_Context* context) {
   Machine_ClassType* ty = Machine_GUI_TextButton_getClassType();

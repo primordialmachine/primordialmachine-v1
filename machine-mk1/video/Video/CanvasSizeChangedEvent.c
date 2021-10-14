@@ -4,9 +4,8 @@
 #define MACHINE_VIDEO_PRIVATE (1)
 #include "./../Video/CanvasSizeChangedEvent.h"
 
-static void Machine_CanvasSizeChangedEvent_visit(Machine_CanvasSizeChangedEvent* self) {
-  /*Intentionally empty.*/
-}
+static void Machine_CanvasSizeChangedEvent_visit(Machine_CanvasSizeChangedEvent* self)
+{/*Intentionally empty.*/}
 
 static void Machine_CanvasSizeChangedEvent_construct(Machine_CanvasSizeChangedEvent* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
@@ -15,7 +14,7 @@ static void Machine_CanvasSizeChangedEvent_construct(Machine_CanvasSizeChangedEv
   Machine_setClassType((Machine_Object *)self, Machine_CanvasSizeChangedEvent_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_CanvasSizeChangedEvent, Machine_Object, &Machine_CanvasSizeChangedEvent_visit, &Machine_CanvasSizeChangedEvent_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_CanvasSizeChangedEvent, Machine_Object, &Machine_CanvasSizeChangedEvent_visit, &Machine_CanvasSizeChangedEvent_construct, NULL, NULL)
 
 Machine_CanvasSizeChangedEvent* Machine_CanvasSizeChangedEvent_create(float width, float height) {
   Machine_ClassType* ty = Machine_CanvasSizeChangedEvent_getClassType();

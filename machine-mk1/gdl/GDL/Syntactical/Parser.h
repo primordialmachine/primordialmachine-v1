@@ -12,6 +12,10 @@
 
 MACHINE_DECLARE_CLASSTYPE(Machine_GDL_Parser)
 
+struct Machine_GDL_Parser_Class {
+  Machine_Object_Class parent;
+};
+
 struct Machine_GDL_Parser {
   Machine_Object __parent;
   Machine_GDL_Scanner* scanner;

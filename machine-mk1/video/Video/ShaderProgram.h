@@ -18,11 +18,15 @@
 /// @brief A shader program.
 MACHINE_DECLARE_CLASSTYPE(Machine_ShaderProgram)
 
-struct Machine_ShaderProgram {
-  Machine_Object parent;
-  size_t (*getNumberOfInputs)(Machine_ShaderProgram const* self);
+struct Machine_ShaderProgram_Class {
+  Machine_Object_Class parent;
+  size_t(*getNumberOfInputs)(Machine_ShaderProgram const* self);
   Machine_ProgramInput* (*getInputAt)(Machine_ShaderProgram const* self, size_t index);
   Machine_Boolean(*addUpdateInput)(Machine_ShaderProgram* self, Machine_String* name, Machine_ProgramInputType type, Machine_ProgramInputKind kind);
+};
+
+struct Machine_ShaderProgram {
+  Machine_Object parent;
 };
 
 void Machine_ShaderProgram_construct(Machine_ShaderProgram* self, size_t numberOfArguments, Machine_Value const* arguments);

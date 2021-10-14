@@ -133,7 +133,9 @@ static void clear(Machine_Map* self) {
   }
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_Map, Machine_Collection, NULL, &Machine_Map_construct, NULL)
+static void Machine_Map_constructClass(Machine_Map_Class* self);
+
+MACHINE_DEFINE_CLASSTYPE(Machine_Map, Machine_Collection, NULL, &Machine_Map_construct, NULL, &Machine_Map_constructClass)
 
 static void Machine_Map_constructClass(Machine_Map_Class* self) {
   self->get = &get;
@@ -162,7 +164,6 @@ void Machine_Map_construct(Machine_Map* self, size_t numberOfArguments, const Ma
     pimpl->buckets[i] = NULL;
   }
   self->pimpl = pimpl;
-  Machine_Map_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_Map_getClassType());
 }
 

@@ -10,6 +10,10 @@
 
 MACHINE_DECLARE_CLASSTYPE(Machine_GL_Texture);
 
+struct Machine_GL_Texture_Class {
+  Machine_Texture_Class parent;
+};
+
 struct Machine_GL_Texture {
   Machine_Texture __parent;
   GLuint id;

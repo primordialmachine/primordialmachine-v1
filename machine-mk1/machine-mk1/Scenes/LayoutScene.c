@@ -10,14 +10,19 @@
 
 
 
+static void LayoutScene_constructClass(LayoutScene_Class* self);
+
 static void LayoutScene_destruct(LayoutScene* self);
 
 static void LayoutScene_visit(LayoutScene* self);
 
-static void LayoutScene_constructClass(LayoutScene_Class* self);
+struct LayoutScene_Class {
+  Scene_Class __parent;
+};
 
 struct LayoutScene {
-  Scene parent;
+  Scene __parent;
+
   // The 2D context.
   Machine_Context2* context2;
   // The font.
@@ -43,7 +48,7 @@ static void LayoutScene_visit(LayoutScene* self) {
   }
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(LayoutScene, Scene, &LayoutScene_visit, &LayoutScene_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE(LayoutScene, Scene, &LayoutScene_visit, &LayoutScene_construct, NULL, &LayoutScene_constructClass)
 
 static void LayoutScene_onStartup(LayoutScene* scene) {
   //
@@ -132,7 +137,6 @@ static void LayoutScene_constructClass(LayoutScene_Class* self) {
 
 void LayoutScene_construct(LayoutScene* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Scene_construct((Scene*)self, numberOfArguments, arguments);
-  LayoutScene_constructClass(self);
   Machine_setClassType((Machine_Object*)self, LayoutScene_getClassType());
 }
 

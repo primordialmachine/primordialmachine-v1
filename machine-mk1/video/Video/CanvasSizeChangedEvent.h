@@ -19,6 +19,10 @@
 /// @todo Should extend from Machine.Event.
 MACHINE_DECLARE_CLASSTYPE(Machine_CanvasSizeChangedEvent)
 
+struct Machine_CanvasSizeChangedEvent_Class {
+  Machine_Object_Class parent;
+};
+
 struct Machine_CanvasSizeChangedEvent {
   Machine_Object parent;
   float width;

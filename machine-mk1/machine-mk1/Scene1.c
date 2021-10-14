@@ -25,12 +25,19 @@ vertices[] =
     {   0.f,  0.6f, 0.f, 0.f, 1.f }
 };
 
+struct Scene1_Class {
+  Scene_Class __parent;
+};
+
 struct Scene1 {
-  Scene parent;
+  Scene __parent;
+
   Machine_ShaderProgram* shaderProgram;
   Machine_Binding* binding;
   Machine_VideoBuffer* vertices;
 };
+
+static void Scene1_constructClass(Scene1_Class* self);
 
 static void Scene1_destruct(Scene1* self);
 
@@ -46,7 +53,7 @@ static void Scene1_visit(Scene1* self) {
   }
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Scene1, Scene, &Scene1_visit, &Scene1_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Scene1, Scene, &Scene1_visit, &Scene1_construct, NULL, &Scene1_constructClass)
 
 static void Scene1_onStartup(Scene1* scene) {
   scene->vertices = Machine_VideoContext_createBuffer(Machine_Video_getContext());
@@ -101,7 +108,6 @@ static void Scene1_constructClass(Scene1_Class* self) {
 
 void Scene1_construct(Scene1* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Scene_construct((Scene*)self, numberOfArguments, arguments);
-  Scene1_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Scene1_getClassType());
 }
 

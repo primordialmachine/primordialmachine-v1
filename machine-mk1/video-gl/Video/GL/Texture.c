@@ -72,8 +72,7 @@ void Machine_GL_Texture_construct(Machine_GL_Texture* self, size_t numberOfArgum
   }
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_GL_Texture, Machine_Texture, NULL, &Machine_GL_Texture_construct, &Machine_GL_Texture_destruct)
-
+MACHINE_DEFINE_CLASSTYPE(Machine_GL_Texture, Machine_Texture, NULL, &Machine_GL_Texture_construct, &Machine_GL_Texture_destruct, NULL)
 
 Machine_GL_Texture* Machine_GL_Texture_create(Machine_Image* image) {
   Machine_ClassType* ty = Machine_GL_Texture_getClassType();

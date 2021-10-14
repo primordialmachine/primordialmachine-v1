@@ -25,7 +25,7 @@ static void Machine_GUI_Signals_Context_construct(Machine_GUI_Signals_Context* s
   Machine_setClassType((Machine_Object*)self, Machine_GUI_Signals_Context_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_GUI_Signals_Context, Machine_Object, &Machine_GUI_Signals_Context_visit, &Machine_GUI_Signals_Context_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_GUI_Signals_Context, Machine_Object, &Machine_GUI_Signals_Context_visit, &Machine_GUI_Signals_Context_construct, NULL, NULL)
 
 Machine_GUI_Signals_Context* Machine_GUI_Signals_Context_create() {
   Machine_ClassType* ty = Machine_GUI_Signals_Context_getClassType();

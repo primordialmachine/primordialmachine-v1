@@ -3,7 +3,7 @@
 
 static void Machine_Signals_Connection_visit(Machine_Signals_Connection* self);
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_Signals_Connection, Machine_Object, &Machine_Signals_Connection_visit, &Machine_Signals_Connection_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_Signals_Connection, Machine_Object, &Machine_Signals_Connection_visit, &Machine_Signals_Connection_construct, NULL, NULL)
 
 static void Machine_Signals_Connection_visit(Machine_Signals_Connection* self) {
   if (self->context) {

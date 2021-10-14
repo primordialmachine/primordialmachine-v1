@@ -14,12 +14,17 @@ static void Machine_PointerArray_construct(Machine_PointerArray* self, size_t nu
 
 static void Machine_PointerArray_destruct(Machine_PointerArray* self);
 
+struct Machine_PointerArray_Class {
+  Machine_Object_Class __parent;
+};
+
 struct Machine_PointerArray {
-  Machine_Object parent;
+  Machine_Object __parent;
+
   Machine_List* list;
 };
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_PointerArray, Machine_Object, &Machine_PointerArray_visit, &Machine_PointerArray_construct, &Machine_PointerArray_destruct)
+MACHINE_DEFINE_CLASSTYPE(Machine_PointerArray, Machine_Object, &Machine_PointerArray_visit, &Machine_PointerArray_construct, &Machine_PointerArray_destruct, NULL)
 
 static void Machine_PointerArray_visit(Machine_PointerArray* self) {
   if (self->list) {
@@ -27,13 +32,9 @@ static void Machine_PointerArray_visit(Machine_PointerArray* self) {
   }
 }
 
-static void Machine_PointerArray_constructClass(Machine_PointerArray_Class *self)
-{/*Intentionally empty.*/}
-
 static void Machine_PointerArray_construct(Machine_PointerArray* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->list = Machine_List_create();
-  Machine_PointerArray_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_PointerArray_getClassType());
 }
 

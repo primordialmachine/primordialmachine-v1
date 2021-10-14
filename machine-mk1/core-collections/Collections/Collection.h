@@ -16,10 +16,15 @@
 
 MACHINE_DECLARE_CLASSTYPE(Machine_Collection)
 
+struct Machine_Collection_Class {
+  Machine_Object_Class __parent;
+
+  void (*clear)(Machine_Collection* self);
+  size_t (*getSize)(Machine_Collection const* self);
+};
+
 struct Machine_Collection {
-  Machine_Object parent;
-  void(*clear)(Machine_Collection* self);
-  size_t(*getSize)(const Machine_Collection* self);
+  Machine_Object __parent;
 };
 
 /// @brief Construct this collection.

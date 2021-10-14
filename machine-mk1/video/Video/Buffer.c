@@ -41,11 +41,10 @@ void Machine_VideoBuffer_construct(Machine_VideoBuffer* self, size_t numberOfArg
   }
   self->n = 0;
 
-  Machine_VideoBuffer_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_VideoBuffer_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_VideoBuffer, Machine_Object, NULL, &Machine_VideoBuffer_construct, &Machine_VideoBuffer_destruct)
+MACHINE_DEFINE_CLASSTYPE(Machine_VideoBuffer, Machine_Object, NULL, &Machine_VideoBuffer_construct, &Machine_VideoBuffer_destruct, &Machine_VideoBuffer_constructClass)
 
 void Machine_VideoBuffer_setData(Machine_VideoBuffer* self, size_t n, void const* p) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_VideoBuffer, setData, n, p);

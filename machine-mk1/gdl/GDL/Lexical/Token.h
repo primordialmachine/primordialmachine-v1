@@ -10,8 +10,13 @@
 
 MACHINE_DECLARE_CLASSTYPE(Machine_GDL_Token)
 
+struct Machine_GDL_Token_Class {
+  Machine_Object_Class __parent;
+};
+
 struct Machine_GDL_Token {
   Machine_Object __parent;
+
   Machine_GDL_TokenKind kind;
   Machine_String* text;
   Machine_Integer offset;

@@ -16,6 +16,10 @@
 
 MACHINE_DECLARE_CLASSTYPE(Machine_Texture);
 
+struct Machine_Texture_Class {
+  Machine_Object_Class parent;
+};
+
 struct Machine_Texture {
   Machine_Object parent;
 };

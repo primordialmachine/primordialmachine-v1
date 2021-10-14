@@ -18,10 +18,14 @@ typedef struct Machine_GL_VideoContext_ClipDistances {
 /// @extends Machine.VideoContext
 MACHINE_DECLARE_CLASSTYPE(Machine_GL_VideoContext)
 
-struct Machine_GL_VideoContext {
-  Machine_VideoContext parent;
+struct Machine_GL_VideoContext_Class {
+  Machine_VideoContext_Class __parent;
 
   void (*write)(Machine_GL_VideoContext const* self);
+};
+
+struct Machine_GL_VideoContext {
+  Machine_VideoContext __parent;
 
   Machine_Real clearDepth; // Default is <code>1</code>.
   Machine_Real clearColor[4]; // Default is <code>(0,0,0,1)</code>.

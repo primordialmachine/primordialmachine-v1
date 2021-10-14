@@ -13,6 +13,7 @@
 #include "./Runtime/Status.h"
 #include "./Runtime/Value.h"
 #include <setjmp.h>
+#include "Runtime/TypeSystem/ClassType.h"
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -165,26 +166,26 @@ void Machine_loadVoid(Machine_Void value);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-#include "Runtime/TypeSystem/ClassType.h"
-
 /** @brief Tag flag indicating a class type object tag. */
 #define Machine_Flag_Class (32)
 
 typedef struct Machine_ClassObjectTag {
   Machine_ClassType* classType;
-  Machine_Tag tag;
 } Machine_ClassObjectTag;
 
-/** @todo Transitional hack. Remove! */
-typedef struct Machine_Object Machine_Object_Class;
+typedef struct Machine_Object_Class Machine_Object_Class;
 
 typedef struct Machine_Object Machine_Object;
 
-typedef struct Machine_Object {
+struct Machine_Object_Class {
   size_t(*getHashValue)(Machine_Object const* self);
   Machine_Boolean(*isEqualTo)(Machine_Object const* self, Machine_Object const* other);
-  Machine_String*(*toString)(Machine_Object const* self);
-} Machine_Object;
+  Machine_String* (*toString)(Machine_Object const* self);
+};
+
+struct Machine_Object {
+  char dummy;
+};
 
 Machine_ClassType* Machine_Object_getClassType();
 
@@ -208,7 +209,7 @@ Machine_String* Machine_Object_toString(Machine_Object const* self);
 /// @param self This object.
 /// @param numberOfArguments The number of arguments.
 /// @param arguments The arguments.
-void Machine_Object_construct(Machine_Object* self, size_t numberOfArguments, const Machine_Value* arguments);
+void Machine_Object_construct(Machine_Object* self, size_t numberOfArguments, Machine_Value const* arguments);
 
 /**
  * @brief Create an object.
@@ -216,7 +217,7 @@ void Machine_Object_construct(Machine_Object* self, size_t numberOfArguments, co
  * @param numberOfArguments The number of elements in the array pointed to by @a arguments.
  * @param arguments A pointer to an array of @a numberOfArguments elements.
  */
-Machine_Object *Machine_allocateClassObject(Machine_ClassType* type, size_t numberOfArguments, const Machine_Value* arguments);
+Machine_Object *Machine_allocateClassObject(Machine_ClassType* type, size_t numberOfArguments, Machine_Value const* arguments);
 
 /// @brief Set the class type of an object.
 /// @param object The object.
@@ -228,26 +229,14 @@ void Machine_setClassType(Machine_Object* object, Machine_ClassType* classType);
 /// @return The class type.
 Machine_ClassType* Machine_getClassType(Machine_Object* object);
 
-/// @brief Get if the specified type "subType" is a sub-type of the specified type "superType".
-/// @param subType, superType The specified types.
-/// @return @a true if the specified type "subType" is a sub-type of the specified type "superType", @a false otherwise.
-bool Machine_isSubTypeOf(const Machine_ClassType *subType, const Machine_ClassType *superType);
-
-/// @brief Get if the specified type "superType" is a super-type of the specified type "subType".
-/// @param superType, subType The specified types.
-/// @return @a true if the specified type "superType" is a super-type of the specified type "subType", @a false otherwise.
-static inline bool Machine_isSuperTypeOf(const Machine_ClassType* superType, const Machine_ClassType* subType) {
-  return Machine_isSubTypeOf(subType, superType);
-}
-
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 #define MACHINE_DECLARE_CLASSTYPE(NAME) \
   typedef struct NAME NAME; \
-  typedef NAME NAME##_Class; /** @todo Transitional hack. Remove! */ \
+  typedef struct NAME##_Class NAME##_Class; \
   Machine_ClassType *NAME##_getClassType();
 
-#define MACHINE_DEFINE_CLASSTYPE_EX(THIS_TYPE, PARENT_TYPE, VISIT, CONSTRUCT, DESTRUCT) \
+#define MACHINE_DEFINE_CLASSTYPE(THIS_TYPE, PARENT_TYPE, VISIT, CONSTRUCT, DESTRUCT, CLASS_CONSTRUCT) \
 \
   static Machine_ClassType *g_##THIS_TYPE##_ClassType = NULL; \
 \
@@ -257,15 +246,20 @@ static inline bool Machine_isSuperTypeOf(const Machine_ClassType* superType, con
 \
   Machine_ClassType* THIS_TYPE##_getClassType() { \
     if (!g_##THIS_TYPE##_ClassType) { \
+      Machine_CreateClassTypeArgs args = { \
+        .parent = PARENT_TYPE##_getClassType(), \
+        .size = sizeof(THIS_TYPE), \
+        .typeRemoved = (Machine_ClassTypeRemovedCallback*)&THIS_TYPE##_onTypeDestroyed, \
+        .visit = (Machine_ClassObjectVisitCallback*)VISIT, \
+        .construct = (Machine_ClassObjectConstructCallback*)CONSTRUCT, \
+        .destruct = (Machine_ClassObjectDestructCallback*)DESTRUCT, \
+        .classSize = sizeof(THIS_TYPE##_Class), \
+        .constructClass = (Machine_ClassConstructCallback*)CLASS_CONSTRUCT, \
+      }; \
       g_##THIS_TYPE##_ClassType = \
         Machine_createClassType \
           ( \
-            PARENT_TYPE##_getClassType(), \
-            sizeof(THIS_TYPE), \
-            (Machine_ClassTypeRemovedCallback*)&THIS_TYPE##_onTypeDestroyed, \
-            (Machine_ClassObjectVisitCallback*)VISIT, \
-            (Machine_ClassObjectConstructCallback*)CONSTRUCT, \
-            (Machine_ClassObjectDestructCallback*)DESTRUCT \
+            &args \
           ); \
     } \
     return g_##THIS_TYPE##_ClassType; \
@@ -292,26 +286,29 @@ static inline bool Machine_isSuperTypeOf(const Machine_ClassType* superType, con
 #define MACHINE_ASSERT_UNREACHABLE() \
     Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "unreachable program point reached\n"); \
     Machine_setStatus(Machine_Status_UnreachableProgramPointReached); \
-    Machine_jump(); \
+    Machine_jump();
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-#define __MACHINE_VIRTUALCALL__(TYPENAME, METHODNAME, RETURN, ...) \
+#define MACHINE_VIRTUALCALL_IMPL(TYPE, METHODNAME, RETURN, ...) \
   MACHINE_ASSERT_NOTNULL(self); \
-  MACHINE_ASSERT_NOTNULL(self->METHODNAME); \
-  RETURN self->METHODNAME(__VA_ARGS__);
+  Machine_ClassType* classType = Machine_getClassType((Machine_Object*)self); \
+  MACHINE_ASSERT_NOTNULL(classType); \
+  TYPE##_Class* data = classType->data; \
+  MACHINE_ASSERT_NOTNULL(data); \
+  RETURN data->METHODNAME(__VA_ARGS__);
 
 #define MACHINE_VIRTUALCALL_NORETURN_NOARGS(TYPENAME, METHODNAME) \
-  __MACHINE_VIRTUALCALL__(TYPENAME, METHODNAME, , self);
+  MACHINE_VIRTUALCALL_IMPL(TYPENAME, METHODNAME, , self);
 
 #define MACHINE_VIRTUALCALL_NORETURN_ARGS(TYPENAME, METHODNAME, ...) \
-  __MACHINE_VIRTUALCALL__(TYPENAME, METHODNAME, , self, __VA_ARGS__);
+  MACHINE_VIRTUALCALL_IMPL(TYPENAME, METHODNAME, , self, __VA_ARGS__);
 
 #define MACHINE_VIRTUALCALL_RETURN_NOARGS(TYPENAME, METHODNAME) \
-  __MACHINE_VIRTUALCALL__(TYPENAME, METHODNAME, return, self);
+  MACHINE_VIRTUALCALL_IMPL(TYPENAME, METHODNAME, return, self);
 
 #define MACHINE_VIRTUALCALL_RETURN_ARGS(TYPENAME, METHODNAME, ...) \
-  __MACHINE_VIRTUALCALL__(TYPENAME, METHODNAME, return, self, __VA_ARGS__);
+  MACHINE_VIRTUALCALL_IMPL(TYPENAME, METHODNAME, return, self, __VA_ARGS__);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 

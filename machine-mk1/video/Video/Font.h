@@ -16,13 +16,17 @@
 
 MACHINE_DECLARE_CLASSTYPE(Machine_Font)
 
-struct Machine_Font {
-  Machine_Object __parent;
-  Machine_Real (*getBaselineDistance)(Machine_Font* self);
-  Machine_Boolean (*getCodePointInfo)(Machine_Font* self, uint32_t codepoint, Machine_Math_Rectangle2* bounds, Machine_Math_Vector2* advance, Machine_Texture** texture);
+struct Machine_Font_Class {
+  Machine_Object_Class __parent;
+  Machine_Real(*getBaselineDistance)(Machine_Font* self);
+  Machine_Boolean(*getCodePointInfo)(Machine_Font* self, uint32_t codepoint, Machine_Math_Rectangle2* bounds, Machine_Math_Vector2* advance, Machine_Texture** texture);
   Machine_Binding* (*getVideoBinding)(Machine_Font* self);
   Machine_ShaderProgram* (*getVideoShaderProgram)(Machine_Font* self);
   Machine_VideoBuffer* (*getVideoBuffer)(Machine_Font* self);
+};
+
+struct Machine_Font {
+  Machine_Object __parent;
 };
 
 /// @brief Construct this font.

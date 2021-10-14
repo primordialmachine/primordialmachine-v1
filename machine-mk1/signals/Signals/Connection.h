@@ -17,6 +17,10 @@
 /// @endcode
 MACHINE_DECLARE_CLASSTYPE(Machine_Signals_Connection)
 
+struct Machine_Signals_Connection_Class {
+  Machine_Object_Class parent;
+};
+
 struct Machine_Signals_Connection {
   Machine_Object parent;
   Machine_String* name;

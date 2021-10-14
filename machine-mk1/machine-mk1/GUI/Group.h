@@ -12,6 +12,10 @@
 /// @extends Machine.GUI.Widget
 MACHINE_DECLARE_CLASSTYPE(Machine_GUI_Group)
 
+struct Machine_GUI_Group_Class {
+  Machine_GUI_Widget_Class __parent;
+};
+
 struct Machine_GUI_Group {
   Machine_GUI_Widget __parent;
   Machine_GUI_LayoutModel* layoutModel;

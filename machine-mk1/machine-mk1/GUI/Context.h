@@ -14,8 +14,12 @@
 /// @extends Machine.Object
 MACHINE_DECLARE_CLASSTYPE(Machine_GUI_Context)
 
+struct Machine_GUI_Context_Class {
+  Machine_Object_Class __parent;
+};
+
 struct Machine_GUI_Context {
-  Machine_Object parent;
+  Machine_Object __parent;
   Machine_Context2* context2;
   Machine_GUI_Group* rootGroup;
   Machine_GUI_Signals_Context* signalsContext;

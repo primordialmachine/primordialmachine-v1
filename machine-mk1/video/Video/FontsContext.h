@@ -16,9 +16,13 @@ typedef struct Machine_Font Machine_Font;
 
 MACHINE_DECLARE_CLASSTYPE(Machine_FontsContext);
 
+struct Machine_FontsContext_Class {
+  Machine_Object_Class parent;
+  Machine_Font* (*createFont)(Machine_FontsContext* self, Machine_String* path, Machine_Integer pointSize);
+};
+
 struct Machine_FontsContext {
   Machine_Object parent;
-  Machine_Font* (*createFont)(Machine_FontsContext* self, Machine_String* path, Machine_Integer pointSize);
 };
 
 /// @brief Construct this images context.

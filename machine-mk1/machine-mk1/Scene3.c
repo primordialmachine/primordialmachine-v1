@@ -32,8 +32,13 @@ static const uint8_t indices[] = {
   2, 1, 3,
 };
 
+struct Scene3_Class {
+  Scene_Class __parent;
+};
+
 struct Scene3 {
-  Scene parent;
+  Scene __parent;
+
   Machine_ShaderProgram* shaderProgram;
   Machine_Binding* binding;
   Machine_VideoBuffer* vertices;
@@ -41,7 +46,9 @@ struct Scene3 {
   Machine_Texture* texture;
 };
 
-void Scene3_destruct(Scene3* self);
+static void Scene3_constructClass(Scene3_Class* self);
+
+static void Scene3_destruct(Scene3* self);
 
 static void Scene3_visit(Scene3* self) {
   if (self->binding) {
@@ -61,7 +68,7 @@ static void Scene3_visit(Scene3* self) {
   }
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Scene3, Scene, &Scene3_visit, &Scene3_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Scene3, Scene, &Scene3_visit, &Scene3_construct, NULL, &Scene3_constructClass)
 
 static void Scene3_startup(Scene3* scene) {
   scene->image = Machine_ImagesContext_createFromPath(Machines_DefaultImages_createContext(), Machine_String_create("test-transparency-1.png", strlen("test-transparency-1.png")));
@@ -125,7 +132,6 @@ static void Scene3_constructClass(Scene3_Class* self) {
 
 void Scene3_construct(Scene3* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Scene_construct((Scene*)self, numberOfArguments, arguments);
-  Scene3_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Scene3_getClassType());
 }
 

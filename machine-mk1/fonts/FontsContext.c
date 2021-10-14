@@ -35,7 +35,9 @@ static Machine_Font* createFont(Machine_Fonts_FontsContext* self, Machine_String
   return (Machine_Font *)Machine_Fonts_Font_create((Machine_FontsContext *)self, path, pointSize);
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_Fonts_FontsContext, Machine_FontsContext, &visit, &Machine_Fonts_FontsContext_construct, &destruct);
+static void constructClass(Machine_Fonts_FontsContext_Class* self);
+
+MACHINE_DEFINE_CLASSTYPE(Machine_Fonts_FontsContext, Machine_FontsContext, &visit, &Machine_Fonts_FontsContext_construct, &destruct, &constructClass);
 
 static void constructClass(Machine_Fonts_FontsContext_Class* self) {
   ((Machine_FontsContext_Class*)self)->createFont = (Machine_Font * (*)(Machine_FontsContext*, Machine_String*, Machine_Integer)) & createFont;
@@ -55,7 +57,6 @@ void Machine_Fonts_FontsContext_construct(Machine_Fonts_FontsContext* self, size
   }
   self->library = &g_library;
   g_referenceCount++;
-  constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_Fonts_FontsContext_getClassType());
 }
 

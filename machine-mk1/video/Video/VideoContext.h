@@ -25,8 +25,8 @@
 /// @extends Machine.Object
 MACHINE_DECLARE_CLASSTYPE(Machine_VideoContext)
 
-struct Machine_VideoContext {
-  Machine_Object parent;
+struct Machine_VideoContext_Class {
+  Machine_Object_Class parent;
 
 
 
@@ -38,31 +38,31 @@ struct Machine_VideoContext {
 
   void (*setIncomingBlendFunction)(Machine_VideoContext* self, Machine_BlendFunction incomingBlendFunction);
 
-  Machine_BlendFunction (*getIncomingBlendFunction)(Machine_VideoContext const* self);
+  Machine_BlendFunction(*getIncomingBlendFunction)(Machine_VideoContext const* self);
 
 
 
   void (*setExistingBlendFunction)(Machine_VideoContext* self, Machine_BlendFunction existingBlendFunction);
 
-  Machine_BlendFunction (*getExistingBlendFunction)(Machine_VideoContext const* self);
+  Machine_BlendFunction(*getExistingBlendFunction)(Machine_VideoContext const* self);
 
 
 
   void (*setDepthWriteEnabled)(Machine_VideoContext* self, Machine_Boolean depthWriteEnabled);
 
-  Machine_Boolean (*getDepthWriteEnabled)(Machine_VideoContext const* self);
+  Machine_Boolean(*getDepthWriteEnabled)(Machine_VideoContext const* self);
 
 
 
   void (*setDepthTestFunction)(Machine_VideoContext* self, Machine_DepthTestFunction depthTestFunction);
 
-  Machine_DepthTestFunction (*getDepthTestFunction)(Machine_VideoContext const* self);
+  Machine_DepthTestFunction(*getDepthTestFunction)(Machine_VideoContext const* self);
 
 
 
   void (*setClearDepth)(Machine_VideoContext* self, Machine_Real clearDepth);
 
-  Machine_Real (*getClearDepth)(Machine_VideoContext const* self);
+  Machine_Real(*getClearDepth)(Machine_VideoContext const* self);
 
 
 
@@ -72,11 +72,11 @@ struct Machine_VideoContext {
 
 
 
-  Machine_Integer (*getMaximalClipDistanceCount)(Machine_VideoContext const* self);
+  Machine_Integer(*getMaximalClipDistanceCount)(Machine_VideoContext const* self);
 
   void (*setClipDistanceEnabled)(Machine_VideoContext* self, Machine_Integer index, Machine_Boolean enabled);
 
-  Machine_Boolean (*getClipDistanceEnabled)(Machine_VideoContext const* self, Machine_Integer index);
+  Machine_Boolean(*getClipDistanceEnabled)(Machine_VideoContext const* self, Machine_Integer index);
 
 
 
@@ -103,27 +103,31 @@ struct Machine_VideoContext {
 
 
   Machine_ShaderProgram*
-  (*generateDefaultShader)
-    (
-      Machine_VideoContext* self,
-      Machine_Boolean withMeshColor,
-      Machine_Boolean withVertexColor,
-      Machine_Boolean withTextureCoordinate,
-      Machine_Boolean withTexture
-    );
+    (*generateDefaultShader)
+      (
+        Machine_VideoContext* self,
+        Machine_Boolean withMeshColor,
+        Machine_Boolean withVertexColor,
+        Machine_Boolean withTextureCoordinate,
+        Machine_Boolean withTexture
+      );
 
   Machine_ShaderProgram*
-  (*generateShape2Shader)
-    (
-      Machine_VideoContext* self
-    );
+    (*generateShape2Shader)
+      (
+        Machine_VideoContext* self
+      );
 
   Machine_ShaderProgram*
-  (*generateText2Shader)
-    (
-      Machine_VideoContext* self,
-      Machine_Boolean highPrecision
-    );
+    (*generateText2Shader)
+      (
+        Machine_VideoContext* self,
+        Machine_Boolean highPrecision
+      );
+};
+
+struct Machine_VideoContext {
+  Machine_Object parent;
 };
 
 

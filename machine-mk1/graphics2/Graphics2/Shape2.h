@@ -28,9 +28,14 @@ typedef struct Machine_Context2 Machine_Context2;
 /// - circle: bounds are the smallest rectangle enclosing the circle.
 MACHINE_DECLARE_CLASSTYPE(Machine_Shape2);
 
+struct Machine_Shape2_Class {
+  Machine_Object_Class parent;
+
+  void (*render)(Machine_Shape2* self, Machine_Context2* context);
+};
+
 struct Machine_Shape2 {
   Machine_Object parent;
-  void (*render)(Machine_Shape2* self, Machine_Context2* context);
 };
 
 /// @brief Construct this shape with default values.

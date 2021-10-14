@@ -11,8 +11,13 @@
 
 MACHINE_DECLARE_CLASSTYPE(Machine_GDL_Scanner)
 
+struct Machine_GDL_Scanner_Class {
+  Machine_Object_Class __parent;
+};
+
 struct Machine_GDL_Scanner {
   Machine_Object __parent;
+
   Machine_String* inputName;
   Machine_ByteBuffer* inputBytes;
   /// @brief The end position.

@@ -14,7 +14,7 @@ void Machine_Font_construct(Machine_Font* self, size_t numberOfArguments, const 
   Machine_setClassType((Machine_Object*)self, Machine_Font_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_Font, Machine_Object, NULL, &Machine_Font_construct, &Machine_Font_destruct)
+MACHINE_DEFINE_CLASSTYPE(Machine_Font, Machine_Object, NULL, &Machine_Font_construct, &Machine_Font_destruct, NULL)
 
 Machine_Real Machine_Font_getBaselineDistance(Machine_Font* self) {
   MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_Font, getBaselineDistance);

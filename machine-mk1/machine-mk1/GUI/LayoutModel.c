@@ -14,7 +14,7 @@ void Machine_GUI_LayoutModel_construct(Machine_GUI_LayoutModel* self, size_t num
   Machine_setClassType((Machine_Object*)self, Machine_GUI_LayoutModel_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_GUI_LayoutModel, Machine_Object, &Machine_GUI_LayoutModel_visit, &Machine_GUI_LayoutModel_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_GUI_LayoutModel, Machine_Object, &Machine_GUI_LayoutModel_visit, &Machine_GUI_LayoutModel_construct, NULL, NULL)
 
 Machine_GUI_LayoutModel* Machine_GUI_LayoutModel_create() {
   Machine_ClassType* ty = Machine_GUI_LayoutModel_getClassType();

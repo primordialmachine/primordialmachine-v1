@@ -20,6 +20,10 @@ MACHINE_DECLARE_CLASSTYPE(Machine_Text_Layout);
 #define LINE_BOUNDS_DIRTY (2)
 #define BOUNDS_DIRTY (4)
 
+struct Machine_Text_Layout_Class {
+  Machine_Object_Class parent;
+};
+
 struct Machine_Text_Layout {
   Machine_Object parent;
   /// @brief The position of this layout.

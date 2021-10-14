@@ -9,8 +9,13 @@
 #include "Runtime/ByteBuffer.h"
 
 
+struct Machine_StringBuffer_Class {
+  Machine_Object_Class __parent;
+};
+
 struct Machine_StringBuffer {
-  Machine_Object parent;
+  Machine_Object __parent;
+
   Machine_ByteBuffer* byteBuffer;
 };
 
@@ -31,11 +36,10 @@ static void Machine_StringBuffer_constructClass(Machine_StringBuffer_Class* self
 static void Machine_StringBuffer_construct(Machine_StringBuffer* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->byteBuffer = Machine_ByteBuffer_create();
-  Machine_StringBuffer_constructClass(self);
   Machine_setClassType((Machine_Object *)self, Machine_StringBuffer_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_StringBuffer, Machine_Object, &Machine_StringBuffer_visit, &Machine_StringBuffer_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_StringBuffer, Machine_Object, &Machine_StringBuffer_visit, &Machine_StringBuffer_construct, NULL, &Machine_StringBuffer_constructClass)
 
 Machine_StringBuffer* Machine_StringBuffer_create() {
   Machine_ClassType* ty = Machine_StringBuffer_getClassType();

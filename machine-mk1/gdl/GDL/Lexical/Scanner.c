@@ -57,7 +57,7 @@ static void Machine_GDL_Scanner_construct(Machine_GDL_Scanner* self, size_t numb
   Machine_setClassType((Machine_Object*)self, Machine_GDL_Scanner_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_GDL_Scanner, Machine_Object, &Machine_GDL_Scanner_visit, &Machine_GDL_Scanner_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_GDL_Scanner, Machine_Object, &Machine_GDL_Scanner_visit, &Machine_GDL_Scanner_construct, NULL, NULL)
 
 Machine_GDL_Scanner* Machine_GDL_Scanner_create(Machine_String* inputName, Machine_ByteBuffer* inputBytes) {
   Machine_ClassType* ty = Machine_GDL_Scanner_getClassType();

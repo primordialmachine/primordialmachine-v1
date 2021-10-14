@@ -7,22 +7,23 @@
 #include <malloc.h>
 #include <memory.h>
 
+struct Machine_ByteBuffer_Class {
+  Machine_Object_Class __parent;
+};
+
 struct Machine_ByteBuffer {
-  Machine_Object parent;
+  Machine_Object __parent;
+
   char* p;
   size_t s; ///< The size.
   size_t c; ///< The capacity.
 };
-
-static void Machine_ByteBuffer_constructClass(Machine_ByteBuffer_Class *self)
-{/*Intentionally empty.*/}
 
 static void Machine_ByteBuffer_construct(Machine_ByteBuffer* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->p = NULL;
   self->s = 0;
   self->c = 0;
-  Machine_ByteBuffer_constructClass(self);
   Machine_setClassType((Machine_Object *)self, Machine_ByteBuffer_getClassType());
 }
 
@@ -33,7 +34,7 @@ static void Machine_ByteBuffer_destruct(Machine_ByteBuffer* self) {
   }
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_ByteBuffer, Machine_Object, NULL, &Machine_ByteBuffer_construct, &Machine_ByteBuffer_destruct)
+MACHINE_DEFINE_CLASSTYPE(Machine_ByteBuffer, Machine_Object, NULL, &Machine_ByteBuffer_construct, &Machine_ByteBuffer_destruct, NULL)
 
 Machine_ByteBuffer* Machine_ByteBuffer_create() {
   Machine_ClassType* ty = Machine_ByteBuffer_getClassType();

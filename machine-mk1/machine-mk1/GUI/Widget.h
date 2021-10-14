@@ -17,16 +17,8 @@ typedef struct Machine_GUI_Context Machine_GUI_Context;
 /// @brief Base of all widgets.
 MACHINE_DECLARE_CLASSTYPE(Machine_GUI_Widget)
 
-struct Machine_GUI_Widget {
-  Machine_Object __parent;
-
-  /// @brief The context this widget belongs to.
-  Machine_GUI_Context* context;
-  /// @brief Rectangle in canvas coordinate sof the parent.
-  Machine_Math_Rectangle2* rectangle;
-  Machine_GUI_Widget* parent;
-
-  Machine_List* connections;
+struct Machine_GUI_Widget_Class {
+  Machine_Object_Class __parent;
 
   void (*render)(Machine_GUI_Widget* self, Machine_Context2* ctx2);
 
@@ -45,6 +37,18 @@ struct Machine_GUI_Widget {
   const Machine_Math_Vector2* (*getAbsolutePosition)(const Machine_GUI_Widget* self);
   const Machine_Math_Rectangle2* (*getAbsoluteRectangle)(const Machine_GUI_Widget* self);
   const Machine_Math_Rectangle2* (*getAbsoluteCanvasRectangle)(const Machine_GUI_Widget* self);
+};
+
+struct Machine_GUI_Widget {
+  Machine_Object __parent;
+
+  /// @brief The context this widget belongs to.
+  Machine_GUI_Context* context;
+  /// @brief Rectangle in canvas coordinate sof the parent.
+  Machine_Math_Rectangle2* rectangle;
+  Machine_GUI_Widget* parent;
+
+  Machine_List* connections;
 };
 
 /// @brief Construct this widget.

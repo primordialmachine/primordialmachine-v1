@@ -10,6 +10,10 @@
 
 MACHINE_DECLARE_CLASSTYPE(Machine_GDL_Context)
 
+struct Machine_GDL_Context_Class {
+  Machine_Object_Class __parent;
+};
+
 struct Machine_GDL_Context {
   Machine_Object __parent;
   Machine_String* trueLiteral;

@@ -10,6 +10,10 @@
 
 MACHINE_DECLARE_CLASSTYPE(Machine_GL_VideoBuffer)
 
+struct Machine_GL_VideoBuffer_Class {
+  Machine_VideoBuffer_Class parent;
+};
+
 struct Machine_GL_VideoBuffer {
   Machine_VideoBuffer __parent;
   GLuint id;

@@ -68,11 +68,10 @@ void Machine_Rectangle2_construct(Machine_Rectangle2* self, size_t numberOfArgum
   self->color = Machine_Math_Vector4_create();
   Machine_Math_Vector4_set(self->color, 1.f, 1.f, 1.f, 1.f);
 
-  Machine_Rectangle2_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_Rectangle2_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_Rectangle2, Machine_Shape2, &Machine_Rectangle2_visit, &Machine_Rectangle2_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_Rectangle2, Machine_Shape2, &Machine_Rectangle2_visit, &Machine_Rectangle2_construct, NULL, &Machine_Rectangle2_constructClass)
 
 Machine_Rectangle2* Machine_Rectangle2_create() {
   Machine_ClassType* ty = Machine_Rectangle2_getClassType();

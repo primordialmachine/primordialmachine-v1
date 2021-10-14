@@ -18,6 +18,9 @@
 
 MACHINE_DECLARE_CLASSTYPE(Machine_Material)
 
+struct Machine_Material_Class {
+  Machine_Object_Class parent;
+};
 
 struct Machine_Material {
   Machine_Object parent;

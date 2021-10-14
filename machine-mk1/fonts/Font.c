@@ -135,8 +135,13 @@ static Machine_Boolean isNewline(uint32_t codepoint) {
   return codepoint == '\n';
 }
 
+struct Machine_Fonts_Font_Class {
+  Machine_Font_Class __parent;
+};
+
 struct Machine_Fonts_Font {
   Machine_Font __parent;
+
   Machine_Fonts_FontsContext* context;
   FT_Face face;
   Map* map;
@@ -185,12 +190,12 @@ static Machine_VideoBuffer* Machine_Fonts_Font_getVideoBuffer(Machine_Fonts_Font
   return self->vertices;
 }
 
-static void Machine_Fonts_Font_constructClass(Machine_Fonts_Font_Class *self) {
-  ((Machine_Font_Class*)self)->getBaselineDistance = (Machine_Real (*)(Machine_Font *))&Machine_Fonts_Font_getBaselineDistance;
-  ((Machine_Font_Class*)self)->getCodePointInfo = (Machine_Boolean (*)(Machine_Font *, uint32_t codepoint, Machine_Math_Rectangle2 * bounds, Machine_Math_Vector2 * advance, Machine_Texture * *texture))&Machine_Fonts_Font_getCodePointInfo;
-  ((Machine_Font_Class*)self)->getVideoBinding = (Machine_Binding *(*)(Machine_Font *))&Machine_Fonts_Font_getVideoBinding;
-  ((Machine_Font_Class*)self)->getVideoBuffer = (Machine_VideoBuffer *(*)(Machine_Font *))&Machine_Fonts_Font_getVideoBuffer;
-  ((Machine_Font_Class*)self)->getVideoShaderProgram = (Machine_ShaderProgram *(*)(Machine_Font *))&Machine_Fonts_Font_getVideoShaderProgram;
+static void Machine_Fonts_Font_constructClass(Machine_Fonts_Font_Class* self) {
+  ((Machine_Font_Class*)self)->getBaselineDistance = (Machine_Real(*)(Machine_Font*)) & Machine_Fonts_Font_getBaselineDistance;
+  ((Machine_Font_Class*)self)->getCodePointInfo = (Machine_Boolean(*)(Machine_Font*, uint32_t codepoint, Machine_Math_Rectangle2 * bounds, Machine_Math_Vector2 * advance, Machine_Texture * *texture)) & Machine_Fonts_Font_getCodePointInfo;
+  ((Machine_Font_Class*)self)->getVideoBinding = (Machine_Binding * (*)(Machine_Font*)) & Machine_Fonts_Font_getVideoBinding;
+  ((Machine_Font_Class*)self)->getVideoBuffer = (Machine_VideoBuffer * (*)(Machine_Font*)) & Machine_Fonts_Font_getVideoBuffer;
+  ((Machine_Font_Class*)self)->getVideoShaderProgram = (Machine_ShaderProgram * (*)(Machine_Font*)) & Machine_Fonts_Font_getVideoShaderProgram;
 }
 
 static void Machine_Fonts_Font_visit(Machine_Fonts_Font* self) {
@@ -373,11 +378,10 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
       Machine_jump();
     }
   }
-  Machine_Fonts_Font_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_Fonts_Font_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_Fonts_Font, Machine_Font, &Machine_Fonts_Font_visit, &Machine_Fonts_Font_construct, &Machine_Fonts_Font_destruct)
+MACHINE_DEFINE_CLASSTYPE(Machine_Fonts_Font, Machine_Font, &Machine_Fonts_Font_visit, &Machine_Fonts_Font_construct, &Machine_Fonts_Font_destruct, &Machine_Fonts_Font_constructClass)
 
 Machine_Fonts_Font* Machine_Fonts_Font_create(Machine_FontsContext* fontsContext, Machine_String *path, Machine_Integer pointSize) {
   Machine_ClassType* ty = Machine_Fonts_Font_getClassType();

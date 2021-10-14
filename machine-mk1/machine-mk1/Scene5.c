@@ -12,10 +12,18 @@
 #include "_Graphics2.h"
 #include "Video.h"
 
+static void Scene5_constructClass(Scene5_Class* self);
 
+static void Scene5_destruct(Scene5* self);
+
+static void Scene5_visit(Scene5* self);
+
+struct Scene5_Class {
+  Scene_Class __parent;
+};
 
 struct Scene5 {
-  Scene parent;
+  Scene __parent;
   //
   Machine_GUI_Context* guiContext;
   //
@@ -27,8 +35,6 @@ struct Scene5 {
   /// @brief Footer.
   Machine_GUI_Widget* footer;
 };
-
-void Scene5_destruct(Scene5* self);
 
 static void Scene5_visit(Scene5* self) {
   if (self->guiContext) {
@@ -48,7 +54,7 @@ static void Scene5_visit(Scene5* self) {
   }
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Scene5, Scene, &Scene5_visit, &Scene5_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Scene5, Scene, &Scene5_visit, &Scene5_construct, NULL, &Scene5_constructClass)
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -185,7 +191,7 @@ static void Scene5_shutdown(Scene5* scene) {
   scene->font = NULL;
 }
 
-static void Scene5_constructClass(Scene5* self) {
+static void Scene5_constructClass(Scene5_Class* self) {
   ((Scene_Class*)self)->onCanvasSizeChanged = (Scene_OnCanvaSizeChangedCallback*)&Scene5_onCanvasSizeChanged;
   ((Scene_Class*)self)->onStartup = (Scene_OnStartupCallback*)&Scene5_startup;
   ((Scene_Class*)self)->onUpdate = (Scene_OnUpdateCallback*)&Scene5_update;
@@ -194,7 +200,6 @@ static void Scene5_constructClass(Scene5* self) {
 
 void Scene5_construct(Scene5* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Scene_construct((Scene*)self, numberOfArguments, arguments);
-  Scene5_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Scene5_getClassType());
 }
 

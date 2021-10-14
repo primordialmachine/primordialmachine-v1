@@ -32,6 +32,10 @@ Machine_String* Machine_KeyboardKeyActions_toString(Machine_KeyboardKeyActions s
 /// @tood Shoud extend Machine.Event.
 MACHINE_DECLARE_CLASSTYPE(Machine_KeyboardKeyEvent)
 
+struct Machine_KeyboardKeyEvent_Class {
+  Machine_Object_Class parent;
+};
+
 struct Machine_KeyboardKeyEvent {
   Machine_Object parent;
   Machine_KeyboardKeys key;

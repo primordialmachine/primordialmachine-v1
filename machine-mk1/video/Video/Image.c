@@ -16,7 +16,7 @@ void Machine_Image_construct(Machine_Image* self, size_t numberOfArguments, cons
   Machine_setClassType((Machine_Object*)self, Machine_Image_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_Image, Machine_Object, NULL, &Machine_Image_construct, &Machine_Image_destruct)
+MACHINE_DEFINE_CLASSTYPE(Machine_Image, Machine_Object, NULL, &Machine_Image_construct, &Machine_Image_destruct, NULL)
 
 void const* Machine_Image_getPixels(Machine_Image const* self) {
   MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_Image, getPixels);

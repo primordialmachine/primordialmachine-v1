@@ -6,13 +6,15 @@
 
 
 
+static void Machine_GL_Binding_constructClass(Machine_GL_Binding_Class* self);
+
 static void Machine_GL_Binding_visit(Machine_GL_Binding* self);
 
 static void Machine_GL_Binding_destruct(Machine_GL_Binding* self);
 
 static void Machine_GL_Binding_construct(Machine_GL_Binding* self, size_t numberOfArguments, const Machine_Value* arguments);
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_GL_Binding, Machine_Binding, &Machine_GL_Binding_visit, &Machine_GL_Binding_construct, &Machine_GL_Binding_destruct)
+MACHINE_DEFINE_CLASSTYPE(Machine_GL_Binding, Machine_Binding, &Machine_GL_Binding_visit, &Machine_GL_Binding_construct, &Machine_GL_Binding_destruct, &Machine_GL_Binding_constructClass)
 
 static void Machine_GL_Binding_visit(Machine_GL_Binding* self)
 {/*Intentionally empty.*/}
@@ -92,6 +94,10 @@ static size_t Machine_Binding_getVariableBindingImpl(Machine_GL_Binding const* s
 }
 
 static void Machine_Binding_bindMatrix4Impl(Machine_GL_Binding* self, Machine_String* name, const Machine_Math_Matrix4* value) {
+  Machine_Value temporary2;
+  Machine_Value_setObject(&temporary2, (Machine_Object*)value);
+  Machine_Binding_addUpdateConstant((Machine_Binding*)self, name, &temporary2);
+  
   GLint location = glGetUniformLocation(((Machine_GL_ShaderProgram*)(((Machine_Binding*)self)->program))->programId, Machine_String_getBytes(name));
   if (location == -1) {
     return;
@@ -100,6 +106,10 @@ static void Machine_Binding_bindMatrix4Impl(Machine_GL_Binding* self, Machine_St
 }
 
 static void Machine_Binding_bindVector2Impl(Machine_GL_Binding* self, Machine_String* name, const Machine_Math_Vector2* value) {
+  Machine_Value temporary2;
+  Machine_Value_setObject(&temporary2, (Machine_Object*)value);
+  Machine_Binding_addUpdateConstant((Machine_Binding *)self, name, &temporary2);
+  
   Machine_Binding_Node* node = ((Machine_Binding*)self)->nodes;
   while (node) {
     if (Machine_String_isEqualTo(node->name, name) && node->isVariable == false) {
@@ -126,6 +136,10 @@ static void Machine_Binding_bindVector2Impl(Machine_GL_Binding* self, Machine_St
 }
 
 static void Machine_Binding_bindVector3Impl(Machine_GL_Binding* self, Machine_String* name, Machine_Math_Vector3 const* value) {
+  Machine_Value temporary2;
+  Machine_Value_setObject(&temporary2, (Machine_Object*)value);
+  Machine_Binding_addUpdateConstant((Machine_Binding*)self, name, &temporary2);
+  
   Machine_Binding_Node* node = ((Machine_Binding*)self)->nodes;
   while (node) {
     if (Machine_String_isEqualTo(node->name, name) && node->isVariable == false) {
@@ -152,6 +166,10 @@ static void Machine_Binding_bindVector3Impl(Machine_GL_Binding* self, Machine_St
 }
 
 static void Machine_Binding_bindVector4Impl(Machine_Binding* self, Machine_String* name, const Machine_Math_Vector4* value) {
+  Machine_Value temporary2;
+  Machine_Value_setObject(&temporary2, (Machine_Object*)value);
+  Machine_Binding_addUpdateConstant((Machine_Binding*)self, name, &temporary2);
+  
   Machine_Binding_Node* node = self->nodes;
   while (node) {
     if (Machine_String_isEqualTo(node->name, name) && node->isVariable == false) {
@@ -178,6 +196,10 @@ static void Machine_Binding_bindVector4Impl(Machine_Binding* self, Machine_Strin
 }
 
 static void Machine_Binding_bindSamplerImpl(Machine_GL_Binding* self, Machine_String* name, const size_t value) {
+  Machine_Value temporary2;
+  Machine_Value_setInteger(&temporary2, (Machine_Integer)value);
+  Machine_Binding_addUpdateConstant((Machine_Binding*)self, name, &temporary2);
+
   GLint location = glGetUniformLocation(((Machine_GL_ShaderProgram*)(((Machine_Binding*)self)->program))->programId, Machine_String_getBytes(name));
   if (location == -1) {
     return;
@@ -232,7 +254,6 @@ static void Machine_GL_Binding_constructClass(Machine_GL_Binding_Class* self) {
 static void Machine_GL_Binding_construct(Machine_GL_Binding* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Binding_construct((Machine_Binding*)self, numberOfArguments, arguments);
   self->id = 0;
-  Machine_GL_Binding_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_GL_Binding_getClassType());
 }
 

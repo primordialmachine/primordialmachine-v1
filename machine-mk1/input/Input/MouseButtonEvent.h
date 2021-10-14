@@ -29,6 +29,10 @@ Machine_String* Machine_MouseButtonActions_toString(Machine_MouseButtonActions s
 /// @tood Shoud extend Machine.Event.
 MACHINE_DECLARE_CLASSTYPE(Machine_MouseButtonEvent)
 
+struct Machine_MouseButtonEvent_Class {
+  Machine_Object_Class parent;
+};
+
 struct Machine_MouseButtonEvent {
   Machine_Object parent;
   int button;

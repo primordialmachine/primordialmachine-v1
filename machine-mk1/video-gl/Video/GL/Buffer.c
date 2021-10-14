@@ -5,8 +5,6 @@
 #include <malloc.h>
 #include <string.h>
 
-
-
 static void Machine_GL_VideoBuffer_constructClass(Machine_GL_VideoBuffer_Class* self);
 
 static void Machine_GL_VideoBuffer_destruct(Machine_GL_VideoBuffer* self) {
@@ -16,7 +14,7 @@ static void Machine_GL_VideoBuffer_destruct(Machine_GL_VideoBuffer* self) {
   }
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_GL_VideoBuffer, Machine_VideoBuffer, NULL, &Machine_GL_VideoBuffer_construct, &Machine_GL_VideoBuffer_destruct)
+MACHINE_DEFINE_CLASSTYPE(Machine_GL_VideoBuffer, Machine_VideoBuffer, NULL, &Machine_GL_VideoBuffer_construct, &Machine_GL_VideoBuffer_destruct, &Machine_GL_VideoBuffer_constructClass)
 
 static void Machine_GL_VideoBuffer_setDataImpl(Machine_GL_VideoBuffer* self, size_t n, void const* p) {
   void* t = realloc(((Machine_VideoBuffer*)self)->p, n * sizeof(uint8_t));
@@ -46,7 +44,6 @@ void Machine_GL_VideoBuffer_construct(Machine_GL_VideoBuffer* self, size_t numbe
   glGenBuffers(1, &self->id);
   glBindBuffer(GL_ARRAY_BUFFER, self->id);
   glBufferData(GL_ARRAY_BUFFER, 0 * sizeof(uint8_t), ((Machine_VideoBuffer *)self)->p, GL_STATIC_DRAW);
-  Machine_GL_VideoBuffer_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_GL_VideoBuffer_getClassType());
 }
 

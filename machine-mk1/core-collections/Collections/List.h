@@ -20,11 +20,8 @@
 /// @brief A list.
 MACHINE_DECLARE_CLASSTYPE(Machine_List)
 
-struct Machine_List {
-  Machine_Collection parent;
-  size_t size;
-  size_t capacity;
-  Machine_Value* elements;
+struct Machine_List_Class {
+  Machine_Collection_Class parent;
   Machine_Value(*getAt)(const Machine_List* self, size_t index);
   void(*insertAt)(Machine_List* self, size_t index, Machine_Value value);
   void(*prepend)(Machine_List* self, Machine_Value value);
@@ -37,6 +34,13 @@ struct Machine_List {
 #if defined(Machine_List_withSlice) && Machine_List_withSlice == 1
   Machine_List* (*slice)(Machine_List* self, size_t start, size_t length);
 #endif
+};
+
+struct Machine_List {
+  Machine_Collection parent;
+  size_t size;
+  size_t capacity;
+  Machine_Value* elements;
 };
 
 /// @brief Construct this list.

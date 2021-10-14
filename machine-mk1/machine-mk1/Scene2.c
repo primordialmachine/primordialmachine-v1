@@ -31,12 +31,19 @@ static const uint8_t indices[] = {
   2, 1, 3,
 };
 
+struct Scene2_Class {
+  Scene_Class __parent;
+};
+
 struct Scene2 {
-  Scene parent;
+  Scene __parent;
+
   Machine_ShaderProgram* shaderProgram;
   Machine_Binding* binding;
   Machine_VideoBuffer* vertices;
 };
+
+static void Scene2_constructClass(Scene2_Class* self);
 
 static void Scene2_destruct(Scene2* self);
 
@@ -52,7 +59,7 @@ static void Scene2_visit(Scene2* self) {
   }
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Scene2, Scene, &Scene2_visit, &Scene2_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Scene2, Scene, &Scene2_visit, &Scene2_construct, NULL, &Scene2_constructClass)
 
 static void Scene2_onStartup(Scene2* scene) {
   scene->vertices = Machine_VideoContext_createBuffer(Machine_Video_getContext());
@@ -99,15 +106,14 @@ static void Scene2_onShutdown(Scene2* scene) {
 }
 
 static void Scene2_constructClass(Scene2_Class* self) {
-  ((Scene*)self)->onCanvasSizeChanged = (Scene_OnCanvaSizeChangedCallback*)&Scene2_onCanvasSizeChanged;
-  ((Scene*)self)->onStartup = (Scene_OnStartupCallback*)&Scene2_onStartup;
-  ((Scene*)self)->onUpdate = (Scene_OnUpdateCallback*)&Scene2_onUpdate;
-  ((Scene*)self)->onShutdown = (Scene_OnShutdownCallback*)&Scene2_onShutdown;
+  ((Scene_Class*)self)->onCanvasSizeChanged = (Scene_OnCanvaSizeChangedCallback*)&Scene2_onCanvasSizeChanged;
+  ((Scene_Class*)self)->onStartup = (Scene_OnStartupCallback*)&Scene2_onStartup;
+  ((Scene_Class*)self)->onUpdate = (Scene_OnUpdateCallback*)&Scene2_onUpdate;
+  ((Scene_Class*)self)->onShutdown = (Scene_OnShutdownCallback*)&Scene2_onShutdown;
 }
 
 void Scene2_construct(Scene2* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Scene_construct((Scene*)self, numberOfArguments, arguments);
-  Scene2_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Scene2_getClassType());
 }
 

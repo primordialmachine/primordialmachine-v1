@@ -6,7 +6,7 @@
 
 static void Machine_Material_visit(Machine_Material* self);
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_Material, Machine_Object, &Machine_Material_visit, &Machine_Material_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_Material, Machine_Object, &Machine_Material_visit, &Machine_Material_construct, NULL, NULL)
 
 static void Machine_Material_visit(Machine_Material* self)
 {/*Intentionally empty.*/}

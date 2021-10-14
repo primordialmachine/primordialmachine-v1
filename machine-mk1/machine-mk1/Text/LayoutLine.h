@@ -10,6 +10,10 @@
  */
 MACHINE_DECLARE_CLASSTYPE(Machine_Text_LayoutLine)
 
+struct Machine_Text_LayoutLine_Class {
+  Machine_Object_Class parent;
+};
+
 struct Machine_Text_LayoutLine {
   Machine_Object parent;
 

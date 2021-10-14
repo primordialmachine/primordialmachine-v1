@@ -18,6 +18,10 @@
 /// @extends Machine_Object
 MACHINE_DECLARE_CLASSTYPE(Machine_Context2);
 
+struct Machine_Context2_Class {
+  Machine_Object_Class parent;
+};
+
 struct Machine_Context2 {
   Machine_Object parent;
 

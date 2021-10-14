@@ -28,10 +28,7 @@ static void Machine_Context2_visit(Machine_Context2* self) {
   }
 }
 
-static void Machine_Context2_constructClass(Machine_Context2_Class* self)
-{/*Intentionally empty.*/}
-
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_Context2, Machine_Object, &Machine_Context2_visit, Machine_Context2_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_Context2, Machine_Object, &Machine_Context2_visit, Machine_Context2_construct, NULL,  NULL)
 
 void Machine_Context2_construct(Machine_Context2* self, size_t numberOfArguments, Machine_Value const* arguments) {
   MACHINE_ASSERT(numberOfArguments == 1, Machine_Status_InvalidNumberOfArguments);
@@ -64,7 +61,6 @@ void Machine_Context2_construct(Machine_Context2* self, size_t numberOfArguments
   Machine_Binding_setVariableBinding(self->binding, Machine_String_create("vertex_position", strlen("vertex_position") + 1), 0);
 
   //
-  Machine_Context2_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_Context2_getClassType());
 }
 

@@ -32,7 +32,7 @@ static void Machine_GUI_Group_render(Machine_GUI_Group* self, Machine_Context2 *
 }
 
 static void Machine_GUI_Group_constructClass(Machine_GUI_Group_Class* self) {
-  ((Machine_GUI_Widget_Class*)self)->render = (void (*)(Machine_GUI_Widget*, Machine_Context2 *)) & Machine_GUI_Group_render;
+  ((Machine_GUI_Widget_Class*)self)->render = (void (*)(Machine_GUI_Widget*, Machine_Context2*)) & Machine_GUI_Group_render;
   ((Machine_GUI_Widget_Class*)self)->getPreferredSize = (const Machine_Math_Vector2 * (*)(const Machine_GUI_Widget*)) & Machine_GUI_Group_getPreferredSize;
 }
 
@@ -40,11 +40,10 @@ void Machine_GUI_Group_construct(Machine_GUI_Group* self, size_t numberOfArgumen
   Machine_GUI_Widget_construct((Machine_GUI_Widget*)self, numberOfArguments, arguments);
   self->layoutModel = Machine_GUI_LayoutModel_create();
   self->children = Machine_GUI_WidgetList_create();
-  Machine_GUI_Group_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_GUI_Group_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_GUI_Group, Machine_GUI_Widget, &Machine_GUI_Group_visit, &Machine_GUI_Group_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_GUI_Group, Machine_GUI_Widget, &Machine_GUI_Group_visit, &Machine_GUI_Group_construct, NULL, &Machine_GUI_Group_constructClass)
 
 Machine_GUI_Group* Machine_GUI_Group_create(Machine_GUI_Context* context) {
   Machine_ClassType* ty = Machine_GUI_Group_getClassType();

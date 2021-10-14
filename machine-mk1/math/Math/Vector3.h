@@ -17,6 +17,10 @@
 /// @endcode
 MACHINE_DECLARE_CLASSTYPE(Machine_Math_Vector3)
 
+struct Machine_Math_Vector3_Class {
+  Machine_Object_Class parent;
+};
+
 struct Machine_Math_Vector3 {
   Machine_Object parent;
   float x, y, z;

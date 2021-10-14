@@ -18,6 +18,10 @@
 /// @brief Description of a constant or variable input to a program.
 MACHINE_DECLARE_CLASSTYPE(Machine_ProgramInput)
 
+struct Machine_ProgramInput_Class {
+  Machine_Object_Class parent;
+};
+
 struct Machine_ProgramInput {
   Machine_Object parent;
   Machine_String* name;

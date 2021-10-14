@@ -18,11 +18,15 @@ typedef struct Machine_List Machine_List;
 /// @brief A map.
 MACHINE_DECLARE_CLASSTYPE(Machine_Map)
 
+struct Machine_Map_Class {
+  Machine_Collection_Class parent;
+  void (*set)(Machine_Map* self, Machine_Value key, Machine_Value value);
+  Machine_Value(*get)(const Machine_Map* self, Machine_Value key);
+};
+
 struct Machine_Map {
   Machine_Collection parent;
   void* pimpl;
-  void (*set)(Machine_Map* self, Machine_Value key, Machine_Value value);
-  Machine_Value(*get)(const Machine_Map* self, Machine_Value key);
 };
 
 /// @brief Construct this map.

@@ -12,8 +12,13 @@
 
 
 
+struct Machine_GUI_Border_Class {
+  Machine_GUI_Widget_Class __parent;
+};
+
 struct Machine_GUI_Border {
-  Machine_GUI_Widget parent;
+  Machine_GUI_Widget __parent;
+
   Machine_GUI_BorderModel* borderModel;
   Machine_GUI_Widget* child;
   /// @brief When the child changes or the rectangle changes,
@@ -32,7 +37,7 @@ static const Machine_Math_Vector2* Machine_GUI_Border_getPreferredSize(const Mac
 
 static const Machine_Math_Rectangle2* Machine_GUI_Border_getCanvasRectangle(const Machine_GUI_Border* self);
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_GUI_Border, Machine_GUI_Widget, &Machine_GUI_Border_visit, &Machine_GUI_Border_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_GUI_Border, Machine_GUI_Widget, &Machine_GUI_Border_visit, &Machine_GUI_Border_construct, NULL, &Machine_GUI_Border_constructClass)
 
 static void Machine_GUI_Border_visit(Machine_GUI_Border* self) {
   if (self->child) {
@@ -225,7 +230,7 @@ static Machine_Value boundsChangedCallback(size_t numberOfArguments, const Machi
 }
 
 static void Machine_GUI_Border_constructClass(Machine_GUI_Border_Class* self) {
-  ((Machine_GUI_Widget_Class*)self)->render = (void (*)(Machine_GUI_Widget*, Machine_Context2 *)) & Machine_GUI_Border_render;
+  ((Machine_GUI_Widget_Class*)self)->render = (void (*)(Machine_GUI_Widget*, Machine_Context2*)) & Machine_GUI_Border_render;
   ((Machine_GUI_Widget_Class*)self)->getPreferredSize = (const Machine_Math_Vector2 * (*)(const Machine_GUI_Widget*)) & Machine_GUI_Border_getPreferredSize;
   ((Machine_GUI_Widget_Class*)self)->getCanvasRectangle = (const Machine_Math_Rectangle2 * (*)(const Machine_GUI_Widget*)) & Machine_GUI_Border_getCanvasRectangle;
 }
@@ -238,7 +243,6 @@ static void Machine_GUI_Border_construct(Machine_GUI_Border* self, size_t number
   self->childDirty = true;
   Machine_GUI_Widget_subscribe((Machine_GUI_Widget*)self, ((Machine_GUI_Widget*)self)->context->signalsContext->PositionChanged, (Machine_Object*)self, &boundsChangedCallback);
   Machine_GUI_Widget_subscribe((Machine_GUI_Widget*)self, ((Machine_GUI_Widget*)self)->context->signalsContext->SizeChanged, (Machine_Object*)self, &boundsChangedCallback);
-  Machine_GUI_Border_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_GUI_Border_getClassType());
 }
 

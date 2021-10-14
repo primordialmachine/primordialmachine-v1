@@ -2,7 +2,7 @@
 
 void Machine_Text_LayoutLine_construct(Machine_Text_LayoutLine* self, size_t numberOfArguments, const Machine_Value* arguments);
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_Text_LayoutLine, Machine_Object, NULL, &Machine_Text_LayoutLine_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_Text_LayoutLine, Machine_Object, NULL, &Machine_Text_LayoutLine_construct, NULL, NULL)
 
 void Machine_Text_LayoutLine_construct(Machine_Text_LayoutLine* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
@@ -16,7 +16,7 @@ Machine_Text_LayoutLine* Machine_Text_LayoutLine_create(Machine_Integer start, M
     Machine_setStatus(Machine_Status_InvalidArgument);
     Machine_jump();
   }
-  Machine_Value arguments[2];
+  Machine_Value arguments[2] = { Machine_Value_StaticInitializerVoid(), Machine_Value_StaticInitializerVoid() };
   Machine_Value_setInteger(&arguments[0], start);
   Machine_Value_setInteger(&arguments[1], length);
   Machine_ClassType* ty = Machine_Text_LayoutLine_getClassType();

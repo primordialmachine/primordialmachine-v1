@@ -15,6 +15,10 @@
 /// @todo Should extend from Machine.Event.
 MACHINE_DECLARE_CLASSTYPE(Machine_MousePointerEvent)
 
+struct Machine_MousePointerEvent_Class {
+  Machine_Object_Class parent;
+};
+
 struct Machine_MousePointerEvent {
   Machine_Object parent;
   Machine_Real x;

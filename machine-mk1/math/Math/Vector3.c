@@ -9,7 +9,7 @@ static void Machine_Math_Vector3_construct(Machine_Math_Vector3* self, size_t nu
   Machine_setClassType((Machine_Object*)self, Machine_Math_Vector3_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_Math_Vector3, Machine_Object, NULL, &Machine_Math_Vector3_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_Math_Vector3, Machine_Object, NULL, &Machine_Math_Vector3_construct, NULL, NULL)
 
 Machine_Math_Vector3* Machine_Math_Vector3_create() {
   Machine_ClassType* ty = Machine_Math_Vector3_getClassType();

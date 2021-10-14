@@ -16,4 +16,4 @@ void Machine_Texture_construct(Machine_Texture* self, size_t numberOfArguments, 
   Machine_setClassType((Machine_Object*)self, Machine_Texture_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_Texture, Machine_Object, NULL, &Machine_Texture_construct, &Machine_Texture_destruct)
+MACHINE_DEFINE_CLASSTYPE(Machine_Texture, Machine_Object, NULL, &Machine_Texture_construct, &Machine_Texture_destruct, NULL)

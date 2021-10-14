@@ -19,6 +19,10 @@ typedef struct Machine_Math_Vector3 Machine_Math_Vector3;
 /// @endcode
 MACHINE_DECLARE_CLASSTYPE(Machine_Math_Rectangle2)
 
+struct Machine_Math_Rectangle2_Class {
+  Machine_Object_Class parent;
+};
+
 struct Machine_Math_Rectangle2 {
   Machine_Object parent;
   float x, y;

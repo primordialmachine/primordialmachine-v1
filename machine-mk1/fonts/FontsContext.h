@@ -17,6 +17,10 @@
 
 MACHINE_DECLARE_CLASSTYPE(Machine_Fonts_FontsContext);
 
+struct Machine_Fonts_FontsContext_Class {
+  Machine_FontsContext_Class parent;
+};
+
 struct Machine_Fonts_FontsContext {
   Machine_FontsContext parent;
   Machine_VideoContext* videoContext;

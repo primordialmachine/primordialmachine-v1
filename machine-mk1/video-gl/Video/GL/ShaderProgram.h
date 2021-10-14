@@ -11,6 +11,10 @@
 
 MACHINE_DECLARE_CLASSTYPE(Machine_GL_ShaderProgram)
 
+struct Machine_GL_ShaderProgram_Class {
+  Machine_ShaderProgram_Class parent;
+};
+
 struct Machine_GL_ShaderProgram {
   Machine_ShaderProgram parent;
   /// @brief The OpenGL program ID.

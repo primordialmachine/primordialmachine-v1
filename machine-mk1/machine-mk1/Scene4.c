@@ -15,8 +15,19 @@
 
 
 
+static void Scene4_destruct(Scene4* self);
+
+static void Scene4_visit(Scene4* self);
+
+static void Scene4_constructClass(Scene4_Class* self);
+
+struct Scene4_Class {
+  Scene_Class __parent;
+};
+
 struct Scene4 {
-  Scene parent;
+  Scene __parent;
+  
   //
   Machine_GUI_Context* guiContext;
   //
@@ -29,7 +40,9 @@ struct Scene4 {
   Machine_GUI_TextLabel* textLabel3;
 };
 
-void Scene4_destruct(Scene4* self);
+static void Scene4_destruct(Scene4* self);
+
+static void Scene4_constructClass(Scene4_Class* self);
 
 static void Scene4_visit(Scene4* self) {
   if (self->guiContext) {
@@ -49,7 +62,7 @@ static void Scene4_visit(Scene4* self) {
   }
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Scene4, Scene, &Scene4_visit, &Scene4_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Scene4, Scene, &Scene4_visit, &Scene4_construct, NULL, &Scene4_constructClass)
 
 static void Scene4_onStartup(Scene4* scene) {
   //
@@ -163,7 +176,6 @@ static void Scene4_constructClass(Scene4_Class* self) {
 
 void Scene4_construct(Scene4* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Scene_construct((Scene*)self, numberOfArguments, arguments);
-  Scene4_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Scene4_getClassType());
 }
 

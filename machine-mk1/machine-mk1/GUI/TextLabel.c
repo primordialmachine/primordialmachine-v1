@@ -15,8 +15,12 @@
 
 
 
+struct Machine_GUI_TextLabel_Class {
+  Machine_GUI_Widget_Class __parent;
+};
+
 struct Machine_GUI_TextLabel {
-  Machine_GUI_Widget parent;
+  Machine_GUI_Widget __parent;
 
   /// @brief The layout for rendering the text.
   Machine_Text_Layout* foreground;
@@ -50,7 +54,7 @@ static Machine_Value boundsChangedCallback(size_t numberOfArguments, const Machi
 }
 
 static void Machine_GUI_TextLabel_constructClass(Machine_GUI_TextLabel_Class* self) {
-  ((Machine_GUI_Widget_Class*)self)->render = (void (*)(Machine_GUI_Widget*, Machine_Context2 *)) & Machine_GUI_TextLabel_render;
+  ((Machine_GUI_Widget_Class*)self)->render = (void (*)(Machine_GUI_Widget*, Machine_Context2*)) & Machine_GUI_TextLabel_render;
   ((Machine_GUI_Widget_Class*)self)->getPreferredSize = (const Machine_Math_Vector2 * (*)(const Machine_GUI_Widget*)) & Machine_GUI_TextLabel_getPreferredSize;
 }
 
@@ -63,11 +67,10 @@ void Machine_GUI_TextLabel_construct(Machine_GUI_TextLabel* self, size_t numberO
   self->childDirty = true;
   Machine_GUI_Widget_subscribe((Machine_GUI_Widget*)self, ((Machine_GUI_Widget*)self)->context->signalsContext->PositionChanged, (Machine_Object *)self, &boundsChangedCallback);
   Machine_GUI_Widget_subscribe((Machine_GUI_Widget*)self, ((Machine_GUI_Widget*)self)->context->signalsContext->SizeChanged, (Machine_Object*)self, &boundsChangedCallback);
-  Machine_GUI_TextLabel_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_GUI_TextLabel_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_GUI_TextLabel, Machine_GUI_Widget, &Machine_GUI_TextLabel_visit, &Machine_GUI_TextLabel_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_GUI_TextLabel, Machine_GUI_Widget, &Machine_GUI_TextLabel_visit, &Machine_GUI_TextLabel_construct, NULL, &Machine_GUI_TextLabel_constructClass)
 
 Machine_GUI_TextLabel* Machine_GUI_TextLabel_create(Machine_GUI_Context* context) {
   Machine_ClassType* ty = Machine_GUI_TextLabel_getClassType();

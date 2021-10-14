@@ -192,7 +192,7 @@ static void constructFromText(Machine_GL_ShaderProgram* self, const char* vertex
 static void Machine_GL_ShaderProgram_constructClass(Machine_GL_ShaderProgram_Class* self) {
   ((Machine_ShaderProgram_Class*)self)->getNumberOfInputs = (size_t(*)(Machine_ShaderProgram const*)) & Machine_GL_ShaderProgram_getNumberOfInputsImpl;
   ((Machine_ShaderProgram_Class*)self)->getInputAt = (Machine_ProgramInput * (*)(Machine_ShaderProgram const*, size_t)) & Machine_GL_ShaderProgram_getInputAtImpl;
-  ((Machine_ShaderProgram_Class*)self)->addUpdateInput = (Machine_Boolean (*)(Machine_ShaderProgram*, Machine_String*, Machine_ProgramInputType, Machine_ProgramInputKind)) & Machine_GL_ShaderProgram_addUpdateInputImpl;
+  ((Machine_ShaderProgram_Class*)self)->addUpdateInput = (Machine_Boolean(*)(Machine_ShaderProgram*, Machine_String*, Machine_ProgramInputType, Machine_ProgramInputKind)) & Machine_GL_ShaderProgram_addUpdateInputImpl;
 }
 
 void Machine_GL_ShaderProgram_construct(Machine_GL_ShaderProgram* self, size_t numberOfArguments, const Machine_Value* arguments) {
@@ -214,11 +214,10 @@ void Machine_GL_ShaderProgram_construct(Machine_GL_ShaderProgram* self, size_t n
   constructFromText(self, v ? Machine_String_getBytes(v) : NULL,
                           g ? Machine_String_getBytes(g) : NULL,
                           f ? Machine_String_getBytes(f) : NULL);
-  Machine_GL_ShaderProgram_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_GL_ShaderProgram_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_GL_ShaderProgram, Machine_ShaderProgram, Machine_GL_ShaderProgram_visit, Machine_GL_ShaderProgram_construct, Machine_GL_ShaderProgram_destruct)
+MACHINE_DEFINE_CLASSTYPE(Machine_GL_ShaderProgram, Machine_ShaderProgram, Machine_GL_ShaderProgram_visit, Machine_GL_ShaderProgram_construct, Machine_GL_ShaderProgram_destruct, &Machine_GL_ShaderProgram_constructClass)
 
 Machine_GL_ShaderProgram* Machine_GL_ShaderProgram_create(Machine_String* vertexProgramText, Machine_String* geometryProgramText, Machine_String* fragmentProgramText) {
   Machine_ClassType* ty = Machine_GL_ShaderProgram_getClassType();

@@ -17,16 +17,15 @@ static Machine_Images_Image* createDirect(Machine_Images_ImagesContext* self, Ma
   return Machine_Images_Image_createImageDirect(pixelFormat, width, height, pixels);
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_Images_ImagesContext, Machine_ImagesContext, NULL, &Machine_Images_ImagesContext_construct, NULL);
-
 static void constructClass(Machine_Images_ImagesContext_Class* self) {
-  ((Machine_ImagesContext_Class*)self)->createDirect = (Machine_Image * (*)(Machine_ImagesContext *, Machine_PixelFormat, Machine_Integer, Machine_Integer, Machine_ByteBuffer *)) & createDirect;
-  ((Machine_ImagesContext_Class*)self)->createFromPath = (Machine_Image * (*)(Machine_ImagesContext *, Machine_String*)) & createFromPath;
+  ((Machine_ImagesContext_Class*)self)->createDirect = (Machine_Image * (*)(Machine_ImagesContext*, Machine_PixelFormat, Machine_Integer, Machine_Integer, Machine_ByteBuffer*)) & createDirect;
+  ((Machine_ImagesContext_Class*)self)->createFromPath = (Machine_Image * (*)(Machine_ImagesContext*, Machine_String*)) & createFromPath;
 }
+
+MACHINE_DEFINE_CLASSTYPE(Machine_Images_ImagesContext, Machine_ImagesContext, NULL, &Machine_Images_ImagesContext_construct, NULL, &constructClass);
 
 void Machine_Images_ImagesContext_construct(Machine_Images_ImagesContext* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_ImagesContext_construct((Machine_ImagesContext*)self, numberOfArguments, arguments);
-  constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_Images_ImagesContext_getClassType());
 }
 

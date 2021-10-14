@@ -16,16 +16,20 @@
 
 MACHINE_DECLARE_CLASSTYPE(Machine_VideoBuffer)
 
-struct Machine_VideoBuffer {
-  Machine_Object __parent;
-  
-  size_t n;
-  void* p;
+struct Machine_VideoBuffer_Class {
+  Machine_Object_Class parent;
 
   void (*setData)(Machine_VideoBuffer* self, size_t n, const void* p);
   const void* (*getData)(const Machine_VideoBuffer* self);
-  size_t (*getSize)(const Machine_VideoBuffer* self);
+  size_t(*getSize)(const Machine_VideoBuffer* self);
   const void* (*getId)(const Machine_VideoBuffer* self);
+};
+
+struct Machine_VideoBuffer {
+  Machine_Object parent;
+  
+  size_t n;
+  void* p;
 };
 
 void Machine_VideoBuffer_construct(Machine_VideoBuffer* self, size_t numberOfArguments, const Machine_Value* arguments);

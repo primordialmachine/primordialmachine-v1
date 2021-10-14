@@ -10,9 +10,12 @@
 /// @brief Border attributes.
 MACHINE_DECLARE_CLASSTYPE(Machine_GUI_BorderModel)
 
-struct Machine_GUI_BorderModel {
+struct Machine_GUI_BorderModel_Class {
+  Machine_Object_Class __parent;
+};
 
-  Machine_Object parent;
+struct Machine_GUI_BorderModel {
+  Machine_Object __parent;
   
   /// @brief The color of the border.
   Machine_Math_Vector4* color;

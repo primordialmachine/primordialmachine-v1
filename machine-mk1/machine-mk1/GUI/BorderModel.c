@@ -9,7 +9,7 @@ static void Machine_GUI_BorderModel_visit(Machine_GUI_BorderModel* self) {
   }
 }
 
-static void Machine_GUI_BorderModel_constructClass(Machine_GUI_BorderModel_Class *self)
+static void Machine_GUI_BorderModel_constructClass(Machine_GUI_BorderModel_Class* self)
 {/*Intentionally empty.*/}
 
 void Machine_GUI_BorderModel_construct(Machine_GUI_BorderModel* self, size_t numberOfArguments, const Machine_Value* arguments) {
@@ -20,11 +20,10 @@ void Machine_GUI_BorderModel_construct(Machine_GUI_BorderModel* self, size_t num
   self->bottomWidth = 1.f;
   self->color = Machine_Math_Vector4_create();
   Machine_Math_Vector4_set(self->color, 0.1f, 0.1f, 0.1f, 1.f);
-  Machine_GUI_BorderModel_constructClass(self);
   Machine_setClassType((Machine_Object *)self, Machine_GUI_BorderModel_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_GUI_BorderModel, Machine_Object, &Machine_GUI_BorderModel_visit, &Machine_GUI_BorderModel_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_GUI_BorderModel, Machine_Object, &Machine_GUI_BorderModel_visit, &Machine_GUI_BorderModel_construct, NULL, &Machine_GUI_BorderModel_constructClass)
 
 Machine_GUI_BorderModel* Machine_GUI_BorderModel_create() {
   Machine_ClassType* ty = Machine_GUI_BorderModel_getClassType();

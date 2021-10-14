@@ -10,10 +10,13 @@ static void onMousePointerEvent(Scene* self, Machine_MousePointerEvent *event);
 
 static void onMouseButtonEvent(Scene* self, Machine_MouseButtonEvent *event);
 
-void Scene_construct(Scene* self, size_t numberOfArguments, const Machine_Value *arguments) {
-  Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
+static void Scene_constructClass(Scene_Class* self) {
   self->onMouseButtonEvent = &onMouseButtonEvent;
   self->onMousePointerEvent = &onMousePointerEvent;
+}
+
+void Scene_construct(Scene* self, size_t numberOfArguments, const Machine_Value *arguments) {
+  Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   Machine_setClassType((Machine_Object*)self, Scene_getClassType());
 }
 
@@ -23,7 +26,7 @@ static void Scene_destruct(Scene* self)
 static void Scene_visit(Scene* self)
 {/*Intentionally empty.*/}
 
-MACHINE_DEFINE_CLASSTYPE_EX(Scene, Machine_Object, &Scene_visit, &Scene_construct, &Scene_destruct)
+MACHINE_DEFINE_CLASSTYPE(Scene, Machine_Object, &Scene_visit, &Scene_construct, &Scene_destruct, &Scene_constructClass)
 
 static void onMousePointerEvent(Scene* self, Machine_MousePointerEvent *event)
 {/*Intentionally empty.*/}

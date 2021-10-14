@@ -10,8 +10,13 @@
 
 MACHINE_DECLARE_CLASSTYPE(Machine_GL_Binding)
 
+struct Machine_GL_Binding_Class {
+  Machine_Binding_Class __parent;
+};
+
 struct Machine_GL_Binding {
-  Machine_Binding parent;
+  Machine_Binding __parent;
+
   GLuint id;
 };
 

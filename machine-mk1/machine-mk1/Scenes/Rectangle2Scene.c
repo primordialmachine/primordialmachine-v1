@@ -14,6 +14,10 @@ static void Rectangle2Scene_visit(Rectangle2Scene* self);
 
 static void Rectangle2Scene_constructClass(Rectangle2Scene_Class* self);
 
+struct Rectangle2Scene_Class {
+  Scene_Class parent;
+};
+
 struct Rectangle2Scene {
   Scene parent;
   
@@ -34,7 +38,7 @@ static void Rectangle2Scene_visit(Rectangle2Scene* self) {
   }
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Rectangle2Scene, Scene, &Rectangle2Scene_visit, &Rectangle2Scene_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Rectangle2Scene, Scene, &Rectangle2Scene_visit, &Rectangle2Scene_construct, NULL, &Rectangle2Scene_constructClass)
 
 static void Rectangle2Scene_onStartup(Rectangle2Scene* scene) {
   // Create the 2D context.
@@ -84,7 +88,6 @@ static void Rectangle2Scene_constructClass(Rectangle2Scene_Class* self) {
 
 void Rectangle2Scene_construct(Rectangle2Scene* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Scene_construct((Scene*)self, numberOfArguments, arguments);
-  Rectangle2Scene_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Rectangle2Scene_getClassType());
 }
 

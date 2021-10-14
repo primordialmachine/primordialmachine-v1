@@ -27,7 +27,7 @@ static void Machine_GDL_Context_construct(Machine_GDL_Context* self, size_t numb
   Machine_setClassType((Machine_Object*)self, Machine_GDL_Context_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_GDL_Context, Machine_Object, &Machine_GDL_Context_visit, &Machine_GDL_Context_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_GDL_Context, Machine_Object, &Machine_GDL_Context_visit, &Machine_GDL_Context_construct, NULL, NULL)
 
 Machine_GDL_Context* Machine_GDL_Context_create(Machine_String* inputName, Machine_ByteBuffer* inputBytes) {
   Machine_ClassType* ty = Machine_GDL_Context_getClassType();

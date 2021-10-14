@@ -18,14 +18,8 @@ typedef void Scene_OnMousePointerEventCallback(Scene* self, Machine_MousePointer
 
 typedef void Scene_OnMouseButtonEventCallback(Scene* self, Machine_MouseButtonEvent *event);
 
-/// The lifecycle of a scene
-/// (0) Scene object is created.
-/// (1) Call to "startup". If this call succeeds then proceed at (2). Otherwise proceed at (1) or at (4).
-/// (2) Possibly empty sequence of calls to "onCanvasSizeChanged", "onUpdate", "onRender".
-/// (3) Call to "shutdown". Either continue at (1) or (4).
-/// (4) Scene object is destroyed.
-struct Scene {
-  Machine_Object parent;
+struct Scene_Class {
+  Machine_Object_Class parent;
 
   Scene_OnCanvaSizeChangedCallback* onCanvasSizeChanged;
 
@@ -37,6 +31,16 @@ struct Scene {
   Scene_OnStartupCallback* onStartup;
 
   Scene_OnShutdownCallback* onShutdown;
+};
+
+/// The lifecycle of a scene
+/// (0) Scene object is created.
+/// (1) Call to "startup". If this call succeeds then proceed at (2). Otherwise proceed at (1) or at (4).
+/// (2) Possibly empty sequence of calls to "onCanvasSizeChanged", "onUpdate", "onRender".
+/// (3) Call to "shutdown". Either continue at (1) or (4).
+/// (4) Scene object is destroyed.
+struct Scene {
+  Machine_Object parent;
 };
 
 void Scene_construct(Scene* self, size_t numberOfArguments, const Machine_Value* arguments);

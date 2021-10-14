@@ -55,11 +55,10 @@ static void Machine_KeyboardKeyEvent_construct(Machine_KeyboardKeyEvent* self, s
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->key = Machine_Value_getInteger(&arguments[0]);
   self->keyAction = Machine_Value_getInteger(&arguments[1]);
-  Machine_KeyboardKeyEvent_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_KeyboardKeyEvent_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_KeyboardKeyEvent, Machine_Object, &Machine_KeyboardKeyEvent_visit, &Machine_KeyboardKeyEvent_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_KeyboardKeyEvent, Machine_Object, &Machine_KeyboardKeyEvent_visit, &Machine_KeyboardKeyEvent_construct, NULL, &Machine_KeyboardKeyEvent_constructClass)
 
 Machine_KeyboardKeyEvent* Machine_KeyboardKeyEvent_create(Machine_KeyboardKeys key, Machine_KeyboardKeyActions keyAction) {
   Machine_ClassType* ty = Machine_KeyboardKeyEvent_getClassType();

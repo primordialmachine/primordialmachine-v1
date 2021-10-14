@@ -24,8 +24,12 @@ typedef struct Machine_VideoBuffer Machine_VideoBuffer;
 /// A Machine_VideoBinding represents such a binding.
 MACHINE_DECLARE_CLASSTYPE(Machine_Binding_Node)
 
+struct Machine_Binding_Node_Class {
+  Machine_Object_Class parent;
+};
+
 struct Machine_Binding_Node {
-  Machine_Object __parent;
+  Machine_Object parent;
   Machine_Binding_Node* next;
   bool isVariable;
   Machine_String* name;
@@ -43,14 +47,9 @@ Machine_Binding_Node* Machine_Binding_Node_createConstant(Machine_String* name, 
 /// However EVERY shader program input needs to have a corresponding vertex element.
 MACHINE_DECLARE_CLASSTYPE(Machine_Binding)
 
-struct Machine_Binding {
-  Machine_Object parent;
-  Machine_Binding_Node* nodes;
-  Machine_ShaderProgram* program;
-  Machine_VertexDescriptor* vertexDescriptor;
-  Machine_VideoBuffer* buffer;
-  bool dirty;
-  Machine_Boolean (*setVariableBinding)(Machine_Binding* self, Machine_String* name, size_t index);
+struct Machine_Binding_Class {
+  Machine_Object_Class parent;
+  Machine_Boolean(*setVariableBinding)(Machine_Binding* self, Machine_String* name, size_t index);
   size_t(*getVariableBinding)(Machine_Binding const* self, Machine_String* name);
   void (*bindMatrix4)(Machine_Binding* self, Machine_String* name, Machine_Math_Matrix4 const* value);
   void (*bindVector2)(Machine_Binding* self, Machine_String* name, Machine_Math_Vector2 const* value);
@@ -58,6 +57,16 @@ struct Machine_Binding {
   void (*bindVector4)(Machine_Binding* self, Machine_String* name, Machine_Math_Vector4 const* value);
   void (*bindSampler)(Machine_Binding* self, Machine_String* name, size_t const value);
   void (*activate)(Machine_Binding* self);
+  void (*addUpdateConstant)(Machine_Binding* self, Machine_String* name, Machine_Value const* value);
+};
+
+struct Machine_Binding {
+  Machine_Object parent;
+  Machine_Binding_Node* nodes;
+  Machine_ShaderProgram* program;
+  Machine_VertexDescriptor* vertexDescriptor;
+  Machine_VideoBuffer* buffer;
+  bool dirty;
 };
 
 void Machine_Binding_construct(Machine_Binding* self, size_t numberOfArguments, Machine_Value const* arguments);
@@ -112,5 +121,7 @@ void Machine_Binding_bindVector4(Machine_Binding* self, Machine_String* name, Ma
 /// @param name The name of the constant.
 /// @param value The value.
 void Machine_Binding_bindSampler(Machine_Binding* self, Machine_String* name, size_t const value);
+
+void Machine_Binding_addUpdateConstant(Machine_Binding* self, Machine_String* name, Machine_Value const* value);
 
 #endif // MACHINE_VIDEO_BINDING_H_INCLUDED

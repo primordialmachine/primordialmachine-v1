@@ -12,6 +12,10 @@
 /// @extends Machine.Object
 MACHINE_DECLARE_CLASSTYPE(Machine_GUI_GDL_Context)
 
+struct Machine_GUI_GDL_Context_Class {
+  Machine_Object_Class parent;
+};
+
 struct Machine_GUI_GDL_Context {
   Machine_Object parent;
 

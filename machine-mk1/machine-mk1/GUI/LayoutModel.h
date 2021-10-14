@@ -45,6 +45,10 @@ typedef enum Machine_GUI_Layout_Direction {
 /// @brief Layout attributes.
 MACHINE_DECLARE_CLASSTYPE(Machine_GUI_LayoutModel)
 
+struct Machine_GUI_LayoutModel_Class {
+  Machine_Object_Class parent;
+};
+
 struct Machine_GUI_LayoutModel {
 
   Machine_Object parent;

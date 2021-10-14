@@ -16,11 +16,16 @@
 
 MACHINE_DECLARE_CLASSTYPE(Machine_Image);
 
-struct Machine_Image {
-  Machine_Object parent;
+struct Machine_Image_Class {
+  Machine_Object_Class parent;
+
   void const* (*getPixels)(Machine_Image const* self);
   void (*getSize)(Machine_Image const* self, Machine_Integer* width, Machine_Integer* height);
-  Machine_PixelFormat (*getPixelFormat)(Machine_Image const* self);
+  Machine_PixelFormat(*getPixelFormat)(Machine_Image const* self);
+};
+
+struct Machine_Image {
+  Machine_Object parent;
 };
 
 /// @brief Construct this image.

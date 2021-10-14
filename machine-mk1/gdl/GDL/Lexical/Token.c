@@ -17,7 +17,7 @@ static void Machine_GDL_Token_construct(Machine_GDL_Token* self, size_t numberOf
   Machine_setClassType((Machine_Object*)self, Machine_GDL_Token_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_GDL_Token, Machine_Object, &Machine_GDL_Token_visit, &Machine_GDL_Token_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_GDL_Token, Machine_Object, &Machine_GDL_Token_visit, &Machine_GDL_Token_construct, NULL, NULL)
 
 Machine_GDL_Token* Machine_GDL_Token_create(Machine_GDL_TokenKind kind, Machine_String* text, Machine_Integer offset) {
   Machine_ClassType* ty = Machine_GDL_Token_getClassType();

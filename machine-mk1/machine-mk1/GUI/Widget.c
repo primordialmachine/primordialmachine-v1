@@ -13,7 +13,7 @@ static void Machine_GUI_Widget_constructClass(Machine_GUI_Widget_Class* self);
 
 static void Machine_GUI_Widget_visit(Machine_GUI_Widget* self);
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_GUI_Widget, Machine_Object, &Machine_GUI_Widget_visit, &Machine_GUI_Widget_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_GUI_Widget, Machine_Object, &Machine_GUI_Widget_visit, &Machine_GUI_Widget_construct, NULL, &Machine_GUI_Widget_constructClass)
 
 static void Machine_GUI_Widget_visit(Machine_GUI_Widget *self) {
   if (self->parent) {
@@ -114,7 +114,6 @@ void Machine_GUI_Widget_construct(Machine_GUI_Widget* self, size_t numberOfArgum
   self->context = (Machine_GUI_Context*)Machine_Value_getObject(&arguments[0]);
   self->rectangle = Machine_Math_Rectangle2_create();
   self->parent = NULL;
-  Machine_GUI_Widget_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_GUI_Widget_getClassType());
 }
 
@@ -235,4 +234,3 @@ void Machine_GUI_Widget_emitSizeChangedSignal(Machine_GUI_Widget* self) {
   Machine_Value_setObject(&arguments[0], (Machine_Object*)self);
   Machine_GUI_Widget_emitSignal(self, signalsContext->SizeChanged, numberOfArguments, arguments);
 }
-

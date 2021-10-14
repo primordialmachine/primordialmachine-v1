@@ -15,8 +15,13 @@
 
 
 
+struct Machine_VertexDescriptor_Class {
+  Machine_Object_Class __parent;
+};
+
 struct Machine_VertexDescriptor {
-  Machine_Object parent;
+  Machine_Object __parent;
+
   size_t n;
   Machine_VertexElementSemantics* p;
 };
@@ -30,9 +35,9 @@ static void Machine_VertexDescriptor_construct(Machine_VertexDescriptor* self, s
 static void Machine_VertexDescriptor_destruct(Machine_VertexDescriptor* self);
 
 #if defined(TRACE_VISIT) && (1) == TRACE_VISIT
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_VertexDescriptor, Machine_Object, &Machine_VertexDescriptor_visit, &Machine_VertexDescriptor_construct, &Machine_VertexDescriptor_destruct)
+MACHINE_DEFINE_CLASSTYPE(Machine_VertexDescriptor, Machine_Object, &Machine_VertexDescriptor_visit, &Machine_VertexDescriptor_construct, &Machine_VertexDescriptor_destruct, NULL)
 #else
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_VertexDescriptor, Machine_Object, NULL, &Machine_VertexDescriptor_construct, &Machine_VertexDescriptor_destruct)
+MACHINE_DEFINE_CLASSTYPE(Machine_VertexDescriptor, Machine_Object, NULL, &Machine_VertexDescriptor_construct, &Machine_VertexDescriptor_destruct, NULL)
 #endif
 
 #if defined(TRACE_VISIT) && (1) == TRACE_VISIT

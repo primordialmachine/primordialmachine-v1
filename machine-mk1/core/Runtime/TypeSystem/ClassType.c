@@ -7,6 +7,8 @@
 
 
 #include "Machine.h"
+#include <malloc.h>
+#include <string.h>
 
 
 
@@ -20,25 +22,70 @@ static void Machine_ClassType_finalize(Machine_ClassType* self) {
   if (self->parent) {
     Machine_unlock(self->parent);
   }
+  if (self->data) {
+    free(self->data);
+    self->data = NULL;
+  }
   if (self->typeRemoved) {
     self->typeRemoved();
   }
 }
 
-Machine_ClassType* Machine_createClassType(Machine_ClassType* parent, size_t size, Machine_ClassTypeRemovedCallback* typeRemoved, Machine_ClassObjectVisitCallback* visit, Machine_ClassObjectConstructCallback* construct, Machine_ClassObjectDestructCallback* destruct) {
-  Machine_ClassType* classType = Machine_allocate(sizeof(Machine_ClassType), (Machine_VisitCallback*)&Machine_ClassType_visit, (Machine_FinalizeCallback*)&Machine_ClassType_finalize);
+Machine_ClassType* Machine_createClassType(Machine_CreateClassTypeArgs* args) {
+  Machine_ClassType* classType = Machine_allocate(sizeof(Machine_ClassType),
+                                                  (Machine_VisitCallback*)&Machine_ClassType_visit,
+                                                  (Machine_FinalizeCallback*)&Machine_ClassType_finalize);
   if (!classType) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
-  classType->size = size;
-  classType->typeRemoved = typeRemoved;
-  classType->visit = visit;
-  classType->construct = construct;
-  classType->destruct = destruct;
-  classType->parent = parent;
-  if (parent) {
+  if (args->parent) {
+    if (args->parent->size > args->size) {
+      Machine_setStatus(Machine_Status_InvalidArgument);
+      Machine_jump();
+    }
+  }
+  if (args->parent) {
+    if (args->parent->classSize > args->classSize) {
+      Machine_setStatus(Machine_Status_InvalidArgument);
+      Machine_jump();
+    }
+  }
+
+  classType->size = args->size;
+  classType->typeRemoved = args->typeRemoved;
+  classType->visit = args->visit;
+  classType->construct = args->construct;
+  classType->destruct = args->destruct;
+  classType->parent = args->parent;
+  classType->classSize = args->classSize;
+  classType->constructClass = args->constructClass;
+
+  classType->data = malloc(classType->classSize > 0 ? classType->classSize : 1);
+  if (!classType->data) {
+    Machine_setStatus(Machine_Status_AllocationFailed);
+    Machine_jump();
+  }
+  memset(classType->data, 0, classType->classSize);
+  if (args->parent) {
+    memcpy(classType->data, args->parent->data, args->parent->classSize);
+  }
+  if (args->constructClass) {
+    args->constructClass(classType->data);
+  }
+  if (args->parent) {
     Machine_lock(classType->parent);
   }
   return classType;
+}
+
+bool Machine_isSubTypeOf(Machine_ClassType const* subType, Machine_ClassType const* superType) {
+  Machine_ClassType const* currentType = subType;
+  while (currentType != NULL) {
+    if (currentType == superType) {
+      return true;
+    }
+    currentType = currentType->parent;
+  }
+  return false;
 }

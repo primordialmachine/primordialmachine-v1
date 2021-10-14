@@ -13,6 +13,10 @@
 /// @endcode
 MACHINE_DECLARE_CLASSTYPE(Machine_Math_Matrix4)
 
+struct Machine_Math_Matrix4_Class {
+  Machine_Object_Class parent;
+};
+
 struct Machine_Math_Matrix4 {
   Machine_Object parent;
   float e[4][4];

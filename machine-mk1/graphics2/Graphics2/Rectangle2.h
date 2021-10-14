@@ -20,6 +20,10 @@
 /// @extends Machine_Shape2
 MACHINE_DECLARE_CLASSTYPE(Machine_Rectangle2);
 
+struct Machine_Rectangle2_Class {
+  Machine_Shape2_Class __parent;
+};
+
 struct Machine_Rectangle2 {
   Machine_Shape2 __parent;
   Machine_Math_Vector2* position;

@@ -16,10 +16,14 @@ typedef struct Machine_Image Machine_Image;
 
 MACHINE_DECLARE_CLASSTYPE(Machine_ImagesContext);
 
-struct Machine_ImagesContext {
-  Machine_Object parent;
+struct Machine_ImagesContext_Class {
+  Machine_Object_Class parent;
   Machine_Image* (*createFromPath)(Machine_ImagesContext* self, Machine_String* path);
   Machine_Image* (*createDirect)(Machine_ImagesContext* self, Machine_PixelFormat pixelFormat, Machine_Integer width, Machine_Integer height, Machine_ByteBuffer* pixels);
+};
+
+struct Machine_ImagesContext {
+  Machine_Object parent;
 };
 
 /// @brief Construct this images context.

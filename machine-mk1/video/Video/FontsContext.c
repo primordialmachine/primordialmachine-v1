@@ -5,7 +5,7 @@
 #include "./../Video/FontsContext.h"
 
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_FontsContext, Machine_Object, NULL, &Machine_FontsContext_construct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_FontsContext, Machine_Object, NULL, &Machine_FontsContext_construct, NULL, NULL)
 
 void Machine_FontsContext_construct(Machine_FontsContext* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);

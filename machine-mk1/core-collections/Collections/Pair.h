@@ -17,6 +17,10 @@
 /// @brief A pair.
 MACHINE_DECLARE_CLASSTYPE(Machine_Pair)
 
+struct Machine_Pair_Class {
+  Machine_Object_Class parent;
+};
+
 struct Machine_Pair {
   Machine_Object parent;
   Machine_Value first;

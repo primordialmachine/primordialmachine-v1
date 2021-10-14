@@ -303,51 +303,50 @@ static void write(Machine_GL_VideoContext const* self) {
 static void Machine_GL_VideoContext_constructClass(Machine_GL_VideoContext_Class* self) {
   self->write = &write;
 
-  ((Machine_VideoContext*)self)->setDepthTestFunction = (void (*)(Machine_VideoContext *, Machine_DepthTestFunction))&setDepthTestFunction;
-  ((Machine_VideoContext*)self)->getDepthTestFunction = (Machine_DepthTestFunction(*)(Machine_VideoContext const*)) &getDepthTestFunction;
+  ((Machine_VideoContext_Class*)self)->setDepthTestFunction = (void (*)(Machine_VideoContext*, Machine_DepthTestFunction)) & setDepthTestFunction;
+  ((Machine_VideoContext_Class*)self)->getDepthTestFunction = (Machine_DepthTestFunction(*)(Machine_VideoContext const*)) & getDepthTestFunction;
 
-  ((Machine_VideoContext*)self)->setDepthWriteEnabled = (void (*)(Machine_VideoContext *, Machine_Boolean)) &setDepthWriteEnabled;
-  ((Machine_VideoContext*)self)->getDepthWriteEnabled = (Machine_Boolean (*)(Machine_VideoContext const *))&getDepthWriteEnabled;
+  ((Machine_VideoContext_Class*)self)->setDepthWriteEnabled = (void (*)(Machine_VideoContext*, Machine_Boolean)) & setDepthWriteEnabled;
+  ((Machine_VideoContext_Class*)self)->getDepthWriteEnabled = (Machine_Boolean(*)(Machine_VideoContext const*)) & getDepthWriteEnabled;
 
-  ((Machine_VideoContext*)self)->setClearDepth = (void (*)(Machine_VideoContext *, Machine_Real)) &setClearDepth;
-  ((Machine_VideoContext*)self)->getClearDepth = (Machine_Real (*)(Machine_VideoContext const*)) &getClearDepth;
+  ((Machine_VideoContext_Class*)self)->setClearDepth = (void (*)(Machine_VideoContext*, Machine_Real)) & setClearDepth;
+  ((Machine_VideoContext_Class*)self)->getClearDepth = (Machine_Real(*)(Machine_VideoContext const*)) & getClearDepth;
 
-  ((Machine_VideoContext*)self)->getMaximalClipDistanceCount = (Machine_Integer(*)(Machine_VideoContext const*)) & getMaximalClipDistanceCount;
-  ((Machine_VideoContext*)self)->setClipDistanceEnabled = (void (*)(Machine_VideoContext*, Machine_Integer index, Machine_Boolean)) & setClipDistanceEnabled;
-  ((Machine_VideoContext*)self)->getClipDistanceEnabled = (Machine_Boolean (*)(Machine_VideoContext const*, Machine_Integer index)) & getClipDistanceEnabled;
+  ((Machine_VideoContext_Class*)self)->getMaximalClipDistanceCount = (Machine_Integer(*)(Machine_VideoContext const*)) & getMaximalClipDistanceCount;
+  ((Machine_VideoContext_Class*)self)->setClipDistanceEnabled = (void (*)(Machine_VideoContext*, Machine_Integer index, Machine_Boolean)) & setClipDistanceEnabled;
+  ((Machine_VideoContext_Class*)self)->getClipDistanceEnabled = (Machine_Boolean(*)(Machine_VideoContext const*, Machine_Integer index)) & getClipDistanceEnabled;
 
-  ((Machine_VideoContext*)self)->setIncomingBlendFunction = (void (*)(Machine_VideoContext *, Machine_BlendFunction))&setIncomingBlendFunction;
-  ((Machine_VideoContext*)self)->getIncomingBlendFunction = (Machine_BlendFunction (*)(Machine_VideoContext const *))&getIncomingBlendFunction;
+  ((Machine_VideoContext_Class*)self)->setIncomingBlendFunction = (void (*)(Machine_VideoContext*, Machine_BlendFunction)) & setIncomingBlendFunction;
+  ((Machine_VideoContext_Class*)self)->getIncomingBlendFunction = (Machine_BlendFunction(*)(Machine_VideoContext const*)) & getIncomingBlendFunction;
 
-  ((Machine_VideoContext*)self)->setExistingBlendFunction = (void (*)(Machine_VideoContext*, Machine_BlendFunction)) &setExistingBlendFunction;
-  ((Machine_VideoContext*)self)->getExistingBlendFunction = (Machine_BlendFunction(*)(Machine_VideoContext const*)) &getExistingBlendFunction;
+  ((Machine_VideoContext_Class*)self)->setExistingBlendFunction = (void (*)(Machine_VideoContext*, Machine_BlendFunction)) & setExistingBlendFunction;
+  ((Machine_VideoContext_Class*)self)->getExistingBlendFunction = (Machine_BlendFunction(*)(Machine_VideoContext const*)) & getExistingBlendFunction;
 
-  ((Machine_VideoContext*)self)->setClearColor = (void (*)(Machine_VideoContext*, Machine_Math_Vector4 const*)) & setClearColor;
-  ((Machine_VideoContext*)self)->getClearColor = (Machine_Math_Vector4 const* (*)(Machine_VideoContext const*)) & getClearColor;
+  ((Machine_VideoContext_Class*)self)->setClearColor = (void (*)(Machine_VideoContext*, Machine_Math_Vector4 const*)) & setClearColor;
+  ((Machine_VideoContext_Class*)self)->getClearColor = (Machine_Math_Vector4 const* (*)(Machine_VideoContext const*)) & getClearColor;
 
-  ((Machine_VideoContext*)self)->setViewportRectangle = (void (*)(Machine_VideoContext*, Machine_Real, Machine_Real, Machine_Real, Machine_Real)) & setViewportRectangle;
-  ((Machine_VideoContext*)self)->getViewportRectangle = (void (*)(Machine_VideoContext const*, Machine_Real*, Machine_Real*, Machine_Real*, Machine_Real*)) & getViewportRectangle;
+  ((Machine_VideoContext_Class*)self)->setViewportRectangle = (void (*)(Machine_VideoContext*, Machine_Real, Machine_Real, Machine_Real, Machine_Real)) & setViewportRectangle;
+  ((Machine_VideoContext_Class*)self)->getViewportRectangle = (void (*)(Machine_VideoContext const*, Machine_Real*, Machine_Real*, Machine_Real*, Machine_Real*)) & getViewportRectangle;
 
-  ((Machine_VideoContext*)self)->drawDirect = (void (*)(Machine_VideoContext*, Machine_Integer, Machine_Integer)) & drawDirect;
-  ((Machine_VideoContext*)self)->drawIndirect = (void (*)(Machine_VideoContext*, Machine_Integer, Machine_Integer, uint8_t const*)) & drawIndirect;
+  ((Machine_VideoContext_Class*)self)->drawDirect = (void (*)(Machine_VideoContext*, Machine_Integer, Machine_Integer)) & drawDirect;
+  ((Machine_VideoContext_Class*)self)->drawIndirect = (void (*)(Machine_VideoContext*, Machine_Integer, Machine_Integer, uint8_t const*)) & drawIndirect;
 
-  ((Machine_VideoContext*)self)->clearColorBuffer = (void (*)(Machine_VideoContext*)) & clearColorBuffer;
-  ((Machine_VideoContext*)self)->clearDepthBuffer = (void (*)(Machine_VideoContext*)) & clearDepthBuffer;
+  ((Machine_VideoContext_Class*)self)->clearColorBuffer = (void (*)(Machine_VideoContext*)) & clearColorBuffer;
+  ((Machine_VideoContext_Class*)self)->clearDepthBuffer = (void (*)(Machine_VideoContext*)) & clearDepthBuffer;
 
-  ((Machine_VideoContext*)self)->createBuffer = (Machine_VideoBuffer * (*)(Machine_VideoContext*)) & createBuffer;
-  ((Machine_VideoContext*)self)->createTextureFromImage = (Machine_Texture * (*)(Machine_VideoContext*, Machine_Image*)) & createTextureFromImage;
-  ((Machine_VideoContext*)self)->createProgram = (Machine_ShaderProgram * (*)(Machine_VideoContext*, Machine_String*, Machine_String*, Machine_String*)) & createProgram;
-  ((Machine_VideoContext*)self)->createBinding = (Machine_Binding * (*)(Machine_VideoContext*, Machine_ShaderProgram*, Machine_VertexDescriptor*, Machine_VideoBuffer*)) & createBinding;
+  ((Machine_VideoContext_Class*)self)->createBuffer = (Machine_VideoBuffer * (*)(Machine_VideoContext*)) & createBuffer;
+  ((Machine_VideoContext_Class*)self)->createTextureFromImage = (Machine_Texture * (*)(Machine_VideoContext*, Machine_Image*)) & createTextureFromImage;
+  ((Machine_VideoContext_Class*)self)->createProgram = (Machine_ShaderProgram * (*)(Machine_VideoContext*, Machine_String*, Machine_String*, Machine_String*)) & createProgram;
+  ((Machine_VideoContext_Class*)self)->createBinding = (Machine_Binding * (*)(Machine_VideoContext*, Machine_ShaderProgram*, Machine_VertexDescriptor*, Machine_VideoBuffer*)) & createBinding;
 
-  ((Machine_VideoContext*)self)->bindTexture = (void (*)(Machine_VideoContext*, size_t, Machine_Texture*)) & bindTexture;
+  ((Machine_VideoContext_Class*)self)->bindTexture = (void (*)(Machine_VideoContext*, size_t, Machine_Texture*)) & bindTexture;
 
-  ((Machine_VideoContext*)self)->generateDefaultShader = (Machine_ShaderProgram * (*)(Machine_VideoContext*, Machine_Boolean, Machine_Boolean, Machine_Boolean, Machine_Boolean)) & generateDefaultShader;
-  ((Machine_VideoContext*)self)->generateShape2Shader = (Machine_ShaderProgram * (*)(Machine_VideoContext*)) & generateShape2Shader;
-  ((Machine_VideoContext*)self)->generateText2Shader = (Machine_ShaderProgram * (*)(Machine_VideoContext*, Machine_Boolean)) & generateText2Shader;
-
+  ((Machine_VideoContext_Class*)self)->generateDefaultShader = (Machine_ShaderProgram * (*)(Machine_VideoContext*, Machine_Boolean, Machine_Boolean, Machine_Boolean, Machine_Boolean)) & generateDefaultShader;
+  ((Machine_VideoContext_Class*)self)->generateShape2Shader = (Machine_ShaderProgram * (*)(Machine_VideoContext*)) & generateShape2Shader;
+  ((Machine_VideoContext_Class*)self)->generateText2Shader = (Machine_ShaderProgram * (*)(Machine_VideoContext*, Machine_Boolean)) & generateText2Shader;
 }
 
-MACHINE_DEFINE_CLASSTYPE_EX(Machine_GL_VideoContext, Machine_VideoContext, &Machine_GL_VideoContext_visit, &Machine_GL_VideoContext_construct, &Machine_GL_VideoContext_destruct)
+MACHINE_DEFINE_CLASSTYPE(Machine_GL_VideoContext, Machine_VideoContext, &Machine_GL_VideoContext_visit, &Machine_GL_VideoContext_construct, &Machine_GL_VideoContext_destruct, &Machine_GL_VideoContext_constructClass)
 
 void Machine_GL_VideoContext_construct(Machine_GL_VideoContext* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_VideoContext_construct((Machine_VideoContext*)self, numberOfArguments, arguments);
@@ -395,7 +394,6 @@ void Machine_GL_VideoContext_construct(Machine_GL_VideoContext* self, size_t num
       self->clipDistances->a[i].enabled = false;
     }
   }
-  Machine_GL_VideoContext_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_GL_VideoContext_getClassType());
 }
 
