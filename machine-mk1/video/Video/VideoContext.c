@@ -17,6 +17,7 @@ static void Machine_VideoContext_constructClass(Machine_VideoContext_Class *self
 
 void Machine_VideoContext_construct(Machine_VideoContext* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
+  Machine_VideoContext_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_VideoContext_getClassType());
 }
 

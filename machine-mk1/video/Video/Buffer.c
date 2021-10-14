@@ -18,15 +18,20 @@ static void Machine_VideoBuffer_destruct(Machine_VideoBuffer* self) {
   }
 }
 
-static const void* Machine_VideoBuffer_getDataImpl(const Machine_VideoBuffer* self) {
+static const void* Machine_VideoBuffer_getDataImpl(Machine_VideoBuffer const* self) {
   return self->p;
 }
 
-static size_t Machine_VideoBuffer_getSizeImpl(const Machine_VideoBuffer* self) {
+static size_t Machine_VideoBuffer_getSizeImpl(Machine_VideoBuffer const* self) {
   return self->n;
 }
 
-void Machine_VideoBuffer_construct(Machine_VideoBuffer* self, size_t numberOfArguments, const Machine_Value* arguments) {
+static void Machine_VideoBuffer_constructClass(Machine_VideoBuffer_Class* self) {
+  self->getData = &Machine_VideoBuffer_getDataImpl;
+  self->getSize = &Machine_VideoBuffer_getSizeImpl;
+}
+
+void Machine_VideoBuffer_construct(Machine_VideoBuffer* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
 
   self->p = malloc(1);
@@ -36,9 +41,7 @@ void Machine_VideoBuffer_construct(Machine_VideoBuffer* self, size_t numberOfArg
   }
   self->n = 0;
 
-  self->getData = &Machine_VideoBuffer_getDataImpl;
-  self->getSize = &Machine_VideoBuffer_getSizeImpl;
-
+  Machine_VideoBuffer_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_VideoBuffer_getClassType());
 }
 

@@ -14,7 +14,8 @@ static void Machine_GL_Binding_construct(Machine_GL_Binding* self, size_t number
 
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_GL_Binding, Machine_Binding, &Machine_GL_Binding_visit, &Machine_GL_Binding_construct, &Machine_GL_Binding_destruct)
 
-static void Machine_GL_Binding_visit(Machine_GL_Binding* self) {}
+static void Machine_GL_Binding_visit(Machine_GL_Binding* self)
+{/*Intentionally empty.*/}
 
 static void Machine_GL_Binding_destruct(Machine_GL_Binding* self) {
   if (self->id) {
@@ -217,17 +218,21 @@ static void Machine_Binding_activateImpl(Machine_GL_Binding* self) {
   // @todo: Update the constant variables.
 }
 
+static void Machine_GL_Binding_constructClass(Machine_GL_Binding_Class* self) {
+  ((Machine_Binding_Class*)self)->setVariableBinding = (Machine_Boolean(*)(Machine_Binding*, Machine_String*, size_t)) & Machine_Binding_setVariableBindingImpl;
+  ((Machine_Binding_Class*)self)->getVariableBinding = (size_t(*)(Machine_Binding const*, Machine_String*)) & Machine_Binding_getVariableBindingImpl;
+  ((Machine_Binding_Class*)self)->bindMatrix4 = (void (*)(Machine_Binding*, Machine_String*, Machine_Math_Matrix4 const*)) & Machine_Binding_bindMatrix4Impl;
+  ((Machine_Binding_Class*)self)->bindVector2 = (void (*)(Machine_Binding*, Machine_String*, Machine_Math_Vector2 const*)) & Machine_Binding_bindVector2Impl;
+  ((Machine_Binding_Class*)self)->bindVector3 = (void (*)(Machine_Binding*, Machine_String*, Machine_Math_Vector3 const*)) & Machine_Binding_bindVector3Impl;
+  ((Machine_Binding_Class*)self)->bindVector4 = (void (*)(Machine_Binding*, Machine_String*, Machine_Math_Vector4 const*)) & Machine_Binding_bindVector4Impl;
+  ((Machine_Binding_Class*)self)->bindSampler = (void (*)(Machine_Binding*, Machine_String*, size_t const)) & Machine_Binding_bindSamplerImpl;
+  ((Machine_Binding_Class*)self)->activate = (void (*)(Machine_Binding*)) & Machine_Binding_activateImpl;
+}
+
 static void Machine_GL_Binding_construct(Machine_GL_Binding* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Binding_construct((Machine_Binding*)self, numberOfArguments, arguments);
   self->id = 0;
-  ((Machine_Binding*)self)->setVariableBinding = (Machine_Boolean (*)(Machine_Binding *, Machine_String*, size_t))&Machine_Binding_setVariableBindingImpl;
-  ((Machine_Binding*)self)->getVariableBinding = (size_t (*)(Machine_Binding const*, Machine_String*)) &Machine_Binding_getVariableBindingImpl;
-  ((Machine_Binding*)self)->bindMatrix4 = (void (*)(Machine_Binding *, Machine_String *, Machine_Math_Matrix4 const *))&Machine_Binding_bindMatrix4Impl;
-  ((Machine_Binding*)self)->bindVector2 = (void (*)(Machine_Binding*, Machine_String*, Machine_Math_Vector2 const*)) &Machine_Binding_bindVector2Impl;
-  ((Machine_Binding*)self)->bindVector3 = (void (*)(Machine_Binding*, Machine_String*, Machine_Math_Vector3 const*)) &Machine_Binding_bindVector3Impl;
-  ((Machine_Binding*)self)->bindVector4 = (void (*)(Machine_Binding*, Machine_String*, Machine_Math_Vector4 const*)) &Machine_Binding_bindVector4Impl;
-  ((Machine_Binding*)self)->bindSampler = (void (*)(Machine_Binding*, Machine_String*, size_t const)) &Machine_Binding_bindSamplerImpl;
-  ((Machine_Binding*)self)->activate = (void (*)(Machine_Binding*)) &Machine_Binding_activateImpl;
+  Machine_GL_Binding_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_GL_Binding_getClassType());
 }
 

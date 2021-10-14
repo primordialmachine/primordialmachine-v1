@@ -7,6 +7,8 @@
 
 
 
+static void Machine_GL_VideoBuffer_constructClass(Machine_GL_VideoBuffer_Class* self);
+
 static void Machine_GL_VideoBuffer_destruct(Machine_GL_VideoBuffer* self) {
   if (self->id) {
     glDeleteBuffers(1, &self->id);
@@ -30,8 +32,13 @@ static void Machine_GL_VideoBuffer_setDataImpl(Machine_GL_VideoBuffer* self, siz
   glBufferData(GL_ARRAY_BUFFER, ((Machine_VideoBuffer*)self)->n * sizeof(uint8_t), ((Machine_VideoBuffer*)self)->p, GL_STATIC_DRAW);
 }
 
-void const* Machine_GL_VideoBuffer_getIdImpl(Machine_GL_VideoBuffer const* self) {
+static void const* Machine_GL_VideoBuffer_getIdImpl(Machine_GL_VideoBuffer const* self) {
   return &(self->id);
+}
+
+static void Machine_GL_VideoBuffer_constructClass(Machine_GL_VideoBuffer_Class* self) {
+  ((Machine_VideoBuffer_Class*)self)->setData = (void (*)(Machine_VideoBuffer*, size_t, void const*)) & Machine_GL_VideoBuffer_setDataImpl;
+  ((Machine_VideoBuffer_Class*)self)->getId = (void* (*)(const Machine_VideoBuffer*)) & Machine_GL_VideoBuffer_getIdImpl;
 }
 
 void Machine_GL_VideoBuffer_construct(Machine_GL_VideoBuffer* self, size_t numberOfArguments, const Machine_Value* arguments) {
@@ -39,8 +46,7 @@ void Machine_GL_VideoBuffer_construct(Machine_GL_VideoBuffer* self, size_t numbe
   glGenBuffers(1, &self->id);
   glBindBuffer(GL_ARRAY_BUFFER, self->id);
   glBufferData(GL_ARRAY_BUFFER, 0 * sizeof(uint8_t), ((Machine_VideoBuffer *)self)->p, GL_STATIC_DRAW);
-  ((Machine_VideoBuffer *)self)->setData = (void (*)(Machine_VideoBuffer*, size_t, void const *))& Machine_GL_VideoBuffer_setDataImpl;
-  ((Machine_VideoBuffer *)self)->getId = (void *(*)(const Machine_VideoBuffer*)) & Machine_GL_VideoBuffer_getIdImpl;
+  Machine_GL_VideoBuffer_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Machine_GL_VideoBuffer_getClassType());
 }
 

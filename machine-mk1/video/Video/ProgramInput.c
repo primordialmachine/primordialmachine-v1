@@ -4,6 +4,8 @@
 #define MACHINE_VIDEO_PRIVATE (1)
 #include "./../Video/ProgramInput.h"
 
+
+
 static void Machine_ProgramInput_visit(Machine_ProgramInput* self) {
   if (self->name) {
     Machine_visit(self->name);
