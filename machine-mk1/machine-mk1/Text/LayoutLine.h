@@ -14,10 +14,10 @@ struct Machine_Text_LayoutLine {
   Machine_Object parent;
 
   /** @brief Index into Machine_Text_Layout::text. */
-  int start;
+  Machine_Integer start;
 
   /** @brief The length of the line. */
-  int length;
+  Machine_Integer length;
 
   /** @brief The position, in points, of this line. */
   float left;
@@ -33,7 +33,7 @@ struct Machine_Text_LayoutLine {
 
 };
 
-Machine_Text_LayoutLine* Machine_Text_LayoutLine_create(int start, int length);
+Machine_Text_LayoutLine* Machine_Text_LayoutLine_create(Machine_Integer start, Machine_Integer length);
 
 
 #endif // MACHINE_TEXT_LAYOUTLINE_H_INCLUDED

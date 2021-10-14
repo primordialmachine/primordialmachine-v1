@@ -11,7 +11,7 @@ void Machine_Text_LayoutLine_construct(Machine_Text_LayoutLine* self, size_t num
   Machine_setClassType((Machine_Object*)self, Machine_Text_LayoutLine_getClassType());
 }
 
-Machine_Text_LayoutLine* Machine_Text_LayoutLine_create(int start, int length) {
+Machine_Text_LayoutLine* Machine_Text_LayoutLine_create(Machine_Integer start, Machine_Integer length) {
   if (start < 0 || length < 0) {
     Machine_setStatus(Machine_Status_InvalidArgument);
     Machine_jump();
