@@ -9,6 +9,8 @@
 
 
 
+static void Machine_GUI_Widget_constructClass(Machine_GUI_Widget_Class* self);
+
 static void Machine_GUI_Widget_visit(Machine_GUI_Widget* self);
 
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_GUI_Widget, Machine_Object, &Machine_GUI_Widget_visit, &Machine_GUI_Widget_construct, NULL)

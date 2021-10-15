@@ -22,6 +22,8 @@ struct Machine_GUI_Border {
   Machine_Rectangle2* borderRectangle;
 };
 
+static void Machine_GUI_Border_constructClass(Machine_GUI_Border_Class* self);
+
 static void Machine_GUI_Border_visit(Machine_GUI_Border* self);
 
 static void Machine_GUI_Border_construct(Machine_GUI_Border* self, size_t numberOfArguments, const Machine_Value* arguments);
