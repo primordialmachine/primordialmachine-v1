@@ -154,12 +154,16 @@ static void Scene4_onShutdown(Scene4* self) {
   self->font = NULL;
 }
 
+static void Scene4_constructClass(Scene4_Class* self) {
+  ((Scene_Class*)self)->onCanvasSizeChanged = (Scene_OnCanvaSizeChangedCallback*)&Scene4_onCanvasSizeChanged;
+  ((Scene_Class*)self)->onStartup = (Scene_OnStartupCallback*)&Scene4_onStartup;
+  ((Scene_Class*)self)->onUpdate = (Scene_OnUpdateCallback*)&Scene4_onUpdate;
+  ((Scene_Class*)self)->onShutdown = (Scene_OnShutdownCallback*)&Scene4_onShutdown;
+}
+
 void Scene4_construct(Scene4* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Scene_construct((Scene*)self, numberOfArguments, arguments);
-  ((Scene*)self)->onCanvasSizeChanged = (Scene_OnCanvaSizeChangedCallback*)&Scene4_onCanvasSizeChanged;
-  ((Scene*)self)->onStartup = (Scene_OnStartupCallback*)&Scene4_onStartup;
-  ((Scene*)self)->onUpdate = (Scene_OnUpdateCallback*)&Scene4_onUpdate;
-  ((Scene*)self)->onShutdown = (Scene_OnShutdownCallback*)&Scene4_onShutdown;
+  Scene4_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Scene4_getClassType());
 }
 

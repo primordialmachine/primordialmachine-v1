@@ -98,12 +98,16 @@ static void Scene2_onShutdown(Scene2* scene) {
   scene->binding = NULL;
 }
 
-void Scene2_construct(Scene2* self, size_t numberOfArguments, const Machine_Value* arguments) {
-  Scene_construct((Scene*)self, numberOfArguments, arguments);
+static void Scene2_constructClass(Scene2_Class* self) {
   ((Scene*)self)->onCanvasSizeChanged = (Scene_OnCanvaSizeChangedCallback*)&Scene2_onCanvasSizeChanged;
   ((Scene*)self)->onStartup = (Scene_OnStartupCallback*)&Scene2_onStartup;
   ((Scene*)self)->onUpdate = (Scene_OnUpdateCallback*)&Scene2_onUpdate;
   ((Scene*)self)->onShutdown = (Scene_OnShutdownCallback*)&Scene2_onShutdown;
+}
+
+void Scene2_construct(Scene2* self, size_t numberOfArguments, const Machine_Value* arguments) {
+  Scene_construct((Scene*)self, numberOfArguments, arguments);
+  Scene2_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Scene2_getClassType());
 }
 

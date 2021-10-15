@@ -92,12 +92,16 @@ static void Scene1_onShutdown(Scene1* self) {
   self->binding = NULL;
 }
 
+static void Scene1_constructClass(Scene1_Class* self) {
+  ((Scene_Class*)self)->onCanvasSizeChanged = (Scene_OnCanvaSizeChangedCallback*)&Scene1_onCanvasSizeChanged;
+  ((Scene_Class*)self)->onStartup = (Scene_OnStartupCallback*)&Scene1_onStartup;
+  ((Scene_Class*)self)->onUpdate = (Scene_OnUpdateCallback*)&Scene1_onUpdate;
+  ((Scene_Class*)self)->onShutdown = (Scene_OnShutdownCallback*)&Scene1_onShutdown;
+}
+
 void Scene1_construct(Scene1* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Scene_construct((Scene*)self, numberOfArguments, arguments);
-  ((Scene*)self)->onCanvasSizeChanged = (Scene_OnCanvaSizeChangedCallback*)&Scene1_onCanvasSizeChanged;
-  ((Scene*)self)->onStartup = (Scene_OnStartupCallback*)&Scene1_onStartup;
-  ((Scene*)self)->onUpdate = (Scene_OnUpdateCallback*)&Scene1_onUpdate;
-  ((Scene*)self)->onShutdown = (Scene_OnShutdownCallback*)&Scene1_onShutdown;
+  Scene1_constructClass(self);
   Machine_setClassType((Machine_Object*)self, Scene1_getClassType());
 }
 
