@@ -8,6 +8,7 @@
 #include <malloc.h>
 #include <memory.h>
 
+static void Machine_Pair_constructClass(Machine_Pair_Class* self);
 
 MACHINE_DEFINE_CLASSTYPE_EX(Machine_Pair, Machine_Object, NULL, &Machine_Pair_construct, NULL)
 
