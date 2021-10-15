@@ -7,6 +7,8 @@
 
 
 
+static void constructClass(Machine_Images_ImagesContext_Class* self);
+
 static Machine_Images_Image* createFromPath(Machine_Images_ImagesContext* self, Machine_String* path) {
   return Machine_Images_Image_createImageFromPath(path);
 }
