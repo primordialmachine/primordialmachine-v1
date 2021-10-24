@@ -110,10 +110,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\external\glad\src\glad.c" />
+    <ClCompile Include="Video\GL\AMD\PowerExpress.i">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Video\GL\Binding.c" />
     <ClCompile Include="Video\GL\Buffer.c" />
     <ClCompile Include="Video\GL\Canvas.c" />
     <ClCompile Include="Video\GL\CanvasInput.c" />
+    <ClCompile Include="Video\GL\NVIDIA\Optimus.i">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Video\GL\ShaderProgram.c" />
     <ClCompile Include="Video\GL\Texture.c" />
     <ClCompile Include="Video\GL\UtilitiesGL.c" />

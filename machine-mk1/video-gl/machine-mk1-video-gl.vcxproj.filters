@@ -37,6 +37,12 @@
     <Filter Include="Headerdateien\external\glad">
       <UniqueIdentifier>{bd4d4141-3a93-4586-9675-9cd71f3f192c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Video\GL\AMD">
+      <UniqueIdentifier>{bd07962c-3fc6-4881-9628-709f4936bae2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Video\GL\NVIDIA">
+      <UniqueIdentifier>{e9d4c6c1-32f9-43a1-a81f-d92e40f8b982}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Video\GL\Binding.h">
@@ -100,6 +106,12 @@
     </ClCompile>
     <ClCompile Include="..\external\glad\src\glad.c">
       <Filter>Quelldateien\external\glad</Filter>
+    </ClCompile>
+    <ClCompile Include="Video\GL\NVIDIA\Optimus.i">
+      <Filter>Headerdateien\Video\GL\NVIDIA</Filter>
+    </ClCompile>
+    <ClCompile Include="Video\GL\AMD\PowerExpress.i">
+      <Filter>Headerdateien\Video\GL\AMD</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

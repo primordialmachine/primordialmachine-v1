@@ -6,6 +6,8 @@
 #include <malloc.h>
 
 
+#include "AMD/PowerExpress.i"
+#include "NVIDIA/Optimus.i"
 
 static size_t g_referenceCount = 0;
 static GLFWwindow* g_window = NULL;
@@ -40,6 +42,9 @@ void Machine_GLFW_startupCanvas() {
       Machine_setStatus(Machine_Status_EnvironmentFailed);
       Machine_jump();
     }
+
+    fprintf(stdout, "OpenGL vendor:   %s\n", glGetString(GL_VENDOR));
+    fprintf(stdout, "OpenGL renderer: %s\n", glGetString(GL_RENDERER));
   }
   g_referenceCount++;
 }
