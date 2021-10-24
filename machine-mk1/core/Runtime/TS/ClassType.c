@@ -1,8 +1,8 @@
-/// @file Runtime/TypeSystem/ClassType.c
+/// @file Runtime/TS/ClassType.c
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #define MACHINE_RUNTIME_PRIVATE (1)
-#include "Runtime/TypeSystem/ClassType.h"
+#include "Runtime/TS/ClassType.h"
 
 
 
@@ -26,8 +26,8 @@ static void Machine_ClassType_finalize(Machine_ClassType* self) {
     free(self->data);
     self->data = NULL;
   }
-  if (self->typeRemoved) {
-    self->typeRemoved();
+  if (((Machine_Type *)self)->typeRemoved) {
+    ((Machine_Type*)self)->typeRemoved();
   }
 }
 
@@ -52,8 +52,8 @@ Machine_ClassType* Machine_createClassType(Machine_CreateClassTypeArgs* args) {
     }
   }
 
+  ((Machine_Type*)classType)->typeRemoved = args->createTypeArgs.typeRemoved;
   classType->size = args->size;
-  classType->typeRemoved = args->typeRemoved;
   classType->visit = args->visit;
   classType->construct = args->construct;
   classType->destruct = args->destruct;

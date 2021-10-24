@@ -5,27 +5,17 @@
 #if !defined(MACHINE_RUNTIME_PRIMITIVETYPES_H_INCLUDED)
 #define MACHINE_RUNTIME_PRIMITIVETYPES_H_INCLUDED
 
+
+
 #if !defined(MACHINE_RUNTIME_PRIVATE)
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
 
-#include <stdbool.h>
-#include <stdint.h>
 
-#if defined(INLINE)
-#error('INLINE already defined')
-#endif
-#define INLINE static inline
 
-#if defined(NORETURN)
-#error('NORETURN already defined')
-#endif
-#define NORETURN __declspec(noreturn)
+#include "Runtime/C.h"
 
-#if defined(DEPRECATED)
-#error('DEPRECATED already defined')
-#endif
-#define DEPRECATED
+
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 

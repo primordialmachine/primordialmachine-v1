@@ -18,62 +18,32 @@
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-typedef struct Stack {
-  Machine_Value* elements;
-  size_t size, capacity;
-} Stack;
-
-static int Stack_initialize(Stack* self) {
-  self->elements = malloc(sizeof(Machine_Value) * 8);
-  if (!self->elements) {
-    return Machine_Status_AllocationFailed;
-  }
-  for (size_t i = 0; i < 8; ++i) {
-    Machine_Value_setVoid(self->elements + i, Machine_Void_Void);
-  }
-  self->size = 0;
-  self->capacity = 8;
-  return 0;
-}
-
-static void Stack_uninitialize(Stack* self) {
-  if (self->elements) {
-    free(self->elements);
-    self->elements = NULL;
-  }
-}
-
-int Stack_create(Stack **stack) {
-  Stack *stack0 = malloc(sizeof(Stack));
-  if (!stack0) {
-    return Machine_Status_AllocationFailed;
-  }
-  int result = Stack_initialize(stack0);
-  if (result) {
-    free(stack0);
-    return result;
-  }
-  *stack = stack0;
-  return 0;
-}
-
-void Stack_destroy(Stack* stack) {
-  Stack_uninitialize(stack);
-  free(stack);
-}
-
 static Machine_Tag* g_objects = NULL;
 static Machine_Tag* g_gray = NULL;
-static Stack *g_stack = NULL;
 static size_t g_objectCount = 0;
 
-int Machine_startup() {
-  int result;
-  result = Stack_create(&g_stack);
-  if (result) {
-    return result;
+static const struct {
+  Machine_StatusValue(*initialize)();
+  void (*uninitialize)();
+} MODULES[] = {
+  { &Machine_initializeLogModule, &Machine_uninitializeLogModule },
+  { &Machine_initializeJumpTargetModule, &Machine_uninitializeJumpTargetModule },
+  { &Machine_initializeStackModule, &Machine_uninitializeStackModule },
+};
+static const size_t NUMBER_OF_MODULES = 3;
+
+Machine_StatusValue Machine_startup() {
+  for (size_t i = 0, n = NUMBER_OF_MODULES; i < n; ++i) {
+    Machine_StatusValue status = MODULES[i].initialize();
+    if (status) {
+      while (i > 0) {
+        MODULES[i - 1].uninitialize();
+        i--;
+      }
+      return status;
+    }
   }
-  return 0;
+  return Machine_Status_Success;
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -124,62 +94,12 @@ static Machine_Object* t2o(void* src) {
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-static Machine_JumpTarget* g_jumpTargets = NULL;
-
-void Machine_pushJumpTarget(Machine_JumpTarget* jumpTarget) {
-  jumpTarget->previous = g_jumpTargets;
-  g_jumpTargets = jumpTarget;
-}
-
-void Machine_popJumpTarget() {
-  g_jumpTargets = g_jumpTargets->previous;
-}
-
-NORETURN void Machine_jump() {
-  longjmp(g_jumpTargets->environment, -1);
-}
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-static void SET_WHITE(Machine_Tag* tag) {
-  tag->flags &= ~Machine_Flag_Black;
-  tag->flags |= Machine_Flag_White;
-}
-
-static bool IS_WHITE(Machine_Tag* tag) {
-  return (tag->flags & Machine_Flag_Gray) == Machine_Flag_White;
-}
-
-static void SET_BLACK(Machine_Tag* tag) {
-  tag->flags &= ~Machine_Flag_White;
-  tag->flags |= Machine_Flag_Black;
-}
-
-static bool IS_BLACK(Machine_Tag* tag) {
-  return (tag->flags & Machine_Flag_Black) == Machine_Flag_Black;
-}
-
-static void SET_GRAY(Machine_Tag* tag) {
-  tag->flags |= Machine_Flag_Gray;
-}
-
-static bool IS_GRAY(Machine_Tag* tag) {
-  return (tag->flags & Machine_Flag_Gray) == Machine_Flag_Gray;
-}
-
-static bool IS_ROOT(Machine_Tag* tag) {
-  return (tag->flags & Machine_Flag_Root) == Machine_Flag_Root;
-}
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
 static void visit(Machine_Tag* tag) {
-  if (IS_GRAY(tag) || IS_BLACK(tag)) {
+  if (Machine_Tag_isGrey(tag) || Machine_Tag_isBlack(tag)) {
     return;
   }
-  tag->gray = g_gray;
-  g_gray = tag;
-  SET_GRAY(tag);
+  tag->gray = g_gray; g_gray = tag;
+  Machine_Tag_setGrey(tag);
 }
 
 static void rungc(size_t* live, size_t *dead) {
@@ -188,11 +108,11 @@ static void rungc(size_t* live, size_t *dead) {
 
   // Color all objects white. Add root objects or objects with a lock count greater than 0 to the gray list.
   for (Machine_Tag* object = g_objects; NULL != object; object = object->next) {
-    SET_WHITE(object);
-    if (IS_ROOT(object) || object->lockCount > 0) {
+    Machine_Tag_setWhite(object);
+    if (Machine_Tag_isRoot(object) || object->lockCount > 0) {
       object->gray = g_gray;
       g_gray = object;
-      SET_GRAY(object);
+      Machine_Tag_setGrey(object);
     }
   }
   // Pop objects from gray list, visit them, color them black.
@@ -203,12 +123,12 @@ static void rungc(size_t* live, size_t *dead) {
     if (object->visit) {
       object->visit(t2o(object));
     }
-    SET_BLACK(object);
+    Machine_Tag_setBlack(object);
   }
   // Separate dead (white) and live (black) objects.
   Machine_Tag** previous = &g_objects, * current = g_objects;
   while (current) {
-    if (IS_WHITE(current)) {
+    if (Machine_Tag_isWhite(current)) {
       *previous = current->next;
       Machine_Tag* object = current;
       current = current->next;
@@ -254,10 +174,9 @@ void* Machine_allocate(size_t size, Machine_VisitCallback* visit, Machine_Finali
 
 void Machine_visit(void* object) {
   Machine_Tag* tag = o2t(object);
-  if (IS_WHITE(tag)) {
-    tag->gray = g_gray;
-    g_gray = tag;
-    SET_GRAY(tag);
+  if (Machine_Tag_isWhite(tag)) {
+    tag->gray = g_gray; g_gray = tag;
+    Machine_Tag_setGrey(tag);
   }
 }
 
@@ -299,75 +218,9 @@ void Machine_shutdown() {
     fprintf(stderr, "warning %zu live objects remaining\n", live);
   }
 
-  Stack_destroy(g_stack);
-  g_stack = NULL;
-}
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-static void Stack_ensureFreeCapacity(Stack* self, size_t requiredFreeCapacity) {
-  size_t availableFreeCapacity = self->capacity - self->size;
-  if (availableFreeCapacity < requiredFreeCapacity) {
-    size_t requiredAdditionalCapacity = requiredFreeCapacity - availableFreeCapacity;
-    size_t maximalCapacity = SIZE_MAX / sizeof(Machine_Value);
-    size_t availableAdditionalCapacity = maximalCapacity - self->capacity;
-    if (availableAdditionalCapacity < requiredAdditionalCapacity) {
-      Machine_setStatus(Machine_Status_AllocationFailed);
-      Machine_jump();
-    }
-    // TODO: This ensures that we have enough free capacity in any case.
-    // However, we should try to allocate more to avoid reallocating over and over.
-    size_t newCapacity = self->capacity + requiredAdditionalCapacity;
-    Machine_Value *newElements = realloc(self->elements, sizeof(Machine_Value) * newCapacity);
-    if (newElements) {
-      Machine_setStatus(Machine_Status_AllocationFailed);
-      Machine_jump();
-    }
-    self->elements = newElements;
-    self->capacity = newCapacity;
+  for (size_t i = NUMBER_OF_MODULES; i > 0; --i) {
+    MODULES[i-1].uninitialize();
   }
-}
-
-void Machine_loadBoolean(Machine_Boolean value) {
-  Stack_ensureFreeCapacity(g_stack, 1);
-  Machine_Value_setBoolean(g_stack->elements + g_stack->size, value);
-  g_stack->size++;
-}
-
-void Machine_loadInteger(Machine_Integer value) {
-  Stack_ensureFreeCapacity(g_stack, 1);
-  Machine_Value_setInteger(g_stack->elements + g_stack->size, value);
-  g_stack->size++;
-}
-
-void Machine_loadForeignProcedure(Machine_ForeignProcedure* value) {
-  Stack_ensureFreeCapacity(g_stack, 1);
-  Machine_Value_setForeignProcedure(g_stack->elements + g_stack->size, value);
-  g_stack->size++;
-}
-
-void Machine_loadObject(Machine_Object* value) {
-  Stack_ensureFreeCapacity(g_stack, 1);
-  Machine_Value_setObject(g_stack->elements + g_stack->size, value);
-  g_stack->size++;
-}
-
-void Machine_loadReal(Machine_Real value) {
-  Stack_ensureFreeCapacity(g_stack, 1);
-  Machine_Value_setReal(g_stack->elements + g_stack->size, value);
-  g_stack->size++;
-}
-
-void Machine_loadString(Machine_String* value) {
-  Stack_ensureFreeCapacity(g_stack, 1);
-  Machine_Value_setString(g_stack->elements + g_stack->size, value);
-  g_stack->size++;
-}
-
-void Machine_loadVoid(Machine_Void value) {
-  Stack_ensureFreeCapacity(g_stack, 1);
-  Machine_Value_setVoid(g_stack->elements + g_stack->size, value);
-  g_stack->size++;
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -400,9 +253,11 @@ static void Machine_Object_onTypeDestroyed() {
 Machine_ClassType* Machine_Object_getClassType() {
   if (!g_Machine_Object_ClassType) {
     Machine_CreateClassTypeArgs args = {
+      .createTypeArgs = {
+        .typeRemoved = (Machine_TypeRemovedCallback*)&Machine_Object_onTypeDestroyed,
+      },
       .parent = NULL,
       .size = sizeof(Machine_Object),
-      .typeRemoved = (Machine_ClassTypeRemovedCallback*)&Machine_Object_onTypeDestroyed,
       .visit = (Machine_ClassObjectVisitCallback*)NULL,
       .construct = (Machine_ClassObjectConstructCallback*)&Machine_Object_construct,
       .destruct = (Machine_ClassObjectDestructCallback*)NULL,

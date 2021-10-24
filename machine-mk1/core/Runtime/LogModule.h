@@ -1,8 +1,8 @@
-// @file Runtime/Log.h
+// @file Runtime/LogModule.h
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#if !defined(MACHINE_RUNTIME_LOG_H_INCLUDED)
-#define MACHINE_RUNTIME_LOG_H_INCLUDED
+#if !defined(MACHINE_RUNTIME_LOGMODULE_H_INCLUDED)
+#define MACHINE_RUNTIME_LOGMODULE_H_INCLUDED
 
 
 
@@ -15,11 +15,16 @@
 
 
 #include "./../Runtime/Configuration.h"
+#include "./../Runtime/Status.h"
 
 
 
 
 #if defined(MACHINE_WITH_LOG) && 1 == MACHINE_WITH_LOG
+
+Machine_StatusValue Machine_initializeLogModule();
+
+void Machine_uninitializeLogModule();
 
 /// @brief To error log.
 #define Machine_LogFlags_ToErrors (4)
@@ -36,7 +41,8 @@
 /// @param format, ... The printf-style format string and format arguments.
 void Machine_log(int flags, const char* file, int line, const char* format, ...);
 
-#endif
+#endif // MACHINE_RUNTIME_LOGMODULE_H_INCLUDED
+
 
 
 

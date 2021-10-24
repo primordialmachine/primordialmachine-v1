@@ -1,13 +1,22 @@
-/// @file Runtime/Log.c
+/// @file Runtime/LogModule.c
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #define MACHINE_RUNTIME_PRIVATE (1)
-#include "Runtime/Log.h"
+#include "Runtime/LogModule.h"
 
 #if defined(MACHINE_WITH_LOG) && 1 == MACHINE_WITH_LOG
 
+#include "Runtime/Status.h"
 #include <stdio.h>
 #include <stdarg.h>
+
+Machine_StatusValue Machine_initializeLogModule() {
+  return Machine_Status_Success;
+}
+
+void Machine_uninitializeLogModule() {
+}
+
 
 void Machine_log(int flags, const char* file, int line, const char* format, ...) {
   va_list arguments;

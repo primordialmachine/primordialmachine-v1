@@ -8,12 +8,16 @@
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
 
-#include "./Runtime/Log.h"
+#include "./Runtime/JumpTargetModule.h"
+#include "./Runtime/StackModule.h"
+#include "./Runtime/LogModule.h"
+
 #include "./Runtime/PrimitiveTypes.h"
 #include "./Runtime/Status.h"
 #include "./Runtime/Value.h"
-#include <setjmp.h>
-#include "Runtime/TypeSystem/ClassType.h"
+
+#include "Runtime/GC/GC.h"
+#include "Runtime/TS/ClassType.h"
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -21,66 +25,12 @@ typedef struct Machine_Value Machine_Value;
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-typedef struct Machine_JumpTarget Machine_JumpTarget;
-
-struct Machine_JumpTarget {
-  Machine_JumpTarget* previous;
-  jmp_buf environment;
-};
-
-/**
- * @brief Push a jump target on the jump target stack.
- * @param jumpTarget A pointer to the jump target.
- */
-void Machine_pushJumpTarget(Machine_JumpTarget *jumpTarget);
-
-/**
- * @brief Pop a jump target from the jump target stack.
- */
-void Machine_popJumpTarget();
-
-/**
- * @brief Jump to the top of the jump target stack.
- * @warning Undefined if the jump target stack is empty.
- */
-NORETURN void Machine_jump();
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-/**
- * @brief Type of a finalize callback function.
- * @param object The object to finalize.
- */
-typedef void (Machine_FinalizeCallback)(void* object);
-
-/**
- * @brief Type of a visit callback function.
- * @param object The object to visit.
- */
-typedef void (Machine_VisitCallback)(void*);
-
-typedef struct Machine_Tag Machine_Tag;
-#define Machine_Flag_White (1)
-#define Machine_Flag_Black (2)
-#define Machine_Flag_Gray (Machine_Flag_White | Machine_Flag_Black)
-#define Machine_Flag_Root (4)
-
-struct Machine_Tag {
-  Machine_Tag* next;
-  Machine_Tag* gray;
-  uint64_t lockCount;
-  uint32_t flags;
-  size_t size;
-  Machine_VisitCallback* visit;
-  Machine_FinalizeCallback* finalize;
-};
-
 /**
  * @brief Startup the machine.
  * @warning Undefined if the machine is already initialized.
  * @return #Machine_Status_Success on success, a non-zero Machine_Status value on failure.
  */
-int Machine_startup();
+Machine_StatusValue Machine_startup();
 
 /**
  * @brief Shutdown the machine.
@@ -102,9 +52,9 @@ void Machine_update();
  */
 void* Machine_allocate(size_t size, Machine_VisitCallback *visit, Machine_FinalizeCallback *finalize);
 
-/**
- * @undefined Invoked outside of visit callback.
- */
+/// @brief Visit an object.
+/// @param object A pointer to the object.
+/// @undefined Invoked outside of visit callback.
 void Machine_visit(void* object);
 
 /// @brief Increment the lock count of an object.
@@ -115,10 +65,8 @@ void Machine_lock(void* object);
 /// @param object A pointer to the object.
 void Machine_unlock(void* object);
 
-/**
- * @brief Set if an object is marked as a root object.
- * @undefined Invoked in visit callback or finalize callback.
- */
+/// @brief Set if an object is marked as a root object.
+/// @undefined Invoked in visit callback or finalize callback.
 void Machine_setRoot(void* object, bool isRoot);
 
 /**
@@ -126,43 +74,6 @@ void Machine_setRoot(void* object, bool isRoot);
  * @param object the object.
  */
 bool Machine_getRoot(void* object);
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-/// @brief Load a <code>Boolean</code> value on the stack.
-/// @param value The value.
-/// @error Machine_Status_StackOverflow The stack is full.
-void Machine_loadBoolean(Machine_Boolean value);
-
-/// @brief Load an <code>Integer</code> value on the stack.
-/// @param value The value.
-/// @error Machine_Status_StackOverflow The stack is full.
-void Machine_loadInteger(Machine_Integer value);
-
-/// @brief Load a <code>ForeignProcedure</code> value on the stack.
-/// @param value The value.
-/// @error Machine_Status_StackOverflow The stack is full.
-void Machine_loadForeignProcedure(Machine_ForeignProcedure* value);
-
-/// @brief Load an <code>Object</code> value on the stack.
-/// @param value The value.
-/// @error Machine_Status_StackOverflow The stack is full.
-void Machine_loadObject(Machine_Object* value);
-
-/// @brief Load a <code>Real</code> value on the stack.
-/// @param value The value.
-/// @error Machine_Status_StackOverflow The stack is full.
-void Machine_loadReal(Machine_Real value);
-
-/// @brief Load a <code>String</code> value on the stack.
-/// @param value The value.
-/// @error Machine_Status_StackOverflow The stack is full.
-void Machine_loadString(Machine_String* value);
-
-/// @brief Load a <code>Void</code> value on the stack.
-/// @param value The value.
-/// @error Machine_Status_StackOverflow The stack is full.
-void Machine_loadVoid(Machine_Void value);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -247,9 +158,11 @@ Machine_ClassType* Machine_getClassType(Machine_Object* object);
   Machine_ClassType* THIS_TYPE##_getClassType() { \
     if (!g_##THIS_TYPE##_ClassType) { \
       Machine_CreateClassTypeArgs args = { \
+        .createTypeArgs = { \
+          .typeRemoved = (Machine_TypeRemovedCallback*)&THIS_TYPE##_onTypeDestroyed, \
+        }, \
         .parent = PARENT_TYPE##_getClassType(), \
         .size = sizeof(THIS_TYPE), \
-        .typeRemoved = (Machine_ClassTypeRemovedCallback*)&THIS_TYPE##_onTypeDestroyed, \
         .visit = (Machine_ClassObjectVisitCallback*)VISIT, \
         .construct = (Machine_ClassObjectConstructCallback*)CONSTRUCT, \
         .destruct = (Machine_ClassObjectDestructCallback*)DESTRUCT, \

@@ -1,19 +1,19 @@
-/// @file Runtime/TypeSystem/ClassType.h
+/// @file Runtime/TS/ClassType.h
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#if !defined(MACHINE_RUNTIME_TYPESYSTEM_CLASSTYPE_H_INCLUDED)
-#define MACHINE_RUNTIME_TYPESYSTEM_CLASSTYPE_H_INCLUDED
+#if !defined(MACHINE_RUNTIME_TS_CLASSTYPE_H_INCLUDED)
+#define MACHINE_RUNTIME_TS_CLASSTYPE_H_INCLUDED
 
 
 
-#include <stddef.h>
-#include <stdbool.h>
+#if !defined(MACHINE_RUNTIME_PRIVATE)
+#error("Do not include this file directly, include `_Runtime.h` instead.")
+#endif
+
+#include "Runtime/TS/Type.h"
 typedef struct Machine_Value Machine_Value;
 
 
-
-/// @brief Invoked when the class type is removed.
-typedef void (Machine_ClassTypeRemovedCallback)();
 
 /// @brief Type of an object visit callback.
 /// @param self A pointer to the object.
@@ -37,15 +37,17 @@ typedef void (Machine_ClassConstructCallback)(void*);
 /// A pointer to the parent class type if any, a null pointer otherwise.
 /// - size
 /// The size, in Bytes, of an object of this class.
+/// - typeRemoved
+/// Pointer to a callback invoked when the type is removed or null.
 /// - typeRemoved, visit, construct, destruct
-/// Callbacks invoked when the type is removed, an object of that type is visited, constructed, or destructed.
+/// Callbacks invoked when an object of that type is visited, constructed, or destructed.
 typedef struct Machine_ClassType Machine_ClassType;
 
 struct Machine_ClassType {
+  Machine_Type __parent__;
   Machine_ClassType* parent;
 
   size_t size;
-  Machine_ClassTypeRemovedCallback* typeRemoved;
   Machine_ClassObjectVisitCallback* visit;
   Machine_ClassObjectConstructCallback* construct;
   Machine_ClassObjectDestructCallback* destruct;
@@ -57,16 +59,14 @@ struct Machine_ClassType {
 };
 
 typedef struct Machine_CreateClassTypeArgs {
+  Machine_CreateTypeArgs createTypeArgs;
   
   /// @brief A pointer to the parent class type or a null pointer.
   Machine_ClassType* parent;
   
   /// @brief The size, in Bytes, of an object of the class.
   size_t size;
-  
-  /// @brief Pointer to a Machine_ClassTypeRemovedCallback function or a null pointer.
-  Machine_ClassTypeRemovedCallback* typeRemoved;
-  
+
   /// @brief Pointer to a Machine_ClassObjectVisitCallback function or a null pointer.
   Machine_ClassObjectVisitCallback* visit;
   
@@ -98,4 +98,4 @@ static inline bool Machine_isSuperTypeOf(Machine_ClassType const* superType, Mac
   return Machine_isSubTypeOf(subType, superType);
 }
 
-#endif // MACHINE_RUNTIME_TYPESYSTEM_CLASSTYPE_H_INCLUDED
+#endif // MACHINE_RUNTIME_TS_CLASSTYPE_H_INCLUDED
