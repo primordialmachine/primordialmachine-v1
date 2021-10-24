@@ -14,6 +14,9 @@ static void Machine_Context2_visit(Machine_Context2* self) {
   if (self->modelSpaceToProjectiveSpace) {
     Machine_visit(self->modelSpaceToProjectiveSpace);
   }
+  if (self->modelSpaceToWorldSpace) {
+    Machine_visit(self->modelSpaceToWorldSpace);
+  }
   if (self->shader) {
     Machine_visit(self->shader);
   }
