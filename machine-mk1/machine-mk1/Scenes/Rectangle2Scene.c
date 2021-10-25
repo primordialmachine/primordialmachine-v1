@@ -42,20 +42,20 @@ MACHINE_DEFINE_CLASSTYPE(Rectangle2Scene, Scene, &Rectangle2Scene_visit, &Rectan
 
 static void Rectangle2Scene_onStartup(Rectangle2Scene* scene) {
   // Create the 2D context.
-  scene->context2 = Machine_Context2_create(Machine_Video_getContext());
+  scene->context2 = Machine_Context2_create(Machine_getVideoContext());
   // Create the 2D rectangle.
   scene->rectangle2 = Machine_Rectangle2_create();
   // Set the clear color.
   Machine_Math_Vector4* c = Machine_Math_Vector4_create();
   Machine_Math_Vector4_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
-  Machine_VideoContext_setClearColor(Machine_Video_getContext(), c);
+  Machine_VideoContext_setClearColor(Machine_getVideoContext(), c);
 }
 
 static void Rectangle2Scene_onCanvasSizeChanged(Rectangle2Scene* self, Machine_CanvasSizeChangedEvent* event) {
   // Set the 2D context's target size.
   Machine_Context2_setTargetSize(self->context2, event->width, event->height);
   // Set the viewport rectangle.
-  Machine_VideoContext_setViewportRectangle(Machine_Video_getContext(), 0, 0, event->width, event->height);
+  Machine_VideoContext_setViewportRectangle(Machine_getVideoContext(), 0, 0, event->width, event->height);
   // Set the 2D rectangle's rectangle.
   Machine_Math_Rectangle2* r = Machine_Math_Rectangle2_create();
   Machine_Math_Vector2* v = Machine_Math_Vector2_create();
@@ -69,7 +69,7 @@ static void Rectangle2Scene_onCanvasSizeChanged(Rectangle2Scene* self, Machine_C
 static void Rectangle2Scene_onUpdate(Rectangle2Scene* self, float width, float height) {
   Rectangle2Scene_onCanvasSizeChanged(self, Machine_CanvasSizeChangedEvent_create(width, height));
   // Clear color buffer.
-  Machine_VideoContext_clearColorBuffer(Machine_Video_getContext());
+  Machine_VideoContext_clearColorBuffer(Machine_getVideoContext());
   // Render the rectangle.
   Machine_Shape2_render((Machine_Shape2*)self->rectangle2, self->context2);
 }

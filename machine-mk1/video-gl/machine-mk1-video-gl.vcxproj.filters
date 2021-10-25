@@ -54,7 +54,7 @@
     <ClInclude Include="Video\GL\Canvas.h">
       <Filter>Headerdateien\Video\GL</Filter>
     </ClInclude>
-    <ClInclude Include="Video\GL\CanvasInput.h">
+    <ClInclude Include="Video\GL\CanvasUtilities.h">
       <Filter>Headerdateien\Video\GL</Filter>
     </ClInclude>
     <ClInclude Include="Video\GL\ShaderProgram.h">
@@ -86,7 +86,7 @@
     <ClCompile Include="Video\GL\Canvas.c">
       <Filter>Quelldateien\Video\GL</Filter>
     </ClCompile>
-    <ClCompile Include="Video\GL\CanvasInput.c">
+    <ClCompile Include="Video\GL\CanvasUtilities.c">
       <Filter>Quelldateien\Video\GL</Filter>
     </ClCompile>
     <ClCompile Include="Video\GL\ShaderProgram.c">

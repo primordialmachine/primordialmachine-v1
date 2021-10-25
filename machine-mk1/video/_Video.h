@@ -8,6 +8,7 @@
 #include "Video/Binding.h"
 #include "Video/BlendFunction.h"
 #include "Video/Buffer.h"
+#include "Video/Canvas.h"
 #include "Video/CanvasSizeChangedEvent.h"
 #include "Video/DepthTestFunction.h"
 #include "Video/Font.h"

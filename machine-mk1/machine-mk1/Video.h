@@ -16,10 +16,13 @@ void Machine_Video_startup();
 /// UNDEFINED if the reference count is @a 0.
 void Machine_Video_shutdown();
 
+/// @brief Get the canvas.
+/// @return The canvas.
+Machine_Video_Canvas* Machine_getVideoCanvas();
+
 /// @brief Get the video context of the video module.
 /// @return The video context.
-/// @error
-Machine_VideoContext* Machine_Video_getContext();
+Machine_VideoContext* Machine_getVideoContext();
 
 /// @brief Get the current time.
 /// @return The current time.

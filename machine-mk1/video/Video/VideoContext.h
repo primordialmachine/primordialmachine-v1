@@ -1,8 +1,8 @@
 /// @file Video/VideoContext.h
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#if !defined(MACHINE_VIDEO_VIDEOCONTEXT_H_INCLUDED)
-#define MACHINE_VIDEO_VIDEOCONTEXT_H_INCLUDED
+#if !defined(MACHINE_VIDEO_CONTEXT_H_INCLUDED)
+#define MACHINE_VIDEO_CONTEXT_H_INCLUDED
 
 
 
@@ -346,4 +346,4 @@ Machine_VideoContext_generateText2Shader
 
 
 
-#endif // MACHINE_VIDEO_VIDEOCONTEXT_H_INCLUDED
+#endif // MACHINE_VIDEO_CONTEXT_H_INCLUDED

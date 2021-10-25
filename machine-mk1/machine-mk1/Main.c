@@ -10,9 +10,6 @@ extern "C" {
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "Video/GL/UtilitiesGL.h"
-#include "Video/GL/CanvasInput.h"
-
 #include "Scene1.h"
 #include "Scene2.h"
 #include "Scene3.h"
@@ -55,16 +52,16 @@ extern "C" {
       Machine_Value_setObject(&val, (Machine_Object *)image);
       Machine_List_append(vals, val);
     }
-    Machine_GLFW_setCanvasIcons(vals);
+    Machine_Video_Canvas_setCanvasIcons(Machine_getVideoCanvas(), vals);
   }
 
-  static void run(Scene* scene, GLFWwindow* window) {
+  static void run(Scene* scene) {
     Machine_Integer oldWidth, oldHeight;
-    Machine_GLFW_getFrameBufferSize(&oldWidth, &oldHeight);
+    Machine_Video_Canvas_getFrameBuffersSize(Machine_getVideoCanvas(), &oldWidth, &oldHeight);
 
-    while (!glfwWindowShouldClose(window)) {
+    while (!Machine_Video_Canvas_getQuitRequested(Machine_getVideoCanvas())) {
       Machine_Integer newWidth, newHeight;
-      Machine_GLFW_getFrameBufferSize(&newWidth, &newHeight);
+      Machine_Video_Canvas_getFrameBuffersSize(Machine_getVideoCanvas(), &newWidth, &newHeight);
       if (oldWidth != newWidth || oldHeight != newHeight) {
         Scene_onCanvasSizeChanged(scene, Machine_CanvasSizeChangedEvent_create((float)newWidth, (float)newHeight));
         oldWidth = newWidth;
@@ -72,15 +69,14 @@ extern "C" {
       }
       Scene_onUpdate(scene, (float)oldWidth, (float)oldHeight);
       Machine_update();
-      Machine_GLFW_swapBuffers();
-      Machine_GLFW_pollEvents();
+      Machine_Video_Canvas_swapFrameBuffers(Machine_getVideoCanvas());
+      Machine_Video_Canvas_pollEvents(Machine_getVideoCanvas());
     }
   }
 
   void main0() {
-    Machine_GLFW_maximizeCanvas();
+    Machine_Video_Canvas_maximizeCanvas(Machine_getVideoCanvas());
     loadIcons();
-    Machine_GLFW_startupCanvasInput();
     Machine_JumpTarget jumpTarget1; // To shutdown input.
     Machine_pushJumpTarget(&jumpTarget1);
     if (!setjmp(jumpTarget1.environment)) {
@@ -94,10 +90,10 @@ extern "C" {
         Machine_update();
 
         Machine_Integer width, height;
-        Machine_GLFW_getFrameBufferSize(&width, &height);
+        Machine_Video_Canvas_getFrameBuffersSize(Machine_getVideoCanvas(), &width, &height);
         Scene_onCanvasSizeChanged(g_scene, Machine_CanvasSizeChangedEvent_create((float)width, (float)height));
 
-        run(g_scene, Machine_GLFW_getWindow());
+        run(g_scene);
         Machine_popJumpTarget();
 
 
@@ -113,10 +109,8 @@ extern "C" {
         Machine_popJumpTarget();
         Machine_jump();
       }
-      Machine_GLFW_shutdownCanvasInput();
       Machine_popJumpTarget();
     } else {
-      Machine_GLFW_shutdownCanvasInput();
       Machine_popJumpTarget();
       Machine_jump();
     }

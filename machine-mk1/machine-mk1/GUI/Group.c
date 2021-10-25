@@ -21,9 +21,9 @@ static const Machine_Math_Vector2* Machine_GUI_Group_getPreferredSize(const Mach
 }
 
 static void Machine_GUI_Group_render(Machine_GUI_Group* self, Machine_Context2 *ctx2) {
-  Machine_GUI_Context* ctx = Machine_GUI_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(Machine_Video_getContext()));
+  Machine_GUI_Context* ctx = Machine_GUI_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(Machine_getVideoContext()));
   const Machine_Math_Vector2* size = Machine_GUI_Widget_getSize((Machine_GUI_Widget *)self);
-  Machine_Context2* tmp = Machine_Context2_create(Machine_Video_getContext());
+  Machine_Context2* tmp = Machine_Context2_create(Machine_getVideoContext());
   Machine_Context2_setTargetSize(tmp, Machine_Math_Vector2_getX(size), Machine_Math_Vector2_getY(size));
   for (size_t i = 0, n = Machine_GUI_WidgetList_getSize(self->children); i < n; ++i) {
     Machine_GUI_Widget* widget = Machine_GUI_WidgetList_getAt(self->children, i);

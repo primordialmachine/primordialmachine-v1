@@ -52,9 +52,9 @@ MACHINE_DEFINE_CLASSTYPE(LayoutScene, Scene, &LayoutScene_visit, &LayoutScene_co
 
 static void LayoutScene_onStartup(LayoutScene* scene) {
   //
-  scene->context2 = Machine_Context2_create(Machine_Video_getContext());
+  scene->context2 = Machine_Context2_create(Machine_getVideoContext());
   //
-  scene->font = Machine_FontsContext_createFont(Machine_DefaultFonts_createContext(Machine_Video_getContext(), Machines_DefaultImages_createContext()),
+  scene->font = Machine_FontsContext_createFont(Machine_DefaultFonts_createContext(Machine_getVideoContext(), Machines_DefaultImages_createContext()),
                                                 Machine_String_create("RobotoSlab-Regular.ttf", strlen("RobotoSlab-Regular.ttf")), 20);
   //
   scene->textLayout1 = Machine_Text_Layout_create(Machine_String_create("", strlen("")), scene->font);
@@ -71,7 +71,7 @@ static void LayoutScene_onStartup(LayoutScene* scene) {
   //
   Machine_Math_Vector4* c = Machine_Math_Vector4_create();
   Machine_Math_Vector4_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
-  Machine_VideoContext_setClearColor(Machine_Video_getContext(), c);
+  Machine_VideoContext_setClearColor(Machine_getVideoContext(), c);
 }
 
 static void alignLeftTop(Machine_Text_Layout* layout, float width, float height) {
@@ -105,17 +105,17 @@ static void LayoutScene_onCanvasSizeChanged(LayoutScene* self, Machine_CanvasSiz
   // Set the 2D context's target size.
   Machine_Context2_setTargetSize(self->context2, event->width, event->height);
   // Set the viewport rectangle.
-  Machine_VideoContext_setViewportRectangle(Machine_Video_getContext(), 0, 0, event->width, event->height);
+  Machine_VideoContext_setViewportRectangle(Machine_getVideoContext(), 0, 0, event->width, event->height);
   alignCenter(self->textLayout1, event->width, event->height);
   alignLeftTop(self->textLayout2, event->width, event->height);
 }
 
 static void LayoutScene_onUpdate(LayoutScene* self, float width, float height) {
   // Set the viewport and clear its color buffer.
-  Machine_VideoContext_setViewportRectangle(Machine_Video_getContext(), 0, 0, width, height);
-  Machine_VideoContext_clearColorBuffer(Machine_Video_getContext());
+  Machine_VideoContext_setViewportRectangle(Machine_getVideoContext(), 0, 0, width, height);
+  Machine_VideoContext_clearColorBuffer(Machine_getVideoContext());
 
-  Machine_Context2* context2 = Machine_Context2_create(Machine_Video_getContext());
+  Machine_Context2* context2 = Machine_Context2_create(Machine_getVideoContext());
   Machine_Context2_setTargetSize(context2, width, height);
   Machine_Text_Layout_render(self->textLayout1, context2);
   Machine_Text_Layout_render(self->textLayout2, context2);

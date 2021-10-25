@@ -72,26 +72,26 @@ MACHINE_DEFINE_CLASSTYPE(Scene3, Scene, &Scene3_visit, &Scene3_construct, NULL, 
 
 static void Scene3_startup(Scene3* scene) {
   scene->image = Machine_ImagesContext_createFromPath(Machines_DefaultImages_createContext(), Machine_String_create("test-transparency-1.png", strlen("test-transparency-1.png")));
-  scene->texture = Machine_VideoContext_createTextureFromImage(Machine_Video_getContext(), scene->image);
+  scene->texture = Machine_VideoContext_createTextureFromImage(Machine_getVideoContext(), scene->image);
 
-  scene->vertices = Machine_VideoContext_createBuffer(Machine_Video_getContext());
+  scene->vertices = Machine_VideoContext_createBuffer(Machine_getVideoContext());
   Machine_VideoBuffer_setData(scene->vertices, sizeof(vertices), (void const *)vertices);
 
-  scene->shaderProgram = Machine_VideoContext_generateDefaultShader(Machine_Video_getContext(), false, true, true, true);
+  scene->shaderProgram = Machine_VideoContext_generateDefaultShader(Machine_getVideoContext(), false, true, true, true);
 
   Machine_VertexDescriptor* vd = Machine_VertexDescriptor_create();
   Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_XfYf);
   Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_RfGfBf);
   Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_UfVf);
 
-  scene->binding = Machine_VideoContext_createBinding(Machine_Video_getContext(), scene->shaderProgram, vd, scene->vertices);
+  scene->binding = Machine_VideoContext_createBinding(Machine_getVideoContext(), scene->shaderProgram, vd, scene->vertices);
   Machine_Binding_setVariableBinding(scene->binding, Machine_String_create("vertex_position", strlen("vertex_position") + 1), 0);
   Machine_Binding_setVariableBinding(scene->binding, Machine_String_create("vertex_color", strlen("vertex_color") + 1), 1);
   Machine_Binding_setVariableBinding(scene->binding, Machine_String_create("vertex_texture_coordinate_1", strlen("vertex_texture_coordinate_1") + 1), 2);
 
   Machine_Math_Vector4* c = Machine_Math_Vector4_create();
   Machine_Math_Vector4_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
-  Machine_VideoContext_setClearColor(Machine_Video_getContext(), c);
+  Machine_VideoContext_setClearColor(Machine_getVideoContext(), c);
 }
 
 static void Scene3_onCanvasSizeChanged(Scene3* self, Machine_CanvasSizeChangedEvent* event) {
@@ -100,8 +100,8 @@ static void Scene3_onCanvasSizeChanged(Scene3* self, Machine_CanvasSizeChangedEv
 static void Scene3_update(Scene3* self, float width, float height) {
   float ratio = width / height;
 
-  Machine_VideoContext_setViewportRectangle(Machine_Video_getContext(), 0, 0, width, height);
-  Machine_VideoContext_clearColorBuffer(Machine_Video_getContext());
+  Machine_VideoContext_setViewportRectangle(Machine_getVideoContext(), 0, 0, width, height);
+  Machine_VideoContext_clearColorBuffer(Machine_getVideoContext());
 
   Machine_Math_Matrix4* m2 = Machine_Math_Matrix4_create(); Machine_Math_Matrix4_rotateZ(m2, Machine_Video_getTime());
   Machine_Math_Matrix4* p2 = Machine_Math_Matrix4_create(); Machine_Math_Matrix4_setOrtho(p2, -ratio, +ratio, -1.f, +1.f, 1.f, -1.f);
@@ -110,9 +110,9 @@ static void Scene3_update(Scene3* self, float width, float height) {
   Machine_Binding_activate(self->binding);
   Machine_Binding_bindMatrix4(self->binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), mvp2);
   Machine_Binding_bindSampler(self->binding, Machine_String_create("texture_1", strlen("texture_1")), 0);
-  Machine_VideoContext_bindTexture(Machine_Video_getContext(), 0, self->texture);
+  Machine_VideoContext_bindTexture(Machine_getVideoContext(), 0, self->texture);
 
-  Machine_VideoContext_drawIndirect(Machine_Video_getContext(), 0, 6, indices);
+  Machine_VideoContext_drawIndirect(Machine_getVideoContext(), 0, 6, indices);
 }
 
 static void Scene3_shutdown(Scene3* self) {

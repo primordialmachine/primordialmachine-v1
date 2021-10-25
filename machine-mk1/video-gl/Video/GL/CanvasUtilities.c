@@ -1,4 +1,5 @@
-#include "./../GL/CanvasInput.h"
+#define MACHINE_VIDEO_GL_PRIVATE (1)
+#include "./../GL/CanvasUtilities.h"
 
 
 
@@ -7,7 +8,7 @@
 #include "./../GL/UtilitiesGL.h"
 
 
-
+static size_t g_referenceCount = 0;
 static Machine_List* g_events = NULL;
 
 static bool mapKeyboardKey(int source, Machine_KeyboardKeys* target) {
@@ -179,27 +180,30 @@ static void mouseButtonCallback(GLFWwindow* window, int button, int action, int 
 }
 
 void Machine_GLFW_startupCanvasInput() {
-  Machine_GLFW_startupCanvas();
-  glfwSetKeyCallback(Machine_GLFW_getWindow(), keyCallback);
-  glfwSetMouseButtonCallback(Machine_GLFW_getWindow(), mouseButtonCallback);
-  glfwSetCursorPosCallback(Machine_GLFW_getWindow(), cursorPositionCallback);
-  Machine_JumpTarget jumpTarget;
-  Machine_pushJumpTarget(&jumpTarget);
-  if (!setjmp(jumpTarget.environment)) {
-    g_events = Machine_List_create();
-    Machine_setRoot(g_events, true);
-    Machine_popJumpTarget();
-  } else {
-    Machine_popJumpTarget();
-    Machine_GLFW_shutdownCanvas();
-    Machine_jump();
+  if (0 == g_referenceCount) {
+    glfwSetKeyCallback(Machine_GLFW_getWindow(), keyCallback);
+    glfwSetMouseButtonCallback(Machine_GLFW_getWindow(), mouseButtonCallback);
+    glfwSetCursorPosCallback(Machine_GLFW_getWindow(), cursorPositionCallback);
+    Machine_JumpTarget jumpTarget;
+    Machine_pushJumpTarget(&jumpTarget);
+    if (!setjmp(jumpTarget.environment)) {
+      g_events = Machine_List_create();
+      Machine_setRoot(g_events, true);
+      Machine_popJumpTarget();
+    }
+    else {
+      Machine_popJumpTarget();
+      Machine_jump();
+    }
+    g_referenceCount++;
   }
 }
 
 void Machine_GLFW_shutdownCanvasInput() {
-  Machine_setRoot(g_events, false);
-  g_events = NULL;
-  Machine_GLFW_shutdownCanvas();
+  if (0 == --g_referenceCount) {
+    Machine_setRoot(g_events, false);
+    g_events = NULL;
+  }
 }
 
 void Machine_GLFW_pollEvents() {

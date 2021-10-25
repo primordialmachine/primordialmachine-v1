@@ -1,9 +1,11 @@
+#define MACHINE_VIDEO_GL_PRIVATE (1)
 #include "./../GL/Canvas.h"
 
 
 
-#include "_Video.h"
+#include "CanvasUtilities.h"
 #include <malloc.h>
+
 
 
 #include "AMD/PowerExpress.i"
@@ -11,6 +13,14 @@
 
 static size_t g_referenceCount = 0;
 static GLFWwindow* g_window = NULL;
+
+/// @brief Startup canvas.
+/// An undefined-op if the canvas is already started.
+void Machine_GLFW_startupCanvas();
+
+/// @brief Shutdown canvas.
+/// An undefined-op if the canvas is not yet started.
+void Machine_GLFW_shutdownCanvas();
 
 void Machine_GLFW_startupCanvas() {
   if (g_referenceCount == 0) {
@@ -62,22 +72,22 @@ GLFWwindow* Machine_GLFW_getWindow() {
   return g_window;
 }
 
-void Machine_GLFW_maximizeCanvas() {
-  glfwMaximizeWindow(Machine_GLFW_getWindow());
-}
-
-void Machine_GLFW_getFrameBufferSize(Machine_Integer* width, Machine_Integer* height) {
+static void Machine_Video_GL_Canvas_getFrameBuffersSize(Machine_Video_GL_Canvas* self, Machine_Integer* width, Machine_Integer* height) {
   int w, h;
   glfwGetFramebufferSize(Machine_GLFW_getWindow(), &w, &h);
   *width = w;
   *height = h;
 }
 
-void Machine_GLFW_swapBuffers() {
+static void Machine_Video_GL_Canvas_maximizeCanvas(Machine_Video_GL_Canvas* self) {
+  glfwMaximizeWindow(Machine_GLFW_getWindow());
+}
+
+static void Machine_Video_GL_Canvas_swapFrameBuffers(Machine_Video_GL_Canvas* self) {
   glfwSwapBuffers(Machine_GLFW_getWindow());
 }
 
-void Machine_GLFW_setCanvasIcons(Machine_List* images) {
+static void Machine_Video_GL_Canvas_setCanvasIcons(Machine_Video_GL_Canvas* self, Machine_List* images) {
   GLFWimage* targetImages = NULL;
 
   Machine_JumpTarget jumpTarget;
@@ -98,7 +108,7 @@ void Machine_GLFW_setCanvasIcons(Machine_List* images) {
       p = Machine_Image_getPixels(image);
       targetImages[i].width = w;
       targetImages[i].height = h;
-      targetImages[i].pixels = (unsigned char *)p;
+      targetImages[i].pixels = (unsigned char*)p;
     }
     glfwSetWindowIcon(g_window, numberOfImages, targetImages);
     if (targetImages) {
@@ -106,8 +116,7 @@ void Machine_GLFW_setCanvasIcons(Machine_List* images) {
       targetImages = NULL;
     }
     Machine_popJumpTarget();
-  }
-  else {
+  } else {
     if (targetImages) {
       free(targetImages);
       targetImages = NULL;
@@ -115,4 +124,45 @@ void Machine_GLFW_setCanvasIcons(Machine_List* images) {
     Machine_popJumpTarget();
     Machine_jump();
   }
+}
+
+static void Machine_Video_GL_Canvas_pollEvents(Machine_Video_GL_Canvas* self) {
+  Machine_GLFW_pollEvents();
+}
+
+static Machine_Boolean Machine_Video_GL_Canvas_getQuitRequested(Machine_Video_GL_Canvas* self) {
+  return glfwWindowShouldClose(Machine_GLFW_getWindow());
+}
+
+static void Machine_Video_GL_Canvas_destruct(Machine_Video_GL_Canvas* self) {
+  Machine_GLFW_shutdownCanvasInput();
+  Machine_GLFW_shutdownCanvas();
+}
+
+static void Machine_Video_GL_Canvas_constructClass(Machine_Video_GL_Canvas_Class* self) {
+  ((Machine_Video_Canvas_Class*)self)->getFrameBuffersSize = (void (*)(Machine_Video_Canvas*, Machine_Integer *,Machine_Integer *))&Machine_Video_GL_Canvas_getFrameBuffersSize;
+  ((Machine_Video_Canvas_Class*)self)->maximizeCanvas = (void (*)(Machine_Video_Canvas*)) &Machine_Video_GL_Canvas_maximizeCanvas;
+  ((Machine_Video_Canvas_Class*)self)->swapFrameBuffers = (void (*)(Machine_Video_Canvas*)) &Machine_Video_GL_Canvas_swapFrameBuffers;
+  ((Machine_Video_Canvas_Class*)self)->setCanvasIcons = (void (*)(Machine_Video_Canvas*, Machine_List *)) &Machine_Video_GL_Canvas_setCanvasIcons;
+  ((Machine_Video_Canvas_Class*)self)->pollEvents = (void (*)(Machine_Video_Canvas*)) & Machine_Video_GL_Canvas_pollEvents;
+  ((Machine_Video_Canvas_Class*)self)->getQuitRequested = (Machine_Boolean(*)(Machine_Video_Canvas*)) & Machine_Video_GL_Canvas_getQuitRequested;
+}
+
+void Machine_Video_GL_Canvas_construct(Machine_Video_GL_Canvas* self, size_t numberOfArguments, Machine_Value const* arguments) {
+  static const size_t NUMBER_OF_ARGUMENTS = 0;
+  static const Machine_Value ARGUMENTS[] = { Machine_Value_StaticInitializerVoid() };
+  Machine_Video_Canvas_construct((Machine_Video_Canvas*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Machine_GLFW_startupCanvas();
+  Machine_GLFW_startupCanvasInput();
+  Machine_setClassType((Machine_Object*)self, Machine_Video_GL_Canvas_getClassType());
+}
+
+MACHINE_DEFINE_CLASSTYPE(Machine_Video_GL_Canvas, Machine_Video_Canvas, NULL, &Machine_Video_GL_Canvas_construct, &Machine_Video_GL_Canvas_destruct, &Machine_Video_GL_Canvas_constructClass)
+
+Machine_Video_GL_Canvas* Machine_Video_GL_Canvas_create() {
+  Machine_ClassType* ty = Machine_Video_GL_Canvas_getClassType();
+  static const size_t NUMBER_OF_ARGUMENTS = 0;
+  static const Machine_Value ARGUMENTS[] = { Machine_Value_StaticInitializerVoid() };
+  Machine_Video_GL_Canvas* self = (Machine_Video_GL_Canvas*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  return self;
 }

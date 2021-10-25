@@ -66,9 +66,9 @@ MACHINE_DEFINE_CLASSTYPE(Scene4, Scene, &Scene4_visit, &Scene4_construct, NULL, 
 
 static void Scene4_onStartup(Scene4* scene) {
   //
-  scene->guiContext = Machine_GUI_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(Machine_Video_getContext()));
+  scene->guiContext = Machine_GUI_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(Machine_getVideoContext()));
   //
-  scene->font = Machine_FontsContext_createFont(Machine_DefaultFonts_createContext(Machine_Video_getContext(), Machines_DefaultImages_createContext()),
+  scene->font = Machine_FontsContext_createFont(Machine_DefaultFonts_createContext(Machine_getVideoContext(), Machines_DefaultImages_createContext()),
                                                 Machine_String_create("RobotoSlab-Regular.ttf", strlen("RobotoSlab-Regular.ttf")), 20);
   //
   scene->text1 = Machine_Text_Layout_create(Machine_String_create("", strlen("")), scene->font);
@@ -91,7 +91,7 @@ static void Scene4_onStartup(Scene4* scene) {
   //
   Machine_Math_Vector4* c = Machine_Math_Vector4_create();
   Machine_Math_Vector4_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
-  Machine_VideoContext_setClearColor(Machine_Video_getContext(), c);
+  Machine_VideoContext_setClearColor(Machine_getVideoContext(), c);
 }
 
 static void alignLeftTop(Machine_Text_Layout* layout, float width, float height) {
@@ -153,10 +153,10 @@ static void Scene4_onCanvasSizeChanged(Scene4* self, Machine_CanvasSizeChangedEv
 
 static void Scene4_onUpdate(Scene4* self, float width, float height) {
   // Set the viewport and clear its color buffer.
-  Machine_VideoContext_setViewportRectangle(Machine_Video_getContext(), 0, 0, width, height);
-  Machine_VideoContext_clearColorBuffer(Machine_Video_getContext());
+  Machine_VideoContext_setViewportRectangle(Machine_getVideoContext(), 0, 0, width, height);
+  Machine_VideoContext_clearColorBuffer(Machine_getVideoContext());
 
-  Machine_Context2* context2 = Machine_Context2_create(Machine_Video_getContext());
+  Machine_Context2* context2 = Machine_Context2_create(Machine_getVideoContext());
   Machine_Context2_setTargetSize(context2, width, height);
   Machine_Text_Layout_render(self->text1, context2);
   Machine_Text_Layout_render(self->text2, context2);

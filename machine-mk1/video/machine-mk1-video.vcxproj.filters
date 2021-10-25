@@ -84,6 +84,9 @@
     <ClCompile Include="Video\FontsContext.c">
       <Filter>Quelldateien\Video</Filter>
     </ClCompile>
+    <ClCompile Include="Video\Canvas.c">
+      <Filter>Quelldateien\Video</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_Video.h">
@@ -147,6 +150,9 @@
       <Filter>Headerdateien\Video</Filter>
     </ClInclude>
     <ClInclude Include="Video\FontsContext.h">
+      <Filter>Headerdateien\Video</Filter>
+    </ClInclude>
+    <ClInclude Include="Video\Canvas.h">
       <Filter>Headerdateien\Video</Filter>
     </ClInclude>
   </ItemGroup>

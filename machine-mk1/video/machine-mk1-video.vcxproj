@@ -80,6 +80,7 @@
     <ClCompile Include="Video\Binding.c" />
     <ClCompile Include="Video\BlendFunction.c" />
     <ClCompile Include="Video\Buffer.c" />
+    <ClCompile Include="Video\Canvas.c" />
     <ClCompile Include="Video\CanvasSizeChangedEvent.c" />
     <ClCompile Include="Video\DepthTestFunction.c" />
     <ClCompile Include="Video\Font.c" />
@@ -103,6 +104,7 @@
     <ClInclude Include="Video\Binding.h" />
     <ClInclude Include="Video\BlendFunction.h" />
     <ClInclude Include="Video\Buffer.h" />
+    <ClInclude Include="Video\Canvas.h" />
     <ClInclude Include="Video\CanvasSizeChangedEvent.h" />
     <ClInclude Include="Video\DepthTestFunction.h" />
     <ClInclude Include="Video\Font.h" />
@@ -123,6 +125,9 @@
     <ClInclude Include="_Video.h" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\core-collections\machine-mk1-core-collections.vcxproj">
+      <Project>{6eb4ab0f-86e3-4ab8-850e-449c7a78878b}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\core\machine-mk1-core.vcxproj">
       <Project>{f34866d8-3093-4b44-a225-7da2b5cd8e83}</Project>
     </ProjectReference>

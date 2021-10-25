@@ -2,41 +2,60 @@
 
 
 
-#include "Video/GL/VideoContext.h"
-#include "Video/GL/CanvasInput.h"
-#include "Video/GL/ShaderProgram.h"
+#include "_Video_GL.h"
 
 
 
 static Machine_VideoContext* g_videoContext = NULL;
+static Machine_Video_Canvas* g_videoCanvas = NULL;
 
-void Machine_Video_startup() {
-  Machine_GLFW_startupCanvas();
-  {
-    Machine_JumpTarget jumpTarget;
-    Machine_pushJumpTarget(&jumpTarget);
-    if (!setjmp(jumpTarget.environment)) {
-      g_videoContext = (Machine_VideoContext *)Machine_GL_VideoContext_create();
-      Machine_lock(g_videoContext);
-      {
-        Machine_GL_VideoContext_write((Machine_GL_VideoContext*)g_videoContext);
-      }
-      Machine_popJumpTarget();
-    } else {
-      Machine_popJumpTarget();
-      Machine_GLFW_shutdownCanvas();
-      Machine_jump();
+static void initCanvas() {
+  Machine_JumpTarget jumpTarget;
+  Machine_pushJumpTarget(&jumpTarget);
+  if (!setjmp(jumpTarget.environment)) {
+    g_videoCanvas = (Machine_Video_Canvas*)Machine_Video_GL_Canvas_create();
+    Machine_lock(g_videoCanvas);
+    g_videoContext = (Machine_VideoContext*)Machine_GL_VideoContext_create();
+    Machine_lock(g_videoContext);
+    Machine_popJumpTarget();
+  } else {
+    Machine_popJumpTarget();
+    if (g_videoContext) {
+      Machine_unlock(g_videoContext);
+      g_videoContext = NULL;
     }
+    if (g_videoCanvas) {
+      Machine_unlock(g_videoCanvas);
+      g_videoCanvas = NULL;
+    }
+    Machine_jump();
   }
 }
 
-void Machine_Video_shutdown() {
-  Machine_unlock(g_videoContext);
-  g_videoContext = NULL;
-  Machine_GLFW_shutdownCanvas();
+static void uninitCanvas() {
+  if (g_videoContext) {
+    Machine_unlock(g_videoContext);
+    g_videoContext = NULL;
+  }
+  if (g_videoCanvas) {
+    Machine_unlock(g_videoCanvas);
+    g_videoCanvas = NULL;
+  }
 }
 
-Machine_VideoContext* Machine_Video_getContext() {
+void Machine_Video_startup() {
+  initCanvas();
+}
+
+void Machine_Video_shutdown() {
+  uninitCanvas();
+}
+
+Machine_Video_Canvas* Machine_getVideoCanvas() {
+  return g_videoCanvas;
+}
+
+Machine_VideoContext* Machine_getVideoContext() {
   return g_videoContext;
 }
 

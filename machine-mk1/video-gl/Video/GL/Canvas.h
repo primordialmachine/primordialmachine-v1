@@ -1,38 +1,38 @@
-#if !defined(MACHINE_GLFW_CANVAS_H_INCLUDED)
-#define MACHINE_GLFW_CANVAS_H_INCLUDED
+#if !defined(MACHINE_VIDEO_GL_CANVAS_H_INCLUDED)
+#define MACHINE_VIDEO_GL_CANVAS_H_INCLUDED
 
 
+#if !defined(MACHINE_VIDEO_GL_PRIVATE)
+#error("Do not include this file directly, include `_Video_GL.h` instead.")
+#endif
+#include "_Video.h"
 
-#include "_Collections.h"
-#include "_Runtime.h"
+
 
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
-
 #include <glad/glad.h>
 
 
 
-/// @brief Startup canvas.
-/// An undefined-op if the canvas is already started.
-void Machine_GLFW_startupCanvas();
-
-/// @brief Shutdown canvas.
-/// An undefined-op if the canvas is not yet started.
-void Machine_GLFW_shutdownCanvas();
-
 /// @brief Get the canvas.
 /// @return The canvas.
+/// @todo Remove this from here.
+DEPRECATED
 GLFWwindow* Machine_GLFW_getWindow();
 
-void Machine_GLFW_maximizeCanvas();
+MACHINE_DECLARE_CLASSTYPE(Machine_Video_GL_Canvas);
 
-void Machine_GLFW_getFrameBufferSize(Machine_Integer* width, Machine_Integer* height);
+struct Machine_Video_GL_Canvas_Class {
+  Machine_Video_Canvas_Class __parent__;
+};
 
-void Machine_GLFW_swapBuffers();
+struct Machine_Video_GL_Canvas {
+  Machine_Video_Canvas_Class __parent__;
+};
 
-void Machine_GLFW_setCanvasIcons(Machine_List* images);
+void Machine_Video_GL_Canvas_construct(Machine_Video_GL_Canvas* self, size_t numberOfArguments, Machine_Value const* arguments);
 
+Machine_Video_GL_Canvas*Machine_Video_GL_Canvas_create();
 
-
-#endif // MACHINE_GLFW_CANVAS_H_INCLUDED
+#endif // MACHINE_VIDEO_GL_CANVAS_H_INCLUDED

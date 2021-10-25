@@ -60,7 +60,7 @@ static void Machine_GUI_TextButton_constructClass(Machine_GUI_TextButton_Class* 
 
 void Machine_GUI_TextButton_construct(Machine_GUI_TextButton* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_GUI_Widget_construct((Machine_GUI_Widget*)self, numberOfArguments, arguments);
-  Machine_FontsContext* fontsContext = Machine_DefaultFonts_createContext(Machine_Video_getContext(), Machines_DefaultImages_createContext());
+  Machine_FontsContext* fontsContext = Machine_DefaultFonts_createContext(Machine_getVideoContext(), Machines_DefaultImages_createContext());
   Machine_Font* font = Machine_FontsContext_createFont(fontsContext, Machine_String_create("RobotoSlab-Regular.ttf", strlen("RobotoSlab-Regular.ttf")), 20);
   self->foreground = Machine_Text_Layout_create(Machine_String_create("", strlen("")), font);
   self->background = Machine_Rectangle2_create();

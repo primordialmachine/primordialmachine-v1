@@ -1,3 +1,4 @@
+#define MACHINE_VIDEO_GL_PRIVATE (1)
 #include "./../GL/VideoContext.h"
 
 
@@ -361,7 +362,9 @@ void Machine_GL_VideoContext_construct(Machine_GL_VideoContext* self, size_t num
   self->incomingBlendFunction = Machine_BlendFunction_IncomingAlpha;
   {
     Machine_Integer width, height;
-    Machine_GLFW_getFrameBufferSize(&width, &height);
+    int w, h;
+    glfwGetFramebufferSize(Machine_GLFW_getWindow(), &w, &h);
+    width = w; height = h;
     self->viewportRectangle = Machine_Math_Rectangle2_create();
     Machine_Math_Vector2* v;
     v = Machine_Math_Vector2_create();

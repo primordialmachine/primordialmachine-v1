@@ -79,9 +79,9 @@ static Machine_GUI_Widget* loadWidgetByPath(Machine_GUI_Context *context, const 
 
 static void Scene5_startup(Scene5* scene) {
   //
-  scene->guiContext = Machine_GUI_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(Machine_Video_getContext()));
+  scene->guiContext = Machine_GUI_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(Machine_getVideoContext()));
   //
-  Machine_FontsContext* fontsContext = Machine_DefaultFonts_createContext(Machine_Video_getContext(), Machines_DefaultImages_createContext());
+  Machine_FontsContext* fontsContext = Machine_DefaultFonts_createContext(Machine_getVideoContext(), Machines_DefaultImages_createContext());
   scene->font = Machine_FontsContext_createFont(fontsContext, Machine_String_create("RobotoSlab-Regular.ttf", strlen("RobotoSlab-Regular.ttf")), 20);
   //
   scene->mainMenu = (Machine_GUI_Group*)loadWidgetByPath(scene->guiContext, "scenes/scene5/mainMenu.txt");
@@ -92,7 +92,7 @@ static void Scene5_startup(Scene5* scene) {
   //
   Machine_Math_Vector4* c = Machine_Math_Vector4_create();
   Machine_Math_Vector4_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
-  Machine_VideoContext_setClearColor(Machine_Video_getContext(), c);
+  Machine_VideoContext_setClearColor(Machine_getVideoContext(), c);
 }
 
 static void renderText1(Scene5* self) {
@@ -113,7 +113,7 @@ static void renderHeader(Scene5* self) {
   Machine_Context2* context = self->guiContext->context2;
   float width = Machine_Context2_getTargetWidth(context);
   float height = Machine_Context2_getTargetHeight(context);
-  Machine_Context2* tmp = Machine_Context2_create(Machine_Video_getContext());
+  Machine_Context2* tmp = Machine_Context2_create(Machine_getVideoContext());
   Machine_Context2_setTargetSize(tmp, width, height);
   Machine_GUI_Widget_render((Machine_GUI_Widget*)self->header, tmp);
 }
@@ -145,7 +145,7 @@ static void renderFooter(Scene5* self) {
   Machine_Context2* context = self->guiContext->context2;
   float width = Machine_Context2_getTargetWidth(context);
   float height = Machine_Context2_getTargetHeight(context);
-  Machine_Context2* tmp = Machine_Context2_create(Machine_Video_getContext());
+  Machine_Context2* tmp = Machine_Context2_create(Machine_getVideoContext());
   Machine_Context2_setTargetSize(tmp, width, height);
   Machine_GUI_Widget_render((Machine_GUI_Widget*)self->footer, tmp);
 }
@@ -179,8 +179,8 @@ static void Scene5_onCanvasSizeChanged(Scene5* self, Machine_CanvasSizeChangedEv
 
 static void Scene5_update(Scene5* self, float width, float height) {
   // Set the viewport and clear its color buffer.
-  Machine_VideoContext_setViewportRectangle(Machine_Video_getContext(), 0, 0, width, height);
-  Machine_VideoContext_clearColorBuffer(Machine_Video_getContext());
+  Machine_VideoContext_setViewportRectangle(Machine_getVideoContext(), 0, 0, width, height);
+  Machine_VideoContext_clearColorBuffer(Machine_getVideoContext());
 
   renderText1(self);
   renderHeader(self);

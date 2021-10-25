@@ -245,10 +245,10 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* con
   }
 
   if (self->clipRectangle) {
-    Machine_VideoContext_setClipDistanceEnabled(Machine_Video_getContext(), 0, true);
-    Machine_VideoContext_setClipDistanceEnabled(Machine_Video_getContext(), 1, true);
-    Machine_VideoContext_setClipDistanceEnabled(Machine_Video_getContext(), 2, true);
-    Machine_VideoContext_setClipDistanceEnabled(Machine_Video_getContext(), 3, true);
+    Machine_VideoContext_setClipDistanceEnabled(Machine_getVideoContext(), 0, true);
+    Machine_VideoContext_setClipDistanceEnabled(Machine_getVideoContext(), 1, true);
+    Machine_VideoContext_setClipDistanceEnabled(Machine_getVideoContext(), 2, true);
+    Machine_VideoContext_setClipDistanceEnabled(Machine_getVideoContext(), 3, true);
   }
   if (self->renderVisualBounds) {
     if (!self->visualBounds) {
@@ -257,7 +257,7 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* con
     Machine_Math_Vector4* color = Machine_Math_Vector4_create();
     Machine_Math_Vector4_set(color, .3f, .6f, .3f, 1.f);
     Machine_Rectangle2_setColor(self->visualBounds, color);
-    Machine_Context2* context = Machine_Context2_create(Machine_Video_getContext());
+    Machine_Context2* context = Machine_Context2_create(Machine_getVideoContext());
     Machine_Context2_setTargetSize(context, Machine_Context2_getTargetWidth(context2), Machine_Context2_getTargetHeight(context2));
     Machine_Shape2_render((Machine_Shape2*)self->visualBounds, context);
   }
@@ -330,10 +330,10 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* con
   Machine_Binding_bindMatrix4(binding, Machine_String_create("modelToWorldMatrix", strlen("modelToWorldMatrix") + 1), modelSpaceToWorldSpace);
   Machine_Binding_bindMatrix4(binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), modelSpaceToProjectiveSpace);
 
-  Machine_VideoContext_setDepthTestFunction(Machine_Video_getContext(), Machine_DepthTestFunction_Always);
-  Machine_VideoContext_setDepthWriteEnabled(Machine_Video_getContext(), false);
-  Machine_VideoContext_setIncomingBlendFunction(Machine_Video_getContext(), Machine_BlendFunction_IncomingAlpha);
-  Machine_VideoContext_setExistingBlendFunction(Machine_Video_getContext(), Machine_BlendFunction_OneMinusIncomingAlpha);
+  Machine_VideoContext_setDepthTestFunction(Machine_getVideoContext(), Machine_DepthTestFunction_Always);
+  Machine_VideoContext_setDepthWriteEnabled(Machine_getVideoContext(), false);
+  Machine_VideoContext_setIncomingBlendFunction(Machine_getVideoContext(), Machine_BlendFunction_IncomingAlpha);
+  Machine_VideoContext_setExistingBlendFunction(Machine_getVideoContext(), Machine_BlendFunction_OneMinusIncomingAlpha);
 
   float cursorPosition[] = { position0[0], position0[1] };
 
@@ -377,9 +377,9 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* con
         2, 1, 3,
       };
       static const size_t UNIT = 0;
-      Machine_VideoContext_bindTexture(Machine_Video_getContext(), 0, symbolTexture);
+      Machine_VideoContext_bindTexture(Machine_getVideoContext(), 0, symbolTexture);
       Machine_Binding_bindSampler(binding, Machine_String_create("texture_1", strlen("texture_1")), UNIT);
-      Machine_VideoContext_drawIndirect(Machine_Video_getContext(), 0, 6, indices);
+      Machine_VideoContext_drawIndirect(Machine_getVideoContext(), 0, 6, indices);
 
       cursorPosition[0] += Machine_Math_Vector2_getX(symbolAdvance);
       cursorPosition[1] += Machine_Math_Vector2_getY(symbolAdvance);
@@ -387,10 +387,10 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* con
     cursorPosition[0] = position0[0];
     cursorPosition[1] += Machine_Font_getBaselineDistance(self->font);
   }
-  Machine_VideoContext_setClipDistanceEnabled(Machine_Video_getContext(), 3, false);
-  Machine_VideoContext_setClipDistanceEnabled(Machine_Video_getContext(), 2, false);
-  Machine_VideoContext_setClipDistanceEnabled(Machine_Video_getContext(), 1, false);
-  Machine_VideoContext_setClipDistanceEnabled(Machine_Video_getContext(), 0, false);
+  Machine_VideoContext_setClipDistanceEnabled(Machine_getVideoContext(), 3, false);
+  Machine_VideoContext_setClipDistanceEnabled(Machine_getVideoContext(), 2, false);
+  Machine_VideoContext_setClipDistanceEnabled(Machine_getVideoContext(), 1, false);
+  Machine_VideoContext_setClipDistanceEnabled(Machine_getVideoContext(), 0, false);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
