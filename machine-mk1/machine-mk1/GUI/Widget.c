@@ -22,8 +22,8 @@ static void Machine_GUI_Widget_visit(Machine_GUI_Widget *self) {
   if (self->rectangle) {
     Machine_visit(self->rectangle);
   }
-  if (self->connections) {
-    Machine_visit(self->connections);
+  if (self->signal) {
+    Machine_visit(self->signal);
   }
   if (self->context) {
     Machine_visit(self->context);
@@ -114,6 +114,7 @@ void Machine_GUI_Widget_construct(Machine_GUI_Widget* self, size_t numberOfArgum
   self->context = (Machine_GUI_Context*)Machine_Value_getObject(&arguments[0]);
   self->rectangle = Machine_Math_Rectangle2_create();
   self->parent = NULL;
+  self->signal = Machine_Signals_Signal_create();
   Machine_setClassType((Machine_Object*)self, Machine_GUI_Widget_getClassType());
 }
 
@@ -180,43 +181,17 @@ const Machine_Math_Rectangle2* Machine_GUI_Widget_getAbsoluteCanvasRectangle(con
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 void Machine_GUI_Widget_subscribe(Machine_GUI_Widget* self, Machine_String* name, Machine_Object* context, Machine_ForeignProcedure* callback) {
-  Machine_Signals_Connection *connection = Machine_Signals_Connection_create(name, context, callback);
-  if (self->connections == NULL) {
-    self->connections = Machine_List_create();
-  }
-  Machine_Value value;
-  Machine_Value_setObject(&value, (Machine_Object*)connection);
-  Machine_List_append(self->connections, value);
+  Machine_Signals_Signal_subscribe(self->signal, name, context, callback);
 }
 
 void Machine_GUI_Widget_unsubscribe(Machine_GUI_Widget* self, Machine_String* name, Machine_Object* context, Machine_ForeignProcedure* callback) {
-  if (self->connections) {
-    for (size_t i = 0, n = Machine_Collection_getSize((Machine_Collection*)self->connections); i < n; ++i) {
-      Machine_Value temporary = Machine_List_getAt(self->connections, i);
-      Machine_Signals_Connection* c = (Machine_Signals_Connection*)Machine_Value_getObject(&temporary);
-      if (Machine_String_isEqualTo(c->name, name) &&
-          Machine_Object_isEqualTo(c->context, context) &&
-          Machine_ForeignProcedure_isEqualTo(c->callback, callback)) {
-        Machine_List_removeAtFast(self->connections, i);
-        break;
-      }
-    }
-  }
+  Machine_Signals_Signal_unsubscribe(self->signal, name, context, callback);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 void Machine_GUI_Widget_emitSignal(Machine_GUI_Widget* self, Machine_String* name, size_t numberOfArguments, const Machine_Value *arguments) {
-  if (self->connections) {
-    for (size_t i = 0, n = Machine_Collection_getSize((Machine_Collection*)self->connections); i < n; ++i) {
-      Machine_Value temporary = Machine_List_getAt(self->connections, i);
-      Machine_Signals_Connection* c = (Machine_Signals_Connection*)Machine_Value_getObject(&temporary);
-      if (Machine_String_isEqualTo(c->name, name)) {
-        MACHINE_ASSERT_NOTNULL(c->callback);
-        c->callback(numberOfArguments, arguments);
-      }
-    }
-  }
+  Machine_Signals_Signal_emit(self->signal, name, numberOfArguments, arguments);
 }
 
 void Machine_GUI_Widget_emitPositionChangedSignal(Machine_GUI_Widget* self) {

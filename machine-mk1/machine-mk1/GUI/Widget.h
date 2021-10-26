@@ -48,7 +48,7 @@ struct Machine_GUI_Widget {
   Machine_Math_Rectangle2* rectangle;
   Machine_GUI_Widget* parent;
 
-  Machine_List* connections;
+  Machine_Signals_Signal* signal;
 };
 
 /// @brief Construct this widget.

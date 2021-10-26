@@ -27,12 +27,18 @@
     <ClCompile Include="Signals\Connection.c">
       <Filter>Quelldateien\Signals</Filter>
     </ClCompile>
+    <ClCompile Include="Signals\Signal.c">
+      <Filter>Quelldateien\Signals</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_Signals.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Signals\Connection.h">
+      <Filter>Headerdateien\Signals</Filter>
+    </ClInclude>
+    <ClInclude Include="Signals\Signal.h">
       <Filter>Headerdateien\Signals</Filter>
     </ClInclude>
   </ItemGroup>
