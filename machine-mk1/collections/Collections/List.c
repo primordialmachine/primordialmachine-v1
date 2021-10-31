@@ -5,8 +5,10 @@
 #include "Collections/List.h"
 
 
-#include <malloc.h>
+
 #include <memory.h>
+
+
 
 static const size_t maximalCapacity = SIZE_MAX / sizeof(Machine_Value);
 
@@ -16,13 +18,13 @@ static void prepend(Machine_List* self, Machine_Value value);
 
 static void insertAt(Machine_List* self, size_t index, Machine_Value value);
 
-static Machine_Value getAt(const Machine_List* self, size_t index);
+static Machine_Value getAt(Machine_List const* self, size_t index);
 
 static void removeAt(Machine_List* self, size_t index);
 
 static void removeAtFast(Machine_List* self, size_t index);
 
-static size_t getSize(const Machine_List* self);
+static size_t getSize(Machine_List const* self);
 
 static void clear(Machine_List* self);
 
@@ -43,7 +45,7 @@ static void Machine_List_visit(Machine_List* self);
 static void Machine_List_destruct(Machine_List* self);
 
 static void Machine_List_constructClass(Machine_List_Class* self) {
-  ((Machine_Collection_Class*)self)->getSize = (size_t(*)(const Machine_Collection*)) & getSize;
+  ((Machine_Collection_Class*)self)->getSize = (size_t(*)(Machine_Collection const*)) & getSize;
   ((Machine_Collection_Class*)self)->clear = (void (*)(Machine_Collection*)) & clear;
   self->append = &append;
   self->prepend = &prepend;
@@ -59,11 +61,15 @@ static void Machine_List_constructClass(Machine_List_Class* self) {
 #endif
 }
 
-static void Machine_List_construct(Machine_List* self, size_t numberOfArguments, const Machine_Value* arguments) {
+static void Machine_List_construct(Machine_List* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Collection_construct((Machine_Collection*)self, numberOfArguments, arguments);
   self->size = 0;
   self->capacity = 0;
-  self->elements = NULL;
+  self->elements = c_alloc(0);
+  if (!self->elements) {
+    Machine_setStatus(Machine_Status_AllocationFailed);
+    Machine_jump();
+  }
   Machine_setClassType((Machine_Object*)self, Machine_List_getClassType());
 }
 
@@ -89,7 +95,7 @@ static void insertAt(Machine_List* self, size_t index, Machine_Value value) {
     if (self->capacity < maximalCapacity / 2) {
       newCapacity = self->capacity > 0 ? self->capacity * 2 : 8;
     }
-    void* newElements = realloc(self->elements, sizeof(Machine_Value) * newCapacity);
+    void* newElements = c_realloc_a(self->elements, sizeof(Machine_Value), newCapacity);
     if (!newElements) {
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();
@@ -104,7 +110,7 @@ static void insertAt(Machine_List* self, size_t index, Machine_Value value) {
   self->size++;
 }
 
-static size_t getSize(const Machine_List* self) {
+static size_t getSize(Machine_List const* self) {
   return self->size;
 }
 
@@ -112,7 +118,7 @@ static void clear(Machine_List* self) {
   self->size = 0;
 }
 
-static Machine_Value getAt(const Machine_List* self, size_t index) {
+static Machine_Value getAt(Machine_List const* self, size_t index) {
   if (index >= self->size) {
     Machine_setStatus(Machine_Status_IndexOutOfBounds);
     Machine_jump();
@@ -148,7 +154,7 @@ static void Machine_List_visit(Machine_List* self) {
 
 static void Machine_List_destruct(Machine_List* self) {
   if (self->elements) {
-    free(self->elements);
+    c_dealloc(self->elements);
     self->elements = NULL;
   }
 }
@@ -161,7 +167,7 @@ Machine_List* Machine_List_create() {
   return self;
 }
 
-Machine_Value Machine_List_getAt(const Machine_List* self, size_t index) {
+Machine_Value Machine_List_getAt(Machine_List const* self, size_t index) {
   MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_List, getAt, index);
 }
 

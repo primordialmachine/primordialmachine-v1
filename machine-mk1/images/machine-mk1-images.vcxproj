@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\core-collections\machine-mk1-core-collections.vcxproj">
+    <ProjectReference Include="..\collections\machine-mk1-collections.vcxproj">
       <Project>{6eb4ab0f-86e3-4ab8-850e-449c7a78878b}</Project>
     </ProjectReference>
     <ProjectReference Include="..\core\machine-mk1-core.vcxproj">

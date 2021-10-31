@@ -4,9 +4,9 @@
 #define MACHINE_COLLECTIONS_PRIVATE (1)
 #include "Collections/Map.h"
 
+#include "_Runtime.h"
 #include "Collections/List.h"
 #include "Collections/Pair.h"
-#include <malloc.h>
 #include <memory.h>
 
 
@@ -44,7 +44,7 @@ static void maybeResize(Machine_Map* self) {
   // (2) If new capacity != old capacity, resize.
   if (newCapacity != oldCapacity) {
     Node** oldBuckets = pimpl->buckets;
-    Node** newBuckets = malloc(sizeof(Node*) * newCapacity);
+    Node** newBuckets = c_alloc_a(sizeof(Node*), newCapacity);
     if (!newBuckets) {
       /*
       Machine_setStatus(Machine_Status_AllocationFailed);
@@ -64,7 +64,7 @@ static void maybeResize(Machine_Map* self) {
         newBuckets[hashIndex] = node;
       }
     }
-    free(oldBuckets);
+    c_dealloc(oldBuckets);
     pimpl->buckets = newBuckets;
     pimpl->capacity = newCapacity;
   }
@@ -85,7 +85,7 @@ static void set(Machine_Map* self, Machine_Value key, Machine_Value value) {
     }
   }
   if (!node) {
-    node = malloc(sizeof(Node));
+    node = c_alloc(sizeof(Node));
     if (!node) {
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();
@@ -127,7 +127,7 @@ static void clear(Machine_Map* self) {
     while (pimpl->buckets[i]) {
       Node* node = pimpl->buckets[i];
       pimpl->buckets[i] = node->next;
-      free(node);
+      c_dealloc(node);
       pimpl->size--;
     }
   }
@@ -140,22 +140,22 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Map, Machine_Collection, NULL, &Machine_Map_con
 static void Machine_Map_constructClass(Machine_Map_Class* self) {
   self->get = &get;
   self->set = &set;
-  ((Machine_Collection_Class*)self)->getSize = (size_t(*)(const Machine_Collection*)) & getSize;
   ((Machine_Collection_Class*)self)->clear = (void (*)(Machine_Collection*)) & clear;
+  ((Machine_Collection_Class*)self)->getSize = (size_t(*)(const Machine_Collection*)) & getSize;
 }
 
 void Machine_Map_construct(Machine_Map* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Collection_construct((Machine_Collection*)self, numberOfArguments, arguments);
-  Map* pimpl = malloc(sizeof(Map));
+  Map* pimpl = c_alloc(sizeof(Map));
   if (!pimpl) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
   pimpl->size = 0;
   pimpl->capacity = MINIMAL_CAPACITY;
-  pimpl->buckets = malloc(sizeof(Node*) * pimpl->capacity);
+  pimpl->buckets = c_alloc_a(sizeof(Node*), pimpl->capacity);
   if (!pimpl->buckets) {
-    free(pimpl);
+    c_dealloc(pimpl);
     pimpl = NULL;
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();

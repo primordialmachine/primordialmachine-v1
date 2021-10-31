@@ -37,6 +37,7 @@
     <ProjectGuid>{6EB4AB0F-86E3-4AB8-850E-449C7A78878B}</ProjectGuid>
     <RootNamespace>machinemk1core</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>machine-mk1-collections</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -68,16 +69,16 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <PublicIncludeDirectories>$(SolutionDir)core-collections</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(SolutionDir)collections</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <PublicIncludeDirectories>$(SolutionDir)core-collections</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(SolutionDir)collections</PublicIncludeDirectories>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)core-collections</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)collections</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -89,7 +90,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)core-collections</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)collections</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>

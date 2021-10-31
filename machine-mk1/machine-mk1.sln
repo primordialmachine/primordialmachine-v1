@@ -21,13 +21,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-signals", "sign
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-images", "images\machine-mk1-images.vcxproj", "{F0B732B5-824D-40AB-AA0A-A067B6A852F9}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-core-collections", "core-collections\machine-mk1-core-collections.vcxproj", "{6EB4AB0F-86E3-4AB8-850E-449C7A78878B}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-graphics2", "graphics2\machine-mk1-graphics2.vcxproj", "{F4AA48F9-3C29-4CC5-B219-C357284103B2}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-fonts", "fonts\machine-mk1-fonts.vcxproj", "{36897CC2-2E49-4CE8-804D-AA172EC849E0}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-video-gl", "video-gl\machine-mk1-video-gl.vcxproj", "{C6FF90B2-B9D9-4A80-AFC2-A71B02AA29C2}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-collections", "collections\machine-mk1-collections.vcxproj", "{6EB4AB0F-86E3-4AB8-850E-449C7A78878B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,10 +71,6 @@ Global
 		{F0B732B5-824D-40AB-AA0A-A067B6A852F9}.Debug|x64.Build.0 = Debug|x64
 		{F0B732B5-824D-40AB-AA0A-A067B6A852F9}.Release|x64.ActiveCfg = Release|x64
 		{F0B732B5-824D-40AB-AA0A-A067B6A852F9}.Release|x64.Build.0 = Release|x64
-		{6EB4AB0F-86E3-4AB8-850E-449C7A78878B}.Debug|x64.ActiveCfg = Debug|x64
-		{6EB4AB0F-86E3-4AB8-850E-449C7A78878B}.Debug|x64.Build.0 = Debug|x64
-		{6EB4AB0F-86E3-4AB8-850E-449C7A78878B}.Release|x64.ActiveCfg = Release|x64
-		{6EB4AB0F-86E3-4AB8-850E-449C7A78878B}.Release|x64.Build.0 = Release|x64
 		{F4AA48F9-3C29-4CC5-B219-C357284103B2}.Debug|x64.ActiveCfg = Debug|x64
 		{F4AA48F9-3C29-4CC5-B219-C357284103B2}.Debug|x64.Build.0 = Debug|x64
 		{F4AA48F9-3C29-4CC5-B219-C357284103B2}.Release|x64.ActiveCfg = Release|x64
@@ -87,6 +83,10 @@ Global
 		{C6FF90B2-B9D9-4A80-AFC2-A71B02AA29C2}.Debug|x64.Build.0 = Debug|x64
 		{C6FF90B2-B9D9-4A80-AFC2-A71B02AA29C2}.Release|x64.ActiveCfg = Release|x64
 		{C6FF90B2-B9D9-4A80-AFC2-A71B02AA29C2}.Release|x64.Build.0 = Release|x64
+		{6EB4AB0F-86E3-4AB8-850E-449C7A78878B}.Debug|x64.ActiveCfg = Debug|x64
+		{6EB4AB0F-86E3-4AB8-850E-449C7A78878B}.Debug|x64.Build.0 = Debug|x64
+		{6EB4AB0F-86E3-4AB8-850E-449C7A78878B}.Release|x64.ActiveCfg = Release|x64
+		{6EB4AB0F-86E3-4AB8-850E-449C7A78878B}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

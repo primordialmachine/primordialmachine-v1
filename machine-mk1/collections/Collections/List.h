@@ -47,7 +47,7 @@ struct Machine_List {
 /// @param self A pointer to this list.
 /// @param numberOfArguments The number of arguments.
 /// @param arguments The arguments.
-void Machine_List_construct(Machine_List* self, size_t numberOfArguments, const Machine_Value* arguments);
+void Machine_List_construct(Machine_List* self, size_t numberOfArguments, Machine_Value const* arguments);
 
 /// @brief Create an empty list.
 /// @return The list.
@@ -60,7 +60,7 @@ Machine_List* Machine_List_create();
 /// @error Machine_Status_IndexOutOfBounds @a index is smaller than @a 0 or greater than @a n where @a n is the size of this list.
 /// @error Machine_Status_InvalidArgument @a self is null.
 /// @abstract
-Machine_Value Machine_List_getAt(const Machine_List* self, size_t index);
+Machine_Value Machine_List_getAt(Machine_List const* self, size_t index);
 
 /// @brief Prepend a value to this list.
 /// @param self This list.
@@ -110,5 +110,7 @@ void Machine_List_reverse(Machine_List* self);
 Machine_List* Machine_List_slice(Machine_List* self, size_t start, size_t length);
 
 #endif
+
+
 
 #endif // MACHINE_COLLECTIONS_LIST_H_INCLUDED
