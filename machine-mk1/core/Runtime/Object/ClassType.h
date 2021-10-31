@@ -1,8 +1,8 @@
-/// @file Runtime/TS/ClassType.h
+/// @file Runtime/Object/ClassType.h
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#if !defined(MACHINE_RUNTIME_TS_CLASSTYPE_H_INCLUDED)
-#define MACHINE_RUNTIME_TS_CLASSTYPE_H_INCLUDED
+#if !defined(MACHINE_RUNTIME_OBJECT_CLASSTYPE_H_INCLUDED)
+#define MACHINE_RUNTIME_OBJECT_CLASSTYPE_H_INCLUDED
 
 
 
@@ -10,7 +10,7 @@
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
 
-#include "Runtime/TS/Type.h"
+#include "Runtime/Type.h"
 typedef struct Machine_Value Machine_Value;
 
 
@@ -98,4 +98,4 @@ static inline bool Machine_isSuperTypeOf(Machine_ClassType const* superType, Mac
   return Machine_isSubTypeOf(subType, superType);
 }
 
-#endif // MACHINE_RUNTIME_TS_CLASSTYPE_H_INCLUDED
+#endif // MACHINE_RUNTIME_OBJECT_CLASSTYPE_H_INCLUDED

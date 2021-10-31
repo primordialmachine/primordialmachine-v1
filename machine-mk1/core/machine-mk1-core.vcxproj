@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="Machine.c" />
     <ClCompile Include="Runtime\Arguments.c" />
+    <ClCompile Include="Runtime\Assertions.c" />
     <ClCompile Include="Runtime\ByteBuffer.c" />
     <ClCompile Include="Runtime\C.c" />
     <ClCompile Include="Runtime\ConvertPrimitiveTypes.c" />
@@ -24,20 +25,22 @@
     <ClCompile Include="Runtime\IO\_FileMapping.c" />
     <ClCompile Include="Runtime\JumpTargetModule.c" />
     <ClCompile Include="Runtime\LogModule.c" />
+    <ClCompile Include="Runtime\Object\Object.c" />
     <ClCompile Include="Runtime\PrimitiveTypes.c" />
     <ClCompile Include="Runtime\StackModule.c" />
+    <ClCompile Include="Runtime\StaticVariablesModule.c" />
     <ClCompile Include="Runtime\Status.c" />
     <ClCompile Include="Runtime\String.c" />
     <ClCompile Include="Runtime\StringBuffer.c" />
-    <ClCompile Include="Runtime\TS\ClassType.c" />
-    <ClCompile Include="Runtime\TS\InterfaceType.c" />
-    <ClCompile Include="Runtime\TS\Type.c" />
+    <ClCompile Include="Runtime\Object\ClassType.c" />
+    <ClCompile Include="Runtime\Type.c" />
     <ClCompile Include="Runtime\Value.c" />
     <ClCompile Include="_Runtime.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Machine.h" />
     <ClInclude Include="Runtime\Arguments.h" />
+    <ClInclude Include="Runtime\Assertions.h" />
     <ClInclude Include="Runtime\ByteBuffer.h" />
     <ClInclude Include="Runtime\C.h" />
     <ClInclude Include="Runtime\Configuration.h" />
@@ -53,14 +56,15 @@
     <ClInclude Include="Runtime\IO\_FileMapping.h" />
     <ClInclude Include="Runtime\JumpTargetModule.h" />
     <ClInclude Include="Runtime\LogModule.h" />
+    <ClInclude Include="Runtime\Object\Object.h" />
     <ClInclude Include="Runtime\PrimitiveTypes.h" />
     <ClInclude Include="Runtime\StackModule.h" />
+    <ClInclude Include="Runtime\StaticVariablesModule.h" />
     <ClInclude Include="Runtime\Status.h" />
     <ClInclude Include="Runtime\String.h" />
     <ClInclude Include="Runtime\StringBuffer.h" />
-    <ClInclude Include="Runtime\TS\ClassType.h" />
-    <ClInclude Include="Runtime\TS\InterfaceType.h" />
-    <ClInclude Include="Runtime\TS\Type.h" />
+    <ClInclude Include="Runtime\Object\ClassType.h" />
+    <ClInclude Include="Runtime\Type.h" />
     <ClInclude Include="Runtime\Value.h" />
     <ClInclude Include="_Runtime.h" />
   </ItemGroup>

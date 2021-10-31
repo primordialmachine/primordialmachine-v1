@@ -192,9 +192,11 @@ INLINE bool Machine_Value_isVoid(const Machine_Value* self) {
 
 void Machine_Value_visit(Machine_Value* self);
 
-Machine_Boolean Machine_Value_isEqualTo(const Machine_Value* x, const Machine_Value* y);
+Machine_Boolean Machine_Value_isEqualTo(Machine_Value const* x, Machine_Value const* y);
 
-size_t Machine_Value_getHashValue(const Machine_Value* x);
+size_t Machine_Value_getHashValue(Machine_Value const* x);
+
+void Machine_Value_swap(Machine_Value* x, Machine_Value* y);
 
 
 

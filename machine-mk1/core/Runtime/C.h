@@ -15,6 +15,8 @@
 #include <stdint.h>
 #include <setjmp.h>
 
+
+
 #if defined(INLINE)
 #error('INLINE already defined')
 #endif
@@ -46,6 +48,8 @@
 /// @endcode
 #define DEPRECATED
 
+
+
 /// @brief Safe multiplcation.
 /// @param n The multiplicant.
 /// @param m The multiplier.
@@ -53,6 +57,8 @@
 /// @return @a true if the product <code>n*m</code> does not overflow, @a false otherwise.
 /// If @a k is not null, the variable pointed to is assigned the product if it does not overflow and is assigned <code>(size_t)-1</code> otherwise.
 bool c_safe_mul_sz(size_t n, size_t m, size_t* k);
+
+
 
 /// @brief Allocate a memory block of the specified length.
 /// @param n The length, in Bytes, of the memory block is given by <code>n</code>. Can be @a 0.
@@ -62,12 +68,53 @@ void *c_alloc(size_t n);
 
 /// @brief Allocate a memory block of the specified length.
 /// @param n, m The length, in Bytes, of the memory block is given by <code>n*m</code>. The length can be @a 0.
-/// @param A pointer to a memory block of the specified length on success, @a NULL on failure.
+/// @return A pointer to a memory block of the specified length on success, @a NULL on failure.
 /// @remark This function fails if not enough memory can be allocated.
 /// @remark This function fails if the product <code>n*m</code> would overflow.
 void *c_alloc_a(size_t n, size_t m);
 
+/// @brief Reallocate a memory block to the specified length.
+/// @param p A pointer to the memory block.
+/// @param n The number of Bytes to reallocate the memory block to is given by <code>n</code>. Can be @a 0.
+/// @return A pointer to a memory block of the specified length on success, @a NULL on failure.
+/// @remark This function fails if not enough memory can be allocated.
+/// @success The old memory block was deallocated.
+/// @failure The old memory block was not modified.
+void *c_realloc(void* p, size_t n);
+
+/// @brief Reallocate a memory block of the specified length.
+/// @param p A pointer to the memory block.
+/// @param n, m The number of Bytes to reallocate the memory block to is given by <code>n*m</code>. The length can be @a 0.
+/// @return A pointer to a memory block of the specified length on success, @a NULL on failure.
+/// @remark This function fails if not enough memory can be allocated.
+/// @remark This function fails if the product <code>n*m</code> would overflow.
+/// @success The old memory block was deallocated.
+/// @failure The old memory block was not modified.
+void* c_realloc_a(void *p, size_t n, size_t m);
+
+/// @brief Deallocate a memory block.
+/// @param p A poitner to the memory block or a null pointer.
+/// @remark If @a p is a null pointer, then this function is a no-operation.
+void c_dealloc(void* p);
+
+
+
+/// @brief Get the minimum of two values.
+/// @param x The first value.
+/// @param y The second value.
+/// @return The minimum of the first and the second value.
+INLINE size_t c_min_sz(size_t x, size_t y) {
+  return x < y ? x : y;
+}
+
+/// @brief Get the maximum of two values.
+/// @param x The first value.
+/// @param y The second value.
+/// @return The maximum of the first and the second value.
+INLINE size_t c_max_sz(size_t x, size_t y) {
+  return x > y ? x : y;
+}
+
 
 
 #endif // MACHINE_RUNTIME_C_H_INCLUDED
-

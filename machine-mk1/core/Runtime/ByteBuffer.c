@@ -19,19 +19,21 @@ struct Machine_ByteBuffer {
   size_t c; ///< The capacity.
 };
 
-static void Machine_ByteBuffer_construct(Machine_ByteBuffer* self, size_t numberOfArguments, const Machine_Value* arguments) {
+static void Machine_ByteBuffer_construct(Machine_ByteBuffer* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  self->p = NULL;
+  self->p = c_alloc(0);
+  if (!self->p) {
+    Machine_setStatus(Machine_Status_AllocationFailed);
+    Machine_jump();
+  }
   self->s = 0;
   self->c = 0;
   Machine_setClassType((Machine_Object *)self, Machine_ByteBuffer_getClassType());
 }
 
 static void Machine_ByteBuffer_destruct(Machine_ByteBuffer* self) {
-  if (self->p) {
-    free(self->p);
-    self->p = NULL;
-  }
+  c_dealloc(self->p);
+  self->p = NULL;
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_ByteBuffer, Machine_Object, NULL, &Machine_ByteBuffer_construct, &Machine_ByteBuffer_destruct, NULL)
@@ -44,22 +46,22 @@ Machine_ByteBuffer* Machine_ByteBuffer_create() {
   return self;
 }
 
-void Machine_ByteBuffer_appendBytes(Machine_ByteBuffer* self, const char* p, size_t n) {
+void Machine_ByteBuffer_appendBytes(Machine_ByteBuffer* self, char const* p, size_t n) {
   Machine_ByteBuffer_insertBytesAt(self, self->s, p, n);
 }
 
-void Machine_ByteBuffer_prependBytes(Machine_ByteBuffer* self, const char* p, size_t n) {
+void Machine_ByteBuffer_prependBytes(Machine_ByteBuffer* self, char const* p, size_t n) {
   Machine_ByteBuffer_insertBytesAt(self, 0, p, n);
 }
 
-void Machine_ByteBuffer_insertBytesAt(Machine_ByteBuffer* self, size_t i, const char* p, size_t n) {
+void Machine_ByteBuffer_insertBytesAt(Machine_ByteBuffer* self, size_t i, char const* p, size_t n) {
   if (n == 0) {
     return;
   }
   size_t fc = self->c - self->s;
   if (fc < n) {
     size_t ac = n - fc; // additional capacity
-    char* p = realloc(self->p, self->c + ac);
+    char* p = c_realloc(self->p, self->c + ac);
     if (!p) {
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();
@@ -78,15 +80,15 @@ void Machine_ByteBuffer_clear(Machine_ByteBuffer* self) {
   self->s = 0;
 }
 
-const char* Machine_ByteBuffer_getBytes(const Machine_ByteBuffer* self) {
+char const* Machine_ByteBuffer_getBytes(Machine_ByteBuffer const* self) {
   return self->p;
 }
 
-size_t Machine_ByteBuffer_getNumberOfBytes(const Machine_ByteBuffer* self) {
+size_t Machine_ByteBuffer_getNumberOfBytes(Machine_ByteBuffer const* self) {
   return self->s;
 }
 
-bool Machine_ByteBuffer_compareBytes(const Machine_ByteBuffer* self, const char* p, size_t n) {
+Machine_Boolean Machine_ByteBuffer_compareBytes(Machine_ByteBuffer const* self, char const* p, size_t n) {
   if (n != self->s) {
     return false;
   }

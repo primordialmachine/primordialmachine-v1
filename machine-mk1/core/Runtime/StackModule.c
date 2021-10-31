@@ -6,7 +6,6 @@
 
 
 
-#include <malloc.h>
 #include "Runtime/JumpTargetModule.h"
 
 
@@ -17,7 +16,7 @@ typedef struct Stack {
 } Stack;
 
 static Machine_StatusValue Stack_initialize(Stack* self) {
-  self->elements = malloc(sizeof(Machine_Value) * 8);
+  self->elements = c_alloc_a(sizeof(Machine_Value), 8);
   if (!self->elements) {
     return Machine_Status_AllocationFailed;
   }
@@ -31,19 +30,19 @@ static Machine_StatusValue Stack_initialize(Stack* self) {
 
 static void Stack_uninitialize(Stack* self) {
   if (self->elements) {
-    free(self->elements);
+    c_dealloc(self->elements);
     self->elements = NULL;
   }
 }
 
 static Machine_StatusValue Stack_create(Stack** stack) {
-  Stack* stack0 = malloc(sizeof(Stack));
+  Stack* stack0 = c_alloc(sizeof(Stack));
   if (!stack0) {
     return Machine_Status_AllocationFailed;
   }
   Machine_StatusValue status = Stack_initialize(stack0);
   if (status) {
-    free(stack0);
+    c_dealloc(stack0);
     return status;
   }
   *stack = stack0;
@@ -52,7 +51,7 @@ static Machine_StatusValue Stack_create(Stack** stack) {
 
 static void Stack_destroy(Stack* stack) {
   Stack_uninitialize(stack);
-  free(stack);
+  c_dealloc(stack);
 }
 
 static void Stack_ensureFreeCapacity(Stack* self, size_t requiredFreeCapacity) {
@@ -68,7 +67,7 @@ static void Stack_ensureFreeCapacity(Stack* self, size_t requiredFreeCapacity) {
     // TODO: This ensures that we have enough free capacity in any case.
     // However, we should try to allocate more to avoid reallocating over and over.
     size_t newCapacity = self->capacity + requiredAdditionalCapacity;
-    Machine_Value* newElements = realloc(self->elements, sizeof(Machine_Value) * newCapacity);
+    Machine_Value* newElements = c_realloc_a(self->elements, sizeof(Machine_Value), newCapacity);
     if (newElements) {
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();

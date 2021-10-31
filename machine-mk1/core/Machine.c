@@ -28,9 +28,11 @@ static const struct {
 } MODULES[] = {
   { &Machine_initializeLogModule, &Machine_uninitializeLogModule },
   { &Machine_initializeJumpTargetModule, &Machine_uninitializeJumpTargetModule },
+  { &Machine_initializeGcModule, &Machine_uninitializeGcModule },
   { &Machine_initializeStackModule, &Machine_uninitializeStackModule },
+  { &Machine_initializeStaticVariablesModule, &Machine_uninitializeStaticVariablesModule },
 };
-static const size_t NUMBER_OF_MODULES = 3;
+static const size_t NUMBER_OF_MODULES = 4;
 
 Machine_StatusValue Machine_startup() {
   for (size_t i = 0, n = NUMBER_OF_MODULES; i < n; ++i) {
@@ -48,52 +50,6 @@ Machine_StatusValue Machine_startup() {
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-static Machine_ClassObjectTag* o2cot(void* src);
-
-static Machine_Tag* o2t(void* src);
-
-static Machine_Tag* cot2t(void* src);
-
-static Machine_ClassObjectTag* t2cot(void* src);
-
-static Machine_Object* cot2o(void* src);
-
-static Machine_Object* t2o(void* src);
-
-static Machine_ClassObjectTag* o2cot(void* src) {
-  return t2cot(o2t(src));
-}
-
-static Machine_Tag* o2t(void* src) {
-  static const size_t N = sizeof(Machine_Tag);
-  char* dst = ((char*)src) - N;
-  return (Machine_Tag*)dst;
-}
-
-static Machine_Tag* cot2t(void* src) {
-  static const size_t N = sizeof(Machine_ClassObjectTag);
-  char* dst = ((char*)src) + N;
-  return (Machine_Tag*)dst;
-}
-
-static Machine_ClassObjectTag* t2cot(void* src) {
-  static const size_t N = sizeof(Machine_ClassObjectTag);
-  char* dst = ((char*)src) - N;
-  return (Machine_ClassObjectTag*)dst;
-}
-
-static Machine_Object* cot2o(void* src) {
-  return t2o(cot2t(src));
-}
-
-static Machine_Object* t2o(void* src) {
-  static const size_t N = sizeof(Machine_Tag);
-  char* dst = ((char*)src) + N;
-  return (Machine_Object*)dst;
-}
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
 static void visit(Machine_Tag* tag) {
   if (Machine_Tag_isGrey(tag) || Machine_Tag_isBlack(tag)) {
     return;
@@ -102,7 +58,7 @@ static void visit(Machine_Tag* tag) {
   Machine_Tag_setGrey(tag);
 }
 
-static void rungc(size_t* live, size_t *dead) {
+void Machine_runGc(size_t* live, size_t *dead) {
   (*live) = 0;
   (*dead) = 0;
 
@@ -121,7 +77,7 @@ static void rungc(size_t* live, size_t *dead) {
     Machine_Tag* object = g_gray; g_gray = object->gray;
     assert(object != NULL);
     if (object->visit) {
-      object->visit(t2o(object));
+      object->visit(Machine_t2o(object));
     }
     Machine_Tag_setBlack(object);
   }
@@ -133,12 +89,12 @@ static void rungc(size_t* live, size_t *dead) {
       Machine_Tag* object = current;
       current = current->next;
       if (object->finalize) {
-        object->finalize(t2o(object));
+        object->finalize(Machine_t2o(object));
       }
       if ((object->flags & Machine_Flag_Class) == Machine_Flag_Class) {
-        free(t2cot(object));
+        c_dealloc(t2cot(object));
       } else {
-        free(object);
+        c_dealloc(object);
       }
       g_objectCount--;
       (*dead)++;
@@ -152,57 +108,37 @@ static void rungc(size_t* live, size_t *dead) {
 
 void Machine_update() {
   size_t live, dead;
-  rungc(&live, &dead);
+  Machine_runGc(&live, &dead);
 }
 
-void* Machine_allocate(size_t size, Machine_VisitCallback* visit, Machine_FinalizeCallback* finalize) {
-  Machine_Tag* t = malloc(sizeof(Machine_Tag) + size);
-  if (!t) {
+void* Machine_allocateEx(size_t payloadSize, size_t tagPrefixSize, Machine_VisitCallback* visit, Machine_FinalizeCallback* finalize) {
+  void* pt = c_alloc(tagPrefixSize + sizeof(Machine_Tag) + payloadSize);
+  if (!pt) {
     return NULL;
   }
   g_objectCount++;
-  memset(t, 0, sizeof(Machine_Tag) + size);
+  memset(pt, 0, tagPrefixSize + sizeof(Machine_Tag) + payloadSize);
+  Machine_Tag* t = (Machine_Tag *)(((char*)pt) + tagPrefixSize);
   t->lockCount = 0;
   t->flags = Machine_Flag_White;
-  t->size = size;
+  t->size = payloadSize;
   t->visit = visit;
   t->finalize = finalize;
   t->next = g_objects; g_objects = t;
   t->gray = NULL;
-  return t2o(t);
+  return ((char *)(t)) + sizeof(Machine_Tag);
+}
+
+void* Machine_allocate(size_t size, Machine_VisitCallback* visit, Machine_FinalizeCallback* finalize) {
+  return Machine_allocateEx(size, 0, visit, finalize);
 }
 
 void Machine_visit(void* object) {
-  Machine_Tag* tag = o2t(object);
+  Machine_Tag* tag = Machine_o2t(object);
   if (Machine_Tag_isWhite(tag)) {
     tag->gray = g_gray; g_gray = tag;
     Machine_Tag_setGrey(tag);
   }
-}
-
-void Machine_lock(void* object) {
-  Machine_Tag* tag = o2t(object);
-  tag->lockCount++;
-}
-
-void Machine_unlock(void* object) {
-  Machine_Tag* tag = o2t(object);
-  tag->lockCount--;
-}
-
-void Machine_setRoot(void* object, bool isRoot) {
-  Machine_Tag* tag = o2t(object);
-  if (isRoot) {
-    tag->flags |= Machine_Flag_Root;
-  }
-  else {
-    tag->flags &= ~Machine_Flag_Root;
-  }
-}
-
-bool Machine_getRoot(void* object) {
-  Machine_Tag* tag = o2t(object);
-  return Machine_Flag_Root == (tag->flags & Machine_Flag_Root);
 }
 
 void Machine_shutdown() {
@@ -210,7 +146,28 @@ void Machine_shutdown() {
   size_t live = 0, dead = 0, run = 0;
   
   do {
-    rungc(&live, &dead);
+    size_t newLive, newDead;
+    Machine_runGc(&newLive, &newDead);
+    if (newDead == dead) {
+      fprintf(stderr, "gc not making progress\n");
+      break;
+    }
+    dead = newDead;
+    live = newLive;
+    run++;
+  } while (live > 0 && run < MAX_RUN);
+
+  Machine_notifyStaticVariablesUninitialize();
+
+  do {
+    size_t newLive, newDead;
+    Machine_runGc(&newLive, &newDead);
+    if (newDead == dead) {
+      fprintf(stderr, "gc not making progress\n");
+      break;
+    }
+    dead = newDead;
+    live = newLive;
     run++;
   } while (live > 0 && run < MAX_RUN);
 
@@ -221,155 +178,6 @@ void Machine_shutdown() {
   for (size_t i = NUMBER_OF_MODULES; i > 0; --i) {
     MODULES[i-1].uninitialize();
   }
-}
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-static size_t Machine_Object_getHashValueImpl(Machine_Object const * self) {
-  return (size_t)(uintptr_t)self;
-}
-
-static Machine_Boolean Machine_Object_isEqualToImpl(Machine_Object const* self, Machine_Object const* other) {
-  return self == other;
-}
-
-static Machine_String* Machine_Object_toStringImpl(Machine_Object const* self) {
-  static_assert(INTPTR_MAX <= Machine_Integer_Greatest, "Machine_Integer can not represent an identity value");
-  static_assert(INTPTR_MIN >= Machine_Integer_Least, "Machine_Integer can not represent an identity value");
-  return Machine_Integer_toString((Machine_Integer)(intptr_t)self);
-}
-
-static void Machine_Object_constructClass(Machine_Object_Class* self) {
-  self->getHashValue = &Machine_Object_getHashValueImpl;
-  self->isEqualTo = &Machine_Object_isEqualToImpl;
-  self->toString = &Machine_Object_toStringImpl;
-}
-
-static Machine_ClassType * g_Machine_Object_ClassType = NULL;
-static void Machine_Object_onTypeDestroyed() {
-  g_Machine_Object_ClassType = NULL;
-}
-
-Machine_ClassType* Machine_Object_getClassType() {
-  if (!g_Machine_Object_ClassType) {
-    Machine_CreateClassTypeArgs args = {
-      .createTypeArgs = {
-        .typeRemoved = (Machine_TypeRemovedCallback*)&Machine_Object_onTypeDestroyed,
-      },
-      .parent = NULL,
-      .size = sizeof(Machine_Object),
-      .visit = (Machine_ClassObjectVisitCallback*)NULL,
-      .construct = (Machine_ClassObjectConstructCallback*)&Machine_Object_construct,
-      .destruct = (Machine_ClassObjectDestructCallback*)NULL,
-      .classSize = sizeof(Machine_Object_Class),
-      .constructClass = (Machine_ClassConstructCallback*)&Machine_Object_constructClass,
-    };
-    g_Machine_Object_ClassType =
-      Machine_createClassType
-        (
-          &args
-        );
-  }
-  return g_Machine_Object_ClassType;
-}
-
-void Machine_Object_construct(Machine_Object* self, size_t numberOfArguments, Machine_Value const* arguments) {
-  MACHINE_ASSERT_NOTNULL(self);
-  Machine_setClassType(self, Machine_Object_getClassType());
-}
-
-static void Machine_ClassObject_visit(void* self) {
-#if defined(_DEBUG)
-  Machine_Tag* tag = (Machine_Tag *)o2t(self);
-  assert((tag->flags & Machine_Flag_Class) == Machine_Flag_Class);
-#endif
-  Machine_ClassObjectTag* classObjectTag = (Machine_ClassObjectTag *)o2cot(self);
-  Machine_ClassType *classType = classObjectTag->classType;
-  while (classType) {
-    if (classType->visit) {
-      classType->visit(self);
-    }
-    classType = classType->parent;
-  }
-}
-
-static void Machine_ClassObject_finalize(void* self) {
-#if defined(_DEBUG)
-  Machine_Tag* tag = (Machine_Tag*)o2t(self);
-  assert((tag->flags & Machine_Flag_Class) == Machine_Flag_Class);
-#endif
-  Machine_ClassObjectTag* classObjectTag = (Machine_ClassObjectTag *)o2cot(self);
-  Machine_ClassType* classType = classObjectTag->classType;
-  while (classType) {
-    if (classType->destruct) {
-      classType->destruct(self);
-    }
-    classType = classType->parent;
-  }
-  // NOW release the class type.
-  Machine_unlock(classObjectTag->classType);
-}
-
-void Machine_setClassType(Machine_Object* object, Machine_ClassType* classType) {
-  assert(object != NULL);
-  assert(classType != NULL);
-
-#if defined(_DEBUG)
-  Machine_Tag* tag = (Machine_Tag *)o2t(object);
-  assert((tag->flags & Machine_Flag_Class) == Machine_Flag_Class);
-#endif
-
-  Machine_ClassObjectTag* classObjectTag = (Machine_ClassObjectTag *)o2cot(object);
-  if (classType) {
-    Machine_lock(classType);
-  }
-  if (classObjectTag->classType) {
-    Machine_unlock(classObjectTag->classType);
-  }
-  classObjectTag->classType = classType;
-}
-
-Machine_ClassType* Machine_getClassType(Machine_Object* object) {
-#if defined(_DEBUG)
-  Machine_Tag* tag = (Machine_Tag *)o2t(object);
-  assert((tag->flags & Machine_Flag_Class) == Machine_Flag_Class);
-#endif
-  Machine_ClassObjectTag* classObjectTag = (Machine_ClassObjectTag *)o2cot(object);
-  return classObjectTag->classType;
-}
-
-Machine_Object* Machine_allocateClassObject(Machine_ClassType* type, size_t numberOfArguments, const Machine_Value* arguments) {
-  Machine_ClassObjectTag* classObjectTag = malloc(sizeof(Machine_ClassObjectTag) + sizeof(Machine_Tag) + type->size);
-  if (!classObjectTag) {
-    Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
-  }
-  g_objectCount++;
-  memset(classObjectTag, 0, sizeof(Machine_ClassObjectTag) + sizeof(Machine_Tag) + type->size);
-  Machine_Tag* tag = (Machine_Tag *)cot2t(classObjectTag);
-  tag->flags = Machine_Flag_White | Machine_Flag_Class;
-  tag->size = type->size;
-  tag->visit = &Machine_ClassObject_visit;
-  tag->finalize = &Machine_ClassObject_finalize;
-  tag->next = g_objects; g_objects = tag;
-  tag->gray = NULL;
-  classObjectTag->classType = type;
-  Machine_lock(classObjectTag->classType);
-  Machine_Object* object = (Machine_Object*)t2o(tag);
-  type->construct(object, numberOfArguments, arguments);
-  return object;
-}
-
-size_t Machine_Object_getHashValue(Machine_Object const* self) {
-  MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_Object, getHashValue);
-}
-
-Machine_Boolean Machine_Object_isEqualTo(Machine_Object const* self, Machine_Object const* other) {
-  MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_Object, isEqualTo, other);
-}
-
-Machine_String* Machine_Object_toString(Machine_Object const* self) {
-  MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_Object, toString);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

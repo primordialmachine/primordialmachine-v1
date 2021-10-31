@@ -64,3 +64,9 @@ size_t Machine_Value_getHashValue(const Machine_Value* self) {
     MACHINE_ASSERT_UNREACHABLE();
   };
 }
+
+void Machine_Value_swap(Machine_Value* x, Machine_Value* y) {
+  Machine_Value t = *x;
+  *x = *y;
+  *y = t;
+}
