@@ -29,6 +29,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-video-gl", "vid
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-collections", "collections\machine-mk1-collections.vcxproj", "{6EB4AB0F-86E3-4AB8-850E-449C7A78878B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-collections-test", "collections-test\collections-test.vcxproj", "{9A210B5D-2599-4EA4-A258-CCECD94235E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -87,6 +89,10 @@ Global
 		{6EB4AB0F-86E3-4AB8-850E-449C7A78878B}.Debug|x64.Build.0 = Debug|x64
 		{6EB4AB0F-86E3-4AB8-850E-449C7A78878B}.Release|x64.ActiveCfg = Release|x64
 		{6EB4AB0F-86E3-4AB8-850E-449C7A78878B}.Release|x64.Build.0 = Release|x64
+		{9A210B5D-2599-4EA4-A258-CCECD94235E4}.Debug|x64.ActiveCfg = Debug|x64
+		{9A210B5D-2599-4EA4-A258-CCECD94235E4}.Debug|x64.Build.0 = Debug|x64
+		{9A210B5D-2599-4EA4-A258-CCECD94235E4}.Release|x64.ActiveCfg = Release|x64
+		{9A210B5D-2599-4EA4-A258-CCECD94235E4}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
