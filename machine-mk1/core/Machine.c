@@ -148,7 +148,7 @@ void Machine_shutdown() {
   do {
     size_t newLive, newDead;
     Machine_runGc(&newLive, &newDead);
-    if (newDead == dead) {
+    if (newLive > 0 && newDead == 0) {
       fprintf(stderr, "gc not making progress\n");
       break;
     }
@@ -162,7 +162,7 @@ void Machine_shutdown() {
   do {
     size_t newLive, newDead;
     Machine_runGc(&newLive, &newDead);
-    if (newDead == dead) {
+    if (newLive > 0 && newDead == 0) {
       fprintf(stderr, "gc not making progress\n");
       break;
     }
