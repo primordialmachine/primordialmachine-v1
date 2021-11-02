@@ -35,7 +35,8 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{6EB4AB0F-86E3-4AB8-850E-449C7A78878B}</ProjectGuid>
-    <RootNamespace>machinemk1core</RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>machine-mk1-collections</ProjectName>
   </PropertyGroup>

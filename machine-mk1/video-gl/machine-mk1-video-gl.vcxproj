@@ -14,7 +14,8 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{C6FF90B2-B9D9-4A80-AFC2-A71B02AA29C2}</ProjectGuid>
-    <RootNamespace>rtxviz</RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectName>machine-mk1-video-gl</ProjectName>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
