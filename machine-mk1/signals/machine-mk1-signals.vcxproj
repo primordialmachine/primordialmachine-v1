@@ -27,6 +27,9 @@
     <ProjectReference Include="..\core\machine-mk1-core.vcxproj">
       <Project>{f34866d8-3093-4b44-a225-7da2b5cd8e83}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\eal\machine-mk1-eal.vcxproj">
+      <Project>{2c009df6-0365-43aa-b0f1-c8752d10b066}</Project>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

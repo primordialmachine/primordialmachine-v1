@@ -15,7 +15,6 @@
     <ClCompile Include="Runtime\Arguments.c" />
     <ClCompile Include="Runtime\Assertions.c" />
     <ClCompile Include="Runtime\ByteBuffer.c" />
-    <ClCompile Include="Runtime\C.c" />
     <ClCompile Include="Runtime\ConvertPrimitiveTypes.c" />
     <ClCompile Include="Runtime\GC\GC.c" />
     <ClCompile Include="Runtime\IO.c" />
@@ -42,7 +41,6 @@
     <ClInclude Include="Runtime\Arguments.h" />
     <ClInclude Include="Runtime\Assertions.h" />
     <ClInclude Include="Runtime\ByteBuffer.h" />
-    <ClInclude Include="Runtime\C.h" />
     <ClInclude Include="Runtime\Configuration.h" />
     <ClInclude Include="Runtime\ConvertPrimitiveTypes.h" />
     <ClInclude Include="Runtime\GC\GC.h" />
@@ -67,6 +65,11 @@
     <ClInclude Include="Runtime\Type.h" />
     <ClInclude Include="Runtime\Value.h" />
     <ClInclude Include="_Runtime.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\eal\machine-mk1-eal.vcxproj">
+      <Project>{2c009df6-0365-43aa-b0f1-c8752d10b066}</Project>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

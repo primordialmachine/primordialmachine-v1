@@ -10,7 +10,7 @@
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
 
-#include "Runtime/C.h"
+#include "_Eal.h"
 #include "Runtime/Status.h"
 #include "Runtime/Value.h"
 

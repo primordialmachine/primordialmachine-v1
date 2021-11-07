@@ -84,6 +84,9 @@
     <ProjectReference Include="..\core\machine-mk1-core.vcxproj">
       <Project>{f34866d8-3093-4b44-a225-7da2b5cd8e83}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\eal\machine-mk1-eal.vcxproj">
+      <Project>{2c009df6-0365-43aa-b0f1-c8752d10b066}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\input\machine-mk1-input.vcxproj">
       <Project>{d18ee412-e5ae-4b7b-b291-46231dca6511}</Project>
     </ProjectReference>
