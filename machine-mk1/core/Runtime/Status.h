@@ -79,10 +79,10 @@ typedef int Machine_StatusValue;
 /// That value indicates a conversion failed.
 #define Machine_Status_ConversionFailed (16)
 
-
 /// @brief Symbolic constant for a status variable value.
-/// That value indicates a conversion failed.
-#define Machine_Status_ConversionFailed (16)
+/// That value indicates a test failed.
+#define Machine_Status_TestFailed (17)
+
 
 
 /// @brief Get the value of the status variable.
