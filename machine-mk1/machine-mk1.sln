@@ -31,6 +31,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-collections", "
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-collections-test", "collections-test\collections-test.vcxproj", "{9A210B5D-2599-4EA4-A258-CCECD94235E4}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-eal", "eal\machine-mk1-eal.vcxproj", "{2C009DF6-0365-43AA-B0F1-C8752D10B066}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-atf", "atf\machine-mk1-atf.vcxproj", "{0B8ABFDC-C96C-46CB-8CFC-8DD3507C8AD1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -93,6 +97,14 @@ Global
 		{9A210B5D-2599-4EA4-A258-CCECD94235E4}.Debug|x64.Build.0 = Debug|x64
 		{9A210B5D-2599-4EA4-A258-CCECD94235E4}.Release|x64.ActiveCfg = Release|x64
 		{9A210B5D-2599-4EA4-A258-CCECD94235E4}.Release|x64.Build.0 = Release|x64
+		{2C009DF6-0365-43AA-B0F1-C8752D10B066}.Debug|x64.ActiveCfg = Debug|x64
+		{2C009DF6-0365-43AA-B0F1-C8752D10B066}.Debug|x64.Build.0 = Debug|x64
+		{2C009DF6-0365-43AA-B0F1-C8752D10B066}.Release|x64.ActiveCfg = Release|x64
+		{2C009DF6-0365-43AA-B0F1-C8752D10B066}.Release|x64.Build.0 = Release|x64
+		{0B8ABFDC-C96C-46CB-8CFC-8DD3507C8AD1}.Debug|x64.ActiveCfg = Debug|x64
+		{0B8ABFDC-C96C-46CB-8CFC-8DD3507C8AD1}.Debug|x64.Build.0 = Debug|x64
+		{0B8ABFDC-C96C-46CB-8CFC-8DD3507C8AD1}.Release|x64.ActiveCfg = Release|x64
+		{0B8ABFDC-C96C-46CB-8CFC-8DD3507C8AD1}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
