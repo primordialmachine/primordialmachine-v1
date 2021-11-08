@@ -28,7 +28,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_PointerArray, Machine_Object, &Machine_PointerA
 
 static void Machine_PointerArray_visit(Machine_PointerArray* self) {
   if (self->list) {
-    Machine_visit(self->list);
+    Machine_Gc_visit(self->list);
   }
 }
 

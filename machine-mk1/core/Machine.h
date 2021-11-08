@@ -26,20 +26,17 @@
 
 
 
-/**
- * @brief Startup the machine.
- * @warning Undefined if the machine is already initialized.
- * @return #Machine_Status_Success on success, a non-zero Machine_Status value on failure.
- */
+/// @brief Startup the machine.
+/// @warning Undefined if the machine is already initialized.
+/// @return #Machine_Status_Success on success, a non-zero Machine_Status value on failure.
 Machine_StatusValue Machine_startup();
 
-/**
- * @brief Shutdown the machine.
- * Finalize and deallocate all payloads.
- * @warning Undefined if the machine is already uninitialized.
- */
+/// @brief Shutdown the machine.
+/// Finalize and deallocate all objects.
+/// @warning Undefined if the machine is already uninitialized.
 void Machine_shutdown();
 
+/// @brief Update the machine.
 void Machine_update();
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -51,19 +48,19 @@ void Machine_update();
 /// @param visit A pointer to the Machine_VisitCallback function for the object or a null pointer.
 /// @param finalize A pointer to the Machine_FinalizeCallback function for the object or a null pointer.
 /// @return A pointer to the object on success, a null pointer on failure.
-void* Machine_allocate(size_t size, Machine_VisitCallback *visit, Machine_FinalizeCallback *finalize);
+void* Machine_Gc_allocate(size_t size, Machine_VisitCallback *visit, Machine_FinalizeCallback *finalize);
 
 /// @brief Visit an object.
 /// @param object A pointer to the object.
 /// @undefined Invoked outside of visit callback.
-void Machine_visit(void* object);
+void Machine_Gc_visit(void* object);
 
 /// @brief Run the GC.
 /// @param live Pointer to a variable receiving the number of live objects or a null pointer.
 /// @param dead Pointer to a variable receiving the number of dead objects or a null pointer.
 /// @success @a *live was assigned the number of objects alive after this run.
 /// @success @a *dead was assigned the number of objects dead after this run.
-void Machine_runGc(size_t* live, size_t* dead);
+void Machine_Gc_run(size_t* live, size_t* dead);
 
 
 

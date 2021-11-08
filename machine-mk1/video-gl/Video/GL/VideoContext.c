@@ -220,7 +220,7 @@ generateText2Shader
 
 static void Machine_GL_VideoContext_visit(Machine_GL_VideoContext* self) {
   if (self->viewportRectangle) {
-    Machine_visit(self->viewportRectangle);
+    Machine_Gc_visit(self->viewportRectangle);
   }
 }
 

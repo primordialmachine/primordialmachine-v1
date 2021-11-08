@@ -8,16 +8,16 @@
 
 static void Machine_GUI_Context_visit(Machine_GUI_Context* self) {
   if (self->gdlContext) {
-    Machine_visit(self->gdlContext);
+    Machine_Gc_visit(self->gdlContext);
   }
   if (self->signalsContext) {
-    Machine_visit(self->signalsContext);
+    Machine_Gc_visit(self->signalsContext);
   }
   if (self->rootGroup) {
-    Machine_visit(self->rootGroup);
+    Machine_Gc_visit(self->rootGroup);
   }
   if (self->context2) {
-    Machine_visit(self->context2);
+    Machine_Gc_visit(self->context2);
   }
 }
 

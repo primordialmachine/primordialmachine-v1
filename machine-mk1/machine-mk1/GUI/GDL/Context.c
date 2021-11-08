@@ -8,11 +8,11 @@
 
 static void Machine_GUI_GDL_Context_visit(Machine_GUI_GDL_Context* self) {
   if (self->context) {
-    Machine_visit(self->context);
+    Machine_Gc_visit(self->context);
   }
 #define DEFINE(NAME, STRING) \
   if (self->NAME) { \
-    Machine_visit(self->NAME); \
+    Machine_Gc_visit(self->NAME); \
   }
 #include "./../../GUI/GDL/Context.h"
 #undef DEFINE

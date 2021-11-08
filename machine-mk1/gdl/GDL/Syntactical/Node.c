@@ -11,10 +11,10 @@ MACHINE_DEFINE_CLASSTYPE(Machine_GDL_Node, Machine_Object, &Machine_GDL_Node_vis
 
 static void Machine_GDL_Node_visit(Machine_GDL_Node* self) {
   if (self->children) {
-    Machine_visit(self->children);
+    Machine_Gc_visit(self->children);
   }
   if (self->text) {
-    Machine_visit(self->text);
+    Machine_Gc_visit(self->text);
   }
 }
 

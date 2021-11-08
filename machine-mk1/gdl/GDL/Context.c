@@ -9,13 +9,13 @@
 
 static void Machine_GDL_Context_visit(Machine_GDL_Context* self) {
   if (self->trueLiteral) {
-    Machine_visit(self->trueLiteral);
+    Machine_Gc_visit(self->trueLiteral);
   }
   if (self->falseLiteral) {
-    Machine_visit(self->falseLiteral);
+    Machine_Gc_visit(self->falseLiteral);
   }
   if (self->voidLiteral) {
-    Machine_visit(self->voidLiteral);
+    Machine_Gc_visit(self->voidLiteral);
   }
 }
 

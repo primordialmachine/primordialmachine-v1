@@ -31,10 +31,10 @@ static void Machine_Binding_Node_construct(Machine_Binding_Node* self, size_t nu
 
 static void Machine_Binding_Node_visit(Machine_Binding_Node* self) {
   if (self->next) {
-    Machine_visit(self->next);
+    Machine_Gc_visit(self->next);
   }
   if (self->name) {
-    Machine_visit(self->name);
+    Machine_Gc_visit(self->name);
   }
   Machine_Value_visit(&self->value);
 }
@@ -73,16 +73,16 @@ static void Machine_Binding_destruct(Machine_Binding* self)
 
 static void Machine_Binding_visit(Machine_Binding* self) {
   if (self->nodes) {
-    Machine_visit(self->nodes);
+    Machine_Gc_visit(self->nodes);
   }
   if (self->program) {
-    Machine_visit(self->program);
+    Machine_Gc_visit(self->program);
   }
   if (self->vertexDescriptor) {
-    Machine_visit(self->vertexDescriptor);
+    Machine_Gc_visit(self->vertexDescriptor);
   }
   if (self->buffer) {
-    Machine_visit(self->buffer);
+    Machine_Gc_visit(self->buffer);
   }
 }
 

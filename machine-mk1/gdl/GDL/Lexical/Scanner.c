@@ -32,13 +32,13 @@ static void checkKeywords(Machine_GDL_Scanner *self) {
 
 static void Machine_GDL_Scanner_visit(Machine_GDL_Scanner* self) {
   if (self->inputName) {
-    Machine_visit(self->inputName);
+    Machine_Gc_visit(self->inputName);
   }
   if (self->inputBytes) {
-    Machine_visit(self->inputBytes);
+    Machine_Gc_visit(self->inputBytes);
   }
   if (self->tokenText) {
-    Machine_visit(self->tokenText);
+    Machine_Gc_visit(self->tokenText);
   }
 }
 

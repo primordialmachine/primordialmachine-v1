@@ -21,25 +21,25 @@ static const float OFFSET_Y = 0.f;
 
 static void Machine_Text_Layout_visit(Machine_Text_Layout* self) {
   if (self->color) {
-    Machine_visit(self->color);
+    Machine_Gc_visit(self->color);
   }
   if (self->position) {
-    Machine_visit(self->position);
+    Machine_Gc_visit(self->position);
   }
   if (self->font) {
-    Machine_visit(self->font);
+    Machine_Gc_visit(self->font);
   }
   if (self->text) {
-    Machine_visit(self->text);
+    Machine_Gc_visit(self->text);
   }
   if (self->lines) {
-    Machine_visit(self->lines);
+    Machine_Gc_visit(self->lines);
   }
   if (self->visualBounds) {
-    Machine_visit(self->visualBounds);
+    Machine_Gc_visit(self->visualBounds);
   }
   if (self->clipRectangle) {
-    Machine_visit(self->clipRectangle);
+    Machine_Gc_visit(self->clipRectangle);
   }
 }
 

@@ -46,19 +46,19 @@ static void Scene4_constructClass(Scene4_Class* self);
 
 static void Scene4_visit(Scene4* self) {
   if (self->guiContext) {
-    Machine_visit(self->guiContext);
+    Machine_Gc_visit(self->guiContext);
   }
   if (self->font) {
-    Machine_visit(self->font);
+    Machine_Gc_visit(self->font);
   }
   if (self->text1) {
-    Machine_visit(self->text1);
+    Machine_Gc_visit(self->text1);
   }
   if (self->text2) {
-    Machine_visit(self->text2);
+    Machine_Gc_visit(self->text2);
   }
   if (self->textLabel3) {
-    Machine_visit(self->textLabel3);
+    Machine_Gc_visit(self->textLabel3);
   }
 }
 

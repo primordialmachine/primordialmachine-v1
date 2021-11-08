@@ -43,13 +43,13 @@ static void Scene1_destruct(Scene1* self);
 
 static void Scene1_visit(Scene1* self) {
   if (self->binding) {
-    Machine_visit(self->binding);
+    Machine_Gc_visit(self->binding);
   }
   if (self->shaderProgram) {
-    Machine_visit(self->shaderProgram);
+    Machine_Gc_visit(self->shaderProgram);
   }
   if (self->vertices) {
-    Machine_visit(self->vertices);
+    Machine_Gc_visit(self->vertices);
   }
 }
 

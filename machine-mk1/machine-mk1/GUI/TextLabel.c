@@ -33,10 +33,10 @@ struct Machine_GUI_TextLabel {
 
 static void Machine_GUI_TextLabel_visit(Machine_GUI_TextLabel* self) {
   if (self->foreground) {
-    Machine_visit(self->foreground);
+    Machine_Gc_visit(self->foreground);
   }
   if (self->background) {
-    Machine_visit(self->background);
+    Machine_Gc_visit(self->background);
   }
 }
 

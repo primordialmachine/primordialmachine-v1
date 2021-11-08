@@ -17,10 +17,10 @@ static FT_Library g_library;
 
 static void visit(Machine_Fonts_FontsContext* self) {
   if (self->videoContext) {
-    Machine_visit(self->videoContext);
+    Machine_Gc_visit(self->videoContext);
   }
   if (self->imageContext) {
-    Machine_visit(self->imageContext);
+    Machine_Gc_visit(self->imageContext);
   }
 }
 

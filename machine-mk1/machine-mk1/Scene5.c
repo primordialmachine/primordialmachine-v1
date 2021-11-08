@@ -38,19 +38,19 @@ struct Scene5 {
 
 static void Scene5_visit(Scene5* self) {
   if (self->guiContext) {
-    Machine_visit(self->guiContext);
+    Machine_Gc_visit(self->guiContext);
   }
   if (self->font) {
-    Machine_visit(self->font);
+    Machine_Gc_visit(self->font);
   }
   if (self->mainMenu) {
-    Machine_visit(self->mainMenu);
+    Machine_Gc_visit(self->mainMenu);
   }
   if (self->header) {
-    Machine_visit(self->header);
+    Machine_Gc_visit(self->header);
   }
   if (self->footer) {
-    Machine_visit(self->footer);
+    Machine_Gc_visit(self->footer);
   }
 }
 

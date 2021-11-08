@@ -22,7 +22,7 @@ Machine_String* Machine_String_create_noraise(const char* p, size_t n) {
     Machine_setStatus(Machine_Status_TooLong);
     return NULL;
   }
-  Machine_String* self = Machine_allocate(sizeof(Machine_String) + n, NULL, NULL);
+  Machine_String* self = Machine_Gc_allocate(sizeof(Machine_String) + n, NULL, NULL);
   if (!self) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     return NULL;
@@ -41,7 +41,7 @@ Machine_String* Machine_String_create(const char* p, size_t n) {
     Machine_setStatus(Machine_Status_TooLong);
     Machine_jump();
   }
-  Machine_String* self = Machine_allocate(sizeof(Machine_String) + n, NULL, NULL);
+  Machine_String* self = Machine_Gc_allocate(sizeof(Machine_String) + n, NULL, NULL);
   if (!self) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
@@ -67,7 +67,7 @@ Machine_String* Machine_String_concatenate(const Machine_String* self, const Mac
     Machine_setStatus(Machine_Status_TooLong);
     Machine_jump();
   }
-  Machine_String* c = Machine_allocate(sizeof(Machine_String) + m, NULL, NULL);
+  Machine_String* c = Machine_Gc_allocate(sizeof(Machine_String) + m, NULL, NULL);
   if (!self) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();    

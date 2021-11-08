@@ -83,7 +83,25 @@ typedef int Machine_StatusValue;
 /// That value indicates a test failed.
 #define Machine_Status_TestFailed (17)
 
+/// @brief Symbolic constant for a status variable value.
+/// That value indicates a positive overflow.
+/// @remark
+/// If [a,b] is the interval of numbers a numeric data type can represent,
+/// then a positive overflow occurs if an operation results in a value x > b.
+#define Machine_Status_PositiveOverflow (18)
 
+/// @brief Symbolic constant for a status variable value.
+/// That value indicates a negative overflow.
+/// @remark
+/// If [a,b] is the interval of numbers a numeric data type can represent,
+/// then a negative overflow occurs if an operation results in a value x < a.
+#define Machine_Status_NegativeOverflow (19)
+
+/// @brief Symbolic constant for a status variable value.
+/// The value indicates an underflow.
+/// @remark
+/// An underflow occurs if the magnitude of a value is too close to zero to be representable.
+#define Machine_Status_Underflow (20)
 
 /// @brief Get the value of the status variable.
 /// @return The value.

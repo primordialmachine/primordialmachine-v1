@@ -7,10 +7,10 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Signals_Connection, Machine_Object, &Machine_Si
 
 static void Machine_Signals_Connection_visit(Machine_Signals_Connection* self) {
   if (self->context) {
-    Machine_visit(self->context);
+    Machine_Gc_visit(self->context);
   }
   if (self->name) {
-    Machine_visit(self->name);
+    Machine_Gc_visit(self->name);
   }
 }
 

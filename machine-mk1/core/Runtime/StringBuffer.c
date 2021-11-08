@@ -21,7 +21,7 @@ struct Machine_StringBuffer {
 
 static void Machine_StringBuffer_visit(Machine_StringBuffer* self) {
   if (self->byteBuffer) {
-    Machine_visit(self->byteBuffer);
+    Machine_Gc_visit(self->byteBuffer);
   }
 }
 

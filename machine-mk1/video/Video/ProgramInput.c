@@ -8,7 +8,7 @@
 
 static void Machine_ProgramInput_visit(Machine_ProgramInput* self) {
   if (self->name) {
-    Machine_visit(self->name);
+    Machine_Gc_visit(self->name);
   }
 }
 

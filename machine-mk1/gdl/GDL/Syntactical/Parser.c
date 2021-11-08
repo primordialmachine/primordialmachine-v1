@@ -7,7 +7,7 @@
 
 static void Machine_GDL_Parser_visit(Machine_GDL_Parser* self) {
   if (self->scanner) {
-    Machine_visit(self->scanner);
+    Machine_Gc_visit(self->scanner);
   }
 }
 

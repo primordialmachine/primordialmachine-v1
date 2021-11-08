@@ -9,7 +9,7 @@
 static void Machine_GUI_Signals_Context_visit(Machine_GUI_Signals_Context* self) {
 #define DEFINE(NAME, STRING) \
   if (self->NAME) { \
-    Machine_visit(self->NAME); \
+    Machine_Gc_visit(self->NAME); \
   }
 #include "./../../GUI/Signals/Context.h"
 #undef DEFINE

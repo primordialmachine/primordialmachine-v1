@@ -41,13 +41,13 @@ MACHINE_DEFINE_CLASSTYPE(Machine_GUI_Border, Machine_GUI_Widget, &Machine_GUI_Bo
 
 static void Machine_GUI_Border_visit(Machine_GUI_Border* self) {
   if (self->child) {
-    Machine_visit(self->child);
+    Machine_Gc_visit(self->child);
   }
   if (self->borderRectangle) {
-    Machine_visit(self->borderRectangle);
+    Machine_Gc_visit(self->borderRectangle);
   }
   if (self->borderModel) {
-    Machine_visit(self->borderModel);
+    Machine_Gc_visit(self->borderModel);
   }
 }
 

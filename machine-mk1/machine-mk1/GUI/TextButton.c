@@ -33,10 +33,10 @@ struct Machine_GUI_TextButton {
 
 static void Machine_GUI_TextButton_visit(Machine_GUI_TextButton* self) {
   if (self->foreground) {
-    Machine_visit(self->foreground);
+    Machine_Gc_visit(self->foreground);
   }
   if (self->background) {
-    Machine_visit(self->background);
+    Machine_Gc_visit(self->background);
   }
 }
 

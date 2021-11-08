@@ -12,7 +12,7 @@ struct Machine_GUI_WidgetList {
 
 static void Machine_GUI_WidgetList_visit(Machine_GUI_WidgetList* self) {
   if (self->backing) {
-    Machine_visit(self->backing);
+    Machine_Gc_visit(self->backing);
   }
 }
 

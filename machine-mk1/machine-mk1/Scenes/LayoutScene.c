@@ -35,16 +35,16 @@ struct LayoutScene {
 
 static void LayoutScene_visit(LayoutScene* self) {
   if (self->context2) {
-    Machine_visit(self->context2);
+    Machine_Gc_visit(self->context2);
   }
   if (self->font) {
-    Machine_visit(self->font);
+    Machine_Gc_visit(self->font);
   }
   if (self->textLayout1) {
-    Machine_visit(self->textLayout1);
+    Machine_Gc_visit(self->textLayout1);
   }
   if (self->textLayout2) {
-    Machine_visit(self->textLayout2);
+    Machine_Gc_visit(self->textLayout2);
   }
 }
 

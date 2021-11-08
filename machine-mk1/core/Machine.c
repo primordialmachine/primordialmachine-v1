@@ -58,7 +58,7 @@ static void visit(Machine_Tag* tag) {
   Machine_Tag_setGrey(tag);
 }
 
-void Machine_runGc(size_t* live, size_t *dead) {
+void Machine_Gc_run(size_t* live, size_t *dead) {
   (*live) = 0;
   (*dead) = 0;
 
@@ -108,7 +108,7 @@ void Machine_runGc(size_t* live, size_t *dead) {
 
 void Machine_update() {
   size_t live, dead;
-  Machine_runGc(&live, &dead);
+  Machine_Gc_run(&live, &dead);
 }
 
 void* Machine_allocateEx(size_t payloadSize, size_t tagPrefixSize, Machine_VisitCallback* visit, Machine_FinalizeCallback* finalize) {
@@ -129,11 +129,11 @@ void* Machine_allocateEx(size_t payloadSize, size_t tagPrefixSize, Machine_Visit
   return ((char *)(t)) + sizeof(Machine_Tag);
 }
 
-void* Machine_allocate(size_t size, Machine_VisitCallback* visit, Machine_FinalizeCallback* finalize) {
+void* Machine_Gc_allocate(size_t size, Machine_VisitCallback* visit, Machine_FinalizeCallback* finalize) {
   return Machine_allocateEx(size, 0, visit, finalize);
 }
 
-void Machine_visit(void* object) {
+void Machine_Gc_visit(void* object) {
   Machine_Tag* tag = Machine_o2t(object);
   if (Machine_Tag_isWhite(tag)) {
     tag->gray = g_gray; g_gray = tag;
@@ -147,7 +147,7 @@ void Machine_shutdown() {
   
   do {
     size_t newLive, newDead;
-    Machine_runGc(&newLive, &newDead);
+    Machine_Gc_run(&newLive, &newDead);
     if (newLive > 0 && newDead == 0) {
       fprintf(stderr, "gc not making progress\n");
       break;
@@ -161,7 +161,7 @@ void Machine_shutdown() {
 
   do {
     size_t newLive, newDead;
-    Machine_runGc(&newLive, &newDead);
+    Machine_Gc_run(&newLive, &newDead);
     if (newLive > 0 && newDead == 0) {
       fprintf(stderr, "gc not making progress\n");
       break;

@@ -5,7 +5,7 @@
 
 static void Machine_GDL_Token_visit(Machine_GDL_Token *self) {
   if (self->text) {
-    Machine_visit(self->text);
+    Machine_Gc_visit(self->text);
   }
 }
 

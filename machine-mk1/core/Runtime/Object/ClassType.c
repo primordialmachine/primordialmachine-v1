@@ -14,7 +14,7 @@
 
 static void Machine_ClassType_visit(Machine_ClassType* self) {
   if (self->parent) {
-    Machine_visit(self->parent);
+    Machine_Gc_visit(self->parent);
   }
 }
 
@@ -32,9 +32,9 @@ static void Machine_ClassType_finalize(Machine_ClassType* self) {
 }
 
 Machine_ClassType* Machine_createClassType(Machine_CreateClassTypeArgs* args) {
-  Machine_ClassType* classType = Machine_allocate(sizeof(Machine_ClassType),
-                                                  (Machine_VisitCallback*)&Machine_ClassType_visit,
-                                                  (Machine_FinalizeCallback*)&Machine_ClassType_finalize);
+  Machine_ClassType* classType = Machine_Gc_allocate(sizeof(Machine_ClassType),
+                                                     (Machine_VisitCallback*)&Machine_ClassType_visit,
+                                                     (Machine_FinalizeCallback*)&Machine_ClassType_finalize);
   if (!classType) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();

@@ -49,13 +49,13 @@ static void Scene2_destruct(Scene2* self);
 
 static void Scene2_visit(Scene2* self) {
   if (self->binding) {
-    Machine_visit(self->binding);
+    Machine_Gc_visit(self->binding);
   }
   if (self->shaderProgram) {
-    Machine_visit(self->shaderProgram);
+    Machine_Gc_visit(self->shaderProgram);
   }
   if (self->vertices) {
-    Machine_visit(self->vertices);
+    Machine_Gc_visit(self->vertices);
   }
 }
 

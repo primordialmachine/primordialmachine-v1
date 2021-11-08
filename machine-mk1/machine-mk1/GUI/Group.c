@@ -9,10 +9,10 @@
 
 static void Machine_GUI_Group_visit(Machine_GUI_Group* self) {
   if (self->layoutModel) {
-    Machine_visit(self->layoutModel);
+    Machine_Gc_visit(self->layoutModel);
   }
   if (self->children) {
-    Machine_visit(self->children);
+    Machine_Gc_visit(self->children);
   }
 }
 

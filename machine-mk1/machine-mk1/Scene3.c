@@ -52,19 +52,19 @@ static void Scene3_destruct(Scene3* self);
 
 static void Scene3_visit(Scene3* self) {
   if (self->binding) {
-    Machine_visit(self->binding);
+    Machine_Gc_visit(self->binding);
   }
   if (self->texture) {
-    Machine_visit(self->texture);
+    Machine_Gc_visit(self->texture);
   }
   if (self->image) {
-    Machine_visit(self->image);
+    Machine_Gc_visit(self->image);
   }
   if (self->shaderProgram) {
-    Machine_visit(self->shaderProgram);
+    Machine_Gc_visit(self->shaderProgram);
   }
   if (self->vertices) {
-    Machine_visit(self->vertices);
+    Machine_Gc_visit(self->vertices);
   }
 }
 

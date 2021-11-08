@@ -5,7 +5,7 @@
 
 static void Machine_GUI_BorderModel_visit(Machine_GUI_BorderModel* self) {
   if (self->color) {
-    Machine_visit(self->color);
+    Machine_Gc_visit(self->color);
   }
 }
 

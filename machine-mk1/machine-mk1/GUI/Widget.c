@@ -17,16 +17,16 @@ MACHINE_DEFINE_CLASSTYPE(Machine_GUI_Widget, Machine_Object, &Machine_GUI_Widget
 
 static void Machine_GUI_Widget_visit(Machine_GUI_Widget *self) {
   if (self->parent) {
-    Machine_visit(self->parent);
+    Machine_Gc_visit(self->parent);
   }
   if (self->rectangle) {
-    Machine_visit(self->rectangle);
+    Machine_Gc_visit(self->rectangle);
   }
   if (self->signal) {
-    Machine_visit(self->signal);
+    Machine_Gc_visit(self->signal);
   }
   if (self->context) {
-    Machine_visit(self->context);
+    Machine_Gc_visit(self->context);
   }
 }
 

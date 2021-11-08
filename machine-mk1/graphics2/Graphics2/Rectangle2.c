@@ -13,13 +13,13 @@
 
 static void Machine_Rectangle2_visit(Machine_Rectangle2* self) {
   if (self->position) {
-    Machine_visit(self->position);
+    Machine_Gc_visit(self->position);
   }
   if (self->size) {
-    Machine_visit(self->size);
+    Machine_Gc_visit(self->size);
   }
   if (self->color) {
-    Machine_visit(self->color);
+    Machine_Gc_visit(self->color);
   }
 }
 

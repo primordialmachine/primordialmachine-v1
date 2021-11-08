@@ -13,7 +13,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Signals_Signal, Machine_Object, &Machine_Signal
 
 static void Machine_Signals_Signal_visit(Machine_Signals_Signal* self) {
   if (self->connections) {
-    Machine_visit(self->connections);
+    Machine_Gc_visit(self->connections);
   }
 }
 

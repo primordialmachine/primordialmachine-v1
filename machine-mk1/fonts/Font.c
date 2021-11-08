@@ -46,7 +46,7 @@ static void Map_visit(Map* self) {
   for (size_t i = 0, n = self->capacity; i < n; ++i) {
     Node* node = self->buckets[i];
     while (node) {
-      Machine_visit(node->texture);
+      Machine_Gc_visit(node->texture);
       node = node->next;
     }
   }
@@ -68,7 +68,7 @@ static void Map_finalize(Map* self) {
 }
 
 static Map* Map_create() {
-  Map* self = Machine_allocate(sizeof(Map), (Machine_VisitCallback*)&Map_visit, (Machine_FinalizeCallback*)&Map_finalize);
+  Map* self = Machine_Gc_allocate(sizeof(Map), (Machine_VisitCallback*)&Map_visit, (Machine_FinalizeCallback*)&Map_finalize);
   if (!self) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
@@ -200,19 +200,18 @@ static void Machine_Fonts_Font_constructClass(Machine_Fonts_Font_Class* self) {
 
 static void Machine_Fonts_Font_visit(Machine_Fonts_Font* self) {
   if (self->map) {
-    Machine_visit(self->map);
+    Machine_Gc_visit(self->map);
   }
   if (self->vertices) {
-    Machine_visit(self->vertices);
+    Machine_Gc_visit(self->vertices);
   }
   if (self->shader) {
-    Machine_visit(self->shader);
+    Machine_Gc_visit(self->shader);
   }
   if (self->binding) {
-    Machine_visit(self->binding);
+    Machine_Gc_visit(self->binding);
   }
   if (self->context) {
-    Machine_visit(self->context);
   }
 }
 

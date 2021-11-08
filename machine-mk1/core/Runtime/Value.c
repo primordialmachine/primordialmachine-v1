@@ -11,10 +11,10 @@
 void Machine_Value_visit(Machine_Value* self) {
   switch (self->tag) {
   case Machine_ValueFlag_Object:
-    Machine_visit(self->objectValue);
+    Machine_Gc_visit(self->objectValue);
     break;
   case Machine_ValueFlag_String:
-    Machine_visit(self->stringValue);
+    Machine_Gc_visit(self->stringValue);
     break;
   };
 }
