@@ -132,6 +132,9 @@
     <ClCompile Include="Runtime\Object\ClassType.c">
       <Filter>Quelldateien\Runtime\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Runtime\ArrayUtilities.c">
+      <Filter>Quelldateien\Runtime</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Machine.h">
@@ -232,6 +235,9 @@
     </ClInclude>
     <ClInclude Include="Runtime\Object\ClassType.h">
       <Filter>Headerdateien\Runtime\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\ArrayUtilities.h">
+      <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

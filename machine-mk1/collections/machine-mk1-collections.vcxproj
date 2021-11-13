@@ -12,18 +12,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Collections\Collection.c" />
+    <ClCompile Include="Collections\GrowthStrategy.c" />
     <ClCompile Include="Collections\List.c" />
     <ClCompile Include="Collections\Map.c" />
     <ClCompile Include="Collections\Pair.c" />
     <ClCompile Include="Collections\PointerArray.c" />
+    <ClCompile Include="Collections\Queue.c" />
     <ClCompile Include="_Collections.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Collections\Collection.h" />
+    <ClInclude Include="Collections\GrowthStrategy.h" />
     <ClInclude Include="Collections\List.h" />
     <ClInclude Include="Collections\Map.h" />
     <ClInclude Include="Collections\Pair.h" />
     <ClInclude Include="Collections\PointerArray.h" />
+    <ClInclude Include="Collections\Queue.h" />
     <ClInclude Include="_Collections.h" />
   </ItemGroup>
   <ItemGroup>

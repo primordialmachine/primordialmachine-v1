@@ -87,11 +87,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Collections\Test\ListTest.c" />
     <ClCompile Include="Collections\Test\Main.c" />
-    <ClCompile Include="Collections\Test\Test1.c" />
+    <ClCompile Include="Collections\Test\MapTest.c" />
+    <ClCompile Include="Collections\Test\QueueTest.c" />
+    <ClCompile Include="Collections\Test\PairTest.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Collections\Test\Test1.h" />
+    <ClInclude Include="Collections\Test\ListTest.h" />
+    <ClInclude Include="Collections\Test\MapTest.h" />
+    <ClInclude Include="Collections\Test\QueueTest.h" />
+    <ClInclude Include="Collections\Test\PairTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

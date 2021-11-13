@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="Machine.c" />
     <ClCompile Include="Runtime\Arguments.c" />
+    <ClCompile Include="Runtime\ArrayUtilities.c" />
     <ClCompile Include="Runtime\Assertions.c" />
     <ClCompile Include="Runtime\ByteBuffer.c" />
     <ClCompile Include="Runtime\ConvertPrimitiveTypes.c" />
@@ -39,6 +40,7 @@
   <ItemGroup>
     <ClInclude Include="Machine.h" />
     <ClInclude Include="Runtime\Arguments.h" />
+    <ClInclude Include="Runtime\ArrayUtilities.h" />
     <ClInclude Include="Runtime\Assertions.h" />
     <ClInclude Include="Runtime\ByteBuffer.h" />
     <ClInclude Include="Runtime\Configuration.h" />

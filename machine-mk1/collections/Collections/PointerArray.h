@@ -1,3 +1,6 @@
+/// @file Collections/PointerArray.h
+/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
+/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #if !defined(MACHINE_COLLECTIONS_POINTERARRAY_H_INCLUDED)
 #define MACHINE_COLLECTIONS_POINTERARRAY_H_INCLUDED
 

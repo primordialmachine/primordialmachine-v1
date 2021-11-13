@@ -30,12 +30,48 @@
     <ClCompile Include="Collections\Test\Main.c">
       <Filter>Quelldateien\Collections\Test</Filter>
     </ClCompile>
-    <ClCompile Include="Collections\Test\Test1.c">
+    <ClCompile Include="Collections\Test\PairTest.c">
+      <Filter>Quelldateien\Collections\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Collections\Test\QueueTest.c">
+      <Filter>Quelldateien\Collections\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Collections\Test\ListTest.c">
+      <Filter>Quelldateien\Collections\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Collections\Test\MapTest.c">
+      <Filter>Quelldateien\Collections\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Collections\Test\QueueTest.c">
+      <Filter>Quelldateien\Collections\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Collections\Test\ListTest.c">
+      <Filter>Quelldateien\Collections\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Collections\Test\MapTest.c">
       <Filter>Quelldateien\Collections\Test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Collections\Test\Test1.h">
+    <ClInclude Include="Collections\Test\PairTest.h">
+      <Filter>Headerdateien\Collections\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Collections\Test\QueueTest.h">
+      <Filter>Headerdateien\Collections\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Collections\Test\ListTest.h">
+      <Filter>Headerdateien\Collections\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Collections\Test\MapTest.h">
+      <Filter>Headerdateien\Collections\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Collections\Test\QueueTest.h">
+      <Filter>Headerdateien\Collections\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Collections\Test\ListTest.h">
+      <Filter>Headerdateien\Collections\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Collections\Test\MapTest.h">
       <Filter>Headerdateien\Collections\Test</Filter>
     </ClInclude>
   </ItemGroup>

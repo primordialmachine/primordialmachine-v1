@@ -39,6 +39,12 @@
     <ClCompile Include="Collections\PointerArray.c">
       <Filter>Quelldateien\Collections</Filter>
     </ClCompile>
+    <ClCompile Include="Collections\Queue.c">
+      <Filter>Quelldateien\Collections</Filter>
+    </ClCompile>
+    <ClCompile Include="Collections\GrowthStrategy.c">
+      <Filter>Quelldateien\Collections</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_Collections.h">
@@ -57,6 +63,12 @@
       <Filter>Headerdateien\Collections</Filter>
     </ClInclude>
     <ClInclude Include="Collections\PointerArray.h">
+      <Filter>Headerdateien\Collections</Filter>
+    </ClInclude>
+    <ClInclude Include="Collections\Queue.h">
+      <Filter>Headerdateien\Collections</Filter>
+    </ClInclude>
+    <ClInclude Include="Collections\GrowthStrategy.h">
       <Filter>Headerdateien\Collections</Filter>
     </ClInclude>
   </ItemGroup>

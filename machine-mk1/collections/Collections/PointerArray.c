@@ -1,12 +1,14 @@
+/// @file Collections/PointerArray.c
+/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
+/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #define MACHINE_COLLECTIONS_PRIVATE (1)
 #include "Collections/PointerArray.h"
+
+
+
 #include "Collections/List.h"
 
-#include <malloc.h>
-#include <memory.h>
 
-
-#define Machine_PointerArray_MaximalCapacity SIZE_MAX / sizeof(void *)
 
 static void Machine_PointerArray_visit(Machine_PointerArray* self);
 
@@ -67,10 +69,7 @@ void *Machine_PointerArray_getAt(Machine_PointerArray* self, size_t index) {
 }
 
 size_t Machine_PointerArray_getSize(Machine_PointerArray* self) {
-  if (!self){
-    Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
-  }
+  MACHINE_ASSERT_NOTNULL(self);
   return Machine_Collection_getSize((Machine_Collection*)self->list);
 }
 

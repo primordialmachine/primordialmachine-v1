@@ -6,6 +6,7 @@
 
 
 
+#include "Collections/GrowthStrategy.h"
 #include <memory.h>
 
 
@@ -87,13 +88,11 @@ static void prepend(Machine_List* self, Machine_Value value) {
 
 static void insertAt(Machine_List* self, size_t index, Machine_Value value) {
   if ((self->capacity - self->size) == 0) {
-    if (self->capacity == maximalCapacity) {
-      Machine_setStatus(Machine_Status_AllocationFailed);
+    size_t newCapacity;
+    Machine_StatusValue status = Machine_Collections_getBestCapacity(self->capacity, 1, maximalCapacity, &newCapacity);
+    if (status != Machine_Status_Success) {
+      Machine_setStatus(status);
       Machine_jump();
-    }
-    size_t newCapacity = self->capacity + 1;
-    if (self->capacity < maximalCapacity / 2) {
-      newCapacity = self->capacity > 0 ? self->capacity * 2 : 8;
     }
     void* newElements = c_realloc_a(self->elements, sizeof(Machine_Value), newCapacity);
     if (!newElements) {

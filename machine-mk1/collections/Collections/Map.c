@@ -4,10 +4,14 @@
 #define MACHINE_COLLECTIONS_PRIVATE (1)
 #include "Collections/Map.h"
 
+
+
 #include "_Runtime.h"
 #include "Collections/List.h"
 #include "Collections/Pair.h"
+#include "Collections/GrowthStrategy.h"
 #include <memory.h>
+
 
 
 typedef struct Node Node;

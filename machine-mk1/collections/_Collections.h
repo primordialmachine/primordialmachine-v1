@@ -5,6 +5,7 @@
 #include "Collections/List.h"
 #include "Collections/Map.h"
 #include "Collections/Pair.h"
+#include "Collections/Queue.h"
 #include "Collections/PointerArray.h"
 #undef MACHINE_COLLECTIONS_PRIVATE
 

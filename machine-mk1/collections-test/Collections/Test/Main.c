@@ -5,7 +5,11 @@
 extern "C" {
 #endif
 
-#include "./../../Collections/Test/Test1.h"
+#include "_Runtime.h"
+#include "Collections/Test/PairTest.h"
+#include "Collections/Test/ListTest.h"
+#include "Collections/Test/MapTest.h"
+#include "Collections/Test/QueueTest.h"
 #include <stdlib.h>
 
 int main() {
@@ -15,7 +19,12 @@ int main() {
   Machine_JumpTarget jumpTarget;
   Machine_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
-    Machine_Collections_test1();
+    Machine_Collections_Test_PairTest_test1();
+    Machine_Collections_Test_ListTest_test1();
+    Machine_Collections_Test_MapTest_test1();
+    Machine_Collections_Test_QueueTest_test1();
+    Machine_Collections_Test_QueueTest_test2();
+    Machine_Collections_Test_QueueTest_test3();
     Machine_popJumpTarget();
   }
   Machine_StatusValue status = Machine_getStatus();
