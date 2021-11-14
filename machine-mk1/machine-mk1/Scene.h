@@ -1,8 +1,12 @@
 #if !defined(MACHINE_SCENE_H_INCLUDED)
 #define MACHINE_SCENE_H_INCLUDED
 
+
+
 #include "_Input.h"
 #include "_Video.h"
+
+
 
 MACHINE_DECLARE_CLASSTYPE(Scene)
 
@@ -10,7 +14,7 @@ typedef void Scene_OnCanvaSizeChangedCallback(Scene* self, Machine_CanvasSizeCha
 
 typedef void Scene_OnStartupCallback(Scene* self);
 
-typedef void Scene_OnUpdateCallback(Scene* self, float width, float height);
+typedef void Scene_OnUpdateCallback(Scene* self, Machine_Real width, Machine_Real height);
 
 typedef void Scene_OnShutdownCallback(Scene* self);
 
@@ -43,7 +47,7 @@ struct Scene {
   Machine_Object parent;
 };
 
-void Scene_construct(Scene* self, size_t numberOfArguments, const Machine_Value* arguments);
+void Scene_construct(Scene* self, size_t numberOfArguments, Machine_Value const* arguments);
 
 /// @brief Invoked exactly once before a sequence of calls to onCanvasSizeChanged and update.
 /// @param scene This scene.
@@ -81,8 +85,10 @@ MACHINE_EVENTS_SINK() void Scene_onMousePointerEvent(Scene* self, Machine_MouseP
 /// @remarks Canvas coordinates have their origin in the left top corner of the canvas with the positive x axis pointing right and the positive y axis pointing down.
 MACHINE_EVENTS_SINK() void Scene_onMouseButtonEvent(Scene *self, Machine_MouseButtonEvent *event);
 
-void Scene_onUpdate(Scene* self, float width, float height);
+void Scene_onUpdate(Scene* self, Machine_Real width, Machine_Real height);
 
 void Scene_onShutdown(Scene* self);
+
+
 
 #endif // MACHINE_SCENE_H_INCLUDED

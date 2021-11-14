@@ -67,7 +67,7 @@ extern "C" {
         oldWidth = newWidth;
         oldHeight = newHeight;
       }
-      Scene_onUpdate(scene, (float)oldWidth, (float)oldHeight);
+      Scene_onUpdate(scene, (Machine_Real)oldWidth, (Machine_Real)oldHeight);
       Machine_update();
       Machine_Video_Canvas_swapFrameBuffers(Machine_getVideoCanvas());
       Machine_Video_Canvas_pollEvents(Machine_getVideoCanvas());

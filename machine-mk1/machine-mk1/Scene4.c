@@ -94,7 +94,7 @@ static void Scene4_onStartup(Scene4* scene) {
   Machine_VideoContext_setClearColor(Machine_getVideoContext(), c);
 }
 
-static void alignLeftTop(Machine_Text_Layout* layout, float width, float height) {
+static void alignLeftTop(Machine_Text_Layout* layout, Machine_Real width, Machine_Real height) {
   Machine_Math_Vector2* MARGIN = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(MARGIN, 5.f, 5.f);
 
@@ -105,7 +105,7 @@ static void alignLeftTop(Machine_Text_Layout* layout, float width, float height)
   Machine_Text_Layout_setPosition(layout, position2);
 }
 
-static void alignCenter(Machine_Text_Layout* layout, float width, float height) {
+static void alignCenter(Machine_Text_Layout* layout, Machine_Real width, Machine_Real height) {
   Machine_Math_Vector2* HALF = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(HALF, 0.5f, 0.5f);
   Machine_Math_Vector2* CANVAS_SIZE = Machine_Math_Vector2_create();
@@ -121,15 +121,15 @@ static void alignCenter(Machine_Text_Layout* layout, float width, float height) 
   Machine_Text_Layout_setPosition(layout, newPosition);
 }
 
-static void updateText1(Scene4* self, float width, float height) {
+static void updateText1(Scene4* self, Machine_Real width, Machine_Real height) {
   alignCenter(self->text1, width, height);
 }
 
-static void updateText2(Scene4* self, float width, float height) {
+static void updateText2(Scene4* self, Machine_Real width, Machine_Real height) {
   alignLeftTop(self->text2, width, height);
 }
 
-static void updateText3(Scene4* self, float width, float height) {
+static void updateText3(Scene4* self, Machine_Real width, Machine_Real height) {
   Machine_Math_Vector2* MARGIN = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(MARGIN, 5.f, height * 0.5f);
   Machine_Math_Vector2* SIZE = Machine_Math_Vector2_create();
@@ -151,7 +151,7 @@ static void Scene4_onCanvasSizeChanged(Scene4* self, Machine_CanvasSizeChangedEv
   updateText3(self, event->width, event->height);
 }
 
-static void Scene4_onUpdate(Scene4* self, float width, float height) {
+static void Scene4_onUpdate(Scene4* self, Machine_Real width, Machine_Real height) {
   // Set the viewport and clear its color buffer.
   Machine_VideoContext_setViewportRectangle(Machine_getVideoContext(), 0, 0, width, height);
   Machine_VideoContext_clearColorBuffer(Machine_getVideoContext());
@@ -174,7 +174,7 @@ static void Scene4_constructClass(Scene4_Class* self) {
   ((Scene_Class*)self)->onShutdown = (Scene_OnShutdownCallback*)&Scene4_onShutdown;
 }
 
-void Scene4_construct(Scene4* self, size_t numberOfArguments, const Machine_Value* arguments) {
+void Scene4_construct(Scene4* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Scene_construct((Scene*)self, numberOfArguments, arguments);
   Machine_setClassType((Machine_Object*)self, Scene4_getClassType());
 }

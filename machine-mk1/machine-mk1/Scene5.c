@@ -177,7 +177,7 @@ static void Scene5_onCanvasSizeChanged(Scene5* self, Machine_CanvasSizeChangedEv
   updateFooter(self, event);
 }
 
-static void Scene5_update(Scene5* self, float width, float height) {
+static void Scene5_update(Scene5* self, Machine_Real width, Machine_Real height) {
   // Set the viewport and clear its color buffer.
   Machine_VideoContext_setViewportRectangle(Machine_getVideoContext(), 0, 0, width, height);
   Machine_VideoContext_clearColorBuffer(Machine_getVideoContext());
@@ -198,7 +198,7 @@ static void Scene5_constructClass(Scene5_Class* self) {
   ((Scene_Class*)self)->onShutdown = (Scene_OnShutdownCallback*)&Scene5_shutdown;
 }
 
-void Scene5_construct(Scene5* self, size_t numberOfArguments, const Machine_Value* arguments) {
+void Scene5_construct(Scene5* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Scene_construct((Scene*)self, numberOfArguments, arguments);
   Machine_setClassType((Machine_Object*)self, Scene5_getClassType());
 }

@@ -50,7 +50,7 @@ void Scene_onMouseButtonEvent(Scene* self, Machine_MouseButtonEvent *event) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Scene, onMouseButtonEvent, event);
 }
 
-void Scene_onUpdate(Scene* self, float width, float height) {
+void Scene_onUpdate(Scene* self, Machine_Real width, Machine_Real height) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Scene, onUpdate, width, height);
 }
 

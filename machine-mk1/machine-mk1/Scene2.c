@@ -15,8 +15,8 @@
 
 
 static const struct {
-  float x, y;
-  float r, g, b;
+  Machine_Real x, y;
+  Machine_Real r, g, b;
 }
 vertices[] =
 {
@@ -83,7 +83,7 @@ static void Scene2_onStartup(Scene2* scene) {
 static void Scene2_onCanvasSizeChanged(Scene2* self, Machine_CanvasSizeChangedEvent* event) {
 }
 
-static void Scene2_onUpdate(Scene2* self, float width, float height) {
+static void Scene2_onUpdate(Scene2* self, Machine_Real width, Machine_Real height) {
   float ratio = width / height;
 
   Machine_VideoContext_setViewportRectangle(Machine_getVideoContext(), 0, 0, width, height);
@@ -112,7 +112,7 @@ static void Scene2_constructClass(Scene2_Class* self) {
   ((Scene_Class*)self)->onShutdown = (Scene_OnShutdownCallback*)&Scene2_onShutdown;
 }
 
-void Scene2_construct(Scene2* self, size_t numberOfArguments, const Machine_Value* arguments) {
+void Scene2_construct(Scene2* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Scene_construct((Scene*)self, numberOfArguments, arguments);
   Machine_setClassType((Machine_Object*)self, Scene2_getClassType());
 }

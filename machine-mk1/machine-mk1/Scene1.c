@@ -15,8 +15,8 @@
 
 
 static const struct {
-  float x, y;
-  float r, g, b;
+  Machine_Real x, y;
+  Machine_Real r, g, b;
 }
 vertices[] =
 {
@@ -77,7 +77,7 @@ static void Scene1_onStartup(Scene1* scene) {
 static void Scene1_onCanvasSizeChanged(Scene1* self, Machine_CanvasSizeChangedEvent *event) {
 }
 
-static void Scene1_onUpdate(Scene1* self, float width, float height) {
+static void Scene1_onUpdate(Scene1* self, Machine_Real width, Machine_Real height) {
   float ratio = width / height;
 
   Machine_VideoContext_setViewportRectangle(Machine_getVideoContext(), 0, 0, width, height);
