@@ -212,6 +212,7 @@ static void Machine_Fonts_Font_visit(Machine_Fonts_Font* self) {
     Machine_Gc_visit(self->binding);
   }
   if (self->context) {
+    Machine_Gc_visit(self->context);
   }
 }
 
