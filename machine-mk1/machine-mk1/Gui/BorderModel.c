@@ -1,7 +1,7 @@
 /// @file Gui/BorderModel.c
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#include "./../GUI/BorderModel.h"
+#include "Gui/BorderModel.h"
 
 static void Machine_GUI_BorderModel_visit(Machine_GUI_BorderModel* self) {
   if (self->color) {

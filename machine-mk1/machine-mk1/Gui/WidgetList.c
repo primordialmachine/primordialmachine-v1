@@ -1,7 +1,7 @@
 /// @file Gui/WidgetList.c
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#include "./../GUI/WidgetList.h"
+#include "Gui/WidgetList.h"
 
 struct Machine_GUI_WidgetList_Class {
   Machine_Object_Class __parent;

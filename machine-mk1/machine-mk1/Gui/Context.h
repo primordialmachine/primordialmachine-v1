@@ -6,9 +6,9 @@
 
 
 
-#include "./../GUI/GDL/Context.h"
-#include "./../GUI/Signals/Context.h"
-#include "./../GUI/Group.h"
+#include "Gui/Gdl/Context.h"
+#include "Gui/Signals/Context.h"
+#include "Gui/Group.h"
 #include "_Graphics2.h"
 
 

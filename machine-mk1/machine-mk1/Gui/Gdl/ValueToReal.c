@@ -1,7 +1,7 @@
 /// @file Gui/Gdl/ValueToReal.c
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#include "./../../GUI/GDL/ValueToReal.h"
+#include "Gui/Gdl/ValueToReal.h"
 
 Machine_Real Machine_GUI_GDL_valueToReal(const Machine_Value* value) {
   if (!Machine_Value_isInteger(value) && !Machine_Value_isReal(value)) {

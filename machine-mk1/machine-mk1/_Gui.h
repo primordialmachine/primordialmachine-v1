@@ -6,13 +6,13 @@
 
 
 
-#include "GUI/Border.h"
-#include "GUI/Context.h"
-#include "GUI/Group.h"
-#include "GUI/TextButton.h"
-#include "GUI/TextLabel.h"
+#include "Gui/Border.h"
+#include "Gui/Context.h"
+#include "Gui/Group.h"
+#include "Gui/TextButton.h"
+#include "Gui/TextLabel.h"
 
-#include "GUI/Reader/Reader.h"
+#include "Gui/Reader/Reader.h"
 
 
 

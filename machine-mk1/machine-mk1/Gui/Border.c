@@ -1,14 +1,14 @@
 /// @file Gui/Border.c
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#include "./../GUI/Border.h"
+#include "Gui/Border.h"
 
 
 
 #include "_Graphics2.h"
 #include "./../Video.h"
-#include "./../GUI/Context.h"
-#include "./../GUI/BorderModel.h"
+#include "Gui/Context.h"
+#include "Gui/BorderModel.h"
 
 
 

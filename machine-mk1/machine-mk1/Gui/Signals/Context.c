@@ -1,7 +1,7 @@
 /// @file Gui/Signals/Context.c
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#include "./../../GUI/Signals/Context.h"
+#include "Gui/Signals/Context.h"
 
 
 
@@ -14,7 +14,7 @@ static void Machine_GUI_Signals_Context_visit(Machine_GUI_Signals_Context* self)
   if (self->NAME) { \
     Machine_Gc_visit(self->NAME); \
   }
-#include "./../../GUI/Signals/Context.h"
+#include "Gui/Signals/Context.h"
 #undef DEFINE
 }
 
@@ -22,7 +22,7 @@ static void Machine_GUI_Signals_Context_construct(Machine_GUI_Signals_Context* s
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
 #define DEFINE(NAME,STRING) \
   self->NAME = Machine_String_create(STRING, strlen(STRING));
-#include "./../../GUI/Signals/Context.i"
+#include "Gui/Signals/Context.i"
 #undef DEFINE
 
   Machine_setClassType((Machine_Object*)self, Machine_GUI_Signals_Context_getClassType());

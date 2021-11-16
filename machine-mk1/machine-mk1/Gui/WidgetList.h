@@ -6,8 +6,8 @@
 
 
 
-#include "./../GUI/Widget.h"
-#include "./../GUI/LayoutModel.h"
+#include "Gui/Widget.h"
+#include "Gui/LayoutModel.h"
 
 
 

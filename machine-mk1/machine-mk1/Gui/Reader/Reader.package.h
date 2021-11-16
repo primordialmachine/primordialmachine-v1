@@ -6,10 +6,10 @@
 
 
 
-#include "./../../GUI/Border.h"
-#include "./../../GUI/Group.h"
-#include "./../../GUI/TextButton.h"
-#include "./../../GUI/TextLabel.h"
+#include "Gui/Border.h"
+#include "Gui/Group.h"
+#include "Gui/TextButton.h"
+#include "Gui/TextLabel.h"
 
 
 

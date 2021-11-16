@@ -1,11 +1,11 @@
 /// @file Gui/Widget.c
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#include "./../GUI/Widget.h"
+#include "Gui/Widget.h"
 
 
 
-#include "./../GUI/Context.h"
+#include "Gui/Context.h"
 
 
 

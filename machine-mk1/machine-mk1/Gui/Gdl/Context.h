@@ -26,7 +26,7 @@ struct Machine_GUI_GDL_Context {
   
 #define DEFINE(NAME,STRING) \
   Machine_String *NAME;
-#include "./../../GUI/GDL/Context.i"
+#include "Gui/Gdl/Context.i"
 #undef DEFINE
 
 };

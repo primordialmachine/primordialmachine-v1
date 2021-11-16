@@ -1,7 +1,7 @@
 /// @file Gui/Gdl/Context.c
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#include "./../../GUI/GDL/Context.h"
+#include "Gui/Gdl/Context.h"
 
 
 
@@ -17,7 +17,7 @@ static void Machine_GUI_GDL_Context_visit(Machine_GUI_GDL_Context* self) {
   if (self->NAME) { \
     Machine_Gc_visit(self->NAME); \
   }
-#include "./../../GUI/GDL/Context.h"
+#include "Gui/Gdl/Context.h"
 #undef DEFINE
 }
 
@@ -28,7 +28,7 @@ static void Machine_GUI_GDL_Context_construct(Machine_GUI_GDL_Context* self, siz
   
 #define DEFINE(NAME,STRING) \
   self->NAME = Machine_String_create(STRING, strlen(STRING));
-#include "./../../GUI/GDL/Context.i"
+#include "Gui/Gdl/Context.i"
 #undef DEFINE
 
   Machine_setClassType((Machine_Object*)self, Machine_GUI_GDL_Context_getClassType());

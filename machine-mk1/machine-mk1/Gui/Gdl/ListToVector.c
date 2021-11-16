@@ -1,11 +1,11 @@
 /// @file Gui/Gdl/ListToVector.c
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#include "./../../GUI/GDL/ListToVector.h"
+#include "Gui/Gdl/ListToVector.h"
 
 
 
-#include "./../../GUI/GDL/ValueToReal.h"
+#include "Gui/Gdl/ValueToReal.h"
 
 
 

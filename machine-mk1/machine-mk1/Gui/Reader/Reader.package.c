@@ -1,13 +1,13 @@
 /// @file Gui/Reader/Reader.package.c
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#include "./../../GUI/Reader/Reader.package.h"
+#include "Gui/Reader/Reader.package.h"
 
 
 
-#include "./../../GUI/Reader/Reader.h"
-#include "./../../GUI/Context.h"
-#include "./../../GUI/GDL/ListToVector.h"
+#include "Gui/Reader/Reader.h"
+#include "Gui/Context.h"
+#include "Gui/Gdl/ListToVector.h"
 
 
 

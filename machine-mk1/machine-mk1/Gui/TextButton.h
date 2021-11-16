@@ -6,7 +6,7 @@
 
 
 
-#include "./../GUI/Widget.h"
+#include "Gui/Widget.h"
 #include "_Fonts.h"
 
 

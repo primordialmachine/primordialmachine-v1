@@ -6,8 +6,7 @@
 
 
 
-#include "_Runtime.h"
-#include "_GDL.h"
+#include "_Signals.h"
 
 
 
@@ -24,7 +23,7 @@ struct Machine_GUI_Signals_Context {
   
 #define DEFINE(NAME,STRING) \
   Machine_String *NAME;
-#include "./../../GUI/Signals/Context.i"
+#include "Gui/Signals/Context.i"
 #undef DEFINE
 
 };

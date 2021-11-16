@@ -1,7 +1,7 @@
 /// @file Gui/TextButton.c
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#include "./../GUI/TextButton.h"
+#include "Gui/TextButton.h"
 
 
 
@@ -9,8 +9,8 @@
 #include "_Images.h"
 #include "./../Video.h"
 #include "./../Text/Layout.h"
-#include "./../GUI/Context.h"
-#include "./../GUI/Widget.h"
+#include "Gui/Context.h"
+#include "Gui/Widget.h"
 #include <string.h>
 
 
