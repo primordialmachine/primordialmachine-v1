@@ -1,3 +1,6 @@
+/// @file Gui/Gdl/ListToVector.h
+/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
+/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #if !defined(MACHINE_GUI_GDL_LISTTOVECTOR3_H_INCLUDED)
 #define MACHINE_GUI_GDL_LISTTOVECTOR3_H_INCLUDED
 

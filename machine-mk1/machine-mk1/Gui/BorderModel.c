@@ -1,4 +1,4 @@
-/// @file GUI/BorderModel.c
+/// @file Gui/BorderModel.c
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #include "./../GUI/BorderModel.h"

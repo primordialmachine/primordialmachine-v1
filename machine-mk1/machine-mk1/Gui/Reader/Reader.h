@@ -1,3 +1,6 @@
+/// @file Gui/Reader/Reader.h
+/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
+/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #if !defined(MACHINE_GUI_READER_H_INCLUDE)
 #define MACHINE_GUI_READER_H_INCLUDED
 

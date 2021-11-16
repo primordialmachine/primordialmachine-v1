@@ -1,3 +1,6 @@
+/// @file Gui/WidgetList.h
+/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
+/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #if !defined(MACHINE_GUI_WIDGETLIST_H_INCLUDED)
 #define MACHINE_GUI_WIDGETLIST_H_INCLUDED
 

@@ -1,4 +1,4 @@
-/// @file GUI/TextLabel.h
+/// @file Gui/TextLabel.h
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #if !defined(MACHINE_GUI_TEXTLABEL_H_INCLUDED)
