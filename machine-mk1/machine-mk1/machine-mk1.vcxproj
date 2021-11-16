@@ -109,7 +109,7 @@
     <ClCompile Include="Scene2.c" />
     <ClCompile Include="Scene3.c" />
     <ClCompile Include="Video.c" />
-    <ClCompile Include="_GUI.c" />
+    <ClCompile Include="_Gui.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GUI\BorderModel.h" />
@@ -138,7 +138,7 @@
     <ClInclude Include="Scene2.h" />
     <ClInclude Include="Scene3.h" />
     <ClInclude Include="Video.h" />
-    <ClInclude Include="_GUI.h" />
+    <ClInclude Include="_Gui.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\collections\machine-mk1-collections.vcxproj">
