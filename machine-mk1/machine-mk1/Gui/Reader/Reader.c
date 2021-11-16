@@ -10,7 +10,7 @@
 
 
 
-Machine_GUI_Widget* Machine_GUI_Reader_readWidget(Machine_GUI_Context* self, const Machine_Map* source) {
+Machine_GUI_Widget* Machine_GUI_Reader_readWidget(Machine_GUI_Context* self,  Machine_Map const* source) {
   Machine_String* s = NULL;
   Machine_GUI_GDL_Context* guiGdlContext = self->gdlContext;
   if (!Machine_GUI_Reader_hasString(self, source, guiGdlContext->KIND)) {

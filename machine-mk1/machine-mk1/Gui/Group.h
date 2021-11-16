@@ -30,10 +30,10 @@ struct Machine_GUI_Group {
 /// @return The group.
 Machine_GUI_Group* Machine_GUI_Group_create(Machine_GUI_Context* context);
 
-const Machine_GUI_LayoutModel* Machine_GUI_Group_getLayoutModel(const Machine_GUI_Group* self);
+Machine_GUI_LayoutModel const* Machine_GUI_Group_getLayoutModel(Machine_GUI_Group const* self);
 
 void Machine_GUI_Group_setLayoutModel(Machine_GUI_Group* self, Machine_GUI_LayoutModel* layoutModel);
 
-void Machine_GUI_Group_relayout(Machine_GUI_Group* self, float canvasWidth, float canvasHeight);
+void Machine_GUI_Group_relayout(Machine_GUI_Group* self, Machine_Real canvasWidth, Machine_Real canvasHeight);
 
 #endif // MACHINE_GUI_GROUP_H_INCLUDED

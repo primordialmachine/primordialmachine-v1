@@ -74,7 +74,7 @@ struct Machine_GUI_LayoutModel {
 /// @param numberOfArguments, arguments The arguments. Number of arguments must be @a 0.
 /// @default The default direction is #Machine_GUI_LayoutPrimaryDirection_Column.
 /// @todo Default should be #Machine_GUI_LayoutDirection_Row.
-void Machine_GUI_LayoutModel_construct(Machine_GUI_LayoutModel* self, size_t numberOfArguments, const Machine_Value* arguments);
+void Machine_GUI_LayoutModel_construct(Machine_GUI_LayoutModel* self, size_t numberOfArguments, Machine_Value const* arguments);
 
 /// @brief Create a layout model with default values.
 /// @return The layout model.
@@ -85,7 +85,7 @@ Machine_GUI_LayoutModel* Machine_GUI_LayoutModel_create();
 /// @brief Get the primary direction of this layout model.
 /// @param self This layout model.
 /// @return The primary direction.
-Machine_GUI_Layout_Direction Machine_GUI_LayoutModel_getPrimaryDirection(const Machine_GUI_LayoutModel* self);
+Machine_GUI_Layout_Direction Machine_GUI_LayoutModel_getPrimaryDirection(Machine_GUI_LayoutModel const* self);
 
 /// @brief Set the primary direction of this layout model.
 /// @param self This layout model.
@@ -94,7 +94,7 @@ void Machine_GUI_LayoutModel_setPrimaryDirection(Machine_GUI_LayoutModel* self, 
 
 
 
-Machine_GUI_Layout_Justification Machine_GUI_LayoutModel_getPrimaryJustification(const Machine_GUI_LayoutModel *self);
+Machine_GUI_Layout_Justification Machine_GUI_LayoutModel_getPrimaryJustification(Machine_GUI_LayoutModel const*self);
 
 void Machine_GUI_LayoutModel_setPrimaryJustification(Machine_GUI_LayoutModel *self, Machine_GUI_Layout_Justification primaryJustifcation);
 
@@ -103,7 +103,7 @@ void Machine_GUI_LayoutModel_setPrimaryJustification(Machine_GUI_LayoutModel *se
 /// @brief Get the primary inter child spacing of this layout model.
 /// @param self This layout model.
 /// @return The primary inter child spacing.
-Machine_Real Machine_GUI_LayoutModel_getPrimaryInterChildSpacing(const Machine_GUI_LayoutModel* self);
+Machine_Real Machine_GUI_LayoutModel_getPrimaryInterChildSpacing(Machine_GUI_LayoutModel const* self);
 
 /// @brief Set the primary inter child spacing of this layout model.
 /// @param self This layout model.

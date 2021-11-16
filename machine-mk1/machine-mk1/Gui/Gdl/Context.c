@@ -21,7 +21,7 @@ static void Machine_GUI_GDL_Context_visit(Machine_GUI_GDL_Context* self) {
 #undef DEFINE
 }
 
-static void Machine_GUI_GDL_Context_construct(Machine_GUI_GDL_Context* self, size_t numberOfArguments, const Machine_Value* arguments) {
+static void Machine_GUI_GDL_Context_construct(Machine_GUI_GDL_Context* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
 
   self->context = (Machine_GDL_Context *)Machine_Value_getObject(&arguments[0]);

@@ -34,29 +34,29 @@ void Machine_GUI_Border_setChild(Machine_GUI_Border* self, Machine_GUI_Widget* c
 /// @brief Get the color of this border.
 /// @param self This border.
 /// @return The color.
-const Machine_Math_Vector4* Machine_GUI_Border_getBorderColor(const Machine_GUI_Border* self);
+Machine_Math_Vector4 const* Machine_GUI_Border_getBorderColor(Machine_GUI_Border const* self);
 
 /// @brief Set the color of this border.
 /// @param self This border.
 /// @param color The color.
-void Machine_GUI_Border_setBorderColor(Machine_GUI_Border *self, const Machine_Math_Vector4 *color);
+void Machine_GUI_Border_setBorderColor(Machine_GUI_Border *self, Machine_Math_Vector4 const* color);
 
 /// @brief Get the border width.
 /// @param self This border.
 /// @return The border width.
-float Machine_GUI_Border_getBorderLeftWidth(const Machine_GUI_Border* self);
-float Machine_GUI_Border_getBorderRightWidth(const Machine_GUI_Border* self);
-float Machine_GUI_Border_getBorderTopWidth(const Machine_GUI_Border* self);
-float Machine_GUI_Border_getBorderBottomWidth(const Machine_GUI_Border* self);
+Machine_Real Machine_GUI_Border_getBorderLeftWidth(Machine_GUI_Border const* self);
+Machine_Real Machine_GUI_Border_getBorderRightWidth(Machine_GUI_Border const* self);
+Machine_Real Machine_GUI_Border_getBorderTopWidth(Machine_GUI_Border const* self);
+Machine_Real Machine_GUI_Border_getBorderBottomWidth(Machine_GUI_Border const* self);
 
 /// @brief Set the border width.
 /// @param self This border.
 /// @param width The border width.
-void Machine_GUI_Border_setBorderWidth(Machine_GUI_Border* self, float width);
-void Machine_GUI_Border_setLeftBorderWidth(Machine_GUI_Border* self, float width);
-void Machine_GUI_Border_setRightBorderWidth(Machine_GUI_Border* self, float width);
-void Machine_GUI_Border_setTopBorderWidth(Machine_GUI_Border* self, float width);
-void Machine_GUI_Border_setBottomBorderWidth(Machine_GUI_Border* self, float width);
+void Machine_GUI_Border_setBorderWidth(Machine_GUI_Border* self, Machine_Real width);
+void Machine_GUI_Border_setLeftBorderWidth(Machine_GUI_Border* self, Machine_Real width);
+void Machine_GUI_Border_setRightBorderWidth(Machine_GUI_Border* self, Machine_Real width);
+void Machine_GUI_Border_setTopBorderWidth(Machine_GUI_Border* self, Machine_Real width);
+void Machine_GUI_Border_setBottomBorderWidth(Machine_GUI_Border* self, Machine_Real width);
 
 
 #endif // MACHINE_GUI_BORDER_H_INCLUDED

@@ -19,13 +19,13 @@ static void Machine_GUI_Group_visit(Machine_GUI_Group* self) {
   }
 }
 
-static const Machine_Math_Vector2* Machine_GUI_Group_getPreferredSize(const Machine_GUI_Group* self) {
+static Machine_Math_Vector2 const* Machine_GUI_Group_getPreferredSize(Machine_GUI_Group const* self) {
   return Machine_Math_Rectangle2_getSize(Machine_GUI_Widget_getRectangle((Machine_GUI_Widget *)self));
 }
 
 static void Machine_GUI_Group_render(Machine_GUI_Group* self, Machine_Context2 *ctx2) {
   Machine_GUI_Context* ctx = Machine_GUI_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(Machine_getVideoContext()));
-  const Machine_Math_Vector2* size = Machine_GUI_Widget_getSize((Machine_GUI_Widget *)self);
+  Machine_Math_Vector2 const* size = Machine_GUI_Widget_getSize((Machine_GUI_Widget *)self);
   Machine_Context2* tmp = Machine_Context2_create(Machine_getVideoContext());
   Machine_Context2_setTargetSize(tmp, Machine_Math_Vector2_getX(size), Machine_Math_Vector2_getY(size));
   for (size_t i = 0, n = Machine_GUI_WidgetList_getSize(self->children); i < n; ++i) {
@@ -36,10 +36,10 @@ static void Machine_GUI_Group_render(Machine_GUI_Group* self, Machine_Context2 *
 
 static void Machine_GUI_Group_constructClass(Machine_GUI_Group_Class* self) {
   ((Machine_GUI_Widget_Class*)self)->render = (void (*)(Machine_GUI_Widget*, Machine_Context2*)) & Machine_GUI_Group_render;
-  ((Machine_GUI_Widget_Class*)self)->getPreferredSize = (const Machine_Math_Vector2 * (*)(const Machine_GUI_Widget*)) & Machine_GUI_Group_getPreferredSize;
+  ((Machine_GUI_Widget_Class*)self)->getPreferredSize = (Machine_Math_Vector2 const* (*)(Machine_GUI_Widget const*)) & Machine_GUI_Group_getPreferredSize;
 }
 
-void Machine_GUI_Group_construct(Machine_GUI_Group* self, size_t numberOfArguments, const Machine_Value* arguments) {
+void Machine_GUI_Group_construct(Machine_GUI_Group* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_GUI_Widget_construct((Machine_GUI_Widget*)self, numberOfArguments, arguments);
   self->layoutModel = Machine_GUI_LayoutModel_create();
   self->children = Machine_GUI_WidgetList_create();
@@ -57,7 +57,7 @@ Machine_GUI_Group* Machine_GUI_Group_create(Machine_GUI_Context* context) {
   return self;
 }
 
-const Machine_GUI_LayoutModel* Machine_GUI_Group_getLayoutModel(const Machine_GUI_Group* self) {
+Machine_GUI_LayoutModel const* Machine_GUI_Group_getLayoutModel(Machine_GUI_Group const* self) {
   return self->layoutModel;
 }
 
@@ -65,7 +65,7 @@ void Machine_GUI_Group_setLayoutModel(Machine_GUI_Group* self, Machine_GUI_Layou
   self->layoutModel = layoutModel;
 }
 
-void Machine_GUI_Group_relayout(Machine_GUI_Group* self, float canvasWidth, float canvasHeight) {
+void Machine_GUI_Group_relayout(Machine_GUI_Group* self, Machine_Real canvasWidth, Machine_Real canvasHeight) {
   // Set the size of all children to the same value: That value is the component-wise maxima vector of the preferred sizes of all children.
   Machine_Math_Vector2* preferredSize = Machine_Math_Vector2_clone(Machine_GUI_Widget_getPreferredSize(Machine_GUI_WidgetList_getAt(self->children, 0)));
   for (size_t i = 1, n = Machine_GUI_WidgetList_getSize(self->children); i < n; ++i) {
@@ -75,6 +75,6 @@ void Machine_GUI_Group_relayout(Machine_GUI_Group* self, float canvasWidth, floa
     Machine_GUI_Widget_setSize(Machine_GUI_WidgetList_getAt(self->children, i), preferredSize);
   }
   // Layout the children.
-  const Machine_Math_Vector2* size = Machine_GUI_Widget_getSize((Machine_GUI_Widget*)self);
+  Machine_Math_Vector2 const* size = Machine_GUI_Widget_getSize((Machine_GUI_Widget*)self);
   Machine_GUI_WidgetList_layout(self->children, Machine_Math_Vector2_getX(size), Machine_Math_Vector2_getY(size), canvasWidth, canvasHeight, self->layoutModel);
 }

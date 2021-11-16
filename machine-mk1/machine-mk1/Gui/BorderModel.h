@@ -38,7 +38,7 @@ struct Machine_GUI_BorderModel {
 /// @param numberOfArguments, arguments The arguments. Number of arguments must be @a 0.
 /// @default The default border color is <code>(0.1, 0.1, 0.1, 1.0)</code>.
 /// @default The default border width for alles sides is <code>0</code>.
-void Machine_GUI_BorderModel_construct(Machine_GUI_BorderModel* self, size_t numberOfArguments, const Machine_Value *arguments);
+void Machine_GUI_BorderModel_construct(Machine_GUI_BorderModel* self, size_t numberOfArguments, Machine_Value const* arguments);
 
 /// @brief Create a border model with default values.
 /// @return The border model.
@@ -47,17 +47,17 @@ Machine_GUI_BorderModel *Machine_GUI_BorderModel_create();
 /// @brief Get the color of this border model.
 /// @param self This border model.
 /// @return The color.
-const Machine_Math_Vector4* Machine_GUI_BorderModel_getColor(const Machine_GUI_BorderModel* self);
+Machine_Math_Vector4 const* Machine_GUI_BorderModel_getColor(Machine_GUI_BorderModel const* self);
 
 /// @brief Set the color of this border model.
 /// @param self This border model.
 /// @param color The color.
-void Machine_GUI_BorderModel_setColor(Machine_GUI_BorderModel *self, const Machine_Math_Vector4 *color);
+void Machine_GUI_BorderModel_setColor(Machine_GUI_BorderModel *self, Machine_Math_Vector4 const *color);
 
 /// @brief Get the width of the left border.
 /// @param self This border model.
 /// @return The width.
-Machine_Real Machine_GUI_BorderModel_getLeftWidth(const Machine_GUI_BorderModel* self);
+Machine_Real Machine_GUI_BorderModel_getLeftWidth(Machine_GUI_BorderModel const* self);
 
 /// @brief Set the width of the left border.
 /// @param self This border model.
@@ -67,7 +67,7 @@ void Machine_GUI_BorderModel_setLeftWidth(Machine_GUI_BorderModel* self, Machine
 /// @brief Get the width of the right border.
 /// @param self This border model.
 /// @return The width.
-Machine_Real Machine_GUI_BorderModel_getRightWidth(const Machine_GUI_BorderModel* self);
+Machine_Real Machine_GUI_BorderModel_getRightWidth(Machine_GUI_BorderModel const* self);
 
 /// @brief Set the width of the right border.
 /// @param self This border model.
@@ -77,7 +77,7 @@ void Machine_GUI_BorderModel_setRightWidth(Machine_GUI_BorderModel* self, Machin
 /// @brief Get the width of the top border.
 /// @param self This border model.
 /// @return The width.
-Machine_Real Machine_GUI_BorderModel_getTopWidth(const Machine_GUI_BorderModel* self);
+Machine_Real Machine_GUI_BorderModel_getTopWidth(Machine_GUI_BorderModel const* self);
 
 /// @brief Set the width of the top border.
 /// @param self This border model.
@@ -87,7 +87,7 @@ void Machine_GUI_BorderModel_setTopWidth(Machine_GUI_BorderModel* self, Machine_
 /// @brief Get the width of the bottom border.
 /// @param self This border model.
 /// @return The width.
-Machine_Real Machine_GUI_BorderModel_getBottomWidth(const Machine_GUI_BorderModel* self);
+Machine_Real Machine_GUI_BorderModel_getBottomWidth(Machine_GUI_BorderModel const* self);
 
 /// @brief Set the width of the bottom border.
 /// @param self This border model.

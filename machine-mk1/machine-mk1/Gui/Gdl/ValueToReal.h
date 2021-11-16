@@ -17,7 +17,7 @@
 /// a value of type <code>Real</code>.
 /// @param value A pointer to a value.
 /// @return The value of type <code>Real</code>.
-Machine_Real Machine_GUI_GDL_valueToReal(const Machine_Value* value);
+Machine_Real Machine_GUI_GDL_valueToReal(Machine_Value const* value);
 
 
 

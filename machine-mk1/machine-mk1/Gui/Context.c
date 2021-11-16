@@ -24,7 +24,7 @@ static void Machine_GUI_Context_visit(Machine_GUI_Context* self) {
   }
 }
 
-static void Machine_GUI_Context_construct(Machine_GUI_Context* self, size_t numberOfArguments, const Machine_Value* arguments) {
+static void Machine_GUI_Context_construct(Machine_GUI_Context* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->gdlContext = Machine_GUI_GDL_Context_create((Machine_GDL_Context*)Machine_Value_getObject(&arguments[0]));
   self->signalsContext = Machine_GUI_Signals_Context_create();
@@ -60,13 +60,13 @@ void Machine_GUI_Context_setRootGroup(Machine_GUI_Context* self, Machine_GUI_Gro
   self->rootGroup = rootGroup;
 }
 
-Machine_GUI_Group* Machine_GUI_Context_getRootGroup(const Machine_GUI_Context* self) {
+Machine_GUI_Group* Machine_GUI_Context_getRootGroup(Machine_GUI_Context const* self) {
   return self->rootGroup;
 }
 
 void Machine_GUI_Context_onRender(Machine_GUI_Context* self) {
-  float targetWidth = Machine_Context2_getTargetWidth(self->context2),
-        targetHeight = Machine_Context2_getTargetHeight(self->context2);
+  Machine_Real targetWidth = Machine_Context2_getTargetWidth(self->context2),
+               targetHeight = Machine_Context2_getTargetHeight(self->context2);
   if (targetWidth > 0.f && targetHeight > 0.f && self->rootGroup) {
     Machine_Math_Vector2* canvasSize = Machine_Math_Vector2_create();
     Machine_Math_Vector2_set(canvasSize, targetWidth, targetHeight);

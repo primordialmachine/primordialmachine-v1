@@ -12,7 +12,7 @@ static void Machine_GUI_BorderModel_visit(Machine_GUI_BorderModel* self) {
 static void Machine_GUI_BorderModel_constructClass(Machine_GUI_BorderModel_Class* self)
 {/*Intentionally empty.*/}
 
-void Machine_GUI_BorderModel_construct(Machine_GUI_BorderModel* self, size_t numberOfArguments, const Machine_Value* arguments) {
+void Machine_GUI_BorderModel_construct(Machine_GUI_BorderModel* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object *)self, numberOfArguments, arguments);
   self->leftWidth = 1.f;
   self->rightWidth = 1.f;
@@ -27,21 +27,21 @@ MACHINE_DEFINE_CLASSTYPE(Machine_GUI_BorderModel, Machine_Object, &Machine_GUI_B
 
 Machine_GUI_BorderModel* Machine_GUI_BorderModel_create() {
   Machine_ClassType* ty = Machine_GUI_BorderModel_getClassType();
-  static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  static size_t const NUMBER_OF_ARGUMENTS = 0;
+  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_GUI_BorderModel* self = (Machine_GUI_BorderModel*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }
 
-const Machine_Math_Vector4* Machine_GUI_BorderModel_getColor(const Machine_GUI_BorderModel* self) {
+Machine_Math_Vector4 const* Machine_GUI_BorderModel_getColor(Machine_GUI_BorderModel const* self) {
   return self->color;
 }
 
-void Machine_GUI_BorderModel_setColor(Machine_GUI_BorderModel* self, const Machine_Math_Vector4* color) {
+void Machine_GUI_BorderModel_setColor(Machine_GUI_BorderModel* self, Machine_Math_Vector4 const* color) {
   Machine_Math_Vector4_copy(self->color, color);
 }
 
-Machine_Real Machine_GUI_BorderModel_getLeftWidth(const Machine_GUI_BorderModel* self) {
+Machine_Real Machine_GUI_BorderModel_getLeftWidth(Machine_GUI_BorderModel const* self) {
   return self->leftWidth;
 }
 
@@ -49,7 +49,7 @@ void Machine_GUI_BorderModel_setLeftWidth(Machine_GUI_BorderModel* self, Machine
   self->leftWidth = width;
 }
 
-Machine_Real Machine_GUI_BorderModel_getRightWidth(const Machine_GUI_BorderModel* self) {
+Machine_Real Machine_GUI_BorderModel_getRightWidth(Machine_GUI_BorderModel const* self) {
   return self->rightWidth;
 }
 
@@ -57,7 +57,7 @@ void Machine_GUI_BorderModel_setRightWidth(Machine_GUI_BorderModel* self, Machin
   self->rightWidth = width;
 }
 
-Machine_Real Machine_GUI_BorderModel_getTopWidth(const Machine_GUI_BorderModel* self) {
+Machine_Real Machine_GUI_BorderModel_getTopWidth(Machine_GUI_BorderModel const* self) {
   return self->topWidth;
 }
 
@@ -65,7 +65,7 @@ void Machine_GUI_BorderModel_setTopWidth(Machine_GUI_BorderModel* self, Machine_
   self->topWidth = width;
 }
 
-Machine_Real Machine_GUI_BorderModel_getBottomWidth(const Machine_GUI_BorderModel* self) {
+Machine_Real Machine_GUI_BorderModel_getBottomWidth(Machine_GUI_BorderModel const* self) {
   return self->bottomWidth;
 }
 

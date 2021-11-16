@@ -40,11 +40,11 @@ static void Machine_GUI_TextLabel_visit(Machine_GUI_TextLabel* self) {
   }
 }
 
-static const Machine_Math_Vector2* Machine_GUI_TextLabel_getPreferredSize(const Machine_GUI_TextLabel* self);
+static Machine_Math_Vector2 const* Machine_GUI_TextLabel_getPreferredSize(Machine_GUI_TextLabel const* self);
 
 static void Machine_GUI_TextLabel_render(Machine_GUI_TextLabel* self, Machine_Context2* ctx2);
 
-static Machine_Value boundsChangedCallback(size_t numberOfArguments, const Machine_Value* arguments) {
+static Machine_Value boundsChangedCallback(size_t numberOfArguments, Machine_Value const* arguments) {
   MACHINE_ASSERT(numberOfArguments == 1, Machine_Status_InvalidNumberOfArguments);
   Machine_GUI_TextLabel* self = (Machine_GUI_TextLabel*)Machine_Value_getObject(&arguments[0]);
   self->childDirty = true;
@@ -55,10 +55,10 @@ static Machine_Value boundsChangedCallback(size_t numberOfArguments, const Machi
 
 static void Machine_GUI_TextLabel_constructClass(Machine_GUI_TextLabel_Class* self) {
   ((Machine_GUI_Widget_Class*)self)->render = (void (*)(Machine_GUI_Widget*, Machine_Context2*)) & Machine_GUI_TextLabel_render;
-  ((Machine_GUI_Widget_Class*)self)->getPreferredSize = (const Machine_Math_Vector2 * (*)(const Machine_GUI_Widget*)) & Machine_GUI_TextLabel_getPreferredSize;
+  ((Machine_GUI_Widget_Class*)self)->getPreferredSize = (Machine_Math_Vector2 const* (*)(Machine_GUI_Widget const*)) & Machine_GUI_TextLabel_getPreferredSize;
 }
 
-void Machine_GUI_TextLabel_construct(Machine_GUI_TextLabel* self, size_t numberOfArguments, const Machine_Value* arguments) {
+void Machine_GUI_TextLabel_construct(Machine_GUI_TextLabel* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_GUI_Widget_construct((Machine_GUI_Widget*)self, numberOfArguments, arguments);
   Machine_FontsContext* fontsContext = Machine_DefaultFonts_createContext(Machine_getVideoContext(), Machines_DefaultImages_createContext());
   Machine_Font *font = Machine_FontsContext_createFont(fontsContext, Machine_String_create("RobotoSlab-Regular.ttf", strlen("RobotoSlab-Regular.ttf")), 20);
@@ -74,7 +74,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_GUI_TextLabel, Machine_GUI_Widget, &Machine_GUI
 
 Machine_GUI_TextLabel* Machine_GUI_TextLabel_create(Machine_GUI_Context* context) {
   Machine_ClassType* ty = Machine_GUI_TextLabel_getClassType();
-  static const size_t NUMBER_OF_ARGUMENTS = 1;
+  static size_t const NUMBER_OF_ARGUMENTS = 1;
   Machine_Value arguments[1] = { Machine_Value_StaticInitializerVoid() };
   Machine_Value_setObject(&arguments[0], (Machine_Object*)context);
   Machine_GUI_TextLabel* self = (Machine_GUI_TextLabel*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments);
@@ -83,7 +83,7 @@ Machine_GUI_TextLabel* Machine_GUI_TextLabel_create(Machine_GUI_Context* context
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-static const Machine_Math_Vector2* Machine_GUI_TextLabel_getPreferredSize(const Machine_GUI_TextLabel* self) {
+static Machine_Math_Vector2 const* Machine_GUI_TextLabel_getPreferredSize(Machine_GUI_TextLabel const* self) {
   return Machine_Math_Rectangle2_getSize(Machine_Text_Layout_getBounds(self->foreground));
 }
 
@@ -95,31 +95,31 @@ void Machine_GUI_TextLabel_setText(Machine_GUI_TextLabel* self, Machine_String* 
   Machine_GUI_Widget_emitSizeChangedSignal((Machine_GUI_Widget*)self);
 }
 
-Machine_String* Machine_GUI_TextLabel_getText(const Machine_GUI_TextLabel* self) {
+Machine_String* Machine_GUI_TextLabel_getText(Machine_GUI_TextLabel const* self) {
   return Machine_Text_Layout_getText(self->foreground);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-void Machine_GUI_TextLabel_setBackgroundColor(Machine_GUI_TextLabel* self, const Machine_Math_Vector4* backgroundColor) {
+void Machine_GUI_TextLabel_setBackgroundColor(Machine_GUI_TextLabel* self, Machine_Math_Vector4 const* backgroundColor) {
   Machine_Rectangle2_setColor(self->background, backgroundColor);
   Machine_GUI_Widget_emitPositionChangedSignal((Machine_GUI_Widget*)self);
   Machine_GUI_Widget_emitSizeChangedSignal((Machine_GUI_Widget*)self);
 }
 
-const Machine_Math_Vector4* Machine_GUI_TextLabel_getBackgroundColor(const Machine_GUI_TextLabel* self) {
+Machine_Math_Vector4 const* Machine_GUI_TextLabel_getBackgroundColor(Machine_GUI_TextLabel const* self) {
   return Machine_Rectangle2_getColor(self->background);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-void Machine_GUI_TextLabel_setForegroundColor(Machine_GUI_TextLabel* self, const Machine_Math_Vector3* foregroundColor) {
+void Machine_GUI_TextLabel_setForegroundColor(Machine_GUI_TextLabel* self, Machine_Math_Vector3 const* foregroundColor) {
   Machine_Text_Layout_setColor(self->foreground, foregroundColor);
   Machine_GUI_Widget_emitPositionChangedSignal((Machine_GUI_Widget*)self);
   Machine_GUI_Widget_emitSizeChangedSignal((Machine_GUI_Widget*)self);
 }
 
-const Machine_Math_Vector3* Machine_GUI_TextLabel_getForegroundColor(const Machine_GUI_TextLabel* self) {
+Machine_Math_Vector3 const* Machine_GUI_TextLabel_getForegroundColor(Machine_GUI_TextLabel const* self) {
   return Machine_Text_Layout_getColor(self->foreground);
 }
 
@@ -133,12 +133,12 @@ static void Machine_GUI_TextLabel_render2(Machine_GUI_TextLabel* self, Machine_R
     Machine_Rectangle2_setRectangle(self->background, ((Machine_GUI_Widget*)self)->rectangle);
     // TODO: Only do this layouting if necessary.
     Machine_Math_Rectangle2* clipRect = Machine_Rectangle2_getRectangle(self->background);
-    const Machine_Math_Vector2* widgetCenter = Machine_Math_Rectangle2_getCenter(Machine_Rectangle2_getRectangle(self->background));
+    Machine_Math_Vector2 const* widgetCenter = Machine_Math_Rectangle2_getCenter(Machine_Rectangle2_getRectangle(self->background));
 
-    const Machine_Math_Rectangle2* textBounds = Machine_Text_Layout_getBounds(self->foreground);
-    const Machine_Math_Vector2* textCenter = Machine_Math_Rectangle2_getCenter(textBounds);
+    Machine_Math_Rectangle2 const* textBounds = Machine_Text_Layout_getBounds(self->foreground);
+    Machine_Math_Vector2 const* textCenter = Machine_Math_Rectangle2_getCenter(textBounds);
     Machine_Math_Vector2* delta = Machine_Math_Vector2_difference(widgetCenter, textCenter);
-    const Machine_Math_Vector2* oldPosition = Machine_Text_Layout_getPosition(self->foreground);
+    Machine_Math_Vector2 const* oldPosition = Machine_Text_Layout_getPosition(self->foreground);
     Machine_Math_Vector2* newPosition = Machine_Math_Vector2_sum(oldPosition, delta);
     Machine_Text_Layout_setPosition(self->foreground, newPosition);
     Machine_Text_Layout_setClipRectangle(self->foreground, clipRect);

@@ -9,8 +9,8 @@
 
 
 
-Machine_Math_Vector3* Machine_GUI_GDL_listToVector3(const Machine_List* list) {
-  size_t size = Machine_Collection_getSize((const Machine_Collection*)list);
+Machine_Math_Vector3* Machine_GUI_GDL_listToVector3(Machine_List const* list) {
+  size_t size = Machine_Collection_getSize((Machine_Collection const*)list);
   MACHINE_ASSERT(size == 3, Machine_Status_InvalidArgument);
   Machine_Value values[] = {
     Machine_List_getAt(list, 0),
@@ -24,8 +24,8 @@ Machine_Math_Vector3* Machine_GUI_GDL_listToVector3(const Machine_List* list) {
   return vector;
 }
 
-Machine_Math_Vector4* Machine_GUI_GDL_listToVector4(const Machine_List* list) {
-  size_t size = Machine_Collection_getSize((const Machine_Collection*)list);
+Machine_Math_Vector4* Machine_GUI_GDL_listToVector4(Machine_List const* list) {
+  size_t size = Machine_Collection_getSize((Machine_Collection const*)list);
   MACHINE_ASSERT(size == 4, Machine_Status_InvalidArgument);
   Machine_Value values[] = {
     Machine_List_getAt(list, 0),

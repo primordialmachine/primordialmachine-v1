@@ -11,7 +11,7 @@
 
 
 
-static void checkKind(Machine_GUI_Context* self, const Machine_Map* source, Machine_String* expected) {
+static void checkKind(Machine_GUI_Context* self, Machine_Map const* source, Machine_String* expected) {
   Machine_GUI_GDL_Context* context = self->gdlContext;
   if (!Machine_GUI_Reader_hasString(self, source, context->KIND)) {
     Machine_setStatus(Machine_Status_SemanticalError);
@@ -24,7 +24,7 @@ static void checkKind(Machine_GUI_Context* self, const Machine_Map* source, Mach
   }
 }
 
-Machine_GUI_LayoutModel* Machine_GUI_Reader_readLayout(Machine_GUI_Context* self, const Machine_Map* source) {
+Machine_GUI_LayoutModel* Machine_GUI_Reader_readLayout(Machine_GUI_Context* self, Machine_Map const* source) {
   Machine_GUI_GDL_Context* subContext = self->gdlContext;
   Machine_GUI_LayoutModel* model = Machine_GUI_LayoutModel_create();
   if (Machine_GUI_Reader_hasString(self, source, subContext->DIRECTION)) {
@@ -69,7 +69,7 @@ Machine_GUI_LayoutModel* Machine_GUI_Reader_readLayout(Machine_GUI_Context* self
   return model;
 }
 
-Machine_GUI_Group* Machine_GUI_Reader_readGroup(Machine_GUI_Context* self, const Machine_Map* source) {
+Machine_GUI_Group* Machine_GUI_Reader_readGroup(Machine_GUI_Context* self, Machine_Map const* source) {
   Machine_GUI_GDL_Context* subContext = self->gdlContext;
   checkKind(self, source, subContext->GROUP);
   Machine_GUI_Group* widget = Machine_GUI_Group_create(self);
@@ -93,7 +93,7 @@ Machine_GUI_Group* Machine_GUI_Reader_readGroup(Machine_GUI_Context* self, const
   return widget;
 }
 
-Machine_GUI_Border* Machine_GUI_Reader_readBorder(Machine_GUI_Context* self, const Machine_Map* source) {
+Machine_GUI_Border* Machine_GUI_Reader_readBorder(Machine_GUI_Context* self, Machine_Map const* source) {
   Machine_GUI_GDL_Context* subContext = self->gdlContext;
   checkKind(self, source, subContext->BORDER);
   Machine_GUI_Border* widget = Machine_GUI_Border_create(self);
@@ -131,7 +131,7 @@ Machine_GUI_Border* Machine_GUI_Reader_readBorder(Machine_GUI_Context* self, con
   return widget;
 }
 
-Machine_GUI_TextButton* Machine_GUI_Reader_readTextButton(Machine_GUI_Context* self, const Machine_Map* source) {
+Machine_GUI_TextButton* Machine_GUI_Reader_readTextButton(Machine_GUI_Context* self, Machine_Map const* source) {
   Machine_GUI_GDL_Context* subContext = self->gdlContext;
   checkKind(self, source, subContext->TEXTBUTTON);
   Machine_GUI_TextButton* widget = Machine_GUI_TextButton_create(self);
@@ -142,7 +142,7 @@ Machine_GUI_TextButton* Machine_GUI_Reader_readTextButton(Machine_GUI_Context* s
   return widget;
 }
 
-Machine_GUI_TextLabel* Machine_GUI_Reader_readTextLabel(Machine_GUI_Context* self, const Machine_Map* source) {
+Machine_GUI_TextLabel* Machine_GUI_Reader_readTextLabel(Machine_GUI_Context* self, Machine_Map const* source) {
   Machine_GUI_GDL_Context* subContext = self->gdlContext;
   checkKind(self, source, subContext->TEXTLABEL);
   Machine_GUI_TextLabel* widget = Machine_GUI_TextLabel_create(self);
