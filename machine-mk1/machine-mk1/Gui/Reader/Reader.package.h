@@ -22,7 +22,7 @@
 /// @param source A pointer to the source map.
 /// @return A pointer to the widget.
 /// @todo Restruct visibility to "package".
-Machine_GUI_Group* Machine_GUI_Reader_readGroup(Machine_GUI_Context* self, Machine_Map const* source);
+Machine_Gui_Group* Machine_GUI_Reader_readGroup(Machine_GUI_Context* self, Machine_Map const* source);
 
 /// @brief
 /// <code>

@@ -24,7 +24,7 @@ struct Machine_GUI_Context_Class {
 struct Machine_GUI_Context {
   Machine_Object __parent;
   Machine_Context2* context2;
-  Machine_GUI_Group* rootGroup;
+  Machine_Gui_Group* rootGroup;
   Machine_GUI_Signals_Context* signalsContext;
   Machine_GUI_GDL_Context* gdlContext;
 };
@@ -44,12 +44,12 @@ Machine_Real Machine_GUI_Context_getCanvasHeight(Machine_GUI_Context* self);
 /// @brief Set the root group.
 /// @param self This GUI context.
 /// @param rootGroup The root group or null.
-void Machine_GUI_Context_setRootGroup(Machine_GUI_Context* self, Machine_GUI_Group* rootGroup);
+void Machine_GUI_Context_setRootGroup(Machine_GUI_Context* self, Machine_Gui_Group* rootGroup);
 
 /// @brief Get the root group.
 /// @param self This GUI context.
 /// @return The root group or null.
-Machine_GUI_Group* Machine_GUI_Context_getRootGroup(Machine_GUI_Context const* self);
+Machine_Gui_Group* Machine_GUI_Context_getRootGroup(Machine_GUI_Context const* self);
 
 void Machine_GUI_Context_onRender(Machine_GUI_Context* self);
 

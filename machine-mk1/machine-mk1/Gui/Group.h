@@ -13,13 +13,13 @@
 
 /// @brief A group.
 /// @extends Machine.GUI.Widget
-MACHINE_DECLARE_CLASSTYPE(Machine_GUI_Group)
+MACHINE_DECLARE_CLASSTYPE(Machine_Gui_Group)
 
-struct Machine_GUI_Group_Class {
+struct Machine_Gui_Group_Class {
   Machine_GUI_Widget_Class __parent;
 };
 
-struct Machine_GUI_Group {
+struct Machine_Gui_Group {
   Machine_GUI_Widget __parent;
   Machine_GUI_LayoutModel* layoutModel;
   Machine_GUI_WidgetList* children;
@@ -28,12 +28,12 @@ struct Machine_GUI_Group {
 /// @brief Create a group with default values.
 /// @param context The context the group belongs to.
 /// @return The group.
-Machine_GUI_Group* Machine_GUI_Group_create(Machine_GUI_Context* context);
+Machine_Gui_Group* Machine_Gui_Group_create(Machine_GUI_Context* context);
 
-Machine_GUI_LayoutModel const* Machine_GUI_Group_getLayoutModel(Machine_GUI_Group const* self);
+Machine_GUI_LayoutModel const* Machine_Gui_Group_getLayoutModel(Machine_Gui_Group const* self);
 
-void Machine_GUI_Group_setLayoutModel(Machine_GUI_Group* self, Machine_GUI_LayoutModel* layoutModel);
+void Machine_Gui_Group_setLayoutModel(Machine_Gui_Group* self, Machine_GUI_LayoutModel* layoutModel);
 
-void Machine_GUI_Group_relayout(Machine_GUI_Group* self, Machine_Real canvasWidth, Machine_Real canvasHeight);
+void Machine_Gui_Group_relayout(Machine_Gui_Group* self, Machine_Real canvasWidth, Machine_Real canvasHeight);
 
 #endif // MACHINE_GUI_GROUP_H_INCLUDED
