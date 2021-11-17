@@ -25,25 +25,25 @@ typedef enum Machine_Gui_Layout_Justification {
 } Machine_Gui_Layout_Justification;
 
 /// @brief Denotes along which axis elements are layed out.
-typedef enum Machine_GUI_Layout_Direction {
+typedef enum Machine_Gui_Layout_Direction {
 
   /// @brief Axis from Top to bottom.
   /// Centered around the main axis.
-  Machine_GUI_Layout_Direction_Column,
+  Machine_Gui_Layout_Direction_Column,
   
   /// @brief Axis from Bottom to top.
   /// Centered around the main axis.
-  Machine_GUI_Layout_Direction_ColumnReverse,
+  Machine_Gui_Layout_Direction_ColumnReverse,
   
   /// @brief Axis from Left to right.
   /// Centered around the main axis.
-  Machine_GUI_Layout_Direction_Row,
+  Machine_Gui_Layout_Direction_Row,
   
   /// @brief Axis from Right to left.
   /// Centered around the main axis.
-  Machine_GUI_Layout_Direction_RowReverse,
+  Machine_Gui_Layout_Direction_RowReverse,
 
-} Machine_GUI_Layout_Direction;
+} Machine_Gui_Layout_Direction;
 
 /// @brief Layout attributes.
 MACHINE_DECLARE_CLASSTYPE(Machine_GUI_LayoutModel)
@@ -57,7 +57,7 @@ struct Machine_GUI_LayoutModel {
   Machine_Object parent;
 
   /// @brief The primary axis direction.
-  Machine_GUI_Layout_Direction primaryDirection;
+  Machine_Gui_Layout_Direction primaryDirection;
 
   /// @brief The primary axis justification.
   Machine_Gui_Layout_Justification primaryJustification;
@@ -85,12 +85,12 @@ Machine_GUI_LayoutModel* Machine_GUI_LayoutModel_create();
 /// @brief Get the primary direction of this layout model.
 /// @param self This layout model.
 /// @return The primary direction.
-Machine_GUI_Layout_Direction Machine_GUI_LayoutModel_getPrimaryDirection(Machine_GUI_LayoutModel const* self);
+Machine_Gui_Layout_Direction Machine_GUI_LayoutModel_getPrimaryDirection(Machine_GUI_LayoutModel const* self);
 
 /// @brief Set the primary direction of this layout model.
 /// @param self This layout model.
 /// @param direction The primary direction.
-void Machine_GUI_LayoutModel_setPrimaryDirection(Machine_GUI_LayoutModel* self, Machine_GUI_Layout_Direction primaryDirection);
+void Machine_GUI_LayoutModel_setPrimaryDirection(Machine_GUI_LayoutModel* self, Machine_Gui_Layout_Direction primaryDirection);
 
 
 

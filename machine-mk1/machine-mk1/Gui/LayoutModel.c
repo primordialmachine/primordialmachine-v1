@@ -8,7 +8,7 @@ static void Machine_GUI_LayoutModel_visit(Machine_GUI_LayoutModel* self)
 
 void Machine_GUI_LayoutModel_construct(Machine_GUI_LayoutModel* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  self->primaryDirection = Machine_GUI_Layout_Direction_Column;
+  self->primaryDirection = Machine_Gui_Layout_Direction_Column;
   self->primaryJustification = Machine_Gui_Layout_Justification_Start;
   self->primaryInterChildSpacing = 0.f;
   Machine_setClassType((Machine_Object*)self, Machine_GUI_LayoutModel_getClassType());
@@ -26,11 +26,11 @@ Machine_GUI_LayoutModel* Machine_GUI_LayoutModel_create() {
 
 
 
-Machine_GUI_Layout_Direction Machine_GUI_LayoutModel_getPrimaryDirection(Machine_GUI_LayoutModel const* self) {
+Machine_Gui_Layout_Direction Machine_GUI_LayoutModel_getPrimaryDirection(Machine_GUI_LayoutModel const* self) {
   return self->primaryDirection;
 }
 
-void Machine_GUI_LayoutModel_setPrimaryDirection(Machine_GUI_LayoutModel* self, Machine_GUI_Layout_Direction primaryDirection) {
+void Machine_GUI_LayoutModel_setPrimaryDirection(Machine_GUI_LayoutModel* self, Machine_Gui_Layout_Direction primaryDirection) {
   self->primaryDirection = primaryDirection;
 }
 

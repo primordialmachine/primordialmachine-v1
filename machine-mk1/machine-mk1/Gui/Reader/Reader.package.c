@@ -30,16 +30,16 @@ Machine_GUI_LayoutModel* Machine_GUI_Reader_readLayout(Machine_Gui_Context* self
   if (Machine_GUI_Reader_hasString(self, source, subContext->DIRECTION)) {
     Machine_String* temporary = Machine_GUI_Reader_getString(source, subContext->DIRECTION);
     if (Machine_String_isEqualTo(temporary, subContext->COLUMN)) {
-      Machine_GUI_LayoutModel_setPrimaryDirection(model, Machine_GUI_Layout_Direction_Column);
+      Machine_GUI_LayoutModel_setPrimaryDirection(model, Machine_Gui_Layout_Direction_Column);
     }
     else if (Machine_String_isEqualTo(temporary, subContext->COLUMNREVERSE)) {
-      Machine_GUI_LayoutModel_setPrimaryDirection(model, Machine_GUI_Layout_Direction_ColumnReverse);
+      Machine_GUI_LayoutModel_setPrimaryDirection(model, Machine_Gui_Layout_Direction_ColumnReverse);
     }
     else if (Machine_String_isEqualTo(temporary, subContext->ROW)) {
-      Machine_GUI_LayoutModel_setPrimaryDirection(model, Machine_GUI_Layout_Direction_Row);
+      Machine_GUI_LayoutModel_setPrimaryDirection(model, Machine_Gui_Layout_Direction_Row);
     }
     else if (Machine_String_isEqualTo(temporary, subContext->ROWREVERSE)) {
-      Machine_GUI_LayoutModel_setPrimaryDirection(model, Machine_GUI_Layout_Direction_RowReverse);
+      Machine_GUI_LayoutModel_setPrimaryDirection(model, Machine_Gui_Layout_Direction_RowReverse);
     }
     else {
       Machine_setStatus(Machine_Status_SemanticalError);

@@ -120,7 +120,7 @@ static inline void Machine_Gui_WidgetList_layout(Machine_Gui_WidgetList* self, M
   }
   
   switch (Machine_GUI_LayoutModel_getPrimaryDirection(model)) {
-  case Machine_GUI_Layout_Direction_Column: {
+  case Machine_Gui_Layout_Direction_Column: {
     Machine_Real y = 0.f;
     // Basically just lay them out consecutively.
     Machine_Math_Vector2* newPosition = Machine_Math_Vector2_create();
@@ -150,7 +150,7 @@ static inline void Machine_Gui_WidgetList_layout(Machine_Gui_WidgetList* self, M
     Machine_Gui_WidgetList_centerColumn(self, parentWidth * 0.5f);
 
   } break;
-  case Machine_GUI_Layout_Direction_ColumnReverse: {
+  case Machine_Gui_Layout_Direction_ColumnReverse: {
     Machine_Real y = parentHeight;
     Machine_Math_Vector2* newPosition = Machine_Math_Vector2_create();
     for (size_t i = 0, n = Machine_Gui_WidgetList_getSize(self); i < n; ++i) {
@@ -187,7 +187,7 @@ static inline void Machine_Gui_WidgetList_layout(Machine_Gui_WidgetList* self, M
     Machine_Gui_WidgetList_centerColumn(self, parentWidth * 0.5f);
 
   } break;
-  case Machine_GUI_Layout_Direction_Row: {
+  case Machine_Gui_Layout_Direction_Row: {
     Machine_Real x = 0.f;
       Machine_Math_Vector2* newPosition = Machine_Math_Vector2_create();
       for (size_t i = 0, n = Machine_Gui_WidgetList_getSize(self); i < n; ++i) {
@@ -223,7 +223,7 @@ static inline void Machine_Gui_WidgetList_layout(Machine_Gui_WidgetList* self, M
     Machine_Gui_WidgetList_centerRow(self, parentHeight * 0.5f);
 
   } break;
-  case Machine_GUI_Layout_Direction_RowReverse: {
+  case Machine_Gui_Layout_Direction_RowReverse: {
     Machine_Real x = parentWidth;
     Machine_Math_Vector2* newPosition = Machine_Math_Vector2_create();
     for (size_t i = 0, n = Machine_Gui_WidgetList_getSize(self); i < n; ++i) {
