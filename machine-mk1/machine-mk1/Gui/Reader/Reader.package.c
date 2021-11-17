@@ -13,22 +13,22 @@
 
 static void checkKind(Machine_Gui_Context* self, Machine_Map const* source, Machine_String* expected) {
   Machine_Gui_Gdl_Context* context = self->gdlContext;
-  if (!Machine_GUI_Reader_hasString(self, source, context->KIND)) {
+  if (!Machine_Gui_Reader_hasString(self, source, context->KIND)) {
     Machine_setStatus(Machine_Status_SemanticalError);
     Machine_jump();
   }
-  Machine_String* received = Machine_GUI_Reader_getString(source, context->KIND);
+  Machine_String* received = Machine_Gui_Reader_getString(source, context->KIND);
   if (!Machine_String_isEqualTo(received, expected)) {
     Machine_setStatus(Machine_Status_SemanticalError);
     Machine_jump();
   }
 }
 
-Machine_Gui_LayoutModel* Machine_GUI_Reader_readLayout(Machine_Gui_Context* self, Machine_Map const* source) {
+Machine_Gui_LayoutModel* Machine_Gui_Reader_readLayout(Machine_Gui_Context* self, Machine_Map const* source) {
   Machine_Gui_Gdl_Context* subContext = self->gdlContext;
   Machine_Gui_LayoutModel* model = Machine_Gui_LayoutModel_create();
-  if (Machine_GUI_Reader_hasString(self, source, subContext->DIRECTION)) {
-    Machine_String* temporary = Machine_GUI_Reader_getString(source, subContext->DIRECTION);
+  if (Machine_Gui_Reader_hasString(self, source, subContext->DIRECTION)) {
+    Machine_String* temporary = Machine_Gui_Reader_getString(source, subContext->DIRECTION);
     if (Machine_String_isEqualTo(temporary, subContext->COLUMN)) {
       Machine_Gui_LayoutModel_setPrimaryDirection(model, Machine_Gui_Layout_Direction_Column);
     }
@@ -46,8 +46,8 @@ Machine_Gui_LayoutModel* Machine_GUI_Reader_readLayout(Machine_Gui_Context* self
       Machine_jump();
     }
   }
-  if (Machine_GUI_Reader_hasString(self, source, subContext->JUSTIFICATION)) {
-    Machine_String* temporary = Machine_GUI_Reader_getString(source, subContext->JUSTIFICATION);
+  if (Machine_Gui_Reader_hasString(self, source, subContext->JUSTIFICATION)) {
+    Machine_String* temporary = Machine_Gui_Reader_getString(source, subContext->JUSTIFICATION);
     if (Machine_String_isEqualTo(temporary, subContext->START)) {
       Machine_Gui_LayoutModel_setPrimaryJustification(model, Machine_Gui_Layout_Justification_Start);
     }
@@ -62,92 +62,92 @@ Machine_Gui_LayoutModel* Machine_GUI_Reader_readLayout(Machine_Gui_Context* self
       Machine_jump();
     }
   }
-  if (Machine_GUI_Reader_hasReal(self, source, subContext->INTERSPACING)) {
-    Machine_Real temporary = Machine_GUI_Reader_getReal(source, subContext->INTERSPACING);
+  if (Machine_Gui_Reader_hasReal(self, source, subContext->INTERSPACING)) {
+    Machine_Real temporary = Machine_Gui_Reader_getReal(source, subContext->INTERSPACING);
     Machine_Gui_LayoutModel_setPrimaryInterChildspacing(model, temporary);
   }
   return model;
 }
 
-Machine_Gui_Group* Machine_GUI_Reader_readGroup(Machine_Gui_Context* self, Machine_Map const* source) {
+Machine_Gui_Group* Machine_Gui_Reader_readGroup(Machine_Gui_Context* self, Machine_Map const* source) {
   Machine_Gui_Gdl_Context* subContext = self->gdlContext;
   checkKind(self, source, subContext->GROUP);
   Machine_Gui_Group* widget = Machine_Gui_Group_create(self);
-  if (Machine_GUI_Reader_hasList(self, source, subContext->CHILDREN)) {
-    Machine_List* temporary1 = Machine_GUI_Reader_getList(self, source, subContext->CHILDREN);
+  if (Machine_Gui_Reader_hasList(self, source, subContext->CHILDREN)) {
+    Machine_List* temporary1 = Machine_Gui_Reader_getList(self, source, subContext->CHILDREN);
     for (size_t i = 0, n = Machine_Collection_getSize((Machine_Collection*)temporary1); i < n; ++i) {
       Machine_Value temporary2 = Machine_List_getAt(temporary1, i);
       Machine_Map* temporary3 = (Machine_Map*)Machine_Value_getObject(&temporary2);
-      Machine_Gui_Widget* childWidget = Machine_GUI_Reader_readWidget(self, (Machine_Map*)temporary3);
+      Machine_Gui_Widget* childWidget = Machine_Gui_Reader_readWidget(self, (Machine_Map*)temporary3);
 
       // TODO: Should be Machine_Gui_Widget_appendChild.
       Machine_Gui_WidgetList_append(widget->children, childWidget);
       childWidget->parent = (Machine_Gui_Widget*)widget;
     }
   }
-  if (Machine_GUI_Reader_hasMap(self, source, subContext->LAYOUT)) {
-    Machine_Map* temporary1 = Machine_GUI_Reader_getMap(self, source, subContext->LAYOUT);
-    Machine_Gui_LayoutModel* layout = Machine_GUI_Reader_readLayout(self, temporary1);
+  if (Machine_Gui_Reader_hasMap(self, source, subContext->LAYOUT)) {
+    Machine_Map* temporary1 = Machine_Gui_Reader_getMap(self, source, subContext->LAYOUT);
+    Machine_Gui_LayoutModel* layout = Machine_Gui_Reader_readLayout(self, temporary1);
     Machine_Gui_Group_setLayoutModel(widget, layout);
   }
   return widget;
 }
 
-Machine_Gui_Border* Machine_GUI_Reader_readBorder(Machine_Gui_Context* self, Machine_Map const* source) {
+Machine_Gui_Border* Machine_Gui_Reader_readBorder(Machine_Gui_Context* self, Machine_Map const* source) {
   Machine_Gui_Gdl_Context* subContext = self->gdlContext;
   checkKind(self, source, subContext->BORDER);
   Machine_Gui_Border* widget = Machine_Gui_Border_create(self);
-  if (Machine_GUI_Reader_hasReal(self, source, subContext->BORDERWIDTH)) {
-    Machine_Real temporary = Machine_GUI_Reader_getReal(source, subContext->BORDERWIDTH);
+  if (Machine_Gui_Reader_hasReal(self, source, subContext->BORDERWIDTH)) {
+    Machine_Real temporary = Machine_Gui_Reader_getReal(source, subContext->BORDERWIDTH);
     Machine_Gui_Border_setBorderWidth(widget, temporary);
   }
-  if (Machine_GUI_Reader_hasReal(self, source, subContext->LEFTBORDERWIDTH)) {
-    Machine_Real temporary = Machine_GUI_Reader_getReal(source, subContext->LEFTBORDERWIDTH);
+  if (Machine_Gui_Reader_hasReal(self, source, subContext->LEFTBORDERWIDTH)) {
+    Machine_Real temporary = Machine_Gui_Reader_getReal(source, subContext->LEFTBORDERWIDTH);
     Machine_Gui_Border_setLeftBorderWidth(widget, temporary);
   }
-  if (Machine_GUI_Reader_hasReal(self, source, subContext->RIGHTBORDERWIDTH)) {
-    Machine_Real temporary = Machine_GUI_Reader_getReal(source, subContext->RIGHTBORDERWIDTH);
+  if (Machine_Gui_Reader_hasReal(self, source, subContext->RIGHTBORDERWIDTH)) {
+    Machine_Real temporary = Machine_Gui_Reader_getReal(source, subContext->RIGHTBORDERWIDTH);
     Machine_Gui_Border_setRightBorderWidth(widget, temporary);
   }
-  if (Machine_GUI_Reader_hasReal(self, source, subContext->TOPBORDERWIDTH)) {
-    Machine_Real temporary = Machine_GUI_Reader_getReal(source, subContext->TOPBORDERWIDTH);
+  if (Machine_Gui_Reader_hasReal(self, source, subContext->TOPBORDERWIDTH)) {
+    Machine_Real temporary = Machine_Gui_Reader_getReal(source, subContext->TOPBORDERWIDTH);
     Machine_Gui_Border_setTopBorderWidth(widget, temporary);
   }
-  if (Machine_GUI_Reader_hasReal(self, source, subContext->BOTTOMBORDERWIDTH)) {
-    Machine_Real temporary = Machine_GUI_Reader_getReal(source, subContext->BOTTOMBORDERWIDTH);
+  if (Machine_Gui_Reader_hasReal(self, source, subContext->BOTTOMBORDERWIDTH)) {
+    Machine_Real temporary = Machine_Gui_Reader_getReal(source, subContext->BOTTOMBORDERWIDTH);
     Machine_Gui_Border_setBottomBorderWidth(widget, temporary);
   }
-  if (Machine_GUI_Reader_hasList(self, source, subContext->BORDERCOLOR)) {
-    Machine_Math_Vector3* temporary = Machine_Gui_Gdl_listToVector3(Machine_GUI_Reader_getList(self, source, subContext->BORDERCOLOR));
+  if (Machine_Gui_Reader_hasList(self, source, subContext->BORDERCOLOR)) {
+    Machine_Math_Vector3* temporary = Machine_Gui_Gdl_listToVector3(Machine_Gui_Reader_getList(self, source, subContext->BORDERCOLOR));
     Machine_Math_Vector4* temporary2 = Machine_Math_Vector4_create();
     Machine_Math_Vector4_set(temporary2, Machine_Math_Vector3_getX(temporary), Machine_Math_Vector3_getY(temporary), Machine_Math_Vector3_getZ(temporary), 1.f);
     Machine_Gui_Border_setBorderColor(widget, temporary2);
   }
-  if (Machine_GUI_Reader_hasMap(self, source, subContext->CHILD)) {
-    Machine_Map* temporary = Machine_GUI_Reader_getMap(self, source, subContext->CHILD);
-    Machine_Gui_Widget* childWidget = Machine_GUI_Reader_readWidget(self, (Machine_Map*)temporary);
+  if (Machine_Gui_Reader_hasMap(self, source, subContext->CHILD)) {
+    Machine_Map* temporary = Machine_Gui_Reader_getMap(self, source, subContext->CHILD);
+    Machine_Gui_Widget* childWidget = Machine_Gui_Reader_readWidget(self, (Machine_Map*)temporary);
     Machine_Gui_Border_setChild(widget, childWidget);
   }
   return widget;
 }
 
-Machine_Gui_TextButton* Machine_GUI_Reader_readTextButton(Machine_Gui_Context* self, Machine_Map const* source) {
+Machine_Gui_TextButton* Machine_Gui_Reader_readTextButton(Machine_Gui_Context* self, Machine_Map const* source) {
   Machine_Gui_Gdl_Context* subContext = self->gdlContext;
   checkKind(self, source, subContext->TEXTBUTTON);
   Machine_Gui_TextButton* widget = Machine_Gui_TextButton_create(self);
-  if (Machine_GUI_Reader_hasString(self, source, subContext->TEXT)) {
-    Machine_String* temporary = Machine_GUI_Reader_getString(source, subContext->TEXT);
+  if (Machine_Gui_Reader_hasString(self, source, subContext->TEXT)) {
+    Machine_String* temporary = Machine_Gui_Reader_getString(source, subContext->TEXT);
     Machine_Gui_TextButton_setText(widget, temporary);
   }
   return widget;
 }
 
-Machine_Gui_TextLabel* Machine_GUI_Reader_readTextLabel(Machine_Gui_Context* self, Machine_Map const* source) {
+Machine_Gui_TextLabel* Machine_Gui_Reader_readTextLabel(Machine_Gui_Context* self, Machine_Map const* source) {
   Machine_Gui_Gdl_Context* subContext = self->gdlContext;
   checkKind(self, source, subContext->TEXTLABEL);
   Machine_Gui_TextLabel* widget = Machine_Gui_TextLabel_create(self);
-  if (Machine_GUI_Reader_hasString(self, source, subContext->TEXT)) {
-    Machine_String* temporary = Machine_GUI_Reader_getString(source, subContext->TEXT);
+  if (Machine_Gui_Reader_hasString(self, source, subContext->TEXT)) {
+    Machine_String* temporary = Machine_Gui_Reader_getString(source, subContext->TEXT);
     Machine_Gui_TextLabel_setText(widget, temporary);
   }
   return widget;

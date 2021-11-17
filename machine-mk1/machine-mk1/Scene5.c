@@ -60,7 +60,7 @@ MACHINE_DEFINE_CLASSTYPE(Scene5, Scene, &Scene5_visit, &Scene5_construct, NULL, 
 
 static Machine_Gui_Widget* loadWidget(Machine_Gui_Context* context, Machine_GDL_Node* node) {
   Machine_Map* map = Machine_GDL_Node_toMap(node, context->gdlContext->context);
-  return Machine_GUI_Reader_readWidget(context, map);
+  return Machine_Gui_Reader_readWidget(context, map);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
