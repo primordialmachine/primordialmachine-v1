@@ -19,7 +19,7 @@ struct Machine_Gui_Border_Class {
 struct Machine_Gui_Border {
   Machine_GUI_Widget __parent;
 
-  Machine_GUI_BorderModel* borderModel;
+  Machine_Gui_BorderModel* borderModel;
   Machine_GUI_Widget* child;
   /// @brief When the child changes or the rectangle changes,
   /// we need to update the childs rectangle accordingly.
@@ -53,8 +53,8 @@ static void Machine_Gui_Border_visit(Machine_Gui_Border* self) {
 
 static Machine_Math_Rectangle2 const* Machine_Gui_Border_getCanvasRectangle(Machine_Gui_Border const* self) {
   Machine_Math_Rectangle2* rectangle = Machine_Math_Rectangle2_clone(Machine_GUI_Widget_getRectangle((Machine_GUI_Widget*)self));
-  Machine_Math_Rectangle2_inset(rectangle, Machine_GUI_BorderModel_getLeftWidth(self->borderModel), Machine_GUI_BorderModel_getTopWidth(self->borderModel),
-                                           Machine_GUI_BorderModel_getRightWidth(self->borderModel), Machine_GUI_BorderModel_getBottomWidth(self->borderModel));
+  Machine_Math_Rectangle2_inset(rectangle, Machine_Gui_BorderModel_getLeftWidth(self->borderModel), Machine_Gui_BorderModel_getTopWidth(self->borderModel),
+                                           Machine_Gui_BorderModel_getRightWidth(self->borderModel), Machine_Gui_BorderModel_getBottomWidth(self->borderModel));
   return rectangle;
 }
 
@@ -71,13 +71,13 @@ static void Machine_Gui_Border_render(Machine_Gui_Border* self, Machine_Context2
     Machine_GUI_Widget_render(self->child, context);
     
     {
-      Machine_Math_Vector4 const* c = Machine_GUI_BorderModel_getColor(self->borderModel);
+      Machine_Math_Vector4 const* c = Machine_Gui_BorderModel_getColor(self->borderModel);
       Machine_Rectangle2_setColor(self->borderRectangle, c);
     }
-    Machine_Real lw = Machine_GUI_BorderModel_getLeftWidth(self->borderModel),
-                 tw = Machine_GUI_BorderModel_getTopWidth(self->borderModel),
-                 rw = Machine_GUI_BorderModel_getRightWidth(self->borderModel),
-                 bw = Machine_GUI_BorderModel_getBottomWidth(self->borderModel);
+    Machine_Real lw = Machine_Gui_BorderModel_getLeftWidth(self->borderModel),
+                 tw = Machine_Gui_BorderModel_getTopWidth(self->borderModel),
+                 rw = Machine_Gui_BorderModel_getRightWidth(self->borderModel),
+                 bw = Machine_Gui_BorderModel_getBottomWidth(self->borderModel);
     if (lw > 0.f || tw > 0.f || rw > 0.f || bw > 0.f) {
       Machine_Math_Rectangle2 const* R = Machine_GUI_Widget_getRectangle((Machine_GUI_Widget*)self); // TODO: Should be: getAbsoluteRectangle.
       { // left/top
@@ -237,8 +237,8 @@ static void Machine_Gui_Border_constructClass(Machine_Gui_Border_Class* self) {
 
 static void Machine_Gui_Border_construct(Machine_Gui_Border* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_GUI_Widget_construct((Machine_GUI_Widget*)self, numberOfArguments, arguments);
-  self->borderModel = Machine_GUI_BorderModel_create();
-  Machine_GUI_BorderModel_setWidth(self->borderModel, 1.f);
+  self->borderModel = Machine_Gui_BorderModel_create();
+  Machine_Gui_BorderModel_setWidth(self->borderModel, 1.f);
   self->borderRectangle = Machine_Rectangle2_create();
   self->childDirty = true;
   Machine_GUI_Widget_subscribe((Machine_GUI_Widget*)self, ((Machine_GUI_Widget*)self)->context->signalsContext->PositionChanged, (Machine_Object*)self, &boundsChangedCallback);
@@ -274,60 +274,60 @@ void Machine_Gui_Border_setChild(Machine_Gui_Border* self, Machine_GUI_Widget *c
 }
 
 Machine_Math_Vector4 const* Machine_Gui_Border_getBorderColor(Machine_Gui_Border const* self) {
-  return Machine_GUI_BorderModel_getColor(self->borderModel);
+  return Machine_Gui_BorderModel_getColor(self->borderModel);
 }
 
 void Machine_Gui_Border_setBorderColor(Machine_Gui_Border* self, Machine_Math_Vector4 const* color) {
-  Machine_GUI_BorderModel_setColor(self->borderModel, color);
+  Machine_Gui_BorderModel_setColor(self->borderModel, color);
 }
 
 
 
 Machine_Real Machine_Gui_Border_getBorderLeftWidth(Machine_Gui_Border const* self) {
-  return Machine_GUI_BorderModel_getLeftWidth(self->borderModel);
+  return Machine_Gui_BorderModel_getLeftWidth(self->borderModel);
 }
 
 Machine_Real Machine_Gui_Border_getBorderRightWidth(Machine_Gui_Border const* self) {
-  return Machine_GUI_BorderModel_getRightWidth(self->borderModel);
+  return Machine_Gui_BorderModel_getRightWidth(self->borderModel);
 }
 
 Machine_Real Machine_Gui_Border_getBorderTopWidth(Machine_Gui_Border const* self) {
-  return Machine_GUI_BorderModel_getTopWidth(self->borderModel);
+  return Machine_Gui_BorderModel_getTopWidth(self->borderModel);
 }
 
 Machine_Real Machine_Gui_Border_getBorderBottomWidth(Machine_Gui_Border const* self) {
-  return Machine_GUI_BorderModel_getBottomWidth(self->borderModel);
+  return Machine_Gui_BorderModel_getBottomWidth(self->borderModel);
 }
 
 
 
 void Machine_Gui_Border_setBorderWidth(Machine_Gui_Border* self, Machine_Real width) {
-  Machine_GUI_BorderModel_setWidth(self->borderModel, width);
+  Machine_Gui_BorderModel_setWidth(self->borderModel, width);
 }
 
 void Machine_Gui_Border_setLeftBorderWidth(Machine_Gui_Border* self, Machine_Real width) {
-  Machine_GUI_BorderModel_setLeftWidth(self->borderModel, width);
+  Machine_Gui_BorderModel_setLeftWidth(self->borderModel, width);
 }
 
 void Machine_Gui_Border_setRightBorderWidth(Machine_Gui_Border* self, Machine_Real width) {
-  Machine_GUI_BorderModel_setRightWidth(self->borderModel, width);
+  Machine_Gui_BorderModel_setRightWidth(self->borderModel, width);
 }
 
 void Machine_Gui_Border_setTopBorderWidth(Machine_Gui_Border* self, Machine_Real width) {
-  Machine_GUI_BorderModel_setTopWidth(self->borderModel, width);
+  Machine_Gui_BorderModel_setTopWidth(self->borderModel, width);
 }
 
 void Machine_Gui_Border_setBottomBorderWidth(Machine_Gui_Border* self, Machine_Real width) {
-  Machine_GUI_BorderModel_setBottomWidth(self->borderModel, width);
+  Machine_Gui_BorderModel_setBottomWidth(self->borderModel, width);
 }
 
 static Machine_Math_Vector2 const* Machine_Gui_Border_getPreferredSize(Machine_Gui_Border const* self) {
   Machine_Math_Vector2 const* preferredSize = self->child ? Machine_GUI_Widget_getPreferredSize(self->child) : Machine_Math_Vector2_create();
   Machine_Math_Vector2* borderSize = Machine_Math_Vector2_create();
-  Machine_Real w = Machine_GUI_BorderModel_getLeftWidth(self->borderModel)
-                 + Machine_GUI_BorderModel_getRightWidth(self->borderModel);
-  Machine_Real h = Machine_GUI_BorderModel_getTopWidth(self->borderModel)
-                 + Machine_GUI_BorderModel_getBottomWidth(self->borderModel);
+  Machine_Real w = Machine_Gui_BorderModel_getLeftWidth(self->borderModel)
+                 + Machine_Gui_BorderModel_getRightWidth(self->borderModel);
+  Machine_Real h = Machine_Gui_BorderModel_getTopWidth(self->borderModel)
+                 + Machine_Gui_BorderModel_getBottomWidth(self->borderModel);
   Machine_Math_Vector2_set(borderSize, w, h);
   return Machine_Math_Vector2_sum(preferredSize, borderSize);
 }
