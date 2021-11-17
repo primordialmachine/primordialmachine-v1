@@ -59,7 +59,7 @@ Machine_Gui_TextButton* Machine_GUI_Reader_readTextButton(Machine_Gui_Context* s
 /// @param source A pointer to the source map.
 /// @return A pointer to the widget.
 /// @todo Restruct visibility to "package".
-Machine_GUI_TextLabel* Machine_GUI_Reader_readTextLabel(Machine_Gui_Context* self, Machine_Map const* source);
+Machine_Gui_TextLabel* Machine_GUI_Reader_readTextLabel(Machine_Gui_Context* self, Machine_Map const* source);
 
 /// @brief
 /// <code>

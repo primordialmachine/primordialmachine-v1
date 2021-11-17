@@ -142,13 +142,13 @@ Machine_Gui_TextButton* Machine_GUI_Reader_readTextButton(Machine_Gui_Context* s
   return widget;
 }
 
-Machine_GUI_TextLabel* Machine_GUI_Reader_readTextLabel(Machine_Gui_Context* self, Machine_Map const* source) {
+Machine_Gui_TextLabel* Machine_GUI_Reader_readTextLabel(Machine_Gui_Context* self, Machine_Map const* source) {
   Machine_GUI_GDL_Context* subContext = self->gdlContext;
   checkKind(self, source, subContext->TEXTLABEL);
-  Machine_GUI_TextLabel* widget = Machine_GUI_TextLabel_create(self);
+  Machine_Gui_TextLabel* widget = Machine_Gui_TextLabel_create(self);
   if (Machine_GUI_Reader_hasString(self, source, subContext->TEXT)) {
     Machine_String* temporary = Machine_GUI_Reader_getString(source, subContext->TEXT);
-    Machine_GUI_TextLabel_setText(widget, temporary);
+    Machine_Gui_TextLabel_setText(widget, temporary);
   }
   return widget;
 }

@@ -37,7 +37,7 @@ struct Scene4 {
   /// @brief Text label #2.
   Machine_Text_Layout* text2;
   /// @brief Text label #3.
-  Machine_GUI_TextLabel* textLabel3;
+  Machine_Gui_TextLabel* textLabel3;
 };
 
 static void Scene4_destruct(Scene4* self);
@@ -83,10 +83,10 @@ static void Scene4_onStartup(Scene4* scene) {
     Machine_Text_Layout_setText(scene->text2, Machine_String_create(text, strlen(text)));
   }
   //
-  scene->textLabel3 = Machine_GUI_TextLabel_create(scene->guiContext);
+  scene->textLabel3 = Machine_Gui_TextLabel_create(scene->guiContext);
   {
     const char* text = "Nanobox IV\n400 units of unprimed nanites.";
-    Machine_GUI_TextLabel_setText(scene->textLabel3, Machine_String_create(text, strlen(text)));
+    Machine_Gui_TextLabel_setText(scene->textLabel3, Machine_String_create(text, strlen(text)));
   }
   //
   Machine_Math_Vector4* c = Machine_Math_Vector4_create();
