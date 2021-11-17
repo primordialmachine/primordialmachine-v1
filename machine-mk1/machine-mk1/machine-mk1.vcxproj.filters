@@ -84,7 +84,7 @@
     <ClCompile Include="Video.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Gui\TextLabel.c">
+    <ClCompile Include="Gui\TextNode.c">
       <Filter>Quelldateien\Gui</Filter>
     </ClCompile>
     <ClCompile Include="Scene4.c">
@@ -167,7 +167,7 @@
     <ClInclude Include="Video.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Gui\TextLabel.h">
+    <ClInclude Include="Gui\TextNode.h">
       <Filter>Headerdateien\Gui</Filter>
     </ClInclude>
     <ClInclude Include="Scene4.h">

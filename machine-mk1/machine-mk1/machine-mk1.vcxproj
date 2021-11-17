@@ -95,7 +95,7 @@
     <ClCompile Include="Gui\WidgetList.c" />
     <ClCompile Include="Gui\Widget.c" />
     <ClCompile Include="Gui\BorderNode.c" />
-    <ClCompile Include="Gui\TextLabel.c" />
+    <ClCompile Include="Gui\TextNode.c" />
     <ClCompile Include="Scene4.c" />
     <ClCompile Include="Scene5.c" />
     <ClCompile Include="Scenes\LayoutScene.c" />
@@ -124,7 +124,7 @@
     <ClInclude Include="Gui\WidgetList.h" />
     <ClInclude Include="Gui\Widget.h" />
     <ClInclude Include="Gui\BorderNode.h" />
-    <ClInclude Include="Gui\TextLabel.h" />
+    <ClInclude Include="Gui\TextNode.h" />
     <ClInclude Include="Scene4.h" />
     <ClInclude Include="Scene5.h" />
     <ClInclude Include="Scenes\LayoutScene.h" />

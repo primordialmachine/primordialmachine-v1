@@ -131,13 +131,13 @@ Machine_Gui_BorderNode* Machine_Gui_Reader_readBorderNode(Machine_Gui_Context* s
   return widget;
 }
 
-Machine_Gui_TextLabel* Machine_Gui_Reader_readTextLabel(Machine_Gui_Context* self, Machine_Map const* source) {
+Machine_Gui_TextNode* Machine_Gui_Reader_readTextNode(Machine_Gui_Context* self, Machine_Map const* source) {
   Machine_Gui_Gdl_Context* subContext = self->gdlContext;
-  checkKind(self, source, subContext->TEXTLABEL);
-  Machine_Gui_TextLabel* widget = Machine_Gui_TextLabel_create(self);
+  checkKind(self, source, subContext->TEXTNODEKIND);
+  Machine_Gui_TextNode* widget = Machine_Gui_TextNode_create(self);
   if (Machine_Gui_Reader_hasString(self, source, subContext->TEXT)) {
     Machine_String* temporary = Machine_Gui_Reader_getString(source, subContext->TEXT);
-    Machine_Gui_TextLabel_setText(widget, temporary);
+    Machine_Gui_TextNode_setText(widget, temporary);
   }
   return widget;
 }

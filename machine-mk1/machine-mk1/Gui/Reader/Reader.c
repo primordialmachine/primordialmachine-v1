@@ -21,8 +21,8 @@ Machine_Gui_Widget* Machine_Gui_Reader_readWidget(Machine_Gui_Context* self,  Ma
   if (Machine_String_isEqualTo(s, guiGdlContext->GROUP)) {
     return (Machine_Gui_Widget*)Machine_Gui_Reader_readGroup(self, source);
   }
-  else if (Machine_String_isEqualTo(s, guiGdlContext->TEXTLABEL)) {
-    return (Machine_Gui_Widget*)Machine_Gui_Reader_readTextLabel(self, source);
+  else if (Machine_String_isEqualTo(s, guiGdlContext->TEXTNODEKIND)) {
+    return (Machine_Gui_Widget*)Machine_Gui_Reader_readTextNode(self, source);
   }
   else if (Machine_String_isEqualTo(s, guiGdlContext->BORDERNODEKIND)) {
     return (Machine_Gui_Widget*)Machine_Gui_Reader_readBorderNode(self, source);

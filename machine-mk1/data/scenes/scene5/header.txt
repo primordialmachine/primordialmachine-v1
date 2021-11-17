@@ -8,7 +8,7 @@
     borderColor: [1, 1, 1],
     child :
     {
-      kind : 'TextLabel',
+      kind : 'Text',
       text : 'Server Version 1.0\nClient Version 1.0'
     }
   }
