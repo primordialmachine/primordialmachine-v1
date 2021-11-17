@@ -11,7 +11,7 @@ DEFINE(CHILDREN, "children")
 DEFINE(KIND, "kind")
 DEFINE(TEXT, "text")
 
-DEFINE(BORDER, "Border")
+DEFINE(BORDERNODEKIND, "Border")
 DEFINE(GROUP, "Group")
 DEFINE(TEXTLABEL, "TextLabel")
 

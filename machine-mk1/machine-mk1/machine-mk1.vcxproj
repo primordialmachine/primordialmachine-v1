@@ -94,7 +94,7 @@
     </ClCompile>
     <ClCompile Include="Gui\WidgetList.c" />
     <ClCompile Include="Gui\Widget.c" />
-    <ClCompile Include="Gui\Border.c" />
+    <ClCompile Include="Gui\BorderNode.c" />
     <ClCompile Include="Gui\TextLabel.c" />
     <ClCompile Include="Scene4.c" />
     <ClCompile Include="Scene5.c" />
@@ -123,7 +123,7 @@
     <ClInclude Include="Gui\Signals\Context.h" />
     <ClInclude Include="Gui\WidgetList.h" />
     <ClInclude Include="Gui\Widget.h" />
-    <ClInclude Include="Gui\Border.h" />
+    <ClInclude Include="Gui\BorderNode.h" />
     <ClInclude Include="Gui\TextLabel.h" />
     <ClInclude Include="Scene4.h" />
     <ClInclude Include="Scene5.h" />

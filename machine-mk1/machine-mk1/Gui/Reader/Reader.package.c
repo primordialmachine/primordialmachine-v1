@@ -93,40 +93,40 @@ Machine_Gui_Group* Machine_Gui_Reader_readGroup(Machine_Gui_Context* self, Machi
   return widget;
 }
 
-Machine_Gui_Border* Machine_Gui_Reader_readBorder(Machine_Gui_Context* self, Machine_Map const* source) {
+Machine_Gui_BorderNode* Machine_Gui_Reader_readBorderNode(Machine_Gui_Context* self, Machine_Map const* source) {
   Machine_Gui_Gdl_Context* subContext = self->gdlContext;
-  checkKind(self, source, subContext->BORDER);
-  Machine_Gui_Border* widget = Machine_Gui_Border_create(self);
+  checkKind(self, source, subContext->BORDERNODEKIND);
+  Machine_Gui_BorderNode* widget = Machine_Gui_BorderNode_create(self);
   if (Machine_Gui_Reader_hasReal(self, source, subContext->BORDERWIDTH)) {
     Machine_Real temporary = Machine_Gui_Reader_getReal(source, subContext->BORDERWIDTH);
-    Machine_Gui_Border_setBorderWidth(widget, temporary);
+    Machine_Gui_BorderNode_setBorderWidth(widget, temporary);
   }
   if (Machine_Gui_Reader_hasReal(self, source, subContext->LEFTBORDERWIDTH)) {
     Machine_Real temporary = Machine_Gui_Reader_getReal(source, subContext->LEFTBORDERWIDTH);
-    Machine_Gui_Border_setLeftBorderWidth(widget, temporary);
+    Machine_Gui_BorderNode_setLeftBorderWidth(widget, temporary);
   }
   if (Machine_Gui_Reader_hasReal(self, source, subContext->RIGHTBORDERWIDTH)) {
     Machine_Real temporary = Machine_Gui_Reader_getReal(source, subContext->RIGHTBORDERWIDTH);
-    Machine_Gui_Border_setRightBorderWidth(widget, temporary);
+    Machine_Gui_BorderNode_setRightBorderWidth(widget, temporary);
   }
   if (Machine_Gui_Reader_hasReal(self, source, subContext->TOPBORDERWIDTH)) {
     Machine_Real temporary = Machine_Gui_Reader_getReal(source, subContext->TOPBORDERWIDTH);
-    Machine_Gui_Border_setTopBorderWidth(widget, temporary);
+    Machine_Gui_BorderNode_setTopBorderWidth(widget, temporary);
   }
   if (Machine_Gui_Reader_hasReal(self, source, subContext->BOTTOMBORDERWIDTH)) {
     Machine_Real temporary = Machine_Gui_Reader_getReal(source, subContext->BOTTOMBORDERWIDTH);
-    Machine_Gui_Border_setBottomBorderWidth(widget, temporary);
+    Machine_Gui_BorderNode_setBottomBorderWidth(widget, temporary);
   }
   if (Machine_Gui_Reader_hasList(self, source, subContext->BORDERCOLOR)) {
     Machine_Math_Vector3* temporary = Machine_Gui_Gdl_listToVector3(Machine_Gui_Reader_getList(self, source, subContext->BORDERCOLOR));
     Machine_Math_Vector4* temporary2 = Machine_Math_Vector4_create();
     Machine_Math_Vector4_set(temporary2, Machine_Math_Vector3_getX(temporary), Machine_Math_Vector3_getY(temporary), Machine_Math_Vector3_getZ(temporary), 1.f);
-    Machine_Gui_Border_setBorderColor(widget, temporary2);
+    Machine_Gui_BorderNode_setBorderColor(widget, temporary2);
   }
   if (Machine_Gui_Reader_hasMap(self, source, subContext->CHILD)) {
     Machine_Map* temporary = Machine_Gui_Reader_getMap(self, source, subContext->CHILD);
     Machine_Gui_Widget* childWidget = Machine_Gui_Reader_readWidget(self, (Machine_Map*)temporary);
-    Machine_Gui_Border_setChild(widget, childWidget);
+    Machine_Gui_BorderNode_setChild(widget, childWidget);
   }
   return widget;
 }

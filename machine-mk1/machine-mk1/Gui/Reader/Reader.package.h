@@ -6,7 +6,7 @@
 
 
 
-#include "Gui/Border.h"
+#include "Gui/BorderNode.h"
 #include "Gui/Group.h"
 #include "Gui/TextLabel.h"
 
@@ -37,7 +37,7 @@ Machine_Gui_Group* Machine_Gui_Reader_readGroup(Machine_Gui_Context* self, Machi
 /// @param source A pointer to the source map.
 /// @return A pointer to the widget.
 /// @todo Restruct visibility to "package".
-Machine_Gui_Border* Machine_Gui_Reader_readBorder(Machine_Gui_Context* self, Machine_Map const* source);
+Machine_Gui_BorderNode* Machine_Gui_Reader_readBorderNode(Machine_Gui_Context* self, Machine_Map const* source);
 
 /// @brief 
 /// <code>

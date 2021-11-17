@@ -90,7 +90,7 @@
     <ClCompile Include="Scene4.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Gui\Border.c">
+    <ClCompile Include="Gui\BorderNode.c">
       <Filter>Quelldateien\Gui</Filter>
     </ClCompile>
     <ClCompile Include="Gui\Widget.c">
@@ -173,7 +173,7 @@
     <ClInclude Include="Scene4.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Gui\Border.h">
+    <ClInclude Include="Gui\BorderNode.h">
       <Filter>Headerdateien\Gui</Filter>
     </ClInclude>
     <ClInclude Include="Gui\Widget.h">
