@@ -195,7 +195,7 @@ void Machine_GUI_Widget_emitSignal(Machine_GUI_Widget* self, Machine_String* nam
 }
 
 void Machine_GUI_Widget_emitPositionChangedSignal(Machine_GUI_Widget* self) {
-  Machine_GUI_Signals_Context* signalsContext = self->context->signalsContext;
+  Machine_Gui_Signals_Context* signalsContext = self->context->signalsContext;
   size_t numberOfArguments = 1;
   Machine_Value arguments[1];
   Machine_Value_setObject(&arguments[0], (Machine_Object *)self);
@@ -203,7 +203,7 @@ void Machine_GUI_Widget_emitPositionChangedSignal(Machine_GUI_Widget* self) {
 }
 
 void Machine_GUI_Widget_emitSizeChangedSignal(Machine_GUI_Widget* self) {
-  Machine_GUI_Signals_Context* signalsContext = self->context->signalsContext;
+  Machine_Gui_Signals_Context* signalsContext = self->context->signalsContext;
   size_t numberOfArguments = 1;
   Machine_Value arguments[1];
   Machine_Value_setObject(&arguments[0], (Machine_Object*)self);

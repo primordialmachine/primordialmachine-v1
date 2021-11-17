@@ -25,7 +25,7 @@ struct Machine_Gui_Context {
   Machine_Object __parent;
   Machine_Context2* context2;
   Machine_Gui_Group* rootGroup;
-  Machine_GUI_Signals_Context* signalsContext;
+  Machine_Gui_Signals_Context* signalsContext;
   Machine_Gui_Gdl_Context* gdlContext;
 };
 
