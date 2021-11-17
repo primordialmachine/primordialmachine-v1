@@ -16,7 +16,8 @@
 /// @brief
 /// <code>
 /// group :
-///   "to be done"
+///   kind = "Group", required
+///   ...
 /// </code>
 /// @param self A pointer to this GUI context.
 /// @param source A pointer to the source map.
@@ -27,7 +28,7 @@ Machine_Gui_Group* Machine_Gui_Reader_readGroup(Machine_Gui_Context* self, Machi
 /// @brief
 /// <code>
 /// border :
-///   kind = 'Border'
+///   kind = 'Border', required
 ///   borderWidth = <non-negative real>, optional, default : 0
 ///   (top|bottom|left|right)BorderWidth = <non-negative-real>, optional, default: 0
 ///   borderColor = <rgba color>, optional, default : [0.1, 0.1, 0.1, 1.0]
@@ -41,8 +42,9 @@ Machine_Gui_Border* Machine_Gui_Reader_readBorder(Machine_Gui_Context* self, Mac
 
 /// @brief
 /// <code>
-/// textButton :
-///   "to be done"
+/// text :
+///   kind = "Text", required
+///   ...
 /// </code>
 /// @param self A pointer to this GUI context.
 /// @param source A pointer to the source map.
@@ -52,8 +54,9 @@ Machine_Gui_TextButton* Machine_Gui_Reader_readTextButton(Machine_Gui_Context* s
 
 /// @brief 
 /// <code>
-/// textLabel :
-///   "to be done"
+/// text :
+///   kind = "Text", required
+///   ...
 /// </code>
 /// @param self A pointer to this GUI context.
 /// @param source A pointer to the source map.

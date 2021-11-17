@@ -15,8 +15,7 @@
 /// widget :
 ///   border
 ///   group
-///   textButton
-///   textLabel
+///   text
 /// </code>
 /// @param self A pointer to this GUI context.
 /// @param source A pointer to the source map.

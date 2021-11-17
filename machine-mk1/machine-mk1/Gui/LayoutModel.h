@@ -72,8 +72,8 @@ struct Machine_Gui_LayoutModel {
 /// @brief Construct a layout model.
 /// @param self This layout model.
 /// @param numberOfArguments, arguments The arguments. Number of arguments must be @a 0.
-/// @default The default direction is #Machine_GUI_LayoutPrimaryDirection_Column.
-/// @todo Default should be #Machine_GUI_LayoutDirection_Row.
+/// @default The default direction is #Machine_Gui_Layout_Direction_Column.
+/// @default The default justification is #Machine_Gui_Layout_Justification_Start.
 void Machine_Gui_LayoutModel_construct(Machine_Gui_LayoutModel* self, size_t numberOfArguments, Machine_Value const* arguments);
 
 /// @brief Create a layout model with default values.
