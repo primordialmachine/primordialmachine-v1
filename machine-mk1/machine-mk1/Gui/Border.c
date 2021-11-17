@@ -255,7 +255,7 @@ Machine_Gui_Border* Machine_Gui_Border_create(Machine_Gui_Context* context) {
   return self;
 }
 
-Machine_Gui_Widget* Machine_Gui_Widget_getChild(Machine_Gui_Border* self) {
+Machine_Gui_Widget* Machine_Gui_Border_getChild(Machine_Gui_Border* self) {
   return self->child;
 }
 

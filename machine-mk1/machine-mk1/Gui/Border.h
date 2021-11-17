@@ -24,7 +24,7 @@ Machine_Gui_Border* Machine_Gui_Border_create(Machine_Gui_Context* context);
 /// @brief Get the child.
 /// @param self This border.
 /// @return A pointer to the child if any, a null pointer otherwise.
-Machine_Gui_Widget* Machine_Gui_Widget_getChild(Machine_Gui_Border* self);
+Machine_Gui_Widget* Machine_Gui_Border_getChild(Machine_Gui_Border* self);
 
 /// @brief Set the child.
 /// @param self This border.
