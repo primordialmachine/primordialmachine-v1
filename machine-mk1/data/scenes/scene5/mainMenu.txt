@@ -14,7 +14,7 @@
         borderWidth : 16,
         borderColor: [1, 1, 1],
         child : {
-          kind : 'TextButton',
+          kind : 'TextLabel',
           text : 'Start Game'
         }
       }
@@ -27,7 +27,7 @@
         borderWidth : 16,
         borderColor: [1, 1, 1],
         child : {
-          kind : 'TextButton',
+          kind : 'TextLabel',
           text : 'Options'
         }
       }
@@ -40,7 +40,7 @@
         borderWidth : 16,
         borderColor: [1, 1, 1],
         child : {
-          kind : 'TextButton',
+          kind : 'TextLabel',
           text : 'Exit Game'
         }
       }
@@ -53,7 +53,7 @@
         borderWidth : 16,
         borderColor: [1, 1, 1],
         child : {
-          kind : 'TextButton',
+          kind : 'TextLabel',
           text : 'Credits'
         }
       }

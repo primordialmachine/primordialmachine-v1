@@ -96,9 +96,6 @@
     <ClCompile Include="Gui\Widget.c">
       <Filter>Quelldateien\Gui</Filter>
     </ClCompile>
-    <ClCompile Include="Gui\TextButton.c">
-      <Filter>Quelldateien\Gui</Filter>
-    </ClCompile>
     <ClCompile Include="Gui\WidgetList.c">
       <Filter>Quelldateien\Gui</Filter>
     </ClCompile>
@@ -180,9 +177,6 @@
       <Filter>Headerdateien\Gui</Filter>
     </ClInclude>
     <ClInclude Include="Gui\Widget.h">
-      <Filter>Headerdateien\Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="Gui\TextButton.h">
       <Filter>Headerdateien\Gui</Filter>
     </ClInclude>
     <ClInclude Include="Gui\WidgetList.h">

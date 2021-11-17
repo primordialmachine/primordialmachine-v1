@@ -93,7 +93,6 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/Gui/Signals</ObjectFileName>
     </ClCompile>
     <ClCompile Include="Gui\WidgetList.c" />
-    <ClCompile Include="Gui\TextButton.c" />
     <ClCompile Include="Gui\Widget.c" />
     <ClCompile Include="Gui\Border.c" />
     <ClCompile Include="Gui\TextLabel.c" />
@@ -123,7 +122,6 @@
     <ClInclude Include="Gui\Reader\Reader.package.h" />
     <ClInclude Include="Gui\Signals\Context.h" />
     <ClInclude Include="Gui\WidgetList.h" />
-    <ClInclude Include="Gui\TextButton.h" />
     <ClInclude Include="Gui\Widget.h" />
     <ClInclude Include="Gui\Border.h" />
     <ClInclude Include="Gui\TextLabel.h" />

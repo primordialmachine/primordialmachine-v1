@@ -131,17 +131,6 @@ Machine_Gui_Border* Machine_Gui_Reader_readBorder(Machine_Gui_Context* self, Mac
   return widget;
 }
 
-Machine_Gui_TextButton* Machine_Gui_Reader_readTextButton(Machine_Gui_Context* self, Machine_Map const* source) {
-  Machine_Gui_Gdl_Context* subContext = self->gdlContext;
-  checkKind(self, source, subContext->TEXTBUTTON);
-  Machine_Gui_TextButton* widget = Machine_Gui_TextButton_create(self);
-  if (Machine_Gui_Reader_hasString(self, source, subContext->TEXT)) {
-    Machine_String* temporary = Machine_Gui_Reader_getString(source, subContext->TEXT);
-    Machine_Gui_TextButton_setText(widget, temporary);
-  }
-  return widget;
-}
-
 Machine_Gui_TextLabel* Machine_Gui_Reader_readTextLabel(Machine_Gui_Context* self, Machine_Map const* source) {
   Machine_Gui_Gdl_Context* subContext = self->gdlContext;
   checkKind(self, source, subContext->TEXTLABEL);

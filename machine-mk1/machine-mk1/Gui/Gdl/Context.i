@@ -13,7 +13,6 @@ DEFINE(TEXT, "text")
 
 DEFINE(BORDER, "Border")
 DEFINE(GROUP, "Group")
-DEFINE(TEXTBUTTON, "TextButton")
 DEFINE(TEXTLABEL, "TextLabel")
 
 DEFINE(LAYOUT, "layout")

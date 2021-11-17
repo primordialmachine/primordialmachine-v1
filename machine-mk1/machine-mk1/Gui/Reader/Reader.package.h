@@ -8,7 +8,6 @@
 
 #include "Gui/Border.h"
 #include "Gui/Group.h"
-#include "Gui/TextButton.h"
 #include "Gui/TextLabel.h"
 
 
@@ -39,18 +38,6 @@ Machine_Gui_Group* Machine_Gui_Reader_readGroup(Machine_Gui_Context* self, Machi
 /// @return A pointer to the widget.
 /// @todo Restruct visibility to "package".
 Machine_Gui_Border* Machine_Gui_Reader_readBorder(Machine_Gui_Context* self, Machine_Map const* source);
-
-/// @brief
-/// <code>
-/// text :
-///   kind = "Text", required
-///   ...
-/// </code>
-/// @param self A pointer to this GUI context.
-/// @param source A pointer to the source map.
-/// @return A pointer to the widget.
-/// @todo Restrict visibility to "package".
-Machine_Gui_TextButton* Machine_Gui_Reader_readTextButton(Machine_Gui_Context* self, Machine_Map const* source);
 
 /// @brief 
 /// <code>
