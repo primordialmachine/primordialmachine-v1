@@ -84,58 +84,58 @@
     <ClCompile Include="Video.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="GUI\TextLabel.c">
+    <ClCompile Include="Gui\TextLabel.c">
       <Filter>Quelldateien\Gui</Filter>
     </ClCompile>
     <ClCompile Include="Scene4.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="GUI\Border.c">
+    <ClCompile Include="Gui\Border.c">
       <Filter>Quelldateien\Gui</Filter>
     </ClCompile>
-    <ClCompile Include="GUI\Widget.c">
+    <ClCompile Include="Gui\Widget.c">
       <Filter>Quelldateien\Gui</Filter>
     </ClCompile>
-    <ClCompile Include="GUI\TextButton.c">
+    <ClCompile Include="Gui\TextButton.c">
       <Filter>Quelldateien\Gui</Filter>
     </ClCompile>
-    <ClCompile Include="GUI\WidgetList.c">
+    <ClCompile Include="Gui\WidgetList.c">
       <Filter>Quelldateien\Gui</Filter>
     </ClCompile>
-    <ClCompile Include="GUI\BorderModel.c">
+    <ClCompile Include="Gui\BorderModel.c">
       <Filter>Quelldateien\Gui</Filter>
     </ClCompile>
-    <ClCompile Include="GUI\Group.c">
+    <ClCompile Include="Gui\Group.c">
       <Filter>Quelldateien\Gui</Filter>
     </ClCompile>
-    <ClCompile Include="GUI\Signals\Context.c">
+    <ClCompile Include="Gui\Signals\Context.c">
       <Filter>Quelldateien\Gui\Signals</Filter>
     </ClCompile>
     <ClCompile Include="_Gui.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="GUI\GDL\Context.c">
+    <ClCompile Include="Gui\GDL\Context.c">
       <Filter>Quelldateien\Gui\Gdl</Filter>
     </ClCompile>
-    <ClCompile Include="GUI\GDL\Context.c">
-      <Filter>Quelldateien\GUI\GDL</Filter>
+    <ClCompile Include="Gui\GDL\Context.c">
+      <Filter>Quelldateien\Gui\GDL</Filter>
     </ClCompile>
-    <ClCompile Include="GUI\Context.c">
+    <ClCompile Include="Gui\Context.c">
       <Filter>Quelldateien\Gui</Filter>
     </ClCompile>
-    <ClCompile Include="GUI\LayoutModel.c">
+    <ClCompile Include="Gui\LayoutModel.c">
       <Filter>Quelldateien\Gui</Filter>
     </ClCompile>
-    <ClCompile Include="GUI\GDL\ValueToReal.c">
+    <ClCompile Include="Gui\GDL\ValueToReal.c">
       <Filter>Quelldateien\Gui\Gdl</Filter>
     </ClCompile>
-    <ClCompile Include="GUI\GDL\ListToVector.c">
+    <ClCompile Include="Gui\GDL\ListToVector.c">
       <Filter>Quelldateien\Gui\Gdl</Filter>
     </ClCompile>
-    <ClCompile Include="GUI\Reader\Reader.c">
+    <ClCompile Include="Gui\Reader\Reader.c">
       <Filter>Quelldateien\Gui\Reader</Filter>
     </ClCompile>
-    <ClCompile Include="GUI\Reader\Reader.package.c">
+    <ClCompile Include="Gui\Reader\Reader.package.c">
       <Filter>Quelldateien\Gui\Reader</Filter>
     </ClCompile>
     <ClCompile Include="Scenes\Rectangle2Scene.c">
@@ -170,55 +170,55 @@
     <ClInclude Include="Video.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="GUI\TextLabel.h">
+    <ClInclude Include="Gui\TextLabel.h">
       <Filter>Headerdateien\Gui</Filter>
     </ClInclude>
     <ClInclude Include="Scene4.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="GUI\Border.h">
+    <ClInclude Include="Gui\Border.h">
       <Filter>Headerdateien\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="GUI\Widget.h">
+    <ClInclude Include="Gui\Widget.h">
       <Filter>Headerdateien\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="GUI\TextButton.h">
+    <ClInclude Include="Gui\TextButton.h">
       <Filter>Headerdateien\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="GUI\WidgetList.h">
+    <ClInclude Include="Gui\WidgetList.h">
       <Filter>Headerdateien\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="GUI\BorderModel.h">
+    <ClInclude Include="Gui\BorderModel.h">
       <Filter>Headerdateien\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="GUI\Group.h">
+    <ClInclude Include="Gui\Group.h">
       <Filter>Headerdateien\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="GUI\Signals\Context.h">
+    <ClInclude Include="Gui\Signals\Context.h">
       <Filter>Headerdateien\Gui\Signals</Filter>
     </ClInclude>
     <ClInclude Include="_Gui.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="GUI\GDL\Context.h">
+    <ClInclude Include="Gui\GDL\Context.h">
       <Filter>Headerdateien\Gui\Gdl</Filter>
     </ClInclude>
-    <ClInclude Include="GUI\Context.h">
+    <ClInclude Include="Gui\Context.h">
       <Filter>Headerdateien\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="GUI\LayoutModel.h">
+    <ClInclude Include="Gui\LayoutModel.h">
       <Filter>Headerdateien\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="GUI\GDL\ValueToReal.h">
+    <ClInclude Include="Gui\GDL\ValueToReal.h">
       <Filter>Headerdateien\Gui\Gdl</Filter>
     </ClInclude>
-    <ClInclude Include="GUI\GDL\ListToVector.h">
+    <ClInclude Include="Gui\GDL\ListToVector.h">
       <Filter>Headerdateien\Gui\Gdl</Filter>
     </ClInclude>
-    <ClInclude Include="GUI\Reader\Reader.h">
+    <ClInclude Include="Gui\Reader\Reader.h">
       <Filter>Headerdateien\Gui\Reader</Filter>
     </ClInclude>
-    <ClInclude Include="GUI\Reader\Reader.package.h">
+    <ClInclude Include="Gui\Reader\Reader.package.h">
       <Filter>Headerdateien\Gui\Reader</Filter>
     </ClInclude>
     <ClInclude Include="Scenes\Rectangle2Scene.h">
@@ -229,10 +229,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="GUI\Signals\Context.i">
+    <None Include="Gui\Signals\Context.i">
       <Filter>Quelldateien\Gui\Signals</Filter>
     </None>
-    <None Include="GUI\GDL\Context.i">
+    <None Include="Gui\GDL\Context.i">
       <Filter>Quelldateien\Gui\Gdl</Filter>
     </None>
   </ItemGroup>
