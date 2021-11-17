@@ -48,7 +48,7 @@ Machine_Gui_Border* Machine_GUI_Reader_readBorder(Machine_Gui_Context* self, Mac
 /// @param source A pointer to the source map.
 /// @return A pointer to the widget.
 /// @todo Restrict visibility to "package".
-Machine_GUI_TextButton* Machine_GUI_Reader_readTextButton(Machine_Gui_Context* self, Machine_Map const* source);
+Machine_Gui_TextButton* Machine_GUI_Reader_readTextButton(Machine_Gui_Context* self, Machine_Map const* source);
 
 /// @brief 
 /// <code>
