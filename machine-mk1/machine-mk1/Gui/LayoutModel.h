@@ -11,18 +11,18 @@
 
 
 /// @brief Denotes how elements layed out along an axis are justified along that axis.
-typedef enum Machine_GUI_Layout_Justification {
+typedef enum Machine_Gui_Layout_Justification {
   
   /// @brief Elements are packed towards the start of the axis.
-  Machine_GUI_Layout_Justification_Start,
+  Machine_Gui_Layout_Justification_Start,
   
   /// @brief Elements are packed towards the center of the axis.
-  Machine_GUI_Layout_Justification_Center,
+  Machine_Gui_Layout_Justification_Center,
 
   /// @brief Elements are packed towards the end of the axis.
-  Machine_GUI_Layout_Justification_End,
+  Machine_Gui_Layout_Justification_End,
 
-} Machine_GUI_Layout_Justification;
+} Machine_Gui_Layout_Justification;
 
 /// @brief Denotes along which axis elements are layed out.
 typedef enum Machine_GUI_Layout_Direction {
@@ -60,7 +60,7 @@ struct Machine_GUI_LayoutModel {
   Machine_GUI_Layout_Direction primaryDirection;
 
   /// @brief The primary axis justification.
-  Machine_GUI_Layout_Justification primaryJustification;
+  Machine_Gui_Layout_Justification primaryJustification;
 
   /// @brief The primary inter child spacing.
   Machine_Real primaryInterChildSpacing;
@@ -94,9 +94,9 @@ void Machine_GUI_LayoutModel_setPrimaryDirection(Machine_GUI_LayoutModel* self, 
 
 
 
-Machine_GUI_Layout_Justification Machine_GUI_LayoutModel_getPrimaryJustification(Machine_GUI_LayoutModel const*self);
+Machine_Gui_Layout_Justification Machine_GUI_LayoutModel_getPrimaryJustification(Machine_GUI_LayoutModel const*self);
 
-void Machine_GUI_LayoutModel_setPrimaryJustification(Machine_GUI_LayoutModel *self, Machine_GUI_Layout_Justification primaryJustifcation);
+void Machine_GUI_LayoutModel_setPrimaryJustification(Machine_GUI_LayoutModel *self, Machine_Gui_Layout_Justification primaryJustifcation);
 
 
 

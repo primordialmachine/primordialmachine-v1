@@ -132,12 +132,12 @@ static inline void Machine_Gui_WidgetList_layout(Machine_Gui_WidgetList* self, M
       y += Machine_Math_Vector2_getY(Machine_GUI_Widget_getSize(widget)) + Machine_GUI_LayoutModel_getPrimaryInterChildSpacing(model);
     }
     Machine_Real t = y - Machine_GUI_LayoutModel_getPrimaryInterChildSpacing(model);
-    if (Machine_GUI_LayoutModel_getPrimaryJustification(model) == Machine_GUI_Layout_Justification_Start) {
-    } else if (Machine_GUI_LayoutModel_getPrimaryJustification(model) == Machine_GUI_Layout_Justification_Center) {
+    if (Machine_GUI_LayoutModel_getPrimaryJustification(model) == Machine_Gui_Layout_Justification_Start) {
+    } else if (Machine_GUI_LayoutModel_getPrimaryJustification(model) == Machine_Gui_Layout_Justification_Center) {
       Machine_Math_Vector2* v = Machine_Math_Vector2_create();
       Machine_Math_Vector2_set(v, 0.f, (parentHeight - t) * 0.5f);
       Machine_Gui_WidgetList_translate(self, v);
-    } else if (Machine_GUI_LayoutModel_getPrimaryJustification(model) == Machine_GUI_Layout_Justification_End) {
+    } else if (Machine_GUI_LayoutModel_getPrimaryJustification(model) == Machine_Gui_Layout_Justification_End) {
       Machine_Math_Vector2* v = Machine_Math_Vector2_create();
       Machine_Math_Vector2_set(v, 0.f, (parentHeight - t));
       Machine_Gui_WidgetList_translate(self, v);
@@ -163,15 +163,15 @@ static inline void Machine_Gui_WidgetList_layout(Machine_Gui_WidgetList* self, M
     }
 
     Machine_Real t = y + Machine_GUI_LayoutModel_getPrimaryInterChildSpacing(model);
-    if (Machine_GUI_LayoutModel_getPrimaryJustification(model) == Machine_GUI_Layout_Justification_Start)
+    if (Machine_GUI_LayoutModel_getPrimaryJustification(model) == Machine_Gui_Layout_Justification_Start)
     {/**/}
-    else if (Machine_GUI_LayoutModel_getPrimaryJustification(model) == Machine_GUI_Layout_Justification_Center)
+    else if (Machine_GUI_LayoutModel_getPrimaryJustification(model) == Machine_Gui_Layout_Justification_Center)
     {
       Machine_Math_Vector2* v = Machine_Math_Vector2_create();
       Machine_Math_Vector2_set(v, 0.f, -t * 0.5);
       Machine_Gui_WidgetList_translate(self, v);
     }
-    else if (Machine_GUI_LayoutModel_getPrimaryJustification(model) == Machine_GUI_Layout_Justification_End)
+    else if (Machine_GUI_LayoutModel_getPrimaryJustification(model) == Machine_Gui_Layout_Justification_End)
     {
       Machine_Math_Vector2* v = Machine_Math_Vector2_create();
       Machine_Math_Vector2_set(v, 0.f, -t);
@@ -199,15 +199,15 @@ static inline void Machine_Gui_WidgetList_layout(Machine_Gui_WidgetList* self, M
       }
 
     Machine_Real t = x - Machine_GUI_LayoutModel_getPrimaryInterChildSpacing(model);
-    if (Machine_GUI_LayoutModel_getPrimaryJustification(model) == Machine_GUI_Layout_Justification_Start)
+    if (Machine_GUI_LayoutModel_getPrimaryJustification(model) == Machine_Gui_Layout_Justification_Start)
     {}
-    else if (Machine_GUI_LayoutModel_getPrimaryJustification(model) == Machine_GUI_Layout_Justification_Center)
+    else if (Machine_GUI_LayoutModel_getPrimaryJustification(model) == Machine_Gui_Layout_Justification_Center)
     {
       Machine_Math_Vector2* v = Machine_Math_Vector2_create();
       Machine_Math_Vector2_set(v, (parentWidth - t) * 0.5f, 0.f);
       Machine_Gui_WidgetList_translate(self, v);
     }
-    else if (Machine_GUI_LayoutModel_getPrimaryJustification(model) == Machine_GUI_Layout_Justification_End)
+    else if (Machine_GUI_LayoutModel_getPrimaryJustification(model) == Machine_Gui_Layout_Justification_End)
     {
       Machine_Math_Vector2* v = Machine_Math_Vector2_create();
       Machine_Math_Vector2_set(v, (parentWidth - t), 0.f);
@@ -236,15 +236,15 @@ static inline void Machine_Gui_WidgetList_layout(Machine_Gui_WidgetList* self, M
     }
 
     Machine_Real t = x + Machine_GUI_LayoutModel_getPrimaryInterChildSpacing(model);
-    if (Machine_GUI_LayoutModel_getPrimaryJustification(model) == Machine_GUI_Layout_Justification_Start)
+    if (Machine_GUI_LayoutModel_getPrimaryJustification(model) == Machine_Gui_Layout_Justification_Start)
     {/**/}
-    else if (Machine_GUI_LayoutModel_getPrimaryJustification(model) == Machine_GUI_Layout_Justification_Center)
+    else if (Machine_GUI_LayoutModel_getPrimaryJustification(model) == Machine_Gui_Layout_Justification_Center)
     {
       Machine_Math_Vector2* v = Machine_Math_Vector2_create();
       Machine_Math_Vector2_set(v, -t * 0.5f, 0.f);
       Machine_Gui_WidgetList_translate(self, v);
     }
-    else if (Machine_GUI_LayoutModel_getPrimaryJustification(model) == Machine_GUI_Layout_Justification_End) {
+    else if (Machine_GUI_LayoutModel_getPrimaryJustification(model) == Machine_Gui_Layout_Justification_End) {
       Machine_Math_Vector2* v = Machine_Math_Vector2_create();
       Machine_Math_Vector2_set(v, -t, 0.f);
       Machine_Gui_WidgetList_translate(self, v);
