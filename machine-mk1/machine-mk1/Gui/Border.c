@@ -246,7 +246,7 @@ static void Machine_Gui_Border_construct(Machine_Gui_Border* self, size_t number
   Machine_setClassType((Machine_Object*)self, Machine_Gui_Border_getClassType());
 }
 
-Machine_Gui_Border* Machine_Gui_Border_create(Machine_GUI_Context* context) {
+Machine_Gui_Border* Machine_Gui_Border_create(Machine_Gui_Context* context) {
   Machine_ClassType* ty = Machine_Gui_Border_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 1;
   Machine_Value arguments[1];

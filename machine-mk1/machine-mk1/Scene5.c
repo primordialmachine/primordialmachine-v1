@@ -25,7 +25,7 @@ struct Scene5_Class {
 struct Scene5 {
   Scene __parent;
   //
-  Machine_GUI_Context* guiContext;
+  Machine_Gui_Context* guiContext;
   //
   Machine_Font* font;
   /// @brief The main menu (start game, options, exit, credits).
@@ -58,14 +58,14 @@ MACHINE_DEFINE_CLASSTYPE(Scene5, Scene, &Scene5_visit, &Scene5_construct, NULL, 
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-static Machine_GUI_Widget* loadWidget(Machine_GUI_Context* context, Machine_GDL_Node* node) {
+static Machine_GUI_Widget* loadWidget(Machine_Gui_Context* context, Machine_GDL_Node* node) {
   Machine_Map* map = Machine_GDL_Node_toMap(node, context->gdlContext->context);
   return Machine_GUI_Reader_readWidget(context, map);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-static Machine_GUI_Widget* loadWidgetByPath(Machine_GUI_Context *context, const char* path) {
+static Machine_GUI_Widget* loadWidgetByPath(Machine_Gui_Context *context, const char* path) {
   Machine_String* inputPath = Machine_String_create(path, strlen(path));
   Machine_ByteBuffer* inputText = Machine_getFileContents(inputPath);
   Machine_GDL_Parser* parser = Machine_GDL_Parser_create();
@@ -79,7 +79,7 @@ static Machine_GUI_Widget* loadWidgetByPath(Machine_GUI_Context *context, const 
 
 static void Scene5_startup(Scene5* scene) {
   //
-  scene->guiContext = Machine_GUI_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(Machine_getVideoContext()));
+  scene->guiContext = Machine_Gui_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(Machine_getVideoContext()));
   //
   Machine_FontsContext* fontsContext = Machine_DefaultFonts_createContext(Machine_getVideoContext(), Machines_DefaultImages_createContext());
   scene->font = Machine_FontsContext_createFont(fontsContext, Machine_String_create("RobotoSlab-Regular.ttf", strlen("RobotoSlab-Regular.ttf")), 20);
@@ -103,10 +103,10 @@ static void renderText1(Scene5* self) {
 static void updateText1(Scene5* scene, Machine_CanvasSizeChangedEvent* event) {
   Machine_Math_Vector2* v = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(v, event->width, event->height);
-  Machine_GUI_Context_setRootGroup(scene->guiContext, scene->mainMenu);
+  Machine_Gui_Context_setRootGroup(scene->guiContext, scene->mainMenu);
   Machine_GUI_Widget_setSize((Machine_GUI_Widget *)scene->mainMenu, v);
 
-  Machine_GUI_Context_onRender(scene->guiContext);
+  Machine_Gui_Context_onRender(scene->guiContext);
 }
 
 static void renderHeader(Scene5* self) {
@@ -171,7 +171,7 @@ static void updateFooter(Scene5* scene, Machine_CanvasSizeChangedEvent *event) {
 }
 
 static void Scene5_onCanvasSizeChanged(Scene5* self, Machine_CanvasSizeChangedEvent* event) {
-  Machine_GUI_Context_onCanvasSizechanged(self->guiContext, event);
+  Machine_Gui_Context_onCanvasSizechanged(self->guiContext, event);
   updateText1(self, event);
   updateHeader(self, event);
   updateFooter(self, event);

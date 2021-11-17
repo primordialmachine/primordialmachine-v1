@@ -28,7 +28,7 @@ struct Machine_Gui_Group {
 /// @brief Create a group with default values.
 /// @param context The context the group belongs to.
 /// @return The group.
-Machine_Gui_Group* Machine_Gui_Group_create(Machine_GUI_Context* context);
+Machine_Gui_Group* Machine_Gui_Group_create(Machine_Gui_Context* context);
 
 Machine_GUI_LayoutModel const* Machine_Gui_Group_getLayoutModel(Machine_Gui_Group const* self);
 

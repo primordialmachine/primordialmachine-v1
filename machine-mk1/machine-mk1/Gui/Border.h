@@ -19,7 +19,7 @@ MACHINE_DECLARE_CLASSTYPE(Machine_Gui_Border)
 /// @brief Create a border with default values.
 /// @param context The GUI context the border belongs to.
 /// @return The border.
-Machine_Gui_Border* Machine_Gui_Border_create(Machine_GUI_Context* context);
+Machine_Gui_Border* Machine_Gui_Border_create(Machine_Gui_Context* context);
 
 /// @brief Get the child.
 /// @param self This border.

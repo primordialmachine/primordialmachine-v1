@@ -111,7 +111,7 @@ static void Machine_GUI_Widget_constructClass(Machine_GUI_Widget_Class* self) {
 void Machine_GUI_Widget_construct(Machine_GUI_Widget* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   MACHINE_ASSERT(numberOfArguments == 1, Machine_Status_InvalidNumberOfArguments);
-  self->context = (Machine_GUI_Context*)Machine_Value_getObject(&arguments[0]);
+  self->context = (Machine_Gui_Context*)Machine_Value_getObject(&arguments[0]);
   self->rectangle = Machine_Math_Rectangle2_create();
   self->parent = NULL;
   self->signal = Machine_Signals_Signal_create();

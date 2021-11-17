@@ -29,7 +29,7 @@ struct Scene4 {
   Scene __parent;
   
   //
-  Machine_GUI_Context* guiContext;
+  Machine_Gui_Context* guiContext;
   //
   Machine_Font* font;
   /// @brief Text layout #1.
@@ -66,7 +66,7 @@ MACHINE_DEFINE_CLASSTYPE(Scene4, Scene, &Scene4_visit, &Scene4_construct, NULL, 
 
 static void Scene4_onStartup(Scene4* scene) {
   //
-  scene->guiContext = Machine_GUI_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(Machine_getVideoContext()));
+  scene->guiContext = Machine_Gui_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(Machine_getVideoContext()));
   //
   scene->font = Machine_FontsContext_createFont(Machine_DefaultFonts_createContext(Machine_getVideoContext(), Machines_DefaultImages_createContext()),
                                                 Machine_String_create("RobotoSlab-Regular.ttf", strlen("RobotoSlab-Regular.ttf")), 20);
@@ -145,7 +145,7 @@ static void updateText3(Scene4* self, Machine_Real width, Machine_Real height) {
 }
 
 static void Scene4_onCanvasSizeChanged(Scene4* self, Machine_CanvasSizeChangedEvent* event) {
-  Machine_GUI_Context_onCanvasSizechanged(self->guiContext, event);
+  Machine_Gui_Context_onCanvasSizechanged(self->guiContext, event);
   updateText1(self, event->width, event->height);
   updateText2(self, event->width, event->height);
   updateText3(self, event->width, event->height);

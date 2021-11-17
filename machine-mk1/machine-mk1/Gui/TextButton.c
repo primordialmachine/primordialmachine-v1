@@ -72,7 +72,7 @@ void Machine_GUI_TextButton_construct(Machine_GUI_TextButton* self, size_t numbe
 
 MACHINE_DEFINE_CLASSTYPE(Machine_GUI_TextButton, Machine_GUI_Widget, &Machine_GUI_TextButton_visit, &Machine_GUI_TextButton_construct, NULL, &Machine_GUI_TextButton_constructClass)
 
-Machine_GUI_TextButton* Machine_GUI_TextButton_create(Machine_GUI_Context* context) {
+Machine_GUI_TextButton* Machine_GUI_TextButton_create(Machine_Gui_Context* context) {
   Machine_ClassType* ty = Machine_GUI_TextButton_getClassType();
   static size_t const NUMBER_OF_ARGUMENTS = 1;
   Machine_Value arguments[1] = { Machine_Value_StaticInitializerVoid() };
@@ -129,7 +129,7 @@ static void Machine_GUI_TextButton_render2(Machine_GUI_TextButton* self, Machine
   Machine_Context2* ctx2 = ((Machine_GUI_Widget*)self)->context->context2;
   Machine_Context2_setTargetSize(ctx2, width, height);
   if (self->childDirty) {
-    Machine_GUI_Context* ctx = ((Machine_GUI_Widget*)self)->context;
+    Machine_Gui_Context* ctx = ((Machine_GUI_Widget*)self)->context;
     Machine_Rectangle2_setRectangle(self->background, ((Machine_GUI_Widget*)self)->rectangle);
     // TODO: Only do this layouting if necessary.
     Machine_Math_Rectangle2* clipRect = Machine_Rectangle2_getRectangle(self->background);

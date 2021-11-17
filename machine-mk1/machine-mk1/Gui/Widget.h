@@ -10,7 +10,7 @@
 #include "_Math.h"
 #include "_Signals.h"
 #include "_Graphics2.h"
-typedef struct Machine_GUI_Context Machine_GUI_Context;
+typedef struct Machine_Gui_Context Machine_Gui_Context;
 
 
 
@@ -43,7 +43,7 @@ struct Machine_GUI_Widget {
   Machine_Object __parent;
 
   /// @brief The context this widget belongs to.
-  Machine_GUI_Context* context;
+  Machine_Gui_Context* context;
   /// @brief Rectangle in canvas coordinate sof the parent.
   Machine_Math_Rectangle2* rectangle;
   Machine_GUI_Widget* parent;
