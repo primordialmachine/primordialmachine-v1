@@ -16,11 +16,11 @@
 MACHINE_DECLARE_CLASSTYPE(Machine_Gui_Group)
 
 struct Machine_Gui_Group_Class {
-  Machine_GUI_Widget_Class __parent;
+  Machine_Gui_Widget_Class __parent;
 };
 
 struct Machine_Gui_Group {
-  Machine_GUI_Widget __parent;
+  Machine_Gui_Widget __parent;
   Machine_Gui_LayoutModel* layoutModel;
   Machine_Gui_WidgetList* children;
 };

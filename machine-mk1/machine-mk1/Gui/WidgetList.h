@@ -30,23 +30,23 @@ size_t Machine_Gui_WidgetList_getSize(Machine_Gui_WidgetList* self);
 /// @param index The index.
 /// @return The widget.
 /// @error @a index is out of bounds.
-Machine_GUI_Widget* Machine_Gui_WidgetList_getAt(Machine_Gui_WidgetList* self, size_t index);
+Machine_Gui_Widget* Machine_Gui_WidgetList_getAt(Machine_Gui_WidgetList* self, size_t index);
 
 /// @brief Append a widget to this widget list.
 /// @param self This widget list.
 /// @param widget The widget.
-void Machine_Gui_WidgetList_append(Machine_Gui_WidgetList* self, Machine_GUI_Widget* widget);
+void Machine_Gui_WidgetList_append(Machine_Gui_WidgetList* self, Machine_Gui_Widget* widget);
 
 /// @brief Translate the widgets.
 /// @param self This list widgets.
 /// @param t The translation vector.
 static inline void Machine_Gui_WidgetList_translate(Machine_Gui_WidgetList* self, Machine_Math_Vector2 const* t) {
   for (size_t i = 0, n = Machine_Gui_WidgetList_getSize(self); i < n; ++i) {
-    Machine_GUI_Widget* widget = (Machine_GUI_Widget*)Machine_Gui_WidgetList_getAt(self, i);
-    // @todo Add and utilize Machine_GUI_Widget_translate(Machine_GUI_Widget*, Machine_Math_Vector2 const*).
-    Machine_Math_Vector2 const* oldPosition = Machine_GUI_Widget_getPosition(widget);
+    Machine_Gui_Widget* widget = (Machine_Gui_Widget*)Machine_Gui_WidgetList_getAt(self, i);
+    // @todo Add and utilize Machine_Gui_Widget_translate(Machine_Gui_Widget*, Machine_Math_Vector2 const*).
+    Machine_Math_Vector2 const* oldPosition = Machine_Gui_Widget_getPosition(widget);
     Machine_Math_Vector2* newPosition = Machine_Math_Vector2_sum(oldPosition, t);
-    Machine_GUI_Widget_setPosition(widget, newPosition);
+    Machine_Gui_Widget_setPosition(widget, newPosition);
   }
 }
 
@@ -58,14 +58,14 @@ static inline void Machine_Gui_WidgetList_centerColumn(Machine_Gui_WidgetList *s
   Machine_Math_Vector2* delta = Machine_Math_Vector2_create();
   Machine_Math_Vector2* newPosition = Machine_Math_Vector2_create();
   for (size_t i = 0, n = Machine_Gui_WidgetList_getSize(self); i < n; ++i) {
-    Machine_GUI_Widget* widget = (Machine_GUI_Widget*)Machine_Gui_WidgetList_getAt(self, i);
-    Machine_Math_Rectangle2 const* bounds = Machine_GUI_Widget_getRectangle(widget);
+    Machine_Gui_Widget* widget = (Machine_Gui_Widget*)Machine_Gui_WidgetList_getAt(self, i);
+    Machine_Math_Rectangle2 const* bounds = Machine_Gui_Widget_getRectangle(widget);
     Machine_Real cx = Machine_Math_Vector2_getX(Machine_Math_Rectangle2_getCenter(bounds));
     Machine_Real dx = x - cx;
-    Machine_Math_Vector2 const* oldPosition = Machine_GUI_Widget_getPosition(widget);
+    Machine_Math_Vector2 const* oldPosition = Machine_Gui_Widget_getPosition(widget);
     Machine_Math_Vector2_set(delta, dx, 0.f);
     Machine_Math_Vector2_add(newPosition, oldPosition, delta);
-    Machine_GUI_Widget_setPosition(widget, newPosition);
+    Machine_Gui_Widget_setPosition(widget, newPosition);
   }
 }
 
@@ -77,14 +77,14 @@ static inline void Machine_Gui_WidgetList_centerRow(Machine_Gui_WidgetList* self
   Machine_Math_Vector2* delta = Machine_Math_Vector2_create();
   Machine_Math_Vector2* newPosition = Machine_Math_Vector2_create();
   for (size_t i = 0, n = Machine_Gui_WidgetList_getSize(self); i < n; ++i) {
-    Machine_GUI_Widget* widget = (Machine_GUI_Widget*)Machine_Gui_WidgetList_getAt(self, i);
-    Machine_Math_Rectangle2 const* bounds = Machine_GUI_Widget_getRectangle(widget);
+    Machine_Gui_Widget* widget = (Machine_Gui_Widget*)Machine_Gui_WidgetList_getAt(self, i);
+    Machine_Math_Rectangle2 const* bounds = Machine_Gui_Widget_getRectangle(widget);
     Machine_Real cy = Machine_Math_Vector2_getY(Machine_Math_Rectangle2_getCenter(bounds));
     Machine_Real dy = y - cy;
-    Machine_Math_Vector2 const* oldPosition = Machine_GUI_Widget_getPosition(widget);
+    Machine_Math_Vector2 const* oldPosition = Machine_Gui_Widget_getPosition(widget);
     Machine_Math_Vector2_set(delta, 0.f, dy);
     Machine_Math_Vector2_add(newPosition, oldPosition, delta);
-    Machine_GUI_Widget_setPosition(widget, newPosition);
+    Machine_Gui_Widget_setPosition(widget, newPosition);
   }
 }
 
@@ -96,11 +96,11 @@ static inline void Machine_Gui_WidgetList_layoutColumn(Machine_Gui_WidgetList* s
   Machine_Real y = 0.f;
   Machine_Math_Vector2* newPosition = Machine_Math_Vector2_create();
   for (size_t i = 0, n = Machine_Gui_WidgetList_getSize(self); i < n; ++i) {
-    Machine_GUI_Widget* widget = Machine_Gui_WidgetList_getAt(self, i);
-    Machine_Math_Vector2 const* oldPosition = Machine_GUI_Widget_getPosition(widget);
+    Machine_Gui_Widget* widget = Machine_Gui_WidgetList_getAt(self, i);
+    Machine_Math_Vector2 const* oldPosition = Machine_Gui_Widget_getPosition(widget);
     Machine_Math_Vector2_set(newPosition, Machine_Math_Vector2_getX(oldPosition), y);
-    Machine_GUI_Widget_setPosition(widget, newPosition);
-    y += Machine_Math_Vector2_getY(Machine_GUI_Widget_getSize(widget)) + paddingy;
+    Machine_Gui_Widget_setPosition(widget, newPosition);
+    y += Machine_Math_Vector2_getY(Machine_Gui_Widget_getSize(widget)) + paddingy;
   }
 }
 
@@ -109,14 +109,14 @@ static inline void Machine_Gui_WidgetList_layoutColumn(Machine_Gui_WidgetList* s
 /// @param model The layout model.
 static inline void Machine_Gui_WidgetList_layout(Machine_Gui_WidgetList* self, Machine_Real parentWidth, Machine_Real parentHeight, Machine_Real canvasWidth, Machine_Real canvasHeight, Machine_Gui_LayoutModel* model) {
   // Set the size of all elements to the same value: That value is the component-wise maxima vector of the preferred sizes of all elements.
-  Machine_Math_Vector2* preferredSize = Machine_Math_Vector2_clone(Machine_GUI_Widget_getPreferredSize(Machine_Gui_WidgetList_getAt(self, 0)));
+  Machine_Math_Vector2* preferredSize = Machine_Math_Vector2_clone(Machine_Gui_Widget_getPreferredSize(Machine_Gui_WidgetList_getAt(self, 0)));
   for (size_t i = 1, n = Machine_Gui_WidgetList_getSize(self); i < n; ++i) {
-    //Machine_GUI_Widget_getHorizontalGrowth();
-    //Machine_GUI_Widget_getVerticalGrowth();
-    Machine_Math_Vector2_maxima(preferredSize, preferredSize, Machine_GUI_Widget_getPreferredSize(Machine_Gui_WidgetList_getAt(self, i)));
+    //Machine_Gui_Widget_getHorizontalGrowth();
+    //Machine_Gui_Widget_getVerticalGrowth();
+    Machine_Math_Vector2_maxima(preferredSize, preferredSize, Machine_Gui_Widget_getPreferredSize(Machine_Gui_WidgetList_getAt(self, i)));
   }
   for (size_t i = 0, n = Machine_Gui_WidgetList_getSize(self); i < n; ++i) {
-    Machine_GUI_Widget_setSize(Machine_Gui_WidgetList_getAt(self, i), preferredSize);
+    Machine_Gui_Widget_setSize(Machine_Gui_WidgetList_getAt(self, i), preferredSize);
   }
   
   switch (Machine_Gui_LayoutModel_getPrimaryDirection(model)) {
@@ -125,11 +125,11 @@ static inline void Machine_Gui_WidgetList_layout(Machine_Gui_WidgetList* self, M
     // Basically just lay them out consecutively.
     Machine_Math_Vector2* newPosition = Machine_Math_Vector2_create();
     for (size_t i = 0, n = Machine_Gui_WidgetList_getSize(self); i < n; ++i) {
-      Machine_GUI_Widget* widget = Machine_Gui_WidgetList_getAt(self, i);
-      Machine_Math_Vector2 const* oldPosition = Machine_GUI_Widget_getPosition(widget);
+      Machine_Gui_Widget* widget = Machine_Gui_WidgetList_getAt(self, i);
+      Machine_Math_Vector2 const* oldPosition = Machine_Gui_Widget_getPosition(widget);
       Machine_Math_Vector2_set(newPosition, Machine_Math_Vector2_getX(oldPosition), y);
-      Machine_GUI_Widget_setPosition(widget, newPosition);
-      y += Machine_Math_Vector2_getY(Machine_GUI_Widget_getSize(widget)) + Machine_Gui_LayoutModel_getPrimaryInterChildSpacing(model);
+      Machine_Gui_Widget_setPosition(widget, newPosition);
+      y += Machine_Math_Vector2_getY(Machine_Gui_Widget_getSize(widget)) + Machine_Gui_LayoutModel_getPrimaryInterChildSpacing(model);
     }
     Machine_Real t = y - Machine_Gui_LayoutModel_getPrimaryInterChildSpacing(model);
     if (Machine_Gui_LayoutModel_getPrimaryJustification(model) == Machine_Gui_Layout_Justification_Start) {
@@ -154,11 +154,11 @@ static inline void Machine_Gui_WidgetList_layout(Machine_Gui_WidgetList* self, M
     Machine_Real y = parentHeight;
     Machine_Math_Vector2* newPosition = Machine_Math_Vector2_create();
     for (size_t i = 0, n = Machine_Gui_WidgetList_getSize(self); i < n; ++i) {
-      Machine_GUI_Widget* widget = Machine_Gui_WidgetList_getAt(self, i);
-      y -= Machine_Math_Vector2_getY(Machine_GUI_Widget_getSize(widget));
-      Machine_Math_Vector2 const* oldPosition = Machine_GUI_Widget_getPosition(widget);
+      Machine_Gui_Widget* widget = Machine_Gui_WidgetList_getAt(self, i);
+      y -= Machine_Math_Vector2_getY(Machine_Gui_Widget_getSize(widget));
+      Machine_Math_Vector2 const* oldPosition = Machine_Gui_Widget_getPosition(widget);
       Machine_Math_Vector2_set(newPosition, Machine_Math_Vector2_getX(oldPosition), y);
-      Machine_GUI_Widget_setPosition(widget, newPosition);
+      Machine_Gui_Widget_setPosition(widget, newPosition);
       y -= Machine_Gui_LayoutModel_getPrimaryInterChildSpacing(model);
     }
 
@@ -191,11 +191,11 @@ static inline void Machine_Gui_WidgetList_layout(Machine_Gui_WidgetList* self, M
     Machine_Real x = 0.f;
       Machine_Math_Vector2* newPosition = Machine_Math_Vector2_create();
       for (size_t i = 0, n = Machine_Gui_WidgetList_getSize(self); i < n; ++i) {
-        Machine_GUI_Widget* widget = Machine_Gui_WidgetList_getAt(self, i);
-        Machine_Math_Vector2 const* oldPosition = Machine_GUI_Widget_getPosition(widget);
+        Machine_Gui_Widget* widget = Machine_Gui_WidgetList_getAt(self, i);
+        Machine_Math_Vector2 const* oldPosition = Machine_Gui_Widget_getPosition(widget);
         Machine_Math_Vector2_set(newPosition, x, Machine_Math_Vector2_getY(oldPosition));
-        Machine_GUI_Widget_setPosition(widget, newPosition);
-        x += Machine_Math_Vector2_getX(Machine_GUI_Widget_getSize(widget)) + Machine_Gui_LayoutModel_getPrimaryInterChildSpacing(model);
+        Machine_Gui_Widget_setPosition(widget, newPosition);
+        x += Machine_Math_Vector2_getX(Machine_Gui_Widget_getSize(widget)) + Machine_Gui_LayoutModel_getPrimaryInterChildSpacing(model);
       }
 
     Machine_Real t = x - Machine_Gui_LayoutModel_getPrimaryInterChildSpacing(model);
@@ -227,11 +227,11 @@ static inline void Machine_Gui_WidgetList_layout(Machine_Gui_WidgetList* self, M
     Machine_Real x = parentWidth;
     Machine_Math_Vector2* newPosition = Machine_Math_Vector2_create();
     for (size_t i = 0, n = Machine_Gui_WidgetList_getSize(self); i < n; ++i) {
-      Machine_GUI_Widget* widget = Machine_Gui_WidgetList_getAt(self, i);
-      x -= Machine_Math_Vector2_getX(Machine_GUI_Widget_getSize(widget));
-      Machine_Math_Vector2 const* oldPosition = Machine_GUI_Widget_getPosition(widget);
+      Machine_Gui_Widget* widget = Machine_Gui_WidgetList_getAt(self, i);
+      x -= Machine_Math_Vector2_getX(Machine_Gui_Widget_getSize(widget));
+      Machine_Math_Vector2 const* oldPosition = Machine_Gui_Widget_getPosition(widget);
       Machine_Math_Vector2_set(newPosition, x, Machine_Math_Vector2_getY(oldPosition));
-      Machine_GUI_Widget_setPosition(widget, newPosition);
+      Machine_Gui_Widget_setPosition(widget, newPosition);
       x -= Machine_Gui_LayoutModel_getPrimaryInterChildSpacing(model);
     }
 

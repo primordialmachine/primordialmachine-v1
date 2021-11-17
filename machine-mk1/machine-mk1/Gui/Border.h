@@ -24,12 +24,12 @@ Machine_Gui_Border* Machine_Gui_Border_create(Machine_Gui_Context* context);
 /// @brief Get the child.
 /// @param self This border.
 /// @return A pointer to the child if any, a null pointer otherwise.
-Machine_GUI_Widget* Machine_GUI_Widget_getChild(Machine_Gui_Border* self);
+Machine_Gui_Widget* Machine_Gui_Widget_getChild(Machine_Gui_Border* self);
 
 /// @brief Set the child.
 /// @param self This border.
 /// @param child A pointer to the child if any, a null pointer otherwise.
-void Machine_Gui_Border_setChild(Machine_Gui_Border* self, Machine_GUI_Widget* child);
+void Machine_Gui_Border_setChild(Machine_Gui_Border* self, Machine_Gui_Widget* child);
 
 /// @brief Get the color of this border.
 /// @param self This border.

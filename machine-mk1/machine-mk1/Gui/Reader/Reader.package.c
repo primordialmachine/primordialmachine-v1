@@ -78,11 +78,11 @@ Machine_Gui_Group* Machine_GUI_Reader_readGroup(Machine_Gui_Context* self, Machi
     for (size_t i = 0, n = Machine_Collection_getSize((Machine_Collection*)temporary1); i < n; ++i) {
       Machine_Value temporary2 = Machine_List_getAt(temporary1, i);
       Machine_Map* temporary3 = (Machine_Map*)Machine_Value_getObject(&temporary2);
-      Machine_GUI_Widget* childWidget = Machine_GUI_Reader_readWidget(self, (Machine_Map*)temporary3);
+      Machine_Gui_Widget* childWidget = Machine_GUI_Reader_readWidget(self, (Machine_Map*)temporary3);
 
-      // TODO: Should be Machine_GUI_Widget_appendChild.
+      // TODO: Should be Machine_Gui_Widget_appendChild.
       Machine_Gui_WidgetList_append(widget->children, childWidget);
-      childWidget->parent = (Machine_GUI_Widget*)widget;
+      childWidget->parent = (Machine_Gui_Widget*)widget;
     }
   }
   if (Machine_GUI_Reader_hasMap(self, source, subContext->LAYOUT)) {
@@ -125,7 +125,7 @@ Machine_Gui_Border* Machine_GUI_Reader_readBorder(Machine_Gui_Context* self, Mac
   }
   if (Machine_GUI_Reader_hasMap(self, source, subContext->CHILD)) {
     Machine_Map* temporary = Machine_GUI_Reader_getMap(self, source, subContext->CHILD);
-    Machine_GUI_Widget* childWidget = Machine_GUI_Reader_readWidget(self, (Machine_Map*)temporary);
+    Machine_Gui_Widget* childWidget = Machine_GUI_Reader_readWidget(self, (Machine_Map*)temporary);
     Machine_Gui_Border_setChild(widget, childWidget);
   }
   return widget;

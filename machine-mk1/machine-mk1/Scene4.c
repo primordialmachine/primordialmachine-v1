@@ -135,13 +135,13 @@ static void updateText3(Scene4* self, Machine_Real width, Machine_Real height) {
   Machine_Math_Vector2* SIZE = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(SIZE, 64, 64);
 
-  Machine_GUI_Widget_setSize((Machine_GUI_Widget*)self->textLabel3, SIZE);
-  const Machine_Math_Rectangle2* bounds = Machine_GUI_Widget_getRectangle((Machine_GUI_Widget *)self->textLabel3);
+  Machine_Gui_Widget_setSize((Machine_Gui_Widget*)self->textLabel3, SIZE);
+  const Machine_Math_Rectangle2* bounds = Machine_Gui_Widget_getRectangle((Machine_Gui_Widget *)self->textLabel3);
   const Machine_Math_Vector2* leftTop = Machine_Math_Rectangle2_getPosition(bounds);
   Machine_Math_Vector2* delta = Machine_Math_Vector2_difference(MARGIN, leftTop);
-  const Machine_Math_Vector2* oldPosition = Machine_GUI_Widget_getPosition((Machine_GUI_Widget *)self->textLabel3);
+  const Machine_Math_Vector2* oldPosition = Machine_Gui_Widget_getPosition((Machine_Gui_Widget *)self->textLabel3);
   const Machine_Math_Vector2* newPosition = Machine_Math_Vector2_sum(oldPosition, delta);
-  Machine_GUI_Widget_setPosition((Machine_GUI_Widget*)self->textLabel3, newPosition);
+  Machine_Gui_Widget_setPosition((Machine_Gui_Widget*)self->textLabel3, newPosition);
 }
 
 static void Scene4_onCanvasSizeChanged(Scene4* self, Machine_CanvasSizeChangedEvent* event) {
@@ -160,7 +160,7 @@ static void Scene4_onUpdate(Scene4* self, Machine_Real width, Machine_Real heigh
   Machine_Context2_setTargetSize(context2, width, height);
   Machine_Text_Layout_render(self->text1, context2);
   Machine_Text_Layout_render(self->text2, context2);
-  Machine_GUI_Widget_render((Machine_GUI_Widget *)self->textLabel3, context2);
+  Machine_Gui_Widget_render((Machine_Gui_Widget *)self->textLabel3, context2);
 }
 
 static void Scene4_onShutdown(Scene4* self) {

@@ -70,7 +70,7 @@ void Machine_Gui_Context_onRender(Machine_Gui_Context* self) {
   if (targetWidth > 0.f && targetHeight > 0.f && self->rootGroup) {
     Machine_Math_Vector2* canvasSize = Machine_Math_Vector2_create();
     Machine_Math_Vector2_set(canvasSize, targetWidth, targetHeight);
-    Machine_GUI_Widget_setSize((Machine_GUI_Widget*)self->rootGroup, canvasSize);
+    Machine_Gui_Widget_setSize((Machine_Gui_Widget*)self->rootGroup, canvasSize);
     Machine_Gui_Group_relayout(self->rootGroup, targetWidth, targetHeight);
   }
 }

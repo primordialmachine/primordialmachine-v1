@@ -13,14 +13,14 @@
 
 
 struct Machine_Gui_Border_Class {
-  Machine_GUI_Widget_Class __parent;
+  Machine_Gui_Widget_Class __parent;
 };
 
 struct Machine_Gui_Border {
-  Machine_GUI_Widget __parent;
+  Machine_Gui_Widget __parent;
 
   Machine_Gui_BorderModel* borderModel;
-  Machine_GUI_Widget* child;
+  Machine_Gui_Widget* child;
   /// @brief When the child changes or the rectangle changes,
   /// we need to update the childs rectangle accordingly.
   bool childDirty;
@@ -37,7 +37,7 @@ static Machine_Math_Vector2 const* Machine_Gui_Border_getPreferredSize(Machine_G
 
 static Machine_Math_Rectangle2 const* Machine_Gui_Border_getCanvasRectangle(Machine_Gui_Border const* self);
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Gui_Border, Machine_GUI_Widget, &Machine_Gui_Border_visit, &Machine_Gui_Border_construct, NULL, &Machine_Gui_Border_constructClass)
+MACHINE_DEFINE_CLASSTYPE(Machine_Gui_Border, Machine_Gui_Widget, &Machine_Gui_Border_visit, &Machine_Gui_Border_construct, NULL, &Machine_Gui_Border_constructClass)
 
 static void Machine_Gui_Border_visit(Machine_Gui_Border* self) {
   if (self->child) {
@@ -52,7 +52,7 @@ static void Machine_Gui_Border_visit(Machine_Gui_Border* self) {
 }
 
 static Machine_Math_Rectangle2 const* Machine_Gui_Border_getCanvasRectangle(Machine_Gui_Border const* self) {
-  Machine_Math_Rectangle2* rectangle = Machine_Math_Rectangle2_clone(Machine_GUI_Widget_getRectangle((Machine_GUI_Widget*)self));
+  Machine_Math_Rectangle2* rectangle = Machine_Math_Rectangle2_clone(Machine_Gui_Widget_getRectangle((Machine_Gui_Widget*)self));
   Machine_Math_Rectangle2_inset(rectangle, Machine_Gui_BorderModel_getLeftWidth(self->borderModel), Machine_Gui_BorderModel_getTopWidth(self->borderModel),
                                            Machine_Gui_BorderModel_getRightWidth(self->borderModel), Machine_Gui_BorderModel_getBottomWidth(self->borderModel));
   return rectangle;
@@ -61,14 +61,14 @@ static Machine_Math_Rectangle2 const* Machine_Gui_Border_getCanvasRectangle(Mach
 static void Machine_Gui_Border_render(Machine_Gui_Border* self, Machine_Context2* ctx2) {
   if (self->child) {
 
-    Machine_Context2* context = ((Machine_GUI_Widget *)self)->context->context2;
+    Machine_Context2* context = ((Machine_Gui_Widget *)self)->context->context2;
     Machine_Context2_setTargetSize(context, Machine_Context2_getTargetWidth(ctx2), Machine_Context2_getTargetHeight(ctx2));
     if (self->childDirty) {
-      Machine_Math_Rectangle2 const* canvasRectangle = Machine_GUI_Widget_getCanvasRectangle((Machine_GUI_Widget *)self);
-      Machine_GUI_Widget_setRectangle(self->child, canvasRectangle);
+      Machine_Math_Rectangle2 const* canvasRectangle = Machine_Gui_Widget_getCanvasRectangle((Machine_Gui_Widget *)self);
+      Machine_Gui_Widget_setRectangle(self->child, canvasRectangle);
       self->childDirty = false;
     }
-    Machine_GUI_Widget_render(self->child, context);
+    Machine_Gui_Widget_render(self->child, context);
     
     {
       Machine_Math_Vector4 const* c = Machine_Gui_BorderModel_getColor(self->borderModel);
@@ -79,7 +79,7 @@ static void Machine_Gui_Border_render(Machine_Gui_Border* self, Machine_Context2
                  rw = Machine_Gui_BorderModel_getRightWidth(self->borderModel),
                  bw = Machine_Gui_BorderModel_getBottomWidth(self->borderModel);
     if (lw > 0.f || tw > 0.f || rw > 0.f || bw > 0.f) {
-      Machine_Math_Rectangle2 const* R = Machine_GUI_Widget_getRectangle((Machine_GUI_Widget*)self); // TODO: Should be: getAbsoluteRectangle.
+      Machine_Math_Rectangle2 const* R = Machine_Gui_Widget_getRectangle((Machine_Gui_Widget*)self); // TODO: Should be: getAbsoluteRectangle.
       { // left/top
         Machine_Math_Rectangle2* r = Machine_Math_Rectangle2_create();
 
@@ -230,19 +230,19 @@ static Machine_Value boundsChangedCallback(size_t numberOfArguments, Machine_Val
 }
 
 static void Machine_Gui_Border_constructClass(Machine_Gui_Border_Class* self) {
-  ((Machine_GUI_Widget_Class*)self)->render = (void (*)(Machine_GUI_Widget*, Machine_Context2*)) & Machine_Gui_Border_render;
-  ((Machine_GUI_Widget_Class*)self)->getPreferredSize = (Machine_Math_Vector2 const* (*)(Machine_GUI_Widget const*)) & Machine_Gui_Border_getPreferredSize;
-  ((Machine_GUI_Widget_Class*)self)->getCanvasRectangle = (Machine_Math_Rectangle2 const* (*)(Machine_GUI_Widget const*)) & Machine_Gui_Border_getCanvasRectangle;
+  ((Machine_Gui_Widget_Class*)self)->render = (void (*)(Machine_Gui_Widget*, Machine_Context2*)) & Machine_Gui_Border_render;
+  ((Machine_Gui_Widget_Class*)self)->getPreferredSize = (Machine_Math_Vector2 const* (*)(Machine_Gui_Widget const*)) & Machine_Gui_Border_getPreferredSize;
+  ((Machine_Gui_Widget_Class*)self)->getCanvasRectangle = (Machine_Math_Rectangle2 const* (*)(Machine_Gui_Widget const*)) & Machine_Gui_Border_getCanvasRectangle;
 }
 
 static void Machine_Gui_Border_construct(Machine_Gui_Border* self, size_t numberOfArguments, Machine_Value const* arguments) {
-  Machine_GUI_Widget_construct((Machine_GUI_Widget*)self, numberOfArguments, arguments);
+  Machine_Gui_Widget_construct((Machine_Gui_Widget*)self, numberOfArguments, arguments);
   self->borderModel = Machine_Gui_BorderModel_create();
   Machine_Gui_BorderModel_setWidth(self->borderModel, 1.f);
   self->borderRectangle = Machine_Rectangle2_create();
   self->childDirty = true;
-  Machine_GUI_Widget_subscribe((Machine_GUI_Widget*)self, ((Machine_GUI_Widget*)self)->context->signalsContext->PositionChanged, (Machine_Object*)self, &boundsChangedCallback);
-  Machine_GUI_Widget_subscribe((Machine_GUI_Widget*)self, ((Machine_GUI_Widget*)self)->context->signalsContext->SizeChanged, (Machine_Object*)self, &boundsChangedCallback);
+  Machine_Gui_Widget_subscribe((Machine_Gui_Widget*)self, ((Machine_Gui_Widget*)self)->context->signalsContext->PositionChanged, (Machine_Object*)self, &boundsChangedCallback);
+  Machine_Gui_Widget_subscribe((Machine_Gui_Widget*)self, ((Machine_Gui_Widget*)self)->context->signalsContext->SizeChanged, (Machine_Object*)self, &boundsChangedCallback);
   Machine_setClassType((Machine_Object*)self, Machine_Gui_Border_getClassType());
 }
 
@@ -255,11 +255,11 @@ Machine_Gui_Border* Machine_Gui_Border_create(Machine_Gui_Context* context) {
   return self;
 }
 
-Machine_GUI_Widget* Machine_GUI_Widget_getChild(Machine_Gui_Border* self) {
+Machine_Gui_Widget* Machine_Gui_Widget_getChild(Machine_Gui_Border* self) {
   return self->child;
 }
 
-void Machine_Gui_Border_setChild(Machine_Gui_Border* self, Machine_GUI_Widget *child) {
+void Machine_Gui_Border_setChild(Machine_Gui_Border* self, Machine_Gui_Widget *child) {
   if (self->child == child) {
     return;
   }
@@ -268,7 +268,7 @@ void Machine_Gui_Border_setChild(Machine_Gui_Border* self, Machine_GUI_Widget *c
   }
   self->child = child;
   if (self->child) {
-    child->parent = (Machine_GUI_Widget *)self;
+    child->parent = (Machine_Gui_Widget *)self;
   }
   self->childDirty = true;
 }
@@ -322,7 +322,7 @@ void Machine_Gui_Border_setBottomBorderWidth(Machine_Gui_Border* self, Machine_R
 }
 
 static Machine_Math_Vector2 const* Machine_Gui_Border_getPreferredSize(Machine_Gui_Border const* self) {
-  Machine_Math_Vector2 const* preferredSize = self->child ? Machine_GUI_Widget_getPreferredSize(self->child) : Machine_Math_Vector2_create();
+  Machine_Math_Vector2 const* preferredSize = self->child ? Machine_Gui_Widget_getPreferredSize(self->child) : Machine_Math_Vector2_create();
   Machine_Math_Vector2* borderSize = Machine_Math_Vector2_create();
   Machine_Real w = Machine_Gui_BorderModel_getLeftWidth(self->borderModel)
                  + Machine_Gui_BorderModel_getRightWidth(self->borderModel);

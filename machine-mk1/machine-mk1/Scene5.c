@@ -31,9 +31,9 @@ struct Scene5 {
   /// @brief The main menu (start game, options, exit, credits).
   Machine_Gui_Group* mainMenu;
   /// @brief Header.
-  Machine_GUI_Widget* header;
+  Machine_Gui_Widget* header;
   /// @brief Footer.
-  Machine_GUI_Widget* footer;
+  Machine_Gui_Widget* footer;
 };
 
 static void Scene5_visit(Scene5* self) {
@@ -58,14 +58,14 @@ MACHINE_DEFINE_CLASSTYPE(Scene5, Scene, &Scene5_visit, &Scene5_construct, NULL, 
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-static Machine_GUI_Widget* loadWidget(Machine_Gui_Context* context, Machine_GDL_Node* node) {
+static Machine_Gui_Widget* loadWidget(Machine_Gui_Context* context, Machine_GDL_Node* node) {
   Machine_Map* map = Machine_GDL_Node_toMap(node, context->gdlContext->context);
   return Machine_GUI_Reader_readWidget(context, map);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-static Machine_GUI_Widget* loadWidgetByPath(Machine_Gui_Context *context, const char* path) {
+static Machine_Gui_Widget* loadWidgetByPath(Machine_Gui_Context *context, const char* path) {
   Machine_String* inputPath = Machine_String_create(path, strlen(path));
   Machine_ByteBuffer* inputText = Machine_getFileContents(inputPath);
   Machine_GDL_Parser* parser = Machine_GDL_Parser_create();
@@ -86,9 +86,9 @@ static void Scene5_startup(Scene5* scene) {
   //
   scene->mainMenu = (Machine_Gui_Group*)loadWidgetByPath(scene->guiContext, "scenes/scene5/mainMenu.txt");
   //
-  scene->header = (Machine_GUI_Widget*)loadWidgetByPath(scene->guiContext, "scenes/scene5/header.txt");
+  scene->header = (Machine_Gui_Widget*)loadWidgetByPath(scene->guiContext, "scenes/scene5/header.txt");
   //
-  scene->footer = (Machine_GUI_Widget*)loadWidgetByPath(scene->guiContext, "scenes/scene5/footer.txt");
+  scene->footer = (Machine_Gui_Widget*)loadWidgetByPath(scene->guiContext, "scenes/scene5/footer.txt");
   //
   Machine_Math_Vector4* c = Machine_Math_Vector4_create();
   Machine_Math_Vector4_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
@@ -97,14 +97,14 @@ static void Scene5_startup(Scene5* scene) {
 
 static void renderText1(Scene5* self) {
   Machine_Context2* context = self->guiContext->context2;
-  Machine_GUI_Widget_render((Machine_GUI_Widget*)self->mainMenu, context);
+  Machine_Gui_Widget_render((Machine_Gui_Widget*)self->mainMenu, context);
 }
 
 static void updateText1(Scene5* scene, Machine_CanvasSizeChangedEvent* event) {
   Machine_Math_Vector2* v = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(v, event->width, event->height);
   Machine_Gui_Context_setRootGroup(scene->guiContext, scene->mainMenu);
-  Machine_GUI_Widget_setSize((Machine_GUI_Widget *)scene->mainMenu, v);
+  Machine_Gui_Widget_setSize((Machine_Gui_Widget *)scene->mainMenu, v);
 
   Machine_Gui_Context_onRender(scene->guiContext);
 }
@@ -115,7 +115,7 @@ static void renderHeader(Scene5* self) {
   float height = Machine_Context2_getTargetHeight(context);
   Machine_Context2* tmp = Machine_Context2_create(Machine_getVideoContext());
   Machine_Context2_setTargetSize(tmp, width, height);
-  Machine_GUI_Widget_render((Machine_GUI_Widget*)self->header, tmp);
+  Machine_Gui_Widget_render((Machine_Gui_Widget*)self->header, tmp);
 }
 
 Machine_Real Machine_Real_maxima(Machine_Real x, Machine_Real y) {
@@ -131,14 +131,14 @@ static void updateHeader(Scene5* scene, Machine_CanvasSizeChangedEvent* event) {
   Machine_Math_Vector2* canvasSize = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(canvasSize, event->width, event->height);
   // Set the size to the best size.
-  const Machine_Math_Vector2* preferredSize = Machine_GUI_Widget_getPreferredSize(scene->header);
+  const Machine_Math_Vector2* preferredSize = Machine_Gui_Widget_getPreferredSize(scene->header);
   Machine_Math_Vector2* temporary = Machine_Math_Vector2_create();
   float height = Machine_Math_Vector2_getY(canvasSize) * (1.f / 6.f);
   Machine_Math_Vector2_set(temporary, Machine_Real_maxima(Machine_Math_Vector2_getX(preferredSize),Machine_Math_Vector2_getX(canvasSize)) - Machine_Math_Vector2_getX(MARGIN)*2.f,
                                       height);
-  Machine_GUI_Widget_setSize((Machine_GUI_Widget*)scene->header, temporary);
+  Machine_Gui_Widget_setSize((Machine_Gui_Widget*)scene->header, temporary);
   // Set the position to the margins.
-  Machine_GUI_Widget_setPosition((Machine_GUI_Widget*)scene->header, MARGIN);
+  Machine_Gui_Widget_setPosition((Machine_Gui_Widget*)scene->header, MARGIN);
 }
 
 static void renderFooter(Scene5* self) {
@@ -147,7 +147,7 @@ static void renderFooter(Scene5* self) {
   float height = Machine_Context2_getTargetHeight(context);
   Machine_Context2* tmp = Machine_Context2_create(Machine_getVideoContext());
   Machine_Context2_setTargetSize(tmp, width, height);
-  Machine_GUI_Widget_render((Machine_GUI_Widget*)self->footer, tmp);
+  Machine_Gui_Widget_render((Machine_Gui_Widget*)self->footer, tmp);
 }
 
 static void updateFooter(Scene5* scene, Machine_CanvasSizeChangedEvent *event) {
@@ -159,15 +159,15 @@ static void updateFooter(Scene5* scene, Machine_CanvasSizeChangedEvent *event) {
   Machine_Math_Vector2* canvasSize = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(canvasSize, event->width, event->height);
   // Set the size to the best size.
-  const Machine_Math_Vector2* preferredSize = Machine_GUI_Widget_getPreferredSize(scene->footer);
+  const Machine_Math_Vector2* preferredSize = Machine_Gui_Widget_getPreferredSize(scene->footer);
   Machine_Math_Vector2* temporary = Machine_Math_Vector2_create();
   float height = Machine_Math_Vector2_getY(canvasSize) * (1.f / 6.f);
   Machine_Math_Vector2_set(temporary, Machine_Real_maxima(Machine_Math_Vector2_getX(preferredSize), Machine_Math_Vector2_getX(canvasSize)) - Machine_Math_Vector2_getX(MARGIN) * 2.f,
                            Machine_Math_Vector2_getY(canvasSize) * (1.f / 6.f));
-  Machine_GUI_Widget_setSize((Machine_GUI_Widget*)scene->footer, temporary);
+  Machine_Gui_Widget_setSize((Machine_Gui_Widget*)scene->footer, temporary);
   // Set the position to the margins.
   Machine_Math_Vector2_set(temporary, Machine_Math_Vector2_getX(MARGIN), Machine_Math_Vector2_getY(canvasSize) - height - Machine_Math_Vector2_getY(MARGIN));
-  Machine_GUI_Widget_setPosition((Machine_GUI_Widget*)scene->footer, temporary);
+  Machine_Gui_Widget_setPosition((Machine_Gui_Widget*)scene->footer, temporary);
 }
 
 static void Scene5_onCanvasSizeChanged(Scene5* self, Machine_CanvasSizeChangedEvent* event) {

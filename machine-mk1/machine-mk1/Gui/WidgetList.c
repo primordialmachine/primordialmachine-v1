@@ -42,10 +42,10 @@ size_t Machine_Gui_WidgetList_getSize(Machine_Gui_WidgetList* self) {
   return Machine_PointerArray_getSize(self->backing);
 }
 
-Machine_GUI_Widget* Machine_Gui_WidgetList_getAt(Machine_Gui_WidgetList* self, size_t index) {
-  return (Machine_GUI_Widget *)Machine_PointerArray_getAt(self->backing, index);
+Machine_Gui_Widget* Machine_Gui_WidgetList_getAt(Machine_Gui_WidgetList* self, size_t index) {
+  return (Machine_Gui_Widget *)Machine_PointerArray_getAt(self->backing, index);
 }
 
-void Machine_Gui_WidgetList_append(Machine_Gui_WidgetList* self, Machine_GUI_Widget* widget) {
+void Machine_Gui_WidgetList_append(Machine_Gui_WidgetList* self, Machine_Gui_Widget* widget) {
   Machine_PointerArray_append(self->backing, widget);
 }
