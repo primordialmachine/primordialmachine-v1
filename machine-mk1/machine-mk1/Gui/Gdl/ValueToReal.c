@@ -3,7 +3,7 @@
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #include "Gui/Gdl/ValueToReal.h"
 
-Machine_Real Machine_GUI_GDL_valueToReal(Machine_Value const* value) {
+Machine_Real Machine_Gui_Gdl_valueToReal(Machine_Value const* value) {
   if (!Machine_Value_isInteger(value) && !Machine_Value_isReal(value)) {
     Machine_setStatus(Machine_Status_ConversionFailed);
     Machine_jump();

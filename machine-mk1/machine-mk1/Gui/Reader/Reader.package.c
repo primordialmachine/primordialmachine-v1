@@ -118,7 +118,7 @@ Machine_Gui_Border* Machine_GUI_Reader_readBorder(Machine_Gui_Context* self, Mac
     Machine_Gui_Border_setBottomBorderWidth(widget, temporary);
   }
   if (Machine_GUI_Reader_hasList(self, source, subContext->BORDERCOLOR)) {
-    Machine_Math_Vector3* temporary = Machine_GUI_GDL_listToVector3(Machine_GUI_Reader_getList(self, source, subContext->BORDERCOLOR));
+    Machine_Math_Vector3* temporary = Machine_Gui_Gdl_listToVector3(Machine_GUI_Reader_getList(self, source, subContext->BORDERCOLOR));
     Machine_Math_Vector4* temporary2 = Machine_Math_Vector4_create();
     Machine_Math_Vector4_set(temporary2, Machine_Math_Vector3_getX(temporary), Machine_Math_Vector3_getY(temporary), Machine_Math_Vector3_getZ(temporary), 1.f);
     Machine_Gui_Border_setBorderColor(widget, temporary2);
