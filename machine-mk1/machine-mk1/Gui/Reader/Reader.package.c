@@ -81,7 +81,7 @@ Machine_Gui_Group* Machine_GUI_Reader_readGroup(Machine_Gui_Context* self, Machi
       Machine_GUI_Widget* childWidget = Machine_GUI_Reader_readWidget(self, (Machine_Map*)temporary3);
 
       // TODO: Should be Machine_GUI_Widget_appendChild.
-      Machine_GUI_WidgetList_append(widget->children, childWidget);
+      Machine_Gui_WidgetList_append(widget->children, childWidget);
       childWidget->parent = (Machine_GUI_Widget*)widget;
     }
   }

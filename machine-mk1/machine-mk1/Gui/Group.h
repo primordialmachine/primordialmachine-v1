@@ -22,7 +22,7 @@ struct Machine_Gui_Group_Class {
 struct Machine_Gui_Group {
   Machine_GUI_Widget __parent;
   Machine_GUI_LayoutModel* layoutModel;
-  Machine_GUI_WidgetList* children;
+  Machine_Gui_WidgetList* children;
 };
 
 /// @brief Create a group with default values.
