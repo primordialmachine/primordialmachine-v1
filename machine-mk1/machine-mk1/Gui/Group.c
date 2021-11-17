@@ -41,7 +41,7 @@ static void Machine_Gui_Group_constructClass(Machine_Gui_Group_Class* self) {
 
 void Machine_Gui_Group_construct(Machine_Gui_Group* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_GUI_Widget_construct((Machine_GUI_Widget*)self, numberOfArguments, arguments);
-  self->layoutModel = Machine_GUI_LayoutModel_create();
+  self->layoutModel = Machine_Gui_LayoutModel_create();
   self->children = Machine_Gui_WidgetList_create();
   Machine_setClassType((Machine_Object*)self, Machine_Gui_Group_getClassType());
 }
@@ -57,11 +57,11 @@ Machine_Gui_Group* Machine_Gui_Group_create(Machine_Gui_Context* context) {
   return self;
 }
 
-Machine_GUI_LayoutModel const* Machine_Gui_Group_getLayoutModel(Machine_Gui_Group const* self) {
+Machine_Gui_LayoutModel const* Machine_Gui_Group_getLayoutModel(Machine_Gui_Group const* self) {
   return self->layoutModel;
 }
 
-void Machine_Gui_Group_setLayoutModel(Machine_Gui_Group* self, Machine_GUI_LayoutModel* layoutModel) {
+void Machine_Gui_Group_setLayoutModel(Machine_Gui_Group* self, Machine_Gui_LayoutModel* layoutModel) {
   self->layoutModel = layoutModel;
 }
 

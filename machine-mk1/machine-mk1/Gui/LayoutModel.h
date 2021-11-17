@@ -46,13 +46,13 @@ typedef enum Machine_Gui_Layout_Direction {
 } Machine_Gui_Layout_Direction;
 
 /// @brief Layout attributes.
-MACHINE_DECLARE_CLASSTYPE(Machine_GUI_LayoutModel)
+MACHINE_DECLARE_CLASSTYPE(Machine_Gui_LayoutModel)
 
-struct Machine_GUI_LayoutModel_Class {
+struct Machine_Gui_LayoutModel_Class {
   Machine_Object_Class parent;
 };
 
-struct Machine_GUI_LayoutModel {
+struct Machine_Gui_LayoutModel {
 
   Machine_Object parent;
 
@@ -74,41 +74,41 @@ struct Machine_GUI_LayoutModel {
 /// @param numberOfArguments, arguments The arguments. Number of arguments must be @a 0.
 /// @default The default direction is #Machine_GUI_LayoutPrimaryDirection_Column.
 /// @todo Default should be #Machine_GUI_LayoutDirection_Row.
-void Machine_GUI_LayoutModel_construct(Machine_GUI_LayoutModel* self, size_t numberOfArguments, Machine_Value const* arguments);
+void Machine_Gui_LayoutModel_construct(Machine_Gui_LayoutModel* self, size_t numberOfArguments, Machine_Value const* arguments);
 
 /// @brief Create a layout model with default values.
 /// @return The layout model.
-Machine_GUI_LayoutModel* Machine_GUI_LayoutModel_create();
+Machine_Gui_LayoutModel* Machine_Gui_LayoutModel_create();
 
 
 
 /// @brief Get the primary direction of this layout model.
 /// @param self This layout model.
 /// @return The primary direction.
-Machine_Gui_Layout_Direction Machine_GUI_LayoutModel_getPrimaryDirection(Machine_GUI_LayoutModel const* self);
+Machine_Gui_Layout_Direction Machine_Gui_LayoutModel_getPrimaryDirection(Machine_Gui_LayoutModel const* self);
 
 /// @brief Set the primary direction of this layout model.
 /// @param self This layout model.
 /// @param direction The primary direction.
-void Machine_GUI_LayoutModel_setPrimaryDirection(Machine_GUI_LayoutModel* self, Machine_Gui_Layout_Direction primaryDirection);
+void Machine_Gui_LayoutModel_setPrimaryDirection(Machine_Gui_LayoutModel* self, Machine_Gui_Layout_Direction primaryDirection);
 
 
 
-Machine_Gui_Layout_Justification Machine_GUI_LayoutModel_getPrimaryJustification(Machine_GUI_LayoutModel const*self);
+Machine_Gui_Layout_Justification Machine_Gui_LayoutModel_getPrimaryJustification(Machine_Gui_LayoutModel const*self);
 
-void Machine_GUI_LayoutModel_setPrimaryJustification(Machine_GUI_LayoutModel *self, Machine_Gui_Layout_Justification primaryJustifcation);
+void Machine_Gui_LayoutModel_setPrimaryJustification(Machine_Gui_LayoutModel *self, Machine_Gui_Layout_Justification primaryJustifcation);
 
 
 
 /// @brief Get the primary inter child spacing of this layout model.
 /// @param self This layout model.
 /// @return The primary inter child spacing.
-Machine_Real Machine_GUI_LayoutModel_getPrimaryInterChildSpacing(Machine_GUI_LayoutModel const* self);
+Machine_Real Machine_Gui_LayoutModel_getPrimaryInterChildSpacing(Machine_Gui_LayoutModel const* self);
 
 /// @brief Set the primary inter child spacing of this layout model.
 /// @param self This layout model.
 /// @param width The primary inter child spacing.
-void Machine_GUI_LayoutModel_setPrimaryInterChildspacing(Machine_GUI_LayoutModel* self, Machine_Real primaryInterChildSpacing);
+void Machine_Gui_LayoutModel_setPrimaryInterChildspacing(Machine_Gui_LayoutModel* self, Machine_Real primaryInterChildSpacing);
 
 
 

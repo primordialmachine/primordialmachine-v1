@@ -69,7 +69,7 @@ Machine_Gui_TextLabel* Machine_GUI_Reader_readTextLabel(Machine_Gui_Context* sel
 /// @param self A pointer to this GUI context.
 /// @param source A pointer to the source map.
 /// @return A pointer to the layout model.
-Machine_GUI_LayoutModel* Machine_GUI_Reader_readLayout(Machine_Gui_Context* self, Machine_Map const* source);
+Machine_Gui_LayoutModel* Machine_GUI_Reader_readLayout(Machine_Gui_Context* self, Machine_Map const* source);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 

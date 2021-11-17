@@ -24,22 +24,22 @@ static void checkKind(Machine_Gui_Context* self, Machine_Map const* source, Mach
   }
 }
 
-Machine_GUI_LayoutModel* Machine_GUI_Reader_readLayout(Machine_Gui_Context* self, Machine_Map const* source) {
+Machine_Gui_LayoutModel* Machine_GUI_Reader_readLayout(Machine_Gui_Context* self, Machine_Map const* source) {
   Machine_Gui_Gdl_Context* subContext = self->gdlContext;
-  Machine_GUI_LayoutModel* model = Machine_GUI_LayoutModel_create();
+  Machine_Gui_LayoutModel* model = Machine_Gui_LayoutModel_create();
   if (Machine_GUI_Reader_hasString(self, source, subContext->DIRECTION)) {
     Machine_String* temporary = Machine_GUI_Reader_getString(source, subContext->DIRECTION);
     if (Machine_String_isEqualTo(temporary, subContext->COLUMN)) {
-      Machine_GUI_LayoutModel_setPrimaryDirection(model, Machine_Gui_Layout_Direction_Column);
+      Machine_Gui_LayoutModel_setPrimaryDirection(model, Machine_Gui_Layout_Direction_Column);
     }
     else if (Machine_String_isEqualTo(temporary, subContext->COLUMNREVERSE)) {
-      Machine_GUI_LayoutModel_setPrimaryDirection(model, Machine_Gui_Layout_Direction_ColumnReverse);
+      Machine_Gui_LayoutModel_setPrimaryDirection(model, Machine_Gui_Layout_Direction_ColumnReverse);
     }
     else if (Machine_String_isEqualTo(temporary, subContext->ROW)) {
-      Machine_GUI_LayoutModel_setPrimaryDirection(model, Machine_Gui_Layout_Direction_Row);
+      Machine_Gui_LayoutModel_setPrimaryDirection(model, Machine_Gui_Layout_Direction_Row);
     }
     else if (Machine_String_isEqualTo(temporary, subContext->ROWREVERSE)) {
-      Machine_GUI_LayoutModel_setPrimaryDirection(model, Machine_Gui_Layout_Direction_RowReverse);
+      Machine_Gui_LayoutModel_setPrimaryDirection(model, Machine_Gui_Layout_Direction_RowReverse);
     }
     else {
       Machine_setStatus(Machine_Status_SemanticalError);
@@ -49,13 +49,13 @@ Machine_GUI_LayoutModel* Machine_GUI_Reader_readLayout(Machine_Gui_Context* self
   if (Machine_GUI_Reader_hasString(self, source, subContext->JUSTIFICATION)) {
     Machine_String* temporary = Machine_GUI_Reader_getString(source, subContext->JUSTIFICATION);
     if (Machine_String_isEqualTo(temporary, subContext->START)) {
-      Machine_GUI_LayoutModel_setPrimaryJustification(model, Machine_Gui_Layout_Justification_Start);
+      Machine_Gui_LayoutModel_setPrimaryJustification(model, Machine_Gui_Layout_Justification_Start);
     }
     else if (Machine_String_isEqualTo(temporary, subContext->CENTER)) {
-      Machine_GUI_LayoutModel_setPrimaryJustification(model, Machine_Gui_Layout_Justification_Center);
+      Machine_Gui_LayoutModel_setPrimaryJustification(model, Machine_Gui_Layout_Justification_Center);
     }
     else if (Machine_String_isEqualTo(temporary, subContext->END)) {
-      Machine_GUI_LayoutModel_setPrimaryJustification(model, Machine_Gui_Layout_Justification_End);
+      Machine_Gui_LayoutModel_setPrimaryJustification(model, Machine_Gui_Layout_Justification_End);
     }
     else {
       Machine_setStatus(Machine_Status_LexicalError);
@@ -64,7 +64,7 @@ Machine_GUI_LayoutModel* Machine_GUI_Reader_readLayout(Machine_Gui_Context* self
   }
   if (Machine_GUI_Reader_hasReal(self, source, subContext->INTERSPACING)) {
     Machine_Real temporary = Machine_GUI_Reader_getReal(source, subContext->INTERSPACING);
-    Machine_GUI_LayoutModel_setPrimaryInterChildspacing(model, temporary);
+    Machine_Gui_LayoutModel_setPrimaryInterChildspacing(model, temporary);
   }
   return model;
 }
@@ -87,7 +87,7 @@ Machine_Gui_Group* Machine_GUI_Reader_readGroup(Machine_Gui_Context* self, Machi
   }
   if (Machine_GUI_Reader_hasMap(self, source, subContext->LAYOUT)) {
     Machine_Map* temporary1 = Machine_GUI_Reader_getMap(self, source, subContext->LAYOUT);
-    Machine_GUI_LayoutModel* layout = Machine_GUI_Reader_readLayout(self, temporary1);
+    Machine_Gui_LayoutModel* layout = Machine_GUI_Reader_readLayout(self, temporary1);
     Machine_Gui_Group_setLayoutModel(widget, layout);
   }
   return widget;
