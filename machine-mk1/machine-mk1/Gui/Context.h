@@ -26,7 +26,7 @@ struct Machine_Gui_Context {
   Machine_Context2* context2;
   Machine_Gui_Group* rootGroup;
   Machine_GUI_Signals_Context* signalsContext;
-  Machine_GUI_GDL_Context* gdlContext;
+  Machine_Gui_Gdl_Context* gdlContext;
 };
 
 /// @brief Create a GUI ontext.

@@ -12,7 +12,7 @@
 
 
 static void checkKind(Machine_Gui_Context* self, Machine_Map const* source, Machine_String* expected) {
-  Machine_GUI_GDL_Context* context = self->gdlContext;
+  Machine_Gui_Gdl_Context* context = self->gdlContext;
   if (!Machine_GUI_Reader_hasString(self, source, context->KIND)) {
     Machine_setStatus(Machine_Status_SemanticalError);
     Machine_jump();
@@ -25,7 +25,7 @@ static void checkKind(Machine_Gui_Context* self, Machine_Map const* source, Mach
 }
 
 Machine_GUI_LayoutModel* Machine_GUI_Reader_readLayout(Machine_Gui_Context* self, Machine_Map const* source) {
-  Machine_GUI_GDL_Context* subContext = self->gdlContext;
+  Machine_Gui_Gdl_Context* subContext = self->gdlContext;
   Machine_GUI_LayoutModel* model = Machine_GUI_LayoutModel_create();
   if (Machine_GUI_Reader_hasString(self, source, subContext->DIRECTION)) {
     Machine_String* temporary = Machine_GUI_Reader_getString(source, subContext->DIRECTION);
@@ -70,7 +70,7 @@ Machine_GUI_LayoutModel* Machine_GUI_Reader_readLayout(Machine_Gui_Context* self
 }
 
 Machine_Gui_Group* Machine_GUI_Reader_readGroup(Machine_Gui_Context* self, Machine_Map const* source) {
-  Machine_GUI_GDL_Context* subContext = self->gdlContext;
+  Machine_Gui_Gdl_Context* subContext = self->gdlContext;
   checkKind(self, source, subContext->GROUP);
   Machine_Gui_Group* widget = Machine_Gui_Group_create(self);
   if (Machine_GUI_Reader_hasList(self, source, subContext->CHILDREN)) {
@@ -94,7 +94,7 @@ Machine_Gui_Group* Machine_GUI_Reader_readGroup(Machine_Gui_Context* self, Machi
 }
 
 Machine_Gui_Border* Machine_GUI_Reader_readBorder(Machine_Gui_Context* self, Machine_Map const* source) {
-  Machine_GUI_GDL_Context* subContext = self->gdlContext;
+  Machine_Gui_Gdl_Context* subContext = self->gdlContext;
   checkKind(self, source, subContext->BORDER);
   Machine_Gui_Border* widget = Machine_Gui_Border_create(self);
   if (Machine_GUI_Reader_hasReal(self, source, subContext->BORDERWIDTH)) {
@@ -132,7 +132,7 @@ Machine_Gui_Border* Machine_GUI_Reader_readBorder(Machine_Gui_Context* self, Mac
 }
 
 Machine_Gui_TextButton* Machine_GUI_Reader_readTextButton(Machine_Gui_Context* self, Machine_Map const* source) {
-  Machine_GUI_GDL_Context* subContext = self->gdlContext;
+  Machine_Gui_Gdl_Context* subContext = self->gdlContext;
   checkKind(self, source, subContext->TEXTBUTTON);
   Machine_Gui_TextButton* widget = Machine_Gui_TextButton_create(self);
   if (Machine_GUI_Reader_hasString(self, source, subContext->TEXT)) {
@@ -143,7 +143,7 @@ Machine_Gui_TextButton* Machine_GUI_Reader_readTextButton(Machine_Gui_Context* s
 }
 
 Machine_Gui_TextLabel* Machine_GUI_Reader_readTextLabel(Machine_Gui_Context* self, Machine_Map const* source) {
-  Machine_GUI_GDL_Context* subContext = self->gdlContext;
+  Machine_Gui_Gdl_Context* subContext = self->gdlContext;
   checkKind(self, source, subContext->TEXTLABEL);
   Machine_Gui_TextLabel* widget = Machine_Gui_TextLabel_create(self);
   if (Machine_GUI_Reader_hasString(self, source, subContext->TEXT)) {

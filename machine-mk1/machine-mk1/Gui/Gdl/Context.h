@@ -13,13 +13,13 @@
 
 /// @brief A context.
 /// @extends Machine.Object
-MACHINE_DECLARE_CLASSTYPE(Machine_GUI_GDL_Context)
+MACHINE_DECLARE_CLASSTYPE(Machine_Gui_Gdl_Context)
 
-struct Machine_GUI_GDL_Context_Class {
+struct Machine_Gui_Gdl_Context_Class {
   Machine_Object_Class parent;
 };
 
-struct Machine_GUI_GDL_Context {
+struct Machine_Gui_Gdl_Context {
   Machine_Object parent;
 
   Machine_GDL_Context* context;
@@ -33,7 +33,7 @@ struct Machine_GUI_GDL_Context {
 
 /// @brief Create a GUI <-> GDL context.
 /// @return The context.
-Machine_GUI_GDL_Context* Machine_GUI_GDL_Context_create(Machine_GDL_Context *context);
+Machine_Gui_Gdl_Context* Machine_Gui_Gdl_Context_create(Machine_GDL_Context *context);
 
 
 

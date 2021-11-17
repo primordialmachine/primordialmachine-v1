@@ -26,7 +26,7 @@ static void Machine_Gui_Context_visit(Machine_Gui_Context* self) {
 
 static void Machine_Gui_Context_construct(Machine_Gui_Context* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  self->gdlContext = Machine_GUI_GDL_Context_create((Machine_GDL_Context*)Machine_Value_getObject(&arguments[0]));
+  self->gdlContext = Machine_Gui_Gdl_Context_create((Machine_GDL_Context*)Machine_Value_getObject(&arguments[0]));
   self->signalsContext = Machine_GUI_Signals_Context_create();
   self->context2 = (Machine_Context2*)Machine_Value_getObject(&arguments[1]);
   Machine_setClassType((Machine_Object*)self, Machine_Gui_Context_getClassType());

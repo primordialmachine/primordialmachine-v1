@@ -12,7 +12,7 @@
 
 Machine_GUI_Widget* Machine_GUI_Reader_readWidget(Machine_Gui_Context* self,  Machine_Map const* source) {
   Machine_String* s = NULL;
-  Machine_GUI_GDL_Context* guiGdlContext = self->gdlContext;
+  Machine_Gui_Gdl_Context* guiGdlContext = self->gdlContext;
   if (!Machine_GUI_Reader_hasString(self, source, guiGdlContext->KIND)) {
     Machine_setStatus(Machine_Status_SemanticalError);
     Machine_jump();
