@@ -1,6 +1,6 @@
 /// @file Fonts.h
-/// @author Michael Heilmann (<michaelheilmann@primordialmachine.com>)
-/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reservied.
+/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
+/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #if !defined(MACHINE_FONTS_FONTSCONTEXT_H_INCLUDED)
 #define MACHINE_FONTS_FONTSCONTEXT_H_INCLUDED
 
