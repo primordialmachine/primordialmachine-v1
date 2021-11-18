@@ -4,6 +4,7 @@
 
 #include <string.h>
 
+#include "_Text.h"
 #include "_Gui.h"
 #include "_Images.h"
 #include "_Video.h"
