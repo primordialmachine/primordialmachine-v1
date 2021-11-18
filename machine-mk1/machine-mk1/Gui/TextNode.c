@@ -8,7 +8,7 @@
 #include "_Graphics2.h"
 #include "_Images.h"
 #include "./../Video.h"
-#include "./../Text/Layout.h"
+#include "_Text.h"
 #include "Gui/Context.h"
 #include "Gui/Widget.h"
 #include <string.h>

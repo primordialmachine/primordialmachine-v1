@@ -100,8 +100,6 @@
     <ClCompile Include="Scene5.c" />
     <ClCompile Include="Scenes\LayoutScene.c" />
     <ClCompile Include="Scenes\Rectangle2Scene.c" />
-    <ClCompile Include="Text\LayoutLine.c" />
-    <ClCompile Include="Text\Layout.c" />
     <ClCompile Include="Main.c" />
     <ClCompile Include="Scene.c" />
     <ClCompile Include="Scene1.c" />
@@ -129,8 +127,6 @@
     <ClInclude Include="Scene5.h" />
     <ClInclude Include="Scenes\LayoutScene.h" />
     <ClInclude Include="Scenes\Rectangle2Scene.h" />
-    <ClInclude Include="Text\LayoutLine.h" />
-    <ClInclude Include="Text\Layout.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scene1.h" />
     <ClInclude Include="Scene2.h" />
@@ -168,6 +164,9 @@
     </ProjectReference>
     <ProjectReference Include="..\signals\machine-mk1-signals.vcxproj">
       <Project>{849b7daf-7563-43b6-9131-fda4995767f0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\text\machine-mk1-text.vcxproj">
+      <Project>{194f7d9b-b888-48d5-9fe9-4236dd82567e}</Project>
     </ProjectReference>
     <ProjectReference Include="..\video-gl\machine-mk1-video-gl.vcxproj">
       <Project>{c6ff90b2-b9d9-4a80-afc2-a71b02aa29c2}</Project>

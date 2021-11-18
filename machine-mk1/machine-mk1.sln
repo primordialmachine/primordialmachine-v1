@@ -35,6 +35,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-eal", "eal\mach
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-atf", "atf\machine-mk1-atf.vcxproj", "{0B8ABFDC-C96C-46CB-8CFC-8DD3507C8AD1}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-text", "text\machine-mk1-text.vcxproj", "{194F7D9B-B888-48D5-9FE9-4236DD82567E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -105,6 +107,10 @@ Global
 		{0B8ABFDC-C96C-46CB-8CFC-8DD3507C8AD1}.Debug|x64.Build.0 = Debug|x64
 		{0B8ABFDC-C96C-46CB-8CFC-8DD3507C8AD1}.Release|x64.ActiveCfg = Release|x64
 		{0B8ABFDC-C96C-46CB-8CFC-8DD3507C8AD1}.Release|x64.Build.0 = Release|x64
+		{194F7D9B-B888-48D5-9FE9-4236DD82567E}.Debug|x64.ActiveCfg = Debug|x64
+		{194F7D9B-B888-48D5-9FE9-4236DD82567E}.Debug|x64.Build.0 = Debug|x64
+		{194F7D9B-B888-48D5-9FE9-4236DD82567E}.Release|x64.ActiveCfg = Release|x64
+		{194F7D9B-B888-48D5-9FE9-4236DD82567E}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

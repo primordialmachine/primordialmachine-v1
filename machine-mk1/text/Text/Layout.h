@@ -3,6 +3,9 @@
 
 
 
+#if !defined(MACHINE_TEXT_PRIVATE)
+#error("Do not include this file directly, include `_Text.h` instead.")
+#endif
 #include "_Collections.h"
 #include "_Math.h"
 #include "_Graphics2.h"

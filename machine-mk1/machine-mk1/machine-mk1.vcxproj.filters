@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Headerdateien\Text">
-      <UniqueIdentifier>{78b19d05-7333-492a-a39d-c49877138b2a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Quelldateien\Text">
-      <UniqueIdentifier>{7fb3eb57-ead2-4b86-b321-8887aa2790b1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Quelldateien\Video">
       <UniqueIdentifier>{fd2b0400-64b9-4b21-a31f-1019e07dbaef}</UniqueIdentifier>
     </Filter>
@@ -74,12 +68,6 @@
     </ClCompile>
     <ClCompile Include="Scene5.c">
       <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Text\LayoutLine.c">
-      <Filter>Quelldateien\Text</Filter>
-    </ClCompile>
-    <ClCompile Include="Text\Layout.c">
-      <Filter>Quelldateien\Text</Filter>
     </ClCompile>
     <ClCompile Include="Video.c">
       <Filter>Quelldateien</Filter>
@@ -157,12 +145,6 @@
     </ClInclude>
     <ClInclude Include="Scene5.h">
       <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Text\LayoutLine.h">
-      <Filter>Headerdateien\Text</Filter>
-    </ClInclude>
-    <ClInclude Include="Text\Layout.h">
-      <Filter>Headerdateien\Text</Filter>
     </ClInclude>
     <ClInclude Include="Video.h">
       <Filter>Headerdateien</Filter>

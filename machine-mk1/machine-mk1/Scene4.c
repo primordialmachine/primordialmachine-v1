@@ -4,7 +4,7 @@
 
 #include <string.h>
 
-#include "./Text/Layout.h"
+#include "_Text.h"
 #include "_GUI.h"
 #include "_Images.h"
 #include "_Video.h"

@@ -2,12 +2,15 @@
 #define MACHINE_TEXT_LAYOUTLINE_H_INCLUDED
 
 
+
+#if !defined(MACHINE_TEXT_PRIVATE)
+#error("Do not include this file directly, include `_Text.h` instead.")
+#endif
 #include "_Runtime.h"
 
 
-/**
- * @brief A text layout line.
- */
+
+/// @brief A text layout line.
 MACHINE_DECLARE_CLASSTYPE(Machine_Text_LayoutLine)
 
 struct Machine_Text_LayoutLine_Class {

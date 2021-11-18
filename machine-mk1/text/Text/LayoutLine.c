@@ -1,4 +1,5 @@
-#include "./../Text/LayoutLine.h"
+#define MACHINE_TEXT_PRIVATE (1)
+#include "Text/LayoutLine.h"
 
 void Machine_Text_LayoutLine_construct(Machine_Text_LayoutLine* self, size_t numberOfArguments, const Machine_Value* arguments);
 
