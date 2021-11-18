@@ -172,7 +172,7 @@ static void Machine_Gui_TextNode_render2(Machine_Gui_TextNode* self, Machine_Rea
   Machine_Text_Layout_render(self->foreground, ctx2);
 }
 
-void Machine_Gui_TextNode_render(Machine_Gui_TextNode* self, Machine_Context2* ctx2) {
+static void Machine_Gui_TextNode_render(Machine_Gui_TextNode* self, Machine_Context2* ctx2) {
   Machine_Gui_TextNode_render2(self, Machine_Context2_getTargetWidth(ctx2),
                                Machine_Context2_getTargetHeight(ctx2));
 }
