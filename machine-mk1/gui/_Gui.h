@@ -6,12 +6,14 @@
 
 
 
+#define MACHINE_GUI_PRIVATE (1)
 #include "Gui/BorderNode.h"
 #include "Gui/Context.h"
 #include "Gui/GroupNode.h"
 #include "Gui/TextNode.h"
 
 #include "Gui/Reader/Reader.h"
+#undef MACHINE_GUI_PRIVATE
 
 
 

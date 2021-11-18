@@ -1,6 +1,7 @@
 /// @file Gui/LayoutModel.c
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
+#define MACHINE_GUI_PRIVATE (1)
 #include "Gui/LayoutModel.h"
 
 static void Machine_Gui_LayoutModel_visit(Machine_Gui_LayoutModel* self)

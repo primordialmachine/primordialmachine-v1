@@ -6,6 +6,9 @@
 
 
 
+#if !defined(MACHINE_GUI_PRIVATE)
+#error("Do not include this file directly, include `_Gui.h` instead.")
+#endif
 #include "Gui/Widget.h"
 #include "Gui/LayoutModel.h"
 

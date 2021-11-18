@@ -1,6 +1,7 @@
 /// @file Gui/Gdl/ValueToReal.c
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
+#define MACHINE_GUI_PRIVATE (1)
 #include "Gui/Gdl/ValueToReal.h"
 
 Machine_Real Machine_Gui_Gdl_valueToReal(Machine_Value const* value) {

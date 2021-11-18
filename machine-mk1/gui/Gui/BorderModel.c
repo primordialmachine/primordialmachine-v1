@@ -1,6 +1,7 @@
 /// @file Gui/BorderModel.c
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
+#define MACHINE_GUI_PRIVATE (1)
 #include "Gui/BorderModel.h"
 
 static void Machine_Gui_BorderModel_visit(Machine_Gui_BorderModel* self) {
