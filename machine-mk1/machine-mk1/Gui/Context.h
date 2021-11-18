@@ -8,7 +8,7 @@
 
 #include "Gui/Gdl/Context.h"
 #include "Gui/Signals/Context.h"
-#include "Gui/Group.h"
+#include "Gui/GroupNode.h"
 #include "_Graphics2.h"
 
 
@@ -24,7 +24,7 @@ struct Machine_Gui_Context_Class {
 struct Machine_Gui_Context {
   Machine_Object __parent;
   Machine_Context2* context2;
-  Machine_Gui_Group* rootGroup;
+  Machine_Gui_GroupNode* rootGroup;
   Machine_Gui_Signals_Context* signalsContext;
   Machine_Gui_Gdl_Context* gdlContext;
 };
@@ -44,12 +44,12 @@ Machine_Real Machine_Gui_Context_getCanvasHeight(Machine_Gui_Context* self);
 /// @brief Set the root group.
 /// @param self This GUI context.
 /// @param rootGroup The root group or null.
-void Machine_Gui_Context_setRootGroup(Machine_Gui_Context* self, Machine_Gui_Group* rootGroup);
+void Machine_Gui_Context_setRootGroup(Machine_Gui_Context* self, Machine_Gui_GroupNode* rootGroup);
 
 /// @brief Get the root group.
 /// @param self This GUI context.
 /// @return The root group or null.
-Machine_Gui_Group* Machine_Gui_Context_getRootGroup(Machine_Gui_Context const* self);
+Machine_Gui_GroupNode* Machine_Gui_Context_getRootGroup(Machine_Gui_Context const* self);
 
 void Machine_Gui_Context_onRender(Machine_Gui_Context* self);
 

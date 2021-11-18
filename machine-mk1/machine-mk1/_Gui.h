@@ -8,7 +8,7 @@
 
 #include "Gui/BorderNode.h"
 #include "Gui/Context.h"
-#include "Gui/Group.h"
+#include "Gui/GroupNode.h"
 #include "Gui/TextNode.h"
 
 #include "Gui/Reader/Reader.h"

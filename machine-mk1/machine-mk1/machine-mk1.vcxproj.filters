@@ -102,7 +102,7 @@
     <ClCompile Include="Gui\BorderModel.c">
       <Filter>Quelldateien\Gui</Filter>
     </ClCompile>
-    <ClCompile Include="Gui\Group.c">
+    <ClCompile Include="Gui\GroupNode.c">
       <Filter>Quelldateien\Gui</Filter>
     </ClCompile>
     <ClCompile Include="Gui\Signals\Context.c">
@@ -185,7 +185,7 @@
     <ClInclude Include="Gui\BorderModel.h">
       <Filter>Headerdateien\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Gui\Group.h">
+    <ClInclude Include="Gui\GroupNode.h">
       <Filter>Headerdateien\Gui</Filter>
     </ClInclude>
     <ClInclude Include="Gui\Signals\Context.h">

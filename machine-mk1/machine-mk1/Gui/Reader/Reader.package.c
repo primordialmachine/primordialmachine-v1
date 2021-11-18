@@ -69,10 +69,10 @@ Machine_Gui_LayoutModel* Machine_Gui_Reader_readLayout(Machine_Gui_Context* self
   return model;
 }
 
-Machine_Gui_Group* Machine_Gui_Reader_readGroup(Machine_Gui_Context* self, Machine_Map const* source) {
+Machine_Gui_GroupNode* Machine_Gui_Reader_readGroupNode(Machine_Gui_Context* self, Machine_Map const* source) {
   Machine_Gui_Gdl_Context* subContext = self->gdlContext;
-  checkKind(self, source, subContext->GROUP);
-  Machine_Gui_Group* widget = Machine_Gui_Group_create(self);
+  checkKind(self, source, subContext->GROUPNODEKIND);
+  Machine_Gui_GroupNode* widget = Machine_Gui_GroupNode_create(self);
   if (Machine_Gui_Reader_hasList(self, source, subContext->CHILDREN)) {
     Machine_List* temporary1 = Machine_Gui_Reader_getList(self, source, subContext->CHILDREN);
     for (size_t i = 0, n = Machine_Collection_getSize((Machine_Collection*)temporary1); i < n; ++i) {
@@ -88,7 +88,7 @@ Machine_Gui_Group* Machine_Gui_Reader_readGroup(Machine_Gui_Context* self, Machi
   if (Machine_Gui_Reader_hasMap(self, source, subContext->LAYOUT)) {
     Machine_Map* temporary1 = Machine_Gui_Reader_getMap(self, source, subContext->LAYOUT);
     Machine_Gui_LayoutModel* layout = Machine_Gui_Reader_readLayout(self, temporary1);
-    Machine_Gui_Group_setLayoutModel(widget, layout);
+    Machine_Gui_GroupNode_setLayoutModel(widget, layout);
   }
   return widget;
 }

@@ -7,7 +7,7 @@
 
 
 #include "Gui/BorderNode.h"
-#include "Gui/Group.h"
+#include "Gui/GroupNode.h"
 #include "Gui/TextNode.h"
 
 
@@ -22,7 +22,7 @@
 /// @param source A pointer to the source map.
 /// @return A pointer to the widget.
 /// @todo Restruct visibility to "package".
-Machine_Gui_Group* Machine_Gui_Reader_readGroup(Machine_Gui_Context* self, Machine_Map const* source);
+Machine_Gui_GroupNode* Machine_Gui_Reader_readGroupNode(Machine_Gui_Context* self, Machine_Map const* source);
 
 /// @brief
 /// <code>

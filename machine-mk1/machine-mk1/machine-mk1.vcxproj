@@ -84,7 +84,7 @@
     </ClCompile>
     <ClCompile Include="Gui\GDL\ListToVector.c" />
     <ClCompile Include="Gui\GDL\ValueToReal.c" />
-    <ClCompile Include="Gui\Group.c" />
+    <ClCompile Include="Gui\GroupNode.c" />
     <ClCompile Include="Gui\LayoutModel.c" />
     <ClCompile Include="Gui\Reader\Reader.c" />
     <ClCompile Include="Gui\Reader\Reader.package.c" />
@@ -116,7 +116,7 @@
     <ClInclude Include="Gui\GDL\Context.h" />
     <ClInclude Include="Gui\GDL\ListToVector.h" />
     <ClInclude Include="Gui\GDL\ValueToReal.h" />
-    <ClInclude Include="Gui\Group.h" />
+    <ClInclude Include="Gui\GroupNode.h" />
     <ClInclude Include="Gui\LayoutModel.h" />
     <ClInclude Include="Gui\Reader\Reader.h" />
     <ClInclude Include="Gui\Reader\Reader.package.h" />

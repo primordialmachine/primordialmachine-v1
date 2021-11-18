@@ -56,11 +56,11 @@ Machine_Real Machine_Gui_Context_getCanvasHeight(Machine_Gui_Context* self) {
   return Machine_Context2_getTargetHeight(self->context2);
 }
 
-void Machine_Gui_Context_setRootGroup(Machine_Gui_Context* self, Machine_Gui_Group* rootGroup) {
+void Machine_Gui_Context_setRootGroup(Machine_Gui_Context* self, Machine_Gui_GroupNode* rootGroup) {
   self->rootGroup = rootGroup;
 }
 
-Machine_Gui_Group* Machine_Gui_Context_getRootGroup(Machine_Gui_Context const* self) {
+Machine_Gui_GroupNode* Machine_Gui_Context_getRootGroup(Machine_Gui_Context const* self) {
   return self->rootGroup;
 }
 
@@ -71,6 +71,6 @@ void Machine_Gui_Context_onRender(Machine_Gui_Context* self) {
     Machine_Math_Vector2* canvasSize = Machine_Math_Vector2_create();
     Machine_Math_Vector2_set(canvasSize, targetWidth, targetHeight);
     Machine_Gui_Widget_setSize((Machine_Gui_Widget*)self->rootGroup, canvasSize);
-    Machine_Gui_Group_relayout(self->rootGroup, targetWidth, targetHeight);
+    Machine_Gui_GroupNode_relayout(self->rootGroup, targetWidth, targetHeight);
   }
 }

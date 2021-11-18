@@ -29,7 +29,7 @@ struct Scene5 {
   //
   Machine_Font* font;
   /// @brief The main menu (start game, options, exit, credits).
-  Machine_Gui_Group* mainMenu;
+  Machine_Gui_GroupNode* mainMenu;
   /// @brief Header.
   Machine_Gui_Widget* header;
   /// @brief Footer.
@@ -84,7 +84,7 @@ static void Scene5_startup(Scene5* scene) {
   Machine_FontsContext* fontsContext = Machine_DefaultFonts_createContext(Machine_getVideoContext(), Machines_DefaultImages_createContext());
   scene->font = Machine_FontsContext_createFont(fontsContext, Machine_String_create("RobotoSlab-Regular.ttf", strlen("RobotoSlab-Regular.ttf")), 20);
   //
-  scene->mainMenu = (Machine_Gui_Group*)loadWidgetByPath(scene->guiContext, "scenes/scene5/mainMenu.txt");
+  scene->mainMenu = (Machine_Gui_GroupNode*)loadWidgetByPath(scene->guiContext, "scenes/scene5/mainMenu.txt");
   //
   scene->header = (Machine_Gui_Widget*)loadWidgetByPath(scene->guiContext, "scenes/scene5/header.txt");
   //
