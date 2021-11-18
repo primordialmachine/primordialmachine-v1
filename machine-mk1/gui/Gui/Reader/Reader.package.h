@@ -20,7 +20,6 @@
 /// @param self A pointer to this GUI context.
 /// @param source A pointer to the source map.
 /// @return A pointer to the widget.
-/// @todo Restrict visibility to "package".
 Machine_Gui_GroupNode* Machine_Gui_Reader_readGroupNode(Machine_Gui_Context* self,
                                                         Machine_Map const* source);
 
@@ -36,7 +35,6 @@ Machine_Gui_GroupNode* Machine_Gui_Reader_readGroupNode(Machine_Gui_Context* sel
 /// @param self A pointer to this GUI context.
 /// @param source A pointer to the source map.
 /// @return A pointer to the widget.
-/// @todo Restrict visibility to "package".
 Machine_Gui_BorderNode* Machine_Gui_Reader_readBorderNode(Machine_Gui_Context* self,
                                                           Machine_Map const* source);
 
@@ -49,7 +47,6 @@ Machine_Gui_BorderNode* Machine_Gui_Reader_readBorderNode(Machine_Gui_Context* s
 /// @param self A pointer to this GUI context.
 /// @param source A pointer to the source map.
 /// @return A pointer to the widget.
-/// @todo Restrict visibility to "package".
 Machine_Gui_TextNode* Machine_Gui_Reader_readTextNode(Machine_Gui_Context* self,
                                                       Machine_Map const* source);
 
