@@ -9,7 +9,8 @@
 #endif
 #include "Gui/Widget.h"
 
-/// @brief A border around any widget.
+/// @brief A border node.
+/// Surrounds a widget with a border.
 /// The default color is <code>(0.1, 0.1, 0.1)</code>.
 /// The default width is <code>1</code>.
 /// @extends Machine.Gui.Widget

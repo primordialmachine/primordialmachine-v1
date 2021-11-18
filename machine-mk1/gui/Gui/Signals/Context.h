@@ -9,7 +9,7 @@
 #endif
 #include "_Signals.h"
 
-/// @brief A context.
+/// @brief A GUI signals context.
 /// @extends Machine.Object
 MACHINE_DECLARE_CLASSTYPE(Machine_Gui_Signals_Context)
 
