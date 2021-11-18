@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Ressourcendateien">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien\Gui">
+      <UniqueIdentifier>{638052dd-d0cd-4647-b629-6cf151d9462d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Gui">
+      <UniqueIdentifier>{faede18f-cc51-41de-bf6e-069bb2401551}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Gui\Gdl">
+      <UniqueIdentifier>{6fd63acf-1cfb-4dcb-adb0-d937d00063e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Gui\Gdl">
+      <UniqueIdentifier>{18e1f554-6aa7-4c1e-8c15-a7569c59bb42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Gui\Reader">
+      <UniqueIdentifier>{8c04ed15-1710-492d-97b6-645dad5dfbf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Gui\Reader">
+      <UniqueIdentifier>{6722d54e-13cc-4149-a296-5285086e79cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Gui\Signals">
+      <UniqueIdentifier>{72d3556e-48b1-46b8-b3c9-b189d0e85641}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Gui\Signals">
+      <UniqueIdentifier>{8f24de1b-25e2-4a33-9dd2-e84b8824531e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="_Gui.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\WidgetList.c">
+      <Filter>Quelldateien\Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\Widget.c">
+      <Filter>Quelldateien\Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\TextNode.c">
+      <Filter>Quelldateien\Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\LayoutModel.c">
+      <Filter>Quelldateien\Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\GroupNode.c">
+      <Filter>Quelldateien\Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\Context.c">
+      <Filter>Quelldateien\Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\BorderNode.c">
+      <Filter>Quelldateien\Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\BorderModel.c">
+      <Filter>Quelldateien\Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\Gdl\Context.c">
+      <Filter>Quelldateien\Gui\Gdl</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\Gdl\ListToVector.c">
+      <Filter>Quelldateien\Gui\Gdl</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\Gdl\ValueToReal.c">
+      <Filter>Quelldateien\Gui\Gdl</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\Signals\Context.c">
+      <Filter>Quelldateien\Gui\Signals</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\Reader\Reader.c">
+      <Filter>Quelldateien\Gui\Reader</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\Reader\Reader.package.c">
+      <Filter>Quelldateien\Gui\Reader</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="_Gui.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\WidgetList.h">
+      <Filter>Headerdateien\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\Widget.h">
+      <Filter>Headerdateien\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\TextNode.h">
+      <Filter>Headerdateien\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\LayoutModel.h">
+      <Filter>Headerdateien\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\GroupNode.h">
+      <Filter>Headerdateien\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\Context.h">
+      <Filter>Headerdateien\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\BorderNode.h">
+      <Filter>Headerdateien\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\BorderModel.h">
+      <Filter>Headerdateien\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\Gdl\Context.h">
+      <Filter>Headerdateien\Gui\Gdl</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\Gdl\ListToVector.h">
+      <Filter>Headerdateien\Gui\Gdl</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\Gdl\ValueToReal.h">
+      <Filter>Headerdateien\Gui\Gdl</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\Signals\Context.h">
+      <Filter>Headerdateien\Gui\Signals</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\Reader\Reader.h">
+      <Filter>Headerdateien\Gui\Reader</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\Reader\Reader.package.h">
+      <Filter>Headerdateien\Gui\Reader</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Gui\Gdl\Context.i">
+      <Filter>Quelldateien\Gui\Gdl</Filter>
+    </None>
+    <None Include="Gui\Signals\Context.i">
+      <Filter>Quelldateien\Gui\Signals</Filter>
+    </None>
+  </ItemGroup>
+</Project>

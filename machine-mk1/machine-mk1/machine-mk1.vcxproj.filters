@@ -25,30 +25,6 @@
     <Filter Include="Quelldateien\Scenes">
       <UniqueIdentifier>{62d7f894-cf69-402e-b5b0-9f570c67670e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headerdateien\Gui">
-      <UniqueIdentifier>{b13bf37e-a3ec-4965-8bfb-749f841012ad}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headerdateien\Gui\Signals">
-      <UniqueIdentifier>{d85f67c8-4a00-4bc0-95c9-6e2031385d31}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headerdateien\Gui\Gdl">
-      <UniqueIdentifier>{2bd23f27-1712-4f30-baf9-c43598b63859}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headerdateien\Gui\Reader">
-      <UniqueIdentifier>{00977785-e386-49d0-8f2c-d46a3f0434bd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Quelldateien\Gui">
-      <UniqueIdentifier>{dbdb8879-7fb4-4c39-8dec-c75157e42509}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Quelldateien\Gui\Signals">
-      <UniqueIdentifier>{85d38e54-5461-489d-a5fa-1115a659bac2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Quelldateien\Gui\Gdl">
-      <UniqueIdentifier>{f491aa1b-4ce9-4869-b3cb-db4122bf885f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Quelldateien\Gui\Reader">
-      <UniqueIdentifier>{602ddd12-7555-4307-b573-e17ce395b327}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.c">
@@ -72,56 +48,11 @@
     <ClCompile Include="Video.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Gui\TextNode.c">
-      <Filter>Quelldateien\Gui</Filter>
-    </ClCompile>
     <ClCompile Include="Scene4.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Gui\BorderNode.c">
-      <Filter>Quelldateien\Gui</Filter>
-    </ClCompile>
-    <ClCompile Include="Gui\Widget.c">
-      <Filter>Quelldateien\Gui</Filter>
-    </ClCompile>
-    <ClCompile Include="Gui\WidgetList.c">
-      <Filter>Quelldateien\Gui</Filter>
-    </ClCompile>
-    <ClCompile Include="Gui\BorderModel.c">
-      <Filter>Quelldateien\Gui</Filter>
-    </ClCompile>
-    <ClCompile Include="Gui\GroupNode.c">
-      <Filter>Quelldateien\Gui</Filter>
-    </ClCompile>
-    <ClCompile Include="Gui\Signals\Context.c">
-      <Filter>Quelldateien\Gui\Signals</Filter>
-    </ClCompile>
-    <ClCompile Include="_Gui.c">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Gui\GDL\Context.c">
-      <Filter>Quelldateien\Gui\Gdl</Filter>
-    </ClCompile>
     <ClCompile Include="Gui\GDL\Context.c">
       <Filter>Quelldateien\Gui\GDL</Filter>
-    </ClCompile>
-    <ClCompile Include="Gui\Context.c">
-      <Filter>Quelldateien\Gui</Filter>
-    </ClCompile>
-    <ClCompile Include="Gui\LayoutModel.c">
-      <Filter>Quelldateien\Gui</Filter>
-    </ClCompile>
-    <ClCompile Include="Gui\GDL\ValueToReal.c">
-      <Filter>Quelldateien\Gui\Gdl</Filter>
-    </ClCompile>
-    <ClCompile Include="Gui\GDL\ListToVector.c">
-      <Filter>Quelldateien\Gui\Gdl</Filter>
-    </ClCompile>
-    <ClCompile Include="Gui\Reader\Reader.c">
-      <Filter>Quelldateien\Gui\Reader</Filter>
-    </ClCompile>
-    <ClCompile Include="Gui\Reader\Reader.package.c">
-      <Filter>Quelldateien\Gui\Reader</Filter>
     </ClCompile>
     <ClCompile Include="Scenes\Rectangle2Scene.c">
       <Filter>Quelldateien\Scenes</Filter>
@@ -149,53 +80,8 @@
     <ClInclude Include="Video.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Gui\TextNode.h">
-      <Filter>Headerdateien\Gui</Filter>
-    </ClInclude>
     <ClInclude Include="Scene4.h">
       <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Gui\BorderNode.h">
-      <Filter>Headerdateien\Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="Gui\Widget.h">
-      <Filter>Headerdateien\Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="Gui\WidgetList.h">
-      <Filter>Headerdateien\Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="Gui\BorderModel.h">
-      <Filter>Headerdateien\Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="Gui\GroupNode.h">
-      <Filter>Headerdateien\Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="Gui\Signals\Context.h">
-      <Filter>Headerdateien\Gui\Signals</Filter>
-    </ClInclude>
-    <ClInclude Include="_Gui.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Gui\GDL\Context.h">
-      <Filter>Headerdateien\Gui\Gdl</Filter>
-    </ClInclude>
-    <ClInclude Include="Gui\Context.h">
-      <Filter>Headerdateien\Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="Gui\LayoutModel.h">
-      <Filter>Headerdateien\Gui</Filter>
-    </ClInclude>
-    <ClInclude Include="Gui\GDL\ValueToReal.h">
-      <Filter>Headerdateien\Gui\Gdl</Filter>
-    </ClInclude>
-    <ClInclude Include="Gui\GDL\ListToVector.h">
-      <Filter>Headerdateien\Gui\Gdl</Filter>
-    </ClInclude>
-    <ClInclude Include="Gui\Reader\Reader.h">
-      <Filter>Headerdateien\Gui\Reader</Filter>
-    </ClInclude>
-    <ClInclude Include="Gui\Reader\Reader.package.h">
-      <Filter>Headerdateien\Gui\Reader</Filter>
     </ClInclude>
     <ClInclude Include="Scenes\Rectangle2Scene.h">
       <Filter>Headerdateien\Scenes</Filter>
@@ -203,13 +89,5 @@
     <ClInclude Include="Scenes\LayoutScene.h">
       <Filter>Headerdateien\Scenes</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Gui\Signals\Context.i">
-      <Filter>Quelldateien\Gui\Signals</Filter>
-    </None>
-    <None Include="Gui\GDL\Context.i">
-      <Filter>Quelldateien\Gui\Gdl</Filter>
-    </None>
   </ItemGroup>
 </Project>

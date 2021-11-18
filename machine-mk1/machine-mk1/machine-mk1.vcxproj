@@ -73,29 +73,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Gui\BorderModel.c" />
-    <ClCompile Include="Gui\Context.c">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)Gui</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)Gui</ObjectFileName>
-    </ClCompile>
-    <ClCompile Include="Gui\GDL\Context.c">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)Gui\GDL</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)Gui\GDL</ObjectFileName>
-    </ClCompile>
-    <ClCompile Include="Gui\GDL\ListToVector.c" />
-    <ClCompile Include="Gui\GDL\ValueToReal.c" />
-    <ClCompile Include="Gui\GroupNode.c" />
-    <ClCompile Include="Gui\LayoutModel.c" />
-    <ClCompile Include="Gui\Reader\Reader.c" />
-    <ClCompile Include="Gui\Reader\Reader.package.c" />
-    <ClCompile Include="Gui\Signals\Context.c">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/Gui/Signals</ObjectFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/Gui/Signals</ObjectFileName>
-    </ClCompile>
-    <ClCompile Include="Gui\WidgetList.c" />
-    <ClCompile Include="Gui\Widget.c" />
-    <ClCompile Include="Gui\BorderNode.c" />
-    <ClCompile Include="Gui\TextNode.c" />
     <ClCompile Include="Scene4.c" />
     <ClCompile Include="Scene5.c" />
     <ClCompile Include="Scenes\LayoutScene.c" />
@@ -106,23 +83,8 @@
     <ClCompile Include="Scene2.c" />
     <ClCompile Include="Scene3.c" />
     <ClCompile Include="Video.c" />
-    <ClCompile Include="_Gui.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Gui\BorderModel.h" />
-    <ClInclude Include="Gui\Context.h" />
-    <ClInclude Include="Gui\GDL\Context.h" />
-    <ClInclude Include="Gui\GDL\ListToVector.h" />
-    <ClInclude Include="Gui\GDL\ValueToReal.h" />
-    <ClInclude Include="Gui\GroupNode.h" />
-    <ClInclude Include="Gui\LayoutModel.h" />
-    <ClInclude Include="Gui\Reader\Reader.h" />
-    <ClInclude Include="Gui\Reader\Reader.package.h" />
-    <ClInclude Include="Gui\Signals\Context.h" />
-    <ClInclude Include="Gui\WidgetList.h" />
-    <ClInclude Include="Gui\Widget.h" />
-    <ClInclude Include="Gui\BorderNode.h" />
-    <ClInclude Include="Gui\TextNode.h" />
     <ClInclude Include="Scene4.h" />
     <ClInclude Include="Scene5.h" />
     <ClInclude Include="Scenes\LayoutScene.h" />
@@ -132,7 +94,6 @@
     <ClInclude Include="Scene2.h" />
     <ClInclude Include="Scene3.h" />
     <ClInclude Include="Video.h" />
-    <ClInclude Include="_Gui.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\collections\machine-mk1-collections.vcxproj">
@@ -152,6 +113,9 @@
     </ProjectReference>
     <ProjectReference Include="..\graphics2\machine-mk1-graphics2.vcxproj">
       <Project>{f4aa48f9-3c29-4cc5-b219-c357284103b2}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\gui\machine-mk1-gui.vcxproj">
+      <Project>{314990bb-ebc6-4998-90d4-25603ddc656d}</Project>
     </ProjectReference>
     <ProjectReference Include="..\images\machine-mk1-images.vcxproj">
       <Project>{f0b732b5-824d-40ab-aa0a-a067b6a852f9}</Project>
@@ -174,10 +138,6 @@
     <ProjectReference Include="..\video\machine-mk1-video.vcxproj">
       <Project>{ea697f45-b77e-4384-8bf1-6001586e058c}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Gui\GDL\Context.i" />
-    <None Include="Gui\Signals\Context.i" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
