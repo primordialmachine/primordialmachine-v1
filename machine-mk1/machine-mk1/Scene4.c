@@ -37,7 +37,7 @@ struct Scene4 {
   /// @brief Text layout #2.
   Machine_Text_Layout* text2;
   /// @brief Text node #1.
-  Machine_Gui_TextNode* textLabel3;
+  Machine_Gui_TextNode* textNode1;
 };
 
 static void Scene4_destruct(Scene4* self);
@@ -57,8 +57,8 @@ static void Scene4_visit(Scene4* self) {
   if (self->text2) {
     Machine_Gc_visit(self->text2);
   }
-  if (self->textLabel3) {
-    Machine_Gc_visit(self->textLabel3);
+  if (self->textNode1) {
+    Machine_Gc_visit(self->textNode1);
   }
 }
 
@@ -83,10 +83,10 @@ static void Scene4_onStartup(Scene4* scene) {
     Machine_Text_Layout_setText(scene->text2, Machine_String_create(text, strlen(text)));
   }
   //
-  scene->textLabel3 = Machine_Gui_TextNode_create(scene->guiContext);
+  scene->textNode1 = Machine_Gui_TextNode_create(scene->guiContext);
   {
     const char* text = "Nanobox IV\n400 units of unprimed nanites.";
-    Machine_Gui_TextNode_setText(scene->textLabel3, Machine_String_create(text, strlen(text)));
+    Machine_Gui_TextNode_setText(scene->textNode1, Machine_String_create(text, strlen(text)));
   }
   //
   Machine_Math_Vector4* c = Machine_Math_Vector4_create();
@@ -135,13 +135,13 @@ static void updateText3(Scene4* self, Machine_Real width, Machine_Real height) {
   Machine_Math_Vector2* SIZE = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(SIZE, 64, 64);
 
-  Machine_Gui_Widget_setSize((Machine_Gui_Widget*)self->textLabel3, SIZE);
-  const Machine_Math_Rectangle2* bounds = Machine_Gui_Widget_getRectangle((Machine_Gui_Widget *)self->textLabel3);
+  Machine_Gui_Widget_setSize((Machine_Gui_Widget*)self->textNode1, SIZE);
+  const Machine_Math_Rectangle2* bounds = Machine_Gui_Widget_getRectangle((Machine_Gui_Widget *)self->textNode1);
   const Machine_Math_Vector2* leftTop = Machine_Math_Rectangle2_getPosition(bounds);
   Machine_Math_Vector2* delta = Machine_Math_Vector2_difference(MARGIN, leftTop);
-  const Machine_Math_Vector2* oldPosition = Machine_Gui_Widget_getPosition((Machine_Gui_Widget *)self->textLabel3);
+  const Machine_Math_Vector2* oldPosition = Machine_Gui_Widget_getPosition((Machine_Gui_Widget *)self->textNode1);
   const Machine_Math_Vector2* newPosition = Machine_Math_Vector2_sum(oldPosition, delta);
-  Machine_Gui_Widget_setPosition((Machine_Gui_Widget*)self->textLabel3, newPosition);
+  Machine_Gui_Widget_setPosition((Machine_Gui_Widget*)self->textNode1, newPosition);
 }
 
 static void Scene4_onCanvasSizeChanged(Scene4* self, Machine_CanvasSizeChangedEvent* event) {
@@ -160,7 +160,7 @@ static void Scene4_onUpdate(Scene4* self, Machine_Real width, Machine_Real heigh
   Machine_Context2_setTargetSize(context2, width, height);
   Machine_Text_Layout_render(self->text1, context2);
   Machine_Text_Layout_render(self->text2, context2);
-  Machine_Gui_Widget_render((Machine_Gui_Widget *)self->textLabel3, context2);
+  Machine_Gui_Widget_render((Machine_Gui_Widget*)self->textNode1, context2);
 }
 
 static void Scene4_onShutdown(Scene4* self) {
