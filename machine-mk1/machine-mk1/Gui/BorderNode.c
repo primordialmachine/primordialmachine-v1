@@ -6,7 +6,7 @@
 
 
 #include "_Graphics2.h"
-#include "./../Video.h"
+#include "_Video.h"
 #include "Gui/Context.h"
 #include "Gui/BorderModel.h"
 

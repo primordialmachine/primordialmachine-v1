@@ -7,7 +7,7 @@
 
 #include "_Graphics2.h"
 #include "_Images.h"
-#include "./../Video.h"
+#include "_Video.h"
 #include "_Text.h"
 #include "Gui/Context.h"
 #include "Gui/Widget.h"
@@ -60,7 +60,8 @@ static void Machine_Gui_TextNode_constructClass(Machine_Gui_TextNode_Class* self
 
 void Machine_Gui_TextNode_construct(Machine_Gui_TextNode* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Gui_Widget_construct((Machine_Gui_Widget*)self, numberOfArguments, arguments);
-  Machine_FontsContext* fontsContext = Machine_DefaultFonts_createContext(Machine_getVideoContext(), Machines_DefaultImages_createContext());
+  Machine_Gui_Context *context = (Machine_Gui_Context*)Machine_Value_getObject(&arguments[0]);
+  Machine_FontsContext* fontsContext = Machine_DefaultFonts_createContext(context->context2->videoContext, Machines_DefaultImages_createContext());
   Machine_Font *font = Machine_FontsContext_createFont(fontsContext, Machine_String_create("RobotoSlab-Regular.ttf", strlen("RobotoSlab-Regular.ttf")), 20);
   self->foreground = Machine_Text_Layout_create(Machine_String_create("", strlen("")), font);
   self->background = Machine_Rectangle2_create();

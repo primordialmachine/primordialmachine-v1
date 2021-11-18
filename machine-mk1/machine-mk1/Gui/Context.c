@@ -5,10 +5,6 @@
 
 
 
-#include "./../Video.h"
-
-
-
 static void Machine_Gui_Context_visit(Machine_Gui_Context* self) {
   if (self->gdlContext) {
     Machine_Gc_visit(self->gdlContext);

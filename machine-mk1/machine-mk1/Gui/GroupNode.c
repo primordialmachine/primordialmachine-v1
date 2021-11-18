@@ -6,7 +6,7 @@
 
 
 #include "Gui/Context.h"
-#include "./../Video.h"
+#include "_Video.h"
 
 
 
@@ -24,9 +24,9 @@ static Machine_Math_Vector2 const* Machine_Gui_GroupNode_getPreferredSize(Machin
 }
 
 static void Machine_Gui_GroupNode_render(Machine_Gui_GroupNode* self, Machine_Context2 *ctx2) {
-  Machine_Gui_Context* ctx = Machine_Gui_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(Machine_getVideoContext()));
+  Machine_Gui_Context* ctx = Machine_Gui_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(ctx2->videoContext));
   Machine_Math_Vector2 const* size = Machine_Gui_Widget_getSize((Machine_Gui_Widget *)self);
-  Machine_Context2* tmp = Machine_Context2_create(Machine_getVideoContext());
+  Machine_Context2* tmp = Machine_Context2_create(ctx2->videoContext);
   Machine_Context2_setTargetSize(tmp, Machine_Math_Vector2_getX(size), Machine_Math_Vector2_getY(size));
   for (size_t i = 0, n = Machine_Gui_WidgetList_getSize(self->children); i < n; ++i) {
     Machine_Gui_Widget* widget = Machine_Gui_WidgetList_getAt(self->children, i);
