@@ -4,16 +4,12 @@
 #if !defined(MACHINE_GUI_READER_H_INCLUDE)
 #define MACHINE_GUI_READER_H_INCLUDED
 
-
-
 #if !defined(MACHINE_GUI_PRIVATE)
 #error("Do not include this file directly, include `_Gui.h` instead.")
 #endif
 #include "Gui/Widget.h"
 
-
-
-/// @brief 
+/// @brief
 /// <code>
 /// widget :
 ///   border
@@ -24,8 +20,7 @@
 /// @param source A pointer to the source map.
 /// @return A pointer to the widget.
 /// @todo Restruct visibility to "package".
-Machine_Gui_Widget* Machine_Gui_Reader_readWidget(Machine_Gui_Context* self, Machine_Map const* source);
-
-
+Machine_Gui_Widget* Machine_Gui_Reader_readWidget(Machine_Gui_Context* self,
+                                                  Machine_Map const* source);
 
 #endif // MACHINE_GUI_READER_H_INCLUDED

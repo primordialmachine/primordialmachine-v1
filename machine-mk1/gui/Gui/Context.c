@@ -4,8 +4,6 @@
 #define MACHINE_GUI_PRIVATE (1)
 #include "Gui/Context.h"
 
-
-
 static void Machine_Gui_Context_visit(Machine_Gui_Context* self) {
   if (self->gdlContext) {
     Machine_Gc_visit(self->gdlContext);
@@ -21,27 +19,33 @@ static void Machine_Gui_Context_visit(Machine_Gui_Context* self) {
   }
 }
 
-static void Machine_Gui_Context_construct(Machine_Gui_Context* self, size_t numberOfArguments, Machine_Value const* arguments) {
+static void Machine_Gui_Context_construct(Machine_Gui_Context* self, size_t numberOfArguments,
+                                          Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  self->gdlContext = Machine_Gui_Gdl_Context_create((Machine_GDL_Context*)Machine_Value_getObject(&arguments[0]));
+  self->gdlContext = Machine_Gui_Gdl_Context_create(
+      (Machine_GDL_Context*)Machine_Value_getObject(&arguments[0]));
   self->signalsContext = Machine_Gui_Signals_Context_create();
   self->context2 = (Machine_Context2*)Machine_Value_getObject(&arguments[1]);
   Machine_setClassType((Machine_Object*)self, Machine_Gui_Context_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Gui_Context, Machine_Object, &Machine_Gui_Context_visit, &Machine_Gui_Context_construct, NULL, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_Gui_Context, Machine_Object, &Machine_Gui_Context_visit,
+                         &Machine_Gui_Context_construct, NULL, NULL)
 
-Machine_Gui_Context* Machine_Gui_Context_create(Machine_GDL_Context* gdlContext, Machine_Context2* context2) {
+Machine_Gui_Context* Machine_Gui_Context_create(Machine_GDL_Context* gdlContext,
+                                                Machine_Context2* context2) {
   Machine_ClassType* ty = Machine_Gui_Context_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 2;
   Machine_Value ARGUMENTS[2];
   Machine_Value_setObject(&ARGUMENTS[0], (Machine_Object*)gdlContext);
   Machine_Value_setObject(&ARGUMENTS[1], (Machine_Object*)context2);
-  Machine_Gui_Context* self = (Machine_Gui_Context*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Machine_Gui_Context* self
+      = (Machine_Gui_Context*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }
 
-void Machine_Gui_Context_onCanvasSizechanged(Machine_Gui_Context* self, Machine_CanvasSizeChangedEvent* event) {
+void Machine_Gui_Context_onCanvasSizechanged(Machine_Gui_Context* self,
+                                             Machine_CanvasSizeChangedEvent* event) {
   Machine_Context2_setTargetSize(self->context2, event->width, event->height);
 }
 

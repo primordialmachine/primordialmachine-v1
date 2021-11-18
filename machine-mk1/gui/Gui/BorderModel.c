@@ -10,27 +10,32 @@ static void Machine_Gui_BorderModel_visit(Machine_Gui_BorderModel* self) {
   }
 }
 
-static void Machine_Gui_BorderModel_constructClass(Machine_Gui_BorderModel_Class* self)
-{/*Intentionally empty.*/}
+static void Machine_Gui_BorderModel_constructClass(
+    Machine_Gui_BorderModel_Class* self) { /*Intentionally empty.*/
+}
 
-void Machine_Gui_BorderModel_construct(Machine_Gui_BorderModel* self, size_t numberOfArguments, Machine_Value const* arguments) {
-  Machine_Object_construct((Machine_Object *)self, numberOfArguments, arguments);
+void Machine_Gui_BorderModel_construct(Machine_Gui_BorderModel* self, size_t numberOfArguments,
+                                       Machine_Value const* arguments) {
+  Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->leftWidth = 1.f;
   self->rightWidth = 1.f;
   self->topWidth = 1.f;
   self->bottomWidth = 1.f;
   self->color = Machine_Math_Vector4_create();
   Machine_Math_Vector4_set(self->color, 0.1f, 0.1f, 0.1f, 1.f);
-  Machine_setClassType((Machine_Object *)self, Machine_Gui_BorderModel_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Gui_BorderModel_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Gui_BorderModel, Machine_Object, &Machine_Gui_BorderModel_visit, &Machine_Gui_BorderModel_construct, NULL, &Machine_Gui_BorderModel_constructClass)
+MACHINE_DEFINE_CLASSTYPE(Machine_Gui_BorderModel, Machine_Object, &Machine_Gui_BorderModel_visit,
+                         &Machine_Gui_BorderModel_construct, NULL,
+                         &Machine_Gui_BorderModel_constructClass)
 
 Machine_Gui_BorderModel* Machine_Gui_BorderModel_create() {
   Machine_ClassType* ty = Machine_Gui_BorderModel_getClassType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
   static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
-  Machine_Gui_BorderModel* self = (Machine_Gui_BorderModel*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Machine_Gui_BorderModel* self
+      = (Machine_Gui_BorderModel*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }
 
@@ -38,7 +43,8 @@ Machine_Math_Vector4 const* Machine_Gui_BorderModel_getColor(Machine_Gui_BorderM
   return self->color;
 }
 
-void Machine_Gui_BorderModel_setColor(Machine_Gui_BorderModel* self, Machine_Math_Vector4 const* color) {
+void Machine_Gui_BorderModel_setColor(Machine_Gui_BorderModel* self,
+                                      Machine_Math_Vector4 const* color) {
   Machine_Math_Vector4_copy(self->color, color);
 }
 

@@ -11,8 +11,7 @@ Machine_Real Machine_Gui_Gdl_valueToReal(Machine_Value const* value) {
   }
   if (Machine_Value_isInteger(value)) {
     return (Machine_Real)Machine_Value_getInteger(value);
-  }
-  else {
+  } else {
     return Machine_Value_getReal(value);
   }
 }

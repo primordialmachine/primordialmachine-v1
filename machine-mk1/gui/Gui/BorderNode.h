@@ -4,14 +4,10 @@
 #if !defined(MACHINE_GUI_BORDERNODE_H_INCLUDED)
 #define MACHINE_GUI_BORDERNODE_H_INCLUDED
 
-
-
 #if !defined(MACHINE_GUI_PRIVATE)
 #error("Do not include this file directly, include `_Gui.h` instead.")
 #endif
 #include "Gui/Widget.h"
-
-
 
 /// @brief A border around any widget.
 /// The default color is <code>(0.1, 0.1, 0.1)</code>.
@@ -37,12 +33,14 @@ void Machine_Gui_BorderNode_setChild(Machine_Gui_BorderNode* self, Machine_Gui_W
 /// @brief Get the color of this border.
 /// @param self This border node.
 /// @return The color.
-Machine_Math_Vector4 const* Machine_Gui_BorderNode_getBorderColor(Machine_Gui_BorderNode const* self);
+Machine_Math_Vector4 const* Machine_Gui_BorderNode_getBorderColor(
+    Machine_Gui_BorderNode const* self);
 
 /// @brief Set the color of this border.
 /// @param self This border node.
 /// @param color The color.
-void Machine_Gui_BorderNode_setBorderColor(Machine_Gui_BorderNode* self, Machine_Math_Vector4 const* color);
+void Machine_Gui_BorderNode_setBorderColor(Machine_Gui_BorderNode* self,
+                                           Machine_Math_Vector4 const* color);
 
 /// @brief Get the border width.
 /// @param self This border node.
@@ -60,6 +58,5 @@ void Machine_Gui_BorderNode_setLeftBorderWidth(Machine_Gui_BorderNode* self, Mac
 void Machine_Gui_BorderNode_setRightBorderWidth(Machine_Gui_BorderNode* self, Machine_Real width);
 void Machine_Gui_BorderNode_setTopBorderWidth(Machine_Gui_BorderNode* self, Machine_Real width);
 void Machine_Gui_BorderNode_setBottomBorderWidth(Machine_Gui_BorderNode* self, Machine_Real width);
-
 
 #endif // MACHINE_GUI_BORDERNODE_H_INCLUDED

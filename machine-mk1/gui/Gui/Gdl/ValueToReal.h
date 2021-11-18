@@ -4,14 +4,10 @@
 #if !defined(MACHINE_GUI_GDL_VALUETOREAL_H_INCLUDED)
 #define MACHINE_GUI_GDL_VALUETOREAL_H_INCLUDED
 
-
-
 #if !defined(MACHINE_GUI_PRIVATE)
 #error("Do not include this file directly, include `_Gui.h` instead.")
 #endif
 #include "_Runtime.h"
-
-
 
 /// @brief
 /// Convert
@@ -22,7 +18,4 @@
 /// @return The value of type <code>Real</code>.
 Machine_Real Machine_Gui_Gdl_valueToReal(Machine_Value const* value);
 
-
-
 #endif // MACHINE_GUI_GDL_VALUETOREAL_H_INCLUDED
-

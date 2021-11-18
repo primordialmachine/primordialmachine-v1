@@ -4,8 +4,6 @@
 #if !defined(MACHINE__GUI_H_INCLUDED)
 #define MACHINE__GUI_H_INCLUDED
 
-
-
 #define MACHINE_GUI_PRIVATE (1)
 #include "Gui/BorderNode.h"
 #include "Gui/Context.h"
@@ -14,7 +12,5 @@
 
 #include "Gui/Reader/Reader.h"
 #undef MACHINE_GUI_PRIVATE
-
-
 
 #endif // MACHINE__GUI_H_INCLUDED

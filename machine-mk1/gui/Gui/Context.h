@@ -4,17 +4,13 @@
 #if !defined(MACHINE_GUI_CONTEXT_H_INCLUDED)
 #define MACHINE_GUI_CONTEXT_H_INCLUDED
 
-
-
 #if !defined(MACHINE_GUI_PRIVATE)
 #error("Do not include this file directly, include `_Gui.h` instead.")
 #endif
 #include "Gui/Gdl/Context.h"
-#include "Gui/Signals/Context.h"
 #include "Gui/GroupNode.h"
+#include "Gui/Signals/Context.h"
 #include "_Graphics2.h"
-
-
 
 /// @brief A GUI context.
 /// @extends Machine.Object
@@ -36,9 +32,11 @@ struct Machine_Gui_Context {
 /// @param gdlContext The underlying GDL context.
 /// @param context2 The underlying 2D context.
 /// @return The GUI context.
-Machine_Gui_Context* Machine_Gui_Context_create(Machine_GDL_Context* gdlContext, Machine_Context2* context2);
+Machine_Gui_Context* Machine_Gui_Context_create(Machine_GDL_Context* gdlContext,
+                                                Machine_Context2* context2);
 
-void Machine_Gui_Context_onCanvasSizechanged(Machine_Gui_Context* self, Machine_CanvasSizeChangedEvent* event);
+void Machine_Gui_Context_onCanvasSizechanged(Machine_Gui_Context* self,
+                                             Machine_CanvasSizeChangedEvent* event);
 
 Machine_Real Machine_Gui_Context_getCanvasWidth(Machine_Gui_Context* self);
 

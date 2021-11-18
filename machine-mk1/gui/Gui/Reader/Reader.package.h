@@ -4,16 +4,12 @@
 #if !defined(MACHINE_GUI_READER_PACKAGE_H_INCLUDED)
 #define MACHINE_GUI_READER_PACKAGE_H_INCLUDED
 
-
-
 #if !defined(MACHINE_GUI_PRIVATE)
 #error("Do not include this file directly, include `_Gui.h` instead.")
 #endif
 #include "Gui/BorderNode.h"
 #include "Gui/GroupNode.h"
 #include "Gui/TextNode.h"
-
-
 
 /// @brief
 /// <code>
@@ -25,7 +21,8 @@
 /// @param source A pointer to the source map.
 /// @return A pointer to the widget.
 /// @todo Restrict visibility to "package".
-Machine_Gui_GroupNode* Machine_Gui_Reader_readGroupNode(Machine_Gui_Context* self, Machine_Map const* source);
+Machine_Gui_GroupNode* Machine_Gui_Reader_readGroupNode(Machine_Gui_Context* self,
+                                                        Machine_Map const* source);
 
 /// @brief
 /// <code>
@@ -39,10 +36,11 @@ Machine_Gui_GroupNode* Machine_Gui_Reader_readGroupNode(Machine_Gui_Context* sel
 /// @param self A pointer to this GUI context.
 /// @param source A pointer to the source map.
 /// @return A pointer to the widget.
-/// @todo Restruct visibility to "package".
-Machine_Gui_BorderNode* Machine_Gui_Reader_readBorderNode(Machine_Gui_Context* self, Machine_Map const* source);
+/// @todo Restrict visibility to "package".
+Machine_Gui_BorderNode* Machine_Gui_Reader_readBorderNode(Machine_Gui_Context* self,
+                                                          Machine_Map const* source);
 
-/// @brief 
+/// @brief
 /// <code>
 /// text :
 ///   kind = "Text", required
@@ -51,8 +49,9 @@ Machine_Gui_BorderNode* Machine_Gui_Reader_readBorderNode(Machine_Gui_Context* s
 /// @param self A pointer to this GUI context.
 /// @param source A pointer to the source map.
 /// @return A pointer to the widget.
-/// @todo Restruct visibility to "package".
-Machine_Gui_TextNode* Machine_Gui_Reader_readTextNode(Machine_Gui_Context* self, Machine_Map const* source);
+/// @todo Restrict visibility to "package".
+Machine_Gui_TextNode* Machine_Gui_Reader_readTextNode(Machine_Gui_Context* self,
+                                                      Machine_Map const* source);
 
 /// @brief
 /// <code>
@@ -62,16 +61,19 @@ Machine_Gui_TextNode* Machine_Gui_Reader_readTextNode(Machine_Gui_Context* self,
 /// @param self A pointer to this GUI context.
 /// @param source A pointer to the source map.
 /// @return A pointer to the layout model.
-Machine_Gui_LayoutModel* Machine_Gui_Reader_readLayout(Machine_Gui_Context* self, Machine_Map const* source);
+Machine_Gui_LayoutModel* Machine_Gui_Reader_readLayout(Machine_Gui_Context* self,
+                                                       Machine_Map const* source);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-/// @brief Get if a key of the specified name exists in the specified map and refers to a value of type <code>String</code>.
+/// @brief Get if a key of the specified name exists in the specified map and refers to a value of
+/// type <code>String</code>.
 /// @param self The GUI context.
 /// @param map The map.
 /// @param key The key.
 /// @return @a true if such a key/value pair exists, @a false otherwise.
-static inline bool Machine_Gui_Reader_hasString(Machine_Gui_Context* self, Machine_Map const* map, Machine_String const* key) {
+static inline bool Machine_Gui_Reader_hasString(Machine_Gui_Context* self, Machine_Map const* map,
+                                                Machine_String const* key) {
   Machine_Value keyValue;
   Machine_Value_setString(&keyValue, key);
   Machine_Value valueValue = Machine_Map_get(map, keyValue);
@@ -79,7 +81,8 @@ static inline bool Machine_Gui_Reader_hasString(Machine_Gui_Context* self, Machi
 }
 
 // USED
-static inline Machine_String* Machine_Gui_Reader_getString(Machine_Map const* map, Machine_String const* key) {
+static inline Machine_String* Machine_Gui_Reader_getString(Machine_Map const* map,
+                                                           Machine_String const* key) {
   Machine_Value keyValue;
   Machine_Value_setString(&keyValue, key);
   Machine_Value valueValue = Machine_Map_get(map, keyValue);
@@ -92,12 +95,14 @@ static inline Machine_String* Machine_Gui_Reader_getString(Machine_Map const* ma
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-/// @brief Get if a key of the specified name exists in the specified map and refers to a value of type <code>Integer</code> or <code>Real</code>.
+/// @brief Get if a key of the specified name exists in the specified map and refers to a value of
+/// type <code>Integer</code> or <code>Real</code>.
 /// @param self The GUI context.
 /// @param map The map.
 /// @param key The key.
 /// @return @a true if such a key/value pair exists, @a false otherwise.
-static inline bool Machine_Gui_Reader_hasReal(Machine_Gui_Context* self, Machine_Map const* map, Machine_String const* key) {
+static inline bool Machine_Gui_Reader_hasReal(Machine_Gui_Context* self, Machine_Map const* map,
+                                              Machine_String const* key) {
   Machine_Value keyValue;
   Machine_Value_setString(&keyValue, key);
   Machine_Value valueValue = Machine_Map_get(map, keyValue);
@@ -105,7 +110,8 @@ static inline bool Machine_Gui_Reader_hasReal(Machine_Gui_Context* self, Machine
 }
 
 // USED
-static inline Machine_Real Machine_Gui_Reader_getReal(Machine_Map const* map, Machine_String const* key) {
+static inline Machine_Real Machine_Gui_Reader_getReal(Machine_Map const* map,
+                                                      Machine_String const* key) {
   Machine_Value keyValue;
   Machine_Value_setString(&keyValue, key);
   Machine_Value valueValue = Machine_Map_get(map, keyValue);
@@ -115,20 +121,21 @@ static inline Machine_Real Machine_Gui_Reader_getReal(Machine_Map const* map, Ma
   }
   if (Machine_Value_isInteger(&valueValue)) {
     return (Machine_Real)Machine_Value_getInteger(&valueValue);
-  }
-  else {
+  } else {
     return Machine_Value_getReal(&valueValue);
   }
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-/// @brief Get if a key of the specified name exists in the specified map and refers to a value of type <code>Object</code> or derived type.
+/// @brief Get if a key of the specified name exists in the specified map and refers to a value of
+/// type <code>Object</code> or derived type.
 /// @param self The GUI context.
 /// @param map The map.
 /// @param key The key.
 /// @return @a true if such a key/value pair exists, @a false otherwise.
-static inline bool Machine_Gui_Reader_hasObject(Machine_Gui_Context* self, Machine_Map const* map, Machine_String const* key) {
+static inline bool Machine_Gui_Reader_hasObject(Machine_Gui_Context* self, Machine_Map const* map,
+                                                Machine_String const* key) {
   Machine_Value keyValue;
   Machine_Value_setString(&keyValue, key);
   Machine_Value valueValue = Machine_Map_get(map, keyValue);
@@ -136,7 +143,8 @@ static inline bool Machine_Gui_Reader_hasObject(Machine_Gui_Context* self, Machi
 }
 
 // USED
-static inline Machine_Object* Machine_Gui_Reader_getObject(Machine_Map const* map, Machine_String const* key) {
+static inline Machine_Object* Machine_Gui_Reader_getObject(Machine_Map const* map,
+                                                           Machine_String const* key) {
   Machine_Value keyValue;
   Machine_Value_setString(&keyValue, key);
   Machine_Value valueValue = Machine_Map_get(map, keyValue);
@@ -149,7 +157,8 @@ static inline Machine_Object* Machine_Gui_Reader_getObject(Machine_Map const* ma
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-static inline Machine_Value getMapOrVoid(Machine_Gui_Context* self, Machine_Map const* map, Machine_String const* key) {
+static inline Machine_Value getMapOrVoid(Machine_Gui_Context* self, Machine_Map const* map,
+                                         Machine_String const* key) {
   Machine_Value keyValue;
   Machine_Value_setString(&keyValue, key);
   Machine_Value valueValue = Machine_Map_get(map, keyValue);
@@ -163,12 +172,15 @@ static inline Machine_Value getMapOrVoid(Machine_Gui_Context* self, Machine_Map 
   return valueValue;
 }
 
-static inline bool Machine_Gui_Reader_hasMap(Machine_Gui_Context* self, Machine_Map const* map, Machine_String const* key) {
+static inline bool Machine_Gui_Reader_hasMap(Machine_Gui_Context* self, Machine_Map const* map,
+                                             Machine_String const* key) {
   Machine_Value v = getMapOrVoid(self, map, key);
   return !Machine_Value_isVoid(&v);
 }
 
-static inline Machine_Map* Machine_Gui_Reader_getMap(Machine_Gui_Context* self, Machine_Map const* map, Machine_String const* key) {
+static inline Machine_Map* Machine_Gui_Reader_getMap(Machine_Gui_Context* self,
+                                                     Machine_Map const* map,
+                                                     Machine_String const* key) {
   Machine_Value v = getMapOrVoid(self, map, key);
   if (Machine_Value_isVoid(&v)) {
     Machine_setStatus(Machine_Status_SemanticalError);
@@ -179,7 +191,8 @@ static inline Machine_Map* Machine_Gui_Reader_getMap(Machine_Gui_Context* self, 
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-static inline Machine_Value getListOrVoid(Machine_Gui_Context* self, Machine_Map const* map, Machine_String const* key) {
+static inline Machine_Value getListOrVoid(Machine_Gui_Context* self, Machine_Map const* map,
+                                          Machine_String const* key) {
   Machine_Value keyValue;
   Machine_Value_setString(&keyValue, key);
   Machine_Value valueValue = Machine_Map_get(map, keyValue);
@@ -193,12 +206,15 @@ static inline Machine_Value getListOrVoid(Machine_Gui_Context* self, Machine_Map
   return valueValue;
 }
 
-static inline bool Machine_Gui_Reader_hasList(Machine_Gui_Context* self, Machine_Map const* map, Machine_String const* key) {
+static inline bool Machine_Gui_Reader_hasList(Machine_Gui_Context* self, Machine_Map const* map,
+                                              Machine_String const* key) {
   Machine_Value v = getListOrVoid(self, map, key);
   return !Machine_Value_isVoid(&v);
 }
 
-static inline Machine_List* Machine_Gui_Reader_getList(Machine_Gui_Context* self, Machine_Map const* map, Machine_String const* key) {
+static inline Machine_List* Machine_Gui_Reader_getList(Machine_Gui_Context* self,
+                                                       Machine_Map const* map,
+                                                       Machine_String const* key) {
   Machine_Value v = getListOrVoid(self, map, key);
   if (Machine_Value_isVoid(&v)) {
     Machine_setStatus(Machine_Status_SemanticalError);

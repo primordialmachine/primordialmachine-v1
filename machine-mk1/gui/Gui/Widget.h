@@ -4,18 +4,14 @@
 #if !defined(MACHINE_GUI_WIDGET_H_INCLUDED)
 #define MACHINE_GUI_WIDGET_H_INCLUDED
 
-
-
 #if !defined(MACHINE_GUI_PRIVATE)
 #error("Do not include this file directly, include `_Gui.h` instead.")
 #endif
 #include "_Collections.h"
+#include "_Graphics2.h"
 #include "_Math.h"
 #include "_Signals.h"
-#include "_Graphics2.h"
 typedef struct Machine_Gui_Context Machine_Gui_Context;
-
-
 
 /// @brief Base of all widgets.
 MACHINE_DECLARE_CLASSTYPE(Machine_Gui_Widget)
@@ -56,9 +52,10 @@ struct Machine_Gui_Widget {
 
 /// @brief Construct this widget.
 /// @param self This widget.
-/// @param numberOfArguments The number of arguments. 
+/// @param numberOfArguments The number of arguments.
 /// @param arguments The arguments.
-void Machine_Gui_Widget_construct(Machine_Gui_Widget* self, size_t numberOfArguments, Machine_Value const* arguments);
+void Machine_Gui_Widget_construct(Machine_Gui_Widget* self, size_t numberOfArguments,
+                                  Machine_Value const* arguments);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -97,7 +94,8 @@ Machine_Math_Vector2 const* Machine_Gui_Widget_getSize(Machine_Gui_Widget const*
 /// @brief Set the rectangle.
 /// @param self This widget.
 /// @param rectangle The rectangle.
-void Machine_Gui_Widget_setRectangle(Machine_Gui_Widget* self, Machine_Math_Rectangle2 const* rectangle);
+void Machine_Gui_Widget_setRectangle(Machine_Gui_Widget* self,
+                                     Machine_Math_Rectangle2 const* rectangle);
 
 /// @brief Get the rectangle.
 /// @param self This widget.
@@ -107,7 +105,8 @@ Machine_Math_Rectangle2 const* Machine_Gui_Widget_getRectangle(Machine_Gui_Widge
 /// @brief Get the canvas rectangle.
 /// @param self This widget.
 /// @return The canvas rectangle.
-Machine_Math_Rectangle2 const* Machine_Gui_Widget_getCanvasRectangle(Machine_Gui_Widget const* self);
+Machine_Math_Rectangle2 const* Machine_Gui_Widget_getCanvasRectangle(
+    Machine_Gui_Widget const* self);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -126,12 +125,14 @@ Machine_Math_Vector2 const* Machine_Gui_Widget_getAbsolutePosition(Machine_Gui_W
 /// @brief Get the absolute rectangle.
 /// @param self This widget.
 /// @return The absolute rectangle.
-Machine_Math_Rectangle2 const* Machine_Gui_Widget_getAbsoluteRectangle(Machine_Gui_Widget const* self);
+Machine_Math_Rectangle2 const* Machine_Gui_Widget_getAbsoluteRectangle(
+    Machine_Gui_Widget const* self);
 
 /// @brief Get the absolute canvas rectangle.
 /// @param self This widget.
 /// @return The absolute canvas rectangle.
-Machine_Math_Rectangle2 const* Machine_Gui_Widget_getAbsoluteCanvasRectangle(Machine_Gui_Widget const* self);
+Machine_Math_Rectangle2 const* Machine_Gui_Widget_getAbsoluteCanvasRectangle(
+    Machine_Gui_Widget const* self);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -152,23 +153,24 @@ void Machine_Gui_Widget_setName(Machine_Gui_Widget* self, Machine_String* name);
 /// @param name The name of the event.
 /// @param context The context.
 /// @param callback The callback.
-void Machine_Gui_Widget_subscribe(Machine_Gui_Widget* self, Machine_String *name, Machine_Object* context, Machine_ForeignProcedure* callback);
+void Machine_Gui_Widget_subscribe(Machine_Gui_Widget* self, Machine_String* name,
+                                  Machine_Object* context, Machine_ForeignProcedure* callback);
 
 /// @brief Unsubscribe from an event.
 /// @param self This widget.
 /// @param name The name of the event.
 /// @param context The context.
 /// @param callback The callback. [context:Machine.Object,arguments:M
-void Machine_Gui_Widget_unsubscribe(Machine_Gui_Widget* self, Machine_String *name, Machine_Object *context, Machine_ForeignProcedure* callback);
+void Machine_Gui_Widget_unsubscribe(Machine_Gui_Widget* self, Machine_String* name,
+                                    Machine_Object* context, Machine_ForeignProcedure* callback);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-void Machine_Gui_Widget_emitSignal(Machine_Gui_Widget* self, Machine_String* name, size_t numberOfArguments, Machine_Value const* arguments);
+void Machine_Gui_Widget_emitSignal(Machine_Gui_Widget* self, Machine_String* name,
+                                   size_t numberOfArguments, Machine_Value const* arguments);
 
 void Machine_Gui_Widget_emitPositionChangedSignal(Machine_Gui_Widget* self);
 
 void Machine_Gui_Widget_emitSizeChangedSignal(Machine_Gui_Widget* self);
-
-
 
 #endif // MACHINE_GUI_WIDGET_H_INCLUDED

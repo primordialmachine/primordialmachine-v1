@@ -4,14 +4,10 @@
 #if !defined(MACHINE_GUI_BORDERMODEL_H_INCLUDED)
 #define MACHINE_GUI_BORDERMODEL_H_INCLUDED
 
-
-
 #if !defined(MACHINE_GUI_PRIVATE)
 #error("Do not include this file directly, include `_Gui.h` instead.")
 #endif
 #include "_Math.h"
-
-
 
 /// @brief Border attributes.
 MACHINE_DECLARE_CLASSTYPE(Machine_Gui_BorderModel)
@@ -22,10 +18,10 @@ struct Machine_Gui_BorderModel_Class {
 
 struct Machine_Gui_BorderModel {
   Machine_Object __parent;
-  
+
   /// @brief The color of the border.
   Machine_Math_Vector4* color;
-  
+
   /// @brief The width of the left border.
   Machine_Real leftWidth;
   /// @brief The width of the right border.
@@ -41,11 +37,12 @@ struct Machine_Gui_BorderModel {
 /// @param numberOfArguments, arguments The arguments. Number of arguments must be @a 0.
 /// @default The default border color is <code>(0.1, 0.1, 0.1, 1.0)</code>.
 /// @default The default border width for alles sides is <code>0</code>.
-void Machine_Gui_BorderModel_construct(Machine_Gui_BorderModel* self, size_t numberOfArguments, Machine_Value const* arguments);
+void Machine_Gui_BorderModel_construct(Machine_Gui_BorderModel* self, size_t numberOfArguments,
+                                       Machine_Value const* arguments);
 
 /// @brief Create a border model with default values.
 /// @return The border model.
-Machine_Gui_BorderModel *Machine_Gui_BorderModel_create();
+Machine_Gui_BorderModel* Machine_Gui_BorderModel_create();
 
 /// @brief Get the color of this border model.
 /// @param self This border model.
@@ -55,7 +52,8 @@ Machine_Math_Vector4 const* Machine_Gui_BorderModel_getColor(Machine_Gui_BorderM
 /// @brief Set the color of this border model.
 /// @param self This border model.
 /// @param color The color.
-void Machine_Gui_BorderModel_setColor(Machine_Gui_BorderModel *self, Machine_Math_Vector4 const *color);
+void Machine_Gui_BorderModel_setColor(Machine_Gui_BorderModel* self,
+                                      Machine_Math_Vector4 const* color);
 
 /// @brief Get the width of the left border.
 /// @param self This border model.

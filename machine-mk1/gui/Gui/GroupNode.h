@@ -4,15 +4,11 @@
 #if !defined(MACHINE_GUI_GROUPNODE_H_INCLUDED)
 #define MACHINE_GUI_GROUPNODE_H_INCLUDED
 
-
-
 #if !defined(MACHINE_GUI_PRIVATE)
 #error("Do not include this file directly, include `_Gui.h` instead.")
 #endif
 #include "Gui/Widget.h"
 #include "Gui/WidgetList.h"
-
-
 
 /// @brief A group node.
 /// @extends Machine.Gui.Widget
@@ -33,10 +29,13 @@ struct Machine_Gui_GroupNode {
 /// @return The group.
 Machine_Gui_GroupNode* Machine_Gui_GroupNode_create(Machine_Gui_Context* context);
 
-Machine_Gui_LayoutModel const* Machine_Gui_GroupNode_getLayoutModel(Machine_Gui_GroupNode const* self);
+Machine_Gui_LayoutModel const* Machine_Gui_GroupNode_getLayoutModel(
+    Machine_Gui_GroupNode const* self);
 
-void Machine_Gui_GroupNode_setLayoutModel(Machine_Gui_GroupNode* self, Machine_Gui_LayoutModel* layoutModel);
+void Machine_Gui_GroupNode_setLayoutModel(Machine_Gui_GroupNode* self,
+                                          Machine_Gui_LayoutModel* layoutModel);
 
-void Machine_Gui_GroupNode_relayout(Machine_Gui_GroupNode* self, Machine_Real canvasWidth, Machine_Real canvasHeight);
+void Machine_Gui_GroupNode_relayout(Machine_Gui_GroupNode* self, Machine_Real canvasWidth,
+                                    Machine_Real canvasHeight);
 
 #endif // MACHINE_GUI_GROUPNODE_H_INCLUDED
