@@ -1,6 +1,6 @@
-/// @file _GUI.h
-/// @author Michael Heilmann (<michaelheilmann@primordialmachine.com>)
-/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reservied.
+/// @file _Gui.h
+/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
+/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #if !defined(MACHINE__GUI_H_INCLUDED)
 #define MACHINE__GUI_H_INCLUDED
 

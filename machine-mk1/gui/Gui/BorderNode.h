@@ -13,7 +13,7 @@
 /// @brief A border around any widget.
 /// The default color is <code>(0.1, 0.1, 0.1)</code>.
 /// The default width is <code>1</code>.
-/// @extends Machine.GUI.Widget
+/// @extends Machine.Gui.Widget
 MACHINE_DECLARE_CLASSTYPE(Machine_Gui_BorderNode)
 
 /// @brief Create a border node with default values.

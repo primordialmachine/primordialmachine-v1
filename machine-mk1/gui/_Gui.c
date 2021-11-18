@@ -1,4 +1,4 @@
-/// @file _GUI.c
-/// @author Michael Heilmann (<michaelheilmann@primordialmachine.com>)
-/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reservied.
-#include "_GUI.h"
+/// @file _Gui.c
+/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
+/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
+#include "_Gui.h"

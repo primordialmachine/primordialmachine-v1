@@ -4,13 +4,12 @@
 #if !defined(MACHINE_GUI_SIGNALS_CONTEXT_H_INCLUDED)
 #define MACHINE_GUI_SIGNALS_CONTEXT_H_INCLUDED
 
-
-
+#if !defined(MACHINE_GUI_PRIVATE)
+#error("Do not include this file directly, include `_Gui.h` instead.")
+#endif
 #include "_Signals.h"
 
-
-
-/// @brief A context.
+/// @brief A GUI signals context.
 /// @extends Machine.Object
 MACHINE_DECLARE_CLASSTYPE(Machine_Gui_Signals_Context)
 
@@ -20,12 +19,10 @@ struct Machine_Gui_Signals_Context_Class {
 
 struct Machine_Gui_Signals_Context {
   Machine_Object parent;
-  
-#define DEFINE(NAME,STRING) \
-  Machine_String *NAME;
+
+#define DEFINE(NAME, STRING) Machine_String* NAME;
 #include "Gui/Signals/Context.i"
 #undef DEFINE
-
 };
 
 /// @brief Create a GUI <-> Signals context.

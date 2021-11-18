@@ -13,7 +13,7 @@
 
 /// @brief A label to display a text.
 /// @remarks The preferred size of a panel is computed by combining the rectangles of its child nodes.
-/// @extends Machine.GUI.Widget
+/// @extends Machine.Gui.Widget
 MACHINE_DECLARE_CLASSTYPE(Machine_Gui_WidgetList)
 
 /// @brief Create an empty panel.

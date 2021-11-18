@@ -29,7 +29,7 @@ struct Machine_Gui_Context {
   Machine_Gui_Gdl_Context* gdlContext;
 };
 
-/// @brief Create a GUI ontext.
+/// @brief Create a GUI context.
 /// @param gdlContext The underlying GDL context.
 /// @param context2 The underlying 2D context.
 /// @return The GUI context.
