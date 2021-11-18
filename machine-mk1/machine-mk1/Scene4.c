@@ -34,9 +34,9 @@ struct Scene4 {
   Machine_Font* font;
   /// @brief Text layout #1.
   Machine_Text_Layout* text1;
-  /// @brief Text label #2.
+  /// @brief Text layout #2.
   Machine_Text_Layout* text2;
-  /// @brief Text label #3.
+  /// @brief Text node #1.
   Machine_Gui_TextNode* textLabel3;
 };
 
