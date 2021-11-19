@@ -1,4 +1,4 @@
-/// @file _Video_GL.h
+/// @file _Video_Gl.h
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #if !defined(MACHINE__VIDEO_GL_H_INCLUDED)

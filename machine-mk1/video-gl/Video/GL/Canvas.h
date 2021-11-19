@@ -1,3 +1,6 @@
+/// @file Video/Gl/Canvas.h
+/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
+/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #if !defined(MACHINE_VIDEO_GL_CANVAS_H_INCLUDED)
 #define MACHINE_VIDEO_GL_CANVAS_H_INCLUDED
 
