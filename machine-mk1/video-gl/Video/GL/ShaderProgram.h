@@ -35,7 +35,7 @@ struct Machine_Gl_ShaderProgram {
   Machine_List* inputs;
 };
 
-void Machine_Gl_ShaderProgram_construct(Machine_Gl_ShaderProgram* self, size_t numberOfArguments, const Machine_Value* arguments);
+void Machine_Gl_ShaderProgram_construct(Machine_Gl_ShaderProgram* self, size_t numberOfArguments, Machine_Value const* arguments);
 
 Machine_Gl_ShaderProgram* Machine_Gl_ShaderProgram_create(Machine_String* vertexProgramText, Machine_String* geometryProgramText, Machine_String* fragmentProgramText);
 
@@ -46,10 +46,10 @@ Machine_Gl_ShaderProgram* Machine_Gl_ShaderProgram_create(Machine_String* vertex
 Machine_ShaderProgram*
 Machine_Gl_ShaderProgram_generateDefaultShader
   (
-    bool withMeshColor,
-    bool withVertexColor,
-    bool withTextureCoordinate,
-    bool withTexture
+    Machine_Boolean withMeshColor,
+    Machine_Boolean withVertexColor,
+    Machine_Boolean withTextureCoordinate,
+    Machine_Boolean withTexture
   );
 
 /// @brief Create a shader program for rendering an untextured, colored, rectangle.
@@ -65,7 +65,7 @@ Machine_Gl_ShaderProgram_generateShape2Shader
 Machine_ShaderProgram*
 Machine_Gl_ShaderProgram_generateText2Shader
   (
-    bool highPrecision
+    Machine_Boolean highPrecision
   );
 
 

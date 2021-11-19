@@ -27,7 +27,7 @@ struct Machine_Texture {
 /// @brief Construct this texture.
 /// @param self This texture.
 /// @param numberOfArguments, arguments The arguments.
-void Machine_Texture_construct(Machine_Texture* self, size_t numberOfArguments, const Machine_Value* arguments);
+void Machine_Texture_construct(Machine_Texture* self, size_t numberOfArguments, Machine_Value const* arguments);
 
 
 

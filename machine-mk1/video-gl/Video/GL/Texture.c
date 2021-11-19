@@ -65,7 +65,7 @@ void Machine_Gl_Texture_construct_fromImage(Machine_Gl_Texture* self, Machine_Im
   Machine_setClassType((Machine_Object*)self, Machine_Texture_getClassType());
 }
 
-void Machine_Gl_Texture_construct(Machine_Gl_Texture* self, size_t numberOfArguments, const Machine_Value* arguments) {
+void Machine_Gl_Texture_construct(Machine_Gl_Texture* self, size_t numberOfArguments, Machine_Value const* arguments) {
   if (numberOfArguments == 1) {
     Machine_Image* image = (Machine_Image*)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0, Machine_Image_getClassType());
     Machine_Gl_Texture_construct_fromImage(self, image);

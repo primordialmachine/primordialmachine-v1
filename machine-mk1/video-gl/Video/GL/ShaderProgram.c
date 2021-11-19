@@ -61,7 +61,7 @@ static Machine_Boolean Machine_Gl_ShaderProgram_addUpdateInputImpl(Machine_Gl_Sh
   return false;
 }
 
-static GLuint compileShader(const char* programText, Machine_ProgramKind programKind) {
+static GLuint compileShader(char const* programText, Machine_ProgramKind programKind) {
   GLuint id;
 
   switch (programKind) {
@@ -106,7 +106,7 @@ static GLuint compileShader(const char* programText, Machine_ProgramKind program
   return id;
 }
 
-static void constructFromText(Machine_Gl_ShaderProgram* self, const char* vertexProgramText, const char* geometryProgramText, const char* fragmentProgramText) {
+static void constructFromText(Machine_Gl_ShaderProgram* self, char const* vertexProgramText, char const* geometryProgramText, char const* fragmentProgramText) {
   GLuint vertexShaderId = 0, geometryShaderId = 0, fragmentShaderId = 0, programId = 0;
 
 #define ON_ERROR() \
@@ -199,7 +199,7 @@ static void Machine_Gl_ShaderProgram_constructClass(Machine_Gl_ShaderProgram_Cla
   ((Machine_ShaderProgram_Class*)self)->addUpdateInput = (Machine_Boolean(*)(Machine_ShaderProgram*, Machine_String*, Machine_ProgramInputType, Machine_ProgramInputKind)) & Machine_Gl_ShaderProgram_addUpdateInputImpl;
 }
 
-void Machine_Gl_ShaderProgram_construct(Machine_Gl_ShaderProgram* self, size_t numberOfArguments, const Machine_Value* arguments) {
+void Machine_Gl_ShaderProgram_construct(Machine_Gl_ShaderProgram* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_ShaderProgram_construct((Machine_ShaderProgram*)self, numberOfArguments, arguments);
   if (numberOfArguments != 3) {
     Machine_setStatus(Machine_Status_InvalidNumberOfArguments);
@@ -226,7 +226,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gl_ShaderProgram, Machine_ShaderProgram, Machin
 Machine_Gl_ShaderProgram* Machine_Gl_ShaderProgram_create(Machine_String* vertexProgramText, Machine_String* geometryProgramText, Machine_String* fragmentProgramText) {
   Machine_ClassType* ty = Machine_Gl_ShaderProgram_getClassType();
 
-  static const size_t numberOfArguments = 3;
+  static size_t const numberOfArguments = 3;
   Machine_Value arguments[3];
 
   if (vertexProgramText != NULL)
@@ -266,7 +266,7 @@ static void defineFloatConstants(Machine_StringBuffer* code) {
 /// @param worldToView Add uniform <code>uniform mat4 worldToViewMatrix</code>.
 /// @param viewToProjection Add uniform <code>uniform mat4 viewToProjectionMatrix</code>.
 /// @param modelToProjection Add uniform <code>uniform mat4 modelToProjectionMatrix</code>.
-static void defineMatrixUniforms(Machine_StringBuffer* code, bool modelToWorld, bool worldToView, bool viewToProjection, bool modelToProjection) {
+static void defineMatrixUniforms(Machine_StringBuffer* code, Machine_Boolean modelToWorld, Machine_Boolean worldToView, Machine_Boolean viewToProjection, Machine_Boolean modelToProjection) {
 #define T(t) t, strlen(t)
   // model -> world
   if (modelToWorld) {
@@ -291,10 +291,10 @@ static void defineMatrixUniforms(Machine_StringBuffer* code, bool modelToWorld, 
 Machine_ShaderProgram*
 Machine_Gl_ShaderProgram_generateDefaultShader
   (
-    bool withMeshColor,
-    bool withVertexColor,
-    bool withTextureCoordinate,
-    bool withTexture
+    Machine_Boolean withMeshColor,
+    Machine_Boolean withVertexColor,
+    Machine_Boolean withTextureCoordinate,
+    Machine_Boolean withTexture
   )
 {
   Machine_StringBuffer* code = Machine_StringBuffer_create();
@@ -452,7 +452,7 @@ Machine_Gl_ShaderProgram_generateShape2Shader
 Machine_ShaderProgram*
 Machine_Gl_ShaderProgram_generateText2Shader
   (
-    bool highPrecision
+    Machine_Boolean highPrecision
   )
 {
   Machine_StringBuffer* code = Machine_StringBuffer_create();
@@ -468,7 +468,7 @@ Machine_Gl_ShaderProgram_generateText2Shader
 
   defineFloatConstants(code);
 
-  static const bool withClipDistance = true;
+  static Machine_Boolean const withClipDistance = true;
 
   Machine_StringBuffer_appendBytes(code, T("out struct VS2GS {\n"));
   Machine_StringBuffer_appendBytes(code, T("  vec2 texture_coordinate_1;\n"));
