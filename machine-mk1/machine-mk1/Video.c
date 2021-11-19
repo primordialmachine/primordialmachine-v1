@@ -15,7 +15,7 @@ static void initCanvas() {
   if (!setjmp(jumpTarget.environment)) {
     g_videoCanvas = (Machine_Video_Canvas*)Machine_Video_GL_Canvas_create();
     Machine_lock(g_videoCanvas);
-    g_videoContext = (Machine_VideoContext*)Machine_GL_VideoContext_create();
+    g_videoContext = (Machine_VideoContext*)Machine_Gl_VideoContext_create();
     Machine_lock(g_videoContext);
     Machine_popJumpTarget();
   } else {

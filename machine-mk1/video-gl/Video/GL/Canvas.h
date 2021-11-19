@@ -19,7 +19,7 @@
 /// @return The canvas.
 /// @todo Remove this from here.
 DEPRECATED
-GLFWwindow* Machine_GLFW_getWindow();
+GLFWwindow* Machine_Glfw_getWindow();
 
 MACHINE_DECLARE_CLASSTYPE(Machine_Video_GL_Canvas);
 

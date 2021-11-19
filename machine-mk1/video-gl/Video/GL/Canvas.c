@@ -16,13 +16,13 @@ static GLFWwindow* g_window = NULL;
 
 /// @brief Startup canvas.
 /// An undefined-op if the canvas is already started.
-void Machine_GLFW_startupCanvas();
+void Machine_Glfw_startupCanvas();
 
 /// @brief Shutdown canvas.
 /// An undefined-op if the canvas is not yet started.
-void Machine_GLFW_shutdownCanvas();
+void Machine_Glfw_shutdownCanvas();
 
-void Machine_GLFW_startupCanvas() {
+void Machine_Glfw_startupCanvas() {
   if (g_referenceCount == 0) {
     if (!glfwInit()) {
       fprintf(stderr, "%s:%d: glfwInit() failed\n", __FILE__, __LINE__);
@@ -59,7 +59,7 @@ void Machine_GLFW_startupCanvas() {
   g_referenceCount++;
 }
 
-void Machine_GLFW_shutdownCanvas() {
+void Machine_Glfw_shutdownCanvas() {
   if (0 == --g_referenceCount) {
     glfwMakeContextCurrent(NULL);
     glfwDestroyWindow(g_window);
@@ -68,23 +68,23 @@ void Machine_GLFW_shutdownCanvas() {
   }
 }
 
-GLFWwindow* Machine_GLFW_getWindow() {
+GLFWwindow* Machine_Glfw_getWindow() {
   return g_window;
 }
 
 static void Machine_Video_GL_Canvas_getFrameBuffersSize(Machine_Video_GL_Canvas* self, Machine_Integer* width, Machine_Integer* height) {
   int w, h;
-  glfwGetFramebufferSize(Machine_GLFW_getWindow(), &w, &h);
+  glfwGetFramebufferSize(Machine_Glfw_getWindow(), &w, &h);
   *width = w;
   *height = h;
 }
 
 static void Machine_Video_GL_Canvas_maximizeCanvas(Machine_Video_GL_Canvas* self) {
-  glfwMaximizeWindow(Machine_GLFW_getWindow());
+  glfwMaximizeWindow(Machine_Glfw_getWindow());
 }
 
 static void Machine_Video_GL_Canvas_swapFrameBuffers(Machine_Video_GL_Canvas* self) {
-  glfwSwapBuffers(Machine_GLFW_getWindow());
+  glfwSwapBuffers(Machine_Glfw_getWindow());
 }
 
 static void Machine_Video_GL_Canvas_setCanvasIcons(Machine_Video_GL_Canvas* self, Machine_List* images) {
@@ -127,16 +127,16 @@ static void Machine_Video_GL_Canvas_setCanvasIcons(Machine_Video_GL_Canvas* self
 }
 
 static void Machine_Video_GL_Canvas_pollEvents(Machine_Video_GL_Canvas* self) {
-  Machine_GLFW_pollEvents();
+  Machine_Glfw_pollEvents();
 }
 
 static Machine_Boolean Machine_Video_GL_Canvas_getQuitRequested(Machine_Video_GL_Canvas* self) {
-  return glfwWindowShouldClose(Machine_GLFW_getWindow());
+  return glfwWindowShouldClose(Machine_Glfw_getWindow());
 }
 
 static void Machine_Video_GL_Canvas_destruct(Machine_Video_GL_Canvas* self) {
-  Machine_GLFW_shutdownCanvasInput();
-  Machine_GLFW_shutdownCanvas();
+  Machine_Glfw_shutdownCanvasInput();
+  Machine_Glfw_shutdownCanvas();
 }
 
 static void Machine_Video_GL_Canvas_constructClass(Machine_Video_GL_Canvas_Class* self) {
@@ -152,8 +152,8 @@ void Machine_Video_GL_Canvas_construct(Machine_Video_GL_Canvas* self, size_t num
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { Machine_Value_StaticInitializerVoid() };
   Machine_Video_Canvas_construct((Machine_Video_Canvas*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
-  Machine_GLFW_startupCanvas();
-  Machine_GLFW_startupCanvasInput();
+  Machine_Glfw_startupCanvas();
+  Machine_Glfw_startupCanvasInput();
   Machine_setClassType((Machine_Object*)self, Machine_Video_GL_Canvas_getClassType());
 }
 

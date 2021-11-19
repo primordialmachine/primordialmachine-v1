@@ -7,13 +7,13 @@
 
 
 
-static void Machine_GL_ShaderProgram_visit(Machine_GL_ShaderProgram* self) {
+static void Machine_Gl_ShaderProgram_visit(Machine_Gl_ShaderProgram* self) {
   if (self->inputs) {
     Machine_Gc_visit(self->inputs);
   }
 }
 
-static void Machine_GL_ShaderProgram_destruct(Machine_GL_ShaderProgram* self) {
+static void Machine_Gl_ShaderProgram_destruct(Machine_Gl_ShaderProgram* self) {
   if (self->fragmentProgramId) {
     glDeleteShader(self->fragmentProgramId);
     self->fragmentProgramId = 0;
@@ -32,16 +32,16 @@ static void Machine_GL_ShaderProgram_destruct(Machine_GL_ShaderProgram* self) {
   }
 }
 
-static size_t Machine_GL_ShaderProgram_getNumberOfInputsImpl(Machine_GL_ShaderProgram const* self) {
+static size_t Machine_Gl_ShaderProgram_getNumberOfInputsImpl(Machine_Gl_ShaderProgram const* self) {
   return Machine_Collection_getSize((Machine_Collection*)self->inputs);
 }
 
-static Machine_ProgramInput* Machine_GL_ShaderProgram_getInputAtImpl(Machine_GL_ShaderProgram const* self, size_t index) {
+static Machine_ProgramInput* Machine_Gl_ShaderProgram_getInputAtImpl(Machine_Gl_ShaderProgram const* self, size_t index) {
   Machine_Value temporary = Machine_List_getAt(self->inputs, index);
   return (Machine_ProgramInput*)Machine_Value_getObject(&temporary);
 }
 
-static Machine_Boolean Machine_GL_ShaderProgram_addUpdateInputImpl(Machine_GL_ShaderProgram* self, Machine_String* name, Machine_ProgramInputType type, Machine_ProgramInputKind kind) {
+static Machine_Boolean Machine_Gl_ShaderProgram_addUpdateInputImpl(Machine_Gl_ShaderProgram* self, Machine_String* name, Machine_ProgramInputType type, Machine_ProgramInputKind kind) {
   for (size_t i = 0, n = Machine_ShaderProgram_getNumberOfInputs((Machine_ShaderProgram *)self); i < n; ++i) {
     Machine_ProgramInput* input = Machine_ShaderProgram_getInputAt((Machine_ShaderProgram *)self, i);
     if (Machine_String_isEqualTo(input->name, name)) {
@@ -102,7 +102,7 @@ static GLuint compileShader(const char* programText, Machine_ProgramKind program
   return id;
 }
 
-static void constructFromText(Machine_GL_ShaderProgram* self, const char* vertexProgramText, const char* geometryProgramText, const char* fragmentProgramText) {
+static void constructFromText(Machine_Gl_ShaderProgram* self, const char* vertexProgramText, const char* geometryProgramText, const char* fragmentProgramText) {
   GLuint vertexShaderId = 0, geometryShaderId = 0, fragmentShaderId = 0, programId = 0;
 
 #define ON_ERROR() \
@@ -189,13 +189,13 @@ static void constructFromText(Machine_GL_ShaderProgram* self, const char* vertex
   self->inputs = Machine_List_create();
 }
 
-static void Machine_GL_ShaderProgram_constructClass(Machine_GL_ShaderProgram_Class* self) {
-  ((Machine_ShaderProgram_Class*)self)->getNumberOfInputs = (size_t(*)(Machine_ShaderProgram const*)) & Machine_GL_ShaderProgram_getNumberOfInputsImpl;
-  ((Machine_ShaderProgram_Class*)self)->getInputAt = (Machine_ProgramInput * (*)(Machine_ShaderProgram const*, size_t)) & Machine_GL_ShaderProgram_getInputAtImpl;
-  ((Machine_ShaderProgram_Class*)self)->addUpdateInput = (Machine_Boolean(*)(Machine_ShaderProgram*, Machine_String*, Machine_ProgramInputType, Machine_ProgramInputKind)) & Machine_GL_ShaderProgram_addUpdateInputImpl;
+static void Machine_Gl_ShaderProgram_constructClass(Machine_Gl_ShaderProgram_Class* self) {
+  ((Machine_ShaderProgram_Class*)self)->getNumberOfInputs = (size_t(*)(Machine_ShaderProgram const*)) & Machine_Gl_ShaderProgram_getNumberOfInputsImpl;
+  ((Machine_ShaderProgram_Class*)self)->getInputAt = (Machine_ProgramInput * (*)(Machine_ShaderProgram const*, size_t)) & Machine_Gl_ShaderProgram_getInputAtImpl;
+  ((Machine_ShaderProgram_Class*)self)->addUpdateInput = (Machine_Boolean(*)(Machine_ShaderProgram*, Machine_String*, Machine_ProgramInputType, Machine_ProgramInputKind)) & Machine_Gl_ShaderProgram_addUpdateInputImpl;
 }
 
-void Machine_GL_ShaderProgram_construct(Machine_GL_ShaderProgram* self, size_t numberOfArguments, const Machine_Value* arguments) {
+void Machine_Gl_ShaderProgram_construct(Machine_Gl_ShaderProgram* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_ShaderProgram_construct((Machine_ShaderProgram*)self, numberOfArguments, arguments);
   if (numberOfArguments != 3) {
     Machine_setStatus(Machine_Status_InvalidNumberOfArguments);
@@ -214,13 +214,13 @@ void Machine_GL_ShaderProgram_construct(Machine_GL_ShaderProgram* self, size_t n
   constructFromText(self, v ? Machine_String_getBytes(v) : NULL,
                           g ? Machine_String_getBytes(g) : NULL,
                           f ? Machine_String_getBytes(f) : NULL);
-  Machine_setClassType((Machine_Object*)self, Machine_GL_ShaderProgram_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Gl_ShaderProgram_getClassType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_GL_ShaderProgram, Machine_ShaderProgram, Machine_GL_ShaderProgram_visit, Machine_GL_ShaderProgram_construct, Machine_GL_ShaderProgram_destruct, &Machine_GL_ShaderProgram_constructClass)
+MACHINE_DEFINE_CLASSTYPE(Machine_Gl_ShaderProgram, Machine_ShaderProgram, Machine_Gl_ShaderProgram_visit, Machine_Gl_ShaderProgram_construct, Machine_Gl_ShaderProgram_destruct, &Machine_Gl_ShaderProgram_constructClass)
 
-Machine_GL_ShaderProgram* Machine_GL_ShaderProgram_create(Machine_String* vertexProgramText, Machine_String* geometryProgramText, Machine_String* fragmentProgramText) {
-  Machine_ClassType* ty = Machine_GL_ShaderProgram_getClassType();
+Machine_Gl_ShaderProgram* Machine_Gl_ShaderProgram_create(Machine_String* vertexProgramText, Machine_String* geometryProgramText, Machine_String* fragmentProgramText) {
+  Machine_ClassType* ty = Machine_Gl_ShaderProgram_getClassType();
 
   static const size_t numberOfArguments = 3;
   Machine_Value arguments[3];
@@ -240,7 +240,7 @@ Machine_GL_ShaderProgram* Machine_GL_ShaderProgram_create(Machine_String* vertex
   else
     Machine_Value_setVoid(&arguments[2], Machine_Void_Void);
 
-  Machine_GL_ShaderProgram* self = (Machine_GL_ShaderProgram*)Machine_allocateClassObject(ty, numberOfArguments, arguments);
+  Machine_Gl_ShaderProgram* self = (Machine_Gl_ShaderProgram*)Machine_allocateClassObject(ty, numberOfArguments, arguments);
   return self;
 }
 
@@ -285,7 +285,7 @@ static void defineMatrixUniforms(Machine_StringBuffer* code, bool modelToWorld, 
 
 
 Machine_ShaderProgram*
-Machine_GL_ShaderProgram_generateDefaultShader
+Machine_Gl_ShaderProgram_generateDefaultShader
   (
     bool withMeshColor,
     bool withVertexColor,
@@ -368,7 +368,7 @@ Machine_GL_ShaderProgram_generateDefaultShader
   f = Machine_Object_toString((Machine_Object *)code);
   Machine_StringBuffer_clear(code);
 
-  Machine_ShaderProgram* shaderProgram = (Machine_ShaderProgram *)Machine_GL_ShaderProgram_create(v, NULL, f);
+  Machine_ShaderProgram* shaderProgram = (Machine_ShaderProgram *)Machine_Gl_ShaderProgram_create(v, NULL, f);
   Machine_ShaderProgram_addUpdateInput(shaderProgram, Machine_String_create(TZ("vertex_position")),
                                        Machine_ProgramInputType_Vector2, Machine_ProgramInputKind_Variable);
   if (withVertexColor) {
@@ -386,7 +386,7 @@ Machine_GL_ShaderProgram_generateDefaultShader
 }
 
 Machine_ShaderProgram*
-Machine_GL_ShaderProgram_generateShape2Shader
+Machine_Gl_ShaderProgram_generateShape2Shader
   (
   )
 {
@@ -436,7 +436,7 @@ Machine_GL_ShaderProgram_generateShape2Shader
   f = Machine_Object_toString((Machine_Object *)code);
   Machine_StringBuffer_clear(code);
 
-  Machine_ShaderProgram* shaderProgram = (Machine_ShaderProgram*)Machine_GL_ShaderProgram_create(v, NULL, f);
+  Machine_ShaderProgram* shaderProgram = (Machine_ShaderProgram*)Machine_Gl_ShaderProgram_create(v, NULL, f);
   Machine_ShaderProgram_addUpdateInput(shaderProgram, Machine_String_create(TZ("vertex_position")),
                                        Machine_ProgramInputType_Vector2, Machine_ProgramInputKind_Variable);
   return shaderProgram;
@@ -446,7 +446,7 @@ Machine_GL_ShaderProgram_generateShape2Shader
 }
 
 Machine_ShaderProgram*
-Machine_GL_ShaderProgram_generateText2Shader
+Machine_Gl_ShaderProgram_generateText2Shader
   (
     bool highPrecision
   )
@@ -560,7 +560,7 @@ Machine_GL_ShaderProgram_generateText2Shader
   f = Machine_Object_toString((Machine_Object *)code);
   Machine_StringBuffer_clear(code);
 
-  Machine_ShaderProgram* shaderProgram = (Machine_ShaderProgram*)Machine_GL_ShaderProgram_create(v, g, f);
+  Machine_ShaderProgram* shaderProgram = (Machine_ShaderProgram*)Machine_Gl_ShaderProgram_create(v, g, f);
   Machine_ShaderProgram_addUpdateInput(shaderProgram, Machine_String_create(TZ("vertex_position")),
                                        Machine_ProgramInputType_Vector2, Machine_ProgramInputKind_Variable);
   Machine_ShaderProgram_addUpdateInput(shaderProgram, Machine_String_create(TZ("vertex_texture_coordinate_1")),

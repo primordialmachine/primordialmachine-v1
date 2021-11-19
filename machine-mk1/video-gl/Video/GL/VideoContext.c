@@ -15,41 +15,41 @@
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-static void setDepthTestFunction(Machine_GL_VideoContext* self, Machine_DepthTestFunction depthTestFunction) {
+static void setDepthTestFunction(Machine_Gl_VideoContext* self, Machine_DepthTestFunction depthTestFunction) {
   self->depthTestFunction = depthTestFunction;
 }
 
-static Machine_DepthTestFunction getDepthTestFunction(Machine_GL_VideoContext const* self) {
+static Machine_DepthTestFunction getDepthTestFunction(Machine_Gl_VideoContext const* self) {
   return self->depthTestFunction;
 }
 
 
 
-static void setDepthWriteEnabled(Machine_GL_VideoContext* self, Machine_Boolean depthWriteEnabled) {
+static void setDepthWriteEnabled(Machine_Gl_VideoContext* self, Machine_Boolean depthWriteEnabled) {
   self->depthWriteEnabled = depthWriteEnabled;
 }
 
-static Machine_Boolean getDepthWriteEnabled(Machine_GL_VideoContext const* self) {
+static Machine_Boolean getDepthWriteEnabled(Machine_Gl_VideoContext const* self) {
   return self->depthWriteEnabled;
 }
 
 
 
-static void setClearDepth(Machine_GL_VideoContext* self, Machine_Real clearDepth) {
+static void setClearDepth(Machine_Gl_VideoContext* self, Machine_Real clearDepth) {
   self->clearDepth = clearDepth;
 }
 
-static Machine_Real getClearDepth(Machine_GL_VideoContext const* self) {
+static Machine_Real getClearDepth(Machine_Gl_VideoContext const* self) {
   return self->clearDepth;
 }
 
 
 
-static Machine_Integer getMaximalClipDistanceCount(Machine_GL_VideoContext const* self) {
+static Machine_Integer getMaximalClipDistanceCount(Machine_Gl_VideoContext const* self) {
   return self->clipDistances->n;
 }
 
-static void setClipDistanceEnabled(Machine_GL_VideoContext* self, Machine_Integer index, Machine_Boolean enabled) {
+static void setClipDistanceEnabled(Machine_Gl_VideoContext* self, Machine_Integer index, Machine_Boolean enabled) {
   if (index < 0 || index >= self->clipDistances->n) {
     Machine_setStatus(Machine_Status_IndexOutOfBounds);
     Machine_jump();
@@ -57,7 +57,7 @@ static void setClipDistanceEnabled(Machine_GL_VideoContext* self, Machine_Intege
   self->clipDistances->a[index].enabled = enabled;
 }
 
-static Machine_Boolean getClipDistanceEnabled(Machine_GL_VideoContext const* self, Machine_Integer index) {
+static Machine_Boolean getClipDistanceEnabled(Machine_Gl_VideoContext const* self, Machine_Integer index) {
   if (index < 0 || index >= self->clipDistances->n) {
     Machine_setStatus(Machine_Status_IndexOutOfBounds);
     Machine_jump();
@@ -67,34 +67,34 @@ static Machine_Boolean getClipDistanceEnabled(Machine_GL_VideoContext const* sel
 
 
 
-static void setIncomingBlendFunction(Machine_GL_VideoContext* self, Machine_BlendFunction incomingBlendFunction) {
+static void setIncomingBlendFunction(Machine_Gl_VideoContext* self, Machine_BlendFunction incomingBlendFunction) {
   self->incomingBlendFunction = incomingBlendFunction;
 }
 
-static Machine_BlendFunction getIncomingBlendFunction(Machine_GL_VideoContext const* self) {
+static Machine_BlendFunction getIncomingBlendFunction(Machine_Gl_VideoContext const* self) {
   return self->incomingBlendFunction;
 }
 
 
 
-static void setExistingBlendFunction(Machine_GL_VideoContext* self, Machine_BlendFunction existingBlendFunction) {
+static void setExistingBlendFunction(Machine_Gl_VideoContext* self, Machine_BlendFunction existingBlendFunction) {
   self->existingBlendFunction = existingBlendFunction;
 }
 
-static Machine_BlendFunction getExistingBlendFunction(Machine_GL_VideoContext const* self) {
+static Machine_BlendFunction getExistingBlendFunction(Machine_Gl_VideoContext const* self) {
   return self->existingBlendFunction;
 }
 
 
 
-static void setClearColor(Machine_GL_VideoContext* self, Machine_Math_Vector4 const* clearColor) {
+static void setClearColor(Machine_Gl_VideoContext* self, Machine_Math_Vector4 const* clearColor) {
   self->clearColor[0] = Machine_Math_Vector4_getX(clearColor);
   self->clearColor[1] = Machine_Math_Vector4_getY(clearColor);
   self->clearColor[2] = Machine_Math_Vector4_getZ(clearColor);
   self->clearColor[3] = Machine_Math_Vector4_getW(clearColor);
 }
 
-Machine_Math_Vector4 const* getClearColor(Machine_GL_VideoContext const* self) {
+Machine_Math_Vector4 const* getClearColor(Machine_Gl_VideoContext const* self) {
   Machine_Math_Vector4* clearColor = Machine_Math_Vector4_create();
   Machine_Math_Vector4_set(clearColor, self->clearColor[0], self->clearColor[1], 
                                        self->clearColor[2], self->clearColor[3]);
@@ -103,14 +103,14 @@ Machine_Math_Vector4 const* getClearColor(Machine_GL_VideoContext const* self) {
 
 
 
-static void setViewportRectangle(Machine_GL_VideoContext* self, Machine_Real left, Machine_Real bottom, Machine_Real width, Machine_Real height) {
+static void setViewportRectangle(Machine_Gl_VideoContext* self, Machine_Real left, Machine_Real bottom, Machine_Real width, Machine_Real height) {
   self->viewportRectangle->x = left;
   self->viewportRectangle->y = bottom;
   self->viewportRectangle->w = width;
   self->viewportRectangle->h = height;
 }
 
-static void getViewportRectangle(Machine_GL_VideoContext const* self, Machine_Real* left, Machine_Real* bottom, Machine_Real* width, Machine_Real* height) {
+static void getViewportRectangle(Machine_Gl_VideoContext const* self, Machine_Real* left, Machine_Real* bottom, Machine_Real* width, Machine_Real* height) {
   *left = self->viewportRectangle->x;
   *bottom = self->viewportRectangle->y;
   *width = self->viewportRectangle->w;
@@ -119,38 +119,38 @@ static void getViewportRectangle(Machine_GL_VideoContext const* self, Machine_Re
 
 
 
-static void drawDirect(Machine_GL_VideoContext* self, Machine_Integer i, Machine_Integer n) {
+static void drawDirect(Machine_Gl_VideoContext* self, Machine_Integer i, Machine_Integer n) {
   if (i < 0 || n < 0) {
     Machine_setStatus(Machine_Status_InvalidArgument);
     Machine_jump();
   }
   if (n > 0) {
-    Machine_GL_VideoContext_write(self);
+    Machine_Gl_VideoContext_write(self);
     Machine_UtilitiesGl_call(glDrawArrays(GL_TRIANGLES, i, n));
   }
 }
 
-static void drawIndirect(Machine_GL_VideoContext* self, Machine_Integer i, Machine_Integer n, uint8_t const* indices) {
+static void drawIndirect(Machine_Gl_VideoContext* self, Machine_Integer i, Machine_Integer n, uint8_t const* indices) {
   if (i < 0 || n < 0) {
     Machine_setStatus(Machine_Status_InvalidArgument);
     Machine_jump();
   }
   if (n > 0) {
-    Machine_GL_VideoContext_write(self);
+    Machine_Gl_VideoContext_write(self);
     Machine_UtilitiesGl_call(glDrawElements(GL_TRIANGLES, n, GL_UNSIGNED_BYTE, indices + i));
   }
 }
 
-static void clearColorBuffer(Machine_GL_VideoContext* self) {
-  Machine_GL_VideoContext_write(self);
+static void clearColorBuffer(Machine_Gl_VideoContext* self) {
+  Machine_Gl_VideoContext_write(self);
   glEnable(GL_SCISSOR_TEST);
   glScissor(self->viewportRectangle->x, self->viewportRectangle->y, self->viewportRectangle->w, self->viewportRectangle->h);
   Machine_UtilitiesGl_call(glClear(GL_COLOR_BUFFER_BIT));
   glDisable(GL_SCISSOR_TEST);
 }
 
-static void clearDepthBuffer(Machine_GL_VideoContext* self) {
-  Machine_GL_VideoContext_write(self);
+static void clearDepthBuffer(Machine_Gl_VideoContext* self) {
+  Machine_Gl_VideoContext_write(self);
   glEnable(GL_SCISSOR_TEST);
   glScissor(self->viewportRectangle->x, self->viewportRectangle->y, self->viewportRectangle->w, self->viewportRectangle->h);
   Machine_UtilitiesGl_call(glClear(GL_DEPTH_BUFFER_BIT));
@@ -158,26 +158,26 @@ static void clearDepthBuffer(Machine_GL_VideoContext* self) {
 }
 
 
-static Machine_VideoBuffer* createBuffer(Machine_GL_VideoContext *self) {
-  return (Machine_VideoBuffer*)Machine_GL_VideoBuffer_create();
+static Machine_VideoBuffer* createBuffer(Machine_Gl_VideoContext *self) {
+  return (Machine_VideoBuffer*)Machine_Gl_VideoBuffer_create();
 }
 
-static Machine_Texture* createTextureFromImage(Machine_GL_VideoContext* self, Machine_Image* image) {
-  return (Machine_Texture*)Machine_GL_Texture_create(image);
+static Machine_Texture* createTextureFromImage(Machine_Gl_VideoContext* self, Machine_Image* image) {
+  return (Machine_Texture*)Machine_Gl_Texture_create(image);
 }
 
-static Machine_ShaderProgram* createProgram(Machine_GL_VideoContext* self, Machine_String* vertexProgramText, Machine_String* geometryProgramText, Machine_String* fragmentProgramText) {
-  return (Machine_ShaderProgram*)Machine_GL_ShaderProgram_create(vertexProgramText, geometryProgramText, fragmentProgramText);
+static Machine_ShaderProgram* createProgram(Machine_Gl_VideoContext* self, Machine_String* vertexProgramText, Machine_String* geometryProgramText, Machine_String* fragmentProgramText) {
+  return (Machine_ShaderProgram*)Machine_Gl_ShaderProgram_create(vertexProgramText, geometryProgramText, fragmentProgramText);
 }
 
-static Machine_Binding* createBinding(Machine_GL_VideoContext* self, Machine_ShaderProgram* program, Machine_VertexDescriptor* vertexDescriptor, Machine_VideoBuffer* buffer) {
-  return (Machine_Binding*)Machine_GL_Binding_create(program, vertexDescriptor, buffer);
+static Machine_Binding* createBinding(Machine_Gl_VideoContext* self, Machine_ShaderProgram* program, Machine_VertexDescriptor* vertexDescriptor, Machine_VideoBuffer* buffer) {
+  return (Machine_Binding*)Machine_Gl_Binding_create(program, vertexDescriptor, buffer);
 }
 
 
 
-static void bindTexture(Machine_GL_VideoContext* self, size_t textureUnit, Machine_Texture* texture) {
-  Machine_GL_Texture* textureGL = (Machine_GL_Texture*)texture;
+static void bindTexture(Machine_Gl_VideoContext* self, size_t textureUnit, Machine_Texture* texture) {
+  Machine_Gl_Texture* textureGL = (Machine_Gl_Texture*)texture;
   Machine_UtilitiesGl_call(glActiveTexture(GL_TEXTURE0 + textureUnit));
   Machine_UtilitiesGl_call(glBindTexture(GL_TEXTURE_2D, textureGL->id));
 }
@@ -187,44 +187,44 @@ static void bindTexture(Machine_GL_VideoContext* self, size_t textureUnit, Machi
 static Machine_ShaderProgram*
 generateDefaultShader
   (
-    Machine_GL_VideoContext* self,
+    Machine_Gl_VideoContext* self,
     Machine_Boolean withMeshColor,
     Machine_Boolean withVertexColor,
     Machine_Boolean withTextureCoordinate,
     Machine_Boolean withTexture
   )
 {
-  return (Machine_ShaderProgram*)Machine_GL_ShaderProgram_generateDefaultShader(withMeshColor, withVertexColor, withTextureCoordinate, withTexture);
+  return (Machine_ShaderProgram*)Machine_Gl_ShaderProgram_generateDefaultShader(withMeshColor, withVertexColor, withTextureCoordinate, withTexture);
 }
 
 static Machine_ShaderProgram*
 generateShape2Shader
   (
-    Machine_GL_VideoContext* self
+    Machine_Gl_VideoContext* self
   )
 {
-  return (Machine_ShaderProgram*)Machine_GL_ShaderProgram_generateShape2Shader();
+  return (Machine_ShaderProgram*)Machine_Gl_ShaderProgram_generateShape2Shader();
 }
 
 static Machine_ShaderProgram*
 generateText2Shader
   (
-    Machine_GL_VideoContext* self,
+    Machine_Gl_VideoContext* self,
     Machine_Boolean highPrecision
   )
 {
-  return (Machine_ShaderProgram*)Machine_GL_ShaderProgram_generateText2Shader(highPrecision);
+  return (Machine_ShaderProgram*)Machine_Gl_ShaderProgram_generateText2Shader(highPrecision);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-static void Machine_GL_VideoContext_visit(Machine_GL_VideoContext* self) {
+static void Machine_Gl_VideoContext_visit(Machine_Gl_VideoContext* self) {
   if (self->viewportRectangle) {
     Machine_Gc_visit(self->viewportRectangle);
   }
 }
 
-static void Machine_GL_VideoContext_destruct(Machine_GL_VideoContext* self) {
+static void Machine_Gl_VideoContext_destruct(Machine_Gl_VideoContext* self) {
   if (self->clipDistances) {
     free(self->clipDistances->a);
     self->clipDistances->a = NULL;
@@ -273,7 +273,7 @@ static GLenum Machine_DepthTestFunction_toGL(Machine_DepthTestFunction self) {
   };
 }
 
-static void write(Machine_GL_VideoContext const* self) {
+static void write(Machine_Gl_VideoContext const* self) {
   // Depth testing.
   glEnable(GL_DEPTH_TEST);
   glDepthFunc(Machine_DepthTestFunction_toGL(self->depthTestFunction));
@@ -301,7 +301,7 @@ static void write(Machine_GL_VideoContext const* self) {
   glViewport(self->viewportRectangle->x, self->viewportRectangle->y, self->viewportRectangle->w, self->viewportRectangle->h);
 }
 
-static void Machine_GL_VideoContext_constructClass(Machine_GL_VideoContext_Class* self) {
+static void Machine_Gl_VideoContext_constructClass(Machine_Gl_VideoContext_Class* self) {
   self->write = &write;
 
   ((Machine_VideoContext_Class*)self)->setDepthTestFunction = (void (*)(Machine_VideoContext*, Machine_DepthTestFunction)) & setDepthTestFunction;
@@ -347,9 +347,9 @@ static void Machine_GL_VideoContext_constructClass(Machine_GL_VideoContext_Class
   ((Machine_VideoContext_Class*)self)->generateText2Shader = (Machine_ShaderProgram * (*)(Machine_VideoContext*, Machine_Boolean)) & generateText2Shader;
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_GL_VideoContext, Machine_VideoContext, &Machine_GL_VideoContext_visit, &Machine_GL_VideoContext_construct, &Machine_GL_VideoContext_destruct, &Machine_GL_VideoContext_constructClass)
+MACHINE_DEFINE_CLASSTYPE(Machine_Gl_VideoContext, Machine_VideoContext, &Machine_Gl_VideoContext_visit, &Machine_Gl_VideoContext_construct, &Machine_Gl_VideoContext_destruct, &Machine_Gl_VideoContext_constructClass)
 
-void Machine_GL_VideoContext_construct(Machine_GL_VideoContext* self, size_t numberOfArguments, Machine_Value const* arguments) {
+void Machine_Gl_VideoContext_construct(Machine_Gl_VideoContext* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_VideoContext_construct((Machine_VideoContext*)self, numberOfArguments, arguments);
   self->clearColor[0] = 0.f;
   self->clearColor[1] = 0.f;
@@ -363,7 +363,7 @@ void Machine_GL_VideoContext_construct(Machine_GL_VideoContext* self, size_t num
   {
     Machine_Integer width, height;
     int w, h;
-    glfwGetFramebufferSize(Machine_GLFW_getWindow(), &w, &h);
+    glfwGetFramebufferSize(Machine_Glfw_getWindow(), &w, &h);
     width = w; height = h;
     self->viewportRectangle = Machine_Math_Rectangle2_create();
     Machine_Math_Vector2* v;
@@ -380,12 +380,12 @@ void Machine_GL_VideoContext_construct(Machine_GL_VideoContext* self, size_t num
       Machine_setStatus(Machine_Status_EnvironmentFailed);
       Machine_jump();
     }
-    self->clipDistances = malloc(sizeof(Machine_GL_VideoContext_ClipDistances));
+    self->clipDistances = malloc(sizeof(Machine_Gl_VideoContext_ClipDistances));
     if (!self->clipDistances) {
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();
     }
-    self->clipDistances->a = malloc(((size_t)v) * sizeof(Machine_GL_VideoContext_ClipDistance));
+    self->clipDistances->a = malloc(((size_t)v) * sizeof(Machine_Gl_VideoContext_ClipDistance));
     if (!self->clipDistances->a) {
       free(self->clipDistances);
       self->clipDistances = NULL;
@@ -397,17 +397,17 @@ void Machine_GL_VideoContext_construct(Machine_GL_VideoContext* self, size_t num
       self->clipDistances->a[i].enabled = false;
     }
   }
-  Machine_setClassType((Machine_Object*)self, Machine_GL_VideoContext_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Gl_VideoContext_getClassType());
 }
 
-Machine_GL_VideoContext* Machine_GL_VideoContext_create() {
-  Machine_ClassType* ty = Machine_GL_VideoContext_getClassType();
+Machine_Gl_VideoContext* Machine_Gl_VideoContext_create() {
+  Machine_ClassType* ty = Machine_Gl_VideoContext_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
-  Machine_GL_VideoContext* self = (Machine_GL_VideoContext*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Machine_Gl_VideoContext* self = (Machine_Gl_VideoContext*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }
 
-void Machine_GL_VideoContext_write(Machine_GL_VideoContext const* self) {
-  MACHINE_VIRTUALCALL_NORETURN_NOARGS(Machine_GL_VideoContext, write);
+void Machine_Gl_VideoContext_write(Machine_Gl_VideoContext const* self) {
+  MACHINE_VIRTUALCALL_NORETURN_NOARGS(Machine_Gl_VideoContext, write);
 }

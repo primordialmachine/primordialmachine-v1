@@ -179,11 +179,11 @@ static void mouseButtonCallback(GLFWwindow* window, int button, int action, int 
   }
 }
 
-void Machine_GLFW_startupCanvasInput() {
+void Machine_Glfw_startupCanvasInput() {
   if (0 == g_referenceCount) {
-    glfwSetKeyCallback(Machine_GLFW_getWindow(), keyCallback);
-    glfwSetMouseButtonCallback(Machine_GLFW_getWindow(), mouseButtonCallback);
-    glfwSetCursorPosCallback(Machine_GLFW_getWindow(), cursorPositionCallback);
+    glfwSetKeyCallback(Machine_Glfw_getWindow(), keyCallback);
+    glfwSetMouseButtonCallback(Machine_Glfw_getWindow(), mouseButtonCallback);
+    glfwSetCursorPosCallback(Machine_Glfw_getWindow(), cursorPositionCallback);
     Machine_JumpTarget jumpTarget;
     Machine_pushJumpTarget(&jumpTarget);
     if (!setjmp(jumpTarget.environment)) {
@@ -199,22 +199,22 @@ void Machine_GLFW_startupCanvasInput() {
   }
 }
 
-void Machine_GLFW_shutdownCanvasInput() {
+void Machine_Glfw_shutdownCanvasInput() {
   if (0 == --g_referenceCount) {
     Machine_setRoot(g_events, false);
     g_events = NULL;
   }
 }
 
-void Machine_GLFW_pollEvents() {
+void Machine_Glfw_pollEvents() {
   glfwPollEvents();
   if (Machine_getStatus() != Machine_Status_Success) {
     Machine_jump();
   }
 }
 
-Machine_Integer Machine_GLFW_getNumberOfEvents();
+Machine_Integer Machine_Glfw_getNumberOfEvents();
 
-Machine_Object* Machine_GLFW_peekEvent();
+Machine_Object* Machine_Glfw_peekEvent();
 
-Machine_Object* Machine_GLFW_popEvent();
+Machine_Object* Machine_Glfw_popEvent();

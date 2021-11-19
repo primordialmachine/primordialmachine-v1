@@ -8,19 +8,19 @@
 
 
 
-MACHINE_DECLARE_CLASSTYPE(Machine_GL_Binding)
+MACHINE_DECLARE_CLASSTYPE(Machine_Gl_Binding)
 
-struct Machine_GL_Binding_Class {
+struct Machine_Gl_Binding_Class {
   Machine_Binding_Class __parent;
 };
 
-struct Machine_GL_Binding {
+struct Machine_Gl_Binding {
   Machine_Binding __parent;
 
   GLuint id;
 };
 
-Machine_GL_Binding* Machine_GL_Binding_create(Machine_ShaderProgram* program, Machine_VertexDescriptor* vertexDescriptor, Machine_VideoBuffer* buffer);
+Machine_Gl_Binding* Machine_Gl_Binding_create(Machine_ShaderProgram* program, Machine_VertexDescriptor* vertexDescriptor, Machine_VideoBuffer* buffer);
 
 
 

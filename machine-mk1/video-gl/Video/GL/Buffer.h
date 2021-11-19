@@ -8,23 +8,23 @@
 
 
 
-MACHINE_DECLARE_CLASSTYPE(Machine_GL_VideoBuffer)
+MACHINE_DECLARE_CLASSTYPE(Machine_Gl_VideoBuffer)
 
-struct Machine_GL_VideoBuffer_Class {
+struct Machine_Gl_VideoBuffer_Class {
   Machine_VideoBuffer_Class parent;
 };
 
-struct Machine_GL_VideoBuffer {
+struct Machine_Gl_VideoBuffer {
   Machine_VideoBuffer __parent;
   GLuint id;
 };
 
-void Machine_GL_VideoBuffer_construct(Machine_GL_VideoBuffer* self, size_t numberOfArguments, const Machine_Value* arguments);
+void Machine_Gl_VideoBuffer_construct(Machine_Gl_VideoBuffer* self, size_t numberOfArguments, const Machine_Value* arguments);
 
 
 /// @brief Create an empty buffer.
 /// @return The buffer.
-Machine_GL_VideoBuffer* Machine_GL_VideoBuffer_create();
+Machine_Gl_VideoBuffer* Machine_Gl_VideoBuffer_create();
 
 
 

@@ -2,14 +2,14 @@
 
 
 
-static void Machine_GL_Texture_destruct(Machine_GL_Texture* self) {
+static void Machine_Gl_Texture_destruct(Machine_Gl_Texture* self) {
   if (self->id) {
     glDeleteTextures(1, &self->id);
     self->id = 0;
   }
 }
 
-void Machine_GL_Texture_construct_fromImage(Machine_GL_Texture* self, Machine_Image* image) {
+void Machine_Gl_Texture_construct_fromImage(Machine_Gl_Texture* self, Machine_Image* image) {
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { {Machine_ValueFlag_Void, Machine_Void_Void} };
   Machine_Texture_construct((Machine_Texture*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
@@ -61,10 +61,10 @@ void Machine_GL_Texture_construct_fromImage(Machine_GL_Texture* self, Machine_Im
   Machine_setClassType((Machine_Object*)self, Machine_Texture_getClassType());
 }
 
-void Machine_GL_Texture_construct(Machine_GL_Texture* self, size_t numberOfArguments, const Machine_Value* arguments) {
+void Machine_Gl_Texture_construct(Machine_Gl_Texture* self, size_t numberOfArguments, const Machine_Value* arguments) {
   if (numberOfArguments == 1) {
     Machine_Image* image = (Machine_Image*)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0, Machine_Image_getClassType());
-    Machine_GL_Texture_construct_fromImage(self, image);
+    Machine_Gl_Texture_construct_fromImage(self, image);
   }
   else {
     Machine_setStatus(Machine_Status_InvalidNumberOfArguments);
@@ -72,13 +72,13 @@ void Machine_GL_Texture_construct(Machine_GL_Texture* self, size_t numberOfArgum
   }
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_GL_Texture, Machine_Texture, NULL, &Machine_GL_Texture_construct, &Machine_GL_Texture_destruct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_Gl_Texture, Machine_Texture, NULL, &Machine_Gl_Texture_construct, &Machine_Gl_Texture_destruct, NULL)
 
-Machine_GL_Texture* Machine_GL_Texture_create(Machine_Image* image) {
-  Machine_ClassType* ty = Machine_GL_Texture_getClassType();
+Machine_Gl_Texture* Machine_Gl_Texture_create(Machine_Image* image) {
+  Machine_ClassType* ty = Machine_Gl_Texture_getClassType();
   static const size_t NUMBER_OF_ARGUMENTS = 1;
   Machine_Value ARGUMENTS[1];
   Machine_Value_setObject(&ARGUMENTS[0], (Machine_Object*)image);
-  Machine_GL_Texture* self = (Machine_GL_Texture*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Machine_Gl_Texture* self = (Machine_Gl_Texture*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }
