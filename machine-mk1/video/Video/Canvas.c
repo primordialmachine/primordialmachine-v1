@@ -1,3 +1,4 @@
+#define MACHINE_VIDEO_PRIVATE (1)
 #include "Video/Canvas.h"
 
 

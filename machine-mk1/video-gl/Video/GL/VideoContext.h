@@ -6,6 +6,9 @@
 
 
 
+#if !defined(MACHINE_VIDEO_GL_PRIVATE)
+#error("Do not include this file directly, include `_Video_Gl.h` instead.")
+#endif
 #include "_Video.h"
 
 typedef struct Machine_Gl_VideoContext_ClipDistance {

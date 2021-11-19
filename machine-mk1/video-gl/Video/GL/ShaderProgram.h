@@ -6,6 +6,9 @@
 
 
 
+#if !defined(MACHINE_VIDEO_GL_PRIVATE)
+#error("Do not include this file directly, include `_Video_Gl.h` instead.")
+#endif
 #include "_Collections.h"
 #include "_Video.h"
 #include "Video/Gl/UtilitiesGL.h"
