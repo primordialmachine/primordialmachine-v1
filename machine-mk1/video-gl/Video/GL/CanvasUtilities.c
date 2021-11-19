@@ -1,11 +1,11 @@
 #define MACHINE_VIDEO_GL_PRIVATE (1)
-#include "./../GL/CanvasUtilities.h"
+#include "Video/Gl/CanvasUtilities.h"
 
 
 
 #include "_Collections.h"
 #include "_Input.h"
-#include "./../GL/UtilitiesGL.h"
+#include "Video/Gl/UtilitiesGl.h"
 
 
 static size_t g_referenceCount = 0;

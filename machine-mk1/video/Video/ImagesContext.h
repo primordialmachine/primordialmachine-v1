@@ -10,7 +10,7 @@
 #error("Do not include this file directly, include `_Video.h` instead.")
 #endif
 typedef struct Machine_Image Machine_Image;
-#include "./../Video/PixelFormat.h"
+#include "Video/PixelFormat.h"
 
 
 

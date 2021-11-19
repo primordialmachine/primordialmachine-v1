@@ -2,7 +2,7 @@
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #define MACHINE_VIDEO_PRIVATE (1)
-#include "./../Video/CanvasSizeChangedEvent.h"
+#include "Video/CanvasSizeChangedEvent.h"
 
 static void Machine_CanvasSizeChangedEvent_visit(Machine_CanvasSizeChangedEvent* self)
 {/*Intentionally empty.*/}

@@ -2,7 +2,7 @@
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #define MACHINE_VIDEO_PRIVATE (1)
-#include "./../Video/VideoContext.h"
+#include "Video/VideoContext.h"
 
 static void Machine_VideoContext_visit(Machine_VideoContext* self)
 {/*Intentionally empty.*/}

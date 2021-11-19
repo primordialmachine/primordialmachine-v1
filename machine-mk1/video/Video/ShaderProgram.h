@@ -9,9 +9,9 @@
 #if !defined(MACHINE_VIDEO_PRIVATE)
 #error("Do not include this file directly, include `_Video.h` instead.")
 #endif
-#include "./../Video/ProgramInput.h"
-#include "./../Video/ProgramInputKind.h"
-#include "./../Video/ProgramInputType.h"
+#include "Video/ProgramInput.h"
+#include "Video/ProgramInputKind.h"
+#include "Video/ProgramInputType.h"
 
 
 

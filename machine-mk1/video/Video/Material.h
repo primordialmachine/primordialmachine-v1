@@ -10,8 +10,8 @@
 #error("Do not include this file directly, include `_Video.h` instead.")
 #endif
 
-#include "./../Video/BlendFunction.h"
-#include "./../Video/DepthTestFunction.h"
+#include "Video/BlendFunction.h"
+#include "Video/DepthTestFunction.h"
 #include "_Math.h"
 
 

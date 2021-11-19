@@ -10,14 +10,14 @@
 #error("Do not include this file directly, include `_Video.h` instead.")
 #endif
 #include "_Math.h"
-#include "Binding.h"
-#include "Buffer.h"
-#include "BlendFunction.h"
-#include "DepthTestFunction.h"
-#include "Image.h"
-#include "ShaderProgram.h"
-#include "Texture.h"
-#include "VertexDescriptor.h"
+#include "Video/Binding.h"
+#include "Video/Buffer.h"
+#include "Video/BlendFunction.h"
+#include "Video/DepthTestFunction.h"
+#include "Video/Image.h"
+#include "Video/ShaderProgram.h"
+#include "Video/Texture.h"
+#include "Video/VertexDescriptor.h"
 
 
 

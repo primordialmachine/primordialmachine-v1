@@ -2,7 +2,7 @@
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #define MACHINE_VIDEO_PRIVATE (1)
-#include "./../Video/Material.h"
+#include "Video/Material.h"
 
 static void Machine_Material_visit(Machine_Material* self);
 

@@ -3,7 +3,7 @@
 
 
 
-#include "./../GL/Canvas.h"
+#include "Video/Gl/Canvas.h"
 
 
 

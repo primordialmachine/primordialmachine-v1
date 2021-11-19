@@ -10,7 +10,7 @@
 #error("Do not include this file directly, include `_Video.h` instead.")
 #endif
 
-#include "./../Video/PixelFormat.h"
+#include "Video/PixelFormat.h"
 
 
 

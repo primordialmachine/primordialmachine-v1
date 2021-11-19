@@ -10,8 +10,8 @@
 #error("Do not include this file directly, include `_Video.h` instead.")
 #endif
 
-#include "./../Video/ProgramInputKind.h"
-#include "./../Video/ProgramInputType.h"
+#include "Video/ProgramInputKind.h"
+#include "Video/ProgramInputType.h"
 
 
 

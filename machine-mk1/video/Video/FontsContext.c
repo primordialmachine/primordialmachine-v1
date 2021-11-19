@@ -2,7 +2,7 @@
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #define MACHINE_VIDEO_PRIVATE (1)
-#include "./../Video/FontsContext.h"
+#include "Video/FontsContext.h"
 
 
 MACHINE_DEFINE_CLASSTYPE(Machine_FontsContext, Machine_Object, NULL, &Machine_FontsContext_construct, NULL, NULL)

@@ -11,7 +11,7 @@
 #endif
 
 #include "_Runtime.h"
-#include "./../Video/VertexElementSemantics.h"
+#include "Video/VertexElementSemantics.h"
 
 
 

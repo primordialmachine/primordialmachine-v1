@@ -2,13 +2,13 @@
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #define MACHINE_VIDEO_PRIVATE (1)
-#include "./../Video/Binding.h"
+#include "Video/Binding.h"
 
 
 
-#include "./../Video/Buffer.h"
-#include "./../Video/ShaderProgram.h"
-#include "./../Video/VertexDescriptor.h"
+#include "Video/Buffer.h"
+#include "Video/ShaderProgram.h"
+#include "Video/VertexDescriptor.h"
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 

@@ -1,15 +1,15 @@
 #define MACHINE_VIDEO_GL_PRIVATE (1)
-#include "./../GL/VideoContext.h"
+#include "Video/Gl/VideoContext.h"
 
 
 
 #include <malloc.h>
-#include "./../GL/UtilitiesGL.h"
-#include "./../GL/Binding.h"
-#include "./../GL/Buffer.h"
-#include "./../GL/Canvas.h"
-#include "./../GL/ShaderProgram.h"
-#include "./../GL/Texture.h"
+#include "Video/Gl/UtilitiesGL.h"
+#include "Video/Gl/Binding.h"
+#include "Video/Gl/Buffer.h"
+#include "Video/Gl/Canvas.h"
+#include "Video/Gl/ShaderProgram.h"
+#include "Video/Gl/Texture.h"
 
 
 

@@ -1,15 +1,15 @@
 #define MACHINE_VIDEO_GL_PRIVATE (1)
-#include "./../GL/Canvas.h"
+#include "Video/Gl/Canvas.h"
 
 
 
-#include "CanvasUtilities.h"
+#include "Video/Gl/CanvasUtilities.h"
 #include <malloc.h>
 
 
 
-#include "AMD/PowerExpress.i"
-#include "NVIDIA/Optimus.i"
+#include "Video/Gl/Amd/PowerExpress.i"
+#include "Video/Gl/Nvidia/Optimus.i"
 
 static size_t g_referenceCount = 0;
 static GLFWwindow* g_window = NULL;

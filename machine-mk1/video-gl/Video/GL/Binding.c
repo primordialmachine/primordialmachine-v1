@@ -1,8 +1,11 @@
-#include "./../GL/Binding.h"
+/// @file Video/Gl/Binding.c
+/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
+/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
+#include "Video/Gl/Binding.h"
 
 
 
-#include "./../GL/ShaderProgram.h"
+#include "Video/Gl/ShaderProgram.h"
 
 
 
