@@ -8,8 +8,8 @@
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
 
-#include "./Runtime/String.h"
-#include "./Runtime/ByteBuffer.h"
+#include "Runtime/String.h"
+#include "Runtime/ByteBuffer.h"
 
 /// @brief Get the contents of a file.
 /// @param path The path.

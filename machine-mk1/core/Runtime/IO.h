@@ -8,14 +8,14 @@
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
 
-#include "./../Machine.h"
+#include "Machine.h"
 #include <stdio.h>
 
-#include "./../Runtime/IO/ExistingFilePolicy.h"
-#include "./../Runtime/IO/FileAccessMode.h"
-#include "./../Runtime/IO/getFileContents.h"
-#include "./../Runtime/IO/NonExistingFilePolicy.h"
-#include "./../Runtime/IO/setFileContents.h"
+#include "Runtime/IO/ExistingFilePolicy.h"
+#include "Runtime/IO/FileAccessMode.h"
+#include "Runtime/IO/getFileContents.h"
+#include "Runtime/IO/NonExistingFilePolicy.h"
+#include "Runtime/IO/setFileContents.h"
 
 /// @brief Open a file for reading.
 /// @param path The path.

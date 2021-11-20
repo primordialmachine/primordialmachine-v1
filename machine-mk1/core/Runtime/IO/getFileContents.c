@@ -2,9 +2,9 @@
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #define MACHINE_RUNTIME_PRIVATE (1)
-#include "./../../Runtime/IO/getFileContents.h"
+#include "Runtime/IO/getFileContents.h"
 
-#include "./../../Runtime/IO/_FileMapping.h"
+#include "Runtime/IO/_FileMapping.h"
 
 Machine_ByteBuffer* Machine_getFileContents(Machine_String* path) {
   path = Machine_String_concatenate(path, Machine_String_create("", 1));

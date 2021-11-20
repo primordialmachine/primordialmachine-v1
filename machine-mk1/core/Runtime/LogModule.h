@@ -14,8 +14,8 @@
 
 
 
-#include "./../Runtime/Configuration.h"
-#include "./../Runtime/Status.h"
+#include "Runtime/Configuration.h"
+#include "Runtime/Status.h"
 
 
 

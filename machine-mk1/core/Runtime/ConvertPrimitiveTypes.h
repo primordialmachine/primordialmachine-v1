@@ -11,7 +11,7 @@
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
 
-#include "./../Runtime/PrimitiveTypes.h"
+#include "Runtime/PrimitiveTypes.h"
 typedef struct Machine_String Machine_String;
 
 
