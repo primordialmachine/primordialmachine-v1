@@ -31,6 +31,13 @@ IndentCaseLabels: true
 # Add space before '(' in control statements, otherwise do not add space before '('.
 SpaceBeforeParens: ControlStatements
 
+# Do not allow
+# T f() { ... }
+# only allow
+# T f() {
+# }
+AllowShortFunctionsOnASingleLine: false
+
 # When to add a break before '{' and '}'.
 BreakBeforeBraces: Custom
 BraceWrapping:
