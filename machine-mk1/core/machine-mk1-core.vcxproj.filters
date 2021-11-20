@@ -19,18 +19,6 @@
     <Filter Include="Quelldateien\Runtime">
       <UniqueIdentifier>{f40b0be6-7171-4e7e-a276-f05094bbbcb3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headerdateien\Runtime\IO">
-      <UniqueIdentifier>{82efd535-74da-4b12-a95b-23d5f0294a4a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Quelldateien\Runtime\IO">
-      <UniqueIdentifier>{4455e3c1-14c8-4689-978a-1dd9f18005ca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Quelldateien\Runtime\GC">
-      <UniqueIdentifier>{ac67bad9-3bff-4662-99c8-47172932081a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headerdateien\Runtime\GC">
-      <UniqueIdentifier>{d0f319a8-d7cc-4537-bdca-85ee55581e4e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Headerdateien\Runtime\Object">
       <UniqueIdentifier>{a7aa6258-b626-4dab-8034-ecbddcadb510}</UniqueIdentifier>
     </Filter>
@@ -42,6 +30,18 @@
     </Filter>
     <Filter Include="Quelldateien\Runtime\Object">
       <UniqueIdentifier>{d75e0342-ffd4-4e6c-8fde-e0b8b30dfc15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Runtime\Gc">
+      <UniqueIdentifier>{d0f319a8-d7cc-4537-bdca-85ee55581e4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Runtime\Io">
+      <UniqueIdentifier>{82efd535-74da-4b12-a95b-23d5f0294a4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Runtime\Gc">
+      <UniqueIdentifier>{ac67bad9-3bff-4662-99c8-47172932081a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Runtime\Io">
+      <UniqueIdentifier>{4455e3c1-14c8-4689-978a-1dd9f18005ca}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -66,7 +66,7 @@
     <ClCompile Include="Runtime\String.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
-    <ClCompile Include="Runtime\IO.c">
+    <ClCompile Include="Runtime\Io.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
     <ClCompile Include="Runtime\Value.c">
@@ -75,17 +75,17 @@
     <ClCompile Include="Runtime\LogModule.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
-    <ClCompile Include="Runtime\IO\_FileHandle.c">
-      <Filter>Quelldateien\Runtime\IO</Filter>
+    <ClCompile Include="Runtime\Io\_FileHandle.c">
+      <Filter>Quelldateien\Runtime\Io</Filter>
     </ClCompile>
-    <ClCompile Include="Runtime\IO\_FileMapping.c">
-      <Filter>Quelldateien\Runtime\IO</Filter>
+    <ClCompile Include="Runtime\Io\_FileMapping.c">
+      <Filter>Quelldateien\Runtime\Io</Filter>
     </ClCompile>
-    <ClCompile Include="Runtime\IO\getFileContents.c">
-      <Filter>Quelldateien\Runtime\IO</Filter>
+    <ClCompile Include="Runtime\Io\getFileContents.c">
+      <Filter>Quelldateien\Runtime\Io</Filter>
     </ClCompile>
-    <ClCompile Include="Runtime\IO\setFileContents.c">
-      <Filter>Quelldateien\Runtime\IO</Filter>
+    <ClCompile Include="Runtime\Io\setFileContents.c">
+      <Filter>Quelldateien\Runtime\Io</Filter>
     </ClCompile>
     <ClCompile Include="Runtime\Arguments.c">
       <Filter>Quelldateien\Runtime</Filter>
@@ -99,8 +99,8 @@
     <ClCompile Include="Runtime\StackModule.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
-    <ClCompile Include="Runtime\GC\GC.c">
-      <Filter>Quelldateien\Runtime\GC</Filter>
+    <ClCompile Include="Runtime\Gc\Gc.c">
+      <Filter>Quelldateien\Runtime\Gc</Filter>
     </ClCompile>
     <ClCompile Include="Runtime\StaticVariablesModule.c">
       <Filter>Quelldateien\Runtime</Filter>
@@ -158,7 +158,7 @@
     <ClInclude Include="Runtime\String.h">
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
-    <ClInclude Include="Runtime\IO.h">
+    <ClInclude Include="Runtime\Io.h">
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\Value.h">
@@ -170,26 +170,26 @@
     <ClInclude Include="Runtime\Configuration.h">
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
-    <ClInclude Include="Runtime\IO\NonExistingFilePolicy.h">
-      <Filter>Headerdateien\Runtime\IO</Filter>
+    <ClInclude Include="Runtime\Io\NonExistingFilePolicy.h">
+      <Filter>Headerdateien\Runtime\Io</Filter>
     </ClInclude>
-    <ClInclude Include="Runtime\IO\FileAccessMode.h">
-      <Filter>Headerdateien\Runtime\IO</Filter>
+    <ClInclude Include="Runtime\Io\FileAccessMode.h">
+      <Filter>Headerdateien\Runtime\Io</Filter>
     </ClInclude>
-    <ClInclude Include="Runtime\IO\ExistingFilePolicy.h">
-      <Filter>Headerdateien\Runtime\IO</Filter>
+    <ClInclude Include="Runtime\Io\ExistingFilePolicy.h">
+      <Filter>Headerdateien\Runtime\Io</Filter>
     </ClInclude>
-    <ClInclude Include="Runtime\IO\_FileHandle.h">
-      <Filter>Headerdateien\Runtime\IO</Filter>
+    <ClInclude Include="Runtime\Io\_FileHandle.h">
+      <Filter>Headerdateien\Runtime\Io</Filter>
     </ClInclude>
-    <ClInclude Include="Runtime\IO\_FileMapping.h">
-      <Filter>Headerdateien\Runtime\IO</Filter>
+    <ClInclude Include="Runtime\Io\_FileMapping.h">
+      <Filter>Headerdateien\Runtime\Io</Filter>
     </ClInclude>
-    <ClInclude Include="Runtime\IO\getFileContents.h">
-      <Filter>Headerdateien\Runtime\IO</Filter>
+    <ClInclude Include="Runtime\Io\getFileContents.h">
+      <Filter>Headerdateien\Runtime\Io</Filter>
     </ClInclude>
-    <ClInclude Include="Runtime\IO\setFileContents.h">
-      <Filter>Headerdateien\Runtime\IO</Filter>
+    <ClInclude Include="Runtime\Io\setFileContents.h">
+      <Filter>Headerdateien\Runtime\Io</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\Arguments.h">
       <Filter>Headerdateien\Runtime</Filter>
@@ -203,8 +203,8 @@
     <ClInclude Include="Runtime\StackModule.h">
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
-    <ClInclude Include="Runtime\GC\GC.h">
-      <Filter>Headerdateien\Runtime\GC</Filter>
+    <ClInclude Include="Runtime\Gc\Gc.h">
+      <Filter>Headerdateien\Runtime\Gc</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\StaticVariablesModule.h">
       <Filter>Headerdateien\Runtime</Filter>

@@ -20,7 +20,7 @@
 #include "Runtime/Status.h"
 #include "Runtime/Value.h"
 
-#include "Runtime/GC/GC.h"
+#include "Runtime/Gc/Gc.h"
 #include "Runtime/Object/ClassType.h"
 #include "Runtime/Object/Object.h"
 

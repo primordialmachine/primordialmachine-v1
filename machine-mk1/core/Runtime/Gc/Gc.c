@@ -1,8 +1,8 @@
-/// @file Runtime/GC/GC.c
+/// @file Runtime/Gc/Gc.c
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #define MACHINE_RUNTIME_PRIVATE (1)
-#include "Runtime/GC/GC.h"
+#include "Runtime/Gc/Gc.h"
 
 
 

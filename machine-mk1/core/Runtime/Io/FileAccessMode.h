@@ -1,4 +1,4 @@
-/// @file Runtime/IO/FileAccessMode.h
+/// @file Runtime/Io/FileAccessMode.h
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #if !defined(MACHINE_RUNTIME_IO_FILEACCESSMODE_H_INCLUDED)

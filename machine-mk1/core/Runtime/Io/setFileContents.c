@@ -1,10 +1,10 @@
-/// @file Runtime/IO/setFileContents.c
+/// @file Runtime/Io/setFileContents.c
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #define MACHINE_RUNTIME_PRIVATE (1)
-#include "Runtime/IO/setFileContents.h"
+#include "Runtime/Io/setFileContents.h"
 
-#include "Runtime/IO/_FileMapping.h"
+#include "Runtime/Io/_FileMapping.h"
 
 void Machine_setFileContents(Machine_String* path, Machine_ByteBuffer* bytes) {
   _Machine_FileMapping fileMapping;

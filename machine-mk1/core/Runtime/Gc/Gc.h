@@ -1,4 +1,4 @@
-/// @file Runtime/GC/GC.h
+/// @file Runtime/Gc/Gc.h
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #if !defined(MACHINE_RUNTIME_GC_GC_H_INCLUDED)

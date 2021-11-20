@@ -1,4 +1,4 @@
-/// @file Runtime/IO/_FileHandle.h
+/// @file Runtime/Io/_FileHandle.h
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #if !defined(MACHINE_RUNTIME_IO__FILEHANDLE_H_INCLUDED)
@@ -10,9 +10,9 @@
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
 
-#include "Runtime/IO/ExistingFilePolicy.h"
-#include "Runtime/IO/FileAccessMode.h"
-#include "Runtime/IO/NonExistingFilePolicy.h"
+#include "Runtime/Io/ExistingFilePolicy.h"
+#include "Runtime/Io/FileAccessMode.h"
+#include "Runtime/Io/NonExistingFilePolicy.h"
 #include "Runtime/String.h"
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>

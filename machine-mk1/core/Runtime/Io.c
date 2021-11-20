@@ -1,8 +1,8 @@
-/// @file Runtime/IO.c
+/// @file Runtime/Io.c
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #define MACHINE_RUNTIME_PRIVATE (1)
-#include "Runtime/IO.h"
+#include "Runtime/Io.h"
 
 
 #include "Runtime/String.h"

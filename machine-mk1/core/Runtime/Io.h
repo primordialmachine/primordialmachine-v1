@@ -1,4 +1,4 @@
-/// @file Runtime/IO.h
+/// @file Runtime/Io.h
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #if !defined(MACHINE_RUNTIME_IO_H_INCLUDED)
@@ -11,11 +11,11 @@
 #include "Machine.h"
 #include <stdio.h>
 
-#include "Runtime/IO/ExistingFilePolicy.h"
-#include "Runtime/IO/FileAccessMode.h"
-#include "Runtime/IO/getFileContents.h"
-#include "Runtime/IO/NonExistingFilePolicy.h"
-#include "Runtime/IO/setFileContents.h"
+#include "Runtime/Io/ExistingFilePolicy.h"
+#include "Runtime/Io/FileAccessMode.h"
+#include "Runtime/Io/getFileContents.h"
+#include "Runtime/Io/NonExistingFilePolicy.h"
+#include "Runtime/Io/setFileContents.h"
 
 /// @brief Open a file for reading.
 /// @param path The path.
