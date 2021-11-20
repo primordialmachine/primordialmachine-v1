@@ -20,7 +20,7 @@ void* Machine_Eal_alloc_a(size_t n, size_t m) {
   return Machine_Eal_alloc(l);
 }
 
-void* c_realloc(void* p, size_t n) {
+void* Machine_Eal_realloc(void* p, size_t n) {
   if (p == NULL) {
     return NULL;
   }
@@ -31,12 +31,12 @@ void* c_realloc(void* p, size_t n) {
   return q;
 }
 
-void* c_realloc_a(void* p, size_t n, size_t m) {
+void* Machine_Eal_realloc_a(void* p, size_t n, size_t m) {
   size_t l;
   if (!Machine_Eal_multiplySafe_sz(&l, n, m)) {
     return NULL;
   }
-  return c_realloc(p, l);
+  return Machine_Eal_realloc(p, l);
 }
 
 void Machine_Eal_dealloc(void* p) {

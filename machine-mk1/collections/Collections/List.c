@@ -94,7 +94,7 @@ static void insertAt(Machine_List* self, size_t index, Machine_Value value) {
       Machine_setStatus(status);
       Machine_jump();
     }
-    void* newElements = c_realloc_a(self->elements, sizeof(Machine_Value), newCapacity);
+    void* newElements = Machine_Eal_realloc_a(self->elements, sizeof(Machine_Value), newCapacity);
     if (!newElements) {
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();

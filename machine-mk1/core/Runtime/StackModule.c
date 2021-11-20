@@ -67,7 +67,8 @@ static void Stack_ensureFreeCapacity(Stack* self, size_t requiredFreeCapacity) {
     // TODO: This ensures that we have enough free capacity in any case.
     // However, we should try to allocate more to avoid reallocating over and over.
     size_t newCapacity = self->capacity + requiredAdditionalCapacity;
-    Machine_Value* newElements = c_realloc_a(self->elements, sizeof(Machine_Value), newCapacity);
+    Machine_Value* newElements
+        = Machine_Eal_realloc_a(self->elements, sizeof(Machine_Value), newCapacity);
     if (newElements) {
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();

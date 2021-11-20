@@ -61,7 +61,7 @@ void Machine_ByteBuffer_insertBytesAt(Machine_ByteBuffer* self, size_t i, char c
   size_t fc = self->c - self->s;
   if (fc < n) {
     size_t ac = n - fc; // additional capacity
-    char* p = c_realloc(self->p, self->c + ac);
+    char* p = Machine_Eal_realloc(self->p, self->c + ac);
     if (!p) {
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();

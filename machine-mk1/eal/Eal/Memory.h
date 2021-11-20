@@ -30,7 +30,7 @@ void* Machine_Eal_alloc_a(size_t n, size_t m);
 /// @remark This function fails if not enough memory can be allocated.
 /// @success The old memory block was deallocated.
 /// @failure The old memory block was not modified.
-void* c_realloc(void* p, size_t n);
+void* Machine_Eal_realloc(void* p, size_t n);
 
 /// @brief Reallocate a memory block of the specified length.
 /// @param p A pointer to the memory block.
@@ -40,7 +40,7 @@ void* c_realloc(void* p, size_t n);
 /// @remark This function fails if the product <code>n*m</code> would overflow.
 /// @success The old memory block was deallocated.
 /// @failure The old memory block was not modified.
-void* c_realloc_a(void* p, size_t n, size_t m);
+void* Machine_Eal_realloc_a(void* p, size_t n, size_t m);
 
 /// @brief Deallocate a memory block.
 /// @param p A poitner to the memory block or a null pointer.
