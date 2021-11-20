@@ -20,11 +20,11 @@ void Machine_Signals_Connection_construct(Machine_Signals_Connection* self, size
   self->name = (Machine_String*)Machine_Value_getString(&arguments[0]);
   self->context = (Machine_Object*)Machine_Value_getObject(&arguments[1]);
   self->callback = (Machine_ForeignProcedure*)Machine_Value_getForeignProcedure(&arguments[2]);
-  Machine_setClassType((Machine_Object*)self, Machine_Signals_Connection_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Signals_Connection_getType());
 }
 
 Machine_Signals_Connection* Machine_Signals_Connection_create(Machine_String* name, Machine_Object* context, Machine_ForeignProcedure* callback) {
-  Machine_ClassType* ty = Machine_Signals_Connection_getClassType();
+  Machine_ClassType* ty = Machine_Signals_Connection_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 3;
   Machine_Value ARGUMENTS[3];
   Machine_Value_setString(&ARGUMENTS[0], name);

@@ -14,13 +14,13 @@ static void Machine_GDL_Parser_visit(Machine_GDL_Parser* self) {
 static void Machine_GDL_Parser_construct(Machine_GDL_Parser* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->scanner = Machine_GDL_Scanner_create(Machine_String_create("<empty input>", strlen("<empty input>")), Machine_ByteBuffer_create());
-  Machine_setClassType((Machine_Object*)self, Machine_GDL_Parser_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_GDL_Parser_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_GDL_Parser, Machine_Object, &Machine_GDL_Parser_visit, &Machine_GDL_Parser_construct, NULL, NULL)
 
 Machine_GDL_Parser* Machine_GDL_Parser_create() {
-  Machine_ClassType* ty = Machine_GDL_Parser_getClassType();
+  Machine_ClassType* ty = Machine_GDL_Parser_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_GDL_Parser* self = (Machine_GDL_Parser*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);

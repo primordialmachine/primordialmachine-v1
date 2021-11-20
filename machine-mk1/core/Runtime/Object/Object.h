@@ -3,6 +3,9 @@
 
 
 
+#if !defined(MACHINE_RUNTIME_PRIVATE)
+#error("Do not include this file directly, include `_Runtime.h` instead.")
+#endif
 #include "Runtime/PrimitiveTypes.h"
 #include "Runtime/String.h"
 #include "Runtime/Object/ClassType.h"
@@ -12,7 +15,7 @@ typedef struct Machine_Object_Class Machine_Object_Class;
 
 typedef struct Machine_Object Machine_Object;
 
-/** @brief Tag flag indicating a class type object tag. */
+/// @brief Tag flag indicating a class type object tag.
 #define Machine_Flag_Class (32)
 
 typedef struct Machine_ClassObjectTag {
@@ -38,7 +41,7 @@ Machine_ClassObjectTag* t2cot(void* src);
 Machine_Object* cot2o(void* src);
 
 
-Machine_ClassType* Machine_Object_getClassType();
+Machine_ClassType* Machine_Object_getType();
 
 /// @brief Get the hash value of this object.
 /// @param self This object.
@@ -79,44 +82,6 @@ void Machine_setClassType(Machine_Object* object, Machine_ClassType* classType);
 /// @param object The object.
 /// @return The class type.
 Machine_ClassType* Machine_getClassType(Machine_Object* object);
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-#define MACHINE_DECLARE_CLASSTYPE(NAME) \
-  typedef struct NAME NAME; \
-  typedef struct NAME##_Class NAME##_Class; \
-  Machine_ClassType *NAME##_getClassType();
-
-#define MACHINE_DEFINE_CLASSTYPE(THIS_TYPE, PARENT_TYPE, VISIT, CONSTRUCT, DESTRUCT, CLASS_CONSTRUCT) \
-\
-  static Machine_ClassType *g_##THIS_TYPE##_ClassType = NULL; \
-\
-  static void THIS_TYPE##_onTypeDestroyed() { \
-    g_##THIS_TYPE##_ClassType = NULL; \
-  } \
-\
-  Machine_ClassType* THIS_TYPE##_getClassType() { \
-    if (!g_##THIS_TYPE##_ClassType) { \
-      Machine_CreateClassTypeArgs args = { \
-        .createTypeArgs = { \
-          .typeRemoved = (Machine_TypeRemovedCallback*)&THIS_TYPE##_onTypeDestroyed, \
-        }, \
-        .parent = PARENT_TYPE##_getClassType(), \
-        .size = sizeof(THIS_TYPE), \
-        .visit = (Machine_ClassObjectVisitCallback*)VISIT, \
-        .construct = (Machine_ClassObjectConstructCallback*)CONSTRUCT, \
-        .destruct = (Machine_ClassObjectDestructCallback*)DESTRUCT, \
-        .classSize = sizeof(THIS_TYPE##_Class), \
-        .constructClass = (Machine_ClassConstructCallback*)CLASS_CONSTRUCT, \
-      }; \
-      g_##THIS_TYPE##_ClassType = \
-        Machine_createClassType \
-          ( \
-            &args \
-          ); \
-    } \
-    return g_##THIS_TYPE##_ClassType; \
-  }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 

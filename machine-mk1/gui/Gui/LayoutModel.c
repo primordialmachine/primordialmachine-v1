@@ -13,14 +13,14 @@ void Machine_Gui_LayoutModel_construct(Machine_Gui_LayoutModel* self, size_t num
   self->primaryDirection = Machine_Gui_Layout_Direction_Column;
   self->primaryJustification = Machine_Gui_Layout_Justification_Start;
   self->primaryInterChildSpacing = 0.f;
-  Machine_setClassType((Machine_Object*)self, Machine_Gui_LayoutModel_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Gui_LayoutModel_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gui_LayoutModel, Machine_Object, &Machine_Gui_LayoutModel_visit,
                          &Machine_Gui_LayoutModel_construct, NULL, NULL)
 
 Machine_Gui_LayoutModel* Machine_Gui_LayoutModel_create() {
-  Machine_ClassType* ty = Machine_Gui_LayoutModel_getClassType();
+  Machine_ClassType* ty = Machine_Gui_LayoutModel_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
   static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_Gui_LayoutModel* self

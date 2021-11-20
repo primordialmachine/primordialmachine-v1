@@ -135,6 +135,12 @@
     <ClCompile Include="Runtime\ArrayUtilities.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
+    <ClCompile Include="Runtime\ByteBufferReader.c">
+      <Filter>Quelldateien\Runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="Runtime\Gc\Tag.c">
+      <Filter>Quelldateien\Runtime\Gc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Machine.h">
@@ -238,6 +244,12 @@
     </ClInclude>
     <ClInclude Include="Runtime\ArrayUtilities.h">
       <Filter>Headerdateien\Runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\ByteBufferReader.h">
+      <Filter>Headerdateien\Runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\Gc\Tag.h">
+      <Filter>Headerdateien\Runtime\Gc</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -12,18 +12,12 @@
 
 
 
-static void Machine_ClassType_visit(Machine_ClassType* self) {
-  if (self->parent) {
-    Machine_Gc_visit(self->parent);
-  }
-}
-
 static void Machine_ClassType_finalize(Machine_ClassType* self) {
   if (self->parent) {
     Machine_unlock(self->parent);
   }
   if (self->data) {
-    free(self->data);
+    Machine_Eal_dealloc(self->data);
     self->data = NULL;
   }
   if (((Machine_Type *)self)->typeRemoved) {
@@ -33,7 +27,7 @@ static void Machine_ClassType_finalize(Machine_ClassType* self) {
 
 Machine_ClassType* Machine_createClassType(Machine_CreateClassTypeArgs* args) {
   Machine_ClassType* classType = Machine_Gc_allocate(sizeof(Machine_ClassType),
-                                                     (Machine_VisitCallback*)&Machine_ClassType_visit,
+                                                     (Machine_VisitCallback*)NULL,
                                                      (Machine_FinalizeCallback*)&Machine_ClassType_finalize);
   if (!classType) {
     Machine_setStatus(Machine_Status_AllocationFailed);
@@ -52,6 +46,7 @@ Machine_ClassType* Machine_createClassType(Machine_CreateClassTypeArgs* args) {
     }
   }
 
+  ((Machine_Type*)classType)->flags = Machine_TypeFlags_Class;
   ((Machine_Type*)classType)->typeRemoved = args->createTypeArgs.typeRemoved;
   classType->size = args->size;
   classType->visit = args->visit;
@@ -61,7 +56,7 @@ Machine_ClassType* Machine_createClassType(Machine_CreateClassTypeArgs* args) {
   classType->classSize = args->classSize;
   classType->constructClass = args->constructClass;
 
-  classType->data = malloc(classType->classSize > 0 ? classType->classSize : 1);
+  classType->data = Machine_Eal_alloc(classType->classSize);
   if (!classType->data) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
@@ -79,7 +74,7 @@ Machine_ClassType* Machine_createClassType(Machine_CreateClassTypeArgs* args) {
   return classType;
 }
 
-bool Machine_isSubTypeOf(Machine_ClassType const* subType, Machine_ClassType const* superType) {
+bool Machine_ClassType_isSubTypeOf(Machine_ClassType const* subType, Machine_ClassType const* superType) {
   Machine_ClassType const* currentType = subType;
   while (currentType != NULL) {
     if (currentType == superType) {
@@ -88,4 +83,13 @@ bool Machine_isSubTypeOf(Machine_ClassType const* subType, Machine_ClassType con
     currentType = currentType->parent;
   }
   return false;
+}
+
+void Machine_ClassType_ensureInitialized(Machine_ClassType* self) {
+  if ((((Machine_Type*)self)->flags & Machine_TypeFlags_Initialized) == 0) {
+    if (self->parent) {
+      Machine_ClassType_ensureInitialized(self->parent);
+    }
+    ((Machine_Type*)self)->flags |= Machine_TypeFlags_Initialized;
+  }
 }

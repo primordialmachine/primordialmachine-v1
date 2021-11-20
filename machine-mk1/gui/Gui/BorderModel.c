@@ -23,7 +23,7 @@ void Machine_Gui_BorderModel_construct(Machine_Gui_BorderModel* self, size_t num
   self->bottomWidth = 1.f;
   self->color = Machine_Math_Vector4_create();
   Machine_Math_Vector4_set(self->color, 0.1f, 0.1f, 0.1f, 1.f);
-  Machine_setClassType((Machine_Object*)self, Machine_Gui_BorderModel_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Gui_BorderModel_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gui_BorderModel, Machine_Object, &Machine_Gui_BorderModel_visit,
@@ -31,7 +31,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gui_BorderModel, Machine_Object, &Machine_Gui_B
                          &Machine_Gui_BorderModel_constructClass)
 
 Machine_Gui_BorderModel* Machine_Gui_BorderModel_create() {
-  Machine_ClassType* ty = Machine_Gui_BorderModel_getClassType();
+  Machine_ClassType* ty = Machine_Gui_BorderModel_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
   static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_Gui_BorderModel* self

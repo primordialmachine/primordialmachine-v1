@@ -24,11 +24,11 @@ static void Machine_GDL_Node_construct(Machine_GDL_Node* self, size_t numberOfAr
   self->text = Machine_Value_getString(&(arguments[1]));
   self->children = Machine_List_create();
   self->parent = NULL;
-  Machine_setClassType((Machine_Object*)self, Machine_GDL_Node_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_GDL_Node_getType());
 }
 
 Machine_GDL_Node* Machine_GDL_Node_create(Machine_GDL_NodeKind kind, Machine_String* text) {
-  Machine_ClassType* ty = Machine_GDL_Node_getClassType();
+  Machine_ClassType* ty = Machine_GDL_Node_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 2;
   Machine_Value ARGUMENTS[2];
   Machine_Value_setInteger(&(ARGUMENTS[0]), kind);

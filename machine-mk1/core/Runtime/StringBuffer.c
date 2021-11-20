@@ -36,13 +36,13 @@ static void Machine_StringBuffer_constructClass(Machine_StringBuffer_Class* self
 static void Machine_StringBuffer_construct(Machine_StringBuffer* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->byteBuffer = Machine_ByteBuffer_create();
-  Machine_setClassType((Machine_Object *)self, Machine_StringBuffer_getClassType());
+  Machine_setClassType((Machine_Object *)self, Machine_StringBuffer_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_StringBuffer, Machine_Object, &Machine_StringBuffer_visit, &Machine_StringBuffer_construct, NULL, &Machine_StringBuffer_constructClass)
 
 Machine_StringBuffer* Machine_StringBuffer_create() {
-  Machine_ClassType* ty = Machine_StringBuffer_getClassType();
+  Machine_ClassType* ty = Machine_StringBuffer_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_StringBuffer* self = (Machine_StringBuffer *)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);

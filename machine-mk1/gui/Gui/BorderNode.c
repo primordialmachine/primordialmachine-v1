@@ -276,11 +276,11 @@ static void Machine_Gui_BorderNode_construct(Machine_Gui_BorderNode* self, size_
   Machine_Gui_Widget_subscribe((Machine_Gui_Widget*)self,
                                ((Machine_Gui_Widget*)self)->context->signalsContext->SizeChanged,
                                (Machine_Object*)self, &boundsChangedCallback);
-  Machine_setClassType((Machine_Object*)self, Machine_Gui_BorderNode_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Gui_BorderNode_getType());
 }
 
 Machine_Gui_BorderNode* Machine_Gui_BorderNode_create(Machine_Gui_Context* context) {
-  Machine_ClassType* ty = Machine_Gui_BorderNode_getClassType();
+  Machine_ClassType* ty = Machine_Gui_BorderNode_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 1;
   Machine_Value arguments[1];
   Machine_Value_setObject(&arguments[0], (Machine_Object*)context);

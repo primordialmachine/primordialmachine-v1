@@ -14,13 +14,13 @@ static void Machine_GDL_Token_construct(Machine_GDL_Token* self, size_t numberOf
   self->kind = Machine_Value_getInteger(&arguments[0]);
   self->text = Machine_Value_getString(&arguments[1]);
   self->offset = Machine_Value_getInteger(&arguments[2]);
-  Machine_setClassType((Machine_Object*)self, Machine_GDL_Token_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_GDL_Token_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_GDL_Token, Machine_Object, &Machine_GDL_Token_visit, &Machine_GDL_Token_construct, NULL, NULL)
 
 Machine_GDL_Token* Machine_GDL_Token_create(Machine_GDL_TokenKind kind, Machine_String* text, Machine_Integer offset) {
-  Machine_ClassType* ty = Machine_GDL_Token_getClassType();
+  Machine_ClassType* ty = Machine_GDL_Token_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 3;
   Machine_Value ARGUMENTS[3];
   Machine_Value_setInteger(&ARGUMENTS[0], kind);

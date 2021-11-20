@@ -88,7 +88,7 @@ static void Rectangle2Scene_constructClass(Rectangle2Scene_Class* self) {
 
 void Rectangle2Scene_construct(Rectangle2Scene* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Scene_construct((Scene*)self, numberOfArguments, arguments);
-  Machine_setClassType((Machine_Object*)self, Rectangle2Scene_getClassType());
+  Machine_setClassType((Machine_Object*)self, Rectangle2Scene_getType());
 }
 
 void Rectangle2Scene_destruct(Rectangle2Scene* self) {
@@ -97,7 +97,7 @@ void Rectangle2Scene_destruct(Rectangle2Scene* self) {
 }
 
 Rectangle2Scene* Rectangle2Scene_create() {
-  Machine_ClassType* ty = Rectangle2Scene_getClassType();
+  Machine_ClassType* ty = Rectangle2Scene_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Rectangle2Scene* scene = (Rectangle2Scene*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);

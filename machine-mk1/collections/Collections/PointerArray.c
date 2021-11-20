@@ -37,14 +37,14 @@ static void Machine_PointerArray_visit(Machine_PointerArray* self) {
 static void Machine_PointerArray_construct(Machine_PointerArray* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->list = Machine_List_create();
-  Machine_setClassType((Machine_Object*)self, Machine_PointerArray_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_PointerArray_getType());
 }
 
 static void Machine_PointerArray_destruct(Machine_PointerArray* self)
 {/*Intentionally empty.*/}
 
 Machine_PointerArray* Machine_PointerArray_create() {
-  Machine_ClassType* ty = Machine_PointerArray_getClassType();
+  Machine_ClassType* ty = Machine_PointerArray_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_PointerArray* self = (Machine_PointerArray *)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);

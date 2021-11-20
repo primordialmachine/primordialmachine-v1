@@ -11,7 +11,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_VideoContext, Machine_Object, &Machine_VideoCon
 
 void Machine_VideoContext_construct(Machine_VideoContext* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  Machine_setClassType((Machine_Object*)self, Machine_VideoContext_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_VideoContext_getType());
 }
 
 void Machine_VideoContext_setClearColor(Machine_VideoContext* self, Machine_Math_Vector4 const* clearColor) {

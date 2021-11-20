@@ -15,25 +15,20 @@ void Machine_uninitializeGcModule() {
 
 void Machine_lock(void* object) {
   Machine_Tag* tag = Machine_o2t(object);
-  tag->lockCount++;
+  Machine_Tag_lock(tag);
 }
 
 void Machine_unlock(void* object) {
   Machine_Tag* tag = Machine_o2t(object);
-  tag->lockCount--;
+  Machine_Tag_unlock(tag);
 }
 
 void Machine_setRoot(void* object, bool isRoot) {
   Machine_Tag* tag = Machine_o2t(object);
-  if (isRoot) {
-    tag->flags |= Machine_Flag_Root;
-  }
-  else {
-    tag->flags &= ~Machine_Flag_Root;
-  }
+  Machine_Tag_setRoot(tag, isRoot);
 }
 
 bool Machine_isRoot(void* object) {
   Machine_Tag* tag = Machine_o2t(object);
-  return Machine_Flag_Root == (tag->flags & Machine_Flag_Root);
+  return Machine_Tag_isRoot(tag);
 }

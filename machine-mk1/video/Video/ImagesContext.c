@@ -10,7 +10,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_ImagesContext, Machine_Object, NULL, &Machine_I
 
 void Machine_ImagesContext_construct(Machine_ImagesContext* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  Machine_Object_getClassType((Machine_Object*)self, Machine_ImagesContext_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_ImagesContext_getType());
 }
 
 Machine_Image* Machine_ImagesContext_createFromPath(Machine_ImagesContext* self, Machine_String* path) {

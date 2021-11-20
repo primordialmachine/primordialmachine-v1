@@ -9,7 +9,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_FontsContext, Machine_Object, NULL, &Machine_Fo
 
 void Machine_FontsContext_construct(Machine_FontsContext* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  Machine_Object_getClassType((Machine_Object*)self, Machine_FontsContext_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_FontsContext_getType());
 }
 
 Machine_Font* Machine_FontsContext_createFont(Machine_FontsContext* self, Machine_String* path, Machine_Integer pointSize) {

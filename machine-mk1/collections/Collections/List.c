@@ -66,12 +66,12 @@ static void Machine_List_construct(Machine_List* self, size_t numberOfArguments,
   Machine_Collection_construct((Machine_Collection*)self, numberOfArguments, arguments);
   self->size = 0;
   self->capacity = 0;
-  self->elements = c_alloc(0);
+  self->elements = Machine_Eal_alloc(0);
   if (!self->elements) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
-  Machine_setClassType((Machine_Object*)self, Machine_List_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_List_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_List, Machine_Collection, &Machine_List_visit, &Machine_List_construct, &Machine_List_destruct, &Machine_List_constructClass)
@@ -153,13 +153,13 @@ static void Machine_List_visit(Machine_List* self) {
 
 static void Machine_List_destruct(Machine_List* self) {
   if (self->elements) {
-    c_dealloc(self->elements);
+    Machine_Eal_dealloc(self->elements);
     self->elements = NULL;
   }
 }
 
 Machine_List* Machine_List_create() {
-  Machine_ClassType* ty = Machine_List_getClassType();
+  Machine_ClassType* ty = Machine_List_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_List* self = (Machine_List*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);

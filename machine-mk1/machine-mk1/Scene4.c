@@ -176,7 +176,7 @@ static void Scene4_constructClass(Scene4_Class* self) {
 
 void Scene4_construct(Scene4* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Scene_construct((Scene*)self, numberOfArguments, arguments);
-  Machine_setClassType((Machine_Object*)self, Scene4_getClassType());
+  Machine_setClassType((Machine_Object*)self, Scene4_getType());
 }
 
 void Scene4_destruct(Scene4* self) {
@@ -184,7 +184,7 @@ void Scene4_destruct(Scene4* self) {
 }
 
 Scene4* Scene4_create() {
-  Machine_ClassType* ty = Scene4_getClassType();
+  Machine_ClassType* ty = Scene4_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Scene4* scene = (Scene4*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);

@@ -54,13 +54,13 @@ static void Machine_GDL_Scanner_construct(Machine_GDL_Scanner* self, size_t numb
   self->tokenStart = 0;
   self->tokenText = Machine_ByteBuffer_create();
   Machine_ByteBuffer_appendBytes(self->tokenText, "<start of input>", strlen("<start of input>"));
-  Machine_setClassType((Machine_Object*)self, Machine_GDL_Scanner_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_GDL_Scanner_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_GDL_Scanner, Machine_Object, &Machine_GDL_Scanner_visit, &Machine_GDL_Scanner_construct, NULL, NULL)
 
 Machine_GDL_Scanner* Machine_GDL_Scanner_create(Machine_String* inputName, Machine_ByteBuffer* inputBytes) {
-  Machine_ClassType* ty = Machine_GDL_Scanner_getClassType();
+  Machine_ClassType* ty = Machine_GDL_Scanner_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 2;
   Machine_Value ARGUMENTS[2];
   Machine_Value_setString(&ARGUMENTS[0], inputName);

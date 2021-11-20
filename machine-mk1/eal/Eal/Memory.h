@@ -14,14 +14,14 @@
 /// @param n The length, in Bytes, of the memory block is given by <code>n</code>. Can be @a 0.
 /// @return A pointer to an array of @a n Bytes on success, @a NULL on failure. 
 /// @remark This function fails if not enough memory can be allocated.
-void* c_alloc(size_t n);
+void* Machine_Eal_alloc(size_t n);
 
 /// @brief Allocate a memory block of the specified length.
 /// @param n, m The length, in Bytes, of the memory block is given by <code>n*m</code>. The length can be @a 0.
 /// @return A pointer to a memory block of the specified length on success, @a NULL on failure.
 /// @remark This function fails if not enough memory can be allocated.
 /// @remark This function fails if the product <code>n*m</code> would overflow.
-void* c_alloc_a(size_t n, size_t m);
+void* Machine_Eal_alloc_a(size_t n, size_t m);
 
 /// @brief Reallocate a memory block to the specified length.
 /// @param p A pointer to the memory block.
@@ -45,7 +45,7 @@ void* c_realloc_a(void* p, size_t n, size_t m);
 /// @brief Deallocate a memory block.
 /// @param p A poitner to the memory block or a null pointer.
 /// @remark If @a p is a null pointer, then this function is a no-operation.
-void c_dealloc(void* p);
+void Machine_Eal_dealloc(void* p);
 
 
 

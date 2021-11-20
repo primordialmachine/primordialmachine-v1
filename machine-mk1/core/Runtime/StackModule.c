@@ -16,7 +16,7 @@ typedef struct Stack {
 } Stack;
 
 static Machine_StatusValue Stack_initialize(Stack* self) {
-  self->elements = c_alloc_a(sizeof(Machine_Value), 8);
+  self->elements = Machine_Eal_alloc_a(sizeof(Machine_Value), 8);
   if (!self->elements) {
     return Machine_Status_AllocationFailed;
   }
@@ -30,19 +30,19 @@ static Machine_StatusValue Stack_initialize(Stack* self) {
 
 static void Stack_uninitialize(Stack* self) {
   if (self->elements) {
-    c_dealloc(self->elements);
+    Machine_Eal_dealloc(self->elements);
     self->elements = NULL;
   }
 }
 
 static Machine_StatusValue Stack_create(Stack** stack) {
-  Stack* stack0 = c_alloc(sizeof(Stack));
+  Stack* stack0 = Machine_Eal_alloc(sizeof(Stack));
   if (!stack0) {
     return Machine_Status_AllocationFailed;
   }
   Machine_StatusValue status = Stack_initialize(stack0);
   if (status) {
-    c_dealloc(stack0);
+    Machine_Eal_dealloc(stack0);
     return status;
   }
   *stack = stack0;
@@ -51,7 +51,7 @@ static Machine_StatusValue Stack_create(Stack** stack) {
 
 static void Stack_destroy(Stack* stack) {
   Stack_uninitialize(stack);
-  c_dealloc(stack);
+  Machine_Eal_dealloc(stack);
 }
 
 static void Stack_ensureFreeCapacity(Stack* self, size_t requiredFreeCapacity) {

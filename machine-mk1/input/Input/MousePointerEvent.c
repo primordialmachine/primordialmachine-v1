@@ -41,13 +41,13 @@ static void Machine_MousePointerEvent_construct(Machine_MousePointerEvent* self,
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->x = Machine_Value_getReal(&arguments[0]);
   self->y = Machine_Value_getReal(&arguments[1]);
-  Machine_setClassType((Machine_Object*)self, Machine_MousePointerEvent_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_MousePointerEvent_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_MousePointerEvent, Machine_Object, &Machine_MousePointerEvent_visit, &Machine_MousePointerEvent_construct, NULL, &Machine_MousePointerEvent_constructClass)
 
 Machine_MousePointerEvent* Machine_MousePointerEvent_create(Machine_Real x, Machine_Real y) {
-  Machine_ClassType* ty = Machine_MousePointerEvent_getClassType();
+  Machine_ClassType* ty = Machine_MousePointerEvent_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 2;
   Machine_Value ARGUMENTS[2] = { Machine_Value_StaticInitializerVoid(), Machine_Value_StaticInitializerVoid() };
   Machine_Value_setReal(&ARGUMENTS[0], x);

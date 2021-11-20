@@ -11,7 +11,7 @@ void Machine_Font_construct(Machine_Font* self, size_t numberOfArguments, const 
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { {Machine_ValueFlag_Void, Machine_Void_Void} };
   Machine_Object_construct((Machine_Object*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
-  Machine_setClassType((Machine_Object*)self, Machine_Font_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Font_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Font, Machine_Object, NULL, &Machine_Font_construct, &Machine_Font_destruct, NULL)

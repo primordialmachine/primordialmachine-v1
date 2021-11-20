@@ -7,6 +7,7 @@
 #include <stdint.h>
 #include <inttypes.h>
 #include <string.h>
+#include <stdio.h>
 
 static Machine_Value convert(Machine_GDL_Node* self, Machine_GDL_Context* context) {
   switch (self->kind) {

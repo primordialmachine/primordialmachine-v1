@@ -229,7 +229,7 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
   Machine_Font_construct((Machine_Font*)self, numberOfArguments, arguments);
   Machine_String *path = Machine_Extensions_getStringArgument(numberOfArguments, arguments, 1);
   Machine_Integer pointSize = Machine_Extensions_getIntegerArgument(numberOfArguments, arguments, 2);
-  Machine_Fonts_FontsContext* fontsContext = (Machine_Fonts_FontsContext *)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0, Machine_Fonts_FontsContext_getClassType());
+  Machine_Fonts_FontsContext* fontsContext = (Machine_Fonts_FontsContext *)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0, Machine_Fonts_FontsContext_getType());
   if (pointSize < 0 || pointSize > INT_MAX) {
     Machine_setStatus(Machine_Status_InvalidArgument);
     Machine_jump();
@@ -378,13 +378,13 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
       Machine_jump();
     }
   }
-  Machine_setClassType((Machine_Object*)self, Machine_Fonts_Font_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Fonts_Font_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Fonts_Font, Machine_Font, &Machine_Fonts_Font_visit, &Machine_Fonts_Font_construct, &Machine_Fonts_Font_destruct, &Machine_Fonts_Font_constructClass)
 
 Machine_Fonts_Font* Machine_Fonts_Font_create(Machine_FontsContext* fontsContext, Machine_String *path, Machine_Integer pointSize) {
-  Machine_ClassType* ty = Machine_Fonts_Font_getClassType();
+  Machine_ClassType* ty = Machine_Fonts_Font_getType();
   size_t numberOfArguments = 3;
   Machine_Value arguments[3];
   Machine_Value_setObject(&arguments[0], (Machine_Object *)fontsContext);

@@ -23,7 +23,7 @@ static void Machine_Gui_Signals_Context_construct(Machine_Gui_Signals_Context* s
 #include "Gui/Signals/Context.i"
 #undef DEFINE
 
-  Machine_setClassType((Machine_Object*)self, Machine_Gui_Signals_Context_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Gui_Signals_Context_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gui_Signals_Context, Machine_Object,
@@ -31,7 +31,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gui_Signals_Context, Machine_Object,
                          NULL, NULL)
 
 Machine_Gui_Signals_Context* Machine_Gui_Signals_Context_create() {
-  Machine_ClassType* ty = Machine_Gui_Signals_Context_getClassType();
+  Machine_ClassType* ty = Machine_Gui_Signals_Context_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
   static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_Gui_Signals_Context* self = (Machine_Gui_Signals_Context*)Machine_allocateClassObject(

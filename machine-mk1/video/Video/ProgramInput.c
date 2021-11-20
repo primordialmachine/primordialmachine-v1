@@ -17,13 +17,13 @@ static void Machine_ProgramInput_construct(Machine_ProgramInput* self, size_t nu
   self->name = Machine_Value_getString(&arguments[0]);
   self->type = Machine_Value_getInteger(&arguments[1]);
   self->kind = Machine_Value_getInteger(&arguments[2]);
-  Machine_setClassType((Machine_Object*)self, Machine_ProgramInput_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_ProgramInput_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_ProgramInput, Machine_Object, &Machine_ProgramInput_visit, &Machine_ProgramInput_construct, NULL, NULL)
 
 Machine_ProgramInput* Machine_ProgramInput_create(Machine_String* name, Machine_ProgramInputType type, Machine_ProgramInputKind kind) {
-  Machine_ClassType* ty = Machine_ProgramInput_getClassType();
+  Machine_ClassType* ty = Machine_ProgramInput_getType();
   Machine_Value arguments[3];
   Machine_Value_setString(&arguments[0], name);
   Machine_Value_setInteger(&arguments[1], type);

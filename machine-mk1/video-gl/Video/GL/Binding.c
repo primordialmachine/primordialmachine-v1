@@ -258,11 +258,11 @@ static void Machine_Gl_Binding_constructClass(Machine_Gl_Binding_Class* self) {
 static void Machine_Gl_Binding_construct(Machine_Gl_Binding* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Binding_construct((Machine_Binding*)self, numberOfArguments, arguments);
   self->id = 0;
-  Machine_setClassType((Machine_Object*)self, Machine_Gl_Binding_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Gl_Binding_getType());
 }
 
 Machine_Gl_Binding* Machine_Gl_Binding_create(Machine_ShaderProgram* program, Machine_VertexDescriptor* vertexDescriptor, Machine_VideoBuffer* buffer) {
-  Machine_ClassType* ty = Machine_Gl_Binding_getClassType();
+  Machine_ClassType* ty = Machine_Gl_Binding_getType();
   size_t numberOfArguments = 3;
   Machine_Value arguments[3];
   Machine_Value_setObject(&arguments[0], (Machine_Object*)program);

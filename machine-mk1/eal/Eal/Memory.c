@@ -8,16 +8,16 @@
 
 
 
-void* c_alloc(size_t n) {
+void* Machine_Eal_alloc(size_t n) {
   return malloc(n > 0 ? n : 1);
 }
 
-void* c_alloc_a(size_t n, size_t m) {
+void* Machine_Eal_alloc_a(size_t n, size_t m) {
   size_t l;
   if (!Machine_Eal_multiplySafe_sz(&l, n, m)) {
     return NULL;
   }
-  return c_alloc(l);
+  return Machine_Eal_alloc(l);
 }
 
 void* c_realloc(void* p, size_t n) {
@@ -39,8 +39,7 @@ void* c_realloc_a(void* p, size_t n, size_t m) {
   return c_realloc(p, l);
 }
 
-
-void c_dealloc(void* p) {
+void Machine_Eal_dealloc(void* p) {
   if (p) {
     free(p);
   }

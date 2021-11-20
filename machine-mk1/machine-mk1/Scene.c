@@ -17,7 +17,7 @@ static void Scene_constructClass(Scene_Class* self) {
 
 void Scene_construct(Scene* self, size_t numberOfArguments, const Machine_Value *arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  Machine_setClassType((Machine_Object*)self, Scene_getClassType());
+  Machine_setClassType((Machine_Object*)self, Scene_getType());
 }
 
 static void Scene_destruct(Scene* self)

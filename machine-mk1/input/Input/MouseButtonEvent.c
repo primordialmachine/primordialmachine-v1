@@ -62,13 +62,13 @@ static void Machine_MouseButtonEvent_construct(Machine_MouseButtonEvent* self, s
   self->action = Machine_Value_getInteger(&arguments[1]);
   self->x = Machine_Value_getReal(&arguments[2]);
   self->y = Machine_Value_getReal(&arguments[3]);
-  Machine_setClassType((Machine_Object*)self, Machine_MouseButtonEvent_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_MouseButtonEvent_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_MouseButtonEvent, Machine_Object, &Machine_MouseButtonEvent_visit, &Machine_MouseButtonEvent_construct, NULL, &Machine_MouseButtonEvent_constructClass)
 
 Machine_MouseButtonEvent* Machine_MouseButtonEvent_create(int button, int action, Machine_Real x, Machine_Real y) {
-  Machine_ClassType* ty = Machine_MouseButtonEvent_getClassType();
+  Machine_ClassType* ty = Machine_MouseButtonEvent_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 4;
   Machine_Value ARGUMENTS[4] = { Machine_Value_StaticInitializerVoid(), Machine_Value_StaticInitializerVoid(),
                                  Machine_Value_StaticInitializerVoid(), Machine_Value_StaticInitializerVoid() };

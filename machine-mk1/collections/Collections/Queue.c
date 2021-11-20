@@ -107,7 +107,7 @@ static void Machine_Queue_visit(Machine_Queue* self) {
 
 static void Machine_Queue_destruct(Machine_Queue* self) {
   if (self->elements) {
-    c_dealloc(self->elements);
+    Machine_Eal_dealloc(self->elements);
     self->elements = NULL;
   }
 }
@@ -118,12 +118,12 @@ static void Machine_Queue_construct(Machine_Queue* self, size_t numberOfArgument
   self->size = 0;
   self->head = 0;
   self->tail = 0;
-  self->elements = c_alloc_a(self->capacity, sizeof(Machine_Value));
+  self->elements = Machine_Eal_alloc_a(self->capacity, sizeof(Machine_Value));
   if (!self->elements) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
-  Machine_setClassType((Machine_Object*)self, Machine_Queue_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Queue_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Queue, Machine_Collection, &Machine_Queue_visit, &Machine_Queue_construct, &Machine_Queue_destruct, &Machine_Queue_constructClass)
@@ -269,7 +269,7 @@ static void pushFront(Machine_Queue* self, Machine_Value value) {
 }
 
 Machine_Queue* Machine_Queue_create() {
-  Machine_ClassType* ty = Machine_Queue_getClassType();
+  Machine_ClassType* ty = Machine_Queue_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_Queue* self = (Machine_Queue*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);

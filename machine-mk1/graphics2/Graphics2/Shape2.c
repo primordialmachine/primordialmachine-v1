@@ -15,7 +15,7 @@ static void Machine_Shape2_visit(Machine_Shape2* self)
 
 void Machine_Shape2_construct(Machine_Shape2* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  Machine_setClassType((Machine_Object*)self, Machine_Shape2_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Shape2_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Shape2, Machine_Object, &Machine_Shape2_visit, &Machine_Shape2_construct, NULL, NULL)

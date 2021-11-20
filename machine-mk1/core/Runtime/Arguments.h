@@ -68,7 +68,7 @@ INLINE Machine_Object* Machine_Extensions_getObjectArgument(size_t numberOfArgum
     Machine_jump();
   }
   Machine_Object* v = Machine_Value_getObject(arguments + i);
-  if (!Machine_isSubTypeOf(Machine_getClassType(v), t)) {
+  if (!Machine_ClassType_isSubTypeOf(Machine_getClassType(v), t)) {
     Machine_setStatus(Machine_Status_InvalidArgument);
     Machine_jump();
   }

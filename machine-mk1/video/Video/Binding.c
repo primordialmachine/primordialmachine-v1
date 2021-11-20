@@ -26,7 +26,7 @@ static void Machine_Binding_Node_construct(Machine_Binding_Node* self, size_t nu
   self->name = Machine_Extensions_getStringArgument(numberOfArguments, arguments, 0);
   self->isVariable = Machine_Extensions_getBooleanArgument(numberOfArguments, arguments, 1);
   self->value = arguments[2];
-  Machine_setClassType((Machine_Object*)self, Machine_Binding_Node_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Binding_Node_getType());
 }
 
 static void Machine_Binding_Node_visit(Machine_Binding_Node* self) {
@@ -45,7 +45,7 @@ Machine_Binding_Node* Machine_Binding_Node_create(Machine_String* name, Machine_
   Machine_Value_setString(&arguments[0], name);
   Machine_Value_setBoolean(&arguments[1], isVariable);
   arguments[2] = *value;
-  Machine_ClassType* ty = Machine_Binding_Node_getClassType();
+  Machine_ClassType* ty = Machine_Binding_Node_getType();
   Machine_Binding_Node* self = (Machine_Binding_Node*)Machine_allocateClassObject(ty, numberOfArguments, arguments);
   return self;
 }
@@ -89,11 +89,11 @@ static void Machine_Binding_visit(Machine_Binding* self) {
 void Machine_Binding_construct(Machine_Binding* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->dirty = true;
-  self->program = (Machine_ShaderProgram*)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0, Machine_ShaderProgram_getClassType());
-  self->vertexDescriptor = (Machine_VertexDescriptor*)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 1, Machine_VertexDescriptor_getClassType());
-  self->buffer = (Machine_VideoBuffer*)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 2, Machine_VideoBuffer_getClassType());
+  self->program = (Machine_ShaderProgram*)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0, Machine_ShaderProgram_getType());
+  self->vertexDescriptor = (Machine_VertexDescriptor*)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 1, Machine_VertexDescriptor_getType());
+  self->buffer = (Machine_VideoBuffer*)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 2, Machine_VideoBuffer_getType());
   self->nodes = NULL;
-  Machine_setClassType((Machine_Object*)self, Machine_Binding_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Binding_getType());
 }
 
 static void Machine_Binding_addUpdateConstantImpl(Machine_Binding* self, Machine_String* name, Machine_Value const* value) {

@@ -13,7 +13,7 @@ void Machine_Texture_construct(Machine_Texture* self, size_t numberOfArguments, 
   static size_t const NUMBER_OF_ARGUMENTS = 0;
   static Machine_Value const ARGUMENTS[] = { {Machine_ValueFlag_Void, Machine_Void_Void} };
   Machine_Object_construct((Machine_Object*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
-  Machine_setClassType((Machine_Object*)self, Machine_Texture_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Texture_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Texture, Machine_Object, NULL, &Machine_Texture_construct, &Machine_Texture_destruct, NULL)

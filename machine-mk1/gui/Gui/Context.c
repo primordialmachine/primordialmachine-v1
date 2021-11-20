@@ -26,7 +26,7 @@ static void Machine_Gui_Context_construct(Machine_Gui_Context* self, size_t numb
       (Machine_GDL_Context*)Machine_Value_getObject(&arguments[0]));
   self->signalsContext = Machine_Gui_Signals_Context_create();
   self->context2 = (Machine_Context2*)Machine_Value_getObject(&arguments[1]);
-  Machine_setClassType((Machine_Object*)self, Machine_Gui_Context_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Gui_Context_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gui_Context, Machine_Object, &Machine_Gui_Context_visit,
@@ -34,7 +34,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gui_Context, Machine_Object, &Machine_Gui_Conte
 
 Machine_Gui_Context* Machine_Gui_Context_create(Machine_GDL_Context* gdlContext,
                                                 Machine_Context2* context2) {
-  Machine_ClassType* ty = Machine_Gui_Context_getClassType();
+  Machine_ClassType* ty = Machine_Gui_Context_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 2;
   Machine_Value ARGUMENTS[2];
   Machine_Value_setObject(&ARGUMENTS[0], (Machine_Object*)gdlContext);

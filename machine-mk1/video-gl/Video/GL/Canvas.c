@@ -8,6 +8,7 @@
 
 #include "Video/Gl/CanvasUtilities.h"
 #include <malloc.h>
+#include <stdio.h>
 
 
 
@@ -157,13 +158,13 @@ void Machine_Video_GL_Canvas_construct(Machine_Video_GL_Canvas* self, size_t num
   Machine_Video_Canvas_construct((Machine_Video_Canvas*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   Machine_Glfw_startupCanvas();
   Machine_Glfw_startupCanvasInput();
-  Machine_setClassType((Machine_Object*)self, Machine_Video_GL_Canvas_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Video_GL_Canvas_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Video_GL_Canvas, Machine_Video_Canvas, NULL, &Machine_Video_GL_Canvas_construct, &Machine_Video_GL_Canvas_destruct, &Machine_Video_GL_Canvas_constructClass)
 
 Machine_Video_GL_Canvas* Machine_Video_GL_Canvas_create() {
-  Machine_ClassType* ty = Machine_Video_GL_Canvas_getClassType();
+  Machine_ClassType* ty = Machine_Video_GL_Canvas_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { Machine_Value_StaticInitializerVoid() };
   Machine_Video_GL_Canvas* self = (Machine_Video_GL_Canvas*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);

@@ -68,13 +68,13 @@ void Machine_Rectangle2_construct(Machine_Rectangle2* self, size_t numberOfArgum
   self->color = Machine_Math_Vector4_create();
   Machine_Math_Vector4_set(self->color, 1.f, 1.f, 1.f, 1.f);
 
-  Machine_setClassType((Machine_Object*)self, Machine_Rectangle2_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Rectangle2_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Rectangle2, Machine_Shape2, &Machine_Rectangle2_visit, &Machine_Rectangle2_construct, NULL, &Machine_Rectangle2_constructClass)
 
 Machine_Rectangle2* Machine_Rectangle2_create() {
-  Machine_ClassType* ty = Machine_Rectangle2_getClassType();
+  Machine_ClassType* ty = Machine_Rectangle2_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_Rectangle2* self = (Machine_Rectangle2*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);

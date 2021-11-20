@@ -13,7 +13,7 @@ void Machine_Image_construct(Machine_Image* self, size_t numberOfArguments, cons
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { {Machine_ValueFlag_Void, Machine_Void_Void} };
   Machine_Object_construct((Machine_Object*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
-  Machine_setClassType((Machine_Object*)self, Machine_Image_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Image_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Image, Machine_Object, NULL, &Machine_Image_construct, &Machine_Image_destruct, NULL)

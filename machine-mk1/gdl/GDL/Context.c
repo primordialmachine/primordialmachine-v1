@@ -24,13 +24,13 @@ static void Machine_GDL_Context_construct(Machine_GDL_Context* self, size_t numb
   self->trueLiteral = Machine_String_create("true", strlen("true"));
   self->falseLiteral = Machine_String_create("false", strlen("false"));
   self->voidLiteral = Machine_String_create("void", strlen("void"));
-  Machine_setClassType((Machine_Object*)self, Machine_GDL_Context_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_GDL_Context_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_GDL_Context, Machine_Object, &Machine_GDL_Context_visit, &Machine_GDL_Context_construct, NULL, NULL)
 
 Machine_GDL_Context* Machine_GDL_Context_create(Machine_String* inputName, Machine_ByteBuffer* inputBytes) {
-  Machine_ClassType* ty = Machine_GDL_Context_getClassType();
+  Machine_ClassType* ty = Machine_GDL_Context_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_GDL_Context* self = (Machine_GDL_Context*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);

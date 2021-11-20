@@ -11,13 +11,13 @@ static void Machine_CanvasSizeChangedEvent_construct(Machine_CanvasSizeChangedEv
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->width = Machine_Value_getReal(&arguments[0]);
   self->height = Machine_Value_getReal(&arguments[1]);
-  Machine_setClassType((Machine_Object *)self, Machine_CanvasSizeChangedEvent_getClassType());
+  Machine_setClassType((Machine_Object *)self, Machine_CanvasSizeChangedEvent_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_CanvasSizeChangedEvent, Machine_Object, &Machine_CanvasSizeChangedEvent_visit, &Machine_CanvasSizeChangedEvent_construct, NULL, NULL)
 
 Machine_CanvasSizeChangedEvent* Machine_CanvasSizeChangedEvent_create(float width, float height) {
-  Machine_ClassType* ty = Machine_CanvasSizeChangedEvent_getClassType();
+  Machine_ClassType* ty = Machine_CanvasSizeChangedEvent_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 2;
   Machine_Value ARGUMENTS[2];
   Machine_Value_setReal(&ARGUMENTS[0], width);

@@ -26,11 +26,11 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Images_ImagesContext, Machine_ImagesContext, NU
 
 void Machine_Images_ImagesContext_construct(Machine_Images_ImagesContext* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_ImagesContext_construct((Machine_ImagesContext*)self, numberOfArguments, arguments);
-  Machine_setClassType((Machine_Object*)self, Machine_Images_ImagesContext_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Images_ImagesContext_getType());
 }
 
 Machine_Images_ImagesContext* Machine_Images_ImagesContext_create() {
-  Machine_ClassType* ty = Machine_Images_ImagesContext_getClassType();
+  Machine_ClassType* ty = Machine_Images_ImagesContext_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_Images_ImagesContext* self = (Machine_Images_ImagesContext*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);

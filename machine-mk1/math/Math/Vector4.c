@@ -7,13 +7,13 @@ static void Machine_Math_Vector4_construct(Machine_Math_Vector4* self, size_t nu
   self->y = 0.f;
   self->z = 0.f;
   self->w = 0.f;
-  Machine_setClassType((Machine_Object *)self, Machine_Math_Vector4_getClassType());
+  Machine_setClassType((Machine_Object *)self, Machine_Math_Vector4_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Math_Vector4, Machine_Object, NULL, &Machine_Math_Vector4_construct, NULL, NULL)
 
 Machine_Math_Vector4* Machine_Math_Vector4_create() {
-  Machine_ClassType* ty = Machine_Math_Vector4_getClassType();
+  Machine_ClassType* ty = Machine_Math_Vector4_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_Math_Vector4* self = (Machine_Math_Vector4*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);

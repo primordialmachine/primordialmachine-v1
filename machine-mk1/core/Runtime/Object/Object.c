@@ -53,7 +53,7 @@ static void Machine_Object_onTypeDestroyed() {
   g_Machine_Object_ClassType = NULL;
 }
 
-Machine_ClassType* Machine_Object_getClassType() {
+Machine_ClassType* Machine_Object_getType() {
   if (!g_Machine_Object_ClassType) {
     Machine_CreateClassTypeArgs args = {
       .createTypeArgs = {
@@ -78,7 +78,7 @@ Machine_ClassType* Machine_Object_getClassType() {
 
 void Machine_Object_construct(Machine_Object* self, size_t numberOfArguments, Machine_Value const* arguments) {
   MACHINE_ASSERT_NOTNULL(self);
-  Machine_setClassType(self, Machine_Object_getClassType());
+  Machine_setClassType(self, Machine_Object_getType());
 }
 
 static void Machine_ClassObject_visit(void* self) {

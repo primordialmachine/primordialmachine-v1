@@ -115,7 +115,7 @@ static void Scene2_constructClass(Scene2_Class* self) {
 
 void Scene2_construct(Scene2* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Scene_construct((Scene*)self, numberOfArguments, arguments);
-  Machine_setClassType((Machine_Object*)self, Scene2_getClassType());
+  Machine_setClassType((Machine_Object*)self, Scene2_getType());
 }
 
 void Scene2_destruct(Scene2* self) {
@@ -125,7 +125,7 @@ void Scene2_destruct(Scene2* self) {
 }
 
 Scene2* Scene2_create() {
-  Machine_ClassType* ty = Scene2_getClassType();
+  Machine_ClassType* ty = Scene2_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Scene2* scene = (Scene2*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);

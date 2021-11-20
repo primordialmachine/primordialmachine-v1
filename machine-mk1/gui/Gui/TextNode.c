@@ -64,7 +64,7 @@ void Machine_Gui_TextNode_construct(Machine_Gui_TextNode* self, size_t numberOfA
                                     Machine_Value const* arguments) {
   Machine_Gui_Widget_construct((Machine_Gui_Widget*)self, numberOfArguments, arguments);
   Machine_Gui_Context* guiContext = (Machine_Gui_Context*)Machine_Extensions_getObjectArgument(
-      numberOfArguments, arguments, 0, Machine_Gui_Context_getClassType());
+      numberOfArguments, arguments, 0, Machine_Gui_Context_getType());
   Machine_FontsContext* fontsContext = Machine_DefaultFonts_createContext(
       guiContext->context2->videoContext, Machines_DefaultImages_createContext());
   Machine_Font* font = Machine_FontsContext_createFont(
@@ -80,7 +80,7 @@ void Machine_Gui_TextNode_construct(Machine_Gui_TextNode* self, size_t numberOfA
   Machine_Gui_Widget_subscribe((Machine_Gui_Widget*)self,
                                ((Machine_Gui_Widget*)self)->context->signalsContext->SizeChanged,
                                (Machine_Object*)self, &boundsChangedCallback);
-  Machine_setClassType((Machine_Object*)self, Machine_Gui_TextNode_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Gui_TextNode_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gui_TextNode, Machine_Gui_Widget, &Machine_Gui_TextNode_visit,
@@ -88,7 +88,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gui_TextNode, Machine_Gui_Widget, &Machine_Gui_
                          &Machine_Gui_TextNode_constructClass)
 
 Machine_Gui_TextNode* Machine_Gui_TextNode_create(Machine_Gui_Context* context) {
-  Machine_ClassType* ty = Machine_Gui_TextNode_getClassType();
+  Machine_ClassType* ty = Machine_Gui_TextNode_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 1;
   Machine_Value arguments[1] = { Machine_Value_StaticInitializerVoid() };
   Machine_Value_setObject(&arguments[0], (Machine_Object*)context);

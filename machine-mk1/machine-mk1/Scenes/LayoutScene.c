@@ -137,7 +137,7 @@ static void LayoutScene_constructClass(LayoutScene_Class* self) {
 
 void LayoutScene_construct(LayoutScene* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Scene_construct((Scene*)self, numberOfArguments, arguments);
-  Machine_setClassType((Machine_Object*)self, LayoutScene_getClassType());
+  Machine_setClassType((Machine_Object*)self, LayoutScene_getType());
 }
 
 void LayoutScene_destruct(LayoutScene* self) {
@@ -148,7 +148,7 @@ void LayoutScene_destruct(LayoutScene* self) {
 }
 
 LayoutScene* LayoutScene_create() {
-  Machine_ClassType* ty = LayoutScene_getClassType();
+  Machine_ClassType* ty = LayoutScene_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   LayoutScene* scene = (LayoutScene*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);

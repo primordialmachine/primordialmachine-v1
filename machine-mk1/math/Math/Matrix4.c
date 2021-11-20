@@ -18,13 +18,13 @@ static void Machine_Math_Matrix4_construct(Machine_Math_Matrix4* self, size_t nu
   BEGINFOREACH()
       self->e[i][j] = 0.0f;
   ENDFOREACH()
-  Machine_setClassType((Machine_Object*)self, Machine_Math_Matrix4_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Math_Matrix4_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Math_Matrix4, Machine_Object, NULL, &Machine_Math_Matrix4_construct, NULL, NULL)
 
 Machine_Math_Matrix4* Machine_Math_Matrix4_create() {
-  Machine_ClassType* ty = Machine_Math_Matrix4_getClassType();
+  Machine_ClassType* ty = Machine_Math_Matrix4_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_Math_Matrix4* self = (Machine_Math_Matrix4*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);

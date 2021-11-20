@@ -21,11 +21,11 @@ void Machine_Signals_Signal_construct(Machine_Signals_Signal* self, size_t numbe
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   MACHINE_ASSERT(numberOfArguments == 0, Machine_Status_InvalidNumberOfArguments);
   self->connections = Machine_List_create();
-  Machine_setClassType((Machine_Object*)self, Machine_Signals_Signal_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Signals_Signal_getType());
 }
 
 Machine_Signals_Signal* Machine_Signals_Signal_create() {
-  Machine_ClassType* ty = Machine_Signals_Signal_getClassType();
+  Machine_ClassType* ty = Machine_Signals_Signal_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { Machine_Value_StaticInitializerVoid() };
   Machine_Signals_Signal* self = (Machine_Signals_Signal*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);

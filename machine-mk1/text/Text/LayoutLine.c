@@ -9,7 +9,7 @@ void Machine_Text_LayoutLine_construct(Machine_Text_LayoutLine* self, size_t num
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->start = Machine_Value_getInteger(&arguments[0]);
   self->length = Machine_Value_getInteger(&arguments[1]);
-  Machine_setClassType((Machine_Object*)self, Machine_Text_LayoutLine_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Text_LayoutLine_getType());
 }
 
 Machine_Text_LayoutLine* Machine_Text_LayoutLine_create(Machine_Integer start, Machine_Integer length) {
@@ -20,7 +20,7 @@ Machine_Text_LayoutLine* Machine_Text_LayoutLine_create(Machine_Integer start, M
   Machine_Value arguments[2] = { Machine_Value_StaticInitializerVoid(), Machine_Value_StaticInitializerVoid() };
   Machine_Value_setInteger(&arguments[0], start);
   Machine_Value_setInteger(&arguments[1], length);
-  Machine_ClassType* ty = Machine_Text_LayoutLine_getClassType();
+  Machine_ClassType* ty = Machine_Text_LayoutLine_getType();
   Machine_Text_LayoutLine* self = (Machine_Text_LayoutLine *)Machine_allocateClassObject(ty, 2, arguments);
   return self;
 }

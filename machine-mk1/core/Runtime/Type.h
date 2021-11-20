@@ -40,8 +40,11 @@ typedef void (Machine_TypeRemovedCallback)();
 /// @brief Type flags. See Machine_Type for more information.
 #define Machine_TypeFlags_Class (1)
 
-/// @brief Type falgs. See Machine_Type for more information.
+/// @brief Type flags. See Machine_Type for more information.
 #define Machine_TypeFlags_Interface (2)
+
+/// @brief Type flags. See Machine_Type for more infomration.
+#define Machine_TypeFlags_Initialized (4)
 
 struct Machine_Type {
   uint32_t flags;
@@ -55,5 +58,19 @@ typedef struct Machine_CreateTypeArgs {
   Machine_TypeRemovedCallback* typeRemoved;
 
 } Machine_CreateTypeArgs;
+
+/// @brief Ensure this type is initialized.
+/// @param self A pointer to this type.
+void Machine_Type_ensureInitialized(Machine_Type* self);
+
+/// @brief Get if this type is a class type.
+/// @param self A pointer to this type.
+/// @return @a true if this type is a class type, @a false otherwise.
+bool Machine_Type_isClass(Machine_Type const* self);
+
+/// @brief Get if this type is an interface type.
+/// @param self A pointer to this type.
+/// @return @a true if this type is an interface type, @a false otherwise.
+bool Machine_Type_isInterface(Machine_Type const* self);
 
 #endif // MACHINE_RUNTIME_TS_TYPE_H_INCLUDED

@@ -19,7 +19,7 @@ bool Machine_registerStaticVariables(Machine_UninitializeStaticVariablesCallback
   if (!callback) {
     return false;
   }
-  Node *node = c_alloc(sizeof(Node));
+  Node* node = Machine_Eal_alloc(sizeof(Node));
   if (!node) {
     return false;
   }
@@ -35,7 +35,7 @@ Machine_StatusValue Machine_initializeStaticVariablesModule() {
 void Machine_uninitializeStaticVariablesModule() {
   while (g_nodes) {
     Node* node = g_nodes; g_nodes = node->next;
-    c_dealloc(node);
+    Machine_Eal_dealloc(node);
   }
 }
 

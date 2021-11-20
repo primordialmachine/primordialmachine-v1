@@ -48,7 +48,7 @@ static void maybeResize(Machine_Map* self) {
   // (2) If new capacity != old capacity, resize.
   if (newCapacity != oldCapacity) {
     Node** oldBuckets = pimpl->buckets;
-    Node** newBuckets = c_alloc_a(sizeof(Node*), newCapacity);
+    Node** newBuckets = Machine_Eal_alloc_a(sizeof(Node*), newCapacity);
     if (!newBuckets) {
       /*
       Machine_setStatus(Machine_Status_AllocationFailed);
@@ -68,7 +68,7 @@ static void maybeResize(Machine_Map* self) {
         newBuckets[hashIndex] = node;
       }
     }
-    c_dealloc(oldBuckets);
+    Machine_Eal_dealloc(oldBuckets);
     pimpl->buckets = newBuckets;
     pimpl->capacity = newCapacity;
   }
@@ -89,7 +89,7 @@ static void set(Machine_Map* self, Machine_Value key, Machine_Value value) {
     }
   }
   if (!node) {
-    node = c_alloc(sizeof(Node));
+    node = Machine_Eal_alloc(sizeof(Node));
     if (!node) {
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();
@@ -131,7 +131,7 @@ static void clear(Machine_Map* self) {
     while (pimpl->buckets[i]) {
       Node* node = pimpl->buckets[i];
       pimpl->buckets[i] = node->next;
-      c_dealloc(node);
+      Machine_Eal_dealloc(node);
       pimpl->size--;
     }
   }
@@ -150,16 +150,16 @@ static void Machine_Map_constructClass(Machine_Map_Class* self) {
 
 void Machine_Map_construct(Machine_Map* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Collection_construct((Machine_Collection*)self, numberOfArguments, arguments);
-  Map* pimpl = c_alloc(sizeof(Map));
+  Map* pimpl = Machine_Eal_alloc(sizeof(Map));
   if (!pimpl) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
   pimpl->size = 0;
   pimpl->capacity = MINIMAL_CAPACITY;
-  pimpl->buckets = c_alloc_a(sizeof(Node*), pimpl->capacity);
+  pimpl->buckets = Machine_Eal_alloc_a(sizeof(Node*), pimpl->capacity);
   if (!pimpl->buckets) {
-    c_dealloc(pimpl);
+    Machine_Eal_dealloc(pimpl);
     pimpl = NULL;
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
@@ -168,11 +168,11 @@ void Machine_Map_construct(Machine_Map* self, size_t numberOfArguments, const Ma
     pimpl->buckets[i] = NULL;
   }
   self->pimpl = pimpl;
-  Machine_setClassType((Machine_Object*)self, Machine_Map_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Map_getType());
 }
 
 Machine_Map* Machine_Map_create() {
-  Machine_ClassType* ty = Machine_Map_getClassType();
+  Machine_ClassType* ty = Machine_Map_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_Map* self = (Machine_Map*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);

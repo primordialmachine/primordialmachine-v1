@@ -86,15 +86,18 @@ void Machine_Gc_run(size_t* live, size_t *dead) {
   while (current) {
     if (Machine_Tag_isWhite(current)) {
       *previous = current->next;
-      Machine_Tag* object = current;
+      Machine_Tag* tag = current;
       current = current->next;
-      if (object->finalize) {
-        object->finalize(Machine_t2o(object));
+      if (tag->finalize) {
+        tag->finalize(Machine_t2o(tag));
       }
-      if ((object->flags & Machine_Flag_Class) == Machine_Flag_Class) {
-        c_dealloc(t2cot(object));
+      if ((tag->flags & Machine_Flag_Class) == Machine_Flag_Class) {
+        Machine_ClassObjectTag* classObjectTag = t2cot(tag);
+        Machine_Tag_uninitialize(tag);
+        Machine_Eal_dealloc(classObjectTag);
       } else {
-        c_dealloc(object);
+        Machine_Tag_uninitialize(tag);
+        Machine_Eal_dealloc(tag);
       }
       g_objectCount--;
       (*dead)++;
@@ -112,20 +115,18 @@ void Machine_update() {
 }
 
 void* Machine_allocateEx(size_t payloadSize, size_t tagPrefixSize, Machine_VisitCallback* visit, Machine_FinalizeCallback* finalize) {
-  void* pt = c_alloc(tagPrefixSize + sizeof(Machine_Tag) + payloadSize);
+  void* pt = Machine_Eal_alloc(tagPrefixSize + sizeof(Machine_Tag) + payloadSize);
   if (!pt) {
     return NULL;
   }
   g_objectCount++;
   memset(pt, 0, tagPrefixSize + sizeof(Machine_Tag) + payloadSize);
   Machine_Tag* t = (Machine_Tag *)(((char*)pt) + tagPrefixSize);
-  t->lockCount = 0;
-  t->flags = Machine_Flag_White;
+  Machine_Tag_initialize(t);
   t->size = payloadSize;
   t->visit = visit;
   t->finalize = finalize;
   t->next = g_objects; g_objects = t;
-  t->gray = NULL;
   return ((char *)(t)) + sizeof(Machine_Tag);
 }
 

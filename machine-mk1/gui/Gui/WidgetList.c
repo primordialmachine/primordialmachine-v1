@@ -28,7 +28,7 @@ void Machine_Gui_WidgetList_construct(Machine_Gui_WidgetList* self, size_t numbe
                                       Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->backing = Machine_PointerArray_create();
-  Machine_setClassType((Machine_Object*)self, Machine_Gui_WidgetList_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Gui_WidgetList_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gui_WidgetList, Machine_Object, &Machine_Gui_WidgetList_visit,
@@ -36,7 +36,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gui_WidgetList, Machine_Object, &Machine_Gui_Wi
                          &Machine_Gui_WidgetList_constructClass)
 
 Machine_Gui_WidgetList* Machine_Gui_WidgetList_create() {
-  Machine_ClassType* ty = Machine_Gui_WidgetList_getClassType();
+  Machine_ClassType* ty = Machine_Gui_WidgetList_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
   static Machine_Value const ARGUMENTS[] = { Machine_Value_StaticInitializerVoid() };
   Machine_Gui_WidgetList* self

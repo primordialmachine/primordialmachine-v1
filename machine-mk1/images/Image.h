@@ -12,6 +12,8 @@
 
 MACHINE_DECLARE_CLASSTYPE(Machine_Images_Image)
 
+void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self, Machine_ByteBuffer* byteBuffer);
+
 void Machine_Images_Image_constructFromPath(Machine_Images_Image* self, Machine_String* path);
 
 void Machine_Images_Image_constructDirect(Machine_Images_Image* self, Machine_PixelFormat pixelFormat, Machine_Integer width, Machine_Integer height, Machine_ByteBuffer* pixels);

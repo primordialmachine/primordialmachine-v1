@@ -64,11 +64,11 @@ void Machine_Context2_construct(Machine_Context2* self, size_t numberOfArguments
   Machine_Binding_setVariableBinding(self->binding, Machine_String_create("vertex_position", strlen("vertex_position") + 1), 0);
 
   //
-  Machine_setClassType((Machine_Object*)self, Machine_Context2_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Context2_getType());
 }
 
 Machine_Context2* Machine_Context2_create(Machine_VideoContext* videoContext) {
-  Machine_ClassType* ty = Machine_Context2_getClassType();
+  Machine_ClassType* ty = Machine_Context2_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 1;
   Machine_Value arguments[1];
   Machine_Value_setObject(&arguments[0], (Machine_Object*)videoContext);

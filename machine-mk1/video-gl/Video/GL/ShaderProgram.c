@@ -218,13 +218,13 @@ void Machine_Gl_ShaderProgram_construct(Machine_Gl_ShaderProgram* self, size_t n
   constructFromText(self, v ? Machine_String_getBytes(v) : NULL,
                           g ? Machine_String_getBytes(g) : NULL,
                           f ? Machine_String_getBytes(f) : NULL);
-  Machine_setClassType((Machine_Object*)self, Machine_Gl_ShaderProgram_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Gl_ShaderProgram_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gl_ShaderProgram, Machine_ShaderProgram, Machine_Gl_ShaderProgram_visit, Machine_Gl_ShaderProgram_construct, Machine_Gl_ShaderProgram_destruct, &Machine_Gl_ShaderProgram_constructClass)
 
 Machine_Gl_ShaderProgram* Machine_Gl_ShaderProgram_create(Machine_String* vertexProgramText, Machine_String* geometryProgramText, Machine_String* fragmentProgramText) {
-  Machine_ClassType* ty = Machine_Gl_ShaderProgram_getClassType();
+  Machine_ClassType* ty = Machine_Gl_ShaderProgram_getType();
 
   static size_t const numberOfArguments = 3;
   Machine_Value arguments[3];

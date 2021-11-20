@@ -29,14 +29,14 @@ static void Machine_Gui_Gdl_Context_construct(Machine_Gui_Gdl_Context* self,
 #include "Gui/Gdl/Context.i"
 #undef DEFINE
 
-  Machine_setClassType((Machine_Object*)self, Machine_Gui_Gdl_Context_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Gui_Gdl_Context_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gui_Gdl_Context, Machine_Object, &Machine_Gui_Gdl_Context_visit,
                          &Machine_Gui_Gdl_Context_construct, NULL, NULL)
 
 Machine_Gui_Gdl_Context* Machine_Gui_Gdl_Context_create(Machine_GDL_Context* context) {
-  Machine_ClassType* ty = Machine_Gui_Gdl_Context_getClassType();
+  Machine_ClassType* ty = Machine_Gui_Gdl_Context_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 1;
   Machine_Value ARGUMENTS[1];
   Machine_Value_setObject(&ARGUMENTS[0], (Machine_Object*)context);

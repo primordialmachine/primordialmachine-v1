@@ -21,27 +21,27 @@ struct Machine_ByteBuffer {
 
 static void Machine_ByteBuffer_construct(Machine_ByteBuffer* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  self->p = c_alloc(0);
+  self->p = Machine_Eal_alloc(0);
   if (!self->p) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
   self->s = 0;
   self->c = 0;
-  Machine_setClassType((Machine_Object *)self, Machine_ByteBuffer_getClassType());
+  Machine_setClassType((Machine_Object *)self, Machine_ByteBuffer_getType());
 }
 
 static void Machine_ByteBuffer_destruct(Machine_ByteBuffer* self) {
-  c_dealloc(self->p);
+  Machine_Eal_dealloc(self->p);
   self->p = NULL;
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_ByteBuffer, Machine_Object, NULL, &Machine_ByteBuffer_construct, &Machine_ByteBuffer_destruct, NULL)
 
 Machine_ByteBuffer* Machine_ByteBuffer_create() {
-  Machine_ClassType* ty = Machine_ByteBuffer_getClassType();
-  static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  Machine_ClassType* ty = Machine_ByteBuffer_getType();
+  static size_t const NUMBER_OF_ARGUMENTS = 0;
+  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_ByteBuffer* self = (Machine_ByteBuffer*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

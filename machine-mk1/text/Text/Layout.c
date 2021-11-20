@@ -192,14 +192,14 @@ void Machine_Text_Layout_construct(Machine_Text_Layout* self, size_t numberOfArg
   self->lines = Machine_PointerArray_create();
   self->yup = true;
   self->flags |= LINES_DIRTY;
-  Machine_setClassType((Machine_Object*)self, Machine_Text_Layout_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Text_Layout_getType());
 }
 
 Machine_Text_Layout* Machine_Text_Layout_create(Machine_String* text, Machine_Font* font) {
   MACHINE_ASSERT_NOTNULL(text);
   MACHINE_ASSERT_NOTNULL(font);
 
-  Machine_ClassType* ty = Machine_Text_Layout_getClassType();
+  Machine_ClassType* ty = Machine_Text_Layout_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 2;
   Machine_Value arguments[2] = { Machine_Value_StaticInitializerVoid(), Machine_Value_StaticInitializerVoid() };
   Machine_Value_setString(&arguments[0], text);

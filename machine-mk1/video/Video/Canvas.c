@@ -9,7 +9,7 @@ void Machine_Video_Canvas_construct(Machine_Video_Canvas* self, size_t numberOfA
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { Machine_Value_StaticInitializerVoid() };
   Machine_Object_construct((Machine_Object*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
-  Machine_setClassType((Machine_Object*)self, Machine_Video_Canvas_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_Video_Canvas_getType());
 }
 
 void Machine_Video_Canvas_getFrameBuffersSize(Machine_Video_Canvas* self, Machine_Integer* width, Machine_Integer* height) {

@@ -41,7 +41,7 @@ void Machine_VideoBuffer_construct(Machine_VideoBuffer* self, size_t numberOfArg
   }
   self->n = 0;
 
-  Machine_setClassType((Machine_Object*)self, Machine_VideoBuffer_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_VideoBuffer_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_VideoBuffer, Machine_Object, NULL, &Machine_VideoBuffer_construct, &Machine_VideoBuffer_destruct, &Machine_VideoBuffer_constructClass)

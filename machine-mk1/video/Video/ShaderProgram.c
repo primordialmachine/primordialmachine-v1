@@ -16,7 +16,7 @@ void Machine_ShaderProgram_construct(Machine_ShaderProgram* self, size_t numberO
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_Object_construct((Machine_Object*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
-  Machine_setClassType((Machine_Object*)self, Machine_ShaderProgram_getClassType());
+  Machine_setClassType((Machine_Object*)self, Machine_ShaderProgram_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_ShaderProgram, Machine_Object, Machine_ShaderProgram_visit, Machine_ShaderProgram_construct, Machine_ShaderProgram_destruct, NULL)
