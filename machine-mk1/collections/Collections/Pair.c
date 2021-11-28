@@ -6,11 +6,6 @@
 
 
 
-#include <malloc.h>
-#include <memory.h>
-
-
-
 MACHINE_DEFINE_CLASSTYPE(Machine_Pair, Machine_Object, NULL, &Machine_Pair_construct, NULL, NULL)
 
 void Machine_Pair_construct(Machine_Pair* self, size_t numberOfArguments, const Machine_Value* arguments) {

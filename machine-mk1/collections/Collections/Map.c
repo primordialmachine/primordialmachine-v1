@@ -6,7 +6,6 @@
 
 
 
-#include "_Runtime.h"
 #include "Collections/List.h"
 #include "Collections/Pair.h"
 #include "Collections/GrowthStrategy.h"
