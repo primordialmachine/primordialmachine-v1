@@ -47,8 +47,10 @@ typedef void (Machine_TypeRemovedCallback)();
 #define Machine_TypeFlags_Initialized (4)
 
 struct Machine_Type {
+  /// @brief Either Machine_TypeFlags_Class or Machine_TypeFlags_Interface must be set.
+  ///        If the type has been initialized, then Machine_TypeFlags_Initialized must be set.
   uint32_t flags;
-  size_t size;
+  /// @brief Pointer to a "type removed" callback or a null pointer.
   Machine_TypeRemovedCallback* typeRemoved;
 };
 
