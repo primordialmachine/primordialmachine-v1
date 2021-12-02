@@ -11,7 +11,8 @@ static void Machine_Gui_Widget_constructClass(Machine_Gui_Widget_Class* self);
 static void Machine_Gui_Widget_visit(Machine_Gui_Widget* self);
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gui_Widget, Machine_Object, &Machine_Gui_Widget_visit,
-                         &Machine_Gui_Widget_construct, NULL, &Machine_Gui_Widget_constructClass)
+                         &Machine_Gui_Widget_construct, NULL, &Machine_Gui_Widget_constructClass,
+                         NULL)
 
 static void Machine_Gui_Widget_visit(Machine_Gui_Widget* self) {
   if (self->parent) {

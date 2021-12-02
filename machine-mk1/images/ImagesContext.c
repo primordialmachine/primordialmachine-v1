@@ -22,7 +22,8 @@ static void constructClass(Machine_Images_ImagesContext_Class* self) {
   ((Machine_ImagesContext_Class*)self)->createFromPath = (Machine_Image * (*)(Machine_ImagesContext*, Machine_String*)) & createFromPath;
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Images_ImagesContext, Machine_ImagesContext, NULL, &Machine_Images_ImagesContext_construct, NULL, &constructClass);
+MACHINE_DEFINE_CLASSTYPE(Machine_Images_ImagesContext, Machine_ImagesContext, NULL,
+                         &Machine_Images_ImagesContext_construct, NULL, &constructClass, NULL);
 
 void Machine_Images_ImagesContext_construct(Machine_Images_ImagesContext* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_ImagesContext_construct((Machine_ImagesContext*)self, numberOfArguments, arguments);

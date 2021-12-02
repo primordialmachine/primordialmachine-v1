@@ -16,7 +16,8 @@ static void Machine_Binding_Node_visit(Machine_Binding_Node* self);
 
 static void Machine_Binding_Node_construct(Machine_Binding_Node* self, size_t numberOfArguments, Machine_Value const* arguments);
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Binding_Node, Machine_Object, Machine_Binding_Node_visit, Machine_Binding_Node_construct, NULL, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_Binding_Node, Machine_Object, Machine_Binding_Node_visit,
+                         Machine_Binding_Node_construct, NULL, NULL, NULL)
 
 static void Machine_Binding_Node_construct(Machine_Binding_Node* self, size_t numberOfArguments, Machine_Value const* arguments) {
   static const size_t NUMBER_OF_ARGUMENTS = 0;
@@ -116,7 +117,9 @@ static void Machine_Binding_addUpdateConstantImpl(Machine_Binding* self, Machine
   }
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Binding, Machine_Object, &Machine_Binding_visit, &Machine_Binding_construct, &Machine_Binding_destruct, &Machine_Binding_constructClass)
+MACHINE_DEFINE_CLASSTYPE(Machine_Binding, Machine_Object, &Machine_Binding_visit,
+                         &Machine_Binding_construct, &Machine_Binding_destruct,
+                         &Machine_Binding_constructClass, NULL)
 
 static void Machine_Binding_constructClass(Machine_Binding_Class* self) {
   self->addUpdateConstant = &Machine_Binding_addUpdateConstantImpl;

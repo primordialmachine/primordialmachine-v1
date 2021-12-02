@@ -33,7 +33,7 @@ void Machine_Gui_WidgetList_construct(Machine_Gui_WidgetList* self, size_t numbe
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gui_WidgetList, Machine_Object, &Machine_Gui_WidgetList_visit,
                          &Machine_Gui_WidgetList_construct, NULL,
-                         &Machine_Gui_WidgetList_constructClass)
+                         &Machine_Gui_WidgetList_constructClass, NULL)
 
 Machine_Gui_WidgetList* Machine_Gui_WidgetList_create() {
   Machine_ClassType* ty = Machine_Gui_WidgetList_getType();

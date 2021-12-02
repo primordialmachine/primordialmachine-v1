@@ -17,7 +17,7 @@ void Machine_Gui_LayoutModel_construct(Machine_Gui_LayoutModel* self, size_t num
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gui_LayoutModel, Machine_Object, &Machine_Gui_LayoutModel_visit,
-                         &Machine_Gui_LayoutModel_construct, NULL, NULL)
+                         &Machine_Gui_LayoutModel_construct, NULL, NULL, NULL)
 
 Machine_Gui_LayoutModel* Machine_Gui_LayoutModel_create() {
   Machine_ClassType* ty = Machine_Gui_LayoutModel_getType();

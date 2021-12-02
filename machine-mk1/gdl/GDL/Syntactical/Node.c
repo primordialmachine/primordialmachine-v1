@@ -7,7 +7,8 @@ static void Machine_GDL_Node_visit(Machine_GDL_Node* self);
 
 static void Machine_GDL_Node_construct(Machine_GDL_Node* self, size_t numberOfArguments, const Machine_Value* arguments);
 
-MACHINE_DEFINE_CLASSTYPE(Machine_GDL_Node, Machine_Object, &Machine_GDL_Node_visit, &Machine_GDL_Node_construct, NULL, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_GDL_Node, Machine_Object, &Machine_GDL_Node_visit,
+                         &Machine_GDL_Node_construct, NULL, NULL, NULL)
 
 static void Machine_GDL_Node_visit(Machine_GDL_Node* self) {
   if (self->children) {

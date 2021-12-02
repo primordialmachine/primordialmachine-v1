@@ -28,7 +28,7 @@ void Machine_Gui_BorderModel_construct(Machine_Gui_BorderModel* self, size_t num
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gui_BorderModel, Machine_Object, &Machine_Gui_BorderModel_visit,
                          &Machine_Gui_BorderModel_construct, NULL,
-                         &Machine_Gui_BorderModel_constructClass)
+                         &Machine_Gui_BorderModel_constructClass, NULL)
 
 Machine_Gui_BorderModel* Machine_Gui_BorderModel_create() {
   Machine_ClassType* ty = Machine_Gui_BorderModel_getType();

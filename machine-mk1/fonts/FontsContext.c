@@ -37,7 +37,8 @@ static Machine_Font* createFont(Machine_Fonts_FontsContext* self, Machine_String
 
 static void constructClass(Machine_Fonts_FontsContext_Class* self);
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Fonts_FontsContext, Machine_FontsContext, &visit, &Machine_Fonts_FontsContext_construct, &destruct, &constructClass);
+MACHINE_DEFINE_CLASSTYPE(Machine_Fonts_FontsContext, Machine_FontsContext, &visit,
+                         &Machine_Fonts_FontsContext_construct, &destruct, &constructClass, NULL);
 
 static void constructClass(Machine_Fonts_FontsContext_Class* self) {
   ((Machine_FontsContext_Class*)self)->createFont = (Machine_Font * (*)(Machine_FontsContext*, Machine_String*, Machine_Integer)) & createFont;

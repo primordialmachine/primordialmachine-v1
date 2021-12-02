@@ -58,7 +58,9 @@ static void Machine_KeyboardKeyEvent_construct(Machine_KeyboardKeyEvent* self, s
   Machine_setClassType((Machine_Object*)self, Machine_KeyboardKeyEvent_getType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_KeyboardKeyEvent, Machine_Object, &Machine_KeyboardKeyEvent_visit, &Machine_KeyboardKeyEvent_construct, NULL, &Machine_KeyboardKeyEvent_constructClass)
+MACHINE_DEFINE_CLASSTYPE(Machine_KeyboardKeyEvent, Machine_Object, &Machine_KeyboardKeyEvent_visit,
+                         &Machine_KeyboardKeyEvent_construct, NULL,
+                         &Machine_KeyboardKeyEvent_constructClass, NULL)
 
 Machine_KeyboardKeyEvent* Machine_KeyboardKeyEvent_create(Machine_KeyboardKeys key, Machine_KeyboardKeyActions keyAction) {
   Machine_ClassType* ty = Machine_KeyboardKeyEvent_getType();

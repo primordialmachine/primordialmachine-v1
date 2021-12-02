@@ -350,7 +350,10 @@ static void Machine_Gl_VideoContext_constructClass(Machine_Gl_VideoContext_Class
   ((Machine_VideoContext_Class*)self)->generateText2Shader = (Machine_ShaderProgram * (*)(Machine_VideoContext*, Machine_Boolean)) & generateText2Shader;
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Gl_VideoContext, Machine_VideoContext, &Machine_Gl_VideoContext_visit, &Machine_Gl_VideoContext_construct, &Machine_Gl_VideoContext_destruct, &Machine_Gl_VideoContext_constructClass)
+MACHINE_DEFINE_CLASSTYPE(Machine_Gl_VideoContext, Machine_VideoContext,
+                         &Machine_Gl_VideoContext_visit, &Machine_Gl_VideoContext_construct,
+                         &Machine_Gl_VideoContext_destruct, &Machine_Gl_VideoContext_constructClass,
+                         NULL)
 
 void Machine_Gl_VideoContext_construct(Machine_Gl_VideoContext* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_VideoContext_construct((Machine_VideoContext*)self, numberOfArguments, arguments);

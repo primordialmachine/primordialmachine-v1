@@ -6,7 +6,8 @@
 
 
 
-MACHINE_DEFINE_CLASSTYPE(Machine_ImagesContext, Machine_Object, NULL, &Machine_ImagesContext_construct, NULL, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_ImagesContext, Machine_Object, NULL,
+                         &Machine_ImagesContext_construct, NULL, NULL, NULL)
 
 void Machine_ImagesContext_construct(Machine_ImagesContext* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);

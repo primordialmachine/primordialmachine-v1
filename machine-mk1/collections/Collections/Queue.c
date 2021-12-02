@@ -126,7 +126,9 @@ static void Machine_Queue_construct(Machine_Queue* self, size_t numberOfArgument
   Machine_setClassType((Machine_Object*)self, Machine_Queue_getType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Queue, Machine_Collection, &Machine_Queue_visit, &Machine_Queue_construct, &Machine_Queue_destruct, &Machine_Queue_constructClass)
+MACHINE_DEFINE_CLASSTYPE(Machine_Queue, Machine_Collection, &Machine_Queue_visit,
+                         &Machine_Queue_construct, &Machine_Queue_destruct,
+                         &Machine_Queue_constructClass, NULL)
 
 static void clear(Machine_Queue* self) {
   self->size = 0;

@@ -18,7 +18,9 @@ static void Machine_Gl_Binding_destruct(Machine_Gl_Binding* self);
 
 static void Machine_Gl_Binding_construct(Machine_Gl_Binding* self, size_t numberOfArguments, const Machine_Value* arguments);
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Gl_Binding, Machine_Binding, &Machine_Gl_Binding_visit, &Machine_Gl_Binding_construct, &Machine_Gl_Binding_destruct, &Machine_Gl_Binding_constructClass)
+MACHINE_DEFINE_CLASSTYPE(Machine_Gl_Binding, Machine_Binding, &Machine_Gl_Binding_visit,
+                         &Machine_Gl_Binding_construct, &Machine_Gl_Binding_destruct,
+                         &Machine_Gl_Binding_constructClass, NULL)
 
 static void Machine_Gl_Binding_visit(Machine_Gl_Binding* self)
 {/*Intentionally empty.*/}

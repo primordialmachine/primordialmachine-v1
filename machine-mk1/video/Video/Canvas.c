@@ -3,7 +3,8 @@
 
 
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Video_Canvas, Machine_Object, NULL, &Machine_Video_Canvas_construct, NULL, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_Video_Canvas, Machine_Object, NULL,
+                         &Machine_Video_Canvas_construct, NULL, NULL, NULL)
 
 void Machine_Video_Canvas_construct(Machine_Video_Canvas* self, size_t numberOfArguments, Machine_Value const* arguments) {
   static const size_t NUMBER_OF_ARGUMENTS = 0;

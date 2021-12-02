@@ -6,7 +6,8 @@
 
 
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Pair, Machine_Object, NULL, &Machine_Pair_construct, NULL, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_Pair, Machine_Object, NULL, &Machine_Pair_construct, NULL, NULL,
+                         NULL)
 
 void Machine_Pair_construct(Machine_Pair* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);

@@ -138,7 +138,8 @@ static void clear(Machine_Map* self) {
 
 static void Machine_Map_constructClass(Machine_Map_Class* self);
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Map, Machine_Collection, NULL, &Machine_Map_construct, NULL, &Machine_Map_constructClass)
+MACHINE_DEFINE_CLASSTYPE(Machine_Map, Machine_Collection, NULL, &Machine_Map_construct, NULL,
+                         &Machine_Map_constructClass, NULL)
 
 static void Machine_Map_constructClass(Machine_Map_Class* self) {
   self->get = &get;

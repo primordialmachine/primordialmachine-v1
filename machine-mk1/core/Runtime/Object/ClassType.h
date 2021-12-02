@@ -108,7 +108,8 @@ void Machine_ClassType_ensureInitialized(Machine_ClassType* self);
   typedef struct THIS##_Class THIS##_Class;                                                        \
   Machine_ClassType* THIS##_getType();
 
-#define MACHINE_DEFINE_CLASSTYPE(THIS, PARENT, VISIT, CONSTRUCT, DESTRUCT, CLASS_CONSTRUCT)        \
+#define MACHINE_DEFINE_CLASSTYPE(THIS, PARENT, VISIT, CONSTRUCT, DESTRUCT, CLASS_CONSTRUCT,        \
+                                 INTERFACES_IMPLEMENT)                                             \
                                                                                                    \
   static Machine_ClassType* g_##THIS##_ClassType = NULL;                                           \
                                                                                                    \

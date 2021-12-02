@@ -179,7 +179,8 @@ static void updateBounds(Machine_Text_Layout* self) {
   Machine_Rectangle2_setRectangle(self->visualBounds, bounds);
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Text_Layout, Machine_Object, &Machine_Text_Layout_visit, &Machine_Text_Layout_construct, NULL, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_Text_Layout, Machine_Object, &Machine_Text_Layout_visit,
+                         &Machine_Text_Layout_construct, NULL, NULL, NULL)
 
 void Machine_Text_Layout_construct(Machine_Text_Layout* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);

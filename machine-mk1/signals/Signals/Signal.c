@@ -9,7 +9,8 @@
 
 static void Machine_Signals_Signal_visit(Machine_Signals_Signal* self);
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Signals_Signal, Machine_Object, &Machine_Signals_Signal_visit, &Machine_Signals_Signal_construct, NULL, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_Signals_Signal, Machine_Object, &Machine_Signals_Signal_visit,
+                         &Machine_Signals_Signal_construct, NULL, NULL, NULL)
 
 static void Machine_Signals_Signal_visit(Machine_Signals_Signal* self) {
   if (self->connections) {

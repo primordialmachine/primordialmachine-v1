@@ -18,7 +18,9 @@ static void Machine_Gl_VideoBuffer_destruct(Machine_Gl_VideoBuffer* self) {
   }
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Gl_VideoBuffer, Machine_VideoBuffer, NULL, &Machine_Gl_VideoBuffer_construct, &Machine_Gl_VideoBuffer_destruct, &Machine_Gl_VideoBuffer_constructClass)
+MACHINE_DEFINE_CLASSTYPE(Machine_Gl_VideoBuffer, Machine_VideoBuffer, NULL,
+                         &Machine_Gl_VideoBuffer_construct, &Machine_Gl_VideoBuffer_destruct,
+                         &Machine_Gl_VideoBuffer_constructClass, NULL)
 
 static void Machine_Gl_VideoBuffer_setDataImpl(Machine_Gl_VideoBuffer* self, size_t n, void const* p) {
   void* t = realloc(((Machine_VideoBuffer*)self)->p, n * sizeof(uint8_t));

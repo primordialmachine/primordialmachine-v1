@@ -8,7 +8,8 @@ static void Machine_Math_Vector2_construct(Machine_Math_Vector2* self, size_t nu
   Machine_setClassType((Machine_Object*)self, Machine_Math_Vector2_getType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Math_Vector2, Machine_Object, NULL, &Machine_Math_Vector2_construct, NULL, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_Math_Vector2, Machine_Object, NULL,
+                         &Machine_Math_Vector2_construct, NULL, NULL, NULL)
 
 Machine_Math_Vector2* Machine_Math_Vector2_create() {
   Machine_ClassType* ty = Machine_Math_Vector2_getType();

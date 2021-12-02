@@ -31,7 +31,8 @@ static void Machine_Context2_visit(Machine_Context2* self) {
   }
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Context2, Machine_Object, &Machine_Context2_visit, Machine_Context2_construct, NULL,  NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_Context2, Machine_Object, &Machine_Context2_visit,
+                         Machine_Context2_construct, NULL, NULL, NULL)
 
 void Machine_Context2_construct(Machine_Context2* self, size_t numberOfArguments, Machine_Value const* arguments) {
   MACHINE_ASSERT(numberOfArguments == 1, Machine_Status_InvalidNumberOfArguments);

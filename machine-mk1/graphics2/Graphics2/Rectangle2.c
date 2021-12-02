@@ -71,7 +71,9 @@ void Machine_Rectangle2_construct(Machine_Rectangle2* self, size_t numberOfArgum
   Machine_setClassType((Machine_Object*)self, Machine_Rectangle2_getType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Rectangle2, Machine_Shape2, &Machine_Rectangle2_visit, &Machine_Rectangle2_construct, NULL, &Machine_Rectangle2_constructClass)
+MACHINE_DEFINE_CLASSTYPE(Machine_Rectangle2, Machine_Shape2, &Machine_Rectangle2_visit,
+                         &Machine_Rectangle2_construct, NULL, &Machine_Rectangle2_constructClass,
+                         NULL)
 
 Machine_Rectangle2* Machine_Rectangle2_create() {
   Machine_ClassType* ty = Machine_Rectangle2_getType();

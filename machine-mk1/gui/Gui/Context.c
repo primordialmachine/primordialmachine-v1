@@ -30,7 +30,7 @@ static void Machine_Gui_Context_construct(Machine_Gui_Context* self, size_t numb
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gui_Context, Machine_Object, &Machine_Gui_Context_visit,
-                         &Machine_Gui_Context_construct, NULL, NULL)
+                         &Machine_Gui_Context_construct, NULL, NULL, NULL)
 
 Machine_Gui_Context* Machine_Gui_Context_create(Machine_GDL_Context* gdlContext,
                                                 Machine_Context2* context2) {

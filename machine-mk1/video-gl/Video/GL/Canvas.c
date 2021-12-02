@@ -161,7 +161,9 @@ void Machine_Video_GL_Canvas_construct(Machine_Video_GL_Canvas* self, size_t num
   Machine_setClassType((Machine_Object*)self, Machine_Video_GL_Canvas_getType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Video_GL_Canvas, Machine_Video_Canvas, NULL, &Machine_Video_GL_Canvas_construct, &Machine_Video_GL_Canvas_destruct, &Machine_Video_GL_Canvas_constructClass)
+MACHINE_DEFINE_CLASSTYPE(Machine_Video_GL_Canvas, Machine_Video_Canvas, NULL,
+                         &Machine_Video_GL_Canvas_construct, &Machine_Video_GL_Canvas_destruct,
+                         &Machine_Video_GL_Canvas_constructClass, NULL)
 
 Machine_Video_GL_Canvas* Machine_Video_GL_Canvas_create() {
   Machine_ClassType* ty = Machine_Video_GL_Canvas_getType();

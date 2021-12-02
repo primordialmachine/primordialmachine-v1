@@ -85,7 +85,7 @@ void Machine_Gui_TextNode_construct(Machine_Gui_TextNode* self, size_t numberOfA
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gui_TextNode, Machine_Gui_Widget, &Machine_Gui_TextNode_visit,
                          &Machine_Gui_TextNode_construct, NULL,
-                         &Machine_Gui_TextNode_constructClass)
+                         &Machine_Gui_TextNode_constructClass, NULL)
 
 Machine_Gui_TextNode* Machine_Gui_TextNode_create(Machine_Gui_Context* context) {
   Machine_ClassType* ty = Machine_Gui_TextNode_getType();

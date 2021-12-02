@@ -53,7 +53,7 @@ void Machine_Gui_GroupNode_construct(Machine_Gui_GroupNode* self, size_t numberO
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gui_GroupNode, Machine_Gui_Widget, &Machine_Gui_GroupNode_visit,
                          &Machine_Gui_GroupNode_construct, NULL,
-                         &Machine_Gui_GroupNode_constructClass)
+                         &Machine_Gui_GroupNode_constructClass, NULL)
 
 Machine_Gui_GroupNode* Machine_Gui_GroupNode_create(Machine_Gui_Context* context) {
   Machine_ClassType* ty = Machine_Gui_GroupNode_getType();

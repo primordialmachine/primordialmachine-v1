@@ -26,7 +26,8 @@ static void Scene_destruct(Scene* self)
 static void Scene_visit(Scene* self)
 {/*Intentionally empty.*/}
 
-MACHINE_DEFINE_CLASSTYPE(Scene, Machine_Object, &Scene_visit, &Scene_construct, &Scene_destruct, &Scene_constructClass)
+MACHINE_DEFINE_CLASSTYPE(Scene, Machine_Object, &Scene_visit, &Scene_construct, &Scene_destruct,
+                         &Scene_constructClass, NULL)
 
 static void onMousePointerEvent(Scene* self, Machine_MousePointerEvent *event)
 {/*Intentionally empty.*/}

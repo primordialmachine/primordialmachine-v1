@@ -18,7 +18,8 @@ void Machine_Shape2_construct(Machine_Shape2* self, size_t numberOfArguments, Ma
   Machine_setClassType((Machine_Object*)self, Machine_Shape2_getType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Shape2, Machine_Object, &Machine_Shape2_visit, &Machine_Shape2_construct, NULL, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_Shape2, Machine_Object, &Machine_Shape2_visit,
+                         &Machine_Shape2_construct, NULL, NULL, NULL)
 
 void Machine_Shape2_render(Machine_Shape2* self, Machine_Context2* context) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_Shape2, render, context);

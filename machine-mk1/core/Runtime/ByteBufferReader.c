@@ -34,7 +34,9 @@ void Machine_ByteBufferReader_construct(Machine_ByteBufferReader* self, size_t n
   Machine_setClassType((Machine_Object*)self, Machine_ByteBufferReader_getType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_ByteBufferReader, Machine_Object, NULL, &Machine_ByteBufferReader_construct, NULL, &Machine_ByteBufferReader_visit)
+MACHINE_DEFINE_CLASSTYPE(Machine_ByteBufferReader, Machine_Object, NULL,
+                         &Machine_ByteBufferReader_construct, NULL, &Machine_ByteBufferReader_visit,
+                         NULL)
 
 Machine_ByteBufferReader* Machine_ByteBufferReader_create(Machine_ByteBuffer* byteBuffer) {
   Machine_ClassType* ty = Machine_ByteBufferReader_getType();

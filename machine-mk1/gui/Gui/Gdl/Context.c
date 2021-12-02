@@ -33,7 +33,7 @@ static void Machine_Gui_Gdl_Context_construct(Machine_Gui_Gdl_Context* self,
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gui_Gdl_Context, Machine_Object, &Machine_Gui_Gdl_Context_visit,
-                         &Machine_Gui_Gdl_Context_construct, NULL, NULL)
+                         &Machine_Gui_Gdl_Context_construct, NULL, NULL, NULL)
 
 Machine_Gui_Gdl_Context* Machine_Gui_Gdl_Context_create(Machine_GDL_Context* context) {
   Machine_ClassType* ty = Machine_Gui_Gdl_Context_getType();

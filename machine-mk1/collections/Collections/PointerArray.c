@@ -26,7 +26,9 @@ struct Machine_PointerArray {
   Machine_List* list;
 };
 
-MACHINE_DEFINE_CLASSTYPE(Machine_PointerArray, Machine_Object, &Machine_PointerArray_visit, &Machine_PointerArray_construct, &Machine_PointerArray_destruct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_PointerArray, Machine_Object, &Machine_PointerArray_visit,
+                         &Machine_PointerArray_construct, &Machine_PointerArray_destruct, NULL,
+                         NULL)
 
 static void Machine_PointerArray_visit(Machine_PointerArray* self) {
   if (self->list) {

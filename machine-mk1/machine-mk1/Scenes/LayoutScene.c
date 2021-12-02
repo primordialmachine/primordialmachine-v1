@@ -48,7 +48,8 @@ static void LayoutScene_visit(LayoutScene* self) {
   }
 }
 
-MACHINE_DEFINE_CLASSTYPE(LayoutScene, Scene, &LayoutScene_visit, &LayoutScene_construct, NULL, &LayoutScene_constructClass)
+MACHINE_DEFINE_CLASSTYPE(LayoutScene, Scene, &LayoutScene_visit, &LayoutScene_construct, NULL,
+                         &LayoutScene_constructClass, NULL)
 
 static void LayoutScene_onStartup(LayoutScene* scene) {
   //

@@ -17,7 +17,8 @@ static void Machine_GDL_Parser_construct(Machine_GDL_Parser* self, size_t number
   Machine_setClassType((Machine_Object*)self, Machine_GDL_Parser_getType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_GDL_Parser, Machine_Object, &Machine_GDL_Parser_visit, &Machine_GDL_Parser_construct, NULL, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_GDL_Parser, Machine_Object, &Machine_GDL_Parser_visit,
+                         &Machine_GDL_Parser_construct, NULL, NULL, NULL)
 
 Machine_GDL_Parser* Machine_GDL_Parser_create() {
   Machine_ClassType* ty = Machine_GDL_Parser_getType();

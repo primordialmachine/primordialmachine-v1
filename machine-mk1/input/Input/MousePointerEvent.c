@@ -44,7 +44,9 @@ static void Machine_MousePointerEvent_construct(Machine_MousePointerEvent* self,
   Machine_setClassType((Machine_Object*)self, Machine_MousePointerEvent_getType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_MousePointerEvent, Machine_Object, &Machine_MousePointerEvent_visit, &Machine_MousePointerEvent_construct, NULL, &Machine_MousePointerEvent_constructClass)
+MACHINE_DEFINE_CLASSTYPE(Machine_MousePointerEvent, Machine_Object,
+                         &Machine_MousePointerEvent_visit, &Machine_MousePointerEvent_construct,
+                         NULL, &Machine_MousePointerEvent_constructClass, NULL)
 
 Machine_MousePointerEvent* Machine_MousePointerEvent_create(Machine_Real x, Machine_Real y) {
   Machine_ClassType* ty = Machine_MousePointerEvent_getType();

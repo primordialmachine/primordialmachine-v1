@@ -39,7 +39,7 @@ static Machine_Math_Rectangle2 const* Machine_Gui_BorderNode_getCanvasRectangle(
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gui_BorderNode, Machine_Gui_Widget, &Machine_Gui_BorderNode_visit,
                          &Machine_Gui_BorderNode_construct, NULL,
-                         &Machine_Gui_BorderNode_constructClass)
+                         &Machine_Gui_BorderNode_constructClass, NULL)
 
 static void Machine_Gui_BorderNode_visit(Machine_Gui_BorderNode* self) {
   if (self->child) {

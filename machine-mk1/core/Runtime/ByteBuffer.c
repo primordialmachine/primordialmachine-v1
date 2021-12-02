@@ -36,7 +36,8 @@ static void Machine_ByteBuffer_destruct(Machine_ByteBuffer* self) {
   self->p = NULL;
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_ByteBuffer, Machine_Object, NULL, &Machine_ByteBuffer_construct, &Machine_ByteBuffer_destruct, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_ByteBuffer, Machine_Object, NULL, &Machine_ByteBuffer_construct,
+                         &Machine_ByteBuffer_destruct, NULL, NULL)
 
 Machine_ByteBuffer* Machine_ByteBuffer_create() {
   Machine_ClassType* ty = Machine_ByteBuffer_getType();

@@ -38,7 +38,8 @@ static void Rectangle2Scene_visit(Rectangle2Scene* self) {
   }
 }
 
-MACHINE_DEFINE_CLASSTYPE(Rectangle2Scene, Scene, &Rectangle2Scene_visit, &Rectangle2Scene_construct, NULL, &Rectangle2Scene_constructClass)
+MACHINE_DEFINE_CLASSTYPE(Rectangle2Scene, Scene, &Rectangle2Scene_visit, &Rectangle2Scene_construct,
+                         NULL, &Rectangle2Scene_constructClass, NULL)
 
 static void Rectangle2Scene_onStartup(Rectangle2Scene* scene) {
   // Create the 2D context.

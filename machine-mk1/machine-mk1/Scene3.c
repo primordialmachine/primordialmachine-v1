@@ -69,7 +69,8 @@ static void Scene3_visit(Scene3* self) {
   }
 }
 
-MACHINE_DEFINE_CLASSTYPE(Scene3, Scene, &Scene3_visit, &Scene3_construct, NULL, &Scene3_constructClass)
+MACHINE_DEFINE_CLASSTYPE(Scene3, Scene, &Scene3_visit, &Scene3_construct, NULL,
+                         &Scene3_constructClass, NULL)
 
 static void Scene3_startup(Scene3* scene) {
   scene->image = Machine_ImagesContext_createFromPath(Machines_DefaultImages_createContext(), Machine_String_create("test-transparency-1.png", strlen("test-transparency-1.png")));

@@ -221,7 +221,10 @@ void Machine_Gl_ShaderProgram_construct(Machine_Gl_ShaderProgram* self, size_t n
   Machine_setClassType((Machine_Object*)self, Machine_Gl_ShaderProgram_getType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Gl_ShaderProgram, Machine_ShaderProgram, Machine_Gl_ShaderProgram_visit, Machine_Gl_ShaderProgram_construct, Machine_Gl_ShaderProgram_destruct, &Machine_Gl_ShaderProgram_constructClass)
+MACHINE_DEFINE_CLASSTYPE(Machine_Gl_ShaderProgram, Machine_ShaderProgram,
+                         Machine_Gl_ShaderProgram_visit, Machine_Gl_ShaderProgram_construct,
+                         Machine_Gl_ShaderProgram_destruct,
+                         &Machine_Gl_ShaderProgram_constructClass, NULL)
 
 Machine_Gl_ShaderProgram* Machine_Gl_ShaderProgram_create(Machine_String* vertexProgramText, Machine_String* geometryProgramText, Machine_String* fragmentProgramText) {
   Machine_ClassType* ty = Machine_Gl_ShaderProgram_getType();

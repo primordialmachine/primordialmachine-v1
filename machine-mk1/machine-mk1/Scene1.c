@@ -54,7 +54,8 @@ static void Scene1_visit(Scene1* self) {
   }
 }
 
-MACHINE_DEFINE_CLASSTYPE(Scene1, Scene, &Scene1_visit, &Scene1_construct, NULL, &Scene1_constructClass)
+MACHINE_DEFINE_CLASSTYPE(Scene1, Scene, &Scene1_visit, &Scene1_construct, NULL,
+                         &Scene1_constructClass, NULL)
 
 static void Scene1_onStartup(Scene1* scene) {
   scene->vertices = Machine_VideoContext_createBuffer(Machine_getVideoContext());

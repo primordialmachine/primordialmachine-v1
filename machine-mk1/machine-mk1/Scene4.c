@@ -62,7 +62,8 @@ static void Scene4_visit(Scene4* self) {
   }
 }
 
-MACHINE_DEFINE_CLASSTYPE(Scene4, Scene, &Scene4_visit, &Scene4_construct, NULL, &Scene4_constructClass)
+MACHINE_DEFINE_CLASSTYPE(Scene4, Scene, &Scene4_visit, &Scene4_construct, NULL,
+                         &Scene4_constructClass, NULL)
 
 static void Scene4_onStartup(Scene4* scene) {
   //

@@ -7,7 +7,8 @@
 static void Machine_VideoContext_visit(Machine_VideoContext* self)
 {/*Intentionally empty.*/}
 
-MACHINE_DEFINE_CLASSTYPE(Machine_VideoContext, Machine_Object, &Machine_VideoContext_visit, &Machine_VideoContext_construct, NULL, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_VideoContext, Machine_Object, &Machine_VideoContext_visit,
+                         &Machine_VideoContext_construct, NULL, NULL, NULL)
 
 void Machine_VideoContext_construct(Machine_VideoContext* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);

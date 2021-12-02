@@ -381,7 +381,9 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
   Machine_setClassType((Machine_Object*)self, Machine_Fonts_Font_getType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Fonts_Font, Machine_Font, &Machine_Fonts_Font_visit, &Machine_Fonts_Font_construct, &Machine_Fonts_Font_destruct, &Machine_Fonts_Font_constructClass)
+MACHINE_DEFINE_CLASSTYPE(Machine_Fonts_Font, Machine_Font, &Machine_Fonts_Font_visit,
+                         &Machine_Fonts_Font_construct, &Machine_Fonts_Font_destruct,
+                         &Machine_Fonts_Font_constructClass, NULL)
 
 Machine_Fonts_Font* Machine_Fonts_Font_create(Machine_FontsContext* fontsContext, Machine_String *path, Machine_Integer pointSize) {
   Machine_ClassType* ty = Machine_Fonts_Font_getType();

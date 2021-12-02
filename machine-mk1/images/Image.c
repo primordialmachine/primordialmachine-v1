@@ -71,7 +71,7 @@ static void constructClass(Machine_Images_Image_Class* self) {
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Images_Image, Machine_Image, NULL, &Machine_Images_Image_construct,
-                         &Machine_Images_Image_destruct, &constructClass);
+                         &Machine_Images_Image_destruct, &constructClass, NULL);
 
 typedef struct _Io_State {
   char const* bytes;
