@@ -213,7 +213,8 @@ static void grow1(Machine_Queue* self, size_t requiredAdditionalCapacity) {
     // a + 4 = a + head + newCapacity - oldCapacity
     // 2 = oldCapacity - head
     size_t deltaCapacity = newCapacity - oldCapacity;
-    memmove(newElements + self->head + deltaCapacity, newElements + self->head, (oldCapacity - self->head) * sizeof(Machine_Value));
+    Machine_Eal_copy(newElements + self->head + deltaCapacity, newElements + self->head,
+                     (oldCapacity - self->head) * sizeof(Machine_Value), true);
     self->head += deltaCapacity;
   }
   self->elements = newElements;

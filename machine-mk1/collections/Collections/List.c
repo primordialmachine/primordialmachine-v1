@@ -105,7 +105,7 @@ static void insertAt(Machine_List* self, size_t index, Machine_Value value) {
     self->capacity = newCapacity;
   }
   if (index < self->size) {
-    memmove(self->elements + index + 1, self->elements + index + 0, sizeof(Machine_Value) * (self->size - index));
+    Machine_Eal_copy(self->elements + index + 1, self->elements + index + 0, sizeof(Machine_Value) * (self->size - index), true);
   }
   self->elements[index] = value;
   self->size++;
@@ -133,7 +133,8 @@ static void removeAt(Machine_List* self, size_t index) {
     Machine_jump();
   }
   if (index < self->size - 1) {
-    memmove(self->elements + index + 0, self->elements + index + 1, sizeof(Machine_Value) * (self->size - index - 1));
+    Machine_Eal_copy(self->elements + index + 0, self->elements + index + 1,
+                     sizeof(Machine_Value) * (self->size - index - 1), true);
   }
   self->size--;
 }
