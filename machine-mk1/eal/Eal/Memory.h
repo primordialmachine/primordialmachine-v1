@@ -47,6 +47,24 @@ void* Machine_Eal_realloc_a(void* p, size_t n, size_t m);
 /// @remark If @a p is a null pointer, then this function is a no-operation.
 void Machine_Eal_dealloc(void* p);
 
+/// @brief Copy Byte values from one memory block to another.
+/// @param p A pointer to the target memory block.
+/// @param q A pointer tot he source memory block.
+/// @param n The number of Bytes to copy.
+/// @remark
+/// If @a overlap is true, the memory blocks may overlap.
+/// Otherwise they may not overlap.
+void Machine_Eal_copy(void* p, void const* q, size_t n, bool overlap);
 
+/// @brief Compare Byte values of one memory block to the Byte values of another memory block.
+/// @param p A pointer to the first memory block.
+/// @param q A pointer to the second memory block.
+/// @param n The number of Bytes to compare.
+/// @return
+/// @a 0 if all values at indices 0, 1, ..., n - 1 are equal.
+/// Otherwise the values at some index i are different in the memory blocks:
+/// If the value in the first memory block is lower (greater) than the value in the second memory blocked,
+/// a negative (positive) value is returned.
+int Machine_Eal_compare(void const* p, void const* q, size_t n);
 
 #endif // MACHINE_EAL_MEMORY_H_INCLUDED

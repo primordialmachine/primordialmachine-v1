@@ -4,7 +4,8 @@
 
 
 #include "Eal/multiplySafe.h"
-#include <malloc.h>
+#include <malloc.h> // malloc, realloc, free
+#include <memory.h> // memmove, memcpy
 
 
 
@@ -43,4 +44,16 @@ void Machine_Eal_dealloc(void* p) {
   if (p) {
     free(p);
   }
+}
+
+void Machine_Eal_copy(void* p, void const* q, size_t n, bool overlap) {
+  if (overlap) {
+    memmove(p, q, n);
+  } else {
+    memcpy(p, q, n);
+  }
+}
+
+int Machine_Eal_compare(void const* p, void const* q, size_t n) {
+  return memcmp(p, q, n);
 }
