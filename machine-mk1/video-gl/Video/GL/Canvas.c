@@ -98,7 +98,7 @@ static void Machine_Video_GL_Canvas_setCanvasIcons(Machine_Video_GL_Canvas* self
   Machine_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
     size_t numberOfImages = Machine_Collection_getSize((Machine_Collection*)images);
-    targetImages = malloc(numberOfImages * sizeof(GLFWimage));
+    targetImages = Machine_Eal_alloc_a(sizeof(GLFWimage), numberOfImages);
     if (!targetImages) {
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();
@@ -116,13 +116,13 @@ static void Machine_Video_GL_Canvas_setCanvasIcons(Machine_Video_GL_Canvas* self
     }
     glfwSetWindowIcon(g_window, numberOfImages, targetImages);
     if (targetImages) {
-      free(targetImages);
+      Machine_Eal_dealloc(targetImages);
       targetImages = NULL;
     }
     Machine_popJumpTarget();
   } else {
     if (targetImages) {
-      free(targetImages);
+      Machine_Eal_dealloc(targetImages);
       targetImages = NULL;
     }
     Machine_popJumpTarget();

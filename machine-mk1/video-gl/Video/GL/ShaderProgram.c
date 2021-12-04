@@ -88,10 +88,10 @@ static GLuint compileShader(char const* programText, Machine_ProgramKind program
   #if defined(SHADER_EMIT_LOG_IF_COMPILATION_FAILED)
     GLint log_length;
     glGetShaderiv(id, GL_INFO_LOG_LENGTH, &log_length);
-    char* buffer = malloc(sizeof(char) * log_length + 1);
+    char* buffer = Machine_Eal_alloc_a(sizeof(char), log_length + 1);
     if (buffer) {
       glGetShaderInfoLog(id, log_length, NULL, buffer);
-      free(buffer);
+      Machine_Eal_dealloc(buffer);
     }
   #endif
 
@@ -173,10 +173,10 @@ static void constructFromText(Machine_Gl_ShaderProgram* self, char const* vertex
   #if defined(PROGRAM_EMIT_LOG_IF_LINKING_FAILED)
     GLint log_length;
     glGetProgramiv(programId, GL_INFO_LOG_LENGTH, &log_length);
-    char* buffer = malloc(sizeof(char) * log_length + 1);
+    char* buffer = Machine_Eal_alloc(sizeof(char), log_length + 1);
     if (buffer) {
       glGetProgramInfoLog(programId, log_length, NULL, buffer);
-      free(buffer);
+      Machine_Eal_dealloc(buffer);
     }
   #endif
 

@@ -23,13 +23,13 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gl_VideoBuffer, Machine_VideoBuffer, NULL,
                          &Machine_Gl_VideoBuffer_constructClass, NULL)
 
 static void Machine_Gl_VideoBuffer_setDataImpl(Machine_Gl_VideoBuffer* self, size_t n, void const* p) {
-  void* t = realloc(((Machine_VideoBuffer*)self)->p, n * sizeof(uint8_t));
+  void* t = Machine_Eal_realloc_a(((Machine_VideoBuffer*)self)->p, sizeof(uint8_t), n);
   if (!t) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
   ((Machine_VideoBuffer*)self)->p = t;
-  memcpy(((Machine_VideoBuffer*)self)->p, p, n * sizeof(uint8_t));
+  Machine_Eal_copy(((Machine_VideoBuffer*)self)->p, p, n * sizeof(uint8_t), false);
   ((Machine_VideoBuffer*)self)->n = n;
 
   glBindBuffer(GL_ARRAY_BUFFER, self->id);
