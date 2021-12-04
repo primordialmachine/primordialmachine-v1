@@ -71,9 +71,9 @@ void Machine_ByteBuffer_insertBytesAt(Machine_ByteBuffer* self, size_t i, char c
     self->c = self->c + ac;
   }
   if (i < self->s) {
-    memmove(self->p + i + n, self->p + i, self->s - i);
+    Machine_Eal_copy(self->p + i + n, self->p + i, self->s - i, true);
   }
-  memcpy(self->p + i, p, n);
+  Machine_Eal_copy(self->p + i, p, n, false);
   self->s += n;
 }
 
@@ -93,5 +93,5 @@ Machine_Boolean Machine_ByteBuffer_compareBytes(Machine_ByteBuffer const* self, 
   if (n != self->s) {
     return false;
   }
-  return !memcmp(self->p, p, n);
+  return !Machine_Eal_compare(self->p, p, n);
 }

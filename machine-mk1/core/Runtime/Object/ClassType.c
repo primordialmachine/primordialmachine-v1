@@ -63,7 +63,7 @@ Machine_ClassType* Machine_createClassType(Machine_CreateClassTypeArgs* args) {
   }
   memset(classType->data, 0, classType->classSize);
   if (args->parent) {
-    memcpy(classType->data, args->parent->data, args->parent->classSize);
+    Machine_Eal_copy(classType->data, args->parent->data, args->parent->classSize, false);
   }
   if (args->constructClass) {
     args->constructClass(classType->data);
