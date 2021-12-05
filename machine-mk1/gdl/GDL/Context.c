@@ -1,4 +1,4 @@
-/// @file GDL/Context.c
+/// @file Gdl/Context.c
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #include "./../GDL/Context.h"

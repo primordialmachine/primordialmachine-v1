@@ -1,4 +1,4 @@
-/// @file GDL/Lexical/Token.h
+/// @file Gdl/Lexical/Token.h
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #if !defined(MACHINE_GDL_LEXICAL_TOKEN_H_INCLUDED)

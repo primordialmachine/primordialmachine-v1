@@ -1,4 +1,4 @@
-/// @file GDL/Lexical/Scanner.h
+/// @file Gdl/Lexical/Scanner.h
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #if !defined(MACHINE_GDL_LEXICAL_SCANNER_H_INCLUDED)

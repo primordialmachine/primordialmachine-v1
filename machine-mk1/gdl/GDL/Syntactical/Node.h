@@ -1,4 +1,4 @@
-/// @file GDL/Syntactical/Node.h
+/// @file Gdl/Syntactical/Node.h
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #if !defined(MACHINE_GDL_SYNTACTICAL_NODE_H_INCLUDED)

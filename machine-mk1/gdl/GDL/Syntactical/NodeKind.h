@@ -1,4 +1,4 @@
-/// @file GDL/Syntactical/NodeKind.h
+/// @file Gdl/Syntactical/NodeKind.h
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #if !defined(MACHINE_GDL_SYNTACTICAL_NODEKIND_H_INCLUDED)

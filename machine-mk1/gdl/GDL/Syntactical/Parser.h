@@ -1,4 +1,4 @@
-/// @file GDL/Syntactical/Parser.h
+/// @file Gdl/Syntactical/Parser.h
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #if !defined(MACHINE_GDL_SYNTACTICAL_PARSER_H_INCLUDED)
