@@ -1,6 +1,5 @@
 #include "Scene.h"
 
-#include <malloc.h>
 
 static void Scene_destruct(Scene* self);
 
