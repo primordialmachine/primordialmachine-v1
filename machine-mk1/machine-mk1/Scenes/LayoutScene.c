@@ -53,42 +53,43 @@ static void LayoutScene_visit(LayoutScene* self) {
 MACHINE_DEFINE_CLASSTYPE(LayoutScene, Scene, &LayoutScene_visit, &LayoutScene_construct, NULL,
                          &LayoutScene_constructClass, NULL)
 
-static void LayoutScene_onStartup(LayoutScene* scene) {
+static void LayoutScene_onStartup(LayoutScene* self) {
+  Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
   //
-  scene->context2 = Machine_Context2_create(Machine_getVideoContext());
+  self->context2 = Machine_Context2_create(videoContext);
   //
-  scene->font = Machine_FontsContext_createFont(Machine_DefaultFonts_createContext(Machine_getVideoContext(), Machines_DefaultImages_createContext()),
-                                                Machine_String_create(FONT_FILE, strlen(FONT_FILE)), FONT_SIZE);
+  self->font = Machine_FontsContext_createFont(Machine_DefaultFonts_createContext(videoContext, Machines_DefaultImages_createContext()),
+                                               Machine_String_create(FONT_FILE, strlen(FONT_FILE)), FONT_SIZE);
   //
-  scene->textLayout1 = Machine_Text_Layout_create(Machine_String_create("", strlen("")), scene->font);
+  self->textLayout1 = Machine_Text_Layout_create(Machine_String_create("", strlen("")), self->font);
   {
     const char* text = "Nanobox IV\n400 units of unprimed nanites.";
-    Machine_Text_Layout_setText(scene->textLayout1, Machine_String_create(text, strlen(text)));
+    Machine_Text_Layout_setText(self->textLayout1, Machine_String_create(text, strlen(text)));
   }
   //
-  scene->textLayout2 = Machine_Text_Layout_create(Machine_String_create("", strlen("")), scene->font);
+  self->textLayout2 = Machine_Text_Layout_create(Machine_String_create("", strlen("")), self->font);
   {
     const char* text = "13 of 18 units\n7 of 9 units";
-    Machine_Text_Layout_setText(scene->textLayout2, Machine_String_create(text, strlen(text)));
+    Machine_Text_Layout_setText(self->textLayout2, Machine_String_create(text, strlen(text)));
   }
   //
   Machine_Math_Vector4* c = Machine_Math_Vector4_create();
   Machine_Math_Vector4_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
-  Machine_VideoContext_setClearColor(Machine_getVideoContext(), c);
+  Machine_VideoContext_setClearColor(videoContext, c);
 }
 
-static void alignLeftTop(Machine_Text_Layout* layout, float width, float height) {
+static void alignLeftTop(Machine_Text_Layout* layout, Machine_Real width, Machine_Real height) {
   Machine_Math_Vector2* MARGIN = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(MARGIN, 5.f, 5.f);
 
-  const Machine_Math_Rectangle2* bounds = Machine_Text_Layout_getBounds(layout);
-  const Machine_Math_Vector2* position = Machine_Math_Rectangle2_getPosition(bounds);
+  Machine_Math_Rectangle2 const* bounds = Machine_Text_Layout_getBounds(layout);
+  Machine_Math_Vector2 const* position = Machine_Math_Rectangle2_getPosition(bounds);
   Machine_Math_Vector2* delta = Machine_Math_Vector2_difference(MARGIN, position);
   Machine_Math_Vector2* position2 = Machine_Math_Vector2_sum(Machine_Text_Layout_getPosition(layout), delta);
   Machine_Text_Layout_setPosition(layout, position2);
 }
 
-static void alignCenter(Machine_Text_Layout* layout, float width, float height) {
+static void alignCenter(Machine_Text_Layout* layout, Machine_Real width, Machine_Real height) {
   Machine_Math_Vector2* HALF = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(HALF, 0.5f, 0.5f);
   Machine_Math_Vector2* CANVAS_SIZE = Machine_Math_Vector2_create();
@@ -105,20 +106,22 @@ static void alignCenter(Machine_Text_Layout* layout, float width, float height) 
 }
 
 static void LayoutScene_onCanvasSizeChanged(LayoutScene* self, Machine_CanvasSizeChangedEvent* event) {
+  Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
   // Set the 2D context's target size.
   Machine_Context2_setTargetSize(self->context2, event->width, event->height);
   // Set the viewport rectangle.
-  Machine_VideoContext_setViewportRectangle(Machine_getVideoContext(), 0, 0, event->width, event->height);
+  Machine_VideoContext_setViewportRectangle(videoContext, 0, 0, event->width, event->height);
   alignCenter(self->textLayout1, event->width, event->height);
   alignLeftTop(self->textLayout2, event->width, event->height);
 }
 
-static void LayoutScene_onUpdate(LayoutScene* self, float width, float height) {
+static void LayoutScene_onUpdate(LayoutScene* self, Machine_Real width, Machine_Real height) {
+  Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
   // Set the viewport and clear its color buffer.
-  Machine_VideoContext_setViewportRectangle(Machine_getVideoContext(), 0, 0, width, height);
-  Machine_VideoContext_clearColorBuffer(Machine_getVideoContext());
+  Machine_VideoContext_setViewportRectangle(videoContext, 0, 0, width, height);
+  Machine_VideoContext_clearColorBuffer(videoContext);
 
-  Machine_Context2* context2 = Machine_Context2_create(Machine_getVideoContext());
+  Machine_Context2* context2 = Machine_Context2_create(videoContext);
   Machine_Context2_setTargetSize(context2, width, height);
   Machine_Text_Layout_render(self->textLayout1, context2);
   Machine_Text_Layout_render(self->textLayout2, context2);
@@ -138,7 +141,7 @@ static void LayoutScene_constructClass(LayoutScene_Class* self) {
   ((Scene_Class*)self)->onShutdown = (Scene_OnShutdownCallback*)&LayoutScene_onShutdown;
 }
 
-void LayoutScene_construct(LayoutScene* self, size_t numberOfArguments, const Machine_Value* arguments) {
+void LayoutScene_construct(LayoutScene* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Scene_construct((Scene*)self, numberOfArguments, arguments);
   Machine_setClassType((Machine_Object*)self, LayoutScene_getType());
 }
@@ -152,12 +155,12 @@ void LayoutScene_destruct(LayoutScene* self) {
 
 LayoutScene* LayoutScene_create() {
   Machine_ClassType* ty = LayoutScene_getType();
-  static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
-  LayoutScene* scene = (LayoutScene*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
-  if (!scene) {
+  static size_t const NUMBER_OF_ARGUMENTS = 0;
+  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  LayoutScene* self = (LayoutScene*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  if (!self) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
-  return scene;
+  return self;
 }

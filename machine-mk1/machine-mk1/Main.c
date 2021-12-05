@@ -55,7 +55,7 @@ extern "C" {
     Machine_Video_Canvas_setCanvasIcons(Machine_getVideoCanvas(), vals);
   }
 
-  static void run(Scene* scene) {
+  static void run(Scene* self) {
     Machine_Integer oldWidth, oldHeight;
     Machine_Video_Canvas_getFrameBuffersSize(Machine_getVideoCanvas(), &oldWidth, &oldHeight);
 
@@ -63,11 +63,11 @@ extern "C" {
       Machine_Integer newWidth, newHeight;
       Machine_Video_Canvas_getFrameBuffersSize(Machine_getVideoCanvas(), &newWidth, &newHeight);
       if (oldWidth != newWidth || oldHeight != newHeight) {
-        Scene_onCanvasSizeChanged(scene, Machine_CanvasSizeChangedEvent_create((float)newWidth, (float)newHeight));
+        Scene_onCanvasSizeChanged(self, Machine_CanvasSizeChangedEvent_create((Machine_Real)newWidth, (Machine_Real)newHeight));
         oldWidth = newWidth;
         oldHeight = newHeight;
       }
-      Scene_onUpdate(scene, (Machine_Real)oldWidth, (Machine_Real)oldHeight);
+      Scene_onUpdate(self, (Machine_Real)oldWidth, (Machine_Real)oldHeight);
       Machine_update();
       Machine_Video_Canvas_swapFrameBuffers(Machine_getVideoCanvas());
       Machine_Video_Canvas_pollEvents(Machine_getVideoCanvas());
@@ -91,7 +91,7 @@ extern "C" {
 
         Machine_Integer width, height;
         Machine_Video_Canvas_getFrameBuffersSize(Machine_getVideoCanvas(), &width, &height);
-        Scene_onCanvasSizeChanged(g_scene, Machine_CanvasSizeChangedEvent_create((float)width, (float)height));
+        Scene_onCanvasSizeChanged(g_scene, Machine_CanvasSizeChangedEvent_create((Machine_Real)width, (Machine_Real)height));
 
         run(g_scene);
         Machine_popJumpTarget();

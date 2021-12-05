@@ -7,7 +7,7 @@
 
 MACHINE_DECLARE_CLASSTYPE(LayoutScene)
 
-void LayoutScene_construct(LayoutScene* self, size_t numberOfArguments, const Machine_Value* arguments);
+void LayoutScene_construct(LayoutScene* self, size_t numberOfArguments, Machine_Value const* arguments);
 
 LayoutScene* LayoutScene_create();
 

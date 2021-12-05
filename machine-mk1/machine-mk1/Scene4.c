@@ -67,29 +67,29 @@ static void Scene4_visit(Scene4* self) {
 MACHINE_DEFINE_CLASSTYPE(Scene4, Scene, &Scene4_visit, &Scene4_construct, NULL,
                          &Scene4_constructClass, NULL)
 
-static void Scene4_onStartup(Scene4* scene) {
+static void Scene4_onStartup(Scene4* self) {
   //
-  scene->guiContext = Machine_Gui_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(Machine_getVideoContext()));
+  self->guiContext = Machine_Gui_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(Machine_getVideoContext()));
   //
-  scene->font = Machine_FontsContext_createFont(Machine_DefaultFonts_createContext(Machine_getVideoContext(), Machines_DefaultImages_createContext()),
+  self->font = Machine_FontsContext_createFont(Machine_DefaultFonts_createContext(Machine_getVideoContext(), Machines_DefaultImages_createContext()),
                                                 Machine_String_create(FONT_FILE, strlen(FONT_FILE)), FONT_SIZE);
   //
-  scene->text1 = Machine_Text_Layout_create(Machine_String_create("", strlen("")), scene->font);
+  self->text1 = Machine_Text_Layout_create(Machine_String_create("", strlen("")), self->font);
   {
     const char* text = "Nanobox IV\n400 units of unprimed nanites.";
-    Machine_Text_Layout_setText(scene->text1, Machine_String_create(text, strlen(text)));
+    Machine_Text_Layout_setText(self->text1, Machine_String_create(text, strlen(text)));
   }
   //
-  scene->text2 = Machine_Text_Layout_create(Machine_String_create("", strlen("")), scene->font);
+  self->text2 = Machine_Text_Layout_create(Machine_String_create("", strlen("")), self->font);
   {
     const char* text = "13 of 18 units\n7 of 9 units";
-    Machine_Text_Layout_setText(scene->text2, Machine_String_create(text, strlen(text)));
+    Machine_Text_Layout_setText(self->text2, Machine_String_create(text, strlen(text)));
   }
   //
-  scene->textNode1 = Machine_Gui_TextNode_create(scene->guiContext);
+  self->textNode1 = Machine_Gui_TextNode_create(self->guiContext);
   {
     const char* text = "Nanobox IV\n400 units of unprimed nanites.";
-    Machine_Gui_TextNode_setText(scene->textNode1, Machine_String_create(text, strlen(text)));
+    Machine_Gui_TextNode_setText(self->textNode1, Machine_String_create(text, strlen(text)));
   }
   //
   Machine_Math_Vector4* c = Machine_Math_Vector4_create();
@@ -188,12 +188,12 @@ void Scene4_destruct(Scene4* self) {
 
 Scene4* Scene4_create() {
   Machine_ClassType* ty = Scene4_getType();
-  static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
-  Scene4* scene = (Scene4*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
-  if (!scene) {
+  static size_t const NUMBER_OF_ARGUMENTS = 0;
+  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  Scene4* self = (Scene4*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  if (!self) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
-  return scene;
+  return self;
 }

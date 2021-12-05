@@ -1,5 +1,6 @@
 #include "Scene.h"
 
+#include "./Video.h" /// @todo Remove this.
 
 static void Scene_destruct(Scene* self);
 
@@ -14,7 +15,7 @@ static void Scene_constructClass(Scene_Class* self) {
   self->onMousePointerEvent = &onMousePointerEvent;
 }
 
-void Scene_construct(Scene* self, size_t numberOfArguments, const Machine_Value *arguments) {
+void Scene_construct(Scene* self, size_t numberOfArguments, Machine_Value const *arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   Machine_setClassType((Machine_Object*)self, Scene_getType());
 }
@@ -56,4 +57,8 @@ void Scene_onUpdate(Scene* self, Machine_Real width, Machine_Real height) {
 
 void Scene_onShutdown(Scene* self) {
   MACHINE_VIRTUALCALL_NORETURN_NOARGS(Scene, onShutdown);
+}
+
+Machine_VideoContext* Scene_getVideoContext(Scene* self) {
+  return Machine_getVideoContext();
 }

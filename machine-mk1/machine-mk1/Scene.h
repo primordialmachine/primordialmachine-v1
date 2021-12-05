@@ -50,8 +50,8 @@ struct Scene {
 void Scene_construct(Scene* self, size_t numberOfArguments, Machine_Value const* arguments);
 
 /// @brief Invoked exactly once before a sequence of calls to onCanvasSizeChanged and update.
-/// @param scene This scene.
-void Scene_onStartup(Scene* scene);
+/// @param self This scene.
+void Scene_onStartup(Scene* self);
 
 /// @brief Invoked if the canvas size has changed.
 /// @param self This scene.
@@ -88,6 +88,11 @@ MACHINE_EVENTS_SINK() void Scene_onMouseButtonEvent(Scene *self, Machine_MouseBu
 void Scene_onUpdate(Scene* self, Machine_Real width, Machine_Real height);
 
 void Scene_onShutdown(Scene* self);
+
+/// @brief Get the video context of this scene.
+/// @param self This scene.
+/// @return The video context of this scene.
+Machine_VideoContext* Scene_getVideoContext(Scene* self);
 
 
 
