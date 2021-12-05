@@ -26,6 +26,11 @@ struct Machine_Gui_Context {
   Machine_Gui_GroupNode* rootGroup;
   Machine_Gui_Signals_Context* signalsContext;
   Machine_Gui_Gdl_Context* gdlContext;
+
+  /// @brief The path of the file of the default font.
+  Machine_String* defaultFontFile;
+  /// @brief The size, in points, of the default font.
+  Machine_Integer defaultFontSize;
 };
 
 /// @brief Create a GUI context.
