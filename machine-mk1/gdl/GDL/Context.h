@@ -5,7 +5,7 @@
 #define MACHINE_GDL_CONTEXT_H_INCLUDED
 
 
-#include "./../GDL/Syntactical/NodeKind.h"
+#include "Gdl/Syntactical/NodeKind.h"
 
 
 MACHINE_DECLARE_CLASSTYPE(Machine_GDL_Context)

@@ -5,7 +5,7 @@
 #define MACHINE_GDL_LEXICAL_TOKEN_H_INCLUDED
 
 
-#include "./../../GDL/Lexical/TokenKind.h"
+#include "Gdl/Lexical/TokenKind.h"
 
 
 MACHINE_DECLARE_CLASSTYPE(Machine_GDL_Token)

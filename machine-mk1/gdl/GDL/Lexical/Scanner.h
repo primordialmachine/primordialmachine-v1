@@ -5,8 +5,8 @@
 #define MACHINE_GDL_LEXICAL_SCANNER_H_INCLUDED
 
 
-#include "./../../GDL/Lexical/Token.h"
-#include "./../../GDL/Context.h"
+#include "Gdl/Lexical/Token.h"
+#include "Gdl/Context.h"
 
 
 MACHINE_DECLARE_CLASSTYPE(Machine_GDL_Scanner)

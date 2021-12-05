@@ -1,7 +1,7 @@
 /// @file Gdl/Lexical/Token.c
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#include "./../../GDL/Lexical/Token.h"
+#include "Gdl/Lexical/Token.h"
 
 static void Machine_GDL_Token_visit(Machine_GDL_Token *self) {
   if (self->text) {

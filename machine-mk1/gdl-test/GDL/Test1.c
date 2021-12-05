@@ -1,4 +1,4 @@
-#include "./../GDL/Test1.h"
+#include "Gdl/Test1.h"
 #include "_GDL.h"
 #include <string.h>
 

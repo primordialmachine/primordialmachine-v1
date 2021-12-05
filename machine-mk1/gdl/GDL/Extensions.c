@@ -1,7 +1,7 @@
 /// @file Gdl/Extensions.c
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#include "./../GDL/Extensions.h"
+#include "Gdl/Extensions.h"
 
 #include <stdint.h>
 #include <inttypes.h>

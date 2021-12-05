@@ -7,8 +7,8 @@
 
 
 #include "_Collections.h"
-#include "./../../GDL/Syntactical/NodeKind.h"
-#include "./../../GDL/Context.h"
+#include "Gdl/Syntactical/NodeKind.h"
+#include "Gdl/Context.h"
 
 
 

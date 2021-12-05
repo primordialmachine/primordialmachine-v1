@@ -5,9 +5,9 @@
 #define MACHINE_GDL_SYNTACTICAL_PARSER_H_INCLUDED
 
 
-#include "./../Lexical/Scanner.h"
-#include "./../Syntactical/Node.h"
-#include "./../../GDL/Context.h"
+#include "Gdl/Lexical/Scanner.h"
+#include "Gdl/Syntactical/Node.h"
+#include "Gdl/Context.h"
 
 
 MACHINE_DECLARE_CLASSTYPE(Machine_GDL_Parser)

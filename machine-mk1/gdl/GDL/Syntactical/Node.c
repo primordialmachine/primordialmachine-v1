@@ -1,7 +1,7 @@
 /// @file Gdl/Syntactical/Node.c
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#include "./../../GDL/Syntactical/Node.h"
+#include "Gdl/Syntactical/Node.h"
 
 static void Machine_GDL_Node_visit(Machine_GDL_Node* self);
 

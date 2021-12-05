@@ -5,7 +5,7 @@
 #define MACHINE_GDL_EXTENSIONS_H_INCLUDED
 
 
-#include "./../GDL/Syntactical/Node.h"
+#include "Gdl/Syntactical/Node.h"
 
 
 /// @brief Convert a node to a value of type <code>Boolean</code>.

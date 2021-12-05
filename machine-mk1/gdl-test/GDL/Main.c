@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-#include "./../GDL/Test1.h"
+#include "Gdl/Test1.h"
 #include <stdlib.h>
 
 int main() {
