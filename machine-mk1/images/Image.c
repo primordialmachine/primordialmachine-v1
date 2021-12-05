@@ -4,7 +4,6 @@
 #define MACHINE_IMAGES_PRIVATE (1)
 #include "Image.h"
 
-#include <malloc.h>
 #include <png.h>
 #include <string.h>
 
