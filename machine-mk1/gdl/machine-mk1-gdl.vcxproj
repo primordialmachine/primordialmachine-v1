@@ -29,7 +29,7 @@
     <ClInclude Include="GDL\Syntactical\Node.h" />
     <ClInclude Include="GDL\Syntactical\NodeKind.h" />
     <ClInclude Include="GDL\Syntactical\Parser.h" />
-    <ClInclude Include="_GDL.h" />
+    <ClInclude Include="_Gdl.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\collections\machine-mk1-collections.vcxproj">
