@@ -27,8 +27,6 @@ struct Scene5 {
   Scene __parent;
   //
   Machine_Gui_Context* guiContext;
-  //
-  Machine_Font* font;
   /// @brief The main menu (start game, options, exit, credits).
   Machine_Gui_GroupNode* mainMenu;
   /// @brief Header.
@@ -40,9 +38,6 @@ struct Scene5 {
 static void Scene5_visit(Scene5* self) {
   if (self->guiContext) {
     Machine_Gc_visit(self->guiContext);
-  }
-  if (self->font) {
-    Machine_Gc_visit(self->font);
   }
   if (self->mainMenu) {
     Machine_Gc_visit(self->mainMenu);
@@ -82,9 +77,6 @@ static Machine_Gui_Widget* loadWidgetByPath(Machine_Gui_Context *context, const 
 static void Scene5_startup(Scene5* scene) {
   //
   scene->guiContext = Machine_Gui_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(Machine_getVideoContext()));
-  //
-  Machine_FontsContext* fontsContext = Machine_DefaultFonts_createContext(Machine_getVideoContext(), Machines_DefaultImages_createContext());
-  scene->font = Machine_FontsContext_createFont(fontsContext, Machine_String_create("RobotoSlab-Regular.ttf", strlen("RobotoSlab-Regular.ttf")), 20);
   //
   scene->mainMenu = (Machine_Gui_GroupNode*)loadWidgetByPath(scene->guiContext, "scenes/scene5/mainMenu.txt");
   //
@@ -190,7 +182,6 @@ static void Scene5_update(Scene5* self, Machine_Real width, Machine_Real height)
 }
 
 static void Scene5_shutdown(Scene5* scene) {
-  scene->font = NULL;
 }
 
 static void Scene5_constructClass(Scene5_Class* self) {
@@ -206,7 +197,6 @@ void Scene5_construct(Scene5* self, size_t numberOfArguments, Machine_Value cons
 }
 
 void Scene5_destruct(Scene5* self) {
-  self->font = NULL;
 }
 
 Scene5* Scene5_create() {
