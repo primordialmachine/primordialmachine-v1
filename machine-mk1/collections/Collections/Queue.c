@@ -7,7 +7,6 @@
 
 #include "Collections/GrowthStrategy.h"
 #include <assert.h>
-#include <memory.h>
 #include <string.h>
 #include "_Eal.h"
 
