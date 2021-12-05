@@ -12,7 +12,7 @@ void Machine_setFileContents(Machine_String* path, Machine_ByteBuffer* bytes) {
   Machine_JumpTarget jumpTarget;
   Machine_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
-    Machine_Eal_copy(fileMapping.bytes, Machine_ByteBuffer_getBytes(bytes), Machine_ByteBuffer_getNumberOfBytes(bytes), false);
+    Machine_Eal_Memory_copy(fileMapping.bytes, Machine_ByteBuffer_getBytes(bytes), Machine_ByteBuffer_getNumberOfBytes(bytes), false);
     Machine_popJumpTarget();
     _Machine_FileMapping_close(&fileMapping);
   }

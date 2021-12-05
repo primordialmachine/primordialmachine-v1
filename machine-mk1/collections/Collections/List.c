@@ -65,7 +65,7 @@ static void Machine_List_construct(Machine_List* self, size_t numberOfArguments,
   Machine_Collection_construct((Machine_Collection*)self, numberOfArguments, arguments);
   self->size = 0;
   self->capacity = 0;
-  self->elements = Machine_Eal_alloc(0);
+  self->elements = Machine_Eal_Memory_allocate(0);
   if (!self->elements) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
@@ -95,7 +95,7 @@ static void insertAt(Machine_List* self, size_t index, Machine_Value value) {
       Machine_setStatus(status);
       Machine_jump();
     }
-    void* newElements = Machine_Eal_realloc_a(self->elements, sizeof(Machine_Value), newCapacity);
+    void* newElements = Machine_Eal_Memory_reallocateArray(self->elements, sizeof(Machine_Value), newCapacity);
     if (!newElements) {
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();
@@ -104,7 +104,7 @@ static void insertAt(Machine_List* self, size_t index, Machine_Value value) {
     self->capacity = newCapacity;
   }
   if (index < self->size) {
-    Machine_Eal_copy(self->elements + index + 1, self->elements + index + 0, sizeof(Machine_Value) * (self->size - index), true);
+    Machine_Eal_Memory_copy(self->elements + index + 1, self->elements + index + 0, sizeof(Machine_Value) * (self->size - index), true);
   }
   self->elements[index] = value;
   self->size++;
@@ -132,8 +132,8 @@ static void removeAt(Machine_List* self, size_t index) {
     Machine_jump();
   }
   if (index < self->size - 1) {
-    Machine_Eal_copy(self->elements + index + 0, self->elements + index + 1,
-                     sizeof(Machine_Value) * (self->size - index - 1), true);
+    Machine_Eal_Memory_copy(self->elements + index + 0, self->elements + index + 1,
+                            sizeof(Machine_Value) * (self->size - index - 1), true);
   }
   self->size--;
 }
@@ -155,7 +155,7 @@ static void Machine_List_visit(Machine_List* self) {
 
 static void Machine_List_destruct(Machine_List* self) {
   if (self->elements) {
-    Machine_Eal_dealloc(self->elements);
+    Machine_Eal_Memory_deallocate(self->elements);
     self->elements = NULL;
   }
 }

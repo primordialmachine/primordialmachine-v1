@@ -16,7 +16,7 @@ static void Machine_ClassType_finalize(Machine_ClassType* self) {
     Machine_unlock(self->parent);
   }
   if (self->data) {
-    Machine_Eal_dealloc(self->data);
+    Machine_Eal_Memory_deallocate(self->data);
     self->data = NULL;
   }
   if (((Machine_Type *)self)->typeRemoved) {
@@ -55,14 +55,14 @@ Machine_ClassType* Machine_createClassType(Machine_CreateClassTypeArgs* args) {
   classType->classSize = args->classSize;
   classType->constructClass = args->constructClass;
 
-  classType->data = Machine_Eal_alloc(classType->classSize);
+  classType->data = Machine_Eal_Memory_allocate(classType->classSize);
   if (!classType->data) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
   memset(classType->data, 0, classType->classSize);
   if (args->parent) {
-    Machine_Eal_copy(classType->data, args->parent->data, args->parent->classSize, false);
+    Machine_Eal_Memory_copy(classType->data, args->parent->data, args->parent->classSize, false);
   }
   if (args->constructClass) {
     args->constructClass(classType->data);

@@ -9,19 +9,19 @@
 
 
 
-void* Machine_Eal_alloc(size_t n) {
+void* Machine_Eal_Memory_allocate(size_t n) {
   return malloc(n > 0 ? n : 1);
 }
 
-void* Machine_Eal_alloc_a(size_t n, size_t m) {
+void* Machine_Eal_Memory_allocateArray(size_t n, size_t m) {
   size_t l;
   if (!Machine_Eal_multiplySafe_sz(&l, n, m)) {
     return NULL;
   }
-  return Machine_Eal_alloc(l);
+  return Machine_Eal_Memory_allocate(l);
 }
 
-void* Machine_Eal_realloc(void* p, size_t n) {
+void* Machine_Eal_Memory_reallocate(void* p, size_t n) {
   if (p == NULL) {
     return NULL;
   }
@@ -32,21 +32,21 @@ void* Machine_Eal_realloc(void* p, size_t n) {
   return q;
 }
 
-void* Machine_Eal_realloc_a(void* p, size_t n, size_t m) {
+void* Machine_Eal_Memory_reallocateArray(void* p, size_t n, size_t m) {
   size_t l;
   if (!Machine_Eal_multiplySafe_sz(&l, n, m)) {
     return NULL;
   }
-  return Machine_Eal_realloc(p, l);
+  return Machine_Eal_Memory_reallocate(p, l);
 }
 
-void Machine_Eal_dealloc(void* p) {
+void Machine_Eal_Memory_deallocate(void* p) {
   if (p) {
     free(p);
   }
 }
 
-void Machine_Eal_copy(void* p, void const* q, size_t n, bool overlap) {
+void Machine_Eal_Memory_copy(void* p, void const* q, size_t n, bool overlap) {
   if (overlap) {
     memmove(p, q, n);
   } else {
@@ -54,6 +54,10 @@ void Machine_Eal_copy(void* p, void const* q, size_t n, bool overlap) {
   }
 }
 
-int Machine_Eal_compare(void const* p, void const* q, size_t n) {
+int Machine_Eal_Memory_compare(void const* p, void const* q, size_t n) {
   return memcmp(p, q, n);
+}
+
+void Machine_Eal_Memory_zero(void* p, size_t n) {
+  memset(p, 0, n);
 }

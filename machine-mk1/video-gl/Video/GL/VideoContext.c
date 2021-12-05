@@ -228,9 +228,9 @@ static void Machine_Gl_VideoContext_visit(Machine_Gl_VideoContext* self) {
 
 static void Machine_Gl_VideoContext_destruct(Machine_Gl_VideoContext* self) {
   if (self->clipDistances) {
-    Machine_Eal_dealloc(self->clipDistances->a);
+    Machine_Eal_Memory_deallocate(self->clipDistances->a);
     self->clipDistances->a = NULL;
-    Machine_Eal_dealloc(self->clipDistances);
+    Machine_Eal_Memory_deallocate(self->clipDistances);
     self->clipDistances = NULL;
   }
 }
@@ -385,14 +385,14 @@ void Machine_Gl_VideoContext_construct(Machine_Gl_VideoContext* self, size_t num
       Machine_setStatus(Machine_Status_EnvironmentFailed);
       Machine_jump();
     }
-    self->clipDistances = Machine_Eal_alloc(sizeof(Machine_Gl_VideoContext_ClipDistances));
+    self->clipDistances = Machine_Eal_Memory_allocate(sizeof(Machine_Gl_VideoContext_ClipDistances));
     if (!self->clipDistances) {
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();
     }
-    self->clipDistances->a = Machine_Eal_alloc_a(sizeof(Machine_Gl_VideoContext_ClipDistance), (size_t)v);
+    self->clipDistances->a = Machine_Eal_Memory_allocateArray(sizeof(Machine_Gl_VideoContext_ClipDistance), (size_t)v);
     if (!self->clipDistances->a) {
-      Machine_Eal_dealloc(self->clipDistances);
+      Machine_Eal_Memory_deallocate(self->clipDistances);
       self->clipDistances = NULL;
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();

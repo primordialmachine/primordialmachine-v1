@@ -14,7 +14,7 @@
 
 Machine_Value* Machine_ArrayUtilities_copyOf(size_t sizeNew, Machine_Value* arrayOld, size_t sizeOld, bool deallocate) {
   if (deallocate) {
-    Machine_Value* arrayNew = Machine_Eal_realloc_a(arrayOld, sizeof(Machine_Value), sizeNew);
+    Machine_Value* arrayNew = Machine_Eal_Memory_reallocateArray(arrayOld, sizeof(Machine_Value), sizeNew);
     if (!arrayNew) {
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();
@@ -24,7 +24,7 @@ Machine_Value* Machine_ArrayUtilities_copyOf(size_t sizeNew, Machine_Value* arra
     }
     return arrayNew;
   } else {
-    Machine_Value* arrayNew = Machine_Eal_alloc_a(sizeof(Machine_Value), sizeNew);
+    Machine_Value* arrayNew = Machine_Eal_Memory_allocateArray(sizeof(Machine_Value), sizeNew);
     if (!arrayNew) {
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();

@@ -19,7 +19,7 @@ struct Machine_ByteBuffer {
 
 static void Machine_ByteBuffer_construct(Machine_ByteBuffer* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  self->p = Machine_Eal_alloc(0);
+  self->p = Machine_Eal_Memory_allocate(0);
   if (!self->p) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
@@ -30,7 +30,7 @@ static void Machine_ByteBuffer_construct(Machine_ByteBuffer* self, size_t number
 }
 
 static void Machine_ByteBuffer_destruct(Machine_ByteBuffer* self) {
-  Machine_Eal_dealloc(self->p);
+  Machine_Eal_Memory_deallocate(self->p);
   self->p = NULL;
 }
 
@@ -60,7 +60,7 @@ void Machine_ByteBuffer_insertBytesAt(Machine_ByteBuffer* self, size_t i, char c
   size_t fc = self->c - self->s;
   if (fc < n) {
     size_t ac = n - fc; // additional capacity
-    char* p = Machine_Eal_realloc(self->p, self->c + ac);
+    char* p = Machine_Eal_Memory_reallocate(self->p, self->c + ac);
     if (!p) {
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();
@@ -69,9 +69,9 @@ void Machine_ByteBuffer_insertBytesAt(Machine_ByteBuffer* self, size_t i, char c
     self->c = self->c + ac;
   }
   if (i < self->s) {
-    Machine_Eal_copy(self->p + i + n, self->p + i, self->s - i, true);
+    Machine_Eal_Memory_copy(self->p + i + n, self->p + i, self->s - i, true);
   }
-  Machine_Eal_copy(self->p + i, p, n, false);
+  Machine_Eal_Memory_copy(self->p + i, p, n, false);
   self->s += n;
 }
 
@@ -91,5 +91,5 @@ Machine_Boolean Machine_ByteBuffer_compareBytes(Machine_ByteBuffer const* self, 
   if (n != self->s) {
     return false;
   }
-  return !Machine_Eal_compare(self->p, p, n);
+  return !Machine_Eal_Memory_compare(self->p, p, n);
 }

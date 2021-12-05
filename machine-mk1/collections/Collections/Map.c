@@ -46,7 +46,7 @@ static void maybeResize(Machine_Map* self) {
   // (2) If new capacity != old capacity, resize.
   if (newCapacity != oldCapacity) {
     Node** oldBuckets = pimpl->buckets;
-    Node** newBuckets = Machine_Eal_alloc_a(sizeof(Node*), newCapacity);
+    Node** newBuckets = Machine_Eal_Memory_allocateArray(sizeof(Node*), newCapacity);
     if (!newBuckets) {
       /*
       Machine_setStatus(Machine_Status_AllocationFailed);
@@ -66,7 +66,7 @@ static void maybeResize(Machine_Map* self) {
         newBuckets[hashIndex] = node;
       }
     }
-    Machine_Eal_dealloc(oldBuckets);
+    Machine_Eal_Memory_deallocate(oldBuckets);
     pimpl->buckets = newBuckets;
     pimpl->capacity = newCapacity;
   }
@@ -87,7 +87,7 @@ static void set(Machine_Map* self, Machine_Value key, Machine_Value value) {
     }
   }
   if (!node) {
-    node = Machine_Eal_alloc(sizeof(Node));
+    node = Machine_Eal_Memory_allocate(sizeof(Node));
     if (!node) {
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();
@@ -129,7 +129,7 @@ static void clear(Machine_Map* self) {
     while (pimpl->buckets[i]) {
       Node* node = pimpl->buckets[i];
       pimpl->buckets[i] = node->next;
-      Machine_Eal_dealloc(node);
+      Machine_Eal_Memory_deallocate(node);
       pimpl->size--;
     }
   }
@@ -149,16 +149,16 @@ static void Machine_Map_constructClass(Machine_Map_Class* self) {
 
 void Machine_Map_construct(Machine_Map* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Collection_construct((Machine_Collection*)self, numberOfArguments, arguments);
-  Map* pimpl = Machine_Eal_alloc(sizeof(Map));
+  Map* pimpl = Machine_Eal_Memory_allocate(sizeof(Map));
   if (!pimpl) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
   pimpl->size = 0;
   pimpl->capacity = MINIMAL_CAPACITY;
-  pimpl->buckets = Machine_Eal_alloc_a(sizeof(Node*), pimpl->capacity);
+  pimpl->buckets = Machine_Eal_Memory_allocateArray(sizeof(Node*), pimpl->capacity);
   if (!pimpl->buckets) {
-    Machine_Eal_dealloc(pimpl);
+    Machine_Eal_Memory_deallocate(pimpl);
     pimpl = NULL;
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();

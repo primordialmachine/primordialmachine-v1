@@ -57,12 +57,12 @@ static void Map_finalize(Map* self) {
     while (self->buckets[i]) {
       Node* node = self->buckets[i];
       self->buckets[i] = node->next;
-      Machine_Eal_dealloc(node);
+      Machine_Eal_Memory_deallocate(node);
       self->size--;
     }
   }
   if (self->buckets) {
-    Machine_Eal_dealloc(self->buckets);
+    Machine_Eal_Memory_deallocate(self->buckets);
     self->buckets = NULL;
   }
 }
@@ -75,7 +75,7 @@ static Map* Map_create() {
   }
   self->size = 0;
   self->capacity = 8;
-  self->buckets = Machine_Eal_alloc_a(sizeof(Node*), 8);
+  self->buckets = Machine_Eal_Memory_allocateArray(sizeof(Node*), 8);
   if (!self->buckets) {
     self->capacity = 0;
     Machine_setStatus(Machine_Status_AllocationFailed);
@@ -106,7 +106,7 @@ static void Map_set(Map* self, uint32_t codepoint, float bearingx, float bearing
     }
   }
 
-  Node* node = Machine_Eal_alloc(sizeof(Node));
+  Node* node = Machine_Eal_Memory_allocate(sizeof(Node));
   if (!node) {
     Machine_setStatus(Machine_Status_InvalidOperation);
     Machine_jump();

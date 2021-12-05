@@ -36,7 +36,7 @@ static void const* getPixels(Machine_Images_Image const* self) {
 
 void Machine_Images_Image_destruct(Machine_Images_Image* self) {
   if (self->pixels) {
-    Machine_Eal_dealloc(self->pixels);
+    Machine_Eal_Memory_deallocate(self->pixels);
     self->pixels = NULL;
   }
 }
@@ -83,7 +83,7 @@ static void _Io_read(png_structp pngPtr, png_bytep data, png_size_t length) {
   if (state->numberOfBytes < length) {
     png_error(pngPtr, "unable to read Bytes"); // Does not return.
   }
-  Machine_Eal_copy(data, state->bytes + state->position, length, false);
+  Machine_Eal_Memory_copy(data, state->bytes + state->position, length, false);
   state->position += length;
 }
 
@@ -114,7 +114,7 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
   state.numberOfBytes = Machine_ByteBuffer_getNumberOfBytes(byteBuffer);
 
   // (1) read header.
-  Machine_Eal_copy(&(header[0]), state.bytes, 8, false);
+  Machine_Eal_Memory_copy(&(header[0]), state.bytes, 8, false);
   state.position += 8;
   // (2) validate header.
   if (png_sig_cmp(header, 0, 8)) {
@@ -174,15 +174,15 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
     Machine_jump();
   }
 
-  png_byte* pixels = Machine_Eal_alloc_a(png_get_rowbytes(png_ptr, info_ptr), height);
+  png_byte* pixels = Machine_Eal_Memory_allocateArray(png_get_rowbytes(png_ptr, info_ptr), height);
   if (!pixels) {
     png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
     Machine_setStatus(Machine_Status_EnvironmentFailed);
     Machine_jump();
   }
-  row_pointers = (png_bytep*)Machine_Eal_alloc_a(sizeof(png_bytep), height);
+  row_pointers = (png_bytep*)Machine_Eal_Memory_allocateArray(sizeof(png_bytep), height);
   if (!row_pointers) {
-    Machine_Eal_dealloc(pixels);
+    Machine_Eal_Memory_deallocate(pixels);
     png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
     Machine_setStatus(Machine_Status_EnvironmentFailed);
     Machine_jump();
@@ -193,7 +193,7 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
   png_read_image(png_ptr, row_pointers);
 
   png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
-  Machine_Eal_dealloc(row_pointers);
+  Machine_Eal_Memory_deallocate(row_pointers);
 
   // (4) Store.
   self->width = width;
@@ -206,7 +206,7 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
       self->pixelFormat = Machine_PixelFormat_RGB;
       break;
     default:
-      Machine_Eal_dealloc(pixels);
+      Machine_Eal_Memory_deallocate(pixels);
       Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
                   "[read_png_file] Unsupported png color type (%d) for image file\n",
                   (int)color_type);
@@ -235,13 +235,13 @@ void Machine_Images_Image_constructDirect(Machine_Images_Image* self,
   self->width = width;
   self->height = height;
   self->pixelFormat = pixelFormat;
-  self->pixels = Machine_Eal_alloc_a(width * height, Machine_PixelFormat_getBytesPerPixel(pixelFormat));
+  self->pixels = Machine_Eal_Memory_allocateArray(width * height, Machine_PixelFormat_getBytesPerPixel(pixelFormat));
   if (!self->pixels) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
-  Machine_Eal_copy(self->pixels, Machine_ByteBuffer_getBytes(pixels),
-                   width * height * Machine_PixelFormat_getBytesPerPixel(pixelFormat), false);
+  Machine_Eal_Memory_copy(self->pixels, Machine_ByteBuffer_getBytes(pixels),
+                          width * height * Machine_PixelFormat_getBytesPerPixel(pixelFormat), false);
 
   // (4) Set class type.
   Machine_setClassType((Machine_Object*)self, Machine_Images_Image_getType());

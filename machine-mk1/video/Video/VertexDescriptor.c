@@ -51,7 +51,7 @@ static void Machine_VertexDescriptor_visit(Machine_VertexDescriptor* self) {
 static void Machine_VertexDescriptor_construct(Machine_VertexDescriptor* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object *)self, numberOfArguments, arguments);
   self->n = 0;
-  self->p = Machine_Eal_alloc(0);
+  self->p = Machine_Eal_Memory_allocate(0);
   if (!self->p) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
@@ -62,7 +62,7 @@ static void Machine_VertexDescriptor_construct(Machine_VertexDescriptor* self, s
 
 static void Machine_VertexDescriptor_destruct(Machine_VertexDescriptor* self) {
   if (self->p) {
-    Machine_Eal_dealloc(self->p);
+    Machine_Eal_Memory_deallocate(self->p);
     self->p = NULL;
   }
 }
@@ -128,7 +128,7 @@ size_t Machine_VertexDescriptor_getElementOffset(Machine_VertexDescriptor* self,
 
 void Machine_VertexDescriptor_insert(Machine_VertexDescriptor* self, size_t index, Machine_VertexElementSemantics semantics) {
   size_t n = self->n + 1;
-  Machine_VertexElementSemantics* p = Machine_Eal_realloc_a(self->p, sizeof(Machine_VertexElementSemantics), n);
+  Machine_VertexElementSemantics* p = Machine_Eal_Memory_reallocateArray(self->p, sizeof(Machine_VertexElementSemantics), n);
   if (!p) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
@@ -142,7 +142,7 @@ void Machine_VertexDescriptor_insert(Machine_VertexDescriptor* self, size_t inde
     // move 3 - 2 = 1 elements from index = 2 to index + 1 = 3.
     // => [a, b, ,c] => [a, b, x, c]
     // ...
-    Machine_Eal_copy(p + index + 1, p + index, sizeof(Machine_VertexElementSemantics) * (self->n - index), true);
+    Machine_Eal_Memory_copy(p + index + 1, p + index, sizeof(Machine_VertexElementSemantics) * (self->n - index), true);
   }
   p[index] = semantics;
   self->p = p;

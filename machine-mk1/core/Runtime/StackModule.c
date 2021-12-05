@@ -16,7 +16,7 @@ typedef struct Stack {
 } Stack;
 
 static Machine_StatusValue Stack_initialize(Stack* self) {
-  self->elements = Machine_Eal_alloc_a(sizeof(Machine_Value), 8);
+  self->elements = Machine_Eal_Memory_allocateArray(sizeof(Machine_Value), 8);
   if (!self->elements) {
     return Machine_Status_AllocationFailed;
   }
@@ -30,19 +30,19 @@ static Machine_StatusValue Stack_initialize(Stack* self) {
 
 static void Stack_uninitialize(Stack* self) {
   if (self->elements) {
-    Machine_Eal_dealloc(self->elements);
+    Machine_Eal_Memory_deallocate(self->elements);
     self->elements = NULL;
   }
 }
 
 static Machine_StatusValue Stack_create(Stack** stack) {
-  Stack* stack0 = Machine_Eal_alloc(sizeof(Stack));
+  Stack* stack0 = Machine_Eal_Memory_allocate(sizeof(Stack));
   if (!stack0) {
     return Machine_Status_AllocationFailed;
   }
   Machine_StatusValue status = Stack_initialize(stack0);
   if (status) {
-    Machine_Eal_dealloc(stack0);
+    Machine_Eal_Memory_deallocate(stack0);
     return status;
   }
   *stack = stack0;
@@ -51,7 +51,7 @@ static Machine_StatusValue Stack_create(Stack** stack) {
 
 static void Stack_destroy(Stack* stack) {
   Stack_uninitialize(stack);
-  Machine_Eal_dealloc(stack);
+  Machine_Eal_Memory_deallocate(stack);
 }
 
 static void Stack_ensureFreeCapacity(Stack* self, size_t requiredFreeCapacity) {
@@ -68,7 +68,7 @@ static void Stack_ensureFreeCapacity(Stack* self, size_t requiredFreeCapacity) {
     // However, we should try to allocate more to avoid reallocating over and over.
     size_t newCapacity = self->capacity + requiredAdditionalCapacity;
     Machine_Value* newElements
-        = Machine_Eal_realloc_a(self->elements, sizeof(Machine_Value), newCapacity);
+        = Machine_Eal_Memory_reallocateArray(self->elements, sizeof(Machine_Value), newCapacity);
     if (newElements) {
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();

@@ -26,7 +26,7 @@ Machine_String* Machine_String_create_noraise(const char* p, size_t n) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     return NULL;
   }
-  Machine_Eal_copy(self->p, p, n, false);
+  Machine_Eal_Memory_copy(self->p, p, n, false);
   self->n = n;
   self->hashValue = n;
   for (size_t i = 0; i < n; ++i) {
@@ -45,7 +45,7 @@ Machine_String* Machine_String_create(const char* p, size_t n) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
-  Machine_Eal_copy(self->p, p, n, false);
+  Machine_Eal_Memory_copy(self->p, p, n, false);
   self->n = n;
   self->hashValue = n;
   for (size_t i = 0; i < n; ++i) {
@@ -71,8 +71,8 @@ Machine_String* Machine_String_concatenate(const Machine_String* self, const Mac
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();    
   }
-  Machine_Eal_copy(c->p, self->p, self->n, false);
-  Machine_Eal_copy(c->p + self->n, other->p, other->n, false);
+  Machine_Eal_Memory_copy(c->p, self->p, self->n, false);
+  Machine_Eal_Memory_copy(c->p + self->n, other->p, other->n, false);
   c->n = m;
   c->hashValue = m;
   for (size_t i = 0; i < m; ++i) {
@@ -84,7 +84,7 @@ Machine_String* Machine_String_concatenate(const Machine_String* self, const Mac
 bool Machine_String_isEqualTo(const Machine_String* self, const Machine_String* other) {
   if (self == other) return true;
   if (self->n == other->n && self->hashValue == other->hashValue) {
-    return !Machine_Eal_compare(self->p, other->p, self->n);
+    return !Machine_Eal_Memory_compare(self->p, other->p, self->n);
   }
   return false;
 }

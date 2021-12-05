@@ -12,7 +12,7 @@
 
 static void Machine_VideoBuffer_destruct(Machine_VideoBuffer* self) {
   if (self->p) {
-    Machine_Eal_dealloc(self->p);
+    Machine_Eal_Memory_deallocate(self->p);
     self->p = NULL;
   }
 }
@@ -33,7 +33,7 @@ static void Machine_VideoBuffer_constructClass(Machine_VideoBuffer_Class* self) 
 void Machine_VideoBuffer_construct(Machine_VideoBuffer* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
 
-  self->p = Machine_Eal_alloc(1);
+  self->p = Machine_Eal_Memory_allocate(1);
   if (!self->p) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();

@@ -92,10 +92,10 @@ void Machine_Gc_run(size_t* live, size_t *dead) {
       if ((tag->flags & Machine_Flag_Class) == Machine_Flag_Class) {
         Machine_ClassObjectTag* classObjectTag = t2cot(tag);
         Machine_Tag_uninitialize(tag);
-        Machine_Eal_dealloc(classObjectTag);
+        Machine_Eal_Memory_deallocate(classObjectTag);
       } else {
         Machine_Tag_uninitialize(tag);
-        Machine_Eal_dealloc(tag);
+        Machine_Eal_Memory_deallocate(tag);
       }
       g_objectCount--;
       (*dead)++;
@@ -113,7 +113,7 @@ void Machine_update() {
 }
 
 void* Machine_allocateEx(size_t payloadSize, size_t tagPrefixSize, Machine_VisitCallback* visit, Machine_FinalizeCallback* finalize) {
-  void* pt = Machine_Eal_alloc(tagPrefixSize + sizeof(Machine_Tag) + payloadSize);
+  void* pt = Machine_Eal_Memory_allocate(tagPrefixSize + sizeof(Machine_Tag) + payloadSize);
   if (!pt) {
     return NULL;
   }

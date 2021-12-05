@@ -106,7 +106,7 @@ static void Machine_Queue_visit(Machine_Queue* self) {
 
 static void Machine_Queue_destruct(Machine_Queue* self) {
   if (self->elements) {
-    Machine_Eal_dealloc(self->elements);
+    Machine_Eal_Memory_deallocate(self->elements);
     self->elements = NULL;
   }
 }
@@ -117,7 +117,7 @@ static void Machine_Queue_construct(Machine_Queue* self, size_t numberOfArgument
   self->size = 0;
   self->head = 0;
   self->tail = 0;
-  self->elements = Machine_Eal_alloc_a(self->capacity, sizeof(Machine_Value));
+  self->elements = Machine_Eal_Memory_allocateArray(self->capacity, sizeof(Machine_Value));
   if (!self->elements) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
@@ -212,8 +212,8 @@ static void grow1(Machine_Queue* self, size_t requiredAdditionalCapacity) {
     // a + 4 = a + head + newCapacity - oldCapacity
     // 2 = oldCapacity - head
     size_t deltaCapacity = newCapacity - oldCapacity;
-    Machine_Eal_copy(newElements + self->head + deltaCapacity, newElements + self->head,
-                     (oldCapacity - self->head) * sizeof(Machine_Value), true);
+    Machine_Eal_Memory_copy(newElements + self->head + deltaCapacity, newElements + self->head,
+                            (oldCapacity - self->head) * sizeof(Machine_Value), true);
     self->head += deltaCapacity;
   }
   self->elements = newElements;
