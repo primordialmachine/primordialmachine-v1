@@ -6,7 +6,6 @@
 
 
 
-#include <malloc.h>
 #include <string.h>
 
 static void Machine_Gl_VideoBuffer_constructClass(Machine_Gl_VideoBuffer_Class* self);
