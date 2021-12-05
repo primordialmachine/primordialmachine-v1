@@ -14,6 +14,8 @@
 #include "Video.h"
 
 
+#define FONT_FILE "fonts/RobotoSlab/RobotoSlab-Regular.ttf"
+#define FONT_SIZE 20
 
 static void Scene4_destruct(Scene4* self);
 
@@ -70,7 +72,7 @@ static void Scene4_onStartup(Scene4* scene) {
   scene->guiContext = Machine_Gui_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(Machine_getVideoContext()));
   //
   scene->font = Machine_FontsContext_createFont(Machine_DefaultFonts_createContext(Machine_getVideoContext(), Machines_DefaultImages_createContext()),
-                                                Machine_String_create("fonts/RobotoSlab/RobotoSlab-Regular.ttf", strlen("fonts/RobotoSlab/RobotoSlab-Regular.ttf")), 20);
+                                                Machine_String_create(FONT_FILE, strlen(FONT_FILE)), FONT_SIZE);
   //
   scene->text1 = Machine_Text_Layout_create(Machine_String_create("", strlen("")), scene->font);
   {
