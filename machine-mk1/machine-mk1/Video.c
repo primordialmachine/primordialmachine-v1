@@ -58,7 +58,3 @@ Machine_Video_Canvas* Machine_getVideoCanvas() {
 Machine_VideoContext* Machine_getVideoContext() {
   return g_videoContext;
 }
-
-Machine_Real Machine_Video_getTime() {
-  return (Machine_Real)glfwGetTime();
-}

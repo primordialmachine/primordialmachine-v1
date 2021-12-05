@@ -24,10 +24,6 @@ Machine_Video_Canvas* Machine_getVideoCanvas();
 /// @return The video context.
 Machine_VideoContext* Machine_getVideoContext();
 
-/// @brief Get the current time.
-/// @return The current time.
-Machine_Real Machine_Video_getTime();
-
 
 
 #endif // MACHINE_VIDEO_H_INCLUDED

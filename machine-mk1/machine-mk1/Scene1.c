@@ -89,7 +89,7 @@ static void Scene1_onUpdate(Scene1* self, Machine_Real width, Machine_Real heigh
   Machine_VideoContext_setViewportRectangle(videoContext, 0, 0, width, height);
   Machine_VideoContext_clearColorBuffer(videoContext);
 
-  Machine_Math_Matrix4* m2 = Machine_Math_Matrix4_create(); Machine_Math_Matrix4_rotateZ(m2, Machine_Video_getTime());
+  Machine_Math_Matrix4* m2 = Machine_Math_Matrix4_create(); Machine_Math_Matrix4_rotateZ(m2, Machine_Time_getNowSecondsFloat());
   Machine_Math_Matrix4* p2 = Machine_Math_Matrix4_create(); Machine_Math_Matrix4_setOrtho(p2, -ratio, +ratio, -1.f, +1.f, 1.f, -1.f);
   Machine_Math_Matrix4* mvp2 = Machine_Math_Matrix4_product(p2, m2);
 
