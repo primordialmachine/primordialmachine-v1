@@ -5,7 +5,6 @@
 #include "Runtime/String.h"
 
 
-#include <memory.h>
 
 
 struct Machine_String {

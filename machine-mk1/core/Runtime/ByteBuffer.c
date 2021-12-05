@@ -4,8 +4,6 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "./Runtime/ByteBuffer.h"
 
-#include <malloc.h>
-#include <memory.h>
 
 struct Machine_ByteBuffer_Class {
   Machine_Object_Class __parent;
