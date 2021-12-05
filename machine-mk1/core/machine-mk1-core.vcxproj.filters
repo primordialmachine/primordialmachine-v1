@@ -141,6 +141,9 @@
     <ClCompile Include="Runtime\Gc\Tag.c">
       <Filter>Quelldateien\Runtime\Gc</Filter>
     </ClCompile>
+    <ClCompile Include="Runtime\Time.c">
+      <Filter>Quelldateien\Runtime</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Machine.h">
@@ -250,6 +253,9 @@
     </ClInclude>
     <ClInclude Include="Runtime\Gc\Tag.h">
       <Filter>Headerdateien\Runtime\Gc</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\Time.h">
+      <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

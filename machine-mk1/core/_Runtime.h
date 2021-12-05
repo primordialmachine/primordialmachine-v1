@@ -10,6 +10,7 @@
 #include "Runtime/Io.h"
 #include "Runtime/String.h"
 #include "Runtime/StringBuffer.h"
+#include "Runtime/Time.h"
 #undef MACHINE_RUNTIME_PRIVATE
 
 #endif // MACHINE_RUNTIME_H_INCLUDED

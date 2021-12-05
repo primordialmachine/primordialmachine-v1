@@ -35,6 +35,7 @@
     <ClCompile Include="Runtime\String.c" />
     <ClCompile Include="Runtime\StringBuffer.c" />
     <ClCompile Include="Runtime\Object\ClassType.c" />
+    <ClCompile Include="Runtime\Time.c" />
     <ClCompile Include="Runtime\Type.c" />
     <ClCompile Include="Runtime\Value.c" />
     <ClCompile Include="_Runtime.c" />
@@ -68,6 +69,7 @@
     <ClInclude Include="Runtime\String.h" />
     <ClInclude Include="Runtime\StringBuffer.h" />
     <ClInclude Include="Runtime\Object\ClassType.h" />
+    <ClInclude Include="Runtime\Time.h" />
     <ClInclude Include="Runtime\Type.h" />
     <ClInclude Include="Runtime\Value.h" />
     <ClInclude Include="_Runtime.h" />
