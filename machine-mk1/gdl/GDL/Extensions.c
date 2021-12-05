@@ -3,7 +3,6 @@
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #include "./../GDL/Extensions.h"
 
-#include <memory.h>
 #include <stdint.h>
 #include <inttypes.h>
 #include <string.h>
