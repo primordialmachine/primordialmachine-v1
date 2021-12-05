@@ -69,7 +69,7 @@ void Machine_Gui_TextNode_construct(Machine_Gui_TextNode* self, size_t numberOfA
       guiContext->context2->videoContext, Machines_DefaultImages_createContext());
   Machine_Font* font = Machine_FontsContext_createFont(
       fontsContext,
-      Machine_String_create("RobotoSlab-Regular.ttf", strlen("RobotoSlab-Regular.ttf")), 20);
+      Machine_String_create("fonts/RobotoSlab/RobotoSlab-Regular.ttf", strlen("fonts/RobotoSlab/RobotoSlab-Regular.ttf")), 20);
   self->foreground = Machine_Text_Layout_create(Machine_String_create("", strlen("")), font);
   self->background = Machine_Rectangle2_create();
   self->childDirty = true;
