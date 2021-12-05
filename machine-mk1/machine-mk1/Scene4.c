@@ -11,7 +11,6 @@
 
 #include "_Fonts.h"
 #include "_Graphics2.h"
-#include "Video.h"
 
 
 #define FONT_FILE "fonts/RobotoSlab/RobotoSlab-Regular.ttf"
@@ -68,10 +67,11 @@ MACHINE_DEFINE_CLASSTYPE(Scene4, Scene, &Scene4_visit, &Scene4_construct, NULL,
                          &Scene4_constructClass, NULL)
 
 static void Scene4_onStartup(Scene4* self) {
+  Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
   //
-  self->guiContext = Machine_Gui_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(Machine_getVideoContext()));
+  self->guiContext = Machine_Gui_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(videoContext));
   //
-  self->font = Machine_FontsContext_createFont(Machine_DefaultFonts_createContext(Machine_getVideoContext(), Machines_DefaultImages_createContext()),
+  self->font = Machine_FontsContext_createFont(Machine_DefaultFonts_createContext(videoContext, Machines_DefaultImages_createContext()),
                                                 Machine_String_create(FONT_FILE, strlen(FONT_FILE)), FONT_SIZE);
   //
   self->text1 = Machine_Text_Layout_create(Machine_String_create("", strlen("")), self->font);
@@ -94,7 +94,7 @@ static void Scene4_onStartup(Scene4* self) {
   //
   Machine_Math_Vector4* c = Machine_Math_Vector4_create();
   Machine_Math_Vector4_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
-  Machine_VideoContext_setClearColor(Machine_getVideoContext(), c);
+  Machine_VideoContext_setClearColor(videoContext, c);
 }
 
 static void alignLeftTop(Machine_Text_Layout* layout, Machine_Real width, Machine_Real height) {
@@ -155,11 +155,13 @@ static void Scene4_onCanvasSizeChanged(Scene4* self, Machine_CanvasSizeChangedEv
 }
 
 static void Scene4_onUpdate(Scene4* self, Machine_Real width, Machine_Real height) {
-  // Set the viewport and clear its color buffer.
-  Machine_VideoContext_setViewportRectangle(Machine_getVideoContext(), 0, 0, width, height);
-  Machine_VideoContext_clearColorBuffer(Machine_getVideoContext());
+  Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
 
-  Machine_Context2* context2 = Machine_Context2_create(Machine_getVideoContext());
+  // Set the viewport and clear its color buffer.
+  Machine_VideoContext_setViewportRectangle(videoContext, 0, 0, width, height);
+  Machine_VideoContext_clearColorBuffer(videoContext);
+
+  Machine_Context2* context2 = Machine_Context2_create(videoContext);
   Machine_Context2_setTargetSize(context2, width, height);
   Machine_Text_Layout_render(self->text1, context2);
   Machine_Text_Layout_render(self->text2, context2);

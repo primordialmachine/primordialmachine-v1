@@ -11,7 +11,6 @@
 
 #include "_Fonts.h"
 #include "_Graphics2.h"
-#include "Video.h"
 
 static void Scene5_constructClass(Scene5_Class* self);
 
@@ -75,8 +74,9 @@ static Machine_Gui_Widget* loadWidgetByPath(Machine_Gui_Context *context, const 
 }
 
 static void Scene5_startup(Scene5* self) {
+  Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
   //
-  self->guiContext = Machine_Gui_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(Machine_getVideoContext()));
+  self->guiContext = Machine_Gui_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(videoContext));
   //
   self->mainMenu = (Machine_Gui_GroupNode*)loadWidgetByPath(self->guiContext, "scenes/scene5/mainMenu.txt");
   //
@@ -86,7 +86,7 @@ static void Scene5_startup(Scene5* self) {
   //
   Machine_Math_Vector4* c = Machine_Math_Vector4_create();
   Machine_Math_Vector4_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
-  Machine_VideoContext_setClearColor(Machine_getVideoContext(), c);
+  Machine_VideoContext_setClearColor(videoContext, c);
 }
 
 static void renderText1(Scene5* self) {
@@ -104,10 +104,11 @@ static void updateText1(Scene5* self, Machine_CanvasSizeChangedEvent* event) {
 }
 
 static void renderHeader(Scene5* self) {
+  Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
   Machine_Context2* context = self->guiContext->context2;
   Machine_Real width = Machine_Context2_getTargetWidth(context);
   Machine_Real height = Machine_Context2_getTargetHeight(context);
-  Machine_Context2* tmp = Machine_Context2_create(Machine_getVideoContext());
+  Machine_Context2* tmp = Machine_Context2_create(videoContext);
   Machine_Context2_setTargetSize(tmp, width, height);
   Machine_Gui_Widget_render((Machine_Gui_Widget*)self->header, tmp);
 }
@@ -136,10 +137,11 @@ static void updateHeader(Scene5* self, Machine_CanvasSizeChangedEvent* event) {
 }
 
 static void renderFooter(Scene5* self) {
+  Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
   Machine_Context2* context = self->guiContext->context2;
   Machine_Real width = Machine_Context2_getTargetWidth(context);
   Machine_Real height = Machine_Context2_getTargetHeight(context);
-  Machine_Context2* tmp = Machine_Context2_create(Machine_getVideoContext());
+  Machine_Context2* tmp = Machine_Context2_create(videoContext);
   Machine_Context2_setTargetSize(tmp, width, height);
   Machine_Gui_Widget_render((Machine_Gui_Widget*)self->footer, tmp);
 }
@@ -172,9 +174,11 @@ static void Scene5_onCanvasSizeChanged(Scene5* self, Machine_CanvasSizeChangedEv
 }
 
 static void Scene5_update(Scene5* self, Machine_Real width, Machine_Real height) {
+  Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
+
   // Set the viewport and clear its color buffer.
-  Machine_VideoContext_setViewportRectangle(Machine_getVideoContext(), 0, 0, width, height);
-  Machine_VideoContext_clearColorBuffer(Machine_getVideoContext());
+  Machine_VideoContext_setViewportRectangle(videoContext, 0, 0, width, height);
+  Machine_VideoContext_clearColorBuffer(videoContext);
 
   renderText1(self);
   renderHeader(self);
