@@ -45,6 +45,12 @@
     <ClCompile Include="Collections\GrowthStrategy.c">
       <Filter>Quelldateien\Collections</Filter>
     </ClCompile>
+    <ClCompile Include="Collections\ICollection.c">
+      <Filter>Quelldateien\Collections</Filter>
+    </ClCompile>
+    <ClCompile Include="Collections\IList.c">
+      <Filter>Quelldateien\Collections</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_Collections.h">
@@ -69,6 +75,12 @@
       <Filter>Headerdateien\Collections</Filter>
     </ClInclude>
     <ClInclude Include="Collections\GrowthStrategy.h">
+      <Filter>Headerdateien\Collections</Filter>
+    </ClInclude>
+    <ClInclude Include="Collections\ICollection.h">
+      <Filter>Headerdateien\Collections</Filter>
+    </ClInclude>
+    <ClInclude Include="Collections\IList.h">
       <Filter>Headerdateien\Collections</Filter>
     </ClInclude>
   </ItemGroup>

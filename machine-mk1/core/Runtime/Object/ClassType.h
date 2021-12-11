@@ -7,15 +7,28 @@
 #if !defined(MACHINE_RUNTIME_PRIVATE)
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
-
 #include "Runtime/Type.h"
 typedef struct Machine_Value Machine_Value;
+typedef struct Machine_InterfaceType Machine_InterfaceType;
+typedef struct Machine_InterfaceDispatch Machine_InterfaceDispatch;
 
-/// @brief Type of an object visit callback.
+/// C-level representation of a class type.
+/// This structure holds the following fields:
+/// - parent
+/// A pointer to the parent class type if any, a null pointer otherwise.
+/// - size
+/// The size, in Bytes, of an object of this class.
+/// - classSize
+/// The size, in Bytes, of the dispatch of this class.
+/// - visit, construct, destruct
+/// Callbacks invoked when an object of that type is visited, constructed, or destructed.
+typedef struct Machine_ClassType Machine_ClassType;
+
+/// @brief Type of a class object visit callback.
 /// @param self A pointer to the object.
 typedef void(Machine_ClassObjectVisitCallback)(void* self);
 
-/// @brief Type of an object visiti callback.
+/// @brief Type of a class object visit callback.
 /// @param self A pointer to the object.
 /// @param numberOfArguments The number of elements in the array pointed to by @a arguments.
 /// @param arguments A pointer to an array of @a numberOfArguments arguments.
@@ -28,34 +41,12 @@ typedef void(Machine_ClassObjectDestructCallback)(void* self);
 
 typedef void(Machine_ClassConstructCallback)(void*);
 
-/// C-level representation of a class type.
-/// This structure holds the following fields:
-/// - parent
-/// A pointer to the parent class type if any, a null pointer otherwise.
-/// - size
-/// The size, in Bytes, of an object of this class.
-/// - classSize
-/// The size, in Bytes, of the dispatch of this class.
-/// - typeRemoved
-/// Pointer to a callback invoked when the type is removed or null.
-/// - visit, construct, destruct
-/// Callbacks invoked when an object of that type is visited, constructed, or destructed.
-typedef struct Machine_ClassType Machine_ClassType;
+/// @brief A callback for constructing an interface.
+typedef void(Machine_InterfaceConstructCallback)(Machine_InterfaceDispatch *);
 
-struct Machine_ClassType {
-  Machine_Type __parent__;
-  Machine_ClassType* parent;
-
-  size_t size;
-  Machine_ClassObjectVisitCallback* visit;
-  Machine_ClassObjectConstructCallback* construct;
-  Machine_ClassObjectDestructCallback* destruct;
-
-  size_t classSize;
-  Machine_ClassConstructCallback* constructClass;
-
-  void* data;
-};
+/// @brief Type of an implement interfaces callback.
+/// @param self A pointer to the class type.
+typedef void(Machine_ImplementInterfacesCallback)(Machine_ClassType* self);
 
 typedef struct Machine_CreateClassTypeArgs {
   Machine_CreateTypeArgs createTypeArgs;
@@ -63,20 +54,31 @@ typedef struct Machine_CreateClassTypeArgs {
   /// @brief A pointer to the parent class type or a null pointer.
   Machine_ClassType* parent;
 
-  /// @brief The size, in Bytes, of an object of the class.
-  size_t size;
+  struct {
+    /// @brief The size, in Bytes, of an object of the class.
+    size_t size;
 
-  /// @brief Pointer to a Machine_ClassObjectVisitCallback function or a null pointer.
-  Machine_ClassObjectVisitCallback* visit;
+    /// @brief Pointer to a Machine_ClassObjectVisitCallback function or a null pointer.
+    Machine_ClassObjectVisitCallback* visit;
 
-  /// @brief Pointer to a Machine_ClassObjectConstructCallback function or a null pointer.
-  Machine_ClassObjectConstructCallback* construct;
+    /// @brief Pointer to a Machine_ClassObjectConstructCallback function or a null pointer.
+    Machine_ClassObjectConstructCallback* construct;
 
-  /// @brief Pointer to a Machine_ClassObjectDestructCallback function or a null pointer.
-  Machine_ClassObjectDestructCallback* destruct;
+    /// @brief Pointer to a Machine_ClassObjectDestructCallback function or a null pointer.
+    Machine_ClassObjectDestructCallback* destruct;
+  } object;
 
-  size_t classSize;
-  Machine_ClassConstructCallback* constructClass;
+  struct {
+    /// @brief The size, in Bytes, of the dispatch of this class.
+    size_t size;
+    /// @brief Pointer to a Machine_ClassConstructCallback function or a null pointer.
+    Machine_ClassConstructCallback* construct;
+  } class;
+
+  struct {
+    /// @brief Pointer to a Machine_ImplementInterfacesCallback or a null pointer.
+    Machine_ImplementInterfacesCallback* implementInterfaces;
+  } interfaces;
 
 } Machine_CreateClassTypeArgs;
 
@@ -85,23 +87,26 @@ typedef struct Machine_CreateClassTypeArgs {
 /// @return A pointer to the class type.
 Machine_ClassType* Machine_createClassType(Machine_CreateClassTypeArgs* args);
 
-/// @brief Get if the specified type "subType" is a sub-type of the specified type "superType".
-/// @param subType, superType The specified types.
-/// @return @a true if the specified type "subType" is a sub-type of the specified type "superType",
-/// @a false otherwise.
-bool Machine_ClassType_isSubTypeOf(Machine_ClassType const* subType,
-                                   Machine_ClassType const* superType);
-
-/// @brief Get if the specified type "superType" is a super-type of the specified type "subType".
-/// @param superType, subType The specified types.
-/// @return @a true if the specified type "superType" is a super-type of the specified type
-/// "subType", @a false otherwise.
-static inline bool Machine_ClassType_isSuperTypeOf(Machine_ClassType const* superType,
-                                                   Machine_ClassType const* subType) {
-  return Machine_ClassType_isSubTypeOf(subType, superType);
-}
+/// @brief Make this class type implement the specified interface type.
+/// @param self This class type.
+/// @param implemented The implemented type. Must be an interface type.
+/// @error Machine.Status.InvalidOperation An implementation for that interface already exists.
+void Machine_ClassType_implement(Machine_ClassType* self, Machine_InterfaceType* implemented,
+                                 Machine_InterfaceConstructCallback* constructInterface);
 
 void Machine_ClassType_ensureInitialized(Machine_ClassType* self);
+
+/// @brief Get the dispatch of this class type.
+/// @param self A pointer to this class type.
+/// @return A pointer to the dispatch.
+void* Machine_ClassType_getDispatch(Machine_ClassType* self);
+
+/// @brief Get an interface dispatch of this class.
+/// @param self A pointer to this class type.
+/// @param interfaceType A pointer to ther interface type.
+/// @return A pointer to the dispatch or a null pointer.
+void* Machine_ClassType_getInterfaceDispatch(Machine_ClassType* self,
+                                             Machine_InterfaceType* interfaceType);
 
 #define MACHINE_DECLARE_CLASSTYPE(THIS)                                                            \
   typedef struct THIS THIS;                                                                        \
@@ -124,12 +129,13 @@ void Machine_ClassType_ensureInitialized(Machine_ClassType* self);
           .typeRemoved = (Machine_TypeRemovedCallback*)&THIS##_onTypeDestroyed, \
         }, \
         .parent = PARENT##_getType(), \
-        .size = sizeof(THIS), \
-        .visit = (Machine_ClassObjectVisitCallback*)VISIT, \
-        .construct = (Machine_ClassObjectConstructCallback*)CONSTRUCT, \
-        .destruct = (Machine_ClassObjectDestructCallback*)DESTRUCT, \
-        .classSize = sizeof(THIS##_Class), \
-        .constructClass = (Machine_ClassConstructCallback*)CLASS_CONSTRUCT, \
+        .object.size = sizeof(THIS), \
+        .object.visit = (Machine_ClassObjectVisitCallback*)VISIT, \
+        .object.construct = (Machine_ClassObjectConstructCallback*)CONSTRUCT, \
+        .object.destruct = (Machine_ClassObjectDestructCallback*)DESTRUCT, \
+        .class.size = sizeof(THIS##_Class), \
+        .class.construct = (Machine_ClassConstructCallback*)CLASS_CONSTRUCT, \
+        .interfaces.implementInterfaces = (Machine_ImplementInterfacesCallback*)INTERFACES_IMPLEMENT, \
       };                                                      \
       g_##THIS##_ClassType = Machine_createClassType(&args);                                       \
     }                                                                                              \

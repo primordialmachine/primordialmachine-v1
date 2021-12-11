@@ -50,7 +50,7 @@ extern "C" {
       Machine_Image* image = Machine_ImagesContext_createFromPath(Machines_DefaultImages_createContext(), Machine_String_create(PATHS[i], strlen(PATHS[i])));
       Machine_Value val;
       Machine_Value_setObject(&val, (Machine_Object *)image);
-      Machine_List_append(vals, val);
+      Machine_IList_append((Machine_IList *)vals, val);
     }
     Machine_Video_Canvas_setCanvasIcons(Machine_getVideoCanvas(), vals);
   }
@@ -86,7 +86,7 @@ extern "C" {
       Machine_JumpTarget jumpTarget2; // To shutdown scene.
       Machine_pushJumpTarget(&jumpTarget2);
       if (!setjmp(jumpTarget2.environment)) {
-        Machine_setRoot(g_scene, true);
+        Machine_Gc_setRoot(g_scene, true);
         Machine_update();
 
         Machine_Integer width, height;
@@ -97,12 +97,12 @@ extern "C" {
         Machine_popJumpTarget();
 
 
-        Machine_setRoot(g_scene, false);
+        Machine_Gc_setRoot(g_scene, false);
         Scene* s = g_scene;
         g_scene = NULL;
         Scene_onShutdown(s);
       } else {
-        Machine_setRoot(g_scene, false);
+        Machine_Gc_setRoot(g_scene, false);
         Scene* s = g_scene;
         g_scene = NULL;
         Scene_onShutdown(s);

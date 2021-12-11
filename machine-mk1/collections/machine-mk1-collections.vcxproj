@@ -13,6 +13,8 @@
   <ItemGroup>
     <ClCompile Include="Collections\Collection.c" />
     <ClCompile Include="Collections\GrowthStrategy.c" />
+    <ClCompile Include="Collections\ICollection.c" />
+    <ClCompile Include="Collections\IList.c" />
     <ClCompile Include="Collections\List.c" />
     <ClCompile Include="Collections\Map.c" />
     <ClCompile Include="Collections\Pair.c" />
@@ -23,6 +25,8 @@
   <ItemGroup>
     <ClInclude Include="Collections\Collection.h" />
     <ClInclude Include="Collections\GrowthStrategy.h" />
+    <ClInclude Include="Collections\ICollection.h" />
+    <ClInclude Include="Collections\IList.h" />
     <ClInclude Include="Collections\List.h" />
     <ClInclude Include="Collections\Map.h" />
     <ClInclude Include="Collections\Pair.h" />

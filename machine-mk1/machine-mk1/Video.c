@@ -14,18 +14,18 @@ static void initCanvas() {
   Machine_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
     g_videoCanvas = (Machine_Video_Canvas*)Machine_Video_GL_Canvas_create();
-    Machine_lock(g_videoCanvas);
+    Machine_Gc_lock(g_videoCanvas);
     g_videoContext = (Machine_VideoContext*)Machine_Gl_VideoContext_create();
-    Machine_lock(g_videoContext);
+    Machine_Gc_lock(g_videoContext);
     Machine_popJumpTarget();
   } else {
     Machine_popJumpTarget();
     if (g_videoContext) {
-      Machine_unlock(g_videoContext);
+      Machine_Gc_unlock(g_videoContext);
       g_videoContext = NULL;
     }
     if (g_videoCanvas) {
-      Machine_unlock(g_videoCanvas);
+      Machine_Gc_unlock(g_videoCanvas);
       g_videoCanvas = NULL;
     }
     Machine_jump();
@@ -34,11 +34,11 @@ static void initCanvas() {
 
 static void uninitCanvas() {
   if (g_videoContext) {
-    Machine_unlock(g_videoContext);
+    Machine_Gc_unlock(g_videoContext);
     g_videoContext = NULL;
   }
   if (g_videoCanvas) {
-    Machine_unlock(g_videoCanvas);
+    Machine_Gc_unlock(g_videoCanvas);
     g_videoCanvas = NULL;
   }
 }

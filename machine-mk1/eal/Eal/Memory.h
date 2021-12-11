@@ -11,13 +11,15 @@
 
 
 /// @brief Allocate a memory block of the specified length.
-/// @param n The length, in Bytes, of the memory block is given by <code>n</code>. Can be @a 0.
+/// @param n The length, in Bytes, of the memory block is given by <code>n</code>.
+/// The length can be @a 0.
 /// @return A pointer to an array of @a n Bytes on success, @a NULL on failure. 
 /// @remark This function fails if not enough memory can be allocated.
 void* Machine_Eal_Memory_allocate(size_t n);
 
 /// @brief Allocate a memory block of the specified length.
-/// @param n, m The length, in Bytes, of the memory block is given by <code>n*m</code>. The length can be @a 0.
+/// @param n, m The length, in Bytes, of the memory block is given by <code>n*m</code>.
+/// The length can be @a 0.
 /// @return A pointer to a memory block of the specified length on success, @a NULL on failure.
 /// @remark This function fails if not enough memory can be allocated.
 /// @remark This function fails if the product <code>n*m</code> would overflow.
@@ -68,5 +70,22 @@ void Machine_Eal_Memory_copy(void* p, void const* q, size_t n, bool overlap);
 int Machine_Eal_Memory_compare(void const* p, void const* q, size_t n);
 
 void Machine_Eal_Memory_zero(void* p, size_t n);
+
+/// @brief Clone a memory block of the specified length.
+/// @param p A pointer to the memory block.
+/// @param n The length, in Bytes, of the memory block is given by <code>n</code>.
+/// The length can be @a 0.
+/// @return A pointer to an array of @a n Bytes on success, @a NULL on failure.
+/// @remark This function fails if not enough memory can be allocated.
+void* Machine_Eal_Memory_clone(void* p, size_t n);
+
+/// @brief Clone a memory block of the specified length.
+/// @param p A pointer to the memory block.
+/// @param n, m The length, in Bytes, of the memory block is given by <code>n*m</code>.
+/// The length can be @a 0.
+/// @return A pointer to a memory block of the specified length on success, @a NULL on failure.
+/// @remark This function fails if not enough memory can be allocated.
+/// @remark This function fails if the product <code>n*m</code> would overflow.
+void* Machine_Eal_Memory_cloneArray(void* p, size_t n, size_t m);
 
 #endif // MACHINE_EAL_MEMORY_H_INCLUDED

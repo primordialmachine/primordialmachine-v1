@@ -191,7 +191,7 @@ void Machine_Glfw_startupCanvasInput() {
     Machine_pushJumpTarget(&jumpTarget);
     if (!setjmp(jumpTarget.environment)) {
       g_events = Machine_List_create();
-      Machine_setRoot(g_events, true);
+      Machine_Gc_lock(g_events);
       Machine_popJumpTarget();
     }
     else {
@@ -204,7 +204,7 @@ void Machine_Glfw_startupCanvasInput() {
 
 void Machine_Glfw_shutdownCanvasInput() {
   if (0 == --g_referenceCount) {
-    Machine_setRoot(g_events, false);
+    Machine_Gc_unlock(g_events);
     g_events = NULL;
   }
 }

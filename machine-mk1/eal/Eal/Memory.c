@@ -61,3 +61,20 @@ int Machine_Eal_Memory_compare(void const* p, void const* q, size_t n) {
 void Machine_Eal_Memory_zero(void* p, size_t n) {
   memset(p, 0, n);
 }
+
+void* Machine_Eal_Memory_clone(void* p, size_t n) {
+  void *q = Machine_Eal_Memory_allocate(n);
+  if (NULL == q) {
+    return NULL;
+  }
+  Machine_Eal_Memory_copy(q, p, n, false);
+  return q;
+}
+
+void* Machine_Eal_Memory_cloneArray(void* p, size_t n, size_t m) {
+  size_t l;
+  if (!Machine_Eal_multiplySafe_sz(&l, n, m)) {
+    return NULL;
+  }
+  return Machine_Eal_Memory_clone(p, l);
+}

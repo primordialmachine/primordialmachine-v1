@@ -40,7 +40,7 @@ static size_t Machine_Gl_ShaderProgram_getNumberOfInputsImpl(Machine_Gl_ShaderPr
 }
 
 static Machine_ProgramInput* Machine_Gl_ShaderProgram_getInputAtImpl(Machine_Gl_ShaderProgram const* self, size_t index) {
-  Machine_Value temporary = Machine_List_getAt(self->inputs, index);
+  Machine_Value temporary = Machine_IList_getAt((Machine_IList *)self->inputs, index);
   return (Machine_ProgramInput*)Machine_Value_getObject(&temporary);
 }
 
@@ -56,7 +56,7 @@ static Machine_Boolean Machine_Gl_ShaderProgram_addUpdateInputImpl(Machine_Gl_Sh
   Machine_ProgramInput* input = Machine_ProgramInput_create(name, type, kind);
   Machine_Value temporary;
   Machine_Value_setObject(&temporary, (Machine_Object*)input);
-  Machine_List_append(self->inputs, temporary);
+  Machine_IList_append((Machine_IList *)self->inputs, temporary);
   return false;
 }
 
@@ -172,7 +172,7 @@ static void constructFromText(Machine_Gl_ShaderProgram* self, char const* vertex
   #if defined(PROGRAM_EMIT_LOG_IF_LINKING_FAILED)
     GLint log_length;
     glGetProgramiv(programId, GL_INFO_LOG_LENGTH, &log_length);
-    char* buffer = Machine_Eal_Memory_allocate(sizeof(char), log_length + 1);
+    char* buffer = Machine_Eal_Memory_allocateArray(sizeof(char), log_length + 1);
     if (buffer) {
       glGetProgramInfoLog(programId, log_length, NULL, buffer);
       Machine_Eal_Memory_deallocate(buffer);

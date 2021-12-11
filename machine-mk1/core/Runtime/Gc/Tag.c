@@ -13,7 +13,7 @@
 /// @todo Remove this.
 #define Machine_Flag_Root (4)
 
-void Machine_Tag_initialize(Machine_Tag* tag) {
+void Machine_Gc_Tag_initialize(Machine_Gc_Tag* tag) {
   tag->lockCount = 0;
   tag->flags = Machine_Flag_White;
   tag->size = 0;
@@ -23,36 +23,36 @@ void Machine_Tag_initialize(Machine_Tag* tag) {
   tag->gray = NULL;
 }
 
-void Machine_Tag_uninitialize(Machine_Tag* tag) {
+void Machine_Gc_Tag_uninitialize(Machine_Gc_Tag* tag) {
 }
 
-void Machine_Tag_setWhite(Machine_Tag* tag) {
+void Machine_Gc_Tag_setWhite(Machine_Gc_Tag* tag) {
   tag->flags &= ~Machine_Flag_Black;
   tag->flags |= Machine_Flag_White;
 }
 
-bool Machine_Tag_isWhite(Machine_Tag const* tag) {
+bool Machine_Gc_Tag_isWhite(Machine_Gc_Tag const* tag) {
   return (tag->flags & Machine_Flag_Grey) == Machine_Flag_White;
 }
 
-void Machine_Tag_setBlack(Machine_Tag* tag) {
+void Machine_Gc_Tag_setBlack(Machine_Gc_Tag* tag) {
   tag->flags &= ~Machine_Flag_White;
   tag->flags |= Machine_Flag_Black;
 }
 
-bool Machine_Tag_isBlack(Machine_Tag const* tag) {
+bool Machine_Gc_Tag_isBlack(Machine_Gc_Tag const* tag) {
   return (tag->flags & Machine_Flag_Black) == Machine_Flag_Black;
 }
 
-void Machine_Tag_setGrey(Machine_Tag* tag) {
+void Machine_Gc_Tag_setGrey(Machine_Gc_Tag* tag) {
   tag->flags |= Machine_Flag_Grey;
 }
 
-bool Machine_Tag_isGrey(Machine_Tag const* tag) {
+bool Machine_Gc_Tag_isGrey(Machine_Gc_Tag const* tag) {
   return (tag->flags & Machine_Flag_Grey) == Machine_Flag_Grey;
 }
 
-void Machine_Tag_setRoot(Machine_Tag* tag, bool isRoot) {
+void Machine_Gc_Tag_setRoot(Machine_Gc_Tag* tag, bool isRoot) {
   if (isRoot) {
     tag->flags |= Machine_Flag_Root;
   } else {
@@ -60,14 +60,14 @@ void Machine_Tag_setRoot(Machine_Tag* tag, bool isRoot) {
   }
 }
 
-bool Machine_Tag_isRoot(Machine_Tag const* tag) {
+bool Machine_Gc_Tag_isRoot(Machine_Gc_Tag const* tag) {
   return (tag->flags & Machine_Flag_Root) == Machine_Flag_Root;
 }
 
-void Machine_Tag_lock(Machine_Tag* tag) {
+void Machine_Gc_Tag_lock(Machine_Gc_Tag* tag) {
   tag->lockCount++;
 }
 
-void Machine_Tag_unlock(Machine_Tag* tag) {
+void Machine_Gc_Tag_unlock(Machine_Gc_Tag* tag) {
   tag->lockCount--;
 }

@@ -11,6 +11,7 @@
 #include "Eal/GrowthStrategy.h"
 #include "Eal/isPowerOfTwo.h"
 #include "Eal/leastPowerOfTwoGreaterThanOrEqualTo.h"
+#include "Eal/InlineArray.h"
 #include "Eal/maximum.h"
 #include "Eal/Memory.h"
 #include "Eal/minimum.h"

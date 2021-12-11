@@ -11,7 +11,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Machine.c" />
     <ClCompile Include="Runtime\Arguments.c" />
     <ClCompile Include="Runtime\ArrayUtilities.c" />
     <ClCompile Include="Runtime\Assertions.c" />
@@ -27,6 +26,10 @@
     <ClCompile Include="Runtime\Io\_FileMapping.c" />
     <ClCompile Include="Runtime\JumpTargetModule.c" />
     <ClCompile Include="Runtime\LogModule.c" />
+    <ClCompile Include="Runtime\Machine.c" />
+    <ClCompile Include="Runtime\Object\ClassType.module.c" />
+    <ClCompile Include="Runtime\Object\InterfaceType.c" />
+    <ClCompile Include="Runtime\Object\InterfaceType.module.c" />
     <ClCompile Include="Runtime\Object\Object.c" />
     <ClCompile Include="Runtime\PrimitiveTypes.c" />
     <ClCompile Include="Runtime\StackModule.c" />
@@ -37,11 +40,11 @@
     <ClCompile Include="Runtime\Object\ClassType.c" />
     <ClCompile Include="Runtime\Time.c" />
     <ClCompile Include="Runtime\Type.c" />
+    <ClCompile Include="Runtime\Type.module.c" />
     <ClCompile Include="Runtime\Value.c" />
     <ClCompile Include="_Runtime.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Machine.h" />
     <ClInclude Include="Runtime\Arguments.h" />
     <ClInclude Include="Runtime\ArrayUtilities.h" />
     <ClInclude Include="Runtime\Assertions.h" />
@@ -61,6 +64,10 @@
     <ClInclude Include="Runtime\Io\_FileMapping.h" />
     <ClInclude Include="Runtime\JumpTargetModule.h" />
     <ClInclude Include="Runtime\LogModule.h" />
+    <ClInclude Include="Runtime\Machine.h" />
+    <ClInclude Include="Runtime\Object\ClassType.module.h" />
+    <ClInclude Include="Runtime\Object\InterfaceType.h" />
+    <ClInclude Include="Runtime\Object\InterfaceType.module.h" />
     <ClInclude Include="Runtime\Object\Object.h" />
     <ClInclude Include="Runtime\PrimitiveTypes.h" />
     <ClInclude Include="Runtime\StackModule.h" />
@@ -71,6 +78,7 @@
     <ClInclude Include="Runtime\Object\ClassType.h" />
     <ClInclude Include="Runtime\Time.h" />
     <ClInclude Include="Runtime\Type.h" />
+    <ClInclude Include="Runtime\Type.module.h" />
     <ClInclude Include="Runtime\Value.h" />
     <ClInclude Include="_Runtime.h" />
   </ItemGroup>

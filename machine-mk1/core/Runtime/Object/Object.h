@@ -34,11 +34,11 @@ struct Machine_Object {
 
 Machine_ClassObjectTag* o2cot(void* src);
 
-Machine_Tag* cot2t(void* src);
+Machine_Gc_Tag* cot2t(Machine_ClassObjectTag* src);
 
-Machine_ClassObjectTag* t2cot(void* src);
+Machine_ClassObjectTag* t2cot(Machine_Gc_Tag* src);
 
-Machine_Object* cot2o(void* src);
+Machine_Object* cot2o(Machine_ClassObjectTag* src);
 
 
 Machine_ClassType* Machine_Object_getType();
@@ -85,11 +85,19 @@ Machine_ClassType* Machine_getClassType(Machine_Object* object);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+#define MACHINE_VIRTUALIFACECALL_IMPL(TYPE, METHODNAME, RETURN, ...)                               \
+  MACHINE_ASSERT_NOTNULL(self);                                                                    \
+  Machine_ClassType* classType = Machine_getClassType((Machine_Object*)self);                      \
+  MACHINE_ASSERT_NOTNULL(classType);                                                               \
+  TYPE##_Dispatch* data = Machine_ClassType_getInterfaceDispatch(classType, TYPE##_getType());     \
+  MACHINE_ASSERT_NOTNULL(data);                                                                    \
+  RETURN data->METHODNAME(__VA_ARGS__);
+
 #define MACHINE_VIRTUALCALL_IMPL(TYPE, METHODNAME, RETURN, ...) \
   MACHINE_ASSERT_NOTNULL(self); \
   Machine_ClassType* classType = Machine_getClassType((Machine_Object*)self); \
   MACHINE_ASSERT_NOTNULL(classType); \
-  TYPE##_Class* data = classType->data; \
+  TYPE##_Class* data = Machine_ClassType_getDispatch(classType); \
   MACHINE_ASSERT_NOTNULL(data); \
   RETURN data->METHODNAME(__VA_ARGS__);
 

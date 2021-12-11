@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="Eal\addSafe.h" />
     <ClInclude Include="Eal\GrowthStrategy.h" />
+    <ClInclude Include="Eal\InlineArray.h" />
     <ClInclude Include="Eal\leastPowerOfTwoGreaterThanOrEqualTo.h" />
     <ClInclude Include="Eal\Zts.h" />
     <ClInclude Include="Eal\Compiler.h" />
@@ -27,6 +28,7 @@
   <ItemGroup>
     <ClCompile Include="Eal\addSafe.c" />
     <ClCompile Include="Eal\GrowthStrategy.c" />
+    <ClCompile Include="Eal\InlineArray.c" />
     <ClCompile Include="Eal\leastPowerOfTwoGreaterThanOrEqualTo.c" />
     <ClCompile Include="Eal\Zts.c" />
     <ClCompile Include="Eal\Compiler.c" />

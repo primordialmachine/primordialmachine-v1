@@ -2,6 +2,8 @@
 #define MACHINE__COLLECTIONS_H_INCLUDED
 
 #define MACHINE_COLLECTIONS_PRIVATE (1)
+#include "Collections/ICollection.h"
+#include "Collections/IList.h"
 #include "Collections/List.h"
 #include "Collections/Map.h"
 #include "Collections/Pair.h"

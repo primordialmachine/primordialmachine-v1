@@ -10,9 +10,9 @@ Machine_Math_Vector3* Machine_Gui_Gdl_listToVector3(Machine_List const* list) {
   size_t size = Machine_Collection_getSize((Machine_Collection const*)list);
   MACHINE_ASSERT(size == 3, Machine_Status_InvalidArgument);
   Machine_Value values[] = {
-    Machine_List_getAt(list, 0),
-    Machine_List_getAt(list, 1),
-    Machine_List_getAt(list, 2),
+    Machine_IList_getAt((Machine_IList *)list, 0),
+    Machine_IList_getAt((Machine_IList *)list, 1),
+    Machine_IList_getAt((Machine_IList *)list, 2),
   };
   Machine_Math_Vector3* vector = Machine_Math_Vector3_create();
   Machine_Math_Vector3_set(vector, Machine_Gui_Gdl_valueToReal(&values[0]),
@@ -25,10 +25,10 @@ Machine_Math_Vector4* Machine_Gui_Gdl_listToVector4(Machine_List const* list) {
   size_t size = Machine_Collection_getSize((Machine_Collection const*)list);
   MACHINE_ASSERT(size == 4, Machine_Status_InvalidArgument);
   Machine_Value values[] = {
-    Machine_List_getAt(list, 0),
-    Machine_List_getAt(list, 1),
-    Machine_List_getAt(list, 2),
-    Machine_List_getAt(list, 3),
+    Machine_IList_getAt((Machine_IList *)list, 0),
+    Machine_IList_getAt((Machine_IList *)list, 1),
+    Machine_IList_getAt((Machine_IList *)list, 2),
+    Machine_IList_getAt((Machine_IList *)list, 3),
   };
   Machine_Math_Vector4* vector = Machine_Math_Vector4_create();
   Machine_Math_Vector4_set(

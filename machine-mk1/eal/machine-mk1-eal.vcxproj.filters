@@ -57,6 +57,9 @@
     <ClCompile Include="Eal\leastPowerOfTwoGreaterThanOrEqualTo.c">
       <Filter>Quelldateien\Eal</Filter>
     </ClCompile>
+    <ClCompile Include="Eal\InlineArray.c">
+      <Filter>Quelldateien\Eal</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Eal\Zts.h">
@@ -93,6 +96,9 @@
       <Filter>Headerdateien\Eal</Filter>
     </ClInclude>
     <ClInclude Include="Eal\leastPowerOfTwoGreaterThanOrEqualTo.h">
+      <Filter>Headerdateien\Eal</Filter>
+    </ClInclude>
+    <ClInclude Include="Eal\InlineArray.h">
       <Filter>Headerdateien\Eal</Filter>
     </ClInclude>
   </ItemGroup>

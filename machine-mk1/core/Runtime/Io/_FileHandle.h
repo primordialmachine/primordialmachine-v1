@@ -4,12 +4,10 @@
 #if !defined(MACHINE_RUNTIME_IO__FILEHANDLE_H_INCLUDED)
 #define MACHINE_RUNTIME_IO__FILEHANDLE_H_INCLUDED
 
-#include "Machine.h"
-
 #if !defined(MACHINE_RUNTIME_PRIVATE)
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
-
+#include "Runtime/Machine.h"
 #include "Runtime/Io/ExistingFilePolicy.h"
 #include "Runtime/Io/FileAccessMode.h"
 #include "Runtime/Io/NonExistingFilePolicy.h"

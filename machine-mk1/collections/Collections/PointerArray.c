@@ -6,6 +6,7 @@
 
 
 
+#include "Collections/IList.h"
 #include "Collections/List.h"
 
 
@@ -59,7 +60,7 @@ void Machine_PointerArray_clear(Machine_PointerArray* self) {
 
 void *Machine_PointerArray_getAt(Machine_PointerArray* self, size_t index) {
   MACHINE_ASSERT_NOTNULL(self);
-  Machine_Value v = Machine_List_getAt(self->list, index);
+  Machine_Value v = Machine_IList_getAt((Machine_IList *)self->list, index);
   if (!Machine_Value_isObject(&v)) {
     if (!Machine_Value_isVoid(&v)) {
       Machine_setStatus(Machine_Status_InvalidOperation);
@@ -84,11 +85,11 @@ void Machine_PointerArray_append(Machine_PointerArray* self, void* pointer) {
   if (!pointer) {
     Machine_Value v;
     Machine_Value_setVoid(&v, Machine_Void_Void);
-    Machine_List_append(self->list, v);
+    Machine_IList_append((Machine_IList *)self->list, v);
   } else {
     Machine_Value v;
     Machine_Value_setObject(&v, pointer);
-    Machine_List_append(self->list, v);
+    Machine_IList_append((Machine_IList *)self->list, v);
   }
 }
 
@@ -97,11 +98,11 @@ void Machine_PointerArray_insert(Machine_PointerArray* self, size_t index, void 
   if (!pointer) {
     Machine_Value v;
     Machine_Value_setVoid(&v, Machine_Void_Void);
-    Machine_List_insertAt(self->list, index, v);
+    Machine_IList_insertAt((Machine_IList *)self->list, index, v);
   }
   else {
     Machine_Value v;
     Machine_Value_setObject(&v, pointer);
-    Machine_List_insertAt(self->list, index, v);
+    Machine_IList_insertAt((Machine_IList *)self->list, index, v);
   }
 }

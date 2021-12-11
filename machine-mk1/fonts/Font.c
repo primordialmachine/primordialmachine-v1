@@ -68,7 +68,14 @@ static void Map_finalize(Map* self) {
 }
 
 static Map* Map_create() {
-  Map* self = Machine_Gc_allocate(sizeof(Map), (Machine_VisitCallback*)&Map_visit, (Machine_FinalizeCallback*)&Map_finalize);
+  Machine_Gc_AllocationArguments const allocationArguments = {
+    .prefixSize = 0,
+    .suffixSize = sizeof(Map),
+    .visit = (Machine_Gc_VisitCallback*)&Map_visit,
+    .finalize = (Machine_Gc_FinalizeCallback*)&Map_finalize,
+  };
+
+  Map* self = Machine_Gc_allocate(&allocationArguments);
   if (!self) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
@@ -221,7 +228,7 @@ static void Machine_Fonts_Font_destruct(Machine_Fonts_Font* self) {
     FT_Done_Face(self->face);
     self->face = NULL;
   }
-  Machine_unlock(self->context);
+  Machine_Gc_unlock(self->context);
   self->context = NULL;
 }
 
@@ -239,7 +246,7 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
     Machine_jump();
   }
   self->context = fontsContext;
-  Machine_lock(self->context);
+  Machine_Gc_lock(self->context);
   //
   FT_Error error;
   // (1) Ensure string is zero terminated.
@@ -247,7 +254,7 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
   // (2)
   error = FT_New_Face(*fontsContext->library, Machine_String_getBytes(path), 0, &self->face);
   if (error) {
-    Machine_unlock(self->context);
+    Machine_Gc_unlock(self->context);
     self->context = NULL;
 
     Machine_setStatus(Machine_Status_EnvironmentFailed);
@@ -259,7 +266,7 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
     FT_Done_Face(self->face);
     self->face = NULL;
 
-    Machine_unlock(self->context);
+    Machine_Gc_unlock(self->context);
     self->context = NULL;
 
     Machine_setStatus(Machine_Status_EnvironmentFailed);
@@ -290,7 +297,7 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
     FT_Done_Face(self->face);
     self->face = NULL;
 
-    Machine_unlock(self->context);
+    Machine_Gc_unlock(self->context);
     self->context = NULL;
     
     Machine_setStatus(Machine_Status_EnvironmentFailed);
@@ -349,7 +356,7 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
       FT_Done_Face(self->face);
       self->face = NULL;
 
-      Machine_unlock(self->context);
+      Machine_Gc_unlock(self->context);
       self->context = NULL;
 
       Machine_setStatus(Machine_Status_InvalidOperation);
@@ -371,7 +378,7 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
       FT_Done_Face(self->face);
       self->face = NULL;
       
-      Machine_unlock(self->context);
+      Machine_Gc_unlock(self->context);
       self->context = NULL;
 
       Machine_popJumpTarget();

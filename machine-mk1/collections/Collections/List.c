@@ -6,6 +6,8 @@
 
 
 
+#include "Collections/ICollection.h"
+#include "Collections/IList.h"
 #include "Collections/GrowthStrategy.h"
 
 
@@ -28,13 +30,13 @@ static size_t getSize(Machine_List const* self);
 
 static void clear(Machine_List* self);
 
-#if defined(Machine_List_withReverse) && Machine_List_withReverse == 1
+#if defined(Machine_IList_withReverse) && Machine_IList_withReverse == 1
 
 static void reverse(Machine_List* self);
 
 #endif
 
-#if defined(Machine_List_withSlice) && Machine_List_withSlice == 1
+#if defined(Machine_IList_withSlice) && Machine_IList_withSlice == 1
 
 static Machine_List* slice(Machine_List* self, size_t start, size_t length);
 
@@ -44,15 +46,36 @@ static void Machine_List_visit(Machine_List* self);
 
 static void Machine_List_destruct(Machine_List* self);
 
+static void Machine_List_implement_Machine_ICollection(Machine_ICollection_Dispatch* self) {
+  self->getSize = (size_t(*)(Machine_ICollection const*)) & getSize;
+  self->clear = (void (*)(Machine_ICollection*)) & clear;
+}
+
+static void Machine_List_implement_Machine_IList(Machine_IList_Dispatch* self) {
+  self->append = (void (*)(Machine_IList*, Machine_Value)) & append;
+  self->prepend = (void (*)(Machine_IList*, Machine_Value)) & prepend;
+  self->insertAt = (void (*)(Machine_IList*, size_t, Machine_Value)) & insertAt;
+  self->getAt = (Machine_Value(*)(Machine_IList const*, size_t)) & getAt;
+  self->removeAt = (void (*)(Machine_IList*, size_t)) & removeAt;
+  self->removeAtFast = (void (*)(Machine_IList*, size_t)) & removeAtFast;
+#if defined(Machine_IList_withReverse) && Machine_IList_withReverse == 1
+  self->reverse = (void (*)(Machine_IList *)) & reverse;
+#endif
+#if defined(Machine_IList_withSlice) && Machine_IList_withSlice == 1
+  self->slice = (Machine_IList *(*)(Machine_IList *, size_t, size_t))&slice;
+#endif
+}
+
+static void Machine_List_implementInterfaces(Machine_ClassType* self) {
+  Machine_ClassType_implement(self, Machine_ICollection_getType(),
+                              (Machine_InterfaceConstructCallback *)&Machine_List_implement_Machine_ICollection);
+  Machine_ClassType_implement(self, Machine_IList_getType(),
+                              (Machine_InterfaceConstructCallback*)&Machine_List_implement_Machine_IList);
+}
+
 static void Machine_List_constructClass(Machine_List_Class* self) {
   ((Machine_Collection_Class*)self)->getSize = (size_t(*)(Machine_Collection const*)) & getSize;
   ((Machine_Collection_Class*)self)->clear = (void (*)(Machine_Collection*)) & clear;
-  self->append = &append;
-  self->prepend = &prepend;
-  self->insertAt = &insertAt;
-  self->getAt = &getAt;
-  self->removeAt = &removeAt;
-  self->removeAtFast = &removeAtFast;
 #if defined(Machine_List_withReverse) && Machine_List_withReverse == 1
   self->reverse = &reverse;
 #endif
@@ -75,16 +98,16 @@ static void Machine_List_construct(Machine_List* self, size_t numberOfArguments,
 
 MACHINE_DEFINE_CLASSTYPE(Machine_List, Machine_Collection, &Machine_List_visit,
                          &Machine_List_construct, &Machine_List_destruct,
-                         &Machine_List_constructClass, NULL)
+                         &Machine_List_constructClass, &Machine_List_implementInterfaces)
 
 static void append(Machine_List* self, Machine_Value value) {
   MACHINE_ASSERT_NOTNULL(self);
-  Machine_List_insertAt(self, Machine_Collection_getSize((Machine_Collection*)self), value);
+  Machine_IList_insertAt((Machine_IList *)self, Machine_Collection_getSize((Machine_Collection*)self), value);
 }
 
 static void prepend(Machine_List* self, Machine_Value value) {
   MACHINE_ASSERT_NOTNULL(self);
-  Machine_List_insertAt(self, 0, value);
+  Machine_IList_insertAt((Machine_IList *)self, 0, value);
 }
 
 static void insertAt(Machine_List* self, size_t index, Machine_Value value) {
@@ -167,43 +190,3 @@ Machine_List* Machine_List_create() {
   Machine_List* self = (Machine_List*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }
-
-Machine_Value Machine_List_getAt(Machine_List const* self, size_t index) {
-  MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_List, getAt, index);
-}
-
-void Machine_List_prepend(Machine_List* self, Machine_Value value) {
-  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_List, prepend, value);
-}
-
-void Machine_List_append(Machine_List* self, Machine_Value value) {
-  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_List, append, value);
-}
-
-void Machine_List_insertAt(Machine_List* self, size_t index, Machine_Value value) {
-  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_List, insertAt, index, value);
-}
-
-void Machine_List_removeAt(Machine_List* self, size_t index) {
-  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_List, removeAt, index);
-}
-
-void Machine_List_removeAtFast(Machine_List* self, size_t index) {
-  MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_List, removeAtFast, index);
-}
-
-#if defined(Machine_List_withReverse) && Machine_List_withReverse == 1
-
-void Machine_List_reverse(Machine_List* self) {
-  MACHINE_VIRTUALCALL_NORETURN_NOARGS(Machine_List, reverse);
-}
-
-#endif
-
-#if defined(Machine_List_withSlice) && Machine_List_withSlice == 1
-
-Machine_List* Machine_List_slice(Machine_List* self, size_t start, size_t length) {
-  MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_List, slice, start, length);
-}
-
-#endif

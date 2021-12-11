@@ -163,7 +163,7 @@ static inline Machine_Value getMapOrVoid(Machine_Gui_Context* self, Machine_Map 
     return valueValue;
   }
   Machine_Object* object = Machine_Value_getObject(&valueValue);
-  if (!Machine_ClassType_isSubTypeOf(Machine_getClassType(object), Machine_Map_getType())) {
+  if (!Machine_Type_isSubTypeOf((Machine_Type *)Machine_getClassType(object), (Machine_Type *)Machine_Map_getType())) {
     Machine_Value_setVoid(&valueValue, Machine_Void_Void);
   }
   return valueValue;
@@ -197,7 +197,7 @@ static inline Machine_Value getListOrVoid(Machine_Gui_Context* self, Machine_Map
     return valueValue;
   }
   Machine_Object* object = Machine_Value_getObject(&valueValue);
-  if (!Machine_ClassType_isSubTypeOf(Machine_getClassType(object), Machine_List_getType())) {
+  if (!Machine_Type_isSubTypeOf((Machine_Type *)Machine_getClassType(object), (Machine_Type *)Machine_List_getType())) {
     Machine_Value_setVoid(&valueValue, Machine_Void_Void);
   }
   return valueValue;

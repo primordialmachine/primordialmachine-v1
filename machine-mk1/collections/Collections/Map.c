@@ -6,6 +6,7 @@
 
 
 
+#include "Collections/IList.h"
 #include "Collections/List.h"
 #include "Collections/Pair.h"
 #include "Collections/GrowthStrategy.h"
@@ -194,7 +195,7 @@ Machine_List* Machine_Map_toList(const Machine_Map* self) {
       Machine_Pair *pair = Machine_Pair_create(node->key, node->value);
       Machine_Value temporary;
       Machine_Value_setObject(&temporary, (Machine_Object*)pair);
-      Machine_List_append(list, temporary);
+      Machine_IList_append((Machine_IList *)list, temporary);
     }
   }
   return list;
