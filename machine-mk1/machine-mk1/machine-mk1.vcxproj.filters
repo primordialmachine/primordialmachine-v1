@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Quelldateien\Video">
-      <UniqueIdentifier>{fd2b0400-64b9-4b21-a31f-1019e07dbaef}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headerdateien\Video">
-      <UniqueIdentifier>{7fc904fb-b93e-4398-9811-486b0de8278f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Headerdateien\Scenes">
       <UniqueIdentifier>{5216b1ae-3fa7-46f9-8ad2-148bc513316c}</UniqueIdentifier>
     </Filter>
@@ -50,9 +44,6 @@
     </ClCompile>
     <ClCompile Include="Scene4.c">
       <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Gui\GDL\Context.c">
-      <Filter>Quelldateien\Gui\GDL</Filter>
     </ClCompile>
     <ClCompile Include="Scenes\Rectangle2Scene.c">
       <Filter>Quelldateien\Scenes</Filter>
