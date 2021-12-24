@@ -35,6 +35,7 @@
       <DebugInformationFormat>None</DebugInformationFormat>
       <TreatSpecificWarningsAsErrors>4133;4090;4013</TreatSpecificWarningsAsErrors>
       <CompileAs>CompileAsC</CompileAs>
+      <AdditionalOptions>/we4028 /we4033</AdditionalOptions>
     </ClCompile>
     <Link>
       <OptimizeReferences>true</OptimizeReferences>
