@@ -1,12 +1,10 @@
 #include "Scene5.h"
 
-
-
 #include <string.h>
 
-#include "_Text.h"
 #include "_Gui.h"
 #include "_Images.h"
+#include "_Text.h"
 #include "_Video.h"
 
 #include "_Fonts.h"
@@ -61,12 +59,13 @@ static Machine_Gui_Widget* loadWidget(Machine_Gui_Context* context, Machine_Gdl_
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-static Machine_Gui_Widget* loadWidgetByPath(Machine_Gui_Context *context, const char* path) {
+static Machine_Gui_Widget* loadWidgetByPath(Machine_Gui_Context* context, const char* path) {
   Machine_String* inputPath = Machine_String_create(path, strlen(path));
   Machine_ByteBuffer* inputText = Machine_getFileContents(inputPath);
   Machine_Gdl_Parser* parser = Machine_Gdl_Parser_create();
   Machine_Gdl_Node* node = Machine_Gdl_Parser_parse(parser, inputPath, inputText);
-  MACHINE_ASSERT(node->kind == Machine_Gdl_NodeKind_CompilationUnit, Machine_Status_SemanticalError);
+  MACHINE_ASSERT(node->kind == Machine_Gdl_NodeKind_CompilationUnit,
+                 Machine_Status_SemanticalError);
   Machine_Value temporary = Machine_List_getAt(node->children, 0);
   node = (Machine_Gdl_Node*)Machine_Value_getObject(&temporary);
   MACHINE_ASSERT(node->kind == Machine_Gdl_NodeKind_Map, Machine_Status_SemanticalError);
@@ -76,13 +75,17 @@ static Machine_Gui_Widget* loadWidgetByPath(Machine_Gui_Context *context, const 
 static void Scene5_startup(Scene5* self) {
   Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
   //
-  self->guiContext = Machine_Gui_Context_create(Machine_Gdl_Context_create(), Machine_Context2_create(videoContext));
+  self->guiContext = Machine_Gui_Context_create(Machine_Gdl_Context_create(),
+                                                Machine_Context2_create(videoContext));
   //
-  self->mainMenu = (Machine_Gui_GroupNode*)loadWidgetByPath(self->guiContext, "scenes/scene5/mainMenu.txt");
+  self->mainMenu
+      = (Machine_Gui_GroupNode*)loadWidgetByPath(self->guiContext, "scenes/scene5/mainMenu.txt");
   //
-  self->header = (Machine_Gui_Widget*)loadWidgetByPath(self->guiContext, "scenes/scene5/header.txt");
+  self->header
+      = (Machine_Gui_Widget*)loadWidgetByPath(self->guiContext, "scenes/scene5/header.txt");
   //
-  self->footer = (Machine_Gui_Widget*)loadWidgetByPath(self->guiContext, "scenes/scene5/footer.txt");
+  self->footer
+      = (Machine_Gui_Widget*)loadWidgetByPath(self->guiContext, "scenes/scene5/footer.txt");
   //
   Machine_Math_Vector4* c = Machine_Math_Vector4_create();
   Machine_Math_Vector4_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
@@ -118,8 +121,7 @@ Machine_Real Machine_Real_maxima(Machine_Real x, Machine_Real y) {
 }
 
 static void updateHeader(Scene5* self, Machine_CanvasSizeChangedEvent* event) {
-  static Machine_Real const MARGIN_X = 5.f,
-                            MARGIN_Y = 5.f;
+  static Machine_Real const MARGIN_X = 5.f, MARGIN_Y = 5.f;
 
   Machine_Math_Vector2* MARGIN = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(MARGIN, MARGIN_X, MARGIN_Y);
@@ -129,8 +131,11 @@ static void updateHeader(Scene5* self, Machine_CanvasSizeChangedEvent* event) {
   Machine_Math_Vector2 const* preferredSize = Machine_Gui_Widget_getPreferredSize(self->header);
   Machine_Math_Vector2* temporary = Machine_Math_Vector2_create();
   Machine_Real height = Machine_Math_Vector2_getY(canvasSize) * (1.f / 6.f);
-  Machine_Math_Vector2_set(temporary, Machine_Real_maxima(Machine_Math_Vector2_getX(preferredSize),Machine_Math_Vector2_getX(canvasSize)) - Machine_Math_Vector2_getX(MARGIN)*2.f,
-                                      height);
+  Machine_Math_Vector2_set(temporary,
+                           Machine_Real_maxima(Machine_Math_Vector2_getX(preferredSize),
+                                               Machine_Math_Vector2_getX(canvasSize))
+                               - Machine_Math_Vector2_getX(MARGIN) * 2.f,
+                           height);
   Machine_Gui_Widget_setSize((Machine_Gui_Widget*)self->header, temporary);
   // Set the position to the margins.
   Machine_Gui_Widget_setPosition((Machine_Gui_Widget*)self->header, MARGIN);
@@ -147,8 +152,7 @@ static void renderFooter(Scene5* self) {
 }
 
 static void updateFooter(Scene5* self, Machine_CanvasSizeChangedEvent* event) {
-  static Machine_Real const MARGIN_X = 5.f,
-                            MARGIN_Y = 5.f;
+  static Machine_Real const MARGIN_X = 5.f, MARGIN_Y = 5.f;
 
   Machine_Math_Vector2* MARGIN = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(MARGIN, MARGIN_X, MARGIN_Y);
@@ -158,11 +162,16 @@ static void updateFooter(Scene5* self, Machine_CanvasSizeChangedEvent* event) {
   Machine_Math_Vector2 const* preferredSize = Machine_Gui_Widget_getPreferredSize(self->footer);
   Machine_Math_Vector2* temporary = Machine_Math_Vector2_create();
   Machine_Real height = Machine_Math_Vector2_getY(canvasSize) * (1.f / 6.f);
-  Machine_Math_Vector2_set(temporary, Machine_Real_maxima(Machine_Math_Vector2_getX(preferredSize), Machine_Math_Vector2_getX(canvasSize)) - Machine_Math_Vector2_getX(MARGIN) * 2.f,
+  Machine_Math_Vector2_set(temporary,
+                           Machine_Real_maxima(Machine_Math_Vector2_getX(preferredSize),
+                                               Machine_Math_Vector2_getX(canvasSize))
+                               - Machine_Math_Vector2_getX(MARGIN) * 2.f,
                            Machine_Math_Vector2_getY(canvasSize) * (1.f / 6.f));
   Machine_Gui_Widget_setSize((Machine_Gui_Widget*)self->footer, temporary);
   // Set the position to the margins.
-  Machine_Math_Vector2_set(temporary, Machine_Math_Vector2_getX(MARGIN), Machine_Math_Vector2_getY(canvasSize) - height - Machine_Math_Vector2_getY(MARGIN));
+  Machine_Math_Vector2_set(temporary, Machine_Math_Vector2_getX(MARGIN),
+                           Machine_Math_Vector2_getY(canvasSize) - height
+                               - Machine_Math_Vector2_getY(MARGIN));
   Machine_Gui_Widget_setPosition((Machine_Gui_Widget*)self->footer, temporary);
 }
 
@@ -189,7 +198,8 @@ static void Scene5_shutdown(Scene5* self) {
 }
 
 static void Scene5_constructClass(Scene5_Class* self) {
-  ((Scene_Class*)self)->onCanvasSizeChanged = (Scene_OnCanvaSizeChangedCallback*)&Scene5_onCanvasSizeChanged;
+  ((Scene_Class*)self)->onCanvasSizeChanged
+      = (Scene_OnCanvaSizeChangedCallback*)&Scene5_onCanvasSizeChanged;
   ((Scene_Class*)self)->onStartup = (Scene_OnStartupCallback*)&Scene5_startup;
   ((Scene_Class*)self)->onUpdate = (Scene_OnUpdateCallback*)&Scene5_update;
   ((Scene_Class*)self)->onShutdown = (Scene_OnShutdownCallback*)&Scene5_shutdown;

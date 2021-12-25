@@ -1,16 +1,12 @@
 #if !defined(MACHINE_SCENE_H_INCLUDED)
 #define MACHINE_SCENE_H_INCLUDED
 
-
-
 #include "_Input.h"
 #include "_Video.h"
 
-
-
 MACHINE_DECLARE_CLASSTYPE(Scene)
 
-typedef void Scene_OnCanvaSizeChangedCallback(Scene* self, Machine_CanvasSizeChangedEvent *event);
+typedef void Scene_OnCanvaSizeChangedCallback(Scene* self, Machine_CanvasSizeChangedEvent* event);
 
 typedef void Scene_OnStartupCallback(Scene* self);
 
@@ -18,9 +14,9 @@ typedef void Scene_OnUpdateCallback(Scene* self, Machine_Real width, Machine_Rea
 
 typedef void Scene_OnShutdownCallback(Scene* self);
 
-typedef void Scene_OnMousePointerEventCallback(Scene* self, Machine_MousePointerEvent *event);
+typedef void Scene_OnMousePointerEventCallback(Scene* self, Machine_MousePointerEvent* event);
 
-typedef void Scene_OnMouseButtonEventCallback(Scene* self, Machine_MouseButtonEvent *event);
+typedef void Scene_OnMouseButtonEventCallback(Scene* self, Machine_MouseButtonEvent* event);
 
 struct Scene_Class {
   Machine_Object_Class parent;
@@ -39,10 +35,9 @@ struct Scene_Class {
 
 /// The lifecycle of a scene
 /// (0) Scene object is created.
-/// (1) Call to "startup". If this call succeeds then proceed at (2). Otherwise proceed at (1) or at (4).
-/// (2) Possibly empty sequence of calls to "onCanvasSizeChanged", "onUpdate", "onRender".
-/// (3) Call to "shutdown". Either continue at (1) or (4).
-/// (4) Scene object is destroyed.
+/// (1) Call to "startup". If this call succeeds then proceed at (2). Otherwise proceed at (1) or at
+/// (4). (2) Possibly empty sequence of calls to "onCanvasSizeChanged", "onUpdate", "onRender". (3)
+/// Call to "shutdown". Either continue at (1) or (4). (4) Scene object is destroyed.
 struct Scene {
   Machine_Object parent;
 };
@@ -74,16 +69,18 @@ void Scene_onCanvasSizeChanged(Scene* self, Machine_CanvasSizeChangedEvent* even
 /// @brief Invoked if a mouse pointer event was received.
 /// @param self This scene.
 /// @param x, y The position in canvas coordinates.
-/// @remarks Canvas coordinates have their origin in the left top corner of the canvas with the positive x axis pointing right and the positive y axis pointing down.
-MACHINE_EVENTS_SINK() void Scene_onMousePointerEvent(Scene* self, Machine_MousePointerEvent *event);
+/// @remarks Canvas coordinates have their origin in the left top corner of the canvas with the
+/// positive x axis pointing right and the positive y axis pointing down.
+MACHINE_EVENTS_SINK() void Scene_onMousePointerEvent(Scene* self, Machine_MousePointerEvent* event);
 
 /// @brief Invoked if a mouse button event was received.
 /// @param self This scene.
 /// @param x, y The position in canvas coordinates.
 /// @param i The button index.
 /// @param action The action (either Machine_Pressed or Machine_Released).
-/// @remarks Canvas coordinates have their origin in the left top corner of the canvas with the positive x axis pointing right and the positive y axis pointing down.
-MACHINE_EVENTS_SINK() void Scene_onMouseButtonEvent(Scene *self, Machine_MouseButtonEvent *event);
+/// @remarks Canvas coordinates have their origin in the left top corner of the canvas with the
+/// positive x axis pointing right and the positive y axis pointing down.
+MACHINE_EVENTS_SINK() void Scene_onMouseButtonEvent(Scene* self, Machine_MouseButtonEvent* event);
 
 void Scene_onUpdate(Scene* self, Machine_Real width, Machine_Real height);
 
@@ -93,7 +90,5 @@ void Scene_onShutdown(Scene* self);
 /// @param self This scene.
 /// @return The video context of this scene.
 Machine_VideoContext* Scene_getVideoContext(Scene* self);
-
-
 
 #endif // MACHINE_SCENE_H_INCLUDED

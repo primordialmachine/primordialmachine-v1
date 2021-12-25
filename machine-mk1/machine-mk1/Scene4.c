@@ -1,17 +1,14 @@
 #include "Scene4.h"
 
-
-
 #include <string.h>
 
-#include "_Text.h"
 #include "_Gui.h"
 #include "_Images.h"
+#include "_Text.h"
 #include "_Video.h"
 
 #include "_Fonts.h"
 #include "_Graphics2.h"
-
 
 #define FONT_FILE "fonts/RobotoSlab/RobotoSlab-Regular.ttf"
 #define FONT_SIZE 20
@@ -28,7 +25,7 @@ struct Scene4_Class {
 
 struct Scene4 {
   Scene __parent;
-  
+
   //
   Machine_Gui_Context* guiContext;
   //
@@ -69,10 +66,12 @@ MACHINE_DEFINE_CLASSTYPE(Scene4, Scene, &Scene4_visit, &Scene4_construct, NULL,
 static void Scene4_onStartup(Scene4* self) {
   Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
   //
-  self->guiContext = Machine_Gui_Context_create(Machine_Gdl_Context_create(), Machine_Context2_create(videoContext));
+  self->guiContext = Machine_Gui_Context_create(Machine_Gdl_Context_create(),
+                                                Machine_Context2_create(videoContext));
   //
-  self->font = Machine_FontsContext_createFont(Machine_DefaultFonts_createContext(videoContext, Machines_DefaultImages_createContext()),
-                                                Machine_String_create(FONT_FILE, strlen(FONT_FILE)), FONT_SIZE);
+  self->font = Machine_FontsContext_createFont(
+      Machine_DefaultFonts_createContext(videoContext, Machines_DefaultImages_createContext()),
+      Machine_String_create(FONT_FILE, strlen(FONT_FILE)), FONT_SIZE);
   //
   self->text1 = Machine_Text_Layout_create(Machine_String_create("", strlen("")), self->font);
   {
@@ -104,7 +103,8 @@ static void alignLeftTop(Machine_Text_Layout* layout, Machine_Real width, Machin
   const Machine_Math_Rectangle2* bounds = Machine_Text_Layout_getBounds(layout);
   const Machine_Math_Vector2* position = Machine_Math_Rectangle2_getPosition(bounds);
   Machine_Math_Vector2* delta = Machine_Math_Vector2_difference(MARGIN, position);
-  Machine_Math_Vector2* position2 = Machine_Math_Vector2_sum(Machine_Text_Layout_getPosition(layout), delta);
+  Machine_Math_Vector2* position2
+      = Machine_Math_Vector2_sum(Machine_Text_Layout_getPosition(layout), delta);
   Machine_Text_Layout_setPosition(layout, position2);
 }
 
@@ -139,10 +139,12 @@ static void updateText3(Scene4* self, Machine_Real width, Machine_Real height) {
   Machine_Math_Vector2_set(SIZE, 64, 64);
 
   Machine_Gui_Widget_setSize((Machine_Gui_Widget*)self->textNode1, SIZE);
-  const Machine_Math_Rectangle2* bounds = Machine_Gui_Widget_getRectangle((Machine_Gui_Widget *)self->textNode1);
+  const Machine_Math_Rectangle2* bounds
+      = Machine_Gui_Widget_getRectangle((Machine_Gui_Widget*)self->textNode1);
   const Machine_Math_Vector2* leftTop = Machine_Math_Rectangle2_getPosition(bounds);
   Machine_Math_Vector2* delta = Machine_Math_Vector2_difference(MARGIN, leftTop);
-  const Machine_Math_Vector2* oldPosition = Machine_Gui_Widget_getPosition((Machine_Gui_Widget *)self->textNode1);
+  const Machine_Math_Vector2* oldPosition
+      = Machine_Gui_Widget_getPosition((Machine_Gui_Widget*)self->textNode1);
   const Machine_Math_Vector2* newPosition = Machine_Math_Vector2_sum(oldPosition, delta);
   Machine_Gui_Widget_setPosition((Machine_Gui_Widget*)self->textNode1, newPosition);
 }
@@ -173,7 +175,8 @@ static void Scene4_onShutdown(Scene4* self) {
 }
 
 static void Scene4_constructClass(Scene4_Class* self) {
-  ((Scene_Class*)self)->onCanvasSizeChanged = (Scene_OnCanvaSizeChangedCallback*)&Scene4_onCanvasSizeChanged;
+  ((Scene_Class*)self)->onCanvasSizeChanged
+      = (Scene_OnCanvaSizeChangedCallback*)&Scene4_onCanvasSizeChanged;
   ((Scene_Class*)self)->onStartup = (Scene_OnStartupCallback*)&Scene4_onStartup;
   ((Scene_Class*)self)->onUpdate = (Scene_OnUpdateCallback*)&Scene4_onUpdate;
   ((Scene_Class*)self)->onShutdown = (Scene_OnShutdownCallback*)&Scene4_onShutdown;
