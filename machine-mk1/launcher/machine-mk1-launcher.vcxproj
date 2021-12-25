@@ -16,7 +16,7 @@
     <ProjectGuid>{f979d1c3-9323-41f7-9c34-f05f7516103a}</ProjectGuid>
     <RootNamespace>
     </RootNamespace>
-    <ProjectName>machine-mk1</ProjectName>
+    <ProjectName>machine-mk1-launcher</ProjectName>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
