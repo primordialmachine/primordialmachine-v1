@@ -2,9 +2,9 @@
 #define MACHINE__GDL_H_INCLUDED
 
 
-#include "GDL/Lexical/Scanner.h"
-#include "GDL/Syntactical/Parser.h"
-#include "GDL/Extensions.h"
+#include "Gdl/Lexical/Scanner.h"
+#include "Gdl/Syntactical/Parser.h"
+#include "Gdl/Extensions.h"
 
 
 #endif // MACHINE__GDL_H_INCLUDED

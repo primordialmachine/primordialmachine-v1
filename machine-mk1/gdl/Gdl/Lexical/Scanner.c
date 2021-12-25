@@ -89,7 +89,7 @@ void Machine_GDL_Scanner_setInput(Machine_GDL_Scanner* self, Machine_String* inp
   self->tokenText = tokenTextNew;
 }
 
-#include "./../../GDL/Lexical/Scanner-inlay.i"
+#include "Gdl/Lexical/Scanner-inlay.i"
 
 static void scanSingleQuotedString(Machine_GDL_Scanner* self)
 {

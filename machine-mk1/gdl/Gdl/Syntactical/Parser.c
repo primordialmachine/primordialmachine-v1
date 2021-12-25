@@ -28,7 +28,7 @@ Machine_GDL_Parser* Machine_GDL_Parser_create() {
   return self;
 }
 
-#include "./../../GDL/Syntactical/Parser-inlay.i"
+#include "Gdl/Syntactical/Parser-inlay.i"
 
 static void checkKind(Machine_GDL_Parser* self, Machine_GDL_TokenKind expected) {
   if (currentKind(self) != expected) {
