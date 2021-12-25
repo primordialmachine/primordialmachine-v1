@@ -40,7 +40,7 @@ static size_t Machine_Gl_ShaderProgram_getNumberOfInputsImpl(Machine_Gl_ShaderPr
 }
 
 static Machine_ProgramInput* Machine_Gl_ShaderProgram_getInputAtImpl(Machine_Gl_ShaderProgram const* self, size_t index) {
-  Machine_Value temporary = Machine_IList_getAt((Machine_IList *)self->inputs, index);
+  Machine_Value temporary = Machine_List_getAt(self->inputs, index);
   return (Machine_ProgramInput*)Machine_Value_getObject(&temporary);
 }
 
@@ -56,7 +56,7 @@ static Machine_Boolean Machine_Gl_ShaderProgram_addUpdateInputImpl(Machine_Gl_Sh
   Machine_ProgramInput* input = Machine_ProgramInput_create(name, type, kind);
   Machine_Value temporary;
   Machine_Value_setObject(&temporary, (Machine_Object*)input);
-  Machine_IList_append((Machine_IList *)self->inputs, temporary);
+  Machine_List_append(self->inputs, temporary);
   return false;
 }
 
@@ -189,7 +189,7 @@ static void constructFromText(Machine_Gl_ShaderProgram* self, char const* vertex
   self->vertexProgramId = vertexShaderId;
   self->geometryProgramId = geometryShaderId;
   self->fragmentProgramId = fragmentShaderId;
-  self->inputs = Machine_List_create();
+  self->inputs = (Machine_List *)Machine_ArrayList_create();
 }
 
 static void Machine_Gl_ShaderProgram_constructClass(Machine_Gl_ShaderProgram_Class* self) {

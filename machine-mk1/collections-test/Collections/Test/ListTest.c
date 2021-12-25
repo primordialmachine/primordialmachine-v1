@@ -11,8 +11,8 @@
 
 
 void Machine_Collections_Test_ListTest_test1() {
-  Machine_List* list = Machine_List_create();
-  MACHINE_ATF_ASSERT(0 == Machine_ICollection_getSize((Machine_ICollection*)list));
+  Machine_List* list = (Machine_List *)Machine_ArrayList_create();
+  MACHINE_ATF_ASSERT(0 == Machine_Collection_getSize((Machine_Collection*)list));
   Machine_Collection_clear((Machine_Collection*)list);
-  MACHINE_ATF_ASSERT(0 == Machine_ICollection_getSize((Machine_ICollection*)list));
+  MACHINE_ATF_ASSERT(0 == Machine_Collection_getSize((Machine_Collection*)list));
 }

@@ -103,7 +103,7 @@ static void Machine_Video_GL_Canvas_setCanvasIcons(Machine_Video_GL_Canvas* self
       Machine_jump();
     }
     for (size_t i = 0, n = numberOfImages; i < n; ++i) {
-      Machine_Value temporary = Machine_IList_getAt((Machine_IList *)images, i);
+      Machine_Value temporary = Machine_List_getAt(images, i);
       Machine_Image* image = (Machine_Image*)Machine_Value_getObject(&temporary);
       Machine_Integer w, h;
       void const* p;

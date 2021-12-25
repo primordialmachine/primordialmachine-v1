@@ -4,15 +4,7 @@
 #if !defined(MACHINE_COLLECTIONS_PAIR_H_INCLUDED)
 #define MACHINE_COLLECTIONS_PAIR_H_INCLUDED
 
-
-
-#if !defined(MACHINE_COLLECTIONS_PRIVATE)
-#error("Do not include this file directly, include `_Collections.h` instead.")
-#endif
-
-#include "Collections/Collection.h"
-
-
+#include "Collections/_header.i"
 
 /// @brief A pair.
 MACHINE_DECLARE_CLASSTYPE(Machine_Pair)
@@ -30,8 +22,11 @@ struct Machine_Pair {
 /// @brief Construct this pair.
 /// @param self This pair.
 /// @param numberOfArguments The number of arguments. Must be 2.
-/// @param arguments The arguments. The first argument is the first value, the second argument the second value.
-void Machine_Pair_construct(Machine_Pair* self, size_t numberOfArguments, const Machine_Value* arguments);
+/// @param arguments The arguments.
+/// The first argument is the first value,
+/// the second argument is the second value.
+void Machine_Pair_construct(Machine_Pair* self, size_t numberOfArguments,
+                            const Machine_Value* arguments);
 
 /// @brief Create a pair with default values.
 /// @return The pair.
@@ -42,7 +37,5 @@ Machine_Pair* Machine_Pair_create(Machine_Value first, Machine_Value second);
 /// @param index The index. Must be @a 0 or @a 1.
 /// @return The value.
 Machine_Value Machine_Pair_get(Machine_Pair* self, Machine_Integer index);
-
-
 
 #endif // MACHINE_COLLECTIONS_PAIR_H_INCLUDED

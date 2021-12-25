@@ -4,44 +4,22 @@
 #if !defined(MACHINE_COLLECTIONS_MAP_H_INCLUDED)
 #define MACHINE_COLLECTIONS_MAP_H_INCLUDED
 
+#include "Collections/_header.i"
 
+/// @extends Machine.ICollection.
+MACHINE_DECLARE_INTERFACETYPE(Machine_Map)
 
-#if !defined(MACHINE_COLLECTIONS_PRIVATE)
-#error("Do not include this file directly, include `_Collections.h` instead.")
-#endif
+struct Machine_Map_Dispatch {
+  Machine_InterfaceDispatch parent;
 
-#include "Collections/Collection.h"
-typedef struct Machine_List Machine_List;
-
-
-
-/// @brief A map.
-MACHINE_DECLARE_CLASSTYPE(Machine_Map)
-
-struct Machine_Map_Class {
-  Machine_Collection_Class parent;
   void (*set)(Machine_Map* self, Machine_Value key, Machine_Value value);
-  Machine_Value(*get)(const Machine_Map* self, Machine_Value key);
+  Machine_Value (*get)(Machine_Map const* self, Machine_Value key);
+  Machine_List* (*toList)(Machine_Map const* self);
 };
-
-struct Machine_Map {
-  Machine_Collection parent;
-  void* pimpl;
-};
-
-/// @brief Construct this map.
-/// @param self This map.
-/// @param numberOfArguments The number of arguments.
-/// @param arguments The arguments.
-void Machine_Map_construct(Machine_Map* self, size_t numberOfArguments, const Machine_Value* arguments);
-
-/// @brief Create an empty map.
-/// @return The map.
-Machine_Map* Machine_Map_create();
 
 /// @brief Insert this map.
-/// Performs <code>o[k] = v</code> where <code>o</code> is this map, <code>k</code> is the key, and <code>v</code> is the value.
-/// If v = nil, then o[k] = nil.
+/// Performs <code>o[k] = v</code> where <code>o</code> is this map, <code>k</code> is the key, and
+/// <code>v</code> is the value. If v = nil, then o[k] = nil.
 /// @param self This map.
 /// @param key The key.
 /// @param value The value.
@@ -53,12 +31,13 @@ void Machine_Map_set(Machine_Map* self, Machine_Value key, Machine_Value value);
 /// @brief Get the value for a key.
 /// @param self This map.
 /// @param key The key.
-/// @return The value for the key if any. If no value for that key exists, the void value is returned.
-Machine_Value Machine_Map_get(const Machine_Map* self, Machine_Value key);
+/// @return The value for the key if any.
+/// If no value for that key exists, the void value is returned.
+Machine_Value Machine_Map_get(Machine_Map const* self, Machine_Value key);
 
 /// @brief Convert the specified map to a list of key value pairs.
 /// @param self This map.
-/// @return A Machine_List of Machine_Pair values. 
-Machine_List* Machine_Map_toList(const Machine_Map* self);
+/// @return A Machine_List of Machine_Pair values.
+Machine_List* Machine_Map_toList(Machine_Map const* self);
 
 #endif // MACHINE_COLLECTIONS_MAP_H_INCLUDED

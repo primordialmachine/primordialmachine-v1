@@ -11,7 +11,7 @@
 
 
 void Machine_Collections_Test_MapTest_test1() {
-  Machine_Map* map = Machine_Map_create();
+  Machine_Map* map = (Machine_Map*)Machine_HashMap_create();
   Machine_Collection_getSize((Machine_Collection*)map);
   MACHINE_ATF_ASSERT(0 == Machine_Collection_getSize((Machine_Collection*)map));
   Machine_Collection_clear((Machine_Collection*)map);

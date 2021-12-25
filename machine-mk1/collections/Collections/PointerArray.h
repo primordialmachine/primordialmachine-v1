@@ -4,15 +4,7 @@
 #if !defined(MACHINE_COLLECTIONS_POINTERARRAY_H_INCLUDED)
 #define MACHINE_COLLECTIONS_POINTERARRAY_H_INCLUDED
 
-
-
-#if !defined(MACHINE_COLLECTIONS_PRIVATE)
-#error("Do not include this file directly, include `_Collections.h` instead.")
-#endif
-
-#include "_Runtime.h"
-
-
+#include "Collections/_header.i"
 
 /// @brief An array of pointers to objects or null pointers.
 MACHINE_DECLARE_CLASSTYPE(Machine_PointerArray)
@@ -33,9 +25,10 @@ void Machine_PointerArray_clear(Machine_PointerArray* self);
 /// @param self A pointer to this object array.
 /// @param index The index.
 /// @return A pointer to the object or the null pointer.
-/// @error Machine_Status_IndexOutOfBounds @a index is smaller than @a 0 or greater than @a n where @a n is the size of this object array.
+/// @error Machine_Status_IndexOutOfBounds @a index is smaller than @a 0 or greater than @a n where
+/// @a n is the size of this object array.
 /// @error Machine_Status_InvalidArgument @a self is null.
-void *Machine_PointerArray_getAt(Machine_PointerArray* self, size_t index);
+void* Machine_PointerArray_getAt(Machine_PointerArray* self, size_t index);
 
 /// @ingroup cex
 /// @brief Get the size of this object array.
@@ -62,7 +55,5 @@ void Machine_PointerArray_append(Machine_PointerArray* self, void* pointer);
 /// @param index The index.
 /// @param pointer The pointer.
 void Machine_PointerArray_insert(Machine_PointerArray* self, size_t index, void* pointer);
-
-
 
 #endif // MACHINE_COLLECTIONS_POINTERARRAY_H_INCLUDED

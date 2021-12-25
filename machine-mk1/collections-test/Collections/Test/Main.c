@@ -9,7 +9,7 @@ extern "C" {
 #include "Collections/Test/PairTest.h"
 #include "Collections/Test/ListTest.h"
 #include "Collections/Test/MapTest.h"
-#include "Collections/Test/QueueTest.h"
+#include "Collections/Test/ArrayDequeTest.h"
 #include <stdlib.h>
 
 int main() {
@@ -21,10 +21,10 @@ int main() {
   if (!setjmp(jumpTarget.environment)) {
     Machine_Collections_Test_PairTest_test1();
     Machine_Collections_Test_ListTest_test1();
-    //Machine_Collections_Test_MapTest_test1();
-    //Machine_Collections_Test_QueueTest_test1();
-    //Machine_Collections_Test_QueueTest_test2();
-    //Machine_Collections_Test_QueueTest_test3();
+    Machine_Collections_Test_MapTest_test1();
+    Machine_Collections_Test_ArrayDequeTest_test1();
+    Machine_Collections_Test_ArrayDequeTest_test2();
+    Machine_Collections_Test_ArrayDequeTest_test3();
     Machine_popJumpTarget();
   }
   Machine_StatusValue status = Machine_getStatus();

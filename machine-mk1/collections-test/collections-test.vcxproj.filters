@@ -33,7 +33,7 @@
     <ClCompile Include="Collections\Test\PairTest.c">
       <Filter>Quelldateien\Collections\Test</Filter>
     </ClCompile>
-    <ClCompile Include="Collections\Test\QueueTest.c">
+    <ClCompile Include="Collections\Test\ArrayDequeTest.c">
       <Filter>Quelldateien\Collections\Test</Filter>
     </ClCompile>
     <ClCompile Include="Collections\Test\ListTest.c">
@@ -56,7 +56,7 @@
     <ClInclude Include="Collections\Test\PairTest.h">
       <Filter>Headerdateien\Collections\Test</Filter>
     </ClInclude>
-    <ClInclude Include="Collections\Test\QueueTest.h">
+    <ClInclude Include="Collections\Test\ArrayDequeTest.h">
       <Filter>Headerdateien\Collections\Test</Filter>
     </ClInclude>
     <ClInclude Include="Collections\Test\ListTest.h">

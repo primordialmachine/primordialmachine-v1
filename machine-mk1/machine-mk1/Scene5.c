@@ -67,7 +67,7 @@ static Machine_Gui_Widget* loadWidgetByPath(Machine_Gui_Context *context, const 
   Machine_Gdl_Parser* parser = Machine_Gdl_Parser_create();
   Machine_Gdl_Node* node = Machine_Gdl_Parser_parse(parser, inputPath, inputText);
   MACHINE_ASSERT(node->kind == Machine_Gdl_NodeKind_CompilationUnit, Machine_Status_SemanticalError);
-  Machine_Value temporary = Machine_IList_getAt((Machine_IList *)node->children, 0);
+  Machine_Value temporary = Machine_List_getAt(node->children, 0);
   node = (Machine_Gdl_Node*)Machine_Value_getObject(&temporary);
   MACHINE_ASSERT(node->kind == Machine_Gdl_NodeKind_Map, Machine_Status_SemanticalError);
   return loadWidget(context, node);

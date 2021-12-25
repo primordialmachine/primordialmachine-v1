@@ -190,7 +190,7 @@ void Machine_Glfw_startupCanvasInput() {
     Machine_JumpTarget jumpTarget;
     Machine_pushJumpTarget(&jumpTarget);
     if (!setjmp(jumpTarget.environment)) {
-      g_events = Machine_List_create();
+      g_events = (Machine_List *)Machine_ArrayList_create();
       Machine_Gc_lock(g_events);
       Machine_popJumpTarget();
     }

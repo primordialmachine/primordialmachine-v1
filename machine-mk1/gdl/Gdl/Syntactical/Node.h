@@ -4,9 +4,9 @@
 #if !defined(MACHINE_GDL_SYNTACTICAL_NODE_H_INCLUDED)
 #define MACHINE_GDL_SYNTACTICAL_NODE_H_INCLUDED
 
-#include "_Collections.h"
 #include "Gdl/Context.h"
 #include "Gdl/Syntactical/NodeKind.h"
+#include "_Collections.h"
 
 MACHINE_DECLARE_CLASSTYPE(Machine_Gdl_Node)
 

@@ -11,27 +11,29 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Collections\Collection.c" />
     <ClCompile Include="Collections\GrowthStrategy.c" />
-    <ClCompile Include="Collections\ICollection.c" />
-    <ClCompile Include="Collections\IList.c" />
+    <ClCompile Include="Collections\Collection.c" />
+    <ClCompile Include="Collections\Deque.c" />
     <ClCompile Include="Collections\List.c" />
     <ClCompile Include="Collections\Map.c" />
+    <ClCompile Include="Collections\ArrayList.c" />
+    <ClCompile Include="Collections\HashMap.c" />
     <ClCompile Include="Collections\Pair.c" />
     <ClCompile Include="Collections\PointerArray.c" />
-    <ClCompile Include="Collections\Queue.c" />
+    <ClCompile Include="Collections\ArrayDeque.c" />
     <ClCompile Include="_Collections.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Collections\Collection.h" />
     <ClInclude Include="Collections\GrowthStrategy.h" />
-    <ClInclude Include="Collections\ICollection.h" />
-    <ClInclude Include="Collections\IList.h" />
+    <ClInclude Include="Collections\Collection.h" />
+    <ClInclude Include="Collections\Deque.h" />
     <ClInclude Include="Collections\List.h" />
     <ClInclude Include="Collections\Map.h" />
+    <ClInclude Include="Collections\ArrayList.h" />
+    <ClInclude Include="Collections\HashMap.h" />
     <ClInclude Include="Collections\Pair.h" />
     <ClInclude Include="Collections\PointerArray.h" />
-    <ClInclude Include="Collections\Queue.h" />
+    <ClInclude Include="Collections\ArrayDeque.h" />
     <ClInclude Include="_Collections.h" />
   </ItemGroup>
   <ItemGroup>
@@ -41,6 +43,14 @@
     <ProjectReference Include="..\eal\machine-mk1-eal.vcxproj">
       <Project>{2c009df6-0365-43aa-b0f1-c8752d10b066}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Collections\_header.i">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DeploymentContent>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DeploymentContent>
+    </None>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

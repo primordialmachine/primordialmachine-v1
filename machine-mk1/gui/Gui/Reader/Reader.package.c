@@ -73,10 +73,10 @@ Machine_Gui_GroupNode* Machine_Gui_Reader_readGroupNode(Machine_Gui_Context* sel
     Machine_List* temporary1 = Machine_Gui_Reader_getList(self, source, subContext->CHILDREN);
     for (size_t i = 0, n = Machine_Collection_getSize((Machine_Collection*)temporary1); i < n;
          ++i) {
-      Machine_Value temporary2 = Machine_IList_getAt((Machine_IList *)temporary1, i);
+      Machine_Value temporary2 = Machine_List_getAt(temporary1, i);
       Machine_Map* temporary3 = (Machine_Map*)Machine_Value_getObject(&temporary2);
       Machine_Gui_Widget* childWidget
-          = Machine_Gui_Reader_readWidget(self, (Machine_Map*)temporary3);
+          = Machine_Gui_Reader_readWidget(self, temporary3);
 
       // TODO: Should be Machine_Gui_Widget_appendChild.
       Machine_Gui_WidgetList_append(widget->children, childWidget);
@@ -127,7 +127,7 @@ Machine_Gui_BorderNode* Machine_Gui_Reader_readBorderNode(Machine_Gui_Context* s
   }
   if (Machine_Gui_Reader_hasMap(self, source, subContext->CHILD)) {
     Machine_Map* temporary = Machine_Gui_Reader_getMap(self, source, subContext->CHILD);
-    Machine_Gui_Widget* childWidget = Machine_Gui_Reader_readWidget(self, (Machine_Map*)temporary);
+    Machine_Gui_Widget* childWidget = Machine_Gui_Reader_readWidget(self, temporary);
     Machine_Gui_BorderNode_setChild(widget, childWidget);
   }
   return widget;

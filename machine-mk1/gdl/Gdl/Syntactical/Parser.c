@@ -122,14 +122,14 @@ static Machine_Gdl_Node* parsePair(Machine_Gdl_Parser* self) {
   Machine_Gdl_Node* keyNode = parseKey(self);
   {
     Machine_Value_setObject(&temporary, (Machine_Object*)keyNode);
-    Machine_IList_append((Machine_IList *)pairNode->children, temporary);
+    Machine_List_append(pairNode->children, temporary);
   }
   checkKind(self, Machine_Gdl_TokenKind_Colon);
   next(self);
   Machine_Gdl_Node* valueNode = parseValue(self);
   {
     Machine_Value_setObject(&temporary, (Machine_Object*)valueNode);
-    Machine_IList_append((Machine_IList *)pairNode->children, temporary);
+    Machine_List_append(pairNode->children, temporary);
   }
   return pairNode;
 }
@@ -141,7 +141,7 @@ static Machine_Gdl_Node *parseList(Machine_Gdl_Parser* self) {
     Machine_Gdl_Node* child = parseValue(self);
     Machine_Value temporary;
     Machine_Value_setObject(&temporary, (Machine_Object*)child);
-    Machine_IList_append((Machine_IList *)parent->children, temporary);
+    Machine_List_append(parent->children, temporary);
     if (currentKind(self) == Machine_Gdl_TokenKind_Comma) {
       next(self);
     }
@@ -158,7 +158,7 @@ static Machine_Gdl_Node* parseMap(Machine_Gdl_Parser* self) {
     Machine_Gdl_Node* child = parsePair(self);
     Machine_Value temporary;
     Machine_Value_setObject(&temporary, (Machine_Object*)child);
-    Machine_IList_append((Machine_IList *)parent->children, temporary);
+    Machine_List_append(parent->children, temporary);
     if (currentKind(self) == Machine_Gdl_TokenKind_Comma) {
       next(self);
     }
@@ -178,13 +178,13 @@ Machine_Gdl_Node* Machine_Gdl_Parser_parse(Machine_Gdl_Parser* self, Machine_Str
     Machine_Gdl_Node* child = parseList(self);
     Machine_Value temporary;
     Machine_Value_setObject(&temporary, (Machine_Object*)child);
-    Machine_IList_append((Machine_IList *)parent->children, temporary);
+    Machine_List_append(parent->children, temporary);
   } break;
   case Machine_Gdl_TokenKind_LeftCurlyBracket: {
     Machine_Gdl_Node* child = parseMap(self);
     Machine_Value temporary;
     Machine_Value_setObject(&temporary, (Machine_Object*)child);
-    Machine_IList_append((Machine_IList *)parent->children, temporary);
+    Machine_List_append(parent->children, temporary);
   } break;
   default:
     Machine_setStatus(Machine_Status_SyntacticalError);

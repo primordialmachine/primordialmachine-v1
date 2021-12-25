@@ -45,12 +45,12 @@ extern "C" {
       "primordialmachine-180x180.png",
       "primordialmachine-256x256.png",
     };
-    Machine_List* vals = Machine_List_create();
+    Machine_List* vals = (Machine_List *)Machine_ArrayList_create();
     for (size_t i = 0, n = (sizeof(PATHS) / sizeof(const char*)); i < n; ++i) {
       Machine_Image* image = Machine_ImagesContext_createFromPath(Machines_DefaultImages_createContext(), Machine_String_create(PATHS[i], strlen(PATHS[i])));
       Machine_Value val;
       Machine_Value_setObject(&val, (Machine_Object *)image);
-      Machine_IList_append((Machine_IList *)vals, val);
+      Machine_List_append(vals, val);
     }
     Machine_Video_Canvas_setCanvasIcons(Machine_getVideoCanvas(), vals);
   }
