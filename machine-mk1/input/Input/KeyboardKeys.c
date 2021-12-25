@@ -2,7 +2,7 @@
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #define MACHINE_INPUT_PRIVATE (1)
-#include "./../Input/KeyboardKeys.h"
+#include "Input/KeyboardKeys.h"
 
 #include <string.h>
 
@@ -13,7 +13,7 @@ Machine_String* Machine_KeyboardKeys_toString(Machine_KeyboardKeys self) {
   } break;
 
   switch (self) {
-  #include "./../Input/KeyboardKeys.i"
+  #include "Input/KeyboardKeys.i"
   default:
     MACHINE_ASSERT_UNREACHABLE();
   };

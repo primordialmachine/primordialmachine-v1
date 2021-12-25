@@ -2,7 +2,7 @@
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #define MACHINE_INPUT_PRIVATE (1)
-#include "./../Input/MouseButtonEvent.h"
+#include "Input/MouseButtonEvent.h"
 
 #include <string.h>
 

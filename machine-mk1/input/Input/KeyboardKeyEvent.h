@@ -8,7 +8,7 @@
 #error("Do not include this file directly, include `_Input.h` instead.")
 #endif
 
-#include "./../Input/KeyboardKeys.h"
+#include "Input/KeyboardKeys.h"
 
 typedef enum Machine_KeyboardKeyActions {
 

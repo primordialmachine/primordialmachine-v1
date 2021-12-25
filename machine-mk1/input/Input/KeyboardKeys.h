@@ -15,7 +15,7 @@ typedef enum Machine_KeyboardKeys {
 #define DEFINE(NAME,STRING) \
   Machine_KeyboardKeys_##NAME,
 
-#include "./KeyboardKeys.i"
+#include "Input/KeyboardKeys.i"
 
 #undef DEFINE
 
