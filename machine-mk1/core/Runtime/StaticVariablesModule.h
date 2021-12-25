@@ -42,17 +42,17 @@ typedef void (Machine_UninitializeStaticVariablesCallback)();
 /// 
 /// static void uninitializeStaticVariablesCallback() {
 ///   if (g_string) {
-///     Machine_unlock(g_string);
-///     g_String = NULL;
+///     Machine_Gc_unlock(g_string);
+///     g_string = NULL;
 ///   }
 /// }
 /// 
 /// Machine_String *getString() {
 ///   if (!g_string) {
 ///     g_string = Machine_String_create(...);
-///     Machine_lock(g_string);
-///     if (!Machine_registerStaticVariables(&callback)) {
-///       Machine_unlock(g_string);
+///     Machine_Gc_lock(g_string);
+///     if (!Machine_registerStaticVariables(&uninitializeStaticVariablesCallback)) {
+///       Machine_Gc_unlock(g_string);
 ///       g_string = NULL;
 ///     }
 ///   
