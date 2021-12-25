@@ -24,7 +24,7 @@ static Machine_Math_Vector2 const* Machine_Gui_GroupNode_getPreferredSize(
 
 static void Machine_Gui_GroupNode_render(Machine_Gui_GroupNode* self, Machine_Context2* ctx2) {
   Machine_Gui_Context* ctx = Machine_Gui_Context_create(
-      Machine_GDL_Context_create(), Machine_Context2_create(ctx2->videoContext));
+      Machine_Gdl_Context_create(), Machine_Context2_create(ctx2->videoContext));
   Machine_Math_Vector2 const* size = Machine_Gui_Widget_getSize((Machine_Gui_Widget*)self);
   Machine_Context2* tmp = Machine_Context2_create(ctx2->videoContext);
   Machine_Context2_setTargetSize(tmp, Machine_Math_Vector2_getX(size),

@@ -37,7 +37,7 @@ struct Machine_Gui_Context {
 /// @param gdlContext The underlying GDL context.
 /// @param context2 The underlying 2D context.
 /// @return The GUI context.
-Machine_Gui_Context* Machine_Gui_Context_create(Machine_GDL_Context* gdlContext,
+Machine_Gui_Context* Machine_Gui_Context_create(Machine_Gdl_Context* gdlContext,
                                                 Machine_Context2* context2);
 
 void Machine_Gui_Context_onCanvasSizechanged(Machine_Gui_Context* self,

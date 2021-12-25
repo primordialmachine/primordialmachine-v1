@@ -4,32 +4,27 @@
 #if !defined(MACHINE_GDL_SYNTACTICAL_NODE_H_INCLUDED)
 #define MACHINE_GDL_SYNTACTICAL_NODE_H_INCLUDED
 
-
-
 #include "_Collections.h"
-#include "Gdl/Syntactical/NodeKind.h"
 #include "Gdl/Context.h"
+#include "Gdl/Syntactical/NodeKind.h"
 
+MACHINE_DECLARE_CLASSTYPE(Machine_Gdl_Node)
 
-
-MACHINE_DECLARE_CLASSTYPE(Machine_GDL_Node)
-
-struct Machine_GDL_Node_Class {
+struct Machine_Gdl_Node_Class {
   Machine_Object_Class __parent;
 };
 
-struct Machine_GDL_Node {
+struct Machine_Gdl_Node {
   Machine_Object __parent;
 
   /// @brief The parent node of this node if any, null pointer otherwise.
-  Machine_GDL_Node* parent;
+  Machine_Gdl_Node* parent;
   Machine_List* children;
 
-  Machine_GDL_NodeKind kind;
+  Machine_Gdl_NodeKind kind;
   Machine_String* text;
 };
 
-Machine_GDL_Node* Machine_GDL_Node_create(Machine_GDL_NodeKind kind, Machine_String *text);
-
+Machine_Gdl_Node* Machine_Gdl_Node_create(Machine_Gdl_NodeKind kind, Machine_String* text);
 
 #endif // MACHINE_GDL_SYNTACTICAL_NODE_H_INCLUDED

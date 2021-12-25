@@ -4,18 +4,16 @@
 #if !defined(MACHINE_GDL_LEXICAL_SCANNER_H_INCLUDED)
 #define MACHINE_GDL_LEXICAL_SCANNER_H_INCLUDED
 
-
-#include "Gdl/Lexical/Token.h"
 #include "Gdl/Context.h"
+#include "Gdl/Lexical/Token.h"
 
+MACHINE_DECLARE_CLASSTYPE(Machine_Gdl_Scanner)
 
-MACHINE_DECLARE_CLASSTYPE(Machine_GDL_Scanner)
-
-struct Machine_GDL_Scanner_Class {
+struct Machine_Gdl_Scanner_Class {
   Machine_Object_Class __parent;
 };
 
-struct Machine_GDL_Scanner {
+struct Machine_Gdl_Scanner {
   Machine_Object __parent;
 
   Machine_String* inputName;
@@ -26,28 +24,29 @@ struct Machine_GDL_Scanner {
   size_t currentPos;
   /// @brief The curren token.
   /// @default token type "start of input" with text "<start of input>" and offset 0.
-  Machine_GDL_TokenKind tokenKind;
+  Machine_Gdl_TokenKind tokenKind;
   size_t tokenStart;
   Machine_ByteBuffer* tokenText;
 };
 
-Machine_GDL_Scanner* Machine_GDL_Scanner_create(Machine_String *inputName, Machine_ByteBuffer* inputBytes);
+Machine_Gdl_Scanner* Machine_Gdl_Scanner_create(Machine_String* inputName,
+                                                Machine_ByteBuffer* inputBytes);
 
-void Machine_GDL_Scanner_setInput(Machine_GDL_Scanner* self, Machine_String* inputName, Machine_ByteBuffer* inputBytes);
+void Machine_Gdl_Scanner_setInput(Machine_Gdl_Scanner* self, Machine_String* inputName,
+                                  Machine_ByteBuffer* inputBytes);
 
 /// @brief Compute the next token.
 /// @param self This scanner.
-void Machine_GDL_Scanner_step(Machine_GDL_Scanner* self);
+void Machine_Gdl_Scanner_step(Machine_Gdl_Scanner* self);
 
 /// @brief Get the token kind of the current token.
 /// @param self This scanner.
 /// @return The token kind of the current token.
-Machine_GDL_TokenKind Machine_GDL_Scanner_getTokenKind(const Machine_GDL_Scanner* self);
+Machine_Gdl_TokenKind Machine_Gdl_Scanner_getTokenKind(Machine_Gdl_Scanner const* self);
 
 /// @brief Get the token text of the current token.
 /// @param self This scanner.
 /// @return The token text of the current token.
-Machine_String* Machine_GDL_Scanner_getTokenText(const Machine_GDL_Scanner * self);
-
+Machine_String* Machine_Gdl_Scanner_getTokenText(Machine_Gdl_Scanner const* self);
 
 #endif // MACHINE_GDL_LEXICAL_SCANNER_H_INCLUDED

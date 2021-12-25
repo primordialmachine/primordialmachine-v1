@@ -54,8 +54,8 @@ MACHINE_DEFINE_CLASSTYPE(Scene5, Scene, &Scene5_visit, &Scene5_construct, NULL,
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-static Machine_Gui_Widget* loadWidget(Machine_Gui_Context* context, Machine_GDL_Node* node) {
-  Machine_Map* map = Machine_GDL_Node_toMap(node, context->gdlContext->context);
+static Machine_Gui_Widget* loadWidget(Machine_Gui_Context* context, Machine_Gdl_Node* node) {
+  Machine_Map* map = Machine_Gdl_Node_toMap(node, context->gdlContext->context);
   return Machine_Gui_Reader_readWidget(context, map);
 }
 
@@ -64,19 +64,19 @@ static Machine_Gui_Widget* loadWidget(Machine_Gui_Context* context, Machine_GDL_
 static Machine_Gui_Widget* loadWidgetByPath(Machine_Gui_Context *context, const char* path) {
   Machine_String* inputPath = Machine_String_create(path, strlen(path));
   Machine_ByteBuffer* inputText = Machine_getFileContents(inputPath);
-  Machine_GDL_Parser* parser = Machine_GDL_Parser_create();
-  Machine_GDL_Node* node = Machine_GDL_Parser_parse(parser, inputPath, inputText);
-  MACHINE_ASSERT(node->kind == Machine_GDL_NodeKind_CompilationUnit, Machine_Status_SemanticalError);
+  Machine_Gdl_Parser* parser = Machine_Gdl_Parser_create();
+  Machine_Gdl_Node* node = Machine_Gdl_Parser_parse(parser, inputPath, inputText);
+  MACHINE_ASSERT(node->kind == Machine_Gdl_NodeKind_CompilationUnit, Machine_Status_SemanticalError);
   Machine_Value temporary = Machine_IList_getAt((Machine_IList *)node->children, 0);
-  node = (Machine_GDL_Node*)Machine_Value_getObject(&temporary);
-  MACHINE_ASSERT(node->kind == Machine_GDL_NodeKind_Map, Machine_Status_SemanticalError);
+  node = (Machine_Gdl_Node*)Machine_Value_getObject(&temporary);
+  MACHINE_ASSERT(node->kind == Machine_Gdl_NodeKind_Map, Machine_Status_SemanticalError);
   return loadWidget(context, node);
 }
 
 static void Scene5_startup(Scene5* self) {
   Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
   //
-  self->guiContext = Machine_Gui_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(videoContext));
+  self->guiContext = Machine_Gui_Context_create(Machine_Gdl_Context_create(), Machine_Context2_create(videoContext));
   //
   self->mainMenu = (Machine_Gui_GroupNode*)loadWidgetByPath(self->guiContext, "scenes/scene5/mainMenu.txt");
   //

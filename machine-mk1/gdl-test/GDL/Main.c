@@ -15,7 +15,7 @@ int main() {
   Machine_JumpTarget jumpTarget;
   Machine_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
-    Machine_GDL_test1();
+    Machine_Gdl_test1();
     Machine_popJumpTarget();
   }
   Machine_StatusValue status = Machine_getStatus();

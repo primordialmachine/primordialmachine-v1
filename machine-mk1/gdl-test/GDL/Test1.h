@@ -3,6 +3,6 @@
 
 #include "_Runtime.h"
 
-void Machine_GDL_test1();
+void Machine_Gdl_test1();
 
 #endif // MACHINE_GDL_TEST1_H_INCLUDED

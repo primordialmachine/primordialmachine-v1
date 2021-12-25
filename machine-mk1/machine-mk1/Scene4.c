@@ -69,7 +69,7 @@ MACHINE_DEFINE_CLASSTYPE(Scene4, Scene, &Scene4_visit, &Scene4_construct, NULL,
 static void Scene4_onStartup(Scene4* self) {
   Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
   //
-  self->guiContext = Machine_Gui_Context_create(Machine_GDL_Context_create(), Machine_Context2_create(videoContext));
+  self->guiContext = Machine_Gui_Context_create(Machine_Gdl_Context_create(), Machine_Context2_create(videoContext));
   //
   self->font = Machine_FontsContext_createFont(Machine_DefaultFonts_createContext(videoContext, Machines_DefaultImages_createContext()),
                                                 Machine_String_create(FONT_FILE, strlen(FONT_FILE)), FONT_SIZE);

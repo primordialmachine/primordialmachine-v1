@@ -21,7 +21,7 @@ struct Machine_Gui_Gdl_Context_Class {
 struct Machine_Gui_Gdl_Context {
   Machine_Object parent;
 
-  Machine_GDL_Context* context;
+  Machine_Gdl_Context* context;
 
 #define DEFINE(NAME, STRING) Machine_String* NAME;
 #include "Gui/Gdl/Context.i"
@@ -30,6 +30,6 @@ struct Machine_Gui_Gdl_Context {
 
 /// @brief Create a GUI <-> GDL context.
 /// @return The context.
-Machine_Gui_Gdl_Context* Machine_Gui_Gdl_Context_create(Machine_GDL_Context* context);
+Machine_Gui_Gdl_Context* Machine_Gui_Gdl_Context_create(Machine_Gdl_Context* context);
 
 #endif // MACHINE_GUI_GDL_CONTEXT_H_INCLUDED

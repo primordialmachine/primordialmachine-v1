@@ -5,46 +5,46 @@
 
 #include <string.h>
 
-static void Machine_GDL_Parser_visit(Machine_GDL_Parser* self) {
+static void Machine_Gdl_Parser_visit(Machine_Gdl_Parser* self) {
   if (self->scanner) {
     Machine_Gc_visit(self->scanner);
   }
 }
 
-static void Machine_GDL_Parser_construct(Machine_GDL_Parser* self, size_t numberOfArguments, const Machine_Value* arguments) {
+static void Machine_Gdl_Parser_construct(Machine_Gdl_Parser* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  self->scanner = Machine_GDL_Scanner_create(Machine_String_create("<empty input>", strlen("<empty input>")), Machine_ByteBuffer_create());
-  Machine_setClassType((Machine_Object*)self, Machine_GDL_Parser_getType());
+  self->scanner = Machine_Gdl_Scanner_create(Machine_String_create("<empty input>", strlen("<empty input>")), Machine_ByteBuffer_create());
+  Machine_setClassType((Machine_Object*)self, Machine_Gdl_Parser_getType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_GDL_Parser, Machine_Object, &Machine_GDL_Parser_visit,
-                         &Machine_GDL_Parser_construct, NULL, NULL, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_Gdl_Parser, Machine_Object, &Machine_Gdl_Parser_visit,
+                         &Machine_Gdl_Parser_construct, NULL, NULL, NULL)
 
-Machine_GDL_Parser* Machine_GDL_Parser_create() {
-  Machine_ClassType* ty = Machine_GDL_Parser_getType();
-  static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
-  Machine_GDL_Parser* self = (Machine_GDL_Parser*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+Machine_Gdl_Parser* Machine_Gdl_Parser_create() {
+  Machine_ClassType* ty = Machine_Gdl_Parser_getType();
+  static size_t const NUMBER_OF_ARGUMENTS = 0;
+  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  Machine_Gdl_Parser* self = (Machine_Gdl_Parser*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }
 
 #include "Gdl/Syntactical/Parser-inlay.i"
 
-static void checkKind(Machine_GDL_Parser* self, Machine_GDL_TokenKind expected) {
+static void checkKind(Machine_Gdl_Parser* self, Machine_Gdl_TokenKind expected) {
   if (currentKind(self) != expected) {
     Machine_setStatus(Machine_Status_SyntacticalError);
     Machine_jump();
   }
 }
 
-static void next(Machine_GDL_Parser* self) {
-  Machine_GDL_Scanner_step(self->scanner);
+static void next(Machine_Gdl_Parser* self) {
+  Machine_Gdl_Scanner_step(self->scanner);
 }
 
 /// <code>
 /// key := BOOLEAN | NAME | VOID
 /// </code>
-static Machine_GDL_Node* parseKey(Machine_GDL_Parser* self);
+static Machine_Gdl_Node* parseKey(Machine_Gdl_Parser* self);
 
 
 /// <code>
@@ -52,60 +52,60 @@ static Machine_GDL_Node* parseKey(Machine_GDL_Parser* self);
 ///      | BOOLEAN | NAME | VOID
 ///      | list | map
 /// </code>
-static Machine_GDL_Node* parseValue(Machine_GDL_Parser* self);
+static Machine_Gdl_Node* parseValue(Machine_Gdl_Parser* self);
 
 /// <code>
 /// list := '[' ']'
 /// </code>
-static Machine_GDL_Node* parseList(Machine_GDL_Parser* self);
+static Machine_Gdl_Node* parseList(Machine_Gdl_Parser* self);
 
 /// <code>
 /// map := '{' '}'
 /// </code>
-static Machine_GDL_Node* parseMap(Machine_GDL_Parser* self);
+static Machine_Gdl_Node* parseMap(Machine_Gdl_Parser* self);
 
 
-static Machine_GDL_Node* parseKey(Machine_GDL_Parser* self) {
-  Machine_GDL_TokenKind x = currentKind(self);
-  if (x != Machine_GDL_TokenKind_Boolean && x != Machine_GDL_TokenKind_Name && x != Machine_GDL_TokenKind_Void) {
+static Machine_Gdl_Node* parseKey(Machine_Gdl_Parser* self) {
+  Machine_Gdl_TokenKind x = currentKind(self);
+  if (x != Machine_Gdl_TokenKind_Boolean && x != Machine_Gdl_TokenKind_Name && x != Machine_Gdl_TokenKind_Void) {
     Machine_setStatus(Machine_Status_SyntacticalError);
     Machine_jump();
   }
-  Machine_GDL_Node* node = Machine_GDL_Node_create(Machine_GDL_NodeKind_Key, Machine_GDL_Scanner_getTokenText(self->scanner));
+  Machine_Gdl_Node* node = Machine_Gdl_Node_create(Machine_Gdl_NodeKind_Key, Machine_Gdl_Scanner_getTokenText(self->scanner));
   next(self);
   return node;
 }
 
-static Machine_GDL_Node* parseValue(Machine_GDL_Parser* self) {
+static Machine_Gdl_Node* parseValue(Machine_Gdl_Parser* self) {
   switch (currentKind(self)) {
-  case Machine_GDL_TokenKind_LeftSquareBracket: {
+  case Machine_Gdl_TokenKind_LeftSquareBracket: {
     return parseList(self);
   } break;
-  case Machine_GDL_TokenKind_LeftCurlyBracket: {
+  case Machine_Gdl_TokenKind_LeftCurlyBracket: {
     return parseMap(self);
   } break;
-  case Machine_GDL_TokenKind_Boolean: {
-    Machine_GDL_Node* node = Machine_GDL_Node_create(Machine_GDL_NodeKind_Boolean, Machine_GDL_Scanner_getTokenText(self->scanner));
+  case Machine_Gdl_TokenKind_Boolean: {
+    Machine_Gdl_Node* node = Machine_Gdl_Node_create(Machine_Gdl_NodeKind_Boolean, Machine_Gdl_Scanner_getTokenText(self->scanner));
     next(self);
     return node;
   } break;
-  case Machine_GDL_TokenKind_Integer: {
-    Machine_GDL_Node* node = Machine_GDL_Node_create(Machine_GDL_NodeKind_Integer, Machine_GDL_Scanner_getTokenText(self->scanner));
+  case Machine_Gdl_TokenKind_Integer: {
+    Machine_Gdl_Node* node = Machine_Gdl_Node_create(Machine_Gdl_NodeKind_Integer, Machine_Gdl_Scanner_getTokenText(self->scanner));
     next(self);
     return node;
   } break;
-  case Machine_GDL_TokenKind_Real: {
-    Machine_GDL_Node* node = Machine_GDL_Node_create(Machine_GDL_NodeKind_Real, Machine_GDL_Scanner_getTokenText(self->scanner));
+  case Machine_Gdl_TokenKind_Real: {
+    Machine_Gdl_Node* node = Machine_Gdl_Node_create(Machine_Gdl_NodeKind_Real, Machine_Gdl_Scanner_getTokenText(self->scanner));
     next(self);
     return node;
   } break;
-  case Machine_GDL_TokenKind_String: {
-    Machine_GDL_Node* node = Machine_GDL_Node_create(Machine_GDL_NodeKind_String, Machine_GDL_Scanner_getTokenText(self->scanner));
+  case Machine_Gdl_TokenKind_String: {
+    Machine_Gdl_Node* node = Machine_Gdl_Node_create(Machine_Gdl_NodeKind_String, Machine_Gdl_Scanner_getTokenText(self->scanner));
     next(self);
     return node;
   } break;
-  case Machine_GDL_TokenKind_Void: {
-    Machine_GDL_Node* node = Machine_GDL_Node_create(Machine_GDL_NodeKind_Void, Machine_GDL_Scanner_getTokenText(self->scanner));
+  case Machine_Gdl_TokenKind_Void: {
+    Machine_Gdl_Node* node = Machine_Gdl_Node_create(Machine_Gdl_NodeKind_Void, Machine_Gdl_Scanner_getTokenText(self->scanner));
     next(self);
     return node;
   } break;
@@ -115,18 +115,18 @@ static Machine_GDL_Node* parseValue(Machine_GDL_Parser* self) {
   };
 }
 
-static Machine_GDL_Node* parsePair(Machine_GDL_Parser* self) {
+static Machine_Gdl_Node* parsePair(Machine_Gdl_Parser* self) {
   Machine_Value temporary;
 
-  Machine_GDL_Node* pairNode = Machine_GDL_Node_create(Machine_GDL_NodeKind_Pair, NULL);
-  Machine_GDL_Node* keyNode = parseKey(self);
+  Machine_Gdl_Node* pairNode = Machine_Gdl_Node_create(Machine_Gdl_NodeKind_Pair, NULL);
+  Machine_Gdl_Node* keyNode = parseKey(self);
   {
     Machine_Value_setObject(&temporary, (Machine_Object*)keyNode);
     Machine_IList_append((Machine_IList *)pairNode->children, temporary);
   }
-  checkKind(self, Machine_GDL_TokenKind_Colon);
+  checkKind(self, Machine_Gdl_TokenKind_Colon);
   next(self);
-  Machine_GDL_Node* valueNode = parseValue(self);
+  Machine_Gdl_Node* valueNode = parseValue(self);
   {
     Machine_Value_setObject(&temporary, (Machine_Object*)valueNode);
     Machine_IList_append((Machine_IList *)pairNode->children, temporary);
@@ -134,54 +134,54 @@ static Machine_GDL_Node* parsePair(Machine_GDL_Parser* self) {
   return pairNode;
 }
 
-static Machine_GDL_Node *parseList(Machine_GDL_Parser* self) {
+static Machine_Gdl_Node *parseList(Machine_Gdl_Parser* self) {
   next(self);
-  Machine_GDL_Node* parent = Machine_GDL_Node_create(Machine_GDL_NodeKind_List, NULL);
-  while (currentKind(self) != Machine_GDL_TokenKind_EndOfInput && currentKind(self) != Machine_GDL_TokenKind_RightSquareBracket) {
-    Machine_GDL_Node* child = parseValue(self);
+  Machine_Gdl_Node* parent = Machine_Gdl_Node_create(Machine_Gdl_NodeKind_List, NULL);
+  while (currentKind(self) != Machine_Gdl_TokenKind_EndOfInput && currentKind(self) != Machine_Gdl_TokenKind_RightSquareBracket) {
+    Machine_Gdl_Node* child = parseValue(self);
     Machine_Value temporary;
     Machine_Value_setObject(&temporary, (Machine_Object*)child);
     Machine_IList_append((Machine_IList *)parent->children, temporary);
-    if (currentKind(self) == Machine_GDL_TokenKind_Comma) {
+    if (currentKind(self) == Machine_Gdl_TokenKind_Comma) {
       next(self);
     }
   }
-  checkKind(self, Machine_GDL_TokenKind_RightSquareBracket);
+  checkKind(self, Machine_Gdl_TokenKind_RightSquareBracket);
   next(self);
   return parent;
 }
 
-static Machine_GDL_Node* parseMap(Machine_GDL_Parser* self) {
+static Machine_Gdl_Node* parseMap(Machine_Gdl_Parser* self) {
   next(self);
-  Machine_GDL_Node* parent = Machine_GDL_Node_create(Machine_GDL_NodeKind_Map, NULL);
-  while (currentKind(self) != Machine_GDL_TokenKind_EndOfInput && currentKind(self) != Machine_GDL_TokenKind_RightCurlyBracket) {
-    Machine_GDL_Node* child = parsePair(self);
+  Machine_Gdl_Node* parent = Machine_Gdl_Node_create(Machine_Gdl_NodeKind_Map, NULL);
+  while (currentKind(self) != Machine_Gdl_TokenKind_EndOfInput && currentKind(self) != Machine_Gdl_TokenKind_RightCurlyBracket) {
+    Machine_Gdl_Node* child = parsePair(self);
     Machine_Value temporary;
     Machine_Value_setObject(&temporary, (Machine_Object*)child);
     Machine_IList_append((Machine_IList *)parent->children, temporary);
-    if (currentKind(self) == Machine_GDL_TokenKind_Comma) {
+    if (currentKind(self) == Machine_Gdl_TokenKind_Comma) {
       next(self);
     }
   }
-  checkKind(self, Machine_GDL_TokenKind_RightCurlyBracket);
+  checkKind(self, Machine_Gdl_TokenKind_RightCurlyBracket);
   next(self);
   return parent;
 }
 
-Machine_GDL_Node* Machine_GDL_Parser_parse(Machine_GDL_Parser* self, Machine_String* inputName, Machine_ByteBuffer* inputBytes) {
-  Machine_GDL_Scanner_setInput(self->scanner, inputName, inputBytes);
-  checkKind(self, Machine_GDL_TokenKind_StartOfInput);
+Machine_Gdl_Node* Machine_Gdl_Parser_parse(Machine_Gdl_Parser* self, Machine_String* inputName, Machine_ByteBuffer* inputBytes) {
+  Machine_Gdl_Scanner_setInput(self->scanner, inputName, inputBytes);
+  checkKind(self, Machine_Gdl_TokenKind_StartOfInput);
   next(self);
-  Machine_GDL_Node *parent = Machine_GDL_Node_create(Machine_GDL_NodeKind_CompilationUnit, inputName);
+  Machine_Gdl_Node *parent = Machine_Gdl_Node_create(Machine_Gdl_NodeKind_CompilationUnit, inputName);
   switch (currentKind(self)) {
-  case Machine_GDL_TokenKind_LeftSquareBracket: {
-    Machine_GDL_Node* child = parseList(self);
+  case Machine_Gdl_TokenKind_LeftSquareBracket: {
+    Machine_Gdl_Node* child = parseList(self);
     Machine_Value temporary;
     Machine_Value_setObject(&temporary, (Machine_Object*)child);
     Machine_IList_append((Machine_IList *)parent->children, temporary);
   } break;
-  case Machine_GDL_TokenKind_LeftCurlyBracket: {
-    Machine_GDL_Node* child = parseMap(self);
+  case Machine_Gdl_TokenKind_LeftCurlyBracket: {
+    Machine_Gdl_Node* child = parseMap(self);
     Machine_Value temporary;
     Machine_Value_setObject(&temporary, (Machine_Object*)child);
     Machine_IList_append((Machine_IList *)parent->children, temporary);

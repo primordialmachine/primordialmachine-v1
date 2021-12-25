@@ -28,7 +28,7 @@ static void Machine_Gui_Context_construct(Machine_Gui_Context* self, size_t numb
                                           Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->gdlContext = Machine_Gui_Gdl_Context_create(
-      (Machine_GDL_Context*)Machine_Value_getObject(&arguments[0]));
+      (Machine_Gdl_Context*)Machine_Value_getObject(&arguments[0]));
   self->signalsContext = Machine_Gui_Signals_Context_create();
   self->context2 = (Machine_Context2*)Machine_Value_getObject(&arguments[1]);
   static const char* FONT_FILE = "fonts/RobotoSlab/RobotoSlab-Regular.ttf";
@@ -41,7 +41,7 @@ static void Machine_Gui_Context_construct(Machine_Gui_Context* self, size_t numb
 MACHINE_DEFINE_CLASSTYPE(Machine_Gui_Context, Machine_Object, &Machine_Gui_Context_visit,
                          &Machine_Gui_Context_construct, NULL, NULL, NULL)
 
-Machine_Gui_Context* Machine_Gui_Context_create(Machine_GDL_Context* gdlContext,
+Machine_Gui_Context* Machine_Gui_Context_create(Machine_Gdl_Context* gdlContext,
                                                 Machine_Context2* context2) {
   Machine_ClassType* ty = Machine_Gui_Context_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 2;

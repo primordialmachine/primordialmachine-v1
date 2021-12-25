@@ -1,4 +1,4 @@
 
-static Machine_GDL_TokenKind currentKind(Machine_GDL_Parser *self) {
-    return Machine_GDL_Scanner_getTokenKind(self->scanner);
+static Machine_Gdl_TokenKind currentKind(Machine_Gdl_Parser *self) {
+    return Machine_Gdl_Scanner_getTokenKind(self->scanner);
 }
