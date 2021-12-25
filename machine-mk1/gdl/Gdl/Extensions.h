@@ -24,24 +24,24 @@ Machine_Integer Machine_Gdl_Node_toInteger(Machine_Gdl_Node* self, Machine_Gdl_C
 /// @return The value of type <code>List</code>.
 /// @extension
 /// @remark List elements are subjected to default conversion rules.
-/// - GDL boolean is mapped to <code>Boolean</code> as defined by Machine_Gdl_Node_toBoolean(const
-/// Machine_Gdl_Node *).
-/// - GDL integer is mapped to <code>Integer</code> as defined by Machine_Gdl_Node_toInteger(const
-/// Machine_Gdl_Node *).
-/// - GDL list is mapped to <code>List</code> as defined by Machine_Gdl_Node_toList(const
-/// Machine_Gdl_Node *).
-/// - GDL map is mapped to <code>Map</code> as defined by Machine_Gdl_Node_toMap(Machine_Gdl_Node
-/// const*).
+/// - GDL boolean is mapped to <code>Boolean</code> as defined by
+/// Machine_Gdl_Node_toBoolean(Machine_Gdl_Node const*).
+/// - GDL integer is mapped to <code>Integer</code> as defined by
+/// Machine_Gdl_Node_toInteger(Machine_Gdl_Node const*).
+/// - GDL list is mapped to <code>List</code> as defined by
+/// Machine_Gdl_Node_toList(Machine_Gdl_Node const*).
+/// - GDL map is mapped to <code>Map</code> as defined by
+/// Machine_Gdl_Node_toMap(Machine_Gdl_Node const*).
 /// - GDL key is mapped to <code>String</code> as defined by
 /// Machine_Gdl_Node_toString(Machine_Gdl_Node const*).
-/// - GDL pair is mapped to <code>Pair</code> as defined by Machine_Gdl_Node_toPair(Machine_Gdl_Node
-/// const *).
-/// - GDL real is mapped to <code>Real</code> as defined by Machine_Gdl_Node_toReal(Machine_Gdl_Node
-/// const *).
+/// - GDL pair is mapped to <code>Pair</code> as defined by
+/// Machine_Gdl_Node_toPair(Machine_Gdl_Node const *).
+/// - GDL real is mapped to <code>Real</code> as defined by
+/// Machine_Gdl_Node_toReal(Machine_Gdl_Node const *).
 /// - GDL string is mapped to <code>String</code> as defined by
 /// Machine_Gdl_Node_toString(Machine_Gdl_Node const *).
-/// - GDL void is mapped to <code>Void</code> as defined by Machine_Gdl_Node_toVoid(Machine_Gdl_Node
-/// const*).
+/// - GDL void is mapped to <code>Void</code> as defined by
+/// Machine_Gdl_Node_toVoid(Machine_Gdl_Node const*).
 Machine_List* Machine_Gdl_Node_toList(Machine_Gdl_Node const* self, Machine_Gdl_Context* context);
 
 /// @brief Convert a node to a value of type <code>Map</code>.
