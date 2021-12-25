@@ -42,35 +42,4 @@ struct Machine_ClassType {
   } interfaces;
 };
 
-/// @brief Get if this type is a sub-type of another type.
-/// @param self A pointer to this type.
-/// @param other A pointer to the other type.
-/// @return @a true if this type is a sub-type of the other type, @a false otherwise.
-bool Machine_ClassType_isSubTypeOf(Machine_ClassType const* self, Machine_ClassType const* other);
-
-/// @brief Get if this type is a true sub-type of another type.
-/// @param self This type.
-/// @param other The other type.
-/// @return @a true if this type is a true sub-type of the other other type, @a false otherwise.
-bool Machine_ClassType_isTrueSubTypeOf(Machine_ClassType const* self,
-                                       Machine_ClassType const* other);
-
-/// @brief Get if this type is a super-type of another type.
-/// @param self This type.
-/// @param other The other type.
-/// @return @a true if this type is a super-type of the other type, @a false otherwise.
-static inline bool Machine_ClassType_isSuperTypeOf(Machine_ClassType const* self,
-                                                   Machine_ClassType const* other) {
-  return Machine_ClassType_isSubTypeOf(other, self);
-}
-
-/// @brief Get if this type is a true super-type of another type.
-/// @param self This type.
-/// @param other The other type.
-/// @return @a true if this type is a true super-type of the other type, @a false otherwise.
-static inline bool Machine_ClassType_isTrueSuperTypeOf(Machine_ClassType const* self,
-                                                       Machine_ClassType const* other) {
-  return Machine_ClassType_isTrueSubTypeOf(other, self);
-}
-
 #endif // MACHINE_RUNTIME_OBJECT_CLASSTYPE_MODULE_H_INCLUDED

@@ -56,38 +56,6 @@ Machine_InterfaceType* Machine_createInterfaceType(Machine_CreateInterfaceTypeAr
 /// @remark If @a extended is a already a sub-type of @a self, this function does nothing and returns false.
 bool Machine_InterfaceType_extend(Machine_InterfaceType* self, Machine_Type* extended);
 
-/// @brief Get if this type is a sub-type of another type.
-/// @param self This type.
-/// @param other The other type.
-/// @return @a true if this type is a sub-type of the other other type, @a false otherwise.
-bool Machine_InterfaceType_isSubTypeOf(Machine_InterfaceType const* self,
-                                       Machine_InterfaceType const* other);
-
-/// @brief Get if this type is a true sub-type of another type.
-/// @param self This type.
-/// @param other The other type.
-/// @return @a true if this type is a true sub-type of the other other type, @a false otherwise.
-bool Machine_InterfaceType_isTrueSubTypeOf(Machine_InterfaceType const* self,
-                                           Machine_InterfaceType const* other);
-
-/// @brief Get if this type is a super-type of another type.
-/// @param self This type.
-/// @param other The other type.
-/// @return @a true if this type is a super-type of the other type, @a false otherwise.
-INLINE bool Machine_InterfaceType_isSuperTypeOf(Machine_InterfaceType const* self,
-                                                Machine_InterfaceType const* other) {
-  return Machine_InterfaceType_isSubTypeOf(other, self);
-}
-
-/// @brief Get if this type is a true super-type of another type.
-/// @param self This type.
-/// @param other The other type.
-/// @return @a true if this type is a true super-type of the other type, @a false otherwise.
-INLINE bool Machine_InterfaceType_isTrueSuperTypeOf(Machine_InterfaceType const* self,
-                                                    Machine_InterfaceType const* other) {
-  return Machine_InterfaceType_isTrueSubTypeOf(other, self);
-}
-
 void Machine_InterfaceType_ensureInitialized(Machine_InterfaceType* self);
 
 #define MACHINE_DECLARE_INTERFACETYPE(THIS_TYPE)                                                   \

@@ -64,11 +64,11 @@ bool Machine_InterfaceType_extend(Machine_InterfaceType* self, Machine_Type* ext
     Machine_jump();
   }
   // If EXTENDED is a super-type of THIS, return true.
-  if (Machine_InterfaceType_isSuperTypeOf((Machine_InterfaceType*)extended, self)) {
+  if (Machine_Type_isSuperTypeOf(extended, (Machine_Type *)self)) {
     return true;
   }
   // If EXTENDED is a sub-type of THIS, return false.
-  if (Machine_InterfaceType_isSubTypeOf((Machine_InterfaceType*)extended, self)) {
+  if (Machine_Type_isSubTypeOf(extended, (Machine_Type *)self)) {
     return false;
   }
   if (Machine_Eal_InlineArray_append(&self->extends, extended)) {
@@ -77,34 +77,6 @@ bool Machine_InterfaceType_extend(Machine_InterfaceType* self, Machine_Type* ext
   }
   Machine_Gc_lock(extended);
   return true;
-}
-
-bool Machine_InterfaceType_isSubTypeOf(Machine_InterfaceType const* self,
-                                       Machine_InterfaceType const* other) {
-  if (self == other) {
-    return true;
-  }
-  for (size_t i = 0, n = self->extends.size; i < n; ++i) {
-    Machine_InterfaceType const* element = (Machine_InterfaceType const *)Machine_Eal_InlineArray_getAt((Machine_Eal_InlineArray*)&self->extends, i);
-    if (Machine_InterfaceType_isSubTypeOf(element, other)) {
-      return true;
-    }
-  }
-  return false;
-}
-
-bool Machine_InterfaceType_isTrueSubTypeOf(Machine_InterfaceType const* self,
-                                           Machine_InterfaceType const* other) {
-  if (self == other) {
-    return false;
-  }
-  for (size_t i = 0, n = self->extends.size; i < n; ++i) {
-    Machine_InterfaceType const* element = (Machine_InterfaceType const*)Machine_Eal_InlineArray_getAt((Machine_Eal_InlineArray*)&self->extends, i);
-    if (Machine_InterfaceType_isSubTypeOf(element, other)) {
-      return true;
-    }
-  }
-  return false;
 }
 
 void Machine_InterfaceType_ensureInitialized(Machine_InterfaceType* self) {
