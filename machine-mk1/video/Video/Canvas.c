@@ -10,6 +10,7 @@ void Machine_Video_Canvas_construct(Machine_Video_Canvas* self, size_t numberOfA
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { Machine_Value_StaticInitializerVoid() };
   Machine_Object_construct((Machine_Object*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  self->signal = Machine_Signals_Signal_create();
   Machine_setClassType((Machine_Object*)self, Machine_Video_Canvas_getType());
 }
 

@@ -5,6 +5,7 @@
 #error("Do not include this file directly, include `_Video.h` instead.")
 #endif
 #include "_Collections.h"
+#include "_Signals.h"
 
 /// @brief Abstract base of all canvas.
 /// This engine only supports one main canvas.
@@ -23,6 +24,7 @@ struct Machine_Video_Canvas_Class {
 
 struct Machine_Video_Canvas {
   Machine_Object parent__;
+  Machine_Signals_Signal* signal;
 };
 
 void Machine_Video_Canvas_construct(Machine_Video_Canvas* self, size_t numberOfArguments, Machine_Value const* arguments);

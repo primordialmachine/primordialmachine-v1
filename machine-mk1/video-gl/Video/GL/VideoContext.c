@@ -299,8 +299,10 @@ static void write(Machine_Gl_VideoContext const* self) {
     enabled ? glEnable(GL_CLIP_DISTANCE0 + i) : glDisable(GL_CLIP_DISTANCE0 + i);
   }
 
-  // Viewport rectangle.
+  // Viewport rectangle & scissor rectangle.
   glViewport(self->viewportRectangle->x, self->viewportRectangle->y, self->viewportRectangle->w, self->viewportRectangle->h);
+  glEnable(GL_SCISSOR_TEST);
+  glScissor(self->viewportRectangle->x, self->viewportRectangle->y, self->viewportRectangle->w, self->viewportRectangle->h);
 }
 
 static void Machine_Gl_VideoContext_constructClass(Machine_Gl_VideoContext_Class* self) {
