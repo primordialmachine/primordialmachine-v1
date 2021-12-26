@@ -5,18 +5,12 @@
 extern "C" {
 #endif
 
-#include "Scene1.h"
-#include "Scene2.h"
-#include "Scene3.h"
-#include "Scene4.h"
-#include "Scene5.h"
-#include "Scenes/LayoutScene.h"
-#include "Scenes/Rectangle2Scene.h"
-#include "Video.h"
+#include "_Scenes.h"
 #include "_Collections.h"
 #include "_Fonts.h"
 #include "_Images.h"
 #include "_Runtime.h"
+#include "Video.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -80,7 +74,7 @@ void main0() {
   Machine_JumpTarget jumpTarget1; // To shutdown input.
   Machine_pushJumpTarget(&jumpTarget1);
   if (!setjmp(jumpTarget1.environment)) {
-    g_scene = (Scene*)Scene5_create();
+    g_scene = (Scene*)Scene5_create(Machine_getVideoContext());
     Scene_onStartup(g_scene);
 
     Machine_JumpTarget jumpTarget2; // To shutdown scene.

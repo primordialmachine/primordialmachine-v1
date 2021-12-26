@@ -73,26 +73,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Scene4.c" />
-    <ClCompile Include="Scene5.c" />
-    <ClCompile Include="Scenes\LayoutScene.c" />
-    <ClCompile Include="Scenes\Rectangle2Scene.c" />
     <ClCompile Include="Main.c" />
-    <ClCompile Include="Scene.c" />
-    <ClCompile Include="Scene1.c" />
-    <ClCompile Include="Scene2.c" />
-    <ClCompile Include="Scene3.c" />
     <ClCompile Include="Video.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Scene4.h" />
-    <ClInclude Include="Scene5.h" />
-    <ClInclude Include="Scenes\LayoutScene.h" />
-    <ClInclude Include="Scenes\Rectangle2Scene.h" />
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="Scene1.h" />
-    <ClInclude Include="Scene2.h" />
-    <ClInclude Include="Scene3.h" />
     <ClInclude Include="Video.h" />
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +109,9 @@
     </ProjectReference>
     <ProjectReference Include="..\math\machine-mk1-math.vcxproj">
       <Project>{681c50f0-37bf-4661-bf5a-21a29abf2b63}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\scenes\machine-mk1-scenes.vcxproj">
+      <Project>{ff0cdd29-2e2b-437d-b886-0fb704f1cae2}</Project>
     </ProjectReference>
     <ProjectReference Include="..\signals\machine-mk1-signals.vcxproj">
       <Project>{849b7daf-7563-43b6-9131-fda4995767f0}</Project>

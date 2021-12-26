@@ -1,4 +1,4 @@
-#include "Scene2.h"
+#include "Scene1.h"
 
 #include <string.h>
 
@@ -13,22 +13,15 @@
 static const struct {
   Machine_Real x, y;
   Machine_Real r, g, b;
-} vertices[] = {
-  { -0.6f, -0.4f, 1.f, 0.f, 0.f }, // left/bottom
-  { +0.6f, -0.4f, 0.f, 1.f, 0.f }, // right/bottom
-  { -0.6f, +0.6f, 0.f, 0.f, 1.f }, // left/top
-  { +0.6f, +0.6f, 1.f, 1.f, 1.f }, // right/top
-};
+} vertices[] = { { -0.6f, -0.4f, 1.f, 0.f, 0.f },
+                 { 0.6f, -0.4f, 0.f, 1.f, 0.f },
+                 { 0.f, 0.6f, 0.f, 0.f, 1.f } };
 
-static const uint8_t indices[] = {
-  0, 1, 2, 2, 1, 3,
-};
-
-struct Scene2_Class {
+struct Scene1_Class {
   Scene_Class __parent;
 };
 
-struct Scene2 {
+struct Scene1 {
   Scene __parent;
 
   Machine_ShaderProgram* shaderProgram;
@@ -36,11 +29,11 @@ struct Scene2 {
   Machine_VideoBuffer* vertices;
 };
 
-static void Scene2_constructClass(Scene2_Class* self);
+static void Scene1_constructClass(Scene1_Class* self);
 
-static void Scene2_destruct(Scene2* self);
+static void Scene1_destruct(Scene1* self);
 
-static void Scene2_visit(Scene2* self) {
+static void Scene1_visit(Scene1* self) {
   if (self->binding) {
     Machine_Gc_visit(self->binding);
   }
@@ -52,10 +45,10 @@ static void Scene2_visit(Scene2* self) {
   }
 }
 
-MACHINE_DEFINE_CLASSTYPE(Scene2, Scene, &Scene2_visit, &Scene2_construct, NULL,
-                         &Scene2_constructClass, NULL)
+MACHINE_DEFINE_CLASSTYPE(Scene1, Scene, &Scene1_visit, &Scene1_construct, NULL,
+                         &Scene1_constructClass, NULL)
 
-static void Scene2_onStartup(Scene2* self) {
+static void Scene1_onStartup(Scene1* self) {
   Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
 
   self->vertices = Machine_VideoContext_createBuffer(videoContext);
@@ -81,10 +74,10 @@ static void Scene2_onStartup(Scene2* self) {
   Machine_VideoContext_setClearColor(videoContext, c);
 }
 
-static void Scene2_onCanvasSizeChanged(Scene2* self, Machine_CanvasSizeChangedEvent* event) {
+static void Scene1_onCanvasSizeChanged(Scene1* self, Machine_CanvasSizeChangedEvent* event) {
 }
 
-static void Scene2_onUpdate(Scene2* self, Machine_Real width, Machine_Real height) {
+static void Scene1_onUpdate(Scene1* self, Machine_Real width, Machine_Real height) {
   Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
 
   Machine_Real ratio = width / height;
@@ -104,39 +97,40 @@ static void Scene2_onUpdate(Scene2* self, Machine_Real width, Machine_Real heigh
       Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1),
       mvp2);
 
-  Machine_VideoContext_drawIndirect(videoContext, 0, 6, indices);
+  Machine_VideoContext_drawDirect(videoContext, 0, 3);
 }
 
-static void Scene2_onShutdown(Scene2* self) {
+static void Scene1_onShutdown(Scene1* self) {
   self->vertices = NULL;
   self->shaderProgram = NULL;
   self->binding = NULL;
 }
 
-static void Scene2_constructClass(Scene2_Class* self) {
+static void Scene1_constructClass(Scene1_Class* self) {
   ((Scene_Class*)self)->onCanvasSizeChanged
-      = (Scene_OnCanvaSizeChangedCallback*)&Scene2_onCanvasSizeChanged;
-  ((Scene_Class*)self)->onStartup = (Scene_OnStartupCallback*)&Scene2_onStartup;
-  ((Scene_Class*)self)->onUpdate = (Scene_OnUpdateCallback*)&Scene2_onUpdate;
-  ((Scene_Class*)self)->onShutdown = (Scene_OnShutdownCallback*)&Scene2_onShutdown;
+      = (Scene_OnCanvaSizeChangedCallback*)&Scene1_onCanvasSizeChanged;
+  ((Scene_Class*)self)->onStartup = (Scene_OnStartupCallback*)&Scene1_onStartup;
+  ((Scene_Class*)self)->onUpdate = (Scene_OnUpdateCallback*)&Scene1_onUpdate;
+  ((Scene_Class*)self)->onShutdown = (Scene_OnShutdownCallback*)&Scene1_onShutdown;
 }
 
-void Scene2_construct(Scene2* self, size_t numberOfArguments, Machine_Value const* arguments) {
+void Scene1_construct(Scene1* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Scene_construct((Scene*)self, numberOfArguments, arguments);
-  Machine_setClassType((Machine_Object*)self, Scene2_getType());
+  Machine_setClassType((Machine_Object*)self, Scene1_getType());
 }
 
-void Scene2_destruct(Scene2* self) {
+void Scene1_destruct(Scene1* self) {
   self->binding = NULL;
   self->shaderProgram = NULL;
   self->vertices = NULL;
 }
 
-Scene2* Scene2_create() {
-  Machine_ClassType* ty = Scene2_getType();
-  static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
-  Scene2* self = (Scene2*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+Scene1* Scene1_create(Machine_VideoContext *videoContext) {
+  Machine_ClassType* ty = Scene1_getType();
+  static size_t const NUMBER_OF_ARGUMENTS = 1;
+  Machine_Value ARGUMENTS[1];
+  Machine_Value_setObject(&(ARGUMENTS[0]), (Machine_Object*)videoContext);
+  Scene1* self = (Scene1*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   if (!self) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();

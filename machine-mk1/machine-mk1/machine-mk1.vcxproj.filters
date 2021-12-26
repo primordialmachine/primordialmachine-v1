@@ -13,72 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Headerdateien\Scenes">
-      <UniqueIdentifier>{5216b1ae-3fa7-46f9-8ad2-148bc513316c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Quelldateien\Scenes">
-      <UniqueIdentifier>{62d7f894-cf69-402e-b5b0-9f570c67670e}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Scene1.c">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.c">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene2.c">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene3.c">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene5.c">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="Video.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Scene4.c">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Scenes\Rectangle2Scene.c">
-      <Filter>Quelldateien\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Scenes\LayoutScene.c">
-      <Filter>Quelldateien\Scenes</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Scene1.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene2.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene3.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene5.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Video.h">
       <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene4.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\Rectangle2Scene.h">
-      <Filter>Headerdateien\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\LayoutScene.h">
-      <Filter>Headerdateien\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -190,10 +190,11 @@ void Scene3_destruct(Scene3* self) {
   self->vertices = NULL;
 }
 
-Scene3* Scene3_create() {
+Scene3* Scene3_create(Machine_VideoContext* videoContext) {
   Machine_ClassType* ty = Scene3_getType();
-  static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  static size_t const NUMBER_OF_ARGUMENTS = 1;
+  Machine_Value ARGUMENTS[1];
+  Machine_Value_setObject(&(ARGUMENTS[0]), (Machine_Object*)videoContext);
   Scene3* self = (Scene3*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   if (!self) {
     Machine_setStatus(Machine_Status_AllocationFailed);

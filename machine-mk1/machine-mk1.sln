@@ -39,6 +39,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-text", "text\ma
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-gui", "gui\machine-mk1-gui.vcxproj", "{314990BB-EBC6-4998-90D4-25603DDC656D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-scenes", "scenes\machine-mk1-scenes.vcxproj", "{FF0CDD29-2E2B-437D-B886-0FB704F1CAE2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -117,6 +119,10 @@ Global
 		{314990BB-EBC6-4998-90D4-25603DDC656D}.Debug|x64.Build.0 = Debug|x64
 		{314990BB-EBC6-4998-90D4-25603DDC656D}.Release|x64.ActiveCfg = Release|x64
 		{314990BB-EBC6-4998-90D4-25603DDC656D}.Release|x64.Build.0 = Release|x64
+		{FF0CDD29-2E2B-437D-B886-0FB704F1CAE2}.Debug|x64.ActiveCfg = Debug|x64
+		{FF0CDD29-2E2B-437D-B886-0FB704F1CAE2}.Debug|x64.Build.0 = Debug|x64
+		{FF0CDD29-2E2B-437D-B886-0FB704F1CAE2}.Release|x64.ActiveCfg = Release|x64
+		{FF0CDD29-2E2B-437D-B886-0FB704F1CAE2}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,13 +1,14 @@
 #include "LayoutScene.h"
 
-
-
 #include <string.h>
-#include "_Text.h"
-#include "_Images.h"
-#include "_Fonts.h"
-#include "./../Video.h"
 
+#include "_Gui.h"
+#include "_Images.h"
+#include "_Text.h"
+#include "_Video.h"
+
+#include "_Fonts.h"
+#include "_Graphics2.h"
 
 #define FONT_FILE "fonts/RobotoSlab/RobotoSlab-Regular.ttf"
 #define FONT_SIZE 20
@@ -58,8 +59,9 @@ static void LayoutScene_onStartup(LayoutScene* self) {
   //
   self->context2 = Machine_Context2_create(videoContext);
   //
-  self->font = Machine_FontsContext_createFont(Machine_DefaultFonts_createContext(videoContext, Machines_DefaultImages_createContext()),
-                                               Machine_String_create(FONT_FILE, strlen(FONT_FILE)), FONT_SIZE);
+  self->font = Machine_FontsContext_createFont(
+      Machine_DefaultFonts_createContext(videoContext, Machines_DefaultImages_createContext()),
+      Machine_String_create(FONT_FILE, strlen(FONT_FILE)), FONT_SIZE);
   //
   self->textLayout1 = Machine_Text_Layout_create(Machine_String_create("", strlen("")), self->font);
   {
@@ -85,7 +87,8 @@ static void alignLeftTop(Machine_Text_Layout* layout, Machine_Real width, Machin
   Machine_Math_Rectangle2 const* bounds = Machine_Text_Layout_getBounds(layout);
   Machine_Math_Vector2 const* position = Machine_Math_Rectangle2_getPosition(bounds);
   Machine_Math_Vector2* delta = Machine_Math_Vector2_difference(MARGIN, position);
-  Machine_Math_Vector2* position2 = Machine_Math_Vector2_sum(Machine_Text_Layout_getPosition(layout), delta);
+  Machine_Math_Vector2* position2
+      = Machine_Math_Vector2_sum(Machine_Text_Layout_getPosition(layout), delta);
   Machine_Text_Layout_setPosition(layout, position2);
 }
 
@@ -105,7 +108,8 @@ static void alignCenter(Machine_Text_Layout* layout, Machine_Real width, Machine
   Machine_Text_Layout_setPosition(layout, newPosition);
 }
 
-static void LayoutScene_onCanvasSizeChanged(LayoutScene* self, Machine_CanvasSizeChangedEvent* event) {
+static void LayoutScene_onCanvasSizeChanged(LayoutScene* self,
+                                            Machine_CanvasSizeChangedEvent* event) {
   Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
   // Set the 2D context's target size.
   Machine_Context2_setTargetSize(self->context2, event->width, event->height);
@@ -135,13 +139,15 @@ static void LayoutScene_onShutdown(LayoutScene* self) {
 }
 
 static void LayoutScene_constructClass(LayoutScene_Class* self) {
-  ((Scene_Class*)self)->onCanvasSizeChanged = (Scene_OnCanvaSizeChangedCallback*)&LayoutScene_onCanvasSizeChanged;
+  ((Scene_Class*)self)->onCanvasSizeChanged
+      = (Scene_OnCanvaSizeChangedCallback*)&LayoutScene_onCanvasSizeChanged;
   ((Scene_Class*)self)->onStartup = (Scene_OnStartupCallback*)&LayoutScene_onStartup;
   ((Scene_Class*)self)->onUpdate = (Scene_OnUpdateCallback*)&LayoutScene_onUpdate;
   ((Scene_Class*)self)->onShutdown = (Scene_OnShutdownCallback*)&LayoutScene_onShutdown;
 }
 
-void LayoutScene_construct(LayoutScene* self, size_t numberOfArguments, Machine_Value const* arguments) {
+void LayoutScene_construct(LayoutScene* self, size_t numberOfArguments,
+                           Machine_Value const* arguments) {
   Scene_construct((Scene*)self, numberOfArguments, arguments);
   Machine_setClassType((Machine_Object*)self, LayoutScene_getType());
 }
@@ -153,10 +159,11 @@ void LayoutScene_destruct(LayoutScene* self) {
   self->context2 = NULL;
 }
 
-LayoutScene* LayoutScene_create() {
+LayoutScene* LayoutScene_create(Machine_VideoContext* videoContext) {
   Machine_ClassType* ty = LayoutScene_getType();
-  static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  static size_t const NUMBER_OF_ARGUMENTS = 1;
+  Machine_Value ARGUMENTS[1];
+  Machine_Value_setObject(&(ARGUMENTS[0]), (Machine_Object*)videoContext);
   LayoutScene* self = (LayoutScene*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   if (!self) {
     Machine_setStatus(Machine_Status_AllocationFailed);

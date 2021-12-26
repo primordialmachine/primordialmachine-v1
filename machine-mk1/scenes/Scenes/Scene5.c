@@ -213,10 +213,11 @@ void Scene5_construct(Scene5* self, size_t numberOfArguments, Machine_Value cons
 void Scene5_destruct(Scene5* self) {
 }
 
-Scene5* Scene5_create() {
+Scene5* Scene5_create(Machine_VideoContext* videoContext) {
   Machine_ClassType* ty = Scene5_getType();
-  static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  static size_t const NUMBER_OF_ARGUMENTS = 1;
+  Machine_Value ARGUMENTS[1];
+  Machine_Value_setObject(&(ARGUMENTS[0]), (Machine_Object*)videoContext);
   Scene5* self = (Scene5*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   if (!self) {
     Machine_setStatus(Machine_Status_AllocationFailed);

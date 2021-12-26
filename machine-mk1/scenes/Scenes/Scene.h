@@ -40,6 +40,7 @@ struct Scene_Class {
 /// Call to "shutdown". Either continue at (1) or (4). (4) Scene object is destroyed.
 struct Scene {
   Machine_Object parent;
+  Machine_VideoContext* videoContext;
 };
 
 void Scene_construct(Scene* self, size_t numberOfArguments, Machine_Value const* arguments);

@@ -7,6 +7,6 @@ MACHINE_DECLARE_CLASSTYPE(Scene4)
 
 void Scene4_construct(Scene4* self, size_t numberOfArguments, Machine_Value const* arguments);
 
-Scene4* Scene4_create();
+Scene4* Scene4_create(Machine_VideoContext *videoContext);
 
 #endif // SCENE4_H_INCLUDED

@@ -1,6 +1,6 @@
 #include "Scene.h"
 
-#include "./Video.h" /// @todo Remove this.
+#include "_Video.h"
 
 static void Scene_destruct(Scene* self);
 
@@ -17,6 +17,8 @@ static void Scene_constructClass(Scene_Class* self) {
 
 void Scene_construct(Scene* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
+  self->videoContext = (Machine_VideoContext*)Machine_Extensions_getObjectArgument(
+      numberOfArguments, arguments, 0, Machine_VideoContext_getType());
   Machine_setClassType((Machine_Object*)self, Scene_getType());
 }
 
@@ -62,5 +64,5 @@ void Scene_onShutdown(Scene* self) {
 }
 
 Machine_VideoContext* Scene_getVideoContext(Scene* self) {
-  return Machine_getVideoContext();
+  return self->videoContext;
 }

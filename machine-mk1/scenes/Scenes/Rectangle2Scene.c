@@ -1,12 +1,14 @@
 #include "./../Scenes/Rectangle2Scene.h"
 
-
-
 #include <string.h>
+
+#include "_Gui.h"
+#include "_Images.h"
+#include "_Text.h"
+#include "_Video.h"
+
+#include "_Fonts.h"
 #include "_Graphics2.h"
-#include "./../Video.h"
-
-
 
 static void Rectangle2Scene_destruct(Rectangle2Scene* self);
 
@@ -20,13 +22,12 @@ struct Rectangle2Scene_Class {
 
 struct Rectangle2Scene {
   Scene parent;
-  
+
   // The 2D context.
   Machine_Context2* context2;
 
   // The 2D rectangle.
   Machine_Rectangle2* rectangle2;
-
 };
 
 static void Rectangle2Scene_visit(Rectangle2Scene* self) {
@@ -53,7 +54,8 @@ static void Rectangle2Scene_onStartup(Rectangle2Scene* self) {
   Machine_VideoContext_setClearColor(videoContext, c);
 }
 
-static void Rectangle2Scene_onCanvasSizeChanged(Rectangle2Scene* self, Machine_CanvasSizeChangedEvent* event) {
+static void Rectangle2Scene_onCanvasSizeChanged(Rectangle2Scene* self,
+                                                Machine_CanvasSizeChangedEvent* event) {
   Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
   // Set the 2D context's target size.
   Machine_Context2_setTargetSize(self->context2, event->width, event->height);
@@ -62,14 +64,16 @@ static void Rectangle2Scene_onCanvasSizeChanged(Rectangle2Scene* self, Machine_C
   // Set the 2D rectangle's rectangle.
   Machine_Math_Rectangle2* r = Machine_Math_Rectangle2_create();
   Machine_Math_Vector2* v = Machine_Math_Vector2_create();
-  Machine_Math_Vector2_set(v, event->width / 2.f - event->width / 4.f, event->height / 2.f - event->height / 4.f);
+  Machine_Math_Vector2_set(v, event->width / 2.f - event->width / 4.f,
+                           event->height / 2.f - event->height / 4.f);
   Machine_Math_Rectangle2_setPosition(r, v);
   Machine_Math_Vector2_set(v, event->width / 2.f, event->height / 2.f);
   Machine_Math_Rectangle2_setSize(r, v);
   Machine_Rectangle2_setRectangle(self->rectangle2, r);
 }
 
-static void Rectangle2Scene_onUpdate(Rectangle2Scene* self, Machine_Real width, Machine_Real height) {
+static void Rectangle2Scene_onUpdate(Rectangle2Scene* self, Machine_Real width,
+                                     Machine_Real height) {
   Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
   Rectangle2Scene_onCanvasSizeChanged(self, Machine_CanvasSizeChangedEvent_create(width, height));
   // Clear color buffer.
@@ -84,13 +88,15 @@ static void Rectangle2Scene_onShutdown(Rectangle2Scene* self) {
 }
 
 static void Rectangle2Scene_constructClass(Rectangle2Scene_Class* self) {
-  ((Scene_Class*)self)->onCanvasSizeChanged = (Scene_OnCanvaSizeChangedCallback*)&Rectangle2Scene_onCanvasSizeChanged;
+  ((Scene_Class*)self)->onCanvasSizeChanged
+      = (Scene_OnCanvaSizeChangedCallback*)&Rectangle2Scene_onCanvasSizeChanged;
   ((Scene_Class*)self)->onStartup = (Scene_OnStartupCallback*)&Rectangle2Scene_onStartup;
   ((Scene_Class*)self)->onUpdate = (Scene_OnUpdateCallback*)&Rectangle2Scene_onUpdate;
   ((Scene_Class*)self)->onShutdown = (Scene_OnShutdownCallback*)&Rectangle2Scene_onShutdown;
 }
 
-void Rectangle2Scene_construct(Rectangle2Scene* self, size_t numberOfArguments, Machine_Value const* arguments) {
+void Rectangle2Scene_construct(Rectangle2Scene* self, size_t numberOfArguments,
+                               Machine_Value const* arguments) {
   Scene_construct((Scene*)self, numberOfArguments, arguments);
   Machine_setClassType((Machine_Object*)self, Rectangle2Scene_getType());
 }
@@ -100,11 +106,13 @@ void Rectangle2Scene_destruct(Rectangle2Scene* self) {
   self->context2 = NULL;
 }
 
-Rectangle2Scene* Rectangle2Scene_create() {
+Rectangle2Scene* Rectangle2Scene_create(Machine_VideoContext* videoContext) {
   Machine_ClassType* ty = Rectangle2Scene_getType();
-  static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
-  Rectangle2Scene* self = (Rectangle2Scene*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  static size_t const NUMBER_OF_ARGUMENTS = 1;
+  Machine_Value ARGUMENTS[1];
+  Machine_Value_setObject(&(ARGUMENTS[0]), (Machine_Object*)videoContext);
+  Rectangle2Scene* self
+      = (Rectangle2Scene*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   if (!self) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
