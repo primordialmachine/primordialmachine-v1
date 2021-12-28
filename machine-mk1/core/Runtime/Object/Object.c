@@ -27,8 +27,8 @@ Machine_Object* cot2o(Machine_ClassObjectTag* src) {
   return Machine_Gc_toAddress(cot2t(src));
 }
 
-static size_t Machine_Object_getHashValueImpl(Machine_Object const* self) {
-  return (size_t)(uintptr_t)self;
+static Machine_Integer Machine_Object_getHashValueImpl(Machine_Object const* self) {
+  return Machine_hashPointer_i64(self);
 }
 
 static Machine_Boolean Machine_Object_isEqualToImpl(Machine_Object const* self,
@@ -164,7 +164,7 @@ Machine_Object* Machine_allocateClassObject(Machine_ClassType* type, size_t numb
   return (Machine_Object*)p;
 }
 
-size_t Machine_Object_getHashValue(Machine_Object const* self) {
+Machine_Integer Machine_Object_getHashValue(Machine_Object const* self) {
   MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_Object, getHashValue);
 }
 

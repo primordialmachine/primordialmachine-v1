@@ -31,6 +31,25 @@ static const size_t MINIMAL_CAPACITY = 8;
 /// @brief The maximal capacity.
 static const size_t MAXIMAL_CAPACITY = SIZE_MAX / sizeof(_MapNode*);
 
+#include <math.h>
+#include <float.h>
+
+static Machine_Boolean defaultEqual(Machine_Value const* x, Machine_Value const* y) {
+  if (x->tag != y->tag)
+    return Machine_Boolean_False;
+  if (Machine_Value_isReal(x)) {
+    // If only one value is NaN, then the values are not equal.
+    // If both values are are NaN, then the values are equal.
+    // If either value is NaN, normal IEEE754 comparison applies.
+    if (isnan(Machine_Value_getReal(x)) || isnan(Machine_Value_getReal(y))) {
+      return isnan(Machine_Value_getReal(x)) && isnan(Machine_Value_getReal(y));
+    }
+    return x == y;
+  } else {
+    return Machine_Value_isEqualTo(x, y);
+  }
+}
+
 static void maybeResize(Machine_HashMap* self) {
   _Map* pimpl = (_Map*)self->pimpl;
   size_t oldCapacity = pimpl->capacity;
@@ -76,12 +95,12 @@ static void maybeResize(Machine_HashMap* self) {
 
 static void set(Machine_HashMap* self, Machine_Value key, Machine_Value value) {
   _Map* pimpl = (_Map*)self->pimpl;
-  size_t hashValue = Machine_Value_getHashValue(&key);
-  size_t hashIndex = hashValue % pimpl->capacity;
+  Machine_Integer hashValue = Machine_Value_getHashValue(&key);
+  size_t hashIndex = ((size_t)hashValue) % pimpl->capacity;
   _MapNode* node;
   for (node = pimpl->buckets[hashIndex]; NULL != node; node = node->next) {
     if (node->hashValue == hashValue) {
-      if (Machine_Value_isEqualTo(&node->key, &key)) {
+      if (defaultEqual(&node->key, &key)) {
         node->key = key;
         node->value = value;
         return;
@@ -106,11 +125,11 @@ static void set(Machine_HashMap* self, Machine_Value key, Machine_Value value) {
 
 static Machine_Value get(Machine_HashMap const* self, Machine_Value key) {
   _Map const* pimpl = (_Map const*)self->pimpl;
-  size_t hashValue = Machine_Value_getHashValue(&key);
-  size_t hashIndex = hashValue % pimpl->capacity;
+  Machine_Integer hashValue = Machine_Value_getHashValue(&key);
+  size_t hashIndex = ((size_t)hashValue) % pimpl->capacity;
   for (_MapNode* node = pimpl->buckets[hashIndex]; NULL != node; node = node->next) {
     if (node->hashValue == hashValue) {
-      if (Machine_Value_isEqualTo(&node->key, &key)) {
+      if (defaultEqual(&node->key, &key)) {
         return node->value;
       }
     }

@@ -23,7 +23,7 @@ typedef struct Machine_ClassObjectTag {
 } Machine_ClassObjectTag;
 
 struct Machine_Object_Class {
-  size_t(*getHashValue)(Machine_Object const* self);
+  Machine_Integer (*getHashValue)(Machine_Object const* self);
   Machine_Boolean(*isEqualTo)(Machine_Object const* self, Machine_Object const* other);
   Machine_String* (*toString)(Machine_Object const* self);
 };
@@ -46,7 +46,7 @@ Machine_ClassType* Machine_Object_getType();
 /// @brief Get the hash value of this object.
 /// @param self This object.
 /// @return The hash value.
-size_t Machine_Object_getHashValue(Machine_Object const* self);
+Machine_Integer Machine_Object_getHashValue(Machine_Object const* self);
 
 /// @brief Get if an object is equal to another object.
 /// @param self This object.

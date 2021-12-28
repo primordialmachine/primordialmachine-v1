@@ -16,7 +16,6 @@
     <ClCompile Include="Runtime\Assertions.c" />
     <ClCompile Include="Runtime\ByteBuffer.c" />
     <ClCompile Include="Runtime\ByteBufferReader.c" />
-    <ClCompile Include="Runtime\ConvertPrimitiveTypes.c" />
     <ClCompile Include="Runtime\Gc\Gc.c" />
     <ClCompile Include="Runtime\Gc\Tag.c" />
     <ClCompile Include="Runtime\Io.c" />
@@ -51,7 +50,6 @@
     <ClInclude Include="Runtime\ByteBuffer.h" />
     <ClInclude Include="Runtime\ByteBufferReader.h" />
     <ClInclude Include="Runtime\Configuration.h" />
-    <ClInclude Include="Runtime\ConvertPrimitiveTypes.h" />
     <ClInclude Include="Runtime\Gc\Gc.h" />
     <ClInclude Include="Runtime\Gc\Tag.h" />
     <ClInclude Include="Runtime\Io.h" />

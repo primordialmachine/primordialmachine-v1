@@ -13,7 +13,6 @@
 
 
 #include "Runtime/PrimitiveTypes.h"
-#include "Runtime/ConvertPrimitiveTypes.h"
 typedef struct Machine_String Machine_String;
 typedef struct Machine_Object Machine_Object;
 
@@ -76,11 +75,11 @@ INLINE void Machine_Value_setBoolean(Machine_Value* self, Machine_Boolean value)
   self->booleanValue = value;
 }
 
-INLINE Machine_Boolean Machine_Value_getBoolean(const Machine_Value* self) {
+INLINE Machine_Boolean Machine_Value_getBoolean(Machine_Value const* self) {
   return self->booleanValue;
 }
 
-INLINE bool Machine_Value_isBoolean(const Machine_Value* self) {
+INLINE bool Machine_Value_isBoolean(Machine_Value const* self) {
   return self->tag == Machine_ValueFlag_Boolean;
 }
 
@@ -93,11 +92,11 @@ INLINE void Machine_Value_setInteger(Machine_Value* self, Machine_Integer value)
   self->integerValue = value;
 }
 
-INLINE Machine_Integer Machine_Value_getInteger(const Machine_Value* self) {
+INLINE Machine_Integer Machine_Value_getInteger(Machine_Value const* self) {
   return self->integerValue;
 }
 
-INLINE bool Machine_Value_isInteger(const Machine_Value* self) {
+INLINE bool Machine_Value_isInteger(Machine_Value const* self) {
   return self->tag == Machine_ValueFlag_Integer;
 }
 
@@ -110,11 +109,11 @@ INLINE void Machine_Value_setObject(Machine_Value* self, Machine_Object* value) 
   self->objectValue = value;
 }
 
-INLINE Machine_Object* Machine_Value_getObject(const Machine_Value* self) {
+INLINE Machine_Object* Machine_Value_getObject(Machine_Value const* self) {
   return self->objectValue;
 }
 
-INLINE bool Machine_Value_isObject(const Machine_Value* self) {
+INLINE bool Machine_Value_isObject(Machine_Value const* self) {
   return self->tag == Machine_ValueFlag_Object;
 }
 
@@ -127,11 +126,11 @@ INLINE void Machine_Value_setForeignProcedure(Machine_Value* self, Machine_Forei
   self->foreignProcedureValue = value;
 }
 
-INLINE Machine_ForeignProcedure* Machine_Value_getForeignProcedure(const Machine_Value* self) {
+INLINE Machine_ForeignProcedure* Machine_Value_getForeignProcedure(Machine_Value const* self) {
   return self->foreignProcedureValue;
 }
 
-INLINE bool Machine_Value_isForeignProcedure(const Machine_Value* self) {
+INLINE bool Machine_Value_isForeignProcedure(Machine_Value const* self) {
   return self->tag == Machine_ValueFlag_ForeignProcedure;
 }
 
@@ -144,11 +143,11 @@ INLINE void Machine_Value_setReal(Machine_Value* self, Machine_Real value) {
   self->realValue = value;
 }
 
-INLINE Machine_Real Machine_Value_getReal(const Machine_Value* self) {
+INLINE Machine_Real Machine_Value_getReal(Machine_Value const* self) {
   return self->realValue;
 }
 
-INLINE bool Machine_Value_isReal(const Machine_Value* self) {
+INLINE bool Machine_Value_isReal(Machine_Value const* self) {
   return self->tag == Machine_ValueFlag_Real;
 }
 
@@ -156,16 +155,16 @@ INLINE bool Machine_Value_isReal(const Machine_Value* self) {
 
 
 
-INLINE void Machine_Value_setString(Machine_Value* self, const Machine_String* value) {
+INLINE void Machine_Value_setString(Machine_Value* self, Machine_String const* value) {
   self->tag = Machine_ValueFlag_String;
   self->stringValue = (Machine_String*)value;
 }
 
-INLINE Machine_String* Machine_Value_getString(const Machine_Value* self) {
+INLINE Machine_String* Machine_Value_getString(Machine_Value const* self) {
   return self->stringValue;
 }
 
-INLINE bool Machine_Value_isString(const Machine_Value* self) {
+INLINE bool Machine_Value_isString(Machine_Value const* self) {
   return self->tag == Machine_ValueFlag_String;
 }
 
@@ -178,11 +177,11 @@ INLINE void Machine_Value_setVoid(Machine_Value* self, Machine_Void value) {
   self->voidValue = value;
 }
 
-INLINE Machine_Void Machine_Value_getVoid(const Machine_Value* self) {
+INLINE Machine_Void Machine_Value_getVoid(Machine_Value const* self) {
   return self->voidValue;
 }
 
-INLINE bool Machine_Value_isVoid(const Machine_Value* self) {
+INLINE bool Machine_Value_isVoid(Machine_Value const* self) {
   return self->tag == Machine_ValueFlag_Void;
 }
 
@@ -194,7 +193,7 @@ void Machine_Value_visit(Machine_Value* self);
 
 Machine_Boolean Machine_Value_isEqualTo(Machine_Value const* x, Machine_Value const* y);
 
-size_t Machine_Value_getHashValue(Machine_Value const* x);
+Machine_Integer Machine_Value_getHashValue(Machine_Value const* x);
 
 void Machine_Value_swap(Machine_Value* x, Machine_Value* y);
 

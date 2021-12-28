@@ -6,7 +6,12 @@
 
 #include "Collections/_header.i"
 
-/// @brief A map.
+/// @brief A hash map.
+/// @implements Machine.Map
+/// @details
+/// This hash map uses the default getHashValue functions for Machine.Value values.
+/// It uses the default isEqualTo functions for Machine.Value values with one exception:
+/// When two <code>NaN</code> values are compared, then they are considered as equal.
 MACHINE_DECLARE_CLASSTYPE(Machine_HashMap)
 
 struct Machine_HashMap_Class {

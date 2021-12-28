@@ -14,9 +14,9 @@ struct Machine_String {
 };
 
 /// @todo Machine_allocate has its own limit which is smaller than this value.
-static const size_t MACHINE_STRING_MAXIMAL_LENGTH = SIZE_MAX - sizeof(Machine_String);
+static size_t const MACHINE_STRING_MAXIMAL_LENGTH = SIZE_MAX - sizeof(Machine_String);
 
-Machine_String* Machine_String_create_noraise(const char* p, size_t n) {
+Machine_String* Machine_String_create_noraise(char const* p, size_t n) {
   if (n > MACHINE_STRING_MAXIMAL_LENGTH) {
     Machine_setStatus(Machine_Status_TooLong);
     return NULL;
@@ -41,7 +41,7 @@ Machine_String* Machine_String_create_noraise(const char* p, size_t n) {
   return self;
 }
 
-Machine_String* Machine_String_create(const char* p, size_t n) {
+Machine_String* Machine_String_create(char const* p, size_t n) {
   if (n > MACHINE_STRING_MAXIMAL_LENGTH) {
     Machine_setStatus(Machine_Status_TooLong);
     Machine_jump();
@@ -66,7 +66,7 @@ Machine_String* Machine_String_create(const char* p, size_t n) {
   return self;
 }
 
-Machine_String* Machine_String_concatenate(const Machine_String* self, const Machine_String* other) {
+Machine_String* Machine_String_concatenate(Machine_String const* self, Machine_String const* other) {
   MACHINE_ASSERT_NOTNULL(self);
   MACHINE_ASSERT_NOTNULL(other);
   if (SIZE_MAX - self->n < other->n) {
@@ -99,7 +99,7 @@ Machine_String* Machine_String_concatenate(const Machine_String* self, const Mac
   return c;
 }
 
-bool Machine_String_isEqualTo(const Machine_String* self, const Machine_String* other) {
+bool Machine_String_isEqualTo(Machine_String const* self, Machine_String const* other) {
   if (self == other) return true;
   if (self->n == other->n && self->hashValue == other->hashValue) {
     return !Machine_Eal_Memory_compare(self->p, other->p, self->n);
@@ -107,14 +107,15 @@ bool Machine_String_isEqualTo(const Machine_String* self, const Machine_String* 
   return false;
 }
 
-size_t Machine_String_getHashValue(const Machine_String* self) {
-  return self->hashValue;
+Machine_Integer Machine_String_getHashValue(Machine_String const* self) {
+  uint64_t v = (uint64_t)self->hashValue;
+  return (Machine_Integer)(v >> 1);
 }
 
-const char* Machine_String_getBytes(const Machine_String* self) {
+const char* Machine_String_getBytes(Machine_String const* self) {
   return self->p;
 }
 
-size_t Machine_String_getNumberOfBytes(const Machine_String* self) {
+size_t Machine_String_getNumberOfBytes(Machine_String const* self) {
   return self->n;
 }

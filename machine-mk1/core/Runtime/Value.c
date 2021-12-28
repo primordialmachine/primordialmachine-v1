@@ -20,7 +20,7 @@ void Machine_Value_visit(Machine_Value* self) {
 }
 
 
-Machine_Boolean Machine_Value_isEqualTo(const Machine_Value* x, const Machine_Value* y) {
+Machine_Boolean Machine_Value_isEqualTo(Machine_Value const* x, Machine_Value const* y) {
   if (x->tag != y->tag) {
     return false;
   }
@@ -44,7 +44,7 @@ Machine_Boolean Machine_Value_isEqualTo(const Machine_Value* x, const Machine_Va
   };
 }
 
-size_t Machine_Value_getHashValue(const Machine_Value* self) {
+Machine_Integer Machine_Value_getHashValue(Machine_Value const* self) {
   switch (self->tag) {
   case Machine_ValueFlag_Object:
     return Machine_Object_getHashValue(self->objectValue);
