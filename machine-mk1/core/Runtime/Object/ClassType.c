@@ -4,12 +4,12 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/Object/ClassType.h"
 
+#include "Runtime/Assertions.h"
+#include "Runtime/Gc/Gc.h"
 #include "Runtime/JumpTargetModule.h"
-#include "Runtime/Machine.h"
 #include "Runtime/Object/ClassType.module.h"
 #include "Runtime/Object/InterfaceType.module.h"
 #include "Runtime/Type.module.h"
-#include "_Eal.h"
 
 static void Machine_ClassType_finalize(Machine_ClassType* self) {
   if (self->parent) {

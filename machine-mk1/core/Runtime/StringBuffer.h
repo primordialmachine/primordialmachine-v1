@@ -10,10 +10,11 @@
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
 
-#include "Machine.h"
 
 
 
+#include "Runtime/Object/ClassType.h"
+typedef struct Machine_String Machine_String;
 
 /// @brief A string buffer.
 /// You can append/prepend/insert strings.

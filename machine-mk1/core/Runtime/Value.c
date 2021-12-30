@@ -3,10 +3,11 @@
 
 
 
-#include "Machine.h"
-#include "String.h"
 
 
+#include "Runtime/Assertions.h"
+#include "Runtime/Object/Object.h"
+#include "Runtime/String.h"
 
 void Machine_Value_visit(Machine_Value* self) {
   switch (self->tag) {

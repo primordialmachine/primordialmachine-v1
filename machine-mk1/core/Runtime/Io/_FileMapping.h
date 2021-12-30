@@ -4,7 +4,9 @@
 #if !defined(MACHINE_RUNTIME_IO__FILEMAPPING_H_INCLUDED)
 #define MACHINE_RUNTIME_IO__FILEMAPPING_H_INCLUDED
 
-#include "Runtime/IO/_FileHandle.h"
+#include "Runtime/Io/_FileHandle.h"
+#include "Runtime/JumpTargetModule.h"
+#include "Runtime/LogModule.h"
 #include "Runtime/Status.h"
 
 /// @brief Helper for file mappings.

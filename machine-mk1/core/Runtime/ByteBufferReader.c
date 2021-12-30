@@ -3,10 +3,10 @@
 
 
 
-#include "Machine.h"
 #include "Runtime/Arguments.h"
 
 
+#include "Runtime/Object/Object.h"
 
 struct Machine_ByteBufferReader_Class {
   Machine_Object_Class __parent;

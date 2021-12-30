@@ -5,8 +5,10 @@
 #include "Runtime/StringBuffer.h"
 
 
-#include "Runtime/String.h"
 #include "Runtime/ByteBuffer.h"
+#include "Runtime/Object/Object.h"
+#include "Runtime/String.h"
+#include "Runtime/Value.h"
 
 
 struct Machine_StringBuffer_Class {

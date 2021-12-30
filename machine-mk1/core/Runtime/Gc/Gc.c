@@ -6,8 +6,8 @@
 
 
 
+#include "Runtime/Object/Object.h"
 #include <assert.h>
-#include "Runtime/Machine.h"
 
 
 

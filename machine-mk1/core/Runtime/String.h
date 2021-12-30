@@ -8,7 +8,7 @@
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
 
-#include "Machine.h"
+#include "Runtime/PrimitiveTypes.h"
 
 /// C level representation of a string.
 typedef struct Machine_String Machine_String;

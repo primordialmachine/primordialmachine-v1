@@ -4,6 +4,10 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/ByteBuffer.h"
 
+#include "Runtime/JumpTargetModule.h"
+#include "Runtime/Object/Object.h"
+#include "Runtime/Status.h"
+#include "Runtime/Value.h"
 
 struct Machine_ByteBuffer_Class {
   Machine_Object_Class __parent;

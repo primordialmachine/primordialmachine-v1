@@ -12,8 +12,8 @@
 
 #include "Runtime/Io/ExistingFilePolicy.h"
 #include "Runtime/Io/FileAccessMode.h"
-#include "Runtime/Io/getFileContents.h"
 #include "Runtime/Io/NonExistingFilePolicy.h"
+#include "Runtime/Io/getFileContents.h"
 #include "Runtime/Io/setFileContents.h"
 
 

@@ -10,9 +10,10 @@
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
 
-#include "Machine.h"
 
 
+#include "Runtime/Object/ClassType.h"
+#include "Runtime/PrimitiveTypes.h"
 
 MACHINE_DECLARE_CLASSTYPE(Machine_ByteBuffer)
 

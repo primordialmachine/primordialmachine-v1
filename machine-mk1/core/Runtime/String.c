@@ -6,6 +6,10 @@
 
 
 
+#include "Runtime/Assertions.h"
+#include "Runtime/Gc/Gc.h"
+#include "Runtime/JumpTargetModule.h"
+#include "Runtime/Status.h"
 
 struct Machine_String {
   size_t hashValue;

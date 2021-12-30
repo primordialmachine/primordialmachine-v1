@@ -4,12 +4,15 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/PrimitiveTypes.h"
 
+#include "Runtime/Assertions.h"
+#include "Runtime/JumpTargetModule.h"
+#include "Runtime/Status.h"
 #include "Runtime/String.h"
-#include <math.h>
 #include <float.h>
 #include <inttypes.h>
-#include <string.h>
+#include <math.h>
 #include <stdio.h>
+#include <string.h>
 
 size_t Machine_hashPointer_sz(void const* x) {
   return (size_t)(uintptr_t)x;

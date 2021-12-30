@@ -8,6 +8,7 @@
 #endif
 #include "Runtime/PrimitiveTypes.h"
 #include "Runtime/String.h"
+#include "Runtime/Gc/Gc.h"
 #include "Runtime/Object/ClassType.h"
 
 

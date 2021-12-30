@@ -1,10 +1,11 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/Object/Object.h"
 
-#include "Runtime/Machine.h"
-#include "Runtime/Type.module.h"
+#include "Runtime/Assertions.h"
+#include "Runtime/JumpTargetModule.h"
 #include "Runtime/Object/ClassType.module.h"
 #include "Runtime/Object/InterfaceType.module.h"
+#include "Runtime/Type.module.h"
 #include <assert.h>
 
 Machine_ClassObjectTag* o2cot(void* src) {

@@ -7,10 +7,14 @@
 #if !defined(MACHINE_RUNTIME_PRIVATE)
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
-#include "Runtime/Machine.h"
+#include "Runtime/Assertions.h"
+#include "Runtime/Io/_FileHandle.h"
 #include "Runtime/Io/ExistingFilePolicy.h"
 #include "Runtime/Io/FileAccessMode.h"
 #include "Runtime/Io/NonExistingFilePolicy.h"
+#include "Runtime/JumpTargetModule.h"
+#include "Runtime/LogModule.h"
+#include "Runtime/Status.h"
 #include "Runtime/String.h"
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>

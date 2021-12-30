@@ -7,6 +7,7 @@
 #if !defined(MACHINE_RUNTIME_PRIVATE)
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
+#include "_Eal.h"
 
 /// @brief Type of a status variable values.
 typedef int Machine_StatusValue;

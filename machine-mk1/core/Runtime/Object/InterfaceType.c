@@ -4,9 +4,10 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/Object/InterfaceType.h"
 
-#include "Runtime/Machine.h"
-#include "Runtime/Type.module.h"
+#include "Runtime/Gc/Gc.h"
+#include "Runtime/JumpTargetModule.h"
 #include "Runtime/Object/InterfaceType.module.h"
+#include "Runtime/Type.module.h"
 
 static void Machine_InterfaceType_finalize(Machine_InterfaceType* self) {
   if (self->extendsArrayInitialized) {
