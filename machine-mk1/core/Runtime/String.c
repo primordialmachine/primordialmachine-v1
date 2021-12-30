@@ -4,8 +4,6 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/String.h"
 
-
-
 #include "Runtime/Assertions.h"
 #include "Runtime/Gc/Gc.h"
 #include "Runtime/JumpTargetModule.h"
@@ -70,7 +68,8 @@ Machine_String* Machine_String_create(char const* p, size_t n) {
   return self;
 }
 
-Machine_String* Machine_String_concatenate(Machine_String const* self, Machine_String const* other) {
+Machine_String* Machine_String_concatenate(Machine_String const* self,
+                                           Machine_String const* other) {
   MACHINE_ASSERT_NOTNULL(self);
   MACHINE_ASSERT_NOTNULL(other);
   if (SIZE_MAX - self->n < other->n) {
@@ -91,7 +90,7 @@ Machine_String* Machine_String_concatenate(Machine_String const* self, Machine_S
   Machine_String* c = Machine_Gc_allocate(&allocationArguments);
   if (!self) {
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();    
+    Machine_jump();
   }
   Machine_Eal_Memory_copy(c->p, self->p, self->n, false);
   Machine_Eal_Memory_copy(c->p + self->n, other->p, other->n, false);
@@ -104,7 +103,8 @@ Machine_String* Machine_String_concatenate(Machine_String const* self, Machine_S
 }
 
 bool Machine_String_isEqualTo(Machine_String const* self, Machine_String const* other) {
-  if (self == other) return true;
+  if (self == other)
+    return true;
   if (self->n == other->n && self->hashValue == other->hashValue) {
     return !Machine_Eal_Memory_compare(self->p, other->p, self->n);
   }

@@ -4,16 +4,11 @@
 #if !defined(MACHINE_RUNTIME_STACKMODULE_H_INCLUDED)
 #define MACHINE_RUNTIME_STACKMODULE_H_INCLUDED
 
-
-
 #if !defined(MACHINE_RUNTIME_PRIVATE)
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
-
 #include "Runtime/Status.h"
 #include "Runtime/Value.h"
-
-
 
 Machine_StatusValue Machine_initializeStackModule();
 
@@ -53,7 +48,5 @@ void Machine_loadString(Machine_String* value);
 /// @param value The value.
 /// @error Machine_Status_StackOverflow The stack is full.
 void Machine_loadVoid(Machine_Void value);
-
-
 
 #endif // MACHINE_RUNTIME_JUMPTARGETMODULE_H_INCLUDED

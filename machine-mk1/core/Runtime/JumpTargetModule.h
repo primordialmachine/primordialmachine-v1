@@ -4,16 +4,11 @@
 #if !defined(MACHINE_RUNTIME_JUMPTARGETMODULE_H_INCLUDED)
 #define MACHINE_RUNTIME_JUMPTARGETMODULE_H_INCLUDED
 
-
-
 #if !defined(MACHINE_RUNTIME_PRIVATE)
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
-
 #include "Runtime/Status.h"
 #include "_Eal.h"
-
-
 
 Machine_StatusValue Machine_initializeJumpTargetModule();
 
@@ -37,7 +32,5 @@ void Machine_popJumpTarget();
 /// @brief Jump to the top of the jump target stack.
 /// @warning Undefined if the jump target stack is empty.
 NORETURN void Machine_jump();
-
-
 
 #endif // MACHINE_RUNTIME_JUMPTARGETMODULE_H_INCLUDED

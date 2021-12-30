@@ -7,7 +7,6 @@
 #if !defined(MACHINE_RUNTIME_PRIVATE)
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
-
 #include "_Eal.h"
 
 /// C-level representation of a type.

@@ -4,14 +4,9 @@
 #if !defined(MACHINE_RUNTIME_BYTEBUFFER_H_INCLUDED)
 #define MACHINE_RUNTIME_BYTEBUFFER_H_INCLUDED
 
-
-
 #if !defined(MACHINE_RUNTIME_PRIVATE)
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
-
-
-
 #include "Runtime/Object/ClassType.h"
 #include "Runtime/PrimitiveTypes.h"
 
@@ -55,8 +50,7 @@ size_t Machine_ByteBuffer_getNumberOfBytes(Machine_ByteBuffer const* self);
 /// @param self This Byte buffer.
 /// @param p, n The specified Bytes.
 /// @return @a true if the Bytes are equal, @a false otherwise.
-Machine_Boolean Machine_ByteBuffer_compareBytes(Machine_ByteBuffer const* self, char const* p, size_t n);
-
-
+Machine_Boolean Machine_ByteBuffer_compareBytes(Machine_ByteBuffer const* self, char const* p,
+                                                size_t n);
 
 #endif // MACHINE_RUNTIME_BYTEBUFFER_H_INCLUDED

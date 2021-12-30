@@ -12,8 +12,7 @@
 static void Machine_InterfaceType_finalize(Machine_InterfaceType* self) {
   if (self->extendsArrayInitialized) {
     for (size_t i = 0, n = self->extends.size; i < n; ++i) {
-      Machine_InterfaceType* element
-          = Machine_Eal_InlineArray_getAt(&self->extends, i);
+      Machine_InterfaceType* element = Machine_Eal_InlineArray_getAt(&self->extends, i);
       Machine_Gc_unlock(element);
     }
     Machine_Eal_InlineArray_uninitialize(&self->extends);
@@ -43,7 +42,7 @@ Machine_InterfaceType* Machine_createInterfaceType(Machine_CreateInterfaceTypeAr
       = Machine_Eal_Memory_allocateArray(sizeof(Machine_Type*), 0);
   ((Machine_Type*)interfaceType)->children.size = 0;
   static const Machine_Eal_InlineArrayDispatch extendsConfiguration = {
-    .elementSize = sizeof(Machine_Type *),
+    .elementSize = sizeof(Machine_Type*),
   };
   if (Machine_Eal_InlineArray_initialize(&interfaceType->extends, &extendsConfiguration)) {
     Machine_setStatus(Machine_Status_AllocationFailed);
@@ -65,11 +64,11 @@ bool Machine_InterfaceType_extend(Machine_InterfaceType* self, Machine_Type* ext
     Machine_jump();
   }
   // If EXTENDED is a super-type of THIS, return true.
-  if (Machine_Type_isSuperTypeOf(extended, (Machine_Type *)self)) {
+  if (Machine_Type_isSuperTypeOf(extended, (Machine_Type*)self)) {
     return true;
   }
   // If EXTENDED is a sub-type of THIS, return false.
-  if (Machine_Type_isSubTypeOf(extended, (Machine_Type *)self)) {
+  if (Machine_Type_isSubTypeOf(extended, (Machine_Type*)self)) {
     return false;
   }
   if (Machine_Eal_InlineArray_append(&self->extends, extended)) {
@@ -96,7 +95,6 @@ void Machine_InterfaceType_ensureInitialized(Machine_InterfaceType* self) {
       Machine_InterfaceType_ensureInitialized(element);
     }
     Machine_InterfaceType_addFlag(self, Machine_InterfaceTypeFlags_PrerequisitesInitialized);
-
   }
   _TypeFlag_set((Machine_Type*)self, Machine_TypeFlags_Initialized);
 }

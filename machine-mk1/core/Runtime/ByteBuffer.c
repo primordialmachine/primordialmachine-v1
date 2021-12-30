@@ -21,7 +21,8 @@ struct Machine_ByteBuffer {
   size_t c; ///< The capacity.
 };
 
-static void Machine_ByteBuffer_construct(Machine_ByteBuffer* self, size_t numberOfArguments, Machine_Value const* arguments) {
+static void Machine_ByteBuffer_construct(Machine_ByteBuffer* self, size_t numberOfArguments,
+                                         Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->p = Machine_Eal_Memory_allocate(0);
   if (!self->p) {
@@ -30,7 +31,7 @@ static void Machine_ByteBuffer_construct(Machine_ByteBuffer* self, size_t number
   }
   self->s = 0;
   self->c = 0;
-  Machine_setClassType((Machine_Object *)self, Machine_ByteBuffer_getType());
+  Machine_setClassType((Machine_Object*)self, Machine_ByteBuffer_getType());
 }
 
 static void Machine_ByteBuffer_destruct(Machine_ByteBuffer* self) {
@@ -45,7 +46,8 @@ Machine_ByteBuffer* Machine_ByteBuffer_create() {
   Machine_ClassType* ty = Machine_ByteBuffer_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
   static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
-  Machine_ByteBuffer* self = (Machine_ByteBuffer*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Machine_ByteBuffer* self
+      = (Machine_ByteBuffer*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }
 
@@ -91,7 +93,8 @@ size_t Machine_ByteBuffer_getNumberOfBytes(Machine_ByteBuffer const* self) {
   return self->s;
 }
 
-Machine_Boolean Machine_ByteBuffer_compareBytes(Machine_ByteBuffer const* self, char const* p, size_t n) {
+Machine_Boolean Machine_ByteBuffer_compareBytes(Machine_ByteBuffer const* self, char const* p,
+                                                size_t n) {
   if (n != self->s) {
     return false;
   }

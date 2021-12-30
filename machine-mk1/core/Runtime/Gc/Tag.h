@@ -4,14 +4,10 @@
 #if !defined(MACHINE_RUNTIME_GC_TAG_H_INCLUDED)
 #define MACHINE_RUNTIME_GC_TAG_H_INCLUDED
 
-
-
 #if !defined(MACHINE_RUNTIME_PRIVATE)
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
 #include "_Eal.h"
-
-
 
 /// @brief Type of a finalize callback function.
 /// @param object The object to finalize.
@@ -38,7 +34,7 @@ struct Machine_Gc_Tag {
 /// @post
 /// next, gray, visit, finalize are all null.
 /// lockCount, size are all 0.
-/// The color of the tag is "white". 
+/// The color of the tag is "white".
 void Machine_Gc_Tag_initialize(Machine_Gc_Tag* tag);
 
 /// @brief Uninitialize this tag.

@@ -52,7 +52,8 @@ static bool ini(Machine_InterfaceType const* x, Machine_InterfaceType const* y) 
     return true;
   }
   for (size_t i = 0, n = x->extends.size; i < n; ++i) {
-    Machine_InterfaceType const* z = (Machine_InterfaceType const*)Machine_Eal_InlineArray_getAt((Machine_Eal_InlineArray*)&x->extends, i);
+    Machine_InterfaceType const* z = (Machine_InterfaceType const*)Machine_Eal_InlineArray_getAt(
+        (Machine_Eal_InlineArray*)&x->extends, i);
     if (ini(z, y)) {
       return true;
     }
@@ -100,8 +101,7 @@ bool Machine_Type_isSubTypeOf(Machine_Type const* self, Machine_Type const* othe
       // Case II.1.
       // self is class type.
       // other is class type.
-      return cnc((Machine_ClassType const*)self,
-                 (Machine_ClassType const*)other); 
+      return cnc((Machine_ClassType const*)self, (Machine_ClassType const*)other);
     } else if (_TypeFlag_isSet(self, Machine_TypeFlags_Interface)) {
       // CASE II.2.
       // self is an interface type.
@@ -116,12 +116,12 @@ bool Machine_Type_isSubTypeOf(Machine_Type const* self, Machine_Type const* othe
       // CASE III.1.
       // self is class type.
       // other is interface type.
-      return cni((Machine_ClassType const *)self, (Machine_InterfaceType  const *)other);
+      return cni((Machine_ClassType const*)self, (Machine_InterfaceType const*)other);
     } else if (_TypeFlag_isSet(self, Machine_TypeFlags_Interface)) {
       // CASE III.2.
       // self is an interface type.
       // other is an interface type.
-      return ini((Machine_InterfaceType const *)self, (Machine_InterfaceType  const *)other);
+      return ini((Machine_InterfaceType const*)self, (Machine_InterfaceType const*)other);
     } else {
       // CASE III.3.
       return false;

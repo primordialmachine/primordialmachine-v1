@@ -4,8 +4,6 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/StaticVariablesModule.h"
 
-
-
 typedef struct Node Node;
 
 struct Node {
@@ -23,7 +21,8 @@ bool Machine_registerStaticVariables(Machine_UninitializeStaticVariablesCallback
   if (!node) {
     return false;
   }
-  node->next = g_nodes; g_nodes = node;
+  node->next = g_nodes;
+  g_nodes = node;
   node->callback = callback;
   return true;
 }
@@ -34,7 +33,8 @@ Machine_StatusValue Machine_initializeStaticVariablesModule() {
 
 void Machine_uninitializeStaticVariablesModule() {
   while (g_nodes) {
-    Node* node = g_nodes; g_nodes = node->next;
+    Node* node = g_nodes;
+    g_nodes = node->next;
     Machine_Eal_Memory_deallocate(node);
   }
 }

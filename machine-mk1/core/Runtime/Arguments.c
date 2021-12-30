@@ -4,13 +4,13 @@
 /// @brief Functionality to access argument lists.
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/Arguments.h"
+
 #include "Runtime/JumpTargetModule.h"
 #include "Runtime/Object/Object.h"
 #include "Runtime/Status.h"
 
 Machine_Integer Machine_Extensions_getBooleanArgument(size_t numberOfArguments,
-                                                             Machine_Value const* arguments,
-                                                             size_t i) {
+                                                      Machine_Value const* arguments, size_t i) {
   if (i >= numberOfArguments) {
     Machine_setStatus(Machine_Status_InvalidNumberOfArguments);
     Machine_jump();
@@ -24,8 +24,7 @@ Machine_Integer Machine_Extensions_getBooleanArgument(size_t numberOfArguments,
 }
 
 Machine_Integer Machine_Extensions_getIntegerArgument(size_t numberOfArguments,
-                                                             Machine_Value const* arguments,
-                                                             size_t i) {
+                                                      Machine_Value const* arguments, size_t i) {
   if (i >= numberOfArguments) {
     Machine_setStatus(Machine_Status_InvalidNumberOfArguments);
     Machine_jump();
@@ -39,8 +38,7 @@ Machine_Integer Machine_Extensions_getIntegerArgument(size_t numberOfArguments,
 }
 
 Machine_String* Machine_Extensions_getStringArgument(size_t numberOfArguments,
-                                                            Machine_Value const* arguments,
-                                                            size_t i) {
+                                                     Machine_Value const* arguments, size_t i) {
   if (i >= numberOfArguments) {
     Machine_setStatus(Machine_Status_InvalidNumberOfArguments);
     Machine_jump();
@@ -54,8 +52,8 @@ Machine_String* Machine_Extensions_getStringArgument(size_t numberOfArguments,
 }
 
 Machine_Object* Machine_Extensions_getObjectArgument(size_t numberOfArguments,
-                                                            Machine_Value const* arguments,
-                                                            size_t i, Machine_ClassType* t) {
+                                                     Machine_Value const* arguments, size_t i,
+                                                     Machine_ClassType* t) {
   if (i >= numberOfArguments) {
     Machine_setStatus(Machine_Status_InvalidNumberOfArguments);
     Machine_jump();

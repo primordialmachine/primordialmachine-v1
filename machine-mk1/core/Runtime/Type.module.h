@@ -12,7 +12,7 @@
 /// @brief Type flags. See Machine_Type for more infomration.
 #define Machine_TypeFlags_Initialized (4)
 
-void _Type_visit(Machine_Type *self);
+void _Type_visit(Machine_Type* self);
 
 void _Type_finalize(Machine_Type* self);
 

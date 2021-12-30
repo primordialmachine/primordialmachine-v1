@@ -4,21 +4,11 @@
 #if !defined(MACHINE_RUNTIME_LOGMODULE_H_INCLUDED)
 #define MACHINE_RUNTIME_LOGMODULE_H_INCLUDED
 
-
-
-
 #if !defined(MACHINE_RUNTIME_PRIVATE)
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
-
-
-
-
 #include "Runtime/Configuration.h"
 #include "Runtime/Status.h"
-
-
-
 
 #if defined(MACHINE_WITH_LOG) && 1 == MACHINE_WITH_LOG
 
@@ -42,9 +32,5 @@ void Machine_uninitializeLogModule();
 void Machine_log(int flags, const char* file, int line, const char* format, ...);
 
 #endif // MACHINE_RUNTIME_LOGMODULE_H_INCLUDED
-
-
-
-
 
 #endif // MACHINE_RUNTIME_LOG_H_INCLUDED

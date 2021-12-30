@@ -4,16 +4,12 @@
 #if !defined(MACHINE_RUNTIME_GC_GC_H_INCLUDED)
 #define MACHINE_RUNTIME_GC_GC_H_INCLUDED
 
-
-
 #if !defined(MACHINE_RUNTIME_PRIVATE)
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
-#include "_Eal.h"
 #include "Runtime/Gc/Tag.h"
 #include "Runtime/Status.h"
-
-
+#include "_Eal.h"
 
 /// @brief Initialize the GC module.
 Machine_StatusValue Machine_initializeGcModule();
@@ -59,7 +55,7 @@ typedef struct Machine_Gc_AllocationArguments {
 
   /// @brief A pointer to a Machine_Gc_VisitCallback function or a null pointer.
   Machine_Gc_VisitCallback* visit;
-  
+
   /// @brief A pointer to a Machine_Gc_FinalizeCallback function or a null pointer.
   Machine_Gc_FinalizeCallback* finalize;
 

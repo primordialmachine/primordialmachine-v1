@@ -1,11 +1,6 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/Machine.h"
 
-
-
-
-
-
 #include "Runtime/Gc/Gc.h"
 #include "Runtime/JumpTargetModule.h"
 #include "Runtime/LogModule.h"
@@ -13,14 +8,10 @@
 #include "Runtime/StaticVariablesModule.h"
 #include <stdio.h>
 
-
-
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-
-
 static const struct {
-  Machine_StatusValue(*initialize)();
+  Machine_StatusValue (*initialize)();
   void (*uninitialize)();
 } MODULES[] = {
   { &Machine_initializeLogModule, &Machine_uninitializeLogModule },
@@ -55,7 +46,7 @@ void Machine_update() {
 void Machine_shutdown() {
   size_t MAX_RUN = 8;
   size_t live = 0, dead = 0, run = 0;
-  
+
   do {
     size_t newLive, newDead;
     Machine_Gc_run(&newLive, &newDead);
@@ -87,7 +78,7 @@ void Machine_shutdown() {
   }
 
   for (size_t i = NUMBER_OF_MODULES; i > 0; --i) {
-    MODULES[i-1].uninitialize();
+    MODULES[i - 1].uninitialize();
   }
 }
 

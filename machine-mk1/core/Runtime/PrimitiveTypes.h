@@ -211,7 +211,6 @@ typedef int Machine_Void;
 
 Machine_Integer Machine_Void_getHashValue(Machine_Void x);
 
-
 /// @brief
 /// Compare two <code>Void</code> values for equality.
 /// @param x

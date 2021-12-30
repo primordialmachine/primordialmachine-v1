@@ -4,11 +4,7 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/StackModule.h"
 
-
-
 #include "Runtime/JumpTargetModule.h"
-
-
 
 typedef struct Stack {
   Machine_Value* elements;

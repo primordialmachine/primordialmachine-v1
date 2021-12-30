@@ -4,12 +4,8 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/Gc/Gc.h"
 
-
-
 #include "Runtime/Object/Object.h"
 #include <assert.h>
-
-
 
 static Machine_Gc_Tag* g_objects = NULL;
 static Machine_Gc_Tag* g_gray = NULL;
@@ -55,12 +51,14 @@ bool Machine_Gc_isRoot(void* object) {
 }
 
 void* Machine_Gc_allocate(Machine_Gc_AllocationArguments const* arguments) {
-  void* pt = Machine_Eal_Memory_allocate(arguments->prefixSize + sizeof(Machine_Gc_Tag) + arguments->suffixSize);
+  void* pt = Machine_Eal_Memory_allocate(arguments->prefixSize + sizeof(Machine_Gc_Tag)
+                                         + arguments->suffixSize);
   if (!pt) {
     return NULL;
   }
   g_objectCount++;
-  Machine_Eal_Memory_zero(pt, arguments->prefixSize + sizeof(Machine_Gc_Tag) + arguments->suffixSize);
+  Machine_Eal_Memory_zero(pt,
+                          arguments->prefixSize + sizeof(Machine_Gc_Tag) + arguments->suffixSize);
   Machine_Gc_Tag* t = (Machine_Gc_Tag*)(((char*)pt) + arguments->prefixSize);
   Machine_Gc_Tag_initialize(t);
   t->size = arguments->suffixSize;
