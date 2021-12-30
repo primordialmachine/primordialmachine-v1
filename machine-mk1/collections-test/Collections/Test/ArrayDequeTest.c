@@ -26,7 +26,7 @@ void Machine_Collections_Test_ArrayDequeTest_test2() {
   Machine_Deque* deque = (Machine_Deque *)Machine_ArrayDeque_create();
   Machine_Value value;
 
-  static const size_t N = 3;
+  static size_t const N = 3;
 
   for (size_t i = 0, n = N; i < n; ++i) {
     Machine_Value_setInteger(&value, i);

@@ -26,7 +26,7 @@ struct Machine_Pair {
 /// The first argument is the first value,
 /// the second argument is the second value.
 void Machine_Pair_construct(Machine_Pair* self, size_t numberOfArguments,
-                            const Machine_Value* arguments);
+                            Machine_Value const* arguments);
 
 /// @brief Create a pair with default values.
 /// @return The pair.

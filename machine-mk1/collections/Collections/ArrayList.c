@@ -8,7 +8,7 @@
 #include "Collections/GrowthStrategy.h"
 #include "Collections/List.h"
 
-static const size_t maximalCapacity = SIZE_MAX / sizeof(Machine_Value);
+static size_t const maximalCapacity = SIZE_MAX / sizeof(Machine_Value);
 
 static void append(Machine_ArrayList* self, Machine_Value value);
 

@@ -74,7 +74,7 @@ static size_t Machine_modSub_sz(size_t mod, size_t i, size_t j) {
   }
 }
 
-static const size_t maximalCapacity = SIZE_MAX / sizeof(Machine_Value);
+static size_t const maximalCapacity = SIZE_MAX / sizeof(Machine_Value);
 
 static void clear(Machine_ArrayDeque* self);
 
@@ -294,8 +294,8 @@ static void pushFront(Machine_ArrayDeque* self, Machine_Value value) {
 
 Machine_ArrayDeque* Machine_ArrayDeque_create() {
   Machine_ClassType* ty = Machine_ArrayDeque_getType();
-  static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  static size_t const NUMBER_OF_ARGUMENTS = 0;
+  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_ArrayDeque* self
       = (Machine_ArrayDeque*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;

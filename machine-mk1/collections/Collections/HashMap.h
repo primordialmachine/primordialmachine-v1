@@ -28,7 +28,7 @@ struct Machine_HashMap {
 /// @param numberOfArguments The number of arguments.
 /// @param arguments The arguments.
 void Machine_HashMap_construct(Machine_HashMap* self, size_t numberOfArguments,
-                               const Machine_Value* arguments);
+                               Machine_Value const* arguments);
 
 /// @brief Create an empty hash map.
 /// @return The hash map.

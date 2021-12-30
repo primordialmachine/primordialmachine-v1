@@ -26,10 +26,10 @@ struct _Map {
 };
 
 /// @brief The minimal capacity.
-static const size_t MINIMAL_CAPACITY = 8;
+static size_t const MINIMAL_CAPACITY = 8;
 
 /// @brief The maximal capacity.
-static const size_t MAXIMAL_CAPACITY = SIZE_MAX / sizeof(_MapNode*);
+static size_t const MAXIMAL_CAPACITY = SIZE_MAX / sizeof(_MapNode*);
 
 #include <math.h>
 #include <float.h>
