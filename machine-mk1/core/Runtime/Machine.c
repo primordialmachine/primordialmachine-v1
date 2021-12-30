@@ -29,7 +29,7 @@ static const struct {
   { &Machine_initializeStackModule, &Machine_uninitializeStackModule },
   { &Machine_initializeStaticVariablesModule, &Machine_uninitializeStaticVariablesModule },
 };
-static size_t const NUMBER_OF_MODULES = 4;
+static size_t const NUMBER_OF_MODULES = 5;
 
 Machine_StatusValue Machine_startup() {
   for (size_t i = 0, n = NUMBER_OF_MODULES; i < n; ++i) {
