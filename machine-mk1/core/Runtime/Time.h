@@ -9,9 +9,9 @@
 #if !defined(MACHINE_RUNTIME_PRIVATE)
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
-#include "Machine.h"
 
 
+#include "_Eal.h"
 
 /// @brief Get the time, in milliseconds, since the start of the system.
 /// @return The time, in milliseconds, since the start of the system.

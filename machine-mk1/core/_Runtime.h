@@ -11,6 +11,7 @@
 #include "Runtime/Io.h"
 #include "Runtime/JumpTargetModule.h"
 #include "Runtime/LogModule.h"
+#include "Runtime/Machine.h"
 #include "Runtime/Object/ClassType.h"
 #include "Runtime/Object/InterfaceType.h"
 #include "Runtime/Object/Object.h"
