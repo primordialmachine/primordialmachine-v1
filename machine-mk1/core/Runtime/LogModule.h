@@ -31,6 +31,6 @@ void Machine_uninitializeLogModule();
 /// @param format, ... The printf-style format string and format arguments.
 void Machine_log(int flags, const char* file, int line, const char* format, ...);
 
-#endif // MACHINE_RUNTIME_LOGMODULE_H_INCLUDED
+#endif // MACHINE_WITH_LOG
 
-#endif // MACHINE_RUNTIME_LOG_H_INCLUDED
+#endif // MACHINE_RUNTIME_LOGMODULE_H_INCLUDED
