@@ -9,72 +9,23 @@
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
 
-#include "Machine.h"
-#include "Runtime/Status.h"
+#include "Runtime/Object/ClassType.h"
 #include "Runtime/Value.h"
 
-INLINE Machine_Integer Machine_Extensions_getBooleanArgument(size_t numberOfArguments,
+Machine_Integer Machine_Extensions_getBooleanArgument(size_t numberOfArguments,
                                                              Machine_Value const* arguments,
-                                                             size_t i) {
-  if (i >= numberOfArguments) {
-    Machine_setStatus(Machine_Status_InvalidNumberOfArguments);
-    Machine_jump();
-  }
-  if (!Machine_Value_isBoolean(arguments + i)) {
-    Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
-  }
-  Machine_Boolean v = Machine_Value_getBoolean(arguments + i);
-  return v;
-}
+                                                             size_t i);
 
-INLINE Machine_Integer Machine_Extensions_getIntegerArgument(size_t numberOfArguments,
+Machine_Integer Machine_Extensions_getIntegerArgument(size_t numberOfArguments,
                                                              Machine_Value const* arguments,
-                                                             size_t i) {
-  if (i >= numberOfArguments) {
-    Machine_setStatus(Machine_Status_InvalidNumberOfArguments);
-    Machine_jump();
-  }
-  if (!Machine_Value_isInteger(arguments + i)) {
-    Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
-  }
-  Machine_Integer v = Machine_Value_getInteger(arguments + i);
-  return v;
-}
+                                                             size_t i);
 
-INLINE Machine_String* Machine_Extensions_getStringArgument(size_t numberOfArguments,
+Machine_String* Machine_Extensions_getStringArgument(size_t numberOfArguments,
                                                             Machine_Value const* arguments,
-                                                            size_t i) {
-  if (i >= numberOfArguments) {
-    Machine_setStatus(Machine_Status_InvalidNumberOfArguments);
-    Machine_jump();
-  }
-  if (!Machine_Value_isString(arguments + i)) {
-    Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
-  }
-  Machine_String* v = Machine_Value_getString(arguments + i);
-  return v;
-}
+                                                            size_t i);
 
-INLINE Machine_Object* Machine_Extensions_getObjectArgument(size_t numberOfArguments,
+Machine_Object* Machine_Extensions_getObjectArgument(size_t numberOfArguments,
                                                             Machine_Value const* arguments,
-                                                            size_t i, Machine_ClassType* t) {
-  if (i >= numberOfArguments) {
-    Machine_setStatus(Machine_Status_InvalidNumberOfArguments);
-    Machine_jump();
-  }
-  if (!Machine_Value_isObject(arguments + i)) {
-    Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
-  }
-  Machine_Object* v = Machine_Value_getObject(arguments + i);
-  if (!Machine_Type_isSubTypeOf((Machine_Type*)Machine_getClassType(v), (Machine_Type*)t)) {
-    Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
-  }
-  return v;
-}
+                                                            size_t i, Machine_ClassType* t);
 
 #endif // MACHINE_RUNTIME_ARGUMENTS_H_INCLUDED
