@@ -13,13 +13,13 @@ Machine_ClassObjectTag* o2cot(void* src) {
 }
 
 Machine_Gc_Tag* cot2t(Machine_ClassObjectTag* src) {
-  static const size_t N = sizeof(Machine_ClassObjectTag);
+  static size_t const N = sizeof(Machine_ClassObjectTag);
   char* dst = ((char*)src) + N;
   return (Machine_Gc_Tag*)dst;
 }
 
 Machine_ClassObjectTag* t2cot(Machine_Gc_Tag* src) {
-  static const size_t N = sizeof(Machine_ClassObjectTag);
+  static size_t const N = sizeof(Machine_ClassObjectTag);
   char* dst = ((char*)src) - N;
   return (Machine_ClassObjectTag*)dst;
 }

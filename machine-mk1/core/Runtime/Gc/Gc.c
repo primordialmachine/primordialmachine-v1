@@ -23,13 +23,13 @@ void Machine_uninitializeGcModule() {
 }
 
 Machine_Gc_Tag* Machine_Gc_toTag(void* src) {
-  static const size_t N = sizeof(Machine_Gc_Tag);
+  static size_t const N = sizeof(Machine_Gc_Tag);
   char* dst = ((char*)src) - N;
   return (Machine_Gc_Tag*)dst;
 }
 
 void* Machine_Gc_toAddress(Machine_Gc_Tag* src) {
-  static const size_t N = sizeof(Machine_Gc_Tag);
+  static size_t const N = sizeof(Machine_Gc_Tag);
   char* dst = ((char*)src) + N;
   return (void*)dst;
 }
