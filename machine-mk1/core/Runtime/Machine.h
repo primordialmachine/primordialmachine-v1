@@ -1,8 +1,8 @@
 /// @file Runtime/Machine.h
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#if !defined(MACHINE_H_INCLUDED)
-#define MACHINE_H_INCLUDED
+#if !defined(MACHINE_RUNTIME_MACHINE_H_INCLUDED)
+#define MACHINE_RUNTIME_MACHINE_H_INCLUDED
 
 
 
@@ -29,4 +29,4 @@ void Machine_shutdown();
 /// @brief Update the machine.
 void Machine_update();
 
-#endif // MACHINE_H_INCLUDED
+#endif // MACHINE_RUNTIME_MACHINE_H_INCLUDED
