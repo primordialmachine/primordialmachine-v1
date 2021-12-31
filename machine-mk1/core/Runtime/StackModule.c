@@ -4,6 +4,7 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/StackModule.h"
 
+#include "_Eal.h"
 #include "Runtime/JumpTargetModule.h"
 
 typedef struct Stack {
@@ -50,27 +51,39 @@ static void Stack_destroy(Stack* stack) {
   Machine_Eal_Memory_deallocate(stack);
 }
 
+static void Stack_grow(Stack* self, size_t additionalCapacity) {
+  size_t newCapacity = 0;
+  int status = Machine_Eal_getBestCapacity(self->capacity, additionalCapacity,
+                                           SIZE_MAX / sizeof(Machine_Value),
+                                           &newCapacity);
+  switch (status) {
+    case MACHINE_EAL_GROWTHSTRATEGY_SUCCESS: {
+    } break;
+    case MACHINE_EAL_GROWTHSTRATEGY_POSITIVEOVERFLOW: {
+      Machine_setStatus(Machine_Status_CapacityExhausted);
+      Machine_jump();
+    } break;
+    case MACHINE_EAL_GROWTHSTRATEGY_INVALIDARGUMENT:
+    default: {
+      Machine_setStatus(Machine_Status_InternalError);
+      Machine_jump();
+    } break;
+
+  };
+  Machine_Value* newElements = Machine_Eal_Memory_reallocateArray(self->elements, sizeof(Machine_Value), newCapacity);
+  if (newElements) {
+    Machine_setStatus(Machine_Status_AllocationFailed);
+    Machine_jump();
+  }
+  self->elements = newElements;
+  self->capacity = newCapacity;
+}
+
 static void Stack_ensureFreeCapacity(Stack* self, size_t requiredFreeCapacity) {
   size_t availableFreeCapacity = self->capacity - self->size;
   if (availableFreeCapacity < requiredFreeCapacity) {
     size_t requiredAdditionalCapacity = requiredFreeCapacity - availableFreeCapacity;
-    size_t maximalCapacity = SIZE_MAX / sizeof(Machine_Value);
-    size_t availableAdditionalCapacity = maximalCapacity - self->capacity;
-    if (availableAdditionalCapacity < requiredAdditionalCapacity) {
-      Machine_setStatus(Machine_Status_AllocationFailed);
-      Machine_jump();
-    }
-    // TODO: This ensures that we have enough free capacity in any case.
-    // However, we should try to allocate more to avoid reallocating over and over.
-    size_t newCapacity = self->capacity + requiredAdditionalCapacity;
-    Machine_Value* newElements
-        = Machine_Eal_Memory_reallocateArray(self->elements, sizeof(Machine_Value), newCapacity);
-    if (newElements) {
-      Machine_setStatus(Machine_Status_AllocationFailed);
-      Machine_jump();
-    }
-    self->elements = newElements;
-    self->capacity = newCapacity;
+    Stack_grow(self, requiredAdditionalCapacity);
   }
 }
 
@@ -89,44 +102,71 @@ void Machine_uninitializeStackModule() {
   Stack_destroy(g_stack);
   g_stack = NULL;
 }
-void Machine_loadBoolean(Machine_Boolean value) {
+
+void Machine_Stack_loadBoolean(Machine_Boolean value) {
+  Machine_Value temporary;
+  Machine_Value_setBoolean(&temporary, value);
+  Machine_Stack_load(temporary);
+}
+
+void Machine_Stack_loadInteger(Machine_Integer value) {
+  Machine_Value temporary;
+  Machine_Value_setInteger(&temporary, value);
+  Machine_Stack_load(temporary);
+}
+
+void Machine_Stack_loadForeignProcedure(Machine_ForeignProcedure* value) {
+  Machine_Value temporary;
+  Machine_Value_setForeignProcedure(&temporary, value);
+  Machine_Stack_load(temporary);
+}
+
+void Machine_Stack_loadObject(Machine_Object* value) {
+  Machine_Value temporary;
+  Machine_Value_setObject(&temporary, value);
+  Machine_Stack_load(temporary);
+}
+
+void Machine_Stack_loadReal(Machine_Real value) {
+  Machine_Value temporary;
+  Machine_Value_setReal(&temporary, value);
+  Machine_Stack_load(temporary);
+}
+
+void Machine_Stack_loadString(Machine_String* value) {
+  Machine_Value temporary;
+  Machine_Value_setString(&temporary, value);
+  Machine_Stack_load(temporary);
+}
+
+void Machine_Stack_loadVoid(Machine_Void value) {
+  Machine_Value temporary;
+  Machine_Value_setVoid(&temporary, value);
+  Machine_Stack_load(temporary);
+}
+
+void Machine_Stack_load(Machine_Value value) {
   Stack_ensureFreeCapacity(g_stack, 1);
-  Machine_Value_setBoolean(g_stack->elements + g_stack->size, value);
+  *(g_stack->elements + g_stack->size) = value;
   g_stack->size++;
 }
 
-void Machine_loadInteger(Machine_Integer value) {
-  Stack_ensureFreeCapacity(g_stack, 1);
-  Machine_Value_setInteger(g_stack->elements + g_stack->size, value);
-  g_stack->size++;
+Machine_Value Machine_Stack_peek(size_t index) {
+  if (index >= g_stack->size) {
+    Machine_setStatus(Machine_Status_IndexOutOfBounds);
+    Machine_jump();
+  }
+  return *(g_stack->elements + g_stack->size - 1 - index);
 }
 
-void Machine_loadForeignProcedure(Machine_ForeignProcedure* value) {
-  Stack_ensureFreeCapacity(g_stack, 1);
-  Machine_Value_setForeignProcedure(g_stack->elements + g_stack->size, value);
-  g_stack->size++;
+void Machine_Stack_pop() {
+  if (g_stack->size == 0) {
+    Machine_setStatus(Machine_Status_Empty);
+    Machine_jump();
+  }
+  g_stack->size -= 1;
 }
 
-void Machine_loadObject(Machine_Object* value) {
-  Stack_ensureFreeCapacity(g_stack, 1);
-  Machine_Value_setObject(g_stack->elements + g_stack->size, value);
-  g_stack->size++;
-}
-
-void Machine_loadReal(Machine_Real value) {
-  Stack_ensureFreeCapacity(g_stack, 1);
-  Machine_Value_setReal(g_stack->elements + g_stack->size, value);
-  g_stack->size++;
-}
-
-void Machine_loadString(Machine_String* value) {
-  Stack_ensureFreeCapacity(g_stack, 1);
-  Machine_Value_setString(g_stack->elements + g_stack->size, value);
-  g_stack->size++;
-}
-
-void Machine_loadVoid(Machine_Void value) {
-  Stack_ensureFreeCapacity(g_stack, 1);
-  Machine_Value_setVoid(g_stack->elements + g_stack->size, value);
-  g_stack->size++;
+size_t Machine_Stack_getSize() {
+  return g_stack->size;
 }
