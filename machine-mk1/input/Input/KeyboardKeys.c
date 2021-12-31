@@ -7,16 +7,16 @@
 #include <string.h>
 
 Machine_String* Machine_KeyboardKeys_toString(Machine_KeyboardKeys self) {
-#define DEFINE(NAME, STRING) \
-  case Machine_KeyboardKeys_##NAME: { \
-    return Machine_String_create(STRING, strlen(STRING)); \
+#define DefineKeyboardKey(NAME, STRING)                                                            \
+  case Machine_KeyboardKeys_##NAME: {                                                              \
+    return Machine_String_create(STRING, strlen(STRING));                                          \
   } break;
 
   switch (self) {
-  #include "Input/KeyboardKeys.i"
-  default:
-    MACHINE_ASSERT_UNREACHABLE();
+#include "Input/KeyboardKeys.i"
+    default:
+      MACHINE_ASSERT_UNREACHABLE();
   };
 
-#undef DEFINE
+#undef DefineKeyboardKey
 }

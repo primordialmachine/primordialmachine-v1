@@ -36,6 +36,9 @@
     <ClCompile Include="Input\KeyboardKeyEvent.c">
       <Filter>Quelldateien\Input</Filter>
     </ClCompile>
+    <ClCompile Include="Input\Signals.c">
+      <Filter>Quelldateien\Input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Input\MouseButtonEvent.h">
@@ -53,9 +56,15 @@
     <ClInclude Include="Input\KeyboardKeyEvent.h">
       <Filter>Headerdateien\Input</Filter>
     </ClInclude>
+    <ClInclude Include="Input\Signals.h">
+      <Filter>Headerdateien\Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Input\KeyboardKeys.i">
+      <Filter>Quelldateien\Input</Filter>
+    </None>
+    <None Include="Input\Signals.i">
       <Filter>Quelldateien\Input</Filter>
     </None>
   </ItemGroup>

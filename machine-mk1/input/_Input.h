@@ -8,6 +8,7 @@
 #include "Input/KeyboardKeyEvent.h"
 #include "Input/MouseButtonEvent.h"
 #include "Input/MousePointerEvent.h"
+#include "Input/Signals.h"
 #undef MACHINE_INPUT_PRIVATE
 
 #endif // MACHINE__INPUT_H_INCLUDED

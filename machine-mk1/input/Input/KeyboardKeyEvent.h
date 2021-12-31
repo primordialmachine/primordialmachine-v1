@@ -7,7 +7,6 @@
 #if !defined(MACHINE_INPUT_PRIVATE)
 #error("Do not include this file directly, include `_Input.h` instead.")
 #endif
-
 #include "Input/KeyboardKeys.h"
 
 typedef enum Machine_KeyboardKeyActions {
@@ -18,7 +17,7 @@ typedef enum Machine_KeyboardKeyActions {
   Machine_KeyboardKeyActions_Press = (1),
 
   /// @brief A keyboard key was released.
-  Machine_KeyboardKeyActions_Release  = (2),
+  Machine_KeyboardKeyActions_Release = (2),
 
   /// @brief A keyboard key was pressed until it repeated.
   Machine_KeyboardKeyActions_Repeat = (3)
@@ -48,6 +47,7 @@ struct Machine_KeyboardKeyEvent {
 /// #Machine_KeyboardKeyAction_Press if the keyboard key was pressed,
 /// #Machine_KeyboardKeyAction_Release if the keyboard key was released.
 /// @return The keyboard key event.
-Machine_KeyboardKeyEvent* Machine_KeyboardKeyEvent_create(Machine_KeyboardKeys key, Machine_KeyboardKeyActions keyAction);
+Machine_KeyboardKeyEvent* Machine_KeyboardKeyEvent_create(Machine_KeyboardKeys key,
+                                                          Machine_KeyboardKeyActions keyAction);
 
 #endif // MACHINE_INPUT_KEYBOARDKEYEVENT_H_INCLUDED

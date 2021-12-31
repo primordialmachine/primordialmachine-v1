@@ -15,6 +15,7 @@
 #include "Runtime/Object/ClassType.h"
 #include "Runtime/Object/InterfaceType.h"
 #include "Runtime/Object/Object.h"
+#include "Runtime/StaticVariablesModule.h"
 #include "Runtime/String.h"
 #include "Runtime/StringBuffer.h"
 #include "Runtime/Time.h"

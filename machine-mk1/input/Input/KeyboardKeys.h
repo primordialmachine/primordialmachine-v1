@@ -7,17 +7,15 @@
 #if !defined(MACHINE_INPUT_PRIVATE)
 #error("Do not include this file directly, include `_Input.h` instead.")
 #endif
-
 #include "_Runtime.h"
 
 typedef enum Machine_KeyboardKeys {
 
-#define DEFINE(NAME,STRING) \
-  Machine_KeyboardKeys_##NAME,
+#define DefineKeyboardKey(NAME, STRING) Machine_KeyboardKeys_##NAME,
 
 #include "Input/KeyboardKeys.i"
 
-#undef DEFINE
+#undef DefineKeyboardKey
 
 } Machine_KeyboardKeys;
 

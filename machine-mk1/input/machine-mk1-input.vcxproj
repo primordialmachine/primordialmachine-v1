@@ -82,6 +82,7 @@
     <ClCompile Include="Input\KeyboardKeys.c" />
     <ClCompile Include="Input\MouseButtonEvent.c" />
     <ClCompile Include="Input\MousePointerEvent.c" />
+    <ClCompile Include="Input\Signals.c" />
     <ClCompile Include="_Input.c" />
   </ItemGroup>
   <ItemGroup>
@@ -89,6 +90,7 @@
     <ClInclude Include="Input\KeyboardKeys.h" />
     <ClInclude Include="Input\MouseButtonEvent.h" />
     <ClInclude Include="Input\MousePointerEvent.h" />
+    <ClInclude Include="Input\Signals.h" />
     <ClInclude Include="_Input.h" />
   </ItemGroup>
   <ItemGroup>
@@ -103,7 +105,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Input\KeyboardKeys.i" />
+    <None Include="Input\KeyboardKeys.i">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DeploymentContent>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DeploymentContent>
+    </None>
+    <None Include="Input\Signals.i">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DeploymentContent>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DeploymentContent>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
