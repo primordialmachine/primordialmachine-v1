@@ -4,6 +4,7 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/Gc/Gc.h"
 
+#include "Runtime/WeakReference.h"
 #include "Runtime/Object/Object.h"
 #include <assert.h>
 
@@ -117,6 +118,13 @@ void Machine_Gc_run(size_t* live, size_t* dead) {
       // Finalize.
       if (tag->finalize) {
         tag->finalize(Machine_Gc_toAddress(tag));
+      }
+      // Notify weak references.
+      while (tag->weakReferences) {
+        Machine_WeakReference* weakReference = tag->weakReferences;
+        tag->weakReferences = weakReference->next;
+        weakReference->next = NULL;
+        Machine_Value_isVoid(&weakReference->value);
       }
       // Deallocate.
       if ((tag->flags & Machine_Flag_Class) == Machine_Flag_Class) {

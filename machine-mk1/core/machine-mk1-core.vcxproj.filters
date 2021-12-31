@@ -153,6 +153,9 @@
     <ClCompile Include="Runtime\Machine.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
+    <ClCompile Include="Runtime\WeakReference.c">
+      <Filter>Quelldateien\Runtime</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_Runtime.h">
@@ -273,6 +276,9 @@
       <Filter>Headerdateien\Runtime\Object</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\Machine.h">
+      <Filter>Headerdateien\Runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\WeakReference.h">
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
   </ItemGroup>

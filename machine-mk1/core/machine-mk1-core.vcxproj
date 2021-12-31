@@ -41,6 +41,7 @@
     <ClCompile Include="Runtime\Type.c" />
     <ClCompile Include="Runtime\Type.module.c" />
     <ClCompile Include="Runtime\Value.c" />
+    <ClCompile Include="Runtime\WeakReference.c" />
     <ClCompile Include="_Runtime.c" />
   </ItemGroup>
   <ItemGroup>
@@ -78,6 +79,7 @@
     <ClInclude Include="Runtime\Type.h" />
     <ClInclude Include="Runtime\Type.module.h" />
     <ClInclude Include="Runtime\Value.h" />
+    <ClInclude Include="Runtime\WeakReference.h" />
     <ClInclude Include="_Runtime.h" />
   </ItemGroup>
   <ItemGroup>

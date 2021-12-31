@@ -8,6 +8,8 @@
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
 #include "_Eal.h"
+// Forward declaration.
+typedef struct Machine_WeakReference Machine_WeakReference;
 
 /// @brief Type of a finalize callback function.
 /// @param object The object to finalize.
@@ -26,6 +28,8 @@ struct Machine_Gc_Tag {
   uint64_t lockCount;
   /// @brief The flags of this tag.
   uint32_t flags;
+  /// @brief Head of the singly-linked list of weak references to this object.
+  Machine_WeakReference* weakReferences;
   /// @brief A pointer to a Machine_Gc_VisitCallback function or a null pointer.
   Machine_Gc_VisitCallback* visit;
   /// @brief A pointer to a Machine_Gc_FinalizeCallback function or a null pointer.
