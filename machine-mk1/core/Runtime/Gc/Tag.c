@@ -17,7 +17,6 @@
 void Machine_Gc_Tag_initialize(Machine_Gc_Tag* tag) {
   tag->lockCount = 0;
   tag->flags = Machine_Flag_White;
-  tag->size = 0;
   tag->visit = NULL;
   tag->finalize = NULL;
   tag->next = NULL;

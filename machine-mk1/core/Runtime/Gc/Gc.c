@@ -61,7 +61,6 @@ void* Machine_Gc_allocate(Machine_Gc_AllocationArguments const* arguments) {
                           arguments->prefixSize + sizeof(Machine_Gc_Tag) + arguments->suffixSize);
   Machine_Gc_Tag* t = (Machine_Gc_Tag*)(((char*)pt) + arguments->prefixSize);
   Machine_Gc_Tag_initialize(t);
-  t->size = arguments->suffixSize;
   t->visit = arguments->visit;
   t->finalize = arguments->finalize;
   t->next = g_objects;

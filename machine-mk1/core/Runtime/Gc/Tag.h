@@ -24,7 +24,6 @@ struct Machine_Gc_Tag {
   Machine_Gc_Tag* gray;
   uint64_t lockCount;
   uint32_t flags;
-  size_t size;
   Machine_Gc_VisitCallback* visit;
   Machine_Gc_FinalizeCallback* finalize;
 };
