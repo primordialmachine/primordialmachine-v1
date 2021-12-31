@@ -22,9 +22,13 @@ typedef struct Machine_Gc_Tag Machine_Gc_Tag;
 struct Machine_Gc_Tag {
   Machine_Gc_Tag* next;
   Machine_Gc_Tag* gray;
+  /// @brief The number of locks on this tag.
   uint64_t lockCount;
+  /// @brief The flags of this tag.
   uint32_t flags;
+  /// @brief A pointer to a Machine_Gc_VisitCallback function or a null pointer.
   Machine_Gc_VisitCallback* visit;
+  /// @brief A pointer to a Machine_Gc_FinalizeCallback function or a null pointer.
   Machine_Gc_FinalizeCallback* finalize;
 };
 

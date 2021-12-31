@@ -114,9 +114,11 @@ void Machine_Gc_run(size_t* live, size_t* dead) {
       *previous = current->next;
       Machine_Gc_Tag* tag = current;
       current = current->next;
+      // Finalize.
       if (tag->finalize) {
         tag->finalize(Machine_Gc_toAddress(tag));
       }
+      // Deallocate.
       if ((tag->flags & Machine_Flag_Class) == Machine_Flag_Class) {
         Machine_ClassObjectTag* classObjectTag = t2cot(tag);
         Machine_Gc_Tag_uninitialize(tag);
