@@ -4,13 +4,10 @@
 #if !defined(MACHINE_VIDEO_BINDING_H_INCLUDED)
 #define MACHINE_VIDEO_BINDING_H_INCLUDED
 
-#if !defined(MACHINE_VIDEO_PRIVATE)
-#error("Do not include this file directly, include `_Video.h` instead.")
-#endif
+#include "Video/_header.i"
 typedef struct Machine_ShaderProgram Machine_ShaderProgram;
 typedef struct Machine_VertexDescriptor Machine_VertexDescriptor;
 typedef struct Machine_VideoBuffer Machine_VideoBuffer;
-#include "_Math.h"
 
 /// @brief A vertex program has variable input variables and constant input variables.
 /// These variables must be bound before a program can be used.

@@ -4,9 +4,7 @@
 #if !defined(MACHINE_VIDEO_VERTEXELEMENTSEMANTICS_H_INCLUDED)
 #define MACHINE_VIDEO_VERTEXELEMENTSEMANTICS_H_INCLUDED
 
-#if !defined(MACHINE_VIDEO_PRIVATE)
-#error("Do not include this file directly, include `_Video.h` instead.")
-#endif
+#include "Video/_header.i"
 
 /// @brief Semantics of a vertex element.
 typedef enum Machine_VertexElementSemantics Machine_VertexElementSemantics;

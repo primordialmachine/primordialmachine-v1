@@ -4,10 +4,7 @@
 #if !defined(MACHINE_VIDEO_TEXTURE_H_INCLUDED)
 #define MACHINE_VIDEO_TEXTURE_H_INCLUDED
 
-#if !defined(MACHINE_VIDEO_PRIVATE)
-#error("Do not include this file directly, include `_Video.h` instead.")
-#endif
-#include "_Runtime.h"
+#include "Video/_header.i"
 
 MACHINE_DECLARE_CLASSTYPE(Machine_Texture);
 

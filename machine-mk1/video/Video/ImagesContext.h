@@ -4,10 +4,7 @@
 #if !defined(MACHINE_VIDEO_IMAGESCONTEXT_H_INCLUDED)
 #define MACHINE_VIDEO_IMAGESCONTEXT_H_INCLUDED
 
-#if !defined(MACHINE_VIDEO_PRIVATE)
-#error("Do not include this file directly, include `_Video.h` instead.")
-#endif
-typedef struct Machine_Image Machine_Image;
+#include "Video/_header.i"
 #include "Video/PixelFormat.h"
 
 MACHINE_DECLARE_CLASSTYPE(Machine_ImagesContext);

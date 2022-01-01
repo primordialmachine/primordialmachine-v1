@@ -4,11 +4,7 @@
 #if !defined(MACHINE_VIDEO_FONTSCONTEXT_H_INCLUDED)
 #define MACHINE_VIDEO_FONTSCONTEXT_H_INCLUDED
 
-#if !defined(MACHINE_VIDEO_PRIVATE)
-#error("Do not include this file directly, include `_Video.h` instead.")
-#endif
-#include "_Runtime.h"
-typedef struct Machine_Font Machine_Font;
+#include "Video/_header.i"
 
 MACHINE_DECLARE_CLASSTYPE(Machine_FontsContext);
 

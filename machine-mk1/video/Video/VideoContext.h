@@ -4,9 +4,7 @@
 #if !defined(MACHINE_VIDEO_CONTEXT_H_INCLUDED)
 #define MACHINE_VIDEO_CONTEXT_H_INCLUDED
 
-#if !defined(MACHINE_VIDEO_PRIVATE)
-#error("Do not include this file directly, include `_Video.h` instead.")
-#endif
+#include "Video/_header.i"
 #include "Video/Binding.h"
 #include "Video/BlendFunction.h"
 #include "Video/Buffer.h"
@@ -15,7 +13,6 @@
 #include "Video/ShaderProgram.h"
 #include "Video/Texture.h"
 #include "Video/VertexDescriptor.h"
-#include "_Math.h"
 
 /// @brief A video context.
 /// @extends Machine.Object
