@@ -7,10 +7,13 @@
 #define Machine_TypeFlags_Class (1)
 
 /// @brief Type flags. See Machine_Type for more information.
-#define Machine_TypeFlags_Interface (2)
+#define Machine_TypeFlags_Enumeration (2)
+
+/// @brief Type flags. See Machine_Type for more information.
+#define Machine_TypeFlags_Interface (4)
 
 /// @brief Type flags. See Machine_Type for more infomration.
-#define Machine_TypeFlags_Initialized (4)
+#define Machine_TypeFlags_Initialized (8)
 
 void _Type_visit(Machine_Type* self);
 

@@ -16,6 +16,8 @@
     <ClCompile Include="Runtime\Assertions.c" />
     <ClCompile Include="Runtime\ByteBuffer.c" />
     <ClCompile Include="Runtime\ByteBufferReader.c" />
+    <ClCompile Include="Runtime\Enumeration\EnumerationType.c" />
+    <ClCompile Include="Runtime\Enumeration\EnumerationType.module.c" />
     <ClCompile Include="Runtime\Gc\Gc.c" />
     <ClCompile Include="Runtime\Gc\Tag.c" />
     <ClCompile Include="Runtime\Io.c" />
@@ -51,6 +53,8 @@
     <ClInclude Include="Runtime\ByteBuffer.h" />
     <ClInclude Include="Runtime\ByteBufferReader.h" />
     <ClInclude Include="Runtime\Configuration.h" />
+    <ClInclude Include="Runtime\Enumeration\EnumerationType.h" />
+    <ClInclude Include="Runtime\Enumeration\EnumerationType.module.h" />
     <ClInclude Include="Runtime\Gc\Gc.h" />
     <ClInclude Include="Runtime\Gc\Tag.h" />
     <ClInclude Include="Runtime\Io.h" />

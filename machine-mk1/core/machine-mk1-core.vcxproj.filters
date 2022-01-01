@@ -43,6 +43,12 @@
     <Filter Include="Quelldateien\Runtime\Io">
       <UniqueIdentifier>{4455e3c1-14c8-4689-978a-1dd9f18005ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Runtime\Enumeration">
+      <UniqueIdentifier>{dab2570a-c567-48a3-971a-2a9f3d2ed281}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Runtime\Enumeration">
+      <UniqueIdentifier>{8239789f-b1b1-44bf-9084-24091a59a723}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="_Runtime.c">
@@ -155,6 +161,12 @@
     </ClCompile>
     <ClCompile Include="Runtime\WeakReference.c">
       <Filter>Quelldateien\Runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="Runtime\Enumeration\EnumerationType.c">
+      <Filter>Quelldateien\Runtime\Enumeration</Filter>
+    </ClCompile>
+    <ClCompile Include="Runtime\Enumeration\EnumerationType.module.c">
+      <Filter>Quelldateien\Runtime\Enumeration</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -280,6 +292,12 @@
     </ClInclude>
     <ClInclude Include="Runtime\WeakReference.h">
       <Filter>Headerdateien\Runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\Enumeration\EnumerationType.h">
+      <Filter>Headerdateien\Runtime\Enumeration</Filter>
+    </ClInclude>
+    <ClInclude Include="Runtime\Enumeration\EnumerationType.module.h">
+      <Filter>Headerdateien\Runtime\Enumeration</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

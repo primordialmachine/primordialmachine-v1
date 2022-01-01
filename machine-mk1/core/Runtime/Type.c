@@ -22,6 +22,10 @@ bool Machine_Type_isClass(Machine_Type const* self) {
   return Machine_TypeFlags_Class == (self->flags & Machine_TypeFlags_Class);
 }
 
+bool Machine_Type_isEnumeration(Machine_Type const* self) {
+  return Machine_TypeFlags_Enumeration == (self->flags & Machine_TypeFlags_Enumeration);
+}
+
 bool Machine_Type_isInterface(Machine_Type const* self) {
   return Machine_TypeFlags_Interface == (self->flags & Machine_TypeFlags_Interface);
 }

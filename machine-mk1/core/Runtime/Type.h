@@ -62,6 +62,11 @@ void Machine_Type_ensureInitialized(Machine_Type* self);
 /// @return @a true if this type is a class type, @a false otherwise.
 bool Machine_Type_isClass(Machine_Type const* self);
 
+/// @brief Get if this type is an enumeration type.
+/// @param self A pointer to this type.
+/// @return @a true if this type is an enumeration type, @a false otherwise.
+bool Machine_Type_isEnumeration(Machine_Type const* self);
+
 /// @brief Get if this type is an interface type.
 /// @param self A pointer to this type.
 /// @return @a true if this type is an interface type, @a false otherwise.

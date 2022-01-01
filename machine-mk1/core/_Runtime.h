@@ -7,6 +7,7 @@
 #include "Runtime/Assertions.h"
 #include "Runtime/ByteBuffer.h"
 #include "Runtime/ByteBufferReader.h"
+#include "Runtime/Enumeration/EnumerationType.h"
 #include "Runtime/Gc/Gc.h"
 #include "Runtime/Io.h"
 #include "Runtime/JumpTargetModule.h"
