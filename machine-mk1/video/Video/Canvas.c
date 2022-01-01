@@ -1,12 +1,11 @@
 #define MACHINE_VIDEO_PRIVATE (1)
 #include "Video/Canvas.h"
 
-
-
 MACHINE_DEFINE_CLASSTYPE(Machine_Video_Canvas, Machine_Object, NULL,
                          &Machine_Video_Canvas_construct, NULL, NULL, NULL)
 
-void Machine_Video_Canvas_construct(Machine_Video_Canvas* self, size_t numberOfArguments, Machine_Value const* arguments) {
+void Machine_Video_Canvas_construct(Machine_Video_Canvas* self, size_t numberOfArguments,
+                                    Machine_Value const* arguments) {
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Machine_Value ARGUMENTS[] = { Machine_Value_StaticInitializerVoid() };
   Machine_Object_construct((Machine_Object*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
@@ -14,7 +13,8 @@ void Machine_Video_Canvas_construct(Machine_Video_Canvas* self, size_t numberOfA
   Machine_setClassType((Machine_Object*)self, Machine_Video_Canvas_getType());
 }
 
-void Machine_Video_Canvas_getFrameBuffersSize(Machine_Video_Canvas* self, Machine_Integer* width, Machine_Integer* height) {
+void Machine_Video_Canvas_getFrameBuffersSize(Machine_Video_Canvas* self, Machine_Integer* width,
+                                              Machine_Integer* height) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_Video_Canvas, getFrameBuffersSize, width, height);
 }
 

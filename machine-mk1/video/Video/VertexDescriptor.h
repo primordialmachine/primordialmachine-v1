@@ -4,16 +4,11 @@
 #if !defined(MACHINE_VIDEO_VERTEXDESCRIPTOR_H_INCLUDED)
 #define MACHINE_VIDEO_VERTEXDESCRIPTOR_H_INCLUDED
 
-
-
 #if !defined(MACHINE_VIDEO_PRIVATE)
 #error("Do not include this file directly, include `_Video.h` instead.")
 #endif
-
-#include "_Runtime.h"
 #include "Video/VertexElementSemantics.h"
-
-
+#include "_Runtime.h"
 
 MACHINE_DECLARE_CLASSTYPE(Machine_VertexDescriptor)
 
@@ -35,7 +30,8 @@ size_t Machine_VertexDescriptor_getNumberOfElements(Machine_VertexDescriptor* se
 /// @param self This vertex descriptor.
 /// @param index The index of the vertex element.
 /// @return The semantics.
-Machine_VertexElementSemantics Machine_VertexDescriptor_getElementSemantics(Machine_VertexDescriptor* self, size_t index);
+Machine_VertexElementSemantics Machine_VertexDescriptor_getElementSemantics(
+    Machine_VertexDescriptor* self, size_t index);
 
 /// @brief Get the offset of a vertex element.
 /// @param self This vertex descriptor.
@@ -43,11 +39,13 @@ Machine_VertexElementSemantics Machine_VertexDescriptor_getElementSemantics(Mach
 /// @return The offset.
 size_t Machine_VertexDescriptor_getElementOffset(Machine_VertexDescriptor* self, size_t index);
 
-void Machine_VertexDescriptor_insert(Machine_VertexDescriptor* self, size_t index, Machine_VertexElementSemantics semantics);
+void Machine_VertexDescriptor_insert(Machine_VertexDescriptor* self, size_t index,
+                                     Machine_VertexElementSemantics semantics);
 
-void Machine_VertexDescriptor_append(Machine_VertexDescriptor* self, Machine_VertexElementSemantics semantics);
+void Machine_VertexDescriptor_append(Machine_VertexDescriptor* self,
+                                     Machine_VertexElementSemantics semantics);
 
-void Machine_VertexDescriptor_prepend(Machine_VertexDescriptor* self, Machine_VertexElementSemantics semantics);
-
+void Machine_VertexDescriptor_prepend(Machine_VertexDescriptor* self,
+                                      Machine_VertexElementSemantics semantics);
 
 #endif // MACHINE_VIDEO_VERTEXDESCRIPTOR_H_INCLUDED

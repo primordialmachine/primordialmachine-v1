@@ -4,15 +4,10 @@
 #if !defined(MACHINE_VIDEO_CANVASSIZECHANGEDEVENT_H_INCLUDED)
 #define MACHINE_VIDEO_CANVASSIZECHANGEDEVENT_H_INCLUDED
 
-
-
 #if !defined(MACHINE_VIDEO_PRIVATE)
 #error("Do not include this file directly, include `_Video.h` instead.")
 #endif
-
 #include "_Runtime.h"
-
-
 
 /// @brief An event pertaining to a canvas of which the size has changed.
 /// @extends Machine.Object
@@ -34,7 +29,5 @@ struct Machine_CanvasSizeChangedEvent {
 /// @param height The height of the canvas.
 /// @return The mouse pointer event.
 Machine_CanvasSizeChangedEvent* Machine_CanvasSizeChangedEvent_create(float width, float height);
-
-
 
 #endif // MACHINE_VIDEO_CANVASSIZECHANGEDEVENT_H_INCLUDED

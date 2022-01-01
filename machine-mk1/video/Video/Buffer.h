@@ -4,15 +4,10 @@
 #if !defined(MACHINE_VIDEO_BUFFER_H_INCLUDED)
 #define MACHINE_VIDEO_BUFFER_H_INCLUDED
 
-
-
 #if !defined(MACHINE_VIDEO_PRIVATE)
 #error("Do not include this file directly, include `_Video.h` instead.")
 #endif
-
 #include "_Runtime.h"
-
-
 
 MACHINE_DECLARE_CLASSTYPE(Machine_VideoBuffer)
 
@@ -21,18 +16,19 @@ struct Machine_VideoBuffer_Class {
 
   void (*setData)(Machine_VideoBuffer* self, size_t n, const void* p);
   const void* (*getData)(const Machine_VideoBuffer* self);
-  size_t(*getSize)(const Machine_VideoBuffer* self);
+  size_t (*getSize)(const Machine_VideoBuffer* self);
   const void* (*getId)(const Machine_VideoBuffer* self);
 };
 
 struct Machine_VideoBuffer {
   Machine_Object parent;
-  
+
   size_t n;
   void* p;
 };
 
-void Machine_VideoBuffer_construct(Machine_VideoBuffer* self, size_t numberOfArguments, const Machine_Value* arguments);
+void Machine_VideoBuffer_construct(Machine_VideoBuffer* self, size_t numberOfArguments,
+                                   const Machine_Value* arguments);
 
 /// @brief Set the Bytes of this video buffer.
 /// @param self This video buffer.
@@ -55,7 +51,5 @@ size_t Machine_VideoBuffer_getSize(const Machine_VideoBuffer* self);
 /// @return A pointer to the backend-specific data of this video buffer.
 /// @remark For an OpenGL backend this is a pointer to a GLuint read-only variable.
 const void* Machine_VideoBuffer_getId(const Machine_VideoBuffer* self);
-
-
 
 #endif // MACHINE_VIDEO_BUFFER_H_INCLUDED

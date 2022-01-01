@@ -14,12 +14,13 @@ MACHINE_DECLARE_CLASSTYPE(Machine_Video_Canvas);
 
 struct Machine_Video_Canvas_Class {
   Machine_Object_Class parent__;
-  void (*getFrameBuffersSize)(Machine_Video_Canvas* self, Machine_Integer* width, Machine_Integer* height);
+  void (*getFrameBuffersSize)(Machine_Video_Canvas* self, Machine_Integer* width,
+                              Machine_Integer* height);
   void (*maximizeCanvas)(Machine_Video_Canvas* self);
   void (*swapFrameBuffers)(Machine_Video_Canvas* self);
   void (*setCanvasIcons)(Machine_Video_Canvas* self, Machine_List* images);
   void (*pollEvents)(Machine_Video_Canvas* self);
-  Machine_Boolean (*getQuitRequested)(Machine_Video_Canvas*self);
+  Machine_Boolean (*getQuitRequested)(Machine_Video_Canvas* self);
 };
 
 struct Machine_Video_Canvas {
@@ -27,7 +28,8 @@ struct Machine_Video_Canvas {
   Machine_Signals_Signal* signal;
 };
 
-void Machine_Video_Canvas_construct(Machine_Video_Canvas* self, size_t numberOfArguments, Machine_Value const* arguments);
+void Machine_Video_Canvas_construct(Machine_Video_Canvas* self, size_t numberOfArguments,
+                                    Machine_Value const* arguments);
 
 /// @brief Get the size, in pixels, of the frame buffers.
 /// @param self This canvas.
@@ -35,8 +37,9 @@ void Machine_Video_Canvas_construct(Machine_Video_Canvas* self, size_t numberOfA
 /// @param height A pointer to a Machine_Integer variable.
 /// @success
 /// - The width was assigned to *width.
-/// - The height was assigned to *height. 
-void Machine_Video_Canvas_getFrameBuffersSize(Machine_Video_Canvas* self, Machine_Integer* width, Machine_Integer* height);
+/// - The height was assigned to *height.
+void Machine_Video_Canvas_getFrameBuffersSize(Machine_Video_Canvas* self, Machine_Integer* width,
+                                              Machine_Integer* height);
 
 /// @brief Maximize this canvas.
 /// @param self This canvas.
@@ -59,7 +62,5 @@ void Machine_Video_Canvas_pollEvents(Machine_Video_Canvas* self);
 /// @param self This canvas.
 /// @return @a true if quit was requested, @a false otherwise.
 Machine_Boolean Machine_Video_Canvas_getQuitRequested(Machine_Video_Canvas* self);
-
-
 
 #endif // MACHINE_VIDEO_CANVAS_H_INCLUDED

@@ -4,15 +4,10 @@
 #if !defined(MACHINE_VIDEO_TEXTURE_H_INCLUDED)
 #define MACHINE_VIDEO_TEXTURE_H_INCLUDED
 
-
-
 #if !defined(MACHINE_VIDEO_PRIVATE)
 #error("Do not include this file directly, include `_Video.h` instead.")
 #endif
-
 #include "_Runtime.h"
-
-
 
 MACHINE_DECLARE_CLASSTYPE(Machine_Texture);
 
@@ -27,8 +22,7 @@ struct Machine_Texture {
 /// @brief Construct this texture.
 /// @param self This texture.
 /// @param numberOfArguments, arguments The arguments.
-void Machine_Texture_construct(Machine_Texture* self, size_t numberOfArguments, Machine_Value const* arguments);
-
-
+void Machine_Texture_construct(Machine_Texture* self, size_t numberOfArguments,
+                               Machine_Value const* arguments);
 
 #endif // MACHINE_VIDEO_TEXTURE_H_INCLUDED

@@ -4,11 +4,7 @@
 #define MACHINE_VIDEO_PRIVATE (1)
 #include "Video/Buffer.h"
 
-
-
 #include <string.h>
-
-
 
 static void Machine_VideoBuffer_destruct(Machine_VideoBuffer* self) {
   if (self->p) {
@@ -30,7 +26,8 @@ static void Machine_VideoBuffer_constructClass(Machine_VideoBuffer_Class* self) 
   self->getSize = &Machine_VideoBuffer_getSizeImpl;
 }
 
-void Machine_VideoBuffer_construct(Machine_VideoBuffer* self, size_t numberOfArguments, Machine_Value const* arguments) {
+void Machine_VideoBuffer_construct(Machine_VideoBuffer* self, size_t numberOfArguments,
+                                   Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
 
   self->p = Machine_Eal_Memory_allocate(1);
