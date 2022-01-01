@@ -7,7 +7,7 @@
 #include "Video/_header.i"
 
 /// @brief Kind of a program.
-typedef enum Machine_ProgramKind Machine_ProgramKind;
+MACHINE_DECLARE_ENUMERATIONTYPE(Machine_ProgramKind)
 
 enum Machine_ProgramKind {
 

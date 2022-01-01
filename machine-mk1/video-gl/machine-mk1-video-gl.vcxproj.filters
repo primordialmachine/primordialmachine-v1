@@ -19,12 +19,6 @@
     <Filter Include="Headerdateien\Video">
       <UniqueIdentifier>{6bc2d811-f1a6-4bf4-b2c0-e5ded07d9fa1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headerdateien\Video\GL">
-      <UniqueIdentifier>{89f9f4cd-7eea-45da-ab6d-25bef9f52388}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Quelldateien\Video\GL">
-      <UniqueIdentifier>{31fda43a-25e1-4360-9da2-b618627c83be}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Headerdateien\external">
       <UniqueIdentifier>{bae8c362-62d9-4eaf-89df-2fa22919ece1}</UniqueIdentifier>
     </Filter>
@@ -37,81 +31,105 @@
     <Filter Include="Headerdateien\external\glad">
       <UniqueIdentifier>{bd4d4141-3a93-4586-9675-9cd71f3f192c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headerdateien\Video\GL\AMD">
+    <Filter Include="Quelldateien\Video\Gl">
+      <UniqueIdentifier>{31fda43a-25e1-4360-9da2-b618627c83be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Video\Gl">
+      <UniqueIdentifier>{89f9f4cd-7eea-45da-ab6d-25bef9f52388}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Video\Gl\Nvidia">
+      <UniqueIdentifier>{e9d4c6c1-32f9-43a1-a81f-d92e40f8b982}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Video\Gl\Amd">
       <UniqueIdentifier>{bd07962c-3fc6-4881-9628-709f4936bae2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headerdateien\Video\GL\NVIDIA">
-      <UniqueIdentifier>{e9d4c6c1-32f9-43a1-a81f-d92e40f8b982}</UniqueIdentifier>
+    <Filter Include="Quelldateien\Video\Gl\Input">
+      <UniqueIdentifier>{2396c800-f870-4d93-a479-06c0c11ae0db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Video\Gl\Input">
+      <UniqueIdentifier>{5dd5d113-b3a2-4766-b52e-31794c722e59}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Video\GL\Binding.h">
-      <Filter>Headerdateien\Video\GL</Filter>
+      <Filter>Headerdateien\Video\Gl</Filter>
     </ClInclude>
     <ClInclude Include="Video\GL\Buffer.h">
-      <Filter>Headerdateien\Video\GL</Filter>
+      <Filter>Headerdateien\Video\Gl</Filter>
     </ClInclude>
     <ClInclude Include="Video\GL\Canvas.h">
-      <Filter>Headerdateien\Video\GL</Filter>
+      <Filter>Headerdateien\Video\Gl</Filter>
     </ClInclude>
     <ClInclude Include="Video\GL\CanvasUtilities.h">
-      <Filter>Headerdateien\Video\GL</Filter>
+      <Filter>Headerdateien\Video\Gl</Filter>
     </ClInclude>
     <ClInclude Include="Video\GL\ShaderProgram.h">
-      <Filter>Headerdateien\Video\GL</Filter>
+      <Filter>Headerdateien\Video\Gl</Filter>
     </ClInclude>
     <ClInclude Include="Video\GL\Texture.h">
-      <Filter>Headerdateien\Video\GL</Filter>
+      <Filter>Headerdateien\Video\Gl</Filter>
     </ClInclude>
     <ClInclude Include="Video\GL\UtilitiesGL.h">
-      <Filter>Headerdateien\Video\GL</Filter>
+      <Filter>Headerdateien\Video\Gl</Filter>
     </ClInclude>
     <ClInclude Include="Video\GL\VideoContext.h">
-      <Filter>Headerdateien\Video\GL</Filter>
+      <Filter>Headerdateien\Video\Gl</Filter>
     </ClInclude>
-    <ClInclude Include="_Video_GL.h">
+    <ClInclude Include="_Video_Gl.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="..\external\glad\include\glad\glad.h">
       <Filter>Headerdateien\external\glad</Filter>
     </ClInclude>
+    <ClInclude Include="Video\Gl\Input\Keyboard.h">
+      <Filter>Headerdateien\Video\Gl\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Video\Gl\Input\MousePointer.h">
+      <Filter>Headerdateien\Video\Gl\Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Video\GL\Binding.c">
-      <Filter>Quelldateien\Video\GL</Filter>
+      <Filter>Quelldateien\Video\Gl</Filter>
     </ClCompile>
     <ClCompile Include="Video\GL\Buffer.c">
-      <Filter>Quelldateien\Video\GL</Filter>
+      <Filter>Quelldateien\Video\Gl</Filter>
     </ClCompile>
     <ClCompile Include="Video\GL\Canvas.c">
-      <Filter>Quelldateien\Video\GL</Filter>
+      <Filter>Quelldateien\Video\Gl</Filter>
     </ClCompile>
     <ClCompile Include="Video\GL\CanvasUtilities.c">
-      <Filter>Quelldateien\Video\GL</Filter>
+      <Filter>Quelldateien\Video\Gl</Filter>
     </ClCompile>
     <ClCompile Include="Video\GL\ShaderProgram.c">
-      <Filter>Quelldateien\Video\GL</Filter>
+      <Filter>Quelldateien\Video\Gl</Filter>
     </ClCompile>
     <ClCompile Include="Video\GL\Texture.c">
-      <Filter>Quelldateien\Video\GL</Filter>
+      <Filter>Quelldateien\Video\Gl</Filter>
     </ClCompile>
-    <ClCompile Include="Video\GL\UtilitiesGL.c">
-      <Filter>Quelldateien\Video\GL</Filter>
+    <ClCompile Include="Video\Gl\UtilitiesGl.c">
+      <Filter>Quelldateien\Video\Gl</Filter>
     </ClCompile>
     <ClCompile Include="Video\GL\VideoContext.c">
-      <Filter>Quelldateien\Video\GL</Filter>
+      <Filter>Quelldateien\Video\Gl</Filter>
     </ClCompile>
-    <ClCompile Include="_Video_GL.c">
+    <ClCompile Include="_Video_Gl.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="..\external\glad\src\glad.c">
       <Filter>Quelldateien\external\glad</Filter>
     </ClCompile>
     <ClCompile Include="Video\GL\NVIDIA\Optimus.i">
-      <Filter>Headerdateien\Video\GL\NVIDIA</Filter>
+      <Filter>Headerdateien\Video\Gl\Nvidia</Filter>
     </ClCompile>
     <ClCompile Include="Video\GL\AMD\PowerExpress.i">
-      <Filter>Headerdateien\Video\GL\AMD</Filter>
+      <Filter>Headerdateien\Video\Gl\Amd</Filter>
+    </ClCompile>
+    <ClCompile Include="Video\Gl\Input\Keyboard.c">
+      <Filter>Quelldateien\Video\Gl\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Video\Gl\Input\MousePointer.c">
+      <Filter>Quelldateien\Video\Gl\Input</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

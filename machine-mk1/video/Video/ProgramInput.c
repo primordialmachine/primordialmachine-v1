@@ -11,7 +11,7 @@ static void Machine_ProgramInput_visit(Machine_ProgramInput* self) {
 }
 
 static void Machine_ProgramInput_construct(Machine_ProgramInput* self, size_t numberOfArguments,
-                                           const Machine_Value* arguments) {
+                                           Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->name = Machine_Value_getString(&arguments[0]);
   self->type = Machine_Value_getInteger(&arguments[1]);

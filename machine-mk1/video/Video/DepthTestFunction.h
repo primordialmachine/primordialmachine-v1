@@ -14,7 +14,7 @@
 /// - the depth value in the depth buffer
 /// - the depth test function used to compare the depth values.
 /// This enumeration enumerates symbolic constants denoting the possible depth test functions.
-typedef enum Machine_DepthTestFunction Machine_DepthTestFunction;
+MACHINE_DECLARE_ENUMERATIONTYPE(Machine_DepthTestFunction)
 
 enum Machine_DepthTestFunction {
 

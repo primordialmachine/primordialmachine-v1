@@ -24,18 +24,18 @@
 DEPRECATED
 GLFWwindow* Machine_Glfw_getWindow();
 
-MACHINE_DECLARE_CLASSTYPE(Machine_Video_GL_Canvas);
+MACHINE_DECLARE_CLASSTYPE(Machine_Video_Gl_Canvas);
 
-struct Machine_Video_GL_Canvas_Class {
+struct Machine_Video_Gl_Canvas_Class {
   Machine_Video_Canvas_Class __parent__;
 };
 
-struct Machine_Video_GL_Canvas {
+struct Machine_Video_Gl_Canvas {
   Machine_Video_Canvas_Class __parent__;
 };
 
-void Machine_Video_GL_Canvas_construct(Machine_Video_GL_Canvas* self, size_t numberOfArguments, Machine_Value const* arguments);
+void Machine_Video_Gl_Canvas_construct(Machine_Video_Gl_Canvas* self, size_t numberOfArguments, Machine_Value const* arguments);
 
-Machine_Video_GL_Canvas*Machine_Video_GL_Canvas_create();
+Machine_Video_Gl_Canvas*Machine_Video_Gl_Canvas_create();
 
 #endif // MACHINE_VIDEO_GL_CANVAS_H_INCLUDED

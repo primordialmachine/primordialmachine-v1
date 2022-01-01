@@ -3,3 +3,5 @@
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #define MACHINE_VIDEO_PRIVATE (1)
 #include "Video/BlendFunction.h"
+
+MACHINE_DEFINE_ENUMERATIONTYPE(Machine_BlendFunction)

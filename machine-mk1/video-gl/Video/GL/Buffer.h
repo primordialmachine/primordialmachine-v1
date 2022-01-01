@@ -25,7 +25,7 @@ struct Machine_Gl_VideoBuffer {
   GLuint id;
 };
 
-void Machine_Gl_VideoBuffer_construct(Machine_Gl_VideoBuffer* self, size_t numberOfArguments, const Machine_Value* arguments);
+void Machine_Gl_VideoBuffer_construct(Machine_Gl_VideoBuffer* self, size_t numberOfArguments, Machine_Value const* arguments);
 
 
 /// @brief Create an empty buffer.

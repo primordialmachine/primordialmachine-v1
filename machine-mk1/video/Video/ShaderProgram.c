@@ -12,8 +12,8 @@ static void Machine_ShaderProgram_destruct(Machine_ShaderProgram* self) { /*Inte
 
 void Machine_ShaderProgram_construct(Machine_ShaderProgram* self, size_t numberOfArguments,
                                      Machine_Value const* arguments) {
-  static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  static size_t const NUMBER_OF_ARGUMENTS = 0;
+  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_Object_construct((Machine_Object*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   Machine_setClassType((Machine_Object*)self, Machine_ShaderProgram_getType());
 }

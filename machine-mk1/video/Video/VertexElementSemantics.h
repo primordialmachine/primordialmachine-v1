@@ -7,7 +7,7 @@
 #include "Video/_header.i"
 
 /// @brief Semantics of a vertex element.
-typedef enum Machine_VertexElementSemantics Machine_VertexElementSemantics;
+MACHINE_DECLARE_ENUMERATIONTYPE(Machine_VertexElementSemantics)
 
 enum Machine_VertexElementSemantics {
   /// @brief Vertex element consists of sub-elements "x" and "y" in that order.

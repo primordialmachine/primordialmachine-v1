@@ -19,7 +19,7 @@
 /// blend mode is Machine_BlendMode_Zero.
 /// - "transparency" enabled:  incoming color blend mode is Machine_BlendMode_IncomingAlpha and
 /// existing color blend mode is Machine_BlendMode_OneMinusIncomingAlpha
-typedef enum Machine_BlendFunction Machine_BlendFunction;
+MACHINE_DECLARE_ENUMERATIONTYPE(Machine_BlendFunction)
 
 enum Machine_BlendFunction {
 

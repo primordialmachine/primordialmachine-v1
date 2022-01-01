@@ -8,9 +8,9 @@ static void Machine_Image_destruct(Machine_Image* self) { /*Intentionally empty.
 }
 
 void Machine_Image_construct(Machine_Image* self, size_t numberOfArguments,
-                             const Machine_Value* arguments) {
-  static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+                             Machine_Value const* arguments) {
+  static size_t const NUMBER_OF_ARGUMENTS = 0;
+  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_Object_construct((Machine_Object*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   Machine_setClassType((Machine_Object*)self, Machine_Image_getType());
 }

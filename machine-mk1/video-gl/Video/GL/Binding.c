@@ -16,7 +16,7 @@ static void Machine_Gl_Binding_visit(Machine_Gl_Binding* self);
 
 static void Machine_Gl_Binding_destruct(Machine_Gl_Binding* self);
 
-static void Machine_Gl_Binding_construct(Machine_Gl_Binding* self, size_t numberOfArguments, const Machine_Value* arguments);
+static void Machine_Gl_Binding_construct(Machine_Gl_Binding* self, size_t numberOfArguments, Machine_Value const* arguments);
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gl_Binding, Machine_Binding, &Machine_Gl_Binding_visit,
                          &Machine_Gl_Binding_construct, &Machine_Gl_Binding_destruct,
@@ -99,7 +99,7 @@ static size_t Machine_Binding_getVariableBindingImpl(Machine_Gl_Binding const* s
   return (size_t)-1;
 }
 
-static void Machine_Binding_bindMatrix4Impl(Machine_Gl_Binding* self, Machine_String* name, const Machine_Math_Matrix4* value) {
+static void Machine_Binding_bindMatrix4Impl(Machine_Gl_Binding* self, Machine_String* name, Machine_Math_Matrix4 const* value) {
   Machine_Value temporary2;
   Machine_Value_setObject(&temporary2, (Machine_Object*)value);
   Machine_Binding_addUpdateConstant((Machine_Binding*)self, name, &temporary2);
@@ -111,7 +111,7 @@ static void Machine_Binding_bindMatrix4Impl(Machine_Gl_Binding* self, Machine_St
   Machine_UtilitiesGl_call(glUniformMatrix4fv(location, 1, GL_TRUE, (GLfloat const*)value->e));
 }
 
-static void Machine_Binding_bindVector2Impl(Machine_Gl_Binding* self, Machine_String* name, const Machine_Math_Vector2* value) {
+static void Machine_Binding_bindVector2Impl(Machine_Gl_Binding* self, Machine_String* name, Machine_Math_Vector2 const* value) {
   Machine_Value temporary2;
   Machine_Value_setObject(&temporary2, (Machine_Object*)value);
   Machine_Binding_addUpdateConstant((Machine_Binding *)self, name, &temporary2);
@@ -171,7 +171,7 @@ static void Machine_Binding_bindVector3Impl(Machine_Gl_Binding* self, Machine_St
   Machine_UtilitiesGl_call(glUniform3fv(location, 1, temporary));
 }
 
-static void Machine_Binding_bindVector4Impl(Machine_Binding* self, Machine_String* name, const Machine_Math_Vector4* value) {
+static void Machine_Binding_bindVector4Impl(Machine_Binding* self, Machine_String* name, Machine_Math_Vector4 const* value) {
   Machine_Value temporary2;
   Machine_Value_setObject(&temporary2, (Machine_Object*)value);
   Machine_Binding_addUpdateConstant((Machine_Binding*)self, name, &temporary2);
@@ -257,7 +257,7 @@ static void Machine_Gl_Binding_constructClass(Machine_Gl_Binding_Class* self) {
   ((Machine_Binding_Class*)self)->activate = (void (*)(Machine_Binding*)) & Machine_Binding_activateImpl;
 }
 
-static void Machine_Gl_Binding_construct(Machine_Gl_Binding* self, size_t numberOfArguments, const Machine_Value* arguments) {
+static void Machine_Gl_Binding_construct(Machine_Gl_Binding* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Binding_construct((Machine_Binding*)self, numberOfArguments, arguments);
   self->id = 0;
   Machine_setClassType((Machine_Object*)self, Machine_Gl_Binding_getType());

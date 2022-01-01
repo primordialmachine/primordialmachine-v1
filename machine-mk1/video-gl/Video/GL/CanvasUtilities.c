@@ -9,118 +9,43 @@
 #include "_Collections.h"
 #include "_Input.h"
 #include "Video/Gl/UtilitiesGl.h"
+#include "Video/Gl/Input/Keyboard.h"
+#include "Video/Gl/Input/MousePointer.h"
 
 
 static size_t g_referenceCount = 0;
 static Machine_List* g_events = NULL;
 
-static bool mapKeyboardKey(int source, Machine_KeyboardKeys* target) {
-  switch (source) {
-  #define MAP(FROM, TO) \
-      case GLFW_KEY_##FROM:  { \
-        *target = Machine_KeyboardKeys_##TO; \
-        return true; \
-      } break;
-
-    MAP(ESCAPE, Escape)
-
-      MAP(0, 0)
-      MAP(1, 1)
-      MAP(2, 2)
-      MAP(3, 3)
-      MAP(4, 4)
-      MAP(5, 5)
-      MAP(6, 6)
-      MAP(7, 7)
-      MAP(8, 8)
-      MAP(9, 9)
-
-      MAP(A, A)
-      MAP(B, B)
-      MAP(C, C)
-      MAP(D, D)
-
-      MAP(E, E)
-      MAP(F, F)
-      MAP(G, G)
-      MAP(H, H)
-
-      MAP(I, I)
-      MAP(J, J)
-      MAP(K, K)
-      MAP(L, L)
-
-      MAP(M, M)
-      MAP(N, N)
-      MAP(O, O)
-      MAP(P, P)
-
-      MAP(Q, Q)
-      MAP(R, R)
-      MAP(S, S)
-      MAP(T, T)
-
-      MAP(U, U)
-      MAP(V, V)
-      MAP(W, W)
-      MAP(X, X)
-
-      MAP(Y, Y)
-      MAP(Z, Z)
-
-  default:
-    return false;
-  };
-}
-
 static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
-  Machine_KeyboardKeys keyInternal;
-  if (!mapKeyboardKey(key, &keyInternal)) {
-    return;
-  }
-  Machine_KeyboardKeyActions keyActionInternal;
-  switch (action) {
-  case GLFW_PRESS:
-    keyActionInternal = Machine_KeyboardKeyActions_Press;
-    break;
-  case GLFW_RELEASE:
-    keyActionInternal = Machine_KeyboardKeyActions_Release;
-    break;
-  case GLFW_REPEAT:
-    keyActionInternal = Machine_KeyboardKeyActions_Repeat;
-    break;
-  default:
-    return;
-  }
   Machine_JumpTarget jumpTarget;
   Machine_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
-    Machine_KeyboardKeyEvent* event = Machine_KeyboardKeyEvent_create(keyInternal, keyActionInternal);
+    Machine_KeyboardKeyEvent* event = Machine_Video_Gl_Input_mapKeyboardKeyEvent(window, key, scancode, action, mods);
     Machine_String* zeroTerminatorString = Machine_String_create("", 1);
     Machine_String* eventString = Machine_Object_toString((Machine_Object*)event);
     eventString = Machine_String_concatenate(eventString, zeroTerminatorString);
     Machine_log(Machine_LogFlags_ToInformations, __FILE__, __LINE__, "%s\n", Machine_String_getBytes(eventString));
+    
+    if (event->key == Machine_KeyboardKeys_Escape && action == Machine_KeyboardKeyActions_Press)
+      glfwSetWindowShouldClose(window, GLFW_TRUE);
+    
+    Machine_popJumpTarget();
+  } else {
     Machine_popJumpTarget();
   }
-  else {
-    Machine_popJumpTarget();
-  }
-  if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-    glfwSetWindowShouldClose(window, GLFW_TRUE);
 }
 
 static void cursorPositionCallback(GLFWwindow* window, double x, double y) {
   Machine_JumpTarget jumpTarget;
   Machine_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
-    Machine_MousePointerEvent* event = Machine_MousePointerEvent_create(x, y);
+    Machine_MousePointerEvent* event = Machine_Video_Gl_Input_mapMousePointerEvent(window, x, y);
     Machine_String* zeroTerminatorString = Machine_String_create("", 1);
     Machine_String* eventString = Machine_Object_toString((Machine_Object*)event);
     eventString = Machine_String_concatenate(eventString, zeroTerminatorString);
     Machine_log(Machine_LogFlags_ToInformations, __FILE__, __LINE__, "%s\n", Machine_String_getBytes(eventString));
     Machine_popJumpTarget();
-  }
-  else {
+  } else {
     Machine_popJumpTarget();
   }
 }

@@ -7,7 +7,7 @@
 static void Machine_CanvasSizeChangedEvent_visit(Machine_CanvasSizeChangedEvent* self)
 {/*Intentionally empty.*/}
 
-static void Machine_CanvasSizeChangedEvent_construct(Machine_CanvasSizeChangedEvent* self, size_t numberOfArguments, const Machine_Value* arguments) {
+static void Machine_CanvasSizeChangedEvent_construct(Machine_CanvasSizeChangedEvent* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->width = Machine_Value_getReal(&arguments[0]);
   self->height = Machine_Value_getReal(&arguments[1]);

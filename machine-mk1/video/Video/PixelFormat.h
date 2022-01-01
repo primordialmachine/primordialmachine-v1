@@ -6,7 +6,8 @@
 
 #include "Video/_header.i"
 
-typedef enum Machine_PixelFormat Machine_PixelFormat;
+/// @brief An enumeration of pixel formats.
+MACHINE_DECLARE_ENUMERATIONTYPE(Machine_PixelFormat)
 
 enum Machine_PixelFormat {
 

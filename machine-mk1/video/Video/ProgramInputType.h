@@ -7,7 +7,7 @@
 #include "Video/_header.i"
 
 /// @brief An enumeration of types of shader inputs.
-typedef enum Machine_ProgramInputType Machine_ProgramInputType;
+MACHINE_DECLARE_ENUMERATIONTYPE(Machine_ProgramInputType)
 
 enum Machine_ProgramInputType {
   /// @brief A two element single precision floating point vector.

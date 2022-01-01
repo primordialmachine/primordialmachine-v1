@@ -106,11 +106,13 @@
     <ClInclude Include="Video\GL\Buffer.h" />
     <ClInclude Include="Video\GL\Canvas.h" />
     <ClInclude Include="Video\GL\CanvasUtilities.h" />
+    <ClInclude Include="Video\Gl\Input\Keyboard.h" />
+    <ClInclude Include="Video\Gl\Input\MousePointer.h" />
     <ClInclude Include="Video\GL\ShaderProgram.h" />
     <ClInclude Include="Video\GL\Texture.h" />
     <ClInclude Include="Video\GL\UtilitiesGL.h" />
     <ClInclude Include="Video\GL\VideoContext.h" />
-    <ClInclude Include="_Video_GL.h" />
+    <ClInclude Include="_Video_Gl.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\external\glad\src\glad.c" />
@@ -122,15 +124,17 @@
     <ClCompile Include="Video\GL\Buffer.c" />
     <ClCompile Include="Video\GL\Canvas.c" />
     <ClCompile Include="Video\GL\CanvasUtilities.c" />
+    <ClCompile Include="Video\Gl\Input\Keyboard.c" />
+    <ClCompile Include="Video\Gl\Input\MousePointer.c" />
     <ClCompile Include="Video\GL\NVIDIA\Optimus.i">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Video\GL\ShaderProgram.c" />
     <ClCompile Include="Video\GL\Texture.c" />
-    <ClCompile Include="Video\GL\UtilitiesGL.c" />
+    <ClCompile Include="Video\Gl\UtilitiesGl.c" />
     <ClCompile Include="Video\GL\VideoContext.c" />
-    <ClCompile Include="_Video_GL.c" />
+    <ClCompile Include="_Video_Gl.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

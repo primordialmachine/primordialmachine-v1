@@ -7,7 +7,7 @@
 #include "Video/_header.i"
 
 /// @brief An enumeration of kind of shader inputs.
-typedef enum Machine_ProgramInputKind Machine_ProgramInputKind;
+MACHINE_DECLARE_ENUMERATIONTYPE(Machine_ProgramInputKind)
 
 enum Machine_ProgramInputKind {
   /// @brief A constant input.

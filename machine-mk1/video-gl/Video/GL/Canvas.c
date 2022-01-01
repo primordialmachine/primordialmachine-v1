@@ -75,22 +75,22 @@ GLFWwindow* Machine_Glfw_getWindow() {
   return g_window;
 }
 
-static void Machine_Video_GL_Canvas_getFrameBuffersSize(Machine_Video_GL_Canvas* self, Machine_Integer* width, Machine_Integer* height) {
+static void Machine_Video_Gl_Canvas_getFrameBuffersSize(Machine_Video_Gl_Canvas* self, Machine_Integer* width, Machine_Integer* height) {
   int w, h;
   glfwGetFramebufferSize(Machine_Glfw_getWindow(), &w, &h);
   *width = w;
   *height = h;
 }
 
-static void Machine_Video_GL_Canvas_maximizeCanvas(Machine_Video_GL_Canvas* self) {
+static void Machine_Video_Gl_Canvas_maximizeCanvas(Machine_Video_Gl_Canvas* self) {
   glfwMaximizeWindow(Machine_Glfw_getWindow());
 }
 
-static void Machine_Video_GL_Canvas_swapFrameBuffers(Machine_Video_GL_Canvas* self) {
+static void Machine_Video_Gl_Canvas_swapFrameBuffers(Machine_Video_Gl_Canvas* self) {
   glfwSwapBuffers(Machine_Glfw_getWindow());
 }
 
-static void Machine_Video_GL_Canvas_setCanvasIcons(Machine_Video_GL_Canvas* self, Machine_List* images) {
+static void Machine_Video_Gl_Canvas_setCanvasIcons(Machine_Video_Gl_Canvas* self, Machine_List* images) {
   GLFWimage* targetImages = NULL;
 
   Machine_JumpTarget jumpTarget;
@@ -129,45 +129,45 @@ static void Machine_Video_GL_Canvas_setCanvasIcons(Machine_Video_GL_Canvas* self
   }
 }
 
-static void Machine_Video_GL_Canvas_pollEvents(Machine_Video_GL_Canvas* self) {
+static void Machine_Video_Gl_Canvas_pollEvents(Machine_Video_Gl_Canvas* self) {
   Machine_Glfw_pollEvents();
 }
 
-static Machine_Boolean Machine_Video_GL_Canvas_getQuitRequested(Machine_Video_GL_Canvas* self) {
+static Machine_Boolean Machine_Video_Gl_Canvas_getQuitRequested(Machine_Video_Gl_Canvas* self) {
   return glfwWindowShouldClose(Machine_Glfw_getWindow());
 }
 
-static void Machine_Video_GL_Canvas_destruct(Machine_Video_GL_Canvas* self) {
+static void Machine_Video_Gl_Canvas_destruct(Machine_Video_Gl_Canvas* self) {
   Machine_Glfw_shutdownCanvasInput();
   Machine_Glfw_shutdownCanvas();
 }
 
-static void Machine_Video_GL_Canvas_constructClass(Machine_Video_GL_Canvas_Class* self) {
-  ((Machine_Video_Canvas_Class*)self)->getFrameBuffersSize = (void (*)(Machine_Video_Canvas*, Machine_Integer *,Machine_Integer *))&Machine_Video_GL_Canvas_getFrameBuffersSize;
-  ((Machine_Video_Canvas_Class*)self)->maximizeCanvas = (void (*)(Machine_Video_Canvas*)) &Machine_Video_GL_Canvas_maximizeCanvas;
-  ((Machine_Video_Canvas_Class*)self)->swapFrameBuffers = (void (*)(Machine_Video_Canvas*)) &Machine_Video_GL_Canvas_swapFrameBuffers;
-  ((Machine_Video_Canvas_Class*)self)->setCanvasIcons = (void (*)(Machine_Video_Canvas*, Machine_List *)) &Machine_Video_GL_Canvas_setCanvasIcons;
-  ((Machine_Video_Canvas_Class*)self)->pollEvents = (void (*)(Machine_Video_Canvas*)) & Machine_Video_GL_Canvas_pollEvents;
-  ((Machine_Video_Canvas_Class*)self)->getQuitRequested = (Machine_Boolean(*)(Machine_Video_Canvas*)) & Machine_Video_GL_Canvas_getQuitRequested;
+static void Machine_Video_Gl_Canvas_constructClass(Machine_Video_Gl_Canvas_Class* self) {
+  ((Machine_Video_Canvas_Class*)self)->getFrameBuffersSize = (void (*)(Machine_Video_Canvas*, Machine_Integer *,Machine_Integer *))&Machine_Video_Gl_Canvas_getFrameBuffersSize;
+  ((Machine_Video_Canvas_Class*)self)->maximizeCanvas = (void (*)(Machine_Video_Canvas*)) &Machine_Video_Gl_Canvas_maximizeCanvas;
+  ((Machine_Video_Canvas_Class*)self)->swapFrameBuffers = (void (*)(Machine_Video_Canvas*)) &Machine_Video_Gl_Canvas_swapFrameBuffers;
+  ((Machine_Video_Canvas_Class*)self)->setCanvasIcons = (void (*)(Machine_Video_Canvas*, Machine_List *)) &Machine_Video_Gl_Canvas_setCanvasIcons;
+  ((Machine_Video_Canvas_Class*)self)->pollEvents = (void (*)(Machine_Video_Canvas*)) & Machine_Video_Gl_Canvas_pollEvents;
+  ((Machine_Video_Canvas_Class*)self)->getQuitRequested = (Machine_Boolean(*)(Machine_Video_Canvas*)) & Machine_Video_Gl_Canvas_getQuitRequested;
 }
 
-void Machine_Video_GL_Canvas_construct(Machine_Video_GL_Canvas* self, size_t numberOfArguments, Machine_Value const* arguments) {
-  static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { Machine_Value_StaticInitializerVoid() };
+void Machine_Video_Gl_Canvas_construct(Machine_Video_Gl_Canvas* self, size_t numberOfArguments, Machine_Value const* arguments) {
+  static size_t const NUMBER_OF_ARGUMENTS = 0;
+  static Machine_Value const ARGUMENTS[] = { Machine_Value_StaticInitializerVoid() };
   Machine_Video_Canvas_construct((Machine_Video_Canvas*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   Machine_Glfw_startupCanvas();
   Machine_Glfw_startupCanvasInput();
-  Machine_setClassType((Machine_Object*)self, Machine_Video_GL_Canvas_getType());
+  Machine_setClassType((Machine_Object*)self, Machine_Video_Gl_Canvas_getType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Video_GL_Canvas, Machine_Video_Canvas, NULL,
-                         &Machine_Video_GL_Canvas_construct, &Machine_Video_GL_Canvas_destruct,
-                         &Machine_Video_GL_Canvas_constructClass, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_Video_Gl_Canvas, Machine_Video_Canvas, NULL,
+                         &Machine_Video_Gl_Canvas_construct, &Machine_Video_Gl_Canvas_destruct,
+                         &Machine_Video_Gl_Canvas_constructClass, NULL)
 
-Machine_Video_GL_Canvas* Machine_Video_GL_Canvas_create() {
-  Machine_ClassType* ty = Machine_Video_GL_Canvas_getType();
-  static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { Machine_Value_StaticInitializerVoid() };
-  Machine_Video_GL_Canvas* self = (Machine_Video_GL_Canvas*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+Machine_Video_Gl_Canvas* Machine_Video_Gl_Canvas_create() {
+  Machine_ClassType* ty = Machine_Video_Gl_Canvas_getType();
+  static size_t const NUMBER_OF_ARGUMENTS = 0;
+  static Machine_Value const ARGUMENTS[] = { Machine_Value_StaticInitializerVoid() };
+  Machine_Video_Gl_Canvas* self = (Machine_Video_Gl_Canvas*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

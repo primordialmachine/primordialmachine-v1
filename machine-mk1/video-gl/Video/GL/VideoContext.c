@@ -409,8 +409,8 @@ void Machine_Gl_VideoContext_construct(Machine_Gl_VideoContext* self, size_t num
 
 Machine_Gl_VideoContext* Machine_Gl_VideoContext_create() {
   Machine_ClassType* ty = Machine_Gl_VideoContext_getType();
-  static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  static size_t const NUMBER_OF_ARGUMENTS = 0;
+  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
   Machine_Gl_VideoContext* self = (Machine_Gl_VideoContext*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

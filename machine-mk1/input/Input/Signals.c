@@ -24,7 +24,7 @@ static void uninitializeCallback() {
   g_registered = false;
 }
 
-static void initialize() {
+static void ensureInitialized() {
   if (!g_registered) {
     if (!Machine_registerStaticVariables(&uninitializeCallback)) {
       Machine_setStatus(Machine_Status_AllocationFailed);
@@ -41,10 +41,11 @@ static void initialize() {
 }
 
 #define DefineSignal(NAME, STRING)                                                                 \
-  Machine_String* Machine_Input_Signals_##NAME() {                                                 \
+  Machine_String* Machine_Input_SignalName_##NAME() {                                              \
     if (!_##NAME) {                                                                                \
       ensureInitialized();                                                                         \
     }                                                                                              \
     return _##NAME;                                                                                \
   }
+#include "Input/Signals.i"
 #undef DefineSignal

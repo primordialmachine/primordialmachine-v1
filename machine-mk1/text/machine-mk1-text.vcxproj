@@ -26,6 +26,9 @@
     <ProjectReference Include="..\graphics2\machine-mk1-graphics2.vcxproj">
       <Project>{f4aa48f9-3c29-4cc5-b219-c357284103b2}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\input\machine-mk1-input.vcxproj">
+      <Project>{d18ee412-e5ae-4b7b-b291-46231dca6511}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\math\machine-mk1-math.vcxproj">
       <Project>{681c50f0-37bf-4661-bf5a-21a29abf2b63}</Project>
     </ProjectReference>

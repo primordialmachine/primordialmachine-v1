@@ -25,7 +25,7 @@ struct Machine_Image {
 /// @param self This image.
 /// @param numberOfArguments, arguments The arguments.
 void Machine_Image_construct(Machine_Image* self, size_t numberOfArguments,
-                             const Machine_Value* arguments);
+                             Machine_Value const* arguments);
 
 /// @brief Get the pixels of an image.
 /// @param self This image.

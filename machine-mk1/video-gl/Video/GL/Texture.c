@@ -14,8 +14,8 @@ static void Machine_Gl_Texture_destruct(Machine_Gl_Texture* self) {
 }
 
 void Machine_Gl_Texture_construct_fromImage(Machine_Gl_Texture* self, Machine_Image* image) {
-  static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { {Machine_ValueFlag_Void, Machine_Void_Void} };
+  static size_t const NUMBER_OF_ARGUMENTS = 0;
+  static Machine_Value const ARGUMENTS[] = { {Machine_ValueFlag_Void, Machine_Void_Void} };
   Machine_Texture_construct((Machine_Texture*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   Machine_UtilitiesGl_call(glGenTextures(1, &self->id));
   Machine_UtilitiesGl_call(glBindTexture(GL_TEXTURE_2D, self->id));
