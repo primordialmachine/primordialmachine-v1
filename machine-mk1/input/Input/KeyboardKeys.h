@@ -9,7 +9,9 @@
 #endif
 #include "_Runtime.h"
 
-typedef enum Machine_KeyboardKeys {
+MACHINE_DECLARE_ENUMERATIONTYPE(Machine_KeyboardKeys)
+
+enum Machine_KeyboardKeys {
 
 #define DefineKeyboardKey(NAME, STRING) Machine_KeyboardKeys_##NAME,
 
@@ -17,7 +19,7 @@ typedef enum Machine_KeyboardKeys {
 
 #undef DefineKeyboardKey
 
-} Machine_KeyboardKeys;
+};
 
 Machine_String* Machine_KeyboardKeys_toString(Machine_KeyboardKeys self);
 

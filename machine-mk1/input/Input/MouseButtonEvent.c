@@ -6,6 +6,8 @@
 
 #include <string.h>
 
+MACHINE_DEFINE_ENUMERATIONTYPE(Machine_MouseButtonActions)
+
 Machine_String* Machine_MouseButtonActions_toString(Machine_MouseButtonActions self) {
   switch (self) {
     case Machine_MouseButtonActions_Press:

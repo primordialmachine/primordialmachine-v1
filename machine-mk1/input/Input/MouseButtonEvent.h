@@ -9,7 +9,9 @@
 #endif
 #include "_Runtime.h"
 
-typedef enum Machine_MouseButtonActions {
+MACHINE_DECLARE_ENUMERATIONTYPE(Machine_MouseButtonActions)
+
+enum Machine_MouseButtonActions {
 
   Machine_MouseButtonActions_Undetermined = (0),
 
@@ -19,7 +21,7 @@ typedef enum Machine_MouseButtonActions {
   /// @brief A mouse button was released.
   Machine_MouseButtonActions_Release = (2),
 
-} Machine_MouseButtonActions;
+};
 
 Machine_String* Machine_MouseButtonActions_toString(Machine_MouseButtonActions self);
 

@@ -6,6 +6,8 @@
 
 #include <string.h>
 
+MACHINE_DEFINE_ENUMERATIONTYPE(Machine_KeyboardKeyActions)
+
 Machine_String* Machine_KeyboardKeyActions_toString(Machine_KeyboardKeyActions self) {
   switch (self) {
     case Machine_KeyboardKeyActions_Press:

@@ -9,7 +9,9 @@
 #endif
 #include "Input/KeyboardKeys.h"
 
-typedef enum Machine_KeyboardKeyActions {
+MACHINE_DECLARE_ENUMERATIONTYPE(Machine_KeyboardKeyActions)
+
+enum Machine_KeyboardKeyActions {
 
   Machine_KeyboardKeyActions_Undetermined = (0),
 
@@ -22,7 +24,7 @@ typedef enum Machine_KeyboardKeyActions {
   /// @brief A keyboard key was pressed until it repeated.
   Machine_KeyboardKeyActions_Repeat = (3)
 
-} Machine_KeyboardKeyActions;
+};
 
 Machine_String* Machine_KeyboardKeyActions_toString(Machine_KeyboardKeyActions self);
 
