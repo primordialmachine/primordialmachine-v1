@@ -6,7 +6,7 @@
 
 #include "_Runtime.h"
 
-typedef enum Machine_Gdl_TokenKind Machine_Gdl_TokenKind;
+MACHINE_DECLARE_ENUMERATIONTYPE(Machine_Gdl_TokenKind)
 
 enum Machine_Gdl_TokenKind {
 

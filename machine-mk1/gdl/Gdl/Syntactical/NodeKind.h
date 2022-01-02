@@ -6,7 +6,7 @@
 
 #include "_Runtime.h"
 
-typedef enum Machine_Gdl_NodeKind Machine_Gdl_NodeKind;
+MACHINE_DECLARE_ENUMERATIONTYPE(Machine_Gdl_NodeKind)
 
 enum Machine_Gdl_NodeKind {
 
