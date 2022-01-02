@@ -10,7 +10,9 @@
 #include "_Math.h"
 
 /// @brief Denotes how elements layed out along an axis are justified along that axis.
-typedef enum Machine_Gui_Layout_Justification {
+MACHINE_DECLARE_ENUMERATIONTYPE(Machine_Gui_Layout_Justification)
+
+enum Machine_Gui_Layout_Justification {
 
   /// @brief Elements are packed towards the start of the axis.
   Machine_Gui_Layout_Justification_Start,
@@ -21,10 +23,12 @@ typedef enum Machine_Gui_Layout_Justification {
   /// @brief Elements are packed towards the end of the axis.
   Machine_Gui_Layout_Justification_End,
 
-} Machine_Gui_Layout_Justification;
+};
 
 /// @brief Denotes along which axis elements are layed out.
-typedef enum Machine_Gui_Layout_Direction {
+MACHINE_DECLARE_ENUMERATIONTYPE(Machine_Gui_Layout_Direction)
+
+enum Machine_Gui_Layout_Direction {
 
   /// @brief Axis from Top to bottom.
   /// Centered around the main axis.
@@ -42,7 +46,7 @@ typedef enum Machine_Gui_Layout_Direction {
   /// Centered around the main axis.
   Machine_Gui_Layout_Direction_RowReverse,
 
-} Machine_Gui_Layout_Direction;
+};
 
 /// @brief Layout attributes.
 MACHINE_DECLARE_CLASSTYPE(Machine_Gui_LayoutModel)

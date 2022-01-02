@@ -4,6 +4,10 @@
 #define MACHINE_GUI_PRIVATE (1)
 #include "Gui/LayoutModel.h"
 
+MACHINE_DEFINE_ENUMERATIONTYPE(Machine_Gui_Layout_Justification)
+
+MACHINE_DEFINE_ENUMERATIONTYPE(Machine_Gui_Layout_Direction)
+
 static void Machine_Gui_LayoutModel_visit(Machine_Gui_LayoutModel* self) { /*Intentionally empty.*/
 }
 
