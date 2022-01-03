@@ -1,6 +1,10 @@
 #include "Video.h"
 
-#include "_Video_GL.h"
+
+
+#include "_Video_Gl.h"
+
+
 
 static Machine_VideoContext* g_videoContext = NULL;
 static Machine_Video_Canvas* g_videoCanvas = NULL;
