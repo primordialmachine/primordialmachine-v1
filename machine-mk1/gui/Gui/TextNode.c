@@ -44,7 +44,7 @@ static void Machine_Gui_TextNode_render(Machine_Gui_TextNode* self, Machine_Cont
 
 static Machine_Value boundsChangedCallback(size_t numberOfArguments,
                                            Machine_Value const* arguments) {
-  MACHINE_ASSERT(numberOfArguments == 1, Machine_Status_InvalidNumberOfArguments);
+  MACHINE_ASSERT(numberOfArguments == 2, Machine_Status_InvalidNumberOfArguments);
   Machine_Gui_TextNode* self = (Machine_Gui_TextNode*)Machine_Value_getObject(&arguments[0]);
   self->childDirty = true;
   Machine_Value result;

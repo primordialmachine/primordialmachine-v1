@@ -55,13 +55,37 @@ void Machine_Signals_Signal_unsubscribe(Machine_Signals_Signal* self, Machine_St
 
 void Machine_Signals_Signal_emit(Machine_Signals_Signal* self, Machine_String* name, size_t numberOfArguments, Machine_Value const* arguments) {
   if (self->connections) {
-    for (size_t i = 0, n = Machine_Collection_getSize((Machine_Collection *)self->connections); i < n; ++i) {
-      Machine_Value temporary = Machine_List_getAt(self->connections, i);
-      Machine_Signals_Connection* c = (Machine_Signals_Connection*)Machine_Value_getObject(&temporary);
-      if (Machine_String_isEqualTo(c->name, name)) {
-        MACHINE_ASSERT_NOTNULL(c->callback);
-        c->callback(numberOfArguments, arguments);
+    size_t numberOfArguments1
+        = numberOfArguments + 1;
+    Machine_Value* arguments1
+        = Machine_Eal_Memory_allocateArray(numberOfArguments1, sizeof(Machine_Value));
+    if (!arguments1) {
+      Machine_setStatus(Machine_Status_AllocationFailed);
+      Machine_jump();
+    }
+    for (size_t i = 0, n = numberOfArguments; i < n; ++i) {
+      arguments1[i + 1] = arguments[i + 0];
+    }
+    Machine_JumpTarget jt;
+    Machine_pushJumpTarget(&jt);
+    if (!setjmp(jt.environment)) {
+      for (size_t i = 0, n = Machine_Collection_getSize((Machine_Collection*)self->connections);
+           i < n; ++i) {
+        Machine_Value temporary = Machine_List_getAt(self->connections, i);
+        Machine_Signals_Connection* c
+            = (Machine_Signals_Connection*)Machine_Value_getObject(&temporary);
+        if (Machine_String_isEqualTo(c->name, name)) {
+          MACHINE_ASSERT_NOTNULL(c->callback);
+          Machine_Value_setObject(&(arguments1[0]), c->context);
+          c->callback(numberOfArguments1, arguments1);
+        }
       }
+      Machine_popJumpTarget();
+      Machine_Eal_Memory_deallocate(arguments1);
+    } else {
+      Machine_popJumpTarget();
+      Machine_Eal_Memory_deallocate(arguments1);
+      Machine_jump();
     }
   }
 }
