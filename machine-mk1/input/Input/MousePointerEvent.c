@@ -63,7 +63,7 @@ static void Machine_MousePointerEvent_constructClass(Machine_MousePointerEvent_C
 
 static void Machine_MousePointerEvent_construct(Machine_MousePointerEvent* self,
                                                 size_t numberOfArguments,
-                                                const Machine_Value* arguments) {
+                                                Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->action = Machine_Value_getInteger(&arguments[0]);
   self->x = Machine_Value_getReal(&arguments[1]);

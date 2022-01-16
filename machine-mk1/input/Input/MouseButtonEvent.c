@@ -63,7 +63,7 @@ static void Machine_MouseButtonEvent_constructClass(Machine_MouseButtonEvent_Cla
 
 static void Machine_MouseButtonEvent_construct(Machine_MouseButtonEvent* self,
                                                size_t numberOfArguments,
-                                               const Machine_Value* arguments) {
+                                               Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->button = Machine_Value_getInteger(&arguments[0]);
   self->action = Machine_Value_getInteger(&arguments[1]);

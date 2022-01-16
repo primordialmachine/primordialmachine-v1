@@ -59,7 +59,7 @@ static void Machine_KeyboardKeyEvent_constructClass(Machine_KeyboardKeyEvent_Cla
 
 static void Machine_KeyboardKeyEvent_construct(Machine_KeyboardKeyEvent* self,
                                                size_t numberOfArguments,
-                                               const Machine_Value* arguments) {
+                                               Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->key = Machine_Value_getInteger(&arguments[0]);
   self->action = Machine_Value_getInteger(&arguments[1]);
@@ -73,7 +73,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_KeyboardKeyEvent, Machine_Object, &Machine_Keyb
 Machine_KeyboardKeyEvent* Machine_KeyboardKeyEvent_create(Machine_KeyboardKeys key,
                                                           Machine_KeyboardKeyActions keyAction) {
   Machine_ClassType* ty = Machine_KeyboardKeyEvent_getType();
-  static const size_t NUMBER_OF_ARGUMENTS = 2;
+  static size_t const NUMBER_OF_ARGUMENTS = 2;
   Machine_Value ARGUMENTS[2]
       = { Machine_Value_StaticInitializerVoid(), Machine_Value_StaticInitializerVoid() };
   Machine_Value_setInteger(&ARGUMENTS[0], key);
