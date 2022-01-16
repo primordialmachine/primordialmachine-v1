@@ -87,6 +87,9 @@
     <ClInclude Include="Video\Gl\Input\MousePointer.h">
       <Filter>Headerdateien\Video\Gl\Input</Filter>
     </ClInclude>
+    <ClInclude Include="Video\Gl\Input\MouseButton.h">
+      <Filter>Headerdateien\Video\Gl\Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Video\GL\Binding.c">
@@ -129,6 +132,9 @@
       <Filter>Quelldateien\Video\Gl\Input</Filter>
     </ClCompile>
     <ClCompile Include="Video\Gl\Input\MousePointer.c">
+      <Filter>Quelldateien\Video\Gl\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Video\Gl\Input\MouseButton.c">
       <Filter>Quelldateien\Video\Gl\Input</Filter>
     </ClCompile>
   </ItemGroup>

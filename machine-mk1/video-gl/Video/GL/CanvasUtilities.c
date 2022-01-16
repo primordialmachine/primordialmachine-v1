@@ -10,6 +10,7 @@
 #include "_Input.h"
 #include "Video/Gl/UtilitiesGl.h"
 #include "Video/Gl/Input/Keyboard.h"
+#include "Video/Gl/Input/MouseButton.h"
 #include "Video/Gl/Input/MousePointer.h"
 
 
@@ -71,53 +72,13 @@ static void mouseButtonCallback(GLFWwindow* window, int button, int action, int 
   Machine_JumpTarget jumpTarget;
   Machine_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
-    int buttonIndexInternal = -1;
-    switch (button) {
-    case GLFW_MOUSE_BUTTON_1:
-      buttonIndexInternal = 0;
-      break;
-    case GLFW_MOUSE_BUTTON_2:
-      buttonIndexInternal = 1;
-      break;
-    case GLFW_MOUSE_BUTTON_3:
-      buttonIndexInternal = 2;
-      break;
-    case GLFW_MOUSE_BUTTON_4:
-      buttonIndexInternal = 3;
-      break;
-    case GLFW_MOUSE_BUTTON_5:
-      buttonIndexInternal = 4;
-      break;
-    case GLFW_MOUSE_BUTTON_6:
-      buttonIndexInternal = 5;
-      break;
-    case GLFW_MOUSE_BUTTON_7:
-      buttonIndexInternal = 6;
-      break;
-    case GLFW_MOUSE_BUTTON_8:
-      buttonIndexInternal = 7;
-      break;
-    default:
-      MACHINE_ASSERT_UNREACHABLE();
-    };
-    int buttonActionInternal = Machine_MouseButtonActions_Undetermined;
-    switch (action) {
-    case GLFW_PRESS:
-      buttonActionInternal = Machine_MouseButtonActions_Press;
-      break;
-    case GLFW_RELEASE:
-      buttonActionInternal = Machine_MouseButtonActions_Release;
-      break;
-    default:
-      MACHINE_ASSERT_UNREACHABLE();
-    };
-    double x, y;
-    glfwGetCursorPos(window, &x, &y);
-    Machine_MouseButtonEvent* event = Machine_MouseButtonEvent_create(buttonIndexInternal, buttonActionInternal, x, y);
+    Machine_MouseButtonEvent* event
+        = Machine_Video_Gl_Input_mapMouseButtonEvent(window, button, action, mods);
     Machine_String* zeroTerminatorString = Machine_String_create("", 1);
     Machine_String* eventString = Machine_Object_toString((Machine_Object*)event);
     eventString = Machine_String_concatenate(eventString, zeroTerminatorString);
-    Machine_log(Machine_LogFlags_ToInformations, __FILE__, __LINE__, "%s\n", Machine_String_getBytes(eventString));
+    Machine_log(Machine_LogFlags_ToInformations, __FILE__, __LINE__, "%s\n",
+                Machine_String_getBytes(eventString));
     Machine_popJumpTarget();
   } else {
     Machine_popJumpTarget();
@@ -158,9 +119,3 @@ void Machine_Glfw_pollEvents() {
     Machine_jump();
   }
 }
-
-Machine_Integer Machine_Glfw_getNumberOfEvents();
-
-Machine_Object* Machine_Glfw_peekEvent();
-
-Machine_Object* Machine_Glfw_popEvent();

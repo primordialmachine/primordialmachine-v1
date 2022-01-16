@@ -26,19 +26,6 @@ void Machine_Glfw_shutdownCanvasInput();
 /// @brief Poll events from all sources and add them to the event queue.
 void Machine_Glfw_pollEvents();
 
-/// @brief Get the number of events in the event queue.
-/// @return The number of events in the event queue.
-Machine_Integer Machine_Glfw_getNumberOfEvents();
-
-/// @brief Peek at the most recent event in the event queue.
-/// @return Pointer to the most recent event in the event queue.
-/// The null pointer is returned if the event queue is empty.
-Machine_Object* Machine_Glfw_peekEvent();
-
-/// @brief Pop the most recent event in the event queue.
-/// @return Pointer to the most recent event in the event queue.
-/// The null pointer is returned if the event queue is empty.
-Machine_Object* Machine_Glfw_popEvent();
 
 
 

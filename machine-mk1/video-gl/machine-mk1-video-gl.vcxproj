@@ -107,6 +107,7 @@
     <ClInclude Include="Video\GL\Canvas.h" />
     <ClInclude Include="Video\GL\CanvasUtilities.h" />
     <ClInclude Include="Video\Gl\Input\Keyboard.h" />
+    <ClInclude Include="Video\Gl\Input\MouseButton.h" />
     <ClInclude Include="Video\Gl\Input\MousePointer.h" />
     <ClInclude Include="Video\GL\ShaderProgram.h" />
     <ClInclude Include="Video\GL\Texture.h" />
@@ -125,6 +126,7 @@
     <ClCompile Include="Video\GL\Canvas.c" />
     <ClCompile Include="Video\GL\CanvasUtilities.c" />
     <ClCompile Include="Video\Gl\Input\Keyboard.c" />
+    <ClCompile Include="Video\Gl\Input\MouseButton.c" />
     <ClCompile Include="Video\Gl\Input\MousePointer.c" />
     <ClCompile Include="Video\GL\NVIDIA\Optimus.i">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
