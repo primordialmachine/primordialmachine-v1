@@ -11,7 +11,7 @@
 #include <GLFW/glfw3.h>
 #include "_Input.h"
 
-/// @brief 
+/// @brief
 /// @param button The GLFW mouse button.
 /// @param action The GLFW mouse button action.
 /// @param modifiers The GLFW modifiers.

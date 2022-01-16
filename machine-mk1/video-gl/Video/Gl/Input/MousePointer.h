@@ -18,11 +18,11 @@
 Machine_MousePointerEvent* Machine_Video_Gl_Input_mapMousePointerEnterExitEvent(GLFWwindow* window,
                                                                                 int entered);
 
-/// @brief 
+/// @brief
 /// @param x The GLFW position of the mouse pointer along the GLFW x-axis.
 /// @param y The GLFW position of the mouse pointer along the GLFW y-axis.
-/// @return The mouse pointer event. 
-Machine_MousePointerEvent* Machine_Video_Gl_Input_mapMousePointerMoveEvent(GLFWwindow* window, double x,
-                                                                           double y);
+/// @return The mouse pointer event.
+Machine_MousePointerEvent* Machine_Video_Gl_Input_mapMousePointerMoveEvent(GLFWwindow* window,
+                                                                           double x, double y);
 
 #endif // MACHINE_VIDEO_GL_INPUT_MOUSEPOINTER_H_INCLUDED

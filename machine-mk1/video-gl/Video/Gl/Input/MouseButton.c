@@ -68,6 +68,7 @@ Machine_MouseButtonEvent* Machine_Video_Gl_Input_mapMouseButtonEvent(GLFWwindow*
   }
   double x, y;
   glfwGetCursorPos(window, &x, &y);
-  Machine_MouseButtonEvent * event = Machine_MouseButtonEvent_create(buttonInternal, actionInternal, x, y);
+  Machine_MouseButtonEvent* event
+      = Machine_MouseButtonEvent_create(buttonInternal, actionInternal, x, y);
   return event;
 }

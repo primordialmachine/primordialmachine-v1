@@ -4,15 +4,12 @@
 #define MACHINE_VIDEO_GL_PRIVATE (1)
 #include "Video/Gl/CanvasUtilities.h"
 
-
-
-#include "_Collections.h"
-#include "_Input.h"
-#include "Video/Gl/UtilitiesGl.h"
 #include "Video/Gl/Input/Keyboard.h"
 #include "Video/Gl/Input/MouseButton.h"
 #include "Video/Gl/Input/MousePointer.h"
-
+#include "Video/Gl/UtilitiesGl.h"
+#include "_Collections.h"
+#include "_Input.h"
 
 static size_t g_referenceCount = 0;
 static Machine_List* g_events = NULL;
@@ -21,15 +18,17 @@ static void keyCallback(GLFWwindow* window, int key, int scancode, int action, i
   Machine_JumpTarget jumpTarget;
   Machine_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
-    Machine_KeyboardKeyEvent* event = Machine_Video_Gl_Input_mapKeyboardKeyEvent(window, key, scancode, action, modifiers);
+    Machine_KeyboardKeyEvent* event
+        = Machine_Video_Gl_Input_mapKeyboardKeyEvent(window, key, scancode, action, modifiers);
     Machine_String* zeroTerminatorString = Machine_String_create("", 1);
     Machine_String* eventString = Machine_Object_toString((Machine_Object*)event);
     eventString = Machine_String_concatenate(eventString, zeroTerminatorString);
-    Machine_log(Machine_LogFlags_ToInformations, __FILE__, __LINE__, "%s\n", Machine_String_getBytes(eventString));
-    
+    Machine_log(Machine_LogFlags_ToInformations, __FILE__, __LINE__, "%s\n",
+                Machine_String_getBytes(eventString));
+
     if (event->key == Machine_KeyboardKeys_Escape && action == Machine_KeyboardKeyActions_Press)
       glfwSetWindowShouldClose(window, GLFW_TRUE);
-    
+
     Machine_popJumpTarget();
   } else {
     Machine_popJumpTarget();
@@ -40,11 +39,13 @@ static void cursorPositionCallback(GLFWwindow* window, double x, double y) {
   Machine_JumpTarget jumpTarget;
   Machine_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
-    Machine_MousePointerEvent* event = Machine_Video_Gl_Input_mapMousePointerMoveEvent(window, x, y);
+    Machine_MousePointerEvent* event
+        = Machine_Video_Gl_Input_mapMousePointerMoveEvent(window, x, y);
     Machine_String* zeroTerminatorString = Machine_String_create("", 1);
     Machine_String* eventString = Machine_Object_toString((Machine_Object*)event);
     eventString = Machine_String_concatenate(eventString, zeroTerminatorString);
-    Machine_log(Machine_LogFlags_ToInformations, __FILE__, __LINE__, "%s\n", Machine_String_getBytes(eventString));
+    Machine_log(Machine_LogFlags_ToInformations, __FILE__, __LINE__, "%s\n",
+                Machine_String_getBytes(eventString));
     Machine_popJumpTarget();
   } else {
     Machine_popJumpTarget();
@@ -94,11 +95,10 @@ void Machine_Glfw_startupCanvasInput() {
     Machine_JumpTarget jumpTarget;
     Machine_pushJumpTarget(&jumpTarget);
     if (!setjmp(jumpTarget.environment)) {
-      g_events = (Machine_List *)Machine_ArrayList_create();
+      g_events = (Machine_List*)Machine_ArrayList_create();
       Machine_Gc_lock(g_events);
       Machine_popJumpTarget();
-    }
-    else {
+    } else {
       Machine_popJumpTarget();
       Machine_jump();
     }

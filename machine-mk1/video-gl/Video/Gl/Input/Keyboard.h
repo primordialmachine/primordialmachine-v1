@@ -11,12 +11,12 @@
 #include <GLFW/glfw3.h>
 #include "_Input.h"
 
-/// @brief 
+/// @brief
 /// @param key The GLFW key.
 /// @param scancode The GLFW scancode.
 /// @param action The GLFW action.
 /// @param modifiers The GLFW modifiers.
-/// @return The keyboard key event. 
+/// @return The keyboard key event.
 Machine_KeyboardKeyEvent* Machine_Video_Gl_Input_mapKeyboardKeyEvent(GLFWwindow* window, int key,
                                                                      int scancode, int action,
                                                                      int modifiers);

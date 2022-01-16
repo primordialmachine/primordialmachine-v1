@@ -4,12 +4,8 @@
 #define MACHINE_VIDEO_GL_PRIVATE (1)
 #include "Video/Gl/Canvas.h"
 
-
-
 #include "Video/Gl/CanvasUtilities.h"
 #include <stdio.h>
-
-
 
 #include "Video/Gl/Amd/PowerExpress.i"
 #include "Video/Gl/Nvidia/Optimus.i"
@@ -75,7 +71,9 @@ GLFWwindow* Machine_Glfw_getWindow() {
   return g_window;
 }
 
-static void Machine_Video_Gl_Canvas_getFrameBuffersSize(Machine_Video_Gl_Canvas* self, Machine_Integer* width, Machine_Integer* height) {
+static void Machine_Video_Gl_Canvas_getFrameBuffersSize(Machine_Video_Gl_Canvas* self,
+                                                        Machine_Integer* width,
+                                                        Machine_Integer* height) {
   int w, h;
   glfwGetFramebufferSize(Machine_Glfw_getWindow(), &w, &h);
   *width = w;
@@ -90,7 +88,8 @@ static void Machine_Video_Gl_Canvas_swapFrameBuffers(Machine_Video_Gl_Canvas* se
   glfwSwapBuffers(Machine_Glfw_getWindow());
 }
 
-static void Machine_Video_Gl_Canvas_setCanvasIcons(Machine_Video_Gl_Canvas* self, Machine_List* images) {
+static void Machine_Video_Gl_Canvas_setCanvasIcons(Machine_Video_Gl_Canvas* self,
+                                                   Machine_List* images) {
   GLFWimage* targetImages = NULL;
 
   Machine_JumpTarget jumpTarget;

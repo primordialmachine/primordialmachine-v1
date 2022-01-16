@@ -13,8 +13,9 @@ Machine_MousePointerEvent* Machine_Video_Gl_Input_mapMousePointerEnterExitEvent(
   return event;
 }
 
-Machine_MousePointerEvent* Machine_Video_Gl_Input_mapMousePointerMoveEvent(GLFWwindow* window, double x,
-                                                                           double y) {
-  Machine_MousePointerEvent * event = Machine_MousePointerEvent_create(Machine_MousePointerActions_Move, x, y);
+Machine_MousePointerEvent* Machine_Video_Gl_Input_mapMousePointerMoveEvent(GLFWwindow* window,
+                                                                           double x, double y) {
+  Machine_MousePointerEvent* event
+      = Machine_MousePointerEvent_create(Machine_MousePointerActions_Move, x, y);
   return event;
 }

@@ -4,15 +4,11 @@
 #if !defined(MACHINE_GL_TEXTURE_H_INCLUDED)
 #define MACHINE_GL_TEXTURE_H_INCLUDED
 
-
-
 #if !defined(MACHINE_VIDEO_GL_PRIVATE)
 #error("Do not include this file directly, include `_Video_Gl.h` instead.")
 #endif
-#include "_Video.h"
 #include "Video/Gl/UtilitiesGl.h"
-
-
+#include "_Video.h"
 
 MACHINE_DECLARE_CLASSTYPE(Machine_Gl_Texture);
 
@@ -29,7 +25,5 @@ struct Machine_Gl_Texture {
 /// @param image A pointer to the image.
 /// @return A pointer to the OpenGL texture.
 Machine_Gl_Texture* Machine_Gl_Texture_create(Machine_Image* image);
-
-
 
 #endif // MACHINE_GL_TEXTURE_H_INCLUDED
