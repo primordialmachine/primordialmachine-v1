@@ -4,8 +4,6 @@
 #define MACHINE_GUI_PRIVATE (1)
 #include "Gui/Context.h"
 
-#include <string.h>
-
 static void Machine_Gui_Context_visit(Machine_Gui_Context* self) {
   if (self->gdlContext) {
     Machine_Gc_visit(self->gdlContext);
@@ -33,7 +31,7 @@ static void Machine_Gui_Context_construct(Machine_Gui_Context* self, size_t numb
   self->context2 = (Machine_Context2*)Machine_Value_getObject(&arguments[1]);
   static const char* FONT_FILE = "fonts/RobotoSlab/RobotoSlab-Regular.ttf";
   static const int FONT_SIZE = 16;
-  self->defaultFontFile = Machine_String_create(FONT_FILE, strlen(FONT_FILE));
+  self->defaultFontFile = Machine_String_create(FONT_FILE, c_strzt_length(FONT_FILE));
   self->defaultFontSize = FONT_SIZE;
   Machine_setClassType((Machine_Object*)self, Machine_Gui_Context_getType());
 }
