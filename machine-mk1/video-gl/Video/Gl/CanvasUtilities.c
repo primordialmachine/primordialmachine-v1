@@ -69,12 +69,12 @@ static void cursorEnterCallback(GLFWwindow* window, int entered) {
   }
 }
 
-static void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
+static void mouseButtonCallback(GLFWwindow* window, int button, int action, int modifiers) {
   Machine_JumpTarget jumpTarget;
   Machine_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
     Machine_MouseButtonEvent* event
-        = Machine_Video_Gl_Input_mapMouseButtonEvent(window, button, action, mods);
+        = Machine_Video_Gl_Input_mapMouseButtonEvent(window, button, action, modifiers);
     Machine_String* zeroTerminatorString = Machine_String_create("", 1);
     Machine_String* eventString = Machine_Object_toString((Machine_Object*)event);
     eventString = Machine_String_concatenate(eventString, zeroTerminatorString);
