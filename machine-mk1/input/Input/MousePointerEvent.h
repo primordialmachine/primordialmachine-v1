@@ -9,6 +9,25 @@
 #endif
 #include "_Runtime.h"
 
+MACHINE_DECLARE_ENUMERATIONTYPE(Machine_MousePointerActions)
+
+enum Machine_MousePointerActions {
+
+  Machine_MousePointerActions_Undetermined = (0),
+
+  /// @brief A mouse pointer was moved.
+  Machine_MousePointerActions_Move = (1),
+
+  /// @brief A mouse pointer entered an area.
+  Machine_MousePointerActions_Enter = (2),
+
+  /// @brief A mouse pointer exited an area.
+  Machine_MousePointerActions_Exit = (3)
+
+};
+
+Machine_String* Machine_MousePointerActions_toString(Machine_MousePointerActions self);
+
 /// @brief An event pertaining to a mouse pointer.
 /// @extends Machine.Object
 /// @todo Should extend from Machine.Event.
@@ -20,14 +39,17 @@ struct Machine_MousePointerEvent_Class {
 
 struct Machine_MousePointerEvent {
   Machine_Object parent;
+  Machine_MousePointerActions action;
   Machine_Real x;
   Machine_Real y;
 };
 
 /// @brief Create a mouse pointer event.
+/// @param action The action.
 /// @param x The position of the mouse pointer along the x-axis.
 /// @param y The position of the mouse pointer along the y-axis.
 /// @return The mouse pointer event.
-Machine_MousePointerEvent* Machine_MousePointerEvent_create(Machine_Real x, Machine_Real y);
+Machine_MousePointerEvent* Machine_MousePointerEvent_create(Machine_MousePointerActions action,
+                                                            Machine_Real x, Machine_Real y);
 
 #endif // MACHINE_MOUSEPOINTEREVENT_H_INCLUDED

@@ -39,11 +39,28 @@ static void cursorPositionCallback(GLFWwindow* window, double x, double y) {
   Machine_JumpTarget jumpTarget;
   Machine_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
-    Machine_MousePointerEvent* event = Machine_Video_Gl_Input_mapMousePointerEvent(window, x, y);
+    Machine_MousePointerEvent* event = Machine_Video_Gl_Input_mapMousePointerMoveEvent(window, x, y);
     Machine_String* zeroTerminatorString = Machine_String_create("", 1);
     Machine_String* eventString = Machine_Object_toString((Machine_Object*)event);
     eventString = Machine_String_concatenate(eventString, zeroTerminatorString);
     Machine_log(Machine_LogFlags_ToInformations, __FILE__, __LINE__, "%s\n", Machine_String_getBytes(eventString));
+    Machine_popJumpTarget();
+  } else {
+    Machine_popJumpTarget();
+  }
+}
+
+static void cursorEnterCallback(GLFWwindow* window, int entered) {
+  Machine_JumpTarget jumpTarget;
+  Machine_pushJumpTarget(&jumpTarget);
+  if (!setjmp(jumpTarget.environment)) {
+    Machine_MousePointerEvent* event
+        = Machine_Video_Gl_Input_mapMousePointerEnterExitEvent(window, entered);
+    Machine_String* zeroTerminatorString = Machine_String_create("", 1);
+    Machine_String* eventString = Machine_Object_toString((Machine_Object*)event);
+    eventString = Machine_String_concatenate(eventString, zeroTerminatorString);
+    Machine_log(Machine_LogFlags_ToInformations, __FILE__, __LINE__, "%s\n",
+                Machine_String_getBytes(eventString));
     Machine_popJumpTarget();
   } else {
     Machine_popJumpTarget();
@@ -112,6 +129,7 @@ void Machine_Glfw_startupCanvasInput() {
     glfwSetKeyCallback(Machine_Glfw_getWindow(), keyCallback);
     glfwSetMouseButtonCallback(Machine_Glfw_getWindow(), mouseButtonCallback);
     glfwSetCursorPosCallback(Machine_Glfw_getWindow(), cursorPositionCallback);
+    glfwSetCursorEnterCallback(Machine_Glfw_getWindow(), cursorEnterCallback);
     Machine_JumpTarget jumpTarget;
     Machine_pushJumpTarget(&jumpTarget);
     if (!setjmp(jumpTarget.environment)) {
