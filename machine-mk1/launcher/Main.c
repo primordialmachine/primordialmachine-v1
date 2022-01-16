@@ -68,6 +68,37 @@ static void run(Scene* self) {
   }
 }
 
+static Machine_Value onMousePointerEvent(size_t numberOfArguments, Machine_Value const* arguments) {
+  static Machine_Value const RESULT = { Machine_ValueFlag_Void, Machine_Void_Void };
+  Scene* self = (Scene*)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0,
+                                                             Scene_getType());
+  Machine_MousePointerEvent* event
+      = (Machine_MousePointerEvent*)Machine_Extensions_getObjectArgument(
+          numberOfArguments, arguments, 1, Machine_MousePointerEvent_getType());
+  Scene_onMousePointerEvent(self, event);
+  return RESULT;
+}
+
+static Machine_Value onMouseButtonEvent(size_t numberOfArguments, Machine_Value const* arguments) {
+  static Machine_Value const RESULT = { Machine_ValueFlag_Void, Machine_Void_Void };
+  Scene* self = (Scene*)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0,
+                                                             Scene_getType());
+  Machine_MouseButtonEvent* event = (Machine_MouseButtonEvent*)Machine_Extensions_getObjectArgument(
+      numberOfArguments, arguments, 1, Machine_MouseButtonEvent_getType());
+  Scene_onMouseButtonEvent(self, event);
+  return RESULT;
+}
+
+static Machine_Value onKeyboardKeyEvent(size_t numberOfArguments, Machine_Value const* arguments) {
+  static Machine_Value const RESULT = { Machine_ValueFlag_Void, Machine_Void_Void };
+  Scene* self = (Scene*)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0,
+                                                             Scene_getType());
+  Machine_KeyboardKeyEvent* event = (Machine_KeyboardKeyEvent*)Machine_Extensions_getObjectArgument(
+      numberOfArguments, arguments, 1, Machine_KeyboardKeyEvent_getType());
+  Scene_onKeyboardKeyEvent(self, event);
+  return RESULT;
+}
+
 void main0() {
   Machine_Video_Canvas_maximizeCanvas(Machine_getVideoCanvas());
   loadIcons();
@@ -75,6 +106,16 @@ void main0() {
   Machine_pushJumpTarget(&jumpTarget1);
   if (!setjmp(jumpTarget1.environment)) {
     g_scene = (Scene*)Scene5_create(Machine_getVideoContext());
+    Machine_Video_Canvas_subscribeKeyboardKeyPressedEvent(
+        Machine_getVideoCanvas(), (Machine_Object*)g_scene, &onKeyboardKeyEvent);
+    Machine_Video_Canvas_subscribeKeyboardKeyReleasedEvent(
+        Machine_getVideoCanvas(), (Machine_Object*)g_scene, &onKeyboardKeyEvent);
+    Machine_Video_Canvas_subscribeMousePointerMovedEvent(
+        Machine_getVideoCanvas(), (Machine_Object*)g_scene, &onMousePointerEvent);
+    Machine_Video_Canvas_subscribeMouseButtonPressedEvent(
+        Machine_getVideoCanvas(), (Machine_Object*)g_scene, &onMouseButtonEvent);
+    Machine_Video_Canvas_subscribeMouseButtonReleasedEvent(
+        Machine_getVideoCanvas(), (Machine_Object*)g_scene, &onMouseButtonEvent);
     Scene_onStartup(g_scene);
 
     Machine_JumpTarget jumpTarget2; // To shutdown scene.
