@@ -5,12 +5,12 @@
 extern "C" {
 #endif
 
-#include "_Scenes.h"
+#include "Video.h"
 #include "_Collections.h"
 #include "_Fonts.h"
 #include "_Images.h"
 #include "_Runtime.h"
-#include "Video.h"
+#include "_Scenes.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
