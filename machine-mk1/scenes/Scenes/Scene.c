@@ -10,9 +10,12 @@ static void onMousePointerEvent(Scene* self, Machine_MousePointerEvent* event);
 
 static void onMouseButtonEvent(Scene* self, Machine_MouseButtonEvent* event);
 
+static void onKeyboardKeyEvent(Scene* self, Machine_KeyboardKeyEvent* event);
+
 static void Scene_constructClass(Scene_Class* self) {
   self->onMouseButtonEvent = &onMouseButtonEvent;
   self->onMousePointerEvent = &onMousePointerEvent;
+  self->onKeyboardKeyEvent = &onKeyboardKeyEvent;
 }
 
 void Scene_construct(Scene* self, size_t numberOfArguments, Machine_Value const* arguments) {
@@ -39,6 +42,10 @@ static void onMouseButtonEvent(Scene* self,
                                Machine_MouseButtonEvent* event) { /*Intentionally empty.*/
 }
 
+static void onKeyboardKeyEvent(Scene* self,
+                               Machine_KeyboardKeyEvent* event) { /*Intentionally empty.*/
+}
+
 void Scene_onStartup(Scene* self) {
   MACHINE_VIRTUALCALL_NORETURN_NOARGS(Scene, onStartup);
 }
@@ -53,6 +60,10 @@ void Scene_onMousePointerEvent(Scene* self, Machine_MousePointerEvent* event) {
 
 void Scene_onMouseButtonEvent(Scene* self, Machine_MouseButtonEvent* event) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Scene, onMouseButtonEvent, event);
+}
+
+void Scene_onKeyboardKeyEvent(Scene* self, Machine_KeyboardKeyEvent* event) {
+  MACHINE_VIRTUALCALL_NORETURN_ARGS(Scene, onKeyboardKeyEvent, event);
 }
 
 void Scene_onUpdate(Scene* self, Machine_Real width, Machine_Real height) {

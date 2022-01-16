@@ -18,6 +18,8 @@ typedef void Scene_OnMousePointerEventCallback(Scene* self, Machine_MousePointer
 
 typedef void Scene_OnMouseButtonEventCallback(Scene* self, Machine_MouseButtonEvent* event);
 
+typedef void Scene_OnKeyboardKeyEventCallback(Scene* self, Machine_KeyboardKeyEvent* event);
+
 struct Scene_Class {
   Machine_Object_Class parent;
 
@@ -25,6 +27,7 @@ struct Scene_Class {
 
   Scene_OnMousePointerEventCallback* onMousePointerEvent;
   Scene_OnMouseButtonEventCallback* onMouseButtonEvent;
+  Scene_OnKeyboardKeyEventCallback* onKeyboardKeyEvent;
 
   Scene_OnUpdateCallback* onUpdate;
 
@@ -82,6 +85,13 @@ MACHINE_EVENTS_SINK() void Scene_onMousePointerEvent(Scene* self, Machine_MouseP
 /// @remarks Canvas coordinates have their origin in the left top corner of the canvas with the
 /// positive x axis pointing right and the positive y axis pointing down.
 MACHINE_EVENTS_SINK() void Scene_onMouseButtonEvent(Scene* self, Machine_MouseButtonEvent* event);
+
+/// @brief Invoked if a keyboard key event was received.
+/// @param self This scene.
+/// @param event The event.
+/// @remarks Canvas coordinates have their origin in the left top corner of the canvas with the
+/// positive x axis pointing right and the positive y axis pointing down.
+MACHINE_EVENTS_SINK() void Scene_onKeyboardKeyEvent(Scene* self, Machine_KeyboardKeyEvent* event);
 
 void Scene_onUpdate(Scene* self, Machine_Real width, Machine_Real height);
 
