@@ -58,24 +58,12 @@ void Scene_onStartup(Scene* self);
 /// @param height The new height.
 void Scene_onCanvasSizeChanged(Scene* self, Machine_CanvasSizeChangedEvent* event);
 
-/// @brief A button or key was pressed.
-#define Machine_Pressed (1)
-
-/// @brief A button or key was released.
-#define Machine_Released (2)
-
-/// @brief An event handler is a method invoked if an object receives an event.
-/// The naming convention is <code>Type.on&lt;Event&gt;Event(...)</code> e.g.
-/// <code>Scene.onMousePointerEvent(...)</code>.
-/// This macro merely used to annotate such functions.
-#define MACHINE_EVENTS_SINK()
-
 /// @brief Invoked if a mouse pointer event was received.
 /// @param self This scene.
 /// @param x, y The position in canvas coordinates.
 /// @remarks Canvas coordinates have their origin in the left top corner of the canvas with the
 /// positive x axis pointing right and the positive y axis pointing down.
-MACHINE_EVENTS_SINK() void Scene_onMousePointerEvent(Scene* self, Machine_MousePointerEvent* event);
+void Scene_onMousePointerEvent(Scene* self, Machine_MousePointerEvent* event);
 
 /// @brief Invoked if a mouse button event was received.
 /// @param self This scene.
@@ -84,14 +72,14 @@ MACHINE_EVENTS_SINK() void Scene_onMousePointerEvent(Scene* self, Machine_MouseP
 /// @param action The action (either Machine_Pressed or Machine_Released).
 /// @remarks Canvas coordinates have their origin in the left top corner of the canvas with the
 /// positive x axis pointing right and the positive y axis pointing down.
-MACHINE_EVENTS_SINK() void Scene_onMouseButtonEvent(Scene* self, Machine_MouseButtonEvent* event);
+void Scene_onMouseButtonEvent(Scene* self, Machine_MouseButtonEvent* event);
 
 /// @brief Invoked if a keyboard key event was received.
 /// @param self This scene.
 /// @param event The event.
 /// @remarks Canvas coordinates have their origin in the left top corner of the canvas with the
 /// positive x axis pointing right and the positive y axis pointing down.
-MACHINE_EVENTS_SINK() void Scene_onKeyboardKeyEvent(Scene* self, Machine_KeyboardKeyEvent* event);
+void Scene_onKeyboardKeyEvent(Scene* self, Machine_KeyboardKeyEvent* event);
 
 void Scene_onUpdate(Scene* self, Machine_Real width, Machine_Real height);
 
