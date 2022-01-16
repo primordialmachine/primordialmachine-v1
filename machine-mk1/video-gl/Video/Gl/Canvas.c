@@ -142,15 +142,23 @@ static void Machine_Video_Gl_Canvas_destruct(Machine_Video_Gl_Canvas* self) {
 }
 
 static void Machine_Video_Gl_Canvas_constructClass(Machine_Video_Gl_Canvas_Class* self) {
-  ((Machine_Video_Canvas_Class*)self)->getFrameBuffersSize = (void (*)(Machine_Video_Canvas*, Machine_Integer *,Machine_Integer *))&Machine_Video_Gl_Canvas_getFrameBuffersSize;
-  ((Machine_Video_Canvas_Class*)self)->maximizeCanvas = (void (*)(Machine_Video_Canvas*)) &Machine_Video_Gl_Canvas_maximizeCanvas;
-  ((Machine_Video_Canvas_Class*)self)->swapFrameBuffers = (void (*)(Machine_Video_Canvas*)) &Machine_Video_Gl_Canvas_swapFrameBuffers;
-  ((Machine_Video_Canvas_Class*)self)->setCanvasIcons = (void (*)(Machine_Video_Canvas*, Machine_List *)) &Machine_Video_Gl_Canvas_setCanvasIcons;
-  ((Machine_Video_Canvas_Class*)self)->pollEvents = (void (*)(Machine_Video_Canvas*)) & Machine_Video_Gl_Canvas_pollEvents;
-  ((Machine_Video_Canvas_Class*)self)->getQuitRequested = (Machine_Boolean(*)(Machine_Video_Canvas*)) & Machine_Video_Gl_Canvas_getQuitRequested;
+  ((Machine_Video_Canvas_Class*)self)->getFrameBuffersSize
+      = (void (*)(Machine_Video_Canvas*, Machine_Integer*, Machine_Integer*))
+        & Machine_Video_Gl_Canvas_getFrameBuffersSize;
+  ((Machine_Video_Canvas_Class*)self)->maximizeCanvas
+      = (void (*)(Machine_Video_Canvas*)) & Machine_Video_Gl_Canvas_maximizeCanvas;
+  ((Machine_Video_Canvas_Class*)self)->swapFrameBuffers
+      = (void (*)(Machine_Video_Canvas*)) & Machine_Video_Gl_Canvas_swapFrameBuffers;
+  ((Machine_Video_Canvas_Class*)self)->setCanvasIcons
+      = (void (*)(Machine_Video_Canvas*, Machine_List*)) & Machine_Video_Gl_Canvas_setCanvasIcons;
+  ((Machine_Video_Canvas_Class*)self)->pollEvents
+      = (void (*)(Machine_Video_Canvas*)) & Machine_Video_Gl_Canvas_pollEvents;
+  ((Machine_Video_Canvas_Class*)self)->getQuitRequested
+      = (Machine_Boolean(*)(Machine_Video_Canvas*)) & Machine_Video_Gl_Canvas_getQuitRequested;
 }
 
-void Machine_Video_Gl_Canvas_construct(Machine_Video_Gl_Canvas* self, size_t numberOfArguments, Machine_Value const* arguments) {
+void Machine_Video_Gl_Canvas_construct(Machine_Video_Gl_Canvas* self, size_t numberOfArguments,
+                                       Machine_Value const* arguments) {
   static size_t const NUMBER_OF_ARGUMENTS = 0;
   static Machine_Value const ARGUMENTS[] = { Machine_Value_StaticInitializerVoid() };
   Machine_Video_Canvas_construct((Machine_Video_Canvas*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
@@ -167,6 +175,7 @@ Machine_Video_Gl_Canvas* Machine_Video_Gl_Canvas_create() {
   Machine_ClassType* ty = Machine_Video_Gl_Canvas_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
   static Machine_Value const ARGUMENTS[] = { Machine_Value_StaticInitializerVoid() };
-  Machine_Video_Gl_Canvas* self = (Machine_Video_Gl_Canvas*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Machine_Video_Gl_Canvas* self
+      = (Machine_Video_Gl_Canvas*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

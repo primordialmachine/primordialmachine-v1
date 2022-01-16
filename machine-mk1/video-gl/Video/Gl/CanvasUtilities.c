@@ -25,7 +25,6 @@ static void keyCallback(GLFWwindow* window, int key, int scancode, int action, i
     eventString = Machine_String_concatenate(eventString, zeroTerminatorString);
     Machine_log(Machine_LogFlags_ToInformations, __FILE__, __LINE__, "%s\n",
                 Machine_String_getBytes(eventString));
-
     if (event->key == Machine_KeyboardKeys_Escape && action == Machine_KeyboardKeyActions_Press)
       glfwSetWindowShouldClose(window, GLFW_TRUE);
 
