@@ -234,6 +234,10 @@ void Machine_ClassType_ensureInitialized(Machine_ClassType* self) {
   _TypeFlag_set((Machine_Type*)self, Machine_TypeFlags_Initialized);
 }
 
+Machine_ClassType* Machine_ClassType_getParent(Machine_ClassType* self) {
+  return self->parent;
+}
+
 void* Machine_ClassType_getDispatch(Machine_ClassType* self) {
   return self->class.data;
 }

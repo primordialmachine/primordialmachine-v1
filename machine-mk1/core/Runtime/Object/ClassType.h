@@ -96,6 +96,8 @@ void Machine_ClassType_implement(Machine_ClassType* self, Machine_InterfaceType*
 
 void Machine_ClassType_ensureInitialized(Machine_ClassType* self);
 
+Machine_ClassType* Machine_ClassType_getParent(Machine_ClassType *self);
+
 /// @brief Get the dispatch of this class type.
 /// @param self A pointer to this class type.
 /// @return A pointer to the dispatch.
