@@ -40,7 +40,7 @@ struct Machine_KeyboardKeyEvent_Class {
 struct Machine_KeyboardKeyEvent {
   Machine_Object parent;
   Machine_KeyboardKeys key;
-  Machine_KeyboardKeyActions keyAction;
+  Machine_KeyboardKeyActions action;
 };
 
 /// @brief Create a keyboard key event.

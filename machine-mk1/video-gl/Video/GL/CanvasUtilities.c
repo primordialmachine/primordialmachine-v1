@@ -17,11 +17,11 @@
 static size_t g_referenceCount = 0;
 static Machine_List* g_events = NULL;
 
-static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int modifiers) {
   Machine_JumpTarget jumpTarget;
   Machine_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
-    Machine_KeyboardKeyEvent* event = Machine_Video_Gl_Input_mapKeyboardKeyEvent(window, key, scancode, action, mods);
+    Machine_KeyboardKeyEvent* event = Machine_Video_Gl_Input_mapKeyboardKeyEvent(window, key, scancode, action, modifiers);
     Machine_String* zeroTerminatorString = Machine_String_create("", 1);
     Machine_String* eventString = Machine_Object_toString((Machine_Object*)event);
     eventString = Machine_String_concatenate(eventString, zeroTerminatorString);

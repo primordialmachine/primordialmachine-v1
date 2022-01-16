@@ -40,7 +40,7 @@ static Machine_String* Machine_KeyboardKeyEvent_toStringImpl(Machine_KeyboardKey
 
   Machine_StringBuffer_appendBytes(stringBuffer, "keyAction: '", strlen("keyAction: '"));
   Machine_StringBuffer_appendString(stringBuffer,
-                                    Machine_KeyboardKeyActions_toString(self->keyAction));
+                                    Machine_KeyboardKeyActions_toString(self->action));
   Machine_StringBuffer_appendBytes(stringBuffer, "', ", strlen("', "));
 
   Machine_StringBuffer_appendBytes(stringBuffer, "key: '", strlen("key: '"));
@@ -62,7 +62,7 @@ static void Machine_KeyboardKeyEvent_construct(Machine_KeyboardKeyEvent* self,
                                                const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->key = Machine_Value_getInteger(&arguments[0]);
-  self->keyAction = Machine_Value_getInteger(&arguments[1]);
+  self->action = Machine_Value_getInteger(&arguments[1]);
   Machine_setClassType((Machine_Object*)self, Machine_KeyboardKeyEvent_getType());
 }
 
