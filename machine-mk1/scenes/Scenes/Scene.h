@@ -52,24 +52,21 @@ void Scene_construct(Scene* self, size_t numberOfArguments, Machine_Value const*
 /// @param self This scene.
 void Scene_onStartup(Scene* self);
 
-/// @brief Invoked if the canvas size has changed.
+/// @brief Invoked if the canvas size changed event was received.
 /// @param self This scene.
-/// @param width The new width.
-/// @param height The new height.
+/// @param event The event.
 void Scene_onCanvasSizeChanged(Scene* self, Machine_CanvasSizeChangedEvent* event);
 
 /// @brief Invoked if a mouse pointer event was received.
 /// @param self This scene.
-/// @param x, y The position in canvas coordinates.
+/// @param event The event.
 /// @remarks Canvas coordinates have their origin in the left top corner of the canvas with the
 /// positive x axis pointing right and the positive y axis pointing down.
 void Scene_onMousePointerEvent(Scene* self, Machine_MousePointerEvent* event);
 
 /// @brief Invoked if a mouse button event was received.
 /// @param self This scene.
-/// @param x, y The position in canvas coordinates.
-/// @param i The button index.
-/// @param action The action (either Machine_Pressed or Machine_Released).
+/// @param event The event.
 /// @remarks Canvas coordinates have their origin in the left top corner of the canvas with the
 /// positive x axis pointing right and the positive y axis pointing down.
 void Scene_onMouseButtonEvent(Scene* self, Machine_MouseButtonEvent* event);
