@@ -22,6 +22,7 @@ struct Machine_Video_Canvas_Class {
 struct Machine_Video_Canvas {
   Machine_Object parent__;
   Machine_Signals_Signal* signal;
+  Machine_Deque* events;
 };
 
 void Machine_Video_Canvas_construct(Machine_Video_Canvas* self, size_t numberOfArguments,
@@ -88,5 +89,16 @@ void Machine_Video_Canvas_subscribeMouseButtonReleasedEvent(Machine_Video_Canvas
 void Machine_Video_Canvas_subscribeMousePointerMovedEvent(Machine_Video_Canvas* self,
                                                           Machine_Object* context,
                                                           Machine_ForeignProcedure* callback);
+
+void Machine_Video_Canvas_addKeyboardKeyEvent(Machine_Video_Canvas* self,
+                                              Machine_KeyboardKeyEvent* event);
+
+void Machine_Video_Canvas_addMouseButtonEvent(Machine_Video_Canvas* self,
+                                              Machine_MouseButtonEvent* event);
+
+void Machine_Video_Canvas_addMousePointerEvent(Machine_Video_Canvas* self,
+                                               Machine_MousePointerEvent* event);
+
+void Machine_Video_Canvas_pumpEvents(Machine_Video_Canvas* self);
 
 #endif // MACHINE_VIDEO_CANVAS_H_INCLUDED

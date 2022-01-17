@@ -129,7 +129,9 @@ static void Machine_Video_Gl_Canvas_setCanvasIcons(Machine_Video_Gl_Canvas* self
 }
 
 static void Machine_Video_Gl_Canvas_pollEvents(Machine_Video_Gl_Canvas* self) {
+  glfwSetWindowUserPointer(Machine_Glfw_getWindow(), self);
   Machine_Glfw_pollEvents();
+  Machine_Video_Canvas_pumpEvents((Machine_Video_Canvas*)self);
 }
 
 static Machine_Boolean Machine_Video_Gl_Canvas_getQuitRequested(Machine_Video_Gl_Canvas* self) {
