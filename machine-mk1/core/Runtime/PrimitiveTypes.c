@@ -19,10 +19,12 @@ size_t Machine_hashPointer_sz(void const* x) {
 }
 
 int64_t Machine_hashPointer_i64(void const* x) {
-#if INT64_MIN >= INTPTR_MIN && INTPTR_MAX <= INT64_MAX
+#if defined(_WIN64)
+  return (int64_t)(intptr_t)x;
+#elif defined(_WIN32)
   return (int64_t)(intptr_t)x;
 #else
-#error("environment not supported")
+  #error("environment not supported")
 #endif
 }
 
