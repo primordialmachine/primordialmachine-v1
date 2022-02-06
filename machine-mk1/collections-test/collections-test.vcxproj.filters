@@ -42,9 +42,6 @@
     <ClCompile Include="Collections\Test\MapTest.c">
       <Filter>Quelldateien\Collections\Test</Filter>
     </ClCompile>
-    <ClCompile Include="Collections\Test\QueueTest.c">
-      <Filter>Quelldateien\Collections\Test</Filter>
-    </ClCompile>
     <ClCompile Include="Collections\Test\ListTest.c">
       <Filter>Quelldateien\Collections\Test</Filter>
     </ClCompile>
@@ -63,9 +60,6 @@
       <Filter>Headerdateien\Collections\Test</Filter>
     </ClInclude>
     <ClInclude Include="Collections\Test\MapTest.h">
-      <Filter>Headerdateien\Collections\Test</Filter>
-    </ClInclude>
-    <ClInclude Include="Collections\Test\QueueTest.h">
       <Filter>Headerdateien\Collections\Test</Filter>
     </ClInclude>
     <ClInclude Include="Collections\Test\ListTest.h">
