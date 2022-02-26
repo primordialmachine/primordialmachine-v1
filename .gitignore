@@ -52,3 +52,9 @@ Thumbs.db
 machine-mk1/.vs/
 machine-mk1/products/
 machine-mk1/intermediates/
+
+# Ring1.
+ring1/.vs/
+ring1/products/
+ring1/intermediates/
+

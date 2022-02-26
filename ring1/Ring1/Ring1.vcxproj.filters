@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1">
+      <UniqueIdentifier>{312fe4ae-00d6-4ed1-ba26-5826d91b9aea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1">
+      <UniqueIdentifier>{cb8e3f96-fe83-49b6-9904-e9ebb2fa5114}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\Intrinsic">
+      <UniqueIdentifier>{91faa8f8-7e4e-4f4b-8d13-adb3d59c1bf3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Intrinsic">
+      <UniqueIdentifier>{3af6a947-9e13-4e69-bd58-d21a52a51281}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Ring1\Status.h">
+      <Filter>Headerdateien\Ring1</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Result.h">
+      <Filter>Headerdateien\Ring1</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\CheckReturn.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\ThreadLocal.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Configuration.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Ring1\Status.c">
+      <Filter>Quelldateien\Ring1</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Result.c">
+      <Filter>Quelldateien\Ring1</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\CheckReturn.c">
+      <Filter>Quelldateien\Ring1\Intrinsic</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\ThreadLocal.c">
+      <Filter>Quelldateien\Ring1\Intrinsic</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
