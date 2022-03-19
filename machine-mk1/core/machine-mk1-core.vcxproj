@@ -95,6 +95,9 @@
     <ClInclude Include="_Runtime.h" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ring1\Ring1\Ring1.vcxproj">
+      <Project>{d7db575d-7eaa-47de-8999-44f4e1361d34}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\eal\machine-mk1-eal.vcxproj">
       <Project>{2c009df6-0365-43aa-b0f1-c8752d10b066}</Project>
     </ProjectReference>

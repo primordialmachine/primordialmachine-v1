@@ -45,6 +45,9 @@
     <ClInclude Include="_Collections.h" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ring1\Ring1\Ring1.vcxproj">
+      <Project>{d7db575d-7eaa-47de-8999-44f4e1361d34}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\core\machine-mk1-core.vcxproj">
       <Project>{f34866d8-3093-4b44-a225-7da2b5cd8e83}</Project>
     </ProjectReference>

@@ -115,6 +115,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ring1\Ring1\Ring1.vcxproj">
+      <Project>{d7db575d-7eaa-47de-8999-44f4e1361d34}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\collections\machine-mk1-collections.vcxproj">
       <Project>{6eb4ab0f-86e3-4ab8-850e-449c7a78878b}</Project>
     </ProjectReference>
