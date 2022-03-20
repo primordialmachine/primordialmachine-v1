@@ -30,6 +30,9 @@
     <Filter Include="Headerdateien\Ring1\Intrinsic\NextMultipleOf32">
       <UniqueIdentifier>{06010415-c24a-4462-8068-28dd5e43473f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring1\Intrinsic\Multiply">
+      <UniqueIdentifier>{e2de730c-f7cb-44ff-86b9-330e7f63429c}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Quelldateien\Ring1">
       <UniqueIdentifier>{cb8e3f96-fe83-49b6-9904-e9ebb2fa5114}</UniqueIdentifier>
     </Filter>
@@ -75,11 +78,26 @@
     <Filter Include="Quelldateien\Ring1\Intrinsic\NextMultipleOf32">
       <UniqueIdentifier>{b42f5630-3043-4bfb-b4c9-28ffd274b1a0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Quelldateien\Ring1\Intrinsic\Multiply">
+      <UniqueIdentifier>{b5a49268-ad76-42c1-bd9c-70d0d32948f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Intrinsic\Multiply\X86">
+      <UniqueIdentifier>{d670dc64-03ba-4534-b23e-fd02615209af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Intrinsic\Multiply\X64">
+      <UniqueIdentifier>{b46fcbf7-e463-4d68-85dc-372d5af8b5dd}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Headerdateien\Ring1\Intrinsic\Add\X86">
       <UniqueIdentifier>{b81f66de-2d7a-4aac-9436-ac4d61808672}</UniqueIdentifier>
     </Filter>
     <Filter Include="Headerdateien\Ring1\Intrinsic\Add\X64">
       <UniqueIdentifier>{b467f926-c2a2-4932-8c0a-5ed81481ff38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\Intrinsic\Multiply\X64">
+      <UniqueIdentifier>{598cb1fa-0275-47a4-aaa8-16a6bd3182c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\Intrinsic\Multiply\X86">
+      <UniqueIdentifier>{af9c6aea-a9e0-4ffc-ba43-b9cf562e8591}</UniqueIdentifier>
     </Filter>
     <Filter Include="Headerdateien\Ring1\Intrinsic\Subtract\X86">
       <UniqueIdentifier>{d7242259-15cf-4eef-be27-0966566348fa}</UniqueIdentifier>
@@ -416,8 +434,62 @@
     <ClInclude Include="Ring1\Intrinsic\NextMultipleOf32\nextMultipleOf32.h">
       <Filter>Headerdateien\Ring1\Intrinsic\NextMultipleOf32</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_s8.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X64</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_s8.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_s16.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_s16.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X64</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_s32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_s32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X64</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_s64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X64</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_s64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_u8.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_u16.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_u64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_u8.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X64</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_u16.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X64</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_u32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_u32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X64</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_u64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X64</Filter>
+    </ClInclude>
     <ClInclude Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo.h">
       <Filter>Headerdateien\Ring1\Intrinsic\NextPowerOfTwo</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\configuration.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\multiply.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\Intrinsic\Likely.h">
       <Filter>Headerdateien\Ring1\Intrinsic</Filter>
@@ -502,8 +574,20 @@
     <ClCompile Include="Ring1\Intrinsic\NextMultipleOf32\nextMultipleOf32.c">
       <Filter>Quelldateien\Ring1\Intrinsic\NextMultipleOf32</Filter>
     </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Multiply\X86\multiply_s64.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\Multiply\X86</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Multiply\X86\multiply_u64.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\Multiply\X86</Filter>
+    </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\NextMultipleOf64\nextMultipleOf64.c">
       <Filter>Quelldateien\Ring1\Intrinsic\NextMultipleOf64</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Multiply\X64\multiply_s64.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\Multiply\X64</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Multiply\X64\multiply_u64.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\Multiply\X64</Filter>
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\Likely.c">
       <Filter>Quelldateien\Ring1\Intrinsic</Filter>
@@ -511,5 +595,43 @@
     <ClCompile Include="Ring1\Intrinsic\Unlikely.c">
       <Filter>Quelldateien\Ring1\Intrinsic</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="Ring1\Intrinsic\Multiply\X86\multiply_s8.asm">
+      <Filter>Quelldateien\Ring1\Intrinsic\Multiply\X86</Filter>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Multiply\X86\multiply_s16.asm">
+      <Filter>Quelldateien\Ring1\Intrinsic\Multiply\X86</Filter>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Multiply\X86\multiply_s32.asm">
+      <Filter>Quelldateien\Ring1\Intrinsic\Multiply\X86</Filter>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Multiply\X86\multiply_u8.asm">
+      <Filter>Quelldateien\Ring1\Intrinsic\Multiply\X86</Filter>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Multiply\X86\multiply_u16.asm">
+      <Filter>Quelldateien\Ring1\Intrinsic\Multiply\X86</Filter>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Multiply\X86\multiply_u32.asm">
+      <Filter>Quelldateien\Ring1\Intrinsic\Multiply\X86</Filter>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Multiply\X64\multiply_s8.asm">
+      <Filter>Quelldateien\Ring1\Intrinsic\Multiply\X64</Filter>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Multiply\X64\multiply_s16.asm">
+      <Filter>Quelldateien\Ring1\Intrinsic\Multiply\X64</Filter>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Multiply\X64\multiply_s32.asm">
+      <Filter>Quelldateien\Ring1\Intrinsic\Multiply\X64</Filter>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Multiply\X64\multiply_u8.asm">
+      <Filter>Quelldateien\Ring1\Intrinsic\Multiply\X64</Filter>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Multiply\X64\multiply_u16.asm">
+      <Filter>Quelldateien\Ring1\Intrinsic\Multiply\X64</Filter>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Multiply\X64\multiply_u32.asm">
+      <Filter>Quelldateien\Ring1\Intrinsic\Multiply\X64</Filter>
+    </MASM>
   </ItemGroup>
 </Project>

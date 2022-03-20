@@ -91,6 +91,66 @@
       <UseSafeExceptionHandlers Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</UseSafeExceptionHandlers>
       <UseSafeExceptionHandlers Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</UseSafeExceptionHandlers>
     </MASM>
+    <MASM Include="Ring1\Intrinsic\Multiply\X64\multiply_s16.asm">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Multiply\X64\multiply_s32.asm">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Multiply\X64\multiply_s8.asm">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Multiply\X64\multiply_u16.asm">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Multiply\X64\multiply_u32.asm">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Multiply\X64\multiply_u8.asm">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Multiply\X86\multiply_s16.asm">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Multiply\X86\multiply_s32.asm">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Multiply\X86\multiply_s8.asm">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Multiply\X86\multiply_u16.asm">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Multiply\X86\multiply_u32.asm">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Multiply\X86\multiply_u8.asm">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </MASM>
     <MASM Include="Ring1\Intrinsic\Subtract\X64\subtract_s16.asm">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
@@ -303,6 +363,24 @@
     <ClInclude Include="Ring1\Intrinsic\Add\X86\add_u8.h" />
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\countLeadingZeroes.h" />
     <ClInclude Include="Ring1\Intrinsic\Likely.h" />
+    <ClInclude Include="Ring1\Intrinsic\Multiply\configuration.h" />
+    <ClInclude Include="Ring1\Intrinsic\Multiply\multiply.h" />
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_s16.h" />
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_s32.h" />
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_s64.h" />
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_u16.h" />
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_s8.h" />
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_u32.h" />
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_u64.h" />
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_u8.h" />
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_s16.h" />
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_s32.h" />
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_s64.h" />
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_s8.h" />
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_u16.h" />
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_u32.h" />
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_u64.h" />
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_u8.h" />
     <ClInclude Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo.h" />
     <ClInclude Include="Ring1\Intrinsic\CheckReturn.h" />
     <ClInclude Include="Ring1\Intrinsic\Configuration.h" />
@@ -347,6 +425,30 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring1\Intrinsic\Likely.c" />
+    <ClCompile Include="Ring1\Intrinsic\Multiply\X64\multiply_s64.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Multiply\X64\multiply_u64.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Multiply\X86\multiply_s64.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Multiply\X86\multiply_u64.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\Add\add.c" />
     <ClCompile Include="Ring1\Intrinsic\CheckReturn.c" />
     <ClCompile Include="Ring1\Intrinsic\CountLeadingZeroes\countLeadingZeroes.c" />
