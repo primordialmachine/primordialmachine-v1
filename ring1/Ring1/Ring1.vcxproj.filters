@@ -21,6 +21,9 @@
     <Filter Include="Headerdateien\Ring1\Intrinsic\Subtract">
       <UniqueIdentifier>{0879eca2-eccc-4754-83e2-6b0561e02743}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring1\Intrinsic\CountLeadingZeroes">
+      <UniqueIdentifier>{cf3306ae-17c3-4865-80ef-a0af264cc837}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Quelldateien\Ring1">
       <UniqueIdentifier>{cb8e3f96-fe83-49b6-9904-e9ebb2fa5114}</UniqueIdentifier>
     </Filter>
@@ -38,6 +41,15 @@
     </Filter>
     <Filter Include="Quelldateien\Ring1\Intrinsic\Add\X86">
       <UniqueIdentifier>{f2372ba0-e0b3-4b23-a4c5-419b75a5d06b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Intrinsic\CountLeadingZeroes">
+      <UniqueIdentifier>{d4a8aab7-9b0a-4189-a1ba-07a54f9af86c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Intrinsic\CountLeadingZeroes\X86">
+      <UniqueIdentifier>{cac5483d-59e2-4456-ace1-e8aaff429075}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Intrinsic\CountLeadingZeroes\X64">
+      <UniqueIdentifier>{03a8f07d-814e-4ca3-aedd-5497edd5b081}</UniqueIdentifier>
     </Filter>
     <Filter Include="Quelldateien\Ring1\Intrinsic\Subtract">
       <UniqueIdentifier>{9e32e7f6-856e-4cc7-9a9f-b8f6a5536b0c}</UniqueIdentifier>
@@ -62,6 +74,12 @@
     </Filter>
     <Filter Include="Headerdateien\Ring1\Intrinsic\Subtract\Winapi">
       <UniqueIdentifier>{5bc29fc9-c89a-4717-80ec-f207ba2bcd49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X64">
+      <UniqueIdentifier>{f2011f67-5ea7-4f2e-805a-74ad8a1475fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X86">
+      <UniqueIdentifier>{c636b394-3b54-4e0c-b730-f2a0895c3503}</UniqueIdentifier>
     </Filter>
     <Filter Include="Quelldateien\Ring1\Intrinsic\Subtract">
       <UniqueIdentifier>{9e32e7f6-856e-4cc7-9a9f-b8f6a5536b0c}</UniqueIdentifier>
@@ -172,6 +190,9 @@
   <ItemGroup>
     <ClInclude Include="Ring1\Intrinsic\Subtract\subtract.h">
       <Filter>Headerdateien\Ring1\Intrinsic\Subtract</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\countLeadingZeroes.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\Status.h">
       <Filter>Headerdateien\Ring1</Filter>
@@ -320,6 +341,51 @@
     <ClInclude Include="Ring1\Intrinsic\Add\X86\add_s8.h">
       <Filter>Headerdateien\Ring1\Intrinsic\Add\X86</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X64</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u16.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X64</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u8.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X64</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u16.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u8.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X64</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X64</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u16.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X64</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u8.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X64</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u16.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u8.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring1\Status.c">
@@ -339,6 +405,33 @@
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\Subtract\subtract.c">
       <Filter>Quelldateien\Ring1\Intrinsic\Subtract</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\CountLeadingZeroes\countLeadingZeroes.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\CountLeadingZeroes</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u32.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\CountLeadingZeroes\X64</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u64.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\CountLeadingZeroes\X64</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u32.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u64.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u8.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u8.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\CountLeadingZeroes\X64</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u16.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\CountLeadingZeroes\X64</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u16.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

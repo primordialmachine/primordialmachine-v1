@@ -301,9 +301,18 @@
     <ClInclude Include="Ring1\Intrinsic\Add\X86\add_u32.h" />
     <ClInclude Include="Ring1\Intrinsic\Add\X86\add_u64.h" />
     <ClInclude Include="Ring1\Intrinsic\Add\X86\add_u8.h" />
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\countLeadingZeroes.h" />
     <ClInclude Include="Ring1\Intrinsic\CheckReturn.h" />
     <ClInclude Include="Ring1\Intrinsic\Configuration.h" />
     <ClInclude Include="Ring1\Intrinsic\ThreadLocal.h" />
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u16.h" />
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u32.h" />
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u64.h" />
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u8.h" />
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u16.h" />
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u32.h" />
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u64.h" />
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u8.h" />
     <ClInclude Include="Ring1\Intrinsic\Subtract\Configuration.h" />
     <ClInclude Include="Ring1\Intrinsic\Subtract\subtract.h" />
     <ClInclude Include="Ring1\Intrinsic\Subtract\Winapi\subtract_s16.h" />
@@ -336,6 +345,55 @@
   <ItemGroup>
     <ClCompile Include="Ring1\Intrinsic\Add\add.c" />
     <ClCompile Include="Ring1\Intrinsic\CheckReturn.c" />
+    <ClCompile Include="Ring1\Intrinsic\CountLeadingZeroes\countLeadingZeroes.c" />
+    <ClCompile Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u16.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u32.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u64.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u8.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u16.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u32.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u64.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u8.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\Subtract\subtract.c" />
     <ClCompile Include="Ring1\Intrinsic\ThreadLocal.c" />
     <ClCompile Include="Ring1\Result.c" />
