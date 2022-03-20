@@ -18,6 +18,9 @@
     <Filter Include="Headerdateien\Ring1\Intrinsic\Add">
       <UniqueIdentifier>{c778cc72-6028-44a0-810b-945e6240fd8c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring1\Intrinsic\Subtract">
+      <UniqueIdentifier>{0879eca2-eccc-4754-83e2-6b0561e02743}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Quelldateien\Ring1">
       <UniqueIdentifier>{cb8e3f96-fe83-49b6-9904-e9ebb2fa5114}</UniqueIdentifier>
     </Filter>
@@ -36,11 +39,38 @@
     <Filter Include="Quelldateien\Ring1\Intrinsic\Add\X86">
       <UniqueIdentifier>{f2372ba0-e0b3-4b23-a4c5-419b75a5d06b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Quelldateien\Ring1\Intrinsic\Subtract">
+      <UniqueIdentifier>{9e32e7f6-856e-4cc7-9a9f-b8f6a5536b0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Intrinsic\Subtract\X86">
+      <UniqueIdentifier>{4b41aaff-76ee-4c90-a94e-8ae2ccacb24f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Intrinsic\Subtract\X64">
+      <UniqueIdentifier>{0a839de3-0821-47b1-8dfc-16e79cf6cb21}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Headerdateien\Ring1\Intrinsic\Add\X86">
       <UniqueIdentifier>{b81f66de-2d7a-4aac-9436-ac4d61808672}</UniqueIdentifier>
     </Filter>
     <Filter Include="Headerdateien\Ring1\Intrinsic\Add\X64">
       <UniqueIdentifier>{b467f926-c2a2-4932-8c0a-5ed81481ff38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\Intrinsic\Subtract\X86">
+      <UniqueIdentifier>{d7242259-15cf-4eef-be27-0966566348fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\Intrinsic\Subtract\X64">
+      <UniqueIdentifier>{da08837c-2b1e-4302-a674-687cfb79f921}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\Intrinsic\Subtract\Winapi">
+      <UniqueIdentifier>{5bc29fc9-c89a-4717-80ec-f207ba2bcd49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Intrinsic\Subtract">
+      <UniqueIdentifier>{9e32e7f6-856e-4cc7-9a9f-b8f6a5536b0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Intrinsic\Subtract\X86">
+      <UniqueIdentifier>{4b41aaff-76ee-4c90-a94e-8ae2ccacb24f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Intrinsic\Subtract\X64">
+      <UniqueIdentifier>{0a839de3-0821-47b1-8dfc-16e79cf6cb21}</UniqueIdentifier>
     </Filter>
     <MASM Include="Ring1\Intrinsic\Add\X64\add_s8.asm">
       <Filter>Quelldateien\Ring1\Intrinsic\Add\X64</Filter>
@@ -90,8 +120,59 @@
     <MASM Include="Ring1\Intrinsic\Add\X86\add_u32.asm">
       <Filter>Quelldateien\Ring1\Intrinsic\Add\X86</Filter>
     </MASM>
+    <MASM Include="Ring1\Intrinsic\Subtract\X86\subtract_s8.asm">
+      <Filter>Quelldateien\Ring1\Intrinsic\Subtract\X86</Filter>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Subtract\X86\subtract_s16.asm">
+      <Filter>Quelldateien\Ring1\Intrinsic\Subtract\X86</Filter>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Subtract\X86\subtract_s32.asm">
+      <Filter>Quelldateien\Ring1\Intrinsic\Subtract\X86</Filter>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Subtract\X86\subtract_u64.asm">
+      <Filter>Quelldateien\Ring1\Intrinsic\Subtract\X86</Filter>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Subtract\X64\subtract_s8.asm">
+      <Filter>Quelldateien\Ring1\Intrinsic\Subtract\X64</Filter>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Subtract\X64\subtract_s16.asm">
+      <Filter>Quelldateien\Ring1\Intrinsic\Subtract\X64</Filter>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Subtract\X64\subtract_s32.asm">
+      <Filter>Quelldateien\Ring1\Intrinsic\Subtract\X64</Filter>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Subtract\X64\subtract_s64.asm">
+      <Filter>Quelldateien\Ring1\Intrinsic\Subtract\X64</Filter>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Subtract\X64\subtract_u8.asm">
+      <Filter>Quelldateien\Ring1\Intrinsic\Subtract\X64</Filter>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Subtract\X64\subtract_u16.asm">
+      <Filter>Quelldateien\Ring1\Intrinsic\Subtract\X64</Filter>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Subtract\X64\subtract_u32.asm">
+      <Filter>Quelldateien\Ring1\Intrinsic\Subtract\X64</Filter>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Subtract\X64\subtract_u64.asm">
+      <Filter>Quelldateien\Ring1\Intrinsic\Subtract\X64</Filter>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Subtract\X86\subtract_s64.asm">
+      <Filter>Quelldateien\Ring1\Intrinsic\Subtract\X86</Filter>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Subtract\X86\subtract_u8.asm">
+      <Filter>Quelldateien\Ring1\Intrinsic\Subtract\X86</Filter>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Subtract\X86\subtract_u32.asm">
+      <Filter>Quelldateien\Ring1\Intrinsic\Subtract\X86</Filter>
+    </MASM>
+    <MASM Include="Ring1\Intrinsic\Subtract\X86\subtract_u16.asm">
+      <Filter>Quelldateien\Ring1\Intrinsic\Subtract\X86</Filter>
+    </MASM>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\subtract.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract</Filter>
+    </ClInclude>
     <ClInclude Include="Ring1\Status.h">
       <Filter>Headerdateien\Ring1</Filter>
     </ClInclude>
@@ -146,14 +227,89 @@
     <ClInclude Include="Ring1\Intrinsic\Add\X64\add_u64.h">
       <Filter>Headerdateien\Ring1\Intrinsic\Add\X64</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_u16.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_s8.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_s16.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_s32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_s64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_u8.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_u32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_u64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X64\subtract_s8.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X64</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X64\subtract_s16.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X64</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X64\subtract_s32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X64</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X64\subtract_s64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X64</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X64\subtract_u8.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X64</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X64\subtract_u16.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X64</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X64\subtract_u32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X64</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X64\subtract_u64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X64</Filter>
+    </ClInclude>
     <ClInclude Include="Ring1\Intrinsic\ThreadLocal.h">
       <Filter>Headerdateien\Ring1\Intrinsic</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\Intrinsic\Configuration.h">
       <Filter>Headerdateien\Ring1\Intrinsic</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\Winapi\subtract_s8.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\Winapi</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\Winapi\subtract_s16.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\Winapi</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\Winapi\subtract_s32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\Winapi</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\Winapi\subtract_s64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\Winapi</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\Winapi\subtract_u8.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\Winapi</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\Winapi\subtract_u16.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\Winapi</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\Winapi\subtract_u32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\Winapi</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\Winapi\subtract_u64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\Winapi</Filter>
+    </ClInclude>
     <ClInclude Include="Ring1\Intrinsic\Add\Configuration.h">
       <Filter>Headerdateien\Ring1\Intrinsic\Add</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\Configuration.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\Intrinsic\CheckReturn.h">
       <Filter>Headerdateien\Ring1\Intrinsic</Filter>
@@ -180,6 +336,9 @@
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\Add\add.c">
       <Filter>Quelldateien\Ring1\Intrinsic\Add</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Subtract\subtract.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\Subtract</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
