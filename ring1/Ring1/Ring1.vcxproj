@@ -302,6 +302,7 @@
     <ClInclude Include="Ring1\Intrinsic\Add\X86\add_u64.h" />
     <ClInclude Include="Ring1\Intrinsic\Add\X86\add_u8.h" />
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\countLeadingZeroes.h" />
+    <ClInclude Include="Ring1\Intrinsic\Likely.h" />
     <ClInclude Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo.h" />
     <ClInclude Include="Ring1\Intrinsic\CheckReturn.h" />
     <ClInclude Include="Ring1\Intrinsic\Configuration.h" />
@@ -340,10 +341,12 @@
     <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_u32.h" />
     <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_u64.h" />
     <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_u8.h" />
+    <ClInclude Include="Ring1\Intrinsic\Unlikely.h" />
     <ClInclude Include="Ring1\Result.h" />
     <ClInclude Include="Ring1\Status.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Ring1\Intrinsic\Likely.c" />
     <ClCompile Include="Ring1\Intrinsic\Add\add.c" />
     <ClCompile Include="Ring1\Intrinsic\CheckReturn.c" />
     <ClCompile Include="Ring1\Intrinsic\CountLeadingZeroes\countLeadingZeroes.c" />
@@ -406,6 +409,7 @@
     <ClCompile Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo_u8.c" />
     <ClCompile Include="Ring1\Intrinsic\Subtract\subtract.c" />
     <ClCompile Include="Ring1\Intrinsic\ThreadLocal.c" />
+    <ClCompile Include="Ring1\Intrinsic\Unlikely.c" />
     <ClCompile Include="Ring1\Result.c" />
     <ClCompile Include="Ring1\Status.c" />
   </ItemGroup>

@@ -419,6 +419,12 @@
     <ClInclude Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo.h">
       <Filter>Headerdateien\Ring1\Intrinsic\NextPowerOfTwo</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Likely.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Unlikely.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring1\Status.c">
@@ -498,6 +504,12 @@
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\NextMultipleOf64\nextMultipleOf64.c">
       <Filter>Quelldateien\Ring1\Intrinsic\NextMultipleOf64</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Likely.c">
+      <Filter>Quelldateien\Ring1\Intrinsic</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Unlikely.c">
+      <Filter>Quelldateien\Ring1\Intrinsic</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
