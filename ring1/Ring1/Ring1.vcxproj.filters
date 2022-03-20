@@ -41,6 +41,9 @@
     <ClInclude Include="Ring1\Intrinsic\Configuration.h">
       <Filter>Headerdateien\Ring1\Intrinsic</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\CheckReturn.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring1\Status.c">
