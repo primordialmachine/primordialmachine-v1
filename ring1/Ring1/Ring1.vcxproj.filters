@@ -12,6 +12,9 @@
     <Filter Include="Headerdateien\Ring1">
       <UniqueIdentifier>{312fe4ae-00d6-4ed1-ba26-5826d91b9aea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring1\Intrinsic">
+      <UniqueIdentifier>{da9b2f4d-b49a-45bd-acf3-2bae5705aef4}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Quelldateien\Ring1">
       <UniqueIdentifier>{cb8e3f96-fe83-49b6-9904-e9ebb2fa5114}</UniqueIdentifier>
     </Filter>
