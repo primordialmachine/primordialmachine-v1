@@ -51,6 +51,9 @@
     <Filter Include="Quelldateien\Ring1\Intrinsic\CountLeadingZeroes\X64">
       <UniqueIdentifier>{03a8f07d-814e-4ca3-aedd-5497edd5b081}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Quelldateien\Ring1\Intrinsic\NextPowerOfTwo">
+      <UniqueIdentifier>{99448677-e139-46ea-9910-e1ae7144f113}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Quelldateien\Ring1\Intrinsic\Subtract">
       <UniqueIdentifier>{9e32e7f6-856e-4cc7-9a9f-b8f6a5536b0c}</UniqueIdentifier>
     </Filter>
@@ -186,6 +189,9 @@
     <MASM Include="Ring1\Intrinsic\Subtract\X86\subtract_u16.asm">
       <Filter>Quelldateien\Ring1\Intrinsic\Subtract\X86</Filter>
     </MASM>
+    <Filter Include="Headerdateien\Ring1\Intrinsic\NextPowerOfTwo">
+      <UniqueIdentifier>{1e1025d8-67fe-42ae-92d1-98e89c122328}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring1\Intrinsic\Subtract\subtract.h">
@@ -386,6 +392,9 @@
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u8.h">
       <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\NextPowerOfTwo</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring1\Status.c">
@@ -432,6 +441,33 @@
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u16.c">
       <Filter>Quelldateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo_u64.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\NextPowerOfTwo</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo_s16.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\NextPowerOfTwo</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo_s32.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\NextPowerOfTwo</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo_s64.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\NextPowerOfTwo</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo_sz.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\NextPowerOfTwo</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo_u8.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\NextPowerOfTwo</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo_u16.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\NextPowerOfTwo</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo_u32.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\NextPowerOfTwo</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo_s8.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\NextPowerOfTwo</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
