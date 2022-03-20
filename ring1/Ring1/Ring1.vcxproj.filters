@@ -24,6 +24,12 @@
     <Filter Include="Headerdateien\Ring1\Intrinsic\CountLeadingZeroes">
       <UniqueIdentifier>{cf3306ae-17c3-4865-80ef-a0af264cc837}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring1\Intrinsic\NextMultipleOf64">
+      <UniqueIdentifier>{8b714c20-92b0-45a8-8b0c-3ca1a6155403}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\Intrinsic\NextMultipleOf32">
+      <UniqueIdentifier>{06010415-c24a-4462-8068-28dd5e43473f}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Quelldateien\Ring1">
       <UniqueIdentifier>{cb8e3f96-fe83-49b6-9904-e9ebb2fa5114}</UniqueIdentifier>
     </Filter>
@@ -62,6 +68,12 @@
     </Filter>
     <Filter Include="Quelldateien\Ring1\Intrinsic\Subtract\X64">
       <UniqueIdentifier>{0a839de3-0821-47b1-8dfc-16e79cf6cb21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Intrinsic\NextMultipleOf64">
+      <UniqueIdentifier>{9a8efaf7-571f-4722-8a61-a758d97f5561}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Intrinsic\NextMultipleOf32">
+      <UniqueIdentifier>{b42f5630-3043-4bfb-b4c9-28ffd274b1a0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Headerdateien\Ring1\Intrinsic\Add\X86">
       <UniqueIdentifier>{b81f66de-2d7a-4aac-9436-ac4d61808672}</UniqueIdentifier>
@@ -199,6 +211,12 @@
     </ClInclude>
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\countLeadingZeroes.h">
       <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\NextMultipleOf32\nextMultipleOf32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\NextMultipleOf32</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\NextMultipleOf64\nextMultipleOf64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\NextMultipleOf64</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\Status.h">
       <Filter>Headerdateien\Ring1</Filter>
@@ -392,6 +410,12 @@
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u8.h">
       <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\NextMultipleOf64\nextMultipleOf64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\NextMultipleOf64</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\NextMultipleOf32\nextMultipleOf32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\NextMultipleOf32</Filter>
+    </ClInclude>
     <ClInclude Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo.h">
       <Filter>Headerdateien\Ring1\Intrinsic\NextPowerOfTwo</Filter>
     </ClInclude>
@@ -468,6 +492,12 @@
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo_s8.c">
       <Filter>Quelldateien\Ring1\Intrinsic\NextPowerOfTwo</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\NextMultipleOf32\nextMultipleOf32.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\NextMultipleOf32</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\NextMultipleOf64\nextMultipleOf64.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\NextMultipleOf64</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
