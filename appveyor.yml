@@ -9,14 +9,15 @@ branches:
   only:
     - master
 
-# Build platform "x64".
+# Build platform "x64" and "x86".
 platform:
     - x64
+    - x86
 
 # Build configurations "Debug" and "Release".
 configuration:
-    - Debug
     - Release
+    - Debug
 
 build:
     parallel: true                       # enable MSBuild parallel builds
@@ -28,9 +29,13 @@ matrix:
 
 artifacts:
     - path: machine-mk1\products\x64\Release\machine-mk1\machine-mk1.exe
-      name: machine-mk1-release.exe
+      name: machine-mk1-x64-release.exe
     - path: machine-mk1\products\x64\Debug\machine-mk1\machine-mk1.exe
-      name: machine-mk1-debug.exe
+      name: machine-mk1-x64-debug.exe
+    - path: machine-mk1\products\x86\Release\machine-mk1\machine-mk1.exe
+      name: machine-mk1-x86-release.exe
+    - path: machine-mk1\products\x86\Debug\machine-mk1\machine-mk1.exe
+      name: machine-mk1-x86-debug.exe
 
 # Execute test scripts.
 test_script:
