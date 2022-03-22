@@ -230,12 +230,6 @@
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\countLeadingZeroes.h">
       <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\NextMultipleOf32\nextMultipleOf32.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\NextMultipleOf32</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\NextMultipleOf64\nextMultipleOf64.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\NextMultipleOf64</Filter>
-    </ClInclude>
     <ClInclude Include="Ring1\Status.h">
       <Filter>Headerdateien\Ring1</Filter>
     </ClInclude>
@@ -497,6 +491,12 @@
     <ClInclude Include="Ring1\Intrinsic\Unlikely.h">
       <Filter>Headerdateien\Ring1\Intrinsic</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\NextMultipleOf32\nextMultipleOf32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\NextMultipleOf32</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\NextMultipleOf64\nextMultipleOf64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\NextMultipleOf64</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring1\Status.c">
@@ -571,17 +571,11 @@
     <ClCompile Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo_s8.c">
       <Filter>Quelldateien\Ring1\Intrinsic\NextPowerOfTwo</Filter>
     </ClCompile>
-    <ClCompile Include="Ring1\Intrinsic\NextMultipleOf32\nextMultipleOf32.c">
-      <Filter>Quelldateien\Ring1\Intrinsic\NextMultipleOf32</Filter>
-    </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\Multiply\X86\multiply_s64.c">
       <Filter>Quelldateien\Ring1\Intrinsic\Multiply\X86</Filter>
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\Multiply\X86\multiply_u64.c">
       <Filter>Quelldateien\Ring1\Intrinsic\Multiply\X86</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring1\Intrinsic\NextMultipleOf64\nextMultipleOf64.c">
-      <Filter>Quelldateien\Ring1\Intrinsic\NextMultipleOf64</Filter>
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\Multiply\X64\multiply_s64.c">
       <Filter>Quelldateien\Ring1\Intrinsic\Multiply\X64</Filter>
@@ -597,6 +591,12 @@
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\Multiply\multiply.c">
       <Filter>Quelldateien\Ring1\Intrinsic\Multiply</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\NextMultipleOf64\nextMultipleOf64.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\NextMultipleOf64</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\NextMultipleOf32\nextMultipleOf32.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\NextMultipleOf32</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

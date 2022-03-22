@@ -381,6 +381,8 @@
     <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_u32.h" />
     <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_u64.h" />
     <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_u8.h" />
+    <ClInclude Include="Ring1\Intrinsic\NextMultipleOf32\nextMultipleOf32.h" />
+    <ClInclude Include="Ring1\Intrinsic\NextMultipleOf64\nextMultipleOf64.h" />
     <ClInclude Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo.h" />
     <ClInclude Include="Ring1\Intrinsic\CheckReturn.h" />
     <ClInclude Include="Ring1\Intrinsic\Configuration.h" />
@@ -501,6 +503,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\NextMultipleOf32\nextMultipleOf32.c" />
+    <ClCompile Include="Ring1\Intrinsic\NextMultipleOf64\nextMultipleOf64.c" />
     <ClCompile Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo_s16.c" />
     <ClCompile Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo_s32.c" />
     <ClCompile Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo_s64.c" />
