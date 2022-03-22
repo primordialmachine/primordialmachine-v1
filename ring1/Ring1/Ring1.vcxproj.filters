@@ -497,6 +497,9 @@
     <ClInclude Include="Ring1\Intrinsic\NextMultipleOf64\nextMultipleOf64.h">
       <Filter>Headerdateien\Ring1\Intrinsic\NextMultipleOf64</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\isPowerOfTwo.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring1\Status.c">
@@ -591,6 +594,9 @@
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\Multiply\multiply.c">
       <Filter>Quelldateien\Ring1\Intrinsic\Multiply</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\isPowerOfTwo.c">
+      <Filter>Quelldateien\Ring1\Intrinsic</Filter>
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\NextMultipleOf64\nextMultipleOf64.c">
       <Filter>Quelldateien\Ring1\Intrinsic\NextMultipleOf64</Filter>

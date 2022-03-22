@@ -362,6 +362,7 @@
     <ClInclude Include="Ring1\Intrinsic\Add\X86\add_u64.h" />
     <ClInclude Include="Ring1\Intrinsic\Add\X86\add_u8.h" />
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\countLeadingZeroes.h" />
+    <ClInclude Include="Ring1\Intrinsic\isPowerOfTwo.h" />
     <ClInclude Include="Ring1\Intrinsic\Likely.h" />
     <ClInclude Include="Ring1\Intrinsic\Multiply\configuration.h" />
     <ClInclude Include="Ring1\Intrinsic\Multiply\multiply.h" />
@@ -426,6 +427,7 @@
     <ClInclude Include="Ring1\Status.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Ring1\Intrinsic\isPowerOfTwo.c" />
     <ClCompile Include="Ring1\Intrinsic\Likely.c" />
     <ClCompile Include="Ring1\Intrinsic\Multiply\multiply.c" />
     <ClCompile Include="Ring1\Intrinsic\Multiply\X64\multiply_s64.c">
