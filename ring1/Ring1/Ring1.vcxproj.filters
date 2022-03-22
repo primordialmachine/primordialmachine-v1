@@ -595,6 +595,9 @@
     <ClCompile Include="Ring1\Intrinsic\Unlikely.c">
       <Filter>Quelldateien\Ring1\Intrinsic</Filter>
     </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Multiply\multiply.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\Multiply</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <MASM Include="Ring1\Intrinsic\Multiply\X86\multiply_s8.asm">

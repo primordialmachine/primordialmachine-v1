@@ -425,6 +425,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring1\Intrinsic\Likely.c" />
+    <ClCompile Include="Ring1\Intrinsic\Multiply\multiply.c" />
     <ClCompile Include="Ring1\Intrinsic\Multiply\X64\multiply_s64.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>

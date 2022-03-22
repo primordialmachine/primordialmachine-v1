@@ -1,25 +1,25 @@
-#include "Mkx/Intrinsic/Multiply/multiply.h"
+#include "Ring1/Intrinsic/Multiply/multiply.h"
 
 #include "Ring1/Status.h"
 
 #if defined(_M_X64)
-  #include "Mkx/Intrinsic/Multiply/X64/multiply_u8.h"
-  #include "Mkx/Intrinsic/Multiply/X64/multiply_s8.h"
-  #include "Mkx/Intrinsic/Multiply/X64/multiply_u16.h"
-  #include "Mkx/Intrinsic/Multiply/X64/multiply_s16.h"
-  #include "Mkx/Intrinsic/Multiply/X64/multiply_u32.h"
-  #include "Mkx/Intrinsic/Multiply/X64/multiply_s32.h"
-  #include "Mkx/Intrinsic/Multiply/X64/multiply_u64.h"
-  #include "Mkx/Intrinsic/Multiply/X64/multiply_s64.h"
+  #include "Ring1/Intrinsic/Multiply/X64/multiply_u8.h"
+  #include "Ring1/Intrinsic/Multiply/X64/multiply_s8.h"
+  #include "Ring1/Intrinsic/Multiply/X64/multiply_u16.h"
+  #include "Ring1/Intrinsic/Multiply/X64/multiply_s16.h"
+  #include "Ring1/Intrinsic/Multiply/X64/multiply_u32.h"
+  #include "Ring1/Intrinsic/Multiply/X64/multiply_s32.h"
+  #include "Ring1/Intrinsic/Multiply/X64/multiply_u64.h"
+  #include "Ring1/Intrinsic/Multiply/X64/multiply_s64.h"
 #elif defined(_M_IX86)
-  #include "Mkx/Intrinsic/Multiply/X86/multiply_u8.h"
-  #include "Mkx/Intrinsic/Multiply/X86/multiply_s8.h"
-  #include "Mkx/Intrinsic/Multiply/X86/multiply_u16.h"
-  #include "Mkx/Intrinsic/Multiply/X86/multiply_s16.h"
-  #include "Mkx/Intrinsic/Multiply/X86/multiply_u32.h"
-  #include "Mkx/Intrinsic/Multiply/X86/multiply_s32.h"
-  #include "Mkx/Intrinsic/Multiply/X86/multiply_u64.h"
-  #include "Mkx/Intrinsic/Multiply/X86/multiply_s64.h"
+  #include "Ring1/Intrinsic/Multiply/X86/multiply_u8.h"
+  #include "Ring1/Intrinsic/Multiply/X86/multiply_s8.h"
+  #include "Ring1/Intrinsic/Multiply/X86/multiply_u16.h"
+  #include "Ring1/Intrinsic/Multiply/X86/multiply_s16.h"
+  #include "Ring1/Intrinsic/Multiply/X86/multiply_u32.h"
+  #include "Ring1/Intrinsic/Multiply/X86/multiply_s32.h"
+  #include "Ring1/Intrinsic/Multiply/X86/multiply_u64.h"
+  #include "Ring1/Intrinsic/Multiply/X86/multiply_s64.h"
 #else
   #error("target architecture not supported")
 #endif
