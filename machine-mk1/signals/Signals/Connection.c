@@ -1,5 +1,5 @@
 #define MACHINE_SIGNALS_PRIVATE (1)
-#include "./../Signals/Connection.h"
+#include "Signals/Connection.h"
 
 static void Machine_Signals_Connection_visit(Machine_Signals_Connection* self);
 

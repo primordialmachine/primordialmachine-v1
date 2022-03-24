@@ -1,9 +1,9 @@
 #define MACHINE_SIGNALS_PRIVATE (1)
-#include "./../Signals/Signal.h"
+#include "Signals/Signal.h"
 
 
 
-#include "./../Signals/Connection.h"
+#include "Signals/Connection.h"
 
 
 
