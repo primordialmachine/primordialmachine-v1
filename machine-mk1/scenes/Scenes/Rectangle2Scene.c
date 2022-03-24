@@ -1,4 +1,4 @@
-#include "./../Scenes/Rectangle2Scene.h"
+#include "Scenes/Rectangle2Scene.h"
 
 #include <string.h>
 
