@@ -9,7 +9,7 @@
 #if !defined(MACHINE_GRAPHICS2_PRIVATE)
 #error("Do not include this file directly, include `_Graphics2.h` instead.")
 #endif
-#include "./../Graphics2/Shape2.h"
+#include "Graphics2/Shape2.h"
 
 
 
