@@ -500,6 +500,15 @@
     <ClInclude Include="Ring1\Intrinsic\isPowerOfTwo.h">
       <Filter>Headerdateien\Ring1\Intrinsic</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\atomicDecrement.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\atomicGet.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\atomicIncrement.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring1\Status.c">
@@ -603,6 +612,15 @@
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\NextMultipleOf32\nextMultipleOf32.c">
       <Filter>Quelldateien\Ring1\Intrinsic\NextMultipleOf32</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\atomicDecrement.c">
+      <Filter>Quelldateien\Ring1\Intrinsic</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\atomicGet.c">
+      <Filter>Quelldateien\Ring1\Intrinsic</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\atomicIncrement.c">
+      <Filter>Quelldateien\Ring1\Intrinsic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

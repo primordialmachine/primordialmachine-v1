@@ -361,8 +361,11 @@
     <ClInclude Include="Ring1\Intrinsic\Add\X86\add_u32.h" />
     <ClInclude Include="Ring1\Intrinsic\Add\X86\add_u64.h" />
     <ClInclude Include="Ring1\Intrinsic\Add\X86\add_u8.h" />
+    <ClInclude Include="Ring1\Intrinsic\atomicGet.h" />
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\countLeadingZeroes.h" />
     <ClInclude Include="Ring1\Intrinsic\isPowerOfTwo.h" />
+    <ClInclude Include="Ring1\Intrinsic\atomicDecrement.h" />
+    <ClInclude Include="Ring1\Intrinsic\atomicIncrement.h" />
     <ClInclude Include="Ring1\Intrinsic\Likely.h" />
     <ClInclude Include="Ring1\Intrinsic\Multiply\configuration.h" />
     <ClInclude Include="Ring1\Intrinsic\Multiply\multiply.h" />
@@ -456,6 +459,7 @@
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\Add\add.c" />
     <ClCompile Include="Ring1\Intrinsic\CheckReturn.c" />
+    <ClCompile Include="Ring1\Intrinsic\atomicGet.c" />
     <ClCompile Include="Ring1\Intrinsic\CountLeadingZeroes\countLeadingZeroes.c" />
     <ClCompile Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u16.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -505,6 +509,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\atomicDecrement.c" />
+    <ClCompile Include="Ring1\Intrinsic\atomicIncrement.c" />
     <ClCompile Include="Ring1\Intrinsic\NextMultipleOf32\nextMultipleOf32.c" />
     <ClCompile Include="Ring1\Intrinsic\NextMultipleOf64\nextMultipleOf64.c" />
     <ClCompile Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo_s16.c" />
