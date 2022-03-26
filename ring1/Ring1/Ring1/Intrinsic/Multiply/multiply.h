@@ -1,5 +1,5 @@
-#if !defined(MKX_INTRINSIC_MULTIPLY_H_INCLUDED)
-#define MKX_INTRINSIC_MULTIPLY_H_INCLUDED
+#if !defined(RING1_INTRINSIC_MULTIPLY_H_INCLUDED)
+#define RING1_INTRINSIC_MULTIPLY_H_INCLUDED
 
 #include <inttypes.h>
 #include "Ring1/Intrinsic/CheckReturn.h"

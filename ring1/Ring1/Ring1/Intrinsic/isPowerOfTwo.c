@@ -1,6 +1,6 @@
 // Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 
-/// @file Mkx/Intrinsic/isPowerOfTwo.c
+/// @file Ring1/Intrinsic/isPowerOfTwo.c
 /// @copyright Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
