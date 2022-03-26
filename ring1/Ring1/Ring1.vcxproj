@@ -427,7 +427,14 @@
     <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_u64.h" />
     <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_u8.h" />
     <ClInclude Include="Ring1\Intrinsic\Unlikely.h" />
+    <ClInclude Include="Ring1\Memory.h" />
+    <ClInclude Include="Ring1\Memory\Configuration.h" />
+    <ClInclude Include="Ring1\Memory\recomputeSize.h" />
+    <ClInclude Include="Ring1\Memory\Statistics.h" />
+    <ClInclude Include="Ring1\Memory\Windows\getPageSize.h" />
+    <ClInclude Include="Ring1\Module\Configuration.h" />
     <ClInclude Include="Ring1\ReferenceCounter.h" />
+    <ClInclude Include="Ring1\Module.h" />
     <ClInclude Include="Ring1\Result.h" />
     <ClInclude Include="Ring1\Status.h" />
   </ItemGroup>
@@ -527,7 +534,12 @@
     <ClCompile Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo_u8.c" />
     <ClCompile Include="Ring1\Intrinsic\Subtract\subtract.c" />
     <ClCompile Include="Ring1\Intrinsic\ThreadLocal.c" />
+    <ClCompile Include="Ring1\Memory.c" />
     <ClCompile Include="Ring1\Intrinsic\Unlikely.c" />
+    <ClCompile Include="Ring1\Memory\recomputeSize.c" />
+    <ClCompile Include="Ring1\Memory\Statistics.c" />
+    <ClCompile Include="Ring1\Memory\Windows\getPageSize.c" />
+    <ClCompile Include="Ring1\Module.c" />
     <ClCompile Include="Ring1\ReferenceCounter.c" />
     <ClCompile Include="Ring1\Result.c" />
     <ClCompile Include="Ring1\Status.c" />

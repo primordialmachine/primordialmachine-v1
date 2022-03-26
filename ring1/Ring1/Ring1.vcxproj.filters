@@ -36,6 +36,15 @@
     <Filter Include="Headerdateien\Ring1\Intrinsic\Concurrency">
       <UniqueIdentifier>{13c816c9-d9e4-4c77-8b2c-33f99542003a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring1\Module">
+      <UniqueIdentifier>{0d0e430b-486b-4c2c-9dca-3b8cc2be2372}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\Memory">
+      <UniqueIdentifier>{79636275-64b2-4fc1-bf1a-d3a2e474de40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\Memory\Windows">
+      <UniqueIdentifier>{c8f4955e-f467-4f28-a113-f99aafb5f0a5}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Quelldateien\Ring1">
       <UniqueIdentifier>{cb8e3f96-fe83-49b6-9904-e9ebb2fa5114}</UniqueIdentifier>
     </Filter>
@@ -92,6 +101,15 @@
     </Filter>
     <Filter Include="Quelldateien\Ring1\Intrinsic\Concurrency">
       <UniqueIdentifier>{a3b54caf-1645-4b4f-af8b-abc6c05a30f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Module">
+      <UniqueIdentifier>{a265fdd8-1e72-4fde-b171-bc7b75fb536c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Memory">
+      <UniqueIdentifier>{89df3147-accb-46ba-8058-fab9ed019f58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Memory\Windows">
+      <UniqueIdentifier>{ea8e54c4-3bbc-4415-963b-e0a47599d9cb}</UniqueIdentifier>
     </Filter>
     <Filter Include="Headerdateien\Ring1\Intrinsic\Add\X86">
       <UniqueIdentifier>{b81f66de-2d7a-4aac-9436-ac4d61808672}</UniqueIdentifier>
@@ -239,11 +257,29 @@
     <ClInclude Include="Ring1\Intrinsic\Concurrency\ReadWriteLock.h">
       <Filter>Headerdateien\Ring1\Intrinsic\Concurrency</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\Memory.h">
+      <Filter>Headerdateien\Ring1</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Module\Configuration.h">
+      <Filter>Headerdateien\Ring1\Module</Filter>
+    </ClInclude>
     <ClInclude Include="Ring1\ReferenceCounter.h">
       <Filter>Headerdateien\Ring1</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\Status.h">
       <Filter>Headerdateien\Ring1</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Memory\Configuration.h">
+      <Filter>Headerdateien\Ring1\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Memory\recomputeSize.h">
+      <Filter>Headerdateien\Ring1\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Memory\Statistics.h">
+      <Filter>Headerdateien\Ring1\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Memory\Windows\getPageSize.h">
+      <Filter>Headerdateien\Ring1\Memory\Windows</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\Result.h">
       <Filter>Headerdateien\Ring1</Filter>
@@ -410,6 +446,9 @@
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u8.h">
       <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\Module.h">
+      <Filter>Headerdateien\Ring1</Filter>
+    </ClInclude>
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u64.h">
       <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X64</Filter>
     </ClInclude>
@@ -571,11 +610,23 @@
     <ClCompile Include="Ring1\Intrinsic\Concurrency\ReadWriteLock.c">
       <Filter>Quelldateien\Ring1\Intrinsic\Concurrency</Filter>
     </ClCompile>
+    <ClCompile Include="Ring1\Memory.c">
+      <Filter>Quelldateien\Ring1</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Module.c">
+      <Filter>Quelldateien\Ring1</Filter>
+    </ClCompile>
     <ClCompile Include="Ring1\ReferenceCounter.c">
       <Filter>Quelldateien\Ring1</Filter>
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo_u64.c">
       <Filter>Quelldateien\Ring1\Intrinsic\NextPowerOfTwo</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Memory\recomputeSize.c">
+      <Filter>Quelldateien\Ring1\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Memory\Statistics.c">
+      <Filter>Quelldateien\Ring1\Memory</Filter>
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo_s16.c">
       <Filter>Quelldateien\Ring1\Intrinsic\NextPowerOfTwo</Filter>
@@ -636,6 +687,9 @@
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\atomicGet.c">
       <Filter>Quelldateien\Ring1\Intrinsic</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Memory\Windows\getPageSize.c">
+      <Filter>Quelldateien\Ring1\Memory\Windows</Filter>
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\atomicIncrement.c">
       <Filter>Quelldateien\Ring1\Intrinsic</Filter>
