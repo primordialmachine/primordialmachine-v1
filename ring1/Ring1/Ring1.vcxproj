@@ -362,6 +362,7 @@
     <ClInclude Include="Ring1\Intrinsic\Add\X86\add_u64.h" />
     <ClInclude Include="Ring1\Intrinsic\Add\X86\add_u8.h" />
     <ClInclude Include="Ring1\Intrinsic\atomicGet.h" />
+    <ClInclude Include="Ring1\Intrinsic\Concurrency\ReadWriteLock.h" />
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\countLeadingZeroes.h" />
     <ClInclude Include="Ring1\Intrinsic\isPowerOfTwo.h" />
     <ClInclude Include="Ring1\Intrinsic\atomicDecrement.h" />
@@ -461,6 +462,7 @@
     <ClCompile Include="Ring1\Intrinsic\Add\add.c" />
     <ClCompile Include="Ring1\Intrinsic\CheckReturn.c" />
     <ClCompile Include="Ring1\Intrinsic\atomicGet.c" />
+    <ClCompile Include="Ring1\Intrinsic\Concurrency\ReadWriteLock.c" />
     <ClCompile Include="Ring1\Intrinsic\CountLeadingZeroes\countLeadingZeroes.c" />
     <ClCompile Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u16.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>

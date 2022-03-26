@@ -33,6 +33,9 @@
     <Filter Include="Headerdateien\Ring1\Intrinsic\Multiply">
       <UniqueIdentifier>{e2de730c-f7cb-44ff-86b9-330e7f63429c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring1\Intrinsic\Concurrency">
+      <UniqueIdentifier>{13c816c9-d9e4-4c77-8b2c-33f99542003a}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Quelldateien\Ring1">
       <UniqueIdentifier>{cb8e3f96-fe83-49b6-9904-e9ebb2fa5114}</UniqueIdentifier>
     </Filter>
@@ -86,6 +89,9 @@
     </Filter>
     <Filter Include="Quelldateien\Ring1\Intrinsic\Multiply\X64">
       <UniqueIdentifier>{b46fcbf7-e463-4d68-85dc-372d5af8b5dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Intrinsic\Concurrency">
+      <UniqueIdentifier>{a3b54caf-1645-4b4f-af8b-abc6c05a30f9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Headerdateien\Ring1\Intrinsic\Add\X86">
       <UniqueIdentifier>{b81f66de-2d7a-4aac-9436-ac4d61808672}</UniqueIdentifier>
@@ -229,6 +235,9 @@
     </ClInclude>
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\countLeadingZeroes.h">
       <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Concurrency\ReadWriteLock.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Concurrency</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\ReferenceCounter.h">
       <Filter>Headerdateien\Ring1</Filter>
@@ -558,6 +567,9 @@
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u16.c">
       <Filter>Quelldateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Concurrency\ReadWriteLock.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\Concurrency</Filter>
     </ClCompile>
     <ClCompile Include="Ring1\ReferenceCounter.c">
       <Filter>Quelldateien\Ring1</Filter>
