@@ -426,6 +426,7 @@
     <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_u64.h" />
     <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_u8.h" />
     <ClInclude Include="Ring1\Intrinsic\Unlikely.h" />
+    <ClInclude Include="Ring1\ReferenceCounter.h" />
     <ClInclude Include="Ring1\Result.h" />
     <ClInclude Include="Ring1\Status.h" />
   </ItemGroup>
@@ -525,6 +526,7 @@
     <ClCompile Include="Ring1\Intrinsic\Subtract\subtract.c" />
     <ClCompile Include="Ring1\Intrinsic\ThreadLocal.c" />
     <ClCompile Include="Ring1\Intrinsic\Unlikely.c" />
+    <ClCompile Include="Ring1\ReferenceCounter.c" />
     <ClCompile Include="Ring1\Result.c" />
     <ClCompile Include="Ring1\Status.c" />
   </ItemGroup>

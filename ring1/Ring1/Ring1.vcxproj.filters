@@ -230,6 +230,9 @@
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\countLeadingZeroes.h">
       <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\ReferenceCounter.h">
+      <Filter>Headerdateien\Ring1</Filter>
+    </ClInclude>
     <ClInclude Include="Ring1\Status.h">
       <Filter>Headerdateien\Ring1</Filter>
     </ClInclude>
@@ -555,6 +558,9 @@
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u16.c">
       <Filter>Quelldateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\ReferenceCounter.c">
+      <Filter>Quelldateien\Ring1</Filter>
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo_u64.c">
       <Filter>Quelldateien\Ring1\Intrinsic\NextPowerOfTwo</Filter>
