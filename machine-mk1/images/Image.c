@@ -4,6 +4,7 @@
 #define MACHINE_IMAGES_PRIVATE (1)
 #include "Image.h"
 
+#include "Ring1/Status.h"
 #include <png.h>
 #include <string.h>
 
@@ -36,7 +37,7 @@ static void const* getPixels(Machine_Images_Image const* self) {
 
 void Machine_Images_Image_destruct(Machine_Images_Image* self) {
   if (self->pixels) {
-    Machine_Eal_Memory_deallocate(self->pixels);
+    Ring1_Memory_deallocate(self->pixels);
     self->pixels = NULL;
   }
 }
@@ -174,15 +175,17 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
     Machine_jump();
   }
 
-  png_byte* pixels = Machine_Eal_Memory_allocateArray(png_get_rowbytes(png_ptr, info_ptr), height);
-  if (!pixels) {
+  png_byte* pixels = NULL;
+  if (Ring1_Memory_allocateArray(&pixels, png_get_rowbytes(png_ptr, info_ptr), height)) {
+    Ring1_Status_set(Ring1_Status_Success);
     png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
     Machine_setStatus(Machine_Status_EnvironmentFailed);
     Machine_jump();
   }
-  row_pointers = (png_bytep*)Machine_Eal_Memory_allocateArray(sizeof(png_bytep), height);
-  if (!row_pointers) {
-    Machine_Eal_Memory_deallocate(pixels);
+  row_pointers = NULL;
+  if (Ring1_Memory_allocateArray((void **) & row_pointers, sizeof(png_bytep), height)) {
+    Ring1_Status_set(Ring1_Status_Success);
+    Ring1_Memory_deallocate(pixels);
     png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
     Machine_setStatus(Machine_Status_EnvironmentFailed);
     Machine_jump();
@@ -193,7 +196,7 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
   png_read_image(png_ptr, row_pointers);
 
   png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
-  Machine_Eal_Memory_deallocate(row_pointers);
+  Ring1_Memory_deallocate(row_pointers);
 
   // (4) Store.
   self->width = width;
@@ -206,7 +209,7 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
       self->pixelFormat = Machine_PixelFormat_RGB;
       break;
     default:
-      Machine_Eal_Memory_deallocate(pixels);
+      Ring1_Memory_deallocate(pixels);
       Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
                   "[read_png_file] Unsupported png color type (%d) for image file\n",
                   (int)color_type);
@@ -235,8 +238,10 @@ void Machine_Images_Image_constructDirect(Machine_Images_Image* self,
   self->width = width;
   self->height = height;
   self->pixelFormat = pixelFormat;
-  self->pixels = Machine_Eal_Memory_allocateArray(width * height, Machine_PixelFormat_getBytesPerPixel(pixelFormat));
-  if (!self->pixels) {
+  self->pixels = NULL;
+  if (Ring1_Memory_allocateArray(&self->pixels, width * height,
+                                 Machine_PixelFormat_getBytesPerPixel(pixelFormat))) {
+    Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
