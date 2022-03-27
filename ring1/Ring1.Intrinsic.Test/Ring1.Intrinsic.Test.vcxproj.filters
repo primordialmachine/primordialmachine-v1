@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1">
+      <UniqueIdentifier>{312fe4ae-00d6-4ed1-ba26-5826d91b9aea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\Intrinsic">
+      <UniqueIdentifier>{bd0267c0-487b-4415-a073-c5e83adfbe6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\Intrinsic\Test">
+      <UniqueIdentifier>{6459c898-b365-479f-b685-64822d0dcdac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1">
+      <UniqueIdentifier>{cb8e3f96-fe83-49b6-9904-e9ebb2fa5114}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Intrinsic">
+      <UniqueIdentifier>{09812d53-76da-49cc-a80a-ad55b61db5ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Intrinsic\Test">
+      <UniqueIdentifier>{3c6bf709-07fc-4a47-b7ef-bfbd2e3386c7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Ring1\Intrinsic\Main.c">
+      <Filter>Quelldateien\Ring1\Intrinsic</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Test\Add.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Test\NextPowerOfTwo.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Test\Subtract.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Test\IsPowerOfTwo.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Test\NextMultipleOf32.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Test\NextMultipleOf64.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Test\CountLeadingZeroes.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Test\Multiply.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Test\Intrinsic.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\Test</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Ring1\Intrinsic\Test\Add.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Test\NextPowerOfTwo.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Test\Subtract.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Test\IsPowerOfTwo.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Test\NextMultipleOf32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Test\NextMultipleOf64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Test\CountLeadingZeroes.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Test\Multiply.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Test\Intrinsic.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Test</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

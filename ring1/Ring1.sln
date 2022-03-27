@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ring1.Intrinsic.Test", "Ring1.Intrinsic.Test\Ring1.Intrinsic.Test.vcxproj", "{6A4A80E6-BE48-4990-BA7E-DF192EE7841B}"
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ring1", "Ring1\Ring1.vcxproj", "{D7DB575D-7EAA-47DE-8999-44F4E1361D34}"
 EndProject
 Global
@@ -13,6 +15,14 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A4A80E6-BE48-4990-BA7E-DF192EE7841B}.Debug|x64.ActiveCfg = Debug|x64
+		{6A4A80E6-BE48-4990-BA7E-DF192EE7841B}.Debug|x64.Build.0 = Debug|x64
+		{6A4A80E6-BE48-4990-BA7E-DF192EE7841B}.Debug|x86.ActiveCfg = Debug|Win32
+		{6A4A80E6-BE48-4990-BA7E-DF192EE7841B}.Debug|x86.Build.0 = Debug|Win32
+		{6A4A80E6-BE48-4990-BA7E-DF192EE7841B}.Release|x64.ActiveCfg = Release|x64
+		{6A4A80E6-BE48-4990-BA7E-DF192EE7841B}.Release|x64.Build.0 = Release|x64
+		{6A4A80E6-BE48-4990-BA7E-DF192EE7841B}.Release|x86.ActiveCfg = Release|Win32
+		{6A4A80E6-BE48-4990-BA7E-DF192EE7841B}.Release|x86.Build.0 = Release|Win32
 		{D7DB575D-7EAA-47DE-8999-44F4E1361D34}.Debug|x64.ActiveCfg = Debug|x64
 		{D7DB575D-7EAA-47DE-8999-44F4E1361D34}.Debug|x64.Build.0 = Debug|x64
 		{D7DB575D-7EAA-47DE-8999-44F4E1361D34}.Debug|x86.ActiveCfg = Debug|Win32
