@@ -6,6 +6,7 @@
 
 
 
+#include "Ring1/Status.h"
 #include "FontsContext.h"
 
 #include <inttypes.h>
@@ -57,12 +58,12 @@ static void Map_finalize(Map* self) {
     while (self->buckets[i]) {
       Node* node = self->buckets[i];
       self->buckets[i] = node->next;
-      Machine_Eal_Memory_deallocate(node);
+      Ring1_Memory_deallocate(node);
       self->size--;
     }
   }
   if (self->buckets) {
-    Machine_Eal_Memory_deallocate(self->buckets);
+    Ring1_Memory_deallocate(self->buckets);
     self->buckets = NULL;
   }
 }
@@ -82,8 +83,9 @@ static Map* Map_create() {
   }
   self->size = 0;
   self->capacity = 8;
-  self->buckets = Machine_Eal_Memory_allocateArray(sizeof(Node*), 8);
-  if (!self->buckets) {
+  self->buckets = NULL;
+  if (Ring1_Memory_allocateArray((void **) & self->buckets, 8, sizeof(Node*))) {
+    Ring1_Status_set(Ring1_Status_Success);
     self->capacity = 0;
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
@@ -113,8 +115,9 @@ static void Map_set(Map* self, uint32_t codepoint, float bearingx, float bearing
     }
   }
 
-  Node* node = Machine_Eal_Memory_allocate(sizeof(Node));
-  if (!node) {
+  Node* node = NULL;
+  if (Ring1_Memory_allocate(&node, sizeof(Node))) {
+    Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_InvalidOperation);
     Machine_jump();
   }
@@ -366,7 +369,7 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
     Machine_pushJumpTarget(&jt);
     if (!setjmp(jt.environment)) {
       Machine_ByteBuffer_clear(temporary);
-      Machine_ByteBuffer_appendBytes(temporary, self->face->glyph->bitmap.buffer, (size_t)(self->face->glyph->bitmap.width * self->face->glyph->bitmap.rows));
+      Machine_ByteBuffer_appendBytes(temporary, self->face->glyph->bitmap.buffer, (size_t)self->face->glyph->bitmap.width * (size_t)self->face->glyph->bitmap.rows);
       Machine_Image* image = Machine_ImagesContext_createDirect(fontsContext->imageContext, Machine_PixelFormat_GRAYSCALE, self->face->glyph->bitmap.width, self->face->glyph->bitmap.rows, temporary);
       Machine_Texture* texture = Machine_VideoContext_createTextureFromImage(fontsContext->videoContext, image);
       Map_set(self->map, codepoint,
