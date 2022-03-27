@@ -3,7 +3,8 @@
 
 
 
-#include "Eal/GrowthStrategy.h"
+#include "Ring1/Status.h"
+#include "Ring1/Memory/recomputeSize.h"
 #include "Eal/Memory.h"
 
 
@@ -14,8 +15,9 @@ Machin_Eal_InlineArrayStatus Machine_Eal_InlineArray_initialize(
     return Machine_Eal_InlineArray_InvalidArgument;
   }
   self->dispatch = dispatch;
-  self->elements = Machine_Eal_Memory_allocateArray(self->dispatch->elementSize, 0);
-  if (!self->elements) {
+  self->elements = NULL;
+  if (Ring1_Memory_allocateArray(&self->elements, self->dispatch->elementSize, 0)) {
+    Ring1_Status_set(Ring1_Status_Success);
     return 1;
   }
   self->size = 0;
@@ -24,7 +26,7 @@ Machin_Eal_InlineArrayStatus Machine_Eal_InlineArray_initialize(
 
 void Machine_Eal_InlineArray_uninitialize(Machine_Eal_InlineArray *self) {
   if (self->elements) {
-    Machine_Eal_Memory_deallocate(self->elements);
+    Ring1_Memory_deallocate(self->elements);
     self->elements = NULL;
   }
 }
@@ -43,12 +45,13 @@ Machin_Eal_InlineArrayStatus Machine_Eal_InlineArray_insert(Machine_Eal_InlineAr
                                                             size_t index, void* data) {
   if (self->size == self->capacity) {
     size_t newCapacity = 0;
-    if (Machine_Eal_getBestCapacity(self->capacity, 1, SIZE_MAX / self->dispatch->elementSize, &newCapacity)) {
+    if (Ring1_Memory_recomputeSize_sz(0, SIZE_MAX / self->dispatch->elementSize, self->capacity, 1, &newCapacity, true)) {
       return Machine_Eal_InlineArray_AllocationFailed;
     }
     
-    void *newElements = Machine_Eal_Memory_reallocateArray(self->elements, self->dispatch->elementSize, newCapacity);
-    if (NULL == newElements) {
+    void* newElements = NULL;
+    if (Ring1_Memory_reallocateArray(&newElements, self->elements, newCapacity, self->dispatch->elementSize)) {
+      Ring1_Status_set(Ring1_Status_Success);
       return Machine_Eal_InlineArray_AllocationFailed;
     }
     self->elements = newElements;

@@ -6,7 +6,7 @@
 
 
 
-#include "Eal/multiplySafe.h"
+#include "Ring1/Intrinsic/Multiply/multiply.h"
 #include <string.h>
 #include <intsafe.h>
 #include <malloc.h>

@@ -36,25 +36,10 @@
     <ClCompile Include="Eal\Compiler.c">
       <Filter>Quelldateien\Eal</Filter>
     </ClCompile>
-    <ClCompile Include="Eal\multiplySafe.c">
-      <Filter>Quelldateien\Eal</Filter>
-    </ClCompile>
     <ClCompile Include="Eal\maximum.c">
       <Filter>Quelldateien\Eal</Filter>
     </ClCompile>
     <ClCompile Include="Eal\minimum.c">
-      <Filter>Quelldateien\Eal</Filter>
-    </ClCompile>
-    <ClCompile Include="Eal\isPowerOfTwo.c">
-      <Filter>Quelldateien\Eal</Filter>
-    </ClCompile>
-    <ClCompile Include="Eal\addSafe.c">
-      <Filter>Quelldateien\Eal</Filter>
-    </ClCompile>
-    <ClCompile Include="Eal\GrowthStrategy.c">
-      <Filter>Quelldateien\Eal</Filter>
-    </ClCompile>
-    <ClCompile Include="Eal\leastPowerOfTwoGreaterThanOrEqualTo.c">
       <Filter>Quelldateien\Eal</Filter>
     </ClCompile>
     <ClCompile Include="Eal\InlineArray.c">
@@ -77,25 +62,10 @@
     <ClInclude Include="Eal\Compiler.h">
       <Filter>Headerdateien\Eal</Filter>
     </ClInclude>
-    <ClInclude Include="Eal\multiplySafe.h">
-      <Filter>Headerdateien\Eal</Filter>
-    </ClInclude>
     <ClInclude Include="Eal\maximum.h">
       <Filter>Headerdateien\Eal</Filter>
     </ClInclude>
     <ClInclude Include="Eal\minimum.h">
-      <Filter>Headerdateien\Eal</Filter>
-    </ClInclude>
-    <ClInclude Include="Eal\isPowerOfTwo.h">
-      <Filter>Headerdateien\Eal</Filter>
-    </ClInclude>
-    <ClInclude Include="Eal\addSafe.h">
-      <Filter>Headerdateien\Eal</Filter>
-    </ClInclude>
-    <ClInclude Include="Eal\GrowthStrategy.h">
-      <Filter>Headerdateien\Eal</Filter>
-    </ClInclude>
-    <ClInclude Include="Eal\leastPowerOfTwoGreaterThanOrEqualTo.h">
       <Filter>Headerdateien\Eal</Filter>
     </ClInclude>
     <ClInclude Include="Eal\InlineArray.h">

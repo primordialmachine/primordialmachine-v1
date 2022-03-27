@@ -19,32 +19,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Eal\addSafe.h" />
-    <ClInclude Include="Eal\GrowthStrategy.h" />
     <ClInclude Include="Eal\InlineArray.h" />
-    <ClInclude Include="Eal\leastPowerOfTwoGreaterThanOrEqualTo.h" />
     <ClInclude Include="Eal\Zts.h" />
     <ClInclude Include="Eal\Compiler.h" />
-    <ClInclude Include="Eal\isPowerOfTwo.h" />
     <ClInclude Include="Eal\maximum.h" />
     <ClInclude Include="Eal\Memory.h" />
     <ClInclude Include="Eal\minimum.h" />
-    <ClInclude Include="Eal\multiplySafe.h" />
     <ClInclude Include="Eal\Types.h" />
     <ClInclude Include="_Eal.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Eal\addSafe.c" />
-    <ClCompile Include="Eal\GrowthStrategy.c" />
     <ClCompile Include="Eal\InlineArray.c" />
-    <ClCompile Include="Eal\leastPowerOfTwoGreaterThanOrEqualTo.c" />
     <ClCompile Include="Eal\Zts.c" />
     <ClCompile Include="Eal\Compiler.c" />
-    <ClCompile Include="Eal\isPowerOfTwo.c" />
     <ClCompile Include="Eal\maximum.c" />
     <ClCompile Include="Eal\Memory.c" />
     <ClCompile Include="Eal\minimum.c" />
-    <ClCompile Include="Eal\multiplySafe.c" />
     <ClCompile Include="Eal\Types.c" />
     <ClCompile Include="_Eal.c" />
   </ItemGroup>

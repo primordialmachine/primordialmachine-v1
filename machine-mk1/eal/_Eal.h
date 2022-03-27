@@ -7,15 +7,11 @@
 
 
 #define MACHINE_EAL_PRIVATE (1)
-#include "Eal/addSafe.h"
-#include "Eal/GrowthStrategy.h"
-#include "Eal/isPowerOfTwo.h"
-#include "Eal/leastPowerOfTwoGreaterThanOrEqualTo.h"
 #include "Eal/InlineArray.h"
 #include "Eal/maximum.h"
 #include "Eal/Memory.h"
 #include "Eal/minimum.h"
-#include "Eal/multiplySafe.h"
+#include "Ring1/Intrinsic/Multiply/multiply.h"
 #include "Eal/Types.h"
 #include "Eal/Zts.h"
 #undef MACHINE_EAL_PRIVATE
