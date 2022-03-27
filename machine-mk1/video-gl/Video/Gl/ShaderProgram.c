@@ -35,6 +35,29 @@ static void Machine_Gl_ShaderProgram_destruct(Machine_Gl_ShaderProgram* self) {
   }
 }
 
+/// @brief Get the program info log of a shader program.
+/// @param id The OpenGL ID of s ahder program.
+/// @return The log string on success, null on failure.
+/// This function sets the by-thread status variable. 
+static Machine_String* getLog_noraise(GLuint id) {
+  GLint n;
+  glGetProgramiv(id, GL_INFO_LOG_LENGTH, &n);
+  if (n == SIZE_MAX) {
+    return NULL;
+  }
+  char* p = NULL;
+  if (Ring1_Memory_allocateArray(&p, n + 1, sizeof(char))) {
+    return NULL;
+  }
+  glGetProgramInfoLog(id, n, NULL, p);
+  if (glGetError() != GL_NO_ERROR) {
+    return NULL;
+  }
+  Machine_String* string = Machine_String_create_noraise(p, n);
+  Ring1_Memory_deallocate(p);
+  return string;
+}
+
 static size_t Machine_Gl_ShaderProgram_getNumberOfInputsImpl(Machine_Gl_ShaderProgram const* self) {
   return Machine_Collection_getSize((Machine_Collection*)self->inputs);
 }
@@ -85,13 +108,7 @@ static GLuint compileShader(char const* programText, Machine_ProgramKind program
   #define SHADER_EMIT_LOG_IF_COMPILATION_FAILED
 
   #if defined(SHADER_EMIT_LOG_IF_COMPILATION_FAILED)
-    GLint log_length;
-    glGetShaderiv(id, GL_INFO_LOG_LENGTH, &log_length);
-    char* buffer = Machine_Eal_Memory_allocateArray(sizeof(char), log_length + 1);
-    if (buffer) {
-      glGetShaderInfoLog(id, log_length, NULL, buffer);
-      Machine_Eal_Memory_deallocate(buffer);
-    }
+    Machine_String* log = getLog_noraise(id);
   #endif
 
   #undef SHADER_EMIT_LOG_IF_COMPILATION_FAILED
@@ -170,13 +187,7 @@ static void constructFromText(Machine_Gl_ShaderProgram* self, char const* vertex
   #define PROGRAM_EMIT_LOG_IF_LINKING_FAILED
 
   #if defined(PROGRAM_EMIT_LOG_IF_LINKING_FAILED)
-    GLint log_length;
-    glGetProgramiv(programId, GL_INFO_LOG_LENGTH, &log_length);
-    char* buffer = Machine_Eal_Memory_allocateArray(sizeof(char), log_length + 1);
-    if (buffer) {
-      glGetProgramInfoLog(programId, log_length, NULL, buffer);
-      Machine_Eal_Memory_deallocate(buffer);
-    }
+    Machine_String *log = getLog_noraise(programId);
   #endif
 
   #undef PROGRAM_EMIT_LOG_IF_LINKING_FAILED

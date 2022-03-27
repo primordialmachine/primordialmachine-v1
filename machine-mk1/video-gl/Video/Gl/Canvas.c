@@ -4,6 +4,7 @@
 #define MACHINE_VIDEO_GL_PRIVATE (1)
 #include "Video/Gl/Canvas.h"
 
+#include "Ring1/Status.h"
 #include "Video/Gl/CanvasUtilities.h"
 #include <stdio.h>
 
@@ -96,8 +97,8 @@ static void Machine_Video_Gl_Canvas_setCanvasIcons(Machine_Video_Gl_Canvas* self
   Machine_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
     size_t numberOfImages = Machine_Collection_getSize((Machine_Collection*)images);
-    targetImages = Machine_Eal_Memory_allocateArray(sizeof(GLFWimage), numberOfImages);
-    if (!targetImages) {
+    if (Ring1_Memory_allocateArray(&targetImages, numberOfImages, sizeof(GLFWimage))) {
+      Ring1_Status_set(Ring1_Status_Success);
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();
     }
@@ -114,13 +115,13 @@ static void Machine_Video_Gl_Canvas_setCanvasIcons(Machine_Video_Gl_Canvas* self
     }
     glfwSetWindowIcon(g_window, numberOfImages, targetImages);
     if (targetImages) {
-      Machine_Eal_Memory_deallocate(targetImages);
+      Ring1_Memory_deallocate(targetImages);
       targetImages = NULL;
     }
     Machine_popJumpTarget();
   } else {
     if (targetImages) {
-      Machine_Eal_Memory_deallocate(targetImages);
+      Ring1_Memory_deallocate(targetImages);
       targetImages = NULL;
     }
     Machine_popJumpTarget();

@@ -6,6 +6,7 @@
 
 
 
+#include "Ring1/Status.h"
 #include <string.h>
 
 static void Machine_Gl_VideoBuffer_constructClass(Machine_Gl_VideoBuffer_Class* self);
@@ -22,8 +23,9 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gl_VideoBuffer, Machine_VideoBuffer, NULL,
                          &Machine_Gl_VideoBuffer_constructClass, NULL)
 
 static void Machine_Gl_VideoBuffer_setDataImpl(Machine_Gl_VideoBuffer* self, size_t n, void const* p) {
-  void* t = Machine_Eal_Memory_reallocateArray(((Machine_VideoBuffer*)self)->p, sizeof(uint8_t), n);
-  if (!t) {
+  void* t = NULL;
+  if (Ring1_Memory_reallocateArray(&t, ((Machine_VideoBuffer*)self)->p, n, sizeof(uint8_t))) {
+    Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }

@@ -4,6 +4,8 @@
 #define MACHINE_VIDEO_PRIVATE (1)
 #include "Video/VertexDescriptor.h"
 
+#include "Ring1/Status.h"
+
 #define TRACE_VISIT (0)
 
 struct Machine_VertexDescriptor_Class {
@@ -48,8 +50,9 @@ static void Machine_VertexDescriptor_construct(Machine_VertexDescriptor* self,
                                                Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->n = 0;
-  self->p = Machine_Eal_Memory_allocate(0);
-  if (!self->p) {
+  self->p = NULL;
+  if (Ring1_Memory_allocate(&self->p, 0)) {
+    Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
@@ -58,7 +61,7 @@ static void Machine_VertexDescriptor_construct(Machine_VertexDescriptor* self,
 
 static void Machine_VertexDescriptor_destruct(Machine_VertexDescriptor* self) {
   if (self->p) {
-    Machine_Eal_Memory_deallocate(self->p);
+    Ring1_Memory_deallocate(self->p);
     self->p = NULL;
   }
 }
@@ -128,9 +131,9 @@ size_t Machine_VertexDescriptor_getElementOffset(Machine_VertexDescriptor* self,
 void Machine_VertexDescriptor_insert(Machine_VertexDescriptor* self, size_t index,
                                      Machine_VertexElementSemantics semantics) {
   size_t n = self->n + 1;
-  Machine_VertexElementSemantics* p
-      = Machine_Eal_Memory_reallocateArray(self->p, sizeof(Machine_VertexElementSemantics), n);
-  if (!p) {
+  Machine_VertexElementSemantics* p = NULL;
+  if (Ring1_Memory_reallocateArray(&p, self->p, n, sizeof(Machine_VertexElementSemantics))) {
+    Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
