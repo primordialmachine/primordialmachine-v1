@@ -45,6 +45,9 @@
     <Filter Include="Headerdateien\Ring1\Memory\Windows">
       <UniqueIdentifier>{c8f4955e-f467-4f28-a113-f99aafb5f0a5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring1\Test">
+      <UniqueIdentifier>{354fd9aa-8357-4157-80dc-de4cb74f6aa8}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Quelldateien\Ring1">
       <UniqueIdentifier>{cb8e3f96-fe83-49b6-9904-e9ebb2fa5114}</UniqueIdentifier>
     </Filter>
@@ -110,6 +113,9 @@
     </Filter>
     <Filter Include="Quelldateien\Ring1\Memory\Windows">
       <UniqueIdentifier>{ea8e54c4-3bbc-4415-963b-e0a47599d9cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Test">
+      <UniqueIdentifier>{a75f57ae-7ec2-4320-99d7-edcea69258c2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Headerdateien\Ring1\Intrinsic\Add\X86">
       <UniqueIdentifier>{b81f66de-2d7a-4aac-9436-ac4d61808672}</UniqueIdentifier>
@@ -280,6 +286,21 @@
     </ClInclude>
     <ClInclude Include="Ring1\Memory\Windows\getPageSize.h">
       <Filter>Headerdateien\Ring1\Memory\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Test\Commons.h">
+      <Filter>Headerdateien\Ring1\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Test\Configuration.h">
+      <Filter>Headerdateien\Ring1\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Test\Context.h">
+      <Filter>Headerdateien\Ring1\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Test\Node.h">
+      <Filter>Headerdateien\Ring1\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Test.h">
+      <Filter>Headerdateien\Ring1</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\Result.h">
       <Filter>Headerdateien\Ring1</Filter>
@@ -627,6 +648,15 @@
     </ClCompile>
     <ClCompile Include="Ring1\Memory\Statistics.c">
       <Filter>Quelldateien\Ring1\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Test\Context.c">
+      <Filter>Quelldateien\Ring1\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Test\Node.c">
+      <Filter>Quelldateien\Ring1\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Test.c">
+      <Filter>Quelldateien\Ring1</Filter>
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo_s16.c">
       <Filter>Quelldateien\Ring1\Intrinsic\NextPowerOfTwo</Filter>
