@@ -3,6 +3,7 @@
 
 
 
+#include "Ring1/Status.h"
 #include "Signals/Connection.h"
 
 
@@ -57,9 +58,9 @@ void Machine_Signals_Signal_emit(Machine_Signals_Signal* self, Machine_String* n
   if (self->connections) {
     size_t numberOfArguments1
         = numberOfArguments + 1;
-    Machine_Value* arguments1
-        = Machine_Eal_Memory_allocateArray(numberOfArguments1, sizeof(Machine_Value));
-    if (!arguments1) {
+    Machine_Value* arguments1 = NULL;
+    if (Ring1_Memory_allocateArray(&arguments1, numberOfArguments1, sizeof(Machine_Value))) {
+      Ring1_Status_set(Ring1_Status_Success);
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();
     }
@@ -81,10 +82,10 @@ void Machine_Signals_Signal_emit(Machine_Signals_Signal* self, Machine_String* n
         }
       }
       Machine_popJumpTarget();
-      Machine_Eal_Memory_deallocate(arguments1);
+      Ring1_Memory_deallocate(arguments1);
     } else {
       Machine_popJumpTarget();
-      Machine_Eal_Memory_deallocate(arguments1);
+      Ring1_Memory_deallocate(arguments1);
       Machine_jump();
     }
   }
