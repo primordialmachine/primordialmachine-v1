@@ -5,14 +5,15 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/ArrayUtilities.h"
 
+#include "Ring1/Status.h"
 #include "_Runtime.h"
 
 Machine_Value* Machine_ArrayUtilities_copyOf(size_t sizeNew, Machine_Value* arrayOld,
                                              size_t sizeOld, bool deallocate) {
   if (deallocate) {
-    Machine_Value* arrayNew
-        = Machine_Eal_Memory_reallocateArray(arrayOld, sizeof(Machine_Value), sizeNew);
-    if (!arrayNew) {
+    Machine_Value* arrayNew = NULL;
+    if (Ring1_Memory_reallocateArray(&arrayNew, arrayOld, sizeNew, sizeof(Machine_Value))) {
+      Ring1_Status_set(Ring1_Status_Success);
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();
     }
@@ -21,8 +22,9 @@ Machine_Value* Machine_ArrayUtilities_copyOf(size_t sizeNew, Machine_Value* arra
     }
     return arrayNew;
   } else {
-    Machine_Value* arrayNew = Machine_Eal_Memory_allocateArray(sizeof(Machine_Value), sizeNew);
-    if (!arrayNew) {
+    Machine_Value* arrayNew = NULL;
+    if (Ring1_Memory_allocateArray(&arrayNew, sizeNew, sizeof(Machine_Value))) {
+      Ring1_Status_set(Ring1_Status_Success);
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();
     }

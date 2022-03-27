@@ -4,6 +4,7 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/Object/ClassType.h"
 
+#include "Ring1/Status.h"
 #include "Runtime/Assertions.h"
 #include "Runtime/Gc/Gc.h"
 #include "Runtime/JumpTargetModule.h"
@@ -16,7 +17,7 @@ static void Machine_ClassType_finalize(Machine_ClassType* self) {
     Machine_Gc_unlock(self->parent);
   }
   if (self->class.data) {
-    Machine_Eal_Memory_deallocate(self->class.data);
+    Ring1_Memory_deallocate(self->class.data);
     self->class.data = NULL;
   }
   if (self->interfaces.implementationsInitialized) {
@@ -69,9 +70,10 @@ Machine_ClassType* Machine_createClassType(Machine_CreateClassTypeArgs* args) {
 
   ((Machine_Type*)classType)->flags = Machine_TypeFlags_Class;
   ((Machine_Type*)classType)->typeRemoved = args->createTypeArgs.typeRemoved;
-  ((Machine_Type*)classType)->children.elements
-      = Machine_Eal_Memory_allocateArray(sizeof(Machine_Type*), 0);
-  if (!(((Machine_Type*)classType)->children.elements)) {
+  ((Machine_Type*)classType)->children.elements = NULL;
+  if (Ring1_Memory_allocateArray((void **) & (((Machine_Type*)classType)->children.elements), 0,
+                                 sizeof(Machine_Type*))) {
+    Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
@@ -153,13 +155,14 @@ static bool getOrCreateImplementation(Machine_ClassType* self, Machine_Interface
     *dispatchNode = NULL;
     return false;
   }
-  Machine_InterfaceDispatchNode temporary = { .dispatch = Machine_Eal_Memory_allocate(type->size) };
-  if (!temporary.dispatch) {
+  Machine_InterfaceDispatchNode temporary = { .dispatch = NULL };
+  if (Ring1_Memory_allocate(&temporary.dispatch, type->size)) {
+    Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
   if (Machine_Eal_InlineArray_append(&(self->interfaces.dispatches2), &temporary)) {
-    Machine_Eal_Memory_deallocate(temporary.dispatch);
+    Ring1_Memory_deallocate(temporary.dispatch);
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
@@ -182,12 +185,13 @@ void Machine_ClassType_ensureInitialized(Machine_ClassType* self) {
   // ALLOCATE CLASS DISPATCH.
   // Can be invoked any number of times.
   if (!self->class.data) {
-    self->class.data = Machine_Eal_Memory_allocate(self->class.size);
-    if (!self->class.data) {
+    self->class.data = NULL;
+    if (Ring1_Memory_allocate(&self->class.data, self->class.size)) {
+      Ring1_Status_set(Ring1_Status_Success);
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();
     }
-    Machine_Eal_Memory_zero(self->class.data, self->class.size);
+    Ring1_Memory_zeroFill(self->class.data, self->class.size);
     if (self->parent) {
       Machine_Eal_Memory_copy(self->class.data, self->parent->class.data, self->parent->class.size,
                               false);

@@ -4,6 +4,7 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/Enumeration/EnumerationType.h"
 
+#include "Ring1/Status.h"
 #include "Runtime/Enumeration/EnumerationType.module.h"
 #include "Runtime/Gc/Gc.h"
 #include "Runtime/JumpTargetModule.h"
@@ -31,8 +32,13 @@ Machine_EnumerationType* Machine_createEnumerationType(Machine_CreateEnumeration
   }
   ((Machine_Type*)enumerationType)->flags = Machine_TypeFlags_Enumeration;
   ((Machine_Type*)enumerationType)->typeRemoved = args->createTypeArgs.typeRemoved;
-  ((Machine_Type*)enumerationType)->children.elements
-      = Machine_Eal_Memory_allocateArray(sizeof(Machine_Type*), 0);
+  ((Machine_Type*)enumerationType)->children.elements = NULL;
+  if (Ring1_Memory_allocateArray((void **)&(((Machine_Type*)enumerationType)->children.elements), 0,
+                                 sizeof(Machine_Type*))) {
+    Ring1_Status_set(Ring1_Status_Success);
+    Machine_setStatus(Machine_Status_AllocationFailed);
+    Machine_jump(); 
+  }
   ((Machine_Type*)enumerationType)->children.size = 0;
   return enumerationType;
 }

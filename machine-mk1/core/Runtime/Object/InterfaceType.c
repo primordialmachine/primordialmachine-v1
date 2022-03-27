@@ -4,6 +4,7 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/Object/InterfaceType.h"
 
+#include "Ring1/Status.h"
 #include "Runtime/Gc/Gc.h"
 #include "Runtime/JumpTargetModule.h"
 #include "Runtime/Object/InterfaceType.module.h"
@@ -38,8 +39,13 @@ Machine_InterfaceType* Machine_createInterfaceType(Machine_CreateInterfaceTypeAr
   }
   ((Machine_Type*)interfaceType)->flags = Machine_TypeFlags_Interface;
   ((Machine_Type*)interfaceType)->typeRemoved = args->createTypeArgs.typeRemoved;
-  ((Machine_Type*)interfaceType)->children.elements
-      = Machine_Eal_Memory_allocateArray(sizeof(Machine_Type*), 0);
+  ((Machine_Type*)interfaceType)->children.elements = NULL;
+  if (Ring1_Memory_allocateArray((void **) & (((Machine_Type*)interfaceType)->children.elements), 0,
+                                 sizeof(Machine_Type*))) {
+    Ring1_Status_set(Ring1_Status_Success);
+    Machine_setStatus(Machine_Status_AllocationFailed);
+    Machine_jump();
+  }
   ((Machine_Type*)interfaceType)->children.size = 0;
   static const Machine_Eal_InlineArrayDispatch extendsConfiguration = {
     .elementSize = sizeof(Machine_Type*),

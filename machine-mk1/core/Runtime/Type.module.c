@@ -12,7 +12,7 @@ void _Type_visit(Machine_Type* self) {
 
 void _Type_finalize(Machine_Type* self) {
   if (self->children.elements) {
-    Machine_Eal_Memory_deallocate(self->children.elements);
+    Ring1_Memory_deallocate(self->children.elements);
     self->children.elements = NULL;
   }
   if (self->typeRemoved) {

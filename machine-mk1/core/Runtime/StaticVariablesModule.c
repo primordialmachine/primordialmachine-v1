@@ -4,6 +4,8 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/StaticVariablesModule.h"
 
+#include "Ring1/Status.h"
+
 typedef struct Node Node;
 
 struct Node {
@@ -17,8 +19,9 @@ bool Machine_registerStaticVariables(Machine_UninitializeStaticVariablesCallback
   if (!callback) {
     return false;
   }
-  Node* node = Machine_Eal_Memory_allocate(sizeof(Node));
-  if (!node) {
+  Node* node = NULL;
+  if (Ring1_Memory_allocate(&node, sizeof(Node))) {
+    Ring1_Status_set(Ring1_Status_Success);
     return false;
   }
   node->next = g_nodes;
@@ -35,7 +38,7 @@ void Machine_uninitializeStaticVariablesModule() {
   while (g_nodes) {
     Node* node = g_nodes;
     g_nodes = node->next;
-    Machine_Eal_Memory_deallocate(node);
+    Ring1_Memory_deallocate(node);
   }
 }
 

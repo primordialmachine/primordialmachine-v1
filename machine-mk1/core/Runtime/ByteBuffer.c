@@ -4,6 +4,7 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/ByteBuffer.h"
 
+#include "Ring1/Status.h"
 #include "Runtime/JumpTargetModule.h"
 #include "Runtime/Object/Object.h"
 #include "Runtime/Status.h"
@@ -24,8 +25,9 @@ struct Machine_ByteBuffer {
 static void Machine_ByteBuffer_construct(Machine_ByteBuffer* self, size_t numberOfArguments,
                                          Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  self->p = Machine_Eal_Memory_allocate(0);
-  if (!self->p) {
+  self->p = NULL;
+  if (Ring1_Memory_allocate(&self->p, 0)) {
+    Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
@@ -35,7 +37,7 @@ static void Machine_ByteBuffer_construct(Machine_ByteBuffer* self, size_t number
 }
 
 static void Machine_ByteBuffer_destruct(Machine_ByteBuffer* self) {
-  Machine_Eal_Memory_deallocate(self->p);
+  Ring1_Memory_deallocate(self->p);
   self->p = NULL;
 }
 
@@ -66,8 +68,9 @@ void Machine_ByteBuffer_insertBytesAt(Machine_ByteBuffer* self, size_t i, char c
   size_t fc = self->c - self->s;
   if (fc < n) {
     size_t ac = n - fc; // additional capacity
-    char* p = Machine_Eal_Memory_reallocate(self->p, self->c + ac);
-    if (!p) {
+    char* p = NULL;
+    if (Ring1_Memory_reallocate(&p, self->p, self->c + ac)) {
+      Ring1_Status_set(Ring1_Status_Success);
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();
     }

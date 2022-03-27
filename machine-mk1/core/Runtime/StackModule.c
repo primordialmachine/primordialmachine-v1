@@ -5,6 +5,7 @@
 #include "Runtime/StackModule.h"
 
 #include "_Eal.h"
+#include "Ring1/Status.h"
 #include "Runtime/JumpTargetModule.h"
 
 typedef struct Stack {
@@ -13,8 +14,9 @@ typedef struct Stack {
 } Stack;
 
 static Machine_StatusValue Stack_initialize(Stack* self) {
-  self->elements = Machine_Eal_Memory_allocateArray(sizeof(Machine_Value), 8);
-  if (!self->elements) {
+  self->elements = NULL;
+  if (Ring1_Memory_allocateArray(&self->elements, 8, sizeof(Machine_Value))) {
+    Ring1_Status_set(Ring1_Status_Success);
     return Machine_Status_AllocationFailed;
   }
   for (size_t i = 0; i < 8; ++i) {
@@ -27,19 +29,20 @@ static Machine_StatusValue Stack_initialize(Stack* self) {
 
 static void Stack_uninitialize(Stack* self) {
   if (self->elements) {
-    Machine_Eal_Memory_deallocate(self->elements);
+    Ring1_Memory_deallocate(self->elements);
     self->elements = NULL;
   }
 }
 
 static Machine_StatusValue Stack_create(Stack** stack) {
-  Stack* stack0 = Machine_Eal_Memory_allocate(sizeof(Stack));
-  if (!stack0) {
+  Stack* stack0 = NULL;
+  if (Ring1_Memory_allocate(&stack0, sizeof(Stack))) {
+    Ring1_Status_set(Ring1_Status_Success);
     return Machine_Status_AllocationFailed;
   }
   Machine_StatusValue status = Stack_initialize(stack0);
   if (status) {
-    Machine_Eal_Memory_deallocate(stack0);
+    Ring1_Memory_deallocate(stack0);
     return status;
   }
   *stack = stack0;
@@ -48,30 +51,20 @@ static Machine_StatusValue Stack_create(Stack** stack) {
 
 static void Stack_destroy(Stack* stack) {
   Stack_uninitialize(stack);
-  Machine_Eal_Memory_deallocate(stack);
+  Ring1_Memory_deallocate(stack);
 }
 
 static void Stack_grow(Stack* self, size_t additionalCapacity) {
   size_t newCapacity = 0;
-  int status = Machine_Eal_getBestCapacity(self->capacity, additionalCapacity,
-                                           SIZE_MAX / sizeof(Machine_Value),
-                                           &newCapacity);
-  switch (status) {
-    case MACHINE_EAL_GROWTHSTRATEGY_SUCCESS: {
-    } break;
-    case MACHINE_EAL_GROWTHSTRATEGY_POSITIVEOVERFLOW: {
-      Machine_setStatus(Machine_Status_CapacityExhausted);
-      Machine_jump();
-    } break;
-    case MACHINE_EAL_GROWTHSTRATEGY_INVALIDARGUMENT:
-    default: {
-      Machine_setStatus(Machine_Status_InternalError);
-      Machine_jump();
-    } break;
-
-  };
-  Machine_Value* newElements = Machine_Eal_Memory_reallocateArray(self->elements, sizeof(Machine_Value), newCapacity);
-  if (newElements) {
+  if (Ring1_Memory_recomputeSize_sz(0, SIZE_MAX / sizeof(Machine_Value), self->capacity,
+                                    additionalCapacity, &newCapacity, true)) {
+    Machine_setStatus(Machine_Status_CapacityExhausted);
+    Machine_jump();
+  }
+  Machine_Value* newElements = NULL;
+  if (Ring1_Memory_reallocateArray(&newElements, self->elements, newCapacity,
+                                   sizeof(Machine_Value))) {
+    Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
@@ -88,11 +81,18 @@ static void Stack_ensureFreeCapacity(Stack* self, size_t requiredFreeCapacity) {
 }
 
 static Stack* g_stack = NULL;
+static Ring1_Memory_ModuleHandle g_memoryModuleHandle = Ring1_Memory_ModuleHandle_Invalid;
 
 Machine_StatusValue Machine_initializeStackModule() {
   Machine_StatusValue status;
+  g_memoryModuleHandle = Ring1_Memory_ModuleHandle_acquire();
+  if (!g_memoryModuleHandle) {
+    return Machine_Status_EnvironmentFailed;
+  }
   status = Stack_create(&g_stack);
   if (status) {
+    Ring1_Memory_ModuleHandle_relinquish(g_memoryModuleHandle);
+    g_memoryModuleHandle = Ring1_Memory_ModuleHandle_Invalid;
     return status;
   }
   return Machine_Status_Success;
@@ -101,6 +101,8 @@ Machine_StatusValue Machine_initializeStackModule() {
 void Machine_uninitializeStackModule() {
   Stack_destroy(g_stack);
   g_stack = NULL;
+  Ring1_Memory_ModuleHandle_relinquish(g_memoryModuleHandle);
+  g_memoryModuleHandle = Ring1_Memory_ModuleHandle_Invalid;
 }
 
 void Machine_Stack_loadBoolean(Machine_Boolean value) {

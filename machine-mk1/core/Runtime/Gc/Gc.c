@@ -4,6 +4,7 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/Gc/Gc.h"
 
+#include "Ring1/Status.h"
 #include "Runtime/WeakReference.h"
 #include "Runtime/Object/Object.h"
 #include <assert.h>
@@ -52,14 +53,14 @@ bool Machine_Gc_isRoot(void* object) {
 }
 
 void* Machine_Gc_allocate(Machine_Gc_AllocationArguments const* arguments) {
-  void* pt = Machine_Eal_Memory_allocate(arguments->prefixSize + sizeof(Machine_Gc_Tag)
-                                         + arguments->suffixSize);
-  if (!pt) {
+  void* pt = NULL;
+  if (Ring1_Memory_allocate(&pt, arguments->prefixSize + sizeof(Machine_Gc_Tag)
+                            + arguments->suffixSize)) {
+    Ring1_Status_set(Ring1_Status_Success);
     return NULL;
   }
   g_objectCount++;
-  Machine_Eal_Memory_zero(pt,
-                          arguments->prefixSize + sizeof(Machine_Gc_Tag) + arguments->suffixSize);
+  Ring1_Memory_zeroFill(pt, arguments->prefixSize + sizeof(Machine_Gc_Tag) + arguments->suffixSize);
   Machine_Gc_Tag* t = (Machine_Gc_Tag*)(((char*)pt) + arguments->prefixSize);
   Machine_Gc_Tag_initialize(t);
   t->visit = arguments->visit;
@@ -130,10 +131,10 @@ void Machine_Gc_run(size_t* live, size_t* dead) {
       if ((tag->flags & Machine_Flag_Class) == Machine_Flag_Class) {
         Machine_ClassObjectTag* classObjectTag = t2cot(tag);
         Machine_Gc_Tag_uninitialize(tag);
-        Machine_Eal_Memory_deallocate(classObjectTag);
+        Ring1_Memory_deallocate(classObjectTag);
       } else {
         Machine_Gc_Tag_uninitialize(tag);
-        Machine_Eal_Memory_deallocate(tag);
+        Ring1_Memory_deallocate(tag);
       }
       g_objectCount--;
       (*dead)++;
