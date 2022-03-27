@@ -4,6 +4,7 @@
 #define MACHINE_COLLECTIONS_PRIVATE (1)
 #include "Collections/HashMap.h"
 
+#include "Ring1/Status.h"
 #include "Collections/ArrayList.h"
 #include "Collections/Collection.h"
 #include "Collections/GrowthStrategy.h"
@@ -66,8 +67,9 @@ static void maybeResize(Machine_HashMap* self) {
   // (2) If new capacity != old capacity, resize.
   if (newCapacity != oldCapacity) {
     _MapNode** oldBuckets = pimpl->buckets;
-    _MapNode** newBuckets = Machine_Eal_Memory_allocateArray(sizeof(_MapNode*), newCapacity);
-    if (!newBuckets) {
+    _MapNode** newBuckets = NULL;
+    if (Ring1_Memory_allocateArray((void **) & newBuckets, newCapacity, sizeof(_MapNode*))) {
+      Ring1_Status_set(Ring1_Status_Success);
       /*
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();
@@ -87,7 +89,7 @@ static void maybeResize(Machine_HashMap* self) {
         newBuckets[hashIndex] = node;
       }
     }
-    Machine_Eal_Memory_deallocate(oldBuckets);
+    Ring1_Memory_deallocate(oldBuckets);
     pimpl->buckets = newBuckets;
     pimpl->capacity = newCapacity;
   }
@@ -108,8 +110,8 @@ static void set(Machine_HashMap* self, Machine_Value key, Machine_Value value) {
     }
   }
   if (!node) {
-    node = Machine_Eal_Memory_allocate(sizeof(_MapNode));
-    if (!node) {
+    if (Ring1_Memory_allocate(&node, sizeof(_MapNode))) {
+      Ring1_Status_set(Ring1_Status_Success);
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();
     }
@@ -150,7 +152,7 @@ static void clear(Machine_HashMap* self) {
     while (pimpl->buckets[i]) {
       _MapNode* node = pimpl->buckets[i];
       pimpl->buckets[i] = node->next;
-      Machine_Eal_Memory_deallocate(node);
+      Ring1_Memory_deallocate(node);
       pimpl->size--;
     }
   }
@@ -201,17 +203,19 @@ static void Machine_HashMap_constructClass(Machine_HashMap_Class* self) {
 void Machine_HashMap_construct(Machine_HashMap* self, size_t numberOfArguments,
                                Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  _Map* pimpl = (_Map*)Machine_Eal_Memory_allocate(sizeof(_Map));
-  if (!pimpl) {
+  _Map* pimpl = NULL;
+  if (Ring1_Memory_allocate(&pimpl, sizeof(_Map))) {
+    Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
   pimpl->size = 0;
   pimpl->capacity = MINIMAL_CAPACITY;
-  pimpl->buckets = Machine_Eal_Memory_allocateArray(sizeof(_MapNode*), pimpl->capacity);
-  if (!pimpl->buckets) {
-    Machine_Eal_Memory_deallocate(pimpl);
+  pimpl->buckets = NULL;
+  if (Ring1_Memory_allocateArray((void **) & pimpl->buckets, pimpl->capacity, sizeof(_MapNode*))) {
+    Ring1_Memory_deallocate(pimpl);
     pimpl = NULL;
+    Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }

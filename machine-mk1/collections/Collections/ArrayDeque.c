@@ -4,6 +4,7 @@
 #define MACHINE_COLLECTIONS_PRIVATE (1)
 #include "Collections/ArrayDeque.h"
 
+#include "Ring1/Status.h"
 #include "Collections/Collection.h"
 #include "Collections/Deque.h"
 #include "Collections/GrowthStrategy.h"
@@ -124,7 +125,7 @@ static void Machine_ArrayDeque_implementInterfaces(Machine_ClassType* self) {
 
 static void Machine_ArrayDeque_destruct(Machine_ArrayDeque* self) {
   if (self->elements) {
-    Machine_Eal_Memory_deallocate(self->elements);
+    Ring1_Memory_deallocate(self->elements);
     self->elements = NULL;
   }
 }
@@ -136,8 +137,9 @@ static void Machine_ArrayDeque_construct(Machine_ArrayDeque* self, size_t number
   self->size = 0;
   self->head = 0;
   self->tail = 0;
-  self->elements = Machine_Eal_Memory_allocateArray(self->capacity, sizeof(Machine_Value));
-  if (!self->elements) {
+  self->elements = NULL;
+  if (Ring1_Memory_allocateArray(&self->elements, self->capacity, sizeof(Machine_Value))) {
+    Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }

@@ -4,6 +4,7 @@
 #define MACHINE_COLLECTIONS_PRIVATE (1)
 #include "Collections/ArrayList.h"
 
+#include "Ring1/Status.h"
 #include "Collections/Collection.h"
 #include "Collections/GrowthStrategy.h"
 #include "Collections/List.h"
@@ -79,8 +80,9 @@ void Machine_ArrayList_construct(Machine_ArrayList* self, size_t numberOfArgumen
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->size = 0;
   self->capacity = 0;
-  self->elements = Machine_Eal_Memory_allocate(0);
-  if (!self->elements) {
+  self->elements = NULL;
+  if (Ring1_Memory_allocate(&self->elements, 0)) {
+    Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
@@ -111,9 +113,9 @@ static void insertAt(Machine_ArrayList* self, size_t index, Machine_Value value)
       Machine_setStatus(status);
       Machine_jump();
     }
-    void* newElements
-        = Machine_Eal_Memory_reallocateArray(self->elements, sizeof(Machine_Value), newCapacity);
-    if (!newElements) {
+    void* newElements = NULL;
+    if (Ring1_Memory_reallocateArray(&newElements, self->elements, newCapacity, sizeof(Machine_Value))) {
+      Ring1_Status_set(Ring1_Status_Success);
       Machine_setStatus(Machine_Status_AllocationFailed);
       Machine_jump();
     }
@@ -173,7 +175,7 @@ static void Machine_ArrayList_visit(Machine_ArrayList* self) {
 
 static void Machine_ArrayList_destruct(Machine_ArrayList* self) {
   if (self->elements) {
-    Machine_Eal_Memory_deallocate(self->elements);
+    Ring1_Memory_deallocate(self->elements);
     self->elements = NULL;
   }
 }
