@@ -581,6 +581,9 @@
     <ClInclude Include="Ring1\Intrinsic\atomicIncrement.h">
       <Filter>Headerdateien\Ring1\Intrinsic</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\clamp.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring1\Status.c">
@@ -722,6 +725,9 @@
       <Filter>Quelldateien\Ring1\Memory\Windows</Filter>
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\atomicIncrement.c">
+      <Filter>Quelldateien\Ring1\Intrinsic</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\clamp.c">
       <Filter>Quelldateien\Ring1\Intrinsic</Filter>
     </ClCompile>
   </ItemGroup>

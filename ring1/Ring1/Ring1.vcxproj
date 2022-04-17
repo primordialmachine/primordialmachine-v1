@@ -362,6 +362,7 @@
     <ClInclude Include="Ring1\Intrinsic\Add\X86\add_u64.h" />
     <ClInclude Include="Ring1\Intrinsic\Add\X86\add_u8.h" />
     <ClInclude Include="Ring1\Intrinsic\atomicGet.h" />
+    <ClInclude Include="Ring1\Intrinsic\clamp.h" />
     <ClInclude Include="Ring1\Intrinsic\Concurrency\ReadWriteLock.h" />
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\countLeadingZeroes.h" />
     <ClInclude Include="Ring1\Intrinsic\isPowerOfTwo.h" />
@@ -444,6 +445,7 @@
     <ClInclude Include="Ring1\Test\Node.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Ring1\Intrinsic\clamp.c" />
     <ClCompile Include="Ring1\Intrinsic\isPowerOfTwo.c" />
     <ClCompile Include="Ring1\Intrinsic\Likely.c" />
     <ClCompile Include="Ring1\Intrinsic\Multiply\multiply.c" />

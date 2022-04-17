@@ -9,6 +9,7 @@
 #include <stddef.h>
 
 #include "Ring1/Intrinsic/Test/Add.h"
+#include "Ring1/Intrinsic/Test/Clamp.h"
 #include "Ring1/Intrinsic/Test/CountLeadingZeroes.h"
 #include "Ring1/Intrinsic/Test/IsPowerOfTwo.h"
 #include "Ring1/Intrinsic/Test/Multiply.h"
@@ -34,6 +35,12 @@ Mkx_Intrinsic_Test_runAll
       || Ring1_Intrinsic_Test_registerNextPowerOfTwoTests(ctx)
       || Ring1_Intrinsic_Test_registerNextMultipleOf32Tests(ctx)
       || Ring1_Intrinsic_Test_registerNextMultipleOf64Tests(ctx)) {
+    return Ring1_Result_Failure;
+  }
+
+  if (Ring1_Intrinsic_Test_registerClampTests(ctx)) {
+    Ring1_Test_Context_destroy(ctx);
+    ctx = NULL;
     return Ring1_Result_Failure;
   }
 
