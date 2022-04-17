@@ -36,7 +36,7 @@
       <TreatSpecificWarningsAsErrors>4133;4090;4013</TreatSpecificWarningsAsErrors>
       <CompileAs>CompileAsC</CompileAs>
       <AdditionalOptions>/we4028 /we4033</AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)\%(FileName).o</ObjectFileName>
+      <ObjectFileName>$(IntDir)%(RelativeDir)\%(FileName).obj</ObjectFileName>
     </ClCompile>
     <Link>
       <OptimizeReferences>true</OptimizeReferences>
