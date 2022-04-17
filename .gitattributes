@@ -1,2 +1,4 @@
-*.h    text eol=crlf
-*.c    text eol=crlf
+* text=auto
+
+*.h text=auto diff=cpp
+*.c text=auto diff=cpp
