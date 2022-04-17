@@ -369,6 +369,7 @@
     <ClInclude Include="Ring1\Intrinsic\atomicDecrement.h" />
     <ClInclude Include="Ring1\Intrinsic\atomicIncrement.h" />
     <ClInclude Include="Ring1\Intrinsic\Likely.h" />
+    <ClInclude Include="Ring1\Intrinsic\maximum.h" />
     <ClInclude Include="Ring1\Intrinsic\Multiply\configuration.h" />
     <ClInclude Include="Ring1\Intrinsic\Multiply\multiply.h" />
     <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_s16.h" />
@@ -448,6 +449,7 @@
     <ClCompile Include="Ring1\Intrinsic\clamp.c" />
     <ClCompile Include="Ring1\Intrinsic\isPowerOfTwo.c" />
     <ClCompile Include="Ring1\Intrinsic\Likely.c" />
+    <ClCompile Include="Ring1\Intrinsic\maximum.c" />
     <ClCompile Include="Ring1\Intrinsic\Multiply\multiply.c" />
     <ClCompile Include="Ring1\Intrinsic\Multiply\X64\multiply_s64.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>

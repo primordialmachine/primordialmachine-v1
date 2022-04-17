@@ -36,9 +36,6 @@
     <ClCompile Include="Eal\Compiler.c">
       <Filter>Quelldateien\Eal</Filter>
     </ClCompile>
-    <ClCompile Include="Eal\maximum.c">
-      <Filter>Quelldateien\Eal</Filter>
-    </ClCompile>
     <ClCompile Include="Eal\minimum.c">
       <Filter>Quelldateien\Eal</Filter>
     </ClCompile>
@@ -60,9 +57,6 @@
       <Filter>Headerdateien\Eal</Filter>
     </ClInclude>
     <ClInclude Include="Eal\Compiler.h">
-      <Filter>Headerdateien\Eal</Filter>
-    </ClInclude>
-    <ClInclude Include="Eal\maximum.h">
       <Filter>Headerdateien\Eal</Filter>
     </ClInclude>
     <ClInclude Include="Eal\minimum.h">

@@ -59,6 +59,9 @@
     <ClCompile Include="Ring1\Intrinsic\Test\Intrinsic.c">
       <Filter>Quelldateien\Ring1\Intrinsic\Test</Filter>
     </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Test\Maximum.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\Test</Filter>
+    </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\Test\Clamp.c">
       <Filter>Quelldateien\Ring1\Intrinsic\Test</Filter>
     </ClCompile>
@@ -89,6 +92,9 @@
       <Filter>Headerdateien\Ring1\Intrinsic\Test</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\Intrinsic\Test\Intrinsic.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Test\Maximum.h">
       <Filter>Headerdateien\Ring1\Intrinsic\Test</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\Intrinsic\Test\Clamp.h">

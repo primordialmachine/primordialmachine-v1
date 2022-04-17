@@ -12,6 +12,7 @@
 #include "Ring1/Intrinsic/Test/Clamp.h"
 #include "Ring1/Intrinsic/Test/CountLeadingZeroes.h"
 #include "Ring1/Intrinsic/Test/IsPowerOfTwo.h"
+#include "Ring1/Intrinsic/Test/Maximum.h"
 #include "Ring1/Intrinsic/Test/Multiply.h"
 #include "Ring1/Intrinsic/Test/NextMultipleOf32.h"
 #include "Ring1/Intrinsic/Test/NextMultipleOf64.h"
@@ -39,6 +40,12 @@ Mkx_Intrinsic_Test_runAll
   }
 
   if (Ring1_Intrinsic_Test_registerClampTests(ctx)) {
+    Ring1_Test_Context_destroy(ctx);
+    ctx = NULL;
+    return Ring1_Result_Failure;
+  }
+
+  if (Ring1_Intrinsic_Test_registerMaximumTests(ctx)) {
     Ring1_Test_Context_destroy(ctx);
     ctx = NULL;
     return Ring1_Result_Failure;

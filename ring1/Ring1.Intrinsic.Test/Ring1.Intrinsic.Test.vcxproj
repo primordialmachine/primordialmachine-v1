@@ -22,6 +22,7 @@
     <ClCompile Include="Ring1\Intrinsic\Main.c" />
     <ClCompile Include="Ring1\Intrinsic\Test\Clamp.c" />
     <ClCompile Include="Ring1\Intrinsic\Test\Intrinsic.c" />
+    <ClCompile Include="Ring1\Intrinsic\Test\Maximum.c" />
     <ClCompile Include="Ring1\Intrinsic\Test\Multiply.c" />
     <ClCompile Include="Ring1\Intrinsic\Test\Add.c" />
     <ClCompile Include="Ring1\Intrinsic\Test\CountLeadingZeroes.c" />
@@ -34,6 +35,7 @@
   <ItemGroup>
     <ClInclude Include="Ring1\Intrinsic\Test\Clamp.h" />
     <ClInclude Include="Ring1\Intrinsic\Test\Intrinsic.h" />
+    <ClInclude Include="Ring1\Intrinsic\Test\Maximum.h" />
     <ClInclude Include="Ring1\Intrinsic\Test\Multiply.h" />
     <ClInclude Include="Ring1\Intrinsic\Test\Add.h" />
     <ClInclude Include="Ring1\Intrinsic\Test\CountLeadingZeroes.h" />

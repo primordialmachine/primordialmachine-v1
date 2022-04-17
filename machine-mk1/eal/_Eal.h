@@ -8,7 +8,7 @@
 
 #define MACHINE_EAL_PRIVATE (1)
 #include "Eal/InlineArray.h"
-#include "Eal/maximum.h"
+#include "Ring1/Intrinsic/maximum.h"
 #include "Eal/Memory.h"
 #include "Eal/minimum.h"
 #include "Ring1/Intrinsic/Multiply/multiply.h"
