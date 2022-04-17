@@ -10,7 +10,7 @@
 #include "Eal/InlineArray.h"
 #include "Ring1/Intrinsic/maximum.h"
 #include "Eal/Memory.h"
-#include "Eal/minimum.h"
+#include "Ring1/Intrinsic/minimum.h"
 #include "Ring1/Intrinsic/Multiply/multiply.h"
 #include "Eal/Types.h"
 #include "Eal/Zts.h"

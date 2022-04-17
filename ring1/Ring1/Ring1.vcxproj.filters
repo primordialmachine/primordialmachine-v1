@@ -584,6 +584,9 @@
     <ClInclude Include="Ring1\Intrinsic\maximum.h">
       <Filter>Headerdateien\Ring1\Intrinsic</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\minimum.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
     <ClInclude Include="Ring1\Intrinsic\clamp.h">
       <Filter>Headerdateien\Ring1\Intrinsic</Filter>
     </ClInclude>
@@ -731,6 +734,9 @@
       <Filter>Quelldateien\Ring1\Intrinsic</Filter>
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\maximum.c">
+      <Filter>Quelldateien\Ring1\Intrinsic</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\minimum.c">
       <Filter>Quelldateien\Ring1\Intrinsic</Filter>
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\clamp.c">
