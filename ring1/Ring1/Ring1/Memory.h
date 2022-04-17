@@ -16,7 +16,7 @@
 
 Ring1_Module_Declare(Memory)
 
-// https://preview.primordialmachine.com/ring1-library/memory-library/Ring1_Memory_allocate
+// https://documentation.primordialmachine.com/ring1-library/memory-library/Ring1_Memory_allocate
 Ring1_CheckReturn() Ring1_Result
 Ring1_Memory_allocate
   (
@@ -24,7 +24,7 @@ Ring1_Memory_allocate
     size_t n
   );
 
-// https://preview.primordialmachine.com/ring1-library/memory-library/Ring1_Memory_allocateArray
+// https://documentation.primordialmachine.com/ring1-library/memory-library/Ring1_Memory_allocateArray
 Ring1_CheckReturn() Ring1_Result
 Ring1_Memory_allocateArray
   (
@@ -33,7 +33,7 @@ Ring1_Memory_allocateArray
     size_t elementSize
   );
 
-// https://preview.primordialmachine.com/ring1-library/memory-library/Ring1_Memory_reallocate
+// https://documentation.primordialmachine.com/ring1-library/memory-library/Ring1_Memory_reallocate
 Ring1_CheckReturn() Ring1_Result
 Ring1_Memory_reallocate
   (
@@ -42,7 +42,7 @@ Ring1_Memory_reallocate
     size_t n
   );
 
-// https://preview.primordialmachine.com/ring1-library/memory-library/Ring1_Memory_reallocateArray
+// https://documentation.primordialmachine.com/ring1-library/memory-library/Ring1_Memory_reallocateArray
 Ring1_CheckReturn() Ring1_Result
 Ring1_Memory_reallocateArray
   (
@@ -52,14 +52,14 @@ Ring1_Memory_reallocateArray
     size_t elementSize
   );
 
-// https://preview.primordialmachine.com/ring1-library/memory-library/Ring1_Memory_deallocate
+// https://documentation.primordialmachine.com/ring1-library/memory-library/Ring1_Memory_deallocate
 Ring1_Result
 Ring1_Memory_deallocate
   (
     void *p
   );
 
-// https://preview.primordialmachine.com/ring1-library/memory-library/Ring1_Memory_zeroFill
+// https://documentation.primordialmachine.com/ring1-library/memory-library/Ring1_Memory_zeroFill
 Ring1_CheckReturn()Ring1_Result
 Ring1_Memory_zeroFill
   (
@@ -67,7 +67,7 @@ Ring1_Memory_zeroFill
     size_t n
   );
 
-// https://preview.primordialmachine.com/ring1-library/memory-library/Ring1_Memory_zeroFillArray
+// https://documentation.primordialmachine.com/ring1-library/memory-library/Ring1_Memory_zeroFillArray
 Ring1_CheckReturn() Ring1_Result
 Ring1_Memory_zeroFillArray
   (
@@ -114,7 +114,7 @@ Ring1_Memory_copyArraySlow
     size_t elementSize
   );
 
-// https://preview.primordialmachine.com/ring1-library/memory-library/Ring1_Memory_getPageSize
+// https://documentation.primordialmachine.com/ring1-library/memory-library/Ring1_Memory_getPageSize
 Ring1_CheckReturn() Ring1_Result
 Ring1_Memory_getPageSze
   (

@@ -5,7 +5,7 @@
 #include "Ring1/Intrinsic/CheckReturn.h"
 #include "Ring1/Result.h"
 
-// https://preview.primordialmachine.com/ring1-library/intrinsic-library/Ring1_Intrinsic_subtract
+// https://documentation.primordialmachine.com/ring1-library/intrinsic-library/Ring1_Intrinsic_subtract
 Ring1_CheckReturn() Ring1_Result
 Ring1_Intrinsic_subtract_u8
   (
@@ -14,7 +14,7 @@ Ring1_Intrinsic_subtract_u8
     uint8_t y
   );
 
-// https://preview.primordialmachine.com/ring1-library/intrinsic-library/Ring1_Intrinsic_subtract
+// https://documentation.primordialmachine.com/ring1-library/intrinsic-library/Ring1_Intrinsic_subtract
 Ring1_CheckReturn() Ring1_Result
 Ring1_Intrinsic_subtract_s8
   (
@@ -23,7 +23,7 @@ Ring1_Intrinsic_subtract_s8
     int8_t y
   );
 
-// https://preview.primordialmachine.com/ring1-library/intrinsic-library/Ring1_Intrinsic_subtract
+// https://documentation.primordialmachine.com/ring1-library/intrinsic-library/Ring1_Intrinsic_subtract
 Ring1_CheckReturn() Ring1_Result
 Ring1_Intrinsic_subtract_u16
   (
@@ -32,7 +32,7 @@ Ring1_Intrinsic_subtract_u16
     uint16_t y
   );
 
-// https://preview.primordialmachine.com/ring1-library/intrinsic-library/Ring1_Intrinsic_subtract
+// https://documentation.primordialmachine.com/ring1-library/intrinsic-library/Ring1_Intrinsic_subtract
 Ring1_CheckReturn() Ring1_Result
 Ring1_Intrinsic_subtract_s16
   (
@@ -41,7 +41,7 @@ Ring1_Intrinsic_subtract_s16
     int16_t y
   );
 
-// https://preview.primordialmachine.com/ring1-library/intrinsic-library/Ring1_Intrinsic_subtract
+// https://documentation.primordialmachine.com/ring1-library/intrinsic-library/Ring1_Intrinsic_subtract
 Ring1_CheckReturn() Ring1_Result
 Ring1_Intrinsic_subtract_u32
   (
@@ -50,7 +50,7 @@ Ring1_Intrinsic_subtract_u32
     uint32_t y
   );
 
-// https://preview.primordialmachine.com/ring1-library/intrinsic-library/Ring1_Intrinsic_subtract
+// https://documentation.primordialmachine.com/ring1-library/intrinsic-library/Ring1_Intrinsic_subtract
 Ring1_CheckReturn() Ring1_Result
 Ring1_Intrinsic_subtract_s32
   (
@@ -59,7 +59,7 @@ Ring1_Intrinsic_subtract_s32
     int32_t y
   );
 
-// https://preview.primordialmachine.com/ring1-library/intrinsic-library/Ring1_Intrinsic_subtract
+// https://documentation.primordialmachine.com/ring1-library/intrinsic-library/Ring1_Intrinsic_subtract
 Ring1_CheckReturn() Ring1_Result
 Ring1_Intrinsic_subtract_u64
   (
@@ -68,7 +68,7 @@ Ring1_Intrinsic_subtract_u64
     uint64_t y
   );
 
-// https://preview.primordialmachine.com/ring1-library/intrinsic-library/Ring1_Intrinsic_subtract
+// https://documentation.primordialmachine.com/ring1-library/intrinsic-library/Ring1_Intrinsic_subtract
 Ring1_CheckReturn() Ring1_Result
 Ring1_Intrinsic_subtract_s64
   (
@@ -77,7 +77,7 @@ Ring1_Intrinsic_subtract_s64
     int64_t y
   );
 
-// https://preview.primordialmachine.com/ring1-library/intrinsic-library/Ring1_Intrinsic_subtract
+// https://documentation.primordialmachine.com/ring1-library/intrinsic-library/Ring1_Intrinsic_subtract
 Ring1_CheckReturn() Ring1_Result
 Ring1_Intrinsic_subtract_sz
   (

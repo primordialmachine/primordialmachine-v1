@@ -7,7 +7,7 @@
 #if !defined(RING1_INTRINSIC_THREADLOCAL_H_INCLUDED)
 #define RING1_INTRINSIC_THREADLOCAL_H_INCLUDED
 
-// https://preview.primordialmachine.com/ring1-library/intrinsic-library/Ring1_ThreadLocal
+// https://documentation.primordialmachine.com/ring1-library/intrinsic-library/Ring1_ThreadLocal
 #if defined(_MSC_VER)
   #define Ring1_ThreadLocal() __declspec(thread)
 #else
