@@ -454,6 +454,8 @@
     <ClInclude Include="Ring1\Intrinsic\clamp.h" />
     <ClInclude Include="Ring1\Intrinsic\Concurrency\ReadWriteLock.h" />
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\countLeadingZeroes.h" />
+    <ClInclude Include="Ring1\Intrinsic\Environment.h" />
+    <ClInclude Include="Ring1\Intrinsic\FloatingPointTypes.h" />
     <ClInclude Include="Ring1\Intrinsic\isPowerOfTwo.h" />
     <ClInclude Include="Ring1\Intrinsic\atomicDecrement.h" />
     <ClInclude Include="Ring1\Intrinsic\atomicIncrement.h" />
@@ -537,6 +539,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring1\Intrinsic\clamp.c" />
+    <ClCompile Include="Ring1\Intrinsic\Environment.c" />
+    <ClCompile Include="Ring1\Intrinsic\FloatingPointTypes.c" />
     <ClCompile Include="Ring1\Intrinsic\isPowerOfTwo.c" />
     <ClCompile Include="Ring1\Intrinsic\Likely.c" />
     <ClCompile Include="Ring1\Intrinsic\maximum.c" />

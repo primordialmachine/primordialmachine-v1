@@ -590,6 +590,12 @@
     <ClInclude Include="Ring1\Intrinsic\clamp.h">
       <Filter>Headerdateien\Ring1\Intrinsic</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\FloatingPointTypes.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Environment.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring1\Status.c">
@@ -740,6 +746,12 @@
       <Filter>Quelldateien\Ring1\Intrinsic</Filter>
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\clamp.c">
+      <Filter>Quelldateien\Ring1\Intrinsic</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Environment.c">
+      <Filter>Quelldateien\Ring1\Intrinsic</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\FloatingPointTypes.c">
       <Filter>Quelldateien\Ring1\Intrinsic</Filter>
     </ClCompile>
   </ItemGroup>
