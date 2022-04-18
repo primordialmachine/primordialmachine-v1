@@ -453,6 +453,7 @@
     <ClInclude Include="Ring1\Intrinsic\atomicGet.h" />
     <ClInclude Include="Ring1\Intrinsic\clamp.h" />
     <ClInclude Include="Ring1\Intrinsic\Concurrency\ReadWriteLock.h" />
+    <ClInclude Include="Ring1\Intrinsic\countLeadingZeroes.h" />
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\countLeadingZeroes.h" />
     <ClInclude Include="Ring1\Intrinsic\Environment.h" />
     <ClInclude Include="Ring1\Intrinsic\FloatingPointTypes.h" />
@@ -480,7 +481,9 @@
     <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_u32.h" />
     <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_u64.h" />
     <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_u8.h" />
+    <ClInclude Include="Ring1\Intrinsic\nextMultipleOf32.h" />
     <ClInclude Include="Ring1\Intrinsic\NextMultipleOf32\nextMultipleOf32.h" />
+    <ClInclude Include="Ring1\Intrinsic\nextMultipleOf64.h" />
     <ClInclude Include="Ring1\Intrinsic\NextMultipleOf64\nextMultipleOf64.h" />
     <ClInclude Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo.h" />
     <ClInclude Include="Ring1\Intrinsic\CheckReturn.h" />
@@ -539,6 +542,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring1\Intrinsic\clamp.c" />
+    <ClCompile Include="Ring1\Intrinsic\countLeadingZeroes.c" />
     <ClCompile Include="Ring1\Intrinsic\Environment.c" />
     <ClCompile Include="Ring1\Intrinsic\FloatingPointTypes.c" />
     <ClCompile Include="Ring1\Intrinsic\isPowerOfTwo.c" />
@@ -625,7 +629,9 @@
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\atomicDecrement.c" />
     <ClCompile Include="Ring1\Intrinsic\atomicIncrement.c" />
+    <ClCompile Include="Ring1\Intrinsic\nextMultipleOf32.c" />
     <ClCompile Include="Ring1\Intrinsic\NextMultipleOf32\nextMultipleOf32.c" />
+    <ClCompile Include="Ring1\Intrinsic\nextMultipleOf64.c" />
     <ClCompile Include="Ring1\Intrinsic\NextMultipleOf64\nextMultipleOf64.c" />
     <ClCompile Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo_s16.c" />
     <ClCompile Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo_s32.c" />
