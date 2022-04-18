@@ -37,6 +37,8 @@ Mkx_Intrinsic_Test_runAll
       || Ring1_Intrinsic_Test_registerNextPowerOfTwoTests(ctx)
       || Ring1_Intrinsic_Test_registerNextMultipleOf32Tests(ctx)
       || Ring1_Intrinsic_Test_registerNextMultipleOf64Tests(ctx)) {
+    Ring1_Test_Context_destroy(ctx);
+    ctx = NULL;
     return Ring1_Result_Failure;
   }
 
@@ -58,34 +60,12 @@ Mkx_Intrinsic_Test_runAll
     return Ring1_Result_Failure;
   }
 
-  if (// Mkx_Test_Context_addTest(ctx, "Mkx.Intrinsic.Test.multiply[s8]", &Mkx_Intrinsic_Test_multiply_s8)
-      //|| Mkx_Test_Context_addTest(ctx, "Mkx.Intrinsic.Test.multiply[u8]", &Mkx_Intrinsic_Test_multiply_u8)
-      //
-      //|| Mkx_Test_Context_addTest(ctx, "Mkx.Intrinsic.Test.multiply[s16]", &Mkx_Intrinsic_Test_multiply_s16)
-      //|| Mkx_Test_Context_addTest(ctx, "Mkx.Intrinsic.Test.multiply[u16]", &Mkx_Intrinsic_Test_multiply_u16)
-      //
-      //|| Mkx_Test_Context_addTest(ctx, "Mkx.Intrinsic.Test.multiply[s32]", &Mkx_Intrinsic_Test_multiply_s32)
-      //|| Mkx_Test_Context_addTest(ctx, "Mkx.Intrinsic.Test.multiply[u32]", &Mkx_Intrinsic_Test_multiply_u32)
-      //
-      //|| Mkx_Test_Context_addTest(ctx, "Mkx.Intrinsic.Test.multiply[s64]", &Mkx_Intrinsic_Test_multiply_s64)
-      //|| Mkx_Test_Context_addTest(ctx, "Mkx.Intrinsic.Test.multiply[u64]", &Mkx_Intrinsic_Test_multiply_u64)
-      //
-       Ring1_Test_Context_addTest(ctx,
-                                  "Ring1.Intrinsic.Test.countLeadingZeroes[u8]",
-                                  &Mkx_Intrinsic_Test_countLeadingZeroes_u8)
-    || Ring1_Test_Context_addTest(ctx, "Ring1.Intrinsic.Test.countLeadingZeroes[u16]",
-                                  &Mkx_Intrinsic_Test_countLeadingZeroes_u16)
-    || Ring1_Test_Context_addTest(ctx, "Ring1.Intrinsic.Test.countLeadingZeroes[u32]",
-                                  &Mkx_Intrinsic_Test_countLeadingZeroes_u32)
-    || Ring1_Test_Context_addTest(ctx, "Ring1.Intrinsic.Test.countLeadingZeroes[u64]",
-                                  &Mkx_Intrinsic_Test_countLeadingZeroes_u64))
-  {
+  if (Ring1_Intrinsic_Test_registerCountLeadingZeroesTests(ctx)) {
     Ring1_Test_Context_destroy(ctx);
     ctx = NULL;
     return Ring1_Result_Failure;
   }
-  if (Ring1_Test_Context_runAllTests(ctx))
-  {
+  if (Ring1_Test_Context_runAllTests(ctx)) {
     Ring1_Test_Context_destroy(ctx);
     ctx = NULL;
     return Ring1_Result_Failure;

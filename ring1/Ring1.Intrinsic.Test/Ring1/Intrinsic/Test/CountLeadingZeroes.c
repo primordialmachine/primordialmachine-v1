@@ -10,10 +10,10 @@
 #include <inttypes.h>
 #include "Ring1/Status.h"
 
-/// @brief Unit test function asserting correctness of Mkx_Intrinsic_countLeadingZeroes_u8.
+/// @brief Unit test function asserting correctness of Ring1_Intrinsic_countLeadingZeroes_u8.
 /// @param ctx A pointer to the test context.
-void
-Mkx_Intrinsic_Test_countLeadingZeroes_u8
+static void
+Ring1_Intrinsic_Test_countLeadingZeroes_u8
   (
     Ring1_Test_Context *ctx
   )
@@ -32,10 +32,10 @@ Mkx_Intrinsic_Test_countLeadingZeroes_u8
   RING1_TEST_ASSERT_EQ(ctx, 0, n);
 }
 
-/// @brief Unit test function asserting correctness of Mkx_Intrinsic_countLeadingZeroes_u16.
+/// @brief Unit test function asserting correctness of Ring1_Intrinsic_countLeadingZeroes_u16.
 /// @param ctx A pointer to the test context.
-void
-Mkx_Intrinsic_Test_countLeadingZeroes_u16
+static void
+Ring1_Intrinsic_Test_countLeadingZeroes_u16
   (
     Ring1_Test_Context *ctx
   )
@@ -54,10 +54,10 @@ Mkx_Intrinsic_Test_countLeadingZeroes_u16
   RING1_TEST_ASSERT_EQ(ctx, 0, n);
 }
 
-/// @brief Unit test function asserting correctness of Mkx_Intrinsic_countLeadingZeroes_u32.
+/// @brief Unit test function asserting correctness of Ring1_Intrinsic_countLeadingZeroes_u32.
 /// @param ctx A pointer to the test context.
-void
-Mkx_Intrinsic_Test_countLeadingZeroes_u32
+static void
+Ring1_Intrinsic_Test_countLeadingZeroes_u32
   (
     Ring1_Test_Context *ctx
   )
@@ -76,10 +76,10 @@ Mkx_Intrinsic_Test_countLeadingZeroes_u32
   RING1_TEST_ASSERT_EQ(ctx, 0, n);
 }
 
-/// @brief Unit test function asserting correctness of Mkx_Intrinsic_countLeadingZeroes_u64.
+/// @brief Unit test function asserting correctness of Ring1_Intrinsic_countLeadingZeroes_u64.
 /// @param ctx A pointer to the test context.
-void
-Mkx_Intrinsic_Test_countLeadingZeroes_u64
+static void
+Ring1_Intrinsic_Test_countLeadingZeroes_u64
   (
     Ring1_Test_Context* ctx
   )
@@ -94,4 +94,24 @@ Mkx_Intrinsic_Test_countLeadingZeroes_u64
 
   RING1_TEST_ASSERT_EQ(ctx, Ring1_Result_Success, Ring1_Intrinsic_countLeadingZeroes_u64(&n, UINT64_MAX));
   RING1_TEST_ASSERT_EQ(ctx, 0, n);
+}
+
+Ring1_Result
+Ring1_Intrinsic_Test_registerCountLeadingZeroesTests
+  (
+    Ring1_Test_Context* ctx
+  )
+{
+  return Ring1_Test_Context_addTest(ctx,
+                                    "Ring1.Intrinsic.Test.countLeadingZeroes[u8]",
+                                    &Ring1_Intrinsic_Test_countLeadingZeroes_u8)
+      || Ring1_Test_Context_addTest(ctx,
+                                    "Ring1.Intrinsic.Test.countLeadingZeroes[u16]",
+                                    &Ring1_Intrinsic_Test_countLeadingZeroes_u16)
+      || Ring1_Test_Context_addTest(ctx,
+                                    "Ring1.Intrinsic.Test.countLeadingZeroes[u32]",
+                                    &Ring1_Intrinsic_Test_countLeadingZeroes_u32)
+      || Ring1_Test_Context_addTest(ctx,
+                                    "Ring1.Intrinsic.Test.countLeadingZeroes[u64]",
+                                    &Ring1_Intrinsic_Test_countLeadingZeroes_u64);
 }
