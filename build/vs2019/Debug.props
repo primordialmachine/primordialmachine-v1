@@ -40,6 +40,8 @@
       <CompileAs>CompileAsC</CompileAs>
       <AdditionalOptions>/we4028 /we4033</AdditionalOptions>
       <ObjectFileName>$(IntDir)%(RelativeDir)\%(FileName).obj</ObjectFileName>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <OptimizeReferences>false</OptimizeReferences>
@@ -49,9 +51,11 @@
     </Link>
     <Link>
       <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+      <IgnoreSpecificDefaultLibraries>libcmt.lib; msvcrt.lib; libcmtd.lib</IgnoreSpecificDefaultLibraries>
     </Link>
     <Lib>
       <LinkTimeCodeGeneration>false</LinkTimeCodeGeneration>
+      <IgnoreSpecificDefaultLibraries>libcmt.lib; msvcrt.lib; libcmtd.lib</IgnoreSpecificDefaultLibraries>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup />
