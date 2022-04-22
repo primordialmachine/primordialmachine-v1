@@ -49,7 +49,7 @@ typedef int Ring1_Status;
 #define Ring1_Status_DivisionByZero (12)
 
 // https://documentation.primordialmachine.com/ring1-library/status-library/status-codes
-#define Ring1_Status_NumericOverflow (15)
+#define Ring1_Status_NumericOverflow (13)
 
 // https://documentation.primordialmachine.com/ring1-library/status-library/Ring1_Status_get
 Ring1_CheckReturn() Ring1_Status
