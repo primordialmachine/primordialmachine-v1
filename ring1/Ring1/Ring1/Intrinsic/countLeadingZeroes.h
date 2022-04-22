@@ -7,6 +7,6 @@
 #if !defined(RING1_INTRINSIC_COUNTLEADINGZEROES_H_INCLUDED)
 #define RING1_INTRINSIC_COUNTLEADINGZEROES_H_INCLUDED
 
-#include "Ring1/Intrinsic/CountLeadingZeroes/CountLeadingZeroes.h"
+#include "Ring1/Intrinsic/CountLeadingZeroes/countLeadingZeroes.h"
 
 #endif // RING1_INTRINSIC_COUNTLEADINGZEROES_H_INCLUDED
