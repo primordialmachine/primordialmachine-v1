@@ -51,6 +51,21 @@ typedef int Ring1_Status;
 // https://documentation.primordialmachine.com/ring1-library/status-library/status-codes
 #define Ring1_Status_NumericOverflow (13)
 
+// https://documentation.primordialmachine.com/ring1-library/status-library/status-codes
+#define Ring1_Status_EnvironmentFailed (14)
+
+// https://documentation.primordialmachine.com/ring1-library/status-library/status-codes
+#define Ring1_Status_InvalidLexics (15)
+
+// https://documentation.primordialmachine.com/ring1-library/status-library/status-codes
+#define Ring1_Status_InvalidSyntactics (16)
+
+// https://documentation.primordialmachine.com/ring1-library/status-library/status-codes
+#define Ring1_Status_InvalidSemantics (17)
+
+// https://documentation.primordialmachine.com/ring1-library/status-library/status-codes
+#define Ring1_Status_InvalidEnvironment (18)
+
 // https://documentation.primordialmachine.com/ring1-library/status-library/Ring1_Status_get
 Ring1_CheckReturn() Ring1_Status
 Ring1_Status_get
