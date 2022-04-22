@@ -244,11 +244,12 @@ Ring1_Intrinsic_multiply_sz
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     return Ring1_Result_Failure;
   }
-  uint64_t t;
 #if defined(_M_X64)
+  uint64_t t;
   char r = Ring1_Intrinsic_Multiply_X64_multiply_u64((size_t)x, (size_t)y, &t);
 #elif defined(_M_IX86)
-  char r = Ring1_Intrinsic_Multiply_X86_multiply_u64((size_t)x, (size_t)y, &t);
+  uint32_t t;
+  char r = Ring1_Intrinsic_Multiply_X86_multiply_u32((size_t)x, (size_t)y, &t);
 #else
   #error("target architecture not supported")
 #endif
