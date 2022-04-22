@@ -287,6 +287,108 @@
     <ClInclude Include="Ring1\Memory\Windows\getPageSize.h">
       <Filter>Headerdateien\Ring1\Memory\Windows</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\Test.h">
+      <Filter>Headerdateien\Ring1</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Result.h">
+      <Filter>Headerdateien\Ring1</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Add\Configuration.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Add</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\Configuration.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\CheckReturn.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Add\add.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Add</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Module.h">
+      <Filter>Headerdateien\Ring1</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X64</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u16.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X64</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u8.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X64</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u16.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u8.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\multiply.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\NextMultipleOf32\nextMultipleOf32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\NextMultipleOf32</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\NextMultipleOf64\nextMultipleOf64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\NextMultipleOf64</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\atomicDecrement.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\atomicGet.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\atomicIncrement.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\CheckReturn.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\clamp.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Configuration.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\countLeadingZeroes.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Environment.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\FloatingPointTypes.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\isPowerOfTwo.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Likely.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\maximum.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\minimum.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\nextMultipleOf32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\nextMultipleOf64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\ThreadLocal.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Unlikely.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
     <ClInclude Include="Ring1\Test\Commons.h">
       <Filter>Headerdateien\Ring1\Test</Filter>
     </ClInclude>
@@ -299,113 +401,62 @@
     <ClInclude Include="Ring1\Test\Node.h">
       <Filter>Headerdateien\Ring1\Test</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Test.h">
-      <Filter>Headerdateien\Ring1</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_s8.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X64</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Result.h">
-      <Filter>Headerdateien\Ring1</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_s16.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X64</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\CheckReturn.h">
-      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_s32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X64</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Add\X86\add_s16.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Add\X86</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_s64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X64</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Add\X86\add_s32.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Add\X86</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_u8.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X64</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Add\X86\add_s64.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Add\X86</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_u16.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X64</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Add\X86\add_u8.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Add\X86</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_u32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X64</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Add\X86\add_u16.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Add\X86</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_u64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X64</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Add\X86\add_u32.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Add\X86</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_s8.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X86</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Add\X86\add_u64.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Add\X86</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_s16.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X86</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Add\X64\add_s8.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Add\X64</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_s32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X86</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Add\X64\add_s16.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Add\X64</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_s64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X86</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Add\X64\add_s32.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Add\X64</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_u8.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X86</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Add\X64\add_s64.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Add\X64</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_u16.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X86</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Add\X64\add_u8.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Add\X64</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_u32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X86</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Add\X64\add_u16.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Add\X64</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_u64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X86</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Add\X64\add_u32.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Add\X64</Filter>
+    <ClInclude Include="Ring1\Intrinsic\NextMultipleOf32\nextMultipleOf32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\NextMultipleOf32</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Add\X64\add_u64.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Add\X64</Filter>
+    <ClInclude Include="Ring1\Intrinsic\NextMultipleOf64\nextMultipleOf64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\NextMultipleOf64</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_u16.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X86</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_s8.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X86</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_s16.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X86</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_s32.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X86</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_s64.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X86</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_u8.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X86</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_u32.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X86</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_u64.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X86</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Subtract\X64\subtract_s8.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X64</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Subtract\X64\subtract_s16.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X64</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Subtract\X64\subtract_s32.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X64</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Subtract\X64\subtract_s64.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X64</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Subtract\X64\subtract_u8.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X64</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Subtract\X64\subtract_u16.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X64</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Subtract\X64\subtract_u32.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X64</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Subtract\X64\subtract_u64.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X64</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\ThreadLocal.h">
-      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Configuration.h">
-      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    <ClInclude Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\NextPowerOfTwo</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\Intrinsic\Subtract\Winapi\subtract_s8.h">
       <Filter>Headerdateien\Ring1\Intrinsic\Subtract\Winapi</Filter>
@@ -431,188 +482,128 @@
     <ClInclude Include="Ring1\Intrinsic\Subtract\Winapi\subtract_u64.h">
       <Filter>Headerdateien\Ring1\Intrinsic\Subtract\Winapi</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Add\Configuration.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Add</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X64\subtract_s8.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X64</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Subtract\Configuration.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Subtract</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X64\subtract_s16.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X64</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\CheckReturn.h">
-      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X64\subtract_s32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X64</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Add\add.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Add</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X64\subtract_s64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X64</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Add\X86\add_s8.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Add\X86</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X64\subtract_u8.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X64</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u32.h">
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X64\subtract_u16.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X64</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X64\subtract_u32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X64</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X64\subtract_u64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X64</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_s8.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_s16.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_s32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_s64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_u8.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_u16.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_u32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_u64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Subtract\X86</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u8.h">
       <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X64</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u16.h">
       <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X64</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u8.h">
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u32.h">
       <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X64</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u64.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u32.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u16.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u8.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Module.h">
-      <Filter>Headerdateien\Ring1</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u64.h">
       <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X64</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u32.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X64</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u16.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X64</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u8.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X64</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u64.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u32.h">
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u8.h">
       <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u16.h">
       <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u8.h">
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u32.h">
       <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\NextMultipleOf64\nextMultipleOf64.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\NextMultipleOf64</Filter>
+    <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\CountLeadingZeroes\X86</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\NextMultipleOf32\nextMultipleOf32.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\NextMultipleOf32</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Add\X64\add_s8.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Add\X64</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_s8.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X64</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Add\X64\add_s16.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Add\X64</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_s8.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X86</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Add\X64\add_s32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Add\X64</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_s16.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X86</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Add\X64\add_s64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Add\X64</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_s16.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X64</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Add\X64\add_u8.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Add\X64</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_s32.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X86</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Add\X64\add_u16.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Add\X64</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_s32.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X64</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Add\X64\add_u32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Add\X64</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_s64.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X64</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Add\X64\add_u64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Add\X64</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_s64.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X86</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Add\X86\add_s8.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Add\X86</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_u8.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X86</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Add\X86\add_s16.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Add\X86</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_u16.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X86</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Add\X86\add_s32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Add\X86</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_u64.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X86</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Add\X86\add_s64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Add\X86</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_u8.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X64</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Add\X86\add_u8.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Add\X86</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_u16.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X64</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Add\X86\add_u16.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Add\X86</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Multiply\X86\multiply_u32.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X86</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Add\X86\add_u32.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Add\X86</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_u32.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X64</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_u64.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Multiply\X64</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\NextPowerOfTwo</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Multiply\configuration.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Multiply</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Multiply\multiply.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\Multiply</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Likely.h">
-      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Unlikely.h">
-      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\NextMultipleOf32\nextMultipleOf32.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\NextMultipleOf32</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\NextMultipleOf64\nextMultipleOf64.h">
-      <Filter>Headerdateien\Ring1\Intrinsic\NextMultipleOf64</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\isPowerOfTwo.h">
-      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\atomicDecrement.h">
-      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\atomicGet.h">
-      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\atomicIncrement.h">
-      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\maximum.h">
-      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\minimum.h">
-      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\clamp.h">
-      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\FloatingPointTypes.h">
-      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Environment.h">
-      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\countLeadingZeroes.h">
-      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\nextMultipleOf32.h">
-      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\nextMultipleOf64.h">
-      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Add\X86\add_u64.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Add\X86</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ring1\Status.c">
-      <Filter>Quelldateien\Ring1</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring1\Result.c">
-      <Filter>Quelldateien\Ring1</Filter>
-    </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\CheckReturn.c">
       <Filter>Quelldateien\Ring1\Intrinsic</Filter>
     </ClCompile>
@@ -655,32 +646,8 @@
     <ClCompile Include="Ring1\Intrinsic\Concurrency\ReadWriteLock.c">
       <Filter>Quelldateien\Ring1\Intrinsic\Concurrency</Filter>
     </ClCompile>
-    <ClCompile Include="Ring1\Memory.c">
-      <Filter>Quelldateien\Ring1</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring1\Module.c">
-      <Filter>Quelldateien\Ring1</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring1\ReferenceCounter.c">
-      <Filter>Quelldateien\Ring1</Filter>
-    </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo_u64.c">
       <Filter>Quelldateien\Ring1\Intrinsic\NextPowerOfTwo</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring1\Memory\recomputeSize.c">
-      <Filter>Quelldateien\Ring1\Memory</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring1\Memory\Statistics.c">
-      <Filter>Quelldateien\Ring1\Memory</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring1\Test\Context.c">
-      <Filter>Quelldateien\Ring1\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring1\Test\Node.c">
-      <Filter>Quelldateien\Ring1\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring1\Test.c">
-      <Filter>Quelldateien\Ring1</Filter>
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo_s16.c">
       <Filter>Quelldateien\Ring1\Intrinsic\NextPowerOfTwo</Filter>
@@ -771,6 +738,36 @@
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\nextMultipleOf64.c">
       <Filter>Quelldateien\Ring1\Intrinsic</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Memory.c">
+      <Filter>Quelldateien\Ring1</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Module.c">
+      <Filter>Quelldateien\Ring1</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\ReferenceCounter.c">
+      <Filter>Quelldateien\Ring1</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Result.c">
+      <Filter>Quelldateien\Ring1</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Status.c">
+      <Filter>Quelldateien\Ring1</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Test.c">
+      <Filter>Quelldateien\Ring1</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Test\Context.c">
+      <Filter>Quelldateien\Ring1\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Test\Node.c">
+      <Filter>Quelldateien\Ring1\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Memory\recomputeSize.c">
+      <Filter>Quelldateien\Ring1\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Memory\Statistics.c">
+      <Filter>Quelldateien\Ring1\Memory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
