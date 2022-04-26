@@ -4,43 +4,60 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/Time.h"
 
-#if defined(_WIN32)
-
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
+#include "Ring1/Time.h"
+#include "Runtime/Status.h"
+#include "Runtime/JumpTargetModule.h"
 
 uint64_t Machine_Time_getNowMilliseconds() {
-  return (uint64_t)GetTickCount64();
+  uint64_t temporary;
+  if (Ring1_Time_getNowMilliseconds_u64(&temporary)) {
+    Machine_setStatus(Machine_Status_EnvironmentFailed);
+    Machine_jump();
+  }
+  return temporary;
 }
 
 uint64_t Machine_Time_getNowSeconds() {
-  return Machine_Time_getNowMilliseconds() / UINT64_C(1000);
+  uint64_t temporary;
+  if (Ring1_Time_getNowSeconds_u64(&temporary)) {
+    Machine_setStatus(Machine_Status_EnvironmentFailed);
+    Machine_jump();
+  }
+  return temporary;
 }
 
 uint64_t Machine_Time_getNowMinutes() {
-  return Machine_Time_getNowMilliseconds() / UINT64_C(1000 * 60);
+  uint64_t temporary;
+  if (Ring1_Time_getNowMinutes_u64(&temporary)) {
+    Machine_setStatus(Machine_Status_EnvironmentFailed);
+    Machine_jump();
+  }
+  return temporary;
 }
 
-#else
-
-  #error("Platform not (yet) supported.")
-
-#endif
-
-#include <float.h>
-
 float Machine_Time_getNowMillisecondsFloat() {
-  uint64_t v = Machine_Time_getNowMilliseconds();
-  if (v > FLT_MAX) {
-    return FLT_MAX;
+  float temporary;
+  if (Ring1_Time_getNowMilliseconds_f32(&temporary)) {
+    Machine_setStatus(Machine_Status_EnvironmentFailed);
+    Machine_jump();
   }
-  return (float)v;
+  return temporary;
 }
 
 float Machine_Time_getNowSecondsFloat() {
-  return (Machine_Time_getNowMillisecondsFloat() / (1000.0f));
+  float temporary;
+  if (Ring1_Time_getNowSeconds_f32(&temporary)) {
+    Machine_setStatus(Machine_Status_EnvironmentFailed);
+    Machine_jump();
+  }
+  return temporary;
 }
 
 float Machine_Time_getNowMinutesFloat() {
-  return (Machine_Time_getNowMillisecondsFloat() / (1000.0f * 60.f));
+  float temporary;
+  if (Ring1_Time_getNowSeconds_f32(&temporary)) {
+    Machine_setStatus(Machine_Status_EnvironmentFailed);
+    Machine_jump();
+  }
+  return temporary;
 }

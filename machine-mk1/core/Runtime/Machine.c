@@ -6,6 +6,7 @@
 #include "Runtime/LogModule.h"
 #include "Runtime/StackModule.h"
 #include "Runtime/StaticVariablesModule.h"
+#include "Ring1/Time.h"
 #include <stdio.h>
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -22,7 +23,7 @@ static const struct {
 };
 static size_t const NUMBER_OF_MODULES = 5;
 
-Machine_StatusValue Machine_startup() {
+static Machine_StatusValue startupModules() {
   for (size_t i = 0, n = NUMBER_OF_MODULES; i < n; ++i) {
     Machine_StatusValue status = MODULES[i].initialize();
     if (status) {
@@ -32,6 +33,30 @@ Machine_StatusValue Machine_startup() {
       }
       return status;
     }
+  }
+  return Machine_Status_Success;
+}
+
+static void shutdownModules() {
+  for (size_t i = NUMBER_OF_MODULES; i > 0; --i) {
+    MODULES[i - 1].uninitialize();
+  }
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+static Ring1_Time_ModuleHandle g_timeModuleHandle = Ring1_Time_ModuleHandle_Invalid;
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+Machine_StatusValue Machine_startup() {
+  g_timeModuleHandle = Ring1_Time_ModuleHandle_acquire();
+  if (!g_timeModuleHandle) {
+    return Machine_Status_EnvironmentFailed;
+  }
+  Machine_StatusValue status = startupModules();
+  if (status) {
+    return status;
   }
   return Machine_Status_Success;
 }
@@ -77,9 +102,10 @@ void Machine_shutdown() {
     fprintf(stderr, "warning %zu live objects remaining\n", live);
   }
 
-  for (size_t i = NUMBER_OF_MODULES; i > 0; --i) {
-    MODULES[i - 1].uninitialize();
-  }
+  shutdownModules();
+
+  Ring1_Time_ModuleHandle_relinquish(g_timeModuleHandle);
+  g_timeModuleHandle = Ring1_Time_ModuleHandle_Invalid;
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

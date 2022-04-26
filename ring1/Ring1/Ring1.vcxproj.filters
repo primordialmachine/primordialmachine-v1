@@ -602,6 +602,9 @@
     <ClInclude Include="Ring1\Intrinsic\Add\X86\add_u64.h">
       <Filter>Headerdateien\Ring1\Intrinsic\Add\X86</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\Time.h">
+      <Filter>Headerdateien\Ring1</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring1\Intrinsic\CheckReturn.c">
@@ -768,6 +771,9 @@
     </ClCompile>
     <ClCompile Include="Ring1\Memory\Statistics.c">
       <Filter>Quelldateien\Ring1\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Time.c">
+      <Filter>Quelldateien\Ring1</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

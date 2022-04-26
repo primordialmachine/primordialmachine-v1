@@ -90,6 +90,7 @@
     <ClInclude Include="Ring1\Test\Configuration.h" />
     <ClInclude Include="Ring1\Test\Context.h" />
     <ClInclude Include="Ring1\Test\Node.h" />
+    <ClInclude Include="Ring1\Time.h" />
     <MASM Include="Ring1\Intrinsic\Add\X64\add_s16.asm">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -503,6 +504,7 @@
     <ClCompile Include="Ring1\Test.c" />
     <ClCompile Include="Ring1\Test\Context.c" />
     <ClCompile Include="Ring1\Test\Node.c" />
+    <ClCompile Include="Ring1\Time.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
