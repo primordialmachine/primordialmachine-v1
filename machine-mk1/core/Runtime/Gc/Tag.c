@@ -10,10 +10,6 @@
 /// @brief Tag flag indicating the color "grey".
 #define Machine_Flag_Grey (Machine_Flag_White | Machine_Flag_Black)
 
-/// @brief Tag flag indicating a root object.
-/// @todo Remove this.
-#define Machine_Flag_Root (4)
-
 void Machine_Gc_Tag_initialize(Machine_Gc_Tag* tag) {
   tag->lockCount = 0;
   tag->flags = Machine_Flag_White;
@@ -50,18 +46,6 @@ void Machine_Gc_Tag_setGrey(Machine_Gc_Tag* tag) {
 
 bool Machine_Gc_Tag_isGrey(Machine_Gc_Tag const* tag) {
   return (tag->flags & Machine_Flag_Grey) == Machine_Flag_Grey;
-}
-
-void Machine_Gc_Tag_setRoot(Machine_Gc_Tag* tag, bool isRoot) {
-  if (isRoot) {
-    tag->flags |= Machine_Flag_Root;
-  } else {
-    tag->flags &= ~Machine_Flag_Root;
-  }
-}
-
-bool Machine_Gc_Tag_isRoot(Machine_Gc_Tag const* tag) {
-  return (tag->flags & Machine_Flag_Root) == Machine_Flag_Root;
 }
 
 void Machine_Gc_Tag_lock(Machine_Gc_Tag* tag) {

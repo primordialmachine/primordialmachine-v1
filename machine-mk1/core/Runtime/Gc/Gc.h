@@ -35,15 +35,6 @@ void Machine_Gc_lock(void* object);
 /// @param object A pointer to the object.
 void Machine_Gc_unlock(void* object);
 
-/// @brief Set if an object is marked as a root object.
-/// @undefined Invoked in visit callback or finalize callback.
-void Machine_Gc_setRoot(void* object, bool isRoot);
-
-/// @brief Get if an object is marked as a root object.
-/// @param object the object.
-/// @return @a true if the object is a root, @a false otherwise.
-bool Machine_Gc_isRoot(void* object);
-
 /// @brief Arguments for a call to Machine_Gc_allocate.
 typedef struct Machine_Gc_AllocationArguments {
 

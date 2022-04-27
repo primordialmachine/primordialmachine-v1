@@ -75,18 +75,6 @@ void Machine_Gc_Tag_setGrey(Machine_Gc_Tag* tag);
 /// @return @a true if the color the tag is "grey", @a false otherwise.
 bool Machine_Gc_Tag_isGrey(Machine_Gc_Tag const* tag);
 
-/// @brief Mark a tag as "root" or "non-root".
-/// @param tag A pointer to the tag.
-/// @param isRoot @a true marks the tag as "root", @a false marks the tag as "non-root".
-/// @todo Remove this.
-void Machine_Gc_Tag_setRoot(Machine_Gc_Tag* tag, bool isRoot);
-
-/// @brief Get if a tag is marked as "root" or "non-root".
-/// @param tag A pointer to the tag.
-/// @return @a true if the tag is marked as "root", @a false if the tag is marked as "non-root".
-/// @todo Remove this.
-bool Machine_Gc_Tag_isRoot(Machine_Gc_Tag const* tag);
-
 /// @brief Increment the lock count of a tag.
 /// @param tag A pointer to the tag.
 void Machine_Gc_Tag_lock(Machine_Gc_Tag* tag);

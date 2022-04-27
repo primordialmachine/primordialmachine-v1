@@ -42,16 +42,6 @@ void Machine_Gc_unlock(void* object) {
   Machine_Gc_Tag_unlock(tag);
 }
 
-void Machine_Gc_setRoot(void* object, bool isRoot) {
-  Machine_Gc_Tag* tag = Machine_Gc_toTag(object);
-  Machine_Gc_Tag_setRoot(tag, isRoot);
-}
-
-bool Machine_Gc_isRoot(void* object) {
-  Machine_Gc_Tag* tag = Machine_Gc_toTag(object);
-  return Machine_Gc_Tag_isRoot(tag);
-}
-
 void* Machine_Gc_allocate(Machine_Gc_AllocationArguments const* arguments) {
   void* pt = NULL;
   if (Ring1_Memory_allocate(&pt, arguments->prefixSize + sizeof(Machine_Gc_Tag)
@@ -92,7 +82,7 @@ void Machine_Gc_run(size_t* live, size_t* dead) {
   // gray list.
   for (Machine_Gc_Tag* object = g_objects; NULL != object; object = object->next) {
     Machine_Gc_Tag_setWhite(object);
-    if (Machine_Gc_Tag_isRoot(object) || object->lockCount > 0) {
+    if (object->lockCount > 0) {
       object->gray = g_gray;
       g_gray = object;
       Machine_Gc_Tag_setGrey(object);
