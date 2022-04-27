@@ -121,7 +121,7 @@ void main0() {
     Machine_JumpTarget jumpTarget2; // To shutdown scene.
     Machine_pushJumpTarget(&jumpTarget2);
     if (!setjmp(jumpTarget2.environment)) {
-      Machine_Gc_setRoot(g_scene, true);
+      Machine_Gc_lock(g_scene);
       Machine_update();
 
       Machine_Integer width, height;
@@ -132,12 +132,12 @@ void main0() {
       run(g_scene);
       Machine_popJumpTarget();
 
-      Machine_Gc_setRoot(g_scene, false);
+      Machine_Gc_unlock(g_scene);
       Scene* s = g_scene;
       g_scene = NULL;
       Scene_onShutdown(s);
     } else {
-      Machine_Gc_setRoot(g_scene, false);
+      Machine_Gc_unlock(g_scene);
       Scene* s = g_scene;
       g_scene = NULL;
       Scene_onShutdown(s);
