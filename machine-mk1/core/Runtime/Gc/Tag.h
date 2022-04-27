@@ -27,7 +27,7 @@ struct Machine_Gc_Tag {
   /// @brief The number of locks on this tag.
   uint64_t lockCount;
   /// @brief The flags of this tag.
-  uint32_t flags;
+  uint8_t flags;
   /// @brief Head of the singly-linked list of weak references to this object.
   Machine_WeakReference* weakReferences;
   /// @brief A pointer to a Machine_Gc_VisitCallback function or a null pointer.

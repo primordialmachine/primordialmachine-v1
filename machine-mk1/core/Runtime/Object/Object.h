@@ -17,7 +17,7 @@ typedef struct Machine_Object_Class Machine_Object_Class;
 typedef struct Machine_Object Machine_Object;
 
 /// @brief Tag flag indicating a class type object tag.
-#define Machine_Flag_Class (32)
+#define Machine_Flag_Class (8)
 
 typedef struct Machine_ClassObjectTag {
   Machine_ClassType* classType;
