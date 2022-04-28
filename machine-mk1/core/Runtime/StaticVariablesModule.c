@@ -30,8 +30,8 @@ bool Machine_registerStaticVariables(Machine_UninitializeStaticVariablesCallback
   return true;
 }
 
-Machine_StatusValue Machine_initializeStaticVariablesModule() {
-  return Machine_Status_Success;
+Ring1_Result Machine_initializeStaticVariablesModule() {
+  return Ring1_Result_Success;
 }
 
 void Machine_uninitializeStaticVariablesModule() {

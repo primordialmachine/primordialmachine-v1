@@ -138,9 +138,6 @@
     <ClCompile Include="Runtime\ByteBufferReader.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
-    <ClCompile Include="Runtime\Gc\Tag.c">
-      <Filter>Quelldateien\Runtime\Gc</Filter>
-    </ClCompile>
     <ClCompile Include="Runtime\Time.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
@@ -268,9 +265,6 @@
     </ClInclude>
     <ClInclude Include="Runtime\ByteBufferReader.h">
       <Filter>Headerdateien\Runtime</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Gc\Tag.h">
-      <Filter>Headerdateien\Runtime\Gc</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\Time.h">
       <Filter>Headerdateien\Runtime</Filter>

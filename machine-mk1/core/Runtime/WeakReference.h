@@ -16,7 +16,7 @@ struct Machine_WeakReference_Class {
 
 struct Machine_WeakReference {
   Machine_Object parent;
-  Machine_WeakReference* next;
+  uintptr_t id;
   Machine_Value value;
 };
 

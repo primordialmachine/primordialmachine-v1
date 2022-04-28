@@ -27,7 +27,6 @@
     <ClCompile Include="Runtime\Enumeration\EnumerationType.c" />
     <ClCompile Include="Runtime\Enumeration\EnumerationType.module.c" />
     <ClCompile Include="Runtime\Gc\Gc.c" />
-    <ClCompile Include="Runtime\Gc\Tag.c" />
     <ClCompile Include="Runtime\Io.c" />
     <ClCompile Include="Runtime\Io\getFileContents.c" />
     <ClCompile Include="Runtime\Io\setFileContents.c" />
@@ -64,7 +63,6 @@
     <ClInclude Include="Runtime\Enumeration\EnumerationType.h" />
     <ClInclude Include="Runtime\Enumeration\EnumerationType.module.h" />
     <ClInclude Include="Runtime\Gc\Gc.h" />
-    <ClInclude Include="Runtime\Gc\Tag.h" />
     <ClInclude Include="Runtime\Io.h" />
     <ClInclude Include="Runtime\Io\ExistingFilePolicy.h" />
     <ClInclude Include="Runtime\Io\FileAccessMode.h" />
@@ -97,6 +95,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\ring1\Ring1\Ring1.vcxproj">
       <Project>{d7db575d-7eaa-47de-8999-44f4e1361d34}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ring2\Ring2.Gc\Ring2.Gc.vcxproj">
+      <Project>{2108d2e9-dacc-4158-8dc2-30d3f94c2661}</Project>
     </ProjectReference>
     <ProjectReference Include="..\eal\machine-mk1-eal.vcxproj">
       <Project>{2c009df6-0365-43aa-b0f1-c8752d10b066}</Project>

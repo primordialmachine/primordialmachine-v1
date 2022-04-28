@@ -10,7 +10,7 @@
 #include "Runtime/Status.h"
 #include "_Eal.h"
 
-Machine_StatusValue Machine_initializeJumpTargetModule();
+Ring1_Result Machine_initializeJumpTargetModule();
 
 void Machine_uninitializeJumpTargetModule();
 

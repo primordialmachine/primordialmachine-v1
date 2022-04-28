@@ -6,9 +6,9 @@
 
 static Machine_JumpTarget* g_jumpTargets = NULL;
 
-Machine_StatusValue Machine_initializeJumpTargetModule() {
+Ring1_Result Machine_initializeJumpTargetModule() {
   g_jumpTargets = NULL;
-  return Machine_Status_Success;
+  return Ring1_Result_Success;
 }
 
 void Machine_uninitializeJumpTargetModule()

@@ -10,20 +10,23 @@
 #include "Runtime/JumpTargetModule.h"
 #include "Runtime/Type.module.h"
 
-static void Machine_EnumerationType_finalize(Machine_EnumerationType* self) {
+static void Machine_EnumerationType_finalize(void *gc, Machine_EnumerationType* self) {
   _Type_finalize((Machine_Type*)self);
 }
 
-static void Machine_EnumerationType_visit(Machine_EnumerationType* self) {
+static void Machine_EnumerationType_visit(void *gc, Machine_EnumerationType* self) {
   _Type_visit((Machine_Type*)self);
 }
 
 Machine_EnumerationType* Machine_createEnumerationType(Machine_CreateEnumerationTypeArgs* args) {
+  static Ring2_Gc_Type const gcType = {
+    .finalize = (Ring2_Gc_FinalizeCallback*)&Machine_EnumerationType_finalize,
+    .visit = (Ring2_Gc_VisitCallback*)Machine_EnumerationType_visit,
+  };
   Machine_Gc_AllocationArguments const allocationArguments = {
     .prefixSize = 0,
     .suffixSize = sizeof(Machine_EnumerationType),
-    .visit = (Machine_Gc_VisitCallback*)Machine_EnumerationType_visit,
-    .finalize = (Machine_Gc_FinalizeCallback*)&Machine_EnumerationType_finalize,
+    .type = &gcType,
   };
   Machine_EnumerationType* enumerationType = Machine_Gc_allocate(&allocationArguments);
   if (!enumerationType) {

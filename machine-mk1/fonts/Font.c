@@ -43,7 +43,7 @@ struct Map {
   size_t size, capacity;
 };
 
-static void Map_visit(Map* self) {
+static void Map_visit(void *gc, Map* self) {
   for (size_t i = 0, n = self->capacity; i < n; ++i) {
     Node* node = self->buckets[i];
     while (node) {
@@ -53,7 +53,7 @@ static void Map_visit(Map* self) {
   }
 }
 
-static void Map_finalize(Map* self) {
+static void Map_finalize(void *gc, Map* self) {
   for (size_t i = 0, n = self->capacity; i < n; ++i) {
     while (self->buckets[i]) {
       Node* node = self->buckets[i];
@@ -69,11 +69,14 @@ static void Map_finalize(Map* self) {
 }
 
 static Map* Map_create() {
+  static Ring2_Gc_Type const gcType = {
+    .finalize = (Ring2_Gc_FinalizeCallback*)&Map_finalize,
+    .visit = (Ring2_Gc_VisitCallback*)&Map_visit,
+  };
   Machine_Gc_AllocationArguments const allocationArguments = {
     .prefixSize = 0,
     .suffixSize = sizeof(Map),
-    .visit = (Machine_Gc_VisitCallback*)&Map_visit,
-    .finalize = (Machine_Gc_FinalizeCallback*)&Map_finalize,
+    .type = &gcType,
   };
 
   Map* self = Machine_Gc_allocate(&allocationArguments);

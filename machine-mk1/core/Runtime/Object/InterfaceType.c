@@ -10,7 +10,7 @@
 #include "Runtime/Object/InterfaceType.module.h"
 #include "Runtime/Type.module.h"
 
-static void Machine_InterfaceType_finalize(Machine_InterfaceType* self) {
+static void Machine_InterfaceType_finalize(void *gc, Machine_InterfaceType* self) {
   if (self->extendsArrayInitialized) {
     for (size_t i = 0, n = self->extends.size; i < n; ++i) {
       Machine_InterfaceType* element = Machine_Eal_InlineArray_getAt(&self->extends, i);
@@ -21,16 +21,19 @@ static void Machine_InterfaceType_finalize(Machine_InterfaceType* self) {
   _Type_finalize((Machine_Type*)self);
 }
 
-static void Machine_InterfaceType_visit(Machine_InterfaceType* self) {
+static void Machine_InterfaceType_visit(void *gc, Machine_InterfaceType* self) {
   _Type_visit((Machine_Type*)self);
 }
 
 Machine_InterfaceType* Machine_createInterfaceType(Machine_CreateInterfaceTypeArgs* args) {
+  static Ring2_Gc_Type const gcType = {
+    .finalize = (Ring2_Gc_FinalizeCallback*)&Machine_InterfaceType_finalize,
+    .visit = (Ring2_Gc_VisitCallback*)Machine_InterfaceType_visit,
+  };
   Machine_Gc_AllocationArguments const allocationArguments = {
     .prefixSize = 0,
     .suffixSize = sizeof(Machine_InterfaceType),
-    .visit = (Machine_Gc_VisitCallback*)Machine_InterfaceType_visit,
-    .finalize = (Machine_Gc_FinalizeCallback*)&Machine_InterfaceType_finalize,
+    .type = &gcType,
   };
   Machine_InterfaceType* interfaceType = Machine_Gc_allocate(&allocationArguments);
   if (!interfaceType) {

@@ -5,22 +5,26 @@
 #include "Runtime/Gc/Gc.h"
 #include "Runtime/JumpTargetModule.h"
 
+static void callback(void* context) {
+  Machine_Value_setVoid(&((Machine_WeakReference*)context)->value, Machine_Void_Void);
+}
+
 static void Machine_WeakReference_construct(Machine_WeakReference* self, size_t numberOfArguments,
                                             Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->value = arguments[0];
-  Machine_Gc_Tag* tag = NULL;
+  Ring2_Gc_Tag* tag = NULL;
   switch (self->value.tag) {
     case Machine_ValueFlag_Object: {
-      tag = Machine_Gc_toTag(self->value.objectValue);
+      tag = Ring2_Gc_toTag(self->value.objectValue);
     } break;
     case Machine_ValueFlag_String: {
-      tag = Machine_Gc_toTag(self->value.stringValue);
+      tag = Ring2_Gc_toTag(self->value.stringValue);
     } break;
   };
   if (tag) {
-    self->next = tag->weakReferences;
-    tag->weakReferences = self;
+    self->id = Ring2_Gc_Tag_addWeakReference(tag,
+                                             (void*)self, &callback);
   }
   Machine_setClassType((Machine_Object*)self, Machine_WeakReference_getType());
 }
@@ -35,33 +39,17 @@ Machine_WeakReference* Machine_WeakReference_create(Machine_Value value) {
 }
 
 static void Machine_WeakReference_destruct(Machine_WeakReference* self) {
-  Machine_Gc_Tag* tag = NULL;
+  Ring2_Gc_Tag* tag = NULL;
   switch (self->value.tag) {
     case Machine_ValueFlag_Object: {
-      tag = Machine_Gc_toTag(self->value.stringValue);
+      tag = Ring2_Gc_toTag(self->value.stringValue);
     } break;
     case Machine_ValueFlag_String: {
-      tag = Machine_Gc_toTag(self->value.stringValue);
+      tag = Ring2_Gc_toTag(self->value.stringValue);
     } break;
   };
   if (tag) {
-    // Remove this weak reference from the list of weak reference of the object.
-    Machine_WeakReference **previous, *current;
-    previous = &tag->weakReferences;
-    current = tag->weakReferences;
-    while (NULL != current) {
-      if (current == self) {
-        break;
-      } else {
-        previous = &current->next;
-        current = current->next;
-      }
-    }
-    if (current) {
-      *previous = current->next;
-    } else {
-      // Warn.
-    }
+    Ring2_Gc_Tag_removeWeakReference(tag, self->id);
   }
 }
 

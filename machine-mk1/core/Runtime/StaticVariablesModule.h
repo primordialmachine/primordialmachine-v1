@@ -9,7 +9,7 @@
 #endif
 #include "Runtime/Status.h"
 
-Machine_StatusValue Machine_initializeStaticVariablesModule();
+Ring1_Result Machine_initializeStaticVariablesModule();
 
 void Machine_uninitializeStaticVariablesModule();
 

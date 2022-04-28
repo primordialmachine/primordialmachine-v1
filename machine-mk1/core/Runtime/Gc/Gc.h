@@ -7,25 +7,16 @@
 #if !defined(MACHINE_RUNTIME_PRIVATE)
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
-#include "Runtime/Gc/Tag.h"
+#include "Ring2/Gc.h"
 #include "Runtime/Status.h"
 #include "_Eal.h"
 
 /// @brief Initialize the GC module.
-Machine_StatusValue Machine_initializeGcModule();
+/// @return #Ring1_Result_Success on success, #Ring1_Result_Failure on failure.
+Ring1_Result Machine_initializeGcModule();
 
 /// @brief Uninitialize the GC module.
 void Machine_uninitializeGcModule();
-
-/// @brief Convert a pointer to an object into a pointer to the tag of the object.
-/// @param src The pointer to the object.
-/// @return A pointer to the tag of the object.
-Machine_Gc_Tag* Machine_Gc_toTag(void* src);
-
-/// @brief Convert a pointer to a tag into a pointer to the object of the tag.
-/// @param src The pointer to the tag.
-/// @return A pointer to the object of the tag.
-void* Machine_Gc_toAddress(Machine_Gc_Tag* src);
 
 /// @brief Increment the lock count of an object.
 /// @param object A pointer to the object.
@@ -44,11 +35,7 @@ typedef struct Machine_Gc_AllocationArguments {
   /// @brief The size, in Bytes, of the suffix.
   size_t suffixSize;
 
-  /// @brief A pointer to a Machine_Gc_VisitCallback function or a null pointer.
-  Machine_Gc_VisitCallback* visit;
-
-  /// @brief A pointer to a Machine_Gc_FinalizeCallback function or a null pointer.
-  Machine_Gc_FinalizeCallback* finalize;
+  Ring2_Gc_Type const* type;
 
 } Machine_Gc_AllocationArguments;
 
@@ -57,20 +44,15 @@ typedef struct Machine_Gc_AllocationArguments {
 /// @return A pointer to the object on success, a null pointer on failure.
 void* Machine_Gc_allocate(Machine_Gc_AllocationArguments const* arguments);
 
-/// @internal
-/// @todo Move into Gc.module.h/Gc.module.c
-void Machine_Gc_Tag_visit(Machine_Gc_Tag* tag);
-
 /// @brief Visit an object.
 /// @param object A pointer to the object.
 /// @undefined Invoked outside of visit callback.
 void Machine_Gc_visit(void* object);
 
 /// @brief Run the GC.
-/// @param live Pointer to a variable receiving the number of live objects or a null pointer.
+/// @param statistics A pointer to a Mkx_Gc_RunStatistics object or a null pointer.
 /// @param dead Pointer to a variable receiving the number of dead objects or a null pointer.
-/// @success @a *live was assigned the number of objects alive after this run.
-/// @success @a *dead was assigned the number of objects dead after this run.
-void Machine_Gc_run(size_t* live, size_t* dead);
+/// @success If @a runStatistics is not null, then the fields were assigned the statistics of this run.
+void Machine_Gc_run(Ring2_Gc_RunStatistics *statistics);
 
 #endif // MACHINE_RUNTIME_GC_GC_H_INCLUDED

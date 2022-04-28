@@ -12,7 +12,7 @@
 
 #if defined(MACHINE_WITH_LOG) && 1 == MACHINE_WITH_LOG
 
-Machine_StatusValue Machine_initializeLogModule();
+Ring1_Result Machine_initializeLogModule();
 
 void Machine_uninitializeLogModule();
 

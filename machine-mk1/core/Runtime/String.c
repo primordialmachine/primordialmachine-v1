@@ -18,6 +18,11 @@ struct Machine_String {
 /// @todo Machine_allocate has its own limit which is smaller than this value.
 static size_t const MACHINE_STRING_MAXIMAL_LENGTH = SIZE_MAX - sizeof(Machine_String);
 
+static Ring2_Gc_Type const g_gcType = {
+  .finalize = (Ring2_Gc_FinalizeCallback*)NULL,
+  .visit = (Ring2_Gc_VisitCallback*)NULL,
+};
+
 Machine_String* Machine_String_create_noraise(char const* p, size_t n) {
   if (n > MACHINE_STRING_MAXIMAL_LENGTH) {
     Machine_setStatus(Machine_Status_TooLong);
@@ -26,8 +31,7 @@ Machine_String* Machine_String_create_noraise(char const* p, size_t n) {
   Machine_Gc_AllocationArguments const allocationArguments = {
     .prefixSize = 0,
     .suffixSize = sizeof(Machine_String) + n,
-    .visit = (Machine_Gc_VisitCallback*)NULL,
-    .finalize = (Machine_Gc_FinalizeCallback*)NULL,
+    .type = &g_gcType,
   };
   Machine_String* self = Machine_Gc_allocate(&allocationArguments);
   if (!self) {
@@ -51,8 +55,7 @@ Machine_String* Machine_String_create(char const* p, size_t n) {
   Machine_Gc_AllocationArguments const allocationArguments = {
     .prefixSize = 0,
     .suffixSize = sizeof(Machine_String) + n,
-    .visit = (Machine_Gc_VisitCallback*)NULL,
-    .finalize = (Machine_Gc_FinalizeCallback*)NULL,
+    .type = &g_gcType,
   };
   Machine_String* self = Machine_Gc_allocate(&allocationArguments);
   if (!self) {
@@ -84,8 +87,7 @@ Machine_String* Machine_String_concatenate(Machine_String const* self,
   Machine_Gc_AllocationArguments const allocationArguments = {
     .prefixSize = 0,
     .suffixSize = sizeof(Machine_String) + m,
-    .visit = (Machine_Gc_VisitCallback*)NULL,
-    .finalize = (Machine_Gc_FinalizeCallback*)NULL,
+    .type = &g_gcType,
   };
   Machine_String* c = Machine_Gc_allocate(&allocationArguments);
   if (!self) {

@@ -10,8 +10,8 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-Machine_StatusValue Machine_initializeLogModule() {
-  return Machine_Status_Success;
+Ring1_Result Machine_initializeLogModule() {
+  return Ring1_Result_Success;
 }
 
 void Machine_uninitializeLogModule() {

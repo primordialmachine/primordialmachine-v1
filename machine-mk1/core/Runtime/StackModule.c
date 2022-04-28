@@ -13,18 +13,17 @@ typedef struct Stack {
   size_t size, capacity;
 } Stack;
 
-static Machine_StatusValue Stack_initialize(Stack* self) {
+static Ring1_Result Stack_initialize(Stack* self) {
   self->elements = NULL;
   if (Ring1_Memory_allocateArray(&self->elements, 8, sizeof(Machine_Value))) {
-    Ring1_Status_set(Ring1_Status_Success);
-    return Machine_Status_AllocationFailed;
+    return Ring1_Result_Failure;
   }
   for (size_t i = 0; i < 8; ++i) {
     Machine_Value_setVoid(self->elements + i, Machine_Void_Void);
   }
   self->size = 0;
   self->capacity = 8;
-  return Machine_Status_Success;
+  return Ring1_Result_Success;
 }
 
 static void Stack_uninitialize(Stack* self) {
@@ -34,19 +33,17 @@ static void Stack_uninitialize(Stack* self) {
   }
 }
 
-static Machine_StatusValue Stack_create(Stack** stack) {
+static Ring1_Result Stack_create(Stack** stack) {
   Stack* stack0 = NULL;
   if (Ring1_Memory_allocate(&stack0, sizeof(Stack))) {
-    Ring1_Status_set(Ring1_Status_Success);
-    return Machine_Status_AllocationFailed;
+    return Ring1_Result_Failure;
   }
-  Machine_StatusValue status = Stack_initialize(stack0);
-  if (status) {
+  if (Stack_initialize(stack0)) {
     Ring1_Memory_deallocate(stack0);
-    return status;
+    return Ring1_Result_Failure;
   }
   *stack = stack0;
-  return Machine_Status_Success;
+  return Ring1_Result_Success;
 }
 
 static void Stack_destroy(Stack* stack) {
@@ -83,19 +80,19 @@ static void Stack_ensureFreeCapacity(Stack* self, size_t requiredFreeCapacity) {
 static Stack* g_stack = NULL;
 static Ring1_Memory_ModuleHandle g_memoryModuleHandle = Ring1_Memory_ModuleHandle_Invalid;
 
-Machine_StatusValue Machine_initializeStackModule() {
+Ring1_Result Machine_initializeStackModule() {
   Machine_StatusValue status;
   g_memoryModuleHandle = Ring1_Memory_ModuleHandle_acquire();
   if (!g_memoryModuleHandle) {
-    return Machine_Status_EnvironmentFailed;
+    return Ring1_Result_Failure;
   }
   status = Stack_create(&g_stack);
   if (status) {
     Ring1_Memory_ModuleHandle_relinquish(g_memoryModuleHandle);
     g_memoryModuleHandle = Ring1_Memory_ModuleHandle_Invalid;
-    return status;
+    return Ring1_Result_Failure;
   }
-  return Machine_Status_Success;
+  return Ring1_Result_Success;
 }
 
 void Machine_uninitializeStackModule() {

@@ -9,23 +9,19 @@
 #include <assert.h>
 
 Machine_ClassObjectTag* o2cot(void* src) {
-  return t2cot(Machine_Gc_toTag(src));
+  return t2cot(Ring2_Gc_toTag(src));
 }
 
-Machine_Gc_Tag* cot2t(Machine_ClassObjectTag* src) {
+Ring2_Gc_Tag* cot2t(Machine_ClassObjectTag* src) {
   static size_t const N = sizeof(Machine_ClassObjectTag);
   char* dst = ((char*)src) + N;
-  return (Machine_Gc_Tag*)dst;
+  return (Ring2_Gc_Tag*)dst;
 }
 
-Machine_ClassObjectTag* t2cot(Machine_Gc_Tag* src) {
+Machine_ClassObjectTag* t2cot(Ring2_Gc_Tag* src) {
   static size_t const N = sizeof(Machine_ClassObjectTag);
   char* dst = ((char*)src) - N;
   return (Machine_ClassObjectTag*)dst;
-}
-
-Machine_Object* cot2o(Machine_ClassObjectTag* src) {
-  return Machine_Gc_toAddress(cot2t(src));
 }
 
 static Machine_Integer Machine_Object_getHashValueImpl(Machine_Object const* self) {
@@ -81,10 +77,10 @@ void Machine_Object_construct(Machine_Object* self, size_t numberOfArguments,
   Machine_setClassType(self, Machine_Object_getType());
 }
 
-static void Machine_ClassObject_visit(void* self) {
+static void Machine_ClassObject_visit(void *gc, void* self) {
 #if defined(_DEBUG)
-  Machine_Gc_Tag* tag = Machine_Gc_toTag(self);
-  assert((tag->flags & Machine_Flag_Class) == Machine_Flag_Class);
+  Ring2_Gc_Tag* tag = Ring2_Gc_toTag(self);
+  assert(Ring2_Gc_Tag_getClassType(tag));
 #endif
   Machine_ClassObjectTag* classObjectTag = o2cot(self);
   Machine_ClassType* classType = classObjectTag->classType;
@@ -96,10 +92,10 @@ static void Machine_ClassObject_visit(void* self) {
   }
 }
 
-static void Machine_ClassObject_finalize(void* self) {
+static void Machine_ClassObject_finalize(void *gc, void* self) {
 #if defined(_DEBUG)
-  Machine_Gc_Tag* tag = Machine_Gc_toTag(self);
-  assert((tag->flags & Machine_Flag_Class) == Machine_Flag_Class);
+  Ring2_Gc_Tag* tag = Ring2_Gc_toTag(self);
+  assert(Ring2_Gc_Tag_getClassType(tag));
 #endif
   Machine_ClassObjectTag* classObjectTag = o2cot(self);
   Machine_ClassType* classType = classObjectTag->classType;
@@ -118,8 +114,8 @@ void Machine_setClassType(Machine_Object* object, Machine_ClassType* classType) 
   assert(classType != NULL);
 
 #if defined(_DEBUG)
-  Machine_Gc_Tag* tag = Machine_Gc_toTag(object);
-  assert((tag->flags & Machine_Flag_Class) == Machine_Flag_Class);
+  Ring2_Gc_Tag* tag = Ring2_Gc_toTag(object);
+  assert(Ring2_Gc_Tag_getClassType(tag));
 #endif
 
   Machine_Type_ensureInitialized((Machine_Type*)classType);
@@ -136,8 +132,8 @@ void Machine_setClassType(Machine_Object* object, Machine_ClassType* classType) 
 
 Machine_ClassType* Machine_getClassType(Machine_Object* object) {
 #if defined(_DEBUG)
-  Machine_Gc_Tag* tag = Machine_Gc_toTag(object);
-  assert((tag->flags & Machine_Flag_Class) == Machine_Flag_Class);
+  Ring2_Gc_Tag* tag = Ring2_Gc_toTag(object);
+  assert(Ring2_Gc_Tag_getClassType(tag));
 #endif
   Machine_ClassObjectTag* classObjectTag = o2cot(object);
   return classObjectTag->classType;
@@ -145,20 +141,23 @@ Machine_ClassType* Machine_getClassType(Machine_Object* object) {
 
 Machine_Object* Machine_allocateClassObject(Machine_ClassType* type, size_t numberOfArguments,
                                             Machine_Value const* arguments) {
+  static Ring2_Gc_Type const gcType = {
+    .finalize = (Ring2_Gc_FinalizeCallback*)&Machine_ClassObject_finalize,
+    .visit = (Ring2_Gc_VisitCallback*)&Machine_ClassObject_visit,
+  };
   Machine_Gc_AllocationArguments const allocationArguments = {
     .prefixSize = sizeof(Machine_ClassObjectTag),
     .suffixSize = type->object.size,
-    .visit = (Machine_Gc_VisitCallback*)&Machine_ClassObject_visit,
-    .finalize = (Machine_Gc_FinalizeCallback*)&Machine_ClassObject_finalize,
+    .type = &gcType,
   };
   void* p = Machine_Gc_allocate(&allocationArguments);
   if (!p) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
-  Machine_Gc_Tag* t = Machine_Gc_toTag(p);
+  Ring2_Gc_Tag* t = Ring2_Gc_toTag(p);
   Machine_ClassObjectTag* cot = o2cot(p);
-  t->flags |= Machine_Flag_Class;
+  Ring2_Gc_Tag_setClassType(t, true);
   cot->classType = type;
   Machine_Gc_lock(cot->classType);
   type->object.construct((Machine_Object*)p, numberOfArguments, arguments);

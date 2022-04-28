@@ -64,42 +64,40 @@ Machine_StatusValue Machine_startup() {
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 void Machine_update() {
-  size_t live, dead;
-  Machine_Gc_run(&live, &dead);
+  Machine_Gc_run(NULL);
 }
 
 void Machine_shutdown() {
-  size_t MAX_RUN = 8;
-  size_t live = 0, dead = 0, run = 0;
+  static const size_t MAX_RUN = 8;
+  Ring2_Gc_RunStatistics statistics = { .sweep.dead = 0, .sweep.live = 0 };
+  size_t run = 0;
 
   do {
-    size_t newLive, newDead;
-    Machine_Gc_run(&newLive, &newDead);
-    if (newLive > 0 && newDead == 0) {
+    Ring2_Gc_RunStatistics newStatistics;
+    Machine_Gc_run(&newStatistics);
+    if (newStatistics.sweep.live > 0 && newStatistics.sweep.dead == 0) {
       fprintf(stderr, "gc not making progress\n");
       break;
     }
-    dead = newDead;
-    live = newLive;
+    statistics = newStatistics;
     run++;
-  } while (live > 0 && run < MAX_RUN);
+  } while (statistics.sweep.live > 0 && run < MAX_RUN);
 
   Machine_notifyStaticVariablesUninitialize();
 
   do {
-    size_t newLive, newDead;
-    Machine_Gc_run(&newLive, &newDead);
-    if (newLive > 0 && newDead == 0) {
+    Ring2_Gc_RunStatistics newStatistics;
+    Machine_Gc_run(&newStatistics);
+    if (newStatistics.sweep.live > 0 && newStatistics.sweep.dead == 0) {
       fprintf(stderr, "gc not making progress\n");
       break;
     }
-    dead = newDead;
-    live = newLive;
+    statistics = newStatistics;
     run++;
-  } while (live > 0 && run < MAX_RUN);
+  } while (statistics.sweep.live > 0 && run < MAX_RUN);
 
-  if (live > 0) {
-    fprintf(stderr, "warning %zu live objects remaining\n", live);
+  if (statistics.sweep.live > 0) {
+    fprintf(stderr, "warning %" PRId64 " live objects remaining\n", statistics.sweep.live);
   }
 
   shutdownModules();

@@ -12,7 +12,7 @@
 #include "Runtime/Object/InterfaceType.module.h"
 #include "Runtime/Type.module.h"
 
-static void Machine_ClassType_finalize(Machine_ClassType* self) {
+static void Machine_ClassType_finalize(void *gc, Machine_ClassType* self) {
   if (self->parent) {
     Machine_Gc_unlock(self->parent);
   }
@@ -39,16 +39,19 @@ static void Machine_ClassType_finalize(Machine_ClassType* self) {
   _Type_finalize((Machine_Type*)self);
 }
 
-static void Machine_ClassType_visit(Machine_ClassType* self) {
+static void Machine_ClassType_visit(void *gc, Machine_ClassType* self) {
   _Type_visit((Machine_Type*)self);
 }
 
 Machine_ClassType* Machine_createClassType(Machine_CreateClassTypeArgs* args) {
+  static Ring2_Gc_Type const gcType = {
+    .finalize = (Ring2_Gc_FinalizeCallback*)&Machine_ClassType_finalize,
+    .visit = (Ring2_Gc_VisitCallback*)&Machine_ClassType_visit,
+  };
   Machine_Gc_AllocationArguments const allocationArguments = {
     .prefixSize = 0,
     .suffixSize = sizeof(Machine_ClassType),
-    .visit = (Machine_Gc_VisitCallback*)&Machine_ClassType_visit,
-    .finalize = (Machine_Gc_FinalizeCallback*)&Machine_ClassType_finalize,
+    .type = &gcType,
   };
 
   Machine_ClassType* classType = Machine_Gc_allocate(&allocationArguments);

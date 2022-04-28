@@ -10,7 +10,7 @@
 #include "Runtime/Status.h"
 #include "Runtime/Value.h"
 
-Machine_StatusValue Machine_initializeStackModule();
+Ring1_Result Machine_initializeStackModule();
 
 void Machine_uninitializeStackModule();
 
