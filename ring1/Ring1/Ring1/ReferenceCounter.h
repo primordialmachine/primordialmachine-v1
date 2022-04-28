@@ -21,7 +21,7 @@ typedef volatile int32_t Ring1_ReferenceCounter;
 int32_t
 Ring1_ReferenceCounter_get
   (
-    Ring1_ReferenceCounter* referenceCounter
+    Ring1_ReferenceCounter const* referenceCounter
   );
 
 /// @brief Atomically increment a reference counter.

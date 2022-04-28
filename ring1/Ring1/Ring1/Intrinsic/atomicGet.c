@@ -21,7 +21,7 @@
 int32_t
 Ring1_Intrinsic_atomicGet_s32
   (
-    volatile int32_t* variable
+    volatile int32_t const* variable
   )
 {
   MemoryBarrier(); // Issues a full read write barrier for compiler and processor.

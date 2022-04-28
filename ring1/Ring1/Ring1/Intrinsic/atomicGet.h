@@ -19,7 +19,7 @@
 int32_t
 Ring1_Intrinsic_atomicGet_s32
   (
-    volatile int32_t* variable
+    volatile int32_t const* variable
   );
 
 #endif // _MSC_VER

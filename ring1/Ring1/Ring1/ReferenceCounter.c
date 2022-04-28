@@ -13,7 +13,7 @@
 int32_t
 Ring1_ReferenceCounter_get
   (
-    Ring1_ReferenceCounter* referenceCounter
+    Ring1_ReferenceCounter const* referenceCounter
   )
 { return Ring1_Intrinsic_atomicGet_s32(referenceCounter); }
 
