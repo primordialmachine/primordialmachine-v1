@@ -36,15 +36,15 @@ struct Machine_Gc_Tag {
   Machine_Gc_FinalizeCallback* finalize;
 };
 
-/// @brief Initialize this tag.
+/// @brief Initialize a tag.
 /// @param tag A pointer to the tag.
 /// @post
-/// next, gray, visit, finalize are all null.
-/// lockCount, size are all 0.
+/// next, gray, visit, and finalize are all null.
+/// lockCount and size are all 0.
 /// The color of the tag is "white".
 void Machine_Gc_Tag_initialize(Machine_Gc_Tag* tag);
 
-/// @brief Uninitialize this tag.
+/// @brief Uninitialize a tag.
 /// @param tag A pointer to the tag.
 void Machine_Gc_Tag_uninitialize(Machine_Gc_Tag* tag);
 
@@ -54,7 +54,7 @@ void Machine_Gc_Tag_setWhite(Machine_Gc_Tag* tag);
 
 /// @brief Get if the color of a tag is "white".
 /// @param tag A pointer to the tag.
-/// @return @a true if the tag is color "white", @a false otherwise.
+/// @return @a true if the color of the tag is "white", @a false otherwise.
 bool Machine_Gc_Tag_isWhite(Machine_Gc_Tag const* tag);
 
 /// @brief Set the color of a tag to "black".
@@ -66,13 +66,13 @@ void Machine_Gc_Tag_setBlack(Machine_Gc_Tag* tag);
 /// @return @a true if the color of the tag is "black", @a false otherwise.
 bool Machine_Gc_Tag_isBlack(Machine_Gc_Tag const* tag);
 
-/// @brief Set the color of a tag to "grey".
+/// @brief Set the color of a tag to "gray".
 /// @param tag A pointer to the tag.
 void Machine_Gc_Tag_setGrey(Machine_Gc_Tag* tag);
 
-/// @brief Get if the color of a tag is "grey".
+/// @brief Get if the color of a tag is "gray".
 /// @param tag A pointer to the tag.
-/// @return @a true if the color the tag is "grey", @a false otherwise.
+/// @return @a true if the color of the tag is "gray", @a false otherwise.
 bool Machine_Gc_Tag_isGrey(Machine_Gc_Tag const* tag);
 
 /// @brief Increment the lock count of a tag.
