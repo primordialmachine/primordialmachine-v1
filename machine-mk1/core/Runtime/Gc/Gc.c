@@ -61,12 +61,12 @@ void* Machine_Gc_allocate(Machine_Gc_AllocationArguments const* arguments) {
 }
 
 void Machine_Gc_Tag_visit(Machine_Gc_Tag* tag) {
-  if (Machine_Gc_Tag_isGrey(tag) || Machine_Gc_Tag_isBlack(tag)) {
+  if (Machine_Gc_Tag_isGray(tag) || Machine_Gc_Tag_isBlack(tag)) {
     return;
   }
   tag->gray = g_gray;
   g_gray = tag;
-  Machine_Gc_Tag_setGrey(tag);
+  Machine_Gc_Tag_setGray(tag);
 }
 
 void Machine_Gc_visit(void* object) {
@@ -85,7 +85,7 @@ void Machine_Gc_run(size_t* live, size_t* dead) {
     if (object->lockCount > 0) {
       object->gray = g_gray;
       g_gray = object;
-      Machine_Gc_Tag_setGrey(object);
+      Machine_Gc_Tag_setGray(object);
     }
   }
   // Pop objects from gray list, visit them, color them black.

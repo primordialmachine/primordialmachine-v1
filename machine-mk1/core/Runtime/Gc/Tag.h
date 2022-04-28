@@ -68,12 +68,12 @@ bool Machine_Gc_Tag_isBlack(Machine_Gc_Tag const* tag);
 
 /// @brief Set the color of a tag to "gray".
 /// @param tag A pointer to the tag.
-void Machine_Gc_Tag_setGrey(Machine_Gc_Tag* tag);
+void Machine_Gc_Tag_setGray(Machine_Gc_Tag* tag);
 
 /// @brief Get if the color of a tag is "gray".
 /// @param tag A pointer to the tag.
 /// @return @a true if the color of the tag is "gray", @a false otherwise.
-bool Machine_Gc_Tag_isGrey(Machine_Gc_Tag const* tag);
+bool Machine_Gc_Tag_isGray(Machine_Gc_Tag const* tag);
 
 /// @brief Increment the lock count of a tag.
 /// @param tag A pointer to the tag.

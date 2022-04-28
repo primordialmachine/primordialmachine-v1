@@ -7,8 +7,8 @@
 /// @brief Tag flag indicating the color "black".
 #define Machine_Flag_Black (2)
 
-/// @brief Tag flag indicating the color "grey".
-#define Machine_Flag_Grey (Machine_Flag_White | Machine_Flag_Black)
+/// @brief Tag flag indicating the color "gray".
+#define Machine_Flag_Gray (Machine_Flag_White | Machine_Flag_Black)
 
 void Machine_Gc_Tag_initialize(Machine_Gc_Tag* tag) {
   tag->lockCount = 0;
@@ -28,7 +28,7 @@ void Machine_Gc_Tag_setWhite(Machine_Gc_Tag* tag) {
 }
 
 bool Machine_Gc_Tag_isWhite(Machine_Gc_Tag const* tag) {
-  return (tag->flags & Machine_Flag_Grey) == Machine_Flag_White;
+  return (tag->flags & Machine_Flag_Gray) == Machine_Flag_White;
 }
 
 void Machine_Gc_Tag_setBlack(Machine_Gc_Tag* tag) {
@@ -40,12 +40,12 @@ bool Machine_Gc_Tag_isBlack(Machine_Gc_Tag const* tag) {
   return (tag->flags & Machine_Flag_Black) == Machine_Flag_Black;
 }
 
-void Machine_Gc_Tag_setGrey(Machine_Gc_Tag* tag) {
-  tag->flags |= Machine_Flag_Grey;
+void Machine_Gc_Tag_setGray(Machine_Gc_Tag* tag) {
+  tag->flags |= Machine_Flag_Gray;
 }
 
-bool Machine_Gc_Tag_isGrey(Machine_Gc_Tag const* tag) {
-  return (tag->flags & Machine_Flag_Grey) == Machine_Flag_Grey;
+bool Machine_Gc_Tag_isGray(Machine_Gc_Tag const* tag) {
+  return (tag->flags & Machine_Flag_Gray) == Machine_Flag_Gray;
 }
 
 void Machine_Gc_Tag_lock(Machine_Gc_Tag* tag) {
