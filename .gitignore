@@ -53,8 +53,12 @@ machine-mk1/.vs/
 machine-mk1/products/
 machine-mk1/intermediates/
 
-# Ring1.
+# Ring 1.
 ring1/.vs/
 ring1/products/
 ring1/intermediates/
 
+# Ring 2.
+ring2/.vs/
+ring2/products/
+ring2/intermediates/

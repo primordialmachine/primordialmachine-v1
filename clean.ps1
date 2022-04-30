@@ -3,15 +3,18 @@
 # @author    Michael Heilmann <michaelheilmann@primordialmachine.com>
 # @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 # @file      clean.ps1
-# @brief     Remove 'intermediates' and 'products' as well as '.vs' directories from all projects.
+# @brief     Perform cleanup of the project directory.
+# @detail    Perform cleanup of the project directory. This involves
+#            - Removal of the 'intermediates' and 'products' as well as '.vs' directories of all solutions.
+#            - Removal of all empty directories.
 
 # @brief Ensure a directory does not exist.
 # @param $path The path to the directory.
-function Remove {
+function RemoveDirIfExists {
     param (
-        [string[]]$path
+        [string[]] $path
     )
-  Write-Host -NoNewline ('removing ''' + $path + '''')
+  Write-Host -NoNewline ('  removing ''' + $path + '''')
   if (test-path $path) {
     Remove-Item $path -Force -Recurse
     Write-Host (' ... found and deleted')
@@ -20,10 +23,27 @@ function Remove {
   }
 }
 
-Remove '.\machine-mk1\.vs'
-Remove '.\machine-mk1\intermediates'
-Remove '.\machine-mk1\products'
+# @brief Cleanup a solution.
+# @param $solutionDir The path to the solution directory.
+function ClearSolution {
+    param (
+      [string[]] $solutionDir
+    )
+  Write-Host('cleaning solution ''' + $solutionDir + '''')
 
-Remove '.\ring1\.vs'
-Remove '.\ring1\intermediates'
-Remove '.\ring1\products'
+  RemoveDirIfExists("$solutionDir\.vs")
+  RemoveDirIfExists("$solutionDir\intermediates")
+  RemoveDirIfExists("$solutionDir\products")
+  
+  $dirs = gci $solutionDir -directory -recurse | Where { (gci $_.fullName).count -eq 0 } | select -expandproperty FullName
+  $dirs | Foreach-Object { RemoveDirIfExists $_ }    
+}
+
+$d = '.\machine-mk1'
+ClearSolution($d)
+
+$d = '.\ring1'
+ClearSolution($d)
+
+$d = '.\ring2'
+ClearSolution($d)

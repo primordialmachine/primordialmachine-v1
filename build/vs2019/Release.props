@@ -38,6 +38,11 @@
       <AdditionalOptions>/we4028 /we4033</AdditionalOptions>
       <ObjectFileName>$(IntDir)%(RelativeDir)\%(FileName).obj</ObjectFileName>
       <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)\</AssemblerListingLocation>
+      <ModuleOutputFile>$(IntDir)%(RelativeDir)\</ModuleOutputFile>
+      <ModuleDependenciesFile>$(IntDir)%(RelativeDir)\</ModuleDependenciesFile>
+      <XMLDocumentationFileName>$(IntDir)%(RelativeDir)\</XMLDocumentationFileName>
+      <SourceDependenciesFile>$(IntDir)%(RelativeDir)\</SourceDependenciesFile>
     </ClCompile>
     <Link>
       <OptimizeReferences>true</OptimizeReferences>

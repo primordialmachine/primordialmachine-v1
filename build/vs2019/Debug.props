@@ -42,6 +42,11 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)\%(FileName).obj</ObjectFileName>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)\</AssemblerListingLocation>
+      <ModuleOutputFile>$(IntDir)%(RelativeDir)\</ModuleOutputFile>
+      <ModuleDependenciesFile>$(IntDir)%(RelativeDir)\</ModuleDependenciesFile>
+      <XMLDocumentationFileName>$(IntDir)%(RelativeDir)\</XMLDocumentationFileName>
+      <SourceDependenciesFile>$(IntDir)%(RelativeDir)\</SourceDependenciesFile>
     </ClCompile>
     <Link>
       <OptimizeReferences>false</OptimizeReferences>
