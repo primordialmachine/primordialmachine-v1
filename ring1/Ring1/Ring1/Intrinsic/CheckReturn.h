@@ -9,7 +9,7 @@
 
 #include "Ring1/Intrinsic/Configuration.h"
 
-// https://documentation.primordialmachine.com/ring1-library/intrinsic-library/Ring1_CheckReturn
+// https://documentation.primordialmachine.com/api/ring1-library/intrinsic-library/Ring1_CheckReturn
 #if defined(__GNUC__)
   #define Ring1_CheckReturn() [[nodiscard]]
 #elif defined(_MSC_VER)
