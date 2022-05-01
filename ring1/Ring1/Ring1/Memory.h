@@ -60,7 +60,7 @@ Ring1_Memory_deallocate
   );
 
 // https://documentation.primordialmachine.com/ring1-library/memory-library/Ring1_Memory_zeroFill
-Ring1_CheckReturn()Ring1_Result
+Ring1_CheckReturn() Ring1_Result
 Ring1_Memory_zeroFill
   (
     void *p,
@@ -77,7 +77,7 @@ Ring1_Memory_zeroFillArray
   );
 
 // https://documentation.primordialmachine.com/ring1-libraries/memory-library/Ring1_Memory_copyFast
-Ring1_CheckReturn() int
+Ring1_CheckReturn() Ring1_Result
 Ring1_Memory_copyFast
   (
     void* p,
@@ -86,7 +86,7 @@ Ring1_Memory_copyFast
   );
 
 // https://documentation.primordialmachine.com/ring1-libraries/memory-library/Ring1_Memory_copyArrayFast
-Ring1_CheckReturn() int
+Ring1_CheckReturn() Ring1_Result
 Ring1_Memory_copyArrayFast
   (
     void* target,
