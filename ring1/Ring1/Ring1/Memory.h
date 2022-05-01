@@ -76,7 +76,25 @@ Ring1_Memory_zeroFillArray
     size_t elementSize
   );
 
-// https://documentation.primordialmachine.com/api/ring1-libraries/memory-library/Ring1_Memory_copyFast
+// https://documentation.primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_compare
+#define Ring1_Memory_Compare_Colexicographic (1)
+
+// https://documentation.primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_compare
+#define Ring1_Memory_Compare_Lexicographic (2)
+
+// https://documentation.primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_compare
+Ring1_CheckReturn() Ring1_Result
+Ring1_Memory_compare
+  (
+    int *result,
+    const void* p,
+    size_t n,
+    const void* q,
+    size_t m,
+    int flags
+  );
+
+// https://documentation.primordialmachine.com/ring1-libraries/memory-library/Ring1_Memory_copyFast
 Ring1_CheckReturn() Ring1_Result
 Ring1_Memory_copyFast
   (

@@ -318,6 +318,158 @@ Ring1_Memory_zeroFillArray
   return Ring1_Memory_zeroFill(p, blockSize);
 }
 
+static Ring1_Result
+Ring1_compareMemoryLexicographic1
+  (
+    int *result,
+    const unsigned char *p,
+    size_t n,
+    const unsigned char *q,
+    size_t m
+  )
+{
+  if (p == q && n == m) {
+    *result = 0;
+    return Ring1_Result_Success;
+  }
+  for (size_t i = 0; i < n && i < m; ++i)
+  {
+    unsigned char a = p[i],
+                  b = q[i];
+    if (a != b)
+    {
+      *result = a < b ? -1 : +1;
+      return Ring1_Result_Success;
+    }
+  }
+  *result = n < m ? -1 : (n > m ? +1 : 0);
+  return Ring1_Result_Success;
+}
+
+static Ring1_Result
+Ring1_compareMemoryLexicographic2
+  (
+    int *result,
+    const unsigned char *p,
+    size_t n,
+    const unsigned char *q,
+    size_t m
+  )
+{
+  if (p == q && n == m) {
+    *result = 0;
+    return Ring1_Result_Success;
+  }
+  size_t i = 0;
+  size_t k = n < m ? n : m;
+  const unsigned char *x = p, *y = q;
+  // Skip until
+  // - the end of at least one string was reached or
+  // - the strings differ in the character at index i.
+  while (i < k && p[i] == q[i])
+  {
+    i++;
+  }
+  // Both strings are equal length.
+  if (n == m)
+  {
+    // The end of both strings was reached.
+    if (i == k)
+    {
+      // Both strings are equal.
+      *result = 0;
+      return Ring1_Result_Success;
+    }
+    // The strings differ in the character at index i.
+    *result = p[i] < q[i] ? -1 : +1;
+    return Ring1_Result_Success;
+  }
+  // Both strings are different length.
+  else
+  {
+    // The strings differ in the character at index i.
+    if (i < k)
+    {
+      *result = p[i] < q[i] ? -1 : +1;
+      return Ring1_Result_Success;
+    }
+    // The end of the shorter string was reached.
+    else
+    {
+      *result = n < m ? -1 : (n > m ? +1 : 0);
+      return Ring1_Result_Success;
+    }
+  }
+}
+
+static Ring1_Result
+Ring1_compareMemoryColexicographic1
+  (
+    int *result,
+    const unsigned char *p,
+    size_t n,
+    const unsigned char *q,
+    size_t m
+  )
+{
+  if (p == q && n == m) {
+    *result = 0;
+    return Ring1_Result_Success;
+  }
+  for (size_t i = n, j = m; i > 0 && j > 0; --i, --j)
+  {
+    unsigned char a = p[i],
+                  b = q[j];
+    if (a != b)
+    {
+      *result = a < b ? -1 : +1;
+      return Ring1_Result_Success;
+    }
+  }
+  *result = n < m ? -1 : (n > m ? +1 : 0);
+  return Ring1_Result_Success;
+}
+
+Ring1_CheckReturn() Ring1_Result
+Ring1_Memory_compare
+  (
+    int *result,
+    const void* p,
+    size_t n,
+    const void* q,
+    size_t m,
+    int flags
+  )
+{
+  Ring1_Memory_Module_lock();
+  if (!Ring1_Memory_Module_isInitialized()) {
+    Ring1_Memory_Module_unlock();
+    Ring1_Status_set(Ring1_Status_NotInitialized);
+    return Ring1_Result_Failure;
+  }
+  switch (flags) {
+    case Ring1_Memory_Compare_Colexicographic: {
+      int temporary;
+      Ring1_Result r = Ring1_compareMemoryColexicographic1(&temporary, (const unsigned char*)p, n, (const unsigned char*)q, m);
+      *result = temporary;
+      Ring1_Memory_Module_unlock();
+      return r;
+    } break;
+    case Ring1_Memory_Compare_Lexicographic: {
+      int temporary;
+      Ring1_Result r = Ring1_compareMemoryLexicographic1(&temporary, (const unsigned char*)p, n, (const unsigned char*)q, m);
+      *result = temporary;
+      Ring1_Memory_Module_unlock();
+      return r;
+    } break;
+    default: {
+      Ring1_Memory_Module_unlock();
+      Ring1_Status_set(Ring1_Status_InvalidArgument);
+      return Ring1_Result_Failure;
+    } break;
+  };
+}
+
 Ring1_CheckReturn() Ring1_Result
 Ring1_Memory_copyFast
   (
