@@ -30,7 +30,7 @@ static void Machine_Gl_VideoBuffer_setDataImpl(Machine_Gl_VideoBuffer* self, siz
     Machine_jump();
   }
   ((Machine_VideoBuffer*)self)->p = t;
-  Machine_Eal_Memory_copy(((Machine_VideoBuffer*)self)->p, p, n * sizeof(uint8_t), false);
+  Ring1_Memory_copyFast(((Machine_VideoBuffer*)self)->p, p, n * sizeof(uint8_t));
   ((Machine_VideoBuffer*)self)->n = n;
 
   glBindBuffer(GL_ARRAY_BUFFER, self->id);

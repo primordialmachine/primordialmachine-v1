@@ -58,113 +58,113 @@ typedef struct Machine_Value {
 
 } Machine_Value;
 
-INLINE void Machine_Value_setBoolean(Machine_Value* self, Machine_Boolean value) {
+Ring1_Inline() void Machine_Value_setBoolean(Machine_Value* self, Machine_Boolean value) {
   self->tag = Machine_ValueFlag_Boolean;
   self->booleanValue = value;
 }
 
-INLINE Machine_Boolean Machine_Value_getBoolean(Machine_Value const* self) {
+Ring1_Inline() Machine_Boolean Machine_Value_getBoolean(Machine_Value const* self) {
   return self->booleanValue;
 }
 
-INLINE bool Machine_Value_isBoolean(Machine_Value const* self) {
+Ring1_Inline() bool Machine_Value_isBoolean(Machine_Value const* self) {
   return self->tag == Machine_ValueFlag_Boolean;
 }
 
 #define Machine_Value_StaticInitializerBoolean(v)                                                  \
   { Machine_ValueFlag_Boolean, v }
 
-INLINE void Machine_Value_setInteger(Machine_Value* self, Machine_Integer value) {
+Ring1_Inline() void Machine_Value_setInteger(Machine_Value* self, Machine_Integer value) {
   self->tag = Machine_ValueFlag_Integer;
   self->integerValue = value;
 }
 
-INLINE Machine_Integer Machine_Value_getInteger(Machine_Value const* self) {
+Ring1_Inline() Machine_Integer Machine_Value_getInteger(Machine_Value const* self) {
   return self->integerValue;
 }
 
-INLINE bool Machine_Value_isInteger(Machine_Value const* self) {
+Ring1_Inline() bool Machine_Value_isInteger(Machine_Value const* self) {
   return self->tag == Machine_ValueFlag_Integer;
 }
 
 #define Machine_Value_StaticInitializerInteger(v)                                                  \
   { Machine_ValueFlag_Integer, v }
 
-INLINE void Machine_Value_setObject(Machine_Value* self, Machine_Object* value) {
+Ring1_Inline() void Machine_Value_setObject(Machine_Value* self, Machine_Object* value) {
   self->tag = Machine_ValueFlag_Object;
   self->objectValue = value;
 }
 
-INLINE Machine_Object* Machine_Value_getObject(Machine_Value const* self) {
+Ring1_Inline() Machine_Object* Machine_Value_getObject(Machine_Value const* self) {
   return self->objectValue;
 }
 
-INLINE bool Machine_Value_isObject(Machine_Value const* self) {
+Ring1_Inline() bool Machine_Value_isObject(Machine_Value const* self) {
   return self->tag == Machine_ValueFlag_Object;
 }
 
 #define Machine_Value_StaticInitializerObject(v)                                                   \
   { Machine_ValueFlag_Object, v }
 
-INLINE void Machine_Value_setForeignProcedure(Machine_Value* self,
+Ring1_Inline() void Machine_Value_setForeignProcedure(Machine_Value* self,
                                               Machine_ForeignProcedure* value) {
   self->tag = Machine_ValueFlag_ForeignProcedure;
   self->foreignProcedureValue = value;
 }
 
-INLINE Machine_ForeignProcedure* Machine_Value_getForeignProcedure(Machine_Value const* self) {
+Ring1_Inline() Machine_ForeignProcedure* Machine_Value_getForeignProcedure(Machine_Value const* self) {
   return self->foreignProcedureValue;
 }
 
-INLINE bool Machine_Value_isForeignProcedure(Machine_Value const* self) {
+Ring1_Inline() bool Machine_Value_isForeignProcedure(Machine_Value const* self) {
   return self->tag == Machine_ValueFlag_ForeignProcedure;
 }
 
 #define Machine_Value_StaticInitializerForeignProcedure(v)                                         \
   { Machine_ValueFlag_ForeignProcedure, v }
 
-INLINE void Machine_Value_setReal(Machine_Value* self, Machine_Real value) {
+Ring1_Inline() void Machine_Value_setReal(Machine_Value* self, Machine_Real value) {
   self->tag = Machine_ValueFlag_Real;
   self->realValue = value;
 }
 
-INLINE Machine_Real Machine_Value_getReal(Machine_Value const* self) {
+Ring1_Inline() Machine_Real Machine_Value_getReal(Machine_Value const* self) {
   return self->realValue;
 }
 
-INLINE bool Machine_Value_isReal(Machine_Value const* self) {
+Ring1_Inline() bool Machine_Value_isReal(Machine_Value const* self) {
   return self->tag == Machine_ValueFlag_Real;
 }
 
 #define Machine_Value_StaticInitializerReal(v)                                                     \
   { Machine_ValueFlag_Real, v }
 
-INLINE void Machine_Value_setString(Machine_Value* self, Machine_String const* value) {
+Ring1_Inline() void Machine_Value_setString(Machine_Value* self, Machine_String const* value) {
   self->tag = Machine_ValueFlag_String;
   self->stringValue = (Machine_String*)value;
 }
 
-INLINE Machine_String* Machine_Value_getString(Machine_Value const* self) {
+Ring1_Inline() Machine_String* Machine_Value_getString(Machine_Value const* self) {
   return self->stringValue;
 }
 
-INLINE bool Machine_Value_isString(Machine_Value const* self) {
+Ring1_Inline() bool Machine_Value_isString(Machine_Value const* self) {
   return self->tag == Machine_ValueFlag_String;
 }
 
 #define Machine_Value_StaticInitializerString(v)                                                   \
   { Machine_ValueFlag_String, v }
 
-INLINE void Machine_Value_setVoid(Machine_Value* self, Machine_Void value) {
+Ring1_Inline() void Machine_Value_setVoid(Machine_Value* self, Machine_Void value) {
   self->tag = Machine_ValueFlag_Void;
   self->voidValue = value;
 }
 
-INLINE Machine_Void Machine_Value_getVoid(Machine_Value const* self) {
+Ring1_Inline() Machine_Void Machine_Value_getVoid(Machine_Value const* self) {
   return self->voidValue;
 }
 
-INLINE bool Machine_Value_isVoid(Machine_Value const* self) {
+Ring1_Inline() bool Machine_Value_isVoid(Machine_Value const* self) {
   return self->tag == Machine_ValueFlag_Void;
 }
 

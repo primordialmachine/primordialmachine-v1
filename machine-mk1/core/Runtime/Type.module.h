@@ -23,14 +23,14 @@ void _Type_finalize(Machine_Type* self);
 /// @param self A pointer to this type.
 /// @param flag The type flag.
 /// @return @a true if the type flag is set.
-INLINE bool _TypeFlag_isSet(Machine_Type const* self, uint32_t flag) {
+Ring1_Inline() bool _TypeFlag_isSet(Machine_Type const* self, uint32_t flag) {
   return flag == (self->flags & flag);
 }
 
 /// @brief Set a type flag.
 /// @param self A pointer to this type.
 /// @param flag The flag.
-INLINE void _TypeFlag_set(Machine_Type* self, uint32_t flag) {
+Ring1_Inline() void _TypeFlag_set(Machine_Type* self, uint32_t flag) {
   self->flags |= flag;
 }
 

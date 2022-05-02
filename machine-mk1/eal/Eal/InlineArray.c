@@ -4,8 +4,7 @@
 
 
 #include "Ring1/Status.h"
-#include "Ring1/Memory/recomputeSize.h"
-#include "Eal/Memory.h"
+#include "Ring1/Memory.h"
 
 
 
@@ -58,12 +57,12 @@ Machin_Eal_InlineArrayStatus Machine_Eal_InlineArray_insert(Machine_Eal_InlineAr
     self->capacity = newCapacity;
   }
   if (index < self->size) {
-    Machine_Eal_Memory_copy(((char*)self->elements) + self->dispatch->elementSize * (index + 1),
-                            ((char*)self->elements) + self->dispatch->elementSize * (index + 0),
-                            self->dispatch->elementSize * (self->size - index), true);
+    Ring1_Memory_copySlow(((char*)self->elements) + self->dispatch->elementSize * (index + 1),
+                          ((char*)self->elements) + self->dispatch->elementSize * (index + 0),
+                          self->dispatch->elementSize * (self->size - index));
   }
-  Machine_Eal_Memory_copy(((char*)self->elements) + self->dispatch->elementSize * (index + 0), data,
-                          self->dispatch->elementSize, false);
+  Ring1_Memory_copyFast(((char*)self->elements) + self->dispatch->elementSize * (index + 0), data,
+                        self->dispatch->elementSize);
   self->size++;
   return Machine_Eal_InlineArray_Success;
 }

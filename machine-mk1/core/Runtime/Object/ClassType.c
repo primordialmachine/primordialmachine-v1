@@ -196,8 +196,7 @@ void Machine_ClassType_ensureInitialized(Machine_ClassType* self) {
     }
     Ring1_Memory_zeroFill(self->class.data, self->class.size);
     if (self->parent) {
-      Machine_Eal_Memory_copy(self->class.data, self->parent->class.data, self->parent->class.size,
-                              false);
+      Ring1_Memory_copyFast(self->class.data, self->parent->class.data, self->parent->class.size);
     }
   }
 
@@ -221,8 +220,8 @@ void Machine_ClassType_ensureInitialized(Machine_ClassType* self) {
       Machine_InterfaceDispatchNode* newDispatch = NULL;
       if (getOrCreateImplementation(self, (Machine_InterfaceType*)oldDispatch->dispatch->type, true,
                                     &newDispatch)) {
-        Machine_Eal_Memory_copy(newDispatch->dispatch, oldDispatch->dispatch,
-                                ((Machine_InterfaceType*)oldDispatch->dispatch->type)->size, false);
+        Ring1_Memory_copyFast(newDispatch->dispatch, oldDispatch->dispatch,
+                              ((Machine_InterfaceType*)oldDispatch->dispatch->type)->size);
         Machine_Gc_lock(newDispatch->dispatch->type);
       }
     }

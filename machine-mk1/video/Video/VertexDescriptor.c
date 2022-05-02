@@ -146,8 +146,8 @@ void Machine_VertexDescriptor_insert(Machine_VertexDescriptor* self, size_t inde
     // move 3 - 2 = 1 elements from index = 2 to index + 1 = 3.
     // => [a, b, ,c] => [a, b, x, c]
     // ...
-    Machine_Eal_Memory_copy(p + index + 1, p + index,
-                            sizeof(Machine_VertexElementSemantics) * (self->n - index), true);
+    Ring1_Memory_copySlow(p + index + 1, p + index,
+                          sizeof(Machine_VertexElementSemantics) * (self->n - index));
   }
   p[index] = semantics;
   self->p = p;

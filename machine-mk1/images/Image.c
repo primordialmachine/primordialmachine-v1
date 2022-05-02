@@ -84,7 +84,7 @@ static void _Io_read(png_structp pngPtr, png_bytep data, png_size_t length) {
   if (state->numberOfBytes < length) {
     png_error(pngPtr, "unable to read Bytes"); // Does not return.
   }
-  Machine_Eal_Memory_copy(data, state->bytes + state->position, length, false);
+  Ring1_Memory_copyFast(data, state->bytes + state->position, length);
   state->position += length;
 }
 
@@ -115,7 +115,7 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
   state.numberOfBytes = Machine_ByteBuffer_getNumberOfBytes(byteBuffer);
 
   // (1) read header.
-  Machine_Eal_Memory_copy(&(header[0]), state.bytes, 8, false);
+  Ring1_Memory_copyFast(&(header[0]), state.bytes, 8);
   state.position += 8;
   // (2) validate header.
   if (png_sig_cmp(header, 0, 8)) {
@@ -245,8 +245,8 @@ void Machine_Images_Image_constructDirect(Machine_Images_Image* self,
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
-  Machine_Eal_Memory_copy(self->pixels, Machine_ByteBuffer_getBytes(pixels),
-                          width * height * Machine_PixelFormat_getBytesPerPixel(pixelFormat), false);
+  Ring1_Memory_copyFast(self->pixels, Machine_ByteBuffer_getBytes(pixels),
+                        width * height * Machine_PixelFormat_getBytesPerPixel(pixelFormat));
 
   // (4) Set class type.
   Machine_setClassType((Machine_Object*)self, Machine_Images_Image_getType());

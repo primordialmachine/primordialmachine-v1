@@ -38,7 +38,7 @@ Machine_String* Machine_String_create_noraise(char const* p, size_t n) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     return NULL;
   }
-  Machine_Eal_Memory_copy(self->p, p, n, false);
+  Ring1_Memory_copyFast(self->p, p, n);
   self->n = n;
   self->hashValue = n;
   for (size_t i = 0; i < n; ++i) {
@@ -62,7 +62,7 @@ Machine_String* Machine_String_create(char const* p, size_t n) {
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
-  Machine_Eal_Memory_copy(self->p, p, n, false);
+  Ring1_Memory_copyFast(self->p, p, n);
   self->n = n;
   self->hashValue = n;
   for (size_t i = 0; i < n; ++i) {
@@ -94,8 +94,8 @@ Machine_String* Machine_String_concatenate(Machine_String const* self,
     Machine_setStatus(Machine_Status_AllocationFailed);
     Machine_jump();
   }
-  Machine_Eal_Memory_copy(c->p, self->p, self->n, false);
-  Machine_Eal_Memory_copy(c->p + self->n, other->p, other->n, false);
+  Ring1_Memory_copyFast(c->p, self->p, self->n);
+  Ring1_Memory_copyFast(c->p + self->n, other->p, other->n);
   c->n = m;
   c->hashValue = m;
   for (size_t i = 0; i < m; ++i) {
@@ -108,7 +108,9 @@ bool Machine_String_isEqualTo(Machine_String const* self, Machine_String const* 
   if (self == other)
     return true;
   if (self->n == other->n && self->hashValue == other->hashValue) {
-    return !Machine_Eal_Memory_compare(self->p, other->p, self->n);
+    int temporary;
+    Ring1_Memory_compare(&temporary, self->p, self->n, other->p, other->n, Ring1_Memory_Compare_Lexicographic);
+    return !temporary;
   }
   return false;
 }

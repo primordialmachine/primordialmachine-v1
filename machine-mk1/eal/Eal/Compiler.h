@@ -4,38 +4,25 @@
 #if !defined(MACHINE_EAL_COMPILER_H_INCLUDED)
 #define MACHINE_EAL_COMPILER_H_INCLUDED
 
-
-
 #if !defined(MACHINE_EAL_PRIVATE)
 #error("Do not include this file directly, include `_Eal.h` instead.")
 #endif
 
 #include <stddef.h>
 
-
-
-#if defined(INLINE)
-  #error('INLINE already defined')
+#if defined(Ring1_Inline)
+  #error('Ring1_Inline already defined')
 #endif
 /// @brief Function annotation. Annotate a function as an inline function.
 /// Use as
 /// @code
 /// INLINE void f() { ... }
 /// @endcode
-#define INLINE static inline
+#define Ring1_Inline() static inline
 
-#if defined(NORETURN)
-  #error('NORETURN already defined')
-#endif
-/// @brief Function annotation. Annotate a function as not returning function.
-/// Use as
-/// @code
-/// NORETURN void f() { ... }
-/// @endcode
-#define NORETURN __declspec(noreturn)
-
-#if defined(DEPRECATED)
-  #error('DEPRECATED already defined')
+#if 1
+#if defined(Ring1_Deprecated)
+  #error('Ring1_Deprecated already defined')
 #endif
 /// @brief Function, structure, field, and variable annotation. Annotate a function, structure, field, or variable as deprecated.
 /// Use as
@@ -43,8 +30,7 @@
 /// DEPRECATED
 /// static int v = 0;
 /// @endcode
-#define DEPRECATED
-
-
+#define Ring1_Deprecated()
+#endif
 
 #endif // MACHINE_EAL_COMPILER_H_INCLUDED

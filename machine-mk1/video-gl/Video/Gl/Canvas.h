@@ -16,7 +16,7 @@
 /// @brief Get the GLFW window.
 /// @return The GLFW window.
 /// @todo Remove this from here.
-DEPRECATED GLFWwindow* Machine_Glfw_getWindow();
+Ring1_Deprecated() GLFWwindow* Machine_Glfw_getWindow();
 
 MACHINE_DECLARE_CLASSTYPE(Machine_Video_Gl_Canvas);
 

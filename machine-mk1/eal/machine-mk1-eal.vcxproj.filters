@@ -27,9 +27,6 @@
     <ClCompile Include="_Eal.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Eal\Memory.c">
-      <Filter>Quelldateien\Eal</Filter>
-    </ClCompile>
     <ClCompile Include="Eal\Types.c">
       <Filter>Quelldateien\Eal</Filter>
     </ClCompile>
@@ -46,9 +43,6 @@
     </ClInclude>
     <ClInclude Include="_Eal.h">
       <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Eal\Memory.h">
-      <Filter>Headerdateien\Eal</Filter>
     </ClInclude>
     <ClInclude Include="Eal\Types.h">
       <Filter>Headerdateien\Eal</Filter>

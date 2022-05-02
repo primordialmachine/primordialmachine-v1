@@ -22,7 +22,6 @@
     <ClInclude Include="Eal\InlineArray.h" />
     <ClInclude Include="Eal\Zts.h" />
     <ClInclude Include="Eal\Compiler.h" />
-    <ClInclude Include="Eal\Memory.h" />
     <ClInclude Include="Eal\Types.h" />
     <ClInclude Include="_Eal.h" />
   </ItemGroup>
@@ -30,7 +29,6 @@
     <ClCompile Include="Eal\InlineArray.c" />
     <ClCompile Include="Eal\Zts.c" />
     <ClCompile Include="Eal\Compiler.c" />
-    <ClCompile Include="Eal\Memory.c" />
     <ClCompile Include="Eal\Types.c" />
     <ClCompile Include="_Eal.c" />
   </ItemGroup>

@@ -27,11 +27,11 @@ struct Machine_InterfaceType {
   void (*addPrerequisites)(Machine_InterfaceType*);
 };
 
-INLINE bool Machine_InterfaceType_hasFlag(Machine_InterfaceType const* self, uint8_t flag) {
+Ring1_Inline() bool Machine_InterfaceType_hasFlag(Machine_InterfaceType const* self, uint8_t flag) {
   return flag == (self->flags & flag);
 }
 
-INLINE void Machine_InterfaceType_addFlag(Machine_InterfaceType* self, uint8_t flag) {
+Ring1_Inline() void Machine_InterfaceType_addFlag(Machine_InterfaceType* self, uint8_t flag) {
   self->flags |= flag;
 }
 

@@ -123,8 +123,8 @@ static void insertAt(Machine_ArrayList* self, size_t index, Machine_Value value)
     self->capacity = newCapacity;
   }
   if (index < self->size) {
-    Machine_Eal_Memory_copy(self->elements + index + 1, self->elements + index + 0,
-                            sizeof(Machine_Value) * (self->size - index), true);
+    Ring1_Memory_copySlow(self->elements + index + 1, self->elements + index + 0,
+                          sizeof(Machine_Value) * (self->size - index));
   }
   self->elements[index] = value;
   self->size++;
@@ -152,8 +152,8 @@ static void removeAt(Machine_ArrayList* self, size_t index) {
     Machine_jump();
   }
   if (index < self->size - 1) {
-    Machine_Eal_Memory_copy(self->elements + index + 0, self->elements + index + 1,
-                            sizeof(Machine_Value) * (self->size - index - 1), true);
+    Ring1_Memory_copySlow(self->elements + index + 0, self->elements + index + 1,
+                          sizeof(Machine_Value) * (self->size - index - 1));
   }
   self->size--;
 }

@@ -236,8 +236,8 @@ static void grow1(Machine_ArrayDeque* self, size_t requiredAdditionalCapacity) {
     // a + 4 = a + head + newCapacity - oldCapacity
     // 2 = oldCapacity - head
     size_t deltaCapacity = newCapacity - oldCapacity;
-    Machine_Eal_Memory_copy(newElements + self->head + deltaCapacity, newElements + self->head,
-                            (oldCapacity - self->head) * sizeof(Machine_Value), true);
+    Ring1_Memory_copySlow(newElements + self->head + deltaCapacity, newElements + self->head,
+                          (oldCapacity - self->head) * sizeof(Machine_Value));
     self->head += deltaCapacity;
   }
   self->elements = newElements;

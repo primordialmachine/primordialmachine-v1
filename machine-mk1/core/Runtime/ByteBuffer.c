@@ -78,9 +78,9 @@ void Machine_ByteBuffer_insertBytesAt(Machine_ByteBuffer* self, size_t i, char c
     self->c = self->c + ac;
   }
   if (i < self->s) {
-    Machine_Eal_Memory_copy(self->p + i + n, self->p + i, self->s - i, true);
+    Ring1_Memory_copySlow(self->p + i + n, self->p + i, self->s - i);
   }
-  Machine_Eal_Memory_copy(self->p + i, p, n, false);
+  Ring1_Memory_copyFast(self->p + i, p, n);
   self->s += n;
 }
 
@@ -101,5 +101,7 @@ Machine_Boolean Machine_ByteBuffer_compareBytes(Machine_ByteBuffer const* self, 
   if (n != self->s) {
     return false;
   }
-  return !Machine_Eal_Memory_compare(self->p, p, n);
+  int temporary;
+  Ring1_Memory_compare(&temporary, self->p, self->s, p, n, Ring1_Memory_Compare_Lexicographic);
+  return !temporary;
 }
