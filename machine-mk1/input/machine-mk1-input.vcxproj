@@ -157,6 +157,9 @@
     <ProjectReference Include="..\..\ring2\Ring2.Gc\Ring2.Gc.vcxproj">
       <Project>{2108d2e9-dacc-4158-8dc2-30d3f94c2661}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\ring2\Ring2.Interpreter\Ring2.Interpreter.vcxproj">
+      <Project>{3ade4501-5d5c-4878-9632-f81c3de2429c}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\core\machine-mk1-core.vcxproj">
       <Project>{f34866d8-3093-4b44-a225-7da2b5cd8e83}</Project>
     </ProjectReference>

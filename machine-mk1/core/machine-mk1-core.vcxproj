@@ -99,6 +99,9 @@
     <ProjectReference Include="..\..\ring2\Ring2.Gc\Ring2.Gc.vcxproj">
       <Project>{2108d2e9-dacc-4158-8dc2-30d3f94c2661}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\ring2\Ring2.Interpreter\Ring2.Interpreter.vcxproj">
+      <Project>{3ade4501-5d5c-4878-9632-f81c3de2429c}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\eal\machine-mk1-eal.vcxproj">
       <Project>{2c009df6-0365-43aa-b0f1-c8752d10b066}</Project>
     </ProjectReference>

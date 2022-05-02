@@ -4,25 +4,10 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/JumpTargetModule.h"
 
-static Machine_JumpTarget* g_jumpTargets = NULL;
-
-Ring1_Result Machine_initializeJumpTargetModule() {
-  g_jumpTargets = NULL;
-  return Ring1_Result_Success;
+Ring1_CheckReturn() Ring1_Result Machine_initializeJumpTargetModule() {
+  return Ring2_JumpTargetModule_startup();
 }
 
-void Machine_uninitializeJumpTargetModule()
-{}
-
-void Machine_pushJumpTarget(Machine_JumpTarget* jumpTarget) {
-  jumpTarget->previous = g_jumpTargets;
-  g_jumpTargets = jumpTarget;
-}
-
-void Machine_popJumpTarget() {
-  g_jumpTargets = g_jumpTargets->previous;
-}
-
-NORETURN void Machine_jump() {
-  longjmp(g_jumpTargets->environment, -1);
+void Machine_uninitializeJumpTargetModule() {
+  Ring2_JumpTargetModule_shutdown();
 }

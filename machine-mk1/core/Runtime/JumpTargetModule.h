@@ -7,30 +7,24 @@
 #if !defined(MACHINE_RUNTIME_PRIVATE)
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
-#include "Runtime/Status.h"
-#include "_Eal.h"
+#include "Ring2/JumpTargetModule.h"
 
-Ring1_Result Machine_initializeJumpTargetModule();
+Ring1_CheckReturn() Ring1_Result Machine_initializeJumpTargetModule();
 
 void Machine_uninitializeJumpTargetModule();
 
 /// @brief C-level representation of a jump target.
-typedef struct Machine_JumpTarget Machine_JumpTarget;
+#define Machine_JumpTarget Ring2_JumpTarget
 
-struct Machine_JumpTarget {
-  Machine_JumpTarget* previous;
-  jmp_buf environment;
-};
-
-///  @brief Push a jump target on the jump target stack.
+/// @brief Push a jump target on the jump target stack.
 /// @param jumpTarget A pointer to the jump target.
-void Machine_pushJumpTarget(Machine_JumpTarget* jumpTarget);
+#define Machine_pushJumpTarget(X) Ring2_pushJumpTarget(X)
 
 /// @brief Pop a jump target from the jump target stack.
-void Machine_popJumpTarget();
+#define Machine_popJumpTarget() Ring2_popJumpTarget()
 
 /// @brief Jump to the top of the jump target stack.
 /// @warning Undefined if the jump target stack is empty.
-NORETURN void Machine_jump();
+#define Machine_jump() Ring2_jump()
 
 #endif // MACHINE_RUNTIME_JUMPTARGETMODULE_H_INCLUDED
