@@ -605,6 +605,9 @@
     <ClInclude Include="Ring1\Time.h">
       <Filter>Headerdateien\Ring1</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\NoReturn.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring1\Intrinsic\CheckReturn.c">

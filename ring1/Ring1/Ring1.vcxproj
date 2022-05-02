@@ -62,6 +62,7 @@
     <ClInclude Include="Ring1\Intrinsic\NextMultipleOf32\nextMultipleOf32.h" />
     <ClInclude Include="Ring1\Intrinsic\NextMultipleOf64\nextMultipleOf64.h" />
     <ClInclude Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo.h" />
+    <ClInclude Include="Ring1\Intrinsic\NoReturn.h" />
     <ClInclude Include="Ring1\Intrinsic\Subtract\Winapi\subtract_s16.h" />
     <ClInclude Include="Ring1\Intrinsic\Subtract\Winapi\subtract_s32.h" />
     <ClInclude Include="Ring1\Intrinsic\Subtract\Winapi\subtract_s64.h" />
