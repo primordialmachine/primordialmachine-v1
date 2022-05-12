@@ -43,6 +43,7 @@
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u32.h" />
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u64.h" />
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u8.h" />
+    <ClInclude Include="Ring1\Intrinsic\Deprecated.h" />
     <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_s16.h" />
     <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_s32.h" />
     <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_s64.h" />
@@ -412,6 +413,7 @@
   <ItemGroup>
     <ClCompile Include="Ring1\Intrinsic\clamp.c" />
     <ClCompile Include="Ring1\Intrinsic\countLeadingZeroes.c" />
+    <ClCompile Include="Ring1\Intrinsic\Deprecated.c" />
     <ClCompile Include="Ring1\Intrinsic\Environment.c" />
     <ClCompile Include="Ring1\Intrinsic\FloatingPointTypes.c" />
     <ClCompile Include="Ring1\Intrinsic\isPowerOfTwo.c" />
