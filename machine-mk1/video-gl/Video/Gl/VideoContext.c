@@ -11,6 +11,7 @@
 #include "Video/Gl/Binding.h"
 #include "Video/Gl/Buffer.h"
 #include "Video/Gl/Canvas.h"
+#include "Video/Gl/CanvasUtilities.h"
 #include "Video/Gl/ShaderProgram.h"
 #include "Video/Gl/Texture.h"
 

@@ -9,6 +9,14 @@
 #endif
 #include "Video/Gl/Canvas.h"
 
+#define GLFW_INCLUDE_NONE
+#include <GLFW/glfw3.h>
+#include <glad/glad.h>
+
+/// @brief Get the GLFW window.
+/// @return The GLFW window.
+GLFWwindow* Machine_Glfw_getWindow();
+
 /// @brief Startup canvas input (mouse, keyboard).
 /// An undefined-op
 /// - if the canvas is not started

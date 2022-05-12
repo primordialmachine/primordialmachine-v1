@@ -9,15 +9,6 @@
 #endif
 #include "_Video.h"
 
-#define GLFW_INCLUDE_NONE
-#include <GLFW/glfw3.h>
-#include <glad/glad.h>
-
-/// @brief Get the GLFW window.
-/// @return The GLFW window.
-/// @todo Remove this from here.
-Ring1_Deprecated() GLFWwindow* Machine_Glfw_getWindow();
-
 MACHINE_DECLARE_CLASSTYPE(Machine_Video_Gl_Canvas);
 
 struct Machine_Video_Gl_Canvas_Class {
