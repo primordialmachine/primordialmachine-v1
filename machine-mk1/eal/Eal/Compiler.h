@@ -10,27 +10,7 @@
 
 #include <stddef.h>
 
-#if defined(Ring1_Inline)
-  #error('Ring1_Inline already defined')
-#endif
-/// @brief Function annotation. Annotate a function as an inline function.
-/// Use as
-/// @code
-/// INLINE void f() { ... }
-/// @endcode
-#define Ring1_Inline() static inline
-
-#if 1
-#if defined(Ring1_Deprecated)
-  #error('Ring1_Deprecated already defined')
-#endif
-/// @brief Function, structure, field, and variable annotation. Annotate a function, structure, field, or variable as deprecated.
-/// Use as
-/// @code
-/// DEPRECATED
-/// static int v = 0;
-/// @endcode
-#define Ring1_Deprecated()
-#endif
+#include "Ring1/Intrinsic/Deprecated.h"
+#include "Ring1/Intrinsic/Inline.h"
 
 #endif // MACHINE_EAL_COMPILER_H_INCLUDED
