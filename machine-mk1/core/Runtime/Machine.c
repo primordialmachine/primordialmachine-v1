@@ -2,7 +2,7 @@
 #include "Runtime/Machine.h"
 
 #include "Runtime/Gc/Gc.h"
-#include "Runtime/JumpTargetModule.h"
+#include "Ring2/JumpTargetModule.h"
 #include "Runtime/LogModule.h"
 #include "Runtime/StackModule.h"
 #include "Runtime/StaticVariablesModule.h"
@@ -16,7 +16,7 @@ static const struct {
   void (*uninitialize)();
 } MODULES[] = {
   { &Machine_initializeLogModule, &Machine_uninitializeLogModule },
-  { &Machine_initializeJumpTargetModule, &Machine_uninitializeJumpTargetModule },
+  { &Ring2_JumpTargetModule_startup, &Ring2_JumpTargetModule_shutdown },
   { &Machine_initializeGcModule, &Machine_uninitializeGcModule },
   { &Machine_initializeStackModule, &Machine_uninitializeStackModule },
   { &Machine_initializeStaticVariablesModule, &Machine_uninitializeStaticVariablesModule },

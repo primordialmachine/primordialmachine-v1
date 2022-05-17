@@ -77,6 +77,6 @@ void Machine_UtilitiesGl_postCall(char const* file, int line, char const* functi
     Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "%s failed with %s\n", function,
                 error);
     Machine_setStatus(Machine_UtilitiesGl_toStatus(errorCode));
-    Machine_jump();
+    Ring2_jump();
   }
 }

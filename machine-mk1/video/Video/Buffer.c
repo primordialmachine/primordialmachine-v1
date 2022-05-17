@@ -35,7 +35,7 @@ void Machine_VideoBuffer_construct(Machine_VideoBuffer* self, size_t numberOfArg
   if (Ring1_Memory_allocate(&self->p, 1)) {
     Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   self->n = 0;
 

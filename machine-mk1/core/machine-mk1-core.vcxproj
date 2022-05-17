@@ -32,7 +32,6 @@
     <ClCompile Include="Runtime\Io\setFileContents.c" />
     <ClCompile Include="Runtime\Io\_FileHandle.c" />
     <ClCompile Include="Runtime\Io\_FileMapping.c" />
-    <ClCompile Include="Runtime\JumpTargetModule.c" />
     <ClCompile Include="Runtime\LogModule.c" />
     <ClCompile Include="Runtime\Machine.c" />
     <ClCompile Include="Runtime\Object\ClassType.module.c" />
@@ -71,7 +70,6 @@
     <ClInclude Include="Runtime\Io\_FileHandle.h" />
     <ClInclude Include="Runtime\Io\NonExistingFilePolicy.h" />
     <ClInclude Include="Runtime\Io\_FileMapping.h" />
-    <ClInclude Include="Runtime\JumpTargetModule.h" />
     <ClInclude Include="Runtime\LogModule.h" />
     <ClInclude Include="Runtime\Machine.h" />
     <ClInclude Include="Runtime\Object\ClassType.module.h" />

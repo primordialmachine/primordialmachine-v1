@@ -17,7 +17,7 @@ void _Machine_FileHandle_open(_Machine_FileHandle* self, Machine_String* path,
   if (!(fileAccessMode & (Machine_FileAccessMode_ReadWrite))) {
     Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "invalid argument\n");
     Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
+    Ring2_jump();
   }
   if (fileAccessMode & Machine_FileAccessMode_Read) {
     dwDesiredAccess |= GENERIC_READ;
@@ -55,7 +55,7 @@ void _Machine_FileHandle_open(_Machine_FileHandle* self, Machine_String* path,
   if (policyMapping == NULL) {
     Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "invalid argument\n");
     Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
+    Ring2_jump();
   }
   dwDesiredAccess |= policyMapping->dwDesiredAccessModifier;
 
@@ -65,7 +65,7 @@ void _Machine_FileHandle_open(_Machine_FileHandle* self, Machine_String* path,
     Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "unable to open file `%s`\n",
                 Machine_String_getBytes(path));
     Machine_setStatus(Machine_Status_EnvironmentFailed);
-    Machine_jump();
+    Ring2_jump();
   }
 }
 
@@ -83,14 +83,14 @@ size_t _Machine_FileHandle_getFileSize(_Machine_FileHandle* self) {
   if (INVALID_HANDLE_VALUE == self->hHandle) {
     Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "invalid argument\n");
     Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
+    Ring2_jump();
   }
   // Get the size of the file. The file size must be smaller than or equal to SIZE_MAX.
   DWORD fileSize = GetFileSize(self->hHandle, NULL);
   if (INVALID_FILE_SIZE == fileSize || fileSize > SIZE_MAX) {
     Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "environment failed\n");
     Machine_setStatus(Machine_Status_EnvironmentFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   return fileSize;
 }

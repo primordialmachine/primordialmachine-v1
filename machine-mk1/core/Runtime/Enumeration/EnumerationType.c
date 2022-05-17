@@ -7,7 +7,7 @@
 #include "Ring1/Status.h"
 #include "Runtime/Enumeration/EnumerationType.module.h"
 #include "Runtime/Gc/Gc.h"
-#include "Runtime/JumpTargetModule.h"
+#include "Ring2/JumpTargetModule.h"
 #include "Runtime/Type.module.h"
 
 static void Machine_EnumerationType_finalize(void *gc, Machine_EnumerationType* self) {
@@ -31,7 +31,7 @@ Machine_EnumerationType* Machine_createEnumerationType(Machine_CreateEnumeration
   Machine_EnumerationType* enumerationType = Machine_Gc_allocate(&allocationArguments);
   if (!enumerationType) {
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   ((Machine_Type*)enumerationType)->flags = Machine_TypeFlags_Enumeration;
   ((Machine_Type*)enumerationType)->typeRemoved = args->createTypeArgs.typeRemoved;
@@ -40,7 +40,7 @@ Machine_EnumerationType* Machine_createEnumerationType(Machine_CreateEnumeration
                                  sizeof(Machine_Type*))) {
     Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump(); 
+    Ring2_jump(); 
   }
   ((Machine_Type*)enumerationType)->children.size = 0;
   return enumerationType;

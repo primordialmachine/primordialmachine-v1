@@ -10,16 +10,16 @@ static Machine_VideoContext* g_videoContext = NULL;
 static Machine_Video_Canvas* g_videoCanvas = NULL;
 
 static void initCanvas() {
-  Machine_JumpTarget jumpTarget;
-  Machine_pushJumpTarget(&jumpTarget);
+  Ring2_JumpTarget jumpTarget;
+  Ring2_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
     g_videoCanvas = (Machine_Video_Canvas*)Machine_Video_Gl_Canvas_create();
     Machine_Gc_lock(g_videoCanvas);
     g_videoContext = (Machine_VideoContext*)Machine_Gl_VideoContext_create();
     Machine_Gc_lock(g_videoContext);
-    Machine_popJumpTarget();
+    Ring2_popJumpTarget();
   } else {
-    Machine_popJumpTarget();
+    Ring2_popJumpTarget();
     if (g_videoContext) {
       Machine_Gc_unlock(g_videoContext);
       g_videoContext = NULL;
@@ -28,7 +28,7 @@ static void initCanvas() {
       Machine_Gc_unlock(g_videoCanvas);
       g_videoCanvas = NULL;
     }
-    Machine_jump();
+    Ring2_jump();
   }
 }
 

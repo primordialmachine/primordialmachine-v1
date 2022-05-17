@@ -5,7 +5,7 @@
 #define MACHINE_RUNTIME_IO__FILEMAPPING_H_INCLUDED
 
 #include "Runtime/Io/_FileHandle.h"
-#include "Runtime/JumpTargetModule.h"
+#include "Ring2/JumpTargetModule.h"
 #include "Runtime/LogModule.h"
 #include "Runtime/Status.h"
 

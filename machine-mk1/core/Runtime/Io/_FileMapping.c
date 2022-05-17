@@ -7,8 +7,8 @@
 void _Machine_FileMapping_openRead(_Machine_FileMapping* self, Machine_String* path) {
   _Machine_FileHandle_open(&self->fileHandle, path, Machine_FileAccessMode_Read,
                            Machine_ExistingFilePolicy_Retain, Machine_NonExistingFilePolicy_Fail);
-  Machine_JumpTarget jumpTarget1;
-  Machine_pushJumpTarget(&jumpTarget1);
+  Ring2_JumpTarget jumpTarget1;
+  Ring2_pushJumpTarget(&jumpTarget1);
   if (!setjmp(jumpTarget1.environment)) {
     self->numberOfBytes = _Machine_FileHandle_getFileSize(&self->fileHandle);
     // If the file is empty, use a dummy buffer.
@@ -23,7 +23,7 @@ void _Machine_FileMapping_openRead(_Machine_FileMapping* self, Machine_String* p
         Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
                     "unable to create file mapping for file '%s'\n", Machine_String_getBytes(path));
         Machine_setStatus(Machine_Status_EnvironmentFailed);
-        Machine_jump();
+        Ring2_jump();
       }
       // Create view of file mapping.
       self->bytes = (char*)MapViewOfFile(self->hFileMapping, FILE_MAP_READ, 0, 0, 0);
@@ -36,13 +36,13 @@ void _Machine_FileMapping_openRead(_Machine_FileMapping* self, Machine_String* p
                     "unable to create file mapping view for file '%s'\n",
                     Machine_String_getBytes(path));
         Machine_setStatus(Machine_Status_EnvironmentFailed);
-        Machine_jump();
+        Ring2_jump();
       }
     }
     //
-    Machine_popJumpTarget();
+    Ring2_popJumpTarget();
   } else {
-    Machine_popJumpTarget();
+    Ring2_popJumpTarget();
     //
     _Machine_FileHandle_close(&self->fileHandle);
   }
@@ -53,8 +53,8 @@ void _Machine_FileMapping_openWrite(_Machine_FileMapping* self, Machine_String* 
   _Machine_FileHandle_open(&self->fileHandle, path, Machine_FileAccessMode_Write,
                            Machine_ExistingFilePolicy_Truncate,
                            Machine_NonExistingFilePolicy_Create);
-  Machine_JumpTarget jumpTarget1;
-  Machine_pushJumpTarget(&jumpTarget1);
+  Ring2_JumpTarget jumpTarget1;
+  Ring2_pushJumpTarget(&jumpTarget1);
   if (!setjmp(jumpTarget1.environment)) {
     self->numberOfBytes = numberOfBytes;
     // If the file is empty, use a dummy buffer.
@@ -70,7 +70,7 @@ void _Machine_FileMapping_openWrite(_Machine_FileMapping* self, Machine_String* 
         Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
                     "unable to create file mapping for file '%s'\n", Machine_String_getBytes(path));
         Machine_setStatus(Machine_Status_EnvironmentFailed);
-        Machine_jump();
+        Ring2_jump();
       }
       // Create view of file mapping.
       self->bytes
@@ -84,13 +84,13 @@ void _Machine_FileMapping_openWrite(_Machine_FileMapping* self, Machine_String* 
                     "unable to create file mapping view for file '%s'\n",
                     Machine_String_getBytes(path));
         Machine_setStatus(Machine_Status_EnvironmentFailed);
-        Machine_jump();
+        Ring2_jump();
       }
     }
     //
-    Machine_popJumpTarget();
+    Ring2_popJumpTarget();
   } else {
-    Machine_popJumpTarget();
+    Ring2_popJumpTarget();
     //
     _Machine_FileHandle_close(&self->fileHandle);
   }

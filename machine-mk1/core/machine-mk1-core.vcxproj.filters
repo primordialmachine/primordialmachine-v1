@@ -93,9 +93,6 @@
     <ClCompile Include="Runtime\Arguments.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
-    <ClCompile Include="Runtime\JumpTargetModule.c">
-      <Filter>Quelldateien\Runtime</Filter>
-    </ClCompile>
     <ClCompile Include="Runtime\StackModule.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
@@ -219,9 +216,6 @@
       <Filter>Headerdateien\Runtime\Io</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\Arguments.h">
-      <Filter>Headerdateien\Runtime</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\JumpTargetModule.h">
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\StackModule.h">

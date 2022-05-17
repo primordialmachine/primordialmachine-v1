@@ -72,7 +72,7 @@ static void maybeResize(Machine_HashMap* self) {
       Ring1_Status_set(Ring1_Status_Success);
       /*
       Machine_setStatus(Machine_Status_AllocationFailed);
-      Machine_jump();
+      Ring2_jump();
       */
       // Do *not* raise an exception.
       return;
@@ -207,7 +207,7 @@ void Machine_HashMap_construct(Machine_HashMap* self, size_t numberOfArguments,
   if (Ring1_Memory_allocate(&pimpl, sizeof(_Map))) {
     Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   pimpl->size = 0;
   pimpl->capacity = MINIMAL_CAPACITY;
@@ -217,7 +217,7 @@ void Machine_HashMap_construct(Machine_HashMap* self, size_t numberOfArguments,
     pimpl = NULL;
     Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   for (size_t i = 0, n = pimpl->capacity; i < n; ++i) {
     pimpl->buckets[i] = NULL;

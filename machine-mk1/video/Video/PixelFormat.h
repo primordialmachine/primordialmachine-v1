@@ -44,7 +44,7 @@ static inline uint8_t Machine_PixelFormat_getBytesPerPixel(Machine_PixelFormat s
       return 1;
     default:
       Machine_setStatus(Machine_Status_InvalidArgument);
-      Machine_jump();
+      Ring2_jump();
   };
 }
 

@@ -27,7 +27,7 @@ void Machine_Glfw_startupCanvas() {
     if (!glfwInit()) {
       fprintf(stderr, "%s:%d: glfwInit() failed\n", __FILE__, __LINE__);
       Machine_setStatus(Machine_Status_EnvironmentFailed);
-      Machine_jump();
+      Ring2_jump();
     }
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
@@ -37,7 +37,7 @@ void Machine_Glfw_startupCanvas() {
       fprintf(stderr, "%s:%d: glfwCreateWindow() failed\n", __FILE__, __LINE__);
       glfwTerminate();
       Machine_setStatus(Machine_Status_EnvironmentFailed);
-      Machine_jump();
+      Ring2_jump();
     }
 
     glfwMakeContextCurrent(g_window);
@@ -50,7 +50,7 @@ void Machine_Glfw_startupCanvas() {
       g_window = NULL;
       glfwTerminate();
       Machine_setStatus(Machine_Status_EnvironmentFailed);
-      Machine_jump();
+      Ring2_jump();
     }
 
     fprintf(stdout, "OpenGL vendor:   %s\n", glGetString(GL_VENDOR));
@@ -93,14 +93,14 @@ static void Machine_Video_Gl_Canvas_setCanvasIcons(Machine_Video_Gl_Canvas* self
                                                    Machine_List* images) {
   GLFWimage* targetImages = NULL;
 
-  Machine_JumpTarget jumpTarget;
-  Machine_pushJumpTarget(&jumpTarget);
+  Ring2_JumpTarget jumpTarget;
+  Ring2_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
     size_t numberOfImages = Machine_Collection_getSize((Machine_Collection*)images);
     if (Ring1_Memory_allocateArray(&targetImages, numberOfImages, sizeof(GLFWimage))) {
       Ring1_Status_set(Ring1_Status_Success);
       Machine_setStatus(Machine_Status_AllocationFailed);
-      Machine_jump();
+      Ring2_jump();
     }
     for (size_t i = 0, n = numberOfImages; i < n; ++i) {
       Machine_Value temporary = Machine_List_getAt(images, i);
@@ -118,14 +118,14 @@ static void Machine_Video_Gl_Canvas_setCanvasIcons(Machine_Video_Gl_Canvas* self
       Ring1_Memory_deallocate(targetImages);
       targetImages = NULL;
     }
-    Machine_popJumpTarget();
+    Ring2_popJumpTarget();
   } else {
     if (targetImages) {
       Ring1_Memory_deallocate(targetImages);
       targetImages = NULL;
     }
-    Machine_popJumpTarget();
-    Machine_jump();
+    Ring2_popJumpTarget();
+    Ring2_jump();
   }
 }
 

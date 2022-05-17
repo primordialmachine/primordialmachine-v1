@@ -89,7 +89,7 @@ Machine_KeyboardKeyEvent* Machine_Video_Gl_Input_mapKeyboardKeyEvent(GLFWwindow*
   Machine_KeyboardKeyActions actionInternal;
   if (!mapKey(key, &keyInternal) || !mapKeyAction(action, &actionInternal)) {
     Machine_setStatus(Machine_Status_InternalError);
-    Machine_jump();
+    Ring2_jump();
   }
   Machine_KeyboardKeyEvent* event = Machine_KeyboardKeyEvent_create(keyInternal, actionInternal);
   return event;

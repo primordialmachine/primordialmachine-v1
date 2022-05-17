@@ -133,7 +133,7 @@ Scene1* Scene1_create(Machine_VideoContext *videoContext) {
   Scene1* self = (Scene1*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   if (!self) {
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   return self;
 }

@@ -6,7 +6,7 @@
 
 #include "_Eal.h"
 #include "Ring1/Status.h"
-#include "Runtime/JumpTargetModule.h"
+#include "Ring2/JumpTargetModule.h"
 
 typedef struct Stack {
   Machine_Value* elements;
@@ -56,14 +56,14 @@ static void Stack_grow(Stack* self, size_t additionalCapacity) {
   if (Ring1_Memory_recomputeSize_sz(0, SIZE_MAX / sizeof(Machine_Value), self->capacity,
                                     additionalCapacity, &newCapacity, true)) {
     Machine_setStatus(Machine_Status_CapacityExhausted);
-    Machine_jump();
+    Ring2_jump();
   }
   Machine_Value* newElements = NULL;
   if (Ring1_Memory_reallocateArray(&newElements, self->elements, newCapacity,
                                    sizeof(Machine_Value))) {
     Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   self->elements = newElements;
   self->capacity = newCapacity;
@@ -153,7 +153,7 @@ void Machine_Stack_load(Machine_Value value) {
 Machine_Value Machine_Stack_peek(size_t index) {
   if (index >= g_stack->size) {
     Machine_setStatus(Machine_Status_IndexOutOfBounds);
-    Machine_jump();
+    Ring2_jump();
   }
   return *(g_stack->elements + g_stack->size - 1 - index);
 }
@@ -161,7 +161,7 @@ Machine_Value Machine_Stack_peek(size_t index) {
 void Machine_Stack_pop() {
   if (g_stack->size == 0) {
     Machine_setStatus(Machine_Status_Empty);
-    Machine_jump();
+    Ring2_jump();
   }
   g_stack->size -= 1;
 }

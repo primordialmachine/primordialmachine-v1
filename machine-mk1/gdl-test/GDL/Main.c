@@ -12,11 +12,11 @@ int main() {
   if (Machine_startup()) {
     return EXIT_FAILURE;
   }
-  Machine_JumpTarget jumpTarget;
-  Machine_pushJumpTarget(&jumpTarget);
+  Ring2_JumpTarget jumpTarget;
+  Ring2_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
     Machine_Gdl_test1();
-    Machine_popJumpTarget();
+    Ring2_popJumpTarget();
   }
   Machine_StatusValue status = Machine_getStatus();
   Machine_shutdown();

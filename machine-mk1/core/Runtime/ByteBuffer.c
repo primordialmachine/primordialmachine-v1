@@ -5,7 +5,7 @@
 #include "Runtime/ByteBuffer.h"
 
 #include "Ring1/Status.h"
-#include "Runtime/JumpTargetModule.h"
+#include "Ring2/JumpTargetModule.h"
 #include "Runtime/Object/Object.h"
 #include "Runtime/Status.h"
 #include "Runtime/Value.h"
@@ -72,7 +72,7 @@ void Machine_ByteBuffer_insertBytesAt(Machine_ByteBuffer* self, size_t i, char c
     if (Ring1_Memory_reallocate(&p, self->p, self->c + ac)) {
       Ring1_Status_set(Ring1_Status_Success);
       Machine_setStatus(Machine_Status_AllocationFailed);
-      Machine_jump();
+      Ring2_jump();
     }
     self->p = p;
     self->c = self->c + ac;

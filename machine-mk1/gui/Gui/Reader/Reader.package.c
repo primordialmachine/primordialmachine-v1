@@ -13,12 +13,12 @@ static void checkKind(Machine_Gui_Context* self, Machine_Map const* source,
   Machine_Gui_Gdl_Context* context = self->gdlContext;
   if (!Machine_Gui_Reader_hasString(self, source, context->KIND)) {
     Machine_setStatus(Machine_Status_SemanticalError);
-    Machine_jump();
+    Ring2_jump();
   }
   Machine_String* received = Machine_Gui_Reader_getString(source, context->KIND);
   if (!Machine_String_isEqualTo(received, expected)) {
     Machine_setStatus(Machine_Status_SemanticalError);
-    Machine_jump();
+    Ring2_jump();
   }
 }
 
@@ -39,7 +39,7 @@ Machine_Gui_LayoutModel* Machine_Gui_Reader_readLayout(Machine_Gui_Context* self
       Machine_Gui_LayoutModel_setPrimaryDirection(model, Machine_Gui_Layout_Direction_RowReverse);
     } else {
       Machine_setStatus(Machine_Status_SemanticalError);
-      Machine_jump();
+      Ring2_jump();
     }
   }
   if (Machine_Gui_Reader_hasString(self, source, subContext->JUSTIFICATION)) {
@@ -54,7 +54,7 @@ Machine_Gui_LayoutModel* Machine_Gui_Reader_readLayout(Machine_Gui_Context* self
       Machine_Gui_LayoutModel_setPrimaryJustification(model, Machine_Gui_Layout_Justification_End);
     } else {
       Machine_setStatus(Machine_Status_LexicalError);
-      Machine_jump();
+      Ring2_jump();
     }
   }
   if (Machine_Gui_Reader_hasReal(self, source, subContext->INTERSPACING)) {

@@ -58,7 +58,7 @@ void Machine_Images_Image_construct(Machine_Images_Image* self, size_t numberOfA
                                          pixels);
   } else {
     Machine_setStatus(Machine_Status_InvalidNumberOfArguments);
-    Machine_jump();
+    Ring2_jump();
   }
 }
 
@@ -122,7 +122,7 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
     Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
                 "[read_png_file] file is not recognized as a PNG file\n");
     Machine_setStatus(Machine_Status_EnvironmentFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   // (3) create read struct.
   png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
@@ -130,7 +130,7 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
     Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
                 "[read_png_file] png_create_read_struct failed\n");
     Machine_setStatus(Machine_Status_EnvironmentFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   // (4) create info struct.
   info_ptr = png_create_info_struct(png_ptr);
@@ -139,7 +139,7 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
     Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
                 "[read_png_file] png_create_info_struct failed");
     Machine_setStatus(Machine_Status_EnvironmentFailed);
-    Machine_jump();
+    Ring2_jump();
   }
 
   if (setjmp(png_jmpbuf(png_ptr))) {
@@ -149,7 +149,7 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
                 "init_io/png_set_sig_bytes/png_read_info/png_set_interlaced_handling/"
                 "png_read_update_info failed");
     Machine_setStatus(Machine_Status_EnvironmentFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   png_set_read_fn(png_ptr, (png_voidp)&state, &_Io_read);
   png_set_sig_bytes(png_ptr, 8);
@@ -172,7 +172,7 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
     Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
                 "[read_png_file] error during read_image");
     Machine_setStatus(Machine_Status_EnvironmentFailed);
-    Machine_jump();
+    Ring2_jump();
   }
 
   png_byte* pixels = NULL;
@@ -180,7 +180,7 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
     Ring1_Status_set(Ring1_Status_Success);
     png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
     Machine_setStatus(Machine_Status_EnvironmentFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   row_pointers = NULL;
   if (Ring1_Memory_allocateArray((void **) & row_pointers, sizeof(png_bytep), height)) {
@@ -188,7 +188,7 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
     Ring1_Memory_deallocate(pixels);
     png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
     Machine_setStatus(Machine_Status_EnvironmentFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   for (y = 0; y < height; y++)
     row_pointers[y] = pixels + y * png_get_rowbytes(png_ptr, info_ptr);
@@ -214,7 +214,7 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
                   "[read_png_file] Unsupported png color type (%d) for image file\n",
                   (int)color_type);
       Machine_setStatus(Machine_Status_EnvironmentFailed);
-      Machine_jump();
+      Ring2_jump();
   };
   self->pixels = pixels;
   // (5) Set class type.
@@ -243,7 +243,7 @@ void Machine_Images_Image_constructDirect(Machine_Images_Image* self,
                                  Machine_PixelFormat_getBytesPerPixel(pixelFormat))) {
     Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   Ring1_Memory_copyFast(self->pixels, Machine_ByteBuffer_getBytes(pixels),
                         width * height * Machine_PixelFormat_getBytesPerPixel(pixelFormat));

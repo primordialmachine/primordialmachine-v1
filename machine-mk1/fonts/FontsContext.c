@@ -53,7 +53,7 @@ void Machine_Fonts_FontsContext_construct(Machine_Fonts_FontsContext* self, size
     if (error) {
       Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "FT_Init_FreeType failed\n");
       Machine_setStatus(Machine_Status_EnvironmentFailed);
-      Machine_jump();
+      Ring2_jump();
     }
   }
   self->library = &g_library;

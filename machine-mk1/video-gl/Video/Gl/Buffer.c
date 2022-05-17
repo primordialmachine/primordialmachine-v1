@@ -27,7 +27,7 @@ static void Machine_Gl_VideoBuffer_setDataImpl(Machine_Gl_VideoBuffer* self, siz
   if (Ring1_Memory_reallocateArray(&t, ((Machine_VideoBuffer*)self)->p, n, sizeof(uint8_t))) {
     Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   ((Machine_VideoBuffer*)self)->p = t;
   Ring1_Memory_copyFast(((Machine_VideoBuffer*)self)->p, p, n * sizeof(uint8_t));

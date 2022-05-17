@@ -56,7 +56,7 @@ static Machine_Integer getMaximalClipDistanceCount(Machine_Gl_VideoContext const
 static void setClipDistanceEnabled(Machine_Gl_VideoContext* self, Machine_Integer index, Machine_Boolean enabled) {
   if (index < 0 || index >= self->clipDistances->n) {
     Machine_setStatus(Machine_Status_IndexOutOfBounds);
-    Machine_jump();
+    Ring2_jump();
   }
   self->clipDistances->a[index].enabled = enabled;
 }
@@ -64,7 +64,7 @@ static void setClipDistanceEnabled(Machine_Gl_VideoContext* self, Machine_Intege
 static Machine_Boolean getClipDistanceEnabled(Machine_Gl_VideoContext const* self, Machine_Integer index) {
   if (index < 0 || index >= self->clipDistances->n) {
     Machine_setStatus(Machine_Status_IndexOutOfBounds);
-    Machine_jump();
+    Ring2_jump();
   }
   return self->clipDistances->a[index].enabled;
 }
@@ -126,7 +126,7 @@ static void getViewportRectangle(Machine_Gl_VideoContext const* self, Machine_Re
 static void drawDirect(Machine_Gl_VideoContext* self, Machine_Integer i, Machine_Integer n) {
   if (i < 0 || n < 0) {
     Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
+    Ring2_jump();
   }
   if (n > 0) {
     Machine_Gl_VideoContext_write(self);
@@ -137,7 +137,7 @@ static void drawDirect(Machine_Gl_VideoContext* self, Machine_Integer i, Machine
 static void drawIndirect(Machine_Gl_VideoContext* self, Machine_Integer i, Machine_Integer n, uint8_t const* indices) {
   if (i < 0 || n < 0) {
     Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
+    Ring2_jump();
   }
   if (n > 0) {
     Machine_Gl_VideoContext_write(self);
@@ -250,7 +250,7 @@ static GLenum Machine_BlendFunction_toGL(Machine_BlendFunction self) {
     return GL_ONE;
   default:
     Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
+    Ring2_jump();
   };
 }
 
@@ -273,7 +273,7 @@ static GLenum Machine_DepthTestFunction_toGL(Machine_DepthTestFunction self) {
     return GL_NEVER;
   default:
     Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
+    Ring2_jump();
   };
 }
 
@@ -387,13 +387,13 @@ void Machine_Gl_VideoContext_construct(Machine_Gl_VideoContext* self, size_t num
     Machine_UtilitiesGl_call(glGetIntegerv(GL_MAX_CLIP_DISTANCES, &v));
     if (v <= 0) {
       Machine_setStatus(Machine_Status_EnvironmentFailed);
-      Machine_jump();
+      Ring2_jump();
     }
     self->clipDistances = NULL;
     if (Ring1_Memory_allocate(&self->clipDistances, sizeof(Machine_Gl_VideoContext_ClipDistances))) {
       Ring1_Status_set(Ring1_Status_Success);
       Machine_setStatus(Machine_Status_AllocationFailed);
-      Machine_jump();
+      Ring2_jump();
     }
     self->clipDistances->a = NULL;
     if (Ring1_Memory_allocateArray(&self->clipDistances->a, (size_t)v,
@@ -402,7 +402,7 @@ void Machine_Gl_VideoContext_construct(Machine_Gl_VideoContext* self, size_t num
       Ring1_Memory_deallocate(self->clipDistances);
       self->clipDistances = NULL;
       Machine_setStatus(Machine_Status_AllocationFailed);
-      Machine_jump();
+      Ring2_jump();
     }
     self->clipDistances->n = (size_t)v;
     for (size_t i = 0; i < self->clipDistances->n; ++i) {

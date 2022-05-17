@@ -14,7 +14,7 @@
   if (!(e)) { \
     Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "test assertion `%s` failed\n", #e); \
     Machine_setStatus(Machine_Status_TestFailed); \
-    Machine_jump(); \
+    Ring2_jump(); \
   }
 
 

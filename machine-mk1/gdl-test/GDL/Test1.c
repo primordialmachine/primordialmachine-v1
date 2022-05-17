@@ -7,7 +7,7 @@
   { \
     Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "expected token kind\n"); \
     Machine_setStatus(Machine_Status_LexicalError); \
-    Machine_jump(); \
+    Ring2_jump(); \
   }
 
 static void test_1_1() {

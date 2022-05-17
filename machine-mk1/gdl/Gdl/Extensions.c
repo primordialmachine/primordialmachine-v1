@@ -86,14 +86,14 @@ Machine_Integer Machine_Gdl_Node_toInteger(Machine_Gdl_Node* self, Machine_Gdl_C
   size_t n =  Machine_String_getNumberOfBytes(self->text);
   if (n > 1024) {
     Machine_setStatus(Machine_Status_InvalidOperation); // TODO: Should be "ConversionFailed".
-    Machine_jump();
+    Ring2_jump();
   }
   Ring1_Memory_copyFast(buffer, Machine_String_getBytes(self->text), n);
   buffer[n] = '\0';
   Machine_Integer v;
   if (sscanf(buffer, "%"SCNd64, &v) != 1) {
     Machine_setStatus(Machine_Status_InvalidOperation); // TODO: Should be "ConversionFailed".
-    Machine_jump();
+    Ring2_jump();
   }
   return v;
 }
@@ -141,14 +141,14 @@ Machine_Real Machine_Gdl_Node_toReal(Machine_Gdl_Node* self, Machine_Gdl_Context
   size_t n = Machine_String_getNumberOfBytes(self->text);
   if (n > 1024) {
     Machine_setStatus(Machine_Status_ConversionFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   Ring1_Memory_copyFast(buffer, Machine_String_getBytes(self->text), n);
   buffer[n] = '\0';
   Machine_Real v;
   if (sscanf(buffer, "%f", &v) != 1) {
     Machine_setStatus(Machine_Status_ConversionFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   return v;
 }

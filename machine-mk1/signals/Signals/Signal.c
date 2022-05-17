@@ -62,13 +62,13 @@ void Machine_Signals_Signal_emit(Machine_Signals_Signal* self, Machine_String* n
     if (Ring1_Memory_allocateArray(&arguments1, numberOfArguments1, sizeof(Machine_Value))) {
       Ring1_Status_set(Ring1_Status_Success);
       Machine_setStatus(Machine_Status_AllocationFailed);
-      Machine_jump();
+      Ring2_jump();
     }
     for (size_t i = 0, n = numberOfArguments; i < n; ++i) {
       arguments1[i + 1] = arguments[i + 0];
     }
-    Machine_JumpTarget jt;
-    Machine_pushJumpTarget(&jt);
+    Ring2_JumpTarget jt;
+    Ring2_pushJumpTarget(&jt);
     if (!setjmp(jt.environment)) {
       for (size_t i = 0, n = Machine_Collection_getSize((Machine_Collection*)self->connections);
            i < n; ++i) {
@@ -81,12 +81,12 @@ void Machine_Signals_Signal_emit(Machine_Signals_Signal* self, Machine_String* n
           c->callback(numberOfArguments1, arguments1);
         }
       }
-      Machine_popJumpTarget();
+      Ring2_popJumpTarget();
       Ring1_Memory_deallocate(arguments1);
     } else {
-      Machine_popJumpTarget();
+      Ring2_popJumpTarget();
       Ring1_Memory_deallocate(arguments1);
-      Machine_jump();
+      Ring2_jump();
     }
   }
 }

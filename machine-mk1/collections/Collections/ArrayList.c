@@ -111,13 +111,13 @@ static void insertAt(Machine_ArrayList* self, size_t index, Machine_Value value)
         = Machine_Collections_getBestCapacity(self->capacity, 1, maximalCapacity, &newCapacity);
     if (status != Machine_Status_Success) {
       Machine_setStatus(status);
-      Machine_jump();
+      Ring2_jump();
     }
     void* newElements = NULL;
     if (Ring1_Memory_reallocateArray(&newElements, self->elements, newCapacity, sizeof(Machine_Value))) {
       Ring1_Status_set(Ring1_Status_Success);
       Machine_setStatus(Machine_Status_AllocationFailed);
-      Machine_jump();
+      Ring2_jump();
     }
     self->elements = newElements;
     self->capacity = newCapacity;
@@ -141,7 +141,7 @@ static void clear(Machine_ArrayList* self) {
 static Machine_Value getAt(Machine_ArrayList const* self, size_t index) {
   if (index >= self->size) {
     Machine_setStatus(Machine_Status_IndexOutOfBounds);
-    Machine_jump();
+    Ring2_jump();
   }
   return self->elements[index];
 }
@@ -149,7 +149,7 @@ static Machine_Value getAt(Machine_ArrayList const* self, size_t index) {
 static void removeAt(Machine_ArrayList* self, size_t index) {
   if (index >= self->size) {
     Machine_setStatus(Machine_Status_IndexOutOfBounds);
-    Machine_jump();
+    Ring2_jump();
   }
   if (index < self->size - 1) {
     Ring1_Memory_copySlow(self->elements + index + 0, self->elements + index + 1,
@@ -161,7 +161,7 @@ static void removeAt(Machine_ArrayList* self, size_t index) {
 static void removeAtFast(Machine_ArrayList* self, size_t index) {
   if (index >= self->size) {
     Machine_setStatus(Machine_Status_IndexOutOfBounds);
-    Machine_jump();
+    Ring2_jump();
   }
   self->elements[index] = self->elements[self->size - 1];
   self->size--;

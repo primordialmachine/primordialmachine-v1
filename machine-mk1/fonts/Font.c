@@ -82,7 +82,7 @@ static Map* Map_create() {
   Map* self = Machine_Gc_allocate(&allocationArguments);
   if (!self) {
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   self->size = 0;
   self->capacity = 8;
@@ -91,7 +91,7 @@ static Map* Map_create() {
     Ring1_Status_set(Ring1_Status_Success);
     self->capacity = 0;
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   for (size_t i = 0; i < 8; ++i) {
     self->buckets[i] = NULL;
@@ -114,7 +114,7 @@ static void Map_set(Map* self, uint32_t codepoint, float bearingx, float bearing
   for (Node* node = self->buckets[hashIndex]; NULL != node; node = node->next) {
     if (node->codepoint == codepoint) {
       Machine_setStatus(Machine_Status_InvalidOperation);
-      Machine_jump();
+      Ring2_jump();
     }
   }
 
@@ -122,7 +122,7 @@ static void Map_set(Map* self, uint32_t codepoint, float bearingx, float bearing
   if (Ring1_Memory_allocate(&node, sizeof(Node))) {
     Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_InvalidOperation);
-    Machine_jump();
+    Ring2_jump();
   }
 
   node->codepoint = codepoint;
@@ -245,11 +245,11 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
   Machine_Fonts_FontsContext* fontsContext = (Machine_Fonts_FontsContext *)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0, Machine_Fonts_FontsContext_getType());
   if (pointSize < 0 || pointSize > INT_MAX) {
     Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
+    Ring2_jump();
   }
   if (NULL == path) {
     Machine_setStatus(Machine_Status_ArgumentNull);
-    Machine_jump();
+    Ring2_jump();
   }
   self->context = fontsContext;
   Machine_Gc_lock(self->context);
@@ -264,7 +264,7 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
     self->context = NULL;
 
     Machine_setStatus(Machine_Status_EnvironmentFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   // (3)
   error = FT_Set_Pixel_Sizes(self->face, 0, pointSize);
@@ -276,13 +276,13 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
     self->context = NULL;
 
     Machine_setStatus(Machine_Status_EnvironmentFailed);
-    Machine_jump();
+    Ring2_jump();
   }
 
   self->baselineDistance = self->face->size->metrics.height >> 6;
 
-  Machine_JumpTarget jumpTarget;
-  Machine_pushJumpTarget(&jumpTarget);
+  Ring2_JumpTarget jumpTarget;
+  Ring2_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
     self->map = Map_create();
     self->vertices = Machine_VideoContext_createBuffer(fontsContext->videoContext);
@@ -296,9 +296,9 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
     Machine_Binding_setVariableBinding(self->binding, Machine_String_create("vertex_position", strlen("vertex_position") + 1), 0);
     Machine_Binding_setVariableBinding(self->binding, Machine_String_create("vertex_texture_coordinate_1", strlen("vertex_texture_coordinate_1") + 1), 1);
 
-    Machine_popJumpTarget();
+    Ring2_popJumpTarget();
   } else {
-    Machine_popJumpTarget();
+    Ring2_popJumpTarget();
 
     FT_Done_Face(self->face);
     self->face = NULL;
@@ -307,7 +307,7 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
     self->context = NULL;
     
     Machine_setStatus(Machine_Status_EnvironmentFailed);
-    Machine_jump();
+    Ring2_jump();
   }
 
   const uint32_t codepoints[] = {
@@ -366,10 +366,10 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
       self->context = NULL;
 
       Machine_setStatus(Machine_Status_InvalidOperation);
-      Machine_jump();
+      Ring2_jump();
     }
-    Machine_JumpTarget jt;
-    Machine_pushJumpTarget(&jt);
+    Ring2_JumpTarget jt;
+    Ring2_pushJumpTarget(&jt);
     if (!setjmp(jt.environment)) {
       Machine_ByteBuffer_clear(temporary);
       Machine_ByteBuffer_appendBytes(temporary, self->face->glyph->bitmap.buffer, (size_t)self->face->glyph->bitmap.width * (size_t)self->face->glyph->bitmap.rows);
@@ -379,7 +379,7 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
               self->face->glyph->bitmap_left, self->face->glyph->bitmap_top,
               self->face->glyph->bitmap.width, self->face->glyph->bitmap.rows,
               self->face->glyph->advance.x >> 6, self->face->glyph->advance.y >> 6, texture);
-      Machine_popJumpTarget();
+      Ring2_popJumpTarget();
     } else {
       FT_Done_Face(self->face);
       self->face = NULL;
@@ -387,8 +387,8 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
       Machine_Gc_unlock(self->context);
       self->context = NULL;
 
-      Machine_popJumpTarget();
-      Machine_jump();
+      Ring2_popJumpTarget();
+      Ring2_jump();
     }
   }
   Machine_setClassType((Machine_Object*)self, Machine_Fonts_Font_getType());

@@ -11,16 +11,16 @@ Machine_ByteBuffer* Machine_getFileContents(Machine_String* path) {
   Machine_ByteBuffer* byteBuffer = Machine_ByteBuffer_create();
   _Machine_FileMapping fileMapping;
   _Machine_FileMapping_openRead(&fileMapping, path);
-  Machine_JumpTarget jumpTarget;
-  Machine_pushJumpTarget(&jumpTarget);
+  Ring2_JumpTarget jumpTarget;
+  Ring2_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
     Machine_ByteBuffer_appendBytes(byteBuffer, fileMapping.bytes, fileMapping.numberOfBytes);
-    Machine_popJumpTarget();
+    Ring2_popJumpTarget();
     _Machine_FileMapping_close(&fileMapping);
   } else {
-    Machine_popJumpTarget();
+    Ring2_popJumpTarget();
     _Machine_FileMapping_close(&fileMapping);
-    Machine_jump();
+    Ring2_jump();
   }
   return byteBuffer;
 }

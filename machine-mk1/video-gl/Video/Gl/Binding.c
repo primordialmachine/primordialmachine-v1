@@ -68,7 +68,7 @@ static void bindVar(Machine_Gl_Binding const* self, size_t inputIndex, Machine_P
 static bool Machine_Binding_setVariableBindingImpl(Machine_Gl_Binding* self, Machine_String* name, size_t index) {
   if (index < 0 || index > Machine_Integer_Greatest || index == (size_t)(-1)) {
     Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
+    Ring2_jump();
   }
   Machine_Binding_Node* node = ((Machine_Binding*)self)->nodes;
   while (node) {
@@ -225,7 +225,7 @@ static void Machine_Binding_activateImpl(Machine_Gl_Binding* self) {
       glDeleteVertexArrays(1, &self->id);
       self->id = 0;
       Machine_setStatus(Machine_Status_InvalidArgument);
-      Machine_jump();
+      Ring2_jump();
     }
     for (size_t i = 0, j = 0, n = Machine_ShaderProgram_getNumberOfInputs(((Machine_Binding*)self)->program); i < n;) {
       Machine_ProgramInput const* input = Machine_ShaderProgram_getInputAt(((Machine_Binding*)self)->program, i);

@@ -157,7 +157,7 @@ static inline void Machine_Gui_WidgetList_layout(
         Machine_Gui_WidgetList_translate(self, v);
       } else {
         Machine_setStatus(Machine_Status_InvalidArgument);
-        Machine_jump();
+        Ring2_jump();
       }
 
       // Center around the column.
@@ -191,7 +191,7 @@ static inline void Machine_Gui_WidgetList_layout(
         Machine_Gui_WidgetList_translate(self, v);
       } else {
         Machine_setStatus(Machine_Status_InvalidArgument);
-        Machine_jump();
+        Ring2_jump();
       }
 
       // Center around the column.
@@ -225,7 +225,7 @@ static inline void Machine_Gui_WidgetList_layout(
         Machine_Gui_WidgetList_translate(self, v);
       } else {
         Machine_setStatus(Machine_Status_InvalidArgument);
-        Machine_jump();
+        Ring2_jump();
       }
 
       // Center around the row.
@@ -259,7 +259,7 @@ static inline void Machine_Gui_WidgetList_layout(
         Machine_Gui_WidgetList_translate(self, v);
       } else {
         Machine_setStatus(Machine_Status_InvalidArgument);
-        Machine_jump();
+        Ring2_jump();
       }
 
       // Center around the row.

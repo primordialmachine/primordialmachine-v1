@@ -102,8 +102,8 @@ static Machine_Value onKeyboardKeyEvent(size_t numberOfArguments, Machine_Value 
 void main0() {
   Machine_Video_Canvas_maximizeCanvas(Machine_getVideoCanvas());
   loadIcons();
-  Machine_JumpTarget jumpTarget1; // To shutdown input.
-  Machine_pushJumpTarget(&jumpTarget1);
+  Ring2_JumpTarget jumpTarget1; // To shutdown input.
+  Ring2_pushJumpTarget(&jumpTarget1);
   if (!setjmp(jumpTarget1.environment)) {
     g_scene = (Scene*)Scene5_create(Machine_getVideoContext());
     Machine_Video_Canvas_subscribeKeyboardKeyPressedEvent(
@@ -118,8 +118,8 @@ void main0() {
         Machine_getVideoCanvas(), (Machine_Object*)g_scene, &onMouseButtonEvent);
     Scene_onStartup(g_scene);
 
-    Machine_JumpTarget jumpTarget2; // To shutdown scene.
-    Machine_pushJumpTarget(&jumpTarget2);
+    Ring2_JumpTarget jumpTarget2; // To shutdown scene.
+    Ring2_pushJumpTarget(&jumpTarget2);
     if (!setjmp(jumpTarget2.environment)) {
       Machine_Gc_lock(g_scene);
       Machine_update();
@@ -130,7 +130,7 @@ void main0() {
                                              (Machine_Real)width, (Machine_Real)height));
 
       run(g_scene);
-      Machine_popJumpTarget();
+      Ring2_popJumpTarget();
 
       Machine_Gc_unlock(g_scene);
       Scene* s = g_scene;
@@ -141,26 +141,26 @@ void main0() {
       Scene* s = g_scene;
       g_scene = NULL;
       Scene_onShutdown(s);
-      Machine_popJumpTarget();
-      Machine_jump();
+      Ring2_popJumpTarget();
+      Ring2_jump();
     }
-    Machine_popJumpTarget();
+    Ring2_popJumpTarget();
   } else {
-    Machine_popJumpTarget();
-    Machine_jump();
+    Ring2_popJumpTarget();
+    Ring2_jump();
   }
 }
 
 int main1() {
-  Machine_JumpTarget jumpTarget1;
+  Ring2_JumpTarget jumpTarget1;
   bool videoStartedUp = false;
-  Machine_pushJumpTarget(&jumpTarget1);
+  Ring2_pushJumpTarget(&jumpTarget1);
   if (!setjmp(jumpTarget1.environment)) {
     Machine_Video_startup();
     videoStartedUp = true;
     main0();
   }
-  Machine_popJumpTarget();
+  Ring2_popJumpTarget();
   if (videoStartedUp) {
     Machine_Video_shutdown();
     videoStartedUp = false;

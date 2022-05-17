@@ -172,7 +172,7 @@ static void grow1(Machine_ArrayDeque* self, size_t requiredAdditionalCapacity) {
       oldCapacity, requiredAdditionalCapacity, SIZE_MAX / sizeof(Machine_Value), &newCapacity);
   if (status != Machine_Status_Success) {
     Machine_setStatus(status);
-    Machine_jump();
+    Ring2_jump();
   }
   Machine_Value* oldElements = self->elements;
   // Make a copy of the old array.
@@ -255,7 +255,7 @@ static void maybeGrow1(Machine_ArrayDeque* self) {
 static Machine_Value popBack(Machine_ArrayDeque* self) {
   if (self->size == 0) {
     Machine_setStatus(Machine_Status_IndexOutOfBounds);
-    Machine_jump();
+    Ring2_jump();
   }
   size_t newTail = Machine_modDecrement1_sz(self->capacity, self->tail);
   Machine_Value value = self->elements[newTail]; // Do use newTail.
@@ -276,7 +276,7 @@ static void pushBack(Machine_ArrayDeque* self, Machine_Value value) {
 static Machine_Value popFront(Machine_ArrayDeque* self) {
   if (self->size == 0) {
     Machine_setStatus(Machine_Status_IndexOutOfBounds);
-    Machine_jump();
+    Ring2_jump();
   }
   size_t newHead = Machine_modIncrement1_sz(self->capacity, self->head);
   Machine_Value value = self->elements[self->head]; // Do not use newHead.

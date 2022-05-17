@@ -2,7 +2,7 @@
 #include "Runtime/Object/Object.h"
 
 #include "Runtime/Assertions.h"
-#include "Runtime/JumpTargetModule.h"
+#include "Ring2/JumpTargetModule.h"
 #include "Runtime/Object/ClassType.module.h"
 #include "Runtime/Object/InterfaceType.module.h"
 #include "Runtime/Type.module.h"
@@ -153,7 +153,7 @@ Machine_Object* Machine_allocateClassObject(Machine_ClassType* type, size_t numb
   void* p = Machine_Gc_allocate(&allocationArguments);
   if (!p) {
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   Ring2_Gc_Tag* t = Ring2_Gc_toTag(p);
   Machine_ClassObjectTag* cot = o2cot(p);

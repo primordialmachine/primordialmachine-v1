@@ -7,7 +7,7 @@
 #include "Ring1/Status.h"
 #include "Runtime/Assertions.h"
 #include "Runtime/Gc/Gc.h"
-#include "Runtime/JumpTargetModule.h"
+#include "Ring2/JumpTargetModule.h"
 #include "Runtime/Object/ClassType.module.h"
 #include "Runtime/Object/InterfaceType.module.h"
 #include "Runtime/Type.module.h"
@@ -57,17 +57,17 @@ Machine_ClassType* Machine_createClassType(Machine_CreateClassTypeArgs* args) {
   Machine_ClassType* classType = Machine_Gc_allocate(&allocationArguments);
   if (!classType) {
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
 
   if (args->parent) {
     if (args->parent->object.size > args->object.size) {
       Machine_setStatus(Machine_Status_InvalidArgument);
-      Machine_jump();
+      Ring2_jump();
     }
     if (args->parent->class.size > args->class.size) {
       Machine_setStatus(Machine_Status_InvalidArgument);
-      Machine_jump();
+      Ring2_jump();
     }
   }
 
@@ -78,7 +78,7 @@ Machine_ClassType* Machine_createClassType(Machine_CreateClassTypeArgs* args) {
                                  sizeof(Machine_Type*))) {
     Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   // @todo Error handling.
   ((Machine_Type*)classType)->children.size = 0;
@@ -98,7 +98,7 @@ Machine_ClassType* Machine_createClassType(Machine_CreateClassTypeArgs* args) {
   if (Machine_Eal_InlineArray_initialize(&classType->interfaces.implementations2,
                                          &implementationsConfiguration)) {
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   classType->interfaces.implementationsInitialized = true;
 
@@ -108,7 +108,7 @@ Machine_ClassType* Machine_createClassType(Machine_CreateClassTypeArgs* args) {
   if (Machine_Eal_InlineArray_initialize(&classType->interfaces.dispatches2,
                                          &dispatchesConfiguration)) {
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   classType->interfaces.dispatchesInitialized = true;
 
@@ -129,14 +129,14 @@ void Machine_ClassType_implement(Machine_ClassType* self, Machine_InterfaceType*
             ->interfaceType
         == interfaceType) {
       Machine_setStatus(Machine_Status_InvalidOperation);
-      Machine_jump();
+      Ring2_jump();
     }
   }
   Machine_InterfaceImplementation temporary
       = { .constructInterface = constructInterface, .interfaceType = interfaceType };
   if (Machine_Eal_InlineArray_append(&self->interfaces.implementations2, &temporary)) {
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   Machine_Gc_lock(interfaceType);
 }
@@ -162,12 +162,12 @@ static bool getOrCreateImplementation(Machine_ClassType* self, Machine_Interface
   if (Ring1_Memory_allocate(&temporary.dispatch, type->size)) {
     Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   if (Machine_Eal_InlineArray_append(&(self->interfaces.dispatches2), &temporary)) {
     Ring1_Memory_deallocate(temporary.dispatch);
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   *dispatchNode = Machine_Eal_InlineArray_getAt(&(self->interfaces.dispatches2),
                                                 self->interfaces.dispatches2.size - 1);
@@ -192,7 +192,7 @@ void Machine_ClassType_ensureInitialized(Machine_ClassType* self) {
     if (Ring1_Memory_allocate(&self->class.data, self->class.size)) {
       Ring1_Status_set(Ring1_Status_Success);
       Machine_setStatus(Machine_Status_AllocationFailed);
-      Machine_jump();
+      Ring2_jump();
     }
     Ring1_Memory_zeroFill(self->class.data, self->class.size);
     if (self->parent) {

@@ -28,7 +28,7 @@ static void ensureInitialized() {
   if (!g_registered) {
     if (!Machine_registerStaticVariables(&uninitializeCallback)) {
       Machine_setStatus(Machine_Status_AllocationFailed);
-      Machine_jump();
+      Ring2_jump();
     }
     g_registered = true;
   }

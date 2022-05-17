@@ -117,13 +117,13 @@ static void scanSingleQuotedString(Machine_Gdl_Scanner* self)
         break;
       default:
         Machine_setStatus(Machine_Status_LexicalError);
-        Machine_jump();
+        Ring2_jump();
       };
     } else if (current(self) == '\'') {
       break;
     } else if (current(self) == Symbol_EndOfInput) {
       Machine_setStatus(Machine_Status_LexicalError);
-      Machine_jump();
+      Ring2_jump();
     } else {
       saveAndNext(self);
     }
@@ -158,7 +158,7 @@ static void scanDoubleQuotedString(Machine_Gdl_Scanner* self)
         break;
       default:
         Machine_setStatus(Machine_Status_LexicalError);
-        Machine_jump();
+        Ring2_jump();
       };
     }
     else if (current(self) == '"') {
@@ -166,7 +166,7 @@ static void scanDoubleQuotedString(Machine_Gdl_Scanner* self)
     }
     else if (current(self) == Symbol_EndOfInput) {
       Machine_setStatus(Machine_Status_LexicalError);
-      Machine_jump();
+      Ring2_jump();
     }
     else {
       saveAndNext(self);
@@ -326,7 +326,7 @@ void Machine_Gdl_Scanner_step(Machine_Gdl_Scanner* self) {
         }
       } else {
         Machine_setStatus(Machine_Status_LexicalError);
-        Machine_jump();
+        Ring2_jump();
       }
     } break;
     default:
@@ -342,7 +342,7 @@ void Machine_Gdl_Scanner_step(Machine_Gdl_Scanner* self) {
         checkKeywords(self);
       } else {
         Machine_setStatus(Machine_Status_LexicalError);
-        Machine_jump();
+        Ring2_jump();
       }
     } break;
   };

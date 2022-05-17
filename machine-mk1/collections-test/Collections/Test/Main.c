@@ -16,8 +16,8 @@ int main() {
   if (Machine_startup()) {
     return EXIT_FAILURE;
   }
-  Machine_JumpTarget jumpTarget;
-  Machine_pushJumpTarget(&jumpTarget);
+  Ring2_JumpTarget jumpTarget;
+  Ring2_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
     Machine_Collections_Test_PairTest_test1();
     Machine_Collections_Test_ListTest_test1();
@@ -25,7 +25,7 @@ int main() {
     Machine_Collections_Test_ArrayDequeTest_test1();
     Machine_Collections_Test_ArrayDequeTest_test2();
     Machine_Collections_Test_ArrayDequeTest_test3();
-    Machine_popJumpTarget();
+    Ring2_popJumpTarget();
   }
   Machine_StatusValue status = Machine_getStatus();
   Machine_shutdown();

@@ -167,7 +167,7 @@ LayoutScene* LayoutScene_create(Machine_VideoContext* videoContext) {
   LayoutScene* self = (LayoutScene*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   if (!self) {
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   return self;
 }

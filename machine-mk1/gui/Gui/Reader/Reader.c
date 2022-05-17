@@ -13,7 +13,7 @@ Machine_Gui_Widget* Machine_Gui_Reader_readWidget(Machine_Gui_Context* self,
   Machine_Gui_Gdl_Context* guiGdlContext = self->gdlContext;
   if (!Machine_Gui_Reader_hasString(self, source, guiGdlContext->KIND)) {
     Machine_setStatus(Machine_Status_SemanticalError);
-    Machine_jump();
+    Ring2_jump();
   }
   s = Machine_Gui_Reader_getString(source, guiGdlContext->KIND);
   if (Machine_String_isEqualTo(s, guiGdlContext->GROUPNODEKIND)) {
@@ -24,6 +24,6 @@ Machine_Gui_Widget* Machine_Gui_Reader_readWidget(Machine_Gui_Context* self,
     return (Machine_Gui_Widget*)Machine_Gui_Reader_readBorderNode(self, source);
   } else {
     Machine_setStatus(Machine_Status_SemanticalError);
-    Machine_jump();
+    Ring2_jump();
   }
 }

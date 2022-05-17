@@ -60,7 +60,7 @@ void Machine_Gl_Texture_construct_fromImage(Machine_Gl_Texture* self, Machine_Im
     break;
   default:
     Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
+    Ring2_jump();
   };
   Machine_setClassType((Machine_Object*)self, Machine_Texture_getType());
 }
@@ -72,7 +72,7 @@ void Machine_Gl_Texture_construct(Machine_Gl_Texture* self, size_t numberOfArgum
   }
   else {
     Machine_setStatus(Machine_Status_InvalidNumberOfArguments);
-    Machine_jump();
+    Ring2_jump();
   }
 }
 

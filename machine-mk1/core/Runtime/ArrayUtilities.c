@@ -15,7 +15,7 @@ Machine_Value* Machine_ArrayUtilities_copyOf(size_t sizeNew, Machine_Value* arra
     if (Ring1_Memory_reallocateArray(&arrayNew, arrayOld, sizeNew, sizeof(Machine_Value))) {
       Ring1_Status_set(Ring1_Status_Success);
       Machine_setStatus(Machine_Status_AllocationFailed);
-      Machine_jump();
+      Ring2_jump();
     }
     for (size_t i = sizeOld, n = sizeNew; i < n; ++i) {
       Machine_Value_setVoid(&(arrayNew[i]), Machine_Void_Void);
@@ -26,7 +26,7 @@ Machine_Value* Machine_ArrayUtilities_copyOf(size_t sizeNew, Machine_Value* arra
     if (Ring1_Memory_allocateArray(&arrayNew, sizeNew, sizeof(Machine_Value))) {
       Ring1_Status_set(Ring1_Status_Success);
       Machine_setStatus(Machine_Status_AllocationFailed);
-      Machine_jump();
+      Ring2_jump();
     }
     for (size_t i = 0, n = sizeOld; i < n; ++i) {
       arrayNew[i] = arrayNew[i];

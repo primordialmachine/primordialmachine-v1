@@ -4,7 +4,7 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/Type.h"
 
-#include "Runtime/JumpTargetModule.h"
+#include "Ring2/JumpTargetModule.h"
 #include "Runtime/Object/ClassType.module.h"
 #include "Runtime/Object/InterfaceType.module.h"
 #include "Runtime/Status.h"
@@ -93,7 +93,7 @@ static bool cni(Machine_ClassType const* x, Machine_InterfaceType const* y) {
 bool Machine_Type_isSubTypeOf(Machine_Type const* self, Machine_Type const* other) {
   if (!self || !other) {
     Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
+    Ring2_jump();
   }
   if (self == other) {
     // CASE I.

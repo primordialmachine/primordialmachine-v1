@@ -10,7 +10,7 @@
 #include "Runtime/Enumeration/EnumerationType.h"
 #include "Runtime/Gc/Gc.h"
 #include "Runtime/Io.h"
-#include "Runtime/JumpTargetModule.h"
+#include "Ring2/JumpTargetModule.h"
 #include "Runtime/LogModule.h"
 #include "Runtime/Machine.h"
 #include "Runtime/Object/ClassType.h"

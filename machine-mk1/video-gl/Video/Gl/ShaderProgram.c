@@ -147,7 +147,7 @@ static void constructFromText(Machine_Gl_ShaderProgram* self, char const* vertex
   } \
 \
   Machine_setStatus(Machine_Status_EnvironmentFailed); \
-  Machine_jump();
+  Ring2_jump();
 
   GLint result;
 
@@ -213,7 +213,7 @@ void Machine_Gl_ShaderProgram_construct(Machine_Gl_ShaderProgram* self, size_t n
   Machine_ShaderProgram_construct((Machine_ShaderProgram*)self, numberOfArguments, arguments);
   if (numberOfArguments != 3) {
     Machine_setStatus(Machine_Status_InvalidNumberOfArguments);
-    Machine_jump();
+    Ring2_jump();
   }
   Machine_String* v = NULL, * g = NULL, * f = NULL;
   if (!Machine_Value_isVoid(arguments + 0)) {

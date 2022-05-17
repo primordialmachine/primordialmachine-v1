@@ -199,7 +199,7 @@ Scene4* Scene4_create(Machine_VideoContext* videoContext) {
   Scene4* self = (Scene4*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   if (!self) {
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   return self;
 }

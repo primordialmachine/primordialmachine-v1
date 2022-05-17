@@ -115,7 +115,7 @@ Rectangle2Scene* Rectangle2Scene_create(Machine_VideoContext* videoContext) {
       = (Rectangle2Scene*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   if (!self) {
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   return self;
 }

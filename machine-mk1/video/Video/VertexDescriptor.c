@@ -54,7 +54,7 @@ static void Machine_VertexDescriptor_construct(Machine_VertexDescriptor* self,
   if (Ring1_Memory_allocate(&self->p, 0)) {
     Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   Machine_setClassType((Machine_Object*)self, Machine_VertexDescriptor_getType());
 }
@@ -135,7 +135,7 @@ void Machine_VertexDescriptor_insert(Machine_VertexDescriptor* self, size_t inde
   if (Ring1_Memory_reallocateArray(&p, self->p, n, sizeof(Machine_VertexElementSemantics))) {
     Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   if (index < self->n) {
     // [a, b, c] insert x at index 1 => 1 smaller than size = 3 =>

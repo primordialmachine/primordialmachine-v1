@@ -6,7 +6,7 @@
 
 #include "Runtime/Assertions.h"
 #include "Runtime/Gc/Gc.h"
-#include "Runtime/JumpTargetModule.h"
+#include "Ring2/JumpTargetModule.h"
 #include "Runtime/Status.h"
 
 struct Machine_String {
@@ -50,7 +50,7 @@ Machine_String* Machine_String_create_noraise(char const* p, size_t n) {
 Machine_String* Machine_String_create(char const* p, size_t n) {
   if (n > MACHINE_STRING_MAXIMAL_LENGTH) {
     Machine_setStatus(Machine_Status_TooLong);
-    Machine_jump();
+    Ring2_jump();
   }
   Machine_Gc_AllocationArguments const allocationArguments = {
     .prefixSize = 0,
@@ -60,7 +60,7 @@ Machine_String* Machine_String_create(char const* p, size_t n) {
   Machine_String* self = Machine_Gc_allocate(&allocationArguments);
   if (!self) {
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   Ring1_Memory_copyFast(self->p, p, n);
   self->n = n;
@@ -77,12 +77,12 @@ Machine_String* Machine_String_concatenate(Machine_String const* self,
   MACHINE_ASSERT_NOTNULL(other);
   if (SIZE_MAX - self->n < other->n) {
     Machine_setStatus(Machine_Status_TooLong);
-    Machine_jump();
+    Ring2_jump();
   }
   size_t m = self->n + other->n;
   if (m > MACHINE_STRING_MAXIMAL_LENGTH) {
     Machine_setStatus(Machine_Status_TooLong);
-    Machine_jump();
+    Ring2_jump();
   }
   Machine_Gc_AllocationArguments const allocationArguments = {
     .prefixSize = 0,
@@ -92,7 +92,7 @@ Machine_String* Machine_String_concatenate(Machine_String const* self,
   Machine_String* c = Machine_Gc_allocate(&allocationArguments);
   if (!self) {
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   Ring1_Memory_copyFast(c->p, self->p, self->n);
   Ring1_Memory_copyFast(c->p + self->n, other->p, other->n);

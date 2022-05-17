@@ -85,7 +85,7 @@ static inline Machine_String* Machine_Gui_Reader_getString(Machine_Map const* ma
   Machine_Value valueValue = Machine_Map_get(map, keyValue);
   if (!Machine_Value_isString(&valueValue)) {
     Machine_setStatus(Machine_Status_ConversionFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   return Machine_Value_getString(&valueValue);
 }
@@ -114,7 +114,7 @@ static inline Machine_Real Machine_Gui_Reader_getReal(Machine_Map const* map,
   Machine_Value valueValue = Machine_Map_get(map, keyValue);
   if (!Machine_Value_isInteger(&valueValue) && !Machine_Value_isReal(&valueValue)) {
     Machine_setStatus(Machine_Status_ConversionFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   if (Machine_Value_isInteger(&valueValue)) {
     return (Machine_Real)Machine_Value_getInteger(&valueValue);
@@ -147,7 +147,7 @@ static inline Machine_Object* Machine_Gui_Reader_getObject(Machine_Map const* ma
   Machine_Value valueValue = Machine_Map_get(map, keyValue);
   if (!Machine_Value_isObject(&valueValue)) {
     Machine_setStatus(Machine_Status_ConversionFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   return Machine_Value_getObject(&valueValue);
 }
@@ -181,7 +181,7 @@ static inline Machine_Map* Machine_Gui_Reader_getMap(Machine_Gui_Context* self,
   Machine_Value v = getMapOrVoid(self, map, key);
   if (Machine_Value_isVoid(&v)) {
     Machine_setStatus(Machine_Status_SemanticalError);
-    Machine_jump();
+    Ring2_jump();
   }
   return (Machine_Map*)Machine_Value_getObject(&v);
 }
@@ -215,7 +215,7 @@ static inline Machine_List* Machine_Gui_Reader_getList(Machine_Gui_Context* self
   Machine_Value v = getListOrVoid(self, map, key);
   if (Machine_Value_isVoid(&v)) {
     Machine_setStatus(Machine_Status_SemanticalError);
-    Machine_jump();
+    Ring2_jump();
   }
   return (Machine_List*)Machine_Value_getObject(&v);
 }

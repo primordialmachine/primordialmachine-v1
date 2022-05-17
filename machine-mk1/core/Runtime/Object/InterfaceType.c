@@ -6,7 +6,7 @@
 
 #include "Ring1/Status.h"
 #include "Runtime/Gc/Gc.h"
-#include "Runtime/JumpTargetModule.h"
+#include "Ring2/JumpTargetModule.h"
 #include "Runtime/Object/InterfaceType.module.h"
 #include "Runtime/Type.module.h"
 
@@ -38,7 +38,7 @@ Machine_InterfaceType* Machine_createInterfaceType(Machine_CreateInterfaceTypeAr
   Machine_InterfaceType* interfaceType = Machine_Gc_allocate(&allocationArguments);
   if (!interfaceType) {
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   ((Machine_Type*)interfaceType)->flags = Machine_TypeFlags_Interface;
   ((Machine_Type*)interfaceType)->typeRemoved = args->createTypeArgs.typeRemoved;
@@ -47,7 +47,7 @@ Machine_InterfaceType* Machine_createInterfaceType(Machine_CreateInterfaceTypeAr
                                  sizeof(Machine_Type*))) {
     Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   ((Machine_Type*)interfaceType)->children.size = 0;
   static const Machine_Eal_InlineArrayDispatch extendsConfiguration = {
@@ -55,7 +55,7 @@ Machine_InterfaceType* Machine_createInterfaceType(Machine_CreateInterfaceTypeAr
   };
   if (Machine_Eal_InlineArray_initialize(&interfaceType->extends, &extendsConfiguration)) {
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   interfaceType->extendsArrayInitialized = true;
   interfaceType->size = args->size;
@@ -66,11 +66,11 @@ Machine_InterfaceType* Machine_createInterfaceType(Machine_CreateInterfaceTypeAr
 bool Machine_InterfaceType_extend(Machine_InterfaceType* self, Machine_Type* extended) {
   if (!self || !extended || !Machine_Type_isInterface(extended)) {
     Machine_setStatus(Machine_Status_InvalidArgument);
-    Machine_jump();
+    Ring2_jump();
   }
   if (_TypeFlag_isSet((Machine_Type*)self, Machine_TypeFlags_Initialized)) {
     Machine_setStatus(Machine_Status_InvalidOperation);
-    Machine_jump();
+    Ring2_jump();
   }
   // If EXTENDED is a super-type of THIS, return true.
   if (Machine_Type_isSuperTypeOf(extended, (Machine_Type*)self)) {
@@ -82,7 +82,7 @@ bool Machine_InterfaceType_extend(Machine_InterfaceType* self, Machine_Type* ext
   }
   if (Machine_Eal_InlineArray_append(&self->extends, extended)) {
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   Machine_Gc_lock(extended);
   return true;
