@@ -84,7 +84,7 @@ void Machine_ArrayList_construct(Machine_ArrayList* self, size_t numberOfArgumen
   if (Ring1_Memory_allocate(&self->elements, 0)) {
     Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   Machine_setClassType((Machine_Object*)self, Machine_ArrayList_getType());
 }

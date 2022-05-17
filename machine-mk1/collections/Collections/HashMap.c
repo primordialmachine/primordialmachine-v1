@@ -113,7 +113,7 @@ static void set(Machine_HashMap* self, Machine_Value key, Machine_Value value) {
     if (Ring1_Memory_allocate(&node, sizeof(_MapNode))) {
       Ring1_Status_set(Ring1_Status_Success);
       Machine_setStatus(Machine_Status_AllocationFailed);
-      Machine_jump();
+      Ring2_jump();
     }
   }
   node->key = key;

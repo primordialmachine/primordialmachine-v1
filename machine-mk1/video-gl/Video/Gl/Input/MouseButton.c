@@ -64,7 +64,7 @@ Machine_MouseButtonEvent* Machine_Video_Gl_Input_mapMouseButtonEvent(GLFWwindow*
   Machine_MouseButtonActions actionInternal;
   if (!mapButton(button, &buttonInternal) || !mapButtonAction(action, &actionInternal)) {
     Machine_setStatus(Machine_Status_InternalError);
-    Machine_jump();
+    Ring2_jump();
   }
   double x, y;
   glfwGetCursorPos(window, &x, &y);

@@ -61,7 +61,7 @@ void *Machine_PointerArray_getAt(Machine_PointerArray* self, size_t index) {
   if (!Machine_Value_isObject(&v)) {
     if (!Machine_Value_isVoid(&v)) {
       Machine_setStatus(Machine_Status_InvalidOperation);
-      Machine_jump();
+      Ring2_jump();
     }
     return NULL;
   }

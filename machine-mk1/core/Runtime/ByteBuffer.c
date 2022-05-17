@@ -29,7 +29,7 @@ static void Machine_ByteBuffer_construct(Machine_ByteBuffer* self, size_t number
   if (Ring1_Memory_allocate(&self->p, 0)) {
     Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   self->s = 0;
   self->c = 0;

@@ -141,7 +141,7 @@ static void Machine_ArrayDeque_construct(Machine_ArrayDeque* self, size_t number
   if (Ring1_Memory_allocateArray(&self->elements, self->capacity, sizeof(Machine_Value))) {
     Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_AllocationFailed);
-    Machine_jump();
+    Ring2_jump();
   }
   Machine_setClassType((Machine_Object*)self, Machine_ArrayDeque_getType());
 }
