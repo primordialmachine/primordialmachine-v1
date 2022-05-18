@@ -372,8 +372,13 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
     Ring2_pushJumpTarget(&jt);
     if (!setjmp(jt.environment)) {
       Machine_ByteBuffer_clear(temporary);
-      Machine_ByteBuffer_appendBytes(temporary, self->face->glyph->bitmap.buffer, (size_t)self->face->glyph->bitmap.width * (size_t)self->face->glyph->bitmap.rows);
-      Machine_Image* image = Machine_ImagesContext_createDirect(fontsContext->imageContext, Machine_PixelFormat_GRAYSCALE, self->face->glyph->bitmap.width, self->face->glyph->bitmap.rows, temporary);
+      if (self->face->glyph->bitmap.buffer) {
+        Machine_ByteBuffer_appendBytes(temporary, self->face->glyph->bitmap.buffer,
+                                       (size_t)self->face->glyph->bitmap.width * (size_t)self->face->glyph->bitmap.rows);
+      }
+      Machine_Image* image = Machine_ImagesContext_createDirect(
+          fontsContext->imageContext, Machine_PixelFormat_GRAYSCALE,
+          self->face->glyph->bitmap.width, self->face->glyph->bitmap.rows, temporary);
       Machine_Texture* texture = Machine_VideoContext_createTextureFromImage(fontsContext->videoContext, image);
       Map_set(self->map, codepoint,
               self->face->glyph->bitmap_left, self->face->glyph->bitmap_top,
