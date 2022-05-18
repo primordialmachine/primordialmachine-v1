@@ -7,7 +7,7 @@
 #if !defined(RING2_JUMPTARGETMODULE_JUMPTARGETMODULE1_H_INCLUDED)
 #define RING2_JUMPTARGETMODULE_JUMPTARGETMODULE1_H_INCLUDED
 
-#include "Ring2/JumpTargetModule/Configuration.h"
+#include "Ring2/Configuration.h"
 #include "Ring1/Intrinsic/CheckReturn.h"
 #include "Ring1/Intrinsic/NoReturn.h"
 #include "Ring1/Result.h"
