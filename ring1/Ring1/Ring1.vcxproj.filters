@@ -614,6 +614,9 @@
     <ClInclude Include="Ring1\Intrinsic\Inline.h">
       <Filter>Headerdateien\Ring1\Intrinsic</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\ByteBuffer.h">
+      <Filter>Headerdateien\Ring1</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring1\Intrinsic\CheckReturn.c">
@@ -789,6 +792,9 @@
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\Inline.c">
       <Filter>Quelldateien\Ring1\Intrinsic</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\ByteBuffer.c">
+      <Filter>Quelldateien\Ring1</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
