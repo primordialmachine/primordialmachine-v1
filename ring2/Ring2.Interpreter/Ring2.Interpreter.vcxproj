@@ -22,11 +22,13 @@
     <ClInclude Include="Ring2\JumpTargetModule.h" />
     <ClInclude Include="Ring2\JumpTargetModule\Configuration.h" />
     <ClInclude Include="Ring2\JumpTargetModule\JumpTargetModule1.h" />
+    <ClInclude Include="Ring2\Types\Void.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring2\JumpTargetModule.c" />
     <ClCompile Include="Ring2\JumpTargetModule\Configuration.c" />
     <ClCompile Include="Ring2\JumpTargetModule\JumpTargetModule1.c" />
+    <ClCompile Include="Ring2\Types\Void.c" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ring1\Ring1\Ring1.vcxproj">
