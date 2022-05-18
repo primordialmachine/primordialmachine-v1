@@ -23,6 +23,7 @@
     <ClInclude Include="Ring2\JumpTargetModule\Configuration.h" />
     <ClInclude Include="Ring2\JumpTargetModule\JumpTargetModule1.h" />
     <ClInclude Include="Ring2\Types\Boolean.h" />
+    <ClInclude Include="Ring2\Types\Integer.h" />
     <ClInclude Include="Ring2\Types\Real.h" />
     <ClInclude Include="Ring2\Types\Void.h" />
   </ItemGroup>
@@ -31,6 +32,7 @@
     <ClCompile Include="Ring2\JumpTargetModule\Configuration.c" />
     <ClCompile Include="Ring2\JumpTargetModule\JumpTargetModule1.c" />
     <ClCompile Include="Ring2\Types\Boolean.c" />
+    <ClCompile Include="Ring2\Types\Integer.c" />
     <ClCompile Include="Ring2\Types\Real.c" />
     <ClCompile Include="Ring2\Types\Void.c" />
   </ItemGroup>
