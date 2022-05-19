@@ -29,9 +29,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ring2\JumpTargetModule\Configuration.h">
-      <Filter>Headerdateien\Ring2\JumpTargetModule</Filter>
-    </ClInclude>
     <ClInclude Include="Ring2\JumpTargetModule\JumpTargetModule1.h">
       <Filter>Headerdateien\Ring2\JumpTargetModule</Filter>
     </ClInclude>
@@ -55,9 +52,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ring2\JumpTargetModule\Configuration.c">
-      <Filter>Quelldateien\Ring2\JumpTargetModule</Filter>
-    </ClCompile>
     <ClCompile Include="Ring2\JumpTargetModule\JumpTargetModule1.c">
       <Filter>Quelldateien\Ring2\JumpTargetModule</Filter>
     </ClCompile>
