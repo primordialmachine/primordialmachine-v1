@@ -6,38 +6,36 @@
 
 #include "Runtime/Assertions.h"
 #include "Ring2/JumpTargetModule.h"
+#include "Ring2/Operations.h"
 #include "Runtime/Status.h"
 #include "Runtime/String.h"
-#include <float.h>
-#include <inttypes.h>
 #include <math.h>
 #include <stdio.h>
 #include <string.h>
-
-size_t Machine_hashPointer_sz(void const* x) {
-  return (size_t)(uintptr_t)x;
-}
+#include "Ring1/Hash.h"
 
 int64_t Machine_hashPointer_i64(void const* x) {
-#if defined(_WIN64)
-  return (int64_t)(intptr_t)x;
-#elif defined(_WIN32)
-  return (int64_t)(intptr_t)x;
-#else
-  #error("environment not supported")
-#endif
+  int64_t temporary;
+  Ring1_Hash_toI64_p(&temporary, x);
+  return temporary;
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-Machine_Integer Machine_Boolean_getHashValue(Machine_Boolean x) {
-  // 1231 and 1237 are merely two positive and sufficiently big prime numbers.
-  return x ? 1231 : 1237;
-}
+Ring1_CheckReturn() Machine_Integer
+Machine_Boolean_getHashValue
+  (
+    Machine_Boolean x
+  )
+{ return Ring2_Boolean_getHashValue(x); }
 
-Machine_Boolean Machine_Boolean_isEqualTo(Machine_Boolean x, Machine_Boolean y) {
-  return x == y;
-}
+Ring1_CheckReturn() Machine_Boolean
+Machine_Boolean_isEqualTo
+  (
+    Machine_Boolean x,
+    Machine_Boolean y
+  )
+{ return Ring2_Boolean_isEqualTo(x, y); }
 
 Machine_String* Machine_Boolean_toString(Machine_Boolean value) {
   return value ? Machine_String_create("true", strlen("true"))
@@ -67,13 +65,20 @@ Machine_String* Machine_ForeignProcedure_toString(Machine_ForeignProcedure* x) {
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-Machine_Integer Machine_Integer_getHashValue(Machine_Integer x) {
-  return x;
-}
+Ring1_CheckReturn() Machine_Integer
+Machine_Integer_getHashValue
+  (
+    Machine_Integer x
+  )
+{ return Ring2_Integer_getHashValue(x); }
 
-Machine_Boolean Machine_Integer_isEqualTo(Machine_Integer x, Machine_Integer y) {
-  return x == y;
-}
+Ring1_CheckReturn() Machine_Boolean
+Machine_Integer_isEqualTo
+  (
+    Machine_Integer x,
+    Machine_Integer y
+  )
+{ return Ring2_Integer_isEqualTo(x, y); }
 
 Machine_String* Machine_Integer_toString(Machine_Integer x) {
   char buffer[1024 + 1];
@@ -96,38 +101,20 @@ Machine_Integer Machine_Integer_compareTo(Machine_Integer x, Machine_Integer y) 
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-Machine_Integer Machine_Real_getHashValue(Machine_Real x) {
-  switch (fpclassify(x)) {
-    case FP_INFINITE: {
-      return x > 0.0f ? 7 : 11;
-    }
-    case FP_NAN: {
-      return 13;
-    };
-    case FP_ZERO: {
-      return 17;
-    }
-    case FP_NORMAL:
-    case FP_SUBNORMAL:
-    default: // The default case handles the case when fpclassify may return an implementation
-             // defined type gracefully.
-    {
-      if (x == 0.0f)
-        x = +0.0f; // +0.0f == -0.0f. Hence, map both to +0.0f.
-      typedef union Bits {
-        int32_t i32;
-        float f32;
-      } Bits;
-      Bits bits;
-      bits.f32 = x;
-      return bits.i32;
-    }
-  };
-}
+Ring1_CheckReturn() Machine_Integer
+Machine_Real_getHashValue
+  (
+    Machine_Real x
+  )
+{ return Ring2_Real32_getHashValue(x); }
 
-Machine_Boolean Machine_Real_isEqualTo(Machine_Real x, Machine_Real y) {
-  return x == y;
-}
+Ring1_CheckReturn() Machine_Boolean
+Machine_Real_isEqualTo
+  (
+    Machine_Real x,
+    Machine_Real y
+  )
+{ return Ring2_Real32_isEqualTo(x, y); }
 
 Machine_String* Machine_Real_toString(Machine_Real x) {
   char buffer[1024 + 1];
@@ -160,14 +147,20 @@ Machine_Integer Machine_Real_compareTo(Machine_Real x, Machine_Real y) {
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-Machine_Integer Machine_Void_getHashValue(Machine_Void x) {
-  // 1249  is merely one positive and sufficiently big prime number.
-  return 1249;
-}
+Ring1_CheckReturn() Machine_Integer
+Machine_Void_getHashValue
+  (
+    Machine_Void x
+  )
+{ return Ring2_Void_getHashValue(x); }
 
-Machine_Boolean Machine_Void_isEqualTo(Machine_Void x, Machine_Void y) {
-  return Machine_Boolean_True;
-}
+Ring1_CheckReturn() Machine_Boolean
+Machine_Void_isEqualTo
+  (
+    Machine_Void x,
+    Machine_Void y
+  )
+{ return Ring2_Void_isEqualTo(x, y); }
 
 Machine_String* Machine_Void_toString(Machine_Void x) {
   return Machine_String_create("void", strlen("void"));

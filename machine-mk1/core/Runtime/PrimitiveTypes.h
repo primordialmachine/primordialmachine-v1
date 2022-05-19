@@ -19,13 +19,9 @@
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
 #include "_Eal.h" // Include for environment abstraction layer.
+#include "Ring2/Types.h"
 typedef struct Machine_String Machine_String; // Forward declaration.
 typedef struct Machine_Value Machine_Value; // Forward declaration.
-
-/// @brief The proper way to compute the size_t hash value of a pointer.
-/// @param x The pointer.
-/// @return The size_t hash value.
-size_t Machine_hashPointer_sz(void const* x);
 
 /// @brief The proper way to compute the int64_t hash value of a pointer.
 /// @param x The pointer.
@@ -36,36 +32,44 @@ int64_t Machine_hashPointer_i64(void const* x);
 /// @{
 
 /// @brief The C-level representation of the <code>Boolean</code> type.
-typedef bool Machine_Boolean;
+typedef Ring2_Boolean Machine_Boolean;
 
 /// @brief The C-level representation of the <code>Integer</code> type.
-typedef int64_t Machine_Integer;
+typedef Ring2_Integer Machine_Integer;
 
 /// @}
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /// @brief The C-level representation of the <code>true</code> value.
-#define Machine_Boolean_True (true)
+#define Machine_Boolean_True (Ring2_Boolean_True)
 
 /// @brief The C-level representation of the <code>false</code> value.
-#define Machine_Boolean_False (false)
+#define Machine_Boolean_False (Ring2_Boolean_False)
 
-Machine_Integer Machine_Boolean_getHashValue(Machine_Boolean x);
+Ring1_CheckReturn() Machine_Integer
+Machine_Boolean_getHashValue
+  (
+    Machine_Boolean x
+  );
 
 /// @brief
-/// Compare two <code>Boolean</code> values for equality.
+/// Get if a <code>Boolean</code> value is in a "equal to" relation with another <code>Boolean</code> value.
 /// @param x
 /// The first <code>Boolean</code> value.
 /// @param y
 /// The second <code>Boolean</code> value.
 /// @return
-/// @a true if
-///   the first <code>Boolean</code> value
+/// @a true if  the first <code>Boolean</code> value
 /// is equal to
 ///   the second <code>Boolean</code> value
 /// . @a false otherwise.
-Machine_Boolean Machine_Boolean_isEqualTo(Machine_Boolean x, Machine_Boolean y);
+Ring1_CheckReturn() Machine_Boolean
+Machine_Boolean_isEqualTo
+  (
+    Machine_Boolean x,
+    Machine_Boolean y
+  );
 
 /// @brief Convert a <code>Boolean</code> value to a <code>String</code> value.
 /// The resulting string is <code>true</code> if the value is <code>true</code> and
@@ -105,26 +109,32 @@ Machine_String* Machine_ForeignProcedure_toString(Machine_ForeignProcedure* x);
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /// @brief The greatest <code>Integer</code> value.
-#define Machine_Integer_Greatest INT64_MAX
+#define Machine_Integer_Greatest (Ring2_Integer_Greatest)
 
 /// @brief The least <code>Integer</code> value.
-#define Machine_Integer_Least INT64_MIN
+#define Machine_Integer_Least (Ring2_Integer_Least)
 
-Machine_Integer Machine_Integer_getHashValue(Machine_Integer x);
+Ring1_CheckReturn() Machine_Integer
+Machine_Integer_getHashValue
+  (
+    Machine_Integer x
+  );
 
 /// @brief
-/// Compare two <code>Integer</code> values for equality.
+/// Get if an <code>Integer</code> value is in a "equal to" relation with another <code>Integer</code> value.
 /// @param x
 /// The first <code>Integer</code> value.
 /// @param y
 /// The second <code>Integer</code> value.
 /// @return
-/// @a true if
-///   the first <code>Integer</code> value
-/// is equal to
-///   the second <code>Integer</code> value
-/// . @a false otherwise.
-Machine_Boolean Machine_Integer_isEqualTo(Machine_Integer x, Machine_Integer y);
+/// @a true if the first <code>Integer</code> value is in a "equal to" relation with the second <code>Integer</code> value,
+/// @a false otherwise.
+Ring1_CheckReturn() Machine_Boolean
+Machine_Integer_isEqualTo
+  (
+    Machine_Integer x,
+    Machine_Integer y
+  );
 
 /// @brief Convert an <code>Integer</code> value to a <code>String</code> value.
 /// @param x The <code>Integer</code> value.
@@ -151,7 +161,7 @@ Machine_Integer Machine_Integer_compareTo(Machine_Integer x, Machine_Integer y);
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /// @brief The C-level representation of a <code>Real</code> value.
-typedef float Machine_Real;
+typedef Ring2_Real32 Machine_Real;
 
 Machine_Integer Machine_Real_getHashValue(Machine_Real x);
 
@@ -204,10 +214,10 @@ Machine_Integer Machine_Real_compareTo(Machine_Real x, Machine_Real y);
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /// @brief The C-level representation of the <code>void</code> value.
-#define Machine_Void_Void (0)
+#define Machine_Void_Void (Ring2_Void_Void)
 
 /// @brief The C-level representation of the <code>Void</code> type.
-typedef int Machine_Void;
+typedef Ring2_Void Machine_Void;
 
 Machine_Integer Machine_Void_getHashValue(Machine_Void x);
 

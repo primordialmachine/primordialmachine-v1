@@ -22,6 +22,12 @@
     <ClInclude Include="Ring2\Configuration.h" />
     <ClInclude Include="Ring2\JumpTargetModule.h" />
     <ClInclude Include="Ring2\JumpTargetModule\JumpTargetModule1.h" />
+    <ClInclude Include="Ring2\Operations.h" />
+    <ClInclude Include="Ring2\Operations\Boolean.h" />
+    <ClInclude Include="Ring2\Operations\Integer.h" />
+    <ClInclude Include="Ring2\Operations\Real32.h" />
+    <ClInclude Include="Ring2\Operations\Real64.h" />
+    <ClInclude Include="Ring2\Operations\Void.h" />
     <ClInclude Include="Ring2\Types.h" />
     <ClInclude Include="Ring2\Types\Boolean.h" />
     <ClInclude Include="Ring2\Types\Integer.h" />
@@ -32,6 +38,12 @@
     <ClCompile Include="Ring2\Configuration.c" />
     <ClCompile Include="Ring2\JumpTargetModule.c" />
     <ClCompile Include="Ring2\JumpTargetModule\JumpTargetModule1.c" />
+    <ClCompile Include="Ring2\Operations.c" />
+    <ClCompile Include="Ring2\Operations\Boolean.c" />
+    <ClCompile Include="Ring2\Operations\Integer.c" />
+    <ClCompile Include="Ring2\Operations\Real32.c" />
+    <ClCompile Include="Ring2\Operations\Real64.c" />
+    <ClCompile Include="Ring2\Operations\Void.c" />
     <ClCompile Include="Ring2\Types.c" />
     <ClCompile Include="Ring2\Types\Boolean.c" />
     <ClCompile Include="Ring2\Types\Integer.c" />

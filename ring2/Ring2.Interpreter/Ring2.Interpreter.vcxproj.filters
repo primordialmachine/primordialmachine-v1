@@ -27,6 +27,12 @@
     <Filter Include="Quelldateien\Ring2\JumpTargetModule">
       <UniqueIdentifier>{fe89f952-ffb7-4c4f-9176-bc5089e13fc9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring2\Operations">
+      <UniqueIdentifier>{3a09ffb0-1d7b-4816-839e-fdff648bbb79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring2\Operations">
+      <UniqueIdentifier>{b6362410-b86e-4de8-95be-fa13ff7449e9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring2\JumpTargetModule\JumpTargetModule1.h">
@@ -53,6 +59,24 @@
     <ClInclude Include="Ring2\Types.h">
       <Filter>Headerdateien\Ring2</Filter>
     </ClInclude>
+    <ClInclude Include="Ring2\Operations\Boolean.h">
+      <Filter>Headerdateien\Ring2\Operations</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Operations\Integer.h">
+      <Filter>Headerdateien\Ring2\Operations</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Operations\Real32.h">
+      <Filter>Headerdateien\Ring2\Operations</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Operations\Real64.h">
+      <Filter>Headerdateien\Ring2\Operations</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Operations\Void.h">
+      <Filter>Headerdateien\Ring2\Operations</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Operations.h">
+      <Filter>Headerdateien\Ring2</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring2\JumpTargetModule\JumpTargetModule1.c">
@@ -77,6 +101,24 @@
       <Filter>Quelldateien\Ring2</Filter>
     </ClCompile>
     <ClCompile Include="Ring2\Types.c">
+      <Filter>Quelldateien\Ring2</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Operations\Boolean.c">
+      <Filter>Quelldateien\Ring2\Operations</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Operations\Integer.c">
+      <Filter>Quelldateien\Ring2\Operations</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Operations\Real32.c">
+      <Filter>Quelldateien\Ring2\Operations</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Operations\Real64.c">
+      <Filter>Quelldateien\Ring2\Operations</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Operations\Void.c">
+      <Filter>Quelldateien\Ring2\Operations</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Operations.c">
       <Filter>Quelldateien\Ring2</Filter>
     </ClCompile>
   </ItemGroup>
