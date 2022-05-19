@@ -50,6 +50,9 @@
     <ClInclude Include="Ring2\Configuration.h">
       <Filter>Headerdateien\Ring2</Filter>
     </ClInclude>
+    <ClInclude Include="Ring2\Types.h">
+      <Filter>Headerdateien\Ring2</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring2\JumpTargetModule\JumpTargetModule1.c">
@@ -71,6 +74,9 @@
       <Filter>Quelldateien\Ring2\Types</Filter>
     </ClCompile>
     <ClCompile Include="Ring2\Configuration.c">
+      <Filter>Quelldateien\Ring2</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Types.c">
       <Filter>Quelldateien\Ring2</Filter>
     </ClCompile>
   </ItemGroup>
