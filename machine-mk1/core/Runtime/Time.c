@@ -6,7 +6,7 @@
 
 #include "Ring1/Time.h"
 #include "Runtime/Status.h"
-#include "Ring2/JumpTargetModule.h"
+#include "Ring2/JumpTarget.h"
 
 uint64_t Machine_Time_getNowMilliseconds() {
   uint64_t temporary;

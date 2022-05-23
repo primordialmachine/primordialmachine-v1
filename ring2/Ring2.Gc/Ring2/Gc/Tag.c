@@ -61,9 +61,6 @@ and_u8
 
 #define Flags_Color_Mask (Flags_Color_White | Flags_Color_Gray | Flags_Color_Black)
 
-/// @brief Tag flag indicating a class type object tag.
-#define Machine_Flag_Class (8)
-
 void
 Ring2_Gc_Tag_initialize
   (
@@ -145,29 +142,6 @@ Ring2_Gc_Tag_notifyWeakReferences
     weakReference->callback(weakReference->context);
     free(weakReference);
   }
-}
-
-void
-Ring2_Gc_Tag_setClassType
-  (
-    Ring2_Gc_Tag* tag,
-    bool classType
-  )
-{
-  if (classType) {
-    tag->flags = or_u8(tag->flags, Machine_Flag_Class);
-  } else {
-    tag->flags = clear_u8(tag->flags, Machine_Flag_Class);
-  }
-}
-
-bool
-Ring2_Gc_Tag_getClassType
-  (
-    Ring2_Gc_Tag const* tag
-  )
-{
-  return Machine_Flag_Class == and_u8(tag->flags, Machine_Flag_Class);
 }
 
 void

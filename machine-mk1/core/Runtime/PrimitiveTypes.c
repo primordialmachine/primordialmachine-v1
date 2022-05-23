@@ -5,7 +5,7 @@
 #include "Runtime/PrimitiveTypes.h"
 
 #include "Runtime/Assertions.h"
-#include "Ring2/JumpTargetModule.h"
+#include "Ring2/JumpTarget.h"
 #include "Ring2/Operations.h"
 #include "Runtime/Status.h"
 #include "Runtime/String.h"

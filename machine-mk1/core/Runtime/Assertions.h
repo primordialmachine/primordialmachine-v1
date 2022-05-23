@@ -4,7 +4,7 @@
 #if !defined(MACHINE_RUNTIME_ASSERTIONS_H_INCLUDED)
 #define MACHINE_RUNTIME_ASSERTIONS_H_INCLUDED
 
-#include "Ring2/JumpTargetModule.h"
+#include "Ring2/JumpTarget.h"
 #include "Runtime/LogModule.h"
 #include "Runtime/Status.h"
 

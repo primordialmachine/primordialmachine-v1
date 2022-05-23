@@ -102,29 +102,6 @@ Ring2_Gc_Tag_notifyWeakReferences
     Ring2_Gc_Tag* tag
   );
 
-/// @brief Set or clear the "class type" flag of this tag.
-/// @param tag A pointer to this tag.
-/// @param classType
-/// @a true to set the "class type" flag of this tag,
-/// @a false to clear the "class type" flag of this tag.
-void
-Ring2_Gc_Tag_setClassType
-  (
-    Ring2_Gc_Tag *tag,
-    bool classType
-  );
-
-/// @brief Get if the "class type" flag of this tag is set or cleared.
-/// @param tag A pointer to this tag.
-/// @return
-/// @a true if the "class type" flag of this tag is set,
-/// @a false if the "class type" flag of this tag is cleared.
-bool
-Ring2_Gc_Tag_getClassType
-  (
-    Ring2_Gc_Tag const* tag
-  );
-
 /// @brief Color this tag "white".
 /// @param tag A pointer to this tag.
 /// @post This tag is colored "white".

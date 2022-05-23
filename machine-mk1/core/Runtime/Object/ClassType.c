@@ -7,7 +7,7 @@
 #include "Ring1/Status.h"
 #include "Runtime/Assertions.h"
 #include "Runtime/Gc/Gc.h"
-#include "Ring2/JumpTargetModule.h"
+#include "Ring2/JumpTarget.h"
 #include "Runtime/Object/ClassType.module.h"
 #include "Runtime/Object/InterfaceType.module.h"
 #include "Runtime/Type.module.h"
@@ -49,7 +49,6 @@ Machine_ClassType* Machine_createClassType(Machine_CreateClassTypeArgs* args) {
     .visit = (Ring2_Gc_VisitCallback*)&Machine_ClassType_visit,
   };
   Machine_Gc_AllocationArguments const allocationArguments = {
-    .prefixSize = 0,
     .suffixSize = sizeof(Machine_ClassType),
     .type = &gcType,
   };

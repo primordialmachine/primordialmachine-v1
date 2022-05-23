@@ -16,10 +16,6 @@ typedef struct Machine_Object_Class Machine_Object_Class;
 
 typedef struct Machine_Object Machine_Object;
 
-typedef struct Machine_ClassObjectTag {
-  Machine_ClassType* classType;
-} Machine_ClassObjectTag;
-
 struct Machine_Object_Class {
   Machine_Integer (*getHashValue)(Machine_Object const* self);
   Machine_Boolean(*isEqualTo)(Machine_Object const* self, Machine_Object const* other);
@@ -27,14 +23,8 @@ struct Machine_Object_Class {
 };
 
 struct Machine_Object {
-  char dummy;
+  Machine_ClassType* classType;
 };
-
-Machine_ClassObjectTag* o2cot(void* src);
-
-Ring2_Gc_Tag* cot2t(Machine_ClassObjectTag* src);
-
-Machine_ClassObjectTag* t2cot(Ring2_Gc_Tag* src);
 
 Machine_ClassType* Machine_Object_getType();
 

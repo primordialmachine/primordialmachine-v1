@@ -29,9 +29,6 @@ void Machine_Gc_unlock(void* object);
 /// @brief Arguments for a call to Machine_Gc_allocate.
 typedef struct Machine_Gc_AllocationArguments {
 
-  /// @brief The size, in Bytes, of the prefix.
-  size_t prefixSize;
-
   /// @brief The size, in Bytes, of the suffix.
   size_t suffixSize;
 

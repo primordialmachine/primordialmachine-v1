@@ -7,7 +7,7 @@
 #include "Ring1/Status.h"
 #include "Runtime/Enumeration/EnumerationType.module.h"
 #include "Runtime/Gc/Gc.h"
-#include "Ring2/JumpTargetModule.h"
+#include "Ring2/JumpTarget.h"
 #include "Runtime/Type.module.h"
 
 static void Machine_EnumerationType_finalize(void *gc, Machine_EnumerationType* self) {
@@ -24,7 +24,6 @@ Machine_EnumerationType* Machine_createEnumerationType(Machine_CreateEnumeration
     .visit = (Ring2_Gc_VisitCallback*)Machine_EnumerationType_visit,
   };
   Machine_Gc_AllocationArguments const allocationArguments = {
-    .prefixSize = 0,
     .suffixSize = sizeof(Machine_EnumerationType),
     .type = &gcType,
   };

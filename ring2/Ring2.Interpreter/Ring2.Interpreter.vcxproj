@@ -20,8 +20,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring2\Configuration.h" />
-    <ClInclude Include="Ring2\JumpTargetModule.h" />
-    <ClInclude Include="Ring2\JumpTargetModule\JumpTargetModule1.h" />
+    <ClInclude Include="Ring2\JumpTarget.h" />
+    <ClInclude Include="Ring2\JumpTarget\JumpTarget1.h" />
     <ClInclude Include="Ring2\Operations.h" />
     <ClInclude Include="Ring2\Operations\Boolean.h" />
     <ClInclude Include="Ring2\Operations\Integer.h" />
@@ -36,8 +36,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring2\Configuration.c" />
-    <ClCompile Include="Ring2\JumpTargetModule.c" />
-    <ClCompile Include="Ring2\JumpTargetModule\JumpTargetModule1.c" />
+    <ClCompile Include="Ring2\JumpTarget.c" />
+    <ClCompile Include="Ring2\JumpTarget\JumpTarget1.c" />
     <ClCompile Include="Ring2\Operations.c" />
     <ClCompile Include="Ring2\Operations\Boolean.c" />
     <ClCompile Include="Ring2\Operations\Integer.c" />

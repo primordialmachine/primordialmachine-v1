@@ -41,14 +41,14 @@ void Machine_Gc_unlock(void* object) {
 
 void* Machine_Gc_allocate(Machine_Gc_AllocationArguments const* arguments) {
   void* pt = NULL;
-  if (Ring1_Memory_allocate(&pt, arguments->prefixSize + sizeof(Ring2_Gc_Tag)
+  if (Ring1_Memory_allocate(&pt, sizeof(Ring2_Gc_Tag)
                             + arguments->suffixSize)) {
     Ring1_Status_set(Ring1_Status_Success);
     return NULL;
   }
   g_objectCount++;
-  Ring1_Memory_zeroFill(pt, arguments->prefixSize + sizeof(Ring2_Gc_Tag) + arguments->suffixSize);
-  Ring2_Gc_Tag* t = (Ring2_Gc_Tag*)(((char*)pt) + arguments->prefixSize);
+  Ring1_Memory_zeroFill(pt, sizeof(Ring2_Gc_Tag) + arguments->suffixSize);
+  Ring2_Gc_Tag* t = (Ring2_Gc_Tag*)(((char*)pt));
   Ring2_Gc_Tag_initialize(t);
   t->type = arguments->type;
   t->objectNext = g_objects;
@@ -107,14 +107,8 @@ void Machine_Gc_run(Ring2_Gc_RunStatistics *statistics) {
       // Notify weak references.
       Ring2_Gc_Tag_notifyWeakReferences(tag);
       // Deallocate.
-      if (Ring2_Gc_Tag_getClassType(tag)) {
-        Machine_ClassObjectTag* classObjectTag = t2cot(tag);
-        Ring2_Gc_Tag_uninitialize(tag);
-        Ring1_Memory_deallocate(classObjectTag);
-      } else {
-        Ring2_Gc_Tag_uninitialize(tag);
-        Ring1_Memory_deallocate(tag);
-      }
+      Ring2_Gc_Tag_uninitialize(tag);
+      Ring1_Memory_deallocate(tag);
       g_objectCount--;
       if (statistics) statistics->sweep.dead++;
     } else {

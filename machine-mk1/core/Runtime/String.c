@@ -6,7 +6,7 @@
 
 #include "Runtime/Assertions.h"
 #include "Runtime/Gc/Gc.h"
-#include "Ring2/JumpTargetModule.h"
+#include "Ring2/JumpTarget.h"
 #include "Runtime/Status.h"
 
 struct Machine_String {
@@ -29,7 +29,6 @@ Machine_String* Machine_String_create_noraise(char const* p, size_t n) {
     return NULL;
   }
   Machine_Gc_AllocationArguments const allocationArguments = {
-    .prefixSize = 0,
     .suffixSize = sizeof(Machine_String) + n,
     .type = &g_gcType,
   };
@@ -53,7 +52,6 @@ Machine_String* Machine_String_create(char const* p, size_t n) {
     Ring2_jump();
   }
   Machine_Gc_AllocationArguments const allocationArguments = {
-    .prefixSize = 0,
     .suffixSize = sizeof(Machine_String) + n,
     .type = &g_gcType,
   };
@@ -85,7 +83,6 @@ Machine_String* Machine_String_concatenate(Machine_String const* self,
     Ring2_jump();
   }
   Machine_Gc_AllocationArguments const allocationArguments = {
-    .prefixSize = 0,
     .suffixSize = sizeof(Machine_String) + m,
     .type = &g_gcType,
   };

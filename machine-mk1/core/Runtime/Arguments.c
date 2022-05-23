@@ -5,7 +5,7 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/Arguments.h"
 
-#include "Ring2/JumpTargetModule.h"
+#include "Ring2/JumpTarget.h"
 #include "Runtime/Object/Object.h"
 #include "Runtime/Status.h"
 

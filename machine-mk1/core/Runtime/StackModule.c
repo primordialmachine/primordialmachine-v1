@@ -6,7 +6,7 @@
 
 #include "_Eal.h"
 #include "Ring1/Status.h"
-#include "Ring2/JumpTargetModule.h"
+#include "Ring2/JumpTarget.h"
 
 typedef struct Stack {
   Machine_Value* elements;

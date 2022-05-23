@@ -74,7 +74,6 @@ static Map* Map_create() {
     .visit = (Ring2_Gc_VisitCallback*)&Map_visit,
   };
   Machine_Gc_AllocationArguments const allocationArguments = {
-    .prefixSize = 0,
     .suffixSize = sizeof(Map),
     .type = &gcType,
   };

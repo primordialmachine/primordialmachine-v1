@@ -12,7 +12,7 @@
 #include "Runtime/Io/ExistingFilePolicy.h"
 #include "Runtime/Io/FileAccessMode.h"
 #include "Runtime/Io/NonExistingFilePolicy.h"
-#include "Ring2/JumpTargetModule.h"
+#include "Ring2/JumpTarget.h"
 #include "Runtime/LogModule.h"
 #include "Runtime/Status.h"
 #include "Runtime/String.h"

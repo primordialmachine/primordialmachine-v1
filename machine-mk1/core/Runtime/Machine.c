@@ -2,7 +2,7 @@
 #include "Runtime/Machine.h"
 
 #include "Runtime/Gc/Gc.h"
-#include "Ring2/JumpTargetModule.h"
+#include "Ring2/JumpTarget.h"
 #include "Runtime/LogModule.h"
 #include "Runtime/StackModule.h"
 #include "Runtime/StaticVariablesModule.h"

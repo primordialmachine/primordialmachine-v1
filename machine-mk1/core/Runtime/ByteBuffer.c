@@ -6,7 +6,7 @@
 
 #include "Ring1/ByteBuffer.h"
 #include "Ring1/Status.h"
-#include "Ring2/JumpTargetModule.h"
+#include "Ring2/JumpTarget.h"
 #include "Runtime/Object/Object.h"
 #include "Runtime/Status.h"
 #include "Runtime/Value.h"

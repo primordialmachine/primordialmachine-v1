@@ -21,24 +21,21 @@
     <Filter Include="Quelldateien\Ring2\Types">
       <UniqueIdentifier>{957f1b69-1b6a-4557-9428-7ed44e7cc597}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headerdateien\Ring2\JumpTargetModule">
-      <UniqueIdentifier>{f85d387a-7942-46cf-8291-8e7dd8c73a99}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Quelldateien\Ring2\JumpTargetModule">
-      <UniqueIdentifier>{fe89f952-ffb7-4c4f-9176-bc5089e13fc9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Headerdateien\Ring2\Operations">
       <UniqueIdentifier>{3a09ffb0-1d7b-4816-839e-fdff648bbb79}</UniqueIdentifier>
     </Filter>
     <Filter Include="Quelldateien\Ring2\Operations">
       <UniqueIdentifier>{b6362410-b86e-4de8-95be-fa13ff7449e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring2\JumpTarget">
+      <UniqueIdentifier>{f85d387a-7942-46cf-8291-8e7dd8c73a99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring2\JumpTarget">
+      <UniqueIdentifier>{fe89f952-ffb7-4c4f-9176-bc5089e13fc9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ring2\JumpTargetModule\JumpTargetModule1.h">
-      <Filter>Headerdateien\Ring2\JumpTargetModule</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring2\JumpTargetModule.h">
+    <ClInclude Include="Ring2\JumpTarget.h">
       <Filter>Headerdateien\Ring2</Filter>
     </ClInclude>
     <ClInclude Include="Ring2\Types\Boolean.h">
@@ -77,12 +74,12 @@
     <ClInclude Include="Ring2\Operations.h">
       <Filter>Headerdateien\Ring2</Filter>
     </ClInclude>
+    <ClInclude Include="Ring2\JumpTarget\JumpTarget1.h">
+      <Filter>Headerdateien\Ring2\JumpTarget</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ring2\JumpTargetModule\JumpTargetModule1.c">
-      <Filter>Quelldateien\Ring2\JumpTargetModule</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring2\JumpTargetModule.c">
+    <ClCompile Include="Ring2\JumpTarget.c">
       <Filter>Quelldateien\Ring2</Filter>
     </ClCompile>
     <ClCompile Include="Ring2\Types\Boolean.c">
@@ -120,6 +117,9 @@
     </ClCompile>
     <ClCompile Include="Ring2\Operations.c">
       <Filter>Quelldateien\Ring2</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\JumpTarget\JumpTarget1.c">
+      <Filter>Quelldateien\Ring2\JumpTarget</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

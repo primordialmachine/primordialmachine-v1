@@ -3,7 +3,7 @@
 
 #include "Runtime/Arguments.h"
 #include "Runtime/Gc/Gc.h"
-#include "Ring2/JumpTargetModule.h"
+#include "Ring2/JumpTarget.h"
 
 static void callback(void* context) {
   Machine_Value_setVoid(&((Machine_WeakReference*)context)->value, Machine_Void_Void);
