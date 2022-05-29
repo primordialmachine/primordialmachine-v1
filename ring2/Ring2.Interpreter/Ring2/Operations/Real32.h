@@ -135,6 +135,90 @@ Ring2_Real32_isGreaterThanOrEqualTo
     Ring2_Real32 x,
     Ring2_Real32 y
   );
+  
+/// @brief
+/// Compute the sum of a <code>Real32</code> value and another <code>Real32</code> value.
+/// @param x
+/// The first <code>Real32</code> value, the augend.
+/// @param y
+/// The second <code>Real32</code> value, the augend.
+/// @return
+/// The sum <c>x + y</c> of the addend <c>x</c> and the augend <c>y</c>.
+Ring1_CheckReturn() Ring2_Real32
+Ring2_Real32_add
+  (
+    Ring2_Real32 x,
+    Ring2_Real32 y
+  );
+
+/// @brief
+/// Compute the difference of a <code>Real32</code> value and another <code>Real32</code> value.
+/// @param x
+/// The first <code>Real32</code> value, the minuend.
+/// @param y
+/// The second <code>Real32</code> value, the subtrahend.
+/// @return
+/// The difference <c>x - y</c> of the minuend <c>x</c> and the subtrahend <c>y</c>.
+Ring1_CheckReturn() Ring2_Real32
+Ring2_Real32_subtract
+  (
+    Ring2_Real32 x,
+    Ring2_Real32 y
+  );
+
+/// @brief
+/// Compute the product of a <code>Real32</code> value and another <code>Real32</code> value.
+/// @param x
+/// The first <code>Real32</code> value, the multiplier.
+/// @param y
+/// The second <code>Real32</code> value, the multiplicand.
+/// @return
+/// The product <c>x * y</c> of the multiplier <c>x</c> and the multiplicand <c>y</c>.
+Ring1_CheckReturn() Ring2_Real32
+Ring2_Real32_multiply
+  (
+    Ring2_Real32 x,
+    Ring2_Real32 y
+  );
+
+/// @brief
+/// Compute the quotient of a <code>Real32</code> value and another <code>Real32</code> value.
+/// @param x
+/// The first <code>Real32</code> value, the dividend.
+/// @param y
+/// The second <code>Real32</code> value, the divisor.
+/// @return
+/// The quotient <c>x / y</c> of the dividend <c>x</c> and the divisor <c>y</c>.
+Ring1_CheckReturn() Ring2_Real32
+Ring2_Real32_divide
+  (
+    Ring2_Real32 x,
+    Ring2_Real32 y
+  );
+
+/// @brief
+/// Compute the affirmation of an <code>Real32</code> value.
+/// @param x
+/// The <code>Real32</code> value.
+/// @return
+/// The affirmation <c>+x</c>.
+Ring1_CheckReturn() Ring2_Real32
+Ring2_Real32_affirmate
+  (
+    Ring2_Real32 x
+  );
+
+/// @brief
+/// Compute the negation of an <code>Real32</code> value.
+/// @param x
+/// The <code>Real32</code> value.
+/// @return
+/// The negation <c>-x</c>.
+Ring1_CheckReturn() Ring2_Real32
+Ring2_Real32_negate
+  (
+    Ring2_Real32 x
+  );
 
 #endif // Ring2_Configuration_withReal
 

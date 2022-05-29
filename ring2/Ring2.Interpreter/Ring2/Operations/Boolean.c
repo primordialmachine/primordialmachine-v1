@@ -41,6 +41,66 @@ Ring2_Boolean_isNotEqualTo
     Ring2_Boolean x,
     Ring2_Boolean y
   )
-{
-  return !Ring2_Boolean_isEqualTo(x, y);
-}
+{ return !Ring2_Boolean_isEqualTo(x, y); }
+
+Ring1_CheckReturn() Ring2_Boolean
+Ring2_Boolean_isLowerThan
+  (
+    Ring2_Boolean x,
+    Ring2_Boolean y
+  )
+{ return x < y; }
+
+Ring1_CheckReturn() Ring2_Boolean
+Ring2_Boolean_isLowerThanOrEqualTo
+  (
+    Ring2_Boolean x,
+    Ring2_Boolean y
+  )
+{ return x <= y; }
+
+Ring1_CheckReturn() Ring2_Boolean
+Ring2_Boolean_isGreaterThan
+  (
+    Ring2_Boolean x,
+    Ring2_Boolean y
+  )
+{ return x > y;}
+
+Ring1_CheckReturn() Ring2_Boolean
+Ring2_Boolean_isGreaterThanOrEqualTo
+  (
+    Ring2_Boolean x,
+    Ring2_Boolean y
+  )
+{ return x >= y; }
+
+Ring1_CheckReturn() Ring2_Boolean
+Ring2_Boolean_and
+  (
+    Ring2_Boolean x,
+    Ring2_Boolean y
+  )
+{ return x && y; }
+
+Ring1_CheckReturn() Ring2_Boolean
+Ring2_Boolean_or
+  (
+    Ring2_Boolean x,
+    Ring2_Boolean y
+  )
+{ return x || y; }
+
+Ring1_CheckReturn() Ring2_Boolean
+Ring2_Boolean_affirmate
+  (
+    Ring2_Boolean x
+  )
+{ return x; }
+
+Ring1_CheckReturn() Ring2_Boolean
+Ring2_Boolean_negate
+  (
+    Ring2_Boolean x
+  )
+{ return !x; }

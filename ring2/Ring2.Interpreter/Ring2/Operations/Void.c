@@ -39,3 +39,35 @@ Ring2_Void_isNotEqualTo
     Ring2_Void y
   )
 { return !Ring2_Void_isEqualTo(x, y); }
+
+Ring1_CheckReturn() Ring2_Boolean
+Ring2_Void_isLowerThan
+  (
+    Ring2_Void x,
+    Ring2_Void y
+  )
+{ return false; }
+
+Ring1_CheckReturn() Ring2_Boolean
+Ring2_Void_isLowerThanOrEqualTo
+  (
+    Ring2_Void x,
+    Ring2_Void y
+  )
+{ return true; }
+
+Ring1_CheckReturn() Ring2_Boolean
+Ring2_Void_isGreaterThan
+  (
+    Ring2_Void x,
+    Ring2_Void y
+  )
+{ return false; }
+
+Ring1_CheckReturn() Ring2_Boolean
+Ring2_Void_isGreaterThanOrEqualTo
+  (
+    Ring2_Void x,
+    Ring2_Void y
+  )
+{ return true; }

@@ -77,6 +77,124 @@ Ring2_Boolean_isNotEqualTo
     Ring2_Boolean y
   );
 
+/// @brief
+/// Get if an <code>Boolean</code> value is in the "lower than" relation with another <code>Boolean</code> value.
+/// @param x
+/// The first <code>Boolean</code> value.
+/// @param y
+/// The second <code>Boolean</code> value.
+/// @return
+/// @a true if the first <code>Boolean</code> value is in the "lower than" relation with th eother <code>Boolean</code> value,
+/// @a false otherwise.
+Ring1_CheckReturn() Ring2_Boolean
+Ring2_Boolean_isLowerThan
+  (
+    Ring2_Boolean x,
+    Ring2_Boolean y
+  );
+
+/// @brief
+/// Get if an <code>Boolean</code> value is in the "lower than or equal to" relation with another <code>Boolean</code> value.
+/// @param x
+/// The first <code>Boolean</code> value.
+/// @param y
+/// The second <code>Boolean</code> value.
+/// @return
+/// @a true if the first <code>Boolean</code> value is in the "lower than or equal to" relation with the second <code>Boolean</code> value,
+/// @a false otherwise.
+Ring1_CheckReturn() Ring2_Boolean
+Ring2_Boolean_isLowerThanOrEqualTo
+  (
+    Ring2_Boolean x,
+    Ring2_Boolean y
+  );
+
+/// @brief
+/// Get if a <code>Boolean</code> value is in the "greater than" relation with another <code>Boolean</code> value.
+/// @param x
+/// The first <code>Boolean</code> value.
+/// @param y
+/// The second <code>Boolean</code> value.
+/// @return
+/// @a true if the first <code>Boolean</code> value is in the "greater than" relation with the other <code>Boolean</code> value,
+/// @a false otherwise.
+Ring1_CheckReturn() Ring2_Boolean
+Ring2_Boolean_isGreaterThan
+  (
+    Ring2_Boolean x,
+    Ring2_Boolean y
+  );
+
+/// @brief
+/// Get if a <code>Boolean</code> value is in the "greater than or equal to" relation with another <code>Boolean</code> value.
+/// @param x
+/// The first <code>Boolean</code> value.
+/// @param y
+/// The second <code>Boolean</code> value.
+/// @return
+/// @a true if the first <code>Boolean</code> value is in the "greater than or equal to" relation with the other <code>Boolean</code> value,
+/// @a false otherwise.
+Ring1_CheckReturn() Ring2_Boolean
+Ring2_Boolean_isGreaterThanOrEqualTo
+  (
+    Ring2_Boolean x,
+    Ring2_Boolean y
+  );
+  
+/// @brief
+/// Compute the logical and of a <code>Boolean</code> value and another <code>Boolean</code> value.
+/// @param x
+/// The first <code>Boolean</code> value.
+/// @param y
+/// The second <code>Boolean</code> value.
+/// @return
+/// The logical and <c>and(x, y)</c> of <c>x</c> and <c>y</c>.
+Ring1_CheckReturn() Ring2_Boolean
+Ring2_Boolean_and
+  (
+    Ring2_Boolean x,
+    Ring2_Boolean y
+  );
+
+/// @brief
+/// Compute the logical or of a <code>Boolean</code> value and another <code>Boolean</code> value.
+/// @param x
+/// The first <code>Boolean</code> value.
+/// @param y
+/// The second <code>Boolean</code> value.
+/// @return
+/// The logical or <c>or(x, y)</c> of <c>x</c> and <c>y</c>.
+Ring1_CheckReturn() Ring2_Boolean
+Ring2_Boolean_or
+  (
+    Ring2_Boolean x,
+    Ring2_Boolean y
+  );
+
+/// @brief
+/// Compute the affirmation of a <code>Boolean</code> value.
+/// @param x
+/// The <code>Boolean</code> value.
+/// @return
+/// The affirmation <c>id x</c>.
+Ring1_CheckReturn() Ring2_Boolean
+Ring2_Boolean_affirmate
+  (
+    Ring2_Boolean x
+  );
+
+/// @brief
+/// Compute the negation of a <code>Boolean</code> value.
+/// @param x
+/// The <code>Boolean</code> value.
+/// @return
+/// The negation <c>neg x</c>.
+Ring1_CheckReturn() Ring2_Boolean
+Ring2_Boolean_negate
+  (
+    Ring2_Boolean x
+  );
+
 #endif // Ring2_Configuration_withBoolean
 
 #endif // RING2_OPERATIONS_BOOLEAN_H_INCLUDED

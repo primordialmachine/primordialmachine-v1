@@ -7,8 +7,23 @@
 #if !defined(RING2_TYPES_H_INCLUDED)
 #define RING2_TYPES_H_INCLUDED
 
+#include "Ring1/Intrinsic/CheckReturn.h"
 #include "Ring2/Configuration.h"
 #include "Ring1/Result.h"
+
+/// @brief Starts up the "types" module.
+/// @remarks Also starts up the "jump target" module.
+Ring1_CheckReturn() Ring1_Result
+Ring2_TypesModule_startup
+  (
+  );
+
+/// @brief Shuts down the "types" module.
+/// @remarks Also shuts down the "jump target" module.
+void
+Ring2_TypesModule_shutdown
+  (
+  );
 
 #if defined(Ring2_Configuration_withBoolean) && 1 == Ring2_Configuration_withBoolean
 

@@ -74,3 +74,49 @@ Ring2_Integer_isGreaterThanOrEqualTo
     Ring2_Integer y
   )
 { return x >= y; }
+
+Ring1_CheckReturn() Ring2_Integer
+Ring2_Integer_add
+  (
+    Ring2_Integer x,
+    Ring2_Integer y
+  )
+{ return x + y; }
+
+Ring1_CheckReturn() Ring2_Integer
+Ring2_Integer_subtract
+  (
+    Ring2_Integer x,
+    Ring2_Integer y
+  )
+{ return x - y; }
+
+Ring1_CheckReturn() Ring2_Integer
+Ring2_Integer_multiply
+  (
+    Ring2_Integer x,
+    Ring2_Integer y
+  )
+{ return x * y; }
+
+Ring1_CheckReturn() Ring2_Integer
+Ring2_Integer_divide
+  (
+    Ring2_Integer x,
+    Ring2_Integer y
+  )
+{ return x / y; }
+
+Ring1_CheckReturn() Ring2_Integer
+Ring2_Integer_affirmate
+  (
+    Ring2_Integer x
+  )
+{ return +x; }
+
+Ring1_CheckReturn() Ring2_Integer
+Ring2_Integer_negate
+  (
+    Ring2_Integer x
+  )
+{ return -x; }

@@ -136,6 +136,90 @@ Ring2_Real64_isGreaterThanOrEqualTo
     Ring2_Real64 y
   );
 
+/// @brief
+/// Compute the sum of a <code>Real64</code> value and another <code>Real64</code> value.
+/// @param x
+/// The first <code>Real64</code> value, the augend.
+/// @param y
+/// The second <code>Real64</code> value, the augend.
+/// @return
+/// The sum <c>x + y</c> of the addend <c>x</c> and the augend <c>y</c>.
+Ring1_CheckReturn() Ring2_Real64
+Ring2_Real64_add
+  (
+    Ring2_Real64 x,
+    Ring2_Real64 y
+  );
+
+/// @brief
+/// Compute the difference of a <code>Real64</code> value and another <code>Real64</code> value.
+/// @param x
+/// The first <code>Real64</code> value, the minuend.
+/// @param y
+/// The second <code>Real64</code> value, the subtrahend.
+/// @return
+/// The difference <c>x - y</c> of the minuend <c>x</c> and the subtrahend <c>y</c>.
+Ring1_CheckReturn() Ring2_Real64
+Ring2_Real64_subtract
+  (
+    Ring2_Real64 x,
+    Ring2_Real64 y
+  );
+
+/// @brief
+/// Compute the product of a <code>Real64</code> value and another <code>Real64</code> value.
+/// @param x
+/// The first <code>Real64</code> value, the multiplier.
+/// @param y
+/// The second <code>Real64</code> value, the multiplicand.
+/// @return
+/// The product <c>x * y</c> of the multiplier <c>x</c> and the multiplicand <c>y</c>.
+Ring1_CheckReturn() Ring2_Real64
+Ring2_Real64_multiply
+  (
+    Ring2_Real64 x,
+    Ring2_Real64 y
+  );
+
+/// @brief
+/// Compute the quotient of a <code>Real64</code> value and another <code>Real64</code> value.
+/// @param x
+/// The first <code>Real64</code> value, the dividend.
+/// @param y
+/// The second <code>Real64</code> value, the divisor.
+/// @return
+/// The quotient <c>x / y</c> of the dividend <c>x</c> and the divisor <c>y</c>.
+Ring1_CheckReturn() Ring2_Real64
+Ring2_Real64_divide
+  (
+    Ring2_Real64 x,
+    Ring2_Real64 y
+  );
+
+/// @brief
+/// Compute the affirmation of an <code>Real64</code> value.
+/// @param x
+/// The <code>Real64</code> value.
+/// @return
+/// The affirmation <c>+x</c>.
+Ring1_CheckReturn() Ring2_Real64
+Ring2_Real64_affirmate
+  (
+    Ring2_Real64 x
+  );
+
+/// @brief
+/// Compute the negation of an <code>Real64</code> value.
+/// @param x
+/// The <code>Real64</code> value.
+/// @return
+/// The negation <c>-x</c>.
+Ring1_CheckReturn() Ring2_Real64
+Ring2_Real64_negate
+  (
+    Ring2_Real64 x
+  );
+  
 #endif // Ring2_Configuration_withReal
 
 #endif // RING2_OPERATIONS_REAL64_H_INCLUDE

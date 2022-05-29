@@ -81,3 +81,49 @@ Ring2_Real64_isGreaterThanOrEqualTo
     Ring2_Real64 y
   )
 { return x >= y; }
+
+Ring1_CheckReturn() Ring2_Real64
+Ring2_Real64_add
+  (
+    Ring2_Real64 x,
+    Ring2_Real64 y
+  )
+{ return x + y; }
+
+Ring1_CheckReturn() Ring2_Real64
+Ring2_Real64_subtract
+  (
+    Ring2_Real64 x,
+    Ring2_Real64 y
+  )
+{ return x - y; }
+
+Ring1_CheckReturn() Ring2_Real64
+Ring2_Real64_multiply
+  (
+    Ring2_Real64 x,
+    Ring2_Real64 y
+  )
+{ return x * y; }
+
+Ring1_CheckReturn() Ring2_Real64
+Ring2_Real64_divide
+  (
+    Ring2_Real64 x,
+    Ring2_Real64 y
+  )
+{ return x / y; }
+
+Ring1_CheckReturn() Ring2_Real64
+Ring2_Real64_affirmate
+  (
+    Ring2_Real64 x
+  )
+{ return +x; }
+
+Ring1_CheckReturn() Ring2_Real64
+Ring2_Real64_negate
+  (
+    Ring2_Real64 x
+  )
+{ return -x; }

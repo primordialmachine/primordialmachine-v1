@@ -22,21 +22,6 @@ int64_t Machine_hashPointer_i64(void const* x) {
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-Ring1_CheckReturn() Machine_Integer
-Machine_Boolean_getHashValue
-  (
-    Machine_Boolean x
-  )
-{ return Ring2_Boolean_getHashValue(x); }
-
-Ring1_CheckReturn() Machine_Boolean
-Machine_Boolean_isEqualTo
-  (
-    Machine_Boolean x,
-    Machine_Boolean y
-  )
-{ return Ring2_Boolean_isEqualTo(x, y); }
-
 Machine_String* Machine_Boolean_toString(Machine_Boolean value) {
   return value ? Machine_String_create("true", strlen("true"))
                : Machine_String_create("false", strlen("false"));
@@ -65,21 +50,6 @@ Machine_String* Machine_ForeignProcedure_toString(Machine_ForeignProcedure* x) {
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-Ring1_CheckReturn() Machine_Integer
-Machine_Integer_getHashValue
-  (
-    Machine_Integer x
-  )
-{ return Ring2_Integer_getHashValue(x); }
-
-Ring1_CheckReturn() Machine_Boolean
-Machine_Integer_isEqualTo
-  (
-    Machine_Integer x,
-    Machine_Integer y
-  )
-{ return Ring2_Integer_isEqualTo(x, y); }
-
 Machine_String* Machine_Integer_toString(Machine_Integer x) {
   char buffer[1024 + 1];
   int n = snprintf(buffer, 1024 + 1, "%" PRIu64, x);
@@ -100,21 +70,6 @@ Machine_Integer Machine_Integer_compareTo(Machine_Integer x, Machine_Integer y) 
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-Ring1_CheckReturn() Machine_Integer
-Machine_Real_getHashValue
-  (
-    Machine_Real x
-  )
-{ return Ring2_Real32_getHashValue(x); }
-
-Ring1_CheckReturn() Machine_Boolean
-Machine_Real_isEqualTo
-  (
-    Machine_Real x,
-    Machine_Real y
-  )
-{ return Ring2_Real32_isEqualTo(x, y); }
 
 Machine_String* Machine_Real_toString(Machine_Real x) {
   char buffer[1024 + 1];
@@ -146,21 +101,6 @@ Machine_Integer Machine_Real_compareTo(Machine_Real x, Machine_Real y) {
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-Ring1_CheckReturn() Machine_Integer
-Machine_Void_getHashValue
-  (
-    Machine_Void x
-  )
-{ return Ring2_Void_getHashValue(x); }
-
-Ring1_CheckReturn() Machine_Boolean
-Machine_Void_isEqualTo
-  (
-    Machine_Void x,
-    Machine_Void y
-  )
-{ return Ring2_Void_isEqualTo(x, y); }
 
 Machine_String* Machine_Void_toString(Machine_Void x) {
   return Machine_String_create("void", strlen("void"));

@@ -20,6 +20,7 @@
 #endif
 #include "_Eal.h" // Include for environment abstraction layer.
 #include "Ring2/Types.h"
+#include "Ring2/Operations.h"
 typedef struct Machine_String Machine_String; // Forward declaration.
 typedef struct Machine_Value Machine_Value; // Forward declaration.
 
@@ -47,11 +48,12 @@ typedef Ring2_Integer Machine_Integer;
 /// @brief The C-level representation of the <code>false</code> value.
 #define Machine_Boolean_False (Ring2_Boolean_False)
 
-Ring1_CheckReturn() Machine_Integer
+Ring1_Intrinsic_Inline() Ring1_CheckReturn() Machine_Integer
 Machine_Boolean_getHashValue
   (
     Machine_Boolean x
-  );
+  )
+{ return Ring2_Boolean_getHashValue(x); }
 
 /// @brief
 /// Get if a <code>Boolean</code> value is in a "equal to" relation with another <code>Boolean</code> value.
@@ -64,12 +66,13 @@ Machine_Boolean_getHashValue
 /// is equal to
 ///   the second <code>Boolean</code> value
 /// . @a false otherwise.
-Ring1_CheckReturn() Machine_Boolean
+Ring1_Intrinsic_Inline() Ring1_CheckReturn() Machine_Boolean
 Machine_Boolean_isEqualTo
   (
     Machine_Boolean x,
     Machine_Boolean y
-  );
+  )
+{ return Ring2_Boolean_isEqualTo(x, y); }
 
 /// @brief Convert a <code>Boolean</code> value to a <code>String</code> value.
 /// The resulting string is <code>true</code> if the value is <code>true</code> and
@@ -114,11 +117,12 @@ Machine_String* Machine_ForeignProcedure_toString(Machine_ForeignProcedure* x);
 /// @brief The least <code>Integer</code> value.
 #define Machine_Integer_Least (Ring2_Integer_Least)
 
-Ring1_CheckReturn() Machine_Integer
+Ring1_Intrinsic_Inline() Ring1_CheckReturn() Machine_Integer
 Machine_Integer_getHashValue
   (
     Machine_Integer x
-  );
+  )
+{ return Ring2_Integer_getHashValue(x); }
 
 /// @brief
 /// Get if an <code>Integer</code> value is in a "equal to" relation with another <code>Integer</code> value.
@@ -129,12 +133,13 @@ Machine_Integer_getHashValue
 /// @return
 /// @a true if the first <code>Integer</code> value is in a "equal to" relation with the second <code>Integer</code> value,
 /// @a false otherwise.
-Ring1_CheckReturn() Machine_Boolean
+Ring1_Intrinsic_Inline() Ring1_CheckReturn() Machine_Boolean
 Machine_Integer_isEqualTo
   (
     Machine_Integer x,
     Machine_Integer y
-  );
+  )
+{ return Ring2_Integer_isEqualTo(x, y); }
 
 /// @brief Convert an <code>Integer</code> value to a <code>String</code> value.
 /// @param x The <code>Integer</code> value.
@@ -163,7 +168,12 @@ Machine_Integer Machine_Integer_compareTo(Machine_Integer x, Machine_Integer y);
 /// @brief The C-level representation of a <code>Real</code> value.
 typedef Ring2_Real32 Machine_Real;
 
-Machine_Integer Machine_Real_getHashValue(Machine_Real x);
+Ring1_Intrinsic_Inline() Ring1_CheckReturn() Machine_Integer
+Machine_Real_getHashValue
+  (
+    Machine_Real x
+  )
+{ return Ring2_Real32_getHashValue(x); }
 
 /// @brief
 /// Compare two <code>Real</code> values for equality.
@@ -176,7 +186,13 @@ Machine_Integer Machine_Real_getHashValue(Machine_Real x);
 /// @a false otherwise.
 /// @remarks
 /// Comparison is performed in full accordance with the IEEE754 specification.
-Machine_Boolean Machine_Real_isEqualTo(Machine_Real x, Machine_Real y);
+Ring1_Intrinsic_Inline() Ring1_CheckReturn() Machine_Boolean
+Machine_Real_isEqualTo
+  (
+    Machine_Real x,
+    Machine_Real y
+  )
+{ return Ring2_Real32_isEqualTo(x, y); }
 
 /// @brief Convert an <code>Real</code> value to a <code>String</code> value.
 /// @param x The <code>Real</code> value.
@@ -219,7 +235,12 @@ Machine_Integer Machine_Real_compareTo(Machine_Real x, Machine_Real y);
 /// @brief The C-level representation of the <code>Void</code> type.
 typedef Ring2_Void Machine_Void;
 
-Machine_Integer Machine_Void_getHashValue(Machine_Void x);
+Ring1_Intrinsic_Inline() Ring1_CheckReturn() Machine_Integer
+Machine_Void_getHashValue
+  (
+    Machine_Void x
+  )
+{ return Ring2_Void_getHashValue(x); }
 
 /// @brief
 /// Compare two <code>Void</code> values for equality.
@@ -236,7 +257,13 @@ Machine_Integer Machine_Void_getHashValue(Machine_Void x);
 /// @remarks
 /// There exists only one void value.
 /// That value is equal to itself.
-Machine_Boolean Machine_Void_isEqualTo(Machine_Void x, Machine_Void y);
+Ring1_Intrinsic_Inline() Ring1_CheckReturn() Machine_Boolean
+Machine_Void_isEqualTo
+  (
+    Machine_Void x,
+    Machine_Void y
+  )
+{ return Ring2_Void_isEqualTo(x, y); }
 
 /// @brief Convert a <code>Void</code> value to a <code>String</code> value.
 /// The resulting string is <code>void</code>.

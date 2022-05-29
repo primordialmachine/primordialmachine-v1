@@ -13,11 +13,13 @@
 #include "Ring1/Result.h"
 #include <setjmp.h>
 
+/// @brief Starts up the "jump target" module.
 Ring1_CheckReturn() Ring1_Result
 Ring2_JumpTargetModule_startup
   (
   );
 
+/// @brief Shuts down the "jump target" module.
 void
 Ring2_JumpTargetModule_shutdown
   (

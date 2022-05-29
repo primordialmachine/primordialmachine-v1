@@ -81,3 +81,49 @@ Ring2_Real32_isGreaterThanOrEqualTo
     Ring2_Real32 y
   )
 { return x >= y; }
+
+Ring1_CheckReturn() Ring2_Real32
+Ring2_Real32_add
+  (
+    Ring2_Real32 x,
+    Ring2_Real32 y
+  )
+{ return x + y; }
+
+Ring1_CheckReturn() Ring2_Real32
+Ring2_Real32_subtract
+  (
+    Ring2_Real32 x,
+    Ring2_Real32 y
+  )
+{ return x - y; }
+
+Ring1_CheckReturn() Ring2_Real32
+Ring2_Real32_multiply
+  (
+    Ring2_Real32 x,
+    Ring2_Real32 y
+  )
+{ return x * y; }
+
+Ring1_CheckReturn() Ring2_Real32
+Ring2_Real32_divide
+  (
+    Ring2_Real32 x,
+    Ring2_Real32 y
+  )
+{ return x / y; }
+
+Ring1_CheckReturn() Ring2_Real32
+Ring2_Real32_affirmate
+  (
+    Ring2_Real32 x
+  )
+{ return +x; }
+
+Ring1_CheckReturn() Ring2_Real32
+Ring2_Real32_negate
+  (
+    Ring2_Real32 x
+  )
+{ return -x; }

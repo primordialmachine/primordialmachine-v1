@@ -139,6 +139,90 @@ Ring2_Integer_isGreaterThanOrEqualTo
     Ring2_Integer y
   );
 
+/// @brief
+/// Compute the sum of a <code>Integer</code> value and another <code>Integer</code> value.
+/// @param x
+/// The first <code>Integer</code> value, the augend.
+/// @param y
+/// The second <code>Integer</code> value, the augend.
+/// @return
+/// The sum <c>x + y</c> of the addend <c>x</c> and the augend <c>y</c>.
+Ring1_CheckReturn() Ring2_Integer
+Ring2_Integer_add
+  (
+    Ring2_Integer x,
+    Ring2_Integer y
+  );
+
+/// @brief
+/// Compute the difference of a <code>Integer</code> value and another <code>Integer</code> value.
+/// @param x
+/// The first <code>Integer</code> value, the minuend.
+/// @param y
+/// The second <code>Integer</code> value, the subtrahend.
+/// @return
+/// The difference <c>x - y</c> of the minuend <c>x</c> and the subtrahend <c>y</c>.
+Ring1_CheckReturn() Ring2_Integer
+Ring2_Integer_subtract
+  (
+    Ring2_Integer x,
+    Ring2_Integer y
+  );
+
+/// @brief
+/// Compute the product of a <code>Integer</code> value and another <code>Integer</code> value.
+/// @param x
+/// The first <code>Integer</code> value, the multiplier.
+/// @param y
+/// The second <code>Integer</code> value, the multiplicand.
+/// @return
+/// The product <c>x * y</c> of the multiplier <c>x</c> and the multiplicand <c>y</c>.
+Ring1_CheckReturn() Ring2_Integer
+Ring2_Integer_multiply
+  (
+    Ring2_Integer x,
+    Ring2_Integer y
+  );
+
+/// @brief
+/// Compute the quotient of a <code>Integer</code> value and another <code>Integer</code> value.
+/// @param x
+/// The first <code>Integer</code> value, the dividend.
+/// @param y
+/// The second <code>Integer</code> value, the divisor.
+/// @return
+/// The quotient <c>x / y</c> of the dividend <c>x</c> and the divisor <c>y</c>.
+Ring1_CheckReturn() Ring2_Integer
+Ring2_Integer_divide
+  (
+    Ring2_Integer x,
+    Ring2_Integer y
+  );
+
+/// @brief
+/// Compute the affirmation of an <code>Integer</code> value.
+/// @param x
+/// The <code>Integer</code> value.
+/// @return
+/// The affirmation <c>+x</c>.
+Ring1_CheckReturn() Ring2_Integer
+Ring2_Integer_affirmate
+  (
+    Ring2_Integer x
+  );
+
+/// @brief
+/// Compute the negation of an <code>Integer</code> value.
+/// @param x
+/// The <code>Integer</code> value.
+/// @return
+/// The negation <c>-x</c>.
+Ring1_CheckReturn() Ring2_Integer
+Ring2_Integer_negate
+  (
+    Ring2_Integer x
+  );
+  
 #endif // Ring2_Configuration_withInteger
 
 #endif // RING2_OPERATIONS_INTEGER_H_INCLUDED

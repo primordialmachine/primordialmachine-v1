@@ -8,7 +8,22 @@
 #define RING2_OPERATIONS_H_INCLUDED
 
 #include "Ring2/Configuration.h"
+#include "Ring1/Intrinsic/CheckReturn.h"
 #include "Ring1/Result.h"
+
+/// @brief Starts up the "operations" module.
+/// @remarks Also starts up the "types" module.
+Ring1_CheckReturn() Ring1_Result
+Ring2_OperationsModule_startup
+  (
+  );
+
+/// @brief Shuts down the "operations" module.
+/// @remarks Also shuts down the "types" module.
+void
+Ring2_OperationsModule_shutdown
+  (
+  );
 
 #if defined(Ring2_Configuration_withBoolean) && 1 == Ring2_Configuration_withBoolean
 
