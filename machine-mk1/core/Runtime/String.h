@@ -14,13 +14,6 @@ typedef struct Machine_String Machine_String;
 
 /// @brief Create a string.
 /// @param p, n The Bytes.
-/// @return The string on success, null on failure.
-/// @error #Machine_Status_ArgumentNull @a p is a null pointer.
-/// @error #Machine_Status_TooLong @a n exceeds a certain limit.
-Machine_String* Machine_String_create_noraise(char const* p, size_t n);
-
-/// @brief Create a string.
-/// @param p, n The Bytes.
 /// @return The string.
 /// @error #Machine_Status_ArgumentNull @a p is a null pointer.
 /// @error #Machine_Status_TooLong @a n exceeds a certain limit.

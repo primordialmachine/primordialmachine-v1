@@ -15,39 +15,29 @@ struct Machine_String {
   char p[];
 };
 
-/// @todo Machine_allocate has its own limit which is smaller than this value.
-static size_t const MACHINE_STRING_MAXIMAL_LENGTH = SIZE_MAX - sizeof(Machine_String);
+static size_t hashBytesToSz(char const *p, size_t n) {
+  size_t hashValue = n;
+  for (size_t i = 0; i < n; ++i) {
+    hashValue = p[i] + hashValue * 37;
+  }
+  return hashValue;
+}
+
+// Maximal length, in Bytes, of a memory block.
+#define MACHINE_MEMORYBLOCK_MAXIMALLENGTH \
+  (SIZE_MAX < INT64_MAX ? SIZE_MAX : INT64_MAX)
+
+/// Maximal length, in Bytes, of a string.
+#define MACHINE_STRING_MAXIMALLENGTH \
+  (MACHINE_MEMORYBLOCK_MAXIMALLENGTH - sizeof(Machine_String))
 
 static Ring2_Gc_Type const g_gcType = {
   .finalize = (Ring2_Gc_FinalizeCallback*)NULL,
   .visit = (Ring2_Gc_VisitCallback*)NULL,
 };
 
-Machine_String* Machine_String_create_noraise(char const* p, size_t n) {
-  if (n > MACHINE_STRING_MAXIMAL_LENGTH) {
-    Machine_setStatus(Machine_Status_TooLong);
-    return NULL;
-  }
-  Machine_Gc_AllocationArguments const allocationArguments = {
-    .suffixSize = sizeof(Machine_String) + n,
-    .type = &g_gcType,
-  };
-  Machine_String* self = Machine_Gc_allocate(&allocationArguments);
-  if (!self) {
-    Machine_setStatus(Machine_Status_AllocationFailed);
-    return NULL;
-  }
-  Ring1_Memory_copyFast(self->p, p, n);
-  self->n = n;
-  self->hashValue = n;
-  for (size_t i = 0; i < n; ++i) {
-    self->hashValue = p[i] + self->hashValue * 37;
-  }
-  return self;
-}
-
 Machine_String* Machine_String_create(char const* p, size_t n) {
-  if (n > MACHINE_STRING_MAXIMAL_LENGTH) {
+  if (n > MACHINE_STRING_MAXIMALLENGTH) {
     Machine_setStatus(Machine_Status_TooLong);
     Ring2_jump();
   }
@@ -62,10 +52,7 @@ Machine_String* Machine_String_create(char const* p, size_t n) {
   }
   Ring1_Memory_copyFast(self->p, p, n);
   self->n = n;
-  self->hashValue = n;
-  for (size_t i = 0; i < n; ++i) {
-    self->hashValue = p[i] + self->hashValue * 37;
-  }
+  self->hashValue = hashBytesToSz(self->p, self->n);
   return self;
 }
 
@@ -73,12 +60,12 @@ Machine_String* Machine_String_concatenate(Machine_String const* self,
                                            Machine_String const* other) {
   MACHINE_ASSERT_NOTNULL(self);
   MACHINE_ASSERT_NOTNULL(other);
-  if (SIZE_MAX - self->n < other->n) {
+  if (MACHINE_STRING_MAXIMALLENGTH - self->n < other->n) {
     Machine_setStatus(Machine_Status_TooLong);
     Ring2_jump();
   }
   size_t m = self->n + other->n;
-  if (m > MACHINE_STRING_MAXIMAL_LENGTH) {
+  if (m > MACHINE_STRING_MAXIMALLENGTH) {
     Machine_setStatus(Machine_Status_TooLong);
     Ring2_jump();
   }
@@ -94,10 +81,7 @@ Machine_String* Machine_String_concatenate(Machine_String const* self,
   Ring1_Memory_copyFast(c->p, self->p, self->n);
   Ring1_Memory_copyFast(c->p + self->n, other->p, other->n);
   c->n = m;
-  c->hashValue = m;
-  for (size_t i = 0; i < m; ++i) {
-    c->hashValue = c->p[i] + self->hashValue * 37;
-  }
+  c->hashValue = hashBytesToSz(c->p, c->n);
   return c;
 }
 
