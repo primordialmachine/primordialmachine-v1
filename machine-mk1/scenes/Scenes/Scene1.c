@@ -65,9 +65,10 @@ static void Scene1_onStartup(Scene1* self) {
       = Machine_VideoContext_createBinding(videoContext, self->shaderProgram, vd, self->vertices);
   Machine_Binding_setVariableBinding(
       self->binding,
-      Machine_String_create_noraise("vertex_position", strlen("vertex_position") + 1), 0);
+      Machine_String_create("vertex_position", strlen("vertex_position") + 1), 0);
   Machine_Binding_setVariableBinding(
-      self->binding, Machine_String_create_noraise("vertex_color", strlen("vertex_color") + 1), 1);
+      self->binding,
+      Machine_String_create("vertex_color", strlen("vertex_color") + 1), 1);
 
   Machine_Math_Vector4* c = Machine_Math_Vector4_create();
   Machine_Math_Vector4_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
