@@ -53,9 +53,18 @@ static Machine_String* getLog_noraise(GLuint id) {
   if (glGetError() != GL_NO_ERROR) {
     return NULL;
   }
-  Machine_String* string = Machine_String_create_noraise(p, n);
-  Ring1_Memory_deallocate(p);
-  return string;
+  Ring2_JumpTarget jumpTarget;
+  Ring2_pushJumpTarget(&jumpTarget);
+  if (!setjmp(jumpTarget.environment)) {
+    Machine_String* string = Machine_String_create(p, n);
+    Ring2_popJumpTarget();
+    Ring1_Memory_deallocate(p);
+    return string;
+  } else {
+    Ring2_popJumpTarget();
+    Ring1_Memory_deallocate(p);
+    Ring2_jump();
+  }
 }
 
 static size_t Machine_Gl_ShaderProgram_getNumberOfInputsImpl(Machine_Gl_ShaderProgram const* self) {
