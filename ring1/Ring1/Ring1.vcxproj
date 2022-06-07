@@ -20,6 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring1\ByteBuffer.h" />
+    <ClInclude Include="Ring1\Conversion.h" />
+    <ClInclude Include="Ring1\Conversion\stringtoBool.h" />
+    <ClInclude Include="Ring1\Conversion\stringToFloat.h" />
+    <ClInclude Include="Ring1\Conversion\stringToInt.h" />
+    <ClInclude Include="Ring1\Conversion\stringToUint.h" />
+    <ClInclude Include="Ring1\Conversion\_Parser.h" />
     <ClInclude Include="Ring1\Hash.h" />
     <ClInclude Include="Ring1\Intrinsic\Add\X64\add_s16.h" />
     <ClInclude Include="Ring1\Intrinsic\Add\X64\add_s32.h" />
@@ -415,6 +421,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring1\ByteBuffer.c" />
+    <ClCompile Include="Ring1\Conversion.c" />
+    <ClCompile Include="Ring1\Conversion\stringToBool.c" />
+    <ClCompile Include="Ring1\Conversion\stringToFloat.c" />
+    <ClCompile Include="Ring1\Conversion\stringToInt.c" />
+    <ClCompile Include="Ring1\Conversion\stringToUint.c" />
+    <ClCompile Include="Ring1\Conversion\_Parser.c" />
     <ClCompile Include="Ring1\Hash.c" />
     <ClCompile Include="Ring1\Intrinsic\clamp.c" />
     <ClCompile Include="Ring1\Intrinsic\countLeadingZeroes.c" />

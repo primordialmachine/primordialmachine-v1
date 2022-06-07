@@ -3,10 +3,8 @@
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #include "Gdl/Extensions.h"
 
-#include <stdint.h>
-#include <inttypes.h>
-#include <string.h>
-#include <stdio.h>
+#include "Ring1/Status.h"
+#include "Ring1/Conversion.h"
 
 static Machine_Value convert(Machine_Gdl_Node* self, Machine_Gdl_Context* context) {
   switch (self->kind) {
@@ -72,30 +70,30 @@ static Machine_Value convert(Machine_Gdl_Node* self, Machine_Gdl_Context* contex
 Machine_Boolean Machine_Gdl_Node_toBoolean(Machine_Gdl_Node* self, Machine_Gdl_Context* context) {
   MACHINE_ASSERT_NOTNULL(self);
   MACHINE_ASSERT(self->kind == Machine_Gdl_NodeKind_Boolean, Machine_Status_InvalidArgument);
-  if (Machine_String_isEqualTo(self->text, context->trueLiteral)) {
-    return true;
-  } else {
-    return false;
+  bool value;
+  if (Ring1_Conversion_stringToBool(&value, Machine_String_getBytes(self->text),
+                                     Machine_String_getBytes(self->text)
+                                         + Machine_String_getNumberOfBytes(self->text))) {
+    Ring1_Status_set(Ring1_Status_Success);
+    Machine_setStatus(Machine_Status_InvalidOperation); // TODO: Should be "ConversionFailed".
+    Ring2_jump();
   }
+  return value;
 }
 
 Machine_Integer Machine_Gdl_Node_toInteger(Machine_Gdl_Node* self, Machine_Gdl_Context* context) {
   MACHINE_ASSERT_NOTNULL(self);
   MACHINE_ASSERT(self->kind == Machine_Gdl_NodeKind_Integer || self->kind == Machine_Gdl_NodeKind_Real, Machine_Status_InvalidArgument);
-  char buffer[1024 + 1];
-  size_t n =  Machine_String_getNumberOfBytes(self->text);
-  if (n > 1024) {
+  int64_t value;
+  if (Ring1_Conversion_stringToInt64(&value, 
+                                     Machine_String_getBytes(self->text),
+                                 Machine_String_getBytes(self->text) +
+                                     Machine_String_getNumberOfBytes(self->text))) {
+    Ring1_Status_set(Ring1_Status_Success);
     Machine_setStatus(Machine_Status_InvalidOperation); // TODO: Should be "ConversionFailed".
     Ring2_jump();
   }
-  Ring1_Memory_copyFast(buffer, Machine_String_getBytes(self->text), n);
-  buffer[n] = '\0';
-  Machine_Integer v;
-  if (sscanf(buffer, "%"SCNd64, &v) != 1) {
-    Machine_setStatus(Machine_Status_InvalidOperation); // TODO: Should be "ConversionFailed".
-    Ring2_jump();
-  }
-  return v;
+  return value;
 }
 
 Machine_List* Machine_Gdl_Node_toList(Machine_Gdl_Node const* self, Machine_Gdl_Context* context) {
@@ -137,20 +135,16 @@ Machine_Pair* Machine_Gdl_Node_toPair(Machine_Gdl_Node const* self, Machine_Gdl_
 Machine_Real Machine_Gdl_Node_toReal(Machine_Gdl_Node* self, Machine_Gdl_Context* context) {
   MACHINE_ASSERT_NOTNULL(self);
   MACHINE_ASSERT(self->kind == Machine_Gdl_NodeKind_Integer || self->kind == Machine_Gdl_NodeKind_Real, Machine_Status_InvalidArgument);
-  char buffer[1024 + 1];
-  size_t n = Machine_String_getNumberOfBytes(self->text);
-  if (n > 1024) {
-    Machine_setStatus(Machine_Status_ConversionFailed);
+  double value;
+  if (Ring1_Conversion_stringToDouble(&value, 
+                                      Machine_String_getBytes(self->text),
+                                     Machine_String_getBytes(self->text) +
+                                      Machine_String_getNumberOfBytes(self->text))) {
+    Ring1_Status_set(Ring1_Status_Success);
+    Machine_setStatus(Machine_Status_InvalidOperation); // TODO: Should be "ConversionFailed".
     Ring2_jump();
   }
-  Ring1_Memory_copyFast(buffer, Machine_String_getBytes(self->text), n);
-  buffer[n] = '\0';
-  Machine_Real v;
-  if (sscanf(buffer, "%f", &v) != 1) {
-    Machine_setStatus(Machine_Status_ConversionFailed);
-    Ring2_jump();
-  }
-  return v;
+  return value;
 }
 
 Machine_String* Machine_Gdl_Node_toString(Machine_Gdl_Node const* self, Machine_Gdl_Context* context) {

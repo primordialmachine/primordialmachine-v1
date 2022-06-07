@@ -252,6 +252,12 @@
     <Filter Include="Headerdateien\Ring1\Intrinsic\NextPowerOfTwo">
       <UniqueIdentifier>{1e1025d8-67fe-42ae-92d1-98e89c122328}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring1\Conversion">
+      <UniqueIdentifier>{9b7f80ee-faec-45a6-98e2-704bbd4b9349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Conversion">
+      <UniqueIdentifier>{0a764751-d201-403c-9144-9cce9f2a7f6b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring1\Intrinsic\Subtract\subtract.h">
@@ -620,6 +626,24 @@
     <ClInclude Include="Ring1\Hash.h">
       <Filter>Headerdateien\Ring1</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\Conversion.h">
+      <Filter>Headerdateien\Ring1</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Conversion\stringtoBool.h">
+      <Filter>Headerdateien\Ring1\Conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Conversion\stringToFloat.h">
+      <Filter>Headerdateien\Ring1\Conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Conversion\stringToInt.h">
+      <Filter>Headerdateien\Ring1\Conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Conversion\stringToUint.h">
+      <Filter>Headerdateien\Ring1\Conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Conversion\_Parser.h">
+      <Filter>Headerdateien\Ring1\Conversion</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring1\Intrinsic\CheckReturn.c">
@@ -801,6 +825,24 @@
     </ClCompile>
     <ClCompile Include="Ring1\Hash.c">
       <Filter>Quelldateien\Ring1</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Conversion.c">
+      <Filter>Quelldateien\Ring1</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Conversion\stringToBool.c">
+      <Filter>Quelldateien\Ring1\Conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Conversion\stringToFloat.c">
+      <Filter>Quelldateien\Ring1\Conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Conversion\stringToInt.c">
+      <Filter>Quelldateien\Ring1\Conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Conversion\stringToUint.c">
+      <Filter>Quelldateien\Ring1\Conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Conversion\_Parser.c">
+      <Filter>Quelldateien\Ring1\Conversion</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
