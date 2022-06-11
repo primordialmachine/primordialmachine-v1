@@ -11,6 +11,7 @@
 Ring1_CheckReturn() Ring2_Integer
 Ring2_Boolean_getHashValue
   (
+    Ring2_Context *context,
     Ring2_Boolean x
   )
 {
@@ -22,6 +23,7 @@ Ring2_Boolean_getHashValue
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Boolean_getHashEqual
   (
+    Ring2_Context *context,
     Ring2_Boolean x,
     Ring2_Boolean y
   )
@@ -30,6 +32,7 @@ Ring2_Boolean_getHashEqual
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Boolean_isEqualTo
   (
+    Ring2_Context *context,
     Ring2_Boolean x,
     Ring2_Boolean y
   )
@@ -38,14 +41,16 @@ Ring2_Boolean_isEqualTo
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Boolean_isNotEqualTo
   (
+    Ring2_Context *context,
     Ring2_Boolean x,
     Ring2_Boolean y
   )
-{ return !Ring2_Boolean_isEqualTo(x, y); }
+{ return !Ring2_Boolean_isEqualTo(context, x, y); }
 
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Boolean_isLowerThan
   (
+    Ring2_Context *context,
     Ring2_Boolean x,
     Ring2_Boolean y
   )
@@ -54,6 +59,7 @@ Ring2_Boolean_isLowerThan
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Boolean_isLowerThanOrEqualTo
   (
+    Ring2_Context *context,
     Ring2_Boolean x,
     Ring2_Boolean y
   )
@@ -62,6 +68,7 @@ Ring2_Boolean_isLowerThanOrEqualTo
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Boolean_isGreaterThan
   (
+    Ring2_Context *context,
     Ring2_Boolean x,
     Ring2_Boolean y
   )
@@ -70,6 +77,7 @@ Ring2_Boolean_isGreaterThan
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Boolean_isGreaterThanOrEqualTo
   (
+    Ring2_Context *context,
     Ring2_Boolean x,
     Ring2_Boolean y
   )
@@ -78,6 +86,7 @@ Ring2_Boolean_isGreaterThanOrEqualTo
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Boolean_and
   (
+    Ring2_Context *context,
     Ring2_Boolean x,
     Ring2_Boolean y
   )
@@ -86,6 +95,7 @@ Ring2_Boolean_and
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Boolean_or
   (
+    Ring2_Context *context,
     Ring2_Boolean x,
     Ring2_Boolean y
   )
@@ -94,6 +104,7 @@ Ring2_Boolean_or
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Boolean_affirmate
   (
+    Ring2_Context *context,
     Ring2_Boolean x
   )
 { return x; }
@@ -101,6 +112,7 @@ Ring2_Boolean_affirmate
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Boolean_negate
   (
+    Ring2_Context *context,
     Ring2_Boolean x
   )
 { return !x; }

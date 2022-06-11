@@ -77,6 +77,9 @@
     <ClInclude Include="Ring2\JumpTarget\JumpTarget1.h">
       <Filter>Headerdateien\Ring2\JumpTarget</Filter>
     </ClInclude>
+    <ClInclude Include="Ring2\Context.h">
+      <Filter>Headerdateien\Ring2</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring2\JumpTarget.c">
@@ -120,6 +123,9 @@
     </ClCompile>
     <ClCompile Include="Ring2\JumpTarget\JumpTarget1.c">
       <Filter>Quelldateien\Ring2\JumpTarget</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Context.c">
+      <Filter>Quelldateien\Ring2</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

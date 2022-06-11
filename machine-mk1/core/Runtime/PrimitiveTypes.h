@@ -53,7 +53,7 @@ Machine_Boolean_getHashValue
   (
     Machine_Boolean x
   )
-{ return Ring2_Boolean_getHashValue(x); }
+{ return Ring2_Boolean_getHashValue(Ring2_Context_get(), x); }
 
 /// @brief
 /// Get if a <code>Boolean</code> value is in a "equal to" relation with another <code>Boolean</code> value.
@@ -72,7 +72,7 @@ Machine_Boolean_isEqualTo
     Machine_Boolean x,
     Machine_Boolean y
   )
-{ return Ring2_Boolean_isEqualTo(x, y); }
+{ return Ring2_Boolean_isEqualTo(Ring2_Context_get(), x, y); }
 
 /// @brief Convert a <code>Boolean</code> value to a <code>String</code> value.
 /// The resulting string is <code>true</code> if the value is <code>true</code> and
@@ -122,7 +122,7 @@ Machine_Integer_getHashValue
   (
     Machine_Integer x
   )
-{ return Ring2_Integer_getHashValue(x); }
+{ return Ring2_Integer_getHashValue(Ring2_Context_get(), x); }
 
 /// @brief
 /// Get if an <code>Integer</code> value is in a "equal to" relation with another <code>Integer</code> value.
@@ -139,7 +139,7 @@ Machine_Integer_isEqualTo
     Machine_Integer x,
     Machine_Integer y
   )
-{ return Ring2_Integer_isEqualTo(x, y); }
+{ return Ring2_Integer_isEqualTo(Ring2_Context_get(), x, y); }
 
 /// @brief Convert an <code>Integer</code> value to a <code>String</code> value.
 /// @param x The <code>Integer</code> value.
@@ -173,7 +173,7 @@ Machine_Real_getHashValue
   (
     Machine_Real x
   )
-{ return Ring2_Real32_getHashValue(x); }
+{ return Ring2_Real32_getHashValue(Ring2_Context_get(), x); }
 
 /// @brief
 /// Compare two <code>Real</code> values for equality.
@@ -192,7 +192,7 @@ Machine_Real_isEqualTo
     Machine_Real x,
     Machine_Real y
   )
-{ return Ring2_Real32_isEqualTo(x, y); }
+{ return Ring2_Real32_isEqualTo(Ring2_Context_get(), x, y); }
 
 /// @brief Convert an <code>Real</code> value to a <code>String</code> value.
 /// @param x The <code>Real</code> value.
@@ -240,7 +240,7 @@ Machine_Void_getHashValue
   (
     Machine_Void x
   )
-{ return Ring2_Void_getHashValue(x); }
+{ return Ring2_Void_getHashValue(Ring2_Context_get(), x); }
 
 /// @brief
 /// Compare two <code>Void</code> values for equality.
@@ -263,7 +263,7 @@ Machine_Void_isEqualTo
     Machine_Void x,
     Machine_Void y
   )
-{ return Ring2_Void_isEqualTo(x, y); }
+{ return Ring2_Void_isEqualTo(Ring2_Context_get(), x, y); }
 
 /// @brief Convert a <code>Void</code> value to a <code>String</code> value.
 /// The resulting string is <code>void</code>.

@@ -11,6 +11,7 @@
 Ring1_CheckReturn() Ring2_Integer
 Ring2_Integer_getHashValue
   (
+    Ring2_Context* context,
     Ring2_Integer x
   )
 {
@@ -22,6 +23,7 @@ Ring2_Integer_getHashValue
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Integer_getHashEqual
   (
+    Ring2_Context* context,
     Ring2_Integer x,
     Ring2_Integer y
   )
@@ -30,6 +32,7 @@ Ring2_Integer_getHashEqual
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Integer_isEqualTo
   (
+    Ring2_Context* context,
     Ring2_Integer x,
     Ring2_Integer y
   )
@@ -38,14 +41,16 @@ Ring2_Integer_isEqualTo
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Integer_isNotEqualTo
   (
+    Ring2_Context* context,
     Ring2_Integer x,
     Ring2_Integer y
   )
-{ return !Ring2_Integer_isEqualTo(x, y); }
+{ return !Ring2_Integer_isEqualTo(context, x, y); }
 
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Integer_isLowerThan
   (
+    Ring2_Context* context,
     Ring2_Integer x,
     Ring2_Integer y
   )
@@ -54,6 +59,7 @@ Ring2_Integer_isLowerThan
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Integer_isLowerThanOrEqualTo
   (
+    Ring2_Context* context,
     Ring2_Integer x,
     Ring2_Integer y
   )
@@ -62,6 +68,7 @@ Ring2_Integer_isLowerThanOrEqualTo
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Integer_isGreaterThan
   (
+    Ring2_Context* context,
     Ring2_Integer x,
     Ring2_Integer y
   )
@@ -70,6 +77,7 @@ Ring2_Integer_isGreaterThan
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Integer_isGreaterThanOrEqualTo
   (
+    Ring2_Context* context,
     Ring2_Integer x,
     Ring2_Integer y
   )
@@ -78,6 +86,7 @@ Ring2_Integer_isGreaterThanOrEqualTo
 Ring1_CheckReturn() Ring2_Integer
 Ring2_Integer_add
   (
+    Ring2_Context* context,
     Ring2_Integer x,
     Ring2_Integer y
   )
@@ -86,6 +95,7 @@ Ring2_Integer_add
 Ring1_CheckReturn() Ring2_Integer
 Ring2_Integer_subtract
   (
+    Ring2_Context* context,
     Ring2_Integer x,
     Ring2_Integer y
   )
@@ -94,6 +104,7 @@ Ring2_Integer_subtract
 Ring1_CheckReturn() Ring2_Integer
 Ring2_Integer_multiply
   (
+    Ring2_Context* context,
     Ring2_Integer x,
     Ring2_Integer y
   )
@@ -102,6 +113,7 @@ Ring2_Integer_multiply
 Ring1_CheckReturn() Ring2_Integer
 Ring2_Integer_divide
   (
+    Ring2_Context* context,
     Ring2_Integer x,
     Ring2_Integer y
   )
@@ -110,6 +122,7 @@ Ring2_Integer_divide
 Ring1_CheckReturn() Ring2_Integer
 Ring2_Integer_affirmate
   (
+    Ring2_Context* context,
     Ring2_Integer x
   )
 { return +x; }
@@ -117,6 +130,7 @@ Ring2_Integer_affirmate
 Ring1_CheckReturn() Ring2_Integer
 Ring2_Integer_negate
   (
+    Ring2_Context* context,
     Ring2_Integer x
   )
 { return -x; }

@@ -12,14 +12,14 @@
 #include "Ring1/Result.h"
 
 /// @brief Starts up the "operations" module.
-/// @remarks Also starts up the "types" module.
+/// @remarks Also starts up the "jump target" module and the "types" module.
 Ring1_CheckReturn() Ring1_Result
 Ring2_OperationsModule_startup
   (
   );
 
 /// @brief Shuts down the "operations" module.
-/// @remarks Also shuts down the "types" module.
+/// @remarks Also shuts down the "types" module and the "jump target" module.
 void
 Ring2_OperationsModule_shutdown
   (

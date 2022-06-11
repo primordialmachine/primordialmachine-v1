@@ -8,6 +8,7 @@
 #define RING2_OPERATIONS_REAL32_H_INCLUDED
 
 #include "Ring1/Intrinsic/CheckReturn.h"
+#include "Ring2/Context.h"
 #include "Ring2/Types.h"
 
 #if defined(Ring2_Configuration_withReal) && 1 == Ring2_Configuration_withReal
@@ -21,6 +22,7 @@
 Ring1_CheckReturn() Ring2_Integer
 Ring2_Real32_getHashValue
   (
+    Ring2_Context* context,
     Ring2_Real32 x
   );
 
@@ -36,6 +38,7 @@ Ring2_Real32_getHashValue
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Real32_getHashEqual
   (
+    Ring2_Context* context,
     Ring2_Real32 x,
     Ring2_Real32 y
   );
@@ -52,6 +55,7 @@ Ring2_Real32_getHashEqual
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Real32_isEqualTo
   (
+    Ring2_Context* context,
     Ring2_Real32 x,
     Ring2_Real32 y
   );
@@ -68,6 +72,7 @@ Ring2_Real32_isEqualTo
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Real32_isNotEqualTo
   (
+    Ring2_Context* context,
     Ring2_Real32 x,
     Ring2_Real32 y
   );
@@ -84,6 +89,7 @@ Ring2_Real32_isNotEqualTo
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Real32_isLowerThan
   (
+    Ring2_Context* context,
     Ring2_Real32 x,
     Ring2_Real32 y
   );
@@ -100,6 +106,7 @@ Ring2_Real32_isLowerThan
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Real32_isLowerThanOrEqualTo
   (
+    Ring2_Context* context,
     Ring2_Real32 x,
     Ring2_Real32 y
   );
@@ -116,6 +123,7 @@ Ring2_Real32_isLowerThanOrEqualTo
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Real32_isGreaterThan
   (
+    Ring2_Context* context,
     Ring2_Real32 x,
     Ring2_Real32 y
   );
@@ -132,6 +140,7 @@ Ring2_Real32_isGreaterThan
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Real32_isGreaterThanOrEqualTo
   (
+    Ring2_Context* context,
     Ring2_Real32 x,
     Ring2_Real32 y
   );
@@ -147,6 +156,7 @@ Ring2_Real32_isGreaterThanOrEqualTo
 Ring1_CheckReturn() Ring2_Real32
 Ring2_Real32_add
   (
+    Ring2_Context* context,
     Ring2_Real32 x,
     Ring2_Real32 y
   );
@@ -162,6 +172,7 @@ Ring2_Real32_add
 Ring1_CheckReturn() Ring2_Real32
 Ring2_Real32_subtract
   (
+    Ring2_Context* context,
     Ring2_Real32 x,
     Ring2_Real32 y
   );
@@ -177,6 +188,7 @@ Ring2_Real32_subtract
 Ring1_CheckReturn() Ring2_Real32
 Ring2_Real32_multiply
   (
+    Ring2_Context* context,
     Ring2_Real32 x,
     Ring2_Real32 y
   );
@@ -192,6 +204,7 @@ Ring2_Real32_multiply
 Ring1_CheckReturn() Ring2_Real32
 Ring2_Real32_divide
   (
+    Ring2_Context* context,
     Ring2_Real32 x,
     Ring2_Real32 y
   );
@@ -205,6 +218,7 @@ Ring2_Real32_divide
 Ring1_CheckReturn() Ring2_Real32
 Ring2_Real32_affirmate
   (
+    Ring2_Context* context,
     Ring2_Real32 x
   );
 
@@ -217,6 +231,7 @@ Ring2_Real32_affirmate
 Ring1_CheckReturn() Ring2_Real32
 Ring2_Real32_negate
   (
+    Ring2_Context* context,
     Ring2_Real32 x
   );
 

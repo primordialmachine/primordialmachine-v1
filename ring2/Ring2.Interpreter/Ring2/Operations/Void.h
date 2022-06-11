@@ -7,8 +7,9 @@
 #if !defined(RING2_OPERATIONS_VOID_H_INCLUDED)
 #define RING2_OPERATIONS_VOID_H_INCLUDED
 
-#include "Ring2/Types.h"
 #include "Ring1/Intrinsic/CheckReturn.h"
+#include "Ring2/Context.h"
+#include "Ring2/Types.h"
 
 #if defined(Ring2_Configuration_withVoid) && 1 == Ring2_Configuration_withVoid
 
@@ -21,6 +22,7 @@
 Ring1_CheckReturn() Ring2_Integer
 Ring2_Void_getHashValue
   (
+    Ring2_Context* context,
     Ring2_Void x
   );
 
@@ -35,6 +37,7 @@ Ring2_Void_getHashValue
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Void_getHashEqual
   (
+    Ring2_Context* context,
     Ring2_Void x,
     Ring2_Void y
   );
@@ -57,6 +60,7 @@ Ring2_Void_getHashEqual
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Void_isEqualTo
   (
+    Ring2_Context* context,
     Ring2_Void x,
     Ring2_Void y
   );
@@ -73,6 +77,7 @@ Ring2_Void_isEqualTo
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Void_isNotEqualTo
   (
+    Ring2_Context* context,
     Ring2_Void x,
     Ring2_Void y
   );
@@ -89,6 +94,7 @@ Ring2_Void_isNotEqualTo
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Void_isLowerThan
   (
+    Ring2_Context* context,
     Ring2_Void x,
     Ring2_Void y
   );
@@ -105,6 +111,7 @@ Ring2_Void_isLowerThan
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Void_isLowerThanOrEqualTo
   (
+    Ring2_Context* context,
     Ring2_Void x,
     Ring2_Void y
   );
@@ -121,6 +128,7 @@ Ring2_Void_isLowerThanOrEqualTo
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Void_isGreaterThan
   (
+    Ring2_Context* context,
     Ring2_Void x,
     Ring2_Void y
   );
@@ -137,6 +145,7 @@ Ring2_Void_isGreaterThan
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Void_isGreaterThanOrEqualTo
   (
+    Ring2_Context* context,
     Ring2_Void x,
     Ring2_Void y
   );

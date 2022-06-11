@@ -12,6 +12,7 @@
 Ring1_CheckReturn() Ring2_Integer
 Ring2_Real64_getHashValue
   (
+    Ring2_Context* context,
     Ring2_Real64 x
   )
 {
@@ -23,6 +24,7 @@ Ring2_Real64_getHashValue
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Real64_getHashEqual
   (
+    Ring2_Context* context,
     Ring2_Real64 x,
     Ring2_Real64 y
   )
@@ -37,6 +39,7 @@ Ring2_Real64_getHashEqual
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Real64_isEqualTo
   (
+    Ring2_Context* context,
     Ring2_Real64 x,
     Ring2_Real64 y
   )
@@ -45,6 +48,7 @@ Ring2_Real64_isEqualTo
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Real64_isNotEqualTo
   (
+    Ring2_Context* context,
     Ring2_Real64 x,
     Ring2_Real64 y
   )
@@ -53,6 +57,7 @@ Ring2_Real64_isNotEqualTo
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Real64_isLowerThan
   (
+    Ring2_Context* context,
     Ring2_Real64 x,
     Ring2_Real64 y
   )
@@ -61,6 +66,7 @@ Ring2_Real64_isLowerThan
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Real64_isLowerThanOrEqualTo
   (
+    Ring2_Context* context,
     Ring2_Real64 x,
     Ring2_Real64 y
   )
@@ -69,6 +75,7 @@ Ring2_Real64_isLowerThanOrEqualTo
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Real64_isGreaterThan
   (
+    Ring2_Context* context,
     Ring2_Real64 x,
     Ring2_Real64 y
   )
@@ -77,6 +84,7 @@ Ring2_Real64_isGreaterThan
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Real64_isGreaterThanOrEqualTo
   (
+    Ring2_Context* context,
     Ring2_Real64 x,
     Ring2_Real64 y
   )
@@ -85,6 +93,7 @@ Ring2_Real64_isGreaterThanOrEqualTo
 Ring1_CheckReturn() Ring2_Real64
 Ring2_Real64_add
   (
+    Ring2_Context* context,
     Ring2_Real64 x,
     Ring2_Real64 y
   )
@@ -93,6 +102,7 @@ Ring2_Real64_add
 Ring1_CheckReturn() Ring2_Real64
 Ring2_Real64_subtract
   (
+    Ring2_Context* context,
     Ring2_Real64 x,
     Ring2_Real64 y
   )
@@ -101,6 +111,7 @@ Ring2_Real64_subtract
 Ring1_CheckReturn() Ring2_Real64
 Ring2_Real64_multiply
   (
+    Ring2_Context* context,
     Ring2_Real64 x,
     Ring2_Real64 y
   )
@@ -109,6 +120,7 @@ Ring2_Real64_multiply
 Ring1_CheckReturn() Ring2_Real64
 Ring2_Real64_divide
   (
+    Ring2_Context* context,
     Ring2_Real64 x,
     Ring2_Real64 y
   )
@@ -117,6 +129,7 @@ Ring2_Real64_divide
 Ring1_CheckReturn() Ring2_Real64
 Ring2_Real64_affirmate
   (
+    Ring2_Context* context,
     Ring2_Real64 x
   )
 { return +x; }
@@ -124,6 +137,7 @@ Ring2_Real64_affirmate
 Ring1_CheckReturn() Ring2_Real64
 Ring2_Real64_negate
   (
+    Ring2_Context* context,
     Ring2_Real64 x
   )
 { return -x; }
