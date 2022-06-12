@@ -14,7 +14,7 @@ static Ring2_Gc_Tag* g_objects = NULL;
 static Ring2_Gc_Tag* g_gray = NULL;
 static size_t g_objectCount = 0;
 
-static Mkx_Gc* g_gc = NULL;
+static Ring2_Gc* g_gc = NULL;
 
 Ring1_Result Machine_initializeGcModule() {
   g_gc = Ring2_Gc_create();
