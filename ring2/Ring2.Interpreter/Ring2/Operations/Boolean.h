@@ -38,7 +38,7 @@ Ring2_Boolean_getHashValue
 /// @param y
 /// The second <code>Boolean</code> value.
 /// @return
-/// @a true if the first <code>Boolean</code> value is in the "hash equal to" relation with the other <code>Boolean</code> value,
+/// @a true if the first <code>Boolean</code> value is in a "hash equal to" relation with the second <code>Boolean</code> value.
 /// @a false otherwise.
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Boolean_getHashEqual
@@ -49,13 +49,13 @@ Ring2_Boolean_getHashEqual
   );
 
 /// @brief
-/// Compare two <code>Boolean</code> values for equality.
+/// Get if a <code>Boolean</code> value is in an "equal to" relation with another <code>Boolean</code> value.
 /// @param x
 /// The first <code>Boolean</code> value.
 /// @param y
 /// The second <code>Boolean</code> value.
 /// @return
-/// @a true if the first <code>Boolean</code> value is equal to the second <code>Boolean</code> value,
+/// @a true if the first <code>Boolean</code> value is in an "equal to" relation with the second <code>Boolean</code> value.
 /// @a false otherwise.
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Boolean_isEqualTo
@@ -72,7 +72,7 @@ Ring2_Boolean_isEqualTo
 /// @param y
 /// The second <code>Boolean</code> value.
 /// @return
-/// @a true if the first <code>Boolean</code> value is not equal to the second <code>Boolean</code> value,
+/// @a true if the first <code>Boolean</code> value is not equal to the second <code>Boolean</code> value.
 /// @a false otherwise.
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Boolean_isNotEqualTo
@@ -83,13 +83,13 @@ Ring2_Boolean_isNotEqualTo
   );
 
 /// @brief
-/// Get if an <code>Boolean</code> value is in the "lower than" relation with another <code>Boolean</code> value.
+/// Get if an <code>Boolean</code> value is in a "lower than" relation with another <code>Boolean</code> value.
 /// @param x
 /// The first <code>Boolean</code> value.
 /// @param y
 /// The second <code>Boolean</code> value.
 /// @return
-/// @a true if the first <code>Boolean</code> value is in the "lower than" relation with th eother <code>Boolean</code> value,
+/// @a true if the first <code>Boolean</code> value is in a "lower than" relation with the second <code>Boolean</code> value.
 /// @a false otherwise.
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Boolean_isLowerThan
@@ -100,30 +100,30 @@ Ring2_Boolean_isLowerThan
   );
 
 /// @brief
-/// Get if an <code>Boolean</code> value is in the "lower than or equal to" relation with another <code>Boolean</code> value.
+/// Get if an <code>Boolean</code> value is in a "lower than or equal to" relation with another <code>Boolean</code> value.
 /// @param x
 /// The first <code>Boolean</code> value.
 /// @param y
 /// The second <code>Boolean</code> value.
 /// @return
-/// @a true if the first <code>Boolean</code> value is in the "lower than or equal to" relation with the second <code>Boolean</code> value,
+/// @a true if the first <code>Boolean</code> value is in a "lower than or equal to" relation with the second <code>Boolean</code> value.
 /// @a false otherwise.
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Boolean_isLowerThanOrEqualTo
   (
-    Ring2_Context *context,
+    Ring2_Context* context,
     Ring2_Boolean x,
     Ring2_Boolean y
   );
 
 /// @brief
-/// Get if a <code>Boolean</code> value is in the "greater than" relation with another <code>Boolean</code> value.
+/// Get if a <code>Boolean</code> value is in a "greater than" relation with another <code>Boolean</code> value.
 /// @param x
 /// The first <code>Boolean</code> value.
 /// @param y
 /// The second <code>Boolean</code> value.
 /// @return
-/// @a true if the first <code>Boolean</code> value is in the "greater than" relation with the other <code>Boolean</code> value,
+/// @a true if the first <code>Boolean</code> value is in a "greater than" relation with the second <code>Boolean</code> value.
 /// @a false otherwise.
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Boolean_isGreaterThan
@@ -134,13 +134,13 @@ Ring2_Boolean_isGreaterThan
   );
 
 /// @brief
-/// Get if a <code>Boolean</code> value is in the "greater than or equal to" relation with another <code>Boolean</code> value.
+/// Get if a <code>Boolean</code> value is in a "greater than or equal to" relation with another <code>Boolean</code> value.
 /// @param x
 /// The first <code>Boolean</code> value.
 /// @param y
 /// The second <code>Boolean</code> value.
 /// @return
-/// @a true if the first <code>Boolean</code> value is in the "greater than or equal to" relation with the other <code>Boolean</code> value,
+/// @a true if the first <code>Boolean</code> value is in a "greater than or equal to" relation with the second <code>Boolean</code> value.
 /// @a false otherwise.
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Boolean_isGreaterThanOrEqualTo
@@ -207,6 +207,7 @@ Ring2_Boolean_negate
     Ring2_Context *context,
     Ring2_Boolean x
   );
+
 
 #endif // Ring2_Configuration_withBoolean
 

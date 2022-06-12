@@ -33,7 +33,7 @@ Ring2_Real64_getHashValue
 /// @param y
 /// The second <code>Real64</code> value.
 /// @return
-/// @a true if the first <code>Real64</code> value is in the "hash equal to" relation with the other <code>Real64</code> value,
+/// @a true if the first <code>Real64</code> value is in a "hash equal to" relation with the second <code>Real64</code> value.
 /// @a false otherwise.
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Real64_getHashEqual
@@ -44,13 +44,13 @@ Ring2_Real64_getHashEqual
   );
 
 /// @brief
-/// Get if a <code>Real64</code> value is in a "equal to" relation with another <code>Real64</code> value.
+/// Get if a <code>Real64</code> value is in an "equal to" relation with another <code>Real64</code> value.
 /// @param x
 /// The first <code>Real64</code> value.
 /// @param y
 /// The second <code>Real64</code> value.
 /// @return
-/// @a true if the first <code>Real64</code> value is equal to the second <code>Real64</code> value,
+/// @a true if the first <code>Real64</code> value is in an "equal to" relation with the second <code>Real64</code> value,
 /// @a false otherwise.
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Real64_isEqualTo
@@ -67,7 +67,7 @@ Ring2_Real64_isEqualTo
 /// @param y
 /// The second <code>Real64</code> value.
 /// @return
-/// @a true if the first <code>Real64</code> value is not equal to the second <code>Real64</code> value,
+/// @a true if the first <code>Real64</code> value is in a "not equal to" relation with the second <code>Real64</code> value.
 /// @a false otherwise.
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Real64_isNotEqualTo
@@ -78,13 +78,13 @@ Ring2_Real64_isNotEqualTo
   );
 
 /// @brief
-/// Get if an <code>Real64</code> value is in the "lower than" relation with another <code>Real64</code> value.
+/// Get if an <code>Real64</code> value is in a "lower than" relation with another <code>Real64</code> value.
 /// @param x
 /// The first <code>Real64</code> value.
 /// @param y
 /// The second <code>Real64</code> value.
 /// @return
-/// @a true if the first <code>Real64</code> value is in the "lower than" relation with th eother <code>Real64</code> value,
+/// @a true if the first <code>Real64</code> value is in a "lower than" relation with the second <code>Real64</code> value,
 /// @a false otherwise.
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Real64_isLowerThan
@@ -95,13 +95,13 @@ Ring2_Real64_isLowerThan
   );
 
 /// @brief
-/// Get if an <code>Real64</code> value is in the "lower than or equal to" relation with another <code>Real64</code> value.
+/// Get if an <code>Real64</code> value is in a "lower than or equal to" relation with another <code>Real64</code> value.
 /// @param x
 /// The first <code>Real64</code> value.
 /// @param y
 /// The second <code>Real64</code> value.
 /// @return
-/// @a true if the first <code>Real64</code> value is in the "lower than or equal to" relation with the second <code>Real64</code> value,
+/// @a true if the first <code>Real64</code> value is in a "lower than or equal to" relation with the second <code>Real64</code> value,
 /// @a false otherwise.
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Real64_isLowerThanOrEqualTo
@@ -112,13 +112,13 @@ Ring2_Real64_isLowerThanOrEqualTo
   );
 
 /// @brief
-/// Get if a <code>Real64</code> value is in the "greater than" relation with another <code>Real64</code> value.
+/// Get if a <code>Real64</code> value is in a "greater than" relation with another <code>Real64</code> value.
 /// @param x
 /// The first <code>Real64</code> value.
 /// @param y
 /// The second <code>Real64</code> value.
 /// @return
-/// @a true if the first <code>Real64</code> value is in the "greater than" relation with the other <code>Real64</code> value,
+/// @a true if the first <code>Real64</code> value is in a "greater than" relation with the second <code>Real64</code> value,
 /// @a false otherwise.
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Real64_isGreaterThan
@@ -129,13 +129,13 @@ Ring2_Real64_isGreaterThan
   );
 
 /// @brief
-/// Get if a <code>Real64</code> value is in the "greater than or equal to" relation with another <code>Real64</code> value.
+/// Get if a <code>Real64</code> value is in a "greater than or equal to" relation with another <code>Real64</code> value.
 /// @param x
 /// The first <code>Real64</code> value.
 /// @param y
 /// The second <code>Real64</code> value.
 /// @return
-/// @a true if the first <code>Real64</code> value is in the "greater than or equal to" relation with the other <code>Real64</code> value,
+/// @a true if the first <code>Real64</code> value is in a "greater than or equal to" relation with the second <code>Real64</code> value,
 /// @a false otherwise.
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Real64_isGreaterThanOrEqualTo
@@ -235,6 +235,7 @@ Ring2_Real64_negate
     Ring2_Real64 x
   );
   
+
 #endif // Ring2_Configuration_withReal
 
 #endif // RING2_OPERATIONS_REAL64_H_INCLUDE

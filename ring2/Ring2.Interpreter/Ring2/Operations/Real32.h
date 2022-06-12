@@ -33,7 +33,7 @@ Ring2_Real32_getHashValue
 /// @param y
 /// The second <code>Real32</code> value.
 /// @return
-/// @a true if the first <code>Real32</code> value is in the "hash equal to" relation with the other <code>Real32</code> value,
+/// @a true if the first <code>Real32</code> value is in a "hash equal to" relation with the second <code>Real32</code> value.
 /// @a false otherwise.
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Real32_getHashEqual
@@ -50,7 +50,7 @@ Ring2_Real32_getHashEqual
 /// @param y
 /// The second <code>Real32</code> value.
 /// @return
-/// @a true if the first <code>Real32</code> value is equal to the second <code>Real32</code> value,
+/// @a true if the first <code>Real32</code> value is equal to the second <code>Real32</code> value.
 /// @a false otherwise.
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Real32_isEqualTo
@@ -67,7 +67,7 @@ Ring2_Real32_isEqualTo
 /// @param y
 /// The second <code>Real32</code> value.
 /// @return
-/// @a true if the first <code>Real32</code> value is not equal to the second <code>Real32</code> value,
+/// @a true if the first <code>Real32</code> value is not equal to the second <code>Real32</code> value.
 /// @a false otherwise.
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Real32_isNotEqualTo
@@ -78,13 +78,13 @@ Ring2_Real32_isNotEqualTo
   );
 
 /// @brief
-/// Get if an <code>Real32</code> value is in the "lower than" relation with another <code>Real32</code> value.
+/// Get if an <code>Real32</code> value is in a "lower than" relation with another <code>Real32</code> value.
 /// @param x
 /// The first <code>Real32</code> value.
 /// @param y
 /// The second <code>Real32</code> value.
 /// @return
-/// @a true if the first <code>Real32</code> value is in the "lower than" relation with th eother <code>Real32</code> value,
+/// @a true if the first <code>Real32</code> value is in a "lower than" relation with the second <code>Real32</code> value,
 /// @a false otherwise.
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Real32_isLowerThan
@@ -95,13 +95,13 @@ Ring2_Real32_isLowerThan
   );
 
 /// @brief
-/// Get if an <code>Real32</code> value is in the "lower than or equal to" relation with another <code>Real32</code> value.
+/// Get if an <code>Real32</code> value is in a "lower than or equal to" relation with another <code>Real32</code> value.
 /// @param x
 /// The first <code>Real32</code> value.
 /// @param y
 /// The second <code>Real32</code> value.
 /// @return
-/// @a true if the first <code>Real32</code> value is in the "lower than or equal to" relation with the second <code>Real32</code> value,
+/// @a true if the first <code>Real32</code> value is in a "lower than or equal to" relation with the second <code>Real32</code> value,
 /// @a false otherwise.
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Real32_isLowerThanOrEqualTo
@@ -112,13 +112,13 @@ Ring2_Real32_isLowerThanOrEqualTo
   );
 
 /// @brief
-/// Get if a <code>Real32</code> value is in the "greater than" relation with another <code>Real32</code> value.
+/// Get if a <code>Real32</code> value is in a "greater than" relation with another <code>Real32</code> value.
 /// @param x
 /// The first <code>Real32</code> value.
 /// @param y
 /// The second <code>Real32</code> value.
 /// @return
-/// @a true if the first <code>Real32</code> value is in the "greater than" relation with the other <code>Real32</code> value,
+/// @a true if the first <code>Real32</code> value is in a "greater than" relation with the second <code>Real32</code> value.
 /// @a false otherwise.
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Real32_isGreaterThan
@@ -129,13 +129,13 @@ Ring2_Real32_isGreaterThan
   );
 
 /// @brief
-/// Get if a <code>Real32</code> value is in the "greater than or equal to" relation with another <code>Real32</code> value.
+/// Get if a <code>Real32</code> value is in a "greater than or equal to" relation with another <code>Real32</code> value.
 /// @param x
 /// The first <code>Real32</code> value.
 /// @param y
 /// The second <code>Real32</code> value.
 /// @return
-/// @a true if the first <code>Real32</code> value is in the "greater than or equal to" relation with the other <code>Real32</code> value,
+/// @a true if the first <code>Real32</code> value is in a "greater than or equal to" relation with the second <code>Real32</code> value.
 /// @a false otherwise.
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Real32_isGreaterThanOrEqualTo
@@ -234,6 +234,7 @@ Ring2_Real32_negate
     Ring2_Context* context,
     Ring2_Real32 x
   );
+  
 
 #endif // Ring2_Configuration_withReal
 
