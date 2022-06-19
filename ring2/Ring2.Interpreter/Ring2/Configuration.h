@@ -9,6 +9,8 @@
 
 #define Ring2_Configuration_withBoolean (1)
 
+#define Ring2_Configuration_withForeignFunction (1)
+
 #define Ring2_Configuration_withInteger (1)
 
 #define Ring2_Configuration_withReal (1)

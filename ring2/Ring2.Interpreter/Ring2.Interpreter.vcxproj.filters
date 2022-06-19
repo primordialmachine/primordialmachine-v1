@@ -80,6 +80,12 @@
     <ClInclude Include="Ring2\Context.h">
       <Filter>Headerdateien\Ring2</Filter>
     </ClInclude>
+    <ClInclude Include="Ring2\Types\ForeignFunction.h">
+      <Filter>Headerdateien\Ring2\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Operations\ForeignFunction.h">
+      <Filter>Headerdateien\Ring2\Operations</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring2\JumpTarget.c">
@@ -126,6 +132,12 @@
     </ClCompile>
     <ClCompile Include="Ring2\Context.c">
       <Filter>Quelldateien\Ring2</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Types\ForeignFunction.c">
+      <Filter>Quelldateien\Ring2\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Operations\ForeignFunction.c">
+      <Filter>Quelldateien\Ring2\Operations</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
