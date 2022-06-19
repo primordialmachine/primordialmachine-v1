@@ -7,11 +7,12 @@
 #if !defined(RING2_OPERATIONS_BOOLEAN_H_INCLUDED)
 #define RING2_OPERATIONS_BOOLEAN_H_INCLUDED
 
-#include "Ring1/Intrinsic/CheckReturn.h"
-#include "Ring2/Context.h"
-#include "Ring2/Types.h"
+#include "Ring2/Configuration.h"
 
 #if defined(Ring2_Configuration_withBoolean) && 1 == Ring2_Configuration_withBoolean
+
+#include "Ring2/Context.h"
+#include "Ring2/Types.h"
 
 /// @brief
 /// Defined to @a 1 if <code>Boolean</code> can be compared by <code>isEqualTo</code>.

@@ -7,11 +7,12 @@
 #if !defined(RING2_OPERATIONS_INTEGER_H_INCLUDED)
 #define RING2_OPERATIONS_INTEGER_H_INCLUDED
 
-#include "Ring1/Intrinsic/CheckReturn.h"
-#include "Ring2/Context.h"
-#include "Ring2/Types.h"
+#include "Ring2/Configuration.h"
 
 #if defined(Ring2_Configuration_withInteger) && 1 == Ring2_Configuration_withInteger
+
+#include "Ring2/Context.h"
+#include "Ring2/Types.h"
 
 /// @brief
 /// Compute the hash value of an <code>Integer</code> value.

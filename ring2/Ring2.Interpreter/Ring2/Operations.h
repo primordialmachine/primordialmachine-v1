@@ -27,26 +27,26 @@ Ring2_OperationsModule_shutdown
 
 #if defined(Ring2_Configuration_withBoolean) && 1 == Ring2_Configuration_withBoolean
 
-#include "Ring2/Operations/Boolean.h"
+  #include "Ring2/Operations/Boolean.h"
 
 #endif // Ring2_Configuration_withBoolean
 
 #if defined(Ring2_Configuration_withInteger) && 1 == Ring2_Configuration_withInteger
 
-#include "Ring2/Operations/Integer.h"
+  #include "Ring2/Operations/Integer.h"
 
 #endif // Ring2_Configuration_withInteger
 
 #if defined(Ring2_Configuration_withReal) && 1 == Ring2_Configuration_withReal
 
-#include "Ring2/Operations/Real32.h"
-#include "Ring2/Operations/Real64.h"
+  #include "Ring2/Operations/Real32.h"
+  #include "Ring2/Operations/Real64.h"
 
 #endif // Ring2_Configuration_withReal
 
 #if defined(Ring2_Configuration_withVoid) && 1 == Ring2_Configuration_withVoid
 
-#include "Ring2/Operations/Void.h"
+  #include "Ring2/Operations/Void.h"
 
 #endif // Ring2_Configuration_withVoid
 

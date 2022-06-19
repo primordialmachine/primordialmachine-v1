@@ -7,11 +7,12 @@
 #if !defined(RING2_OPERATIONS_REAL64_H_INCLUDED)
 #define RING2_OPERATIONS_REAL64_H_INCLUDED
 
-#include "Ring1/Intrinsic/CheckReturn.h"
-#include "Ring2/Context.h"
-#include "Ring2/Types.h"
+#include "Ring2/Configuration.h"
 
 #if defined(Ring2_Configuration_withReal) && 1 == Ring2_Configuration_withReal
+
+#include "Ring2/Context.h"
+#include "Ring2/Types.h"
 
 /// @brief
 /// Compute the hash value of an <code>Real64</code> value.
