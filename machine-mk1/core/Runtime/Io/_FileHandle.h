@@ -5,16 +5,14 @@
 #define MACHINE_RUNTIME_IO__FILEHANDLE_H_INCLUDED
 
 #if !defined(MACHINE_RUNTIME_PRIVATE)
-#error("Do not include this file directly, include `_Runtime.h` instead.")
+#error("Do not include `Runtime/Io/FileHandle.h` directly, include `_Runtime.h` instead.")
 #endif
 #include "Runtime/Assertions.h"
 #include "Runtime/Io/_FileHandle.h"
-#include "Runtime/Io/ExistingFilePolicy.h"
-#include "Runtime/Io/FileAccessMode.h"
-#include "Runtime/Io/NonExistingFilePolicy.h"
-#include "Ring2/JumpTarget.h"
+#include "Ring2/_Include.h"
+#include "Ring1/FileSystem.h"
 #include "Runtime/LogModule.h"
-#include "Runtime/Status.h"
+#include "Ring1/Status.h"
 #include "Runtime/String.h"
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
@@ -24,10 +22,10 @@ typedef struct _Machine_FileHandle {
   HANDLE hHandle;
 } _Machine_FileHandle;
 
-void _Machine_FileHandle_open(_Machine_FileHandle* self, Machine_String* path,
-                              Machine_FileAccessMode fileAccessMode,
-                              Machine_ExistingFilePolicy existingFilePolicy,
-                              Machine_NonExistingFilePolicy nonExistingFilePolicy);
+void _Machine_FileHandle_open(_Machine_FileHandle* self, Ring2_String* path,
+                              Ring1_FileSystem_FileAccessMode fileAccessMode,
+                              Ring1_FileSystem_ExistingFilePolicy existingFilePolicy,
+                              Ring1_FileSystem_NonExistingFilePolicy nonExistingFilePolicy);
 
 void _Machine_FileHandle_close(_Machine_FileHandle* self);
 

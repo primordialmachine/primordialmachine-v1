@@ -80,7 +80,7 @@ static void LayoutScene_onStartup(LayoutScene* self) {
   Machine_VideoContext_setClearColor(videoContext, c);
 }
 
-static void alignLeftTop(Machine_Text_Layout* layout, Machine_Real width, Machine_Real height) {
+static void alignLeftTop(Machine_Text_Layout* layout, Ring2_Real32 width, Ring2_Real32 height) {
   Machine_Math_Vector2* MARGIN = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(MARGIN, 5.f, 5.f);
 
@@ -92,7 +92,7 @@ static void alignLeftTop(Machine_Text_Layout* layout, Machine_Real width, Machin
   Machine_Text_Layout_setPosition(layout, position2);
 }
 
-static void alignCenter(Machine_Text_Layout* layout, Machine_Real width, Machine_Real height) {
+static void alignCenter(Machine_Text_Layout* layout, Ring2_Real32 width, Ring2_Real32 height) {
   Machine_Math_Vector2* HALF = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(HALF, 0.5f, 0.5f);
   Machine_Math_Vector2* CANVAS_SIZE = Machine_Math_Vector2_create();
@@ -119,7 +119,7 @@ static void LayoutScene_onCanvasSizeChanged(LayoutScene* self,
   alignLeftTop(self->textLayout2, event->width, event->height);
 }
 
-static void LayoutScene_onUpdate(LayoutScene* self, Machine_Real width, Machine_Real height) {
+static void LayoutScene_onUpdate(LayoutScene* self, Ring2_Real32 width, Ring2_Real32 height) {
   Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
   // Set the viewport and clear its color buffer.
   Machine_VideoContext_setViewportRectangle(videoContext, 0, 0, width, height);
@@ -166,7 +166,6 @@ LayoutScene* LayoutScene_create(Machine_VideoContext* videoContext) {
   Machine_Value_setObject(&(ARGUMENTS[0]), (Machine_Object*)videoContext);
   LayoutScene* self = (LayoutScene*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   if (!self) {
-    Machine_setStatus(Machine_Status_AllocationFailed);
     Ring2_jump();
   }
   return self;

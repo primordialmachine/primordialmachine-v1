@@ -33,7 +33,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gui_BorderModel, Machine_Object, &Machine_Gui_B
 Machine_Gui_BorderModel* Machine_Gui_BorderModel_create() {
   Machine_ClassType* ty = Machine_Gui_BorderModel_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
   Machine_Gui_BorderModel* self
       = (Machine_Gui_BorderModel*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
@@ -48,39 +48,39 @@ void Machine_Gui_BorderModel_setColor(Machine_Gui_BorderModel* self,
   Machine_Math_Vector4_copy(self->color, color);
 }
 
-Machine_Real Machine_Gui_BorderModel_getLeftWidth(Machine_Gui_BorderModel const* self) {
+Ring2_Real32 Machine_Gui_BorderModel_getLeftWidth(Machine_Gui_BorderModel const* self) {
   return self->leftWidth;
 }
 
-void Machine_Gui_BorderModel_setLeftWidth(Machine_Gui_BorderModel* self, Machine_Real width) {
+void Machine_Gui_BorderModel_setLeftWidth(Machine_Gui_BorderModel* self, Ring2_Real32 width) {
   self->leftWidth = width;
 }
 
-Machine_Real Machine_Gui_BorderModel_getRightWidth(Machine_Gui_BorderModel const* self) {
+Ring2_Real32 Machine_Gui_BorderModel_getRightWidth(Machine_Gui_BorderModel const* self) {
   return self->rightWidth;
 }
 
-void Machine_Gui_BorderModel_setRightWidth(Machine_Gui_BorderModel* self, Machine_Real width) {
+void Machine_Gui_BorderModel_setRightWidth(Machine_Gui_BorderModel* self, Ring2_Real32 width) {
   self->rightWidth = width;
 }
 
-Machine_Real Machine_Gui_BorderModel_getTopWidth(Machine_Gui_BorderModel const* self) {
+Ring2_Real32 Machine_Gui_BorderModel_getTopWidth(Machine_Gui_BorderModel const* self) {
   return self->topWidth;
 }
 
-void Machine_Gui_BorderModel_setTopWidth(Machine_Gui_BorderModel* self, Machine_Real width) {
+void Machine_Gui_BorderModel_setTopWidth(Machine_Gui_BorderModel* self, Ring2_Real32 width) {
   self->topWidth = width;
 }
 
-Machine_Real Machine_Gui_BorderModel_getBottomWidth(Machine_Gui_BorderModel const* self) {
+Ring2_Real32 Machine_Gui_BorderModel_getBottomWidth(Machine_Gui_BorderModel const* self) {
   return self->bottomWidth;
 }
 
-void Machine_Gui_BorderModel_setBottomWidth(Machine_Gui_BorderModel* self, Machine_Real width) {
+void Machine_Gui_BorderModel_setBottomWidth(Machine_Gui_BorderModel* self, Ring2_Real32 width) {
   self->bottomWidth = width;
 }
 
-void Machine_Gui_BorderModel_setWidth(Machine_Gui_BorderModel* self, Machine_Real width) {
+void Machine_Gui_BorderModel_setWidth(Machine_Gui_BorderModel* self, Ring2_Real32 width) {
   Machine_Gui_BorderModel_setLeftWidth(self, width);
   Machine_Gui_BorderModel_setRightWidth(self, width);
   Machine_Gui_BorderModel_setTopWidth(self, width);

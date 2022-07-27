@@ -60,15 +60,15 @@ static Machine_Gui_Widget* loadWidget(Machine_Gui_Context* context, Machine_Gdl_
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 static Machine_Gui_Widget* loadWidgetByPath(Machine_Gui_Context* context, const char* path) {
-  Machine_String* inputPath = Machine_String_create(path, strlen(path));
+  Ring2_String* inputPath = Machine_String_create(path, strlen(path));
   Machine_ByteBuffer* inputText = Machine_getFileContents(inputPath);
   Machine_Gdl_Parser* parser = Machine_Gdl_Parser_create();
   Machine_Gdl_Node* node = Machine_Gdl_Parser_parse(parser, inputPath, inputText);
   MACHINE_ASSERT(node->kind == Machine_Gdl_NodeKind_CompilationUnit,
-                 Machine_Status_SemanticalError);
+                 Ring1_Status_InvalidSemantics);
   Machine_Value temporary = Machine_List_getAt(node->children, 0);
   node = (Machine_Gdl_Node*)Machine_Value_getObject(&temporary);
-  MACHINE_ASSERT(node->kind == Machine_Gdl_NodeKind_Map, Machine_Status_SemanticalError);
+  MACHINE_ASSERT(node->kind == Machine_Gdl_NodeKind_Map, Ring1_Status_InvalidSemantics);
   return loadWidget(context, node);
 }
 
@@ -109,19 +109,19 @@ static void updateText1(Scene5* self, Machine_CanvasSizeChangedEvent* event) {
 static void renderHeader(Scene5* self) {
   Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
   Machine_Context2* context = self->guiContext->context2;
-  Machine_Real width = Machine_Context2_getTargetWidth(context);
-  Machine_Real height = Machine_Context2_getTargetHeight(context);
+  Ring2_Real32 width = Machine_Context2_getTargetWidth(context);
+  Ring2_Real32 height = Machine_Context2_getTargetHeight(context);
   Machine_Context2* tmp = Machine_Context2_create(videoContext);
   Machine_Context2_setTargetSize(tmp, width, height);
   Machine_Gui_Widget_render((Machine_Gui_Widget*)self->header, tmp);
 }
 
-Machine_Real Machine_Real_maxima(Machine_Real x, Machine_Real y) {
+Ring2_Real32 Machine_Real_maxima(Ring2_Real32 x, Ring2_Real32 y) {
   return x > y ? x : y;
 }
 
 static void updateHeader(Scene5* self, Machine_CanvasSizeChangedEvent* event) {
-  static Machine_Real const MARGIN_X = 5.f, MARGIN_Y = 5.f;
+  static Ring2_Real32 const MARGIN_X = 5.f, MARGIN_Y = 5.f;
 
   Machine_Math_Vector2* MARGIN = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(MARGIN, MARGIN_X, MARGIN_Y);
@@ -130,7 +130,7 @@ static void updateHeader(Scene5* self, Machine_CanvasSizeChangedEvent* event) {
   // Set the size to the best size.
   Machine_Math_Vector2 const* preferredSize = Machine_Gui_Widget_getPreferredSize(self->header);
   Machine_Math_Vector2* temporary = Machine_Math_Vector2_create();
-  Machine_Real height = Machine_Math_Vector2_getY(canvasSize) * (1.f / 6.f);
+  Ring2_Real32 height = Machine_Math_Vector2_getY(canvasSize) * (1.f / 6.f);
   Machine_Math_Vector2_set(temporary,
                            Machine_Real_maxima(Machine_Math_Vector2_getX(preferredSize),
                                                Machine_Math_Vector2_getX(canvasSize))
@@ -144,15 +144,15 @@ static void updateHeader(Scene5* self, Machine_CanvasSizeChangedEvent* event) {
 static void renderFooter(Scene5* self) {
   Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
   Machine_Context2* context = self->guiContext->context2;
-  Machine_Real width = Machine_Context2_getTargetWidth(context);
-  Machine_Real height = Machine_Context2_getTargetHeight(context);
+  Ring2_Real32 width = Machine_Context2_getTargetWidth(context);
+  Ring2_Real32 height = Machine_Context2_getTargetHeight(context);
   Machine_Context2* tmp = Machine_Context2_create(videoContext);
   Machine_Context2_setTargetSize(tmp, width, height);
   Machine_Gui_Widget_render((Machine_Gui_Widget*)self->footer, tmp);
 }
 
 static void updateFooter(Scene5* self, Machine_CanvasSizeChangedEvent* event) {
-  static Machine_Real const MARGIN_X = 5.f, MARGIN_Y = 5.f;
+  static Ring2_Real32 const MARGIN_X = 5.f, MARGIN_Y = 5.f;
 
   Machine_Math_Vector2* MARGIN = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(MARGIN, MARGIN_X, MARGIN_Y);
@@ -161,7 +161,7 @@ static void updateFooter(Scene5* self, Machine_CanvasSizeChangedEvent* event) {
   // Set the size to the best size.
   Machine_Math_Vector2 const* preferredSize = Machine_Gui_Widget_getPreferredSize(self->footer);
   Machine_Math_Vector2* temporary = Machine_Math_Vector2_create();
-  Machine_Real height = Machine_Math_Vector2_getY(canvasSize) * (1.f / 6.f);
+  Ring2_Real32 height = Machine_Math_Vector2_getY(canvasSize) * (1.f / 6.f);
   Machine_Math_Vector2_set(temporary,
                            Machine_Real_maxima(Machine_Math_Vector2_getX(preferredSize),
                                                Machine_Math_Vector2_getX(canvasSize))
@@ -182,7 +182,7 @@ static void Scene5_onCanvasSizeChanged(Scene5* self, Machine_CanvasSizeChangedEv
   updateFooter(self, event);
 }
 
-static void Scene5_update(Scene5* self, Machine_Real width, Machine_Real height) {
+static void Scene5_update(Scene5* self, Ring2_Real32 width, Ring2_Real32 height) {
   Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
 
   // Set the viewport and clear its color buffer.
@@ -220,7 +220,6 @@ Scene5* Scene5_create(Machine_VideoContext* videoContext) {
   Machine_Value_setObject(&(ARGUMENTS[0]), (Machine_Object*)videoContext);
   Scene5* self = (Scene5*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   if (!self) {
-    Machine_setStatus(Machine_Status_AllocationFailed);
     Ring2_jump();
   }
   return self;

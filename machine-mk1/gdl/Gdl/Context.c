@@ -29,11 +29,11 @@ static void Machine_Gdl_Context_construct(Machine_Gdl_Context* self, size_t numb
 MACHINE_DEFINE_CLASSTYPE(Machine_Gdl_Context, Machine_Object, &Machine_Gdl_Context_visit,
                          &Machine_Gdl_Context_construct, NULL, NULL, NULL)
 
-Machine_Gdl_Context* Machine_Gdl_Context_create(Machine_String* inputName,
+Machine_Gdl_Context* Machine_Gdl_Context_create(Ring2_String* inputName,
                                                 Machine_ByteBuffer* inputBytes) {
   Machine_ClassType* ty = Machine_Gdl_Context_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
   Machine_Gdl_Context* self = (Machine_Gdl_Context*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

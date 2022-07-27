@@ -7,7 +7,7 @@
 #include <stdbool.h>
 #include <stddef.h>
 
-Ring1_Intrinsic_Inline()  Ring1_Intrinsic_CheckReturn() bool
+Ring1_Inline() Ring1_CheckReturn() bool
 isString
   (
     char const** new,
@@ -31,7 +31,7 @@ isString
   return true;
 }
 
-Ring1_Intrinsic_Inline() Ring1_Intrinsic_CheckReturn() bool
+Ring1_Inline() Ring1_CheckReturn() bool
 isDigit
   (
     char const** new,

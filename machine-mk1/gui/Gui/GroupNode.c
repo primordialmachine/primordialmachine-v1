@@ -75,8 +75,8 @@ void Machine_Gui_GroupNode_setLayoutModel(Machine_Gui_GroupNode* self,
   self->layoutModel = layoutModel;
 }
 
-void Machine_Gui_GroupNode_relayout(Machine_Gui_GroupNode* self, Machine_Real canvasWidth,
-                                    Machine_Real canvasHeight) {
+void Machine_Gui_GroupNode_relayout(Machine_Gui_GroupNode* self, Ring2_Real32 canvasWidth,
+                                    Ring2_Real32 canvasHeight) {
   // Set the size of all children to the same value: That value is the component-wise maxima vector
   // of the preferred sizes of all children.
   Machine_Math_Vector2* preferredSize = Machine_Math_Vector2_clone(

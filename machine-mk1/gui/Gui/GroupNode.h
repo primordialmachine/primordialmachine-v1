@@ -5,7 +5,7 @@
 #define MACHINE_GUI_GROUPNODE_H_INCLUDED
 
 #if !defined(MACHINE_GUI_PRIVATE)
-#error("Do not include this file directly, include `_Gui.h` instead.")
+#error("Do not include `Gui/GroupNode.h` directly, include `_Gui.h` instead.")
 #endif
 #include "Gui/Widget.h"
 #include "Gui/WidgetList.h"
@@ -35,7 +35,7 @@ Machine_Gui_LayoutModel const* Machine_Gui_GroupNode_getLayoutModel(
 void Machine_Gui_GroupNode_setLayoutModel(Machine_Gui_GroupNode* self,
                                           Machine_Gui_LayoutModel* layoutModel);
 
-void Machine_Gui_GroupNode_relayout(Machine_Gui_GroupNode* self, Machine_Real canvasWidth,
-                                    Machine_Real canvasHeight);
+void Machine_Gui_GroupNode_relayout(Machine_Gui_GroupNode* self, Ring2_Real32 canvasWidth,
+                                    Ring2_Real32 canvasHeight);
 
 #endif // MACHINE_GUI_GROUPNODE_H_INCLUDED

@@ -139,12 +139,12 @@ Machine_Math_Rectangle2 const* Machine_Gui_Widget_getAbsoluteCanvasRectangle(
 /// @brief Get the name of this widget.
 /// @param self This widget.
 /// @return The name of this widget if any, null otherwise.
-Machine_String* Machine_Gui_Widget_getName(Machine_Gui_Widget* self);
+Ring2_String* Machine_Gui_Widget_getName(Machine_Gui_Widget* self);
 
 /// @brief Set the name of this widge.t
 /// @param self This widget.
 /// @param name The name of this widget if any, null otherwise.
-void Machine_Gui_Widget_setName(Machine_Gui_Widget* self, Machine_String* name);
+void Machine_Gui_Widget_setName(Machine_Gui_Widget* self, Ring2_String* name);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -153,7 +153,7 @@ void Machine_Gui_Widget_setName(Machine_Gui_Widget* self, Machine_String* name);
 /// @param name The name of the event.
 /// @param context The context.
 /// @param callback The callback.
-void Machine_Gui_Widget_subscribe(Machine_Gui_Widget* self, Machine_String* name,
+void Machine_Gui_Widget_subscribe(Machine_Gui_Widget* self, Ring2_String* name,
                                   Machine_Object* context, Machine_ForeignProcedure* callback);
 
 /// @brief Unsubscribe from an event.
@@ -161,12 +161,12 @@ void Machine_Gui_Widget_subscribe(Machine_Gui_Widget* self, Machine_String* name
 /// @param name The name of the event.
 /// @param context The context.
 /// @param callback The callback. [context:Machine.Object,arguments:M
-void Machine_Gui_Widget_unsubscribe(Machine_Gui_Widget* self, Machine_String* name,
+void Machine_Gui_Widget_unsubscribe(Machine_Gui_Widget* self, Ring2_String* name,
                                     Machine_Object* context, Machine_ForeignProcedure* callback);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-void Machine_Gui_Widget_emitSignal(Machine_Gui_Widget* self, Machine_String* name,
+void Machine_Gui_Widget_emitSignal(Machine_Gui_Widget* self, Ring2_String* name,
                                    size_t numberOfArguments, Machine_Value const* arguments);
 
 void Machine_Gui_Widget_emitPositionChangedSignal(Machine_Gui_Widget* self);

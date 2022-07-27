@@ -5,7 +5,7 @@
 #define MACHINE_GUI_READER_H_INCLUDED
 
 #if !defined(MACHINE_GUI_PRIVATE)
-#error("Do not include this file directly, include `_Gui.h` instead.")
+#error("Do not include `Gui/Reader/Reader.h` directly, include `_Gui.h` instead.")
 #endif
 #include "Gui/Widget.h"
 

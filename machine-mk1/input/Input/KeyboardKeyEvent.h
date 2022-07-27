@@ -26,7 +26,7 @@ enum Machine_KeyboardKeyActions {
 
 };
 
-Machine_String* Machine_KeyboardKeyActions_toString(Machine_KeyboardKeyActions self);
+Ring2_String* Machine_KeyboardKeyActions_toString(Machine_KeyboardKeyActions self);
 
 /// @brief An event pertaining to a keyboard key.
 /// @extends Machine.Object

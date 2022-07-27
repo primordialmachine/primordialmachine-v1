@@ -14,7 +14,7 @@
 
 #define MAXMOD10 (INT64_MAX % 10)
 
-Ring1_Intrinsic_CheckReturn() Ring1_Result
+Ring1_CheckReturn() Ring1_Result
 Ring1_Conversion_stringToUint64
   (
     uint64_t *result,
@@ -22,7 +22,7 @@ Ring1_Conversion_stringToUint64
     char const* end
   )
 {
-  if (Ring1_Intrinsic_Unlikely(!result || !start || !end)) {
+  if (Ring1_Unlikely(!result || !start || !end)) {
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     return Ring1_Result_Failure;
   }
@@ -68,7 +68,7 @@ Ring1_Conversion_stringToUint64
   return Ring1_Result_Success;
 }
 
-Ring1_Intrinsic_CheckReturn() Ring1_Result
+Ring1_CheckReturn() Ring1_Result
 Ring1_Conversion_stringToUint32
   (
     uint32_t* result,
@@ -88,7 +88,7 @@ Ring1_Conversion_stringToUint32
   return Ring1_Result_Success;
 }
 
-Ring1_Intrinsic_CheckReturn() Ring1_Result
+Ring1_CheckReturn() Ring1_Result
 Ring1_Conversion_stringToUint16
   (
     uint16_t* result,
@@ -108,7 +108,7 @@ Ring1_Conversion_stringToUint16
   return Ring1_Result_Success;
 }
 
-Ring1_Intrinsic_CheckReturn() Ring1_Result
+Ring1_CheckReturn() Ring1_Result
 Ring1_Conversion_stringToUint8
   (
     uint8_t* result,

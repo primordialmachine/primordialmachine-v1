@@ -63,9 +63,6 @@
     <ClCompile Include="Runtime\PrimitiveTypes.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
-    <ClCompile Include="Runtime\Status.c">
-      <Filter>Quelldateien\Runtime</Filter>
-    </ClCompile>
     <ClCompile Include="Runtime\String.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
@@ -176,9 +173,6 @@
     <ClInclude Include="Runtime\PrimitiveTypes.h">
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
-    <ClInclude Include="Runtime\Status.h">
-      <Filter>Headerdateien\Runtime</Filter>
-    </ClInclude>
     <ClInclude Include="Runtime\String.h">
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
@@ -193,15 +187,6 @@
     </ClInclude>
     <ClInclude Include="Runtime\Configuration.h">
       <Filter>Headerdateien\Runtime</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Io\NonExistingFilePolicy.h">
-      <Filter>Headerdateien\Runtime\Io</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Io\FileAccessMode.h">
-      <Filter>Headerdateien\Runtime\Io</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Io\ExistingFilePolicy.h">
-      <Filter>Headerdateien\Runtime\Io</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\Io\_FileHandle.h">
       <Filter>Headerdateien\Runtime\Io</Filter>

@@ -11,14 +11,12 @@
 
 // https://documentation.primordialmachine.com/api/ring1-library/intrinsic-library/Ring1_Intrinsic_CheckReturn
 #if defined(__GNUC__)
-  #define Ring1_Intrinsic_CheckReturn() [[nodiscard]]
+  #define Ring1_CheckReturn() [[nodiscard]]
 #elif defined(_MSC_VER)
   #include <sal.h>
-  #define Ring1_Intrinsic_CheckReturn() _Check_return_
+  #define Ring1_CheckReturn() _Check_return_
 #else
   #error("environment not supported")
 #endif
-
-#define Ring1_CheckReturn() Ring1_Intrinsic_CheckReturn()
 
 #endif // RING1_INTRINSIC_CHECKRETURN_H_INCLUDED

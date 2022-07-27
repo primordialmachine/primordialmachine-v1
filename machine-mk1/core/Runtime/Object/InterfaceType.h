@@ -5,7 +5,7 @@
 #define MACHINE_RUNTIME_OBJECT_INTERFACETYPE_H_INCLUDED
 
 #if !defined(MACHINE_RUNTIME_PRIVATE)
-#error("Do not include this file directly, include `_Runtime.h` instead.")
+#error("Do not include `Runtime/Object/InterfaceType.h` directly, include `_Runtime.h` instead.")
 #endif
 #include "Runtime/Type.h"
 typedef struct Machine_Value Machine_Value;

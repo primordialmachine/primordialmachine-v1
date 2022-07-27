@@ -2,8 +2,9 @@
 #define MACHINE_RUNTIME_OBJECT_INTERFACETYPE_MODULE_H_INCLUDED
 
 #if !defined(MACHINE_RUNTIME_PRIVATE)
-#error("Do not include this file directly, include `_Runtime.h` instead.")
+#error("Do not include `Runtime/Object/InterfaceType.module.h` directly, include `_Runtime.h` instead.")
 #endif
+#include "Ring1/InlineArray.h"
 #include "Runtime/Object/InterfaceType.h"
 
 /// @brief Flags set if the prerequisites were added.
@@ -18,7 +19,7 @@ struct Machine_InterfaceType {
   uint8_t flags;
 
   bool extendsArrayInitialized;
-  Machine_Eal_InlineArray extends;
+  Ring1_InlineArray extends;
   
   /// @brief The size, in Bytes, of the interface dispatch.
   size_t size;

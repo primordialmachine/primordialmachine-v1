@@ -24,7 +24,7 @@ void Machine_Material_construct(Machine_Material* self, size_t numberOfArguments
 Machine_Material* Machine_Material_create() {
   Machine_ClassType* ty = Machine_Material_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
   Machine_Material* self = (Machine_Material*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }
@@ -66,10 +66,10 @@ Machine_DepthTestFunction Machine_Material_getDepthTestFunction(Machine_Material
 }
 
 
-void Machine_Material_setDepthWriteEnabled(Machine_Material* self, Machine_Boolean depthWriteEnabled) {
+void Machine_Material_setDepthWriteEnabled(Machine_Material* self, Ring2_Boolean depthWriteEnabled) {
   self->depthWriteEnabled = depthWriteEnabled;
 }
 
-Machine_Boolean Machine_Material_getDepthWriteEnabled(Machine_Material const* self) {
+Ring2_Boolean Machine_Material_getDepthWriteEnabled(Machine_Material const* self) {
   return self->depthWriteEnabled;
 }

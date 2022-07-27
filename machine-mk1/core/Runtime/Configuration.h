@@ -5,7 +5,7 @@
 #define MACHINE_RUNTIME_CONFIGURATION_H_INCLUDED
 
 #if !defined(MACHINE_RUNTIME_PRIVATE)
-#error("Do not include this file directly, include `_Runtime.h` instead.")
+#error("Do not include `Runtime/Configuration.h` directly, include `_Runtime.h` instead.")
 #endif
 
 /// @brief If defined and @a 1, then logging functionality is compiled into the machine.

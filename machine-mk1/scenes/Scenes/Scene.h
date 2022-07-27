@@ -10,7 +10,7 @@ typedef void Scene_OnCanvaSizeChangedCallback(Scene* self, Machine_CanvasSizeCha
 
 typedef void Scene_OnStartupCallback(Scene* self);
 
-typedef void Scene_OnUpdateCallback(Scene* self, Machine_Real width, Machine_Real height);
+typedef void Scene_OnUpdateCallback(Scene* self, Ring2_Real32 width, Ring2_Real32 height);
 
 typedef void Scene_OnShutdownCallback(Scene* self);
 
@@ -78,7 +78,7 @@ void Scene_onMouseButtonEvent(Scene* self, Machine_MouseButtonEvent* event);
 /// positive x axis pointing right and the positive y axis pointing down.
 void Scene_onKeyboardKeyEvent(Scene* self, Machine_KeyboardKeyEvent* event);
 
-void Scene_onUpdate(Scene* self, Machine_Real width, Machine_Real height);
+void Scene_onUpdate(Scene* self, Ring2_Real32 width, Ring2_Real32 height);
 
 void Scene_onShutdown(Scene* self);
 

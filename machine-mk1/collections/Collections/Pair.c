@@ -10,7 +10,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Pair, Machine_Object, NULL, &Machine_Pair_const
 void Machine_Pair_construct(Machine_Pair* self, size_t numberOfArguments,
                             Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  MACHINE_ASSERT(numberOfArguments == 2, Machine_Status_InvalidNumberOfArguments);
+  MACHINE_ASSERT(numberOfArguments == 2, Ring1_Status_InvalidNumberOfArguments);
   self->first = arguments[0];
   self->second = arguments[1];
   Machine_setClassType((Machine_Object*)self, Machine_Pair_getType());
@@ -25,8 +25,8 @@ Machine_Pair* Machine_Pair_create(Machine_Value first, Machine_Value second) {
   return self;
 }
 
-Machine_Value Machine_Pair_get(Machine_Pair* self, Machine_Integer index) {
-  MACHINE_ASSERT(index == 0 || index == 1, Machine_Status_IndexOutOfBounds);
+Machine_Value Machine_Pair_get(Machine_Pair* self, Ring2_Integer index) {
+  MACHINE_ASSERT(index == 0 || index == 1, Ring1_Status_IndexOutOfBounds);
   if (index == 0) {
     return self->first;
   } else {

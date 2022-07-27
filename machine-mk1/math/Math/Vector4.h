@@ -5,7 +5,7 @@
 #define MACHINE_MATH_VECTOR4_H_INCLUDED
 
 #if !defined(MACHINE_MATH_PRIVATE)
-#error("Do not include this file directly, include `_Math.h` instead.")
+#error("Do not include `Math/Vector4.h` directly, include `_Math.h` instead.")
 #endif
 
 #include "_Runtime.h"

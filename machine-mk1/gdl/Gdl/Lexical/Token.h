@@ -16,15 +16,15 @@ struct Machine_Gdl_Token {
   Machine_Object __parent;
 
   Machine_Gdl_TokenKind kind;
-  Machine_String* text;
-  Machine_Integer offset;
+  Ring2_String* text;
+  Ring2_Integer offset;
 };
 
-Machine_Gdl_Token* Machine_Gdl_Token_create(Machine_Gdl_TokenKind, Machine_String* text,
-                                            Machine_Integer offset);
+Machine_Gdl_Token* Machine_Gdl_Token_create(Machine_Gdl_TokenKind, Ring2_String* text,
+                                            Ring2_Integer offset);
 
 Machine_Gdl_TokenKind Machine_Gdl_Token_getKind(Machine_Gdl_Token const* self);
 
-Machine_String* Machine_Gdl_Token_getText(Machine_Gdl_Token const* self);
+Ring2_String* Machine_Gdl_Token_getText(Machine_Gdl_Token const* self);
 
 #endif // MACHINE_GDL_LEXICAL_TOKEN_H_INCLUDED

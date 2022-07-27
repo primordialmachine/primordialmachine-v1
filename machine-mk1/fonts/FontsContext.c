@@ -31,7 +31,7 @@ static void destruct(Machine_Fonts_FontsContext* self) {
   }
 }
 
-static Machine_Font* createFont(Machine_Fonts_FontsContext* self, Machine_String* path, Machine_Integer pointSize) {
+static Machine_Font* createFont(Machine_Fonts_FontsContext* self, Ring2_String* path, Ring2_Integer pointSize) {
   return (Machine_Font *)Machine_Fonts_Font_create((Machine_FontsContext *)self, path, pointSize);
 }
 
@@ -41,7 +41,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Fonts_FontsContext, Machine_FontsContext, &visi
                          &Machine_Fonts_FontsContext_construct, &destruct, &constructClass, NULL);
 
 static void constructClass(Machine_Fonts_FontsContext_Class* self) {
-  ((Machine_FontsContext_Class*)self)->createFont = (Machine_Font * (*)(Machine_FontsContext*, Machine_String*, Machine_Integer)) & createFont;
+  ((Machine_FontsContext_Class*)self)->createFont = (Machine_Font * (*)(Machine_FontsContext*, Ring2_String*, Ring2_Integer)) & createFont;
 }
 
 void Machine_Fonts_FontsContext_construct(Machine_Fonts_FontsContext* self, size_t numberOfArguments, Machine_Value const* arguments) {
@@ -52,7 +52,7 @@ void Machine_Fonts_FontsContext_construct(Machine_Fonts_FontsContext* self, size
     FT_Error error = FT_Init_FreeType(&g_library);
     if (error) {
       Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "FT_Init_FreeType failed\n");
-      Machine_setStatus(Machine_Status_EnvironmentFailed);
+      Ring1_Status_set(Ring1_Status_EnvironmentFailed);
       Ring2_jump();
     }
   }

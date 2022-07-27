@@ -41,7 +41,6 @@
     <ClCompile Include="Runtime\PrimitiveTypes.c" />
     <ClCompile Include="Runtime\StackModule.c" />
     <ClCompile Include="Runtime\StaticVariablesModule.c" />
-    <ClCompile Include="Runtime\Status.c" />
     <ClCompile Include="Runtime\String.c" />
     <ClCompile Include="Runtime\StringBuffer.c" />
     <ClCompile Include="Runtime\Object\ClassType.c" />
@@ -63,12 +62,9 @@
     <ClInclude Include="Runtime\Enumeration\EnumerationType.module.h" />
     <ClInclude Include="Runtime\Gc\Gc.h" />
     <ClInclude Include="Runtime\Io.h" />
-    <ClInclude Include="Runtime\Io\ExistingFilePolicy.h" />
-    <ClInclude Include="Runtime\Io\FileAccessMode.h" />
     <ClInclude Include="Runtime\Io\getFileContents.h" />
     <ClInclude Include="Runtime\Io\setFileContents.h" />
     <ClInclude Include="Runtime\Io\_FileHandle.h" />
-    <ClInclude Include="Runtime\Io\NonExistingFilePolicy.h" />
     <ClInclude Include="Runtime\Io\_FileMapping.h" />
     <ClInclude Include="Runtime\LogModule.h" />
     <ClInclude Include="Runtime\Machine.h" />
@@ -79,7 +75,6 @@
     <ClInclude Include="Runtime\PrimitiveTypes.h" />
     <ClInclude Include="Runtime\StackModule.h" />
     <ClInclude Include="Runtime\StaticVariablesModule.h" />
-    <ClInclude Include="Runtime\Status.h" />
     <ClInclude Include="Runtime\String.h" />
     <ClInclude Include="Runtime\StringBuffer.h" />
     <ClInclude Include="Runtime\Object\ClassType.h" />
@@ -94,14 +89,8 @@
     <ProjectReference Include="..\..\ring1\Ring1\Ring1.vcxproj">
       <Project>{d7db575d-7eaa-47de-8999-44f4e1361d34}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\ring2\Ring2.Gc\Ring2.Gc.vcxproj">
-      <Project>{2108d2e9-dacc-4158-8dc2-30d3f94c2661}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ring2\Ring2.Interpreter\Ring2.Interpreter.vcxproj">
+    <ProjectReference Include="..\..\ring2\Ring2\Ring2.vcxproj">
       <Project>{3ade4501-5d5c-4878-9632-f81c3de2429c}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\eal\machine-mk1-eal.vcxproj">
-      <Project>{2c009df6-0365-43aa-b0f1-c8752d10b066}</Project>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">

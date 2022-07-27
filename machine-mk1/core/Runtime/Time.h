@@ -5,9 +5,9 @@
 #define MACHINE_RUNTIME_TIME_H_INCLUDED
 
 #if !defined(MACHINE_RUNTIME_PRIVATE)
-#error("Do not include this file directly, include `_Runtime.h` instead.")
+#error("Do not include `Runtime/Time.h` directly, include `_Runtime.h` instead.")
 #endif
-#include "_Eal.h"
+#include "Ring1/Ring1.h"
 
 /// @brief Get the time, in milliseconds, since the start of the system.
 /// @return The time, in milliseconds, since the start of the system.

@@ -8,7 +8,7 @@
 
 MACHINE_DEFINE_ENUMERATIONTYPE(Machine_KeyboardKeyActions)
 
-Machine_String* Machine_KeyboardKeyActions_toString(Machine_KeyboardKeyActions self) {
+Ring2_String* Machine_KeyboardKeyActions_toString(Machine_KeyboardKeyActions self) {
   switch (self) {
     case Machine_KeyboardKeyActions_Press:
       return Machine_String_create("press", strlen("press"));
@@ -29,7 +29,7 @@ static void Machine_KeyboardKeyEvent_visit(
     Machine_KeyboardKeyEvent* self) { /*Intentionally empty.*/
 }
 
-static Machine_String* Machine_KeyboardKeyEvent_toStringImpl(Machine_KeyboardKeyEvent const* self) {
+static Ring2_String* Machine_KeyboardKeyEvent_toStringImpl(Machine_KeyboardKeyEvent const* self) {
   Machine_StringBuffer* stringBuffer = Machine_StringBuffer_create();
 
   Machine_StringBuffer_appendBytes(stringBuffer, "{ ", strlen("{ "));
@@ -54,7 +54,7 @@ static Machine_String* Machine_KeyboardKeyEvent_toStringImpl(Machine_KeyboardKey
 
 static void Machine_KeyboardKeyEvent_constructClass(Machine_KeyboardKeyEvent_Class* self) {
   ((Machine_Object_Class*)self)->toString
-      = (Machine_String * (*)(Machine_Object const*)) & Machine_KeyboardKeyEvent_toStringImpl;
+      = (Ring2_String * (*)(Machine_Object const*)) & Machine_KeyboardKeyEvent_toStringImpl;
 }
 
 static void Machine_KeyboardKeyEvent_construct(Machine_KeyboardKeyEvent* self,

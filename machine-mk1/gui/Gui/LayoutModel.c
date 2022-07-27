@@ -26,7 +26,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gui_LayoutModel, Machine_Object, &Machine_Gui_L
 Machine_Gui_LayoutModel* Machine_Gui_LayoutModel_create() {
   Machine_ClassType* ty = Machine_Gui_LayoutModel_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
   Machine_Gui_LayoutModel* self
       = (Machine_Gui_LayoutModel*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
@@ -52,12 +52,12 @@ void Machine_Gui_LayoutModel_setPrimaryJustification(
   self->primaryJustification = primaryJustifcation;
 }
 
-Machine_Real Machine_Gui_LayoutModel_getPrimaryInterChildSpacing(
+Ring2_Real32 Machine_Gui_LayoutModel_getPrimaryInterChildSpacing(
     Machine_Gui_LayoutModel const* self) {
   return self->primaryInterChildSpacing;
 }
 
 void Machine_Gui_LayoutModel_setPrimaryInterChildspacing(Machine_Gui_LayoutModel* self,
-                                                         Machine_Real primaryInterChildSpacing) {
+                                                         Ring2_Real32 primaryInterChildSpacing) {
   self->primaryInterChildSpacing = primaryInterChildSpacing;
 }

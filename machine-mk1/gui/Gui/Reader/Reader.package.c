@@ -9,15 +9,15 @@
 #include "Gui/Reader/Reader.h"
 
 static void checkKind(Machine_Gui_Context* self, Machine_Map const* source,
-                      Machine_String* expected) {
+                      Ring2_String* expected) {
   Machine_Gui_Gdl_Context* context = self->gdlContext;
   if (!Machine_Gui_Reader_hasString(self, source, context->KIND)) {
-    Machine_setStatus(Machine_Status_SemanticalError);
+    Ring1_Status_set(Ring1_Status_InvalidSemantics);
     Ring2_jump();
   }
-  Machine_String* received = Machine_Gui_Reader_getString(source, context->KIND);
+  Ring2_String* received = Machine_Gui_Reader_getString(source, context->KIND);
   if (!Machine_String_isEqualTo(received, expected)) {
-    Machine_setStatus(Machine_Status_SemanticalError);
+    Ring1_Status_set(Ring1_Status_InvalidSemantics);
     Ring2_jump();
   }
 }
@@ -27,7 +27,7 @@ Machine_Gui_LayoutModel* Machine_Gui_Reader_readLayout(Machine_Gui_Context* self
   Machine_Gui_Gdl_Context* subContext = self->gdlContext;
   Machine_Gui_LayoutModel* model = Machine_Gui_LayoutModel_create();
   if (Machine_Gui_Reader_hasString(self, source, subContext->DIRECTION)) {
-    Machine_String* temporary = Machine_Gui_Reader_getString(source, subContext->DIRECTION);
+    Ring2_String* temporary = Machine_Gui_Reader_getString(source, subContext->DIRECTION);
     if (Machine_String_isEqualTo(temporary, subContext->COLUMN)) {
       Machine_Gui_LayoutModel_setPrimaryDirection(model, Machine_Gui_Layout_Direction_Column);
     } else if (Machine_String_isEqualTo(temporary, subContext->COLUMNREVERSE)) {
@@ -38,12 +38,12 @@ Machine_Gui_LayoutModel* Machine_Gui_Reader_readLayout(Machine_Gui_Context* self
     } else if (Machine_String_isEqualTo(temporary, subContext->ROWREVERSE)) {
       Machine_Gui_LayoutModel_setPrimaryDirection(model, Machine_Gui_Layout_Direction_RowReverse);
     } else {
-      Machine_setStatus(Machine_Status_SemanticalError);
+      Ring1_Status_set(Ring1_Status_InvalidSemantics);
       Ring2_jump();
     }
   }
   if (Machine_Gui_Reader_hasString(self, source, subContext->JUSTIFICATION)) {
-    Machine_String* temporary = Machine_Gui_Reader_getString(source, subContext->JUSTIFICATION);
+    Ring2_String* temporary = Machine_Gui_Reader_getString(source, subContext->JUSTIFICATION);
     if (Machine_String_isEqualTo(temporary, subContext->START)) {
       Machine_Gui_LayoutModel_setPrimaryJustification(model,
                                                       Machine_Gui_Layout_Justification_Start);
@@ -53,12 +53,12 @@ Machine_Gui_LayoutModel* Machine_Gui_Reader_readLayout(Machine_Gui_Context* self
     } else if (Machine_String_isEqualTo(temporary, subContext->END)) {
       Machine_Gui_LayoutModel_setPrimaryJustification(model, Machine_Gui_Layout_Justification_End);
     } else {
-      Machine_setStatus(Machine_Status_LexicalError);
+      Ring1_Status_set(Ring1_Status_InvalidLexics);
       Ring2_jump();
     }
   }
   if (Machine_Gui_Reader_hasReal(self, source, subContext->INTERSPACING)) {
-    Machine_Real temporary = Machine_Gui_Reader_getReal(source, subContext->INTERSPACING);
+    Ring2_Real32 temporary = Machine_Gui_Reader_getReal(source, subContext->INTERSPACING);
     Machine_Gui_LayoutModel_setPrimaryInterChildspacing(model, temporary);
   }
   return model;
@@ -97,23 +97,23 @@ Machine_Gui_BorderNode* Machine_Gui_Reader_readBorderNode(Machine_Gui_Context* s
   checkKind(self, source, subContext->BORDERNODEKIND);
   Machine_Gui_BorderNode* widget = Machine_Gui_BorderNode_create(self);
   if (Machine_Gui_Reader_hasReal(self, source, subContext->BORDERWIDTH)) {
-    Machine_Real temporary = Machine_Gui_Reader_getReal(source, subContext->BORDERWIDTH);
+    Ring2_Real32 temporary = Machine_Gui_Reader_getReal(source, subContext->BORDERWIDTH);
     Machine_Gui_BorderNode_setBorderWidth(widget, temporary);
   }
   if (Machine_Gui_Reader_hasReal(self, source, subContext->LEFTBORDERWIDTH)) {
-    Machine_Real temporary = Machine_Gui_Reader_getReal(source, subContext->LEFTBORDERWIDTH);
+    Ring2_Real32 temporary = Machine_Gui_Reader_getReal(source, subContext->LEFTBORDERWIDTH);
     Machine_Gui_BorderNode_setLeftBorderWidth(widget, temporary);
   }
   if (Machine_Gui_Reader_hasReal(self, source, subContext->RIGHTBORDERWIDTH)) {
-    Machine_Real temporary = Machine_Gui_Reader_getReal(source, subContext->RIGHTBORDERWIDTH);
+    Ring2_Real32 temporary = Machine_Gui_Reader_getReal(source, subContext->RIGHTBORDERWIDTH);
     Machine_Gui_BorderNode_setRightBorderWidth(widget, temporary);
   }
   if (Machine_Gui_Reader_hasReal(self, source, subContext->TOPBORDERWIDTH)) {
-    Machine_Real temporary = Machine_Gui_Reader_getReal(source, subContext->TOPBORDERWIDTH);
+    Ring2_Real32 temporary = Machine_Gui_Reader_getReal(source, subContext->TOPBORDERWIDTH);
     Machine_Gui_BorderNode_setTopBorderWidth(widget, temporary);
   }
   if (Machine_Gui_Reader_hasReal(self, source, subContext->BOTTOMBORDERWIDTH)) {
-    Machine_Real temporary = Machine_Gui_Reader_getReal(source, subContext->BOTTOMBORDERWIDTH);
+    Ring2_Real32 temporary = Machine_Gui_Reader_getReal(source, subContext->BOTTOMBORDERWIDTH);
     Machine_Gui_BorderNode_setBottomBorderWidth(widget, temporary);
   }
   if (Machine_Gui_Reader_hasList(self, source, subContext->BORDERCOLOR)) {
@@ -139,7 +139,7 @@ Machine_Gui_TextNode* Machine_Gui_Reader_readTextNode(Machine_Gui_Context* self,
   checkKind(self, source, subContext->TEXTNODEKIND);
   Machine_Gui_TextNode* widget = Machine_Gui_TextNode_create(self);
   if (Machine_Gui_Reader_hasString(self, source, subContext->TEXT)) {
-    Machine_String* temporary = Machine_Gui_Reader_getString(source, subContext->TEXT);
+    Ring2_String* temporary = Machine_Gui_Reader_getString(source, subContext->TEXT);
     Machine_Gui_TextNode_setText(widget, temporary);
   }
   return widget;

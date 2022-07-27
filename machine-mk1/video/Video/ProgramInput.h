@@ -17,7 +17,7 @@ struct Machine_ProgramInput_Class {
 
 struct Machine_ProgramInput {
   Machine_Object parent;
-  Machine_String* name;
+  Ring2_String* name;
   Machine_ProgramInputType type;
   Machine_ProgramInputKind kind;
 };
@@ -27,7 +27,7 @@ struct Machine_ProgramInput {
 /// @param type The type of the program input.
 /// @param kind The kind of the program input.
 /// @return The program input.
-Machine_ProgramInput* Machine_ProgramInput_create(Machine_String* name,
+Machine_ProgramInput* Machine_ProgramInput_create(Ring2_String* name,
                                                   Machine_ProgramInputType type,
                                                   Machine_ProgramInputKind kind);
 

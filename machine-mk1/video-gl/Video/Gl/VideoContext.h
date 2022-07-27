@@ -5,12 +5,12 @@
 #define MACHINE_GL_VIDEOCONTEXT_H_INCLUDED
 
 #if !defined(MACHINE_VIDEO_GL_PRIVATE)
-#error("Do not include this file directly, include `_Video_Gl.h` instead.")
+#error("Do not include `Video/Gl/VideoContext.h` directly, include `_Video_Gl.h` instead.")
 #endif
 #include "_Video.h"
 
 typedef struct Machine_Gl_VideoContext_ClipDistance {
-  Machine_Boolean enabled;
+  Ring2_Boolean enabled;
 } Machine_Gl_VideoContext_ClipDistance;
 
 typedef struct Machine_Gl_VideoContext_ClipDistances {
@@ -31,10 +31,10 @@ struct Machine_Gl_VideoContext_Class {
 struct Machine_Gl_VideoContext {
   Machine_VideoContext __parent;
 
-  Machine_Real clearDepth;                     // Default is <code>1</code>.
-  Machine_Real clearColor[4];                  // Default is <code>(0,0,0,1)</code>.
+  Ring2_Real32 clearDepth;                     // Default is <code>1</code>.
+  Ring2_Real32 clearColor[4];                  // Default is <code>(0,0,0,1)</code>.
   Machine_DepthTestFunction depthTestFunction; // Default is <code>always</code>.
-  Machine_Boolean depthWriteEnabled;           // Default is <code>false</code>.
+  Ring2_Boolean depthWriteEnabled;           // Default is <code>false</code>.
   Machine_BlendFunction existingBlendFunction; // Default is <code>one minus incoming alpha</code>.
   Machine_BlendFunction incomingBlendFunction; // Default is <code>incoming alpha</code>.
   Machine_Gl_VideoContext_ClipDistances* clipDistances; // Default is all clip distances disabled.

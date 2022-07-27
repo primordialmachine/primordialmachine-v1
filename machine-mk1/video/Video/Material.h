@@ -20,7 +20,7 @@ struct Machine_Material {
   Machine_BlendFunction existingBlendFunction;
   Machine_BlendFunction incomingBlendFunction;
 
-  Machine_Boolean depthWriteEnabled;
+  Ring2_Boolean depthWriteEnabled;
   Machine_DepthTestFunction depthTestFunction;
 };
 
@@ -68,11 +68,11 @@ Machine_DepthTestFunction Machine_Material_getDepthTestFunction(Machine_Material
 /// @param self This material.
 /// @param depthWriteEnabled @a true enables depth write, @a false disables depth write.
 void Machine_Material_setDepthWriteEnabled(Machine_Material* self,
-                                           Machine_Boolean depthWriteEnabled);
+                                           Ring2_Boolean depthWriteEnabled);
 
 /// @brief Get if depth write is enabled/disabled.
 /// @param self This material.
 /// @return @a true if depth write is enabled, @a false if depth write is disabled.
-Machine_Boolean Machine_Material_getDepthWriteEnabled(Machine_Material const* self);
+Ring2_Boolean Machine_Material_getDepthWriteEnabled(Machine_Material const* self);
 
 #endif // MACHINE_VIDEO_MATERIAL_H_INCLUDED

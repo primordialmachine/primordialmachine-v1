@@ -6,7 +6,7 @@
 
 #if defined(MACHINE_WITH_LOG) && 1 == MACHINE_WITH_LOG
 
-#include "Runtime/Status.h"
+#include "Ring1/Status.h"
 #include <stdio.h>
 #include <stdarg.h>
 

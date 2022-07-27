@@ -46,18 +46,18 @@ void Machine_Gui_BorderNode_setBorderColor(Machine_Gui_BorderNode* self,
 /// @brief Get the border width.
 /// @param self This border node.
 /// @return The border width.
-Machine_Real Machine_Gui_BorderNode_getBorderLeftWidth(Machine_Gui_BorderNode const* self);
-Machine_Real Machine_Gui_BorderNode_getBorderRightWidth(Machine_Gui_BorderNode const* self);
-Machine_Real Machine_Gui_BorderNode_getBorderTopWidth(Machine_Gui_BorderNode const* self);
-Machine_Real Machine_Gui_BorderNode_getBorderBottomWidth(Machine_Gui_BorderNode const* self);
+Ring2_Real32 Machine_Gui_BorderNode_getBorderLeftWidth(Machine_Gui_BorderNode const* self);
+Ring2_Real32 Machine_Gui_BorderNode_getBorderRightWidth(Machine_Gui_BorderNode const* self);
+Ring2_Real32 Machine_Gui_BorderNode_getBorderTopWidth(Machine_Gui_BorderNode const* self);
+Ring2_Real32 Machine_Gui_BorderNode_getBorderBottomWidth(Machine_Gui_BorderNode const* self);
 
 /// @brief Set the border width.
 /// @param self This border node.
 /// @param width The border width.
-void Machine_Gui_BorderNode_setBorderWidth(Machine_Gui_BorderNode* self, Machine_Real width);
-void Machine_Gui_BorderNode_setLeftBorderWidth(Machine_Gui_BorderNode* self, Machine_Real width);
-void Machine_Gui_BorderNode_setRightBorderWidth(Machine_Gui_BorderNode* self, Machine_Real width);
-void Machine_Gui_BorderNode_setTopBorderWidth(Machine_Gui_BorderNode* self, Machine_Real width);
-void Machine_Gui_BorderNode_setBottomBorderWidth(Machine_Gui_BorderNode* self, Machine_Real width);
+void Machine_Gui_BorderNode_setBorderWidth(Machine_Gui_BorderNode* self, Ring2_Real32 width);
+void Machine_Gui_BorderNode_setLeftBorderWidth(Machine_Gui_BorderNode* self, Ring2_Real32 width);
+void Machine_Gui_BorderNode_setRightBorderWidth(Machine_Gui_BorderNode* self, Ring2_Real32 width);
+void Machine_Gui_BorderNode_setTopBorderWidth(Machine_Gui_BorderNode* self, Ring2_Real32 width);
+void Machine_Gui_BorderNode_setBottomBorderWidth(Machine_Gui_BorderNode* self, Ring2_Real32 width);
 
 #endif // MACHINE_GUI_BORDERNODE_H_INCLUDED

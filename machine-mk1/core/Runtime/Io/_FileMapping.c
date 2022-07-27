@@ -4,9 +4,11 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/Io/_FileMapping.h"
 
-void _Machine_FileMapping_openRead(_Machine_FileMapping* self, Machine_String* path) {
-  _Machine_FileHandle_open(&self->fileHandle, path, Machine_FileAccessMode_Read,
-                           Machine_ExistingFilePolicy_Retain, Machine_NonExistingFilePolicy_Fail);
+void _Machine_FileMapping_openRead(_Machine_FileMapping* self, Ring2_String* path) {
+  _Machine_FileHandle_open(&self->fileHandle, path,
+                           Ring1_FileSystem_FileAccessMode_Read,
+                           Ring1_FileSystem_ExistingFilePolicy_Retain,
+                           Ring1_FileSystem_NonExistingFilePolicy_Fail);
   Ring2_JumpTarget jumpTarget1;
   Ring2_pushJumpTarget(&jumpTarget1);
   if (!setjmp(jumpTarget1.environment)) {
@@ -22,7 +24,7 @@ void _Machine_FileMapping_openRead(_Machine_FileMapping* self, Machine_String* p
       if (NULL == self->hFileMapping) {
         Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
                     "unable to create file mapping for file '%s'\n", Machine_String_getBytes(path));
-        Machine_setStatus(Machine_Status_EnvironmentFailed);
+        Ring1_Status_set(Ring1_Status_EnvironmentFailed);
         Ring2_jump();
       }
       // Create view of file mapping.
@@ -35,7 +37,7 @@ void _Machine_FileMapping_openRead(_Machine_FileMapping* self, Machine_String* p
         Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
                     "unable to create file mapping view for file '%s'\n",
                     Machine_String_getBytes(path));
-        Machine_setStatus(Machine_Status_EnvironmentFailed);
+        Ring1_Status_set(Ring1_Status_EnvironmentFailed);
         Ring2_jump();
       }
     }
@@ -48,11 +50,12 @@ void _Machine_FileMapping_openRead(_Machine_FileMapping* self, Machine_String* p
   }
 }
 
-void _Machine_FileMapping_openWrite(_Machine_FileMapping* self, Machine_String* path,
+void _Machine_FileMapping_openWrite(_Machine_FileMapping* self, Ring2_String* path,
                                                   size_t numberOfBytes) {
-  _Machine_FileHandle_open(&self->fileHandle, path, Machine_FileAccessMode_Write,
-                           Machine_ExistingFilePolicy_Truncate,
-                           Machine_NonExistingFilePolicy_Create);
+  _Machine_FileHandle_open(&self->fileHandle, path,
+                           Ring1_FileSystem_FileAccessMode_Write,
+                           Ring1_FileSystem_ExistingFilePolicy_Truncate,
+                           Ring1_FileSystem_NonExistingFilePolicy_Create);
   Ring2_JumpTarget jumpTarget1;
   Ring2_pushJumpTarget(&jumpTarget1);
   if (!setjmp(jumpTarget1.environment)) {
@@ -69,7 +72,7 @@ void _Machine_FileMapping_openWrite(_Machine_FileMapping* self, Machine_String* 
       if (NULL == self->hFileMapping) {
         Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
                     "unable to create file mapping for file '%s'\n", Machine_String_getBytes(path));
-        Machine_setStatus(Machine_Status_EnvironmentFailed);
+        Ring1_Status_set(Ring1_Status_EnvironmentFailed);
         Ring2_jump();
       }
       // Create view of file mapping.
@@ -83,7 +86,7 @@ void _Machine_FileMapping_openWrite(_Machine_FileMapping* self, Machine_String* 
         Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
                     "unable to create file mapping view for file '%s'\n",
                     Machine_String_getBytes(path));
-        Machine_setStatus(Machine_Status_EnvironmentFailed);
+        Ring1_Status_set(Ring1_Status_EnvironmentFailed);
         Ring2_jump();
       }
     }

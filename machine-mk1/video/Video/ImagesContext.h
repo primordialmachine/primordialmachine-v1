@@ -11,9 +11,9 @@ MACHINE_DECLARE_CLASSTYPE(Machine_ImagesContext);
 
 struct Machine_ImagesContext_Class {
   Machine_Object_Class parent;
-  Machine_Image* (*createFromPath)(Machine_ImagesContext* self, Machine_String* path);
+  Machine_Image* (*createFromPath)(Machine_ImagesContext* self, Ring2_String* path);
   Machine_Image* (*createDirect)(Machine_ImagesContext* self, Machine_PixelFormat pixelFormat,
-                                 Machine_Integer width, Machine_Integer height,
+                                 Ring2_Integer width, Ring2_Integer height,
                                  Machine_ByteBuffer* pixels);
 };
 
@@ -32,7 +32,7 @@ void Machine_ImagesContext_construct(Machine_ImagesContext* self, size_t numberO
 /// @param path The pathname of the file.
 /// @return The image.
 Machine_Image* Machine_ImagesContext_createFromPath(Machine_ImagesContext* self,
-                                                    Machine_String* path);
+                                                    Ring2_String* path);
 
 /// @brief Create an image given its data.
 /// @param self This images context.
@@ -41,7 +41,7 @@ Machine_Image* Machine_ImagesContext_createFromPath(Machine_ImagesContext* self,
 /// @param pixels A pointer to an Byte buffer containing the Bytes of the pixels of the image.
 Machine_Image* Machine_ImagesContext_createDirect(Machine_ImagesContext* self,
                                                   Machine_PixelFormat pixelFormat,
-                                                  Machine_Integer width, Machine_Integer height,
+                                                  Ring2_Integer width, Ring2_Integer height,
                                                   Machine_ByteBuffer* pixels);
 
 #endif // MACHINE_VIDEO_IMAGESCONTEXT_H_INCLUDED

@@ -4,9 +4,9 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/StackModule.h"
 
-#include "_Eal.h"
+#include "Ring1/Ring1.h"
 #include "Ring1/Status.h"
-#include "Ring2/JumpTarget.h"
+#include "Ring2/_Include.h"
 
 typedef struct Stack {
   Machine_Value* elements;
@@ -19,7 +19,7 @@ static Ring1_Result Stack_initialize(Stack* self) {
     return Ring1_Result_Failure;
   }
   for (size_t i = 0; i < 8; ++i) {
-    Machine_Value_setVoid(self->elements + i, Machine_Void_Void);
+    Machine_Value_setVoid(self->elements + i, Ring2_Void_Void);
   }
   self->size = 0;
   self->capacity = 8;
@@ -55,14 +55,11 @@ static void Stack_grow(Stack* self, size_t additionalCapacity) {
   size_t newCapacity = 0;
   if (Ring1_Memory_recomputeSize_sz(0, SIZE_MAX / sizeof(Machine_Value), self->capacity,
                                     additionalCapacity, &newCapacity, true)) {
-    Machine_setStatus(Machine_Status_CapacityExhausted);
     Ring2_jump();
   }
   Machine_Value* newElements = NULL;
   if (Ring1_Memory_reallocateArray(&newElements, self->elements, newCapacity,
                                    sizeof(Machine_Value))) {
-    Ring1_Status_set(Ring1_Status_Success);
-    Machine_setStatus(Machine_Status_AllocationFailed);
     Ring2_jump();
   }
   self->elements = newElements;
@@ -81,13 +78,11 @@ static Stack* g_stack = NULL;
 static Ring1_Memory_ModuleHandle g_memoryModuleHandle = Ring1_Memory_ModuleHandle_Invalid;
 
 Ring1_Result Machine_initializeStackModule() {
-  Machine_StatusValue status;
   g_memoryModuleHandle = Ring1_Memory_ModuleHandle_acquire();
   if (!g_memoryModuleHandle) {
     return Ring1_Result_Failure;
   }
-  status = Stack_create(&g_stack);
-  if (status) {
+  if (Stack_create(&g_stack)) {
     Ring1_Memory_ModuleHandle_relinquish(g_memoryModuleHandle);
     g_memoryModuleHandle = Ring1_Memory_ModuleHandle_Invalid;
     return Ring1_Result_Failure;
@@ -102,13 +97,13 @@ void Machine_uninitializeStackModule() {
   g_memoryModuleHandle = Ring1_Memory_ModuleHandle_Invalid;
 }
 
-void Machine_Stack_loadBoolean(Machine_Boolean value) {
+void Machine_Stack_loadBoolean(Ring2_Boolean value) {
   Machine_Value temporary;
   Machine_Value_setBoolean(&temporary, value);
   Machine_Stack_load(temporary);
 }
 
-void Machine_Stack_loadInteger(Machine_Integer value) {
+void Machine_Stack_loadInteger(Ring2_Integer value) {
   Machine_Value temporary;
   Machine_Value_setInteger(&temporary, value);
   Machine_Stack_load(temporary);
@@ -126,19 +121,19 @@ void Machine_Stack_loadObject(Machine_Object* value) {
   Machine_Stack_load(temporary);
 }
 
-void Machine_Stack_loadReal(Machine_Real value) {
+void Machine_Stack_loadReal(Ring2_Real32 value) {
   Machine_Value temporary;
   Machine_Value_setReal(&temporary, value);
   Machine_Stack_load(temporary);
 }
 
-void Machine_Stack_loadString(Machine_String* value) {
+void Machine_Stack_loadString(Ring2_String* value) {
   Machine_Value temporary;
   Machine_Value_setString(&temporary, value);
   Machine_Stack_load(temporary);
 }
 
-void Machine_Stack_loadVoid(Machine_Void value) {
+void Machine_Stack_loadVoid(Ring2_Void value) {
   Machine_Value temporary;
   Machine_Value_setVoid(&temporary, value);
   Machine_Stack_load(temporary);
@@ -152,7 +147,7 @@ void Machine_Stack_load(Machine_Value value) {
 
 Machine_Value Machine_Stack_peek(size_t index) {
   if (index >= g_stack->size) {
-    Machine_setStatus(Machine_Status_IndexOutOfBounds);
+    Ring1_Status_set(Ring1_Status_IndexOutOfBounds);
     Ring2_jump();
   }
   return *(g_stack->elements + g_stack->size - 1 - index);
@@ -160,7 +155,7 @@ Machine_Value Machine_Stack_peek(size_t index) {
 
 void Machine_Stack_pop() {
   if (g_stack->size == 0) {
-    Machine_setStatus(Machine_Status_Empty);
+    Ring1_Status_set(Ring1_Status_IsEmpty);
     Ring2_jump();
   }
   g_stack->size -= 1;

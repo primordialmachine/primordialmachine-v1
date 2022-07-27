@@ -6,7 +6,7 @@
 
 #include "Runtime/Io/_FileMapping.h"
 
-void Machine_setFileContents(Machine_String* path, Machine_ByteBuffer* bytes) {
+void Machine_setFileContents(Ring2_String* path, Machine_ByteBuffer* bytes) {
   _Machine_FileMapping fileMapping;
   _Machine_FileMapping_openWrite(&fileMapping, path, Machine_ByteBuffer_getNumberOfBytes(bytes));
   Ring2_JumpTarget jumpTarget;

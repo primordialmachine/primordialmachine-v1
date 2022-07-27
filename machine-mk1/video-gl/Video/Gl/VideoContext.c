@@ -29,41 +29,41 @@ static Machine_DepthTestFunction getDepthTestFunction(Machine_Gl_VideoContext co
 
 
 
-static void setDepthWriteEnabled(Machine_Gl_VideoContext* self, Machine_Boolean depthWriteEnabled) {
+static void setDepthWriteEnabled(Machine_Gl_VideoContext* self, Ring2_Boolean depthWriteEnabled) {
   self->depthWriteEnabled = depthWriteEnabled;
 }
 
-static Machine_Boolean getDepthWriteEnabled(Machine_Gl_VideoContext const* self) {
+static Ring2_Boolean getDepthWriteEnabled(Machine_Gl_VideoContext const* self) {
   return self->depthWriteEnabled;
 }
 
 
 
-static void setClearDepth(Machine_Gl_VideoContext* self, Machine_Real clearDepth) {
+static void setClearDepth(Machine_Gl_VideoContext* self, Ring2_Real32 clearDepth) {
   self->clearDepth = clearDepth;
 }
 
-static Machine_Real getClearDepth(Machine_Gl_VideoContext const* self) {
+static Ring2_Real32 getClearDepth(Machine_Gl_VideoContext const* self) {
   return self->clearDepth;
 }
 
 
 
-static Machine_Integer getMaximalClipDistanceCount(Machine_Gl_VideoContext const* self) {
+static Ring2_Integer getMaximalClipDistanceCount(Machine_Gl_VideoContext const* self) {
   return self->clipDistances->n;
 }
 
-static void setClipDistanceEnabled(Machine_Gl_VideoContext* self, Machine_Integer index, Machine_Boolean enabled) {
+static void setClipDistanceEnabled(Machine_Gl_VideoContext* self, Ring2_Integer index, Ring2_Boolean enabled) {
   if (index < 0 || index >= self->clipDistances->n) {
-    Machine_setStatus(Machine_Status_IndexOutOfBounds);
+    Ring1_Status_set(Ring1_Status_IndexOutOfBounds);
     Ring2_jump();
   }
   self->clipDistances->a[index].enabled = enabled;
 }
 
-static Machine_Boolean getClipDistanceEnabled(Machine_Gl_VideoContext const* self, Machine_Integer index) {
+static Ring2_Boolean getClipDistanceEnabled(Machine_Gl_VideoContext const* self, Ring2_Integer index) {
   if (index < 0 || index >= self->clipDistances->n) {
-    Machine_setStatus(Machine_Status_IndexOutOfBounds);
+    Ring1_Status_set(Ring1_Status_IndexOutOfBounds);
     Ring2_jump();
   }
   return self->clipDistances->a[index].enabled;
@@ -107,14 +107,14 @@ Machine_Math_Vector4 const* getClearColor(Machine_Gl_VideoContext const* self) {
 
 
 
-static void setViewportRectangle(Machine_Gl_VideoContext* self, Machine_Real left, Machine_Real bottom, Machine_Real width, Machine_Real height) {
+static void setViewportRectangle(Machine_Gl_VideoContext* self, Ring2_Real32 left, Ring2_Real32 bottom, Ring2_Real32 width, Ring2_Real32 height) {
   self->viewportRectangle->x = left;
   self->viewportRectangle->y = bottom;
   self->viewportRectangle->w = width;
   self->viewportRectangle->h = height;
 }
 
-static void getViewportRectangle(Machine_Gl_VideoContext const* self, Machine_Real* left, Machine_Real* bottom, Machine_Real* width, Machine_Real* height) {
+static void getViewportRectangle(Machine_Gl_VideoContext const* self, Ring2_Real32* left, Ring2_Real32* bottom, Ring2_Real32* width, Ring2_Real32* height) {
   *left = self->viewportRectangle->x;
   *bottom = self->viewportRectangle->y;
   *width = self->viewportRectangle->w;
@@ -123,9 +123,9 @@ static void getViewportRectangle(Machine_Gl_VideoContext const* self, Machine_Re
 
 
 
-static void drawDirect(Machine_Gl_VideoContext* self, Machine_Integer i, Machine_Integer n) {
+static void drawDirect(Machine_Gl_VideoContext* self, Ring2_Integer i, Ring2_Integer n) {
   if (i < 0 || n < 0) {
-    Machine_setStatus(Machine_Status_InvalidArgument);
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();
   }
   if (n > 0) {
@@ -134,9 +134,9 @@ static void drawDirect(Machine_Gl_VideoContext* self, Machine_Integer i, Machine
   }
 }
 
-static void drawIndirect(Machine_Gl_VideoContext* self, Machine_Integer i, Machine_Integer n, uint8_t const* indices) {
+static void drawIndirect(Machine_Gl_VideoContext* self, Ring2_Integer i, Ring2_Integer n, uint8_t const* indices) {
   if (i < 0 || n < 0) {
-    Machine_setStatus(Machine_Status_InvalidArgument);
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();
   }
   if (n > 0) {
@@ -170,7 +170,7 @@ static Machine_Texture* createTextureFromImage(Machine_Gl_VideoContext* self, Ma
   return (Machine_Texture*)Machine_Gl_Texture_create(image);
 }
 
-static Machine_ShaderProgram* createProgram(Machine_Gl_VideoContext* self, Machine_String* vertexProgramText, Machine_String* geometryProgramText, Machine_String* fragmentProgramText) {
+static Machine_ShaderProgram* createProgram(Machine_Gl_VideoContext* self, Ring2_String* vertexProgramText, Ring2_String* geometryProgramText, Ring2_String* fragmentProgramText) {
   return (Machine_ShaderProgram*)Machine_Gl_ShaderProgram_create(vertexProgramText, geometryProgramText, fragmentProgramText);
 }
 
@@ -192,10 +192,10 @@ static Machine_ShaderProgram*
 generateDefaultShader
   (
     Machine_Gl_VideoContext* self,
-    Machine_Boolean withMeshColor,
-    Machine_Boolean withVertexColor,
-    Machine_Boolean withTextureCoordinate,
-    Machine_Boolean withTexture
+    Ring2_Boolean withMeshColor,
+    Ring2_Boolean withVertexColor,
+    Ring2_Boolean withTextureCoordinate,
+    Ring2_Boolean withTexture
   )
 {
   return (Machine_ShaderProgram*)Machine_Gl_ShaderProgram_generateDefaultShader(withMeshColor, withVertexColor, withTextureCoordinate, withTexture);
@@ -214,7 +214,7 @@ static Machine_ShaderProgram*
 generateText2Shader
   (
     Machine_Gl_VideoContext* self,
-    Machine_Boolean highPrecision
+    Ring2_Boolean highPrecision
   )
 {
   return (Machine_ShaderProgram*)Machine_Gl_ShaderProgram_generateText2Shader(highPrecision);
@@ -249,7 +249,7 @@ static GLenum Machine_BlendFunction_toGL(Machine_BlendFunction self) {
   case Machine_BlendFunction_One:
     return GL_ONE;
   default:
-    Machine_setStatus(Machine_Status_InvalidArgument);
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();
   };
 }
@@ -272,7 +272,7 @@ static GLenum Machine_DepthTestFunction_toGL(Machine_DepthTestFunction self) {
   case Machine_DepthTestFunction_Never:
     return GL_NEVER;
   default:
-    Machine_setStatus(Machine_Status_InvalidArgument);
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();
   };
 }
@@ -297,7 +297,7 @@ static void write(Machine_Gl_VideoContext const* self) {
 
   // Clip distances.
   for (size_t i = 0, n = self->clipDistances->n; i < n; ++i) {
-    Machine_Boolean enabled = self->clipDistances->a[i].enabled;
+    Ring2_Boolean enabled = self->clipDistances->a[i].enabled;
     enabled ? glEnable(GL_CLIP_DISTANCE0 + i) : glDisable(GL_CLIP_DISTANCE0 + i);
   }
 
@@ -313,15 +313,15 @@ static void Machine_Gl_VideoContext_constructClass(Machine_Gl_VideoContext_Class
   ((Machine_VideoContext_Class*)self)->setDepthTestFunction = (void (*)(Machine_VideoContext*, Machine_DepthTestFunction)) & setDepthTestFunction;
   ((Machine_VideoContext_Class*)self)->getDepthTestFunction = (Machine_DepthTestFunction(*)(Machine_VideoContext const*)) & getDepthTestFunction;
 
-  ((Machine_VideoContext_Class*)self)->setDepthWriteEnabled = (void (*)(Machine_VideoContext*, Machine_Boolean)) & setDepthWriteEnabled;
-  ((Machine_VideoContext_Class*)self)->getDepthWriteEnabled = (Machine_Boolean(*)(Machine_VideoContext const*)) & getDepthWriteEnabled;
+  ((Machine_VideoContext_Class*)self)->setDepthWriteEnabled = (void (*)(Machine_VideoContext*, Ring2_Boolean)) & setDepthWriteEnabled;
+  ((Machine_VideoContext_Class*)self)->getDepthWriteEnabled = (Ring2_Boolean(*)(Machine_VideoContext const*)) & getDepthWriteEnabled;
 
-  ((Machine_VideoContext_Class*)self)->setClearDepth = (void (*)(Machine_VideoContext*, Machine_Real)) & setClearDepth;
-  ((Machine_VideoContext_Class*)self)->getClearDepth = (Machine_Real(*)(Machine_VideoContext const*)) & getClearDepth;
+  ((Machine_VideoContext_Class*)self)->setClearDepth = (void (*)(Machine_VideoContext*, Ring2_Real32)) & setClearDepth;
+  ((Machine_VideoContext_Class*)self)->getClearDepth = (Ring2_Real32(*)(Machine_VideoContext const*)) & getClearDepth;
 
-  ((Machine_VideoContext_Class*)self)->getMaximalClipDistanceCount = (Machine_Integer(*)(Machine_VideoContext const*)) & getMaximalClipDistanceCount;
-  ((Machine_VideoContext_Class*)self)->setClipDistanceEnabled = (void (*)(Machine_VideoContext*, Machine_Integer index, Machine_Boolean)) & setClipDistanceEnabled;
-  ((Machine_VideoContext_Class*)self)->getClipDistanceEnabled = (Machine_Boolean(*)(Machine_VideoContext const*, Machine_Integer index)) & getClipDistanceEnabled;
+  ((Machine_VideoContext_Class*)self)->getMaximalClipDistanceCount = (Ring2_Integer(*)(Machine_VideoContext const*)) & getMaximalClipDistanceCount;
+  ((Machine_VideoContext_Class*)self)->setClipDistanceEnabled = (void (*)(Machine_VideoContext*, Ring2_Integer index, Ring2_Boolean)) & setClipDistanceEnabled;
+  ((Machine_VideoContext_Class*)self)->getClipDistanceEnabled = (Ring2_Boolean(*)(Machine_VideoContext const*, Ring2_Integer index)) & getClipDistanceEnabled;
 
   ((Machine_VideoContext_Class*)self)->setIncomingBlendFunction = (void (*)(Machine_VideoContext*, Machine_BlendFunction)) & setIncomingBlendFunction;
   ((Machine_VideoContext_Class*)self)->getIncomingBlendFunction = (Machine_BlendFunction(*)(Machine_VideoContext const*)) & getIncomingBlendFunction;
@@ -332,25 +332,25 @@ static void Machine_Gl_VideoContext_constructClass(Machine_Gl_VideoContext_Class
   ((Machine_VideoContext_Class*)self)->setClearColor = (void (*)(Machine_VideoContext*, Machine_Math_Vector4 const*)) & setClearColor;
   ((Machine_VideoContext_Class*)self)->getClearColor = (Machine_Math_Vector4 const* (*)(Machine_VideoContext const*)) & getClearColor;
 
-  ((Machine_VideoContext_Class*)self)->setViewportRectangle = (void (*)(Machine_VideoContext*, Machine_Real, Machine_Real, Machine_Real, Machine_Real)) & setViewportRectangle;
-  ((Machine_VideoContext_Class*)self)->getViewportRectangle = (void (*)(Machine_VideoContext const*, Machine_Real*, Machine_Real*, Machine_Real*, Machine_Real*)) & getViewportRectangle;
+  ((Machine_VideoContext_Class*)self)->setViewportRectangle = (void (*)(Machine_VideoContext*, Ring2_Real32, Ring2_Real32, Ring2_Real32, Ring2_Real32)) & setViewportRectangle;
+  ((Machine_VideoContext_Class*)self)->getViewportRectangle = (void (*)(Machine_VideoContext const*, Ring2_Real32*, Ring2_Real32*, Ring2_Real32*, Ring2_Real32*)) & getViewportRectangle;
 
-  ((Machine_VideoContext_Class*)self)->drawDirect = (void (*)(Machine_VideoContext*, Machine_Integer, Machine_Integer)) & drawDirect;
-  ((Machine_VideoContext_Class*)self)->drawIndirect = (void (*)(Machine_VideoContext*, Machine_Integer, Machine_Integer, uint8_t const*)) & drawIndirect;
+  ((Machine_VideoContext_Class*)self)->drawDirect = (void (*)(Machine_VideoContext*, Ring2_Integer, Ring2_Integer)) & drawDirect;
+  ((Machine_VideoContext_Class*)self)->drawIndirect = (void (*)(Machine_VideoContext*, Ring2_Integer, Ring2_Integer, uint8_t const*)) & drawIndirect;
 
   ((Machine_VideoContext_Class*)self)->clearColorBuffer = (void (*)(Machine_VideoContext*)) & clearColorBuffer;
   ((Machine_VideoContext_Class*)self)->clearDepthBuffer = (void (*)(Machine_VideoContext*)) & clearDepthBuffer;
 
   ((Machine_VideoContext_Class*)self)->createBuffer = (Machine_VideoBuffer * (*)(Machine_VideoContext*)) & createBuffer;
   ((Machine_VideoContext_Class*)self)->createTextureFromImage = (Machine_Texture * (*)(Machine_VideoContext*, Machine_Image*)) & createTextureFromImage;
-  ((Machine_VideoContext_Class*)self)->createProgram = (Machine_ShaderProgram * (*)(Machine_VideoContext*, Machine_String*, Machine_String*, Machine_String*)) & createProgram;
+  ((Machine_VideoContext_Class*)self)->createProgram = (Machine_ShaderProgram * (*)(Machine_VideoContext*, Ring2_String*, Ring2_String*, Ring2_String*)) & createProgram;
   ((Machine_VideoContext_Class*)self)->createBinding = (Machine_Binding * (*)(Machine_VideoContext*, Machine_ShaderProgram*, Machine_VertexDescriptor*, Machine_VideoBuffer*)) & createBinding;
 
   ((Machine_VideoContext_Class*)self)->bindTexture = (void (*)(Machine_VideoContext*, size_t, Machine_Texture*)) & bindTexture;
 
-  ((Machine_VideoContext_Class*)self)->generateDefaultShader = (Machine_ShaderProgram * (*)(Machine_VideoContext*, Machine_Boolean, Machine_Boolean, Machine_Boolean, Machine_Boolean)) & generateDefaultShader;
+  ((Machine_VideoContext_Class*)self)->generateDefaultShader = (Machine_ShaderProgram * (*)(Machine_VideoContext*, Ring2_Boolean, Ring2_Boolean, Ring2_Boolean, Ring2_Boolean)) & generateDefaultShader;
   ((Machine_VideoContext_Class*)self)->generateShape2Shader = (Machine_ShaderProgram * (*)(Machine_VideoContext*)) & generateShape2Shader;
-  ((Machine_VideoContext_Class*)self)->generateText2Shader = (Machine_ShaderProgram * (*)(Machine_VideoContext*, Machine_Boolean)) & generateText2Shader;
+  ((Machine_VideoContext_Class*)self)->generateText2Shader = (Machine_ShaderProgram * (*)(Machine_VideoContext*, Ring2_Boolean)) & generateText2Shader;
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gl_VideoContext, Machine_VideoContext,
@@ -370,7 +370,7 @@ void Machine_Gl_VideoContext_construct(Machine_Gl_VideoContext* self, size_t num
   self->existingBlendFunction = Machine_BlendFunction_OneMinusIncomingAlpha;
   self->incomingBlendFunction = Machine_BlendFunction_IncomingAlpha;
   {
-    Machine_Integer width, height;
+    Ring2_Integer width, height;
     int w, h;
     glfwGetFramebufferSize(Machine_Glfw_getWindow(), &w, &h);
     width = w; height = h;
@@ -379,29 +379,25 @@ void Machine_Gl_VideoContext_construct(Machine_Gl_VideoContext* self, size_t num
     v = Machine_Math_Vector2_create();
     Machine_Math_Vector2_set(v, 0.f, 0.f);
     Machine_Math_Rectangle2_setPosition(self->viewportRectangle, v);
-    Machine_Math_Vector2_set(v, (Machine_Real)width, (Machine_Real)height);
+    Machine_Math_Vector2_set(v, (Ring2_Real32)width, (Ring2_Real32)height);
     Machine_Math_Rectangle2_setSize(self->viewportRectangle, v);
   }
   {
     GLint v;
     Machine_UtilitiesGl_call(glGetIntegerv(GL_MAX_CLIP_DISTANCES, &v));
     if (v <= 0) {
-      Machine_setStatus(Machine_Status_EnvironmentFailed);
+      Ring1_Status_set(Ring1_Status_EnvironmentFailed);
       Ring2_jump();
     }
     self->clipDistances = NULL;
     if (Ring1_Memory_allocate(&self->clipDistances, sizeof(Machine_Gl_VideoContext_ClipDistances))) {
-      Ring1_Status_set(Ring1_Status_Success);
-      Machine_setStatus(Machine_Status_AllocationFailed);
       Ring2_jump();
     }
     self->clipDistances->a = NULL;
     if (Ring1_Memory_allocateArray(&self->clipDistances->a, (size_t)v,
                                    sizeof(Machine_Gl_VideoContext_ClipDistance))) {
-      Ring1_Status_set(Ring1_Status_Success);
       Ring1_Memory_deallocate(self->clipDistances);
       self->clipDistances = NULL;
-      Machine_setStatus(Machine_Status_AllocationFailed);
       Ring2_jump();
     }
     self->clipDistances->n = (size_t)v;
@@ -415,7 +411,7 @@ void Machine_Gl_VideoContext_construct(Machine_Gl_VideoContext* self, size_t num
 Machine_Gl_VideoContext* Machine_Gl_VideoContext_create() {
   Machine_ClassType* ty = Machine_Gl_VideoContext_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
   Machine_Gl_VideoContext* self = (Machine_Gl_VideoContext*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

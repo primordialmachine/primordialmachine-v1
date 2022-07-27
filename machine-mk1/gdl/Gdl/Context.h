@@ -14,9 +14,9 @@ struct Machine_Gdl_Context_Class {
 
 struct Machine_Gdl_Context {
   Machine_Object __parent;
-  Machine_String* trueLiteral;
-  Machine_String* falseLiteral;
-  Machine_String* voidLiteral;
+  Ring2_String* trueLiteral;
+  Ring2_String* falseLiteral;
+  Ring2_String* voidLiteral;
 };
 
 Machine_Gdl_Context* Machine_Gdl_Context_create();

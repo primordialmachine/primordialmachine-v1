@@ -93,7 +93,8 @@ increaseCapacity
   }
   size_t oldCapacity = pimpl->capacity,
          newCapacity;
-  if (Ring1_Memory_recomputeSize_sz(0, SIZE_MAX/sizeof(char), oldCapacity, additionalCapacity, &newCapacity, true)) {
+  if (Ring1_Memory_recomputeSize_sz(Ring1_ByteBuffer_Capacity_Least, Ring1_ByteBuffer_Capacity_Greatest,
+                                    oldCapacity, additionalCapacity, &newCapacity, true)) {
     return Ring1_Result_Failure;
   }
   void *oldElements = pimpl->elements,
@@ -119,9 +120,9 @@ initialize
   )
 {
   pimpl->size = 0;
-  pimpl->capacity = 8;
+  pimpl->capacity = Ring1_ByteBuffer_Capacity_Default;
   pimpl->elements = NULL;
-  return Ring1_Memory_allocateArray(&pimpl->elements, 8, sizeof(char));
+  return Ring1_Memory_allocateArray(&pimpl->elements, Ring1_ByteBuffer_Capacity_Default, sizeof(char));
 }
 
 static inline void
@@ -269,12 +270,10 @@ Ring1_ByteBuffer_initialize
   )
 {
   Impl* pimpl;
-  if (Ring1_Memory_allocate(&pimpl, sizeof(Impl)))
-  {
+  if (Ring1_Memory_allocate(&pimpl, sizeof(Impl))) {
     return Ring1_Result_Failure;
   }
-  if (initialize(pimpl))
-  {
+  if (initialize(pimpl)) {
     Ring1_Memory_deallocate(pimpl);
     return Ring1_Result_Failure;
   }

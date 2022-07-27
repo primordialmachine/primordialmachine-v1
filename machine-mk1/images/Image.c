@@ -21,8 +21,8 @@ struct Machine_Images_Image {
   void* pixels;
 };
 
-static void getSize(Machine_Images_Image const* self, Machine_Integer* width,
-                    Machine_Integer* height) {
+static void getSize(Machine_Images_Image const* self, Ring2_Integer* width,
+                    Ring2_Integer* height) {
   *width = self->width;
   *height = self->height;
 }
@@ -45,19 +45,19 @@ void Machine_Images_Image_destruct(Machine_Images_Image* self) {
 void Machine_Images_Image_construct(Machine_Images_Image* self, size_t numberOfArguments,
                                     const Machine_Value* arguments) {
   if (numberOfArguments == 1) {
-    Machine_String* path = Machine_Extensions_getStringArgument(numberOfArguments, arguments, 0);
+    Ring2_String* path = Machine_Extensions_getStringArgument(numberOfArguments, arguments, 0);
     Machine_Images_Image_constructFromPath(self, path);
   } else if (numberOfArguments == 4) {
-    Machine_Integer pixelFormat
+    Ring2_Integer pixelFormat
         = Machine_Extensions_getIntegerArgument(numberOfArguments, arguments, 0);
-    Machine_Integer width = Machine_Extensions_getIntegerArgument(numberOfArguments, arguments, 1);
-    Machine_Integer height = Machine_Extensions_getIntegerArgument(numberOfArguments, arguments, 2);
+    Ring2_Integer width = Machine_Extensions_getIntegerArgument(numberOfArguments, arguments, 1);
+    Ring2_Integer height = Machine_Extensions_getIntegerArgument(numberOfArguments, arguments, 2);
     Machine_ByteBuffer* pixels = (Machine_ByteBuffer*)Machine_Extensions_getObjectArgument(
         numberOfArguments, arguments, 3, Machine_ByteBuffer_getType());
     Machine_Images_Image_constructDirect(self, (Machine_PixelFormat)pixelFormat, width, height,
                                          pixels);
   } else {
-    Machine_setStatus(Machine_Status_InvalidNumberOfArguments);
+    Ring1_Status_set(Ring1_Status_InvalidNumberOfArguments);
     Ring2_jump();
   }
 }
@@ -67,7 +67,7 @@ static void constructClass(Machine_Images_Image_Class* self) {
       = (Machine_PixelFormat(*)(Machine_Image const*)) & getPixelFormat;
   ((Machine_Image_Class*)self)->getPixels = (void const* (*)(Machine_Image const*)) & getPixels;
   ((Machine_Image_Class*)self)->getSize
-      = (void (*)(Machine_Image const*, Machine_Integer*, Machine_Integer*)) & getSize;
+      = (void (*)(Machine_Image const*, Ring2_Integer*, Ring2_Integer*)) & getSize;
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Images_Image, Machine_Image, NULL, &Machine_Images_Image_construct,
@@ -92,7 +92,7 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
                                                   Machine_ByteBuffer* byteBuffer) {
   // (1) Supertype constructor.
   static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
   Machine_Image_construct((Machine_Image*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
 
   // (3) Load image data.
@@ -121,7 +121,7 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
   if (png_sig_cmp(header, 0, 8)) {
     Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
                 "[read_png_file] file is not recognized as a PNG file\n");
-    Machine_setStatus(Machine_Status_EnvironmentFailed);
+    Ring1_Status_set(Ring1_Status_EnvironmentFailed);
     Ring2_jump();
   }
   // (3) create read struct.
@@ -129,7 +129,7 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
   if (!png_ptr) {
     Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
                 "[read_png_file] png_create_read_struct failed\n");
-    Machine_setStatus(Machine_Status_EnvironmentFailed);
+    Ring1_Status_set(Ring1_Status_EnvironmentFailed);
     Ring2_jump();
   }
   // (4) create info struct.
@@ -138,7 +138,7 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
     png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
     Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
                 "[read_png_file] png_create_info_struct failed");
-    Machine_setStatus(Machine_Status_EnvironmentFailed);
+    Ring1_Status_set(Ring1_Status_EnvironmentFailed);
     Ring2_jump();
   }
 
@@ -148,7 +148,7 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
                 "[read_png_file] "
                 "init_io/png_set_sig_bytes/png_read_info/png_set_interlaced_handling/"
                 "png_read_update_info failed");
-    Machine_setStatus(Machine_Status_EnvironmentFailed);
+    Ring1_Status_set(Ring1_Status_EnvironmentFailed);
     Ring2_jump();
   }
   png_set_read_fn(png_ptr, (png_voidp)&state, &_Io_read);
@@ -171,23 +171,19 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
     png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
     Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
                 "[read_png_file] error during read_image");
-    Machine_setStatus(Machine_Status_EnvironmentFailed);
+    Ring1_Status_set(Ring1_Status_EnvironmentFailed);
     Ring2_jump();
   }
 
   png_byte* pixels = NULL;
   if (Ring1_Memory_allocateArray(&pixels, png_get_rowbytes(png_ptr, info_ptr), height)) {
-    Ring1_Status_set(Ring1_Status_Success);
     png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
-    Machine_setStatus(Machine_Status_EnvironmentFailed);
     Ring2_jump();
   }
   row_pointers = NULL;
   if (Ring1_Memory_allocateArray((void **) & row_pointers, sizeof(png_bytep), height)) {
-    Ring1_Status_set(Ring1_Status_Success);
     Ring1_Memory_deallocate(pixels);
     png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
-    Machine_setStatus(Machine_Status_EnvironmentFailed);
     Ring2_jump();
   }
   for (y = 0; y < height; y++)
@@ -213,7 +209,7 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
       Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
                   "[read_png_file] Unsupported png color type (%d) for image file\n",
                   (int)color_type);
-      Machine_setStatus(Machine_Status_EnvironmentFailed);
+      Ring1_Status_set(Ring1_Status_EnvironmentFailed);
       Ring2_jump();
   };
   self->pixels = pixels;
@@ -221,17 +217,17 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
   Machine_setClassType((Machine_Object*)self, Machine_Images_Image_getType());
 }
 
-void Machine_Images_Image_constructFromPath(Machine_Images_Image* self, Machine_String* path) {
+void Machine_Images_Image_constructFromPath(Machine_Images_Image* self, Ring2_String* path) {
   Machine_ByteBuffer* byteBuffer = Machine_getFileContents(path);
   Machine_Images_Image_constructFromByteBuffer(self, byteBuffer);
 }
 
 void Machine_Images_Image_constructDirect(Machine_Images_Image* self,
-                                          Machine_PixelFormat pixelFormat, Machine_Integer width,
-                                          Machine_Integer height, Machine_ByteBuffer* pixels) {
+                                          Machine_PixelFormat pixelFormat, Ring2_Integer width,
+                                          Ring2_Integer height, Machine_ByteBuffer* pixels) {
   // (1) Supertype constructor.
   static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
   Machine_Image_construct((Machine_Image*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
 
   // (3) Store.
@@ -241,8 +237,6 @@ void Machine_Images_Image_constructDirect(Machine_Images_Image* self,
   self->pixels = NULL;
   if (Ring1_Memory_allocateArray(&self->pixels, width * height,
                                  Machine_PixelFormat_getBytesPerPixel(pixelFormat))) {
-    Ring1_Status_set(Ring1_Status_Success);
-    Machine_setStatus(Machine_Status_AllocationFailed);
     Ring2_jump();
   }
   Ring1_Memory_copyFast(self->pixels, Machine_ByteBuffer_getBytes(pixels),
@@ -252,7 +246,7 @@ void Machine_Images_Image_constructDirect(Machine_Images_Image* self,
   Machine_setClassType((Machine_Object*)self, Machine_Images_Image_getType());
 }
 
-Machine_Images_Image* Machine_Images_Image_createImageFromPath(Machine_String* path) {
+Machine_Images_Image* Machine_Images_Image_createImageFromPath(Ring2_String* path) {
   Machine_ClassType* ty = Machine_Images_Image_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 1;
   Machine_Value ARGUMENTS[1];
@@ -263,8 +257,8 @@ Machine_Images_Image* Machine_Images_Image_createImageFromPath(Machine_String* p
 }
 
 Machine_Images_Image* Machine_Images_Image_createImageDirect(Machine_PixelFormat pixelFormat,
-                                                             Machine_Integer width,
-                                                             Machine_Integer height,
+                                                             Ring2_Integer width,
+                                                             Ring2_Integer height,
                                                              Machine_ByteBuffer* pixels) {
   Machine_ClassType* ty = Machine_Images_Image_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 4;

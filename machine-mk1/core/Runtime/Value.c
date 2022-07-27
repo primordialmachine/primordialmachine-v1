@@ -16,7 +16,7 @@ void Machine_Value_visit(Machine_Value* self) {
   };
 }
 
-Machine_Boolean Machine_Value_isEqualTo(Machine_Value const* x, Machine_Value const* y) {
+Ring2_Boolean Machine_Value_isEqualTo(Machine_Value const* x, Machine_Value const* y) {
   if (x->tag != y->tag) {
     return false;
   }
@@ -26,13 +26,13 @@ Machine_Boolean Machine_Value_isEqualTo(Machine_Value const* x, Machine_Value co
     case Machine_ValueFlag_String:
       return Machine_String_isEqualTo(x->stringValue, y->stringValue);
     case Machine_ValueFlag_Void:
-      return Machine_Void_isEqualTo(x->voidValue, y->voidValue);
+      return Ring2_Void_isEqualTo(Ring2_Context_get(), x->voidValue, y->voidValue);
     case Machine_ValueFlag_Real:
-      return Machine_Real_isEqualTo(x->realValue, y->realValue);
+      return Ring2_Real32_isEqualTo(Ring2_Context_get(), x->realValue, y->realValue);
     case Machine_ValueFlag_Integer:
-      return Machine_Integer_isEqualTo(x->integerValue, y->integerValue);
+      return Ring2_Integer_isEqualTo(Ring2_Context_get(), x->integerValue, y->integerValue);
     case Machine_ValueFlag_Boolean:
-      return Machine_Boolean_isEqualTo(x->booleanValue, y->booleanValue);
+      return Ring2_Boolean_isEqualTo(Ring2_Context_get(), x->booleanValue, y->booleanValue);
     case Machine_ValueFlag_ForeignProcedure:
       return Machine_ForeignProcedure_isEqualTo(x->foreignProcedureValue, y->foreignProcedureValue);
     default:
@@ -40,20 +40,20 @@ Machine_Boolean Machine_Value_isEqualTo(Machine_Value const* x, Machine_Value co
   };
 }
 
-Machine_Integer Machine_Value_getHashValue(Machine_Value const* self) {
+Ring2_Integer Machine_Value_getHashValue(Machine_Value const* self) {
   switch (self->tag) {
     case Machine_ValueFlag_Object:
       return Machine_Object_getHashValue(self->objectValue);
     case Machine_ValueFlag_String:
       return Machine_String_getHashValue(self->stringValue);
     case Machine_ValueFlag_Void:
-      return Machine_Void_getHashValue(self->voidValue);
+      return Ring2_Void_getHashValue(Ring2_Context_get(),self->voidValue);
     case Machine_ValueFlag_Real:
-      return Machine_Real_getHashValue(self->realValue);
+      return Ring2_Real32_getHashValue(Ring2_Context_get(), self->realValue);
     case Machine_ValueFlag_Integer:
-      return Machine_Integer_getHashValue(self->integerValue);
+      return Ring2_Integer_getHashValue(Ring2_Context_get(), self->integerValue);
     case Machine_ValueFlag_Boolean:
-      return Machine_Boolean_getHashValue(self->booleanValue);
+      return Ring2_Boolean_getHashValue(Ring2_Context_get(), self->booleanValue);
     case Machine_ValueFlag_ForeignProcedure:
       return Machine_ForeignProcedure_getHashValue(self->foreignProcedureValue);
     default:

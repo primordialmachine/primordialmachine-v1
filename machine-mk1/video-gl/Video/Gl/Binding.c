@@ -34,7 +34,7 @@ static void Machine_Gl_Binding_destruct(Machine_Gl_Binding* self) {
 
 static void bindVar(Machine_Gl_Binding const* self, size_t inputIndex, Machine_ProgramInput const* input) {
   MACHINE_ASSERT_NOTNULL(input);
-  MACHINE_ASSERT(input->kind == Machine_ProgramInputKind_Variable, Machine_Status_InvalidArgument);
+  MACHINE_ASSERT(input->kind == Machine_ProgramInputKind_Variable, Ring1_Status_InvalidArgument);
 
   // Get the index of the corresponding vertex element.
   size_t vertexElementIndex = Machine_Binding_getVariableBinding((Machine_Binding*)self, input->name);
@@ -65,9 +65,9 @@ static void bindVar(Machine_Gl_Binding const* self, size_t inputIndex, Machine_P
   };
 }
 
-static bool Machine_Binding_setVariableBindingImpl(Machine_Gl_Binding* self, Machine_String* name, size_t index) {
-  if (index < 0 || index > Machine_Integer_Greatest || index == (size_t)(-1)) {
-    Machine_setStatus(Machine_Status_InvalidArgument);
+static bool Machine_Binding_setVariableBindingImpl(Machine_Gl_Binding* self, Ring2_String* name, size_t index) {
+  if (index < 0 || index > Ring2_Integer_Greatest || index == (size_t)(-1)) {
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();
   }
   Machine_Binding_Node* node = ((Machine_Binding*)self)->nodes;
@@ -82,13 +82,13 @@ static bool Machine_Binding_setVariableBindingImpl(Machine_Gl_Binding* self, Mac
   }
   ((Machine_Binding*)self)->dirty = true;
   Machine_Value temporary;
-  Machine_Value_setInteger(&temporary, (Machine_Integer)index);
+  Machine_Value_setInteger(&temporary, (Ring2_Integer)index);
   node = Machine_Binding_Node_createVariable(name, &temporary);
   node->next = ((Machine_Binding*)self)->nodes; ((Machine_Binding*)self)->nodes = node;
   return false;
 }
 
-static size_t Machine_Binding_getVariableBindingImpl(Machine_Gl_Binding const* self, Machine_String* name) {
+static size_t Machine_Binding_getVariableBindingImpl(Machine_Gl_Binding const* self, Ring2_String* name) {
   Machine_Binding_Node* node = ((Machine_Binding*)self)->nodes;
   while (node) {
     if (Machine_String_isEqualTo(node->name, name) && node->isVariable) {
@@ -99,7 +99,7 @@ static size_t Machine_Binding_getVariableBindingImpl(Machine_Gl_Binding const* s
   return (size_t)-1;
 }
 
-static void Machine_Binding_bindMatrix4Impl(Machine_Gl_Binding* self, Machine_String* name, Machine_Math_Matrix4 const* value) {
+static void Machine_Binding_bindMatrix4Impl(Machine_Gl_Binding* self, Ring2_String* name, Machine_Math_Matrix4 const* value) {
   Machine_Value temporary2;
   Machine_Value_setObject(&temporary2, (Machine_Object*)value);
   Machine_Binding_addUpdateConstant((Machine_Binding*)self, name, &temporary2);
@@ -111,7 +111,7 @@ static void Machine_Binding_bindMatrix4Impl(Machine_Gl_Binding* self, Machine_St
   Machine_UtilitiesGl_call(glUniformMatrix4fv(location, 1, GL_TRUE, (GLfloat const*)value->e));
 }
 
-static void Machine_Binding_bindVector2Impl(Machine_Gl_Binding* self, Machine_String* name, Machine_Math_Vector2 const* value) {
+static void Machine_Binding_bindVector2Impl(Machine_Gl_Binding* self, Ring2_String* name, Machine_Math_Vector2 const* value) {
   Machine_Value temporary2;
   Machine_Value_setObject(&temporary2, (Machine_Object*)value);
   Machine_Binding_addUpdateConstant((Machine_Binding *)self, name, &temporary2);
@@ -141,7 +141,7 @@ static void Machine_Binding_bindVector2Impl(Machine_Gl_Binding* self, Machine_St
   Machine_UtilitiesGl_call(glUniform2fv(location, 1, temporary));
 }
 
-static void Machine_Binding_bindVector3Impl(Machine_Gl_Binding* self, Machine_String* name, Machine_Math_Vector3 const* value) {
+static void Machine_Binding_bindVector3Impl(Machine_Gl_Binding* self, Ring2_String* name, Machine_Math_Vector3 const* value) {
   Machine_Value temporary2;
   Machine_Value_setObject(&temporary2, (Machine_Object*)value);
   Machine_Binding_addUpdateConstant((Machine_Binding*)self, name, &temporary2);
@@ -171,7 +171,7 @@ static void Machine_Binding_bindVector3Impl(Machine_Gl_Binding* self, Machine_St
   Machine_UtilitiesGl_call(glUniform3fv(location, 1, temporary));
 }
 
-static void Machine_Binding_bindVector4Impl(Machine_Binding* self, Machine_String* name, Machine_Math_Vector4 const* value) {
+static void Machine_Binding_bindVector4Impl(Machine_Binding* self, Ring2_String* name, Machine_Math_Vector4 const* value) {
   Machine_Value temporary2;
   Machine_Value_setObject(&temporary2, (Machine_Object*)value);
   Machine_Binding_addUpdateConstant((Machine_Binding*)self, name, &temporary2);
@@ -201,9 +201,9 @@ static void Machine_Binding_bindVector4Impl(Machine_Binding* self, Machine_Strin
   Machine_UtilitiesGl_call(glUniform4fv(location, 1, temporary));
 }
 
-static void Machine_Binding_bindSamplerImpl(Machine_Gl_Binding* self, Machine_String* name, const size_t value) {
+static void Machine_Binding_bindSamplerImpl(Machine_Gl_Binding* self, Ring2_String* name, const size_t value) {
   Machine_Value temporary2;
-  Machine_Value_setInteger(&temporary2, (Machine_Integer)value);
+  Machine_Value_setInteger(&temporary2, (Ring2_Integer)value);
   Machine_Binding_addUpdateConstant((Machine_Binding*)self, name, &temporary2);
 
   GLint location = glGetUniformLocation(((Machine_Gl_ShaderProgram*)(((Machine_Binding*)self)->program))->programId, Machine_String_getBytes(name));
@@ -224,7 +224,7 @@ static void Machine_Binding_activateImpl(Machine_Gl_Binding* self) {
     if (glGetError() != GL_NO_ERROR) {
       glDeleteVertexArrays(1, &self->id);
       self->id = 0;
-      Machine_setStatus(Machine_Status_InvalidArgument);
+      Ring1_Status_set(Ring1_Status_InvalidArgument);
       Ring2_jump();
     }
     for (size_t i = 0, j = 0, n = Machine_ShaderProgram_getNumberOfInputs(((Machine_Binding*)self)->program); i < n;) {
@@ -247,13 +247,13 @@ static void Machine_Binding_activateImpl(Machine_Gl_Binding* self) {
 }
 
 static void Machine_Gl_Binding_constructClass(Machine_Gl_Binding_Class* self) {
-  ((Machine_Binding_Class*)self)->setVariableBinding = (Machine_Boolean(*)(Machine_Binding*, Machine_String*, size_t)) & Machine_Binding_setVariableBindingImpl;
-  ((Machine_Binding_Class*)self)->getVariableBinding = (size_t(*)(Machine_Binding const*, Machine_String*)) & Machine_Binding_getVariableBindingImpl;
-  ((Machine_Binding_Class*)self)->bindMatrix4 = (void (*)(Machine_Binding*, Machine_String*, Machine_Math_Matrix4 const*)) & Machine_Binding_bindMatrix4Impl;
-  ((Machine_Binding_Class*)self)->bindVector2 = (void (*)(Machine_Binding*, Machine_String*, Machine_Math_Vector2 const*)) & Machine_Binding_bindVector2Impl;
-  ((Machine_Binding_Class*)self)->bindVector3 = (void (*)(Machine_Binding*, Machine_String*, Machine_Math_Vector3 const*)) & Machine_Binding_bindVector3Impl;
-  ((Machine_Binding_Class*)self)->bindVector4 = (void (*)(Machine_Binding*, Machine_String*, Machine_Math_Vector4 const*)) & Machine_Binding_bindVector4Impl;
-  ((Machine_Binding_Class*)self)->bindSampler = (void (*)(Machine_Binding*, Machine_String*, size_t const)) & Machine_Binding_bindSamplerImpl;
+  ((Machine_Binding_Class*)self)->setVariableBinding = (Ring2_Boolean(*)(Machine_Binding*, Ring2_String*, size_t)) & Machine_Binding_setVariableBindingImpl;
+  ((Machine_Binding_Class*)self)->getVariableBinding = (size_t(*)(Machine_Binding const*, Ring2_String*)) & Machine_Binding_getVariableBindingImpl;
+  ((Machine_Binding_Class*)self)->bindMatrix4 = (void (*)(Machine_Binding*, Ring2_String*, Machine_Math_Matrix4 const*)) & Machine_Binding_bindMatrix4Impl;
+  ((Machine_Binding_Class*)self)->bindVector2 = (void (*)(Machine_Binding*, Ring2_String*, Machine_Math_Vector2 const*)) & Machine_Binding_bindVector2Impl;
+  ((Machine_Binding_Class*)self)->bindVector3 = (void (*)(Machine_Binding*, Ring2_String*, Machine_Math_Vector3 const*)) & Machine_Binding_bindVector3Impl;
+  ((Machine_Binding_Class*)self)->bindVector4 = (void (*)(Machine_Binding*, Ring2_String*, Machine_Math_Vector4 const*)) & Machine_Binding_bindVector4Impl;
+  ((Machine_Binding_Class*)self)->bindSampler = (void (*)(Machine_Binding*, Ring2_String*, size_t const)) & Machine_Binding_bindSamplerImpl;
   ((Machine_Binding_Class*)self)->activate = (void (*)(Machine_Binding*)) & Machine_Binding_activateImpl;
 }
 

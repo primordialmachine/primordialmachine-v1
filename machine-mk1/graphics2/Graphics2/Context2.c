@@ -35,7 +35,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Context2, Machine_Object, &Machine_Context2_vis
                          Machine_Context2_construct, NULL, NULL, NULL)
 
 void Machine_Context2_construct(Machine_Context2* self, size_t numberOfArguments, Machine_Value const* arguments) {
-  MACHINE_ASSERT(numberOfArguments == 1, Machine_Status_InvalidNumberOfArguments);
+  MACHINE_ASSERT(numberOfArguments == 1, Ring1_Status_InvalidNumberOfArguments);
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
 
   Machine_VideoContext* videoContext = (Machine_VideoContext*)Machine_Value_getObject(&arguments[0]);
@@ -89,7 +89,7 @@ static void updateModelSpaceToProjectiveSpace(Machine_Context2* self) {
   }
 }
 
-void Machine_Context2_setTargetSize(Machine_Context2* self, Machine_Real width, Machine_Real height) {
+void Machine_Context2_setTargetSize(Machine_Context2* self, Ring2_Real32 width, Ring2_Real32 height) {
   if (width < 0.f) width = 0.f;
   self->width = width;
   if (height < 0.f) height = 0.f;
@@ -98,11 +98,11 @@ void Machine_Context2_setTargetSize(Machine_Context2* self, Machine_Real width, 
   updateModelSpaceToProjectiveSpace(self);
 }
 
-Machine_Real Machine_Context2_getTargetWidth(Machine_Context2 const* self) {
+Ring2_Real32 Machine_Context2_getTargetWidth(Machine_Context2 const* self) {
   return self->width;
 }
 
-Machine_Real Machine_Context2_getTargetHeight(Machine_Context2 const* self) {
+Ring2_Real32 Machine_Context2_getTargetHeight(Machine_Context2 const* self) {
   return self->height;
 }
 
@@ -114,11 +114,11 @@ Machine_Math_Matrix4 const* Machine_Context2_getModelSpaceToWorldSpaceMatrix(Mac
   return self->modelSpaceToWorldSpace;
 }
 
-void Machine_Context2_setOriginBottomLeft(Machine_Context2* self, Machine_Boolean originBottomLeft) {
+void Machine_Context2_setOriginBottomLeft(Machine_Context2* self, Ring2_Boolean originBottomLeft) {
   self->originBottomLeft = originBottomLeft;
   updateModelSpaceToProjectiveSpace(self);
 }
 
-Machine_Boolean Machine_Context2_getOriginBottomLeft(Machine_Context2 const* self) {
+Ring2_Boolean Machine_Context2_getOriginBottomLeft(Machine_Context2 const* self) {
   return self->originBottomLeft;
 }

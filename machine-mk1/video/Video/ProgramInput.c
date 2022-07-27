@@ -22,7 +22,7 @@ static void Machine_ProgramInput_construct(Machine_ProgramInput* self, size_t nu
 MACHINE_DEFINE_CLASSTYPE(Machine_ProgramInput, Machine_Object, &Machine_ProgramInput_visit,
                          &Machine_ProgramInput_construct, NULL, NULL, NULL)
 
-Machine_ProgramInput* Machine_ProgramInput_create(Machine_String* name,
+Machine_ProgramInput* Machine_ProgramInput_create(Ring2_String* name,
                                                   Machine_ProgramInputType type,
                                                   Machine_ProgramInputKind kind) {
   Machine_ClassType* ty = Machine_ProgramInput_getType();

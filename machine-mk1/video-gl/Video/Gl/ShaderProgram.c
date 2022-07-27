@@ -39,7 +39,7 @@ static void Machine_Gl_ShaderProgram_destruct(Machine_Gl_ShaderProgram* self) {
 /// @param id The OpenGL ID of s ahder program.
 /// @return The log string on success, null on failure.
 /// This function sets the by-thread status variable. 
-static Machine_String* getLog_noraise(GLuint id) {
+static Ring2_String* getLog_noraise(GLuint id) {
   GLint n;
   glGetProgramiv(id, GL_INFO_LOG_LENGTH, &n);
   if (n == SIZE_MAX) {
@@ -56,7 +56,7 @@ static Machine_String* getLog_noraise(GLuint id) {
   Ring2_JumpTarget jumpTarget;
   Ring2_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
-    Machine_String* string = Machine_String_create(p, n);
+    Ring2_String* string = Machine_String_create(p, n);
     Ring2_popJumpTarget();
     Ring1_Memory_deallocate(p);
     return string;
@@ -76,7 +76,7 @@ static Machine_ProgramInput* Machine_Gl_ShaderProgram_getInputAtImpl(Machine_Gl_
   return (Machine_ProgramInput*)Machine_Value_getObject(&temporary);
 }
 
-static Machine_Boolean Machine_Gl_ShaderProgram_addUpdateInputImpl(Machine_Gl_ShaderProgram* self, Machine_String* name, Machine_ProgramInputType type, Machine_ProgramInputKind kind) {
+static Ring2_Boolean Machine_Gl_ShaderProgram_addUpdateInputImpl(Machine_Gl_ShaderProgram* self, Ring2_String* name, Machine_ProgramInputType type, Machine_ProgramInputKind kind) {
   for (size_t i = 0, n = Machine_ShaderProgram_getNumberOfInputs((Machine_ShaderProgram *)self); i < n; ++i) {
     Machine_ProgramInput* input = Machine_ShaderProgram_getInputAt((Machine_ShaderProgram *)self, i);
     if (Machine_String_isEqualTo(input->name, name)) {
@@ -117,7 +117,7 @@ static GLuint compileShader(char const* programText, Machine_ProgramKind program
   #define SHADER_EMIT_LOG_IF_COMPILATION_FAILED
 
   #if defined(SHADER_EMIT_LOG_IF_COMPILATION_FAILED)
-    Machine_String* log = getLog_noraise(id);
+    Ring2_String* log = getLog_noraise(id);
   #endif
 
   #undef SHADER_EMIT_LOG_IF_COMPILATION_FAILED
@@ -155,7 +155,7 @@ static void constructFromText(Machine_Gl_ShaderProgram* self, char const* vertex
     vertexShaderId = 0; \
   } \
 \
-  Machine_setStatus(Machine_Status_EnvironmentFailed); \
+  Ring1_Status_set(Ring1_Status_EnvironmentFailed); \
   Ring2_jump();
 
   GLint result;
@@ -196,7 +196,7 @@ static void constructFromText(Machine_Gl_ShaderProgram* self, char const* vertex
   #define PROGRAM_EMIT_LOG_IF_LINKING_FAILED
 
   #if defined(PROGRAM_EMIT_LOG_IF_LINKING_FAILED)
-    Machine_String *log = getLog_noraise(programId);
+    Ring2_String *log = getLog_noraise(programId);
   #endif
 
   #undef PROGRAM_EMIT_LOG_IF_LINKING_FAILED
@@ -215,16 +215,16 @@ static void constructFromText(Machine_Gl_ShaderProgram* self, char const* vertex
 static void Machine_Gl_ShaderProgram_constructClass(Machine_Gl_ShaderProgram_Class* self) {
   ((Machine_ShaderProgram_Class*)self)->getNumberOfInputs = (size_t(*)(Machine_ShaderProgram const*)) & Machine_Gl_ShaderProgram_getNumberOfInputsImpl;
   ((Machine_ShaderProgram_Class*)self)->getInputAt = (Machine_ProgramInput * (*)(Machine_ShaderProgram const*, size_t)) & Machine_Gl_ShaderProgram_getInputAtImpl;
-  ((Machine_ShaderProgram_Class*)self)->addUpdateInput = (Machine_Boolean(*)(Machine_ShaderProgram*, Machine_String*, Machine_ProgramInputType, Machine_ProgramInputKind)) & Machine_Gl_ShaderProgram_addUpdateInputImpl;
+  ((Machine_ShaderProgram_Class*)self)->addUpdateInput = (Ring2_Boolean(*)(Machine_ShaderProgram*, Ring2_String*, Machine_ProgramInputType, Machine_ProgramInputKind)) & Machine_Gl_ShaderProgram_addUpdateInputImpl;
 }
 
 void Machine_Gl_ShaderProgram_construct(Machine_Gl_ShaderProgram* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_ShaderProgram_construct((Machine_ShaderProgram*)self, numberOfArguments, arguments);
   if (numberOfArguments != 3) {
-    Machine_setStatus(Machine_Status_InvalidNumberOfArguments);
+    Ring1_Status_set(Ring1_Status_InvalidNumberOfArguments);
     Ring2_jump();
   }
-  Machine_String* v = NULL, * g = NULL, * f = NULL;
+  Ring2_String *v = NULL, *g = NULL, *f = NULL;
   if (!Machine_Value_isVoid(arguments + 0)) {
     v = Machine_Extensions_getStringArgument(numberOfArguments, arguments, 0);
   }
@@ -245,7 +245,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gl_ShaderProgram, Machine_ShaderProgram,
                          Machine_Gl_ShaderProgram_destruct,
                          &Machine_Gl_ShaderProgram_constructClass, NULL)
 
-Machine_Gl_ShaderProgram* Machine_Gl_ShaderProgram_create(Machine_String* vertexProgramText, Machine_String* geometryProgramText, Machine_String* fragmentProgramText) {
+Machine_Gl_ShaderProgram* Machine_Gl_ShaderProgram_create(Ring2_String* vertexProgramText, Ring2_String* geometryProgramText, Ring2_String* fragmentProgramText) {
   Machine_ClassType* ty = Machine_Gl_ShaderProgram_getType();
 
   static size_t const numberOfArguments = 3;
@@ -254,17 +254,17 @@ Machine_Gl_ShaderProgram* Machine_Gl_ShaderProgram_create(Machine_String* vertex
   if (vertexProgramText != NULL)
     Machine_Value_setString(&arguments[0], vertexProgramText);
   else
-    Machine_Value_setVoid(&arguments[0], Machine_Void_Void);
+    Machine_Value_setVoid(&arguments[0], Ring2_Void_Void);
 
   if (geometryProgramText != NULL)
     Machine_Value_setString(&arguments[1], geometryProgramText);
   else
-    Machine_Value_setVoid(&arguments[1], Machine_Void_Void);
+    Machine_Value_setVoid(&arguments[1], Ring2_Void_Void);
 
   if (fragmentProgramText != NULL)
     Machine_Value_setString(&arguments[2], fragmentProgramText);
   else
-    Machine_Value_setVoid(&arguments[2], Machine_Void_Void);
+    Machine_Value_setVoid(&arguments[2], Ring2_Void_Void);
 
   Machine_Gl_ShaderProgram* self = (Machine_Gl_ShaderProgram*)Machine_allocateClassObject(ty, numberOfArguments, arguments);
   return self;
@@ -288,7 +288,7 @@ static void defineFloatConstants(Machine_StringBuffer* code) {
 /// @param worldToView Add uniform <code>uniform mat4 worldToViewMatrix</code>.
 /// @param viewToProjection Add uniform <code>uniform mat4 viewToProjectionMatrix</code>.
 /// @param modelToProjection Add uniform <code>uniform mat4 modelToProjectionMatrix</code>.
-static void defineMatrixUniforms(Machine_StringBuffer* code, Machine_Boolean modelToWorld, Machine_Boolean worldToView, Machine_Boolean viewToProjection, Machine_Boolean modelToProjection) {
+static void defineMatrixUniforms(Machine_StringBuffer* code, Ring2_Boolean modelToWorld, Ring2_Boolean worldToView, Ring2_Boolean viewToProjection, Ring2_Boolean modelToProjection) {
 #define T(t) t, strlen(t)
   // model -> world
   if (modelToWorld) {
@@ -313,14 +313,14 @@ static void defineMatrixUniforms(Machine_StringBuffer* code, Machine_Boolean mod
 Machine_ShaderProgram*
 Machine_Gl_ShaderProgram_generateDefaultShader
   (
-    Machine_Boolean withMeshColor,
-    Machine_Boolean withVertexColor,
-    Machine_Boolean withTextureCoordinate,
-    Machine_Boolean withTexture
+    Ring2_Boolean withMeshColor,
+    Ring2_Boolean withVertexColor,
+    Ring2_Boolean withTextureCoordinate,
+    Ring2_Boolean withTexture
   )
 {
   Machine_StringBuffer* code = Machine_StringBuffer_create();
-  Machine_String* v, * g, * f;
+  Ring2_String *v, *g, *f;
 #define T(t) t, strlen(t)
 #define TZ(t) t, strlen(t) + 1
 
@@ -417,7 +417,7 @@ Machine_Gl_ShaderProgram_generateShape2Shader
   )
 {
   Machine_StringBuffer* code = Machine_StringBuffer_create();
-  Machine_String* v, * g, * f;
+  Ring2_String *v, *g, *f;
 #define T(t) t, strlen(t)
 #define TZ(t) t, strlen(t) + 1
 
@@ -474,11 +474,11 @@ Machine_Gl_ShaderProgram_generateShape2Shader
 Machine_ShaderProgram*
 Machine_Gl_ShaderProgram_generateText2Shader
   (
-    Machine_Boolean highPrecision
+    Ring2_Boolean highPrecision
   )
 {
   Machine_StringBuffer* code = Machine_StringBuffer_create();
-  Machine_String* v, * g, * f;
+  Ring2_String *v, *g, *f;
 #define T(t) t, strlen(t)
 #define TZ(t) t, strlen(t) + 1
 
@@ -490,7 +490,7 @@ Machine_Gl_ShaderProgram_generateText2Shader
 
   defineFloatConstants(code);
 
-  static Machine_Boolean const withClipDistance = true;
+  static Ring2_Boolean const withClipDistance = true;
 
   Machine_StringBuffer_appendBytes(code, T("out struct VS2GS {\n"));
   Machine_StringBuffer_appendBytes(code, T("  vec2 texture_coordinate_1;\n"));

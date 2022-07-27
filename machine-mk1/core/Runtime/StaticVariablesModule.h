@@ -5,9 +5,10 @@
 #define MACHINE_RUNTIME_STATICVARIABLESMODULE_H_INCLUDED
 
 #if !defined(MACHINE_RUNTIME_PRIVATE)
-#error("Do not include this file directly, include `_Runtime.h` instead.")
+#error("Do not include `Runtime/StaticVariablesModule.h` directly, include `_Runtime.h` instead.")
 #endif
-#include "Runtime/Status.h"
+#include "Ring1/Result.h"
+#include <stdbool.h>
 
 Ring1_Result Machine_initializeStaticVariablesModule();
 
@@ -30,9 +31,9 @@ typedef void(Machine_UninitializeStaticVariablesCallback)();
 /// @example
 /// Use this to create and destroy string constants.
 /// Do not use this for other variables
-/// Lazy initialize static variable of type Machine_String.
+/// Lazy initialize static variable of type Ring2_String.
 /// <code>
-/// static Machine_String* g_string = NULL;
+/// static Ring2_String* g_string = NULL;
 ///
 /// static void uninitializeStaticVariablesCallback() {
 ///   if (g_string) {
@@ -41,11 +42,11 @@ typedef void(Machine_UninitializeStaticVariablesCallback)();
 ///   }
 /// }
 ///
-/// Machine_String *getString() {
+/// Ring2_String *getString() {
 ///   if (!g_string) {
 ///     g_string = Machine_String_create(...);
 ///     Machine_Gc_lock(g_string);
-///     if (!Machine_registerStaticVariables(&uninitializeStaticVariablesCallback)) {
+///     if (Machine_registerStaticVariables(&uninitializeStaticVariablesCallback)) {
 ///       Machine_Gc_unlock(g_string);
 ///       g_string = NULL;
 ///     }

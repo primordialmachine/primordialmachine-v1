@@ -21,6 +21,6 @@ enum Machine_KeyboardKeys {
 
 };
 
-Machine_String* Machine_KeyboardKeys_toString(Machine_KeyboardKeys self);
+Ring2_String* Machine_KeyboardKeys_toString(Machine_KeyboardKeys self);
 
 #endif // MACHINE_INPUT_KEYBOARDKEYS_H_INCLUDED

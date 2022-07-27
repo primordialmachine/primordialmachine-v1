@@ -44,11 +44,11 @@ static void Machine_Gui_TextNode_render(Machine_Gui_TextNode* self, Machine_Cont
 
 static Machine_Value boundsChangedCallback(size_t numberOfArguments,
                                            Machine_Value const* arguments) {
-  MACHINE_ASSERT(numberOfArguments == 2, Machine_Status_InvalidNumberOfArguments);
+  MACHINE_ASSERT(numberOfArguments == 2, Ring1_Status_InvalidNumberOfArguments);
   Machine_Gui_TextNode* self = (Machine_Gui_TextNode*)Machine_Value_getObject(&arguments[0]);
   self->childDirty = true;
   Machine_Value result;
-  Machine_Value_setVoid(&result, Machine_Void_Void);
+  Machine_Value_setVoid(&result, Ring2_Void_Void);
   return result;
 }
 
@@ -104,13 +104,13 @@ static Machine_Math_Vector2 const* Machine_Gui_TextNode_getPreferredSize(
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-void Machine_Gui_TextNode_setText(Machine_Gui_TextNode* self, Machine_String* text) {
+void Machine_Gui_TextNode_setText(Machine_Gui_TextNode* self, Ring2_String* text) {
   Machine_Text_Layout_setText(self->foreground, text);
   Machine_Gui_Widget_emitPositionChangedSignal((Machine_Gui_Widget*)self);
   Machine_Gui_Widget_emitSizeChangedSignal((Machine_Gui_Widget*)self);
 }
 
-Machine_String* Machine_Gui_TextNode_getText(Machine_Gui_TextNode const* self) {
+Ring2_String* Machine_Gui_TextNode_getText(Machine_Gui_TextNode const* self) {
   return Machine_Text_Layout_getText(self->foreground);
 }
 
@@ -144,8 +144,8 @@ Machine_Math_Vector3 const* Machine_Gui_TextNode_getForegroundColor(
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-static void Machine_Gui_TextNode_render2(Machine_Gui_TextNode* self, Machine_Real width,
-                                         Machine_Real height) {
+static void Machine_Gui_TextNode_render2(Machine_Gui_TextNode* self, Ring2_Real32 width,
+                                         Ring2_Real32 height) {
   Machine_Context2* ctx2 = ((Machine_Gui_Widget*)self)->context->context2;
   Machine_Context2_setTargetSize(ctx2, width, height);
   if (self->childDirty) {

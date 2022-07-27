@@ -4,11 +4,9 @@
 #define MACHINE_COLLECTIONS_PRIVATE (1)
 #include "Collections/ArrayDeque.h"
 
-#include "Ring1/Status.h"
 #include "Collections/Collection.h"
 #include "Collections/Deque.h"
-#include "Collections/GrowthStrategy.h"
-#include "_Eal.h"
+#include "Ring1/Ring1.h"
 #include <assert.h>
 #include <string.h>
 
@@ -139,8 +137,6 @@ static void Machine_ArrayDeque_construct(Machine_ArrayDeque* self, size_t number
   self->tail = 0;
   self->elements = NULL;
   if (Ring1_Memory_allocateArray(&self->elements, self->capacity, sizeof(Machine_Value))) {
-    Ring1_Status_set(Ring1_Status_Success);
-    Machine_setStatus(Machine_Status_AllocationFailed);
     Ring2_jump();
   }
   Machine_setClassType((Machine_Object*)self, Machine_ArrayDeque_getType());
@@ -168,10 +164,8 @@ static void grow1(Machine_ArrayDeque* self, size_t requiredAdditionalCapacity) {
   }
   size_t oldCapacity = self->capacity;
   size_t newCapacity;
-  Machine_StatusValue status = Machine_Collections_getBestCapacity(
-      oldCapacity, requiredAdditionalCapacity, SIZE_MAX / sizeof(Machine_Value), &newCapacity);
-  if (status != Machine_Status_Success) {
-    Machine_setStatus(status);
+  if (Ring1_Memory_recomputeSize_sz(0, SIZE_MAX / sizeof(Machine_Value), oldCapacity, requiredAdditionalCapacity, 
+                                          &newCapacity, true)) {
     Ring2_jump();
   }
   Machine_Value* oldElements = self->elements;
@@ -254,7 +248,7 @@ static void maybeGrow1(Machine_ArrayDeque* self) {
 
 static Machine_Value popBack(Machine_ArrayDeque* self) {
   if (self->size == 0) {
-    Machine_setStatus(Machine_Status_IndexOutOfBounds);
+    Ring1_Status_set(Ring1_Status_IndexOutOfBounds);
     Ring2_jump();
   }
   size_t newTail = Machine_modDecrement1_sz(self->capacity, self->tail);
@@ -275,7 +269,7 @@ static void pushBack(Machine_ArrayDeque* self, Machine_Value value) {
 
 static Machine_Value popFront(Machine_ArrayDeque* self) {
   if (self->size == 0) {
-    Machine_setStatus(Machine_Status_IndexOutOfBounds);
+    Ring1_Status_set(Ring1_Status_IndexOutOfBounds);
     Ring2_jump();
   }
   size_t newHead = Machine_modIncrement1_sz(self->capacity, self->head);
@@ -297,7 +291,7 @@ static void pushFront(Machine_ArrayDeque* self, Machine_Value value) {
 Machine_ArrayDeque* Machine_ArrayDeque_create() {
   Machine_ClassType* ty = Machine_ArrayDeque_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
   Machine_ArrayDeque* self
       = (Machine_ArrayDeque*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;

@@ -9,7 +9,7 @@ static void Machine_Font_destruct(Machine_Font* self)
 
 void Machine_Font_construct(Machine_Font* self, size_t numberOfArguments, Machine_Value const* arguments) {
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { {Machine_ValueFlag_Void, Machine_Void_Void} };
+  static Machine_Value const ARGUMENTS[] = { {Machine_ValueFlag_Void, Ring2_Void_Void} };
   Machine_Object_construct((Machine_Object*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   Machine_setClassType((Machine_Object*)self, Machine_Font_getType());
 }
@@ -17,11 +17,11 @@ void Machine_Font_construct(Machine_Font* self, size_t numberOfArguments, Machin
 MACHINE_DEFINE_CLASSTYPE(Machine_Font, Machine_Object, NULL, &Machine_Font_construct,
                          &Machine_Font_destruct, NULL, NULL)
 
-Machine_Real Machine_Font_getBaselineDistance(Machine_Font* self) {
+Ring2_Real32 Machine_Font_getBaselineDistance(Machine_Font* self) {
   MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_Font, getBaselineDistance);
 }
 
-Machine_Boolean Machine_Font_getCodePointInfo(Machine_Font* self, uint32_t codepoint, Machine_Math_Rectangle2* bounds, Machine_Math_Vector2* advance, Machine_Texture** texture) {
+Ring2_Boolean Machine_Font_getCodePointInfo(Machine_Font* self, uint32_t codepoint, Machine_Math_Rectangle2* bounds, Machine_Math_Vector2* advance, Machine_Texture** texture) {
   MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_Font, getCodePointInfo, codepoint, bounds, advance, texture);
 }
 

@@ -8,7 +8,7 @@
 
 MACHINE_DEFINE_ENUMERATIONTYPE(Machine_KeyboardKeys)
 
-Machine_String* Machine_KeyboardKeys_toString(Machine_KeyboardKeys self) {
+Ring2_String* Machine_KeyboardKeys_toString(Machine_KeyboardKeys self) {
 #define DefineKeyboardKey(NAME, STRING)                                                            \
   case Machine_KeyboardKeys_##NAME: {                                                              \
     return Machine_String_create(STRING, strlen(STRING));                                          \

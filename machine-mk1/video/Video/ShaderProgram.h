@@ -16,8 +16,8 @@ struct Machine_ShaderProgram_Class {
   Machine_Object_Class parent;
   size_t (*getNumberOfInputs)(Machine_ShaderProgram const* self);
   Machine_ProgramInput* (*getInputAt)(Machine_ShaderProgram const* self, size_t index);
-  Machine_Boolean (*addUpdateInput)(Machine_ShaderProgram* self, Machine_String* name,
-                                    Machine_ProgramInputType type, Machine_ProgramInputKind kind);
+  Ring2_Boolean (*addUpdateInput)(Machine_ShaderProgram* self, Ring2_String* name,
+                                  Machine_ProgramInputType type, Machine_ProgramInputKind kind);
 };
 
 struct Machine_ShaderProgram {
@@ -45,9 +45,9 @@ Machine_ProgramInput* Machine_ShaderProgram_getInputAt(Machine_ShaderProgram con
 /// @param type The type of the input.
 /// @param kind The kind of the input.
 /// @return @a true if an existing input was modified, @a false if a new input was added.
-Machine_Boolean Machine_ShaderProgram_addUpdateInput(Machine_ShaderProgram* self,
-                                                     Machine_String* name,
-                                                     Machine_ProgramInputType type,
-                                                     Machine_ProgramInputKind kind);
+Ring2_Boolean Machine_ShaderProgram_addUpdateInput(Machine_ShaderProgram* self,
+                                                   Ring2_String* name,
+                                                   Machine_ProgramInputType type,
+                                                   Machine_ProgramInputKind kind);
 
 #endif // MACHINE_VIDEO_SHADERPROGRAM_H_INCLUDED

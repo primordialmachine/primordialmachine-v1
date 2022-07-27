@@ -25,8 +25,6 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gl_VideoBuffer, Machine_VideoBuffer, NULL,
 static void Machine_Gl_VideoBuffer_setDataImpl(Machine_Gl_VideoBuffer* self, size_t n, void const* p) {
   void* t = NULL;
   if (Ring1_Memory_reallocateArray(&t, ((Machine_VideoBuffer*)self)->p, n, sizeof(uint8_t))) {
-    Ring1_Status_set(Ring1_Status_Success);
-    Machine_setStatus(Machine_Status_AllocationFailed);
     Ring2_jump();
   }
   ((Machine_VideoBuffer*)self)->p = t;
@@ -57,7 +55,7 @@ void Machine_Gl_VideoBuffer_construct(Machine_Gl_VideoBuffer* self, size_t numbe
 Machine_Gl_VideoBuffer* Machine_Gl_VideoBuffer_create() {
   Machine_ClassType* ty = Machine_Gl_VideoBuffer_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
   Machine_Gl_VideoBuffer* self = (Machine_Gl_VideoBuffer*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

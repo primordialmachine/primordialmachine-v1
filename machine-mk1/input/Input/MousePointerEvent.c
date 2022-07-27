@@ -8,7 +8,7 @@
 
 MACHINE_DEFINE_ENUMERATIONTYPE(Machine_MousePointerActions)
 
-Machine_String* Machine_MousePointerActions_toString(Machine_MousePointerActions self) {
+Ring2_String* Machine_MousePointerActions_toString(Machine_MousePointerActions self) {
   switch (self) {
     case Machine_MousePointerActions_Move:
       return Machine_String_create("move", strlen("move"));
@@ -29,7 +29,7 @@ static void Machine_MousePointerEvent_visit(
     Machine_MousePointerEvent* self) { /*Intentionally empty.*/
 }
 
-static Machine_String* Machine_MousePointerEvent_toStringImpl(
+static Ring2_String* Machine_MousePointerEvent_toStringImpl(
     Machine_MousePointerEvent const* self) {
   Machine_StringBuffer* stringBuffer = Machine_StringBuffer_create();
 
@@ -58,7 +58,7 @@ static Machine_String* Machine_MousePointerEvent_toStringImpl(
 
 static void Machine_MousePointerEvent_constructClass(Machine_MousePointerEvent_Class* self) {
   ((Machine_Object_Class*)self)->toString
-      = (Machine_String * (*)(Machine_Object const*)) & Machine_MousePointerEvent_toStringImpl;
+      = (Ring2_String * (*)(Machine_Object const*)) & Machine_MousePointerEvent_toStringImpl;
 }
 
 static void Machine_MousePointerEvent_construct(Machine_MousePointerEvent* self,
@@ -76,7 +76,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_MousePointerEvent, Machine_Object,
                          NULL, &Machine_MousePointerEvent_constructClass, NULL)
 
 Machine_MousePointerEvent* Machine_MousePointerEvent_create(Machine_MousePointerActions action,
-                                                            Machine_Real x, Machine_Real y) {
+                                                            Ring2_Real32 x, Ring2_Real32 y) {
   Machine_ClassType* ty = Machine_MousePointerEvent_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 3;
   Machine_Value ARGUMENTS[3]

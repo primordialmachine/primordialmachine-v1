@@ -26,7 +26,7 @@ enum Machine_MousePointerActions {
 
 };
 
-Machine_String* Machine_MousePointerActions_toString(Machine_MousePointerActions self);
+Ring2_String* Machine_MousePointerActions_toString(Machine_MousePointerActions self);
 
 /// @brief An event pertaining to a mouse pointer.
 /// @extends Machine.Object
@@ -40,8 +40,8 @@ struct Machine_MousePointerEvent_Class {
 struct Machine_MousePointerEvent {
   Machine_Object parent;
   Machine_MousePointerActions action;
-  Machine_Real x;
-  Machine_Real y;
+  Ring2_Real32 x;
+  Ring2_Real32 y;
 };
 
 /// @brief Create a mouse pointer event.
@@ -50,6 +50,6 @@ struct Machine_MousePointerEvent {
 /// @param y The position of the mouse pointer along the y-axis.
 /// @return The mouse pointer event.
 Machine_MousePointerEvent* Machine_MousePointerEvent_create(Machine_MousePointerActions action,
-                                                            Machine_Real x, Machine_Real y);
+                                                            Ring2_Real32 x, Ring2_Real32 y);
 
 #endif // MACHINE_MOUSEPOINTEREVENT_H_INCLUDED

@@ -23,13 +23,13 @@ struct Machine_Gui_BorderModel {
   Machine_Math_Vector4* color;
 
   /// @brief The width of the left border.
-  Machine_Real leftWidth;
+  Ring2_Real32 leftWidth;
   /// @brief The width of the right border.
-  Machine_Real rightWidth;
+  Ring2_Real32 rightWidth;
   /// @brief The width of the top border.
-  Machine_Real topWidth;
+  Ring2_Real32 topWidth;
   /// @brief The width of the bottom border.
-  Machine_Real bottomWidth;
+  Ring2_Real32 bottomWidth;
 };
 
 /// @brief Construct a border model.
@@ -58,46 +58,46 @@ void Machine_Gui_BorderModel_setColor(Machine_Gui_BorderModel* self,
 /// @brief Get the width of the left border.
 /// @param self This border model.
 /// @return The width.
-Machine_Real Machine_Gui_BorderModel_getLeftWidth(Machine_Gui_BorderModel const* self);
+Ring2_Real32 Machine_Gui_BorderModel_getLeftWidth(Machine_Gui_BorderModel const* self);
 
 /// @brief Set the width of the left border.
 /// @param self This border model.
 /// @param width The width.
-void Machine_Gui_BorderModel_setLeftWidth(Machine_Gui_BorderModel* self, Machine_Real width);
+void Machine_Gui_BorderModel_setLeftWidth(Machine_Gui_BorderModel* self, Ring2_Real32 width);
 
 /// @brief Get the width of the right border.
 /// @param self This border model.
 /// @return The width.
-Machine_Real Machine_Gui_BorderModel_getRightWidth(Machine_Gui_BorderModel const* self);
+Ring2_Real32 Machine_Gui_BorderModel_getRightWidth(Machine_Gui_BorderModel const* self);
 
 /// @brief Set the width of the right border.
 /// @param self This border model.
 /// @param width The width.
-void Machine_Gui_BorderModel_setRightWidth(Machine_Gui_BorderModel* self, Machine_Real width);
+void Machine_Gui_BorderModel_setRightWidth(Machine_Gui_BorderModel* self, Ring2_Real32 width);
 
 /// @brief Get the width of the top border.
 /// @param self This border model.
 /// @return The width.
-Machine_Real Machine_Gui_BorderModel_getTopWidth(Machine_Gui_BorderModel const* self);
+Ring2_Real32 Machine_Gui_BorderModel_getTopWidth(Machine_Gui_BorderModel const* self);
 
 /// @brief Set the width of the top border.
 /// @param self This border model.
 /// @param width The width.
-void Machine_Gui_BorderModel_setTopWidth(Machine_Gui_BorderModel* self, Machine_Real width);
+void Machine_Gui_BorderModel_setTopWidth(Machine_Gui_BorderModel* self, Ring2_Real32 width);
 
 /// @brief Get the width of the bottom border.
 /// @param self This border model.
 /// @return The width.
-Machine_Real Machine_Gui_BorderModel_getBottomWidth(Machine_Gui_BorderModel const* self);
+Ring2_Real32 Machine_Gui_BorderModel_getBottomWidth(Machine_Gui_BorderModel const* self);
 
 /// @brief Set the width of the bottom border.
 /// @param self This border model.
 /// @param width The width.
-void Machine_Gui_BorderModel_setBottomWidth(Machine_Gui_BorderModel* self, Machine_Real width);
+void Machine_Gui_BorderModel_setBottomWidth(Machine_Gui_BorderModel* self, Ring2_Real32 width);
 
 /// @brief Set the width of this border model.
 /// @param self This border model.
 /// @param width The width.
-void Machine_Gui_BorderModel_setWidth(Machine_Gui_BorderModel* self, Machine_Real width);
+void Machine_Gui_BorderModel_setWidth(Machine_Gui_BorderModel* self, Ring2_Real32 width);
 
 #endif // MACHINE_GUI_BORDERMODEL_H_INCLUDED

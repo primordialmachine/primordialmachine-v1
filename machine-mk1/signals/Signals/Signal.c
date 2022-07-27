@@ -21,7 +21,7 @@ static void Machine_Signals_Signal_visit(Machine_Signals_Signal* self) {
 
 void Machine_Signals_Signal_construct(Machine_Signals_Signal* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  MACHINE_ASSERT(numberOfArguments == 0, Machine_Status_InvalidNumberOfArguments);
+  MACHINE_ASSERT(numberOfArguments == 0, Ring1_Status_InvalidNumberOfArguments);
   self->connections = (Machine_List *)Machine_ArrayList_create();
   Machine_setClassType((Machine_Object*)self, Machine_Signals_Signal_getType());
 }
@@ -34,14 +34,14 @@ Machine_Signals_Signal* Machine_Signals_Signal_create() {
   return self;
 }
 
-void Machine_Signals_Signal_subscribe(Machine_Signals_Signal* self, Machine_String* name, Machine_Object* context, Machine_ForeignProcedure* callback) {
+void Machine_Signals_Signal_subscribe(Machine_Signals_Signal* self, Ring2_String* name, Machine_Object* context, Machine_ForeignProcedure* callback) {
   Machine_Signals_Connection* connection = Machine_Signals_Connection_create(name, context, callback);
   Machine_Value value;
   Machine_Value_setObject(&value, (Machine_Object*)connection);
   Machine_List_append(self->connections, value);
 }
 
-void Machine_Signals_Signal_unsubscribe(Machine_Signals_Signal* self, Machine_String* name, Machine_Object* context, Machine_ForeignProcedure* callback) {
+void Machine_Signals_Signal_unsubscribe(Machine_Signals_Signal* self, Ring2_String* name, Machine_Object* context, Machine_ForeignProcedure* callback) {
     for (size_t i = 0, n = Machine_Collection_getSize((Machine_Collection*)(self->connections)); i < n; ++i) {
       Machine_Value temporary = Machine_List_getAt(self->connections, i);
       Machine_Signals_Connection* c = (Machine_Signals_Connection*)Machine_Value_getObject(&temporary);
@@ -54,14 +54,12 @@ void Machine_Signals_Signal_unsubscribe(Machine_Signals_Signal* self, Machine_St
     }
 }
 
-void Machine_Signals_Signal_emit(Machine_Signals_Signal* self, Machine_String* name, size_t numberOfArguments, Machine_Value const* arguments) {
+void Machine_Signals_Signal_emit(Machine_Signals_Signal* self, Ring2_String* name, size_t numberOfArguments, Machine_Value const* arguments) {
   if (self->connections) {
     size_t numberOfArguments1
         = numberOfArguments + 1;
     Machine_Value* arguments1 = NULL;
     if (Ring1_Memory_allocateArray(&arguments1, numberOfArguments1, sizeof(Machine_Value))) {
-      Ring1_Status_set(Ring1_Status_Success);
-      Machine_setStatus(Machine_Status_AllocationFailed);
       Ring2_jump();
     }
     for (size_t i = 0, n = numberOfArguments; i < n; ++i) {

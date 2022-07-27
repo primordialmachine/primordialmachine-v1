@@ -6,7 +6,6 @@
 
 #include "Ring1/Status.h"
 #include "Collections/Collection.h"
-#include "Collections/GrowthStrategy.h"
 #include "Collections/List.h"
 
 static size_t const maximalCapacity = SIZE_MAX / sizeof(Machine_Value);
@@ -82,8 +81,6 @@ void Machine_ArrayList_construct(Machine_ArrayList* self, size_t numberOfArgumen
   self->capacity = 0;
   self->elements = NULL;
   if (Ring1_Memory_allocate(&self->elements, 0)) {
-    Ring1_Status_set(Ring1_Status_Success);
-    Machine_setStatus(Machine_Status_AllocationFailed);
     Ring2_jump();
   }
   Machine_setClassType((Machine_Object*)self, Machine_ArrayList_getType());
@@ -107,16 +104,12 @@ static void prepend(Machine_ArrayList* self, Machine_Value value) {
 static void insertAt(Machine_ArrayList* self, size_t index, Machine_Value value) {
   if ((self->capacity - self->size) == 0) {
     size_t newCapacity;
-    Machine_StatusValue status
-        = Machine_Collections_getBestCapacity(self->capacity, 1, maximalCapacity, &newCapacity);
-    if (status != Machine_Status_Success) {
-      Machine_setStatus(status);
+    if (Ring1_Memory_recomputeSize_sz(0, maximalCapacity, self->capacity, 1,
+                                      &newCapacity, true)) {
       Ring2_jump();
     }
     void* newElements = NULL;
     if (Ring1_Memory_reallocateArray(&newElements, self->elements, newCapacity, sizeof(Machine_Value))) {
-      Ring1_Status_set(Ring1_Status_Success);
-      Machine_setStatus(Machine_Status_AllocationFailed);
       Ring2_jump();
     }
     self->elements = newElements;
@@ -140,7 +133,7 @@ static void clear(Machine_ArrayList* self) {
 
 static Machine_Value getAt(Machine_ArrayList const* self, size_t index) {
   if (index >= self->size) {
-    Machine_setStatus(Machine_Status_IndexOutOfBounds);
+    Ring1_Status_set(Ring1_Status_IndexOutOfBounds);
     Ring2_jump();
   }
   return self->elements[index];
@@ -148,7 +141,7 @@ static Machine_Value getAt(Machine_ArrayList const* self, size_t index) {
 
 static void removeAt(Machine_ArrayList* self, size_t index) {
   if (index >= self->size) {
-    Machine_setStatus(Machine_Status_IndexOutOfBounds);
+    Ring1_Status_set(Ring1_Status_IndexOutOfBounds);
     Ring2_jump();
   }
   if (index < self->size - 1) {
@@ -160,7 +153,7 @@ static void removeAt(Machine_ArrayList* self, size_t index) {
 
 static void removeAtFast(Machine_ArrayList* self, size_t index) {
   if (index >= self->size) {
-    Machine_setStatus(Machine_Status_IndexOutOfBounds);
+    Ring1_Status_set(Ring1_Status_IndexOutOfBounds);
     Ring2_jump();
   }
   self->elements[index] = self->elements[self->size - 1];
@@ -183,7 +176,7 @@ static void Machine_ArrayList_destruct(Machine_ArrayList* self) {
 Machine_ArrayList* Machine_ArrayList_create() {
   Machine_ClassType* ty = Machine_ArrayList_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
   Machine_ArrayList* self
       = (Machine_ArrayList*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;

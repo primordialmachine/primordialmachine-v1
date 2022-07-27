@@ -20,7 +20,7 @@ struct Machine_Gui_Signals_Context_Class {
 struct Machine_Gui_Signals_Context {
   Machine_Object parent;
 
-#define DEFINE(NAME, STRING) Machine_String* NAME;
+#define DEFINE(NAME, STRING) Ring2_String* NAME;
 #include "Gui/Signals/Context.i"
 #undef DEFINE
 };

@@ -5,7 +5,7 @@
 #define MACHINE_GL_SHADERPROGRAM_H_INCLUDED
 
 #if !defined(MACHINE_VIDEO_GL_PRIVATE)
-#error("Do not include this file directly, include `_Video_Gl.h` instead.")
+#error("Do not include `Video/Gl/ShaderProgram.h` directly, include `_Video_Gl.h` instead.")
 #endif
 #include "Video/Gl/UtilitiesGL.h"
 #include "_Collections.h"
@@ -34,9 +34,9 @@ struct Machine_Gl_ShaderProgram {
 void Machine_Gl_ShaderProgram_construct(Machine_Gl_ShaderProgram* self, size_t numberOfArguments,
                                         Machine_Value const* arguments);
 
-Machine_Gl_ShaderProgram* Machine_Gl_ShaderProgram_create(Machine_String* vertexProgramText,
-                                                          Machine_String* geometryProgramText,
-                                                          Machine_String* fragmentProgramText);
+Machine_Gl_ShaderProgram* Machine_Gl_ShaderProgram_create(Ring2_String* vertexProgramText,
+                                                          Ring2_String* geometryProgramText,
+                                                          Ring2_String* fragmentProgramText);
 
 /// @param withMeshColor <code>uniform vec3 mesh_color</code>
 /// @param withVertexColor <code>attribute vec3 vertex_color</code>
@@ -44,8 +44,8 @@ Machine_Gl_ShaderProgram* Machine_Gl_ShaderProgram_create(Machine_String* vertex
 /// @param withTexture <code>uniform sampler2D texture;</code>. @a withTextureCoordinate must be @a
 /// true if this is @a true.
 Machine_ShaderProgram* Machine_Gl_ShaderProgram_generateDefaultShader(
-    Machine_Boolean withMeshColor, Machine_Boolean withVertexColor,
-    Machine_Boolean withTextureCoordinate, Machine_Boolean withTexture);
+    Ring2_Boolean withMeshColor, Ring2_Boolean withVertexColor,
+    Ring2_Boolean withTextureCoordinate, Ring2_Boolean withTexture);
 
 /// @brief Create a shader program for rendering an untextured, colored, rectangle.
 /// @return The shader program.
@@ -54,6 +54,6 @@ Machine_ShaderProgram* Machine_Gl_ShaderProgram_generateShape2Shader();
 /// @brief Create a shader program for rendering 2D text.
 /// Provides <code>vec3 mesh_color</code> to colorize the text.
 /// @return The shader program.
-Machine_ShaderProgram* Machine_Gl_ShaderProgram_generateText2Shader(Machine_Boolean highPrecision);
+Machine_ShaderProgram* Machine_Gl_ShaderProgram_generateText2Shader(Ring2_Boolean highPrecision);
 
 #endif // MACHINE_GL_SHADERPROGRAM_H_INCLUDED

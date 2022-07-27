@@ -82,7 +82,7 @@ static void Machine_Gui_BorderNode_render(Machine_Gui_BorderNode* self, Machine_
       Machine_Math_Vector4 const* c = Machine_Gui_BorderModel_getColor(self->borderModel);
       Machine_Rectangle2_setColor(self->borderRectangle, c);
     }
-    Machine_Real lw = Machine_Gui_BorderModel_getLeftWidth(self->borderModel),
+    Ring2_Real32 lw = Machine_Gui_BorderModel_getLeftWidth(self->borderModel),
                  tw = Machine_Gui_BorderModel_getTopWidth(self->borderModel),
                  rw = Machine_Gui_BorderModel_getRightWidth(self->borderModel),
                  bw = Machine_Gui_BorderModel_getBottomWidth(self->borderModel);
@@ -243,11 +243,11 @@ static void Machine_Gui_BorderNode_render(Machine_Gui_BorderNode* self, Machine_
 
 static Machine_Value boundsChangedCallback(size_t numberOfArguments,
                                            Machine_Value const* arguments) {
-  MACHINE_ASSERT(numberOfArguments == 2, Machine_Status_InvalidNumberOfArguments);
+  MACHINE_ASSERT(numberOfArguments == 2, Ring1_Status_InvalidNumberOfArguments);
   Machine_Gui_BorderNode* self = (Machine_Gui_BorderNode*)Machine_Value_getObject(&arguments[0]);
   self->childDirty = true;
   Machine_Value result;
-  Machine_Value_setVoid(&result, Machine_Void_Void);
+  Machine_Value_setVoid(&result, Ring2_Void_Void);
   return result;
 }
 
@@ -317,39 +317,39 @@ void Machine_Gui_BorderNode_setBorderColor(Machine_Gui_BorderNode* self,
   Machine_Gui_BorderModel_setColor(self->borderModel, color);
 }
 
-Machine_Real Machine_Gui_BorderNode_getBorderLeftWidth(Machine_Gui_BorderNode const* self) {
+Ring2_Real32 Machine_Gui_BorderNode_getBorderLeftWidth(Machine_Gui_BorderNode const* self) {
   return Machine_Gui_BorderModel_getLeftWidth(self->borderModel);
 }
 
-Machine_Real Machine_Gui_BorderNode_getBorderRightWidth(Machine_Gui_BorderNode const* self) {
+Ring2_Real32 Machine_Gui_BorderNode_getBorderRightWidth(Machine_Gui_BorderNode const* self) {
   return Machine_Gui_BorderModel_getRightWidth(self->borderModel);
 }
 
-Machine_Real Machine_Gui_BorderNode_getBorderTopWidth(Machine_Gui_BorderNode const* self) {
+Ring2_Real32 Machine_Gui_BorderNode_getBorderTopWidth(Machine_Gui_BorderNode const* self) {
   return Machine_Gui_BorderModel_getTopWidth(self->borderModel);
 }
 
-Machine_Real Machine_Gui_BorderNode_getBorderBottomWidth(Machine_Gui_BorderNode const* self) {
+Ring2_Real32 Machine_Gui_BorderNode_getBorderBottomWidth(Machine_Gui_BorderNode const* self) {
   return Machine_Gui_BorderModel_getBottomWidth(self->borderModel);
 }
 
-void Machine_Gui_BorderNode_setBorderWidth(Machine_Gui_BorderNode* self, Machine_Real width) {
+void Machine_Gui_BorderNode_setBorderWidth(Machine_Gui_BorderNode* self, Ring2_Real32 width) {
   Machine_Gui_BorderModel_setWidth(self->borderModel, width);
 }
 
-void Machine_Gui_BorderNode_setLeftBorderWidth(Machine_Gui_BorderNode* self, Machine_Real width) {
+void Machine_Gui_BorderNode_setLeftBorderWidth(Machine_Gui_BorderNode* self, Ring2_Real32 width) {
   Machine_Gui_BorderModel_setLeftWidth(self->borderModel, width);
 }
 
-void Machine_Gui_BorderNode_setRightBorderWidth(Machine_Gui_BorderNode* self, Machine_Real width) {
+void Machine_Gui_BorderNode_setRightBorderWidth(Machine_Gui_BorderNode* self, Ring2_Real32 width) {
   Machine_Gui_BorderModel_setRightWidth(self->borderModel, width);
 }
 
-void Machine_Gui_BorderNode_setTopBorderWidth(Machine_Gui_BorderNode* self, Machine_Real width) {
+void Machine_Gui_BorderNode_setTopBorderWidth(Machine_Gui_BorderNode* self, Ring2_Real32 width) {
   Machine_Gui_BorderModel_setTopWidth(self->borderModel, width);
 }
 
-void Machine_Gui_BorderNode_setBottomBorderWidth(Machine_Gui_BorderNode* self, Machine_Real width) {
+void Machine_Gui_BorderNode_setBottomBorderWidth(Machine_Gui_BorderNode* self, Ring2_Real32 width) {
   Machine_Gui_BorderModel_setBottomWidth(self->borderModel, width);
 }
 
@@ -359,9 +359,9 @@ static Machine_Math_Vector2 const* Machine_Gui_BorderNode_getPreferredSize(
                                                   ? Machine_Gui_Widget_getPreferredSize(self->child)
                                                   : Machine_Math_Vector2_create();
   Machine_Math_Vector2* borderSize = Machine_Math_Vector2_create();
-  Machine_Real w = Machine_Gui_BorderModel_getLeftWidth(self->borderModel)
+  Ring2_Real32 w = Machine_Gui_BorderModel_getLeftWidth(self->borderModel)
                    + Machine_Gui_BorderModel_getRightWidth(self->borderModel);
-  Machine_Real h = Machine_Gui_BorderModel_getTopWidth(self->borderModel)
+  Ring2_Real32 h = Machine_Gui_BorderModel_getTopWidth(self->borderModel)
                    + Machine_Gui_BorderModel_getBottomWidth(self->borderModel);
   Machine_Math_Vector2_set(borderSize, w, h);
   return Machine_Math_Vector2_sum(preferredSize, borderSize);

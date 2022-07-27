@@ -46,7 +46,7 @@ static void Machine_PointerArray_destruct(Machine_PointerArray* self)
 Machine_PointerArray* Machine_PointerArray_create() {
   Machine_ClassType* ty = Machine_PointerArray_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
   Machine_PointerArray* self = (Machine_PointerArray *)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }
@@ -60,7 +60,7 @@ void *Machine_PointerArray_getAt(Machine_PointerArray* self, size_t index) {
   Machine_Value v = Machine_List_getAt(self->list, index);
   if (!Machine_Value_isObject(&v)) {
     if (!Machine_Value_isVoid(&v)) {
-      Machine_setStatus(Machine_Status_InvalidOperation);
+      Ring1_Status_set(Ring1_Status_InvalidOperation);
       Ring2_jump();
     }
     return NULL;
@@ -81,7 +81,7 @@ void Machine_PointerArray_append(Machine_PointerArray* self, void* pointer) {
   MACHINE_ASSERT_NOTNULL(self);
   if (!pointer) {
     Machine_Value v;
-    Machine_Value_setVoid(&v, Machine_Void_Void);
+    Machine_Value_setVoid(&v, Ring2_Void_Void);
     Machine_List_append(self->list, v);
   } else {
     Machine_Value v;
@@ -94,7 +94,7 @@ void Machine_PointerArray_insert(Machine_PointerArray* self, size_t index, void 
   MACHINE_ASSERT_NOTNULL(self);
   if (!pointer) {
     Machine_Value v;
-    Machine_Value_setVoid(&v, Machine_Void_Void);
+    Machine_Value_setVoid(&v, Ring2_Void_Void);
     Machine_List_insertAt(self->list, index, v);
   }
   else {

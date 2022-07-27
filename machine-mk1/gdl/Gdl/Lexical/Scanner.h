@@ -16,7 +16,7 @@ struct Machine_Gdl_Scanner_Class {
 struct Machine_Gdl_Scanner {
   Machine_Object __parent;
 
-  Machine_String* inputName;
+  Ring2_String* inputName;
   Machine_ByteBuffer* inputBytes;
   /// @brief The end position.
   size_t endPos;
@@ -29,10 +29,10 @@ struct Machine_Gdl_Scanner {
   Machine_ByteBuffer* tokenText;
 };
 
-Machine_Gdl_Scanner* Machine_Gdl_Scanner_create(Machine_String* inputName,
+Machine_Gdl_Scanner* Machine_Gdl_Scanner_create(Ring2_String* inputName,
                                                 Machine_ByteBuffer* inputBytes);
 
-void Machine_Gdl_Scanner_setInput(Machine_Gdl_Scanner* self, Machine_String* inputName,
+void Machine_Gdl_Scanner_setInput(Machine_Gdl_Scanner* self, Ring2_String* inputName,
                                   Machine_ByteBuffer* inputBytes);
 
 /// @brief Compute the next token.
@@ -47,6 +47,6 @@ Machine_Gdl_TokenKind Machine_Gdl_Scanner_getTokenKind(Machine_Gdl_Scanner const
 /// @brief Get the token text of the current token.
 /// @param self This scanner.
 /// @return The token text of the current token.
-Machine_String* Machine_Gdl_Scanner_getTokenText(Machine_Gdl_Scanner const* self);
+Ring2_String* Machine_Gdl_Scanner_getTokenText(Machine_Gdl_Scanner const* self);
 
 #endif // MACHINE_GDL_LEXICAL_SCANNER_H_INCLUDED

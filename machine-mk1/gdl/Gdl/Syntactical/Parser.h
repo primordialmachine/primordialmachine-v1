@@ -24,7 +24,7 @@ Machine_Gdl_Parser* Machine_Gdl_Parser_create();
 /// @brief Parse the specified input.
 /// @param self This parser.
 /// @param inputName, inputBytes The input.
-Machine_Gdl_Node* Machine_Gdl_Parser_parse(Machine_Gdl_Parser* self, Machine_String* inputName,
+Machine_Gdl_Node* Machine_Gdl_Parser_parse(Machine_Gdl_Parser* self, Ring2_String* inputName,
                                            Machine_ByteBuffer* inputBytes);
 
 #endif // MACHINE_GDL_SYNTACTICAL_PARSER_H_INCLUDED

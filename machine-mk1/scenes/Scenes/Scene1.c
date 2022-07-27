@@ -11,8 +11,8 @@
 #include "_Graphics2.h"
 
 static const struct {
-  Machine_Real x, y;
-  Machine_Real r, g, b;
+  Ring2_Real32 x, y;
+  Ring2_Real32 r, g, b;
 } vertices[] = { { -0.6f, -0.4f, 1.f, 0.f, 0.f },
                  { 0.6f, -0.4f, 0.f, 1.f, 0.f },
                  { 0.f, 0.6f, 0.f, 0.f, 1.f } };
@@ -78,10 +78,10 @@ static void Scene1_onStartup(Scene1* self) {
 static void Scene1_onCanvasSizeChanged(Scene1* self, Machine_CanvasSizeChangedEvent* event) {
 }
 
-static void Scene1_onUpdate(Scene1* self, Machine_Real width, Machine_Real height) {
+static void Scene1_onUpdate(Scene1* self, Ring2_Real32 width, Ring2_Real32 height) {
   Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
 
-  Machine_Real ratio = width / height;
+  Ring2_Real32 ratio = width / height;
 
   Machine_VideoContext_setViewportRectangle(videoContext, 0, 0, width, height);
   Machine_VideoContext_clearColorBuffer(videoContext);
@@ -133,7 +133,6 @@ Scene1* Scene1_create(Machine_VideoContext *videoContext) {
   Machine_Value_setObject(&(ARGUMENTS[0]), (Machine_Object*)videoContext);
   Scene1* self = (Scene1*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   if (!self) {
-    Machine_setStatus(Machine_Status_AllocationFailed);
     Ring2_jump();
   }
   return self;

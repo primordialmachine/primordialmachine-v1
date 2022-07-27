@@ -5,7 +5,7 @@
 #define MACHINE_RUNTIME_IO_GETFILECONTENTS_H_INCLUDED
 
 #if !defined(MACHINE_RUNTIME_PRIVATE)
-#error("Do not include this file directly, include `_Runtime.h` instead.")
+#error("Do not include `Runtime/Io/getFileContents.h` directly, include `_Runtime.h` instead.")
 #endif
 
 #include "Runtime/String.h"
@@ -14,6 +14,6 @@
 /// @brief Get the contents of a file.
 /// @param path The path.
 /// @return The contents.
-Machine_ByteBuffer *Machine_getFileContents(Machine_String *path);
+Machine_ByteBuffer *Machine_getFileContents(Ring2_String *path);
 
 #endif // MACHINE_RUNTIME_IO_GETFILECONTENTS_H_INCLUDED

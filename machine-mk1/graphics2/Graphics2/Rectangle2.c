@@ -26,10 +26,10 @@ static void Machine_Rectangle2_visit(Machine_Rectangle2* self) {
 static void Machine_Rectangle2_render(Machine_Rectangle2* self, Machine_Context2 *context) {
   Machine_Math_Matrix4 const*wvp2 = Machine_Context2_getModelSpaceToProjectiveSpaceMatrix(context);
 
-  Machine_Real l = Machine_Math_Vector2_getX(self->position);
-  Machine_Real r = l + Machine_Math_Vector2_getX(self->size);
-  Machine_Real b = Machine_Math_Vector2_getY(self->position);
-  Machine_Real t = b + Machine_Math_Vector2_getY(self->size);
+  Ring2_Real32 l = Machine_Math_Vector2_getX(self->position);
+  Ring2_Real32 r = l + Machine_Math_Vector2_getX(self->size);
+  Ring2_Real32 b = Machine_Math_Vector2_getY(self->position);
+  Ring2_Real32 t = b + Machine_Math_Vector2_getY(self->size);
 
   static const uint8_t indices[] = {
     0, 1, 2,
@@ -37,7 +37,7 @@ static void Machine_Rectangle2_render(Machine_Rectangle2* self, Machine_Context2
   };
 
   struct {
-    Machine_Real x, y;
+    Ring2_Real32 x, y;
   }
   VERTICES[] =
   {
@@ -78,7 +78,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Rectangle2, Machine_Shape2, &Machine_Rectangle2
 Machine_Rectangle2* Machine_Rectangle2_create() {
   Machine_ClassType* ty = Machine_Rectangle2_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
   Machine_Rectangle2* self = (Machine_Rectangle2*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

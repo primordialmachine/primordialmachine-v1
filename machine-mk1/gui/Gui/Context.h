@@ -28,9 +28,9 @@ struct Machine_Gui_Context {
   Machine_Gui_Gdl_Context* gdlContext;
 
   /// @brief The path of the file of the default font.
-  Machine_String* defaultFontFile;
+  Ring2_String* defaultFontFile;
   /// @brief The size, in points, of the default font.
-  Machine_Integer defaultFontSize;
+  Ring2_Integer defaultFontSize;
 };
 
 /// @brief Create a GUI context.
@@ -43,9 +43,9 @@ Machine_Gui_Context* Machine_Gui_Context_create(Machine_Gdl_Context* gdlContext,
 void Machine_Gui_Context_onCanvasSizechanged(Machine_Gui_Context* self,
                                              Machine_CanvasSizeChangedEvent* event);
 
-Machine_Real Machine_Gui_Context_getCanvasWidth(Machine_Gui_Context* self);
+Ring2_Real32 Machine_Gui_Context_getCanvasWidth(Machine_Gui_Context* self);
 
-Machine_Real Machine_Gui_Context_getCanvasHeight(Machine_Gui_Context* self);
+Ring2_Real32 Machine_Gui_Context_getCanvasHeight(Machine_Gui_Context* self);
 
 /// @brief Set the root group.
 /// @param self This GUI context.

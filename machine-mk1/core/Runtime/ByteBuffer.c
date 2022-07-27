@@ -6,9 +6,8 @@
 
 #include "Ring1/ByteBuffer.h"
 #include "Ring1/Status.h"
-#include "Ring2/JumpTarget.h"
+#include "Ring2/_Include.h"
 #include "Runtime/Object/Object.h"
-#include "Runtime/Status.h"
 #include "Runtime/Value.h"
 
 struct Machine_ByteBuffer_Class {
@@ -24,8 +23,6 @@ static void Machine_ByteBuffer_construct(Machine_ByteBuffer* self, size_t number
                                          Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   if (Ring1_ByteBuffer_initialize(&self->byteBuffer)) {
-    Ring1_Status_set(Ring1_Status_Success);
-    Machine_setStatus(Machine_Status_AllocationFailed);
     Ring2_jump();
   }
   Machine_setClassType((Machine_Object*)self, Machine_ByteBuffer_getType());
@@ -41,7 +38,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_ByteBuffer, Machine_Object, NULL, &Machine_Byte
 Machine_ByteBuffer* Machine_ByteBuffer_create() {
   Machine_ClassType* ty = Machine_ByteBuffer_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
   Machine_ByteBuffer* self
       = (Machine_ByteBuffer*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
@@ -49,21 +46,18 @@ Machine_ByteBuffer* Machine_ByteBuffer_create() {
 
 void Machine_ByteBuffer_appendBytes(Machine_ByteBuffer* self, char const* p, size_t n) {
   if (Ring1_ByteBuffer_appendBytes(&self->byteBuffer, p, n)) {
-    Machine_setStatus(Machine_Status_AllocationFailed);
     Ring2_jump();
   }
 }
 
 void Machine_ByteBuffer_prependBytes(Machine_ByteBuffer* self, char const* p, size_t n) {
   if (Ring1_ByteBuffer_prependBytes(&self->byteBuffer, p, n)) {
-    Machine_setStatus(Machine_Status_AllocationFailed);
     Ring2_jump();
   }
 }
 
 void Machine_ByteBuffer_insertBytesAt(Machine_ByteBuffer* self, size_t i, char const* p, size_t n) {
   if (Ring1_ByteBuffer_insertBytesAt(&self->byteBuffer, i, p, n)) {
-    Machine_setStatus(Machine_Status_AllocationFailed);
     Ring2_jump();
   }
 }
@@ -75,8 +69,6 @@ void Machine_ByteBuffer_clear(Machine_ByteBuffer* self) {
 char const* Machine_ByteBuffer_getBytes(Machine_ByteBuffer const* self) {
   char const* bytes;
   if (Ring1_ByteBuffer_getBytes(&bytes, &self->byteBuffer)) {
-    Ring1_Status_set(Ring1_Status_Success);
-    Machine_setStatus(Machine_Status_EnvironmentFailed);
     Ring2_jump();
   }
   return bytes;
@@ -85,15 +77,13 @@ char const* Machine_ByteBuffer_getBytes(Machine_ByteBuffer const* self) {
 size_t Machine_ByteBuffer_getNumberOfBytes(Machine_ByteBuffer const* self) {
   size_t numberOfBytes;
   if (Ring1_ByteBuffer_getNumberOfBytes(&numberOfBytes, &self->byteBuffer)) {
-    Ring1_Status_set(Ring1_Status_Success);
-    Machine_setStatus(Machine_Status_EnvironmentFailed);
     Ring2_jump();
   }
   return numberOfBytes;
 }
 
-Machine_Boolean Machine_ByteBuffer_compareBytes(Machine_ByteBuffer const* self, char const* p,
-                                                size_t n) {
+Ring2_Boolean Machine_ByteBuffer_compareBytes(Machine_ByteBuffer const* self, char const* p,
+                                              size_t n) {
   size_t numberOfBytes = Machine_ByteBuffer_getNumberOfBytes(self);
   char const* bytes = Machine_ByteBuffer_getBytes(self);
   if (n != numberOfBytes) {

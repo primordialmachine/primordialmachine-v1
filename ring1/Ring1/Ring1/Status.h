@@ -20,6 +20,7 @@ typedef int Ring1_Status;
 
 // https://documentation.primordialmachine.com/api/ring1-library/status-library/status-codes
 #define Ring1_Status_InvalidArgument (2)
+#define Ring1_Status_InvalidOutput (1002)
 
 // https://documentation.primordialmachine.com/api/ring1-library/status-library/status-codes
 #define Ring1_Status_AllocationFailed (3)
@@ -72,11 +73,41 @@ typedef int Ring1_Status;
 // https://documentation.primordialmachine.com/api/ring1-library/status-library/status-codes
 #define Ring1_Status_InvalidNumberOfArguments (20)
 
-// https://documentation.primordialmachine.com/api/ring1-library/status-library/status-codes
-#define Ring1_Status_InvalidArgumentType (21)
+#define Ring1_Status_InvalidNumberOfOutputs (21)
 
 // https://documentation.primordialmachine.com/api/ring1-library/status-library/status-codes
-#define Ring1_Status_IndexOutOfBounds (22)
+#define Ring1_Status_InvalidArgumentType (22)
+
+#define Ring1_Status_InvalidOutputType (23)
+
+// https://documentation.primordialmachine.com/api/ring1-library/status-library/status-codes
+#define Ring1_Status_IndexOutOfBounds (24)
+
+// https://documentation.primordialmachine.com/api/ring1-library/status-library/status-codes
+#define Ring1_Status_IsEmpty (25)
+
+// https://documentation.primordialmachine.com/api/ring1-library/status-library/status-codes
+#define Ring1_Status_TestFailed (26)
+
+/// @brief Symbolic constant for a status variable value.
+/// That value indicates that something is not yet implemented.
+#define Ring1_Status_NotYetImplemented (27)
+
+/// @brief Symbolic constant for a status variable value.
+/// That value indicates something is too long.
+#define Ring1_Status_TooLong (28)
+
+/// @brief Symbolic constant for a status variable value.
+/// That value indicates something is too short.
+#define Ring1_Status_TooShort (29)
+
+/// @brief Symbolic constant for a status variable value.
+/// The value indicates a program point was reached which should not be reached.
+#define Ring1_Status_UnreachableProgramPointReached (30)
+
+#define Ring1_Status_StackCorruption (31)
+
+#define Ring1_Status_InternalError (32)
 
 // https://documentation.primordialmachine.com/api/ring1-library/status-library/Ring1_Status_get
 Ring1_CheckReturn() Ring1_Status

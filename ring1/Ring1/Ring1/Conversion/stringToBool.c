@@ -10,7 +10,7 @@
 #include "Ring1/Status.h"
 #include "Ring1/Intrinsic/Unlikely.h"
 
-Ring1_Intrinsic_CheckReturn() Ring1_Result
+Ring1_CheckReturn() Ring1_Result
 Ring1_Conversion_stringToBool
   (
     bool *result,
@@ -18,7 +18,7 @@ Ring1_Conversion_stringToBool
     char const* end
   )
 {
-  if (Ring1_Intrinsic_Unlikely(!result || !start || !end)) {
+  if (Ring1_Unlikely(!result || !start || !end)) {
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     return Ring1_Result_Failure;
   }

@@ -6,17 +6,17 @@
 
 #include "Ring1/Status.h"
 #include "Runtime/Gc/Gc.h"
-#include "Ring2/JumpTarget.h"
+#include "Ring2/_Include.h"
 #include "Runtime/Object/InterfaceType.module.h"
 #include "Runtime/Type.module.h"
 
 static void Machine_InterfaceType_finalize(void *gc, Machine_InterfaceType* self) {
   if (self->extendsArrayInitialized) {
     for (size_t i = 0, n = self->extends.size; i < n; ++i) {
-      Machine_InterfaceType* element = Machine_Eal_InlineArray_getAt(&self->extends, i);
+      Machine_InterfaceType* element = Ring1_InlineArray_getAt(&self->extends, i);
       Machine_Gc_unlock(element);
     }
-    Machine_Eal_InlineArray_uninitialize(&self->extends);
+    Ring1_InlineArray_uninitialize(&self->extends);
   }
   _Type_finalize((Machine_Type*)self);
 }
@@ -36,7 +36,7 @@ Machine_InterfaceType* Machine_createInterfaceType(Machine_CreateInterfaceTypeAr
   };
   Machine_InterfaceType* interfaceType = Machine_Gc_allocate(&allocationArguments);
   if (!interfaceType) {
-    Machine_setStatus(Machine_Status_AllocationFailed);
+    Ring1_Status_set(Ring1_Status_AllocationFailed);
     Ring2_jump();
   }
   ((Machine_Type*)interfaceType)->flags = Machine_TypeFlags_Interface;
@@ -44,16 +44,13 @@ Machine_InterfaceType* Machine_createInterfaceType(Machine_CreateInterfaceTypeAr
   ((Machine_Type*)interfaceType)->children.elements = NULL;
   if (Ring1_Memory_allocateArray((void **) & (((Machine_Type*)interfaceType)->children.elements), 0,
                                  sizeof(Machine_Type*))) {
-    Ring1_Status_set(Ring1_Status_Success);
-    Machine_setStatus(Machine_Status_AllocationFailed);
     Ring2_jump();
   }
   ((Machine_Type*)interfaceType)->children.size = 0;
-  static const Machine_Eal_InlineArrayDispatch extendsConfiguration = {
+  static const Ring1_InlineArrayDispatch extendsConfiguration = {
     .elementSize = sizeof(Machine_Type*),
   };
-  if (Machine_Eal_InlineArray_initialize(&interfaceType->extends, &extendsConfiguration)) {
-    Machine_setStatus(Machine_Status_AllocationFailed);
+  if (Ring1_InlineArray_initialize(&interfaceType->extends, &extendsConfiguration)) {
     Ring2_jump();
   }
   interfaceType->extendsArrayInitialized = true;
@@ -64,11 +61,11 @@ Machine_InterfaceType* Machine_createInterfaceType(Machine_CreateInterfaceTypeAr
 
 bool Machine_InterfaceType_extend(Machine_InterfaceType* self, Machine_Type* extended) {
   if (!self || !extended || !Machine_Type_isInterface(extended)) {
-    Machine_setStatus(Machine_Status_InvalidArgument);
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();
   }
   if (_TypeFlag_isSet((Machine_Type*)self, Machine_TypeFlags_Initialized)) {
-    Machine_setStatus(Machine_Status_InvalidOperation);
+    Ring1_Status_set(Ring1_Status_InvalidOperation);
     Ring2_jump();
   }
   // If EXTENDED is a super-type of THIS, return true.
@@ -79,8 +76,7 @@ bool Machine_InterfaceType_extend(Machine_InterfaceType* self, Machine_Type* ext
   if (Machine_Type_isSubTypeOf(extended, (Machine_Type*)self)) {
     return false;
   }
-  if (Machine_Eal_InlineArray_append(&self->extends, extended)) {
-    Machine_setStatus(Machine_Status_AllocationFailed);
+  if (Ring1_InlineArray_append(&self->extends, extended)) {
     Ring2_jump();
   }
   Machine_Gc_lock(extended);
@@ -99,7 +95,7 @@ void Machine_InterfaceType_ensureInitialized(Machine_InterfaceType* self) {
   }
   if (!Machine_InterfaceType_hasFlag(self, Machine_InterfaceTypeFlags_PrerequisitesInitialized)) {
     for (size_t i = 0, n = self->extends.size; i < n; ++i) {
-      Machine_InterfaceType* element = Machine_Eal_InlineArray_getAt(&self->extends, i);
+      Machine_InterfaceType* element = Ring1_InlineArray_getAt(&self->extends, i);
       Machine_InterfaceType_ensureInitialized(element);
     }
     Machine_InterfaceType_addFlag(self, Machine_InterfaceTypeFlags_PrerequisitesInitialized);

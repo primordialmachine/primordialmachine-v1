@@ -48,11 +48,11 @@ Machine_BlendFunction Machine_VideoContext_getExistingBlendFunction(
 }
 
 void Machine_VideoContext_setDepthWriteEnabled(Machine_VideoContext* self,
-                                               Machine_Boolean depthWriteEnabled) {
+                                               Ring2_Boolean depthWriteEnabled) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_VideoContext, setDepthWriteEnabled, depthWriteEnabled);
 }
 
-Machine_Boolean Machine_VideoContext_getDepthWriteEnabled(Machine_VideoContext const* self) {
+Ring2_Boolean Machine_VideoContext_getDepthWriteEnabled(Machine_VideoContext const* self) {
   MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_VideoContext, getDepthWriteEnabled);
 }
 
@@ -66,39 +66,39 @@ Machine_DepthTestFunction Machine_VideoContext_getDepthTestFunction(
   MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_VideoContext, getDepthTestFunction);
 }
 
-void Machine_VideoContext_setClearDepth(Machine_VideoContext* self, Machine_Real clearDepth) {
+void Machine_VideoContext_setClearDepth(Machine_VideoContext* self, Ring2_Real32 clearDepth) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_VideoContext, setClearDepth, clearDepth);
 }
 
-Machine_Real Machine_VideoContext_getClearDepth(Machine_VideoContext const* self) {
+Ring2_Real32 Machine_VideoContext_getClearDepth(Machine_VideoContext const* self) {
   MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_VideoContext, getClearDepth);
 }
 
-void Machine_VideoContext_setViewportRectangle(Machine_VideoContext* self, Machine_Real left,
-                                               Machine_Real bottom, Machine_Real width,
-                                               Machine_Real height) {
+void Machine_VideoContext_setViewportRectangle(Machine_VideoContext* self, Ring2_Real32 left,
+                                               Ring2_Real32 bottom, Ring2_Real32 width,
+                                               Ring2_Real32 height) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_VideoContext, setViewportRectangle, left, bottom, width,
                                     height);
 }
 
-void Machine_VideoContext_getViewportRectangle(Machine_VideoContext const* self, Machine_Real* left,
-                                               Machine_Real* bottom, Machine_Real* width,
-                                               Machine_Real* height) {
+void Machine_VideoContext_getViewportRectangle(Machine_VideoContext const* self, Ring2_Real32* left,
+                                               Ring2_Real32* bottom, Ring2_Real32* width,
+                                               Ring2_Real32* height) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_VideoContext, getViewportRectangle, left, bottom, width,
                                     height);
 }
 
-Machine_Integer Machine_VideoContext_getMaximalClipDistanceCount(Machine_VideoContext const* self) {
+Ring2_Integer Machine_VideoContext_getMaximalClipDistanceCount(Machine_VideoContext const* self) {
   MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_VideoContext, getMaximalClipDistanceCount);
 }
 
-void Machine_VideoContext_setClipDistanceEnabled(Machine_VideoContext* self, Machine_Integer index,
-                                                 Machine_Boolean enabled) {
+void Machine_VideoContext_setClipDistanceEnabled(Machine_VideoContext* self, Ring2_Integer index,
+                                                 Ring2_Boolean enabled) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_VideoContext, setClipDistanceEnabled, index, enabled);
 }
 
-Machine_Boolean Machine_VideoContext_getClipDistanceEnabled(Machine_VideoContext const* self,
-                                                            Machine_Integer index) {
+Ring2_Boolean Machine_VideoContext_getClipDistanceEnabled(Machine_VideoContext const* self,
+                                                          Ring2_Integer index) {
   MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_VideoContext, getClipDistanceEnabled, index);
 }
 
@@ -120,9 +120,9 @@ Machine_VideoBuffer* Machine_VideoContext_createBuffer(Machine_VideoContext* sel
 }
 
 Machine_ShaderProgram* Machine_VideoContext_createProgram(Machine_VideoContext* self,
-                                                          Machine_String* vertexProgramText,
-                                                          Machine_String* geometryProgramText,
-                                                          Machine_String* fragmentProgramText) {
+                                                          Ring2_String* vertexProgramText,
+                                                          Ring2_String* geometryProgramText,
+                                                          Ring2_String* fragmentProgramText) {
   MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_VideoContext, createProgram, vertexProgramText,
                                   geometryProgramText, fragmentProgramText);
 }
@@ -135,13 +135,13 @@ Machine_Binding* Machine_VideoContext_createBinding(Machine_VideoContext* self,
                                   buffer);
 }
 
-void Machine_VideoContext_drawDirect(Machine_VideoContext* self, Machine_Integer i,
-                                     Machine_Integer n) {
+void Machine_VideoContext_drawDirect(Machine_VideoContext* self, Ring2_Integer i,
+                                     Ring2_Integer n) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_VideoContext, drawDirect, i, n);
 }
 
-void Machine_VideoContext_drawIndirect(Machine_VideoContext* self, Machine_Integer i,
-                                       Machine_Integer n, uint8_t const* indices) {
+void Machine_VideoContext_drawIndirect(Machine_VideoContext* self, Ring2_Integer i,
+                                       Ring2_Integer n, uint8_t const* indices) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_VideoContext, drawIndirect, i, n, indices);
 }
 
@@ -151,8 +151,8 @@ void Machine_VideoContext_bindTexture(Machine_VideoContext* self, size_t unit,
 }
 
 Machine_ShaderProgram* Machine_VideoContext_generateDefaultShader(
-    Machine_VideoContext* self, Machine_Boolean withMeshColor, Machine_Boolean withVertexColor,
-    Machine_Boolean withTextureCoordinate, Machine_Boolean withTexture) {
+    Machine_VideoContext* self, Ring2_Boolean withMeshColor, Ring2_Boolean withVertexColor,
+    Ring2_Boolean withTextureCoordinate, Ring2_Boolean withTexture) {
   MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_VideoContext, generateDefaultShader, withMeshColor,
                                   withVertexColor, withTextureCoordinate, withTexture);
 }
@@ -162,6 +162,6 @@ Machine_ShaderProgram* Machine_VideoContext_generateShape2Shader(Machine_VideoCo
 }
 
 Machine_ShaderProgram* Machine_VideoContext_generateText2Shader(Machine_VideoContext* self,
-                                                                Machine_Boolean highPrecision) {
+                                                                Ring2_Boolean highPrecision) {
   MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_VideoContext, generateText2Shader, highPrecision);
 }

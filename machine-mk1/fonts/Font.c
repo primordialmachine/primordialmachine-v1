@@ -80,16 +80,13 @@ static Map* Map_create() {
 
   Map* self = Machine_Gc_allocate(&allocationArguments);
   if (!self) {
-    Machine_setStatus(Machine_Status_AllocationFailed);
     Ring2_jump();
   }
   self->size = 0;
   self->capacity = 8;
   self->buckets = NULL;
   if (Ring1_Memory_allocateArray((void **) & self->buckets, 8, sizeof(Node*))) {
-    Ring1_Status_set(Ring1_Status_Success);
     self->capacity = 0;
-    Machine_setStatus(Machine_Status_AllocationFailed);
     Ring2_jump();
   }
   for (size_t i = 0; i < 8; ++i) {
@@ -112,15 +109,13 @@ static void Map_set(Map* self, uint32_t codepoint, float bearingx, float bearing
   size_t hashIndex = codepoint % self->capacity;
   for (Node* node = self->buckets[hashIndex]; NULL != node; node = node->next) {
     if (node->codepoint == codepoint) {
-      Machine_setStatus(Machine_Status_InvalidOperation);
+      Ring1_Status_set(Ring1_Status_InvalidOperation);
       Ring2_jump();
     }
   }
 
   Node* node = NULL;
   if (Ring1_Memory_allocate(&node, sizeof(Node))) {
-    Ring1_Status_set(Ring1_Status_Success);
-    Machine_setStatus(Machine_Status_InvalidOperation);
     Ring2_jump();
   }
 
@@ -138,12 +133,12 @@ static void Map_set(Map* self, uint32_t codepoint, float bearingx, float bearing
   self->size++;
 }
 
-static Machine_Boolean isWhitespace(uint32_t codepoint) {
+static Ring2_Boolean isWhitespace(uint32_t codepoint) {
   return codepoint == ' '
     || codepoint == '\t';
 }
 
-static Machine_Boolean isNewline(uint32_t codepoint) {
+static Ring2_Boolean isNewline(uint32_t codepoint) {
   return codepoint == '\n';
 }
 
@@ -164,11 +159,11 @@ struct Machine_Fonts_Font {
   Machine_Binding* binding;
 };
 
-static Machine_Real Machine_Fonts_Font_getBaselineDistance(Machine_Fonts_Font* self) {
+static Ring2_Real32 Machine_Fonts_Font_getBaselineDistance(Machine_Fonts_Font* self) {
   return self->baselineDistance;
 }
 
-static Machine_Boolean Machine_Fonts_Font_getCodePointInfo(Machine_Fonts_Font* self, uint32_t codepoint, Machine_Math_Rectangle2* bounds, Machine_Math_Vector2* advance, Machine_Texture** texture) {
+static Ring2_Boolean Machine_Fonts_Font_getCodePointInfo(Machine_Fonts_Font* self, uint32_t codepoint, Machine_Math_Rectangle2* bounds, Machine_Math_Vector2* advance, Machine_Texture** texture) {
   if (isWhitespace(codepoint)) {
     codepoint = ' ';
   }
@@ -203,8 +198,8 @@ static Machine_VideoBuffer* Machine_Fonts_Font_getVideoBuffer(Machine_Fonts_Font
 }
 
 static void Machine_Fonts_Font_constructClass(Machine_Fonts_Font_Class* self) {
-  ((Machine_Font_Class*)self)->getBaselineDistance = (Machine_Real(*)(Machine_Font*)) & Machine_Fonts_Font_getBaselineDistance;
-  ((Machine_Font_Class*)self)->getCodePointInfo = (Machine_Boolean(*)(Machine_Font*, uint32_t codepoint, Machine_Math_Rectangle2 * bounds, Machine_Math_Vector2 * advance, Machine_Texture * *texture)) & Machine_Fonts_Font_getCodePointInfo;
+  ((Machine_Font_Class*)self)->getBaselineDistance = (Ring2_Real32(*)(Machine_Font*)) & Machine_Fonts_Font_getBaselineDistance;
+  ((Machine_Font_Class*)self)->getCodePointInfo = (Ring2_Boolean(*)(Machine_Font*, uint32_t codepoint, Machine_Math_Rectangle2 * bounds, Machine_Math_Vector2 * advance, Machine_Texture * *texture)) & Machine_Fonts_Font_getCodePointInfo;
   ((Machine_Font_Class*)self)->getVideoBinding = (Machine_Binding * (*)(Machine_Font*)) & Machine_Fonts_Font_getVideoBinding;
   ((Machine_Font_Class*)self)->getVideoBuffer = (Machine_VideoBuffer * (*)(Machine_Font*)) & Machine_Fonts_Font_getVideoBuffer;
   ((Machine_Font_Class*)self)->getVideoShaderProgram = (Machine_ShaderProgram * (*)(Machine_Font*)) & Machine_Fonts_Font_getVideoShaderProgram;
@@ -239,15 +234,15 @@ static void Machine_Fonts_Font_destruct(Machine_Fonts_Font* self) {
 
 void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArguments, Machine_Value const *arguments) {
   Machine_Font_construct((Machine_Font*)self, numberOfArguments, arguments);
-  Machine_String *path = Machine_Extensions_getStringArgument(numberOfArguments, arguments, 1);
-  Machine_Integer pointSize = Machine_Extensions_getIntegerArgument(numberOfArguments, arguments, 2);
+  Ring2_String *path = Machine_Extensions_getStringArgument(numberOfArguments, arguments, 1);
+  Ring2_Integer pointSize = Machine_Extensions_getIntegerArgument(numberOfArguments, arguments, 2);
   Machine_Fonts_FontsContext* fontsContext = (Machine_Fonts_FontsContext *)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0, Machine_Fonts_FontsContext_getType());
   if (pointSize < 0 || pointSize > INT_MAX) {
-    Machine_setStatus(Machine_Status_InvalidArgument);
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();
   }
   if (NULL == path) {
-    Machine_setStatus(Machine_Status_ArgumentNull);
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();
   }
   self->context = fontsContext;
@@ -262,7 +257,7 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
     Machine_Gc_unlock(self->context);
     self->context = NULL;
 
-    Machine_setStatus(Machine_Status_EnvironmentFailed);
+    Ring1_Status_set(Ring1_Status_EnvironmentFailed);
     Ring2_jump();
   }
   // (3)
@@ -274,7 +269,7 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
     Machine_Gc_unlock(self->context);
     self->context = NULL;
 
-    Machine_setStatus(Machine_Status_EnvironmentFailed);
+    Ring1_Status_set(Ring1_Status_EnvironmentFailed);
     Ring2_jump();
   }
 
@@ -305,7 +300,7 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
     Machine_Gc_unlock(self->context);
     self->context = NULL;
     
-    Machine_setStatus(Machine_Status_EnvironmentFailed);
+    Ring1_Status_set(Ring1_Status_EnvironmentFailed);
     Ring2_jump();
   }
 
@@ -364,7 +359,7 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
       Machine_Gc_unlock(self->context);
       self->context = NULL;
 
-      Machine_setStatus(Machine_Status_InvalidOperation);
+      Ring1_Status_set(Ring1_Status_InvalidOperation);
       Ring2_jump();
     }
     Ring2_JumpTarget jt;
@@ -402,7 +397,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Fonts_Font, Machine_Font, &Machine_Fonts_Font_v
                          &Machine_Fonts_Font_construct, &Machine_Fonts_Font_destruct,
                          &Machine_Fonts_Font_constructClass, NULL)
 
-Machine_Fonts_Font* Machine_Fonts_Font_create(Machine_FontsContext* fontsContext, Machine_String *path, Machine_Integer pointSize) {
+Machine_Fonts_Font* Machine_Fonts_Font_create(Machine_FontsContext* fontsContext, Ring2_String *path, Ring2_Integer pointSize) {
   Machine_ClassType* ty = Machine_Fonts_Font_getType();
   size_t numberOfArguments = 3;
   Machine_Value arguments[3];

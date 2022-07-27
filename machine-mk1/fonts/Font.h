@@ -7,7 +7,7 @@
 
 
 #if !defined(MACHINE_FONTS_PRIVATE)
-#error("Do not include this file directly, include `_Fonts.h` instead.")
+#error("Do not include `Fonts/Font.h` directly, include `_Fonts.h` instead.")
 #endif
 #include "_Video.h"
 
@@ -20,7 +20,7 @@ MACHINE_DECLARE_CLASSTYPE(Machine_Fonts_Font)
 /// @param path The path.
 /// @param pointSize The point size.
 /// @return A pointer to the font on success, null on failure.
-Machine_Fonts_Font* Machine_Fonts_Font_create(Machine_FontsContext* fontsContext, Machine_String *path, Machine_Integer pointSize);
+Machine_Fonts_Font* Machine_Fonts_Font_create(Machine_FontsContext* fontsContext, Ring2_String *path, Ring2_Integer pointSize);
 
 
 

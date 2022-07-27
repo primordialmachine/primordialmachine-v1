@@ -35,32 +35,32 @@ struct Machine_VideoContext_Class {
 
   Machine_BlendFunction (*getExistingBlendFunction)(Machine_VideoContext const* self);
 
-  void (*setDepthWriteEnabled)(Machine_VideoContext* self, Machine_Boolean depthWriteEnabled);
+  void (*setDepthWriteEnabled)(Machine_VideoContext* self, Ring2_Boolean depthWriteEnabled);
 
-  Machine_Boolean (*getDepthWriteEnabled)(Machine_VideoContext const* self);
+  Ring2_Boolean (*getDepthWriteEnabled)(Machine_VideoContext const* self);
 
   void (*setDepthTestFunction)(Machine_VideoContext* self,
                                Machine_DepthTestFunction depthTestFunction);
 
   Machine_DepthTestFunction (*getDepthTestFunction)(Machine_VideoContext const* self);
 
-  void (*setClearDepth)(Machine_VideoContext* self, Machine_Real clearDepth);
+  void (*setClearDepth)(Machine_VideoContext* self, Ring2_Real32 clearDepth);
 
-  Machine_Real (*getClearDepth)(Machine_VideoContext const* self);
+  Ring2_Real32 (*getClearDepth)(Machine_VideoContext const* self);
 
-  void (*setViewportRectangle)(Machine_VideoContext* self, Machine_Real left, Machine_Real bottom,
-                               Machine_Real width, Machine_Real height);
+  void (*setViewportRectangle)(Machine_VideoContext* self, Ring2_Real32 left, Ring2_Real32 bottom,
+                               Ring2_Real32 width, Ring2_Real32 height);
 
-  void (*getViewportRectangle)(Machine_VideoContext const* self, Machine_Real* left,
-                               Machine_Real* bottom, Machine_Real* width, Machine_Real* height);
+  void (*getViewportRectangle)(Machine_VideoContext const* self, Ring2_Real32* left,
+                               Ring2_Real32* bottom, Ring2_Real32* width, Ring2_Real32* height);
 
-  Machine_Integer (*getMaximalClipDistanceCount)(Machine_VideoContext const* self);
+  Ring2_Integer (*getMaximalClipDistanceCount)(Machine_VideoContext const* self);
 
-  void (*setClipDistanceEnabled)(Machine_VideoContext* self, Machine_Integer index,
-                                 Machine_Boolean enabled);
+  void (*setClipDistanceEnabled)(Machine_VideoContext* self, Ring2_Integer index,
+                                 Ring2_Boolean enabled);
 
-  Machine_Boolean (*getClipDistanceEnabled)(Machine_VideoContext const* self,
-                                            Machine_Integer index);
+  Ring2_Boolean (*getClipDistanceEnabled)(Machine_VideoContext const* self,
+                                          Ring2_Integer index);
 
   void (*clearColorBuffer)(Machine_VideoContext* self);
 
@@ -71,31 +71,31 @@ struct Machine_VideoContext_Class {
   Machine_Texture* (*createTextureFromImage)(Machine_VideoContext* self, Machine_Image* image);
 
   Machine_ShaderProgram* (*createProgram)(Machine_VideoContext* self,
-                                          Machine_String* vertexProgramText,
-                                          Machine_String* geometryProgramText,
-                                          Machine_String* fragmentProgramText);
+                                          Ring2_String* vertexProgramText,
+                                          Ring2_String* geometryProgramText,
+                                          Ring2_String* fragmentProgramText);
 
   Machine_Binding* (*createBinding)(Machine_VideoContext* self, Machine_ShaderProgram* program,
                                     Machine_VertexDescriptor* vertexDescriptor,
                                     Machine_VideoBuffer* buffer);
 
-  void (*drawDirect)(Machine_VideoContext* self, Machine_Integer i, Machine_Integer n);
+  void (*drawDirect)(Machine_VideoContext* self, Ring2_Integer i, Ring2_Integer n);
 
-  void (*drawIndirect)(Machine_VideoContext* self, Machine_Integer i, Machine_Integer n,
+  void (*drawIndirect)(Machine_VideoContext* self, Ring2_Integer i, Ring2_Integer n,
                        uint8_t const* indices);
 
   void (*bindTexture)(Machine_VideoContext* self, size_t unit, Machine_Texture* texture);
 
   Machine_ShaderProgram* (*generateDefaultShader)(Machine_VideoContext* self,
-                                                  Machine_Boolean withMeshColor,
-                                                  Machine_Boolean withVertexColor,
-                                                  Machine_Boolean withTextureCoordinate,
-                                                  Machine_Boolean withTexture);
+                                                  Ring2_Boolean withMeshColor,
+                                                  Ring2_Boolean withVertexColor,
+                                                  Ring2_Boolean withTextureCoordinate,
+                                                  Ring2_Boolean withTexture);
 
   Machine_ShaderProgram* (*generateShape2Shader)(Machine_VideoContext* self);
 
   Machine_ShaderProgram* (*generateText2Shader)(Machine_VideoContext* self,
-                                                Machine_Boolean highPrecision);
+                                                Ring2_Boolean highPrecision);
 };
 
 struct Machine_VideoContext {
@@ -147,13 +147,13 @@ Machine_BlendFunction Machine_VideoContext_getExistingBlendFunction(
 /// @param self This video context.
 /// @param depthWriteEnabled @a true enables depth write, @a false disables depth write.
 void Machine_VideoContext_setDepthWriteEnabled(Machine_VideoContext* self,
-                                               Machine_Boolean depthWriteEnabled);
+                                               Ring2_Boolean depthWriteEnabled);
 
 /// @brief Get if depth write is enabled/disabled.
 /// @param self This video context.
 /// @return @a true if depth write is enabled, @a false if depth write is disabled.
 /// @default Default is <code>false</code>.
-Machine_Boolean Machine_VideoContext_getDepthWriteEnabled(Machine_VideoContext const* self);
+Ring2_Boolean Machine_VideoContext_getDepthWriteEnabled(Machine_VideoContext const* self);
 
 /// @brief Set the depth test function.
 /// @param self This video context.
@@ -171,21 +171,21 @@ Machine_DepthTestFunction Machine_VideoContext_getDepthTestFunction(
 /// @brief Set the clear depth.
 /// @param self This video context.
 /// @param clearDepth The clear depth.
-void Machine_VideoContext_setClearDepth(Machine_VideoContext* self, Machine_Real clearDepth);
+void Machine_VideoContext_setClearDepth(Machine_VideoContext* self, Ring2_Real32 clearDepth);
 
 /// @brief Get the clear depth.
 /// @param self This video context.
 /// @return The clear depth.
 /// @default The default clear depth is @a 1.
-Machine_Real Machine_VideoContext_getClearDepth(Machine_VideoContext const* self);
+Ring2_Real32 Machine_VideoContext_getClearDepth(Machine_VideoContext const* self);
 
 /// @brief Set the current viewport rectangle.
 /// @param self This video context.
 /// @param left, bottom The lower left corner of the viewport rectangle.
 /// @param width, height The width and height of the viewport rectangle.
-void Machine_VideoContext_setViewportRectangle(Machine_VideoContext* self, Machine_Real left,
-                                               Machine_Real bottom, Machine_Real width,
-                                               Machine_Real height);
+void Machine_VideoContext_setViewportRectangle(Machine_VideoContext* self, Ring2_Real32 left,
+                                               Ring2_Real32 bottom, Ring2_Real32 width,
+                                               Ring2_Real32 height);
 
 /// @brief Get the current viewport rectangle.
 /// @param self This video context.
@@ -195,30 +195,30 @@ void Machine_VideoContext_setViewportRectangle(Machine_VideoContext* self, Machi
 /// rectangle.
 /// @default By default @a left and @a bottom are both @a 0 and @a width and @a height are the width
 /// and height of the target canvas.
-void Machine_VideoContext_getViewportRectangle(Machine_VideoContext const* self, Machine_Real* left,
-                                               Machine_Real* bottom, Machine_Real* width,
-                                               Machine_Real* height);
+void Machine_VideoContext_getViewportRectangle(Machine_VideoContext const* self, Ring2_Real32* left,
+                                               Ring2_Real32* bottom, Ring2_Real32* width,
+                                               Ring2_Real32* height);
 
 /// @brief Get the maximal number of clip distance coordinates.
 /// @param self This video context.
 /// @return The number of clip distances.
-Machine_Integer Machine_VideoContext_getMaximalClipDistanceCount(Machine_VideoContext const* self);
+Ring2_Integer Machine_VideoContext_getMaximalClipDistanceCount(Machine_VideoContext const* self);
 
 /// @brief Set if the clip distance of the specified index is enabled.
 /// @param self This video context.
 /// @param index The index. Must be greater than or equal @a 0 and smaller than
 /// Machine_Video_getMaximalClipDistanceCount();
 /// @param enabled @a true to enable the clip distance the specified index, @a false to disable it.
-void Machine_VideoContext_setClipDistanceEnabled(Machine_VideoContext* self, Machine_Integer index,
-                                                 Machine_Boolean enabled);
+void Machine_VideoContext_setClipDistanceEnabled(Machine_VideoContext* self, Ring2_Integer index,
+                                                 Ring2_Boolean enabled);
 
 /// @brief Get if the clip distance of the specified index is enabled.
 /// @param self This video context.
 /// @param index The index.
 /// @return @a true if the clip distance of the specified index is enabled, @a false if it is
 /// disabled.
-Machine_Boolean Machine_VideoContext_getClipDistanceEnabled(Machine_VideoContext const* self,
-                                                            Machine_Integer index);
+Ring2_Boolean Machine_VideoContext_getClipDistanceEnabled(Machine_VideoContext const* self,
+                                                          Ring2_Integer index);
 
 /// @brief Clear the color buffer.
 /// A sub-rectangle of the color buffer is cleared.
@@ -253,9 +253,9 @@ Machine_VideoBuffer* Machine_VideoContext_createBuffer(Machine_VideoContext* sel
 /// @param fragmentProgramText The fragment program text.
 /// @return The program.
 Machine_ShaderProgram* Machine_VideoContext_createProgram(Machine_VideoContext* self,
-                                                          Machine_String* vertexProgramText,
-                                                          Machine_String* geometryProgramText,
-                                                          Machine_String* fragmentProgramText);
+                                                          Ring2_String* vertexProgramText,
+                                                          Ring2_String* geometryProgramText,
+                                                          Ring2_String* fragmentProgramText);
 
 /// @brief Create a binding.
 /// @param self This video context.
@@ -271,15 +271,15 @@ Machine_Binding* Machine_VideoContext_createBinding(Machine_VideoContext* self,
 /// @brief Render @a n consecutive vertices starting with the vertex at (zero-based) index @a 0.
 /// @param self This video context.
 /// @param i, n The starting index of the range and its length.
-void Machine_VideoContext_drawDirect(Machine_VideoContext* self, Machine_Integer i,
-                                     Machine_Integer n);
+void Machine_VideoContext_drawDirect(Machine_VideoContext* self, Ring2_Integer i,
+                                     Ring2_Integer n);
 
 /// @brief Render @a n consecutive indices starting with the index at (zero-based) index @a 0.
 /// @param self This video context.
 /// @param i, n The starting index of the range and its length.
 /// @param A pointer to at least <code>i ´+ n</code> indices.
-void Machine_VideoContext_drawIndirect(Machine_VideoContext* self, Machine_Integer i,
-                                       Machine_Integer n, uint8_t const* indices);
+void Machine_VideoContext_drawIndirect(Machine_VideoContext* self, Ring2_Integer i,
+                                       Ring2_Integer n, uint8_t const* indices);
 
 /// @brief Assign a texture unit.
 /// @param unit The index of the texture unit.
@@ -294,8 +294,8 @@ void Machine_VideoContext_bindTexture(Machine_VideoContext* self, size_t unit,
 /// @param withTexture <code>uniform sampler2D texture;</code>. @a withTextureCoordinate must be @a
 /// true if this is @a true.
 Machine_ShaderProgram* Machine_VideoContext_generateDefaultShader(
-    Machine_VideoContext* self, Machine_Boolean withMeshColor, Machine_Boolean withVertexColor,
-    Machine_Boolean withTextureCoordinate, Machine_Boolean withTexture);
+    Machine_VideoContext* self, Ring2_Boolean withMeshColor, Ring2_Boolean withVertexColor,
+    Ring2_Boolean withTextureCoordinate, Ring2_Boolean withTexture);
 
 /// @brief Create a shader program for rendering an untextured, colored, rectangle.
 /// @param self This video context.
@@ -307,6 +307,6 @@ Machine_ShaderProgram* Machine_VideoContext_generateShape2Shader(Machine_VideoCo
 /// @param self This video context.
 /// @return The shader program.
 Machine_ShaderProgram* Machine_VideoContext_generateText2Shader(Machine_VideoContext* self,
-                                                                Machine_Boolean highPrecision);
+                                                                Ring2_Boolean highPrecision);
 
 #endif // MACHINE_VIDEO_CONTEXT_H_INCLUDED

@@ -18,7 +18,7 @@ int main() {
     Machine_Gdl_test1();
     Ring2_popJumpTarget();
   }
-  Machine_StatusValue status = Machine_getStatus();
+  Ring1_Status status = Ring1_Status_get();
   Machine_shutdown();
   return status ? EXIT_FAILURE : EXIT_SUCCESS;
 }

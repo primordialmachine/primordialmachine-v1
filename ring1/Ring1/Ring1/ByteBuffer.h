@@ -13,6 +13,23 @@
 
 Ring1_Module_Declare(ByteBuffer)
 
+// https://documentation.primordialmachine.com/api/ring1-library/bytebuffer-library/Ring1_ByteBuffer_Capacity_Least
+#define Ring1_ByteBuffer_Capacity_Least (0)
+
+// https://documentation.primordialmachine.com/api/ring1-library/bytebuffer-library/Ring1_ByteBuffer_Capacity_Default
+#define Ring1_ByteBuffer_Capacity_Default (8)
+
+// https://documentation.primordialmachine.com/api/ring1-library/bytebuffer-library/Ring1_ByteBuffer_Cpacity_Greatest
+#define Ring1_ByteBuffer_Capacity_Greatest ((SIZE_MAX < INT64_MAX ? SIZE_MAX : INT64_MAX) / sizeof(char))
+
+// Perform some sanity checks on the capacity values.
+static_assert(Ring1_ByteBuffer_Capacity_Least <= Ring1_ByteBuffer_Capacity_Greatest,
+              "least capacity must be smaller than or equal to greatest capacity");
+static_assert(Ring1_ByteBuffer_Capacity_Least <= Ring1_ByteBuffer_Capacity_Default,
+              "default capacity must be greater than or equal to least capacity");
+static_assert(Ring1_ByteBuffer_Capacity_Default <= Ring1_ByteBuffer_Capacity_Greatest,
+              "default capacity must smaller than or equal to greatest capacity");
+
 // https://documentation.primordialmachine.com/api/ring1-library/bytebuffer-library/Ring1_ByteBuffer
 typedef struct Ring1_ByteBuffer { void *pimpl; } Ring1_ByteBuffer;
 

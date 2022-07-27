@@ -14,7 +14,7 @@
 /// @return #Ring1_Result_Success on success, #Ring1_Result_Failure on failure.
 /// @success <code>*result</code> was assigned the <code>bool</code> value.
 /// @failure <code>result</code> was not dereferenced.
-Ring1_Intrinsic_CheckReturn() Ring1_Result
+Ring1_CheckReturn() Ring1_Result
 Ring1_Conversion_stringToBool
   (
     bool *result,

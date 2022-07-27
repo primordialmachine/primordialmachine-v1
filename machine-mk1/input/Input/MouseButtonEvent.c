@@ -8,7 +8,7 @@
 
 MACHINE_DEFINE_ENUMERATIONTYPE(Machine_MouseButtonActions)
 
-Machine_String* Machine_MouseButtonActions_toString(Machine_MouseButtonActions self) {
+Ring2_String* Machine_MouseButtonActions_toString(Machine_MouseButtonActions self) {
   switch (self) {
     case Machine_MouseButtonActions_Press:
       return Machine_String_create("press", strlen("press"));
@@ -26,7 +26,7 @@ static void Machine_MouseButtonEvent_visit(Machine_MouseButtonEvent* self) {
   /*Intentionally empty.*/
 }
 
-static Machine_String* Machine_MouseButtonEvent_toStringImpl(Machine_MouseButtonEvent const* self) {
+static Ring2_String* Machine_MouseButtonEvent_toStringImpl(Machine_MouseButtonEvent const* self) {
   Machine_StringBuffer* stringBuffer = Machine_StringBuffer_create();
 
   Machine_StringBuffer_appendBytes(stringBuffer, "{ ", strlen("{ "));
@@ -58,7 +58,7 @@ static Machine_String* Machine_MouseButtonEvent_toStringImpl(Machine_MouseButton
 
 static void Machine_MouseButtonEvent_constructClass(Machine_MouseButtonEvent_Class* self) {
   ((Machine_Object_Class*)self)->toString
-      = (Machine_String * (*)(Machine_Object const*)) & Machine_MouseButtonEvent_toStringImpl;
+      = (Ring2_String * (*)(Machine_Object const*)) & Machine_MouseButtonEvent_toStringImpl;
 }
 
 static void Machine_MouseButtonEvent_construct(Machine_MouseButtonEvent* self,
@@ -76,8 +76,8 @@ MACHINE_DEFINE_CLASSTYPE(Machine_MouseButtonEvent, Machine_Object, &Machine_Mous
                          &Machine_MouseButtonEvent_construct, NULL,
                          &Machine_MouseButtonEvent_constructClass, NULL)
 
-Machine_MouseButtonEvent* Machine_MouseButtonEvent_create(int button, int action, Machine_Real x,
-                                                          Machine_Real y) {
+Machine_MouseButtonEvent* Machine_MouseButtonEvent_create(int button, int action, Ring2_Real32 x,
+                                                          Ring2_Real32 y) {
   Machine_ClassType* ty = Machine_MouseButtonEvent_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 4;
   Machine_Value ARGUMENTS[4]

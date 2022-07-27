@@ -5,7 +5,7 @@
 #define MACHINE_GUI_GDL_CONTEXT_H_INCLUDED
 
 #if !defined(MACHINE_GUI_PRIVATE)
-#error("Do not include this file directly, include `_Gui.h` instead.")
+#error("Do not include `Gui/Gdl/Context.h` directly, include `_Gui.h` instead.")
 #endif
 #include "_GDL.h"
 #include "_Runtime.h"
@@ -23,7 +23,7 @@ struct Machine_Gui_Gdl_Context {
 
   Machine_Gdl_Context* context;
 
-#define DEFINE(NAME, STRING) Machine_String* NAME;
+#define DEFINE(NAME, STRING) Ring2_String* NAME;
 #include "Gui/Gdl/Context.i"
 #undef DEFINE
 };

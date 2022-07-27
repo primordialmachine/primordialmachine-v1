@@ -5,9 +5,9 @@
 #define MACHINE_RUNTIME_STACKMODULE_H_INCLUDED
 
 #if !defined(MACHINE_RUNTIME_PRIVATE)
-#error("Do not include this file directly, include `_Runtime.h` instead.")
+#error("Do not include `Runtime/StackModule.h` directly, include `_Runtime.h` instead.")
 #endif
-#include "Runtime/Status.h"
+#include "Ring1/Result.h"
 #include "Runtime/Value.h"
 
 Ring1_Result Machine_initializeStackModule();
@@ -17,12 +17,12 @@ void Machine_uninitializeStackModule();
 /// @brief Load a <code>Boolean</code> value on the stack.
 /// @param value The value.
 /// @error Machine_Status_AllocationFailed An allocation failed.
-void Machine_Stack_loadBoolean(Machine_Boolean value);
+void Machine_Stack_loadBoolean(Ring2_Boolean value);
 
 /// @brief Load an <code>Integer</code> value on the stack.
 /// @param value The value.
 /// @error Machine_Status_AllocationFailed An allocation failed.
-void Machine_Stack_loadInteger(Machine_Integer value);
+void Machine_Stack_loadInteger(Ring2_Integer value);
 
 /// @brief Load a <code>ForeignProcedure</code> value on the stack.
 /// @param value The value.
@@ -38,19 +38,19 @@ void Machine_Stack_loadObject(Machine_Object* value);
 /// @param value The value.
 /// @error Machine_Status_AllocationFailed An allocation failed.
 /// @error Machine_Status_CapacityExhausted The stack can not grow any further.
-void Machine_Stack_loadReal(Machine_Real value);
+void Machine_Stack_loadReal(Ring2_Real32 value);
 
 /// @brief Load a <code>String</code> value on the stack.
 /// @param value The value.
 /// @error Machine_Status_AllocationFailed An allocation failed.
 /// @error Machine_Status_CapacityExhausted The stack can not grow any further.
-void Machine_Stack_loadString(Machine_String* value);
+void Machine_Stack_loadString(Ring2_String* value);
 
 /// @brief Load a <code>Void</code> value on the stack.
 /// @param value The value.
 /// @error Machine_Status_AllocationFailed An allocation failed.
 /// @error Machine_Status_CapacityExhausted The stack can not grow any further.
-void Machine_Stack_loadVoid(Machine_Void value);
+void Machine_Stack_loadVoid(Ring2_Void value);
 
 /// @brief Load a value on the stack.
 /// @param value The value.

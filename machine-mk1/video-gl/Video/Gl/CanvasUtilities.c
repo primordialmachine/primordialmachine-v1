@@ -36,10 +36,10 @@ static void keyCallback(GLFWwindow* window, int key, int scancode, int action, i
 
     Ring2_popJumpTarget();
   } else {
-    if (Machine_getStatus() == Machine_Status_InternalError) {
+    if (Ring1_Status_get() == Ring1_Status_NotYetImplemented) {
       Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
                   "failed to map keyboard key event\n");
-      Machine_setStatus(Machine_Status_Success);
+      Ring1_Status_set(Ring1_Status_Success);
     }
     Ring2_popJumpTarget();
   }
@@ -62,10 +62,10 @@ static void cursorPositionCallback(GLFWwindow* window, double x, double y) {
 #endif
     Ring2_popJumpTarget();
   } else {
-    if (Machine_getStatus() == Machine_Status_InternalError) {
+    if (Ring1_Status_get() == Ring1_Status_NotYetImplemented) {
       Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
                   "failed to map mouse pointer event\n");
-      Machine_setStatus(Machine_Status_Success);
+      Ring1_Status_set(Ring1_Status_Success);
     }
     Ring2_popJumpTarget();
   }
@@ -88,10 +88,10 @@ static void cursorEnterCallback(GLFWwindow* window, int entered) {
 #endif
     Ring2_popJumpTarget();
   } else {
-    if (Machine_getStatus() == Machine_Status_InternalError) {
+    if (Ring1_Status_get() == Ring1_Status_NotYetImplemented) {
       Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
                   "failed to map mouse pointer event\n");
-      Machine_setStatus(Machine_Status_Success);
+      Ring1_Status_set(Ring1_Status_Success);
     }
     Ring2_popJumpTarget();
   }
@@ -114,10 +114,10 @@ static void mouseButtonCallback(GLFWwindow* window, int button, int action, int 
 #endif
     Ring2_popJumpTarget();
   } else {
-    if (Machine_getStatus() == Machine_Status_InternalError) {
+    if (Ring1_Status_get() == Ring1_Status_NotYetImplemented) {
       Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
                   "failed to map mouse button event\n");
-      Machine_setStatus(Machine_Status_Success);
+      Ring1_Status_set(Ring1_Status_Success);
     }
     Ring2_popJumpTarget();
   }
@@ -152,7 +152,7 @@ void Machine_Glfw_shutdownCanvasInput() {
 
 void Machine_Glfw_pollEvents() {
   glfwPollEvents();
-  if (Machine_getStatus() != Machine_Status_Success) {
+  if (Ring1_Status_get() != Ring1_Status_Success) {
     Ring2_jump();
   }
 }

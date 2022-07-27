@@ -7,7 +7,7 @@
 
 
 #if !defined(MACHINE_FONTS_PRIVATE)
-#error("Do not include this file directly, include `_Fonts.h` instead.")
+#error("Do not include `Fonts/FontsContext.h` directly, include `_Fonts.h` instead.")
 #endif
 #include "_Video.h"
 #include <ft2build.h>

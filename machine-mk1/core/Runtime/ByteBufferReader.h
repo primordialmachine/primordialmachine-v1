@@ -2,7 +2,7 @@
 #define MACHINE_BYTEBUFFERREADER_H_INCLUDED
 
 #if !defined(MACHINE_RUNTIME_PRIVATE)
-#error("Do not include this file directly, include `_Runtime.h` instead.")
+#error("Do not include `Runtime/ByteBufferReader.h` directly, include `_Runtime.h` instead.")
 #endif
 #include "Runtime/ByteBuffer.h"
 

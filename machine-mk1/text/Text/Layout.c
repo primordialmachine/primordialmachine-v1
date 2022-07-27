@@ -43,9 +43,9 @@ static void Machine_Text_Layout_visit(Machine_Text_Layout* self) {
   }
 }
 
-static void parse(Machine_String* text, Machine_PointerArray* lines) {
+static void parse(Ring2_String* text, Machine_PointerArray* lines) {
   const char* start = Machine_String_getBytes(text),
-    * end = Machine_String_getBytes(text) + Machine_String_getNumberOfBytes(text);
+            * end = Machine_String_getBytes(text) + Machine_String_getNumberOfBytes(text);
 
   const char* lineStart = start,
     * lineEnd = start;
@@ -70,7 +70,7 @@ static void parse(Machine_String* text, Machine_PointerArray* lines) {
   }
 }
 
-static void updateLinesBounds(Machine_Math_Vector2* position, Machine_Font* font, Machine_String* text, Machine_PointerArray* lines, bool yup) {
+static void updateLinesBounds(Machine_Math_Vector2* position, Machine_Font* font, Ring2_String* text, Machine_PointerArray* lines, bool yup) {
   Machine_Math_Vector2* position0 = Machine_Math_Vector2_create();
 #if defined(WITH_SNAPTOGRID)
   // Snap to pixel (ensure there are no artifacts).
@@ -196,7 +196,7 @@ void Machine_Text_Layout_construct(Machine_Text_Layout* self, size_t numberOfArg
   Machine_setClassType((Machine_Object*)self, Machine_Text_Layout_getType());
 }
 
-Machine_Text_Layout* Machine_Text_Layout_create(Machine_String* text, Machine_Font* font) {
+Machine_Text_Layout* Machine_Text_Layout_create(Ring2_String* text, Machine_Font* font) {
   MACHINE_ASSERT_NOTNULL(text);
   MACHINE_ASSERT_NOTNULL(font);
 
@@ -299,7 +299,7 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* con
       float N[] = { -1.f, 0.f, 0.f };
       Machine_Math_Vector3* n2 = Machine_Math_Vector3_create(); Machine_Math_Vector3_set(n2, N[0], N[1], N[2]);
       Machine_Math_Vector3* p2 = Machine_Math_Vector3_create(); Machine_Math_Vector3_set(p2, Machine_Math_Vector2_getX(position) + Machine_Math_Vector2_getX(size), 0.0f, 0.0f);
-      MACHINE_ASSERT(Machine_Math_Vector2_getX(size) >= 0.f, Machine_Status_InvalidArgument);
+      MACHINE_ASSERT(Machine_Math_Vector2_getX(size) >= 0.f, Ring1_Status_InvalidArgument);
       float d = -Machine_Math_Vector3_dot(n2, p2);
       Machine_Math_Vector4* x = Machine_Math_Vector4_create();
       Machine_Math_Vector4_set(x, N[0], N[1], N[2], d);
@@ -320,7 +320,7 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* con
       float N[] = { 0.f, -1.f, 0.f };
       Machine_Math_Vector3* n2 = Machine_Math_Vector3_create(); Machine_Math_Vector3_set(n2, N[0], N[1], N[2]);
       Machine_Math_Vector3* p2 = Machine_Math_Vector3_create(); Machine_Math_Vector3_set(p2, 0.f, Machine_Math_Vector2_getY(position) + Machine_Math_Vector2_getY(size), 0.0f);
-      MACHINE_ASSERT(Machine_Math_Vector2_getY(size) >= 0.f, Machine_Status_InvalidArgument);
+      MACHINE_ASSERT(Machine_Math_Vector2_getY(size) >= 0.f, Ring1_Status_InvalidArgument);
       float d = -Machine_Math_Vector3_dot(n2, p2);
       Machine_Math_Vector4* x = Machine_Math_Vector4_create();
       Machine_Math_Vector4_set(x, N[0], N[1], N[2], d);
@@ -396,7 +396,7 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* con
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-void Machine_Text_Layout_setText(Machine_Text_Layout* self, Machine_String* text) {
+void Machine_Text_Layout_setText(Machine_Text_Layout* self, Ring2_String* text) {
   MACHINE_ASSERT_NOTNULL(self);
   MACHINE_ASSERT_NOTNULL(text);
 
@@ -406,7 +406,7 @@ void Machine_Text_Layout_setText(Machine_Text_Layout* self, Machine_String* text
   }
 }
 
-Machine_String* Machine_Text_Layout_getText(Machine_Text_Layout* self) {
+Ring2_String* Machine_Text_Layout_getText(Machine_Text_Layout* self) {
   return self->text;
 }
 
@@ -450,8 +450,8 @@ bool Machine_Text_Layout_getRenderVisualBoundsEnabled(Machine_Text_Layout* self)
 
 void Machine_Text_Layout_setClipRectangle(Machine_Text_Layout* self, Machine_Math_Rectangle2* clipRectangle) {
   if (clipRectangle) {
-    MACHINE_ASSERT(clipRectangle->w >= 0.f, Machine_Status_InvalidArgument);
-    MACHINE_ASSERT(clipRectangle->h >= 0.f, Machine_Status_InvalidArgument);
+    MACHINE_ASSERT(clipRectangle->w >= 0.f, Ring1_Status_InvalidArgument);
+    MACHINE_ASSERT(clipRectangle->h >= 0.f, Ring1_Status_InvalidArgument);
     if (!self->clipRectangle) {
       Machine_Math_Rectangle2 * temporary = Machine_Math_Rectangle2_create();
       Machine_Math_Rectangle2_copy(temporary, clipRectangle);

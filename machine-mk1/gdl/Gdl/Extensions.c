@@ -9,19 +9,19 @@
 static Machine_Value convert(Machine_Gdl_Node* self, Machine_Gdl_Context* context) {
   switch (self->kind) {
   case Machine_Gdl_NodeKind_Boolean: {
-    Machine_Boolean temporary = Machine_Gdl_Node_toBoolean(self, context);
+    Ring2_Boolean temporary = Machine_Gdl_Node_toBoolean(self, context);
     Machine_Value value;
     Machine_Value_setBoolean(&value, temporary);
     return value;
   }
   case Machine_Gdl_NodeKind_Integer: {
-    Machine_Integer temporary = Machine_Gdl_Node_toInteger(self, context);
+    Ring2_Integer temporary = Machine_Gdl_Node_toInteger(self, context);
     Machine_Value value;
     Machine_Value_setInteger(&value, temporary);
     return value;
   }
   case Machine_Gdl_NodeKind_Key: {
-    Machine_String* temporary = Machine_Gdl_Node_toString(self, context);
+    Ring2_String* temporary = Machine_Gdl_Node_toString(self, context);
     Machine_Value value;
     Machine_Value_setString(&value, temporary);
     return value;
@@ -33,13 +33,13 @@ static Machine_Value convert(Machine_Gdl_Node* self, Machine_Gdl_Context* contex
     return value;
   }
   case Machine_Gdl_NodeKind_Real: {
-    Machine_Real temporary = Machine_Gdl_Node_toReal(self, context);
+    Ring2_Real32 temporary = Machine_Gdl_Node_toReal(self, context);
     Machine_Value value;
     Machine_Value_setReal(&value, temporary);
     return value;
   }
   case Machine_Gdl_NodeKind_String: {
-    Machine_String* temporary = Machine_Gdl_Node_toString(self, context);
+    Ring2_String* temporary = Machine_Gdl_Node_toString(self, context);
     Machine_Value value;
     Machine_Value_setString(&value, temporary);
     return value;
@@ -57,7 +57,7 @@ static Machine_Value convert(Machine_Gdl_Node* self, Machine_Gdl_Context* contex
     return value;
   }
   case Machine_Gdl_NodeKind_Void: {
-    Machine_Void temporary = Machine_Gdl_Node_toVoid(self, context);
+    Ring2_Void temporary = Machine_Gdl_Node_toVoid(self, context);
     Machine_Value value;
     Machine_Value_setVoid(&value, temporary);
     return value;
@@ -67,30 +67,26 @@ static Machine_Value convert(Machine_Gdl_Node* self, Machine_Gdl_Context* contex
   };
 }
 
-Machine_Boolean Machine_Gdl_Node_toBoolean(Machine_Gdl_Node* self, Machine_Gdl_Context* context) {
+Ring2_Boolean Machine_Gdl_Node_toBoolean(Machine_Gdl_Node* self, Machine_Gdl_Context* context) {
   MACHINE_ASSERT_NOTNULL(self);
-  MACHINE_ASSERT(self->kind == Machine_Gdl_NodeKind_Boolean, Machine_Status_InvalidArgument);
+  MACHINE_ASSERT(self->kind == Machine_Gdl_NodeKind_Boolean, Ring1_Status_InvalidArgument);
   bool value;
   if (Ring1_Conversion_stringToBool(&value, Machine_String_getBytes(self->text),
                                      Machine_String_getBytes(self->text)
                                          + Machine_String_getNumberOfBytes(self->text))) {
-    Ring1_Status_set(Ring1_Status_Success);
-    Machine_setStatus(Machine_Status_InvalidOperation); // TODO: Should be "ConversionFailed".
     Ring2_jump();
   }
   return value;
 }
 
-Machine_Integer Machine_Gdl_Node_toInteger(Machine_Gdl_Node* self, Machine_Gdl_Context* context) {
+Ring2_Integer Machine_Gdl_Node_toInteger(Machine_Gdl_Node* self, Machine_Gdl_Context* context) {
   MACHINE_ASSERT_NOTNULL(self);
-  MACHINE_ASSERT(self->kind == Machine_Gdl_NodeKind_Integer || self->kind == Machine_Gdl_NodeKind_Real, Machine_Status_InvalidArgument);
+  MACHINE_ASSERT(self->kind == Machine_Gdl_NodeKind_Integer || self->kind == Machine_Gdl_NodeKind_Real, Ring1_Status_InvalidArgument);
   int64_t value;
   if (Ring1_Conversion_stringToInt64(&value, 
                                      Machine_String_getBytes(self->text),
                                  Machine_String_getBytes(self->text) +
                                      Machine_String_getNumberOfBytes(self->text))) {
-    Ring1_Status_set(Ring1_Status_Success);
-    Machine_setStatus(Machine_Status_InvalidOperation); // TODO: Should be "ConversionFailed".
     Ring2_jump();
   }
   return value;
@@ -98,7 +94,7 @@ Machine_Integer Machine_Gdl_Node_toInteger(Machine_Gdl_Node* self, Machine_Gdl_C
 
 Machine_List* Machine_Gdl_Node_toList(Machine_Gdl_Node const* self, Machine_Gdl_Context* context) {
   MACHINE_ASSERT_NOTNULL(self);
-  MACHINE_ASSERT(self->kind == Machine_Gdl_NodeKind_List, Machine_Status_InvalidArgument);
+  MACHINE_ASSERT(self->kind == Machine_Gdl_NodeKind_List, Ring1_Status_InvalidArgument);
   Machine_List* targets = (Machine_List *)Machine_ArrayList_create();
   for (size_t i = 0, n = Machine_Collection_getSize((Machine_Collection*)self->children); i < n; ++i) {
     Machine_Value v = Machine_List_getAt(self->children, i);
@@ -111,7 +107,7 @@ Machine_List* Machine_Gdl_Node_toList(Machine_Gdl_Node const* self, Machine_Gdl_
 
 Machine_Map* Machine_Gdl_Node_toMap(Machine_Gdl_Node const* self, Machine_Gdl_Context* context) {
   MACHINE_ASSERT_NOTNULL(self);
-  MACHINE_ASSERT(self->kind == Machine_Gdl_NodeKind_Map, Machine_Status_InvalidArgument);
+  MACHINE_ASSERT(self->kind == Machine_Gdl_NodeKind_Map, Ring1_Status_InvalidArgument);
   Machine_Map* targets = (Machine_Map *)Machine_HashMap_create();
   for (size_t i = 0, n = Machine_Collection_getSize((Machine_Collection *)self->children); i < n; ++i) {
     Machine_Value v = Machine_List_getAt(self->children, i);
@@ -124,7 +120,7 @@ Machine_Map* Machine_Gdl_Node_toMap(Machine_Gdl_Node const* self, Machine_Gdl_Co
 
 Machine_Pair* Machine_Gdl_Node_toPair(Machine_Gdl_Node const* self, Machine_Gdl_Context* context) {
   MACHINE_ASSERT_NOTNULL(self);
-  MACHINE_ASSERT(self->kind == Machine_Gdl_NodeKind_Pair, Machine_Status_InvalidArgument);
+  MACHINE_ASSERT(self->kind == Machine_Gdl_NodeKind_Pair, Ring1_Status_InvalidArgument);
   Machine_Value x = Machine_List_getAt(self->children, 0),
                 y = Machine_List_getAt(self->children, 1);
   Machine_Gdl_Node* a = (Machine_Gdl_Node*)Machine_Value_getObject(&x),
@@ -132,29 +128,27 @@ Machine_Pair* Machine_Gdl_Node_toPair(Machine_Gdl_Node const* self, Machine_Gdl_
   return Machine_Pair_create(convert(a, context), convert(b, context));
 }
 
-Machine_Real Machine_Gdl_Node_toReal(Machine_Gdl_Node* self, Machine_Gdl_Context* context) {
+Ring2_Real32 Machine_Gdl_Node_toReal(Machine_Gdl_Node* self, Machine_Gdl_Context* context) {
   MACHINE_ASSERT_NOTNULL(self);
-  MACHINE_ASSERT(self->kind == Machine_Gdl_NodeKind_Integer || self->kind == Machine_Gdl_NodeKind_Real, Machine_Status_InvalidArgument);
+  MACHINE_ASSERT(self->kind == Machine_Gdl_NodeKind_Integer || self->kind == Machine_Gdl_NodeKind_Real, Ring1_Status_InvalidArgument);
   double value;
   if (Ring1_Conversion_stringToDouble(&value, 
                                       Machine_String_getBytes(self->text),
-                                     Machine_String_getBytes(self->text) +
+                                      Machine_String_getBytes(self->text) +
                                       Machine_String_getNumberOfBytes(self->text))) {
-    Ring1_Status_set(Ring1_Status_Success);
-    Machine_setStatus(Machine_Status_InvalidOperation); // TODO: Should be "ConversionFailed".
     Ring2_jump();
   }
   return value;
 }
 
-Machine_String* Machine_Gdl_Node_toString(Machine_Gdl_Node const* self, Machine_Gdl_Context* context) {
+Ring2_String* Machine_Gdl_Node_toString(Machine_Gdl_Node const* self, Machine_Gdl_Context* context) {
   MACHINE_ASSERT_NOTNULL(self);
-  MACHINE_ASSERT(self->kind == Machine_Gdl_NodeKind_Key || self->kind == Machine_Gdl_NodeKind_String, Machine_Status_InvalidArgument);
+  MACHINE_ASSERT(self->kind == Machine_Gdl_NodeKind_Key || self->kind == Machine_Gdl_NodeKind_String, Ring1_Status_InvalidArgument);
   return self->text;
 }
 
-Machine_Void Machine_Gdl_Node_toVoid(Machine_Gdl_Node const* self, Machine_Gdl_Context* context) {
+Ring2_Void Machine_Gdl_Node_toVoid(Machine_Gdl_Node const* self, Machine_Gdl_Context* context) {
   MACHINE_ASSERT_NOTNULL(self);
-  MACHINE_ASSERT(self->kind == Machine_Gdl_NodeKind_Void, Machine_Status_InvalidArgument);
-  return Machine_Void_Void;
+  MACHINE_ASSERT(self->kind == Machine_Gdl_NodeKind_Void, Ring1_Status_InvalidArgument);
+  return Ring2_Void_Void;
 }

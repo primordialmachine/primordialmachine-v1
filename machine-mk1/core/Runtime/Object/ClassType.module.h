@@ -2,8 +2,9 @@
 #define MACHINE_RUNTIME_OBJECT_CLASSTYPE_MODULE_H_INCLUDED
 
 #if !defined(MACHINE_RUNTIME_PRIVATE)
-#error("Do not include this file directly, include `_Runtime.h` instead.")
+#error("Do not include `Runtime/Object/ClassType.module.h` directly, include `_Runtime.h` instead.")
 #endif
+#include "Ring1/InlineArray.h"
 #include "Runtime/Object/ClassType.h"
 
 typedef struct Machine_InterfaceImplementation {
@@ -35,9 +36,9 @@ struct Machine_ClassType {
   struct {
     /// @brief Pointer to a Machine_ImplementInterfacesCallback or a null pointer.
     Machine_ImplementInterfacesCallback* implementInterfaces;
-    Machine_Eal_InlineArray implementations2;
+    Ring1_InlineArray implementations2;
     bool implementationsInitialized;
-    Machine_Eal_InlineArray dispatches2;
+    Ring1_InlineArray dispatches2;
     bool dispatchesInitialized;
   } interfaces;
 };

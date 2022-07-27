@@ -31,14 +31,14 @@ struct Machine_Signals_Connection_Class {
 
 struct Machine_Signals_Connection {
   Machine_Object parent;
-  Machine_String* name;
+  Ring2_String* name;
   Machine_Object* context;
   Machine_ForeignProcedure* callback;
 };
 
 void Machine_Signals_Connection_construct(Machine_Signals_Connection* self, size_t numberOfArguments, const Machine_Value* arguments);
 
-Machine_Signals_Connection* Machine_Signals_Connection_create(Machine_String *name, Machine_Object* context, Machine_ForeignProcedure* callback);
+Machine_Signals_Connection* Machine_Signals_Connection_create(Ring2_String *name, Machine_Object* context, Machine_ForeignProcedure* callback);
 
 
 

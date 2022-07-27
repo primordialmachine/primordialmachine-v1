@@ -66,7 +66,7 @@ void Scene_onKeyboardKeyEvent(Scene* self, Machine_KeyboardKeyEvent* event) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Scene, onKeyboardKeyEvent, event);
 }
 
-void Scene_onUpdate(Scene* self, Machine_Real width, Machine_Real height) {
+void Scene_onUpdate(Scene* self, Ring2_Real32 width, Ring2_Real32 height) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Scene, onUpdate, width, height);
 }
 

@@ -5,9 +5,8 @@
 #define MACHINE_RUNTIME_IO__FILEMAPPING_H_INCLUDED
 
 #include "Runtime/Io/_FileHandle.h"
-#include "Ring2/JumpTarget.h"
+#include "Ring2/_Include.h"
 #include "Runtime/LogModule.h"
-#include "Runtime/Status.h"
 
 /// @brief Helper for file mappings.
 typedef struct _Machine_FileMapping {
@@ -17,9 +16,9 @@ typedef struct _Machine_FileMapping {
   size_t numberOfBytes;
 } _Machine_FileMapping; // struct Nucleus_FileMapping
 
-void _Machine_FileMapping_openRead(_Machine_FileMapping* self, Machine_String* path);
+void _Machine_FileMapping_openRead(_Machine_FileMapping* self, Ring2_String* path);
 
-void _Machine_FileMapping_openWrite(_Machine_FileMapping* self, Machine_String* path,
+void _Machine_FileMapping_openWrite(_Machine_FileMapping* self, Ring2_String* path,
                                                   size_t numberOfBytes);
 
 void _Machine_FileMapping_close(_Machine_FileMapping* self);

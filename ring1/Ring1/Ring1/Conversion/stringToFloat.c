@@ -14,7 +14,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-Ring1_Intrinsic_CheckReturn() bool
+Ring1_CheckReturn() bool
 parse
   (
     char const* start,
@@ -88,7 +88,7 @@ parse
   return true;
 }
 
-Ring1_Intrinsic_CheckReturn() Ring1_Result
+Ring1_CheckReturn() Ring1_Result
 Ring1_Conversion_stringToFloat
   (
     float *result,
@@ -96,7 +96,7 @@ Ring1_Conversion_stringToFloat
     char const* end
   )
 {
-  if (Ring1_Intrinsic_Unlikely(!start || !end || !result)) {
+  if (Ring1_Unlikely(!start || !end || !result)) {
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     return Ring1_Result_Failure;
   }
@@ -129,7 +129,7 @@ Ring1_Conversion_stringToFloat
   return Ring1_Result_Success;
 }
 
-Ring1_Intrinsic_CheckReturn() Ring1_Result
+Ring1_CheckReturn() Ring1_Result
 Ring1_Conversion_stringToDouble
   (
     double *result,
@@ -137,7 +137,7 @@ Ring1_Conversion_stringToDouble
     char const* end
   )
 {
-  if (Ring1_Intrinsic_Unlikely(!start || !end || !result)) {
+  if (Ring1_Unlikely(!start || !end || !result)) {
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     return Ring1_Result_Failure;
   }

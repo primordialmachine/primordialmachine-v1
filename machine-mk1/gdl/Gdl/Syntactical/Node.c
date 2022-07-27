@@ -30,7 +30,7 @@ static void Machine_Gdl_Node_construct(Machine_Gdl_Node* self, size_t numberOfAr
   Machine_setClassType((Machine_Object*)self, Machine_Gdl_Node_getType());
 }
 
-Machine_Gdl_Node* Machine_Gdl_Node_create(Machine_Gdl_NodeKind kind, Machine_String* text) {
+Machine_Gdl_Node* Machine_Gdl_Node_create(Machine_Gdl_NodeKind kind, Ring2_String* text) {
   Machine_ClassType* ty = Machine_Gdl_Node_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 2;
   Machine_Value ARGUMENTS[2];

@@ -60,7 +60,7 @@ static void Machine_Gdl_Scanner_construct(Machine_Gdl_Scanner* self, size_t numb
 MACHINE_DEFINE_CLASSTYPE(Machine_Gdl_Scanner, Machine_Object, &Machine_Gdl_Scanner_visit,
                          &Machine_Gdl_Scanner_construct, NULL, NULL, NULL)
 
-Machine_Gdl_Scanner* Machine_Gdl_Scanner_create(Machine_String* inputName, Machine_ByteBuffer* inputBytes) {
+Machine_Gdl_Scanner* Machine_Gdl_Scanner_create(Ring2_String* inputName, Machine_ByteBuffer* inputBytes) {
   Machine_ClassType* ty = Machine_Gdl_Scanner_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 2;
   Machine_Value ARGUMENTS[2];
@@ -70,7 +70,7 @@ Machine_Gdl_Scanner* Machine_Gdl_Scanner_create(Machine_String* inputName, Machi
   return self;
 }
 
-void Machine_Gdl_Scanner_setInput(Machine_Gdl_Scanner* self, Machine_String* inputName, Machine_ByteBuffer* inputBytes) {
+void Machine_Gdl_Scanner_setInput(Machine_Gdl_Scanner* self, Ring2_String* inputName, Machine_ByteBuffer* inputBytes) {
   Machine_ByteBuffer *inputBytesNew = Machine_ByteBuffer_create();
   Machine_ByteBuffer_appendBytes(inputBytesNew, Machine_ByteBuffer_getBytes(inputBytes), Machine_ByteBuffer_getNumberOfBytes(inputBytes));
   Machine_ByteBuffer* tokenTextNew = Machine_ByteBuffer_create();
@@ -116,13 +116,13 @@ static void scanSingleQuotedString(Machine_Gdl_Scanner* self)
         writeAndNext(self, '\'');
         break;
       default:
-        Machine_setStatus(Machine_Status_LexicalError);
+        Ring1_Status_set(Ring1_Status_InvalidLexics);
         Ring2_jump();
       };
     } else if (current(self) == '\'') {
       break;
     } else if (current(self) == Symbol_EndOfInput) {
-      Machine_setStatus(Machine_Status_LexicalError);
+      Ring1_Status_set(Ring1_Status_InvalidLexics);
       Ring2_jump();
     } else {
       saveAndNext(self);
@@ -157,7 +157,7 @@ static void scanDoubleQuotedString(Machine_Gdl_Scanner* self)
         writeAndNext(self, '"');
         break;
       default:
-        Machine_setStatus(Machine_Status_LexicalError);
+        Ring1_Status_set(Ring1_Status_InvalidLexics);
         Ring2_jump();
       };
     }
@@ -165,7 +165,7 @@ static void scanDoubleQuotedString(Machine_Gdl_Scanner* self)
       break;
     }
     else if (current(self) == Symbol_EndOfInput) {
-      Machine_setStatus(Machine_Status_LexicalError);
+      Ring1_Status_set(Ring1_Status_InvalidLexics);
       Ring2_jump();
     }
     else {
@@ -325,7 +325,7 @@ void Machine_Gdl_Scanner_step(Machine_Gdl_Scanner* self) {
           scanExponent(self);
         }
       } else {
-        Machine_setStatus(Machine_Status_LexicalError);
+        Ring1_Status_set(Ring1_Status_InvalidLexics);
         Ring2_jump();
       }
     } break;
@@ -341,7 +341,7 @@ void Machine_Gdl_Scanner_step(Machine_Gdl_Scanner* self) {
         self->tokenKind = Machine_Gdl_TokenKind_Name;
         checkKeywords(self);
       } else {
-        Machine_setStatus(Machine_Status_LexicalError);
+        Ring1_Status_set(Ring1_Status_InvalidLexics);
         Ring2_jump();
       }
     } break;
@@ -352,6 +352,6 @@ Machine_Gdl_TokenKind Machine_Gdl_Scanner_getTokenKind(Machine_Gdl_Scanner const
   return self->tokenKind;
 }
 
-Machine_String* Machine_Gdl_Scanner_getTokenText(Machine_Gdl_Scanner const* self) {
+Ring2_String* Machine_Gdl_Scanner_getTokenText(Machine_Gdl_Scanner const* self) {
   return Machine_String_create(Machine_ByteBuffer_getBytes(self->tokenText), Machine_ByteBuffer_getNumberOfBytes(self->tokenText));
 }

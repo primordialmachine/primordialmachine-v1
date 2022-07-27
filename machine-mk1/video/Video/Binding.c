@@ -21,7 +21,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Binding_Node, Machine_Object, Machine_Binding_N
 static void Machine_Binding_Node_construct(Machine_Binding_Node* self, size_t numberOfArguments,
                                            Machine_Value const* arguments) {
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
   Machine_Object_construct((Machine_Object*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   self->next = NULL;
   self->name = Machine_Extensions_getStringArgument(numberOfArguments, arguments, 0);
@@ -40,7 +40,7 @@ static void Machine_Binding_Node_visit(Machine_Binding_Node* self) {
   Machine_Value_visit(&self->value);
 }
 
-Machine_Binding_Node* Machine_Binding_Node_create(Machine_String* name, Machine_Boolean isVariable,
+Machine_Binding_Node* Machine_Binding_Node_create(Ring2_String* name, Ring2_Boolean isVariable,
                                                   Machine_Value const* value) {
   size_t numberOfArguments = 3;
   Machine_Value arguments[3];
@@ -53,12 +53,12 @@ Machine_Binding_Node* Machine_Binding_Node_create(Machine_String* name, Machine_
   return self;
 }
 
-Machine_Binding_Node* Machine_Binding_Node_createVariable(Machine_String* name,
+Machine_Binding_Node* Machine_Binding_Node_createVariable(Ring2_String* name,
                                                           Machine_Value const* value) {
   return Machine_Binding_Node_create(name, true, value);
 }
 
-Machine_Binding_Node* Machine_Binding_Node_createConstant(Machine_String* name,
+Machine_Binding_Node* Machine_Binding_Node_createConstant(Ring2_String* name,
                                                           Machine_Value const* value) {
   return Machine_Binding_Node_create(name, false, value);
 }
@@ -71,7 +71,7 @@ static void Machine_Binding_destruct(Machine_Binding* self);
 
 static void Machine_Binding_visit(Machine_Binding* self);
 
-static void Machine_Binding_addUpdateConstantImpl(Machine_Binding* self, Machine_String* name,
+static void Machine_Binding_addUpdateConstantImpl(Machine_Binding* self, Ring2_String* name,
                                                   Machine_Value const* value);
 
 static void Machine_Binding_destruct(Machine_Binding* self) { /*Intentionally empty.*/
@@ -106,7 +106,7 @@ void Machine_Binding_construct(Machine_Binding* self, size_t numberOfArguments,
   Machine_setClassType((Machine_Object*)self, Machine_Binding_getType());
 }
 
-static void Machine_Binding_addUpdateConstantImpl(Machine_Binding* self, Machine_String* name,
+static void Machine_Binding_addUpdateConstantImpl(Machine_Binding* self, Ring2_String* name,
                                                   Machine_Value const* value) {
   Machine_Binding_Node* node = self->nodes;
   while (NULL != node) {
@@ -134,12 +134,12 @@ static void Machine_Binding_constructClass(Machine_Binding_Class* self) {
   self->addUpdateConstant = &Machine_Binding_addUpdateConstantImpl;
 }
 
-Machine_Boolean Machine_Binding_setVariableBinding(Machine_Binding* self, Machine_String* name,
-                                                   size_t index) {
+Ring2_Boolean Machine_Binding_setVariableBinding(Machine_Binding* self, Ring2_String* name,
+                                                 size_t index) {
   MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_Binding, setVariableBinding, name, index);
 }
 
-size_t Machine_Binding_getVariableBinding(Machine_Binding const* self, Machine_String* name) {
+size_t Machine_Binding_getVariableBinding(Machine_Binding const* self, Ring2_String* name) {
   MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_Binding, getVariableBinding, name);
 }
 
@@ -147,31 +147,31 @@ void Machine_Binding_activate(Machine_Binding* self) {
   MACHINE_VIRTUALCALL_NORETURN_NOARGS(Machine_Binding, activate);
 }
 
-void Machine_Binding_addUpdateConstant(Machine_Binding* self, Machine_String* name,
+void Machine_Binding_addUpdateConstant(Machine_Binding* self, Ring2_String* name,
                                        Machine_Value const* value) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_Binding, addUpdateConstant, name, value);
 }
 
-void Machine_Binding_bindMatrix4(Machine_Binding* self, Machine_String* name,
+void Machine_Binding_bindMatrix4(Machine_Binding* self, Ring2_String* name,
                                  Machine_Math_Matrix4 const* value) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_Binding, bindMatrix4, name, value);
 }
 
-void Machine_Binding_bindVector2(Machine_Binding* self, Machine_String* name,
+void Machine_Binding_bindVector2(Machine_Binding* self, Ring2_String* name,
                                  Machine_Math_Vector2 const* value) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_Binding, bindVector2, name, value);
 }
 
-void Machine_Binding_bindVector3(Machine_Binding* self, Machine_String* name,
+void Machine_Binding_bindVector3(Machine_Binding* self, Ring2_String* name,
                                  Machine_Math_Vector3 const* value) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_Binding, bindVector3, name, value);
 }
 
-void Machine_Binding_bindVector4(Machine_Binding* self, Machine_String* name,
+void Machine_Binding_bindVector4(Machine_Binding* self, Ring2_String* name,
                                  Machine_Math_Vector4 const* value) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_Binding, bindVector4, name, value);
 }
 
-void Machine_Binding_bindSampler(Machine_Binding* self, Machine_String* name, const size_t value) {
+void Machine_Binding_bindSampler(Machine_Binding* self, Ring2_String* name, const size_t value) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_Binding, bindSampler, name, value);
 }

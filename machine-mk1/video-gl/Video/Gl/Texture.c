@@ -15,7 +15,7 @@ static void Machine_Gl_Texture_destruct(Machine_Gl_Texture* self) {
 
 void Machine_Gl_Texture_construct_fromImage(Machine_Gl_Texture* self, Machine_Image* image) {
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { {Machine_ValueFlag_Void, Machine_Void_Void} };
+  static Machine_Value const ARGUMENTS[] = { {Machine_ValueFlag_Void, Ring2_Void_Void} };
   Machine_Texture_construct((Machine_Texture*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   Machine_UtilitiesGl_call(glGenTextures(1, &self->id));
   Machine_UtilitiesGl_call(glBindTexture(GL_TEXTURE_2D, self->id));
@@ -25,7 +25,7 @@ void Machine_Gl_Texture_construct_fromImage(Machine_Gl_Texture* self, Machine_Im
   Machine_UtilitiesGl_call(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
   Machine_UtilitiesGl_call(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
 
-  Machine_Integer width, height;
+  Ring2_Integer width, height;
   Machine_Image_getSize((Machine_Image const *)image, &width, &height);
   Machine_PixelFormat pixelFormat = Machine_Image_getPixelFormat(image);
   void const* pixels = Machine_Image_getPixels(image);
@@ -59,7 +59,7 @@ void Machine_Gl_Texture_construct_fromImage(Machine_Gl_Texture* self, Machine_Im
                                           pixels));
     break;
   default:
-    Machine_setStatus(Machine_Status_InvalidArgument);
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();
   };
   Machine_setClassType((Machine_Object*)self, Machine_Texture_getType());
@@ -69,9 +69,8 @@ void Machine_Gl_Texture_construct(Machine_Gl_Texture* self, size_t numberOfArgum
   if (numberOfArguments == 1) {
     Machine_Image* image = (Machine_Image*)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0, Machine_Image_getType());
     Machine_Gl_Texture_construct_fromImage(self, image);
-  }
-  else {
-    Machine_setStatus(Machine_Status_InvalidNumberOfArguments);
+  } else {
+    Ring1_Status_set(Ring1_Status_InvalidNumberOfArguments);
     Ring2_jump();
   }
 }

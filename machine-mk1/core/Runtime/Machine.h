@@ -5,14 +5,14 @@
 #define MACHINE_RUNTIME_MACHINE_H_INCLUDED
 
 #if !defined(MACHINE_RUNTIME_PRIVATE)
-#error("Do not include this file directly, include `_Runtime.h` instead.")
+#error("Do not include `Runtime/Machine.h` directly, include `_Runtime.h` instead.")
 #endif
-#include "Runtime/Status.h"
+#include "Ring1/Result.h"
 
 /// @brief Startup the machine.
 /// @warning Undefined if the machine is already initialized.
 /// @return #Machine_Status_Success on success, a non-zero Machine_Status value on failure.
-Machine_StatusValue Machine_startup();
+Ring1_Result Machine_startup();
 
 /// @brief Shutdown the machine.
 /// Finalize and deallocate all objects.

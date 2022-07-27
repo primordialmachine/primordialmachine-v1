@@ -6,7 +6,7 @@
 
 char const* Machine_UtilitiesGl_toString(GLenum error);
 
-Machine_StatusValue Machine_UtilitiesGl_toStatus(GLenum error);
+Ring1_Status Machine_UtilitiesGl_toStatus(GLenum error);
 
 char const* Machine_UtilitiesGl_toString(GLenum error) {
   switch (error) {
@@ -49,24 +49,24 @@ char const* Machine_UtilitiesGl_toString(GLenum error) {
   };
 }
 
-Machine_StatusValue Machine_UtilitiesGl_toStatus(GLenum error) {
+Ring1_Status Machine_UtilitiesGl_toStatus(GLenum error) {
   switch (error) {
     case GL_INVALID_ENUM:
-      return Machine_Status_InvalidArgument;
+      return Ring1_Status_InvalidArgument;
     case GL_INVALID_VALUE:
-      return Machine_Status_InvalidArgument;
+      return Ring1_Status_InvalidArgument;
     case GL_INVALID_OPERATION:
-      return Machine_Status_InvalidOperation;
+      return Ring1_Status_InvalidOperation;
     case GL_INVALID_FRAMEBUFFER_OPERATION:
-      return Machine_Status_InvalidOperation;
+      return Ring1_Status_InvalidOperation;
     case GL_OUT_OF_MEMORY:
-      return Machine_Status_AllocationFailed;
+      return Ring1_Status_AllocationFailed;
     case GL_STACK_UNDERFLOW:
     case GL_STACK_OVERFLOW:
-      return Machine_Status_AllocationFailed;
+      return Ring1_Status_AllocationFailed;
     case GL_NO_ERROR:
     default:
-      return Machine_Status_Success;
+      return Ring1_Status_Success;
   };
 }
 
@@ -76,7 +76,7 @@ void Machine_UtilitiesGl_postCall(char const* file, int line, char const* functi
     char const* error = Machine_UtilitiesGl_toString(errorCode);
     Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "%s failed with %s\n", function,
                 error);
-    Machine_setStatus(Machine_UtilitiesGl_toStatus(errorCode));
+    Ring1_Status_set(Machine_UtilitiesGl_toStatus(errorCode));
     Ring2_jump();
   }
 }

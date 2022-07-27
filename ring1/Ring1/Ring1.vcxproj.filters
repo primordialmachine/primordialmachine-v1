@@ -258,6 +258,12 @@
     <Filter Include="Quelldateien\Ring1\Conversion">
       <UniqueIdentifier>{0a764751-d201-403c-9144-9cce9f2a7f6b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring1\FileSystem">
+      <UniqueIdentifier>{7eee2a45-4bea-4408-ba27-3aab62f62234}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\FileSystem">
+      <UniqueIdentifier>{88708724-eb9e-43e5-9356-76722653f1a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring1\Intrinsic\Subtract\subtract.h">
@@ -644,6 +650,27 @@
     <ClInclude Include="Ring1\Conversion\_Parser.h">
       <Filter>Headerdateien\Ring1\Conversion</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\FileSystem.h">
+      <Filter>Headerdateien\Ring1</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\ExistingFilePolicy.h">
+      <Filter>Headerdateien\Ring1\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\FileAccessMode.h">
+      <Filter>Headerdateien\Ring1\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\NonExistingFilePolicy.h">
+      <Filter>Headerdateien\Ring1\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Ring1.h">
+      <Filter>Headerdateien\Ring1</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Crt.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\InlineArray.h">
+      <Filter>Headerdateien\Ring1</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring1\Intrinsic\CheckReturn.c">
@@ -843,6 +870,27 @@
     </ClCompile>
     <ClCompile Include="Ring1\Conversion\_Parser.c">
       <Filter>Quelldateien\Ring1\Conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem.c">
+      <Filter>Quelldateien\Ring1</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\ExistingFilePolicy.c">
+      <Filter>Quelldateien\Ring1\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\FileAccessMode.c">
+      <Filter>Quelldateien\Ring1\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\NonExistingFilePolicy.c">
+      <Filter>Quelldateien\Ring1\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Ring1.c">
+      <Filter>Quelldateien\Ring1</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Crt.c">
+      <Filter>Quelldateien\Ring1</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\InlineArray.c">
+      <Filter>Quelldateien\Ring1</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

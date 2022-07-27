@@ -9,7 +9,7 @@
 #endif
 #include "_Runtime.h"
 
-#define DefineSignal(Name, String) Machine_String* Machine_Input_SignalName_##Name();
+#define DefineSignal(Name, String) Ring2_String* Machine_Input_SignalName_##Name();
 #include "Input/Signals.i"
 #undef DefineSignal
 

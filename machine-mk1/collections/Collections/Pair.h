@@ -36,6 +36,6 @@ Machine_Pair* Machine_Pair_create(Machine_Value first, Machine_Value second);
 /// @param self This pair.
 /// @param index The index. Must be @a 0 or @a 1.
 /// @return The value.
-Machine_Value Machine_Pair_get(Machine_Pair* self, Machine_Integer index);
+Machine_Value Machine_Pair_get(Machine_Pair* self, Ring2_Integer index);
 
 #endif // MACHINE_COLLECTIONS_PAIR_H_INCLUDED

@@ -72,8 +72,8 @@ static void Rectangle2Scene_onCanvasSizeChanged(Rectangle2Scene* self,
   Machine_Rectangle2_setRectangle(self->rectangle2, r);
 }
 
-static void Rectangle2Scene_onUpdate(Rectangle2Scene* self, Machine_Real width,
-                                     Machine_Real height) {
+static void Rectangle2Scene_onUpdate(Rectangle2Scene* self, Ring2_Real32 width,
+                                     Ring2_Real32 height) {
   Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
   Rectangle2Scene_onCanvasSizeChanged(self, Machine_CanvasSizeChangedEvent_create(width, height));
   // Clear color buffer.
@@ -111,10 +111,8 @@ Rectangle2Scene* Rectangle2Scene_create(Machine_VideoContext* videoContext) {
   static size_t const NUMBER_OF_ARGUMENTS = 1;
   Machine_Value ARGUMENTS[1];
   Machine_Value_setObject(&(ARGUMENTS[0]), (Machine_Object*)videoContext);
-  Rectangle2Scene* self
-      = (Rectangle2Scene*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Rectangle2Scene* self = (Rectangle2Scene*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   if (!self) {
-    Machine_setStatus(Machine_Status_AllocationFailed);
     Ring2_jump();
   }
   return self;

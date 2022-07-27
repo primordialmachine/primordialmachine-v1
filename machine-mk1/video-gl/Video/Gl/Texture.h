@@ -5,7 +5,7 @@
 #define MACHINE_GL_TEXTURE_H_INCLUDED
 
 #if !defined(MACHINE_VIDEO_GL_PRIVATE)
-#error("Do not include this file directly, include `_Video_Gl.h` instead.")
+#error("Do not include `Video/Gl/Texture.h` directly, include `_Video_Gl.h` instead.")
 #endif
 #include "Video/Gl/UtilitiesGl.h"
 #include "_Video.h"

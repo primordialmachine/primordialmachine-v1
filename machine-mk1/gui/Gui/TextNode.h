@@ -24,12 +24,12 @@ Machine_Gui_TextNode* Machine_Gui_TextNode_create(Machine_Gui_Context* context);
 /// @brief Set the text.
 /// @param self This text node.
 /// @param text The text.
-void Machine_Gui_TextNode_setText(Machine_Gui_TextNode* self, Machine_String* text);
+void Machine_Gui_TextNode_setText(Machine_Gui_TextNode* self, Ring2_String* text);
 
 /// @brief Get the text.
 /// @param self This text node.
 /// @return The text.
-Machine_String* Machine_Gui_TextNode_getText(Machine_Gui_TextNode const* self);
+Ring2_String* Machine_Gui_TextNode_getText(Machine_Gui_TextNode const* self);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 

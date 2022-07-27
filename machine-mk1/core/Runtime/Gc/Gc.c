@@ -4,7 +4,7 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/Gc/Gc.h"
 
-#include "Ring2/Gc.h"
+#include "Ring2/_Include.h"
 #include "Ring1/Status.h"
 #include "Runtime/WeakReference.h"
 #include "Runtime/Object/Object.h"
@@ -43,7 +43,6 @@ void* Machine_Gc_allocate(Machine_Gc_AllocationArguments const* arguments) {
   void* pt = NULL;
   if (Ring1_Memory_allocate(&pt, sizeof(Ring2_Gc_Tag)
                             + arguments->suffixSize)) {
-    Ring1_Status_set(Ring1_Status_Success);
     return NULL;
   }
   g_objectCount++;

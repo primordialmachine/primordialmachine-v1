@@ -4,10 +4,10 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/Type.h"
 
-#include "Ring2/JumpTarget.h"
+#include "Ring2/_Include.h"
 #include "Runtime/Object/ClassType.module.h"
 #include "Runtime/Object/InterfaceType.module.h"
-#include "Runtime/Status.h"
+#include "Ring1/Status.h"
 #include "Runtime/Type.module.h"
 
 void Machine_Type_ensureInitialized(Machine_Type* self) {
@@ -56,8 +56,8 @@ static bool ini(Machine_InterfaceType const* x, Machine_InterfaceType const* y) 
     return true;
   }
   for (size_t i = 0, n = x->extends.size; i < n; ++i) {
-    Machine_InterfaceType const* z = (Machine_InterfaceType const*)Machine_Eal_InlineArray_getAt(
-        (Machine_Eal_InlineArray*)&x->extends, i);
+    Machine_InterfaceType const* z = (Machine_InterfaceType const*)Ring1_InlineArray_getAt(
+        (Ring1_InlineArray*)&x->extends, i);
     if (ini(z, y)) {
       return true;
     }
@@ -75,7 +75,7 @@ static bool cni(Machine_ClassType const* x, Machine_InterfaceType const* y) {
   // => x is a sub type of y
   for (size_t i = 0, n = ((Machine_ClassType*)x)->interfaces.implementations2.size; i < n; ++i) {
     Machine_InterfaceImplementation const* implementation
-        = (Machine_InterfaceImplementation*)Machine_Eal_InlineArray_getAt(
+        = (Machine_InterfaceImplementation*)Ring1_InlineArray_getAt(
             &(((Machine_ClassType*)x)->interfaces.implementations2), i);
     if (ini(implementation->interfaceType, (Machine_InterfaceType const*)y)) {
       return true;
@@ -92,7 +92,7 @@ static bool cni(Machine_ClassType const* x, Machine_InterfaceType const* y) {
 
 bool Machine_Type_isSubTypeOf(Machine_Type const* self, Machine_Type const* other) {
   if (!self || !other) {
-    Machine_setStatus(Machine_Status_InvalidArgument);
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();
   }
   if (self == other) {

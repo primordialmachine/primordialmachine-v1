@@ -5,7 +5,7 @@
 #define MACHINE_VIDEO_GL_CANVASUTILITIES_INPUT_H_INCLUDED
 
 #if !defined(MACHINE_VIDEO_GL_PRIVATE)
-#error("Do not include this file directly, include `_Video_Gl.h` instead.")
+#error("Do not include `Video/Gl/CanvasUtilities.h` directly, include `_Video_Gl.h` instead.")
 #endif
 #include "Video/Gl/Canvas.h"
 

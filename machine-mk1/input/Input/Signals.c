@@ -9,7 +9,7 @@
 /// @a false otherwise.
 static bool g_registered = true;
 
-#define DefineSignal(NAME, STRING) static Machine_String* _##NAME = NULL;
+#define DefineSignal(NAME, STRING) static Ring2_String* _##NAME = NULL;
 #include "Input/Signals.i"
 #undef DefineSignal
 
@@ -27,21 +27,20 @@ static void uninitializeCallback() {
 static void ensureInitialized() {
   if (!g_registered) {
     if (!Machine_registerStaticVariables(&uninitializeCallback)) {
-      Machine_setStatus(Machine_Status_AllocationFailed);
       Ring2_jump();
     }
     g_registered = true;
   }
 #define DefineSignal(NAME, STRING)                                                                 \
   if (!_##NAME) {                                                                                  \
-    _##NAME = Machine_String_create(STRING, c_strzt_length(STRING));                               \
+    _##NAME = Machine_String_create(STRING, crt_strlen(STRING));                               \
   }
 #include "Input/Signals.i"
 #undef DefineSignal
 }
 
 #define DefineSignal(NAME, STRING)                                                                 \
-  Machine_String* Machine_Input_SignalName_##NAME() {                                              \
+  Ring2_String* Machine_Input_SignalName_##NAME() {                                                \
     if (!_##NAME) {                                                                                \
       ensureInitialized();                                                                         \
     }                                                                                              \

@@ -5,7 +5,7 @@
 #define MACHINE_VIDEO_GL_UTILITIESGL_H_INCLUDED
 
 #if !defined(MACHINE_VIDEO_GL_PRIVATE)
-#error("Do not include this file directly, include `_Video_Gl.h` instead.")
+#error("Do not include `Video/Gl/UtilitiesGl.h` directly, include `_Video_Gl.h` instead.")
 #endif
 #include "_Runtime.h"
 

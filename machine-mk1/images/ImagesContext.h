@@ -4,7 +4,7 @@
 
 
 #if !defined(MACHINE_IMAGES_PRIVATE)
-#error("Do not include this file directly, include `_Images.h` instead.")
+#error("Do not include `Images/ImagesContext.h` directly, include `_Images.h` instead.")
 #endif
 #include "_Video.h"
 

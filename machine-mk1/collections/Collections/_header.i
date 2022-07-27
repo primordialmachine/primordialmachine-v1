@@ -1,5 +1,5 @@
 #if !defined(MACHINE_COLLECTIONS_PRIVATE)
-#error("Do not include this file directly, include `_Collections.h` instead.")
+#error("Do not include `Collections/_header.i` directly, include `_Collections.h` instead.")
 #endif
 
 #include "_Runtime.h"

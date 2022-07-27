@@ -5,7 +5,7 @@
 #define MACHINE_GUI_LAYOUTMODEL_H_INCLUDED
 
 #if !defined(MACHINE_GUI_PRIVATE)
-#error("Do not include this file directly, include `_Gui.h` instead.")
+#error("Do not include `Gui/LayoutModel.h` file directly, include `_Gui.h` instead.")
 #endif
 #include "_Math.h"
 
@@ -66,7 +66,7 @@ struct Machine_Gui_LayoutModel {
   Machine_Gui_Layout_Justification primaryJustification;
 
   /// @brief The primary inter child spacing.
-  Machine_Real primaryInterChildSpacing;
+  Ring2_Real32 primaryInterChildSpacing;
 };
 
 /// @brief Construct a layout model.
@@ -102,13 +102,13 @@ void Machine_Gui_LayoutModel_setPrimaryJustification(
 /// @brief Get the primary inter child spacing of this layout model.
 /// @param self This layout model.
 /// @return The primary inter child spacing.
-Machine_Real Machine_Gui_LayoutModel_getPrimaryInterChildSpacing(
+Ring2_Real32 Machine_Gui_LayoutModel_getPrimaryInterChildSpacing(
     Machine_Gui_LayoutModel const* self);
 
 /// @brief Set the primary inter child spacing of this layout model.
 /// @param self This layout model.
 /// @param width The primary inter child spacing.
 void Machine_Gui_LayoutModel_setPrimaryInterChildspacing(Machine_Gui_LayoutModel* self,
-                                                         Machine_Real primaryInterChildSpacing);
+                                                         Ring2_Real32 primaryInterChildSpacing);
 
 #endif // MACHINE_GUI_LAYOUTMODEL_H_INCLUDED

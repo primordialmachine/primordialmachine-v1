@@ -7,7 +7,6 @@
 #include "Ring1/Status.h"
 #include "Collections/ArrayList.h"
 #include "Collections/Collection.h"
-#include "Collections/GrowthStrategy.h"
 #include "Collections/List.h"
 #include "Collections/Map.h"
 #include "Collections/Pair.h"
@@ -35,9 +34,9 @@ static size_t const MAXIMAL_CAPACITY = SIZE_MAX / sizeof(_MapNode*);
 #include <math.h>
 #include <float.h>
 
-static Machine_Boolean defaultEqual(Machine_Value const* x, Machine_Value const* y) {
+static Ring2_Boolean defaultEqual(Machine_Value const* x, Machine_Value const* y) {
   if (x->tag != y->tag)
-    return Machine_Boolean_False;
+    return Ring2_Boolean_False;
   if (Machine_Value_isReal(x)) {
     // If only one value is NaN, then the values are not equal.
     // If both values are are NaN, then the values are equal.
@@ -70,10 +69,6 @@ static void maybeResize(Machine_HashMap* self) {
     _MapNode** newBuckets = NULL;
     if (Ring1_Memory_allocateArray((void **) & newBuckets, newCapacity, sizeof(_MapNode*))) {
       Ring1_Status_set(Ring1_Status_Success);
-      /*
-      Machine_setStatus(Machine_Status_AllocationFailed);
-      Ring2_jump();
-      */
       // Do *not* raise an exception.
       return;
     }
@@ -97,7 +92,7 @@ static void maybeResize(Machine_HashMap* self) {
 
 static void set(Machine_HashMap* self, Machine_Value key, Machine_Value value) {
   _Map* pimpl = (_Map*)self->pimpl;
-  Machine_Integer hashValue = Machine_Value_getHashValue(&key);
+  Ring2_Integer hashValue = Machine_Value_getHashValue(&key);
   size_t hashIndex = ((size_t)hashValue) % pimpl->capacity;
   _MapNode* node;
   for (node = pimpl->buckets[hashIndex]; NULL != node; node = node->next) {
@@ -111,8 +106,6 @@ static void set(Machine_HashMap* self, Machine_Value key, Machine_Value value) {
   }
   if (!node) {
     if (Ring1_Memory_allocate(&node, sizeof(_MapNode))) {
-      Ring1_Status_set(Ring1_Status_Success);
-      Machine_setStatus(Machine_Status_AllocationFailed);
       Ring2_jump();
     }
   }
@@ -127,7 +120,7 @@ static void set(Machine_HashMap* self, Machine_Value key, Machine_Value value) {
 
 static Machine_Value get(Machine_HashMap const* self, Machine_Value key) {
   _Map const* pimpl = (_Map const*)self->pimpl;
-  Machine_Integer hashValue = Machine_Value_getHashValue(&key);
+  Ring2_Integer hashValue = Machine_Value_getHashValue(&key);
   size_t hashIndex = ((size_t)hashValue) % pimpl->capacity;
   for (_MapNode* node = pimpl->buckets[hashIndex]; NULL != node; node = node->next) {
     if (node->hashValue == hashValue) {
@@ -137,7 +130,7 @@ static Machine_Value get(Machine_HashMap const* self, Machine_Value key) {
     }
   }
   Machine_Value value;
-  Machine_Value_setVoid(&value, Machine_Void_Void);
+  Machine_Value_setVoid(&value, Ring2_Void_Void);
   return value;
 }
 
@@ -205,8 +198,6 @@ void Machine_HashMap_construct(Machine_HashMap* self, size_t numberOfArguments,
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   _Map* pimpl = NULL;
   if (Ring1_Memory_allocate(&pimpl, sizeof(_Map))) {
-    Ring1_Status_set(Ring1_Status_Success);
-    Machine_setStatus(Machine_Status_AllocationFailed);
     Ring2_jump();
   }
   pimpl->size = 0;
@@ -215,8 +206,6 @@ void Machine_HashMap_construct(Machine_HashMap* self, size_t numberOfArguments,
   if (Ring1_Memory_allocateArray((void **) & pimpl->buckets, pimpl->capacity, sizeof(_MapNode*))) {
     Ring1_Memory_deallocate(pimpl);
     pimpl = NULL;
-    Ring1_Status_set(Ring1_Status_Success);
-    Machine_setStatus(Machine_Status_AllocationFailed);
     Ring2_jump();
   }
   for (size_t i = 0, n = pimpl->capacity; i < n; ++i) {
@@ -229,7 +218,7 @@ void Machine_HashMap_construct(Machine_HashMap* self, size_t numberOfArguments,
 Machine_HashMap* Machine_HashMap_create() {
   Machine_ClassType* ty = Machine_HashMap_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
   Machine_HashMap* self
       = (Machine_HashMap*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;

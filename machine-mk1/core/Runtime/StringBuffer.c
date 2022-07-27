@@ -25,14 +25,14 @@ static void Machine_StringBuffer_visit(Machine_StringBuffer* self) {
   }
 }
 
-static Machine_String* Machine_StringBuffer_toStringImpl(Machine_StringBuffer const* self) {
+static Ring2_String* Machine_StringBuffer_toStringImpl(Machine_StringBuffer const* self) {
   return Machine_String_create(Machine_ByteBuffer_getBytes(self->byteBuffer),
                                Machine_ByteBuffer_getNumberOfBytes(self->byteBuffer));
 }
 
 static void Machine_StringBuffer_constructClass(Machine_StringBuffer_Class* self) {
   ((Machine_Object_Class*)self)->toString
-      = (Machine_String * (*)(Machine_Object const*)) & Machine_StringBuffer_toStringImpl;
+      = (Ring2_String * (*)(Machine_Object const*)) & Machine_StringBuffer_toStringImpl;
 }
 
 static void Machine_StringBuffer_construct(Machine_StringBuffer* self, size_t numberOfArguments,
@@ -49,7 +49,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_StringBuffer, Machine_Object, &Machine_StringBu
 Machine_StringBuffer* Machine_StringBuffer_create() {
   Machine_ClassType* ty = Machine_StringBuffer_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
   Machine_StringBuffer* self
       = (Machine_StringBuffer*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
@@ -59,7 +59,7 @@ void Machine_StringBuffer_appendBytes(Machine_StringBuffer* self, char const* p,
   Machine_ByteBuffer_appendBytes(self->byteBuffer, p, n);
 }
 
-void Machine_StringBuffer_appendString(Machine_StringBuffer* self, Machine_String const* s) {
+void Machine_StringBuffer_appendString(Machine_StringBuffer* self, Ring2_String const* s) {
   Machine_ByteBuffer_appendBytes(self->byteBuffer, Machine_String_getBytes(s),
                                  Machine_String_getNumberOfBytes(s));
 }
@@ -68,7 +68,7 @@ void Machine_StringBuffer_prependBytes(Machine_StringBuffer* self, const char* p
   Machine_ByteBuffer_prependBytes(self->byteBuffer, p, n);
 }
 
-void Machine_StringBuffer_prependString(Machine_StringBuffer* self, Machine_String const* s) {
+void Machine_StringBuffer_prependString(Machine_StringBuffer* self, Ring2_String const* s) {
   Machine_ByteBuffer_prependBytes(self->byteBuffer, Machine_String_getBytes(s),
                                   Machine_String_getNumberOfBytes(s));
 }

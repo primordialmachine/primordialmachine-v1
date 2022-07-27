@@ -23,7 +23,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gdl_Parser, Machine_Object, &Machine_Gdl_Parser
 Machine_Gdl_Parser* Machine_Gdl_Parser_create() {
   Machine_ClassType* ty = Machine_Gdl_Parser_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
   Machine_Gdl_Parser* self = (Machine_Gdl_Parser*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }
@@ -32,7 +32,7 @@ Machine_Gdl_Parser* Machine_Gdl_Parser_create() {
 
 static void checkKind(Machine_Gdl_Parser* self, Machine_Gdl_TokenKind expected) {
   if (currentKind(self) != expected) {
-    Machine_setStatus(Machine_Status_SyntacticalError);
+    Ring1_Status_set(Ring1_Status_InvalidSyntactics);
     Ring2_jump();
   }
 }
@@ -68,7 +68,7 @@ static Machine_Gdl_Node* parseMap(Machine_Gdl_Parser* self);
 static Machine_Gdl_Node* parseKey(Machine_Gdl_Parser* self) {
   Machine_Gdl_TokenKind x = currentKind(self);
   if (x != Machine_Gdl_TokenKind_Boolean && x != Machine_Gdl_TokenKind_Name && x != Machine_Gdl_TokenKind_Void) {
-    Machine_setStatus(Machine_Status_SyntacticalError);
+    Ring1_Status_set(Ring1_Status_InvalidSyntactics);
     Ring2_jump();
   }
   Machine_Gdl_Node* node = Machine_Gdl_Node_create(Machine_Gdl_NodeKind_Key, Machine_Gdl_Scanner_getTokenText(self->scanner));
@@ -110,7 +110,7 @@ static Machine_Gdl_Node* parseValue(Machine_Gdl_Parser* self) {
     return node;
   } break;
   default:
-    Machine_setStatus(Machine_Status_SyntacticalError);
+    Ring1_Status_set(Ring1_Status_InvalidSyntactics);
     Ring2_jump();
   };
 }
@@ -168,7 +168,7 @@ static Machine_Gdl_Node* parseMap(Machine_Gdl_Parser* self) {
   return parent;
 }
 
-Machine_Gdl_Node* Machine_Gdl_Parser_parse(Machine_Gdl_Parser* self, Machine_String* inputName, Machine_ByteBuffer* inputBytes) {
+Machine_Gdl_Node* Machine_Gdl_Parser_parse(Machine_Gdl_Parser* self, Ring2_String* inputName, Machine_ByteBuffer* inputBytes) {
   Machine_Gdl_Scanner_setInput(self->scanner, inputName, inputBytes);
   checkKind(self, Machine_Gdl_TokenKind_StartOfInput);
   next(self);
@@ -187,7 +187,7 @@ Machine_Gdl_Node* Machine_Gdl_Parser_parse(Machine_Gdl_Parser* self, Machine_Str
     Machine_List_append(parent->children, temporary);
   } break;
   default:
-    Machine_setStatus(Machine_Status_SyntacticalError);
+    Ring1_Status_set(Ring1_Status_InvalidSyntactics);
     Ring2_jump();
   };
   return parent;

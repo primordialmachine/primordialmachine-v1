@@ -22,9 +22,9 @@ struct Machine_Gdl_Node {
   Machine_List* children;
 
   Machine_Gdl_NodeKind kind;
-  Machine_String* text;
+  Ring2_String* text;
 };
 
-Machine_Gdl_Node* Machine_Gdl_Node_create(Machine_Gdl_NodeKind kind, Machine_String* text);
+Machine_Gdl_Node* Machine_Gdl_Node_create(Machine_Gdl_NodeKind kind, Ring2_String* text);
 
 #endif // MACHINE_GDL_SYNTACTICAL_NODE_H_INCLUDED

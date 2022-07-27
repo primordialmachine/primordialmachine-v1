@@ -39,9 +39,6 @@
     <ClCompile Include="Collections\ArrayDeque.c">
       <Filter>Quelldateien\Collections</Filter>
     </ClCompile>
-    <ClCompile Include="Collections\GrowthStrategy.c">
-      <Filter>Quelldateien\Collections</Filter>
-    </ClCompile>
     <ClCompile Include="Collections\Collection.c">
       <Filter>Quelldateien\Collections</Filter>
     </ClCompile>
@@ -72,9 +69,6 @@
       <Filter>Headerdateien\Collections</Filter>
     </ClInclude>
     <ClInclude Include="Collections\ArrayDeque.h">
-      <Filter>Headerdateien\Collections</Filter>
-    </ClInclude>
-    <ClInclude Include="Collections\GrowthStrategy.h">
       <Filter>Headerdateien\Collections</Filter>
     </ClInclude>
     <ClInclude Include="Collections\Collection.h">

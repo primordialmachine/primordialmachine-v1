@@ -43,7 +43,7 @@ static inline uint8_t Machine_PixelFormat_getBytesPerPixel(Machine_PixelFormat s
     case Machine_PixelFormat_GRAYSCALE:
       return 1;
     default:
-      Machine_setStatus(Machine_Status_InvalidArgument);
+      Ring1_Status_set(Ring1_Status_InvalidArgument);
       Ring2_jump();
   };
 }

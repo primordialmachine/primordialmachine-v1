@@ -27,8 +27,8 @@ void Machine_Video_Canvas_construct(Machine_Video_Canvas* self, size_t numberOfA
   Machine_setClassType((Machine_Object*)self, Machine_Video_Canvas_getType());
 }
 
-void Machine_Video_Canvas_getFrameBuffersSize(Machine_Video_Canvas* self, Machine_Integer* width,
-                                              Machine_Integer* height) {
+void Machine_Video_Canvas_getFrameBuffersSize(Machine_Video_Canvas* self, Ring2_Integer* width,
+                                              Ring2_Integer* height) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_Video_Canvas, getFrameBuffersSize, width, height);
 }
 
@@ -48,7 +48,7 @@ void Machine_Video_Canvas_pollEvents(Machine_Video_Canvas* self) {
   MACHINE_VIRTUALCALL_NORETURN_NOARGS(Machine_Video_Canvas, pollEvents);
 }
 
-Machine_Boolean Machine_Video_Canvas_getQuitRequested(Machine_Video_Canvas* self) {
+Ring2_Boolean Machine_Video_Canvas_getQuitRequested(Machine_Video_Canvas* self) {
   MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_Video_Canvas, getQuitRequested);
 }
 

@@ -1,5 +1,5 @@
 #if !defined(MACHINE_VIDEO_PRIVATE)
-#error("Do not include this file directly, include `_Video.h` instead.")
+#error("Do not include `Video/_header.i` directly, include `_Video.h` instead.")
 #endif
 
 #include "_Collections.h"

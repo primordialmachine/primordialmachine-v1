@@ -52,8 +52,6 @@ static void Machine_VertexDescriptor_construct(Machine_VertexDescriptor* self,
   self->n = 0;
   self->p = NULL;
   if (Ring1_Memory_allocate(&self->p, 0)) {
-    Ring1_Status_set(Ring1_Status_Success);
-    Machine_setStatus(Machine_Status_AllocationFailed);
     Ring2_jump();
   }
   Machine_setClassType((Machine_Object*)self, Machine_VertexDescriptor_getType());
@@ -69,7 +67,7 @@ static void Machine_VertexDescriptor_destruct(Machine_VertexDescriptor* self) {
 Machine_VertexDescriptor* Machine_VertexDescriptor_create() {
   Machine_ClassType* ty = Machine_VertexDescriptor_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
 #if defined(TRACE_VISIT) && (1) == TRACE_VISIT
   Machine_VertexDescriptor* self
       = (Machine_VertexDescriptor*)Machine_allocateClassObjec(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
@@ -133,8 +131,6 @@ void Machine_VertexDescriptor_insert(Machine_VertexDescriptor* self, size_t inde
   size_t n = self->n + 1;
   Machine_VertexElementSemantics* p = NULL;
   if (Ring1_Memory_reallocateArray(&p, self->p, n, sizeof(Machine_VertexElementSemantics))) {
-    Ring1_Status_set(Ring1_Status_Success);
-    Machine_setStatus(Machine_Status_AllocationFailed);
     Ring2_jump();
   }
   if (index < self->n) {

@@ -6,7 +6,7 @@
   if ((Machine_Gdl_Scanner_getTokenKind(scanner) != (EXPECTED_TOKEN_KIND))) \
   { \
     Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "expected token kind\n"); \
-    Machine_setStatus(Machine_Status_LexicalError); \
+    Ring1_Status_set(Ring1_Status_InvalidLexics); \
     Ring2_jump(); \
   }
 

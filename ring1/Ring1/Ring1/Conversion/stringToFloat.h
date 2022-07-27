@@ -13,7 +13,7 @@
 /// @return #Ring1_Result_Success on success, #Ring1_Result_Failure on failure.
 /// @success <code>*result</code> was assigned the <code>float</code> value.
 /// @failure <code>result</code> was not dereferenced.
-Ring1_Intrinsic_CheckReturn() Ring1_Result
+Ring1_CheckReturn() Ring1_Result
 Ring1_Conversion_stringToFloat
   (
     float *result,
@@ -24,7 +24,7 @@ Ring1_Conversion_stringToFloat
 /// @return #Ring1_Result_Success on success, #Ring1_Result_Failure on failure.
 /// @success <code>*result</code> was assigned the <code>double</code> value.
 /// @failure <code>result</code> was not dereferenced.
-Ring1_Intrinsic_CheckReturn() Ring1_Result
+Ring1_CheckReturn() Ring1_Result
 Ring1_Conversion_stringToDouble
   (
     double *result,

@@ -13,7 +13,7 @@ struct Machine_Image_Class {
   Machine_Object_Class parent;
 
   void const* (*getPixels)(Machine_Image const* self);
-  void (*getSize)(Machine_Image const* self, Machine_Integer* width, Machine_Integer* height);
+  void (*getSize)(Machine_Image const* self, Ring2_Integer* width, Ring2_Integer* height);
   Machine_PixelFormat (*getPixelFormat)(Machine_Image const* self);
 };
 
@@ -38,8 +38,8 @@ void const* Machine_Image_getPixels(Machine_Image const* self);
 /// Not dereferenced on error.
 /// @param {out] height A pointer to an @a int variable receiving the height on success.
 /// Not dereferenced on error.
-void Machine_Image_getSize(Machine_Image const* self, Machine_Integer* width,
-                           Machine_Integer* height);
+void Machine_Image_getSize(Machine_Image const* self, Ring2_Integer* width,
+                           Ring2_Integer* height);
 
 /// @brief Get the pixel format of this image.
 /// @param self This image.

@@ -10,13 +10,13 @@ MACHINE_DECLARE_CLASSTYPE(Machine_Video_Canvas);
 
 struct Machine_Video_Canvas_Class {
   Machine_Object_Class parent__;
-  void (*getFrameBuffersSize)(Machine_Video_Canvas* self, Machine_Integer* width,
-                              Machine_Integer* height);
+  void (*getFrameBuffersSize)(Machine_Video_Canvas* self, Ring2_Integer* width,
+                              Ring2_Integer* height);
   void (*maximizeCanvas)(Machine_Video_Canvas* self);
   void (*swapFrameBuffers)(Machine_Video_Canvas* self);
   void (*setCanvasIcons)(Machine_Video_Canvas* self, Machine_List* images);
   void (*pollEvents)(Machine_Video_Canvas* self);
-  Machine_Boolean (*getQuitRequested)(Machine_Video_Canvas* self);
+  Ring2_Boolean (*getQuitRequested)(Machine_Video_Canvas* self);
 };
 
 struct Machine_Video_Canvas {
@@ -35,8 +35,8 @@ void Machine_Video_Canvas_construct(Machine_Video_Canvas* self, size_t numberOfA
 /// @success
 /// - The width was assigned to *width.
 /// - The height was assigned to *height.
-void Machine_Video_Canvas_getFrameBuffersSize(Machine_Video_Canvas* self, Machine_Integer* width,
-                                              Machine_Integer* height);
+void Machine_Video_Canvas_getFrameBuffersSize(Machine_Video_Canvas* self, Ring2_Integer* width,
+                                              Ring2_Integer* height);
 
 /// @brief Maximize this canvas.
 /// @param self This canvas.
@@ -58,7 +58,7 @@ void Machine_Video_Canvas_pollEvents(Machine_Video_Canvas* self);
 /// @brief Get if the application was requested to quit.
 /// @param self This canvas.
 /// @return @a true if quit was requested, @a false otherwise.
-Machine_Boolean Machine_Video_Canvas_getQuitRequested(Machine_Video_Canvas* self);
+Ring2_Boolean Machine_Video_Canvas_getQuitRequested(Machine_Video_Canvas* self);
 
 /// @brief Subscribe to keyboard key pressed events.
 /// @param self This canvas.

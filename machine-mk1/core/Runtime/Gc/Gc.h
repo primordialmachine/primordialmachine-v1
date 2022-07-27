@@ -5,11 +5,10 @@
 #define MACHINE_RUNTIME_GC_GC_H_INCLUDED
 
 #if !defined(MACHINE_RUNTIME_PRIVATE)
-#error("Do not include this file directly, include `_Runtime.h` instead.")
+#error("Do not include `Runtime/Gc/Gc.h` directly, include `_Runtime.h` instead.")
 #endif
-#include "Ring2/Gc.h"
-#include "Runtime/Status.h"
-#include "_Eal.h"
+#include "Ring2/_Include.h"
+#include "Ring1/Result.h"
 
 /// @brief Initialize the GC module.
 /// @return #Ring1_Result_Success on success, #Ring1_Result_Failure on failure.

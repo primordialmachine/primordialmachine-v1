@@ -4,7 +4,7 @@
 
 
 #if !defined(MACHINE_RUNTIME_PRIVATE)
-#error("Do not include this file directly, include `_Runtime.h` instead.")
+#error("Do not include `Runtime/Object/Object.h` directly, include `_Runtime.h` instead.")
 #endif
 #include "Runtime/PrimitiveTypes.h"
 #include "Runtime/String.h"
@@ -17,9 +17,9 @@ typedef struct Machine_Object_Class Machine_Object_Class;
 typedef struct Machine_Object Machine_Object;
 
 struct Machine_Object_Class {
-  Machine_Integer (*getHashValue)(Machine_Object const* self);
-  Machine_Boolean(*isEqualTo)(Machine_Object const* self, Machine_Object const* other);
-  Machine_String* (*toString)(Machine_Object const* self);
+  Ring2_Integer (*getHashValue)(Machine_Object const* self);
+  Ring2_Boolean(*isEqualTo)(Machine_Object const* self, Machine_Object const* other);
+  Ring2_String* (*toString)(Machine_Object const* self);
 };
 
 struct Machine_Object {
@@ -31,18 +31,18 @@ Machine_ClassType* Machine_Object_getType();
 /// @brief Get the hash value of this object.
 /// @param self This object.
 /// @return The hash value.
-Machine_Integer Machine_Object_getHashValue(Machine_Object const* self);
+Ring2_Integer Machine_Object_getHashValue(Machine_Object const* self);
 
 /// @brief Get if an object is equal to another object.
 /// @param self This object.
 /// @param other The other object.
 /// @return @a true if this object is equal to another object, @a false otherwise.
-Machine_Boolean Machine_Object_isEqualTo(Machine_Object const* self, Machine_Object const* other);
+Ring2_Boolean Machine_Object_isEqualTo(Machine_Object const* self, Machine_Object const* other);
 
 /// @brief Convert an object to a <code>String</code> value.
 /// @param self This object.
 /// @return The <code>String</code> value.
-Machine_String* Machine_Object_toString(Machine_Object const* self);
+Ring2_String* Machine_Object_toString(Machine_Object const* self);
 
 /// @brief Construct this object.
 /// @param self This object.

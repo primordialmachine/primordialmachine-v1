@@ -4,13 +4,13 @@
 #define MACHINE_GUI_PRIVATE (1)
 #include "Gui/Gdl/ValueToReal.h"
 
-Machine_Real Machine_Gui_Gdl_valueToReal(Machine_Value const* value) {
+Ring2_Real32 Machine_Gui_Gdl_valueToReal(Machine_Value const* value) {
   if (!Machine_Value_isInteger(value) && !Machine_Value_isReal(value)) {
-    Machine_setStatus(Machine_Status_ConversionFailed);
+    Ring1_Status_set(Ring1_Status_ConversionFailed);
     Ring2_jump();
   }
   if (Machine_Value_isInteger(value)) {
-    return (Machine_Real)Machine_Value_getInteger(value);
+    return (Ring2_Real32)Machine_Value_getInteger(value);
   } else {
     return Machine_Value_getReal(value);
   }

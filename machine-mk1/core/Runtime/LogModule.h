@@ -5,10 +5,10 @@
 #define MACHINE_RUNTIME_LOGMODULE_H_INCLUDED
 
 #if !defined(MACHINE_RUNTIME_PRIVATE)
-#error("Do not include this file directly, include `_Runtime.h` instead.")
+#error("Do not include `Runtime/LogModule.h` directly, include `_Runtime.h` instead.")
 #endif
 #include "Runtime/Configuration.h"
-#include "Runtime/Status.h"
+#include "Ring1/Result.h"
 
 #if defined(MACHINE_WITH_LOG) && 1 == MACHINE_WITH_LOG
 

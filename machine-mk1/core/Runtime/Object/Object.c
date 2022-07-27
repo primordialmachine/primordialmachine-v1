@@ -3,26 +3,29 @@
 
 #include "Runtime/Assertions.h"
 #include "Ring2/JumpTarget.h"
+#include "Ring1/Hash.h"
 #include "Runtime/Object/ClassType.module.h"
 #include "Runtime/Object/InterfaceType.module.h"
 #include "Runtime/Type.module.h"
 #include <assert.h>
 
-static Machine_Integer Machine_Object_getHashValueImpl(Machine_Object const* self) {
-  return Machine_hashPointer_i64(self);
+static Ring2_Integer Machine_Object_getHashValueImpl(Machine_Object const* self) {
+  int64_t temporary;
+  Ring1_Hash_toI64_p(&temporary, self);
+  return temporary;
 }
 
-static Machine_Boolean Machine_Object_isEqualToImpl(Machine_Object const* self,
-                                                    Machine_Object const* other) {
+static Ring2_Boolean Machine_Object_isEqualToImpl(Machine_Object const* self,
+                                                  Machine_Object const* other) {
   return self == other;
 }
 
-static Machine_String* Machine_Object_toStringImpl(Machine_Object const* self) {
-  static_assert(INTPTR_MAX <= Machine_Integer_Greatest,
+static Ring2_String* Machine_Object_toStringImpl(Machine_Object const* self) {
+  static_assert(INTPTR_MAX <= Ring2_Integer_Greatest,
                 "Machine_Integer can not represent an identity value");
-  static_assert(INTPTR_MIN >= Machine_Integer_Least,
+  static_assert(INTPTR_MIN >= Ring2_Integer_Least,
                 "Machine_Integer can not represent an identity value");
-  return Machine_Integer_toString((Machine_Integer)(intptr_t)self);
+  return Machine_Integer_toString((Ring2_Integer)(intptr_t)self);
 }
 
 static void Machine_Object_constructClass(Machine_Object_Class* self) {
@@ -116,7 +119,6 @@ Machine_Object* Machine_allocateClassObject(Machine_ClassType* type, size_t numb
   };
   Machine_Object *o = Machine_Gc_allocate(&allocationArguments);
   if (!o) {
-    Machine_setStatus(Machine_Status_AllocationFailed);
     Ring2_jump();
   }
   Ring2_Gc_Tag* t = Ring2_Gc_toTag(o);
@@ -126,14 +128,14 @@ Machine_Object* Machine_allocateClassObject(Machine_ClassType* type, size_t numb
   return o;
 }
 
-Machine_Integer Machine_Object_getHashValue(Machine_Object const* self) {
+Ring2_Integer Machine_Object_getHashValue(Machine_Object const* self) {
   MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_Object, getHashValue);
 }
 
-Machine_Boolean Machine_Object_isEqualTo(Machine_Object const* self, Machine_Object const* other) {
+Ring2_Boolean Machine_Object_isEqualTo(Machine_Object const* self, Machine_Object const* other) {
   MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_Object, isEqualTo, other);
 }
 
-Machine_String* Machine_Object_toString(Machine_Object const* self) {
+Ring2_String* Machine_Object_toString(Machine_Object const* self) {
   MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_Object, toString);
 }

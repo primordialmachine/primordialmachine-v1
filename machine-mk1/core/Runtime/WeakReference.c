@@ -3,10 +3,10 @@
 
 #include "Runtime/Arguments.h"
 #include "Runtime/Gc/Gc.h"
-#include "Ring2/JumpTarget.h"
+#include "Ring2/_Include.h"
 
 static void callback(void* context) {
-  Machine_Value_setVoid(&((Machine_WeakReference*)context)->value, Machine_Void_Void);
+  Machine_Value_setVoid(&((Machine_WeakReference*)context)->value, Ring2_Void_Void);
 }
 
 static void Machine_WeakReference_construct(Machine_WeakReference* self, size_t numberOfArguments,

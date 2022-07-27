@@ -67,7 +67,7 @@ static bool isAlphabetic(Machine_Gdl_Scanner const* self) {
 /// <code>plusMinus? digit+</code>
 static void scanExponent(Machine_Gdl_Scanner* self) {
   if (!is(self, 'e') && !is(self, 'E')) {
-    Machine_setStatus(Machine_Status_LexicalError);
+    Ring1_Status_set(Ring1_Status_InvalidLexics);
     Ring2_jump();
   }
   saveAndNext(self);
@@ -75,7 +75,7 @@ static void scanExponent(Machine_Gdl_Scanner* self) {
     saveAndNext(self);
   }
   if (!isDigit(self)) {
-    Machine_setStatus(Machine_Status_LexicalError);
+    Ring1_Status_set(Ring1_Status_InvalidLexics);
     Ring2_jump();
   }
   do {

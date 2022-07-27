@@ -2,17 +2,18 @@
 #include "Runtime/Machine.h"
 
 #include "Runtime/Gc/Gc.h"
-#include "Ring2/JumpTarget.h"
+#include "Ring2/_Include.h"
 #include "Runtime/LogModule.h"
 #include "Runtime/StackModule.h"
 #include "Runtime/StaticVariablesModule.h"
 #include "Ring1/Time.h"
+#include "Ring1/Status.h"
 #include <stdio.h>
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 static const struct {
-  Machine_StatusValue (*initialize)();
+  Ring1_Result (*initialize)();
   void (*uninitialize)();
 } MODULES[] = {
   { &Machine_initializeLogModule, &Machine_uninitializeLogModule },
@@ -23,18 +24,17 @@ static const struct {
 };
 static size_t const NUMBER_OF_MODULES = 5;
 
-static Machine_StatusValue startupModules() {
+static Ring1_Result startupModules() {
   for (size_t i = 0, n = NUMBER_OF_MODULES; i < n; ++i) {
-    Machine_StatusValue status = MODULES[i].initialize();
-    if (status) {
+    if (MODULES[i].initialize()) {
       while (i > 0) {
         MODULES[i - 1].uninitialize();
         i--;
       }
-      return status;
+      return Ring1_Result_Failure;
     }
   }
-  return Machine_Status_Success;
+  return Ring1_Result_Success;
 }
 
 static void shutdownModules() {
@@ -49,16 +49,16 @@ static Ring1_Time_ModuleHandle g_timeModuleHandle = Ring1_Time_ModuleHandle_Inva
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-Machine_StatusValue Machine_startup() {
+Ring1_Result Machine_startup() {
   g_timeModuleHandle = Ring1_Time_ModuleHandle_acquire();
   if (!g_timeModuleHandle) {
-    return Machine_Status_EnvironmentFailed;
+    Ring1_Status_set(Ring1_Status_EnvironmentFailed);
+    return Ring1_Result_Failure;
   }
-  Machine_StatusValue status = startupModules();
-  if (status) {
-    return status;
+  if (startupModules()) {
+    return Ring1_Result_Failure;
   }
-  return Machine_Status_Success;
+  return Ring1_Result_Success;
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

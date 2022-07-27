@@ -33,7 +33,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gui_Signals_Context, Machine_Object,
 Machine_Gui_Signals_Context* Machine_Gui_Signals_Context_create() {
   Machine_ClassType* ty = Machine_Gui_Signals_Context_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Machine_Void_Void } };
+  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
   Machine_Gui_Signals_Context* self = (Machine_Gui_Signals_Context*)Machine_allocateClassObject(
       ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;

@@ -6,19 +6,19 @@
 #define MACHINE_RUNTIME_ARGUMENTS_H_INCLUDED
 
 #if !defined(MACHINE_RUNTIME_PRIVATE)
-#error("Do not include this file directly, include `_Runtime.h` instead.")
+#error("Do not include `Runtime/Arguments.h` directly, include `_Runtime.h` instead.")
 #endif
 #include "Runtime/Object/ClassType.h"
 #include "Runtime/Value.h"
 
-Machine_Integer Machine_Extensions_getBooleanArgument(size_t numberOfArguments,
-                                                      Machine_Value const* arguments, size_t i);
+Ring2_Integer Machine_Extensions_getBooleanArgument(size_t numberOfArguments,
+                                                    Machine_Value const* arguments, size_t i);
 
-Machine_Integer Machine_Extensions_getIntegerArgument(size_t numberOfArguments,
-                                                      Machine_Value const* arguments, size_t i);
+Ring2_Integer Machine_Extensions_getIntegerArgument(size_t numberOfArguments,
+                                                    Machine_Value const* arguments, size_t i);
 
-Machine_String* Machine_Extensions_getStringArgument(size_t numberOfArguments,
-                                                     Machine_Value const* arguments, size_t i);
+Ring2_String* Machine_Extensions_getStringArgument(size_t numberOfArguments,
+                                                   Machine_Value const* arguments, size_t i);
 
 Machine_Object* Machine_Extensions_getObjectArgument(size_t numberOfArguments,
                                                      Machine_Value const* arguments, size_t i,

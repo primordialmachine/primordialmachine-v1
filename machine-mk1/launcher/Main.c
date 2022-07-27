@@ -49,19 +49,19 @@ static void loadIcons() {
 }
 
 static void run(Scene* self) {
-  Machine_Integer oldWidth, oldHeight;
+  Ring2_Integer oldWidth, oldHeight;
   Machine_Video_Canvas_getFrameBuffersSize(Machine_getVideoCanvas(), &oldWidth, &oldHeight);
 
   while (!Machine_Video_Canvas_getQuitRequested(Machine_getVideoCanvas())) {
-    Machine_Integer newWidth, newHeight;
+    Ring2_Integer newWidth, newHeight;
     Machine_Video_Canvas_getFrameBuffersSize(Machine_getVideoCanvas(), &newWidth, &newHeight);
     if (oldWidth != newWidth || oldHeight != newHeight) {
       Scene_onCanvasSizeChanged(self, Machine_CanvasSizeChangedEvent_create(
-                                          (Machine_Real)newWidth, (Machine_Real)newHeight));
+                                          (Ring2_Real32)newWidth, (Ring2_Real32)newHeight));
       oldWidth = newWidth;
       oldHeight = newHeight;
     }
-    Scene_onUpdate(self, (Machine_Real)oldWidth, (Machine_Real)oldHeight);
+    Scene_onUpdate(self, (Ring2_Real32)oldWidth, (Ring2_Real32)oldHeight);
     Machine_update();
     Machine_Video_Canvas_swapFrameBuffers(Machine_getVideoCanvas());
     Machine_Video_Canvas_pollEvents(Machine_getVideoCanvas());
@@ -69,7 +69,7 @@ static void run(Scene* self) {
 }
 
 static Machine_Value onMousePointerEvent(size_t numberOfArguments, Machine_Value const* arguments) {
-  static Machine_Value const RESULT = { Machine_ValueFlag_Void, Machine_Void_Void };
+  static Machine_Value const RESULT = { Machine_ValueFlag_Void, Ring2_Void_Void };
   Scene* self = (Scene*)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0,
                                                              Scene_getType());
   Machine_MousePointerEvent* event
@@ -80,7 +80,7 @@ static Machine_Value onMousePointerEvent(size_t numberOfArguments, Machine_Value
 }
 
 static Machine_Value onMouseButtonEvent(size_t numberOfArguments, Machine_Value const* arguments) {
-  static Machine_Value const RESULT = { Machine_ValueFlag_Void, Machine_Void_Void };
+  static Machine_Value const RESULT = { Machine_ValueFlag_Void, Ring2_Void_Void };
   Scene* self = (Scene*)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0,
                                                              Scene_getType());
   Machine_MouseButtonEvent* event = (Machine_MouseButtonEvent*)Machine_Extensions_getObjectArgument(
@@ -90,7 +90,7 @@ static Machine_Value onMouseButtonEvent(size_t numberOfArguments, Machine_Value 
 }
 
 static Machine_Value onKeyboardKeyEvent(size_t numberOfArguments, Machine_Value const* arguments) {
-  static Machine_Value const RESULT = { Machine_ValueFlag_Void, Machine_Void_Void };
+  static Machine_Value const RESULT = { Machine_ValueFlag_Void, Ring2_Void_Void };
   Scene* self = (Scene*)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0,
                                                              Scene_getType());
   Machine_KeyboardKeyEvent* event = (Machine_KeyboardKeyEvent*)Machine_Extensions_getObjectArgument(
@@ -124,10 +124,10 @@ void main0() {
       Machine_Gc_lock(g_scene);
       Machine_update();
 
-      Machine_Integer width, height;
+      Ring2_Integer width, height;
       Machine_Video_Canvas_getFrameBuffersSize(Machine_getVideoCanvas(), &width, &height);
       Scene_onCanvasSizeChanged(g_scene, Machine_CanvasSizeChangedEvent_create(
-                                             (Machine_Real)width, (Machine_Real)height));
+                                             (Ring2_Real32)width, (Ring2_Real32)height));
 
       run(g_scene);
       Ring2_popJumpTarget();
@@ -151,7 +151,7 @@ void main0() {
   }
 }
 
-int main1() {
+void main1() {
   Ring2_JumpTarget jumpTarget1;
   bool videoStartedUp = false;
   Ring2_pushJumpTarget(&jumpTarget1);
@@ -165,7 +165,6 @@ int main1() {
     Machine_Video_shutdown();
     videoStartedUp = false;
   }
-  return Machine_getStatus();
 }
 
 int main() {
@@ -173,9 +172,10 @@ int main() {
     fprintf(stderr, "%s:%d: Machine_startup() failed\n", __FILE__, __LINE__);
     return EXIT_FAILURE;
   }
-  int status = main1();
+  main1();
+  Ring1_Status status = Ring1_Status_get();
   Machine_shutdown();
-  return status == Machine_Status_Success ? EXIT_SUCCESS : EXIT_FAILURE;
+  return status == Ring1_Status_Success ? EXIT_SUCCESS : EXIT_FAILURE;
 }
 
 #if defined(__cplusplus)

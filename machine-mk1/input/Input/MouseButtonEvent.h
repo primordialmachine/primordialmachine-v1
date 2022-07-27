@@ -23,7 +23,7 @@ enum Machine_MouseButtonActions {
 
 };
 
-Machine_String* Machine_MouseButtonActions_toString(Machine_MouseButtonActions self);
+Ring2_String* Machine_MouseButtonActions_toString(Machine_MouseButtonActions self);
 
 /// @brief An event pertaining to a mouse button.
 /// @extends Machine.Object
@@ -38,8 +38,8 @@ struct Machine_MouseButtonEvent {
   Machine_Object parent;
   int button;
   Machine_MouseButtonActions action;
-  Machine_Real x;
-  Machine_Real y;
+  Ring2_Real32 x;
+  Ring2_Real32 y;
 };
 
 /// @brief Create a mouse button event.
@@ -52,6 +52,6 @@ struct Machine_MouseButtonEvent {
 /// @return The mouse button event.
 Machine_MouseButtonEvent* Machine_MouseButtonEvent_create(int button,
                                                           Machine_MouseButtonActions action,
-                                                          Machine_Real x, Machine_Real y);
+                                                          Ring2_Real32 x, Ring2_Real32 y);
 
 #endif // MACHINE_INPUT_MOUSEBUTTONEVENT_H_INCLUDED

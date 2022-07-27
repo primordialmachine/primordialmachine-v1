@@ -5,10 +5,10 @@
 #define MACHINE_RUNTIME_STRINGBUFFER_H_INCLUDED
 
 #if !defined(MACHINE_RUNTIME_PRIVATE)
-#error("Do not include this file directly, include `_Runtime.h` instead.")
+#error("Do not include `Runtime/StringBuffer.h` directly, include `_Runtime.h` instead.")
 #endif
 #include "Runtime/Object/ClassType.h"
-typedef struct Machine_String Machine_String;
+typedef struct Ring2_String Ring2_String;
 
 /// @brief A string buffer.
 /// You can append/prepend/insert strings.
@@ -27,7 +27,7 @@ void Machine_StringBuffer_appendBytes(Machine_StringBuffer* self, char const *p,
 /// @brief Append a string to this string buffer.
 /// @param self This string buffer.
 /// @param s the string.
-void Machine_StringBuffer_appendString(Machine_StringBuffer* self, Machine_String const* s);
+void Machine_StringBuffer_appendString(Machine_StringBuffer* self, Ring2_String const* s);
 
 /// @brief Prepend Bytes to the string buffer.
 /// @param self This string buffer.
@@ -37,7 +37,7 @@ void Machine_StringBuffer_prependBytes(Machine_StringBuffer* self, char const* p
 /// @brief Prepend a string to this string buffer.
 /// @param self This string buffer.
 /// @param s the string.
-void Machine_StringBuffer_prependString(Machine_StringBuffer* self, Machine_String const* s);
+void Machine_StringBuffer_prependString(Machine_StringBuffer* self, Ring2_String const* s);
 
 /// @brief Insert Bytes to this string buffer.
 /// @param self This string buffer.

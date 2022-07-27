@@ -26,7 +26,11 @@
     <ClInclude Include="Ring1\Conversion\stringToInt.h" />
     <ClInclude Include="Ring1\Conversion\stringToUint.h" />
     <ClInclude Include="Ring1\Conversion\_Parser.h" />
+    <ClInclude Include="Ring1\FileSystem\ExistingFilePolicy.h" />
+    <ClInclude Include="Ring1\FileSystem\FileAccessMode.h" />
+    <ClInclude Include="Ring1\FileSystem\NonExistingFilePolicy.h" />
     <ClInclude Include="Ring1\Hash.h" />
+    <ClInclude Include="Ring1\InlineArray.h" />
     <ClInclude Include="Ring1\Intrinsic\Add\X64\add_s16.h" />
     <ClInclude Include="Ring1\Intrinsic\Add\X64\add_s32.h" />
     <ClInclude Include="Ring1\Intrinsic\Add\X64\add_s64.h" />
@@ -51,6 +55,7 @@
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u32.h" />
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u64.h" />
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X86\countLeadingZeroes_u8.h" />
+    <ClInclude Include="Ring1\Intrinsic\Crt.h" />
     <ClInclude Include="Ring1\Intrinsic\Deprecated.h" />
     <ClInclude Include="Ring1\Intrinsic\Inline.h" />
     <ClInclude Include="Ring1\Intrinsic\Multiply\X64\multiply_s16.h" />
@@ -97,11 +102,13 @@
     <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_u32.h" />
     <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_u64.h" />
     <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_u8.h" />
+    <ClInclude Include="Ring1\Ring1.h" />
     <ClInclude Include="Ring1\Test\Commons.h" />
     <ClInclude Include="Ring1\Test\Configuration.h" />
     <ClInclude Include="Ring1\Test\Context.h" />
     <ClInclude Include="Ring1\Test\Node.h" />
     <ClInclude Include="Ring1\Time.h" />
+    <ClInclude Include="Ring1\FileSystem.h" />
     <MASM Include="Ring1\Intrinsic\Add\X64\add_s16.asm">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -427,9 +434,14 @@
     <ClCompile Include="Ring1\Conversion\stringToInt.c" />
     <ClCompile Include="Ring1\Conversion\stringToUint.c" />
     <ClCompile Include="Ring1\Conversion\_Parser.c" />
+    <ClCompile Include="Ring1\FileSystem\ExistingFilePolicy.c" />
+    <ClCompile Include="Ring1\FileSystem\FileAccessMode.c" />
+    <ClCompile Include="Ring1\FileSystem\NonExistingFilePolicy.c" />
     <ClCompile Include="Ring1\Hash.c" />
+    <ClCompile Include="Ring1\InlineArray.c" />
     <ClCompile Include="Ring1\Intrinsic\clamp.c" />
     <ClCompile Include="Ring1\Intrinsic\countLeadingZeroes.c" />
+    <ClCompile Include="Ring1\Intrinsic\Crt.c" />
     <ClCompile Include="Ring1\Intrinsic\Deprecated.c" />
     <ClCompile Include="Ring1\Intrinsic\Environment.c" />
     <ClCompile Include="Ring1\Intrinsic\FloatingPointTypes.c" />
@@ -521,11 +533,13 @@
     <ClCompile Include="Ring1\Module.c" />
     <ClCompile Include="Ring1\ReferenceCounter.c" />
     <ClCompile Include="Ring1\Result.c" />
+    <ClCompile Include="Ring1\Ring1.c" />
     <ClCompile Include="Ring1\Status.c" />
     <ClCompile Include="Ring1\Test.c" />
     <ClCompile Include="Ring1\Test\Context.c" />
     <ClCompile Include="Ring1\Test\Node.c" />
     <ClCompile Include="Ring1\Time.c" />
+    <ClCompile Include="Ring1\FileSystem.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

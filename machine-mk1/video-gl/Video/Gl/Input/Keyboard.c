@@ -4,12 +4,14 @@
 #define MACHINE_VIDEO_GL_PRIVATE (1)
 #include "Video/Gl/Input/Keyboard.h"
 
-static bool mapKey(int source, Machine_KeyboardKeys* target) {
+#include "Ring1/Status.h"
+
+static Ring1_Result mapKey(int source, Machine_KeyboardKeys* target) {
   switch (source) {
 #define MAP(FROM, TO)                                                                              \
   case GLFW_KEY_##FROM: {                                                                          \
     *target = Machine_KeyboardKeys_##TO;                                                           \
-    return true;                                                                                   \
+    return Ring1_Result_Success;                                                                   \
   } break;
 
     MAP(ESCAPE, Escape)
@@ -59,26 +61,28 @@ static bool mapKey(int source, Machine_KeyboardKeys* target) {
     MAP(Z, Z)
 
     default:
-      return false;
+      Ring1_Status_set(Ring1_Status_NotYetImplemented);
+      return Ring1_Result_Failure;
   };
 }
 
-static bool mapKeyAction(int source, Machine_KeyboardKeyActions* target) {
+static Ring1_Result mapKeyAction(int source, Machine_KeyboardKeyActions* target) {
   switch (source) {
     case GLFW_PRESS: {
       *target = Machine_KeyboardKeyActions_Press;
-      return true;
+      return Ring1_Result_Success;
     } break;
     case GLFW_RELEASE: {
       *target = Machine_KeyboardKeyActions_Release;
-      return true;
+      return Ring1_Result_Success;
     } break;
     case GLFW_REPEAT: {
       *target = Machine_KeyboardKeyActions_Repeat;
-      return true;
+      return Ring1_Result_Success;
     } break;
     default:
-      return false;
+      Ring1_Status_set(Ring1_Status_NotYetImplemented);
+      return Ring1_Result_Failure;
   };
 }
 
@@ -87,8 +91,7 @@ Machine_KeyboardKeyEvent* Machine_Video_Gl_Input_mapKeyboardKeyEvent(GLFWwindow*
                                                                      int modifiers) {
   Machine_KeyboardKeys keyInternal;
   Machine_KeyboardKeyActions actionInternal;
-  if (!mapKey(key, &keyInternal) || !mapKeyAction(action, &actionInternal)) {
-    Machine_setStatus(Machine_Status_InternalError);
+  if (mapKey(key, &keyInternal) || mapKeyAction(action, &actionInternal)) {
     Ring2_jump();
   }
   Machine_KeyboardKeyEvent* event = Machine_KeyboardKeyEvent_create(keyInternal, actionInternal);

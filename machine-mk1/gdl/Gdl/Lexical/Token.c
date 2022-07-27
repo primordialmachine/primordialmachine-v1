@@ -20,7 +20,7 @@ static void Machine_Gdl_Token_construct(Machine_Gdl_Token* self, size_t numberOf
 MACHINE_DEFINE_CLASSTYPE(Machine_Gdl_Token, Machine_Object, &Machine_Gdl_Token_visit,
                          &Machine_Gdl_Token_construct, NULL, NULL, NULL)
 
-Machine_Gdl_Token* Machine_Gdl_Token_create(Machine_Gdl_TokenKind kind, Machine_String* text, Machine_Integer offset) {
+Machine_Gdl_Token* Machine_Gdl_Token_create(Machine_Gdl_TokenKind kind, Ring2_String* text, Ring2_Integer offset) {
   Machine_ClassType* ty = Machine_Gdl_Token_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 3;
   Machine_Value ARGUMENTS[3];
@@ -35,10 +35,10 @@ Machine_Gdl_TokenKind Machine_Gdl_Token_getKind(Machine_Gdl_Token const* self) {
   return self->kind;
 }
 
-Machine_String* Machine_Gdl_Token_getText(Machine_Gdl_Token const* self) {
+Ring2_String* Machine_Gdl_Token_getText(Machine_Gdl_Token const* self) {
   return self->text;
 }
 
-Machine_Integer Machine_Gdl_Token_getOffset(Machine_Gdl_Token const* self) {
+Ring2_Integer Machine_Gdl_Token_getOffset(Machine_Gdl_Token const* self) {
   return self->offset;
 }
