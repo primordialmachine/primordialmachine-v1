@@ -10,21 +10,6 @@
 #include "Ring2/_Include.h"
 #include "Ring1/Result.h"
 
-/// @brief Initialize the GC module.
-/// @return #Ring1_Result_Success on success, #Ring1_Result_Failure on failure.
-Ring1_Result Machine_initializeGcModule();
-
-/// @brief Uninitialize the GC module.
-void Machine_uninitializeGcModule();
-
-/// @brief Increment the lock count of an object.
-/// @param object A pointer to the object.
-void Machine_Gc_lock(void* object);
-
-/// @brief Decrement the lock count of an object.
-/// @param object A pointer to the object.
-void Machine_Gc_unlock(void* object);
-
 /// @brief Arguments for a call to Machine_Gc_allocate.
 typedef struct Machine_Gc_AllocationArguments {
 

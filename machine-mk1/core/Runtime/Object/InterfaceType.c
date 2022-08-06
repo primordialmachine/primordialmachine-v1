@@ -14,7 +14,7 @@ static void Machine_InterfaceType_finalize(void *gc, Machine_InterfaceType* self
   if (self->extendsArrayInitialized) {
     for (size_t i = 0, n = self->extends.size; i < n; ++i) {
       Machine_InterfaceType* element = Ring1_InlineArray_getAt(&self->extends, i);
-      Machine_Gc_unlock(element);
+      Ring2_Gc_unlock(element);
     }
     Ring1_InlineArray_uninitialize(&self->extends);
   }
@@ -79,7 +79,7 @@ bool Machine_InterfaceType_extend(Machine_InterfaceType* self, Machine_Type* ext
   if (Ring1_InlineArray_append(&self->extends, extended)) {
     Ring2_jump();
   }
-  Machine_Gc_lock(extended);
+  Ring2_Gc_lock(extended);
   return true;
 }
 

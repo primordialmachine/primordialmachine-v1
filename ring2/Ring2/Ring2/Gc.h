@@ -11,6 +11,9 @@
 #error("Do not include `Ring2/Gc.h` directly. Include `Ring2/_Include.h` instead.")
 #endif
 
+#include "Ring1/Result.h"
+#include "Ring1/Intrinsic/CheckReturn.h"
+#include "Ring1/Intrinsic/Inline.h"
 #include "Ring2/Gc/Type.h"
 #include "Ring2/Gc/Tag.h"
 #include "Ring2/Gc/RunStatistics.h"
@@ -90,32 +93,23 @@ Ring2_Gc_removeSweepCallback
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-/// ```
-/// Ring2_Gc *
-/// Ring2_Gc_create
-///   (
-///   );
-/// ```
-/// Create the GC.
-/// Returns a pointer to a GC on success, returns a null pointer on failure.
-Ring2_Gc *
-Ring2_Gc_create
+Ring1_CheckReturn() Ring2_Gc*
+Ring2_Gc_get
   (
   );
 
-/// ```
-/// void
-/// Ring2_Gc_destroy
-///  (
-///    Ring2_Gc *gc
-///  )
-/// ```
-/// Destroy the GC.
-/// Undefined behavior if `gc` does not refer to a GC previously created by a call to `Ring2_Gc_create`.
-void
-Ring2_Gc_destroy
+/// @brief Startup the GC module.
+/// @return #Ring1_Result_Success on success, #Ring1_Result_Failure on failure.
+/// @remark This function sets the by-thread status variable on failure.
+Ring1_CheckReturn() Ring1_Result
+Ring2_Gc_startup
   (
-    Ring2_Gc *gc
+  );
+
+/// @brief Shutdown the GC module.
+void
+Ring2_Gc_shutdown
+  (
   );
 
 void*
@@ -152,5 +146,29 @@ Ring2_Gc_run
     Ring2_Gc* gc,
     Ring2_Gc_RunStatistics *statistics
   );
+
+/// @brief Increment the lock count of an object.
+/// @param o A pointer to the object.
+/*Ring1_Convenience()*/ Ring1_Inline() void
+Ring2_Gc_lock
+  (
+    void* o
+  )
+{
+  Ring2_Gc_Tag* t = Ring2_Gc_toTag(o);
+  Ring2_Gc_Tag_lock(t);
+}
+
+/// @brief Decrement the lock count of an object.
+/// @param o A pointer to the object.
+/*Ring1_Convenience()*/ Ring1_Inline() void
+Ring2_Gc_unlock
+  (
+    void* o
+  )
+{
+  Ring2_Gc_Tag* t = Ring2_Gc_toTag(o);
+  Ring2_Gc_Tag_unlock(t);
+}
 
 #endif // RING2_GC_H_INCLUDED

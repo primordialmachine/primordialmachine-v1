@@ -121,7 +121,7 @@ void main0() {
     Ring2_JumpTarget jumpTarget2; // To shutdown scene.
     Ring2_pushJumpTarget(&jumpTarget2);
     if (!setjmp(jumpTarget2.environment)) {
-      Machine_Gc_lock(g_scene);
+      Ring2_Gc_lock(g_scene);
       Machine_update();
 
       Ring2_Integer width, height;
@@ -132,12 +132,12 @@ void main0() {
       run(g_scene);
       Ring2_popJumpTarget();
 
-      Machine_Gc_unlock(g_scene);
+      Ring2_Gc_unlock(g_scene);
       Scene* s = g_scene;
       g_scene = NULL;
       Scene_onShutdown(s);
     } else {
-      Machine_Gc_unlock(g_scene);
+      Ring2_Gc_unlock(g_scene);
       Scene* s = g_scene;
       g_scene = NULL;
       Scene_onShutdown(s);

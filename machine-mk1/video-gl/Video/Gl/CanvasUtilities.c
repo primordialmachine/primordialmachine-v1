@@ -133,7 +133,7 @@ void Machine_Glfw_startupCanvasInput() {
     Ring2_pushJumpTarget(&jumpTarget);
     if (!setjmp(jumpTarget.environment)) {
       g_events = (Machine_List*)Machine_ArrayList_create();
-      Machine_Gc_lock(g_events);
+      Ring2_Gc_lock(g_events);
       Ring2_popJumpTarget();
     } else {
       Ring2_popJumpTarget();
@@ -145,7 +145,7 @@ void Machine_Glfw_startupCanvasInput() {
 
 void Machine_Glfw_shutdownCanvasInput() {
   if (0 == --g_referenceCount) {
-    Machine_Gc_unlock(g_events);
+    Ring2_Gc_unlock(g_events);
     g_events = NULL;
   }
 }

@@ -18,7 +18,7 @@ static const struct {
 } MODULES[] = {
   { &Machine_initializeLogModule, &Machine_uninitializeLogModule },
   { &Ring2_Context_startup, &Ring2_Context_shutdown },
-  { &Machine_initializeGcModule, &Machine_uninitializeGcModule },
+  { &Ring2_Gc_startup, &Ring2_Gc_shutdown },
   { &Machine_initializeStackModule, &Machine_uninitializeStackModule },
   { &Machine_initializeStaticVariablesModule, &Machine_uninitializeStaticVariablesModule },
 };

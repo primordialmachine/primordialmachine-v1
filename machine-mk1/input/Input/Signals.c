@@ -16,7 +16,7 @@ static bool g_registered = true;
 static void uninitializeCallback() {
 #define DefineSignal(NAME, STRING)                                                                 \
   if (_##NAME) {                                                                                   \
-    Machine_Gc_unlock(_##NAME);                                                                    \
+    Ring2_Gc_unlock(_##NAME);                                                                    \
     _##NAME = NULL;                                                                                \
   }
 #include "Input/Signals.i"

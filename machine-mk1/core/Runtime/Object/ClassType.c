@@ -14,7 +14,7 @@
 
 static void Machine_ClassType_finalize(void *gc, Machine_ClassType* self) {
   if (self->parent) {
-    Machine_Gc_unlock(self->parent);
+    Ring2_Gc_unlock(self->parent);
   }
   if (self->class.data) {
     Ring1_Memory_deallocate(self->class.data);
@@ -24,7 +24,7 @@ static void Machine_ClassType_finalize(void *gc, Machine_ClassType* self) {
     for (size_t i = 0, n = self->interfaces.implementations2.size; i < n; ++i) {
       Machine_InterfaceImplementation const* element
           = Ring1_InlineArray_getAt(&self->interfaces.implementations2, i);
-      Machine_Gc_unlock(element->interfaceType);
+      Ring2_Gc_unlock(element->interfaceType);
     }
     Ring1_InlineArray_uninitialize(&self->interfaces.implementations2);
   }
@@ -32,7 +32,7 @@ static void Machine_ClassType_finalize(void *gc, Machine_ClassType* self) {
     for (size_t i = 0, n = self->interfaces.dispatches2.size; i < n; ++i) {
       Machine_InterfaceDispatchNode const* element
           = Ring1_InlineArray_getAt(&self->interfaces.dispatches2, i);
-      Machine_Gc_unlock(element->dispatch->type);
+      Ring2_Gc_unlock(element->dispatch->type);
     }
     Ring1_InlineArray_uninitialize(&self->interfaces.dispatches2);
   }
@@ -107,7 +107,7 @@ Machine_ClassType* Machine_createClassType(Machine_CreateClassTypeArgs* args) {
   classType->interfaces.dispatchesInitialized = true;
 
   if (args->parent) {
-    Machine_Gc_lock(classType->parent);
+    Ring2_Gc_lock(classType->parent);
   }
 
   return classType;
@@ -131,7 +131,7 @@ void Machine_ClassType_implement(Machine_ClassType* self, Machine_InterfaceType*
   if (Ring1_InlineArray_append(&self->interfaces.implementations2, &temporary)) {
     Ring2_jump();
   }
-  Machine_Gc_lock(interfaceType);
+  Ring2_Gc_lock(interfaceType);
 }
 
 /// @param create @a true create the dispatch if it does not exist, @a false otherwise.
@@ -161,7 +161,7 @@ static bool getOrCreateImplementation(Machine_ClassType* self, Machine_Interface
   }
   *dispatchNode = Ring1_InlineArray_getAt(&(self->interfaces.dispatches2),
                                           self->interfaces.dispatches2.size - 1);
-  Machine_Gc_lock(type);
+  Ring2_Gc_lock(type);
   return true;
 }
 
@@ -210,7 +210,7 @@ void Machine_ClassType_ensureInitialized(Machine_ClassType* self) {
                                     &newDispatch)) {
         Ring1_Memory_copyFast(newDispatch->dispatch, oldDispatch->dispatch,
                               ((Machine_InterfaceType*)oldDispatch->dispatch->type)->size);
-        Machine_Gc_lock(newDispatch->dispatch->type);
+        Ring2_Gc_lock(newDispatch->dispatch->type);
       }
     }
   }

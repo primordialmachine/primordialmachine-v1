@@ -85,7 +85,7 @@ static void Machine_ClassObject_finalize(void *gc, void* self) {
     classType = classType->parent;
   }
   // NOW release the class type.
-  Machine_Gc_unlock(object->classType);
+  Ring2_Gc_unlock(object->classType);
 }
 
 void Machine_setClassType(Machine_Object* object, Machine_ClassType* classType) {
@@ -95,10 +95,10 @@ void Machine_setClassType(Machine_Object* object, Machine_ClassType* classType) 
   Machine_Type_ensureInitialized((Machine_Type*)classType);
 
   if (classType) {
-    Machine_Gc_lock(classType);
+    Ring2_Gc_lock(classType);
   }
   if (object->classType) {
-    Machine_Gc_unlock(object->classType);
+    Ring2_Gc_unlock(object->classType);
   }
   object->classType = classType;
 }
@@ -123,7 +123,7 @@ Machine_Object* Machine_allocateClassObject(Machine_ClassType* type, size_t numb
   }
   Ring2_Gc_Tag* t = Ring2_Gc_toTag(o);
   o->classType = type;
-  Machine_Gc_lock(o->classType);
+  Ring2_Gc_lock(o->classType);
   type->object.construct((Machine_Object*)o, numberOfArguments, arguments);
   return o;
 }

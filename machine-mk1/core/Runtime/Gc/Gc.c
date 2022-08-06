@@ -4,55 +4,22 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
 #include "Runtime/Gc/Gc.h"
 
-#include "Ring2/_Include.h"
+#include "Ring2/Gc.h"
+#include "Ring1/Memory.h"
 #include "Ring1/Status.h"
-#include "Runtime/WeakReference.h"
-#include "Runtime/Object/Object.h"
 #include <assert.h>
 
 static Ring2_Gc_Tag* g_objects = NULL;
 static Ring2_Gc_Tag* g_gray = NULL;
 static size_t g_objectCount = 0;
 
-static Ring2_Gc* g_gc = NULL;
-
-Ring1_Result Machine_initializeGcModule() {
-  g_gc = Ring2_Gc_create();
-  if (!g_gc) {
-    return Ring1_Result_Failure;
-  }
-  return Ring1_Result_Success;
-}
-
-void Machine_uninitializeGcModule() {
-  Ring2_Gc_destroy(g_gc);
-  g_gc = NULL;
-}
-
-void Machine_Gc_lock(void* object) {
-  Ring2_Gc_Tag* tag = Ring2_Gc_toTag(object);
-  Ring2_Gc_Tag_lock(tag);
-}
-
-void Machine_Gc_unlock(void* object) {
-  Ring2_Gc_Tag* tag = Ring2_Gc_toTag(object);
-  Ring2_Gc_Tag_unlock(tag);
-}
-
 void* Machine_Gc_allocate(Machine_Gc_AllocationArguments const* arguments) {
-  void* pt = NULL;
-  if (Ring1_Memory_allocate(&pt, sizeof(Ring2_Gc_Tag)
-                            + arguments->suffixSize)) {
+  void *p = Ring2_Gc_allocate(Ring2_Gc_get(), arguments->suffixSize, arguments->type, &g_objects);
+  if (!p) {
     return NULL;
   }
   g_objectCount++;
-  Ring1_Memory_zeroFill(pt, sizeof(Ring2_Gc_Tag) + arguments->suffixSize);
-  Ring2_Gc_Tag* t = (Ring2_Gc_Tag*)(((char*)pt));
-  Ring2_Gc_Tag_initialize(t);
-  t->type = arguments->type;
-  t->objectNext = g_objects;
-  g_objects = t;
-  return ((char*)(t)) + sizeof(Ring2_Gc_Tag);
+  return p;
 }
 
 void Machine_Gc_visit(void* object) {
@@ -88,7 +55,7 @@ void Machine_Gc_run(Ring2_Gc_RunStatistics *statistics) {
     g_gray = object->grayNext;
     assert(object != NULL);
     if (object->type && object->type->visit) {
-      object->type->visit(g_gc, Ring2_Gc_toAddress(object));
+      object->type->visit(Ring2_Gc_get(), Ring2_Gc_toAddress(object));
     }
     Ring2_Gc_Tag_setBlack(object);
   }
@@ -101,7 +68,7 @@ void Machine_Gc_run(Ring2_Gc_RunStatistics *statistics) {
       current = current->objectNext;
       // Finalize.
       if (tag->type && tag->type->finalize) {
-        tag->type->finalize(g_gc, Ring2_Gc_toAddress(tag));
+        tag->type->finalize(Ring2_Gc_get(), Ring2_Gc_toAddress(tag));
       }
       // Notify weak references.
       Ring2_Gc_Tag_notifyWeakReferences(tag);

@@ -228,7 +228,7 @@ static void Machine_Fonts_Font_destruct(Machine_Fonts_Font* self) {
     FT_Done_Face(self->face);
     self->face = NULL;
   }
-  Machine_Gc_unlock(self->context);
+  Ring2_Gc_unlock(self->context);
   self->context = NULL;
 }
 
@@ -246,7 +246,7 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
     Ring2_jump();
   }
   self->context = fontsContext;
-  Machine_Gc_lock(self->context);
+  Ring2_Gc_lock(self->context);
   //
   FT_Error error;
   // (1) Ensure string is zero terminated.
@@ -254,7 +254,7 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
   // (2)
   error = FT_New_Face(*fontsContext->library, Machine_String_getBytes(path), 0, &self->face);
   if (error) {
-    Machine_Gc_unlock(self->context);
+    Ring2_Gc_unlock(self->context);
     self->context = NULL;
 
     Ring1_Status_set(Ring1_Status_EnvironmentFailed);
@@ -266,7 +266,7 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
     FT_Done_Face(self->face);
     self->face = NULL;
 
-    Machine_Gc_unlock(self->context);
+    Ring2_Gc_unlock(self->context);
     self->context = NULL;
 
     Ring1_Status_set(Ring1_Status_EnvironmentFailed);
@@ -297,7 +297,7 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
     FT_Done_Face(self->face);
     self->face = NULL;
 
-    Machine_Gc_unlock(self->context);
+    Ring2_Gc_unlock(self->context);
     self->context = NULL;
     
     Ring1_Status_set(Ring1_Status_EnvironmentFailed);
@@ -356,7 +356,7 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
       FT_Done_Face(self->face);
       self->face = NULL;
 
-      Machine_Gc_unlock(self->context);
+      Ring2_Gc_unlock(self->context);
       self->context = NULL;
 
       Ring1_Status_set(Ring1_Status_InvalidOperation);
@@ -383,7 +383,7 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
       FT_Done_Face(self->face);
       self->face = NULL;
       
-      Machine_Gc_unlock(self->context);
+      Ring2_Gc_unlock(self->context);
       self->context = NULL;
 
       Ring2_popJumpTarget();
