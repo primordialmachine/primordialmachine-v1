@@ -7,7 +7,7 @@
 #error("Do not include `Runtime/Object/Object.h` directly, include `_Runtime.h` instead.")
 #endif
 #include "Runtime/PrimitiveTypes.h"
-#include "Runtime/String.h"
+#include "Ring2/_Include.h"
 #include "Runtime/Gc/Gc.h"
 #include "Runtime/Object/ClassType.h"
 

@@ -62,7 +62,7 @@ void Machine_Context2_construct(Machine_Context2* self, size_t numberOfArguments
   Machine_VertexDescriptor_append(vertexDescriptor, Machine_VertexElementSemantics_XfYf);
 
   self->binding = Machine_VideoContext_createBinding(videoContext, self->shader, vertexDescriptor, self->vertices);
-  Machine_Binding_setVariableBinding(self->binding, Machine_String_create("vertex_position", strlen("vertex_position") + 1), 0);
+  Machine_Binding_setVariableBinding(self->binding, Ring2_String_create("vertex_position", strlen("vertex_position") + 1), 0);
 
   //
   Machine_setClassType((Machine_Object*)self, Machine_Context2_getType());

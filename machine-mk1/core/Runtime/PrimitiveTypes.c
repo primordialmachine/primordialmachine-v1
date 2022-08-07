@@ -7,7 +7,6 @@
 #include "Runtime/Assertions.h"
 #include "Ring2/_Include.h"
 #include "Ring1/Status.h"
-#include "Runtime/String.h"
 #include <math.h>
 #include <stdio.h>
 #include <string.h>
@@ -16,8 +15,8 @@
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 Ring2_String* Machine_Boolean_toString(Ring2_Boolean value) {
-  return value ? Machine_String_create("true", strlen("true"))
-               : Machine_String_create("false", strlen("false"));
+  return value ? Ring2_String_create("true", strlen("true"))
+               : Ring2_String_create("false", strlen("false"));
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -40,7 +39,7 @@ Ring2_String* Machine_ForeignProcedure_toString(Machine_ForeignProcedure* x) {
     Ring1_Status_set(Ring1_Status_ConversionFailed);
     Ring2_jump();
   }
-  return Machine_String_create(buffer, (size_t)n);
+  return Ring2_String_create(buffer, (size_t)n);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -52,7 +51,7 @@ Ring2_String* Machine_Integer_toString(Ring2_Integer x) {
     Ring1_Status_set(Ring1_Status_ConversionFailed);
     Ring2_jump();
   }
-  return Machine_String_create(buffer, (size_t)n);
+  return Ring2_String_create(buffer, (size_t)n);
 }
 
 Ring2_Integer Machine_Integer_compareTo(Ring2_Integer x, Ring2_Integer y) {
@@ -73,7 +72,7 @@ Ring2_String* Machine_Real_toString(Ring2_Real32 x) {
     Ring1_Status_set(Ring1_Status_ConversionFailed);
     Ring2_jump();
   }
-  return Machine_String_create(buffer, (size_t)n);
+  return Ring2_String_create(buffer, (size_t)n);
 }
 
 Ring2_Integer Machine_Real_compareTo(Ring2_Real32 x, Ring2_Real32 y) {
@@ -98,7 +97,7 @@ Ring2_Integer Machine_Real_compareTo(Ring2_Real32 x, Ring2_Real32 y) {
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 Ring2_String* Machine_Void_toString(Ring2_Void x) {
-  return Machine_String_create("void", strlen("void"));
+  return Ring2_String_create("void", strlen("void"));
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

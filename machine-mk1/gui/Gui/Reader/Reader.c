@@ -16,11 +16,11 @@ Machine_Gui_Widget* Machine_Gui_Reader_readWidget(Machine_Gui_Context* self,
     Ring2_jump();
   }
   s = Machine_Gui_Reader_getString(source, guiGdlContext->KIND);
-  if (Machine_String_isEqualTo(s, guiGdlContext->GROUPNODEKIND)) {
+  if (Ring2_String_isEqualTo(Ring2_Context_get(), s, guiGdlContext->GROUPNODEKIND)) {
     return (Machine_Gui_Widget*)Machine_Gui_Reader_readGroupNode(self, source);
-  } else if (Machine_String_isEqualTo(s, guiGdlContext->TEXTNODEKIND)) {
+  } else if (Ring2_String_isEqualTo(Ring2_Context_get(), s, guiGdlContext->TEXTNODEKIND)) {
     return (Machine_Gui_Widget*)Machine_Gui_Reader_readTextNode(self, source);
-  } else if (Machine_String_isEqualTo(s, guiGdlContext->BORDERNODEKIND)) {
+  } else if (Ring2_String_isEqualTo(Ring2_Context_get(), s, guiGdlContext->BORDERNODEKIND)) {
     return (Machine_Gui_Widget*)Machine_Gui_Reader_readBorderNode(self, source);
   } else {
     Ring1_Status_set(Ring1_Status_InvalidSemantics);

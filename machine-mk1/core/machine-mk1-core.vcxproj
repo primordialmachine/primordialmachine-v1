@@ -41,7 +41,6 @@
     <ClCompile Include="Runtime\PrimitiveTypes.c" />
     <ClCompile Include="Runtime\StackModule.c" />
     <ClCompile Include="Runtime\StaticVariablesModule.c" />
-    <ClCompile Include="Runtime\String.c" />
     <ClCompile Include="Runtime\StringBuffer.c" />
     <ClCompile Include="Runtime\Object\ClassType.c" />
     <ClCompile Include="Runtime\Time.c" />
@@ -75,7 +74,6 @@
     <ClInclude Include="Runtime\PrimitiveTypes.h" />
     <ClInclude Include="Runtime\StackModule.h" />
     <ClInclude Include="Runtime\StaticVariablesModule.h" />
-    <ClInclude Include="Runtime\String.h" />
     <ClInclude Include="Runtime\StringBuffer.h" />
     <ClInclude Include="Runtime\Object\ClassType.h" />
     <ClInclude Include="Runtime\Time.h" />

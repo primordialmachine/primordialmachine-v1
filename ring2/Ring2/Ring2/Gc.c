@@ -12,12 +12,6 @@
 #undef RING2_GC_PRIVATE
 #include <assert.h>
 
-/// ```
-/// Ring2_Gc *
-/// Ring2_Gc_create
-///   (
-///   );
-/// ```
 /// Create the GC.
 /// Returns a pointer to a GC on success, returns a null pointer on failure.
 static Ring2_Gc *
@@ -25,13 +19,6 @@ Ring2_Gc_create
   (
   );
 
-/// ```
-/// void
-/// Ring2_Gc_destroy
-///  (
-///    Ring2_Gc *gc
-///  )
-/// ```
 /// Destroy the GC.
 /// Undefined behavior if `gc` does not refer to a GC previously created by a call to `Ring2_Gc_create`.
 static void
@@ -95,7 +82,7 @@ Ring2_Gc_destroy
 
 static Ring2_Gc* g_gc = NULL;
 
-Ring2_Gc*
+Ring1_CheckReturn() Ring2_Gc *
 Ring2_Gc_get
   (
   )

@@ -3,7 +3,7 @@
 
 #include "Runtime/Assertions.h"
 #include "Runtime/Object/Object.h"
-#include "Runtime/String.h"
+#include "Ring2/_Include.h"
 
 void Machine_Value_visit(Machine_Value* self) {
   switch (self->tag) {
@@ -24,7 +24,7 @@ Ring2_Boolean Machine_Value_isEqualTo(Machine_Value const* x, Machine_Value cons
     case Machine_ValueFlag_Object:
       return Machine_Object_isEqualTo(x->objectValue, y->objectValue);
     case Machine_ValueFlag_String:
-      return Machine_String_isEqualTo(x->stringValue, y->stringValue);
+      return Ring2_String_isEqualTo(Ring2_Context_get(), x->stringValue, y->stringValue);
     case Machine_ValueFlag_Void:
       return Ring2_Void_isEqualTo(Ring2_Context_get(), x->voidValue, y->voidValue);
     case Machine_ValueFlag_Real:
@@ -45,7 +45,7 @@ Ring2_Integer Machine_Value_getHashValue(Machine_Value const* self) {
     case Machine_ValueFlag_Object:
       return Machine_Object_getHashValue(self->objectValue);
     case Machine_ValueFlag_String:
-      return Machine_String_getHashValue(self->stringValue);
+      return Ring2_String_getHashValue(Ring2_Context_get(), self->stringValue);
     case Machine_ValueFlag_Void:
       return Ring2_Void_getHashValue(Ring2_Context_get(),self->voidValue);
     case Machine_ValueFlag_Real:

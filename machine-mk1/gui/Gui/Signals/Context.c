@@ -19,7 +19,7 @@ static void Machine_Gui_Signals_Context_construct(Machine_Gui_Signals_Context* s
                                                   size_t numberOfArguments,
                                                   Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-#define DEFINE(NAME, STRING) self->NAME = Machine_String_create(STRING, strlen(STRING));
+#define DEFINE(NAME, STRING) self->NAME = Ring2_String_create(STRING, strlen(STRING));
 #include "Gui/Signals/Context.i"
 #undef DEFINE
 

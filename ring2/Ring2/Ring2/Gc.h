@@ -20,6 +20,10 @@
 #include "Ring2/Gc/SweepStatistics.h"
 #include <stdint.h>
 
+/// The maximal size, in Bytes, of a memory block as an int64_t value.
+#define Ring2_Gc_MaximumAllocatableSize \
+  ((int64_t)(((SIZE_MAX < INT64_MAX) ? SIZE_MAX : INT64_MAX)- sizeof(Ring2_Gc_Tag)))
+
 /// `typedef /*Implementation*/ Ring2_Interpreter_Gc`
 /// The opaque type of a garbage collector.
 typedef void Ring2_Gc;

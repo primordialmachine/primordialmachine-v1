@@ -13,7 +13,6 @@
 #include "Ring1/FileSystem.h"
 #include "Runtime/LogModule.h"
 #include "Ring1/Status.h"
-#include "Runtime/String.h"
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 

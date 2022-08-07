@@ -44,7 +44,7 @@ typedef void(Machine_UninitializeStaticVariablesCallback)();
 ///
 /// Ring2_String *getString() {
 ///   if (!g_string) {
-///     g_string = Machine_String_create(...);
+///     g_string = Ring2_String_create(...);
 ///     Machine_Gc_lock(g_string);
 ///     if (Machine_registerStaticVariables(&uninitializeStaticVariablesCallback)) {
 ///       Machine_Gc_unlock(g_string);

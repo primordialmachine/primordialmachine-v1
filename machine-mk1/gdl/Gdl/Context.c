@@ -20,9 +20,9 @@ static void Machine_Gdl_Context_visit(Machine_Gdl_Context* self) {
 static void Machine_Gdl_Context_construct(Machine_Gdl_Context* self, size_t numberOfArguments,
                                           Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  self->trueLiteral = Machine_String_create("true", strlen("true"));
-  self->falseLiteral = Machine_String_create("false", strlen("false"));
-  self->voidLiteral = Machine_String_create("void", strlen("void"));
+  self->trueLiteral = Ring2_String_create("true", strlen("true"));
+  self->falseLiteral = Ring2_String_create("false", strlen("false"));
+  self->voidLiteral = Ring2_String_create("void", strlen("void"));
   Machine_setClassType((Machine_Object*)self, Machine_Gdl_Context_getType());
 }
 

@@ -63,9 +63,6 @@
     <ClCompile Include="Runtime\PrimitiveTypes.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
-    <ClCompile Include="Runtime\String.c">
-      <Filter>Quelldateien\Runtime</Filter>
-    </ClCompile>
     <ClCompile Include="Runtime\Io.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
@@ -171,9 +168,6 @@
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\PrimitiveTypes.h">
-      <Filter>Headerdateien\Runtime</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\String.h">
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\Io.h">

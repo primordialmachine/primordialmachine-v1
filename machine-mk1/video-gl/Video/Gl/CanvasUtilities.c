@@ -25,7 +25,7 @@ static void keyCallback(GLFWwindow* window, int key, int scancode, int action, i
         = Machine_Video_Gl_Input_mapKeyboardKeyEvent(window, key, scancode, action, modifiers);
     Machine_Video_Canvas_addKeyboardKeyEvent((Machine_Video_Canvas*)canvas, event);
 #if defined(VERBOSE) && 1 == VERBOSE
-    Machine_String* zeroTerminatorString = Machine_String_create("", 1);
+    Machine_String* zeroTerminatorString = Ring2_String_create("", 1);
     Machine_String* eventString = Machine_Object_toString((Machine_Object*)event);
     eventString = Machine_String_concatenate(eventString, zeroTerminatorString);
     Machine_log(Machine_LogFlags_ToInformations, __FILE__, __LINE__, "%s\n",
@@ -54,7 +54,7 @@ static void cursorPositionCallback(GLFWwindow* window, double x, double y) {
         = Machine_Video_Gl_Input_mapMousePointerMoveEvent(window, x, y);
     Machine_Video_Canvas_addMousePointerEvent((Machine_Video_Canvas*)canvas, event);
 #if defined(VERBOSE) && 1 == VERBOSE
-    Machine_String* zeroTerminatorString = Machine_String_create("", 1);
+    Machine_String* zeroTerminatorString = Ring2_String_create("", 1);
     Machine_String* eventString = Machine_Object_toString((Machine_Object*)event);
     eventString = Machine_String_concatenate(eventString, zeroTerminatorString);
     Machine_log(Machine_LogFlags_ToInformations, __FILE__, __LINE__, "%s\n",

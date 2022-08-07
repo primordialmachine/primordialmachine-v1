@@ -45,7 +45,7 @@ void Machine_Signals_Signal_unsubscribe(Machine_Signals_Signal* self, Ring2_Stri
     for (size_t i = 0, n = Machine_Collection_getSize((Machine_Collection*)(self->connections)); i < n; ++i) {
       Machine_Value temporary = Machine_List_getAt(self->connections, i);
       Machine_Signals_Connection* c = (Machine_Signals_Connection*)Machine_Value_getObject(&temporary);
-      if (Machine_String_isEqualTo(c->name, name) &&
+      if (Ring2_String_isEqualTo(Ring2_Context_get(), c->name, name) &&
           Machine_Object_isEqualTo(c->context, context) &&
           Machine_ForeignProcedure_isEqualTo(c->callback, callback)) {
         Machine_List_removeAtFast(self->connections, i);
@@ -73,7 +73,7 @@ void Machine_Signals_Signal_emit(Machine_Signals_Signal* self, Ring2_String* nam
         Machine_Value temporary = Machine_List_getAt(self->connections, i);
         Machine_Signals_Connection* c
             = (Machine_Signals_Connection*)Machine_Value_getObject(&temporary);
-        if (Machine_String_isEqualTo(c->name, name)) {
+        if (Ring2_String_isEqualTo(Ring2_Context_get(), c->name, name)) {
           MACHINE_ASSERT_NOTNULL(c->callback);
           Machine_Value_setObject(&(arguments1[0]), c->context);
           c->callback(numberOfArguments1, arguments1);

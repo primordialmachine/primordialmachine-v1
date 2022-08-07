@@ -20,6 +20,12 @@ typedef struct Machine_Gc_AllocationArguments {
 
 } Machine_Gc_AllocationArguments;
 
+Ring1_CheckReturn() Ring1_Result
+Machine_Gc_startup();
+
+void
+Machine_Gc_shutdown();
+
 /// @brief Allocate a GC object.
 /// @param arguments A pointer to a Machine_Gc_AllocationArguments structure providing the arguments for the allocation.
 /// @return A pointer to the object on success, a null pointer on failure.
@@ -29,6 +35,10 @@ void* Machine_Gc_allocate(Machine_Gc_AllocationArguments const* arguments);
 /// @param object A pointer to the object.
 /// @undefined Invoked outside of visit callback.
 void Machine_Gc_visit(void* object);
+
+void Machine_Gc_preMarkCallback(Ring2_Gc* gc, void* context);
+
+void Machine_Gc_sweepCallback(Ring2_Gc* gc, void* context, Ring2_Gc_SweepStatistics *statistics);
 
 /// @brief Run the GC.
 /// @param statistics A pointer to a Mkx_Gc_RunStatistics object or a null pointer.

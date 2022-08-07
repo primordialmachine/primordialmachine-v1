@@ -353,5 +353,5 @@ Machine_Gdl_TokenKind Machine_Gdl_Scanner_getTokenKind(Machine_Gdl_Scanner const
 }
 
 Ring2_String* Machine_Gdl_Scanner_getTokenText(Machine_Gdl_Scanner const* self) {
-  return Machine_String_create(Machine_ByteBuffer_getBytes(self->tokenText), Machine_ByteBuffer_getNumberOfBytes(self->tokenText));
+  return Ring2_String_create(Machine_ByteBuffer_getBytes(self->tokenText), Machine_ByteBuffer_getNumberOfBytes(self->tokenText));
 }

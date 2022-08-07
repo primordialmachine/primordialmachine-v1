@@ -13,7 +13,7 @@
 static void test_1_1() {
   Machine_ByteBuffer* inputText = Machine_ByteBuffer_create();
   Machine_ByteBuffer_appendBytes(inputText, "", strlen(""));
-  Machine_Gdl_Scanner* scanner = Machine_Gdl_Scanner_create(Machine_String_create("", strlen("")), inputText);
+  Machine_Gdl_Scanner* scanner = Machine_Gdl_Scanner_create(Ring2_String_create("", strlen("")), inputText);
   CHECK(Machine_Gdl_TokenKind_StartOfInput);
   Machine_Gdl_Scanner_step(scanner);
   CHECK(Machine_Gdl_TokenKind_EndOfInput);
@@ -24,7 +24,7 @@ static void test_1_1() {
 static void test_1_2() {
   Machine_ByteBuffer *inputText = Machine_ByteBuffer_create();
   Machine_ByteBuffer_appendBytes(inputText, "{:true,false.void;}", strlen("{:true,false.void;}"));
-  Machine_Gdl_Scanner* scanner = Machine_Gdl_Scanner_create(Machine_String_create("", strlen("")), inputText);
+  Machine_Gdl_Scanner* scanner = Machine_Gdl_Scanner_create(Ring2_String_create("", strlen("")), inputText);
 
   CHECK(Machine_Gdl_TokenKind_StartOfInput); Machine_Gdl_Scanner_step(scanner);
 

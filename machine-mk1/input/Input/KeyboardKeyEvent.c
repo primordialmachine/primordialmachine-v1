@@ -11,13 +11,13 @@ MACHINE_DEFINE_ENUMERATIONTYPE(Machine_KeyboardKeyActions)
 Ring2_String* Machine_KeyboardKeyActions_toString(Machine_KeyboardKeyActions self) {
   switch (self) {
     case Machine_KeyboardKeyActions_Press:
-      return Machine_String_create("press", strlen("press"));
+      return Ring2_String_create("press", strlen("press"));
       break;
     case Machine_KeyboardKeyActions_Release:
-      return Machine_String_create("release", strlen("release"));
+      return Ring2_String_create("release", strlen("release"));
       break;
     case Machine_KeyboardKeyActions_Repeat:
-      return Machine_String_create("repeat", strlen("repeat"));
+      return Ring2_String_create("repeat", strlen("repeat"));
       break;
     case Machine_KeyboardKeyActions_Undetermined:
     default:

@@ -71,9 +71,9 @@ Ring2_Boolean Machine_Gdl_Node_toBoolean(Machine_Gdl_Node* self, Machine_Gdl_Con
   MACHINE_ASSERT_NOTNULL(self);
   MACHINE_ASSERT(self->kind == Machine_Gdl_NodeKind_Boolean, Ring1_Status_InvalidArgument);
   bool value;
-  if (Ring1_Conversion_stringToBool(&value, Machine_String_getBytes(self->text),
-                                     Machine_String_getBytes(self->text)
-                                         + Machine_String_getNumberOfBytes(self->text))) {
+  if (Ring1_Conversion_stringToBool(&value, Ring2_String_getBytes(Ring2_Context_get(), self->text),
+                                    Ring2_String_getBytes(Ring2_Context_get(), self->text) +
+                                    Ring2_String_getNumberOfBytes(Ring2_Context_get(), self->text))) {
     Ring2_jump();
   }
   return value;
@@ -84,9 +84,9 @@ Ring2_Integer Machine_Gdl_Node_toInteger(Machine_Gdl_Node* self, Machine_Gdl_Con
   MACHINE_ASSERT(self->kind == Machine_Gdl_NodeKind_Integer || self->kind == Machine_Gdl_NodeKind_Real, Ring1_Status_InvalidArgument);
   int64_t value;
   if (Ring1_Conversion_stringToInt64(&value, 
-                                     Machine_String_getBytes(self->text),
-                                 Machine_String_getBytes(self->text) +
-                                     Machine_String_getNumberOfBytes(self->text))) {
+                                     Ring2_String_getBytes(Ring2_Context_get(), self->text),
+                                     Ring2_String_getBytes(Ring2_Context_get(), self->text) +
+                                     Ring2_String_getNumberOfBytes(Ring2_Context_get(), self->text))) {
     Ring2_jump();
   }
   return value;
@@ -133,9 +133,9 @@ Ring2_Real32 Machine_Gdl_Node_toReal(Machine_Gdl_Node* self, Machine_Gdl_Context
   MACHINE_ASSERT(self->kind == Machine_Gdl_NodeKind_Integer || self->kind == Machine_Gdl_NodeKind_Real, Ring1_Status_InvalidArgument);
   double value;
   if (Ring1_Conversion_stringToDouble(&value, 
-                                      Machine_String_getBytes(self->text),
-                                      Machine_String_getBytes(self->text) +
-                                      Machine_String_getNumberOfBytes(self->text))) {
+                                      Ring2_String_getBytes(Ring2_Context_get(), self->text),
+                                      Ring2_String_getBytes(Ring2_Context_get(), self->text) +
+                                      Ring2_String_getNumberOfBytes(Ring2_Context_get(), self->text))) {
     Ring2_jump();
   }
   return value;

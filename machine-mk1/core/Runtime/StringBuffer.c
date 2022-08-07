@@ -6,7 +6,7 @@
 
 #include "Runtime/ByteBuffer.h"
 #include "Runtime/Object/Object.h"
-#include "Runtime/String.h"
+#include "Ring2/_Include.h"
 #include "Runtime/Value.h"
 
 struct Machine_StringBuffer_Class {
@@ -26,8 +26,8 @@ static void Machine_StringBuffer_visit(Machine_StringBuffer* self) {
 }
 
 static Ring2_String* Machine_StringBuffer_toStringImpl(Machine_StringBuffer const* self) {
-  return Machine_String_create(Machine_ByteBuffer_getBytes(self->byteBuffer),
-                               Machine_ByteBuffer_getNumberOfBytes(self->byteBuffer));
+  return Ring2_String_create(Machine_ByteBuffer_getBytes(self->byteBuffer),
+                             Machine_ByteBuffer_getNumberOfBytes(self->byteBuffer));
 }
 
 static void Machine_StringBuffer_constructClass(Machine_StringBuffer_Class* self) {
@@ -60,8 +60,8 @@ void Machine_StringBuffer_appendBytes(Machine_StringBuffer* self, char const* p,
 }
 
 void Machine_StringBuffer_appendString(Machine_StringBuffer* self, Ring2_String const* s) {
-  Machine_ByteBuffer_appendBytes(self->byteBuffer, Machine_String_getBytes(s),
-                                 Machine_String_getNumberOfBytes(s));
+  Machine_ByteBuffer_appendBytes(self->byteBuffer, Ring2_String_getBytes(Ring2_Context_get(), s),
+                                 Ring2_String_getNumberOfBytes(Ring2_Context_get(), s));
 }
 
 void Machine_StringBuffer_prependBytes(Machine_StringBuffer* self, const char* p, size_t n) {
@@ -69,8 +69,8 @@ void Machine_StringBuffer_prependBytes(Machine_StringBuffer* self, const char* p
 }
 
 void Machine_StringBuffer_prependString(Machine_StringBuffer* self, Ring2_String const* s) {
-  Machine_ByteBuffer_prependBytes(self->byteBuffer, Machine_String_getBytes(s),
-                                  Machine_String_getNumberOfBytes(s));
+  Machine_ByteBuffer_prependBytes(self->byteBuffer, Ring2_String_getBytes(Ring2_Context_get(), s),
+                                  Ring2_String_getNumberOfBytes(Ring2_Context_get(), s));
 }
 
 void Machine_StringBuffer_insertBytesAt(Machine_StringBuffer* self, size_t i, const char* p,

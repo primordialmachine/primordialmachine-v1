@@ -16,7 +16,7 @@ static void checkKind(Machine_Gui_Context* self, Machine_Map const* source,
     Ring2_jump();
   }
   Ring2_String* received = Machine_Gui_Reader_getString(source, context->KIND);
-  if (!Machine_String_isEqualTo(received, expected)) {
+  if (!Ring2_String_isEqualTo(Ring2_Context_get(), received, expected)) {
     Ring1_Status_set(Ring1_Status_InvalidSemantics);
     Ring2_jump();
   }
@@ -28,14 +28,14 @@ Machine_Gui_LayoutModel* Machine_Gui_Reader_readLayout(Machine_Gui_Context* self
   Machine_Gui_LayoutModel* model = Machine_Gui_LayoutModel_create();
   if (Machine_Gui_Reader_hasString(self, source, subContext->DIRECTION)) {
     Ring2_String* temporary = Machine_Gui_Reader_getString(source, subContext->DIRECTION);
-    if (Machine_String_isEqualTo(temporary, subContext->COLUMN)) {
+    if (Ring2_String_isEqualTo(Ring2_Context_get(), temporary, subContext->COLUMN)) {
       Machine_Gui_LayoutModel_setPrimaryDirection(model, Machine_Gui_Layout_Direction_Column);
-    } else if (Machine_String_isEqualTo(temporary, subContext->COLUMNREVERSE)) {
+    } else if (Ring2_String_isEqualTo(Ring2_Context_get(), temporary, subContext->COLUMNREVERSE)) {
       Machine_Gui_LayoutModel_setPrimaryDirection(model,
                                                   Machine_Gui_Layout_Direction_ColumnReverse);
-    } else if (Machine_String_isEqualTo(temporary, subContext->ROW)) {
+    } else if (Ring2_String_isEqualTo(Ring2_Context_get(), temporary, subContext->ROW)) {
       Machine_Gui_LayoutModel_setPrimaryDirection(model, Machine_Gui_Layout_Direction_Row);
-    } else if (Machine_String_isEqualTo(temporary, subContext->ROWREVERSE)) {
+    } else if (Ring2_String_isEqualTo(Ring2_Context_get(), temporary, subContext->ROWREVERSE)) {
       Machine_Gui_LayoutModel_setPrimaryDirection(model, Machine_Gui_Layout_Direction_RowReverse);
     } else {
       Ring1_Status_set(Ring1_Status_InvalidSemantics);
@@ -44,13 +44,13 @@ Machine_Gui_LayoutModel* Machine_Gui_Reader_readLayout(Machine_Gui_Context* self
   }
   if (Machine_Gui_Reader_hasString(self, source, subContext->JUSTIFICATION)) {
     Ring2_String* temporary = Machine_Gui_Reader_getString(source, subContext->JUSTIFICATION);
-    if (Machine_String_isEqualTo(temporary, subContext->START)) {
+    if (Ring2_String_isEqualTo(Ring2_Context_get(), temporary, subContext->START)) {
       Machine_Gui_LayoutModel_setPrimaryJustification(model,
                                                       Machine_Gui_Layout_Justification_Start);
-    } else if (Machine_String_isEqualTo(temporary, subContext->CENTER)) {
+    } else if (Ring2_String_isEqualTo(Ring2_Context_get(), temporary, subContext->CENTER)) {
       Machine_Gui_LayoutModel_setPrimaryJustification(model,
                                                       Machine_Gui_Layout_Justification_Center);
-    } else if (Machine_String_isEqualTo(temporary, subContext->END)) {
+    } else if (Ring2_String_isEqualTo(Ring2_Context_get(), temporary, subContext->END)) {
       Machine_Gui_LayoutModel_setPrimaryJustification(model, Machine_Gui_Layout_Justification_End);
     } else {
       Ring1_Status_set(Ring1_Status_InvalidLexics);

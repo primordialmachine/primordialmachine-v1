@@ -55,6 +55,12 @@ Ring2_OperationsModule_shutdown
 
 #endif // Ring2_Configuration_withReal
 
+#if defined(Ring2_Configuration_withString) && 1 == Ring2_Configuration_withString
+
+  #include "Ring2/Operations/String.h"
+
+#endif // Ring2_Configuration_withString
+
 #if defined(Ring2_Configuration_withVoid) && 1 == Ring2_Configuration_withVoid
 
   #include "Ring2/Operations/Void.h"

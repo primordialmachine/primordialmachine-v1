@@ -19,6 +19,8 @@
 
 #define Ring2_Configuration_withReal (1)
 
+#define Ring2_Configuration_withString (1)
+
 #define Ring2_Configuration_withVoid (1)
 
 #endif // RING2_CONFIGURATION_H_INCLUDED

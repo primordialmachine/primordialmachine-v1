@@ -9,27 +9,90 @@
 #include "Ring1/Status.h"
 #include <assert.h>
 
+#define WITH_NEW_GC (1)
+
 static Ring2_Gc_Tag* g_objects = NULL;
-static Ring2_Gc_Tag* g_gray = NULL;
-static size_t g_objectCount = 0;
+
+#if defined(WITH_NEW_GC) && 1 == WITH_NEW_GC
+static Ring2_Gc_PreMarkCallbackId g_preMarkCallbackId = Ring2_Gc_PreMarkCallbackId_Invalid;
+static Ring2_Gc_SweepCallbackId g_sweepCallbackId = Ring2_Gc_SweepCallbackId_Invalid;
+#endif
+
+Ring1_CheckReturn() Ring1_Result
+Machine_Gc_startup() {
+  if (Ring2_Gc_startup()) {
+    return Ring1_Result_Failure;
+  }
+  g_preMarkCallbackId = Ring2_Gc_addPreMarkCallback(Ring2_Gc_get(), NULL, &Machine_Gc_preMarkCallback);
+  if (g_preMarkCallbackId == Ring2_Gc_PreMarkCallbackId_Invalid) {
+    Ring2_Gc_shutdown();
+    return Ring1_Result_Failure;
+  }
+  g_sweepCallbackId = Ring2_Gc_addSweepCallback(Ring2_Gc_get(), NULL, &Machine_Gc_sweepCallback);
+  if (g_sweepCallbackId == Ring2_Gc_SweepCallbackId_Invalid) {
+    Ring2_Gc_shutdown();
+    return Ring1_Result_Failure;
+  }
+  return Ring1_Result_Success;
+}
+
+void 
+Machine_Gc_shutdown() {
+  Ring2_Gc_shutdown();
+}
 
 void* Machine_Gc_allocate(Machine_Gc_AllocationArguments const* arguments) {
   void *p = Ring2_Gc_allocate(Ring2_Gc_get(), arguments->suffixSize, arguments->type, &g_objects);
   if (!p) {
     return NULL;
   }
-  g_objectCount++;
   return p;
 }
 
 void Machine_Gc_visit(void* object) {
-  Ring2_Gc_Tag* tag = Ring2_Gc_toTag(object);
-  if (Ring2_Gc_Tag_isGray(tag) || Ring2_Gc_Tag_isBlack(tag)) {
-    return;
+  Ring2_Gc_visit(Ring2_Gc_get(), object);
+}
+
+void Machine_Gc_preMarkCallback(Ring2_Gc *gc, void *context) {
+  for (Ring2_Gc_Tag* object = g_objects; NULL != object; object = object->objectNext) {
+    Ring2_Gc_Tag_setWhite(object);
+    if (Ring2_Gc_Tag_getLockCount(object) > 0) {
+      Ring2_Gc_visit(Ring2_Gc_get(), Ring2_Gc_toAddress(object));
+    }
   }
-  tag->grayNext = g_gray;
-  g_gray = tag;
-  Ring2_Gc_Tag_setGray(tag);
+}
+
+void Machine_Gc_sweepCallback(Ring2_Gc *gc, void* context, Ring2_Gc_SweepStatistics *statistics) {
+  Ring2_Gc_Tag **previous = &g_objects, *current = g_objects;
+  while (current) {
+    if (Ring2_Gc_Tag_isWhite(current)) {
+      // Remove object from list.
+      Ring2_Gc_Tag* tag = current;
+      *previous = current->objectNext;
+      current = current->objectNext;
+      // Finalize.
+      if (tag->type) {
+        if (tag->type && tag->type->finalize) {
+          tag->type->finalize(Ring2_Gc_get(), Ring2_Gc_toAddress(tag));
+        }
+      }
+      // Notify weak reference.
+      Ring2_Gc_Tag_notifyWeakReferences(tag);
+      // Deallocate.
+      Ring2_Gc_Tag_uninitialize(tag);
+      Ring1_Memory_deallocate(tag);
+      if (statistics) {
+        statistics->dead++;
+      }
+    } else {
+      Ring2_Gc_Tag_setWhite(current);
+      previous = &current->objectNext;
+      current = current->objectNext;
+      if (statistics) {
+        statistics->live++;
+      }
+    }
+  }
 }
 
 void Machine_Gc_run(Ring2_Gc_RunStatistics *statistics) {
@@ -37,50 +100,5 @@ void Machine_Gc_run(Ring2_Gc_RunStatistics *statistics) {
     statistics->sweep.live = 0;
     statistics->sweep.dead = 0;
   }
-
-  // Color all objects white. Add root objects or objects with a lock count greater than 0 to the
-  // gray list.
-  for (Ring2_Gc_Tag* object = g_objects; NULL != object; object = object->objectNext) {
-    Ring2_Gc_Tag_setWhite(object);
-    if (Ring2_Gc_Tag_getLockCount(object) > 0) {
-      object->grayNext = g_gray;
-      g_gray = object;
-      Ring2_Gc_Tag_setGray(object);
-    }
-  }
-  // Pop objects from gray list, visit them, color them black.
-  while (g_gray) {
-    assert(g_gray != NULL);
-    Ring2_Gc_Tag* object = g_gray;
-    g_gray = object->grayNext;
-    assert(object != NULL);
-    if (object->type && object->type->visit) {
-      object->type->visit(Ring2_Gc_get(), Ring2_Gc_toAddress(object));
-    }
-    Ring2_Gc_Tag_setBlack(object);
-  }
-  // Separate dead (white) and live (black) objects.
-  Ring2_Gc_Tag **previous = &g_objects, *current = g_objects;
-  while (current) {
-    if (Ring2_Gc_Tag_isWhite(current)) {
-      *previous = current->objectNext;
-      Ring2_Gc_Tag* tag = current;
-      current = current->objectNext;
-      // Finalize.
-      if (tag->type && tag->type->finalize) {
-        tag->type->finalize(Ring2_Gc_get(), Ring2_Gc_toAddress(tag));
-      }
-      // Notify weak references.
-      Ring2_Gc_Tag_notifyWeakReferences(tag);
-      // Deallocate.
-      Ring2_Gc_Tag_uninitialize(tag);
-      Ring1_Memory_deallocate(tag);
-      g_objectCount--;
-      if (statistics) statistics->sweep.dead++;
-    } else {
-      previous = &current->objectNext;
-      current = current->objectNext;
-      if (statistics) statistics->sweep.live++;
-    }
-  }
+  Ring2_Gc_run(Ring2_Gc_get(), statistics);
 }

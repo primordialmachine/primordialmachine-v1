@@ -101,7 +101,7 @@ static void Scene3_startup(Scene3* self) {
 
   self->image = Machine_ImagesContext_createFromPath(
       Machines_DefaultImages_createContext(),
-      Machine_String_create("test-transparency-1.png", strlen("test-transparency-1.png")));
+      Ring2_String_create("test-transparency-1.png", strlen("test-transparency-1.png")));
   self->texture = Machine_VideoContext_createTextureFromImage(videoContext, self->image);
 
   self->vertices = Machine_VideoContext_createBuffer(videoContext);
@@ -118,13 +118,13 @@ static void Scene3_startup(Scene3* self) {
   self->binding
       = Machine_VideoContext_createBinding(videoContext, self->shaderProgram, vd, self->vertices);
   Machine_Binding_setVariableBinding(
-      self->binding, Machine_String_create("vertex_position", strlen("vertex_position") + 1), 0);
+      self->binding, Ring2_String_create("vertex_position", strlen("vertex_position") + 1), 0);
   Machine_Binding_setVariableBinding(
-      self->binding, Machine_String_create("vertex_color", strlen("vertex_color") + 1), 1);
+      self->binding, Ring2_String_create("vertex_color", strlen("vertex_color") + 1), 1);
   Machine_Binding_setVariableBinding(
       self->binding,
-      Machine_String_create("vertex_texture_coordinate_1",
-                            strlen("vertex_texture_coordinate_1") + 1),
+      Ring2_String_create("vertex_texture_coordinate_1",
+                              strlen("vertex_texture_coordinate_1") + 1),
       2);
 
   Machine_Math_Vector4* c = Machine_Math_Vector4_create();
@@ -152,10 +152,10 @@ static void Scene3_update(Scene3* self, Ring2_Real32 width, Ring2_Real32 height)
   Machine_Binding_activate(self->binding);
   Machine_Binding_bindMatrix4(
       self->binding,
-      Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1),
+      Ring2_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1),
       mvp2);
   Machine_Binding_bindSampler(self->binding,
-                              Machine_String_create("texture_1", strlen("texture_1")), 0);
+                              Ring2_String_create("texture_1", strlen("texture_1")), 0);
   Machine_VideoContext_bindTexture(videoContext, 0, self->texture);
 
   Machine_VideoContext_drawIndirect(videoContext, 0, 6, indices);

@@ -44,8 +44,8 @@ static void Machine_Text_Layout_visit(Machine_Text_Layout* self) {
 }
 
 static void parse(Ring2_String* text, Machine_PointerArray* lines) {
-  const char* start = Machine_String_getBytes(text),
-            * end = Machine_String_getBytes(text) + Machine_String_getNumberOfBytes(text);
+  const char* start = Ring2_String_getBytes(Ring2_Context_get(), text),
+            * end = Ring2_String_getBytes(Ring2_Context_get(), text) + Ring2_String_getNumberOfBytes(Ring2_Context_get(), text);
 
   const char* lineStart = start,
     * lineEnd = start;
@@ -86,7 +86,7 @@ static void updateLinesBounds(Machine_Math_Vector2* position, Machine_Font* font
 
   for (size_t i = 0, n = Machine_PointerArray_getSize(lines); i < n; ++i) {
     Machine_Text_LayoutLine* layoutLine = (Machine_Text_LayoutLine*)Machine_PointerArray_getAt(lines, i);
-    const char* bytes = Machine_String_getBytes(text);
+    const char* bytes = Ring2_String_getBytes(Ring2_Context_get(), text);
 
     Machine_Math_Vector2* position = Machine_Math_Vector2_create();
     Machine_Math_Vector2_copy(position, cursorPosition);
@@ -160,7 +160,7 @@ static void updateBounds(Machine_Text_Layout* self) {
   Machine_Math_Vector2_copy(p, cursorPosition);
   Machine_Math_Rectangle2_setPosition(bounds, p);
 
-  const char* bytes = Machine_String_getBytes(self->text);
+  const char* bytes = Ring2_String_getBytes(Ring2_Context_get(), self->text);
 
   for (size_t i = 0, n = Machine_PointerArray_getSize(self->lines); i < n; ++i) {
     Machine_Text_LayoutLine* layoutLine = (Machine_Text_LayoutLine*)Machine_PointerArray_getAt(self->lines, i);
@@ -292,7 +292,7 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* con
       float d = -Machine_Math_Vector3_dot(n2, p2);
       Machine_Math_Vector4* x = Machine_Math_Vector4_create();
       Machine_Math_Vector4_set(x, N[0], N[1], N[2], d);
-      Machine_Binding_bindVector4(binding, Machine_String_create("clipPlane0", strlen("clipPlane0") + 1), x);
+      Machine_Binding_bindVector4(binding, Ring2_String_create("clipPlane0", strlen("clipPlane0") + 1), x);
     }
     // right
     {
@@ -303,7 +303,7 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* con
       float d = -Machine_Math_Vector3_dot(n2, p2);
       Machine_Math_Vector4* x = Machine_Math_Vector4_create();
       Machine_Math_Vector4_set(x, N[0], N[1], N[2], d);
-      Machine_Binding_bindVector4(binding, Machine_String_create("clipPlane1", strlen("clipPlane1") + 1), x);
+      Machine_Binding_bindVector4(binding, Ring2_String_create("clipPlane1", strlen("clipPlane1") + 1), x);
     }
     // bottom
     {
@@ -313,7 +313,7 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* con
       float d = -Machine_Math_Vector3_dot(n2, p2);
       Machine_Math_Vector4* x = Machine_Math_Vector4_create();
       Machine_Math_Vector4_set(x, N[0], N[1], N[2], d);
-      Machine_Binding_bindVector4(binding, Machine_String_create("clipPlane2", strlen("clipPlane2") + 1), x);
+      Machine_Binding_bindVector4(binding, Ring2_String_create("clipPlane2", strlen("clipPlane2") + 1), x);
     }
     // top
     {
@@ -324,12 +324,12 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* con
       float d = -Machine_Math_Vector3_dot(n2, p2);
       Machine_Math_Vector4* x = Machine_Math_Vector4_create();
       Machine_Math_Vector4_set(x, N[0], N[1], N[2], d);
-      Machine_Binding_bindVector4(binding, Machine_String_create("clipPlane3", strlen("clipPlane3") + 1), x);
+      Machine_Binding_bindVector4(binding, Ring2_String_create("clipPlane3", strlen("clipPlane3") + 1), x);
     }
   }
-  Machine_Binding_bindVector3(binding, Machine_String_create("mesh_color", strlen("mesh_color") + 1), self->color);
-  Machine_Binding_bindMatrix4(binding, Machine_String_create("modelToWorldMatrix", strlen("modelToWorldMatrix") + 1), modelSpaceToWorldSpace);
-  Machine_Binding_bindMatrix4(binding, Machine_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), modelSpaceToProjectiveSpace);
+  Machine_Binding_bindVector3(binding, Ring2_String_create("mesh_color", strlen("mesh_color") + 1), self->color);
+  Machine_Binding_bindMatrix4(binding, Ring2_String_create("modelToWorldMatrix", strlen("modelToWorldMatrix") + 1), modelSpaceToWorldSpace);
+  Machine_Binding_bindMatrix4(binding, Ring2_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), modelSpaceToProjectiveSpace);
 
   Machine_VideoContext_setDepthTestFunction(context2->videoContext, Machine_DepthTestFunction_Always);
   Machine_VideoContext_setDepthWriteEnabled(context2->videoContext, false);
@@ -338,7 +338,7 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* con
 
   float cursorPosition[] = { position0[0], position0[1] };
 
-  const char* bytes = Machine_String_getBytes(self->text);
+  const char* bytes = Ring2_String_getBytes(Ring2_Context_get(), self->text);
 
   Machine_Math_Vector2* symbolAdvance = Machine_Math_Vector2_create();
   Machine_Math_Rectangle2* symbolBounds = Machine_Math_Rectangle2_create();
@@ -379,7 +379,7 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* con
       };
       static const size_t UNIT = 0;
       Machine_VideoContext_bindTexture(context2->videoContext, 0, symbolTexture);
-      Machine_Binding_bindSampler(binding, Machine_String_create("texture_1", strlen("texture_1")), UNIT);
+      Machine_Binding_bindSampler(binding, Ring2_String_create("texture_1", strlen("texture_1")), UNIT);
       Machine_VideoContext_drawIndirect(context2->videoContext, 0, 6, indices);
 
       cursorPosition[0] += Machine_Math_Vector2_getX(symbolAdvance);
@@ -400,7 +400,7 @@ void Machine_Text_Layout_setText(Machine_Text_Layout* self, Ring2_String* text) 
   MACHINE_ASSERT_NOTNULL(self);
   MACHINE_ASSERT_NOTNULL(text);
 
-  if (!Machine_String_isEqualTo(self->text, text)) {
+  if (!Ring2_String_isEqualTo(Ring2_Context_get(), self->text, text)) {
     self->text = text;
     self->flags |= LINES_DIRTY | LINE_BOUNDS_DIRTY | BOUNDS_DIRTY;
   }

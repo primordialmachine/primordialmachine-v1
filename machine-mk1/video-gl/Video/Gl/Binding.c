@@ -39,12 +39,12 @@ static void bindVar(Machine_Gl_Binding const* self, size_t inputIndex, Machine_P
   // Get the index of the corresponding vertex element.
   size_t vertexElementIndex = Machine_Binding_getVariableBinding((Machine_Binding*)self, input->name);
   if (vertexElementIndex == (size_t)-1) {
-    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "input %s not supported by program", Machine_String_getBytes(input->name));
+    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "input %s not supported by program", Ring2_String_getBytes(Ring2_Context_get(), input->name));
     return;
   }
-  GLint attributeLocation = glGetAttribLocation(((Machine_Gl_ShaderProgram*)(((Machine_Binding*)self)->program))->programId, Machine_String_getBytes(input->name));
+  GLint attributeLocation = glGetAttribLocation(((Machine_Gl_ShaderProgram*)(((Machine_Binding*)self)->program))->programId, Ring2_String_getBytes(Ring2_Context_get(), input->name));
   if (attributeLocation == -1) {
-    Machine_log(Machine_LogFlags_ToWarnings, __FILE__, __LINE__, "input %s optimized out\n", Machine_String_getBytes(input->name));
+    Machine_log(Machine_LogFlags_ToWarnings, __FILE__, __LINE__, "input %s optimized out\n", Ring2_String_getBytes(Ring2_Context_get(), input->name));
     return;
   }
   size_t vertexSize = Machine_VertexDescriptor_getVertexSize(((Machine_Binding*)self)->vertexDescriptor);
@@ -72,7 +72,7 @@ static bool Machine_Binding_setVariableBindingImpl(Machine_Gl_Binding* self, Rin
   }
   Machine_Binding_Node* node = ((Machine_Binding*)self)->nodes;
   while (node) {
-    if (Machine_String_isEqualTo(node->name, name)) {
+    if (Ring2_String_isEqualTo(Ring2_Context_get(), node->name, name)) {
       Machine_Value_setInteger(&node->value, index);
       node->isVariable = true;
       ((Machine_Binding*)self)->dirty = true;
@@ -91,7 +91,7 @@ static bool Machine_Binding_setVariableBindingImpl(Machine_Gl_Binding* self, Rin
 static size_t Machine_Binding_getVariableBindingImpl(Machine_Gl_Binding const* self, Ring2_String* name) {
   Machine_Binding_Node* node = ((Machine_Binding*)self)->nodes;
   while (node) {
-    if (Machine_String_isEqualTo(node->name, name) && node->isVariable) {
+    if (Ring2_String_isEqualTo(Ring2_Context_get(), node->name, name) && node->isVariable) {
       return Machine_Value_getInteger(&node->value);
     }
     node = node->next;
@@ -104,7 +104,7 @@ static void Machine_Binding_bindMatrix4Impl(Machine_Gl_Binding* self, Ring2_Stri
   Machine_Value_setObject(&temporary2, (Machine_Object*)value);
   Machine_Binding_addUpdateConstant((Machine_Binding*)self, name, &temporary2);
   
-  GLint location = glGetUniformLocation(((Machine_Gl_ShaderProgram*)(((Machine_Binding*)self)->program))->programId, Machine_String_getBytes(name));
+  GLint location = glGetUniformLocation(((Machine_Gl_ShaderProgram*)(((Machine_Binding*)self)->program))->programId, Ring2_String_getBytes(Ring2_Context_get(), name));
   if (location == -1) {
     return;
   }
@@ -118,7 +118,7 @@ static void Machine_Binding_bindVector2Impl(Machine_Gl_Binding* self, Ring2_Stri
   
   Machine_Binding_Node* node = ((Machine_Binding*)self)->nodes;
   while (node) {
-    if (Machine_String_isEqualTo(node->name, name) && node->isVariable == false) {
+    if (Ring2_String_isEqualTo(Ring2_Context_get(), node->name, name) && node->isVariable == false) {
       Machine_Value_setObject(&node->value, (Machine_Object*)value);
       break;
     }
@@ -133,7 +133,7 @@ static void Machine_Binding_bindVector2Impl(Machine_Gl_Binding* self, Ring2_Stri
     node->next = ((Machine_Binding*)self)->nodes; ((Machine_Binding*)self)->nodes = node;
   }
 
-  GLint location = glGetUniformLocation(((Machine_Gl_ShaderProgram*)(((Machine_Binding*)self)->program))->programId, Machine_String_getBytes(name));
+  GLint location = glGetUniformLocation(((Machine_Gl_ShaderProgram*)(((Machine_Binding*)self)->program))->programId, Ring2_String_getBytes(Ring2_Context_get(), name));
   if (location == -1) {
     return;
   }
@@ -148,7 +148,7 @@ static void Machine_Binding_bindVector3Impl(Machine_Gl_Binding* self, Ring2_Stri
   
   Machine_Binding_Node* node = ((Machine_Binding*)self)->nodes;
   while (node) {
-    if (Machine_String_isEqualTo(node->name, name) && node->isVariable == false) {
+    if (Ring2_String_isEqualTo(Ring2_Context_get(), node->name, name) && node->isVariable == false) {
       Machine_Value_setObject(&node->value, (Machine_Object*)value);
       break;
     }
@@ -163,7 +163,7 @@ static void Machine_Binding_bindVector3Impl(Machine_Gl_Binding* self, Ring2_Stri
     node->next = ((Machine_Binding*)self)->nodes; ((Machine_Binding*)self)->nodes = node;
   }
 
-  GLint location = glGetUniformLocation(((Machine_Gl_ShaderProgram*)(((Machine_Binding*)self)->program))->programId, Machine_String_getBytes(name));
+  GLint location = glGetUniformLocation(((Machine_Gl_ShaderProgram*)(((Machine_Binding*)self)->program))->programId, Ring2_String_getBytes(Ring2_Context_get(), name));
   if (location == -1) {
     return;
   }
@@ -178,7 +178,7 @@ static void Machine_Binding_bindVector4Impl(Machine_Binding* self, Ring2_String*
   
   Machine_Binding_Node* node = self->nodes;
   while (node) {
-    if (Machine_String_isEqualTo(node->name, name) && node->isVariable == false) {
+    if (Ring2_String_isEqualTo(Ring2_Context_get(), node->name, name) && node->isVariable == false) {
       Machine_Value_setObject(&node->value, (Machine_Object*)value);
       break;
     }
@@ -193,7 +193,7 @@ static void Machine_Binding_bindVector4Impl(Machine_Binding* self, Ring2_String*
     node->next = self->nodes; self->nodes = node;
   }
 
-  GLint location = glGetUniformLocation(((Machine_Gl_ShaderProgram*)(self->program))->programId, Machine_String_getBytes(name));
+  GLint location = glGetUniformLocation(((Machine_Gl_ShaderProgram*)(self->program))->programId, Ring2_String_getBytes(Ring2_Context_get(), name));
   if (location == -1) {
     return;
   }
@@ -206,7 +206,7 @@ static void Machine_Binding_bindSamplerImpl(Machine_Gl_Binding* self, Ring2_Stri
   Machine_Value_setInteger(&temporary2, (Ring2_Integer)value);
   Machine_Binding_addUpdateConstant((Machine_Binding*)self, name, &temporary2);
 
-  GLint location = glGetUniformLocation(((Machine_Gl_ShaderProgram*)(((Machine_Binding*)self)->program))->programId, Machine_String_getBytes(name));
+  GLint location = glGetUniformLocation(((Machine_Gl_ShaderProgram*)(((Machine_Binding*)self)->program))->programId, Ring2_String_getBytes(Ring2_Context_get(), name));
   if (location == -1) {
     return;
   }

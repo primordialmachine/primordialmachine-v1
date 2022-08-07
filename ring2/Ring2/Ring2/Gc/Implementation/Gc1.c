@@ -10,6 +10,7 @@
 
 #include "Ring2/Gc/Tag.h"
 #include "Ring1/Memory.h"
+#include <assert.h>
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -191,7 +192,7 @@ Ring2_Gc_Implementation_Gc1_allocate
   {
     return NULL;
   }
-  if (SIZE_MAX - sizeof(Ring2_Gc_Tag) < size)
+  if (Ring2_Gc_MaximumAllocatableSize < size)
   {
     return NULL;
   }
@@ -221,21 +222,21 @@ Ring2_Gc_Implementation_Gc1_run
     node->callback(gc, node->object);
   }
   // Mark phase.
-  while (gc->grayList)
-  {
+  while (gc->grayList) {
+    assert(gc->grayList != NULL);
     // Pop the object from the stack.
-    Ring2_Gc_Tag* object = gc->grayList;
-    gc->grayList = object->grayNext;
+    Ring2_Gc_Tag* tag = gc->grayList;
+    gc->grayList = tag->grayNext;
 
-    if (Ring2_Gc_Tag_isGray(object))
-    {
+    if (Ring2_Gc_Tag_isGray(tag)) {
       // We invoke the "mark" function (if any).
       // The "mark" function invokes "Ring2_Gc_visit" on objects referred to by the marked object.
-      if (object->type->visit)
-      {
-        object->type->visit(gc, Ring2_Gc_toAddress(object));
+      if (tag->type) {
+        if (tag->type->visit) {
+          tag->type->visit(gc, Ring2_Gc_toAddress(tag));
+        }
       }
-      Ring2_Gc_Tag_setBlack(object);
+      Ring2_Gc_Tag_setBlack(tag);
     }
   }
   // Sweep phase.

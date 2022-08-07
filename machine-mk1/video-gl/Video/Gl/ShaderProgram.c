@@ -56,7 +56,7 @@ static Ring2_String* getLog_noraise(GLuint id) {
   Ring2_JumpTarget jumpTarget;
   Ring2_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
-    Ring2_String* string = Machine_String_create(p, n);
+    Ring2_String* string = Ring2_String_create(p, n);
     Ring2_popJumpTarget();
     Ring1_Memory_deallocate(p);
     return string;
@@ -79,7 +79,7 @@ static Machine_ProgramInput* Machine_Gl_ShaderProgram_getInputAtImpl(Machine_Gl_
 static Ring2_Boolean Machine_Gl_ShaderProgram_addUpdateInputImpl(Machine_Gl_ShaderProgram* self, Ring2_String* name, Machine_ProgramInputType type, Machine_ProgramInputKind kind) {
   for (size_t i = 0, n = Machine_ShaderProgram_getNumberOfInputs((Machine_ShaderProgram *)self); i < n; ++i) {
     Machine_ProgramInput* input = Machine_ShaderProgram_getInputAt((Machine_ShaderProgram *)self, i);
-    if (Machine_String_isEqualTo(input->name, name)) {
+    if (Ring2_String_isEqualTo(Ring2_Context_get(), input->name, name)) {
       input->type = type;
       input->kind = kind;
       return true;
@@ -234,9 +234,9 @@ void Machine_Gl_ShaderProgram_construct(Machine_Gl_ShaderProgram* self, size_t n
   if (!Machine_Value_isVoid(arguments + 2)) {
     f = Machine_Extensions_getStringArgument(numberOfArguments, arguments, 2);
   }
-  constructFromText(self, v ? Machine_String_getBytes(v) : NULL,
-                          g ? Machine_String_getBytes(g) : NULL,
-                          f ? Machine_String_getBytes(f) : NULL);
+  constructFromText(self, v ? Ring2_String_getBytes(Ring2_Context_get(), v) : NULL,
+                          g ? Ring2_String_getBytes(Ring2_Context_get(), g) : NULL,
+                          f ? Ring2_String_getBytes(Ring2_Context_get(), f) : NULL);
   Machine_setClassType((Machine_Object*)self, Machine_Gl_ShaderProgram_getType());
 }
 
@@ -395,14 +395,14 @@ Machine_Gl_ShaderProgram_generateDefaultShader
   Machine_StringBuffer_clear(code);
 
   Machine_ShaderProgram* shaderProgram = (Machine_ShaderProgram *)Machine_Gl_ShaderProgram_create(v, NULL, f);
-  Machine_ShaderProgram_addUpdateInput(shaderProgram, Machine_String_create(TZ("vertex_position")),
+  Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertex_position")),
                                        Machine_ProgramInputType_Vector2, Machine_ProgramInputKind_Variable);
   if (withVertexColor) {
-    Machine_ShaderProgram_addUpdateInput(shaderProgram, Machine_String_create(TZ("vertex_color")),
+    Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertex_color")),
                                           Machine_ProgramInputType_Vector3, Machine_ProgramInputKind_Variable);
   }
   if (withTextureCoordinate) {
-    Machine_ShaderProgram_addUpdateInput(shaderProgram, Machine_String_create(TZ("vertex_texture_coordinate_1")),
+    Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertex_texture_coordinate_1")),
                                           Machine_ProgramInputType_Vector2, Machine_ProgramInputKind_Variable);
   }
   return shaderProgram;
@@ -463,7 +463,7 @@ Machine_Gl_ShaderProgram_generateShape2Shader
   Machine_StringBuffer_clear(code);
 
   Machine_ShaderProgram* shaderProgram = (Machine_ShaderProgram*)Machine_Gl_ShaderProgram_create(v, NULL, f);
-  Machine_ShaderProgram_addUpdateInput(shaderProgram, Machine_String_create(TZ("vertex_position")),
+  Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertex_position")),
                                        Machine_ProgramInputType_Vector2, Machine_ProgramInputKind_Variable);
   return shaderProgram;
 
@@ -587,9 +587,9 @@ Machine_Gl_ShaderProgram_generateText2Shader
   Machine_StringBuffer_clear(code);
 
   Machine_ShaderProgram* shaderProgram = (Machine_ShaderProgram*)Machine_Gl_ShaderProgram_create(v, g, f);
-  Machine_ShaderProgram_addUpdateInput(shaderProgram, Machine_String_create(TZ("vertex_position")),
+  Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertex_position")),
                                        Machine_ProgramInputType_Vector2, Machine_ProgramInputKind_Variable);
-  Machine_ShaderProgram_addUpdateInput(shaderProgram, Machine_String_create(TZ("vertex_texture_coordinate_1")),
+  Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertex_texture_coordinate_1")),
                                        Machine_ProgramInputType_Vector2, Machine_ProgramInputKind_Variable);
   return shaderProgram;
 

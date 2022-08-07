@@ -8,8 +8,8 @@
 
 void Machine_Collections_Test_ArrayDequeTest_test1() {
   Ring2_String* NAME
-      = Machine_String_create("Machine.Collections.Test.ArrayDequeTest.test1",
-                              crt_strlen("Machine.Collections.Test.ArrayDequeTest.test1"));
+      = Ring2_String_create("Machine.Collections.Test.ArrayDequeTest.test1",
+                            crt_strlen("Machine.Collections.Test.ArrayDequeTest.test1"));
 
   Machine_Deque* deque = (Machine_Deque *)Machine_ArrayDeque_create();
   Machine_Collection_getSize((Machine_Collection*)deque);
@@ -20,8 +20,8 @@ void Machine_Collections_Test_ArrayDequeTest_test1() {
 
 void Machine_Collections_Test_ArrayDequeTest_test2() {
   Ring2_String* NAME
-      = Machine_String_create("Machine.Collections.Test.ArrayDequeTest.test2",
-                              crt_strlen("Machine.Collections.Test.ArrayDequeTest.test2"));
+      = Ring2_String_create("Machine.Collections.Test.ArrayDequeTest.test2",
+                            crt_strlen("Machine.Collections.Test.ArrayDequeTest.test2"));
 
   Machine_Deque* deque = (Machine_Deque *)Machine_ArrayDeque_create();
   Machine_Value value;
@@ -44,8 +44,8 @@ void Machine_Collections_Test_ArrayDequeTest_test2() {
 
 void Machine_Collections_Test_ArrayDequeTest_test3() {
   Ring2_String* NAME
-      = Machine_String_create("Machine.Collections.Test.ArrayDequeTest.test3",
-                              crt_strlen("Machine.Collections.Test.ArrayDequeTest.test3"));
+      = Ring2_String_create("Machine.Collections.Test.ArrayDequeTest.test3",
+                            crt_strlen("Machine.Collections.Test.ArrayDequeTest.test3"));
   Machine_Deque* deque = (Machine_Deque *)Machine_ArrayDeque_create();
   Machine_Value value;
 

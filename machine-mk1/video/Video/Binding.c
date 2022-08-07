@@ -110,7 +110,7 @@ static void Machine_Binding_addUpdateConstantImpl(Machine_Binding* self, Ring2_S
                                                   Machine_Value const* value) {
   Machine_Binding_Node* node = self->nodes;
   while (NULL != node) {
-    if (Machine_String_isEqualTo(node->name, name)) {
+    if (Ring2_String_isEqualTo(Ring2_Context_get(), node->name, name)) {
       break;
     }
     node = node->next;

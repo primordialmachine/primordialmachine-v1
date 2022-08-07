@@ -11,13 +11,13 @@ MACHINE_DEFINE_ENUMERATIONTYPE(Machine_MousePointerActions)
 Ring2_String* Machine_MousePointerActions_toString(Machine_MousePointerActions self) {
   switch (self) {
     case Machine_MousePointerActions_Move:
-      return Machine_String_create("move", strlen("move"));
+      return Ring2_String_create("move", strlen("move"));
       break;
     case Machine_MousePointerActions_Enter:
-      return Machine_String_create("enter", strlen("enter"));
+      return Ring2_String_create("enter", strlen("enter"));
       break;
     case Machine_MousePointerActions_Exit:
-      return Machine_String_create("exit", strlen("exit"));
+      return Ring2_String_create("exit", strlen("exit"));
       break;
     case Machine_MousePointerActions_Undetermined:
     default:

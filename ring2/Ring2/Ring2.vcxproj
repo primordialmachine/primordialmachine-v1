@@ -36,12 +36,14 @@
     <ClInclude Include="Ring2\Operations\Integer.h" />
     <ClInclude Include="Ring2\Operations\Real32.h" />
     <ClInclude Include="Ring2\Operations\Real64.h" />
+    <ClInclude Include="Ring2\Operations\String.h" />
     <ClInclude Include="Ring2\Operations\Void.h" />
     <ClInclude Include="Ring2\Types.h" />
     <ClInclude Include="Ring2\Types\Boolean.h" />
     <ClInclude Include="Ring2\Types\ForeignFunction.h" />
     <ClInclude Include="Ring2\Types\Integer.h" />
     <ClInclude Include="Ring2\Types\Real.h" />
+    <ClInclude Include="Ring2\Types\String.h" />
     <ClInclude Include="Ring2\Types\Void.h" />
     <ClInclude Include="Ring2\_Include.h" />
   </ItemGroup>
@@ -62,12 +64,14 @@
     <ClCompile Include="Ring2\Operations\Integer.c" />
     <ClCompile Include="Ring2\Operations\Real32.c" />
     <ClCompile Include="Ring2\Operations\Real64.c" />
+    <ClCompile Include="Ring2\Operations\String.c" />
     <ClCompile Include="Ring2\Operations\Void.c" />
     <ClCompile Include="Ring2\Types.c" />
     <ClCompile Include="Ring2\Types\Boolean.c" />
     <ClCompile Include="Ring2\Types\ForeignFunction.c" />
     <ClCompile Include="Ring2\Types\Integer.c" />
     <ClCompile Include="Ring2\Types\Real.c" />
+    <ClCompile Include="Ring2\Types\String.c" />
     <ClCompile Include="Ring2\Types\Void.c" />
     <ClCompile Include="Ring2\_Include.c" />
   </ItemGroup>

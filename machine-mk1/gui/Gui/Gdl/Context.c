@@ -25,7 +25,7 @@ static void Machine_Gui_Gdl_Context_construct(Machine_Gui_Gdl_Context* self,
 
   self->context = (Machine_Gdl_Context*)Machine_Value_getObject(&arguments[0]);
 
-#define DEFINE(NAME, STRING) self->NAME = Machine_String_create(STRING, strlen(STRING));
+#define DEFINE(NAME, STRING) self->NAME = Ring2_String_create(STRING, strlen(STRING));
 #include "Gui/Gdl/Context.i"
 #undef DEFINE
 

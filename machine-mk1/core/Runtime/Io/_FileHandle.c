@@ -58,11 +58,11 @@ void _Machine_FileHandle_open(_Machine_FileHandle* self, Ring2_String* path,
   }
   dwDesiredAccess |= policyMapping->dwDesiredAccessModifier;
 
-  self->hHandle = CreateFileA(Machine_String_getBytes(path), dwDesiredAccess, dwShareMode, 0,
+  self->hHandle = CreateFileA(Ring2_String_getBytes(Ring2_Context_get(), path), dwDesiredAccess, dwShareMode, 0,
                               policyMapping->dwCreationDisposition, FILE_ATTRIBUTE_NORMAL, 0);
   if (INVALID_HANDLE_VALUE == self->hHandle) {
     Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "unable to open file `%s`\n",
-                Machine_String_getBytes(path));
+                Ring2_String_getBytes(Ring2_Context_get(), path));
     Ring1_Status_set(Ring1_Status_EnvironmentFailed);
     Ring2_jump();
   }

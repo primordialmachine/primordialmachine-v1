@@ -8,7 +8,7 @@
 #error("Do not include `Runtime/Io/getFileContents.h` directly, include `_Runtime.h` instead.")
 #endif
 
-#include "Runtime/String.h"
+#include "Ring2/_Include.h"
 #include "Runtime/ByteBuffer.h"
 
 /// @brief Get the contents of a file.

@@ -61,18 +61,18 @@ static void LayoutScene_onStartup(LayoutScene* self) {
   //
   self->font = Machine_FontsContext_createFont(
       Machine_DefaultFonts_createContext(videoContext, Machines_DefaultImages_createContext()),
-      Machine_String_create(FONT_FILE, strlen(FONT_FILE)), FONT_SIZE);
+      Ring2_String_create(FONT_FILE, strlen(FONT_FILE)), FONT_SIZE);
   //
-  self->textLayout1 = Machine_Text_Layout_create(Machine_String_create("", strlen("")), self->font);
+  self->textLayout1 = Machine_Text_Layout_create(Ring2_String_create("", strlen("")), self->font);
   {
     const char* text = "Nanobox IV\n400 units of unprimed nanites.";
-    Machine_Text_Layout_setText(self->textLayout1, Machine_String_create(text, strlen(text)));
+    Machine_Text_Layout_setText(self->textLayout1, Ring2_String_create(text, strlen(text)));
   }
   //
-  self->textLayout2 = Machine_Text_Layout_create(Machine_String_create("", strlen("")), self->font);
+  self->textLayout2 = Machine_Text_Layout_create(Ring2_String_create("", strlen("")), self->font);
   {
     const char* text = "13 of 18 units\n7 of 9 units";
-    Machine_Text_Layout_setText(self->textLayout2, Machine_String_create(text, strlen(text)));
+    Machine_Text_Layout_setText(self->textLayout2, Ring2_String_create(text, strlen(text)));
   }
   //
   Machine_Math_Vector4* c = Machine_Math_Vector4_create();
