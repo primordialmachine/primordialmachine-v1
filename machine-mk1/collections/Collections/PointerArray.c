@@ -46,7 +46,7 @@ static void Machine_PointerArray_destruct(Machine_PointerArray* self)
 Machine_PointerArray* Machine_PointerArray_create() {
   Machine_ClassType* ty = Machine_PointerArray_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
+  static Machine_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_PointerArray* self = (Machine_PointerArray *)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

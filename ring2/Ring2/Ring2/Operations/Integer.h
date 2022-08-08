@@ -239,7 +239,16 @@ Ring2_Integer_negate
     Ring2_Context* context,
     Ring2_Integer x
   );
-  
+ 
+/// @brief Convert an <code>Integer</code> value to a <code>String</code> value.
+/// @param x The <code>Integer</code> value.
+/// @return The <code>String</code> value.
+Ring1_CheckReturn() Ring2_String *
+Ring2_Integer_toString
+  (
+    Ring2_Context* context,
+    Ring2_Integer x
+  );
 
 #endif // Ring2_Configuration_withInteger
 

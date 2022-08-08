@@ -1,7 +1,8 @@
 // Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 
-/// @file Ring1/FileSystem.c
+/// @file Ring2/Types/Value.c
 /// @copyright Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
-#include "Ring1/FileSystem.h"
+#define RING2_INTERNAL (1)
+#include "Ring2/Types/Value.h"

@@ -44,6 +44,7 @@
     <ClInclude Include="Ring2\Types\Integer.h" />
     <ClInclude Include="Ring2\Types\Real.h" />
     <ClInclude Include="Ring2\Types\String.h" />
+    <ClInclude Include="Ring2\Types\Value.h" />
     <ClInclude Include="Ring2\Types\Void.h" />
     <ClInclude Include="Ring2\_Include.h" />
   </ItemGroup>
@@ -72,6 +73,7 @@
     <ClCompile Include="Ring2\Types\Integer.c" />
     <ClCompile Include="Ring2\Types\Real.c" />
     <ClCompile Include="Ring2\Types\String.c" />
+    <ClCompile Include="Ring2\Types\Value.c" />
     <ClCompile Include="Ring2\Types\Void.c" />
     <ClCompile Include="Ring2\_Include.c" />
   </ItemGroup>

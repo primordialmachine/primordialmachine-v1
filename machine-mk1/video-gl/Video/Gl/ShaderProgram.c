@@ -193,6 +193,7 @@ static void constructFromText(Machine_Gl_ShaderProgram* self, char const* vertex
   glLinkProgram(programId);
   glGetProgramiv(programId, GL_LINK_STATUS, &result);
   if (result == GL_FALSE) {
+  
   #define PROGRAM_EMIT_LOG_IF_LINKING_FAILED
 
   #if defined(PROGRAM_EMIT_LOG_IF_LINKING_FAILED)

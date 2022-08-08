@@ -103,7 +103,7 @@ static inline bool Machine_Gui_Reader_hasReal(Machine_Gui_Context* self, Machine
   Machine_Value keyValue;
   Machine_Value_setString(&keyValue, key);
   Machine_Value valueValue = Machine_Map_get(map, keyValue);
-  return Machine_Value_isInteger(&valueValue) || Machine_Value_isReal(&valueValue);
+  return Machine_Value_isInteger(&valueValue) || Machine_Value_isReal32(&valueValue);
 }
 
 // USED
@@ -112,14 +112,14 @@ static inline Ring2_Real32 Machine_Gui_Reader_getReal(Machine_Map const* map,
   Machine_Value keyValue;
   Machine_Value_setString(&keyValue, key);
   Machine_Value valueValue = Machine_Map_get(map, keyValue);
-  if (!Machine_Value_isInteger(&valueValue) && !Machine_Value_isReal(&valueValue)) {
+  if (!Machine_Value_isInteger(&valueValue) && !Machine_Value_isReal32(&valueValue)) {
     Ring1_Status_set(Ring1_Status_ConversionFailed);
     Ring2_jump();
   }
   if (Machine_Value_isInteger(&valueValue)) {
     return (Ring2_Real32)Machine_Value_getInteger(&valueValue);
   } else {
-    return Machine_Value_getReal(&valueValue);
+    return Machine_Value_getReal32(&valueValue);
   }
 }
 

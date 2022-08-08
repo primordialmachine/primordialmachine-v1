@@ -240,6 +240,15 @@ Ring2_Real64_negate
     Ring2_Real64 x
   );
   
+/// @brief Convert an <code>Real64</code> value to a <code>String</code> value.
+/// @param x The <code>Real64</code> value.
+/// @return The <code>String</code> value.
+Ring1_CheckReturn() Ring2_String *
+Ring2_Real64_toString
+  (
+    Ring2_Context* context,
+    Ring2_Real64 x
+  );
 
 #endif // Ring2_Configuration_withReal
 

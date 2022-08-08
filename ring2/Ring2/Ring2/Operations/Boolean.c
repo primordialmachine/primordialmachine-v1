@@ -7,6 +7,7 @@
 #define RING2_INTERNAL (1)
 #include "Ring2/Operations/Boolean.h"
 
+#include "Ring1/Intrinsic/Crt.h"
 #include "Ring1/Hash.h"
 
 Ring1_CheckReturn() Ring2_Integer
@@ -117,3 +118,14 @@ Ring2_Boolean_negate
     Ring2_Boolean x
   )
 { return !x; }
+
+Ring1_CheckReturn() Ring2_String *
+Ring2_Boolean_toString
+  (
+    Ring2_Context *context,
+    Ring2_Boolean value
+  )
+{
+  return value ? Ring2_String_create("true", crt_strlen("true"))
+               : Ring2_String_create("false", crt_strlen("false"));
+}

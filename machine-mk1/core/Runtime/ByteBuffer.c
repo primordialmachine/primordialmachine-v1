@@ -38,7 +38,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_ByteBuffer, Machine_Object, NULL, &Machine_Byte
 Machine_ByteBuffer* Machine_ByteBuffer_create() {
   Machine_ClassType* ty = Machine_ByteBuffer_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
+  static Machine_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_ByteBuffer* self
       = (Machine_ByteBuffer*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;

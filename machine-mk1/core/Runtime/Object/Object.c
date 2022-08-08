@@ -25,7 +25,7 @@ static Ring2_String* Machine_Object_toStringImpl(Machine_Object const* self) {
                 "Machine_Integer can not represent an identity value");
   static_assert(INTPTR_MIN >= Ring2_Integer_Least,
                 "Machine_Integer can not represent an identity value");
-  return Machine_Integer_toString((Ring2_Integer)(intptr_t)self);
+  return Ring2_Integer_toString(Ring2_Context_get(), (Ring2_Integer)(intptr_t)self);
 }
 
 static void Machine_Object_constructClass(Machine_Object_Class* self) {

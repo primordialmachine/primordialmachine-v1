@@ -8,32 +8,9 @@
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
 #include "Runtime/PrimitiveTypes.h"
+#include "Ring2/Types/Value.h"
 typedef struct Ring2_String Ring2_String;
 typedef struct Machine_Object Machine_Object;
-
-/// @brief See Machine_Value::flags for more information.
-#define Machine_ValueFlag_Boolean (1)
-
-/// @brief See Machine_Value::flags for more information.
-#define Machine_ValueFlag_Function (2)
-
-/// @brief See Machine_Value::flags for more information.
-#define Machine_ValueFlag_Integer (3)
-
-/// @brief See Machine_Value::flags for more information.
-#define Machine_ValueFlag_Object (4)
-
-/// @brief See Machine_Value::flags for more information.
-#define Machine_ValueFlag_ForeignProcedure (5)
-
-/// @brief See Machine_Value::flags for more information.
-#define Machine_ValueFlag_Real (6)
-
-/// @brief See Machine_Value::flags for more information.
-#define Machine_ValueFlag_String (7)
-
-/// @brief See Machine_Value::flags for more information.
-#define Machine_ValueFlag_Void (8)
 
 typedef struct Machine_Value {
 
@@ -49,7 +26,7 @@ typedef struct Machine_Value {
 
     Machine_ForeignProcedure* foreignProcedureValue;
 
-    Ring2_Real32 realValue;
+    Ring2_Real32 real32Value;
 
     Ring2_String* stringValue;
 
@@ -59,7 +36,7 @@ typedef struct Machine_Value {
 } Machine_Value;
 
 Ring1_Inline() void Machine_Value_setBoolean(Machine_Value* self, Ring2_Boolean value) {
-  self->tag = Machine_ValueFlag_Boolean;
+  self->tag = Ring2_Value_Tag_Boolean;
   self->booleanValue = value;
 }
 
@@ -68,14 +45,14 @@ Ring1_Inline() Ring2_Boolean Machine_Value_getBoolean(Machine_Value const* self)
 }
 
 Ring1_Inline() bool Machine_Value_isBoolean(Machine_Value const* self) {
-  return self->tag == Machine_ValueFlag_Boolean;
+  return self->tag == Ring2_Value_Tag_Boolean;
 }
 
 #define Machine_Value_StaticInitializerBoolean(v)                                                  \
-  { Machine_ValueFlag_Boolean, v }
+  { Ring2_Value_Tag_Boolean, v }
 
 Ring1_Inline() void Machine_Value_setInteger(Machine_Value* self, Ring2_Integer value) {
-  self->tag = Machine_ValueFlag_Integer;
+  self->tag = Ring2_Value_Tag_Integer;
   self->integerValue = value;
 }
 
@@ -84,14 +61,14 @@ Ring1_Inline() Ring2_Integer Machine_Value_getInteger(Machine_Value const* self)
 }
 
 Ring1_Inline() bool Machine_Value_isInteger(Machine_Value const* self) {
-  return self->tag == Machine_ValueFlag_Integer;
+  return self->tag == Ring2_Value_Tag_Integer;
 }
 
 #define Machine_Value_StaticInitializerInteger(v)                                                  \
-  { Machine_ValueFlag_Integer, v }
+  { Ring2_Value_Tag_Integer, v }
 
 Ring1_Inline() void Machine_Value_setObject(Machine_Value* self, Machine_Object* value) {
-  self->tag = Machine_ValueFlag_Object;
+  self->tag = Ring2_Value_Tag_Object;
   self->objectValue = value;
 }
 
@@ -100,15 +77,15 @@ Ring1_Inline() Machine_Object* Machine_Value_getObject(Machine_Value const* self
 }
 
 Ring1_Inline() bool Machine_Value_isObject(Machine_Value const* self) {
-  return self->tag == Machine_ValueFlag_Object;
+  return self->tag == Ring2_Value_Tag_Object;
 }
 
 #define Machine_Value_StaticInitializerObject(v)                                                   \
-  { Machine_ValueFlag_Object, v }
+  { Ring2_Value_Tag_Object, v }
 
 Ring1_Inline() void Machine_Value_setForeignProcedure(Machine_Value* self,
                                                       Machine_ForeignProcedure* value) {
-  self->tag = Machine_ValueFlag_ForeignProcedure;
+  self->tag = Ring2_Value_Tag_ForeignFunction;
   self->foreignProcedureValue = value;
 }
 
@@ -117,30 +94,30 @@ Ring1_Inline() Machine_ForeignProcedure* Machine_Value_getForeignProcedure(Machi
 }
 
 Ring1_Inline() bool Machine_Value_isForeignProcedure(Machine_Value const* self) {
-  return self->tag == Machine_ValueFlag_ForeignProcedure;
+  return self->tag == Ring2_Value_Tag_ForeignFunction;
 }
 
 #define Machine_Value_StaticInitializerForeignProcedure(v)                                         \
-  { Machine_ValueFlag_ForeignProcedure, v }
+  { Ring2_Value_Tag_ForeignFunction, v }
 
-Ring1_Inline() void Machine_Value_setReal(Machine_Value* self, Ring2_Real32 value) {
-  self->tag = Machine_ValueFlag_Real;
-  self->realValue = value;
+Ring1_Inline() void Machine_Value_setReal32(Machine_Value* self, Ring2_Real32 value) {
+  self->tag = Ring2_Value_Tag_Real32;
+  self->real32Value = value;
 }
 
-Ring1_Inline() Ring2_Real32 Machine_Value_getReal(Machine_Value const* self) {
-  return self->realValue;
+Ring1_Inline() Ring2_Real32 Machine_Value_getReal32(Machine_Value const* self) {
+  return self->real32Value;
 }
 
-Ring1_Inline() bool Machine_Value_isReal(Machine_Value const* self) {
-  return self->tag == Machine_ValueFlag_Real;
+Ring1_Inline() bool Machine_Value_isReal32(Machine_Value const* self) {
+  return self->tag == Ring2_Value_Tag_Real32;
 }
 
-#define Machine_Value_StaticInitializerReal(v)                                                     \
-  { Machine_ValueFlag_Real, v }
+#define Machine_Value_StaticInitializerReal32(v)                                                     \
+  { Ring2_Value_Tag_Real32, v }
 
 Ring1_Inline() void Machine_Value_setString(Machine_Value* self, Ring2_String const* value) {
-  self->tag = Machine_ValueFlag_String;
+  self->tag = Ring2_Value_Tag_String;
   self->stringValue = (Ring2_String*)value;
 }
 
@@ -149,14 +126,14 @@ Ring1_Inline() Ring2_String* Machine_Value_getString(Machine_Value const* self) 
 }
 
 Ring1_Inline() bool Machine_Value_isString(Machine_Value const* self) {
-  return self->tag == Machine_ValueFlag_String;
+  return self->tag == Ring2_Value_Tag_String;
 }
 
 #define Machine_Value_StaticInitializerString(v)                                                   \
-  { Machine_ValueFlag_String, v }
+  { Ring2_Value_Tag_String, v }
 
 Ring1_Inline() void Machine_Value_setVoid(Machine_Value* self, Ring2_Void value) {
-  self->tag = Machine_ValueFlag_Void;
+  self->tag = Ring2_Value_Tag_Void;
   self->voidValue = value;
 }
 
@@ -165,11 +142,11 @@ Ring1_Inline() Ring2_Void Machine_Value_getVoid(Machine_Value const* self) {
 }
 
 Ring1_Inline() bool Machine_Value_isVoid(Machine_Value const* self) {
-  return self->tag == Machine_ValueFlag_Void;
+  return self->tag == Ring2_Value_Tag_Void;
 }
 
 #define Machine_Value_StaticInitializerVoid()                                                      \
-  { Machine_ValueFlag_Void, Ring2_Void_Void }
+  { Ring2_Value_Tag_Void, Ring2_Void_Void }
 
 void Machine_Value_visit(Machine_Value* self);
 

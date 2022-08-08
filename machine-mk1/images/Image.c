@@ -92,7 +92,7 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
                                                   Machine_ByteBuffer* byteBuffer) {
   // (1) Supertype constructor.
   static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
+  static const Machine_Value ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_Image_construct((Machine_Image*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
 
   // (3) Load image data.
@@ -227,7 +227,7 @@ void Machine_Images_Image_constructDirect(Machine_Images_Image* self,
                                           Ring2_Integer height, Machine_ByteBuffer* pixels) {
   // (1) Supertype constructor.
   static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
+  static const Machine_Value ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_Image_construct((Machine_Image*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
 
   // (3) Store.

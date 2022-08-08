@@ -291,7 +291,7 @@ static void pushFront(Machine_ArrayDeque* self, Machine_Value value) {
 Machine_ArrayDeque* Machine_ArrayDeque_create() {
   Machine_ClassType* ty = Machine_ArrayDeque_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
+  static Machine_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_ArrayDeque* self
       = (Machine_ArrayDeque*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;

@@ -41,15 +41,15 @@ static Ring2_String* Machine_MouseButtonEvent_toStringImpl(Machine_MouseButtonEv
   Machine_StringBuffer_appendBytes(stringBuffer, "', ", strlen("', "));
 
   Machine_StringBuffer_appendBytes(stringBuffer, "button: ", strlen("button: "));
-  Machine_StringBuffer_appendString(stringBuffer, Machine_Integer_toString(self->button));
+  Machine_StringBuffer_appendString(stringBuffer, Ring2_Integer_toString(Ring2_Context_get(), self->button));
   Machine_StringBuffer_appendBytes(stringBuffer, ", ", strlen(", "));
 
   Machine_StringBuffer_appendBytes(stringBuffer, "x: ", strlen("x: "));
-  Machine_StringBuffer_appendString(stringBuffer, Machine_Real_toString(self->x));
+  Machine_StringBuffer_appendString(stringBuffer, Ring2_Real32_toString(Ring2_Context_get(), self->x));
   Machine_StringBuffer_appendBytes(stringBuffer, ", ", strlen(", "));
 
   Machine_StringBuffer_appendBytes(stringBuffer, "y: ", strlen("y: "));
-  Machine_StringBuffer_appendString(stringBuffer, Machine_Real_toString(self->y));
+  Machine_StringBuffer_appendString(stringBuffer, Ring2_Real32_toString(Ring2_Context_get(), self->y));
 
   Machine_StringBuffer_appendBytes(stringBuffer, " }", strlen(" }"));
 
@@ -67,8 +67,8 @@ static void Machine_MouseButtonEvent_construct(Machine_MouseButtonEvent* self,
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->button = Machine_Value_getInteger(&arguments[0]);
   self->action = Machine_Value_getInteger(&arguments[1]);
-  self->x = Machine_Value_getReal(&arguments[2]);
-  self->y = Machine_Value_getReal(&arguments[3]);
+  self->x = Machine_Value_getReal32(&arguments[2]);
+  self->y = Machine_Value_getReal32(&arguments[3]);
   Machine_setClassType((Machine_Object*)self, Machine_MouseButtonEvent_getType());
 }
 
@@ -85,8 +85,8 @@ Machine_MouseButtonEvent* Machine_MouseButtonEvent_create(int button, int action
           Machine_Value_StaticInitializerVoid(), Machine_Value_StaticInitializerVoid() };
   Machine_Value_setInteger(&ARGUMENTS[0], button);
   Machine_Value_setInteger(&ARGUMENTS[1], action);
-  Machine_Value_setReal(&ARGUMENTS[2], x);
-  Machine_Value_setReal(&ARGUMENTS[3], y);
+  Machine_Value_setReal32(&ARGUMENTS[2], x);
+  Machine_Value_setReal32(&ARGUMENTS[3], y);
   Machine_MouseButtonEvent* self
       = (Machine_MouseButtonEvent*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;

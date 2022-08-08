@@ -24,7 +24,7 @@ void Machine_Material_construct(Machine_Material* self, size_t numberOfArguments
 Machine_Material* Machine_Material_create() {
   Machine_ClassType* ty = Machine_Material_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
+  static Machine_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_Material* self = (Machine_Material*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

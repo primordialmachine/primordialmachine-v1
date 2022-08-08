@@ -42,14 +42,15 @@ static Machine_Math_Vector2 const* Machine_Gui_TextNode_getPreferredSize(
 
 static void Machine_Gui_TextNode_render(Machine_Gui_TextNode* self, Machine_Context2* ctx2);
 
-static Machine_Value boundsChangedCallback(size_t numberOfArguments,
-                                           Machine_Value const* arguments) {
-  MACHINE_ASSERT(numberOfArguments == 2, Ring1_Status_InvalidNumberOfArguments);
+static void boundsChangedCallback(Ring2_Context* context,
+                                  Machine_Value *result,
+                                  size_t numberOfArguments,
+                                  Machine_Value const* arguments) {
+  MACHINE_ASSERT(NULL != result, Ring1_Status_InvalidArgument);
+  MACHINE_ASSERT(2 == numberOfArguments, Ring1_Status_InvalidNumberOfArguments);
   Machine_Gui_TextNode* self = (Machine_Gui_TextNode*)Machine_Value_getObject(&arguments[0]);
   self->childDirty = true;
-  Machine_Value result;
-  Machine_Value_setVoid(&result, Ring2_Void_Void);
-  return result;
+  Machine_Value_setVoid(result, Ring2_Void_Void);
 }
 
 static void Machine_Gui_TextNode_constructClass(Machine_Gui_TextNode_Class* self) {

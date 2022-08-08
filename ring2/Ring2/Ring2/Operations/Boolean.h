@@ -213,6 +213,17 @@ Ring2_Boolean_negate
     Ring2_Boolean x
   );
 
+/// @brief Convert a <code>Boolean</code> value to a <code>String</code> value.
+/// The resulting string is <code>true</code> if the value is <code>true</code> and
+/// <code>false</code> if the value is <code>false</code>.
+/// @param x The <code>Boolean</code> value.
+/// @return The <code>String</code> value.
+Ring1_CheckReturn() Ring2_String *
+Ring2_Boolean_toString
+  (
+    Ring2_Context* context,
+    Ring2_Boolean x
+  );
 
 #endif // Ring2_Configuration_withBoolean
 

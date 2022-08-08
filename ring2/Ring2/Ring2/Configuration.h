@@ -17,6 +17,8 @@
 
 #define Ring2_Configuration_withInteger (1)
 
+#define Ring2_Configuration_withObject (1)
+
 #define Ring2_Configuration_withReal (1)
 
 #define Ring2_Configuration_withString (1)

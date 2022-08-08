@@ -37,12 +37,12 @@ static size_t const MAXIMAL_CAPACITY = SIZE_MAX / sizeof(_MapNode*);
 static Ring2_Boolean defaultEqual(Machine_Value const* x, Machine_Value const* y) {
   if (x->tag != y->tag)
     return Ring2_Boolean_False;
-  if (Machine_Value_isReal(x)) {
+  if (Machine_Value_isReal32(x)) {
     // If only one value is NaN, then the values are not equal.
     // If both values are are NaN, then the values are equal.
     // If either value is NaN, normal IEEE754 comparison applies.
-    if (isnan(Machine_Value_getReal(x)) || isnan(Machine_Value_getReal(y))) {
-      return isnan(Machine_Value_getReal(x)) && isnan(Machine_Value_getReal(y));
+    if (isnan(Machine_Value_getReal32(x)) || isnan(Machine_Value_getReal32(y))) {
+      return isnan(Machine_Value_getReal32(x)) && isnan(Machine_Value_getReal32(y));
     }
     return x == y;
   } else {
@@ -218,7 +218,7 @@ void Machine_HashMap_construct(Machine_HashMap* self, size_t numberOfArguments,
 Machine_HashMap* Machine_HashMap_create() {
   Machine_ClassType* ty = Machine_HashMap_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
+  static Machine_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_HashMap* self
       = (Machine_HashMap*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;

@@ -7,6 +7,8 @@
 #define RING2_INTERNAL (1)
 #include "Ring2/Operations/Void.h"
 
+#include "Ring1/Intrinsic/Crt.h"
+
 Ring1_CheckReturn() Ring2_Integer
 Ring2_Void_getHashValue
   (
@@ -80,3 +82,11 @@ Ring2_Void_isGreaterThanOrEqualTo
     Ring2_Void y
   )
 { return true; }
+
+Ring1_CheckReturn() Ring2_String *
+Ring2_Void_toString
+  (
+    Ring2_Context *context,
+    Ring2_Void x
+  )
+{ return Ring2_String_create("void", crt_strlen("void")); }

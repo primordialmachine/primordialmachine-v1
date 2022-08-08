@@ -7,10 +7,10 @@
 
 void Machine_Value_visit(Machine_Value* self) {
   switch (self->tag) {
-    case Machine_ValueFlag_Object:
+    case Ring2_Value_Tag_Object:
       Machine_Gc_visit(self->objectValue);
       break;
-    case Machine_ValueFlag_String:
+    case Ring2_Value_Tag_String:
       Machine_Gc_visit(self->stringValue);
       break;
   };
@@ -21,20 +21,20 @@ Ring2_Boolean Machine_Value_isEqualTo(Machine_Value const* x, Machine_Value cons
     return false;
   }
   switch (x->tag) {
-    case Machine_ValueFlag_Object:
+    case Ring2_Value_Tag_Object:
       return Machine_Object_isEqualTo(x->objectValue, y->objectValue);
-    case Machine_ValueFlag_String:
+    case Ring2_Value_Tag_String:
       return Ring2_String_isEqualTo(Ring2_Context_get(), x->stringValue, y->stringValue);
-    case Machine_ValueFlag_Void:
+    case Ring2_Value_Tag_Void:
       return Ring2_Void_isEqualTo(Ring2_Context_get(), x->voidValue, y->voidValue);
-    case Machine_ValueFlag_Real:
-      return Ring2_Real32_isEqualTo(Ring2_Context_get(), x->realValue, y->realValue);
-    case Machine_ValueFlag_Integer:
+    case Ring2_Value_Tag_Real32:
+      return Ring2_Real32_isEqualTo(Ring2_Context_get(), x->real32Value, y->real32Value);
+    case Ring2_Value_Tag_Integer:
       return Ring2_Integer_isEqualTo(Ring2_Context_get(), x->integerValue, y->integerValue);
-    case Machine_ValueFlag_Boolean:
+    case Ring2_Value_Tag_Boolean:
       return Ring2_Boolean_isEqualTo(Ring2_Context_get(), x->booleanValue, y->booleanValue);
-    case Machine_ValueFlag_ForeignProcedure:
-      return Machine_ForeignProcedure_isEqualTo(x->foreignProcedureValue, y->foreignProcedureValue);
+    case Ring2_Value_Tag_ForeignFunction:
+      return Machine_ForeignProcedure_isEqualTo(Ring2_Context_get(), x->foreignProcedureValue, y->foreignProcedureValue);
     default:
       MACHINE_ASSERT_UNREACHABLE();
   };
@@ -42,20 +42,20 @@ Ring2_Boolean Machine_Value_isEqualTo(Machine_Value const* x, Machine_Value cons
 
 Ring2_Integer Machine_Value_getHashValue(Machine_Value const* self) {
   switch (self->tag) {
-    case Machine_ValueFlag_Object:
+    case Ring2_Value_Tag_Object:
       return Machine_Object_getHashValue(self->objectValue);
-    case Machine_ValueFlag_String:
+    case Ring2_Value_Tag_String:
       return Ring2_String_getHashValue(Ring2_Context_get(), self->stringValue);
-    case Machine_ValueFlag_Void:
+    case Ring2_Value_Tag_Void:
       return Ring2_Void_getHashValue(Ring2_Context_get(),self->voidValue);
-    case Machine_ValueFlag_Real:
-      return Ring2_Real32_getHashValue(Ring2_Context_get(), self->realValue);
-    case Machine_ValueFlag_Integer:
+    case Ring2_Value_Tag_Real32:
+      return Ring2_Real32_getHashValue(Ring2_Context_get(), self->real32Value);
+    case Ring2_Value_Tag_Integer:
       return Ring2_Integer_getHashValue(Ring2_Context_get(), self->integerValue);
-    case Machine_ValueFlag_Boolean:
+    case Ring2_Value_Tag_Boolean:
       return Ring2_Boolean_getHashValue(Ring2_Context_get(), self->booleanValue);
-    case Machine_ValueFlag_ForeignProcedure:
-      return Machine_ForeignProcedure_getHashValue(self->foreignProcedureValue);
+    case Ring2_Value_Tag_ForeignFunction:
+      return Machine_ForeignProcedure_getHashValue(Ring2_Context_get(), self->foreignProcedureValue);
     default:
       MACHINE_ASSERT_UNREACHABLE();
   };

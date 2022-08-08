@@ -33,7 +33,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gui_BorderModel, Machine_Object, &Machine_Gui_B
 Machine_Gui_BorderModel* Machine_Gui_BorderModel_create() {
   Machine_ClassType* ty = Machine_Gui_BorderModel_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
+  static Machine_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_Gui_BorderModel* self
       = (Machine_Gui_BorderModel*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;

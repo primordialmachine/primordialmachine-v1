@@ -13,7 +13,7 @@ static void Machine_ShaderProgram_destruct(Machine_ShaderProgram* self) { /*Inte
 void Machine_ShaderProgram_construct(Machine_ShaderProgram* self, size_t numberOfArguments,
                                      Machine_Value const* arguments) {
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
+  static Machine_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_Object_construct((Machine_Object*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   Machine_setClassType((Machine_Object*)self, Machine_ShaderProgram_getType());
 }

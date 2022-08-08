@@ -176,7 +176,7 @@ static void Machine_ArrayList_destruct(Machine_ArrayList* self) {
 Machine_ArrayList* Machine_ArrayList_create() {
   Machine_ClassType* ty = Machine_ArrayList_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
+  static Machine_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_ArrayList* self
       = (Machine_ArrayList*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;

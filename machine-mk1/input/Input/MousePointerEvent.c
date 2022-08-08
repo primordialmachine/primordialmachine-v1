@@ -45,11 +45,11 @@ static Ring2_String* Machine_MousePointerEvent_toStringImpl(
   Machine_StringBuffer_appendBytes(stringBuffer, "', ", strlen("', "));
 
   Machine_StringBuffer_appendBytes(stringBuffer, "x: ", strlen("x: "));
-  Machine_StringBuffer_appendString(stringBuffer, Machine_Real_toString(self->x));
+  Machine_StringBuffer_appendString(stringBuffer, Ring2_Real32_toString(Ring2_Context_get(), self->x));
   Machine_StringBuffer_appendBytes(stringBuffer, ", ", strlen(", "));
 
   Machine_StringBuffer_appendBytes(stringBuffer, "y: ", strlen("y: "));
-  Machine_StringBuffer_appendString(stringBuffer, Machine_Real_toString(self->y));
+  Machine_StringBuffer_appendString(stringBuffer, Ring2_Real32_toString(Ring2_Context_get(), self->y));
 
   Machine_StringBuffer_appendBytes(stringBuffer, " }", strlen(" }"));
 
@@ -66,8 +66,8 @@ static void Machine_MousePointerEvent_construct(Machine_MousePointerEvent* self,
                                                 Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->action = Machine_Value_getInteger(&arguments[0]);
-  self->x = Machine_Value_getReal(&arguments[1]);
-  self->y = Machine_Value_getReal(&arguments[2]);
+  self->x = Machine_Value_getReal32(&arguments[1]);
+  self->y = Machine_Value_getReal32(&arguments[2]);
   Machine_setClassType((Machine_Object*)self, Machine_MousePointerEvent_getType());
 }
 
@@ -83,8 +83,8 @@ Machine_MousePointerEvent* Machine_MousePointerEvent_create(Machine_MousePointer
       = { Machine_Value_StaticInitializerVoid(), Machine_Value_StaticInitializerVoid(),
           Machine_Value_StaticInitializerVoid() };
   Machine_Value_setInteger(&ARGUMENTS[0], action);
-  Machine_Value_setReal(&ARGUMENTS[1], x);
-  Machine_Value_setReal(&ARGUMENTS[2], y);
+  Machine_Value_setReal32(&ARGUMENTS[1], x);
+  Machine_Value_setReal32(&ARGUMENTS[2], y);
   Machine_MousePointerEvent* self
       = (Machine_MousePointerEvent*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;

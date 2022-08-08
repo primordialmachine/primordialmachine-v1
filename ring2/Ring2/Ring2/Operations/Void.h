@@ -155,6 +155,16 @@ Ring2_Void_isGreaterThanOrEqualTo
     Ring2_Void y
   );
 
+/// @brief Convert a <code>Void</code> value to a <code>String</code> value.
+/// The resulting string is <code>void</code>.
+/// @param x The <code>Void</code> value.
+/// @return The <code>String</code> value.
+Ring1_CheckReturn() Ring2_String*
+Ring2_Void_toString
+  (
+    Ring2_Context* context,
+    Ring2_Void x
+  );
 
 #endif // Ring2_Configuration_witVoid
 

@@ -35,7 +35,7 @@ static Machine_Value convert(Machine_Gdl_Node* self, Machine_Gdl_Context* contex
   case Machine_Gdl_NodeKind_Real: {
     Ring2_Real32 temporary = Machine_Gdl_Node_toReal(self, context);
     Machine_Value value;
-    Machine_Value_setReal(&value, temporary);
+    Machine_Value_setReal32(&value, temporary);
     return value;
   }
   case Machine_Gdl_NodeKind_String: {

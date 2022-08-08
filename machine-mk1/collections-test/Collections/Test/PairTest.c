@@ -12,8 +12,8 @@
 
 
 void Machine_Collections_Test_PairTest_test1() {
-  Machine_Value first = { Machine_ValueFlag_Void, Ring2_Void_Void },
-    second = { Machine_ValueFlag_Void, Ring2_Void_Void };
+  Machine_Value first = { Ring2_Value_Tag_Void, Ring2_Void_Void },
+               second = { Ring2_Value_Tag_Void, Ring2_Void_Void };
   Machine_Value_setVoid(&first, Ring2_Void_Void);
   Machine_Value_setVoid(&first, Ring2_Void_Void);
   Machine_Pair* pair = Machine_Pair_create(first, second);

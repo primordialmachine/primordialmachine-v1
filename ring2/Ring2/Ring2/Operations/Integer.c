@@ -7,7 +7,10 @@
 #define RING2_INTERNAL (1)
 #include "Ring2/Operations/Integer.h"
 
+#include <stdio.h>
 #include "Ring1/Hash.h"
+#include "Ring1/Status.h"
+#include "Ring2/JumpTarget.h"
 
 Ring1_CheckReturn() Ring2_Integer
 Ring2_Integer_getHashValue
@@ -135,3 +138,19 @@ Ring2_Integer_negate
     Ring2_Integer x
   )
 { return -x; }
+
+Ring1_CheckReturn() Ring2_String *
+Ring2_Integer_toString
+  (
+    Ring2_Context* context,
+    Ring2_Integer x
+  )
+{
+  char buffer[1024 + 1];
+  int n = snprintf(buffer, 1024 + 1, "%" PRIu64, x);
+  if (n < 0 || n > 1024 + 1) {
+    Ring1_Status_set(Ring1_Status_ConversionFailed);
+    Ring2_jump();
+  }
+  return Ring2_String_create(buffer, (size_t)n);
+}

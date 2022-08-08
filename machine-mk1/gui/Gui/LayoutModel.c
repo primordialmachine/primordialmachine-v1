@@ -26,7 +26,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gui_LayoutModel, Machine_Object, &Machine_Gui_L
 Machine_Gui_LayoutModel* Machine_Gui_LayoutModel_create() {
   Machine_ClassType* ty = Machine_Gui_LayoutModel_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
+  static Machine_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_Gui_LayoutModel* self
       = (Machine_Gui_LayoutModel*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;

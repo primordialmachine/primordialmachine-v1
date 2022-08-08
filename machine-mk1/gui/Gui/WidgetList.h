@@ -182,7 +182,7 @@ static inline void Machine_Gui_WidgetList_layout(
       } else if (Machine_Gui_LayoutModel_getPrimaryJustification(model)
                  == Machine_Gui_Layout_Justification_Center) {
         Machine_Math_Vector2* v = Machine_Math_Vector2_create();
-        Machine_Math_Vector2_set(v, 0.f, -t * 0.5);
+        Machine_Math_Vector2_set(v, 0.f, -t * 0.5f);
         Machine_Gui_WidgetList_translate(self, v);
       } else if (Machine_Gui_LayoutModel_getPrimaryJustification(model)
                  == Machine_Gui_Layout_Justification_End) {

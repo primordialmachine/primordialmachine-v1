@@ -15,10 +15,10 @@ static void Machine_WeakReference_construct(Machine_WeakReference* self, size_t 
   self->value = arguments[0];
   Ring2_Gc_Tag* tag = NULL;
   switch (self->value.tag) {
-    case Machine_ValueFlag_Object: {
+    case Ring2_Value_Tag_Object: {
       tag = Ring2_Gc_toTag(self->value.objectValue);
     } break;
-    case Machine_ValueFlag_String: {
+    case Ring2_Value_Tag_String: {
       tag = Ring2_Gc_toTag(self->value.stringValue);
     } break;
   };
@@ -41,10 +41,10 @@ Machine_WeakReference* Machine_WeakReference_create(Machine_Value value) {
 static void Machine_WeakReference_destruct(Machine_WeakReference* self) {
   Ring2_Gc_Tag* tag = NULL;
   switch (self->value.tag) {
-    case Machine_ValueFlag_Object: {
+    case Ring2_Value_Tag_Object: {
       tag = Ring2_Gc_toTag(self->value.stringValue);
     } break;
-    case Machine_ValueFlag_String: {
+    case Ring2_Value_Tag_String: {
       tag = Ring2_Gc_toTag(self->value.stringValue);
     } break;
   };

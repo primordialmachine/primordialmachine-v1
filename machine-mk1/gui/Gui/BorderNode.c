@@ -241,14 +241,14 @@ static void Machine_Gui_BorderNode_render(Machine_Gui_BorderNode* self, Machine_
   }
 }
 
-static Machine_Value boundsChangedCallback(size_t numberOfArguments,
-                                           Machine_Value const* arguments) {
+static void boundsChangedCallback(Ring2_Context *context,
+                                  Machine_Value *result,
+                                  size_t numberOfArguments,
+                                  Machine_Value const *arguments) {
   MACHINE_ASSERT(numberOfArguments == 2, Ring1_Status_InvalidNumberOfArguments);
   Machine_Gui_BorderNode* self = (Machine_Gui_BorderNode*)Machine_Value_getObject(&arguments[0]);
   self->childDirty = true;
-  Machine_Value result;
-  Machine_Value_setVoid(&result, Ring2_Void_Void);
-  return result;
+  Machine_Value_setVoid(result, Ring2_Void_Void);
 }
 
 static void Machine_Gui_BorderNode_constructClass(Machine_Gui_BorderNode_Class* self) {

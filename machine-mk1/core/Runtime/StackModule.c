@@ -123,7 +123,7 @@ void Machine_Stack_loadObject(Machine_Object* value) {
 
 void Machine_Stack_loadReal(Ring2_Real32 value) {
   Machine_Value temporary;
-  Machine_Value_setReal(&temporary, value);
+  Machine_Value_setReal32(&temporary, value);
   Machine_Stack_load(temporary);
 }
 

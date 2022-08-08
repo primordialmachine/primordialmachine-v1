@@ -47,7 +47,7 @@ void Machine_Signals_Signal_unsubscribe(Machine_Signals_Signal* self, Ring2_Stri
       Machine_Signals_Connection* c = (Machine_Signals_Connection*)Machine_Value_getObject(&temporary);
       if (Ring2_String_isEqualTo(Ring2_Context_get(), c->name, name) &&
           Machine_Object_isEqualTo(c->context, context) &&
-          Machine_ForeignProcedure_isEqualTo(c->callback, callback)) {
+          Machine_ForeignProcedure_isEqualTo(Ring2_Context_get(), c->callback, callback)) {
         Machine_List_removeAtFast(self->connections, i);
         break;
       }
@@ -76,7 +76,8 @@ void Machine_Signals_Signal_emit(Machine_Signals_Signal* self, Ring2_String* nam
         if (Ring2_String_isEqualTo(Ring2_Context_get(), c->name, name)) {
           MACHINE_ASSERT_NOTNULL(c->callback);
           Machine_Value_setObject(&(arguments1[0]), c->context);
-          c->callback(numberOfArguments1, arguments1);
+          Machine_Value result = { Ring2_Value_Tag_Void, Ring2_Void_Void };
+          c->callback(Ring2_Context_get(), &result, numberOfArguments1, arguments1);
         }
       }
       Ring2_popJumpTarget();

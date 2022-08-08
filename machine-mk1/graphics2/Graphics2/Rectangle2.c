@@ -78,7 +78,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Rectangle2, Machine_Shape2, &Machine_Rectangle2
 Machine_Rectangle2* Machine_Rectangle2_create() {
   Machine_ClassType* ty = Machine_Rectangle2_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Machine_ValueFlag_Void, Ring2_Void_Void } };
+  static const Machine_Value ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_Rectangle2* self = (Machine_Rectangle2*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

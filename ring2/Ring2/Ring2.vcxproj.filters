@@ -128,6 +128,9 @@
     <ClInclude Include="Ring2\Operations\String.h">
       <Filter>Headerdateien\Ring2\Operations</Filter>
     </ClInclude>
+    <ClInclude Include="Ring2\Types\Value.h">
+      <Filter>Headerdateien\Ring2\Types</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring2\JumpTarget.c">
@@ -207,6 +210,9 @@
     </ClCompile>
     <ClCompile Include="Ring2\Operations\String.c">
       <Filter>Quelldateien\Ring2\Operations</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Types\Value.c">
+      <Filter>Quelldateien\Ring2\Types</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

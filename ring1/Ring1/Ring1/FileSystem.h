@@ -1,6 +1,9 @@
+// Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
+
 /// @file Ring1/FileSystem.h
-/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
-/// @copyright Copyright (c) 2021-2022 Michael Heilmann. All rights reserved.
+/// @copyright Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
+/// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
+
 #if !defined(RING1_FILESYSTEM_H_INCLUDED)
 #define RING1_FILESYSTEM_H_INCLUDED
 

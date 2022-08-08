@@ -52,6 +52,20 @@ Ring2_ForeignFunction_isNotEqualTo
     Ring2_ForeignFunction* y
   );
 
+Ring1_CheckReturn() Ring2_Integer
+Ring2_ForeignFunction_getHashValue
+  (
+    Ring2_Context* context,
+    Ring2_ForeignFunction *x
+  );
+
+Ring1_CheckReturn() Ring2_String*
+Ring2_ForeignProcedure_toString
+  (
+    Ring2_Context* context,
+    Ring2_ForeignFunction* x
+  );
+
 #endif // Ring2_Configuration_withForeignFunction
 
 #endif // RING2_OPERATIONS_FOREIGNFUNCTION_H_INCLUDED
