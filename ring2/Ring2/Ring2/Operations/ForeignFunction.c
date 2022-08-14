@@ -55,6 +55,6 @@ Ring2_ForeignProcedure_toString
     Ring1_Status_set(Ring1_Status_ConversionFailed);
     Ring2_jump();
   }
-  return Ring2_String_create(buffer, (size_t)n);
+  return Ring2_String_create(Ring2_Context_get(), buffer, (size_t)n);
 }
 

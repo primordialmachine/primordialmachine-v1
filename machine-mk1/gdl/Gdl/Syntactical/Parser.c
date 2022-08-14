@@ -7,13 +7,13 @@
 
 static void Machine_Gdl_Parser_visit(Machine_Gdl_Parser* self) {
   if (self->scanner) {
-    Machine_Gc_visit(self->scanner);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->scanner);
   }
 }
 
 static void Machine_Gdl_Parser_construct(Machine_Gdl_Parser* self, size_t numberOfArguments, Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  self->scanner = Machine_Gdl_Scanner_create(Ring2_String_create("<empty input>", strlen("<empty input>")), Machine_ByteBuffer_create());
+  self->scanner = Machine_Gdl_Scanner_create(Ring2_String_create(Ring2_Context_get(), "<empty input>", strlen("<empty input>")), Machine_ByteBuffer_create());
   Machine_setClassType((Machine_Object*)self, Machine_Gdl_Parser_getType());
 }
 

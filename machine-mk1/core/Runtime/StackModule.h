@@ -7,8 +7,7 @@
 #if !defined(MACHINE_RUNTIME_PRIVATE)
 #error("Do not include `Runtime/StackModule.h` directly, include `_Runtime.h` instead.")
 #endif
-#include "Ring1/Result.h"
-#include "Runtime/Value.h"
+#include "Ring2/_Include.h"
 
 Ring1_Result Machine_initializeStackModule();
 

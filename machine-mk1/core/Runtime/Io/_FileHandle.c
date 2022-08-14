@@ -9,13 +9,13 @@ void _Machine_FileHandle_open(_Machine_FileHandle* self, Ring2_String* path,
                               Ring1_FileSystem_ExistingFilePolicy existingFilePolicy,
                               Ring1_FileSystem_NonExistingFilePolicy nonExistingFilePolicy) {
   // Validate arguments.
-  MACHINE_ASSERT_NOTNULL(self);
-  MACHINE_ASSERT_NOTNULL(path);
+  Ring2_assertNotNull(self);
+  Ring2_assertNotNull(path);
 
   // Translate desired access and (non) existing file policies.
   DWORD dwDesiredAccess = 0;
   if (!(fileAccessMode & (Ring1_FileSystem_FileAccessMode_ReadWrite))) {
-    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "invalid argument\n");
+    Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__, "invalid argument\n");
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();
   }
@@ -52,7 +52,7 @@ void _Machine_FileHandle_open(_Machine_FileHandle* self, Ring2_String* path,
     }
   }
   if (policyMapping == NULL) {
-    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "invalid argument\n");
+    Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__, "invalid argument\n");
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();
   }
@@ -61,15 +61,15 @@ void _Machine_FileHandle_open(_Machine_FileHandle* self, Ring2_String* path,
   self->hHandle = CreateFileA(Ring2_String_getBytes(Ring2_Context_get(), path), dwDesiredAccess, dwShareMode, 0,
                               policyMapping->dwCreationDisposition, FILE_ATTRIBUTE_NORMAL, 0);
   if (INVALID_HANDLE_VALUE == self->hHandle) {
-    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "unable to open file `%s`\n",
-                Ring2_String_getBytes(Ring2_Context_get(), path));
+    Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__, "unable to open file `%s`\n",
+              Ring2_String_getBytes(Ring2_Context_get(), path));
     Ring1_Status_set(Ring1_Status_EnvironmentFailed);
     Ring2_jump();
   }
 }
 
 void _Machine_FileHandle_close(_Machine_FileHandle* self) {
-  MACHINE_ASSERT_NOTNULL(self);
+  Ring2_assertNotNull(self);
   // Close file handle.
   if (INVALID_HANDLE_VALUE != self->hHandle) {
     CloseHandle(self->hHandle);
@@ -78,16 +78,16 @@ void _Machine_FileHandle_close(_Machine_FileHandle* self) {
 }
 
 size_t _Machine_FileHandle_getFileSize(_Machine_FileHandle* self) {
-  MACHINE_ASSERT_NOTNULL(self);
+  Ring2_assertNotNull(self);
   if (INVALID_HANDLE_VALUE == self->hHandle) {
-    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "invalid argument\n");
+    Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__, "invalid argument\n");
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();
   }
   // Get the size of the file. The file size must be smaller than or equal to SIZE_MAX.
   DWORD fileSize = GetFileSize(self->hHandle, NULL);
   if (INVALID_FILE_SIZE == fileSize || fileSize > SIZE_MAX) {
-    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "environment failed\n");
+    Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__, "environment failed\n");
     Ring1_Status_set(Ring1_Status_EnvironmentFailed);
     Ring2_jump();
   }

@@ -12,7 +12,7 @@
 
 #define MACHINE_ATF_ASSERT(e) \
   if (!(e)) { \
-    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "test assertion `%s` failed\n", #e); \
+    Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__, "test assertion `%s` failed\n", #e); \
     Ring1_Status_set(Ring1_Status_TestFailed); \
     Ring2_jump(); \
   }

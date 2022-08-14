@@ -33,18 +33,18 @@ static void Machine_Gl_Binding_destruct(Machine_Gl_Binding* self) {
 }
 
 static void bindVar(Machine_Gl_Binding const* self, size_t inputIndex, Machine_ProgramInput const* input) {
-  MACHINE_ASSERT_NOTNULL(input);
-  MACHINE_ASSERT(input->kind == Machine_ProgramInputKind_Variable, Ring1_Status_InvalidArgument);
+  Ring2_assertNotNull(input);
+  Ring2_assert(input->kind == Machine_ProgramInputKind_Variable, Ring1_Status_InvalidArgument);
 
   // Get the index of the corresponding vertex element.
   size_t vertexElementIndex = Machine_Binding_getVariableBinding((Machine_Binding*)self, input->name);
   if (vertexElementIndex == (size_t)-1) {
-    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "input %s not supported by program", Ring2_String_getBytes(Ring2_Context_get(), input->name));
+    Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__, "input %s not supported by program", Ring2_String_getBytes(Ring2_Context_get(), input->name));
     return;
   }
   GLint attributeLocation = glGetAttribLocation(((Machine_Gl_ShaderProgram*)(((Machine_Binding*)self)->program))->programId, Ring2_String_getBytes(Ring2_Context_get(), input->name));
   if (attributeLocation == -1) {
-    Machine_log(Machine_LogFlags_ToWarnings, __FILE__, __LINE__, "input %s optimized out\n", Ring2_String_getBytes(Ring2_Context_get(), input->name));
+    Ring2_log(Ring2_LogFlags_ToWarnings, __FILE__, __LINE__, "input %s optimized out\n", Ring2_String_getBytes(Ring2_Context_get(), input->name));
     return;
   }
   size_t vertexSize = Machine_VertexDescriptor_getVertexSize(((Machine_Binding*)self)->vertexDescriptor);

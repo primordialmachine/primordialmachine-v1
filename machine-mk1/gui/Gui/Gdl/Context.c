@@ -8,11 +8,11 @@
 
 static void Machine_Gui_Gdl_Context_visit(Machine_Gui_Gdl_Context* self) {
   if (self->context) {
-    Machine_Gc_visit(self->context);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->context);
   }
 #define DEFINE(NAME, STRING)                                                                       \
   if (self->NAME) {                                                                                \
-    Machine_Gc_visit(self->NAME);                                                                  \
+    Ring2_Gc_visit(Ring2_Gc_get(), self->NAME);                                                    \
   }
 #include "Gui/Gdl/Context.h"
 #undef DEFINE
@@ -25,7 +25,7 @@ static void Machine_Gui_Gdl_Context_construct(Machine_Gui_Gdl_Context* self,
 
   self->context = (Machine_Gdl_Context*)Machine_Value_getObject(&arguments[0]);
 
-#define DEFINE(NAME, STRING) self->NAME = Ring2_String_create(STRING, strlen(STRING));
+#define DEFINE(NAME, STRING) self->NAME = Ring2_String_create(Ring2_Context_get(), STRING, strlen(STRING));
 #include "Gui/Gdl/Context.i"
 #undef DEFINE
 

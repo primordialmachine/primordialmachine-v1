@@ -2,32 +2,22 @@
 /// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #define MACHINE_RUNTIME_PRIVATE (1)
-#include "Runtime/Type.h"
-
 #include "Ring2/_Include.h"
-#include "Runtime/Object/ClassType.module.h"
-#include "Runtime/Object/InterfaceType.module.h"
-#include "Ring1/Status.h"
-#include "Runtime/Type.module.h"
 
-void Machine_Type_ensureInitialized(Machine_Type* self) {
+#include "Ring1/InlineArray.h"
+#include "Ring1/Status.h"
+
+void
+Machine_Type_ensureInitialized
+  (
+    Machine_Type* self
+  )
+{
   if (Machine_Type_isClass(self)) {
     Machine_ClassType_ensureInitialized((Machine_ClassType*)self);
   } else if (Machine_Type_isInterface(self)) {
     Machine_InterfaceType_ensureInitialized((Machine_InterfaceType*)self);
   }
-}
-
-bool Machine_Type_isClass(Machine_Type const* self) {
-  return Machine_TypeFlags_Class == (self->flags & Machine_TypeFlags_Class);
-}
-
-bool Machine_Type_isEnumeration(Machine_Type const* self) {
-  return Machine_TypeFlags_Enumeration == (self->flags & Machine_TypeFlags_Enumeration);
-}
-
-bool Machine_Type_isInterface(Machine_Type const* self) {
-  return Machine_TypeFlags_Interface == (self->flags & Machine_TypeFlags_Interface);
 }
 
 // @internal
@@ -90,7 +80,13 @@ static bool cni(Machine_ClassType const* x, Machine_InterfaceType const* y) {
   return false;
 }
 
-bool Machine_Type_isSubTypeOf(Machine_Type const* self, Machine_Type const* other) {
+Ring1_CheckReturn() bool
+Machine_Type_isSubTypeOf
+  (
+    Machine_Type const* self,
+    Machine_Type const* other
+  )
+{
   if (!self || !other) {
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();
@@ -100,13 +96,13 @@ bool Machine_Type_isSubTypeOf(Machine_Type const* self, Machine_Type const* othe
     // self and other are the same type.
     return true;
   }
-  if (_TypeFlag_isSet(other, Machine_TypeFlags_Class)) {
-    if (_TypeFlag_isSet(self, Machine_TypeFlags_Class)) {
+  if (Ring2_TypeFlag_isSet(other, Ring2_TypeFlags_Class)) {
+    if (Ring2_TypeFlag_isSet(self, Ring2_TypeFlags_Class)) {
       // Case II.1.
       // self is class type.
       // other is class type.
       return cnc((Machine_ClassType const*)self, (Machine_ClassType const*)other);
-    } else if (_TypeFlag_isSet(self, Machine_TypeFlags_Interface)) {
+    } else if (Ring2_TypeFlag_isSet(self, Ring2_TypeFlags_Interface)) {
       // CASE II.2.
       // self is an interface type.
       // other is a class type.
@@ -115,13 +111,13 @@ bool Machine_Type_isSubTypeOf(Machine_Type const* self, Machine_Type const* othe
       // CASE II.3.
       return false;
     }
-  } else if (_TypeFlag_isSet(other, Machine_TypeFlags_Interface)) {
-    if (_TypeFlag_isSet(self, Machine_TypeFlags_Class)) {
+  } else if (Ring2_TypeFlag_isSet(other, Ring2_TypeFlags_Interface)) {
+    if (Ring2_TypeFlag_isSet(self, Ring2_TypeFlags_Class)) {
       // CASE III.1.
       // self is class type.
       // other is interface type.
       return cni((Machine_ClassType const*)self, (Machine_InterfaceType const*)other);
-    } else if (_TypeFlag_isSet(self, Machine_TypeFlags_Interface)) {
+    } else if (Ring2_TypeFlag_isSet(self, Ring2_TypeFlags_Interface)) {
       // CASE III.2.
       // self is an interface type.
       // other is an interface type.
@@ -136,14 +132,26 @@ bool Machine_Type_isSubTypeOf(Machine_Type const* self, Machine_Type const* othe
   }
 }
 
-bool Machine_Type_isTrueSubTypeOf(Machine_Type const* self, Machine_Type const* other) {
-  return self != other && Machine_Type_isSubTypeOf(self, other);
-}
+Ring1_CheckReturn() bool
+Machine_Type_isTrueSubTypeOf
+  (
+    Machine_Type const* self,
+    Machine_Type const* other
+  )
+{ return self != other && Machine_Type_isSubTypeOf(self, other); }
 
-bool Machine_Type_isSuperTypeOf(Machine_Type const* self, Machine_Type const* other) {
-  return Machine_Type_isSubTypeOf(other, self);
-}
+Ring1_CheckReturn() bool
+Machine_Type_isSuperTypeOf
+  (
+    Machine_Type const* self,
+    Machine_Type const* other
+  )
+{ return Machine_Type_isSubTypeOf(other, self); }
 
-bool Machine_Type_isTrueSuperTypeOf(Machine_Type const* self, Machine_Type const* other) {
-  return Machine_Type_isTrueSubTypeOf(other, self);
-}
+Ring1_CheckReturn() bool
+Machine_Type_isTrueSuperTypeOf
+  (
+    Machine_Type const* self,
+    Machine_Type const* other
+  )
+{ return Machine_Type_isTrueSubTypeOf(other, self); }

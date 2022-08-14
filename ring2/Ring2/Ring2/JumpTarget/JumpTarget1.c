@@ -8,19 +8,29 @@
 #include "Ring2/JumpTarget/JumpTarget1.h"
 
 static Ring2_JumpTarget* g_jumpTargets = NULL;
+static int g_referenceCount = 0;
 
 Ring1_CheckReturn() Ring1_Result
 Ring2_JumpTargetModule_startup
   (
   )
 {
-  g_jumpTargets = NULL;
+  if (g_referenceCount == 0) {
+    g_jumpTargets = NULL;
+  }
+  g_referenceCount++;
   return Ring1_Result_Success;
 }
 
 void
-Ring2_JumpTargetModule_shutdown()
+Ring2_JumpTargetModule_shutdown
+  (
+  )
 {
+  if (1 == g_referenceCount) {
+    /*Intentionally empty.*/
+  }
+  g_referenceCount--;
 }
 
 void

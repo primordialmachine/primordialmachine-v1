@@ -43,13 +43,13 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gui_BorderNode, Machine_Gui_Widget, &Machine_Gu
 
 static void Machine_Gui_BorderNode_visit(Machine_Gui_BorderNode* self) {
   if (self->child) {
-    Machine_Gc_visit(self->child);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->child);
   }
   if (self->borderRectangle) {
-    Machine_Gc_visit(self->borderRectangle);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->borderRectangle);
   }
   if (self->borderModel) {
-    Machine_Gc_visit(self->borderModel);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->borderModel);
   }
 }
 
@@ -245,7 +245,7 @@ static void boundsChangedCallback(Ring2_Context *context,
                                   Machine_Value *result,
                                   size_t numberOfArguments,
                                   Machine_Value const *arguments) {
-  MACHINE_ASSERT(numberOfArguments == 2, Ring1_Status_InvalidNumberOfArguments);
+  Ring2_assert(numberOfArguments == 2, Ring1_Status_InvalidNumberOfArguments);
   Machine_Gui_BorderNode* self = (Machine_Gui_BorderNode*)Machine_Value_getObject(&arguments[0]);
   self->childDirty = true;
   Machine_Value_setVoid(result, Ring2_Void_Void);

@@ -6,7 +6,6 @@
 
 #include "Runtime/Io/_FileHandle.h"
 #include "Ring2/_Include.h"
-#include "Runtime/LogModule.h"
 
 /// @brief Helper for file mappings.
 typedef struct _Machine_FileMapping {

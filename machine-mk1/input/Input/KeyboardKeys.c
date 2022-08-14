@@ -11,13 +11,13 @@ MACHINE_DEFINE_ENUMERATIONTYPE(Machine_KeyboardKeys)
 Ring2_String* Machine_KeyboardKeys_toString(Machine_KeyboardKeys self) {
 #define DefineKeyboardKey(NAME, STRING)                                                            \
   case Machine_KeyboardKeys_##NAME: {                                                              \
-    return Ring2_String_create(STRING, strlen(STRING));                                          \
+    return Ring2_String_create(Ring2_Context_get(), STRING, strlen(STRING));                       \
   } break;
 
   switch (self) {
 #include "Input/KeyboardKeys.i"
     default:
-      MACHINE_ASSERT_UNREACHABLE();
+      Ring2_unreachable();
   };
 
 #undef DefineKeyboardKey

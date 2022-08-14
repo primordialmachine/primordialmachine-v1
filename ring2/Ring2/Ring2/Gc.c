@@ -80,6 +80,8 @@ Ring2_Gc_destroy
   )
 { Ring2_Gc_Implementation_Gc1_destroy((Ring2_Gc_Implementation_Gc1 *)gc); }
 
+static int g_referenceCount = 0;
+
 static Ring2_Gc* g_gc = NULL;
 
 Ring1_CheckReturn() Ring2_Gc *
@@ -96,11 +98,14 @@ Ring2_Gc_startup
   (
   )
 {
-  assert(NULL == g_gc);
-  g_gc = Ring2_Gc_create();
-  if (!g_gc) {
-    return Ring1_Result_Failure;
+  if (0 == g_referenceCount) {
+    assert(NULL == g_gc);
+    g_gc = Ring2_Gc_create();
+    if (!g_gc) {
+      return Ring1_Result_Failure;
+    }
   }
+  g_referenceCount++;
   return Ring1_Result_Success;
 }
 
@@ -109,9 +114,12 @@ Ring2_Gc_shutdown
   (
   )
 {
-  assert(NULL != g_gc);
-  Ring2_Gc_destroy(g_gc);
-  g_gc = NULL;
+  if (1 == g_referenceCount) {
+    assert(NULL != g_gc);
+    Ring2_Gc_destroy(g_gc);
+    g_gc = NULL;
+  }
+  g_referenceCount--;
 }
 
 void*

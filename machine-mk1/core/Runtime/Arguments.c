@@ -6,7 +6,6 @@
 #include "Runtime/Arguments.h"
 
 #include "Ring2/_Include.h"
-#include "Runtime/Object/Object.h"
 #include "Ring1/Status.h"
 
 Ring2_Integer Machine_Extensions_getBooleanArgument(size_t numberOfArguments,

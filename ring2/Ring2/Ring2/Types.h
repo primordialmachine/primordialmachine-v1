@@ -29,6 +29,12 @@ Ring2_TypesModule_shutdown
   (
   );
 
+#if defined(Ring2_Configuration_withArray) && 1 == Ring2_Configuration_withArray
+
+  #include "Ring2/Types/Array.h"
+
+#endif // Ring2_Configuration_withArray
+
 #if defined(Ring2_Configuration_withBoolean) && 1 == Ring2_Configuration_withBoolean
 
   #include "Ring2/Types/Boolean.h"
@@ -38,6 +44,7 @@ Ring2_TypesModule_shutdown
 #if defined(Ring2_Configuration_withForeignFunction) && 1 == Ring2_Configuration_withForeignFunction
 
   #include "Ring2/Types/ForeignFunction.h"
+  #include "Ring2/Types/ForeignProcedure.h"
 
 #endif // Ring2_Configuration_withForeignFunction
 
@@ -46,6 +53,13 @@ Ring2_TypesModule_shutdown
   #include "Ring2/Types/Integer.h"
 
 #endif // Ring2_Configuration_withInteger
+
+#if defined(Ring2_Configuration_withObject) && 1 == Ring2_Configuration_withObject
+
+  #include "Ring2/Types/Object.h"
+  #include "Ring2/Old/Object.h"
+
+#endif // Ring2_Configuration_withObject
 
 #if defined(Ring2_Configuration_withReal) && 1 == Ring2_Configuration_withReal
 

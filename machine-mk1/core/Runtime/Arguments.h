@@ -8,8 +8,7 @@
 #if !defined(MACHINE_RUNTIME_PRIVATE)
 #error("Do not include `Runtime/Arguments.h` directly, include `_Runtime.h` instead.")
 #endif
-#include "Runtime/Object/ClassType.h"
-#include "Runtime/Value.h"
+#include "Ring2/_Include.h"
 
 Ring2_Integer Machine_Extensions_getBooleanArgument(size_t numberOfArguments,
                                                     Machine_Value const* arguments, size_t i);

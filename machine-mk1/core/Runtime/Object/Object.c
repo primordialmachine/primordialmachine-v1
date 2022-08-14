@@ -1,12 +1,8 @@
 #define MACHINE_RUNTIME_PRIVATE (1)
-#include "Runtime/Object/Object.h"
+#include "Ring2/_Include.h"
 
-#include "Runtime/Assertions.h"
-#include "Ring2/JumpTarget.h"
 #include "Ring1/Hash.h"
-#include "Runtime/Object/ClassType.module.h"
-#include "Runtime/Object/InterfaceType.module.h"
-#include "Runtime/Type.module.h"
+#include "Ring2/_Include.h"
 #include <assert.h>
 
 static Ring2_Integer Machine_Object_getHashValueImpl(Machine_Object const* self) {
@@ -60,7 +56,7 @@ Machine_ClassType* Machine_Object_getType() {
 
 void Machine_Object_construct(Machine_Object* self, size_t numberOfArguments,
                               Machine_Value const* arguments) {
-  MACHINE_ASSERT_NOTNULL(self);
+  Ring2_assertNotNull(self);
   Machine_setClassType(self, Machine_Object_getType());
 }
 
@@ -113,11 +109,7 @@ Machine_Object* Machine_allocateClassObject(Machine_ClassType* type, size_t numb
     .finalize = (Ring2_Gc_FinalizeCallback*)&Machine_ClassObject_finalize,
     .visit = (Ring2_Gc_VisitCallback*)&Machine_ClassObject_visit,
   };
-  Machine_Gc_AllocationArguments const allocationArguments = {
-    .suffixSize = type->object.size,
-    .type = &gcType,
-  };
-  Machine_Object *o = Machine_Gc_allocate(&allocationArguments);
+  Machine_Object *o = Ring2_ObjectModule_allocate(Ring2_Gc_get(), type->object.size, &gcType);
   if (!o) {
     Ring2_jump();
   }
@@ -128,14 +120,14 @@ Machine_Object* Machine_allocateClassObject(Machine_ClassType* type, size_t numb
   return o;
 }
 
-Ring2_Integer Machine_Object_getHashValue(Machine_Object const* self) {
+Ring2_Integer Machine_Object_getHashValue(Ring2_Context* context, Machine_Object const* self) {
   MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_Object, getHashValue);
 }
 
-Ring2_Boolean Machine_Object_isEqualTo(Machine_Object const* self, Machine_Object const* other) {
+Ring2_Boolean Machine_Object_isEqualTo(Ring2_Context* context, Machine_Object const* self, Machine_Object const* other) {
   MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_Object, isEqualTo, other);
 }
 
-Ring2_String* Machine_Object_toString(Machine_Object const* self) {
+Ring2_String* Machine_Object_toString(Ring2_Context* context, Machine_Object const* self) {
   MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_Object, toString);
 }

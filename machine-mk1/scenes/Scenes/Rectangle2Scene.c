@@ -32,10 +32,10 @@ struct Rectangle2Scene {
 
 static void Rectangle2Scene_visit(Rectangle2Scene* self) {
   if (self->context2) {
-    Machine_Gc_visit(self->context2);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->context2);
   }
   if (self->rectangle2) {
-    Machine_Gc_visit(self->rectangle2);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->rectangle2);
   }
 }
 

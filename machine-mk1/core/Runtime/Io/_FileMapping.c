@@ -22,8 +22,8 @@ void _Machine_FileMapping_openRead(_Machine_FileMapping* self, Ring2_String* pat
       // Create file mapping.
       self->hFileMapping = CreateFileMapping(self->fileHandle.hHandle, 0, PAGE_READONLY, 0, 0, 0);
       if (NULL == self->hFileMapping) {
-        Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
-                    "unable to create file mapping for file '%s'\n", Ring2_String_getBytes(Ring2_Context_get(), path));
+        Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__,
+                  "unable to create file mapping for file '%s'\n", Ring2_String_getBytes(Ring2_Context_get(), path));
         Ring1_Status_set(Ring1_Status_EnvironmentFailed);
         Ring2_jump();
       }
@@ -34,9 +34,9 @@ void _Machine_FileMapping_openRead(_Machine_FileMapping* self, Ring2_String* pat
         CloseHandle(self->hFileMapping);
         self->hFileMapping = NULL;
         //
-        Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
-                    "unable to create file mapping view for file '%s'\n",
-                    Ring2_String_getBytes(Ring2_Context_get(), path));
+        Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__,
+                  "unable to create file mapping view for file '%s'\n",
+                  Ring2_String_getBytes(Ring2_Context_get(), path));
         Ring1_Status_set(Ring1_Status_EnvironmentFailed);
         Ring2_jump();
       }
@@ -70,8 +70,8 @@ void _Machine_FileMapping_openWrite(_Machine_FileMapping* self, Ring2_String* pa
       self->hFileMapping
           = CreateFileMapping(self->fileHandle.hHandle, 0, PAGE_READWRITE, 0, numberOfBytes, 0);
       if (NULL == self->hFileMapping) {
-        Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
-                    "unable to create file mapping for file '%s'\n", Ring2_String_getBytes(Ring2_Context_get(), path));
+        Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__,
+                  "unable to create file mapping for file '%s'\n", Ring2_String_getBytes(Ring2_Context_get(), path));
         Ring1_Status_set(Ring1_Status_EnvironmentFailed);
         Ring2_jump();
       }
@@ -83,9 +83,9 @@ void _Machine_FileMapping_openWrite(_Machine_FileMapping* self, Ring2_String* pa
         CloseHandle(self->hFileMapping);
         self->hFileMapping = NULL;
         //
-        Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
-                    "unable to create file mapping view for file '%s'\n",
-                    Ring2_String_getBytes(Ring2_Context_get(), path));
+        Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__,
+                  "unable to create file mapping view for file '%s'\n",
+                  Ring2_String_getBytes(Ring2_Context_get(), path));
         Ring1_Status_set(Ring1_Status_EnvironmentFailed);
         Ring2_jump();
       }

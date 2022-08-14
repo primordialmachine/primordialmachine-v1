@@ -11,17 +11,17 @@ MACHINE_DEFINE_ENUMERATIONTYPE(Machine_MousePointerActions)
 Ring2_String* Machine_MousePointerActions_toString(Machine_MousePointerActions self) {
   switch (self) {
     case Machine_MousePointerActions_Move:
-      return Ring2_String_create("move", strlen("move"));
+      return Ring2_String_create(Ring2_Context_get(), "move", strlen("move"));
       break;
     case Machine_MousePointerActions_Enter:
-      return Ring2_String_create("enter", strlen("enter"));
+      return Ring2_String_create(Ring2_Context_get(), "enter", strlen("enter"));
       break;
     case Machine_MousePointerActions_Exit:
-      return Ring2_String_create("exit", strlen("exit"));
+      return Ring2_String_create(Ring2_Context_get(), "exit", strlen("exit"));
       break;
     case Machine_MousePointerActions_Undetermined:
     default:
-      MACHINE_ASSERT_UNREACHABLE();
+      Ring2_unreachable();
   };
 }
 
@@ -53,7 +53,7 @@ static Ring2_String* Machine_MousePointerEvent_toStringImpl(
 
   Machine_StringBuffer_appendBytes(stringBuffer, " }", strlen(" }"));
 
-  return Machine_Object_toString((Machine_Object*)stringBuffer);
+  return Machine_Object_toString(Ring2_Context_get(), (Machine_Object*)stringBuffer);
 }
 
 static void Machine_MousePointerEvent_constructClass(Machine_MousePointerEvent_Class* self) {

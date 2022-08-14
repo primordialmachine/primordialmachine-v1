@@ -7,8 +7,7 @@
 #if !defined(MACHINE_RUNTIME_PRIVATE)
 #error("Do not include `Runtime/ByteBuffer.h` directly, include `_Runtime.h` instead.")
 #endif
-#include "Runtime/Object/ClassType.h"
-#include "Runtime/PrimitiveTypes.h"
+#include "Ring2/_Include.h"
 
 MACHINE_DECLARE_CLASSTYPE(Machine_ByteBuffer)
 

@@ -8,7 +8,7 @@
 
 Machine_Math_Vector3* Machine_Gui_Gdl_listToVector3(Machine_List const* list) {
   size_t size = Machine_Collection_getSize((Machine_Collection const*)list);
-  MACHINE_ASSERT(size == 3, Ring1_Status_InvalidArgument);
+  Ring2_assert(size == 3, Ring1_Status_InvalidArgument);
   Machine_Value values[] = {
     Machine_List_getAt(list, 0),
     Machine_List_getAt(list, 1),
@@ -24,7 +24,7 @@ Machine_Math_Vector3* Machine_Gui_Gdl_listToVector3(Machine_List const* list) {
 
 Machine_Math_Vector4* Machine_Gui_Gdl_listToVector4(Machine_List const* list) {
   size_t size = Machine_Collection_getSize((Machine_Collection const*)list);
-  MACHINE_ASSERT(size == 4, Ring1_Status_InvalidArgument);
+  Ring2_assert(size == 4, Ring1_Status_InvalidArgument);
   Machine_Value values[] = {
     Machine_List_getAt(list, 0),
     Machine_List_getAt(list, 1),

@@ -47,7 +47,7 @@ static void Map_visit(void *gc, Map* self) {
   for (size_t i = 0, n = self->capacity; i < n; ++i) {
     Node* node = self->buckets[i];
     while (node) {
-      Machine_Gc_visit(node->texture);
+      Ring2_Gc_visit(Ring2_Gc_get(), node->texture);
       node = node->next;
     }
   }
@@ -73,12 +73,7 @@ static Map* Map_create() {
     .finalize = (Ring2_Gc_FinalizeCallback*)&Map_finalize,
     .visit = (Ring2_Gc_VisitCallback*)&Map_visit,
   };
-  Machine_Gc_AllocationArguments const allocationArguments = {
-    .suffixSize = sizeof(Map),
-    .type = &gcType,
-  };
-
-  Map* self = Machine_Gc_allocate(&allocationArguments);
+  Map* self = Ring2_ObjectModule_allocate(Ring2_Gc_get(), sizeof(Map), &gcType);
   if (!self) {
     Ring2_jump();
   }
@@ -172,7 +167,7 @@ static Ring2_Boolean Machine_Fonts_Font_getCodePointInfo(Machine_Fonts_Font* sel
   }
   Node* node = Map_get(self->map, codepoint);
   if (node == NULL) {
-    Machine_log(Machine_LogFlags_ToWarnings, __FILE__, __LINE__, "%"PRIu32" not found\n", codepoint);
+    Ring2_log(Ring2_LogFlags_ToWarnings, __FILE__, __LINE__, "%"PRIu32" not found\n", codepoint);
     return false;
   }
   Machine_Math_Vector2* v = Machine_Math_Vector2_create();
@@ -207,19 +202,19 @@ static void Machine_Fonts_Font_constructClass(Machine_Fonts_Font_Class* self) {
 
 static void Machine_Fonts_Font_visit(Machine_Fonts_Font* self) {
   if (self->map) {
-    Machine_Gc_visit(self->map);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->map);
   }
   if (self->vertices) {
-    Machine_Gc_visit(self->vertices);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->vertices);
   }
   if (self->shader) {
-    Machine_Gc_visit(self->shader);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->shader);
   }
   if (self->binding) {
-    Machine_Gc_visit(self->binding);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->binding);
   }
   if (self->context) {
-    Machine_Gc_visit(self->context);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->context);
   }
 }
 
@@ -250,7 +245,7 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
   //
   FT_Error error;
   // (1) Ensure string is zero terminated.
-  path = Ring2_String_concatenate(path, Ring2_String_create("", 1));
+  path = Ring2_String_concatenate(Ring2_Context_get(), path, Ring2_String_create(Ring2_Context_get(), "", 1));
   // (2)
   error = FT_New_Face(*fontsContext->library, Ring2_String_getBytes(Ring2_Context_get(), path), 0, &self->face);
   if (error) {
@@ -287,8 +282,8 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
     Machine_VertexDescriptor_append(vertexDescriptor, Machine_VertexElementSemantics_UfVf);
 
     self->binding = Machine_VideoContext_createBinding(fontsContext->videoContext, self->shader, vertexDescriptor, self->vertices);
-    Machine_Binding_setVariableBinding(self->binding, Ring2_String_create("vertex_position", strlen("vertex_position") + 1), 0);
-    Machine_Binding_setVariableBinding(self->binding, Ring2_String_create("vertex_texture_coordinate_1", strlen("vertex_texture_coordinate_1") + 1), 1);
+    Machine_Binding_setVariableBinding(self->binding, Ring2_String_create(Ring2_Context_get(), "vertex_position", strlen("vertex_position") + 1), 0);
+    Machine_Binding_setVariableBinding(self->binding, Ring2_String_create(Ring2_Context_get(), "vertex_texture_coordinate_1", strlen("vertex_texture_coordinate_1") + 1), 1);
 
     Ring2_popJumpTarget();
   } else {

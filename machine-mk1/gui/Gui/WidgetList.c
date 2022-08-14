@@ -16,7 +16,7 @@ struct Machine_Gui_WidgetList {
 
 static void Machine_Gui_WidgetList_visit(Machine_Gui_WidgetList* self) {
   if (self->backing) {
-    Machine_Gc_visit(self->backing);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->backing);
   }
 }
 

@@ -7,6 +7,10 @@
 #if !defined(RING2_OPERATIONS_STRING_H_INCLUDED)
 #define RING2_OPERATIONS_STRING_H_INCLUDED
 
+#if !defined(RING2_INTERNAL) || 1 != RING2_INTERNAL
+#error("Do not include `Ring2/Operations/String.h` directly. Include `Ring2/_Include.h` instead.")
+#endif
+
 #include "Ring2/Configuration.h"
 
 #if defined(Ring2_Configuration_withString) && 1 == Ring2_Configuration_withString
@@ -96,6 +100,67 @@ Ring2_String_isGreaterThanOrEqualTo
     Ring2_Context* context,
     Ring2_String const *x,
     Ring2_String const *y
+  );
+
+/// @brief Get if a string is a prefix of another string.
+/// @param x The first string.
+/// @param y The second string.
+/// @return @a true if the second string is a prefix of the first string.
+/// @a false otherwise.
+Ring1_CheckReturn() Ring2_Boolean
+Ring2_String_startWith
+  (
+    Ring2_Context* context,
+    Ring2_String const* x,
+    Ring2_String const* y
+  );
+
+/// @brief Get if a string is a suffix of another string.
+/// @param x The first string.
+/// @param y The second string.
+/// @return
+/// @a true if the second string is a suffix of the first string.
+/// @a false otherwise.
+Ring1_CheckReturn() Ring2_Boolean
+Ring2_String_endsWith
+  (
+    Ring2_Context* context,
+    Ring2_String const* x,
+    Ring2_String const* y
+  );
+
+/// @brief Get the first occurrence of a string in another string.
+/// @param x The first string.
+/// @param y The last string.
+/// @return
+/// @a -1 if the second string has no occurrence in the first string.
+/// The index of the first occurrence of the second string in the first string. 
+Ring1_CheckReturn() Ring2_Integer
+Ring2_String_firstOccurrenceOf
+  (
+    Ring2_Context* context,
+    Ring2_String const* x,
+    Ring2_String const* y
+  );
+
+/// @brief Get a substring of a string.
+/// @param x The string.
+/// @param i The index of the first Byte of the substring.
+/// @param n The length, in Bytes, of the substring.
+/// @return The substring on success, null on failure.
+/// @remark This function fails if
+/// - <tt>i</tt> is negative,
+/// - <tt>n</tt> is negative,
+/// - <tt>i + n</tt> overflows,
+/// - <tt>i + n</tt> is greater than
+/// <tt>Mkx_Interpreter_String_getNumberOfBytes(w)</tt>.
+Ring1_CheckReturn() Ring2_String*
+Ring2_String_substring
+  (
+    Ring2_Context* context,
+    Ring2_String const* x,
+    int64_t i,
+    int64_t n
   );
 
 #endif // Ring2_Configuration_withString

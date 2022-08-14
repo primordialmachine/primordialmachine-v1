@@ -6,7 +6,7 @@
 
 static void Machine_ProgramInput_visit(Machine_ProgramInput* self) {
   if (self->name) {
-    Machine_Gc_visit(self->name);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->name);
   }
 }
 

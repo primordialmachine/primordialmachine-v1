@@ -1,14 +1,19 @@
-/// @file Runtime/Object/InterfaceType.c
-/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
-/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#define MACHINE_RUNTIME_PRIVATE (1)
-#include "Runtime/Object/InterfaceType.h"
+// Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 
+/// @file Ring2/TypeSystem/InterfaceType.c
+/// @copyright Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
+/// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
+
+#define RING2_INTERNAL (1)
+#include "Ring2/TypeSystem/InterfaceType.h"
+
+#include "Ring2/Types/Object.h"
+#include "Ring2/TypeSystem/ClassType.h"
+#include "Ring2/TypeSystem/EnumerationType.h"
+#include "Ring2/Gc.h"
+#include "Ring2/JumpTarget.h"
+#include "Ring1/Memory.h"
 #include "Ring1/Status.h"
-#include "Runtime/Gc/Gc.h"
-#include "Ring2/_Include.h"
-#include "Runtime/Object/InterfaceType.module.h"
-#include "Runtime/Type.module.h"
 
 static void Machine_InterfaceType_finalize(void *gc, Machine_InterfaceType* self) {
   if (self->extendsArrayInitialized) {
@@ -18,11 +23,11 @@ static void Machine_InterfaceType_finalize(void *gc, Machine_InterfaceType* self
     }
     Ring1_InlineArray_uninitialize(&self->extends);
   }
-  _Type_finalize((Machine_Type*)self);
+  Ring2_Type_finalize((Machine_Type*)self);
 }
 
 static void Machine_InterfaceType_visit(void *gc, Machine_InterfaceType* self) {
-  _Type_visit((Machine_Type*)self);
+  Ring2_Type_visit((Machine_Type*)self);
 }
 
 Machine_InterfaceType* Machine_createInterfaceType(Machine_CreateInterfaceTypeArgs* args) {
@@ -30,16 +35,12 @@ Machine_InterfaceType* Machine_createInterfaceType(Machine_CreateInterfaceTypeAr
     .finalize = (Ring2_Gc_FinalizeCallback*)&Machine_InterfaceType_finalize,
     .visit = (Ring2_Gc_VisitCallback*)Machine_InterfaceType_visit,
   };
-  Machine_Gc_AllocationArguments const allocationArguments = {
-    .suffixSize = sizeof(Machine_InterfaceType),
-    .type = &gcType,
-  };
-  Machine_InterfaceType* interfaceType = Machine_Gc_allocate(&allocationArguments);
+  Machine_InterfaceType* interfaceType = Ring2_ObjectModule_allocate(Ring2_Gc_get(), sizeof(Machine_InterfaceType), &gcType);
   if (!interfaceType) {
     Ring1_Status_set(Ring1_Status_AllocationFailed);
     Ring2_jump();
   }
-  ((Machine_Type*)interfaceType)->flags = Machine_TypeFlags_Interface;
+  ((Machine_Type*)interfaceType)->flags = Ring2_TypeFlags_Interface;
   ((Machine_Type*)interfaceType)->typeRemoved = args->createTypeArgs.typeRemoved;
   ((Machine_Type*)interfaceType)->children.elements = NULL;
   if (Ring1_Memory_allocateArray((void **) & (((Machine_Type*)interfaceType)->children.elements), 0,
@@ -64,7 +65,7 @@ bool Machine_InterfaceType_extend(Machine_InterfaceType* self, Machine_Type* ext
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();
   }
-  if (_TypeFlag_isSet((Machine_Type*)self, Machine_TypeFlags_Initialized)) {
+  if (Ring2_TypeFlag_isSet((Machine_Type*)self, Ring2_TypeFlags_Initialized)) {
     Ring1_Status_set(Ring1_Status_InvalidOperation);
     Ring2_jump();
   }
@@ -84,7 +85,7 @@ bool Machine_InterfaceType_extend(Machine_InterfaceType* self, Machine_Type* ext
 }
 
 void Machine_InterfaceType_ensureInitialized(Machine_InterfaceType* self) {
-  if (_TypeFlag_isSet((Machine_Type*)self, Machine_TypeFlags_Initialized)) {
+  if (Ring2_TypeFlag_isSet((Machine_Type*)self, Ring2_TypeFlags_Initialized)) {
     return;
   }
   if (!Machine_InterfaceType_hasFlag(self, Machine_InterfaceTypeFlags_PrerequisitesAdded)) {
@@ -100,5 +101,5 @@ void Machine_InterfaceType_ensureInitialized(Machine_InterfaceType* self) {
     }
     Machine_InterfaceType_addFlag(self, Machine_InterfaceTypeFlags_PrerequisitesInitialized);
   }
-  _TypeFlag_set((Machine_Type*)self, Machine_TypeFlags_Initialized);
+  Ring2_TypeFlag_set((Machine_Type*)self, Ring2_TypeFlags_Initialized);
 }

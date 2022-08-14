@@ -32,13 +32,13 @@ static void checkKeywords(Machine_Gdl_Scanner *self) {
 
 static void Machine_Gdl_Scanner_visit(Machine_Gdl_Scanner* self) {
   if (self->inputName) {
-    Machine_Gc_visit(self->inputName);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->inputName);
   }
   if (self->inputBytes) {
-    Machine_Gc_visit(self->inputBytes);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->inputBytes);
   }
   if (self->tokenText) {
-    Machine_Gc_visit(self->tokenText);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->tokenText);
   }
 }
 
@@ -353,5 +353,5 @@ Machine_Gdl_TokenKind Machine_Gdl_Scanner_getTokenKind(Machine_Gdl_Scanner const
 }
 
 Ring2_String* Machine_Gdl_Scanner_getTokenText(Machine_Gdl_Scanner const* self) {
-  return Ring2_String_create(Machine_ByteBuffer_getBytes(self->tokenText), Machine_ByteBuffer_getNumberOfBytes(self->tokenText));
+  return Ring2_String_create(Ring2_Context_get(), Machine_ByteBuffer_getBytes(self->tokenText), Machine_ByteBuffer_getNumberOfBytes(self->tokenText));
 }

@@ -16,16 +16,16 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gui_Widget, Machine_Object, &Machine_Gui_Widget
 
 static void Machine_Gui_Widget_visit(Machine_Gui_Widget* self) {
   if (self->parent) {
-    Machine_Gc_visit(self->parent);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->parent);
   }
   if (self->rectangle) {
-    Machine_Gc_visit(self->rectangle);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->rectangle);
   }
   if (self->signal) {
-    Machine_Gc_visit(self->signal);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->signal);
   }
   if (self->context) {
-    Machine_Gc_visit(self->context);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->context);
   }
 }
 
@@ -130,7 +130,7 @@ static void Machine_Gui_Widget_constructClass(Machine_Gui_Widget_Class* self) {
 void Machine_Gui_Widget_construct(Machine_Gui_Widget* self, size_t numberOfArguments,
                                   Machine_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  MACHINE_ASSERT(numberOfArguments == 1, Ring1_Status_InvalidNumberOfArguments);
+  Ring2_assert(numberOfArguments == 1, Ring1_Status_InvalidNumberOfArguments);
   self->context = (Machine_Gui_Context*)Machine_Value_getObject(&arguments[0]);
   self->rectangle = Machine_Math_Rectangle2_create();
   self->parent = NULL;

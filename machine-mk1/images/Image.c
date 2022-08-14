@@ -119,16 +119,16 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
   state.position += 8;
   // (2) validate header.
   if (png_sig_cmp(header, 0, 8)) {
-    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
-                "[read_png_file] file is not recognized as a PNG file\n");
+    Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__,
+              "[read_png_file] file is not recognized as a PNG file\n");
     Ring1_Status_set(Ring1_Status_EnvironmentFailed);
     Ring2_jump();
   }
   // (3) create read struct.
   png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
   if (!png_ptr) {
-    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
-                "[read_png_file] png_create_read_struct failed\n");
+    Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__,
+              "[read_png_file] png_create_read_struct failed\n");
     Ring1_Status_set(Ring1_Status_EnvironmentFailed);
     Ring2_jump();
   }
@@ -136,18 +136,18 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
   info_ptr = png_create_info_struct(png_ptr);
   if (!info_ptr) {
     png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
-    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
-                "[read_png_file] png_create_info_struct failed");
+    Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__,
+              "[read_png_file] png_create_info_struct failed");
     Ring1_Status_set(Ring1_Status_EnvironmentFailed);
     Ring2_jump();
   }
 
   if (setjmp(png_jmpbuf(png_ptr))) {
     png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
-    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
-                "[read_png_file] "
-                "init_io/png_set_sig_bytes/png_read_info/png_set_interlaced_handling/"
-                "png_read_update_info failed");
+    Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__,
+              "[read_png_file] "
+              "init_io/png_set_sig_bytes/png_read_info/png_set_interlaced_handling/"
+              "png_read_update_info failed");
     Ring1_Status_set(Ring1_Status_EnvironmentFailed);
     Ring2_jump();
   }
@@ -169,8 +169,8 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
   if (setjmp(png_jmpbuf(png_ptr))) {
     // If we arrive here, then png_error was invoked.
     png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
-    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
-                "[read_png_file] error during read_image");
+    Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__,
+              "[read_png_file] error during read_image");
     Ring1_Status_set(Ring1_Status_EnvironmentFailed);
     Ring2_jump();
   }
@@ -206,9 +206,9 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
       break;
     default:
       Ring1_Memory_deallocate(pixels);
-      Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
-                  "[read_png_file] Unsupported png color type (%d) for image file\n",
-                  (int)color_type);
+      Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__,
+                "[read_png_file] Unsupported png color type (%d) for image file\n",
+                (int)color_type);
       Ring1_Status_set(Ring1_Status_EnvironmentFailed);
       Ring2_jump();
   };

@@ -17,10 +17,10 @@ static FT_Library g_library;
 
 static void visit(Machine_Fonts_FontsContext* self) {
   if (self->videoContext) {
-    Machine_Gc_visit(self->videoContext);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->videoContext);
   }
   if (self->imageContext) {
-    Machine_Gc_visit(self->imageContext);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->imageContext);
   }
 }
 
@@ -51,7 +51,7 @@ void Machine_Fonts_FontsContext_construct(Machine_Fonts_FontsContext* self, size
   if (0 == g_referenceCount) {
     FT_Error error = FT_Init_FreeType(&g_library);
     if (error) {
-      Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "FT_Init_FreeType failed\n");
+      Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__, "FT_Init_FreeType failed\n");
       Ring1_Status_set(Ring1_Status_EnvironmentFailed);
       Ring2_jump();
     }

@@ -7,8 +7,6 @@
 #include "Ring1/ByteBuffer.h"
 #include "Ring1/Status.h"
 #include "Ring2/_Include.h"
-#include "Runtime/Object/Object.h"
-#include "Runtime/Value.h"
 
 struct Machine_ByteBuffer_Class {
   Machine_Object_Class __parent;

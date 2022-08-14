@@ -14,14 +14,14 @@
 typedef struct _MapNode _MapNode;
 struct _MapNode {
   _MapNode* next;
-  size_t hashValue;
+  int64_t hashValue;
   Machine_Value key;
   Machine_Value value;
 };
 
 typedef struct _Map _Map;
 struct _Map {
-  size_t size, capacity;
+  int64_t size, capacity;
   _MapNode** buckets;
 };
 
@@ -79,7 +79,7 @@ static void maybeResize(Machine_HashMap* self) {
       while (oldBuckets[i]) {
         _MapNode* node = oldBuckets[i];
         oldBuckets[i] = node->next;
-        size_t hashIndex = node->hashValue % newCapacity;
+        int64_t hashIndex = node->hashValue % newCapacity;
         node->next = newBuckets[hashIndex];
         newBuckets[hashIndex] = node;
       }
@@ -90,10 +90,13 @@ static void maybeResize(Machine_HashMap* self) {
   }
 }
 
+#include <assert.h>
+
 static void set(Machine_HashMap* self, Machine_Value key, Machine_Value value) {
   _Map* pimpl = (_Map*)self->pimpl;
   Ring2_Integer hashValue = Machine_Value_getHashValue(&key);
-  size_t hashIndex = ((size_t)hashValue) % pimpl->capacity;
+  int64_t hashIndex = hashValue % pimpl->capacity;
+  assert(hashIndex >= 0);
   _MapNode* node;
   for (node = pimpl->buckets[hashIndex]; NULL != node; node = node->next) {
     if (node->hashValue == hashValue) {
@@ -121,7 +124,8 @@ static void set(Machine_HashMap* self, Machine_Value key, Machine_Value value) {
 static Machine_Value get(Machine_HashMap const* self, Machine_Value key) {
   _Map const* pimpl = (_Map const*)self->pimpl;
   Ring2_Integer hashValue = Machine_Value_getHashValue(&key);
-  size_t hashIndex = ((size_t)hashValue) % pimpl->capacity;
+  int64_t hashIndex = hashValue % pimpl->capacity;
+  assert(hashIndex >= 0);
   for (_MapNode* node = pimpl->buckets[hashIndex]; NULL != node; node = node->next) {
     if (node->hashValue == hashValue) {
       if (defaultEqual(&node->key, &key)) {

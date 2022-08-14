@@ -30,10 +30,10 @@ struct Machine_Gui_TextNode {
 
 static void Machine_Gui_TextNode_visit(Machine_Gui_TextNode* self) {
   if (self->foreground) {
-    Machine_Gc_visit(self->foreground);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->foreground);
   }
   if (self->background) {
-    Machine_Gc_visit(self->background);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->background);
   }
 }
 
@@ -46,8 +46,8 @@ static void boundsChangedCallback(Ring2_Context* context,
                                   Machine_Value *result,
                                   size_t numberOfArguments,
                                   Machine_Value const* arguments) {
-  MACHINE_ASSERT(NULL != result, Ring1_Status_InvalidArgument);
-  MACHINE_ASSERT(2 == numberOfArguments, Ring1_Status_InvalidNumberOfArguments);
+  Ring2_assertNotNull(result);
+  Ring2_assert(2 == numberOfArguments, Ring1_Status_InvalidNumberOfArguments);
   Machine_Gui_TextNode* self = (Machine_Gui_TextNode*)Machine_Value_getObject(&arguments[0]);
   self->childDirty = true;
   Machine_Value_setVoid(result, Ring2_Void_Void);
@@ -69,7 +69,7 @@ void Machine_Gui_TextNode_construct(Machine_Gui_TextNode* self, size_t numberOfA
   Machine_FontsContext* fontsContext = Machine_DefaultFonts_createContext(
       guiContext->context2->videoContext, Machines_DefaultImages_createContext());
   Machine_Font* font = Machine_FontsContext_createFont(fontsContext, guiContext->defaultFontFile, guiContext->defaultFontSize);
-  self->foreground = Machine_Text_Layout_create(Ring2_String_create("", strlen("")), font);
+  self->foreground = Machine_Text_Layout_create(Ring2_String_create(Ring2_Context_get(), "", strlen("")), font);
   self->background = Machine_Rectangle2_create();
   self->childDirty = true;
   Machine_Gui_Widget_subscribe(

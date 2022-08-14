@@ -19,35 +19,17 @@
     <Filter Include="Quelldateien\Runtime">
       <UniqueIdentifier>{f40b0be6-7171-4e7e-a276-f05094bbbcb3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headerdateien\Runtime\Object">
-      <UniqueIdentifier>{a7aa6258-b626-4dab-8034-ecbddcadb510}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Quelldateien\Runtime\Object">
       <UniqueIdentifier>{a3d5ba86-e01c-4f6b-b7ab-7d1bedbc4223}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headerdateien\Runtime\Object">
-      <UniqueIdentifier>{b2783fba-5263-42ab-83cc-6adfa52d6c43}</UniqueIdentifier>
     </Filter>
     <Filter Include="Quelldateien\Runtime\Object">
       <UniqueIdentifier>{d75e0342-ffd4-4e6c-8fde-e0b8b30dfc15}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headerdateien\Runtime\Gc">
-      <UniqueIdentifier>{d0f319a8-d7cc-4537-bdca-85ee55581e4e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Headerdateien\Runtime\Io">
       <UniqueIdentifier>{82efd535-74da-4b12-a95b-23d5f0294a4a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Quelldateien\Runtime\Gc">
-      <UniqueIdentifier>{ac67bad9-3bff-4662-99c8-47172932081a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Quelldateien\Runtime\Io">
       <UniqueIdentifier>{4455e3c1-14c8-4689-978a-1dd9f18005ca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headerdateien\Runtime\Enumeration">
-      <UniqueIdentifier>{dab2570a-c567-48a3-971a-2a9f3d2ed281}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Quelldateien\Runtime\Enumeration">
-      <UniqueIdentifier>{8239789f-b1b1-44bf-9084-24091a59a723}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -60,16 +42,7 @@
     <ClCompile Include="Runtime\ByteBuffer.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
-    <ClCompile Include="Runtime\PrimitiveTypes.c">
-      <Filter>Quelldateien\Runtime</Filter>
-    </ClCompile>
     <ClCompile Include="Runtime\Io.c">
-      <Filter>Quelldateien\Runtime</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Value.c">
-      <Filter>Quelldateien\Runtime</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\LogModule.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
     <ClCompile Include="Runtime\Io\_FileHandle.c">
@@ -90,37 +63,22 @@
     <ClCompile Include="Runtime\StackModule.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
-    <ClCompile Include="Runtime\Gc\Gc.c">
-      <Filter>Quelldateien\Runtime\Gc</Filter>
-    </ClCompile>
     <ClCompile Include="Runtime\StaticVariablesModule.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
     <ClCompile Include="Runtime\Object\Object.c">
-      <Filter>Quelldateien\Runtime\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Object\ClassType.c">
       <Filter>Quelldateien\Runtime\Object</Filter>
     </ClCompile>
     <ClCompile Include="Runtime\Type.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
-    <ClCompile Include="Runtime\Assertions.c">
-      <Filter>Quelldateien\Runtime</Filter>
-    </ClCompile>
     <ClCompile Include="Runtime\StaticVariablesModule.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
     <ClCompile Include="Runtime\StaticVariablesModule.c">
-      <Filter>Quelldateien\Runtime</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Assertions.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
     <ClCompile Include="Runtime\Object\Object.c">
-      <Filter>Quelldateien\Runtime\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Object\ClassType.c">
       <Filter>Quelldateien\Runtime\Object</Filter>
     </ClCompile>
     <ClCompile Include="Runtime\ArrayUtilities.c">
@@ -132,29 +90,11 @@
     <ClCompile Include="Runtime\Time.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
-    <ClCompile Include="Runtime\Object\ClassType.module.c">
-      <Filter>Quelldateien\Runtime\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Type.module.c">
-      <Filter>Quelldateien\Runtime</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Object\InterfaceType.c">
-      <Filter>Quelldateien\Runtime\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Object\InterfaceType.module.c">
-      <Filter>Quelldateien\Runtime\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Runtime\Machine.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
     <ClCompile Include="Runtime\WeakReference.c">
       <Filter>Quelldateien\Runtime</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Enumeration\EnumerationType.c">
-      <Filter>Quelldateien\Runtime\Enumeration</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Enumeration\EnumerationType.module.c">
-      <Filter>Quelldateien\Runtime\Enumeration</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -167,16 +107,7 @@
     <ClInclude Include="Runtime\ByteBuffer.h">
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
-    <ClInclude Include="Runtime\PrimitiveTypes.h">
-      <Filter>Headerdateien\Runtime</Filter>
-    </ClInclude>
     <ClInclude Include="Runtime\Io.h">
-      <Filter>Headerdateien\Runtime</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Value.h">
-      <Filter>Headerdateien\Runtime</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\LogModule.h">
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\Configuration.h">
@@ -200,22 +131,7 @@
     <ClInclude Include="Runtime\StackModule.h">
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
-    <ClInclude Include="Runtime\Gc\Gc.h">
-      <Filter>Headerdateien\Runtime\Gc</Filter>
-    </ClInclude>
     <ClInclude Include="Runtime\StaticVariablesModule.h">
-      <Filter>Headerdateien\Runtime</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Object\Object.h">
-      <Filter>Headerdateien\Runtime\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Object\ClassType.h">
-      <Filter>Headerdateien\Runtime\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Type.h">
-      <Filter>Headerdateien\Runtime</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Assertions.h">
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\StaticVariablesModule.h">
@@ -223,15 +139,6 @@
     </ClInclude>
     <ClInclude Include="Runtime\StaticVariablesModule.h">
       <Filter>Headerdateien\Runtime</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Assertions.h">
-      <Filter>Headerdateien\Runtime</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Object\Object.h">
-      <Filter>Headerdateien\Runtime\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Object\ClassType.h">
-      <Filter>Headerdateien\Runtime\Object</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\ArrayUtilities.h">
       <Filter>Headerdateien\Runtime</Filter>
@@ -242,29 +149,11 @@
     <ClInclude Include="Runtime\Time.h">
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
-    <ClInclude Include="Runtime\Object\ClassType.module.h">
-      <Filter>Headerdateien\Runtime\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Type.module.h">
-      <Filter>Headerdateien\Runtime</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Object\InterfaceType.h">
-      <Filter>Headerdateien\Runtime\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Object\InterfaceType.module.h">
-      <Filter>Headerdateien\Runtime\Object</Filter>
-    </ClInclude>
     <ClInclude Include="Runtime\Machine.h">
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\WeakReference.h">
       <Filter>Headerdateien\Runtime</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Enumeration\EnumerationType.h">
-      <Filter>Headerdateien\Runtime\Enumeration</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\Enumeration\EnumerationType.module.h">
-      <Filter>Headerdateien\Runtime\Enumeration</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -7,11 +7,9 @@
 #if !defined(MACHINE_RUNTIME_PRIVATE)
 #error("Do not include `Runtime/Io/FileHandle.h` directly, include `_Runtime.h` instead.")
 #endif
-#include "Runtime/Assertions.h"
 #include "Runtime/Io/_FileHandle.h"
 #include "Ring2/_Include.h"
 #include "Ring1/FileSystem.h"
-#include "Runtime/LogModule.h"
 #include "Ring1/Status.h"
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>

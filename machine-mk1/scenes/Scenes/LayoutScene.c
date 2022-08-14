@@ -38,16 +38,16 @@ struct LayoutScene {
 
 static void LayoutScene_visit(LayoutScene* self) {
   if (self->context2) {
-    Machine_Gc_visit(self->context2);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->context2);
   }
   if (self->font) {
-    Machine_Gc_visit(self->font);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->font);
   }
   if (self->textLayout1) {
-    Machine_Gc_visit(self->textLayout1);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->textLayout1);
   }
   if (self->textLayout2) {
-    Machine_Gc_visit(self->textLayout2);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->textLayout2);
   }
 }
 
@@ -61,18 +61,18 @@ static void LayoutScene_onStartup(LayoutScene* self) {
   //
   self->font = Machine_FontsContext_createFont(
       Machine_DefaultFonts_createContext(videoContext, Machines_DefaultImages_createContext()),
-      Ring2_String_create(FONT_FILE, strlen(FONT_FILE)), FONT_SIZE);
+      Ring2_String_create(Ring2_Context_get(), FONT_FILE, strlen(FONT_FILE)), FONT_SIZE);
   //
-  self->textLayout1 = Machine_Text_Layout_create(Ring2_String_create("", strlen("")), self->font);
+  self->textLayout1 = Machine_Text_Layout_create(Ring2_String_create(Ring2_Context_get(), "", strlen("")), self->font);
   {
     const char* text = "Nanobox IV\n400 units of unprimed nanites.";
-    Machine_Text_Layout_setText(self->textLayout1, Ring2_String_create(text, strlen(text)));
+    Machine_Text_Layout_setText(self->textLayout1, Ring2_String_create(Ring2_Context_get(), text, strlen(text)));
   }
   //
-  self->textLayout2 = Machine_Text_Layout_create(Ring2_String_create("", strlen("")), self->font);
+  self->textLayout2 = Machine_Text_Layout_create(Ring2_String_create(Ring2_Context_get(), "", strlen("")), self->font);
   {
     const char* text = "13 of 18 units\n7 of 9 units";
-    Machine_Text_Layout_setText(self->textLayout2, Ring2_String_create(text, strlen(text)));
+    Machine_Text_Layout_setText(self->textLayout2, Ring2_String_create(Ring2_Context_get(), text, strlen(text)));
   }
   //
   Machine_Math_Vector4* c = Machine_Math_Vector4_create();

@@ -10,10 +10,10 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Video_Canvas, Machine_Object, &visit,
 
 static void visit(Machine_Video_Canvas* self) {
   if (self->events) {
-    Machine_Gc_visit(self->events);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->events);
   }
   if (self->signal) {
-    Machine_Gc_visit(self->signal);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->signal);
   }
 }
 

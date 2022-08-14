@@ -9,16 +9,16 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Signals_Connection, Machine_Object,
 
 static void Machine_Signals_Connection_visit(Machine_Signals_Connection* self) {
   if (self->context) {
-    Machine_Gc_visit(self->context);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->context);
   }
   if (self->name) {
-    Machine_Gc_visit(self->name);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->name);
   }
 }
 
 void Machine_Signals_Connection_construct(Machine_Signals_Connection* self, size_t numberOfArguments, const Machine_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  MACHINE_ASSERT(numberOfArguments == 3, Ring1_Status_InvalidNumberOfArguments);
+  Ring2_assert(numberOfArguments == 3, Ring1_Status_InvalidNumberOfArguments);
   self->name = (Ring2_String*)Machine_Value_getString(&arguments[0]);
   self->context = (Machine_Object*)Machine_Value_getObject(&arguments[1]);
   self->callback = (Machine_ForeignProcedure*)Machine_Value_getForeignProcedure(&arguments[2]);

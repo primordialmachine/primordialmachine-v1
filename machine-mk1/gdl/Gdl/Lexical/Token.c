@@ -5,7 +5,7 @@
 
 static void Machine_Gdl_Token_visit(Machine_Gdl_Token *self) {
   if (self->text) {
-    Machine_Gc_visit(self->text);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->text);
   }
 }
 

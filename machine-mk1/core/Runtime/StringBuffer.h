@@ -7,8 +7,7 @@
 #if !defined(MACHINE_RUNTIME_PRIVATE)
 #error("Do not include `Runtime/StringBuffer.h` directly, include `_Runtime.h` instead.")
 #endif
-#include "Runtime/Object/ClassType.h"
-typedef struct Ring2_String Ring2_String;
+#include "Ring2/_Include.h"
 
 /// @brief A string buffer.
 /// You can append/prepend/insert strings.

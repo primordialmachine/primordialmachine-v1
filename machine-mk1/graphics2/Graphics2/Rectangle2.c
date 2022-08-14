@@ -13,13 +13,13 @@
 
 static void Machine_Rectangle2_visit(Machine_Rectangle2* self) {
   if (self->position) {
-    Machine_Gc_visit(self->position);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->position);
   }
   if (self->size) {
-    Machine_Gc_visit(self->size);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->size);
   }
   if (self->color) {
-    Machine_Gc_visit(self->color);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->color);
   }
 }
 
@@ -50,8 +50,8 @@ static void Machine_Rectangle2_render(Machine_Rectangle2* self, Machine_Context2
   Machine_VideoBuffer_setData(context->vertices, sizeof(VERTICES), (void const*)VERTICES);
 
   Machine_Binding_activate(context->binding);
-  Machine_Binding_bindMatrix4(context->binding, Ring2_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), wvp2);
-  Machine_Binding_bindVector4(context->binding, Ring2_String_create("mesh_color", strlen("mesh_color") + 1), self->color);
+  Machine_Binding_bindMatrix4(context->binding, Ring2_String_create(Ring2_Context_get(), "modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), wvp2);
+  Machine_Binding_bindVector4(context->binding, Ring2_String_create(Ring2_Context_get(), "mesh_color", strlen("mesh_color") + 1), self->color);
 
   Machine_VideoContext_drawIndirect(context->videoContext, 0, 6, indices);
 }

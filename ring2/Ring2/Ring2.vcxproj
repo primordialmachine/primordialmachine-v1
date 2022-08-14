@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ring2\Assert.h" />
     <ClInclude Include="Ring2\Configuration.h" />
     <ClInclude Include="Ring2\Context.h" />
     <ClInclude Include="Ring2\Gc.h" />
@@ -30,6 +31,9 @@
     <ClInclude Include="Ring2\Gc\Type.h" />
     <ClInclude Include="Ring2\JumpTarget.h" />
     <ClInclude Include="Ring2\JumpTarget\JumpTarget1.h" />
+    <ClInclude Include="Ring2\Log.h" />
+    <ClInclude Include="Ring2\Old\Object.h" />
+    <ClInclude Include="Ring2\Old\Value.h" />
     <ClInclude Include="Ring2\Operations.h" />
     <ClInclude Include="Ring2\Operations\Boolean.h" />
     <ClInclude Include="Ring2\Operations\ForeignFunction.h" />
@@ -39,9 +43,15 @@
     <ClInclude Include="Ring2\Operations\String.h" />
     <ClInclude Include="Ring2\Operations\Void.h" />
     <ClInclude Include="Ring2\Types.h" />
+    <ClInclude Include="Ring2\TypeSystem\ClassType.h" />
+    <ClInclude Include="Ring2\TypeSystem\EnumerationType.h" />
+    <ClInclude Include="Ring2\TypeSystem\InterfaceType.h" />
+    <ClInclude Include="Ring2\TypeSystem\Type.h" />
     <ClInclude Include="Ring2\Types\Boolean.h" />
     <ClInclude Include="Ring2\Types\ForeignFunction.h" />
+    <ClInclude Include="Ring2\Types\ForeignProcedure.h" />
     <ClInclude Include="Ring2\Types\Integer.h" />
+    <ClInclude Include="Ring2\Types\Object.h" />
     <ClInclude Include="Ring2\Types\Real.h" />
     <ClInclude Include="Ring2\Types\String.h" />
     <ClInclude Include="Ring2\Types\Value.h" />
@@ -49,6 +59,7 @@
     <ClInclude Include="Ring2\_Include.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Ring2\Assert.c" />
     <ClCompile Include="Ring2\Configuration.c" />
     <ClCompile Include="Ring2\Context.c" />
     <ClCompile Include="Ring2\Gc.c" />
@@ -59,6 +70,8 @@
     <ClCompile Include="Ring2\Gc\Type.c" />
     <ClCompile Include="Ring2\JumpTarget.c" />
     <ClCompile Include="Ring2\JumpTarget\JumpTarget1.c" />
+    <ClCompile Include="Ring2\Log.c" />
+    <ClCompile Include="Ring2\Old\Value.c" />
     <ClCompile Include="Ring2\Operations.c" />
     <ClCompile Include="Ring2\Operations\Boolean.c" />
     <ClCompile Include="Ring2\Operations\ForeignFunction.c" />
@@ -68,9 +81,15 @@
     <ClCompile Include="Ring2\Operations\String.c" />
     <ClCompile Include="Ring2\Operations\Void.c" />
     <ClCompile Include="Ring2\Types.c" />
+    <ClCompile Include="Ring2\TypeSystem\ClassType.c" />
+    <ClCompile Include="Ring2\TypeSystem\EnumerationType.c" />
+    <ClCompile Include="Ring2\TypeSystem\InterfaceType.c" />
+    <ClCompile Include="Ring2\TypeSystem\Type.c" />
     <ClCompile Include="Ring2\Types\Boolean.c" />
     <ClCompile Include="Ring2\Types\ForeignFunction.c" />
+    <ClCompile Include="Ring2\Types\ForeignProcedure.c" />
     <ClCompile Include="Ring2\Types\Integer.c" />
+    <ClCompile Include="Ring2\Types\Object.c" />
     <ClCompile Include="Ring2\Types\Real.c" />
     <ClCompile Include="Ring2\Types\String.c" />
     <ClCompile Include="Ring2\Types\Value.c" />

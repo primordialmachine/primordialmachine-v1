@@ -4,8 +4,7 @@
 #if !defined(MACHINE_RUNTIME_PRIVATE)
 #error("Do not include this file directly, include `_Runtime.h` instead.")
 #endif
-#include "Runtime/Object/Object.h"
-#include "Runtime/Value.h"
+#include "Ring2/_Include.h"
 
 /// @brief The C-level representation of a weak reference.
 MACHINE_DECLARE_CLASSTYPE(Machine_WeakReference)

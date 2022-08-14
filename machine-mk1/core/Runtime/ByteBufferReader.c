@@ -2,7 +2,6 @@
 #include "Runtime/ByteBufferReader.h"
 
 #include "Runtime/Arguments.h"
-#include "Runtime/Object/Object.h"
 
 struct Machine_ByteBufferReader_Class {
   Machine_Object_Class __parent;
@@ -17,7 +16,7 @@ struct Machine_ByteBufferReader {
 
 static void Machine_ByteBufferReader_visit(Machine_ByteBufferReader* self) {
   if (self->byteBuffer) {
-    Machine_Gc_visit(self->byteBuffer);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->byteBuffer);
   }
 }
 

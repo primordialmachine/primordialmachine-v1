@@ -26,6 +26,9 @@ typedef struct Ring2_Gc_Tag Ring2_Gc_Tag;
 
 struct Ring2_Gc_Tag
 {
+  /// @brief The number of locks on this GC object.
+  Ring1_ReferenceCounter locks;
+
   /// @brief The flags of this GC object
   uint8_t flags;
 
@@ -33,15 +36,13 @@ struct Ring2_Gc_Tag
   /// pointer.
   Ring2_Gc_Type const* type;
 
-  /// @brief The number of locks on this GC object.
-  Ring1_ReferenceCounter locks;
-
   /// @brief Pointer to the head of the list of weak references if list is not
   /// empty, the null pointer otherwise.
   Ring2_Gc_WeakReference* weakReferences;
 
   /// @brief Link of this object into the global list of objects.
   Ring2_Gc_Tag* objectNext;
+
   /// @brief Link of this object into the gray list (during mark phase), null otherwise.
   Ring2_Gc_Tag* grayNext;
 };

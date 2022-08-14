@@ -5,11 +5,7 @@
 #if !defined(MACHINE_RUNTIME_ARRAYUTILITIES_H_INCLUDED)
 #define MACHINE_RUNTIME_ARRAYUTILITIES_H_INCLUDED
 
-
-
-#include "Runtime/Value.h"
-
-
+#include "Ring2/_Include.h"
 
 /// @brief
 /// Create a copy of the old array.
@@ -27,7 +23,5 @@
 /// The first min(sizeNew,sizeOld) elements of the old and the new array are equal.
 /// Furthermore, if sizeNew > sizeOld the elements in the new array at the indices [sizeOld, sizeNew - 1] are assigned the <code>Void</code> value.
 Machine_Value* Machine_ArrayUtilities_copyOf(size_t sizeNew, Machine_Value* arrayOld, size_t sizeOld, bool deallocate);
-
-
 
 #endif // MACHINE_RUNTIME_ARRAYUTILITIES_H_INCLUDED

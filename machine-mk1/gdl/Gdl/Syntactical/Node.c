@@ -13,10 +13,10 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gdl_Node, Machine_Object, &Machine_Gdl_Node_vis
 
 static void Machine_Gdl_Node_visit(Machine_Gdl_Node* self) {
   if (self->children) {
-    Machine_Gc_visit(self->children);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->children);
   }
   if (self->text) {
-    Machine_Gc_visit(self->text);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->text);
   }
 }
 

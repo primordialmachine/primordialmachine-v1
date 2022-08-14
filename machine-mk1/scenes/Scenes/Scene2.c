@@ -42,13 +42,13 @@ static void Scene2_destruct(Scene2* self);
 
 static void Scene2_visit(Scene2* self) {
   if (self->binding) {
-    Machine_Gc_visit(self->binding);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->binding);
   }
   if (self->shaderProgram) {
-    Machine_Gc_visit(self->shaderProgram);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->shaderProgram);
   }
   if (self->vertices) {
-    Machine_Gc_visit(self->vertices);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->vertices);
   }
 }
 
@@ -72,10 +72,10 @@ static void Scene2_onStartup(Scene2* self) {
       = Machine_VideoContext_createBinding(videoContext, self->shaderProgram, vd, self->vertices);
   Machine_Binding_setVariableBinding(
       self->binding, 
-      Ring2_String_create("vertex_position", strlen("vertex_position") + 1), 0);
+      Ring2_String_create(Ring2_Context_get(), "vertex_position", strlen("vertex_position") + 1), 0);
   Machine_Binding_setVariableBinding(
       self->binding, 
-      Ring2_String_create("vertex_color", strlen("vertex_color") + 1), 1);
+      Ring2_String_create(Ring2_Context_get(), "vertex_color", strlen("vertex_color") + 1), 1);
 
   Machine_Math_Vector4* c = Machine_Math_Vector4_create();
   Machine_Math_Vector4_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
@@ -102,7 +102,7 @@ static void Scene2_onUpdate(Scene2* self, Ring2_Real32 width, Ring2_Real32 heigh
   Machine_Binding_activate(self->binding);
   Machine_Binding_bindMatrix4(
       self->binding,
-      Ring2_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1),
+      Ring2_String_create(Ring2_Context_get(), "modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1),
       mvp2);
 
   Machine_VideoContext_drawIndirect(videoContext, 0, 6, indices);

@@ -7,6 +7,10 @@
 #if !defined(RING2_TYPES_VALUE_H_INCLUDED)
 #define RING2_TYPES_VALUE_H_INCLUDED
 
+#if !defined(RING2_INTERNAL) || 1 != RING2_INTERNAL
+#error("Do not include `Ring2/Types/Value.h` directly. Include `Ring2/_Include.h` instead.")
+#endif
+
 #include "Ring2/Types.h"
 
 #if defined(Ring2_Configuration_withArray) && 1 == Ring2_Configuration_withArray

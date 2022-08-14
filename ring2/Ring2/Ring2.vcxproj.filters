@@ -45,6 +45,18 @@
     <Filter Include="Headerdateien\Ring2\Gc\Implementation">
       <UniqueIdentifier>{f258e7be-089d-4f53-be3d-a453e540111d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring2\TypeSystem">
+      <UniqueIdentifier>{d2ffd34d-7420-4e3d-b36e-5d372199de7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring2\TypeSystem">
+      <UniqueIdentifier>{2727a010-5070-407b-9643-2a97ef514935}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring2\Old">
+      <UniqueIdentifier>{afd17c8b-a1bd-4085-a755-6f70d188f1e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring2\Old">
+      <UniqueIdentifier>{c6158eb6-4b48-4f18-9b01-83c9c4a66516}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring2\JumpTarget.h">
@@ -131,6 +143,36 @@
     <ClInclude Include="Ring2\Types\Value.h">
       <Filter>Headerdateien\Ring2\Types</Filter>
     </ClInclude>
+    <ClInclude Include="Ring2\TypeSystem\EnumerationType.h">
+      <Filter>Headerdateien\Ring2\TypeSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\TypeSystem\Type.h">
+      <Filter>Headerdateien\Ring2\TypeSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\TypeSystem\ClassType.h">
+      <Filter>Headerdateien\Ring2\TypeSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\TypeSystem\InterfaceType.h">
+      <Filter>Headerdateien\Ring2\TypeSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Types\Object.h">
+      <Filter>Headerdateien\Ring2\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Log.h">
+      <Filter>Headerdateien\Ring2</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Assert.h">
+      <Filter>Headerdateien\Ring2</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Types\ForeignProcedure.h">
+      <Filter>Headerdateien\Ring2\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Old\Object.h">
+      <Filter>Headerdateien\Ring2\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Old\Value.h">
+      <Filter>Headerdateien\Ring2\Old</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring2\JumpTarget.c">
@@ -213,6 +255,33 @@
     </ClCompile>
     <ClCompile Include="Ring2\Types\Value.c">
       <Filter>Quelldateien\Ring2\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\TypeSystem\EnumerationType.c">
+      <Filter>Quelldateien\Ring2\TypeSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\TypeSystem\Type.c">
+      <Filter>Quelldateien\Ring2\TypeSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\TypeSystem\ClassType.c">
+      <Filter>Quelldateien\Ring2\TypeSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\TypeSystem\InterfaceType.c">
+      <Filter>Quelldateien\Ring2\TypeSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Types\Object.c">
+      <Filter>Quelldateien\Ring2\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Assert.c">
+      <Filter>Quelldateien\Ring2</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Log.c">
+      <Filter>Quelldateien\Ring2</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Types\ForeignProcedure.c">
+      <Filter>Quelldateien\Ring2\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Old\Value.c">
+      <Filter>Quelldateien\Ring2\Old</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

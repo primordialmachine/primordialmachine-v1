@@ -91,13 +91,13 @@ MACHINE_DEFINE_CLASSTYPE(Machine_ArrayList, Machine_Object, &Machine_ArrayList_v
                          &Machine_ArrayList_constructClass, &Machine_ArrayList_implementInterfaces)
 
 static void append(Machine_ArrayList* self, Machine_Value value) {
-  MACHINE_ASSERT_NOTNULL(self);
+  Ring2_assertNotNull(self);
   Machine_List_insertAt((Machine_List*)self, Machine_Collection_getSize((Machine_Collection*)self),
                         value);
 }
 
 static void prepend(Machine_ArrayList* self, Machine_Value value) {
-  MACHINE_ASSERT_NOTNULL(self);
+  Ring2_assertNotNull(self);
   Machine_List_insertAt((Machine_List*)self, 0, value);
 }
 

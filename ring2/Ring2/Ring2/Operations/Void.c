@@ -89,4 +89,4 @@ Ring2_Void_toString
     Ring2_Context *context,
     Ring2_Void x
   )
-{ return Ring2_String_create("void", crt_strlen("void")); }
+{ return Ring2_String_create(Ring2_Context_get(), "void", crt_strlen("void")); }

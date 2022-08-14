@@ -34,16 +34,16 @@ struct Scene5 {
 
 static void Scene5_visit(Scene5* self) {
   if (self->guiContext) {
-    Machine_Gc_visit(self->guiContext);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->guiContext);
   }
   if (self->mainMenu) {
-    Machine_Gc_visit(self->mainMenu);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->mainMenu);
   }
   if (self->header) {
-    Machine_Gc_visit(self->header);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->header);
   }
   if (self->footer) {
-    Machine_Gc_visit(self->footer);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->footer);
   }
 }
 
@@ -60,15 +60,15 @@ static Machine_Gui_Widget* loadWidget(Machine_Gui_Context* context, Machine_Gdl_
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 static Machine_Gui_Widget* loadWidgetByPath(Machine_Gui_Context* context, const char* path) {
-  Ring2_String* inputPath = Ring2_String_create(path, strlen(path));
+  Ring2_String* inputPath = Ring2_String_create(Ring2_Context_get(), path, strlen(path));
   Machine_ByteBuffer* inputText = Machine_getFileContents(inputPath);
   Machine_Gdl_Parser* parser = Machine_Gdl_Parser_create();
   Machine_Gdl_Node* node = Machine_Gdl_Parser_parse(parser, inputPath, inputText);
-  MACHINE_ASSERT(node->kind == Machine_Gdl_NodeKind_CompilationUnit,
-                 Ring1_Status_InvalidSemantics);
+  Ring2_assert(node->kind == Machine_Gdl_NodeKind_CompilationUnit,
+               Ring1_Status_InvalidSemantics);
   Machine_Value temporary = Machine_List_getAt(node->children, 0);
   node = (Machine_Gdl_Node*)Machine_Value_getObject(&temporary);
-  MACHINE_ASSERT(node->kind == Machine_Gdl_NodeKind_Map, Ring1_Status_InvalidSemantics);
+  Ring2_assert(node->kind == Machine_Gdl_NodeKind_Map, Ring1_Status_InvalidSemantics);
   return loadWidget(context, node);
 }
 

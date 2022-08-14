@@ -9,10 +9,10 @@
 
 static void Machine_Gui_GroupNode_visit(Machine_Gui_GroupNode* self) {
   if (self->layoutModel) {
-    Machine_Gc_visit(self->layoutModel);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->layoutModel);
   }
   if (self->children) {
-    Machine_Gc_visit(self->children);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->children);
   }
 }
 

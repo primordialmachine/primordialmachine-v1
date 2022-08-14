@@ -6,6 +6,7 @@
 
 #define RING2_INTERNAL (1)
 #include "Ring2/Types/String.h"
+#include <assert.h>
 
 #if defined(Ring2_Configuration_withString) && 1 == Ring2_Configuration_withString
 
@@ -14,16 +15,34 @@
 #include "Ring1/Status.h"
 #include "Ring1/Memory.h"
 
-static size_t
-hashBytesToSz
+static void
+Ring2_StringModule_preMarkCallback
   (
-    char const* p,
-    size_t n
+    Ring2_Gc* gc,
+    void* context
+  );
+
+static void
+Ring2_StringModule_sweepCallback
+  (
+    Ring2_Gc* gc,
+    void* context,
+    Ring2_Gc_SweepStatistics* statistics
+  );
+
+static Ring1_Result
+registerStringModule
+  (
+  );
+
+static void
+unregisterStringModule
+  (
   );
 
 struct Ring2_String {
-  size_t hashValue;
-  size_t numberOfBytes;
+  int64_t hashValue;
+  int64_t numberOfBytes;
   char bytes[];
 };
 
@@ -56,17 +75,85 @@ static_assert(Ring2_Gc_MaximumAllocatableSize >= sizeof(Ring2_String),
 
 
 /// @brief The maximal length of a string.
-#define Ring2_String_MaximumLength  \
+#define Ring2_String_MaximumNumberOfBytes  \
   (Ring2_Gc_MaximumAllocatableSize - (int64_t)sizeof(Ring2_String))
 
-static_assert(Ring2_String_MaximumLength > 0,
-              "Ring2_String_MaximumLength must be greater than 0");
+static_assert(Ring2_String_MaximumNumberOfBytes > 0,
+              "Ring2_String_MaximumNumberOfBytes must be greater than 0");
 
 
 static int g_referenceCount = 0;
 
 static Ring2_StringHeap* g_stringHeap = NULL;
 
+static Ring1_Result createTable(Ring2_StringHeap **result) {
+  Ring2_StringHeap* stringHeap = NULL;
+  // (1)
+  Ring1_Memory_ModuleHandle memoryModuleHandle = Ring1_Memory_ModuleHandle_acquire();
+  if (!memoryModuleHandle) {
+    Ring1_Status_set(Ring1_Status_EnvironmentFailed);
+    return Ring1_Result_Failure;
+  }
+  // (2)
+  if (Ring1_Memory_allocate(&stringHeap, sizeof(Ring2_StringHeap))) {
+    Ring1_Memory_ModuleHandle_relinquish(memoryModuleHandle);
+    memoryModuleHandle = Ring1_Memory_ModuleHandle_Invalid;
+    return Ring1_Result_Failure;
+  }
+  stringHeap->memoryModuleHandle = memoryModuleHandle;
+  memoryModuleHandle = Ring1_Memory_ModuleHandle_Invalid;
+  stringHeap->size = 0;
+  stringHeap->capacity = 8;
+  if (Ring1_Memory_allocate((void**)&(stringHeap->buckets),
+                            (size_t)stringHeap->capacity *
+                            sizeof(Ring2_String*))) {
+    Ring1_Memory_ModuleHandle_relinquish(stringHeap->memoryModuleHandle);
+    g_stringHeap->memoryModuleHandle = Ring1_Memory_ModuleHandle_Invalid;
+    Ring1_Memory_deallocate(stringHeap);
+    stringHeap = NULL;
+    return Ring1_Result_Failure;
+  }
+  for (int64_t i = 0, n = stringHeap->capacity; i < n; ++i) {
+    stringHeap->buckets[i] = NULL;
+  }
+  *result = stringHeap;
+  return Ring1_Result_Success;
+}
+
+void destroyTable(Ring2_StringHeap *stringHeap) {
+  Ring1_Memory_ModuleHandle memoryModuleHandle =
+    stringHeap->memoryModuleHandle;
+
+  Ring1_Memory_deallocate(stringHeap->buckets);
+  stringHeap->buckets = NULL;
+
+  Ring1_Memory_deallocate(stringHeap);
+  stringHeap = NULL;
+
+  Ring1_Memory_ModuleHandle_relinquish(memoryModuleHandle);
+}
+
+static Ring2_Gc_PreMarkCallbackId stringModulePreMarkCallbackId = Ring2_Gc_PreMarkCallbackId_Invalid;
+static Ring2_Gc_SweepCallbackId stringModuleSweepCallbackId = Ring2_Gc_SweepCallbackId_Invalid;
+
+static Ring1_Result registerStringModule() {
+  stringModulePreMarkCallbackId = Ring2_Gc_addPreMarkCallback(Ring2_Gc_get(), NULL, &Ring2_StringModule_preMarkCallback);
+  if (stringModulePreMarkCallbackId == Ring2_Gc_PreMarkCallbackId_Invalid) {
+    return Ring1_Result_Failure;
+  }
+  stringModuleSweepCallbackId = Ring2_Gc_addSweepCallback(Ring2_Gc_get(), NULL, &Ring2_StringModule_sweepCallback);
+  if (stringModuleSweepCallbackId == Ring2_Gc_SweepCallbackId_Invalid) {
+    return Ring1_Result_Failure;
+  }
+  return Ring1_Result_Success;
+}
+
+static void unregisterStringModule() {
+  Ring2_Gc_removeSweepCallback(Ring2_Gc_get(), stringModuleSweepCallbackId);
+  stringModuleSweepCallbackId = Ring2_Gc_SweepCallbackId_Invalid;
+  Ring2_Gc_removePreMarkCallback(Ring2_Gc_get(), stringModulePreMarkCallbackId);
+  stringModulePreMarkCallbackId = Ring2_Gc_PreMarkCallbackId_Invalid;
+}
 
 Ring1_CheckReturn() Ring1_Result
 Ring2_StringModule_startup
@@ -74,32 +161,13 @@ Ring2_StringModule_startup
   )
 {
   if (g_referenceCount == 0) {
-    Ring1_Memory_ModuleHandle memoryModuleHandle =
-      Ring1_Memory_ModuleHandle_acquire();
-    if (!memoryModuleHandle) {
-      Ring1_Status_set(Ring1_Status_EnvironmentFailed);
+    if (createTable(&g_stringHeap)) {
       return Ring1_Result_Failure;
     }
-    if (Ring1_Memory_allocate(&g_stringHeap, sizeof(Ring2_StringHeap))) {
-      Ring1_Memory_ModuleHandle_relinquish(memoryModuleHandle);
-      memoryModuleHandle = Ring1_Memory_ModuleHandle_Invalid;
-      return Ring1_Result_Failure;
-    }
-    g_stringHeap->memoryModuleHandle = memoryModuleHandle;
-    memoryModuleHandle = Ring1_Memory_ModuleHandle_Invalid;
-    g_stringHeap->size = 0;
-    g_stringHeap->capacity = 8;
-    if (Ring1_Memory_allocate((void**)&(g_stringHeap->buckets),
-                              (size_t)g_stringHeap->capacity *
-                              sizeof(Ring2_String*))) {
-      Ring1_Memory_ModuleHandle_relinquish(g_stringHeap->memoryModuleHandle);
-      g_stringHeap->memoryModuleHandle = Ring1_Memory_ModuleHandle_Invalid;
-      Ring1_Memory_deallocate(g_stringHeap);
+    if (registerStringModule()) {
+      destroyTable(g_stringHeap);
       g_stringHeap = NULL;
       return Ring1_Result_Failure;
-    }
-    for (uint64_t i = 0, n = g_stringHeap->capacity; i < n; ++i) {
-      g_stringHeap->buckets[i] = NULL;
     }
   }
   g_referenceCount++;
@@ -112,21 +180,14 @@ Ring2_StringModule_shutdown
   )
 {
   if (1 == g_referenceCount) {
-    Ring1_Memory_ModuleHandle memoryModuleHandle =
-      g_stringHeap->memoryModuleHandle;
-
-    Ring1_Memory_deallocate(g_stringHeap->buckets);
-    g_stringHeap->buckets = NULL;
-
-    Ring1_Memory_deallocate(g_stringHeap);
+    unregisterStringModule();
+    destroyTable(g_stringHeap);
     g_stringHeap = NULL;
-
-    Ring1_Memory_ModuleHandle_relinquish(memoryModuleHandle);
   }
   g_referenceCount--;
 }
 
-void
+static void
 Ring2_StringModule_preMarkCallback
   (
     Ring2_Gc* gc,
@@ -144,7 +205,7 @@ Ring2_StringModule_preMarkCallback
   }
 }
 
-void
+static void
 Ring2_StringModule_sweepCallback
   (
     Ring2_Gc* gc,
@@ -182,20 +243,19 @@ Ring2_StringModule_sweepCallback
   }
 }
 
-static size_t
-hashBytesToSz
+static int64_t
+hashBytesToInt64
   (
     char const *p,
-    size_t n
+    int64_t n
   )
 {
-  size_t hashValue = n;
+  uint64_t hashValue = n;
   for (size_t i = 0; i < n; ++i) {
-    hashValue = p[i] + hashValue * 37;
+    hashValue = ((uint64_t)p[i]) + hashValue * 37;
   }
-  return hashValue;
+  return (int64_t)(hashValue & 0x7fffffffffffffff);
 }
-
 
 static Ring2_Gc_Type const g_gcType = {
   .finalize = (Ring2_Gc_FinalizeCallback*)NULL,
@@ -205,8 +265,9 @@ static Ring2_Gc_Type const g_gcType = {
 Ring1_CheckReturn() Ring2_String *
 Ring2_String_create
   (
+    Ring2_Context* context,
     char const* bytes,
-    size_t numberOfBytes
+    int64_t numberOfBytes
   )
 {
   if (!bytes) {
@@ -217,12 +278,14 @@ Ring2_String_create
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();
   }
-  if (numberOfBytes > Ring2_String_MaximumLength) {
+  if (numberOfBytes > Ring2_String_MaximumNumberOfBytes) {
     Ring1_Status_set(Ring1_Status_TooLong);
     Ring2_jump();
   }
-  size_t hashValue = hashBytesToSz(bytes, numberOfBytes);
-  size_t hashIndex = hashValue % g_stringHeap->capacity;
+  int64_t hashValue = hashBytesToInt64(bytes, numberOfBytes);
+  assert(hashValue >= 0);
+  int64_t hashIndex = hashValue % g_stringHeap->capacity;
+  assert(hashIndex >= 0);
   for (Ring2_Gc_Tag* object = g_stringHeap->buckets[hashIndex];
        NULL != object;
        object = object->objectNext) {
@@ -257,31 +320,32 @@ Ring2_String_create
 Ring1_CheckReturn() Ring2_String *
 Ring2_String_concatenate
   (
+    Ring2_Context* context,
     Ring2_String const *self,
     Ring2_String const *other
   )
 {
-  if (Ring2_String_MaximumLength - Ring2_String_getNumberOfBytes(Ring2_Context_get(), self) <
-      Ring2_String_getNumberOfBytes(Ring2_Context_get(), other)) {
+  if (Ring2_String_MaximumNumberOfBytes - Ring2_String_getNumberOfBytes(context, self) <
+      Ring2_String_getNumberOfBytes(context, other)) {
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();
   }
-  int64_t n = Ring2_String_getNumberOfBytes(Ring2_Context_get(), self)
-            + Ring2_String_getNumberOfBytes(Ring2_Context_get(), other);
+  int64_t n = Ring2_String_getNumberOfBytes(context, self)
+            + Ring2_String_getNumberOfBytes(context, other);
   char* buffer;
   if (Ring1_Memory_allocate(&buffer, (size_t)n)) {
     Ring1_Status_set(Ring1_Status_AllocationFailed);
     Ring2_jump();
   }
-  Ring1_Memory_copyFast(buffer, Ring2_String_getBytes(Ring2_Context_get(), self),
-                        Ring2_String_getNumberOfBytes(Ring2_Context_get(), self));
-  Ring1_Memory_copyFast(buffer + Ring2_String_getNumberOfBytes(Ring2_Context_get(), self),
-                        Ring2_String_getBytes(Ring2_Context_get(), other),
-                        Ring2_String_getNumberOfBytes(Ring2_Context_get(), other));
+  Ring1_Memory_copyFast(buffer, Ring2_String_getBytes(context, self),
+                        Ring2_String_getNumberOfBytes(context, self));
+  Ring1_Memory_copyFast(buffer + Ring2_String_getNumberOfBytes(context, self),
+                        Ring2_String_getBytes(context, other),
+                        Ring2_String_getNumberOfBytes(context, other));
   Ring2_JumpTarget jumpTarget;
   Ring2_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
-    Ring2_String* z = Ring2_String_create(buffer, n);
+    Ring2_String* z = Ring2_String_create(context, buffer, n);
     Ring2_popJumpTarget();
     Ring1_Memory_deallocate(buffer);
     return z;
@@ -299,9 +363,17 @@ Ring2_String_getHashValue
     Ring2_String const* self
   )
 {
-  uint64_t v = (uint64_t)self->hashValue;
-  return (int64_t)(v >> 1);
+  assert(self->hashValue >= 0);
+  return self->hashValue;
 }
+
+Ring1_CheckReturn() Ring2_String*
+Ring2_String_toString
+  (
+    Ring2_Context* context,
+    Ring2_String const *self
+  )
+{ return (Ring2_String *)self; }
 
 Ring1_CheckReturn() const char *
 Ring2_String_getBytes
@@ -313,14 +385,22 @@ Ring2_String_getBytes
   return self->bytes;
 }
 
-Ring1_CheckReturn() size_t
+Ring1_CheckReturn() int64_t
 Ring2_String_getNumberOfBytes
   (
     Ring2_Context* context,
     Ring2_String const* self
   )
 {
+  assert(self->numberOfBytes >= 0);
   return self->numberOfBytes;
 }
+
+Ring1_CheckReturn() int64_t
+Ring2_String_getMaximumNumberOfBytes
+  (
+    Ring2_Context* context
+  )
+{ return Ring2_String_MaximumNumberOfBytes; }
 
 #endif // Ring2_Configuration_withString

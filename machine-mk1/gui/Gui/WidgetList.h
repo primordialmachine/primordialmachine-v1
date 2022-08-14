@@ -267,7 +267,7 @@ static inline void Machine_Gui_WidgetList_layout(
 
     } break;
     default: {
-      MACHINE_ASSERT_UNREACHABLE();
+      Ring2_unreachable();
     } break;
   };
 }

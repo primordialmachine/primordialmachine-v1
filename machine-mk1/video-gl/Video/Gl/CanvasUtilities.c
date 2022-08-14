@@ -37,8 +37,8 @@ static void keyCallback(GLFWwindow* window, int key, int scancode, int action, i
     Ring2_popJumpTarget();
   } else {
     if (Ring1_Status_get() == Ring1_Status_NotYetImplemented) {
-      Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
-                  "failed to map keyboard key event\n");
+      Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__,
+                "failed to map keyboard key event\n");
       Ring1_Status_set(Ring1_Status_Success);
     }
     Ring2_popJumpTarget();
@@ -63,8 +63,8 @@ static void cursorPositionCallback(GLFWwindow* window, double x, double y) {
     Ring2_popJumpTarget();
   } else {
     if (Ring1_Status_get() == Ring1_Status_NotYetImplemented) {
-      Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
-                  "failed to map mouse pointer event\n");
+      Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__,
+                "failed to map mouse pointer event\n");
       Ring1_Status_set(Ring1_Status_Success);
     }
     Ring2_popJumpTarget();
@@ -89,8 +89,8 @@ static void cursorEnterCallback(GLFWwindow* window, int entered) {
     Ring2_popJumpTarget();
   } else {
     if (Ring1_Status_get() == Ring1_Status_NotYetImplemented) {
-      Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
-                  "failed to map mouse pointer event\n");
+      Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__,
+                "failed to map mouse pointer event\n");
       Ring1_Status_set(Ring1_Status_Success);
     }
     Ring2_popJumpTarget();
@@ -115,8 +115,8 @@ static void mouseButtonCallback(GLFWwindow* window, int button, int action, int 
     Ring2_popJumpTarget();
   } else {
     if (Ring1_Status_get() == Ring1_Status_NotYetImplemented) {
-      Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__,
-                  "failed to map mouse button event\n");
+      Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__,
+                "failed to map mouse button event\n");
       Ring1_Status_set(Ring1_Status_Success);
     }
     Ring2_popJumpTarget();

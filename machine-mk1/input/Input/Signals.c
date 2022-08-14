@@ -33,7 +33,7 @@ static void ensureInitialized() {
   }
 #define DefineSignal(NAME, STRING)                                                                 \
   if (!_##NAME) {                                                                                  \
-    _##NAME = Ring2_String_create(STRING, crt_strlen(STRING));                                     \
+    _##NAME = Ring2_String_create(Ring2_Context_get(), STRING, crt_strlen(STRING));                \
   }
 #include "Input/Signals.i"
 #undef DefineSignal

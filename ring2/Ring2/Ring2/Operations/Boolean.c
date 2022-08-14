@@ -126,6 +126,6 @@ Ring2_Boolean_toString
     Ring2_Boolean value
   )
 {
-  return value ? Ring2_String_create("true", crt_strlen("true"))
-               : Ring2_String_create("false", crt_strlen("false"));
+  return value ? Ring2_String_create(Ring2_Context_get(), "true", crt_strlen("true"))
+               : Ring2_String_create(Ring2_Context_get(), "false", crt_strlen("false"));
 }

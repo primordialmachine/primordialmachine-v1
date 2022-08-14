@@ -2,7 +2,6 @@
 #include "Runtime/WeakReference.h"
 
 #include "Runtime/Arguments.h"
-#include "Runtime/Gc/Gc.h"
 #include "Ring2/_Include.h"
 
 static void callback(void* context) {

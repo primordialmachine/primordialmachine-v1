@@ -35,6 +35,13 @@ Ring2_TypesModule_startup
     }
     moduleShutdownCallbacks[numberOfModules++] = &Ring2_StringModule_shutdown;
 #endif // Ring2_Configuration_withString
+#if defined(Ring2_Configuration_withObject) && 1 == Ring2_Configuration_withObject
+    if (Ring2_ObjectModule_startup()) {
+      shutdownModules();
+      return Ring1_Result_Failure;
+    }
+    moduleShutdownCallbacks[numberOfModules++] = &Ring2_ObjectModule_shutdown;
+#endif
   }
   g_referenceCount++;
   return Ring1_Result_Success;

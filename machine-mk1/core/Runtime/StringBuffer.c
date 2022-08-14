@@ -5,9 +5,7 @@
 #include "Runtime/StringBuffer.h"
 
 #include "Runtime/ByteBuffer.h"
-#include "Runtime/Object/Object.h"
 #include "Ring2/_Include.h"
-#include "Runtime/Value.h"
 
 struct Machine_StringBuffer_Class {
   Machine_Object_Class __parent;
@@ -21,12 +19,13 @@ struct Machine_StringBuffer {
 
 static void Machine_StringBuffer_visit(Machine_StringBuffer* self) {
   if (self->byteBuffer) {
-    Machine_Gc_visit(self->byteBuffer);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->byteBuffer);
   }
 }
 
 static Ring2_String* Machine_StringBuffer_toStringImpl(Machine_StringBuffer const* self) {
-  return Ring2_String_create(Machine_ByteBuffer_getBytes(self->byteBuffer),
+  return Ring2_String_create(Ring2_Context_get(),
+                             Machine_ByteBuffer_getBytes(self->byteBuffer),
                              Machine_ByteBuffer_getNumberOfBytes(self->byteBuffer));
 }
 

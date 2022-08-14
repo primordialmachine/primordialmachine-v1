@@ -6,7 +6,7 @@
 
 static void Machine_Gui_BorderModel_visit(Machine_Gui_BorderModel* self) {
   if (self->color) {
-    Machine_Gc_visit(self->color);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->color);
   }
 }
 

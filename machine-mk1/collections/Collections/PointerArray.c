@@ -30,7 +30,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_PointerArray, Machine_Object, &Machine_PointerA
 
 static void Machine_PointerArray_visit(Machine_PointerArray* self) {
   if (self->list) {
-    Machine_Gc_visit(self->list);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->list);
   }
 }
 
@@ -56,7 +56,7 @@ void Machine_PointerArray_clear(Machine_PointerArray* self) {
 }
 
 void *Machine_PointerArray_getAt(Machine_PointerArray* self, size_t index) {
-  MACHINE_ASSERT_NOTNULL(self);
+  Ring2_assertNotNull(self);
   Machine_Value v = Machine_List_getAt(self->list, index);
   if (!Machine_Value_isObject(&v)) {
     if (!Machine_Value_isVoid(&v)) {
@@ -69,7 +69,7 @@ void *Machine_PointerArray_getAt(Machine_PointerArray* self, size_t index) {
 }
 
 size_t Machine_PointerArray_getSize(Machine_PointerArray* self) {
-  MACHINE_ASSERT_NOTNULL(self);
+  Ring2_assertNotNull(self);
   return Machine_Collection_getSize((Machine_Collection*)self->list);
 }
 
@@ -78,7 +78,7 @@ void Machine_PointerArray_prepend(Machine_PointerArray* self, void* pointer) {
 }
 
 void Machine_PointerArray_append(Machine_PointerArray* self, void* pointer) {
-  MACHINE_ASSERT_NOTNULL(self);
+  Ring2_assertNotNull(self);
   if (!pointer) {
     Machine_Value v;
     Machine_Value_setVoid(&v, Ring2_Void_Void);
@@ -91,7 +91,7 @@ void Machine_PointerArray_append(Machine_PointerArray* self, void* pointer) {
 }
 
 void Machine_PointerArray_insert(Machine_PointerArray* self, size_t index, void *pointer) {
-  MACHINE_ASSERT_NOTNULL(self);
+  Ring2_assertNotNull(self);
   if (!pointer) {
     Machine_Value v;
     Machine_Value_setVoid(&v, Ring2_Void_Void);

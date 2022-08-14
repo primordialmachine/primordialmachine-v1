@@ -7,12 +7,11 @@
 #if !defined(RING2_OPERATIONS_H_INCLUDED)
 #define RING2_OPERATIONS_H_INCLUDED
 
-#include "Ring2/Configuration.h"
-
 #if !defined(RING2_INTERNAL) || 1 != RING2_INTERNAL
 #error("Do not include `Ring2/Operations.h` directly. Include `Ring2/_Include.h` instead.")
 #endif
 
+#include "Ring2/Configuration.h"
 #include "Ring1/Intrinsic/CheckReturn.h"
 #include "Ring1/Result.h"
 
@@ -29,6 +28,12 @@ void
 Ring2_OperationsModule_shutdown
   (
   );
+
+#if defined(Ring2_Configuration_withArray) && 1 == Ring2_Configuration_withArray
+
+  #include "Ring2/Operations/Array.h"
+
+#endif // Ring2_Configuration_withArray
 
 #if defined(Ring2_Configuration_withBoolean) && 1 == Ring2_Configuration_withBoolean
 
@@ -47,6 +52,10 @@ Ring2_OperationsModule_shutdown
   #include "Ring2/Operations/Integer.h"
 
 #endif // Ring2_Configuration_withInteger
+
+#if defined(Ring2_Configuration_withObject) && 1 == Ring2_Configuration_withObject
+
+#endif // Ring2_Configuration_withObject
 
 #if defined(Ring2_Configuration_withReal) && 1 == Ring2_Configuration_withReal
 

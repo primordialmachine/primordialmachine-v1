@@ -74,8 +74,8 @@ void Machine_UtilitiesGl_postCall(char const* file, int line, char const* functi
   GLenum errorCode = glGetError();
   if (errorCode) {
     char const* error = Machine_UtilitiesGl_toString(errorCode);
-    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "%s failed with %s\n", function,
-                error);
+    Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__, "%s failed with %s\n", function,
+              error);
     Ring1_Status_set(Machine_UtilitiesGl_toStatus(errorCode));
     Ring2_jump();
   }

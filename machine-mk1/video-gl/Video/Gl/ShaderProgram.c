@@ -12,7 +12,7 @@
 
 static void Machine_Gl_ShaderProgram_visit(Machine_Gl_ShaderProgram* self) {
   if (self->inputs) {
-    Machine_Gc_visit(self->inputs);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->inputs);
   }
 }
 
@@ -56,7 +56,7 @@ static Ring2_String* getLog_noraise(GLuint id) {
   Ring2_JumpTarget jumpTarget;
   Ring2_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
-    Ring2_String* string = Ring2_String_create(p, n);
+    Ring2_String* string = Ring2_String_create(Ring2_Context_get(), p, n);
     Ring2_popJumpTarget();
     Ring1_Memory_deallocate(p);
     return string;
@@ -106,7 +106,7 @@ static GLuint compileShader(char const* programText, Machine_ProgramKind program
     id = glCreateShader(GL_VERTEX_SHADER);
     break;
   default:
-    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "shader compilation failed\n");
+    Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__, "shader compilation failed\n");
     return 0;
   };
   glShaderSource(id, 1, &programText, NULL);
@@ -122,7 +122,7 @@ static GLuint compileShader(char const* programText, Machine_ProgramKind program
 
   #undef SHADER_EMIT_LOG_IF_COMPILATION_FAILED
 
-    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "shader compilation failed\n");
+    Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__, "shader compilation failed\n");
     glDeleteProgram(id);
     id = 0;
     return 0;
@@ -162,21 +162,21 @@ static void constructFromText(Machine_Gl_ShaderProgram* self, char const* vertex
 
   vertexShaderId = compileShader(vertexProgramText, Machine_ProgramKind_Vertex);
   if (vertexShaderId == 0) {
-    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "vertex shader compilation failed\n");
+    Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__, "vertex shader compilation failed\n");
     ON_ERROR();
   }
 
   if (geometryProgramText) {
     geometryShaderId = compileShader(geometryProgramText, Machine_ProgramKind_Geometry);
     if (geometryShaderId == 0) {
-      Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "geometry shader compilation failed\n");
+      Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__, "geometry shader compilation failed\n");
       ON_ERROR();
     }
   }
 
   fragmentShaderId = compileShader(fragmentProgramText, Machine_ProgramKind_Fragment);
   if (fragmentShaderId == 0) {
-    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "fragment shader compilation failed\n");
+    Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__, "fragment shader compilation failed\n");
     ON_ERROR();
   }
 
@@ -202,7 +202,7 @@ static void constructFromText(Machine_Gl_ShaderProgram* self, char const* vertex
 
   #undef PROGRAM_EMIT_LOG_IF_LINKING_FAILED
 
-    Machine_log(Machine_LogFlags_ToErrors, __FILE__, __LINE__, "program linking failed\n");
+    Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__, "program linking failed\n");
     ON_ERROR();
   }
 
@@ -367,12 +367,12 @@ Machine_Gl_ShaderProgram_generateDefaultShader
 
   Machine_StringBuffer_appendBytes(code, T("}\n"));
   Machine_StringBuffer_appendBytes(code, "", 1);
-  v = Machine_Object_toString((Machine_Object *)code);
+  v = Machine_Object_toString(Ring2_Context_get(), (Machine_Object *)code);
   Machine_StringBuffer_clear(code);
 
   // Geometry program.
   Machine_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
-  g = Machine_Object_toString((Machine_Object *)code);
+  g = Machine_Object_toString(Ring2_Context_get(), (Machine_Object *)code);
   Machine_StringBuffer_clear(code);
 
   // Fragment program.
@@ -392,19 +392,19 @@ Machine_Gl_ShaderProgram_generateDefaultShader
   }
   Machine_StringBuffer_appendBytes(code, T("}\n"));
   Machine_StringBuffer_appendBytes(code, "", 1);
-  f = Machine_Object_toString((Machine_Object *)code);
+  f = Machine_Object_toString(Ring2_Context_get(), (Machine_Object *)code);
   Machine_StringBuffer_clear(code);
 
   Machine_ShaderProgram* shaderProgram = (Machine_ShaderProgram *)Machine_Gl_ShaderProgram_create(v, NULL, f);
-  Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertex_position")),
+  Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(Ring2_Context_get(), TZ("vertex_position")),
                                        Machine_ProgramInputType_Vector2, Machine_ProgramInputKind_Variable);
   if (withVertexColor) {
-    Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertex_color")),
-                                          Machine_ProgramInputType_Vector3, Machine_ProgramInputKind_Variable);
+    Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(Ring2_Context_get(), TZ("vertex_color")),
+                                         Machine_ProgramInputType_Vector3, Machine_ProgramInputKind_Variable);
   }
   if (withTextureCoordinate) {
-    Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertex_texture_coordinate_1")),
-                                          Machine_ProgramInputType_Vector2, Machine_ProgramInputKind_Variable);
+    Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(Ring2_Context_get(), TZ("vertex_texture_coordinate_1")),
+                                         Machine_ProgramInputType_Vector2, Machine_ProgramInputKind_Variable);
   }
   return shaderProgram;
 
@@ -444,12 +444,12 @@ Machine_Gl_ShaderProgram_generateShape2Shader
 
   Machine_StringBuffer_appendBytes(code, T("}\n"));
   Machine_StringBuffer_appendBytes(code, "", 1);
-  v = Machine_Object_toString((Machine_Object *)code);
+  v = Machine_Object_toString(Ring2_Context_get(), (Machine_Object *)code);
   Machine_StringBuffer_clear(code);
 
   // Geometry program.
   Machine_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
-  g = Machine_Object_toString((Machine_Object *)code);
+  g = Machine_Object_toString(Ring2_Context_get(), (Machine_Object *)code);
   Machine_StringBuffer_clear(code);
 
   // Fragment program.
@@ -460,11 +460,11 @@ Machine_Gl_ShaderProgram_generateShape2Shader
   Machine_StringBuffer_appendBytes(code, T("    gl_FragColor = color;\n"));
   Machine_StringBuffer_appendBytes(code, T("}\n"));
   Machine_StringBuffer_appendBytes(code, "", 1);
-  f = Machine_Object_toString((Machine_Object *)code);
+  f = Machine_Object_toString(Ring2_Context_get(), (Machine_Object *)code);
   Machine_StringBuffer_clear(code);
 
   Machine_ShaderProgram* shaderProgram = (Machine_ShaderProgram*)Machine_Gl_ShaderProgram_create(v, NULL, f);
-  Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertex_position")),
+  Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(Ring2_Context_get(), TZ("vertex_position")),
                                        Machine_ProgramInputType_Vector2, Machine_ProgramInputKind_Variable);
   return shaderProgram;
 
@@ -527,7 +527,7 @@ Machine_Gl_ShaderProgram_generateText2Shader
 
   Machine_StringBuffer_appendBytes(code, T("}\n"));
   Machine_StringBuffer_appendBytes(code, "", 1);
-  v = Machine_Object_toString((Machine_Object *)code);
+  v = Machine_Object_toString(Ring2_Context_get(), (Machine_Object *)code);
   Machine_StringBuffer_clear(code);
 
   // Geometry program.
@@ -559,7 +559,7 @@ Machine_Gl_ShaderProgram_generateText2Shader
 
   Machine_StringBuffer_appendBytes(code, T(" EmitVertex(); } EndPrimitive();}\n"));
   Machine_StringBuffer_appendBytes(code, "", 1);
-  g = Machine_Object_toString((Machine_Object *)code);
+  g = Machine_Object_toString(Ring2_Context_get(), (Machine_Object *)code);
   Machine_StringBuffer_clear(code);
 
   // Fragment shader.
@@ -584,13 +584,13 @@ Machine_Gl_ShaderProgram_generateText2Shader
   Machine_StringBuffer_appendBytes(code, T("    }\n"));
   Machine_StringBuffer_appendBytes(code, T("}\n"));
   Machine_StringBuffer_appendBytes(code, "", 1);
-  f = Machine_Object_toString((Machine_Object *)code);
+  f = Machine_Object_toString(Ring2_Context_get(), (Machine_Object *)code);
   Machine_StringBuffer_clear(code);
 
   Machine_ShaderProgram* shaderProgram = (Machine_ShaderProgram*)Machine_Gl_ShaderProgram_create(v, g, f);
-  Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertex_position")),
+  Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(Ring2_Context_get(), TZ("vertex_position")),
                                        Machine_ProgramInputType_Vector2, Machine_ProgramInputKind_Variable);
-  Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertex_texture_coordinate_1")),
+  Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(Ring2_Context_get(), TZ("vertex_texture_coordinate_1")),
                                        Machine_ProgramInputType_Vector2, Machine_ProgramInputKind_Variable);
   return shaderProgram;
 

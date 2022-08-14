@@ -21,25 +21,25 @@ static const float OFFSET_Y = 0.f;
 
 static void Machine_Text_Layout_visit(Machine_Text_Layout* self) {
   if (self->color) {
-    Machine_Gc_visit(self->color);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->color);
   }
   if (self->position) {
-    Machine_Gc_visit(self->position);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->position);
   }
   if (self->font) {
-    Machine_Gc_visit(self->font);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->font);
   }
   if (self->text) {
-    Machine_Gc_visit(self->text);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->text);
   }
   if (self->lines) {
-    Machine_Gc_visit(self->lines);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->lines);
   }
   if (self->visualBounds) {
-    Machine_Gc_visit(self->visualBounds);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->visualBounds);
   }
   if (self->clipRectangle) {
-    Machine_Gc_visit(self->clipRectangle);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->clipRectangle);
   }
 }
 
@@ -197,8 +197,8 @@ void Machine_Text_Layout_construct(Machine_Text_Layout* self, size_t numberOfArg
 }
 
 Machine_Text_Layout* Machine_Text_Layout_create(Ring2_String* text, Machine_Font* font) {
-  MACHINE_ASSERT_NOTNULL(text);
-  MACHINE_ASSERT_NOTNULL(font);
+  Ring2_assertNotNull(text);
+  Ring2_assertNotNull(font);
 
   Machine_ClassType* ty = Machine_Text_Layout_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 2;
@@ -292,18 +292,18 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* con
       float d = -Machine_Math_Vector3_dot(n2, p2);
       Machine_Math_Vector4* x = Machine_Math_Vector4_create();
       Machine_Math_Vector4_set(x, N[0], N[1], N[2], d);
-      Machine_Binding_bindVector4(binding, Ring2_String_create("clipPlane0", strlen("clipPlane0") + 1), x);
+      Machine_Binding_bindVector4(binding, Ring2_String_create(Ring2_Context_get(), "clipPlane0", strlen("clipPlane0") + 1), x);
     }
     // right
     {
       float N[] = { -1.f, 0.f, 0.f };
       Machine_Math_Vector3* n2 = Machine_Math_Vector3_create(); Machine_Math_Vector3_set(n2, N[0], N[1], N[2]);
       Machine_Math_Vector3* p2 = Machine_Math_Vector3_create(); Machine_Math_Vector3_set(p2, Machine_Math_Vector2_getX(position) + Machine_Math_Vector2_getX(size), 0.0f, 0.0f);
-      MACHINE_ASSERT(Machine_Math_Vector2_getX(size) >= 0.f, Ring1_Status_InvalidArgument);
+      Ring2_assert(Machine_Math_Vector2_getX(size) >= 0.f, Ring1_Status_InvalidArgument);
       float d = -Machine_Math_Vector3_dot(n2, p2);
       Machine_Math_Vector4* x = Machine_Math_Vector4_create();
       Machine_Math_Vector4_set(x, N[0], N[1], N[2], d);
-      Machine_Binding_bindVector4(binding, Ring2_String_create("clipPlane1", strlen("clipPlane1") + 1), x);
+      Machine_Binding_bindVector4(binding, Ring2_String_create(Ring2_Context_get(), "clipPlane1", strlen("clipPlane1") + 1), x);
     }
     // bottom
     {
@@ -313,23 +313,23 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* con
       float d = -Machine_Math_Vector3_dot(n2, p2);
       Machine_Math_Vector4* x = Machine_Math_Vector4_create();
       Machine_Math_Vector4_set(x, N[0], N[1], N[2], d);
-      Machine_Binding_bindVector4(binding, Ring2_String_create("clipPlane2", strlen("clipPlane2") + 1), x);
+      Machine_Binding_bindVector4(binding, Ring2_String_create(Ring2_Context_get(), "clipPlane2", strlen("clipPlane2") + 1), x);
     }
     // top
     {
       float N[] = { 0.f, -1.f, 0.f };
       Machine_Math_Vector3* n2 = Machine_Math_Vector3_create(); Machine_Math_Vector3_set(n2, N[0], N[1], N[2]);
       Machine_Math_Vector3* p2 = Machine_Math_Vector3_create(); Machine_Math_Vector3_set(p2, 0.f, Machine_Math_Vector2_getY(position) + Machine_Math_Vector2_getY(size), 0.0f);
-      MACHINE_ASSERT(Machine_Math_Vector2_getY(size) >= 0.f, Ring1_Status_InvalidArgument);
+      Ring2_assert(Machine_Math_Vector2_getY(size) >= 0.f, Ring1_Status_InvalidArgument);
       float d = -Machine_Math_Vector3_dot(n2, p2);
       Machine_Math_Vector4* x = Machine_Math_Vector4_create();
       Machine_Math_Vector4_set(x, N[0], N[1], N[2], d);
-      Machine_Binding_bindVector4(binding, Ring2_String_create("clipPlane3", strlen("clipPlane3") + 1), x);
+      Machine_Binding_bindVector4(binding, Ring2_String_create(Ring2_Context_get(), "clipPlane3", strlen("clipPlane3") + 1), x);
     }
   }
-  Machine_Binding_bindVector3(binding, Ring2_String_create("mesh_color", strlen("mesh_color") + 1), self->color);
-  Machine_Binding_bindMatrix4(binding, Ring2_String_create("modelToWorldMatrix", strlen("modelToWorldMatrix") + 1), modelSpaceToWorldSpace);
-  Machine_Binding_bindMatrix4(binding, Ring2_String_create("modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), modelSpaceToProjectiveSpace);
+  Machine_Binding_bindVector3(binding, Ring2_String_create(Ring2_Context_get(), "mesh_color", strlen("mesh_color") + 1), self->color);
+  Machine_Binding_bindMatrix4(binding, Ring2_String_create(Ring2_Context_get(), "modelToWorldMatrix", strlen("modelToWorldMatrix") + 1), modelSpaceToWorldSpace);
+  Machine_Binding_bindMatrix4(binding, Ring2_String_create(Ring2_Context_get(), "modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), modelSpaceToProjectiveSpace);
 
   Machine_VideoContext_setDepthTestFunction(context2->videoContext, Machine_DepthTestFunction_Always);
   Machine_VideoContext_setDepthWriteEnabled(context2->videoContext, false);
@@ -379,7 +379,7 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* con
       };
       static const size_t UNIT = 0;
       Machine_VideoContext_bindTexture(context2->videoContext, 0, symbolTexture);
-      Machine_Binding_bindSampler(binding, Ring2_String_create("texture_1", strlen("texture_1")), UNIT);
+      Machine_Binding_bindSampler(binding, Ring2_String_create(Ring2_Context_get(), "texture_1", strlen("texture_1")), UNIT);
       Machine_VideoContext_drawIndirect(context2->videoContext, 0, 6, indices);
 
       cursorPosition[0] += Machine_Math_Vector2_getX(symbolAdvance);
@@ -397,8 +397,8 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* con
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 void Machine_Text_Layout_setText(Machine_Text_Layout* self, Ring2_String* text) {
-  MACHINE_ASSERT_NOTNULL(self);
-  MACHINE_ASSERT_NOTNULL(text);
+  Ring2_assertNotNull(self);
+  Ring2_assertNotNull(text);
 
   if (!Ring2_String_isEqualTo(Ring2_Context_get(), self->text, text)) {
     self->text = text;
@@ -413,8 +413,8 @@ Ring2_String* Machine_Text_Layout_getText(Machine_Text_Layout* self) {
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 void Machine_Text_Layout_setPosition(Machine_Text_Layout* self, Machine_Math_Vector2* position) {
-  MACHINE_ASSERT_NOTNULL(self);
-  MACHINE_ASSERT_NOTNULL(position);
+  Ring2_assertNotNull(self);
+  Ring2_assertNotNull(position);
 
   Machine_Math_Vector2_copy(self->position, position);
   self->flags |= LINE_BOUNDS_DIRTY | BOUNDS_DIRTY;
@@ -427,8 +427,8 @@ const Machine_Math_Vector2* Machine_Text_Layout_getPosition(Machine_Text_Layout*
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 void Machine_Text_Layout_setColor(Machine_Text_Layout* self, const Machine_Math_Vector3* color) {
-  MACHINE_ASSERT_NOTNULL(self);
-  MACHINE_ASSERT_NOTNULL(color);
+  Ring2_assertNotNull(self);
+  Ring2_assertNotNull(color);
   Machine_Math_Vector3_copy(self->color, color);
 }
 
@@ -450,8 +450,8 @@ bool Machine_Text_Layout_getRenderVisualBoundsEnabled(Machine_Text_Layout* self)
 
 void Machine_Text_Layout_setClipRectangle(Machine_Text_Layout* self, Machine_Math_Rectangle2* clipRectangle) {
   if (clipRectangle) {
-    MACHINE_ASSERT(clipRectangle->w >= 0.f, Ring1_Status_InvalidArgument);
-    MACHINE_ASSERT(clipRectangle->h >= 0.f, Ring1_Status_InvalidArgument);
+    Ring2_assert(clipRectangle->w >= 0.f, Ring1_Status_InvalidArgument);
+    Ring2_assert(clipRectangle->h >= 0.f, Ring1_Status_InvalidArgument);
     if (!self->clipRectangle) {
       Machine_Math_Rectangle2 * temporary = Machine_Math_Rectangle2_create();
       Machine_Math_Rectangle2_copy(temporary, clipRectangle);

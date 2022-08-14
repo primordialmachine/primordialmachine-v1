@@ -6,19 +6,19 @@
 
 static void Machine_Gui_Context_visit(Machine_Gui_Context* self) {
   if (self->gdlContext) {
-    Machine_Gc_visit(self->gdlContext);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->gdlContext);
   }
   if (self->signalsContext) {
-    Machine_Gc_visit(self->signalsContext);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->signalsContext);
   }
   if (self->rootGroup) {
-    Machine_Gc_visit(self->rootGroup);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->rootGroup);
   }
   if (self->context2) {
-    Machine_Gc_visit(self->context2);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->context2);
   }
   if (self->defaultFontFile) {
-    Machine_Gc_visit(self->defaultFontFile);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->defaultFontFile);
   }
 }
 
@@ -31,7 +31,7 @@ static void Machine_Gui_Context_construct(Machine_Gui_Context* self, size_t numb
   self->context2 = (Machine_Context2*)Machine_Value_getObject(&arguments[1]);
   static const char* FONT_FILE = "fonts/RobotoSlab/RobotoSlab-Regular.ttf";
   static const int FONT_SIZE = 16;
-  self->defaultFontFile = Ring2_String_create(FONT_FILE, crt_strlen(FONT_FILE));
+  self->defaultFontFile = Ring2_String_create(Ring2_Context_get(), FONT_FILE, crt_strlen(FONT_FILE));
   self->defaultFontSize = FONT_SIZE;
   Machine_setClassType((Machine_Object*)self, Machine_Gui_Context_getType());
 }

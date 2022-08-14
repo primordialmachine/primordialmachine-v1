@@ -1,16 +1,19 @@
-/// @file Runtime/Object/ClassType.c
-/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
-/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#define MACHINE_RUNTIME_PRIVATE (1)
-#include "Runtime/Object/ClassType.h"
+// Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 
+/// @file Ring2/TypeSystem/ClassType.c
+/// @copyright Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
+/// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
+
+#define RING2_INTERNAL (1)
+#include "Ring2/TypeSystem/ClassType.h"
+
+#include "Ring2/Types/Object.h"
+#include "Ring2/TypeSystem/EnumerationType.h"
+#include "Ring2/TypeSystem/InterfaceType.h"
+#include "Ring2/Gc.h"
+#include "Ring2/JumpTarget.h"
+#include "Ring1/Memory.h"
 #include "Ring1/Status.h"
-#include "Runtime/Assertions.h"
-#include "Runtime/Gc/Gc.h"
-#include "Ring2/_Include.h"
-#include "Runtime/Object/ClassType.module.h"
-#include "Runtime/Object/InterfaceType.module.h"
-#include "Runtime/Type.module.h"
 
 static void Machine_ClassType_finalize(void *gc, Machine_ClassType* self) {
   if (self->parent) {
@@ -36,11 +39,11 @@ static void Machine_ClassType_finalize(void *gc, Machine_ClassType* self) {
     }
     Ring1_InlineArray_uninitialize(&self->interfaces.dispatches2);
   }
-  _Type_finalize((Machine_Type*)self);
+  Ring2_Type_finalize((Machine_Type*)self);
 }
 
 static void Machine_ClassType_visit(void *gc, Machine_ClassType* self) {
-  _Type_visit((Machine_Type*)self);
+  Ring2_Type_visit((Machine_Type*)self);
 }
 
 Machine_ClassType* Machine_createClassType(Machine_CreateClassTypeArgs* args) {
@@ -48,12 +51,7 @@ Machine_ClassType* Machine_createClassType(Machine_CreateClassTypeArgs* args) {
     .finalize = (Ring2_Gc_FinalizeCallback*)&Machine_ClassType_finalize,
     .visit = (Ring2_Gc_VisitCallback*)&Machine_ClassType_visit,
   };
-  Machine_Gc_AllocationArguments const allocationArguments = {
-    .suffixSize = sizeof(Machine_ClassType),
-    .type = &gcType,
-  };
-
-  Machine_ClassType* classType = Machine_Gc_allocate(&allocationArguments);
+  Machine_ClassType* classType = Ring2_ObjectModule_allocate(Ring2_Gc_get(), sizeof(Machine_ClassType), &gcType);
   if (!classType) {
     Ring2_jump();
   }
@@ -69,7 +67,7 @@ Machine_ClassType* Machine_createClassType(Machine_CreateClassTypeArgs* args) {
     }
   }
 
-  ((Machine_Type*)classType)->flags = Machine_TypeFlags_Class;
+  ((Machine_Type*)classType)->flags = Ring2_TypeFlags_Class;
   ((Machine_Type*)classType)->typeRemoved = args->createTypeArgs.typeRemoved;
   ((Machine_Type*)classType)->children.elements = NULL;
   if (Ring1_Memory_allocateArray((void **) & (((Machine_Type*)classType)->children.elements), 0,
@@ -115,8 +113,14 @@ Machine_ClassType* Machine_createClassType(Machine_CreateClassTypeArgs* args) {
 
 void Machine_ClassType_implement(Machine_ClassType* self, Machine_InterfaceType* interfaceType,
                                  Machine_InterfaceConstructCallback* constructInterface) {
-  MACHINE_ASSERT_NOTNULL(self);
-  MACHINE_ASSERT_NOTNULL(interfaceType);
+  if (NULL == self) {
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
+    Ring2_jump();
+  }
+  if (NULL == interfaceType) {
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
+    Ring2_jump();
+  }
   for (size_t i = 0, n = self->interfaces.implementations2.size; i < n; ++i) {
     if (((Machine_InterfaceImplementation*)Ring1_InlineArray_getAt(
              &self->interfaces.implementations2, i))
@@ -166,7 +170,7 @@ static bool getOrCreateImplementation(Machine_ClassType* self, Machine_Interface
 }
 
 void Machine_ClassType_ensureInitialized(Machine_ClassType* self) {
-  if (_TypeFlag_isSet((Machine_Type*)self, Machine_TypeFlags_Initialized)) {
+  if (Ring2_TypeFlag_isSet((Machine_Type*)self, Ring2_TypeFlags_Initialized)) {
     return;
   }
 
@@ -225,7 +229,7 @@ void Machine_ClassType_ensureInitialized(Machine_ClassType* self) {
     implementation->constructInterface(dispatch->dispatch);
   }
 
-  _TypeFlag_set((Machine_Type*)self, Machine_TypeFlags_Initialized);
+  Ring2_TypeFlag_set((Machine_Type*)self, Ring2_TypeFlags_Initialized);
 }
 
 Machine_ClassType* Machine_ClassType_getParent(Machine_ClassType* self) {

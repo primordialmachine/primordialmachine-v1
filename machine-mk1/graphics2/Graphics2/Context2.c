@@ -12,22 +12,22 @@
 
 static void Machine_Context2_visit(Machine_Context2* self) {
   if (self->modelSpaceToProjectiveSpace) {
-    Machine_Gc_visit(self->modelSpaceToProjectiveSpace);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->modelSpaceToProjectiveSpace);
   }
   if (self->modelSpaceToWorldSpace) {
-    Machine_Gc_visit(self->modelSpaceToWorldSpace);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->modelSpaceToWorldSpace);
   }
   if (self->shader) {
-    Machine_Gc_visit(self->shader);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->shader);
   }
   if (self->vertices) {
-    Machine_Gc_visit(self->vertices);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->vertices);
   }
   if (self->binding) {
-    Machine_Gc_visit(self->binding);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->binding);
   }
   if (self->videoContext) {
-    Machine_Gc_visit(self->videoContext);
+    Ring2_Gc_visit(Ring2_Gc_get(), self->videoContext);
   }
 }
 
@@ -35,7 +35,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Context2, Machine_Object, &Machine_Context2_vis
                          Machine_Context2_construct, NULL, NULL, NULL)
 
 void Machine_Context2_construct(Machine_Context2* self, size_t numberOfArguments, Machine_Value const* arguments) {
-  MACHINE_ASSERT(numberOfArguments == 1, Ring1_Status_InvalidNumberOfArguments);
+  Ring2_assert(numberOfArguments == 1, Ring1_Status_InvalidNumberOfArguments);
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
 
   Machine_VideoContext* videoContext = (Machine_VideoContext*)Machine_Value_getObject(&arguments[0]);
@@ -62,7 +62,7 @@ void Machine_Context2_construct(Machine_Context2* self, size_t numberOfArguments
   Machine_VertexDescriptor_append(vertexDescriptor, Machine_VertexElementSemantics_XfYf);
 
   self->binding = Machine_VideoContext_createBinding(videoContext, self->shader, vertexDescriptor, self->vertices);
-  Machine_Binding_setVariableBinding(self->binding, Ring2_String_create("vertex_position", strlen("vertex_position") + 1), 0);
+  Machine_Binding_setVariableBinding(self->binding, Ring2_String_create(Ring2_Context_get(), "vertex_position", strlen("vertex_position") + 1), 0);
 
   //
   Machine_setClassType((Machine_Object*)self, Machine_Context2_getType());

@@ -11,17 +11,17 @@ MACHINE_DEFINE_ENUMERATIONTYPE(Machine_KeyboardKeyActions)
 Ring2_String* Machine_KeyboardKeyActions_toString(Machine_KeyboardKeyActions self) {
   switch (self) {
     case Machine_KeyboardKeyActions_Press:
-      return Ring2_String_create("press", strlen("press"));
+      return Ring2_String_create(Ring2_Context_get(), "press", strlen("press"));
       break;
     case Machine_KeyboardKeyActions_Release:
-      return Ring2_String_create("release", strlen("release"));
+      return Ring2_String_create(Ring2_Context_get(), "release", strlen("release"));
       break;
     case Machine_KeyboardKeyActions_Repeat:
-      return Ring2_String_create("repeat", strlen("repeat"));
+      return Ring2_String_create(Ring2_Context_get(), "repeat", strlen("repeat"));
       break;
     case Machine_KeyboardKeyActions_Undetermined:
     default:
-      MACHINE_ASSERT_UNREACHABLE();
+      Ring2_unreachable();
   };
 }
 
@@ -49,7 +49,7 @@ static Ring2_String* Machine_KeyboardKeyEvent_toStringImpl(Machine_KeyboardKeyEv
 
   Machine_StringBuffer_appendBytes(stringBuffer, " }", strlen(" }"));
 
-  return Machine_Object_toString((Machine_Object*)stringBuffer);
+  return Machine_Object_toString(Ring2_Context_get(), (Machine_Object*)stringBuffer);
 }
 
 static void Machine_KeyboardKeyEvent_constructClass(Machine_KeyboardKeyEvent_Class* self) {
