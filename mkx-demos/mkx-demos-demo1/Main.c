@@ -41,8 +41,8 @@ static void loadIcons() {
   for (size_t i = 0, n = (sizeof(PATHS) / sizeof(const char*)); i < n; ++i) {
     Machine_Image* image = Machine_ImagesContext_createFromPath(
         Machines_DefaultImages_createContext(), Ring2_String_create(Ring2_Context_get(), PATHS[i], strlen(PATHS[i])));
-    Machine_Value val;
-    Machine_Value_setObject(&val, (Machine_Object*)image);
+    Ring2_Value val;
+    Ring2_Value_setObject(&val, (Machine_Object*)image);
     Machine_List_append(vals, val);
   }
   Machine_Video_Canvas_setCanvasIcons(Machine_getVideoCanvas(), vals);
@@ -68,32 +68,32 @@ static void run(Scene* self) {
   }
 }
 
-static void onMousePointerEvent(Ring2_Context* context, Machine_Value *result, size_t numberOfArguments, Machine_Value const* arguments) {
+static void onMousePointerEvent(Ring2_Context* context, Ring2_Value *result, size_t numberOfArguments, Ring2_Value const* arguments) {
   Scene* self = (Scene*)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0,
                                                              Scene_getType());
   Machine_MousePointerEvent* event
       = (Machine_MousePointerEvent*)Machine_Extensions_getObjectArgument(
           numberOfArguments, arguments, 1, Machine_MousePointerEvent_getType());
   Scene_onMousePointerEvent(self, event);
-  Machine_Value_setVoid(result, Ring2_Void_Void);
+  Ring2_Value_setVoid(result, Ring2_Void_Void);
 }
 
-static void onMouseButtonEvent(Ring2_Context* context, Machine_Value *result, size_t numberOfArguments, Machine_Value const* arguments) {
+static void onMouseButtonEvent(Ring2_Context* context, Ring2_Value *result, size_t numberOfArguments, Ring2_Value const* arguments) {
   Scene* self = (Scene*)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0,
                                                              Scene_getType());
   Machine_MouseButtonEvent* event = (Machine_MouseButtonEvent*)Machine_Extensions_getObjectArgument(
       numberOfArguments, arguments, 1, Machine_MouseButtonEvent_getType());
   Scene_onMouseButtonEvent(self, event);
-  Machine_Value_setVoid(result, Ring2_Void_Void);
+  Ring2_Value_setVoid(result, Ring2_Void_Void);
 }
 
-static void onKeyboardKeyEvent(Ring2_Context* context, Machine_Value *result, size_t numberOfArguments, Machine_Value const* arguments) {
+static void onKeyboardKeyEvent(Ring2_Context* context, Ring2_Value *result, size_t numberOfArguments, Ring2_Value const* arguments) {
   Scene* self = (Scene*)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0,
                                                              Scene_getType());
   Machine_KeyboardKeyEvent* event = (Machine_KeyboardKeyEvent*)Machine_Extensions_getObjectArgument(
       numberOfArguments, arguments, 1, Machine_KeyboardKeyEvent_getType());
   Scene_onKeyboardKeyEvent(self, event);
-  Machine_Value_setVoid(result, Ring2_Void_Void);
+  Ring2_Value_setVoid(result, Ring2_Void_Void);
 }
 
 void main0() {

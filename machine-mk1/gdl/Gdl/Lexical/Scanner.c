@@ -42,11 +42,11 @@ static void Machine_Gdl_Scanner_visit(Machine_Gdl_Scanner* self) {
   }
 }
 
-static void Machine_Gdl_Scanner_construct(Machine_Gdl_Scanner* self, size_t numberOfArguments, Machine_Value const* arguments) {
+static void Machine_Gdl_Scanner_construct(Machine_Gdl_Scanner* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  self->inputName = Machine_Value_getString(&arguments[0]);
+  self->inputName = Ring2_Value_getString(&arguments[0]);
   self->inputBytes = Machine_ByteBuffer_create();
-  Machine_ByteBuffer* inputBytes = (Machine_ByteBuffer*)Machine_Value_getObject(&arguments[1]);
+  Machine_ByteBuffer* inputBytes = (Machine_ByteBuffer*)Ring2_Value_getObject(&arguments[1]);
   Machine_ByteBuffer_appendBytes(self->inputBytes, Machine_ByteBuffer_getBytes(inputBytes), Machine_ByteBuffer_getNumberOfBytes(inputBytes));
   self->currentPos = 0;
   self->endPos = Machine_ByteBuffer_getNumberOfBytes(self->inputBytes);
@@ -63,9 +63,9 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gdl_Scanner, Machine_Object, &Machine_Gdl_Scann
 Machine_Gdl_Scanner* Machine_Gdl_Scanner_create(Ring2_String* inputName, Machine_ByteBuffer* inputBytes) {
   Machine_ClassType* ty = Machine_Gdl_Scanner_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 2;
-  Machine_Value ARGUMENTS[2];
-  Machine_Value_setString(&ARGUMENTS[0], inputName);
-  Machine_Value_setObject(&ARGUMENTS[1], (Machine_Object*)inputBytes);
+  Ring2_Value ARGUMENTS[2];
+  Ring2_Value_setString(&ARGUMENTS[0], inputName);
+  Ring2_Value_setObject(&ARGUMENTS[1], (Machine_Object*)inputBytes);
   Machine_Gdl_Scanner* self = (Machine_Gdl_Scanner*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

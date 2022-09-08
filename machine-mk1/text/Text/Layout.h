@@ -54,7 +54,7 @@ struct Machine_Text_Layout {
   Machine_Rectangle2* visualBounds;
 };
 
-void Machine_Text_Layout_construct(Machine_Text_Layout* self, size_t numberOfArguments, Machine_Value const* arguments);
+void Machine_Text_Layout_construct(Machine_Text_Layout* self, size_t numberOfArguments, Ring2_Value const* arguments);
 
 /// @brief Create a layout with the specified text.
 /// Default position is <code>(0,0)</code>.

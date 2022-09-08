@@ -15,8 +15,8 @@ struct Machine_Pair_Class {
 
 struct Machine_Pair {
   Machine_Object parent;
-  Machine_Value first;
-  Machine_Value second;
+  Ring2_Value first;
+  Ring2_Value second;
 };
 
 /// @brief Construct this pair.
@@ -26,16 +26,16 @@ struct Machine_Pair {
 /// The first argument is the first value,
 /// the second argument is the second value.
 void Machine_Pair_construct(Machine_Pair* self, size_t numberOfArguments,
-                            Machine_Value const* arguments);
+                            Ring2_Value const* arguments);
 
 /// @brief Create a pair with default values.
 /// @return The pair.
-Machine_Pair* Machine_Pair_create(Machine_Value first, Machine_Value second);
+Machine_Pair* Machine_Pair_create(Ring2_Value first, Ring2_Value second);
 
 /// @brief Get the value for this pair.
 /// @param self This pair.
 /// @param index The index. Must be @a 0 or @a 1.
 /// @return The value.
-Machine_Value Machine_Pair_get(Machine_Pair* self, Ring2_Integer index);
+Ring2_Value Machine_Pair_get(Machine_Pair* self, Ring2_Integer index);
 
 #endif // MACHINE_COLLECTIONS_PAIR_H_INCLUDED

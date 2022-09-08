@@ -227,7 +227,7 @@ static void Machine_Fonts_Font_destruct(Machine_Fonts_Font* self) {
   self->context = NULL;
 }
 
-void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArguments, Machine_Value const *arguments) {
+void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArguments, Ring2_Value const *arguments) {
   Machine_Font_construct((Machine_Font*)self, numberOfArguments, arguments);
   Ring2_String *path = Machine_Extensions_getStringArgument(numberOfArguments, arguments, 1);
   Ring2_Integer pointSize = Machine_Extensions_getIntegerArgument(numberOfArguments, arguments, 2);
@@ -395,10 +395,10 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Fonts_Font, Machine_Font, &Machine_Fonts_Font_v
 Machine_Fonts_Font* Machine_Fonts_Font_create(Machine_FontsContext* fontsContext, Ring2_String *path, Ring2_Integer pointSize) {
   Machine_ClassType* ty = Machine_Fonts_Font_getType();
   size_t numberOfArguments = 3;
-  Machine_Value arguments[3];
-  Machine_Value_setObject(&arguments[0], (Machine_Object *)fontsContext);
-  Machine_Value_setString(&arguments[1], path);
-  Machine_Value_setInteger(&arguments[2], pointSize);
+  Ring2_Value arguments[3];
+  Ring2_Value_setObject(&arguments[0], (Machine_Object *)fontsContext);
+  Ring2_Value_setString(&arguments[1], path);
+  Ring2_Value_setInteger(&arguments[2], pointSize);
   Machine_Fonts_Font* self = (Machine_Fonts_Font*)Machine_allocateClassObject(ty, numberOfArguments, arguments);
   return self;
 }

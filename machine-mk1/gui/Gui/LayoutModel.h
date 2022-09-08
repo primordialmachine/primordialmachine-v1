@@ -75,7 +75,7 @@ struct Machine_Gui_LayoutModel {
 /// @default The default direction is #Machine_Gui_Layout_Direction_Column.
 /// @default The default justification is #Machine_Gui_Layout_Justification_Start.
 void Machine_Gui_LayoutModel_construct(Machine_Gui_LayoutModel* self, size_t numberOfArguments,
-                                       Machine_Value const* arguments);
+                                       Ring2_Value const* arguments);
 
 /// @brief Create a layout model with default values.
 /// @return The layout model.

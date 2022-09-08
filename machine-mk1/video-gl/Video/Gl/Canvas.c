@@ -101,8 +101,8 @@ static void Machine_Video_Gl_Canvas_setCanvasIcons(Machine_Video_Gl_Canvas* self
       Ring2_jump();
     }
     for (size_t i = 0, n = numberOfImages; i < n; ++i) {
-      Machine_Value temporary = Machine_List_getAt(images, i);
-      Machine_Image* image = (Machine_Image*)Machine_Value_getObject(&temporary);
+      Ring2_Value temporary = Machine_List_getAt(images, i);
+      Machine_Image* image = (Machine_Image*)Ring2_Value_getObject(&temporary);
       Ring2_Integer w, h;
       void const* p;
       Machine_Image_getSize(image, &w, &h);
@@ -159,9 +159,9 @@ static void Machine_Video_Gl_Canvas_constructClass(Machine_Video_Gl_Canvas_Class
 }
 
 void Machine_Video_Gl_Canvas_construct(Machine_Video_Gl_Canvas* self, size_t numberOfArguments,
-                                       Machine_Value const* arguments) {
+                                       Ring2_Value const* arguments) {
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { Machine_Value_StaticInitializerVoid() };
+  static Ring2_Value const ARGUMENTS[] = { Ring2_Value_StaticInitializerVoid() };
   Machine_Video_Canvas_construct((Machine_Video_Canvas*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   Machine_Glfw_startupCanvas();
   Machine_Glfw_startupCanvasInput();
@@ -175,7 +175,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Video_Gl_Canvas, Machine_Video_Canvas, NULL,
 Machine_Video_Gl_Canvas* Machine_Video_Gl_Canvas_create() {
   Machine_ClassType* ty = Machine_Video_Gl_Canvas_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { Machine_Value_StaticInitializerVoid() };
+  static Ring2_Value const ARGUMENTS[] = { Ring2_Value_StaticInitializerVoid() };
   Machine_Video_Gl_Canvas* self
       = (Machine_Video_Gl_Canvas*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;

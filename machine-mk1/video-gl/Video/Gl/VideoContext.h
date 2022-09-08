@@ -46,7 +46,7 @@ struct Machine_Gl_VideoContext {
 };
 
 void Machine_Gl_VideoContext_construct(Machine_Gl_VideoContext* self, size_t numberOfArguments,
-                                       Machine_Value const* arguments);
+                                       Ring2_Value const* arguments);
 
 Machine_Gl_VideoContext* Machine_Gl_VideoContext_create();
 

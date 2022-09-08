@@ -38,7 +38,7 @@ struct Machine_Gui_BorderModel {
 /// @default The default border color is <code>(0.1, 0.1, 0.1, 1.0)</code>.
 /// @default The default border width for alles sides is <code>0</code>.
 void Machine_Gui_BorderModel_construct(Machine_Gui_BorderModel* self, size_t numberOfArguments,
-                                       Machine_Value const* arguments);
+                                       Ring2_Value const* arguments);
 
 /// @brief Create a border model with default values.
 /// @return The border model.

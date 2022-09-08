@@ -25,17 +25,17 @@ struct Machine_Binding_Node {
   Machine_Binding_Node* next;
   bool isVariable;
   Ring2_String* name;
-  Machine_Value value;
+  Ring2_Value value;
 };
 
 Machine_Binding_Node* Machine_Binding_Node_create(Ring2_String* name, Ring2_Boolean isVariable,
-                                                  Machine_Value const* value);
+                                                  Ring2_Value const* value);
 
 Machine_Binding_Node* Machine_Binding_Node_createVariable(Ring2_String* name,
-                                                          Machine_Value const* value);
+                                                          Ring2_Value const* value);
 
 Machine_Binding_Node* Machine_Binding_Node_createConstant(Ring2_String* name,
-                                                          Machine_Value const* value);
+                                                          Ring2_Value const* value);
 
 /// @brief Binding between shader program inputs and vertex elements.
 /// Not EVERY vertex element needs to have a corresponding shader program input.
@@ -57,7 +57,7 @@ struct Machine_Binding_Class {
   void (*bindSampler)(Machine_Binding* self, Ring2_String* name, size_t const value);
   void (*activate)(Machine_Binding* self);
   void (*addUpdateConstant)(Machine_Binding* self, Ring2_String* name,
-                            Machine_Value const* value);
+                            Ring2_Value const* value);
 };
 
 struct Machine_Binding {
@@ -70,7 +70,7 @@ struct Machine_Binding {
 };
 
 void Machine_Binding_construct(Machine_Binding* self, size_t numberOfArguments,
-                               Machine_Value const* arguments);
+                               Ring2_Value const* arguments);
 
 /// @brief Bind the vertex element of the specified index to the input of the specified name.
 /// @param self This binding.
@@ -130,6 +130,6 @@ void Machine_Binding_bindVector4(Machine_Binding* self, Ring2_String* name,
 void Machine_Binding_bindSampler(Machine_Binding* self, Ring2_String* name, size_t const value);
 
 void Machine_Binding_addUpdateConstant(Machine_Binding* self, Ring2_String* name,
-                                       Machine_Value const* value);
+                                       Ring2_Value const* value);
 
 #endif // MACHINE_VIDEO_BINDING_H_INCLUDED

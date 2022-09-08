@@ -29,7 +29,7 @@ static void Machine_Gui_BorderNode_constructClass(Machine_Gui_BorderNode_Class* 
 static void Machine_Gui_BorderNode_visit(Machine_Gui_BorderNode* self);
 
 static void Machine_Gui_BorderNode_construct(Machine_Gui_BorderNode* self, size_t numberOfArguments,
-                                             Machine_Value const* arguments);
+                                             Ring2_Value const* arguments);
 
 static Machine_Math_Vector2 const* Machine_Gui_BorderNode_getPreferredSize(
     Machine_Gui_BorderNode const* self);
@@ -242,13 +242,13 @@ static void Machine_Gui_BorderNode_render(Machine_Gui_BorderNode* self, Machine_
 }
 
 static void boundsChangedCallback(Ring2_Context *context,
-                                  Machine_Value *result,
+                                  Ring2_Value *result,
                                   size_t numberOfArguments,
-                                  Machine_Value const *arguments) {
+                                  Ring2_Value const *arguments) {
   Ring2_assert(numberOfArguments == 2, Ring1_Status_InvalidNumberOfArguments);
-  Machine_Gui_BorderNode* self = (Machine_Gui_BorderNode*)Machine_Value_getObject(&arguments[0]);
+  Machine_Gui_BorderNode* self = (Machine_Gui_BorderNode*)Ring2_Value_getObject(&arguments[0]);
   self->childDirty = true;
-  Machine_Value_setVoid(result, Ring2_Void_Void);
+  Ring2_Value_setVoid(result, Ring2_Void_Void);
 }
 
 static void Machine_Gui_BorderNode_constructClass(Machine_Gui_BorderNode_Class* self) {
@@ -263,7 +263,7 @@ static void Machine_Gui_BorderNode_constructClass(Machine_Gui_BorderNode_Class* 
 }
 
 static void Machine_Gui_BorderNode_construct(Machine_Gui_BorderNode* self, size_t numberOfArguments,
-                                             Machine_Value const* arguments) {
+                                             Ring2_Value const* arguments) {
   Machine_Gui_Widget_construct((Machine_Gui_Widget*)self, numberOfArguments, arguments);
   self->borderModel = Machine_Gui_BorderModel_create();
   Machine_Gui_BorderModel_setWidth(self->borderModel, 1.f);
@@ -282,8 +282,8 @@ static void Machine_Gui_BorderNode_construct(Machine_Gui_BorderNode* self, size_
 Machine_Gui_BorderNode* Machine_Gui_BorderNode_create(Machine_Gui_Context* context) {
   Machine_ClassType* ty = Machine_Gui_BorderNode_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 1;
-  Machine_Value arguments[1];
-  Machine_Value_setObject(&arguments[0], (Machine_Object*)context);
+  Ring2_Value arguments[1];
+  Ring2_Value_setObject(&arguments[0], (Machine_Object*)context);
   Machine_Gui_BorderNode* self
       = (Machine_Gui_BorderNode*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments);
   return self;

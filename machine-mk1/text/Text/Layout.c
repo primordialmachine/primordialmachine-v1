@@ -182,14 +182,14 @@ static void updateBounds(Machine_Text_Layout* self) {
 MACHINE_DEFINE_CLASSTYPE(Machine_Text_Layout, Machine_Object, &Machine_Text_Layout_visit,
                          &Machine_Text_Layout_construct, NULL, NULL, NULL)
 
-void Machine_Text_Layout_construct(Machine_Text_Layout* self, size_t numberOfArguments, Machine_Value const* arguments) {
+void Machine_Text_Layout_construct(Machine_Text_Layout* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->color = Machine_Math_Vector3_create();
   Machine_Math_Vector3_set(self->color, 0.f, 0.f, 0.f);
   self->position = Machine_Math_Vector2_create();
   Machine_Math_Vector2_set(self->position, 0.f, 0.f);
-  self->text = Machine_Value_getString(arguments + 0);
-  self->font = (Machine_Font *)Machine_Value_getObject(arguments + 1);
+  self->text = Ring2_Value_getString(arguments + 0);
+  self->font = (Machine_Font *)Ring2_Value_getObject(arguments + 1);
   self->lines = Machine_PointerArray_create();
   self->yup = true;
   self->flags |= LINES_DIRTY;
@@ -202,9 +202,9 @@ Machine_Text_Layout* Machine_Text_Layout_create(Ring2_String* text, Machine_Font
 
   Machine_ClassType* ty = Machine_Text_Layout_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 2;
-  Machine_Value arguments[2] = { Machine_Value_StaticInitializerVoid(), Machine_Value_StaticInitializerVoid() };
-  Machine_Value_setString(&arguments[0], text);
-  Machine_Value_setObject(&arguments[1], (Machine_Object *)font);
+  Ring2_Value arguments[2] = { Ring2_Value_StaticInitializerVoid(), Ring2_Value_StaticInitializerVoid() };
+  Ring2_Value_setString(&arguments[0], text);
+  Ring2_Value_setObject(&arguments[1], (Machine_Object *)font);
   Machine_Text_Layout* self = (Machine_Text_Layout*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments);
   return self;
 }

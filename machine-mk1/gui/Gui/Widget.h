@@ -55,7 +55,7 @@ struct Machine_Gui_Widget {
 /// @param numberOfArguments The number of arguments.
 /// @param arguments The arguments.
 void Machine_Gui_Widget_construct(Machine_Gui_Widget* self, size_t numberOfArguments,
-                                  Machine_Value const* arguments);
+                                  Ring2_Value const* arguments);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -154,7 +154,7 @@ void Machine_Gui_Widget_setName(Machine_Gui_Widget* self, Ring2_String* name);
 /// @param context The context.
 /// @param callback The callback.
 void Machine_Gui_Widget_subscribe(Machine_Gui_Widget* self, Ring2_String* name,
-                                  Machine_Object* context, Machine_ForeignProcedure* callback);
+                                  Machine_Object* context, Ring2_ForeignProcedure* callback);
 
 /// @brief Unsubscribe from an event.
 /// @param self This widget.
@@ -162,12 +162,12 @@ void Machine_Gui_Widget_subscribe(Machine_Gui_Widget* self, Ring2_String* name,
 /// @param context The context.
 /// @param callback The callback. [context:Machine.Object,arguments:M
 void Machine_Gui_Widget_unsubscribe(Machine_Gui_Widget* self, Ring2_String* name,
-                                    Machine_Object* context, Machine_ForeignProcedure* callback);
+                                    Machine_Object* context, Ring2_ForeignProcedure* callback);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 void Machine_Gui_Widget_emitSignal(Machine_Gui_Widget* self, Ring2_String* name,
-                                   size_t numberOfArguments, Machine_Value const* arguments);
+                                   size_t numberOfArguments, Ring2_Value const* arguments);
 
 void Machine_Gui_Widget_emitPositionChangedSignal(Machine_Gui_Widget* self);
 

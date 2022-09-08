@@ -25,7 +25,7 @@ struct Machine_Material {
 };
 
 void Machine_Material_construct(Machine_Material* self, size_t numberOfArguments,
-                                Machine_Value const* arguments);
+                                Ring2_Value const* arguments);
 
 Machine_Material* Machine_Material_create();
 

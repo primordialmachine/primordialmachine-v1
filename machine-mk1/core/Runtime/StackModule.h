@@ -26,7 +26,7 @@ void Machine_Stack_loadInteger(Ring2_Integer value);
 /// @brief Load a <code>ForeignProcedure</code> value on the stack.
 /// @param value The value.
 /// @error Machine_Status_AllocationFailed An allocation failed.
-void Machine_Stack_loadForeignProcedure(Machine_ForeignProcedure* value);
+void Machine_Stack_loadForeignProcedure(Ring2_ForeignProcedure* value);
 
 /// @brief Load an <code>Object</code> value on the stack.
 /// @param value The value.
@@ -55,14 +55,14 @@ void Machine_Stack_loadVoid(Ring2_Void value);
 /// @param value The value.
 /// @error Machine_Status_AllocationFailed An allocation failed.
 /// @error Machine_Status_CapacityExhausted The stack can not grow any further.
-void Machine_Stack_load(Machine_Value value);
+void Machine_Stack_load(Ring2_Value value);
 
 /// @brief Peek at the value at the specified stack index.
 /// @param index The stack index.
 /// Must be within the bounds of [0,n-1] where n is the size of the stack.
 /// @return The value.
 /// @error Machine_Status_IndexOutOfbounds The index is out of bounds.
-Machine_Value Machine_Stack_peek(size_t index);
+Ring2_Value Machine_Stack_peek(size_t index);
 
 /// @brief Pop a value from the stack.
 /// @param stack a pointer to the stack

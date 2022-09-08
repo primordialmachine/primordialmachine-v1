@@ -66,8 +66,8 @@ static Machine_Gui_Widget* loadWidgetByPath(Machine_Gui_Context* context, const 
   Machine_Gdl_Node* node = Machine_Gdl_Parser_parse(parser, inputPath, inputText);
   Ring2_assert(node->kind == Machine_Gdl_NodeKind_CompilationUnit,
                Ring1_Status_InvalidSemantics);
-  Machine_Value temporary = Machine_List_getAt(node->children, 0);
-  node = (Machine_Gdl_Node*)Machine_Value_getObject(&temporary);
+  Ring2_Value temporary = Machine_List_getAt(node->children, 0);
+  node = (Machine_Gdl_Node*)Ring2_Value_getObject(&temporary);
   Ring2_assert(node->kind == Machine_Gdl_NodeKind_Map, Ring1_Status_InvalidSemantics);
   return loadWidget(context, node);
 }
@@ -205,7 +205,7 @@ static void Scene5_constructClass(Scene5_Class* self) {
   ((Scene_Class*)self)->onShutdown = (Scene_OnShutdownCallback*)&Scene5_shutdown;
 }
 
-void Scene5_construct(Scene5* self, size_t numberOfArguments, Machine_Value const* arguments) {
+void Scene5_construct(Scene5* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   Scene_construct((Scene*)self, numberOfArguments, arguments);
   Machine_setClassType((Machine_Object*)self, Scene5_getType());
 }
@@ -216,8 +216,8 @@ void Scene5_destruct(Scene5* self) {
 Scene5* Scene5_create(Machine_VideoContext* videoContext) {
   Machine_ClassType* ty = Scene5_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 1;
-  Machine_Value ARGUMENTS[1];
-  Machine_Value_setObject(&(ARGUMENTS[0]), (Machine_Object*)videoContext);
+  Ring2_Value ARGUMENTS[1];
+  Ring2_Value_setObject(&(ARGUMENTS[0]), (Machine_Object*)videoContext);
   Scene5* self = (Scene5*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   if (!self) {
     Ring2_jump();

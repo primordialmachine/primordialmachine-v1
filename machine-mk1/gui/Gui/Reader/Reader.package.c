@@ -73,8 +73,8 @@ Machine_Gui_GroupNode* Machine_Gui_Reader_readGroupNode(Machine_Gui_Context* sel
     Machine_List* temporary1 = Machine_Gui_Reader_getList(self, source, subContext->CHILDREN);
     for (size_t i = 0, n = Machine_Collection_getSize((Machine_Collection*)temporary1); i < n;
          ++i) {
-      Machine_Value temporary2 = Machine_List_getAt(temporary1, i);
-      Machine_Map* temporary3 = (Machine_Map*)Machine_Value_getObject(&temporary2);
+      Ring2_Value temporary2 = Machine_List_getAt(temporary1, i);
+      Machine_Map* temporary3 = (Machine_Map*)Ring2_Value_getObject(&temporary2);
       Machine_Gui_Widget* childWidget
           = Machine_Gui_Reader_readWidget(self, temporary3);
 

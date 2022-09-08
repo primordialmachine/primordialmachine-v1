@@ -14,10 +14,10 @@
 #include <stdio.h>
 
 Ring1_CheckReturn() int64_t
-Machine_ForeignProcedure_getHashValue
+Ring2_ForeignProcedure_getHashValue
   (
     Ring2_Context *context,
-    Machine_ForeignProcedure* x
+    Ring2_ForeignProcedure* x
   )
 {
   int64_t temporary;
@@ -26,19 +26,29 @@ Machine_ForeignProcedure_getHashValue
 }
 
 Ring1_CheckReturn() bool
-Machine_ForeignProcedure_isEqualTo
+Ring2_ForeignProcedure_isEqualTo
   (
     Ring2_Context *context,
-    Machine_ForeignProcedure* x,
-    Machine_ForeignProcedure* y
+    Ring2_ForeignProcedure* x,
+    Ring2_ForeignProcedure* y
   )
 { return x == y; }
 
-Ring1_CheckReturn() Ring2_String *
-Machine_ForeignProcedure_toString
+Ring1_CheckReturn() bool
+Ring2_ForeignProcedure_isNotEqualTo
   (
     Ring2_Context *context,
-    Machine_ForeignProcedure *x
+    Ring2_ForeignProcedure* x,
+    Ring2_ForeignProcedure* y
+  )
+{ return x != y; }
+
+
+Ring1_CheckReturn() Ring2_String *
+Ring2_ForeignProcedure_toString
+  (
+    Ring2_Context *context,
+    Ring2_ForeignProcedure *x
   )
 {
   char buffer[1024 + 1];

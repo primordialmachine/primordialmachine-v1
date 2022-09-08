@@ -25,7 +25,7 @@ struct Machine_ImagesContext {
 /// @param self This images context.
 /// @param numberOfArguments, arguments The arguments.
 void Machine_ImagesContext_construct(Machine_ImagesContext* self, size_t numberOfArguments,
-                                     Machine_Value const* arguments);
+                                     Ring2_Value const* arguments);
 
 /// @brief Create an image from a file given the pathname of the file.
 /// @param self This images context.

@@ -41,12 +41,11 @@ Ring2_TypesModule_shutdown
 
 #endif // Ring2_Configuration_withBoolean
 
-#if defined(Ring2_Configuration_withForeignFunction) && 1 == Ring2_Configuration_withForeignFunction
+#if defined(Ring2_Configuration_withForeignProcedure) && 1 == Ring2_Configuration_withForeignProcedure
 
-  #include "Ring2/Types/ForeignFunction.h"
   #include "Ring2/Types/ForeignProcedure.h"
 
-#endif // Ring2_Configuration_withForeignFunction
+#endif // Ring2_Configuration_withForeignProcedure
 
 #if defined(Ring2_Configuration_withInteger) && 1 == Ring2_Configuration_withInteger
 
@@ -57,7 +56,6 @@ Ring2_TypesModule_shutdown
 #if defined(Ring2_Configuration_withObject) && 1 == Ring2_Configuration_withObject
 
   #include "Ring2/Types/Object.h"
-  #include "Ring2/Old/Object.h"
 
 #endif // Ring2_Configuration_withObject
 

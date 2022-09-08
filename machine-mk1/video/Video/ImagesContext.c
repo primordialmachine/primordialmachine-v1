@@ -8,7 +8,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_ImagesContext, Machine_Object, NULL,
                          &Machine_ImagesContext_construct, NULL, NULL, NULL)
 
 void Machine_ImagesContext_construct(Machine_ImagesContext* self, size_t numberOfArguments,
-                                     Machine_Value const* arguments) {
+                                     Ring2_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   Machine_setClassType((Machine_Object*)self, Machine_ImagesContext_getType());
 }

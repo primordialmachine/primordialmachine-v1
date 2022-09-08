@@ -41,7 +41,7 @@ struct Machine_Shape2 {
 /// @brief Construct this shape with default values.
 /// @param self This shape.
 /// @param numberOfArguments, arguments The arguments.
-void Machine_Shape2_construct(Machine_Shape2* self, size_t numberOfArguments, Machine_Value const* arguments);
+void Machine_Shape2_construct(Machine_Shape2* self, size_t numberOfArguments, Ring2_Value const* arguments);
 
 /// @brief Render this shape.
 /// @param self This shape.

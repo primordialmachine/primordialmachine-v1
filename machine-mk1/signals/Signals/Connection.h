@@ -33,12 +33,12 @@ struct Machine_Signals_Connection {
   Machine_Object parent;
   Ring2_String* name;
   Machine_Object* context;
-  Machine_ForeignProcedure* callback;
+  Ring2_ForeignProcedure* callback;
 };
 
-void Machine_Signals_Connection_construct(Machine_Signals_Connection* self, size_t numberOfArguments, const Machine_Value* arguments);
+void Machine_Signals_Connection_construct(Machine_Signals_Connection* self, size_t numberOfArguments, const Ring2_Value* arguments);
 
-Machine_Signals_Connection* Machine_Signals_Connection_create(Ring2_String *name, Machine_Object* context, Machine_ForeignProcedure* callback);
+Machine_Signals_Connection* Machine_Signals_Connection_create(Ring2_String *name, Machine_Object* context, Ring2_ForeignProcedure* callback);
 
 
 

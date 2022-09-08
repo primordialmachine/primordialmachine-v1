@@ -12,19 +12,19 @@ static void addPrerequisites(Machine_InterfaceType* self){
 
 MACHINE_DEFINE_INTERFACETYPE(Machine_List, &addPrerequisites)
 
-Machine_Value Machine_List_getAt(Machine_List const* self, size_t index) {
+Ring2_Value Machine_List_getAt(Machine_List const* self, size_t index) {
   MACHINE_VIRTUALIFACECALL_IMPL(Machine_List, getAt, return, self, index);
 }
 
-void Machine_List_prepend(Machine_List* self, Machine_Value value) {
+void Machine_List_prepend(Machine_List* self, Ring2_Value value) {
   MACHINE_VIRTUALIFACECALL_IMPL(Machine_List, prepend, , self, value);
 }
 
-void Machine_List_append(Machine_List* self, Machine_Value value) {
+void Machine_List_append(Machine_List* self, Ring2_Value value) {
   MACHINE_VIRTUALIFACECALL_IMPL(Machine_List, append, , self, value);
 }
 
-void Machine_List_insertAt(Machine_List* self, size_t index, Machine_Value value) {
+void Machine_List_insertAt(Machine_List* self, size_t index, Ring2_Value value) {
   MACHINE_VIRTUALIFACECALL_IMPL(Machine_List, insertAt, , self, index, value);
 }
 

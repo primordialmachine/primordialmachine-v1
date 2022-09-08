@@ -60,7 +60,7 @@ static void Machine_Rectangle2_constructClass(Machine_Rectangle2_Class* self) {
   ((Machine_Shape2_Class*)self)->render = (void(*)(Machine_Shape2*, Machine_Context2*)) & Machine_Rectangle2_render;
 }
 
-void Machine_Rectangle2_construct(Machine_Rectangle2* self, size_t numberOfArguments, Machine_Value const* arguments) {
+void Machine_Rectangle2_construct(Machine_Rectangle2* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   Machine_Shape2_construct((Machine_Shape2*)self, numberOfArguments, arguments);
   self->position = Machine_Math_Vector2_create();
   self->size = Machine_Math_Vector2_create();
@@ -78,7 +78,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Rectangle2, Machine_Shape2, &Machine_Rectangle2
 Machine_Rectangle2* Machine_Rectangle2_create() {
   Machine_ClassType* ty = Machine_Rectangle2_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
+  static const Ring2_Value ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_Rectangle2* self = (Machine_Rectangle2*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

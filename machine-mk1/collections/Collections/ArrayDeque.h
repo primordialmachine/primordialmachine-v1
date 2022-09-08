@@ -42,8 +42,8 @@ struct Machine_ArrayDeque {
   /// @brief The tail of the queue.
   /// @initial @a 0.
   size_t tail;
-  /// @brief A pointer to an array of @a capacity Machine_Value elements.
-  Machine_Value* elements;
+  /// @brief A pointer to an array of @a capacity Ring2_Value elements.
+  Ring2_Value* elements;
 };
 
 /// @brief Construct this queue.
@@ -51,7 +51,7 @@ struct Machine_ArrayDeque {
 /// @param numberOfArguments The number of arguments.
 /// @param arguments The arguments.
 void Machine_ArrayDeque_construct(Machine_ArrayDeque* self, size_t numberOfArguments,
-                                  Machine_Value const* arguments);
+                                  Ring2_Value const* arguments);
 
 /// @brief Create an empty queue.
 /// @return The queue.

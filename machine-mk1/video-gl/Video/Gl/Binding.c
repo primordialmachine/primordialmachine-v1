@@ -16,7 +16,7 @@ static void Machine_Gl_Binding_visit(Machine_Gl_Binding* self);
 
 static void Machine_Gl_Binding_destruct(Machine_Gl_Binding* self);
 
-static void Machine_Gl_Binding_construct(Machine_Gl_Binding* self, size_t numberOfArguments, Machine_Value const* arguments);
+static void Machine_Gl_Binding_construct(Machine_Gl_Binding* self, size_t numberOfArguments, Ring2_Value const* arguments);
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gl_Binding, Machine_Binding, &Machine_Gl_Binding_visit,
                          &Machine_Gl_Binding_construct, &Machine_Gl_Binding_destruct,
@@ -73,7 +73,7 @@ static bool Machine_Binding_setVariableBindingImpl(Machine_Gl_Binding* self, Rin
   Machine_Binding_Node* node = ((Machine_Binding*)self)->nodes;
   while (node) {
     if (Ring2_String_isEqualTo(Ring2_Context_get(), node->name, name)) {
-      Machine_Value_setInteger(&node->value, index);
+      Ring2_Value_setInteger(&node->value, index);
       node->isVariable = true;
       ((Machine_Binding*)self)->dirty = true;
       return true;
@@ -81,8 +81,8 @@ static bool Machine_Binding_setVariableBindingImpl(Machine_Gl_Binding* self, Rin
     node = node->next;
   }
   ((Machine_Binding*)self)->dirty = true;
-  Machine_Value temporary;
-  Machine_Value_setInteger(&temporary, (Ring2_Integer)index);
+  Ring2_Value temporary;
+  Ring2_Value_setInteger(&temporary, (Ring2_Integer)index);
   node = Machine_Binding_Node_createVariable(name, &temporary);
   node->next = ((Machine_Binding*)self)->nodes; ((Machine_Binding*)self)->nodes = node;
   return false;
@@ -92,7 +92,7 @@ static size_t Machine_Binding_getVariableBindingImpl(Machine_Gl_Binding const* s
   Machine_Binding_Node* node = ((Machine_Binding*)self)->nodes;
   while (node) {
     if (Ring2_String_isEqualTo(Ring2_Context_get(), node->name, name) && node->isVariable) {
-      return Machine_Value_getInteger(&node->value);
+      return Ring2_Value_getInteger(&node->value);
     }
     node = node->next;
   }
@@ -100,8 +100,8 @@ static size_t Machine_Binding_getVariableBindingImpl(Machine_Gl_Binding const* s
 }
 
 static void Machine_Binding_bindMatrix4Impl(Machine_Gl_Binding* self, Ring2_String* name, Machine_Math_Matrix4 const* value) {
-  Machine_Value temporary2;
-  Machine_Value_setObject(&temporary2, (Machine_Object*)value);
+  Ring2_Value temporary2;
+  Ring2_Value_setObject(&temporary2, (Machine_Object*)value);
   Machine_Binding_addUpdateConstant((Machine_Binding*)self, name, &temporary2);
   
   GLint location = glGetUniformLocation(((Machine_Gl_ShaderProgram*)(((Machine_Binding*)self)->program))->programId, Ring2_String_getBytes(Ring2_Context_get(), name));
@@ -112,14 +112,14 @@ static void Machine_Binding_bindMatrix4Impl(Machine_Gl_Binding* self, Ring2_Stri
 }
 
 static void Machine_Binding_bindVector2Impl(Machine_Gl_Binding* self, Ring2_String* name, Machine_Math_Vector2 const* value) {
-  Machine_Value temporary2;
-  Machine_Value_setObject(&temporary2, (Machine_Object*)value);
+  Ring2_Value temporary2;
+  Ring2_Value_setObject(&temporary2, (Machine_Object*)value);
   Machine_Binding_addUpdateConstant((Machine_Binding *)self, name, &temporary2);
   
   Machine_Binding_Node* node = ((Machine_Binding*)self)->nodes;
   while (node) {
     if (Ring2_String_isEqualTo(Ring2_Context_get(), node->name, name) && node->isVariable == false) {
-      Machine_Value_setObject(&node->value, (Machine_Object*)value);
+      Ring2_Value_setObject(&node->value, (Machine_Object*)value);
       break;
     }
     else {
@@ -127,8 +127,8 @@ static void Machine_Binding_bindVector2Impl(Machine_Gl_Binding* self, Ring2_Stri
     }
   }
   if (node == NULL) {
-    Machine_Value temporary;
-    Machine_Value_setObject(&temporary, (Machine_Object*)value);
+    Ring2_Value temporary;
+    Ring2_Value_setObject(&temporary, (Machine_Object*)value);
     node = Machine_Binding_Node_createConstant(name, &temporary);
     node->next = ((Machine_Binding*)self)->nodes; ((Machine_Binding*)self)->nodes = node;
   }
@@ -142,14 +142,14 @@ static void Machine_Binding_bindVector2Impl(Machine_Gl_Binding* self, Ring2_Stri
 }
 
 static void Machine_Binding_bindVector3Impl(Machine_Gl_Binding* self, Ring2_String* name, Machine_Math_Vector3 const* value) {
-  Machine_Value temporary2;
-  Machine_Value_setObject(&temporary2, (Machine_Object*)value);
+  Ring2_Value temporary2;
+  Ring2_Value_setObject(&temporary2, (Machine_Object*)value);
   Machine_Binding_addUpdateConstant((Machine_Binding*)self, name, &temporary2);
   
   Machine_Binding_Node* node = ((Machine_Binding*)self)->nodes;
   while (node) {
     if (Ring2_String_isEqualTo(Ring2_Context_get(), node->name, name) && node->isVariable == false) {
-      Machine_Value_setObject(&node->value, (Machine_Object*)value);
+      Ring2_Value_setObject(&node->value, (Machine_Object*)value);
       break;
     }
     else {
@@ -157,8 +157,8 @@ static void Machine_Binding_bindVector3Impl(Machine_Gl_Binding* self, Ring2_Stri
     }
   }
   if (node == NULL) {
-    Machine_Value temporary;
-    Machine_Value_setObject(&temporary, (Machine_Object*)value);
+    Ring2_Value temporary;
+    Ring2_Value_setObject(&temporary, (Machine_Object*)value);
     node = Machine_Binding_Node_createConstant(name, &temporary);
     node->next = ((Machine_Binding*)self)->nodes; ((Machine_Binding*)self)->nodes = node;
   }
@@ -172,14 +172,14 @@ static void Machine_Binding_bindVector3Impl(Machine_Gl_Binding* self, Ring2_Stri
 }
 
 static void Machine_Binding_bindVector4Impl(Machine_Binding* self, Ring2_String* name, Machine_Math_Vector4 const* value) {
-  Machine_Value temporary2;
-  Machine_Value_setObject(&temporary2, (Machine_Object*)value);
+  Ring2_Value temporary2;
+  Ring2_Value_setObject(&temporary2, (Machine_Object*)value);
   Machine_Binding_addUpdateConstant((Machine_Binding*)self, name, &temporary2);
   
   Machine_Binding_Node* node = self->nodes;
   while (node) {
     if (Ring2_String_isEqualTo(Ring2_Context_get(), node->name, name) && node->isVariable == false) {
-      Machine_Value_setObject(&node->value, (Machine_Object*)value);
+      Ring2_Value_setObject(&node->value, (Machine_Object*)value);
       break;
     }
     else {
@@ -187,8 +187,8 @@ static void Machine_Binding_bindVector4Impl(Machine_Binding* self, Ring2_String*
     }
   }
   if (node == NULL) {
-    Machine_Value temporary;
-    Machine_Value_setObject(&temporary, (Machine_Object*)value);
+    Ring2_Value temporary;
+    Ring2_Value_setObject(&temporary, (Machine_Object*)value);
     node = Machine_Binding_Node_createConstant(name, &temporary);
     node->next = self->nodes; self->nodes = node;
   }
@@ -202,8 +202,8 @@ static void Machine_Binding_bindVector4Impl(Machine_Binding* self, Ring2_String*
 }
 
 static void Machine_Binding_bindSamplerImpl(Machine_Gl_Binding* self, Ring2_String* name, const size_t value) {
-  Machine_Value temporary2;
-  Machine_Value_setInteger(&temporary2, (Ring2_Integer)value);
+  Ring2_Value temporary2;
+  Ring2_Value_setInteger(&temporary2, (Ring2_Integer)value);
   Machine_Binding_addUpdateConstant((Machine_Binding*)self, name, &temporary2);
 
   GLint location = glGetUniformLocation(((Machine_Gl_ShaderProgram*)(((Machine_Binding*)self)->program))->programId, Ring2_String_getBytes(Ring2_Context_get(), name));
@@ -257,7 +257,7 @@ static void Machine_Gl_Binding_constructClass(Machine_Gl_Binding_Class* self) {
   ((Machine_Binding_Class*)self)->activate = (void (*)(Machine_Binding*)) & Machine_Binding_activateImpl;
 }
 
-static void Machine_Gl_Binding_construct(Machine_Gl_Binding* self, size_t numberOfArguments, Machine_Value const* arguments) {
+static void Machine_Gl_Binding_construct(Machine_Gl_Binding* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   Machine_Binding_construct((Machine_Binding*)self, numberOfArguments, arguments);
   self->id = 0;
   Machine_setClassType((Machine_Object*)self, Machine_Gl_Binding_getType());
@@ -266,10 +266,10 @@ static void Machine_Gl_Binding_construct(Machine_Gl_Binding* self, size_t number
 Machine_Gl_Binding* Machine_Gl_Binding_create(Machine_ShaderProgram* program, Machine_VertexDescriptor* vertexDescriptor, Machine_VideoBuffer* buffer) {
   Machine_ClassType* ty = Machine_Gl_Binding_getType();
   size_t numberOfArguments = 3;
-  Machine_Value arguments[3];
-  Machine_Value_setObject(&arguments[0], (Machine_Object*)program);
-  Machine_Value_setObject(&arguments[1], (Machine_Object*)vertexDescriptor);
-  Machine_Value_setObject(&arguments[2], (Machine_Object*)buffer);
+  Ring2_Value arguments[3];
+  Ring2_Value_setObject(&arguments[0], (Machine_Object*)program);
+  Ring2_Value_setObject(&arguments[1], (Machine_Object*)vertexDescriptor);
+  Ring2_Value_setObject(&arguments[2], (Machine_Object*)buffer);
   Machine_Gl_Binding* self = (Machine_Gl_Binding*)Machine_allocateClassObject(ty, numberOfArguments, arguments);
   return self;
 }

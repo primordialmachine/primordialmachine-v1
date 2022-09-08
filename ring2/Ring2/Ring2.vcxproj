@@ -32,11 +32,9 @@
     <ClInclude Include="Ring2\JumpTarget.h" />
     <ClInclude Include="Ring2\JumpTarget\JumpTarget1.h" />
     <ClInclude Include="Ring2\Log.h" />
-    <ClInclude Include="Ring2\Old\Object.h" />
-    <ClInclude Include="Ring2\Old\Value.h" />
     <ClInclude Include="Ring2\Operations.h" />
     <ClInclude Include="Ring2\Operations\Boolean.h" />
-    <ClInclude Include="Ring2\Operations\ForeignFunction.h" />
+    <ClInclude Include="Ring2\Operations\ForeignProcedure.h" />
     <ClInclude Include="Ring2\Operations\Integer.h" />
     <ClInclude Include="Ring2\Operations\Real32.h" />
     <ClInclude Include="Ring2\Operations\Real64.h" />
@@ -48,7 +46,6 @@
     <ClInclude Include="Ring2\TypeSystem\InterfaceType.h" />
     <ClInclude Include="Ring2\TypeSystem\Type.h" />
     <ClInclude Include="Ring2\Types\Boolean.h" />
-    <ClInclude Include="Ring2\Types\ForeignFunction.h" />
     <ClInclude Include="Ring2\Types\ForeignProcedure.h" />
     <ClInclude Include="Ring2\Types\Integer.h" />
     <ClInclude Include="Ring2\Types\Object.h" />
@@ -71,10 +68,9 @@
     <ClCompile Include="Ring2\JumpTarget.c" />
     <ClCompile Include="Ring2\JumpTarget\JumpTarget1.c" />
     <ClCompile Include="Ring2\Log.c" />
-    <ClCompile Include="Ring2\Old\Value.c" />
     <ClCompile Include="Ring2\Operations.c" />
     <ClCompile Include="Ring2\Operations\Boolean.c" />
-    <ClCompile Include="Ring2\Operations\ForeignFunction.c" />
+    <ClCompile Include="Ring2\Operations\ForeignProcedure.c" />
     <ClCompile Include="Ring2\Operations\Integer.c" />
     <ClCompile Include="Ring2\Operations\Real32.c" />
     <ClCompile Include="Ring2\Operations\Real64.c" />
@@ -86,7 +82,6 @@
     <ClCompile Include="Ring2\TypeSystem\InterfaceType.c" />
     <ClCompile Include="Ring2\TypeSystem\Type.c" />
     <ClCompile Include="Ring2\Types\Boolean.c" />
-    <ClCompile Include="Ring2\Types\ForeignFunction.c" />
     <ClCompile Include="Ring2\Types\ForeignProcedure.c" />
     <ClCompile Include="Ring2\Types\Integer.c" />
     <ClCompile Include="Ring2\Types\Object.c" />

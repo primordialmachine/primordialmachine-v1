@@ -7,10 +7,10 @@
 static void Machine_CanvasSizeChangedEvent_visit(Machine_CanvasSizeChangedEvent* self)
 {/*Intentionally empty.*/}
 
-static void Machine_CanvasSizeChangedEvent_construct(Machine_CanvasSizeChangedEvent* self, size_t numberOfArguments, Machine_Value const* arguments) {
+static void Machine_CanvasSizeChangedEvent_construct(Machine_CanvasSizeChangedEvent* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  self->width = Machine_Value_getReal32(&arguments[0]);
-  self->height = Machine_Value_getReal32(&arguments[1]);
+  self->width = Ring2_Value_getReal32(&arguments[0]);
+  self->height = Ring2_Value_getReal32(&arguments[1]);
   Machine_setClassType((Machine_Object *)self, Machine_CanvasSizeChangedEvent_getType());
 }
 
@@ -21,9 +21,9 @@ MACHINE_DEFINE_CLASSTYPE(Machine_CanvasSizeChangedEvent, Machine_Object,
 Machine_CanvasSizeChangedEvent* Machine_CanvasSizeChangedEvent_create(float width, float height) {
   Machine_ClassType* ty = Machine_CanvasSizeChangedEvent_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 2;
-  Machine_Value ARGUMENTS[2];
-  Machine_Value_setReal32(&ARGUMENTS[0], width);
-  Machine_Value_setReal32(&ARGUMENTS[1], height);
+  Ring2_Value ARGUMENTS[2];
+  Ring2_Value_setReal32(&ARGUMENTS[0], width);
+  Ring2_Value_setReal32(&ARGUMENTS[1], height);
   Machine_CanvasSizeChangedEvent* self = (Machine_CanvasSizeChangedEvent*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

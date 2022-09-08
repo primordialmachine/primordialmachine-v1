@@ -128,10 +128,10 @@ static void Machine_Gui_Widget_constructClass(Machine_Gui_Widget_Class* self) {
 }
 
 void Machine_Gui_Widget_construct(Machine_Gui_Widget* self, size_t numberOfArguments,
-                                  Machine_Value const* arguments) {
+                                  Ring2_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   Ring2_assert(numberOfArguments == 1, Ring1_Status_InvalidNumberOfArguments);
-  self->context = (Machine_Gui_Context*)Machine_Value_getObject(&arguments[0]);
+  self->context = (Machine_Gui_Context*)Ring2_Value_getObject(&arguments[0]);
   self->rectangle = Machine_Math_Rectangle2_create();
   self->parent = NULL;
   self->signal = Machine_Signals_Signal_create();
@@ -206,27 +206,27 @@ Machine_Math_Rectangle2 const* Machine_Gui_Widget_getAbsoluteCanvasRectangle(
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 void Machine_Gui_Widget_subscribe(Machine_Gui_Widget* self, Ring2_String* name,
-                                  Machine_Object* context, Machine_ForeignProcedure* callback) {
+                                  Machine_Object* context, Ring2_ForeignProcedure* callback) {
   Machine_Signals_Signal_subscribe(self->signal, name, context, callback);
 }
 
 void Machine_Gui_Widget_unsubscribe(Machine_Gui_Widget* self, Ring2_String* name,
-                                    Machine_Object* context, Machine_ForeignProcedure* callback) {
+                                    Machine_Object* context, Ring2_ForeignProcedure* callback) {
   Machine_Signals_Signal_unsubscribe(self->signal, name, context, callback);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 void Machine_Gui_Widget_emitSignal(Machine_Gui_Widget* self, Ring2_String* name,
-                                   size_t numberOfArguments, Machine_Value const* arguments) {
+                                   size_t numberOfArguments, Ring2_Value const* arguments) {
   Machine_Signals_Signal_emit(self->signal, name, numberOfArguments, arguments);
 }
 
 void Machine_Gui_Widget_emitPositionChangedSignal(Machine_Gui_Widget* self) {
   Machine_Gui_Signals_Context* signalsContext = self->context->signalsContext;
   size_t numberOfArguments = 1;
-  Machine_Value arguments[1];
-  Machine_Value_setObject(&arguments[0], (Machine_Object*)self);
+  Ring2_Value arguments[1];
+  Ring2_Value_setObject(&arguments[0], (Machine_Object*)self);
   Machine_Gui_Widget_emitSignal(self, signalsContext->PositionChanged, numberOfArguments,
                                 arguments);
 }
@@ -234,7 +234,7 @@ void Machine_Gui_Widget_emitPositionChangedSignal(Machine_Gui_Widget* self) {
 void Machine_Gui_Widget_emitSizeChangedSignal(Machine_Gui_Widget* self) {
   Machine_Gui_Signals_Context* signalsContext = self->context->signalsContext;
   size_t numberOfArguments = 1;
-  Machine_Value arguments[1];
-  Machine_Value_setObject(&arguments[0], (Machine_Object*)self);
+  Ring2_Value arguments[1];
+  Ring2_Value_setObject(&arguments[0], (Machine_Object*)self);
   Machine_Gui_Widget_emitSignal(self, signalsContext->SizeChanged, numberOfArguments, arguments);
 }

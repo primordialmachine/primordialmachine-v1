@@ -22,7 +22,7 @@ struct Machine_FontsContext {
 /// @param self This font context.
 /// @param numberOfArguments, arguments The arguments.
 void Machine_FontsContext_construct(Machine_FontsContext* self, size_t numberOfArguments,
-                                    Machine_Value const* arguments);
+                                    Ring2_Value const* arguments);
 
 /// @brief Create a font from a file given the pathname of the file and the font size in points.
 /// @param self This font context.

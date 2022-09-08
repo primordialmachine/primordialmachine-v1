@@ -38,15 +38,15 @@ struct Machine_Signals_Signal {
   Machine_List* connections;
 };
 
-void Machine_Signals_Signal_construct(Machine_Signals_Signal* self, size_t numberOfArguments, Machine_Value const* arguments);
+void Machine_Signals_Signal_construct(Machine_Signals_Signal* self, size_t numberOfArguments, Ring2_Value const* arguments);
 
 Machine_Signals_Signal* Machine_Signals_Signal_create();
 
-void Machine_Signals_Signal_subscribe(Machine_Signals_Signal *self, Ring2_String* name, Machine_Object* context, Machine_ForeignProcedure *callback);
+void Machine_Signals_Signal_subscribe(Machine_Signals_Signal *self, Ring2_String* name, Machine_Object* context, Ring2_ForeignProcedure *callback);
 
-void Machine_Signals_Signal_unsubscribe(Machine_Signals_Signal *self, Ring2_String* name, Machine_Object* context, Machine_ForeignProcedure* callback);
+void Machine_Signals_Signal_unsubscribe(Machine_Signals_Signal *self, Ring2_String* name, Machine_Object* context, Ring2_ForeignProcedure* callback);
 
-void Machine_Signals_Signal_emit(Machine_Signals_Signal* self, Ring2_String* name, size_t numberOfArguments, Machine_Value const* arguments);
+void Machine_Signals_Signal_emit(Machine_Signals_Signal* self, Ring2_String* name, size_t numberOfArguments, Ring2_Value const* arguments);
 
 
 

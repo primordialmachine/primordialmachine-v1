@@ -12,7 +12,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Material, Machine_Object, &Machine_Material_vis
 static void Machine_Material_visit(Machine_Material* self)
 {/*Intentionally empty.*/}
 
-void Machine_Material_construct(Machine_Material* self, size_t numberOfArguments, Machine_Value const* arguments) {
+void Machine_Material_construct(Machine_Material* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->existingBlendFunction = Machine_BlendFunction_OneMinusIncomingAlpha;
   self->incomingBlendFunction = Machine_BlendFunction_IncomingAlpha;
@@ -24,7 +24,7 @@ void Machine_Material_construct(Machine_Material* self, size_t numberOfArguments
 Machine_Material* Machine_Material_create() {
   Machine_ClassType* ty = Machine_Material_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
+  static Ring2_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_Material* self = (Machine_Material*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

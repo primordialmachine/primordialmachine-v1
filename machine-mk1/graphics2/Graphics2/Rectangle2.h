@@ -31,9 +31,9 @@ struct Machine_Rectangle2 {
   Machine_Math_Vector4* color;
 };
 
-void Machine_Rectangle2_construct(Machine_Rectangle2* self, size_t numberOfArguments, const Machine_Value* arguments);
+void Machine_Rectangle2_construct(Machine_Rectangle2* self, size_t numberOfArguments, const Ring2_Value* arguments);
 
-/// @todo Should be <code>..._create(Machine_Rectangle2* self, size_t numberOfArguments, const Machine_Value* arguments)</code>.
+/// @todo Should be <code>..._create(Machine_Rectangle2* self, size_t numberOfArguments, const Ring2_Value* arguments)</code>.
 Machine_Rectangle2* Machine_Rectangle2_create();
 
 /// @brief Set  the rectangle.

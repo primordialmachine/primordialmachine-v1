@@ -34,11 +34,11 @@ static void Machine_Context2_visit(Machine_Context2* self) {
 MACHINE_DEFINE_CLASSTYPE(Machine_Context2, Machine_Object, &Machine_Context2_visit,
                          Machine_Context2_construct, NULL, NULL, NULL)
 
-void Machine_Context2_construct(Machine_Context2* self, size_t numberOfArguments, Machine_Value const* arguments) {
+void Machine_Context2_construct(Machine_Context2* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   Ring2_assert(numberOfArguments == 1, Ring1_Status_InvalidNumberOfArguments);
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
 
-  Machine_VideoContext* videoContext = (Machine_VideoContext*)Machine_Value_getObject(&arguments[0]);
+  Machine_VideoContext* videoContext = (Machine_VideoContext*)Ring2_Value_getObject(&arguments[0]);
 
   self->videoContext = videoContext;
 
@@ -71,8 +71,8 @@ void Machine_Context2_construct(Machine_Context2* self, size_t numberOfArguments
 Machine_Context2* Machine_Context2_create(Machine_VideoContext* videoContext) {
   Machine_ClassType* ty = Machine_Context2_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 1;
-  Machine_Value arguments[1];
-  Machine_Value_setObject(&arguments[0], (Machine_Object*)videoContext);
+  Ring2_Value arguments[1];
+  Ring2_Value_setObject(&arguments[0], (Machine_Object*)videoContext);
   Machine_Context2* self = (Machine_Context2*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments);
   return self;
 }

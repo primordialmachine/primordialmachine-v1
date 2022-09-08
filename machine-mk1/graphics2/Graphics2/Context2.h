@@ -69,7 +69,7 @@ struct Machine_Context2 {
 /// - <code>(width, 0)</code> is at the bottom/right of the canvas. 
 /// @param self This context.
 /// @param numberOfArguments, arguments The arguments.
-void Machine_Context2_construct(Machine_Context2* self, size_t numberOfArguments, Machine_Value const* arguments);
+void Machine_Context2_construct(Machine_Context2* self, size_t numberOfArguments, Ring2_Value const* arguments);
 
 /// @brief Create a context with default values.
 /// @param videoContext The video context.

@@ -20,6 +20,6 @@ struct Machine_Texture {
 /// @param self This texture.
 /// @param numberOfArguments, arguments The arguments.
 void Machine_Texture_construct(Machine_Texture* self, size_t numberOfArguments,
-                               Machine_Value const* arguments);
+                               Ring2_Value const* arguments);
 
 #endif // MACHINE_VIDEO_TEXTURE_H_INCLUDED

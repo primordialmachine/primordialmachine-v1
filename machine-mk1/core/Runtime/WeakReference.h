@@ -16,15 +16,15 @@ struct Machine_WeakReference_Class {
 struct Machine_WeakReference {
   Machine_Object parent;
   uintptr_t id;
-  Machine_Value value;
+  Ring2_Value value;
 };
 
 /// @brief Create a weak reference.
 /// @param value The value.
-Machine_WeakReference* Machine_WeakReference_create(Machine_Value value);
+Machine_WeakReference* Machine_WeakReference_create(Ring2_Value value);
 
 /// @brief Get the object of the weak reference.
 /// @return The value.
-Machine_Value Machine_WeakReference_get(Machine_WeakReference* self);
+Ring2_Value Machine_WeakReference_get(Machine_WeakReference* self);
 
 #endif // MACHINE_RUNTIME_WEAKREFERENCE_H_INCLUDED

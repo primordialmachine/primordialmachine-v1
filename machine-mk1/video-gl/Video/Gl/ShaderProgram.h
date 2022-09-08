@@ -32,7 +32,7 @@ struct Machine_Gl_ShaderProgram {
 };
 
 void Machine_Gl_ShaderProgram_construct(Machine_Gl_ShaderProgram* self, size_t numberOfArguments,
-                                        Machine_Value const* arguments);
+                                        Ring2_Value const* arguments);
 
 Machine_Gl_ShaderProgram* Machine_Gl_ShaderProgram_create(Ring2_String* vertexProgramText,
                                                           Ring2_String* geometryProgramText,

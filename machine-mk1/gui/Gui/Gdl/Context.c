@@ -20,10 +20,10 @@ static void Machine_Gui_Gdl_Context_visit(Machine_Gui_Gdl_Context* self) {
 
 static void Machine_Gui_Gdl_Context_construct(Machine_Gui_Gdl_Context* self,
                                               size_t numberOfArguments,
-                                              Machine_Value const* arguments) {
+                                              Ring2_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
 
-  self->context = (Machine_Gdl_Context*)Machine_Value_getObject(&arguments[0]);
+  self->context = (Machine_Gdl_Context*)Ring2_Value_getObject(&arguments[0]);
 
 #define DEFINE(NAME, STRING) self->NAME = Ring2_String_create(Ring2_Context_get(), STRING, strlen(STRING));
 #include "Gui/Gdl/Context.i"
@@ -38,8 +38,8 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gui_Gdl_Context, Machine_Object, &Machine_Gui_G
 Machine_Gui_Gdl_Context* Machine_Gui_Gdl_Context_create(Machine_Gdl_Context* context) {
   Machine_ClassType* ty = Machine_Gui_Gdl_Context_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 1;
-  Machine_Value ARGUMENTS[1];
-  Machine_Value_setObject(&ARGUMENTS[0], (Machine_Object*)context);
+  Ring2_Value ARGUMENTS[1];
+  Ring2_Value_setObject(&ARGUMENTS[0], (Machine_Object*)context);
   Machine_Gui_Gdl_Context* self
       = (Machine_Gui_Gdl_Context*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;

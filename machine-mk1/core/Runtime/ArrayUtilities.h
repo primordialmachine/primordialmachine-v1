@@ -22,6 +22,6 @@
 /// @remark
 /// The first min(sizeNew,sizeOld) elements of the old and the new array are equal.
 /// Furthermore, if sizeNew > sizeOld the elements in the new array at the indices [sizeOld, sizeNew - 1] are assigned the <code>Void</code> value.
-Machine_Value* Machine_ArrayUtilities_copyOf(size_t sizeNew, Machine_Value* arrayOld, size_t sizeOld, bool deallocate);
+Ring2_Value* Machine_ArrayUtilities_copyOf(size_t sizeNew, Ring2_Value* arrayOld, size_t sizeOld, bool deallocate);
 
 #endif // MACHINE_RUNTIME_ARRAYUTILITIES_H_INCLUDED

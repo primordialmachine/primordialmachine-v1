@@ -72,8 +72,8 @@ static size_t Machine_Gl_ShaderProgram_getNumberOfInputsImpl(Machine_Gl_ShaderPr
 }
 
 static Machine_ProgramInput* Machine_Gl_ShaderProgram_getInputAtImpl(Machine_Gl_ShaderProgram const* self, size_t index) {
-  Machine_Value temporary = Machine_List_getAt(self->inputs, index);
-  return (Machine_ProgramInput*)Machine_Value_getObject(&temporary);
+  Ring2_Value temporary = Machine_List_getAt(self->inputs, index);
+  return (Machine_ProgramInput*)Ring2_Value_getObject(&temporary);
 }
 
 static Ring2_Boolean Machine_Gl_ShaderProgram_addUpdateInputImpl(Machine_Gl_ShaderProgram* self, Ring2_String* name, Machine_ProgramInputType type, Machine_ProgramInputKind kind) {
@@ -86,8 +86,8 @@ static Ring2_Boolean Machine_Gl_ShaderProgram_addUpdateInputImpl(Machine_Gl_Shad
     }
   }
   Machine_ProgramInput* input = Machine_ProgramInput_create(name, type, kind);
-  Machine_Value temporary;
-  Machine_Value_setObject(&temporary, (Machine_Object*)input);
+  Ring2_Value temporary;
+  Ring2_Value_setObject(&temporary, (Machine_Object*)input);
   Machine_List_append(self->inputs, temporary);
   return false;
 }
@@ -219,20 +219,20 @@ static void Machine_Gl_ShaderProgram_constructClass(Machine_Gl_ShaderProgram_Cla
   ((Machine_ShaderProgram_Class*)self)->addUpdateInput = (Ring2_Boolean(*)(Machine_ShaderProgram*, Ring2_String*, Machine_ProgramInputType, Machine_ProgramInputKind)) & Machine_Gl_ShaderProgram_addUpdateInputImpl;
 }
 
-void Machine_Gl_ShaderProgram_construct(Machine_Gl_ShaderProgram* self, size_t numberOfArguments, Machine_Value const* arguments) {
+void Machine_Gl_ShaderProgram_construct(Machine_Gl_ShaderProgram* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   Machine_ShaderProgram_construct((Machine_ShaderProgram*)self, numberOfArguments, arguments);
   if (numberOfArguments != 3) {
     Ring1_Status_set(Ring1_Status_InvalidNumberOfArguments);
     Ring2_jump();
   }
   Ring2_String *v = NULL, *g = NULL, *f = NULL;
-  if (!Machine_Value_isVoid(arguments + 0)) {
+  if (!Ring2_Value_isVoid(arguments + 0)) {
     v = Machine_Extensions_getStringArgument(numberOfArguments, arguments, 0);
   }
-  if (!Machine_Value_isVoid(arguments + 1)) {
+  if (!Ring2_Value_isVoid(arguments + 1)) {
     g = Machine_Extensions_getStringArgument(numberOfArguments, arguments, 1);
   }
-  if (!Machine_Value_isVoid(arguments + 2)) {
+  if (!Ring2_Value_isVoid(arguments + 2)) {
     f = Machine_Extensions_getStringArgument(numberOfArguments, arguments, 2);
   }
   constructFromText(self, v ? Ring2_String_getBytes(Ring2_Context_get(), v) : NULL,
@@ -250,22 +250,22 @@ Machine_Gl_ShaderProgram* Machine_Gl_ShaderProgram_create(Ring2_String* vertexPr
   Machine_ClassType* ty = Machine_Gl_ShaderProgram_getType();
 
   static size_t const numberOfArguments = 3;
-  Machine_Value arguments[3];
+  Ring2_Value arguments[3];
 
   if (vertexProgramText != NULL)
-    Machine_Value_setString(&arguments[0], vertexProgramText);
+    Ring2_Value_setString(&arguments[0], vertexProgramText);
   else
-    Machine_Value_setVoid(&arguments[0], Ring2_Void_Void);
+    Ring2_Value_setVoid(&arguments[0], Ring2_Void_Void);
 
   if (geometryProgramText != NULL)
-    Machine_Value_setString(&arguments[1], geometryProgramText);
+    Ring2_Value_setString(&arguments[1], geometryProgramText);
   else
-    Machine_Value_setVoid(&arguments[1], Ring2_Void_Void);
+    Ring2_Value_setVoid(&arguments[1], Ring2_Void_Void);
 
   if (fragmentProgramText != NULL)
-    Machine_Value_setString(&arguments[2], fragmentProgramText);
+    Ring2_Value_setString(&arguments[2], fragmentProgramText);
   else
-    Machine_Value_setVoid(&arguments[2], Ring2_Void_Void);
+    Ring2_Value_setVoid(&arguments[2], Ring2_Void_Void);
 
   Machine_Gl_ShaderProgram* self = (Machine_Gl_ShaderProgram*)Machine_allocateClassObject(ty, numberOfArguments, arguments);
   return self;

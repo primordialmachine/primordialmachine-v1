@@ -41,11 +41,11 @@ Ring2_OperationsModule_shutdown
 
 #endif // Ring2_Configuration_withBoolean
 
-#if defined(Ring2_Configuration_withForeignFunction) && 1 == Ring2_Configuration_withForeignFunction
+#if defined(Ring2_Configuration_withForeignProcedure) && 1 == Ring2_Configuration_withForeignProcedure
 
-  #include "Ring2/Operations/ForeignFunction.h"
+  #include "Ring2/Operations/ForeignProcedure.h"
 
-#endif // Ring2_Configuration_withForeignFunction
+#endif // Ring2_Configuration_withForeignProcedure
 
 #if defined(Ring2_Configuration_withInteger) && 1 == Ring2_Configuration_withInteger
 

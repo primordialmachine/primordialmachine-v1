@@ -44,7 +44,7 @@ static void constructClass(Machine_Fonts_FontsContext_Class* self) {
   ((Machine_FontsContext_Class*)self)->createFont = (Machine_Font * (*)(Machine_FontsContext*, Ring2_String*, Ring2_Integer)) & createFont;
 }
 
-void Machine_Fonts_FontsContext_construct(Machine_Fonts_FontsContext* self, size_t numberOfArguments, Machine_Value const* arguments) {
+void Machine_Fonts_FontsContext_construct(Machine_Fonts_FontsContext* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   Machine_FontsContext_construct((Machine_FontsContext*)self, numberOfArguments, arguments);
   self->videoContext = (Machine_VideoContext*)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0, Machine_VideoContext_getType());
   self->imageContext = (Machine_ImagesContext *)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 1, Machine_ImagesContext_getType());
@@ -64,9 +64,9 @@ void Machine_Fonts_FontsContext_construct(Machine_Fonts_FontsContext* self, size
 Machine_Fonts_FontsContext* Machine_Fonts_FontsContext_create(Machine_VideoContext* videoContext, Machine_ImagesContext *imagesContext) {
   Machine_ClassType* ty = Machine_Fonts_FontsContext_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 2;
-  Machine_Value ARGUMENTS[2];
-  Machine_Value_setObject(&ARGUMENTS[0], (Machine_Object*)videoContext);
-  Machine_Value_setObject(&ARGUMENTS[1], (Machine_Object*)imagesContext);
+  Ring2_Value ARGUMENTS[2];
+  Ring2_Value_setObject(&ARGUMENTS[0], (Machine_Object*)videoContext);
+  Ring2_Value_setObject(&ARGUMENTS[1], (Machine_Object*)imagesContext);
   Machine_Fonts_FontsContext* self = (Machine_Fonts_FontsContext*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

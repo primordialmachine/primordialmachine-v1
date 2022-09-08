@@ -43,7 +43,7 @@ void Machine_Images_Image_destruct(Machine_Images_Image* self) {
 }
 
 void Machine_Images_Image_construct(Machine_Images_Image* self, size_t numberOfArguments,
-                                    const Machine_Value* arguments) {
+                                    const Ring2_Value* arguments) {
   if (numberOfArguments == 1) {
     Ring2_String* path = Machine_Extensions_getStringArgument(numberOfArguments, arguments, 0);
     Machine_Images_Image_constructFromPath(self, path);
@@ -92,7 +92,7 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
                                                   Machine_ByteBuffer* byteBuffer) {
   // (1) Supertype constructor.
   static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
+  static const Ring2_Value ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_Image_construct((Machine_Image*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
 
   // (3) Load image data.
@@ -227,7 +227,7 @@ void Machine_Images_Image_constructDirect(Machine_Images_Image* self,
                                           Ring2_Integer height, Machine_ByteBuffer* pixels) {
   // (1) Supertype constructor.
   static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
+  static const Ring2_Value ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_Image_construct((Machine_Image*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
 
   // (3) Store.
@@ -249,8 +249,8 @@ void Machine_Images_Image_constructDirect(Machine_Images_Image* self,
 Machine_Images_Image* Machine_Images_Image_createImageFromPath(Ring2_String* path) {
   Machine_ClassType* ty = Machine_Images_Image_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 1;
-  Machine_Value ARGUMENTS[1];
-  Machine_Value_setString(&ARGUMENTS[0], path);
+  Ring2_Value ARGUMENTS[1];
+  Ring2_Value_setString(&ARGUMENTS[0], path);
   Machine_Images_Image* self
       = (Machine_Images_Image*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
@@ -262,11 +262,11 @@ Machine_Images_Image* Machine_Images_Image_createImageDirect(Machine_PixelFormat
                                                              Machine_ByteBuffer* pixels) {
   Machine_ClassType* ty = Machine_Images_Image_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 4;
-  Machine_Value ARGUMENTS[4];
-  Machine_Value_setInteger(&ARGUMENTS[0], pixelFormat);
-  Machine_Value_setInteger(&ARGUMENTS[1], width);
-  Machine_Value_setInteger(&ARGUMENTS[2], height);
-  Machine_Value_setObject(&ARGUMENTS[3], (Machine_Object*)pixels);
+  Ring2_Value ARGUMENTS[4];
+  Ring2_Value_setInteger(&ARGUMENTS[0], pixelFormat);
+  Ring2_Value_setInteger(&ARGUMENTS[1], width);
+  Ring2_Value_setInteger(&ARGUMENTS[2], height);
+  Ring2_Value_setObject(&ARGUMENTS[3], (Machine_Object*)pixels);
   Machine_Images_Image* self
       = (Machine_Images_Image*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;

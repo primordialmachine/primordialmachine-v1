@@ -46,7 +46,7 @@ struct Scene {
   Machine_VideoContext* videoContext;
 };
 
-void Scene_construct(Scene* self, size_t numberOfArguments, Machine_Value const* arguments);
+void Scene_construct(Scene* self, size_t numberOfArguments, Ring2_Value const* arguments);
 
 /// @brief Invoked exactly once before a sequence of calls to onCanvasSizeChanged and update.
 /// @param self This scene.

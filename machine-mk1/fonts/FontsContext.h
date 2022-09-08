@@ -32,7 +32,7 @@ struct Machine_Fonts_FontsContext {
 /// @param self This fonts context.
 /// @param numberOfArguments, arguments The arguments.
 /// <code>(Machine.ImagesContext imagesContext)</code>
-void Machine_Fonts_FontsContext_construct(Machine_Fonts_FontsContext* self, size_t numberOfArguments, Machine_Value const* arguments);
+void Machine_Fonts_FontsContext_construct(Machine_Fonts_FontsContext* self, size_t numberOfArguments, Ring2_Value const* arguments);
 
 Machine_Fonts_FontsContext* Machine_Fonts_FontsContext_create(Machine_VideoContext* videoContext, Machine_ImagesContext* imagesContext);
 

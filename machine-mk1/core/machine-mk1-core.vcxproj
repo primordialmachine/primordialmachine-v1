@@ -29,12 +29,10 @@
     <ClCompile Include="Runtime\Io\_FileHandle.c" />
     <ClCompile Include="Runtime\Io\_FileMapping.c" />
     <ClCompile Include="Runtime\Machine.c" />
-    <ClCompile Include="Runtime\Object\Object.c" />
     <ClCompile Include="Runtime\StackModule.c" />
     <ClCompile Include="Runtime\StaticVariablesModule.c" />
     <ClCompile Include="Runtime\StringBuffer.c" />
     <ClCompile Include="Runtime\Time.c" />
-    <ClCompile Include="Runtime\Type.c" />
     <ClCompile Include="Runtime\WeakReference.c" />
     <ClCompile Include="_Runtime.c" />
   </ItemGroup>

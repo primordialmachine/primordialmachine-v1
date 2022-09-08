@@ -182,7 +182,7 @@ static void Scene4_constructClass(Scene4_Class* self) {
   ((Scene_Class*)self)->onShutdown = (Scene_OnShutdownCallback*)&Scene4_onShutdown;
 }
 
-void Scene4_construct(Scene4* self, size_t numberOfArguments, Machine_Value const* arguments) {
+void Scene4_construct(Scene4* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   Scene_construct((Scene*)self, numberOfArguments, arguments);
   Machine_setClassType((Machine_Object*)self, Scene4_getType());
 }
@@ -194,8 +194,8 @@ void Scene4_destruct(Scene4* self) {
 Scene4* Scene4_create(Machine_VideoContext* videoContext) {
   Machine_ClassType* ty = Scene4_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 1;
-  Machine_Value ARGUMENTS[1];
-  Machine_Value_setObject(&(ARGUMENTS[0]), (Machine_Object*)videoContext);
+  Ring2_Value ARGUMENTS[1];
+  Ring2_Value_setObject(&(ARGUMENTS[0]), (Machine_Object*)videoContext);
   Scene4* self = (Scene4*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   if (!self) {
     Ring2_jump();

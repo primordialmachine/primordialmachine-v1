@@ -44,7 +44,7 @@ static void Machine_Gl_VideoBuffer_constructClass(Machine_Gl_VideoBuffer_Class* 
   ((Machine_VideoBuffer_Class*)self)->getId = (void* (*)(Machine_VideoBuffer const*)) & Machine_Gl_VideoBuffer_getIdImpl;
 }
 
-void Machine_Gl_VideoBuffer_construct(Machine_Gl_VideoBuffer* self, size_t numberOfArguments, Machine_Value const* arguments) {
+void Machine_Gl_VideoBuffer_construct(Machine_Gl_VideoBuffer* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   Machine_VideoBuffer_construct((Machine_VideoBuffer*)self, numberOfArguments, arguments);
   glGenBuffers(1, &self->id);
   glBindBuffer(GL_ARRAY_BUFFER, self->id);
@@ -55,7 +55,7 @@ void Machine_Gl_VideoBuffer_construct(Machine_Gl_VideoBuffer* self, size_t numbe
 Machine_Gl_VideoBuffer* Machine_Gl_VideoBuffer_create() {
   Machine_ClassType* ty = Machine_Gl_VideoBuffer_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
+  static Ring2_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_Gl_VideoBuffer* self = (Machine_Gl_VideoBuffer*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

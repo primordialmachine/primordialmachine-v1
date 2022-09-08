@@ -103,7 +103,7 @@ struct Machine_VideoContext {
 };
 
 void Machine_VideoContext_construct(Machine_VideoContext* self, size_t numberOfArguments,
-                                    Machine_Value const* arguments);
+                                    Ring2_Value const* arguments);
 
 /// @brief Set the clear color.
 /// @param self This video context.

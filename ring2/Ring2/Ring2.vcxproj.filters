@@ -51,12 +51,6 @@
     <Filter Include="Quelldateien\Ring2\TypeSystem">
       <UniqueIdentifier>{2727a010-5070-407b-9643-2a97ef514935}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headerdateien\Ring2\Old">
-      <UniqueIdentifier>{afd17c8b-a1bd-4085-a755-6f70d188f1e3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Quelldateien\Ring2\Old">
-      <UniqueIdentifier>{c6158eb6-4b48-4f18-9b01-83c9c4a66516}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring2\JumpTarget.h">
@@ -104,10 +98,7 @@
     <ClInclude Include="Ring2\Context.h">
       <Filter>Headerdateien\Ring2</Filter>
     </ClInclude>
-    <ClInclude Include="Ring2\Types\ForeignFunction.h">
-      <Filter>Headerdateien\Ring2\Types</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring2\Operations\ForeignFunction.h">
+    <ClInclude Include="Ring2\Operations\ForeignProcedure.h">
       <Filter>Headerdateien\Ring2\Operations</Filter>
     </ClInclude>
     <ClInclude Include="Ring2\Gc.h">
@@ -167,12 +158,6 @@
     <ClInclude Include="Ring2\Types\ForeignProcedure.h">
       <Filter>Headerdateien\Ring2\Types</Filter>
     </ClInclude>
-    <ClInclude Include="Ring2\Old\Object.h">
-      <Filter>Headerdateien\Ring2\Old</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring2\Old\Value.h">
-      <Filter>Headerdateien\Ring2\Old</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring2\JumpTarget.c">
@@ -219,12 +204,6 @@
     </ClCompile>
     <ClCompile Include="Ring2\Context.c">
       <Filter>Quelldateien\Ring2</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring2\Types\ForeignFunction.c">
-      <Filter>Quelldateien\Ring2\Types</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring2\Operations\ForeignFunction.c">
-      <Filter>Quelldateien\Ring2\Operations</Filter>
     </ClCompile>
     <ClCompile Include="Ring2\Gc.c">
       <Filter>Quelldateien\Ring2</Filter>
@@ -280,8 +259,8 @@
     <ClCompile Include="Ring2\Types\ForeignProcedure.c">
       <Filter>Quelldateien\Ring2\Types</Filter>
     </ClCompile>
-    <ClCompile Include="Ring2\Old\Value.c">
-      <Filter>Quelldateien\Ring2\Old</Filter>
+    <ClCompile Include="Ring2\Operations\ForeignProcedure.c">
+      <Filter>Quelldateien\Ring2\Operations</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

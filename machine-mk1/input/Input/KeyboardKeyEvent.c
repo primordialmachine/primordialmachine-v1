@@ -29,7 +29,7 @@ static void Machine_KeyboardKeyEvent_visit(
     Machine_KeyboardKeyEvent* self) { /*Intentionally empty.*/
 }
 
-static Ring2_String* Machine_KeyboardKeyEvent_toStringImpl(Machine_KeyboardKeyEvent const* self) {
+static Ring2_String* Machine_KeyboardKeyEvent_toStringImpl(Ring2_Context *context, Machine_KeyboardKeyEvent const* self) {
   Machine_StringBuffer* stringBuffer = Machine_StringBuffer_create();
 
   Machine_StringBuffer_appendBytes(stringBuffer, "{ ", strlen("{ "));
@@ -54,15 +54,15 @@ static Ring2_String* Machine_KeyboardKeyEvent_toStringImpl(Machine_KeyboardKeyEv
 
 static void Machine_KeyboardKeyEvent_constructClass(Machine_KeyboardKeyEvent_Class* self) {
   ((Machine_Object_Class*)self)->toString
-      = (Ring2_String * (*)(Machine_Object const*)) & Machine_KeyboardKeyEvent_toStringImpl;
+      = (Ring2_String * (*)(Ring2_Context *, Machine_Object const*)) & Machine_KeyboardKeyEvent_toStringImpl;
 }
 
 static void Machine_KeyboardKeyEvent_construct(Machine_KeyboardKeyEvent* self,
                                                size_t numberOfArguments,
-                                               Machine_Value const* arguments) {
+                                               Ring2_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  self->key = Machine_Value_getInteger(&arguments[0]);
-  self->action = Machine_Value_getInteger(&arguments[1]);
+  self->key = Ring2_Value_getInteger(&arguments[0]);
+  self->action = Ring2_Value_getInteger(&arguments[1]);
   Machine_setClassType((Machine_Object*)self, Machine_KeyboardKeyEvent_getType());
 }
 
@@ -74,10 +74,10 @@ Machine_KeyboardKeyEvent* Machine_KeyboardKeyEvent_create(Machine_KeyboardKeys k
                                                           Machine_KeyboardKeyActions keyAction) {
   Machine_ClassType* ty = Machine_KeyboardKeyEvent_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 2;
-  Machine_Value ARGUMENTS[2]
-      = { Machine_Value_StaticInitializerVoid(), Machine_Value_StaticInitializerVoid() };
-  Machine_Value_setInteger(&ARGUMENTS[0], key);
-  Machine_Value_setInteger(&ARGUMENTS[1], keyAction);
+  Ring2_Value ARGUMENTS[2]
+      = { Ring2_Value_StaticInitializerVoid(), Ring2_Value_StaticInitializerVoid() };
+  Ring2_Value_setInteger(&ARGUMENTS[0], key);
+  Ring2_Value_setInteger(&ARGUMENTS[1], keyAction);
   Machine_KeyboardKeyEvent* self
       = (Machine_KeyboardKeyEvent*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;

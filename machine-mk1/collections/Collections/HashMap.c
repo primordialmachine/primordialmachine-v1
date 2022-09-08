@@ -15,8 +15,8 @@ typedef struct _MapNode _MapNode;
 struct _MapNode {
   _MapNode* next;
   int64_t hashValue;
-  Machine_Value key;
-  Machine_Value value;
+  Ring2_Value key;
+  Ring2_Value value;
 };
 
 typedef struct _Map _Map;
@@ -34,19 +34,19 @@ static size_t const MAXIMAL_CAPACITY = SIZE_MAX / sizeof(_MapNode*);
 #include <math.h>
 #include <float.h>
 
-static Ring2_Boolean defaultEqual(Machine_Value const* x, Machine_Value const* y) {
+static Ring2_Boolean defaultEqual(Ring2_Value const* x, Ring2_Value const* y) {
   if (x->tag != y->tag)
     return Ring2_Boolean_False;
-  if (Machine_Value_isReal32(x)) {
+  if (Ring2_Value_isReal32(x)) {
     // If only one value is NaN, then the values are not equal.
     // If both values are are NaN, then the values are equal.
     // If either value is NaN, normal IEEE754 comparison applies.
-    if (isnan(Machine_Value_getReal32(x)) || isnan(Machine_Value_getReal32(y))) {
-      return isnan(Machine_Value_getReal32(x)) && isnan(Machine_Value_getReal32(y));
+    if (isnan(Ring2_Value_getReal32(x)) || isnan(Ring2_Value_getReal32(y))) {
+      return isnan(Ring2_Value_getReal32(x)) && isnan(Ring2_Value_getReal32(y));
     }
     return x == y;
   } else {
-    return Machine_Value_isEqualTo(x, y);
+    return Ring2_Value_isEqualTo(x, y);
   }
 }
 
@@ -92,9 +92,9 @@ static void maybeResize(Machine_HashMap* self) {
 
 #include <assert.h>
 
-static void set(Machine_HashMap* self, Machine_Value key, Machine_Value value) {
+static void set(Machine_HashMap* self, Ring2_Value key, Ring2_Value value) {
   _Map* pimpl = (_Map*)self->pimpl;
-  Ring2_Integer hashValue = Machine_Value_getHashValue(&key);
+  Ring2_Integer hashValue = Ring2_Value_getHashValue(&key);
   int64_t hashIndex = hashValue % pimpl->capacity;
   assert(hashIndex >= 0);
   _MapNode* node;
@@ -121,9 +121,9 @@ static void set(Machine_HashMap* self, Machine_Value key, Machine_Value value) {
   maybeResize(self);
 }
 
-static Machine_Value get(Machine_HashMap const* self, Machine_Value key) {
+static Ring2_Value get(Machine_HashMap const* self, Ring2_Value key) {
   _Map const* pimpl = (_Map const*)self->pimpl;
-  Ring2_Integer hashValue = Machine_Value_getHashValue(&key);
+  Ring2_Integer hashValue = Ring2_Value_getHashValue(&key);
   int64_t hashIndex = hashValue % pimpl->capacity;
   assert(hashIndex >= 0);
   for (_MapNode* node = pimpl->buckets[hashIndex]; NULL != node; node = node->next) {
@@ -133,8 +133,8 @@ static Machine_Value get(Machine_HashMap const* self, Machine_Value key) {
       }
     }
   }
-  Machine_Value value;
-  Machine_Value_setVoid(&value, Ring2_Void_Void);
+  Ring2_Value value;
+  Ring2_Value_setVoid(&value, Ring2_Void_Void);
   return value;
 }
 
@@ -161,8 +161,8 @@ static Machine_List* toList(Machine_HashMap const* self) {
   for (size_t i = 0, n = map->capacity; i < n; ++i) {
     for (_MapNode* node = map->buckets[i]; NULL != node; node = node->next) {
       Machine_Pair* pair = Machine_Pair_create(node->key, node->value);
-      Machine_Value temporary;
-      Machine_Value_setObject(&temporary, (Machine_Object*)pair);
+      Ring2_Value temporary;
+      Ring2_Value_setObject(&temporary, (Machine_Object*)pair);
       Machine_List_append(list, temporary);
     }
   }
@@ -177,8 +177,8 @@ static void Machine_HashMap_implement_Machine_Collection(Machine_Collection_Disp
 }
 
 static void Machine_HashMap_implement_Machine_Map(Machine_Map_Dispatch* self) {
-  self->get = (Machine_Value(*)(Machine_Map const*, Machine_Value)) & get;
-  self->set = (void (*)(Machine_Map*, Machine_Value, Machine_Value)) & set;
+  self->get = (Ring2_Value(*)(Machine_Map const*, Ring2_Value)) & get;
+  self->set = (void (*)(Machine_Map*, Ring2_Value, Ring2_Value)) & set;
   self->toList = (Machine_List * (*)(Machine_Map const*)) & toList;
 }
 
@@ -198,7 +198,7 @@ static void Machine_HashMap_constructClass(Machine_HashMap_Class* self) {
 }
 
 void Machine_HashMap_construct(Machine_HashMap* self, size_t numberOfArguments,
-                               Machine_Value const* arguments) {
+                               Ring2_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   _Map* pimpl = NULL;
   if (Ring1_Memory_allocate(&pimpl, sizeof(_Map))) {
@@ -222,7 +222,7 @@ void Machine_HashMap_construct(Machine_HashMap* self, size_t numberOfArguments,
 Machine_HashMap* Machine_HashMap_create() {
   Machine_ClassType* ty = Machine_HashMap_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
+  static Ring2_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_HashMap* self
       = (Machine_HashMap*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;

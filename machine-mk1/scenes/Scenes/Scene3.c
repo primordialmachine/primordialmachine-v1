@@ -123,7 +123,8 @@ static void Scene3_startup(Scene3* self) {
       self->binding, Ring2_String_create(Ring2_Context_get(), "vertex_color", strlen("vertex_color") + 1), 1);
   Machine_Binding_setVariableBinding(
       self->binding,
-      Ring2_String_create(Ring2_Context_get(), "vertex_texture_coordinate_1",
+      Ring2_String_create(Ring2_Context_get(),
+                          "vertex_texture_coordinate_1",
                           strlen("vertex_texture_coordinate_1") + 1),
       2);
 
@@ -177,7 +178,7 @@ static void Scene3_constructClass(Scene3_Class* self) {
   ((Scene_Class*)self)->onShutdown = (Scene_OnShutdownCallback*)&Scene3_shutdown;
 }
 
-void Scene3_construct(Scene3* self, size_t numberOfArguments, Machine_Value const* arguments) {
+void Scene3_construct(Scene3* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   Scene_construct((Scene*)self, numberOfArguments, arguments);
   Machine_setClassType((Machine_Object*)self, Scene3_getType());
 }
@@ -193,8 +194,8 @@ void Scene3_destruct(Scene3* self) {
 Scene3* Scene3_create(Machine_VideoContext* videoContext) {
   Machine_ClassType* ty = Scene3_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 1;
-  Machine_Value ARGUMENTS[1];
-  Machine_Value_setObject(&(ARGUMENTS[0]), (Machine_Object*)videoContext);
+  Ring2_Value ARGUMENTS[1];
+  Ring2_Value_setObject(&(ARGUMENTS[0]), (Machine_Object*)videoContext);
   Scene3* self = (Scene3*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   if (!self) {
     Ring2_jump();

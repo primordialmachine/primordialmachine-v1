@@ -13,58 +13,72 @@
 
 #include "Ring2/Configuration.h"
 
-#if defined(Ring2_Configuration_withForeignFunction) && 1 == Ring2_Configuration_withForeignFunction
+#if defined(Ring2_Configuration_withForeignProcedure) && 1 == Ring2_Configuration_withForeignProcedure
 
 #include "Ring1/Intrinsic/CheckReturn.h"
 #include <stdint.h>
 #include <stdbool.h>
 typedef struct Ring2_Context Ring2_Context; // Forward declaration.
 typedef struct Ring2_String Ring2_String;   // Forward declaration.
-typedef struct Machine_Value Machine_Value; // Forward declaration.
+typedef struct Ring2_Value Ring2_Value; // Forward declaration.
 
 /// @brief The C-level representation of the <code>ForeignProcedure</code> type.
-typedef void(Machine_ForeignProcedure)(Ring2_Context* context,
-                                       Machine_Value *result,
-                                       size_t numberOfArguments,
-                                       Machine_Value const* arguments);
+typedef void(Ring2_ForeignProcedure)(Ring2_Context* context,
+                                     Ring2_Value *result,
+                                     size_t numberOfArguments,
+                                     Ring2_Value const* arguments);
 
 Ring1_CheckReturn() int64_t
-Machine_ForeignProcedure_getHashValue
+Ring2_ForeignProcedure_getHashValue
   (
     Ring2_Context* context,
-    Machine_ForeignProcedure *x
+    Ring2_ForeignProcedure *x
   );
 
 /// @brief
-/// Compare two <code>ForeignProceduree</code> values for equality.
+/// Get if a <code>Ring2_ForeignProcedure</code> value is in an "equal to" relation with another <code>Ring2_ForeignProcedure</code> value.
 /// @param x
-/// The first <code>ForeignProceduree</code> value.
+/// The (reference to the) first <code>Ring2_ForeignProcedure</code> values.
 /// @param y
-/// The second <code>ForeignProceduree</code> value.
+/// The (reference to the) first <code>Ring2_ForeignProcedure</code> values.
 /// @return
-/// @a true if
-///   the first <code>ForeignProceduree</code> value
-/// is equal to
-///   the second <code>ForeignProceduree</code> value
-/// . @a false otherwise.
+/// @a true if the first <code>Ring2_ForeignProcedure</code> value is in an "equal to" relation with the second <code>Ring2_ForeignProcedure</code> value.
+/// @a false otherwise.
 Ring1_CheckReturn() bool
-Machine_ForeignProcedure_isEqualTo
+Ring2_ForeignProcedure_isEqualTo
   (
     Ring2_Context *context,
-    Machine_ForeignProcedure* x,
-    Machine_ForeignProcedure* y
+    Ring2_ForeignProcedure* x,
+    Ring2_ForeignProcedure* y
+  );
+
+/// @brief
+/// Get if a <code>Ring2_ForeignProcedure</code> value is in a "not equal to" relation with another <code>Ring2_ForeignProcedure</code> value.
+/// @param x
+/// The (reference to the) first <code>Ring2_ForeignProcedure</code> values.
+/// @param y
+/// The (reference to the) first <code>Ring2_ForeignProcedure</code> values.
+/// @return
+/// @a true if the first <code>Ring2_ForeignProcedure</code> value is in a "not equal to" relation with the second <code>Ring2_ForeignProcedure</code> value.
+/// @a false otherwise.
+Ring1_CheckReturn() bool
+Ring2_ForeignProcedure_isNotEqualTo
+  (
+    Ring2_Context* context,
+    Ring2_ForeignProcedure* x,
+    Ring2_ForeignProcedure* y
   );
 
 /// @brief Convert a <code>ForeignProcedure</code> value to a <code>String</code> value.
 /// @param x The <code>ForeignProcedure</code> value.
 /// @return The <code>String</code> value.
 Ring1_CheckReturn() Ring2_String *
-Machine_ForeignProcedure_toString
+Ring2_ForeignProcedure_toString
   (
     Ring2_Context *context,
-    Machine_ForeignProcedure *x
+    Ring2_ForeignProcedure *x
   );
 
-#endif // Ring2_Configuration_withForeignFunction
+#endif // Ring2_Configuration_withForeignProcedure
 
 #endif // RING2_TYPES_FOREIGNPROCEDURE_H_INCLUDED

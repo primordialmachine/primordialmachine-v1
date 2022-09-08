@@ -6,7 +6,7 @@
 MACHINE_DECLARE_CLASSTYPE(Rectangle2Scene)
 
 void Rectangle2Scene_construct(Rectangle2Scene* self, size_t numberOfArguments,
-                               Machine_Value const* arguments);
+                               Ring2_Value const* arguments);
 
 Rectangle2Scene* Rectangle2Scene_create(Machine_VideoContext *videoContext);
 

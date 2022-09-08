@@ -11,7 +11,7 @@ static void Machine_Gdl_Parser_visit(Machine_Gdl_Parser* self) {
   }
 }
 
-static void Machine_Gdl_Parser_construct(Machine_Gdl_Parser* self, size_t numberOfArguments, Machine_Value const* arguments) {
+static void Machine_Gdl_Parser_construct(Machine_Gdl_Parser* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->scanner = Machine_Gdl_Scanner_create(Ring2_String_create(Ring2_Context_get(), "<empty input>", strlen("<empty input>")), Machine_ByteBuffer_create());
   Machine_setClassType((Machine_Object*)self, Machine_Gdl_Parser_getType());
@@ -23,7 +23,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gdl_Parser, Machine_Object, &Machine_Gdl_Parser
 Machine_Gdl_Parser* Machine_Gdl_Parser_create() {
   Machine_ClassType* ty = Machine_Gdl_Parser_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
+  static Ring2_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_Gdl_Parser* self = (Machine_Gdl_Parser*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }
@@ -116,19 +116,19 @@ static Machine_Gdl_Node* parseValue(Machine_Gdl_Parser* self) {
 }
 
 static Machine_Gdl_Node* parsePair(Machine_Gdl_Parser* self) {
-  Machine_Value temporary;
+  Ring2_Value temporary;
 
   Machine_Gdl_Node* pairNode = Machine_Gdl_Node_create(Machine_Gdl_NodeKind_Pair, NULL);
   Machine_Gdl_Node* keyNode = parseKey(self);
   {
-    Machine_Value_setObject(&temporary, (Machine_Object*)keyNode);
+    Ring2_Value_setObject(&temporary, (Machine_Object*)keyNode);
     Machine_List_append(pairNode->children, temporary);
   }
   checkKind(self, Machine_Gdl_TokenKind_Colon);
   next(self);
   Machine_Gdl_Node* valueNode = parseValue(self);
   {
-    Machine_Value_setObject(&temporary, (Machine_Object*)valueNode);
+    Ring2_Value_setObject(&temporary, (Machine_Object*)valueNode);
     Machine_List_append(pairNode->children, temporary);
   }
   return pairNode;
@@ -139,8 +139,8 @@ static Machine_Gdl_Node *parseList(Machine_Gdl_Parser* self) {
   Machine_Gdl_Node* parent = Machine_Gdl_Node_create(Machine_Gdl_NodeKind_List, NULL);
   while (currentKind(self) != Machine_Gdl_TokenKind_EndOfInput && currentKind(self) != Machine_Gdl_TokenKind_RightSquareBracket) {
     Machine_Gdl_Node* child = parseValue(self);
-    Machine_Value temporary;
-    Machine_Value_setObject(&temporary, (Machine_Object*)child);
+    Ring2_Value temporary;
+    Ring2_Value_setObject(&temporary, (Machine_Object*)child);
     Machine_List_append(parent->children, temporary);
     if (currentKind(self) == Machine_Gdl_TokenKind_Comma) {
       next(self);
@@ -156,8 +156,8 @@ static Machine_Gdl_Node* parseMap(Machine_Gdl_Parser* self) {
   Machine_Gdl_Node* parent = Machine_Gdl_Node_create(Machine_Gdl_NodeKind_Map, NULL);
   while (currentKind(self) != Machine_Gdl_TokenKind_EndOfInput && currentKind(self) != Machine_Gdl_TokenKind_RightCurlyBracket) {
     Machine_Gdl_Node* child = parsePair(self);
-    Machine_Value temporary;
-    Machine_Value_setObject(&temporary, (Machine_Object*)child);
+    Ring2_Value temporary;
+    Ring2_Value_setObject(&temporary, (Machine_Object*)child);
     Machine_List_append(parent->children, temporary);
     if (currentKind(self) == Machine_Gdl_TokenKind_Comma) {
       next(self);
@@ -176,14 +176,14 @@ Machine_Gdl_Node* Machine_Gdl_Parser_parse(Machine_Gdl_Parser* self, Ring2_Strin
   switch (currentKind(self)) {
   case Machine_Gdl_TokenKind_LeftSquareBracket: {
     Machine_Gdl_Node* child = parseList(self);
-    Machine_Value temporary;
-    Machine_Value_setObject(&temporary, (Machine_Object*)child);
+    Ring2_Value temporary;
+    Ring2_Value_setObject(&temporary, (Machine_Object*)child);
     Machine_List_append(parent->children, temporary);
   } break;
   case Machine_Gdl_TokenKind_LeftCurlyBracket: {
     Machine_Gdl_Node* child = parseMap(self);
-    Machine_Value temporary;
-    Machine_Value_setObject(&temporary, (Machine_Object*)child);
+    Ring2_Value temporary;
+    Ring2_Value_setObject(&temporary, (Machine_Object*)child);
     Machine_List_append(parent->children, temporary);
   } break;
   default:

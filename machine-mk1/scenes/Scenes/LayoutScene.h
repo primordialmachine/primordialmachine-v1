@@ -6,7 +6,7 @@
 MACHINE_DECLARE_CLASSTYPE(LayoutScene)
 
 void LayoutScene_construct(LayoutScene* self, size_t numberOfArguments,
-                           Machine_Value const* arguments);
+                           Ring2_Value const* arguments);
 
 LayoutScene* LayoutScene_create(Machine_VideoContext *videoContext);
 

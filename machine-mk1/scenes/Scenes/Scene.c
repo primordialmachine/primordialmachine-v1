@@ -18,7 +18,7 @@ static void Scene_constructClass(Scene_Class* self) {
   self->onKeyboardKeyEvent = &onKeyboardKeyEvent;
 }
 
-void Scene_construct(Scene* self, size_t numberOfArguments, Machine_Value const* arguments) {
+void Scene_construct(Scene* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->videoContext = (Machine_VideoContext*)Machine_Extensions_getObjectArgument(
       numberOfArguments, arguments, 0, Machine_VideoContext_getType());

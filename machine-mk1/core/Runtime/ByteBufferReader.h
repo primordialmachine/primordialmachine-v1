@@ -9,7 +9,7 @@
 MACHINE_DECLARE_CLASSTYPE(Machine_ByteBufferReader)
 
 void Machine_ByteBufferReader_construct(Machine_ByteBufferReader* self, size_t numberOfArguments,
-                                        Machine_Value const* arguments);
+                                        Ring2_Value const* arguments);
 
 /// @brief Create a Byte buffer reader.
 /// @param byteBuffer The byte buffer.

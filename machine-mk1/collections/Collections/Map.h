@@ -12,8 +12,8 @@ MACHINE_DECLARE_INTERFACETYPE(Machine_Map)
 struct Machine_Map_Dispatch {
   Machine_InterfaceDispatch parent;
 
-  void (*set)(Machine_Map* self, Machine_Value key, Machine_Value value);
-  Machine_Value (*get)(Machine_Map const* self, Machine_Value key);
+  void (*set)(Machine_Map* self, Ring2_Value key, Ring2_Value value);
+  Ring2_Value (*get)(Machine_Map const* self, Ring2_Value key);
   Machine_List* (*toList)(Machine_Map const* self);
 };
 
@@ -26,14 +26,14 @@ struct Machine_Map_Dispatch {
 /// - If a pair with an equivalent key exists in this map, that existing pair is removed.
 /// - The specified pair is added to this map.
 /// - A pair with a value <code>void</code> is not considered as part of the map.
-void Machine_Map_set(Machine_Map* self, Machine_Value key, Machine_Value value);
+void Machine_Map_set(Machine_Map* self, Ring2_Value key, Ring2_Value value);
 
 /// @brief Get the value for a key.
 /// @param self This map.
 /// @param key The key.
 /// @return The value for the key if any.
 /// If no value for that key exists, the void value is returned.
-Machine_Value Machine_Map_get(Machine_Map const* self, Machine_Value key);
+Ring2_Value Machine_Map_get(Machine_Map const* self, Ring2_Value key);
 
 /// @brief Convert the specified map to a list of key value pairs.
 /// @param self This map.

@@ -44,7 +44,7 @@ static void Machine_Gui_GroupNode_constructClass(Machine_Gui_GroupNode_Class* se
 }
 
 void Machine_Gui_GroupNode_construct(Machine_Gui_GroupNode* self, size_t numberOfArguments,
-                                     Machine_Value const* arguments) {
+                                     Ring2_Value const* arguments) {
   Machine_Gui_Widget_construct((Machine_Gui_Widget*)self, numberOfArguments, arguments);
   self->layoutModel = Machine_Gui_LayoutModel_create();
   self->children = Machine_Gui_WidgetList_create();
@@ -58,8 +58,8 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gui_GroupNode, Machine_Gui_Widget, &Machine_Gui
 Machine_Gui_GroupNode* Machine_Gui_GroupNode_create(Machine_Gui_Context* context) {
   Machine_ClassType* ty = Machine_Gui_GroupNode_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 1;
-  Machine_Value ARGUMENTS[1];
-  Machine_Value_setObject(&ARGUMENTS[0], (Machine_Object*)context);
+  Ring2_Value ARGUMENTS[1];
+  Ring2_Value_setObject(&ARGUMENTS[0], (Machine_Object*)context);
   Machine_Gui_GroupNode* self
       = (Machine_Gui_GroupNode*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;

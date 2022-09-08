@@ -21,7 +21,7 @@ static void Machine_ByteBufferReader_visit(Machine_ByteBufferReader* self) {
 }
 
 void Machine_ByteBufferReader_construct(Machine_ByteBufferReader* self, size_t numberOfArguments,
-                                        Machine_Value const* arguments) {
+                                        Ring2_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->byteBuffer = (Machine_ByteBuffer*)Machine_Extensions_getObjectArgument(
       numberOfArguments, arguments, 0, Machine_ByteBuffer_getType());
@@ -36,8 +36,8 @@ MACHINE_DEFINE_CLASSTYPE(Machine_ByteBufferReader, Machine_Object, NULL,
 Machine_ByteBufferReader* Machine_ByteBufferReader_create(Machine_ByteBuffer* byteBuffer) {
   Machine_ClassType* ty = Machine_ByteBufferReader_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 1;
-  Machine_Value arguments[1];
-  Machine_Value_setObject(&arguments[0], (Machine_Object*)byteBuffer);
+  Ring2_Value arguments[1];
+  Ring2_Value_setObject(&arguments[0], (Machine_Object*)byteBuffer);
   Machine_ByteBufferReader* self
       = (Machine_ByteBufferReader*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments);
   return self;

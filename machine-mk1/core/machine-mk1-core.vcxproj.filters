@@ -19,12 +19,6 @@
     <Filter Include="Quelldateien\Runtime">
       <UniqueIdentifier>{f40b0be6-7171-4e7e-a276-f05094bbbcb3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Quelldateien\Runtime\Object">
-      <UniqueIdentifier>{a3d5ba86-e01c-4f6b-b7ab-7d1bedbc4223}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Quelldateien\Runtime\Object">
-      <UniqueIdentifier>{d75e0342-ffd4-4e6c-8fde-e0b8b30dfc15}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Headerdateien\Runtime\Io">
       <UniqueIdentifier>{82efd535-74da-4b12-a95b-23d5f0294a4a}</UniqueIdentifier>
     </Filter>
@@ -66,20 +60,11 @@
     <ClCompile Include="Runtime\StaticVariablesModule.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
-    <ClCompile Include="Runtime\Object\Object.c">
-      <Filter>Quelldateien\Runtime\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Type.c">
-      <Filter>Quelldateien\Runtime</Filter>
-    </ClCompile>
     <ClCompile Include="Runtime\StaticVariablesModule.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
     <ClCompile Include="Runtime\StaticVariablesModule.c">
       <Filter>Quelldateien\Runtime</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\Object\Object.c">
-      <Filter>Quelldateien\Runtime\Object</Filter>
     </ClCompile>
     <ClCompile Include="Runtime\ArrayUtilities.c">
       <Filter>Quelldateien\Runtime</Filter>

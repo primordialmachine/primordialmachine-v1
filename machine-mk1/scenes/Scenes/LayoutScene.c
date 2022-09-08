@@ -147,7 +147,7 @@ static void LayoutScene_constructClass(LayoutScene_Class* self) {
 }
 
 void LayoutScene_construct(LayoutScene* self, size_t numberOfArguments,
-                           Machine_Value const* arguments) {
+                           Ring2_Value const* arguments) {
   Scene_construct((Scene*)self, numberOfArguments, arguments);
   Machine_setClassType((Machine_Object*)self, LayoutScene_getType());
 }
@@ -162,8 +162,8 @@ void LayoutScene_destruct(LayoutScene* self) {
 LayoutScene* LayoutScene_create(Machine_VideoContext* videoContext) {
   Machine_ClassType* ty = LayoutScene_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 1;
-  Machine_Value ARGUMENTS[1];
-  Machine_Value_setObject(&(ARGUMENTS[0]), (Machine_Object*)videoContext);
+  Ring2_Value ARGUMENTS[1];
+  Ring2_Value_setObject(&(ARGUMENTS[0]), (Machine_Object*)videoContext);
   LayoutScene* self = (LayoutScene*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   if (!self) {
     Ring2_jump();

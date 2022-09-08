@@ -31,7 +31,7 @@ struct Machine_Font {
 /// The following signatures are supported:
 /// <code>()</code>.
 void Machine_Font_construct(Machine_Font* self, size_t numberOfArguments,
-                            Machine_Value const* arguments);
+                            Ring2_Value const* arguments);
 
 /// @brief Get the baseline distance.
 /// @param self This font.

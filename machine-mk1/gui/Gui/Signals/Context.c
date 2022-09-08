@@ -17,7 +17,7 @@ static void Machine_Gui_Signals_Context_visit(Machine_Gui_Signals_Context* self)
 
 static void Machine_Gui_Signals_Context_construct(Machine_Gui_Signals_Context* self,
                                                   size_t numberOfArguments,
-                                                  Machine_Value const* arguments) {
+                                                  Ring2_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
 #define DEFINE(NAME, STRING) self->NAME = Ring2_String_create(Ring2_Context_get(), STRING, strlen(STRING));
 #include "Gui/Signals/Context.i"
@@ -33,7 +33,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gui_Signals_Context, Machine_Object,
 Machine_Gui_Signals_Context* Machine_Gui_Signals_Context_create() {
   Machine_ClassType* ty = Machine_Gui_Signals_Context_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
+  static Ring2_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_Gui_Signals_Context* self = (Machine_Gui_Signals_Context*)Machine_allocateClassObject(
       ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;

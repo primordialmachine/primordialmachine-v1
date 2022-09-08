@@ -1,7 +1,7 @@
 #define MACHINE_MATH_PRIVATE (1)
 #include "Math/Vector2.h"
 
-static void Machine_Math_Vector2_construct(Machine_Math_Vector2* self, size_t numberOfArguments, const Machine_Value* arguments) {
+static void Machine_Math_Vector2_construct(Machine_Math_Vector2* self, size_t numberOfArguments, const Ring2_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->x = 0.f;
   self->y = 0.f;
@@ -14,7 +14,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Math_Vector2, Machine_Object, NULL,
 Machine_Math_Vector2* Machine_Math_Vector2_create() {
   Machine_ClassType* ty = Machine_Math_Vector2_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
+  static const Ring2_Value ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_Math_Vector2* self = (Machine_Math_Vector2*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

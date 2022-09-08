@@ -12,11 +12,11 @@ static void addPrerequisites(Machine_InterfaceType* self) {
 
 MACHINE_DEFINE_INTERFACETYPE(Machine_Map, &addPrerequisites)
 
-void Machine_Map_set(Machine_Map* self, Machine_Value key, Machine_Value value) {
+void Machine_Map_set(Machine_Map* self, Ring2_Value key, Ring2_Value value) {
   MACHINE_VIRTUALIFACECALL_IMPL(Machine_Map, set, , self, key, value);
 }
 
-Machine_Value Machine_Map_get(Machine_Map const* self, Machine_Value key) {
+Ring2_Value Machine_Map_get(Machine_Map const* self, Ring2_Value key) {
   MACHINE_VIRTUALIFACECALL_IMPL(Machine_Map, get, return, self, key);
 }
 

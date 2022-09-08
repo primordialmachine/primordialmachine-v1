@@ -25,7 +25,7 @@ struct Machine_ShaderProgram {
 };
 
 void Machine_ShaderProgram_construct(Machine_ShaderProgram* self, size_t numberOfArguments,
-                                     Machine_Value const* arguments);
+                                     Ring2_Value const* arguments);
 
 /// @brief Get the number of inputs to this shader program.
 /// @param self This shader program.

@@ -25,7 +25,7 @@ static void Machine_VertexDescriptor_visit(Machine_VertexDescriptor* self);
 
 static void Machine_VertexDescriptor_construct(Machine_VertexDescriptor* self,
                                                size_t numberOfArguments,
-                                               Machine_Value const* arguments);
+                                               Ring2_Value const* arguments);
 
 static void Machine_VertexDescriptor_destruct(Machine_VertexDescriptor* self);
 
@@ -47,7 +47,7 @@ static void Machine_VertexDescriptor_visit(Machine_VertexDescriptor* self) {
 
 static void Machine_VertexDescriptor_construct(Machine_VertexDescriptor* self,
                                                size_t numberOfArguments,
-                                               Machine_Value const* arguments) {
+                                               Ring2_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->n = 0;
   self->p = NULL;
@@ -67,7 +67,7 @@ static void Machine_VertexDescriptor_destruct(Machine_VertexDescriptor* self) {
 Machine_VertexDescriptor* Machine_VertexDescriptor_create() {
   Machine_ClassType* ty = Machine_VertexDescriptor_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
+  static Ring2_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
 #if defined(TRACE_VISIT) && (1) == TRACE_VISIT
   Machine_VertexDescriptor* self
       = (Machine_VertexDescriptor*)Machine_allocateClassObjec(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);

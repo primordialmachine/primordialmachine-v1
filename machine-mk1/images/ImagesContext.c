@@ -25,7 +25,7 @@ static void constructClass(Machine_Images_ImagesContext_Class* self) {
 MACHINE_DEFINE_CLASSTYPE(Machine_Images_ImagesContext, Machine_ImagesContext, NULL,
                          &Machine_Images_ImagesContext_construct, NULL, &constructClass, NULL);
 
-void Machine_Images_ImagesContext_construct(Machine_Images_ImagesContext* self, size_t numberOfArguments, Machine_Value const* arguments) {
+void Machine_Images_ImagesContext_construct(Machine_Images_ImagesContext* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   Machine_ImagesContext_construct((Machine_ImagesContext*)self, numberOfArguments, arguments);
   Machine_setClassType((Machine_Object*)self, Machine_Images_ImagesContext_getType());
 }
@@ -33,7 +33,7 @@ void Machine_Images_ImagesContext_construct(Machine_Images_ImagesContext* self, 
 Machine_Images_ImagesContext* Machine_Images_ImagesContext_create() {
   Machine_ClassType* ty = Machine_Images_ImagesContext_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Machine_Value ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
+  static const Ring2_Value ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_Images_ImagesContext* self = (Machine_Images_ImagesContext*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

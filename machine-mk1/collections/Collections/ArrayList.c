@@ -8,15 +8,15 @@
 #include "Collections/Collection.h"
 #include "Collections/List.h"
 
-static size_t const maximalCapacity = SIZE_MAX / sizeof(Machine_Value);
+static size_t const maximalCapacity = SIZE_MAX / sizeof(Ring2_Value);
 
-static void append(Machine_ArrayList* self, Machine_Value value);
+static void append(Machine_ArrayList* self, Ring2_Value value);
 
-static void prepend(Machine_ArrayList* self, Machine_Value value);
+static void prepend(Machine_ArrayList* self, Ring2_Value value);
 
-static void insertAt(Machine_ArrayList* self, size_t index, Machine_Value value);
+static void insertAt(Machine_ArrayList* self, size_t index, Ring2_Value value);
 
-static Machine_Value getAt(Machine_ArrayList const* self, size_t index);
+static Ring2_Value getAt(Machine_ArrayList const* self, size_t index);
 
 static void removeAt(Machine_ArrayList* self, size_t index);
 
@@ -48,10 +48,10 @@ static void Machine_ArrayList_implement_Machine_Collection(Machine_Collection_Di
 }
 
 static void Machine_ArrayList_implement_Machine_List(Machine_List_Dispatch* self) {
-  self->append = (void (*)(Machine_List*, Machine_Value)) & append;
-  self->prepend = (void (*)(Machine_List*, Machine_Value)) & prepend;
-  self->insertAt = (void (*)(Machine_List*, size_t, Machine_Value)) & insertAt;
-  self->getAt = (Machine_Value(*)(Machine_List const*, size_t)) & getAt;
+  self->append = (void (*)(Machine_List*, Ring2_Value)) & append;
+  self->prepend = (void (*)(Machine_List*, Ring2_Value)) & prepend;
+  self->insertAt = (void (*)(Machine_List*, size_t, Ring2_Value)) & insertAt;
+  self->getAt = (Ring2_Value(*)(Machine_List const*, size_t)) & getAt;
   self->removeAt = (void (*)(Machine_List*, size_t)) & removeAt;
   self->removeAtFast = (void (*)(Machine_List*, size_t)) & removeAtFast;
 #if defined(Machine_List_withReverse) && Machine_List_withReverse == 1
@@ -75,7 +75,7 @@ static void Machine_ArrayList_constructClass(Machine_ArrayList_Class* self) {
 }
 
 void Machine_ArrayList_construct(Machine_ArrayList* self, size_t numberOfArguments,
-                                 Machine_Value const* arguments) {
+                                 Ring2_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->size = 0;
   self->capacity = 0;
@@ -90,18 +90,18 @@ MACHINE_DEFINE_CLASSTYPE(Machine_ArrayList, Machine_Object, &Machine_ArrayList_v
                          &Machine_ArrayList_construct, &Machine_ArrayList_destruct,
                          &Machine_ArrayList_constructClass, &Machine_ArrayList_implementInterfaces)
 
-static void append(Machine_ArrayList* self, Machine_Value value) {
+static void append(Machine_ArrayList* self, Ring2_Value value) {
   Ring2_assertNotNull(self);
   Machine_List_insertAt((Machine_List*)self, Machine_Collection_getSize((Machine_Collection*)self),
                         value);
 }
 
-static void prepend(Machine_ArrayList* self, Machine_Value value) {
+static void prepend(Machine_ArrayList* self, Ring2_Value value) {
   Ring2_assertNotNull(self);
   Machine_List_insertAt((Machine_List*)self, 0, value);
 }
 
-static void insertAt(Machine_ArrayList* self, size_t index, Machine_Value value) {
+static void insertAt(Machine_ArrayList* self, size_t index, Ring2_Value value) {
   if ((self->capacity - self->size) == 0) {
     size_t newCapacity;
     if (Ring1_Memory_recomputeSize_sz(0, maximalCapacity, self->capacity, 1,
@@ -109,7 +109,7 @@ static void insertAt(Machine_ArrayList* self, size_t index, Machine_Value value)
       Ring2_jump();
     }
     void* newElements = NULL;
-    if (Ring1_Memory_reallocateArray(&newElements, self->elements, newCapacity, sizeof(Machine_Value))) {
+    if (Ring1_Memory_reallocateArray(&newElements, self->elements, newCapacity, sizeof(Ring2_Value))) {
       Ring2_jump();
     }
     self->elements = newElements;
@@ -117,7 +117,7 @@ static void insertAt(Machine_ArrayList* self, size_t index, Machine_Value value)
   }
   if (index < self->size) {
     Ring1_Memory_copySlow(self->elements + index + 1, self->elements + index + 0,
-                          sizeof(Machine_Value) * (self->size - index));
+                          sizeof(Ring2_Value) * (self->size - index));
   }
   self->elements[index] = value;
   self->size++;
@@ -131,7 +131,7 @@ static void clear(Machine_ArrayList* self) {
   self->size = 0;
 }
 
-static Machine_Value getAt(Machine_ArrayList const* self, size_t index) {
+static Ring2_Value getAt(Machine_ArrayList const* self, size_t index) {
   if (index >= self->size) {
     Ring1_Status_set(Ring1_Status_IndexOutOfBounds);
     Ring2_jump();
@@ -146,7 +146,7 @@ static void removeAt(Machine_ArrayList* self, size_t index) {
   }
   if (index < self->size - 1) {
     Ring1_Memory_copySlow(self->elements + index + 0, self->elements + index + 1,
-                          sizeof(Machine_Value) * (self->size - index - 1));
+                          sizeof(Ring2_Value) * (self->size - index - 1));
   }
   self->size--;
 }
@@ -162,7 +162,7 @@ static void removeAtFast(Machine_ArrayList* self, size_t index) {
 
 static void Machine_ArrayList_visit(Machine_ArrayList* self) {
   for (size_t i = 0, n = self->size; i < n; ++i) {
-    Machine_Value_visit(&(self->elements[i]));
+    Ring2_Value_visit(&(self->elements[i]));
   }
 }
 
@@ -176,7 +176,7 @@ static void Machine_ArrayList_destruct(Machine_ArrayList* self) {
 Machine_ArrayList* Machine_ArrayList_create() {
   Machine_ClassType* ty = Machine_ArrayList_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
+  static Ring2_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_ArrayList* self
       = (Machine_ArrayList*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;

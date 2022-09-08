@@ -5,7 +5,7 @@
 
 MACHINE_DECLARE_CLASSTYPE(Scene3);
 
-void Scene3_construct(Scene3* self, size_t numberOfArguments, Machine_Value const* arguments);
+void Scene3_construct(Scene3* self, size_t numberOfArguments, Ring2_Value const* arguments);
 
 Scene3* Scene3_create(Machine_VideoContext *videoContext);
 

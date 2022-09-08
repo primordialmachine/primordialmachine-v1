@@ -18,7 +18,7 @@ struct Machine_ByteBuffer {
 };
 
 static void Machine_ByteBuffer_construct(Machine_ByteBuffer* self, size_t numberOfArguments,
-                                         Machine_Value const* arguments) {
+                                         Ring2_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   if (Ring1_ByteBuffer_initialize(&self->byteBuffer)) {
     Ring2_jump();
@@ -36,7 +36,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_ByteBuffer, Machine_Object, NULL, &Machine_Byte
 Machine_ByteBuffer* Machine_ByteBuffer_create() {
   Machine_ClassType* ty = Machine_ByteBuffer_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
+  static Ring2_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_ByteBuffer* self
       = (Machine_ByteBuffer*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;

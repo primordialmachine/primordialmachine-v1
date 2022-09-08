@@ -96,7 +96,7 @@ static void Rectangle2Scene_constructClass(Rectangle2Scene_Class* self) {
 }
 
 void Rectangle2Scene_construct(Rectangle2Scene* self, size_t numberOfArguments,
-                               Machine_Value const* arguments) {
+                               Ring2_Value const* arguments) {
   Scene_construct((Scene*)self, numberOfArguments, arguments);
   Machine_setClassType((Machine_Object*)self, Rectangle2Scene_getType());
 }
@@ -109,8 +109,8 @@ void Rectangle2Scene_destruct(Rectangle2Scene* self) {
 Rectangle2Scene* Rectangle2Scene_create(Machine_VideoContext* videoContext) {
   Machine_ClassType* ty = Rectangle2Scene_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 1;
-  Machine_Value ARGUMENTS[1];
-  Machine_Value_setObject(&(ARGUMENTS[0]), (Machine_Object*)videoContext);
+  Ring2_Value ARGUMENTS[1];
+  Ring2_Value_setObject(&(ARGUMENTS[0]), (Machine_Object*)videoContext);
   Rectangle2Scene* self = (Rectangle2Scene*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   if (!self) {
     Ring2_jump();

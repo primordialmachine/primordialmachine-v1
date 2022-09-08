@@ -28,7 +28,7 @@ static void Machine_VideoBuffer_constructClass(Machine_VideoBuffer_Class* self) 
 }
 
 void Machine_VideoBuffer_construct(Machine_VideoBuffer* self, size_t numberOfArguments,
-                                   Machine_Value const* arguments) {
+                                   Ring2_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
 
   self->p = NULL;

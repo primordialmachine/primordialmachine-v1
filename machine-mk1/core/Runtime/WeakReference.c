@@ -5,11 +5,11 @@
 #include "Ring2/_Include.h"
 
 static void callback(void* context) {
-  Machine_Value_setVoid(&((Machine_WeakReference*)context)->value, Ring2_Void_Void);
+  Ring2_Value_setVoid(&((Machine_WeakReference*)context)->value, Ring2_Void_Void);
 }
 
 static void Machine_WeakReference_construct(Machine_WeakReference* self, size_t numberOfArguments,
-                                            Machine_Value const* arguments) {
+                                            Ring2_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->value = arguments[0];
   Ring2_Gc_Tag* tag = NULL;
@@ -28,10 +28,10 @@ static void Machine_WeakReference_construct(Machine_WeakReference* self, size_t 
   Machine_setClassType((Machine_Object*)self, Machine_WeakReference_getType());
 }
 
-Machine_WeakReference* Machine_WeakReference_create(Machine_Value value) {
+Machine_WeakReference* Machine_WeakReference_create(Ring2_Value value) {
   Machine_ClassType* ty = Machine_WeakReference_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 1;
-  Machine_Value const ARGUMENTS[] = { value };
+  Ring2_Value const ARGUMENTS[] = { value };
   Machine_WeakReference* self
       = (Machine_WeakReference*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
@@ -52,6 +52,6 @@ static void Machine_WeakReference_destruct(Machine_WeakReference* self) {
   }
 }
 
-Machine_Value Machine_WeakReference_get(Machine_WeakReference* self) {
+Ring2_Value Machine_WeakReference_get(Machine_WeakReference* self) {
   return self->value;
 }

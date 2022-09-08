@@ -358,7 +358,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gl_VideoContext, Machine_VideoContext,
                          &Machine_Gl_VideoContext_destruct, &Machine_Gl_VideoContext_constructClass,
                          NULL)
 
-void Machine_Gl_VideoContext_construct(Machine_Gl_VideoContext* self, size_t numberOfArguments, Machine_Value const* arguments) {
+void Machine_Gl_VideoContext_construct(Machine_Gl_VideoContext* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   Machine_VideoContext_construct((Machine_VideoContext*)self, numberOfArguments, arguments);
   self->clearColor[0] = 0.f;
   self->clearColor[1] = 0.f;
@@ -411,7 +411,7 @@ void Machine_Gl_VideoContext_construct(Machine_Gl_VideoContext* self, size_t num
 Machine_Gl_VideoContext* Machine_Gl_VideoContext_create() {
   Machine_ClassType* ty = Machine_Gl_VideoContext_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
+  static Ring2_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_Gl_VideoContext* self = (Machine_Gl_VideoContext*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

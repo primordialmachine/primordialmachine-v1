@@ -20,7 +20,7 @@ struct Machine_Video_Gl_Canvas {
 };
 
 void Machine_Video_Gl_Canvas_construct(Machine_Video_Gl_Canvas* self, size_t numberOfArguments,
-                                       Machine_Value const* arguments);
+                                       Ring2_Value const* arguments);
 
 Machine_Video_Gl_Canvas* Machine_Video_Gl_Canvas_create();
 

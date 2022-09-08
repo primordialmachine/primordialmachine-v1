@@ -25,7 +25,7 @@ struct Machine_VideoBuffer {
 };
 
 void Machine_VideoBuffer_construct(Machine_VideoBuffer* self, size_t numberOfArguments,
-                                   Machine_Value const* arguments);
+                                   Ring2_Value const* arguments);
 
 /// @brief Set the Bytes of this video buffer.
 /// @param self This video buffer.

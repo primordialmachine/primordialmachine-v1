@@ -13,15 +13,15 @@
 static void Machine_Binding_Node_visit(Machine_Binding_Node* self);
 
 static void Machine_Binding_Node_construct(Machine_Binding_Node* self, size_t numberOfArguments,
-                                           Machine_Value const* arguments);
+                                           Ring2_Value const* arguments);
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Binding_Node, Machine_Object, Machine_Binding_Node_visit,
                          Machine_Binding_Node_construct, NULL, NULL, NULL)
 
 static void Machine_Binding_Node_construct(Machine_Binding_Node* self, size_t numberOfArguments,
-                                           Machine_Value const* arguments) {
+                                           Ring2_Value const* arguments) {
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
+  static Ring2_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_Object_construct((Machine_Object*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   self->next = NULL;
   self->name = Machine_Extensions_getStringArgument(numberOfArguments, arguments, 0);
@@ -37,15 +37,15 @@ static void Machine_Binding_Node_visit(Machine_Binding_Node* self) {
   if (self->name) {
     Ring2_Gc_visit(Ring2_Gc_get(), self->name);
   }
-  Machine_Value_visit(&self->value);
+  Ring2_Value_visit(&self->value);
 }
 
 Machine_Binding_Node* Machine_Binding_Node_create(Ring2_String* name, Ring2_Boolean isVariable,
-                                                  Machine_Value const* value) {
+                                                  Ring2_Value const* value) {
   size_t numberOfArguments = 3;
-  Machine_Value arguments[3];
-  Machine_Value_setString(&arguments[0], name);
-  Machine_Value_setBoolean(&arguments[1], isVariable);
+  Ring2_Value arguments[3];
+  Ring2_Value_setString(&arguments[0], name);
+  Ring2_Value_setBoolean(&arguments[1], isVariable);
   arguments[2] = *value;
   Machine_ClassType* ty = Machine_Binding_Node_getType();
   Machine_Binding_Node* self
@@ -54,12 +54,12 @@ Machine_Binding_Node* Machine_Binding_Node_create(Ring2_String* name, Ring2_Bool
 }
 
 Machine_Binding_Node* Machine_Binding_Node_createVariable(Ring2_String* name,
-                                                          Machine_Value const* value) {
+                                                          Ring2_Value const* value) {
   return Machine_Binding_Node_create(name, true, value);
 }
 
 Machine_Binding_Node* Machine_Binding_Node_createConstant(Ring2_String* name,
-                                                          Machine_Value const* value) {
+                                                          Ring2_Value const* value) {
   return Machine_Binding_Node_create(name, false, value);
 }
 
@@ -72,7 +72,7 @@ static void Machine_Binding_destruct(Machine_Binding* self);
 static void Machine_Binding_visit(Machine_Binding* self);
 
 static void Machine_Binding_addUpdateConstantImpl(Machine_Binding* self, Ring2_String* name,
-                                                  Machine_Value const* value);
+                                                  Ring2_Value const* value);
 
 static void Machine_Binding_destruct(Machine_Binding* self) { /*Intentionally empty.*/
 }
@@ -93,7 +93,7 @@ static void Machine_Binding_visit(Machine_Binding* self) {
 }
 
 void Machine_Binding_construct(Machine_Binding* self, size_t numberOfArguments,
-                               Machine_Value const* arguments) {
+                               Ring2_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->dirty = true;
   self->program = (Machine_ShaderProgram*)Machine_Extensions_getObjectArgument(
@@ -107,7 +107,7 @@ void Machine_Binding_construct(Machine_Binding* self, size_t numberOfArguments,
 }
 
 static void Machine_Binding_addUpdateConstantImpl(Machine_Binding* self, Ring2_String* name,
-                                                  Machine_Value const* value) {
+                                                  Ring2_Value const* value) {
   Machine_Binding_Node* node = self->nodes;
   while (NULL != node) {
     if (Ring2_String_isEqualTo(Ring2_Context_get(), node->name, name)) {
@@ -148,7 +148,7 @@ void Machine_Binding_activate(Machine_Binding* self) {
 }
 
 void Machine_Binding_addUpdateConstant(Machine_Binding* self, Ring2_String* name,
-                                       Machine_Value const* value) {
+                                       Ring2_Value const* value) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_Binding, addUpdateConstant, name, value);
 }
 

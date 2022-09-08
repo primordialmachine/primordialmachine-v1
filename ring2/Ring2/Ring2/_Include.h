@@ -19,7 +19,6 @@
 #include "Ring2/TypeSystem/EnumerationType.h"
 #include "Ring2/TypeSystem/InterfaceType.h"
 #include "Ring2/Types/Value.h"
-#include "Ring2/Old/Value.h"
 #undef RING2_INTERNAL
 
 #endif // RING2__INCLUDE_H_INCLUDED

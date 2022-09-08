@@ -13,7 +13,7 @@
 
 #define Ring2_Configuration_withBoolean (1)
 
-#define Ring2_Configuration_withForeignFunction (1)
+#define Ring2_Configuration_withForeignProcedure (1)
 
 #define Ring2_Configuration_withInteger (1)
 

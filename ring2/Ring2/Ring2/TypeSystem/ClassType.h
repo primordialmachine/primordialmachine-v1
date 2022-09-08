@@ -16,7 +16,7 @@
 typedef struct Machine_EnumerationType Machine_EnumerationType;
 typedef struct Machine_InterfaceType Machine_InterfaceType;
 typedef struct Machine_InterfaceDispatch Machine_InterfaceDispatch;
-typedef struct Machine_Value Machine_Value;
+typedef struct Ring2_Value Ring2_Value;
 
 /// @brief The description of a class type.
 /// @detail
@@ -64,7 +64,7 @@ typedef struct Machine_InterfaceDispatchNode {
 /// @param numberOfArguments The number of elements in the array pointed to by @a arguments.
 /// @param arguments A pointer to an array of @a numberOfArguments arguments.
 typedef void(Machine_ClassObjectConstructCallback)(void* self, size_t numberOfArguments,
-                                                   Machine_Value const* arguments);
+                                                   Ring2_Value const* arguments);
 
 typedef struct Machine_CreateClassTypeArgs {
   Machine_CreateTypeArgs createTypeArgs;

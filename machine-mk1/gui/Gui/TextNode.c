@@ -43,14 +43,14 @@ static Machine_Math_Vector2 const* Machine_Gui_TextNode_getPreferredSize(
 static void Machine_Gui_TextNode_render(Machine_Gui_TextNode* self, Machine_Context2* ctx2);
 
 static void boundsChangedCallback(Ring2_Context* context,
-                                  Machine_Value *result,
+                                  Ring2_Value *result,
                                   size_t numberOfArguments,
-                                  Machine_Value const* arguments) {
+                                  Ring2_Value const* arguments) {
   Ring2_assertNotNull(result);
   Ring2_assert(2 == numberOfArguments, Ring1_Status_InvalidNumberOfArguments);
-  Machine_Gui_TextNode* self = (Machine_Gui_TextNode*)Machine_Value_getObject(&arguments[0]);
+  Machine_Gui_TextNode* self = (Machine_Gui_TextNode*)Ring2_Value_getObject(&arguments[0]);
   self->childDirty = true;
-  Machine_Value_setVoid(result, Ring2_Void_Void);
+  Ring2_Value_setVoid(result, Ring2_Void_Void);
 }
 
 static void Machine_Gui_TextNode_constructClass(Machine_Gui_TextNode_Class* self) {
@@ -62,7 +62,7 @@ static void Machine_Gui_TextNode_constructClass(Machine_Gui_TextNode_Class* self
 }
 
 void Machine_Gui_TextNode_construct(Machine_Gui_TextNode* self, size_t numberOfArguments,
-                                    Machine_Value const* arguments) {
+                                    Ring2_Value const* arguments) {
   Machine_Gui_Widget_construct((Machine_Gui_Widget*)self, numberOfArguments, arguments);
   Machine_Gui_Context* guiContext = (Machine_Gui_Context*)Machine_Extensions_getObjectArgument(
       numberOfArguments, arguments, 0, Machine_Gui_Context_getType());
@@ -89,8 +89,8 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gui_TextNode, Machine_Gui_Widget, &Machine_Gui_
 Machine_Gui_TextNode* Machine_Gui_TextNode_create(Machine_Gui_Context* context) {
   Machine_ClassType* ty = Machine_Gui_TextNode_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 1;
-  Machine_Value arguments[1] = { Machine_Value_StaticInitializerVoid() };
-  Machine_Value_setObject(&arguments[0], (Machine_Object*)context);
+  Ring2_Value arguments[1] = { Ring2_Value_StaticInitializerVoid() };
+  Ring2_Value_setObject(&arguments[0], (Machine_Object*)context);
   Machine_Gui_TextNode* self
       = (Machine_Gui_TextNode*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments);
   return self;

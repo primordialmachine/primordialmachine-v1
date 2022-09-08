@@ -30,7 +30,7 @@ static void Machine_MousePointerEvent_visit(
 }
 
 static Ring2_String* Machine_MousePointerEvent_toStringImpl(
-    Machine_MousePointerEvent const* self) {
+    Ring2_Context* context, Machine_MousePointerEvent const* self) {
   Machine_StringBuffer* stringBuffer = Machine_StringBuffer_create();
 
   Machine_StringBuffer_appendBytes(stringBuffer, "{ ", strlen("{ "));
@@ -58,16 +58,16 @@ static Ring2_String* Machine_MousePointerEvent_toStringImpl(
 
 static void Machine_MousePointerEvent_constructClass(Machine_MousePointerEvent_Class* self) {
   ((Machine_Object_Class*)self)->toString
-      = (Ring2_String * (*)(Machine_Object const*)) & Machine_MousePointerEvent_toStringImpl;
+      = (Ring2_String * (*)(Ring2_Context *context, Machine_Object const*)) & Machine_MousePointerEvent_toStringImpl;
 }
 
 static void Machine_MousePointerEvent_construct(Machine_MousePointerEvent* self,
                                                 size_t numberOfArguments,
-                                                Machine_Value const* arguments) {
+                                                Ring2_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  self->action = Machine_Value_getInteger(&arguments[0]);
-  self->x = Machine_Value_getReal32(&arguments[1]);
-  self->y = Machine_Value_getReal32(&arguments[2]);
+  self->action = Ring2_Value_getInteger(&arguments[0]);
+  self->x = Ring2_Value_getReal32(&arguments[1]);
+  self->y = Ring2_Value_getReal32(&arguments[2]);
   Machine_setClassType((Machine_Object*)self, Machine_MousePointerEvent_getType());
 }
 
@@ -79,12 +79,13 @@ Machine_MousePointerEvent* Machine_MousePointerEvent_create(Machine_MousePointer
                                                             Ring2_Real32 x, Ring2_Real32 y) {
   Machine_ClassType* ty = Machine_MousePointerEvent_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 3;
-  Machine_Value ARGUMENTS[3]
-      = { Machine_Value_StaticInitializerVoid(), Machine_Value_StaticInitializerVoid(),
-          Machine_Value_StaticInitializerVoid() };
-  Machine_Value_setInteger(&ARGUMENTS[0], action);
-  Machine_Value_setReal32(&ARGUMENTS[1], x);
-  Machine_Value_setReal32(&ARGUMENTS[2], y);
+  Ring2_Value ARGUMENTS[3]
+      = { Ring2_Value_StaticInitializerVoid(),
+          Ring2_Value_StaticInitializerVoid(),
+          Ring2_Value_StaticInitializerVoid() };
+  Ring2_Value_setInteger(&ARGUMENTS[0], action);
+  Ring2_Value_setReal32(&ARGUMENTS[1], x);
+  Ring2_Value_setReal32(&ARGUMENTS[2], y);
   Machine_MousePointerEvent* self
       = (Machine_MousePointerEvent*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;

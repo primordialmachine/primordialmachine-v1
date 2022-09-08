@@ -7,9 +7,9 @@
 static void Machine_Font_destruct(Machine_Font* self)
 {/*Intentionally empty.*/}
 
-void Machine_Font_construct(Machine_Font* self, size_t numberOfArguments, Machine_Value const* arguments) {
+void Machine_Font_construct(Machine_Font* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Machine_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
+  static Ring2_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_Object_construct((Machine_Object*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   Machine_setClassType((Machine_Object*)self, Machine_Font_getType());
 }

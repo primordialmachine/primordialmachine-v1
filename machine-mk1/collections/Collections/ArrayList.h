@@ -17,7 +17,7 @@ struct Machine_ArrayList {
   Machine_Object parent;
   size_t size;
   size_t capacity;
-  Machine_Value* elements;
+  Ring2_Value *elements;
 };
 
 /// @brief Construct this list.
@@ -25,7 +25,7 @@ struct Machine_ArrayList {
 /// @param numberOfArguments The number of arguments.
 /// @param arguments The arguments.
 void Machine_ArrayList_construct(Machine_ArrayList* self, size_t numberOfArguments,
-                                 Machine_Value const* arguments);
+                                 Ring2_Value const* arguments);
 
 /// @brief Create an empty list.
 /// @return The list.

@@ -26,7 +26,7 @@ struct Machine_Video_Canvas {
 };
 
 void Machine_Video_Canvas_construct(Machine_Video_Canvas* self, size_t numberOfArguments,
-                                    Machine_Value const* arguments);
+                                    Ring2_Value const* arguments);
 
 /// @brief Get the size, in pixels, of the frame buffers.
 /// @param self This canvas.
@@ -64,31 +64,31 @@ Ring2_Boolean Machine_Video_Canvas_getQuitRequested(Machine_Video_Canvas* self);
 /// @param self This canvas.
 void Machine_Video_Canvas_subscribeKeyboardKeyPressedEvent(Machine_Video_Canvas* self,
                                                            Machine_Object* context,
-                                                           Machine_ForeignProcedure* callback);
+                                                           Ring2_ForeignProcedure* callback);
 
 /// @brief Subscribe to keyboard key released events.
 /// @param self This canvas.
 void Machine_Video_Canvas_subscribeKeyboardKeyReleasedEvent(Machine_Video_Canvas* self,
                                                             Machine_Object* context,
-                                                            Machine_ForeignProcedure* callback);
+                                                            Ring2_ForeignProcedure* callback);
 
 /// @brief Subscribe to the mouse button pressed events.
 /// @param self This canvas.
 void Machine_Video_Canvas_subscribeMouseButtonPressedEvent(Machine_Video_Canvas* self,
                                                            Machine_Object* context,
-                                                           Machine_ForeignProcedure* callback);
+                                                           Ring2_ForeignProcedure* callback);
 
 /// @brief Subscribe to the mouse button released events.
 /// @param self This canvas.
 void Machine_Video_Canvas_subscribeMouseButtonReleasedEvent(Machine_Video_Canvas* self,
                                                             Machine_Object* context,
-                                                            Machine_ForeignProcedure* callback);
+                                                            Ring2_ForeignProcedure* callback);
 
 /// @brief Subscribe to the mouse pointer moved event signals.
 /// @param self This canvas.
 void Machine_Video_Canvas_subscribeMousePointerMovedEvent(Machine_Video_Canvas* self,
                                                           Machine_Object* context,
-                                                          Machine_ForeignProcedure* callback);
+                                                          Ring2_ForeignProcedure* callback);
 
 void Machine_Video_Canvas_addKeyboardKeyEvent(Machine_Video_Canvas* self,
                                               Machine_KeyboardKeyEvent* event);
