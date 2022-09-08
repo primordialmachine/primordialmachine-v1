@@ -39,11 +39,14 @@ function ClearSolution {
   $dirs | Foreach-Object { RemoveDirIfExists $_ }    
 }
 
-$d = '.\machine-mk1'
-ClearSolution($d)
+$projects = @(
+  '.\machine-mk1',
+  '.\mkx-demos',
+  '.\ring1',
+  '.\ring2',
+  '.\scribe'
+);
 
-$d = '.\ring1'
-ClearSolution($d)
-
-$d = '.\ring2'
-ClearSolution($d)
+foreach($project in $projects) {
+  ClearSolution($project)
+}

@@ -48,10 +48,15 @@ Thumbs.db
 *.mov
 *.wmv
 
-# Machine MK1.
+# Mkx.
 machine-mk1/.vs/
 machine-mk1/products/
 machine-mk1/intermediates/
+
+# Mkx Demos.
+mkx-demos/.vs/
+mkx-demos/products/
+mkx-demos/intermediates/
 
 # Ring 1.
 ring1/.vs/
