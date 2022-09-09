@@ -25,11 +25,11 @@ static void keyCallback(GLFWwindow* window, int key, int scancode, int action, i
         = Machine_Video_Gl_Input_mapKeyboardKeyEvent(window, key, scancode, action, modifiers);
     Machine_Video_Canvas_addKeyboardKeyEvent((Machine_Video_Canvas*)canvas, event);
 #if defined(VERBOSE) && 1 == VERBOSE
-    Machine_String* zeroTerminatorString = Ring2_String_create("", 1);
-    Machine_String* eventString = Machine_Object_toString((Machine_Object*)event);
-    eventString = Machine_String_concatenate(eventString, zeroTerminatorString);
+    Ring2_String* zeroTerminatorString = Ring2_String_create("", 1);
+    Ring2_String* eventString = Machine_Object_toString((Machine_Object*)event);
+    eventString = Ring2_String_concatenate(eventString, zeroTerminatorString);
     Machine_log(Machine_LogFlags_ToInformations, __FILE__, __LINE__, "%s\n",
-                Machine_String_getBytes(eventString));
+                Ring2_String_getBytes(eventString));
 #endif
     if (event->key == Machine_KeyboardKeys_Escape && action == Machine_KeyboardKeyActions_Press)
       glfwSetWindowShouldClose(window, GLFW_TRUE);
@@ -54,11 +54,11 @@ static void cursorPositionCallback(GLFWwindow* window, double x, double y) {
         = Machine_Video_Gl_Input_mapMousePointerMoveEvent(window, x, y);
     Machine_Video_Canvas_addMousePointerEvent((Machine_Video_Canvas*)canvas, event);
 #if defined(VERBOSE) && 1 == VERBOSE
-    Machine_String* zeroTerminatorString = Ring2_String_create("", 1);
-    Machine_String* eventString = Machine_Object_toString((Machine_Object*)event);
-    eventString = Machine_String_concatenate(eventString, zeroTerminatorString);
+    Ring2_String* zeroTerminatorString = Ring2_String_create("", 1);
+    Ring2_String* eventString = Machine_Object_toString((Machine_Object*)event);
+    eventString = Ring2_String_concatenate(eventString, zeroTerminatorString);
     Machine_log(Machine_LogFlags_ToInformations, __FILE__, __LINE__, "%s\n",
-                Machine_String_getBytes(eventString));
+                Ring2_String_getBytes(eventString));
 #endif
     Ring2_popJumpTarget();
   } else {
@@ -80,11 +80,11 @@ static void cursorEnterCallback(GLFWwindow* window, int entered) {
         = Machine_Video_Gl_Input_mapMousePointerEnterExitEvent(window, entered);
     Machine_Video_Canvas_addMousePointerEvent((Machine_Video_Canvas*)canvas, event);
 #if defined(VERBOSE) && 1 == VERBOSE
-    Machine_String* zeroTerminatorString = Machine_String_create("", 1);
-    Machine_String* eventString = Machine_Object_toString((Machine_Object*)event);
-    eventString = Machine_String_concatenate(eventString, zeroTerminatorString);
+    Ring2_String* zeroTerminatorString = Ring2_String_create("", 1);
+    Ring2_String* eventString = Machine_Object_toString((Machine_Object*)event);
+    eventString = Ring2_String_concatenate(eventString, zeroTerminatorString);
     Machine_log(Machine_LogFlags_ToInformations, __FILE__, __LINE__, "%s\n",
-                Machine_String_getBytes(eventString));
+                Ring2_String_getBytes(eventString));
 #endif
     Ring2_popJumpTarget();
   } else {
@@ -106,11 +106,11 @@ static void mouseButtonCallback(GLFWwindow* window, int button, int action, int 
         = Machine_Video_Gl_Input_mapMouseButtonEvent(window, button, action, modifiers);
     Machine_Video_Canvas_addMouseButtonEvent((Machine_Video_Canvas*)canvas, event);
 #if defined(VERBOSE) && 1 == VERBOSE
-    Machine_String* zeroTerminatorString = Machine_String_create("", 1);
-    Machine_String* eventString = Machine_Object_toString((Machine_Object*)event);
-    eventString = Machine_String_concatenate(eventString, zeroTerminatorString);
+    Ring2_String* zeroTerminatorString = Ring2_String_create("", 1);
+    Ring2_String* eventString = Machine_Object_toString((Machine_Object*)event);
+    eventString = Ring2_String_concatenate(eventString, zeroTerminatorString);
     Machine_log(Machine_LogFlags_ToInformations, __FILE__, __LINE__, "%s\n",
-                Machine_String_getBytes(eventString));
+                Ring2_String_getBytes(eventString));
 #endif
     Ring2_popJumpTarget();
   } else {

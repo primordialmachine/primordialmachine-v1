@@ -7,7 +7,6 @@
 #define RING2_INTERNAL (1)
 #include "Ring2/TypeSystem/ClassType.h"
 
-#include "Ring2/Types/Object.h"
 #include "Ring2/TypeSystem/EnumerationType.h"
 #include "Ring2/TypeSystem/InterfaceType.h"
 #include "Ring2/Gc.h"

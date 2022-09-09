@@ -96,12 +96,13 @@ Ring2_Boolean_isNotEqualTo
 /// @return
 /// @a true if the first <code>Boolean</code> value is in a "lower than" relation with the second <code>Boolean</code> value.
 /// @a false otherwise.
-Ring1_CheckReturn() Ring2_Boolean
+void
 Ring2_Boolean_isLowerThan
   (
     Ring2_Context *context,
-    Ring2_Boolean x,
-    Ring2_Boolean y
+    Ring2_Value const *x,
+    Ring2_Value const *y,
+    Ring2_Value *z
   );
 
 /// @brief
@@ -113,12 +114,13 @@ Ring2_Boolean_isLowerThan
 /// @return
 /// @a true if the first <code>Boolean</code> value is in a "lower than or equal to" relation with the second <code>Boolean</code> value.
 /// @a false otherwise.
-Ring1_CheckReturn() Ring2_Boolean
+void
 Ring2_Boolean_isLowerThanOrEqualTo
   (
     Ring2_Context* context,
-    Ring2_Boolean x,
-    Ring2_Boolean y
+    Ring2_Value const* x,
+    Ring2_Value const* y,
+    Ring2_Value* z
   );
 
 /// @brief
@@ -130,12 +132,13 @@ Ring2_Boolean_isLowerThanOrEqualTo
 /// @return
 /// @a true if the first <code>Boolean</code> value is in a "greater than" relation with the second <code>Boolean</code> value.
 /// @a false otherwise.
-Ring1_CheckReturn() Ring2_Boolean
+void
 Ring2_Boolean_isGreaterThan
   (
     Ring2_Context *context,
-    Ring2_Boolean x,
-    Ring2_Boolean y
+    Ring2_Value const* x,
+    Ring2_Value const* y,
+    Ring2_Value* z
   );
 
 /// @brief
@@ -147,12 +150,13 @@ Ring2_Boolean_isGreaterThan
 /// @return
 /// @a true if the first <code>Boolean</code> value is in a "greater than or equal to" relation with the second <code>Boolean</code> value.
 /// @a false otherwise.
-Ring1_CheckReturn() Ring2_Boolean
+void
 Ring2_Boolean_isGreaterThanOrEqualTo
   (
     Ring2_Context *context,
-    Ring2_Boolean x,
-    Ring2_Boolean y
+    Ring2_Value const* x,
+    Ring2_Value const* y,
+    Ring2_Value* z
   );
   
 /// @brief
@@ -163,12 +167,13 @@ Ring2_Boolean_isGreaterThanOrEqualTo
 /// The second <code>Boolean</code> value.
 /// @return
 /// The logical and <c>and(x, y)</c> of <c>x</c> and <c>y</c>.
-Ring1_CheckReturn() Ring2_Boolean
+void
 Ring2_Boolean_and
   (
     Ring2_Context *context,
-    Ring2_Boolean x,
-    Ring2_Boolean y
+    Ring2_Value const* x,
+    Ring2_Value const* y,
+    Ring2_Value* z
   );
 
 /// @brief
@@ -179,12 +184,13 @@ Ring2_Boolean_and
 /// The second <code>Boolean</code> value.
 /// @return
 /// The logical or <c>or(x, y)</c> of <c>x</c> and <c>y</c>.
-Ring1_CheckReturn() Ring2_Boolean
+void
 Ring2_Boolean_or
   (
     Ring2_Context *context,
-    Ring2_Boolean x,
-    Ring2_Boolean y
+    Ring2_Value const* x,
+    Ring2_Value const* y,
+    Ring2_Value* z
   );
 
 /// @brief

@@ -12,11 +12,11 @@
 #include "Ring2/Types/Object.h"
 #include "Ring1/Status.h"
 
-static void Machine_EnumerationType_finalize(void *gc, Machine_EnumerationType* self) {
+static void Machine_EnumerationType_finalize(Ring2_Gc *gc, Machine_EnumerationType* self) {
   Ring2_Type_finalize((Machine_Type*)self);
 }
 
-static void Machine_EnumerationType_visit(void *gc, Machine_EnumerationType* self) {
+static void Machine_EnumerationType_visit(Ring2_Gc *gc, Machine_EnumerationType* self) {
   Ring2_Type_visit((Machine_Type*)self);
 }
 

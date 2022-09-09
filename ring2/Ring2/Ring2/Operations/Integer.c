@@ -9,8 +9,7 @@
 
 #include <stdio.h>
 #include "Ring1/Hash.h"
-#include "Ring1/Status.h"
-#include "Ring2/JumpTarget.h"
+#include "Ring2/_Include.h"
 
 Ring1_CheckReturn() Ring2_Integer
 Ring2_Integer_getHashValue
@@ -51,77 +50,101 @@ Ring2_Integer_isNotEqualTo
   )
 { return !Ring2_Integer_isEqualTo(context, x, y); }
 
-Ring1_CheckReturn() Ring2_Boolean
+void
 Ring2_Integer_isLowerThan
   (
-    Ring2_Context* context,
-    Ring2_Integer x,
-    Ring2_Integer y
+    Ring2_Context *context,
+    Ring2_Value const *x,
+    Ring2_Value const *y,
+    Ring2_Value *z
   )
-{ return x < y; }
+{
+  Ring2_Value_setBoolean(z, Ring2_Value_getInteger(x) < Ring2_Value_getInteger(y));
+}
 
-Ring1_CheckReturn() Ring2_Boolean
+void
 Ring2_Integer_isLowerThanOrEqualTo
   (
     Ring2_Context* context,
-    Ring2_Integer x,
-    Ring2_Integer y
+    Ring2_Value const *x,
+    Ring2_Value const *y,
+    Ring2_Value *z
   )
-{ return x <= y; }
+{
+  Ring2_Value_setBoolean(z, Ring2_Value_getInteger(x) <= Ring2_Value_getInteger(y));
+}
 
-Ring1_CheckReturn() Ring2_Boolean
+void
 Ring2_Integer_isGreaterThan
   (
-    Ring2_Context* context,
-    Ring2_Integer x,
-    Ring2_Integer y
+    Ring2_Context *context,
+    Ring2_Value const *x,
+    Ring2_Value const *y,
+    Ring2_Value *z
   )
-{ return x > y;}
+{ 
+  Ring2_Value_setBoolean(z, Ring2_Value_getInteger(x) > Ring2_Value_getInteger(y));
+}
 
-Ring1_CheckReturn() Ring2_Boolean
+void
 Ring2_Integer_isGreaterThanOrEqualTo
   (
-    Ring2_Context* context,
-    Ring2_Integer x,
-    Ring2_Integer y
+    Ring2_Context *context,
+    Ring2_Value const *x,
+    Ring2_Value const *y,
+    Ring2_Value *z
   )
-{ return x >= y; }
+{ 
+  Ring2_Value_setBoolean(z, Ring2_Value_getInteger(x) >= Ring2_Value_getInteger(y));
+}
 
-Ring1_CheckReturn() Ring2_Integer
+void
 Ring2_Integer_add
   (
-    Ring2_Context* context,
-    Ring2_Integer x,
-    Ring2_Integer y
+    Ring2_Context *context,
+    Ring2_Value const *x,
+    Ring2_Value const *y,
+    Ring2_Value *z
   )
-{ return x + y; }
+{
+  Ring2_Value_setInteger(z, Ring2_Value_getInteger(x) + Ring2_Value_getInteger(y));
+}
 
-Ring1_CheckReturn() Ring2_Integer
+void
 Ring2_Integer_subtract
   (
-    Ring2_Context* context,
-    Ring2_Integer x,
-    Ring2_Integer y
+    Ring2_Context *context,
+    Ring2_Value const *x,
+    Ring2_Value const *y,
+    Ring2_Value *z
   )
-{ return x - y; }
+{
+  Ring2_Value_setInteger(z, Ring2_Value_getInteger(x) - Ring2_Value_getInteger(y));
+}
 
-Ring1_CheckReturn() Ring2_Integer
+void
 Ring2_Integer_multiply
   (
-    Ring2_Context* context,
-    Ring2_Integer x,
-    Ring2_Integer y
+    Ring2_Context *context,
+    Ring2_Value const *x,
+    Ring2_Value const *y,
+    Ring2_Value *z
   )
-{ return x * y; }
+{
+  Ring2_Value_setInteger(z, Ring2_Value_getInteger(x) * Ring2_Value_getInteger(y));
+}
 
-Ring1_CheckReturn() Ring2_Integer
+void
 Ring2_Integer_divide
   (
-    Ring2_Context* context,
-    Ring2_Integer x,
-    Ring2_Integer y
+    Ring2_Context *context,
+    Ring2_Value const *x,
+    Ring2_Value const *y,
+    Ring2_Value *z
   )
-{ return x / y; }
+{
+  Ring2_Value_setInteger(z, Ring2_Value_getInteger(x) / Ring2_Value_getInteger(y));
+}
 
 Ring1_CheckReturn() Ring2_Integer
 Ring2_Integer_affirmate

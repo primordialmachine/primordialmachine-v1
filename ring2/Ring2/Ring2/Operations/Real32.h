@@ -91,12 +91,13 @@ Ring2_Real32_isNotEqualTo
 /// @return
 /// @a true if the first <code>Real32</code> value is in a "lower than" relation with the second <code>Real32</code> value,
 /// @a false otherwise.
-Ring1_CheckReturn() Ring2_Boolean
+void
 Ring2_Real32_isLowerThan
   (
     Ring2_Context* context,
-    Ring2_Real32 x,
-    Ring2_Real32 y
+    Ring2_Value const *x,
+    Ring2_Value const *y,
+    Ring2_Value *z
   );
 
 /// @brief
@@ -108,12 +109,13 @@ Ring2_Real32_isLowerThan
 /// @return
 /// @a true if the first <code>Real32</code> value is in a "lower than or equal to" relation with the second <code>Real32</code> value,
 /// @a false otherwise.
-Ring1_CheckReturn() Ring2_Boolean
+void
 Ring2_Real32_isLowerThanOrEqualTo
   (
     Ring2_Context* context,
-    Ring2_Real32 x,
-    Ring2_Real32 y
+    Ring2_Value const* x,
+    Ring2_Value const* y,
+    Ring2_Value* z
   );
 
 /// @brief
@@ -125,12 +127,13 @@ Ring2_Real32_isLowerThanOrEqualTo
 /// @return
 /// @a true if the first <code>Real32</code> value is in a "greater than" relation with the second <code>Real32</code> value.
 /// @a false otherwise.
-Ring1_CheckReturn() Ring2_Boolean
+void
 Ring2_Real32_isGreaterThan
   (
     Ring2_Context* context,
-    Ring2_Real32 x,
-    Ring2_Real32 y
+    Ring2_Value const* x,
+    Ring2_Value const* y,
+    Ring2_Value* z
   );
 
 /// @brief
@@ -142,12 +145,13 @@ Ring2_Real32_isGreaterThan
 /// @return
 /// @a true if the first <code>Real32</code> value is in a "greater than or equal to" relation with the second <code>Real32</code> value.
 /// @a false otherwise.
-Ring1_CheckReturn() Ring2_Boolean
+void
 Ring2_Real32_isGreaterThanOrEqualTo
   (
     Ring2_Context* context,
-    Ring2_Real32 x,
-    Ring2_Real32 y
+    Ring2_Value const* x,
+    Ring2_Value const* y,
+    Ring2_Value* z
   );
   
 /// @brief
@@ -158,12 +162,13 @@ Ring2_Real32_isGreaterThanOrEqualTo
 /// The second <code>Real32</code> value, the augend.
 /// @return
 /// The sum <c>x + y</c> of the addend <c>x</c> and the augend <c>y</c>.
-Ring1_CheckReturn() Ring2_Real32
+void
 Ring2_Real32_add
   (
     Ring2_Context* context,
-    Ring2_Real32 x,
-    Ring2_Real32 y
+    Ring2_Value const* x,
+    Ring2_Value const* y,
+    Ring2_Value* z
   );
 
 /// @brief
@@ -174,12 +179,13 @@ Ring2_Real32_add
 /// The second <code>Real32</code> value, the subtrahend.
 /// @return
 /// The difference <c>x - y</c> of the minuend <c>x</c> and the subtrahend <c>y</c>.
-Ring1_CheckReturn() Ring2_Real32
+void
 Ring2_Real32_subtract
   (
     Ring2_Context* context,
-    Ring2_Real32 x,
-    Ring2_Real32 y
+    Ring2_Value const* x,
+    Ring2_Value const* y,
+    Ring2_Value* z
   );
 
 /// @brief
@@ -190,12 +196,13 @@ Ring2_Real32_subtract
 /// The second <code>Real32</code> value, the multiplicand.
 /// @return
 /// The product <c>x * y</c> of the multiplier <c>x</c> and the multiplicand <c>y</c>.
-Ring1_CheckReturn() Ring2_Real32
+void
 Ring2_Real32_multiply
   (
     Ring2_Context* context,
-    Ring2_Real32 x,
-    Ring2_Real32 y
+    Ring2_Value const* x,
+    Ring2_Value const* y,
+    Ring2_Value* z
   );
 
 /// @brief
@@ -206,12 +213,13 @@ Ring2_Real32_multiply
 /// The second <code>Real32</code> value, the divisor.
 /// @return
 /// The quotient <c>x / y</c> of the dividend <c>x</c> and the divisor <c>y</c>.
-Ring1_CheckReturn() Ring2_Real32
+void
 Ring2_Real32_divide
   (
     Ring2_Context* context,
-    Ring2_Real32 x,
-    Ring2_Real32 y
+    Ring2_Value const* x,
+    Ring2_Value const* y,
+    Ring2_Value* z
   );
 
 /// @brief

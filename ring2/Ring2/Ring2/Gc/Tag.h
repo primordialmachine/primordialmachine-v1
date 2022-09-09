@@ -24,6 +24,8 @@ struct Ring2_Gc_WeakReference
 
 typedef struct Ring2_Gc_Tag Ring2_Gc_Tag;
 
+/// Ring2_Gc_Tag object must be allocated on 32/64 Bit boundaries
+/// as Ring2_Gc_Tag.locks must be allocated on 32/64 Bit boundaries.
 struct Ring2_Gc_Tag
 {
   /// @brief The number of locks on this GC object.

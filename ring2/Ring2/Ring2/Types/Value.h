@@ -184,11 +184,11 @@ Ring1_Inline() bool Ring2_Value_isVoid(Ring2_Value const* self) {
 #define Ring2_Value_StaticInitializerVoid()                                                      \
   { Ring2_Value_Tag_Void, Ring2_Void_Void }
 
-void Ring2_Value_visit(Ring2_Value* self);
+void Ring2_Value_visit(Ring2_Gc *gc, Ring2_Value* self);
 
-Ring2_Boolean Ring2_Value_isEqualTo(Ring2_Value const* x, Ring2_Value const* y);
+Ring2_Boolean Ring2_Value_isEqualTo(Ring2_Context* context, Ring2_Value const* x, Ring2_Value const* y);
 
-Ring2_Integer Ring2_Value_getHashValue(Ring2_Value const* x);
+Ring2_Integer Ring2_Value_getHashValue(Ring2_Context* context, Ring2_Value const* x);
 
 void Ring2_Value_swap(Ring2_Value* x, Ring2_Value* y);
 

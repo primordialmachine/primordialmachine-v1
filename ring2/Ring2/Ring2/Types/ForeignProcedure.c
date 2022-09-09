@@ -43,7 +43,6 @@ Ring2_ForeignProcedure_isNotEqualTo
   )
 { return x != y; }
 
-
 Ring1_CheckReturn() Ring2_String *
 Ring2_ForeignProcedure_toString
   (

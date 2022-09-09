@@ -37,7 +37,7 @@ static void Machine_Binding_Node_visit(Machine_Binding_Node* self) {
   if (self->name) {
     Ring2_Gc_visit(Ring2_Gc_get(), self->name);
   }
-  Ring2_Value_visit(&self->value);
+  Ring2_Value_visit(Ring2_Gc_get(), &self->value);
 }
 
 Machine_Binding_Node* Machine_Binding_Node_create(Ring2_String* name, Ring2_Boolean isVariable,

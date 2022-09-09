@@ -77,4 +77,6 @@ Ring2_TypesModule_shutdown
 
 #endif // Ring2_Configuration_withVoid
 
+#include "Ring2/Types/Value.h"
+
 #endif // RING2_TYPES_H_INCLUDED

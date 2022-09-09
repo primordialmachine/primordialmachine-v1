@@ -46,7 +46,7 @@ static Ring2_Boolean defaultEqual(Ring2_Value const* x, Ring2_Value const* y) {
     }
     return x == y;
   } else {
-    return Ring2_Value_isEqualTo(x, y);
+    return Ring2_Value_isEqualTo(Ring2_Context_get(), x, y);
   }
 }
 
@@ -94,7 +94,7 @@ static void maybeResize(Machine_HashMap* self) {
 
 static void set(Machine_HashMap* self, Ring2_Value key, Ring2_Value value) {
   _Map* pimpl = (_Map*)self->pimpl;
-  Ring2_Integer hashValue = Ring2_Value_getHashValue(&key);
+  Ring2_Integer hashValue = Ring2_Value_getHashValue(Ring2_Context_get(), &key);
   int64_t hashIndex = hashValue % pimpl->capacity;
   assert(hashIndex >= 0);
   _MapNode* node;
@@ -123,7 +123,7 @@ static void set(Machine_HashMap* self, Ring2_Value key, Ring2_Value value) {
 
 static Ring2_Value get(Machine_HashMap const* self, Ring2_Value key) {
   _Map const* pimpl = (_Map const*)self->pimpl;
-  Ring2_Integer hashValue = Ring2_Value_getHashValue(&key);
+  Ring2_Integer hashValue = Ring2_Value_getHashValue(Ring2_Context_get(), &key);
   int64_t hashIndex = hashValue % pimpl->capacity;
   assert(hashIndex >= 0);
   for (_MapNode* node = pimpl->buckets[hashIndex]; NULL != node; node = node->next) {

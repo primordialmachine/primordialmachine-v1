@@ -7,8 +7,9 @@
 #define RING2_INTERNAL (1)
 #include "Ring2/Operations/Boolean.h"
 
-#include "Ring1/Intrinsic/Crt.h"
+#include <stdio.h>
 #include "Ring1/Hash.h"
+#include "Ring2/_Include.h"
 
 Ring1_CheckReturn() Ring2_Integer
 Ring2_Boolean_getHashValue
@@ -49,59 +50,77 @@ Ring2_Boolean_isNotEqualTo
   )
 { return !Ring2_Boolean_isEqualTo(context, x, y); }
 
-Ring1_CheckReturn() Ring2_Boolean
+void
 Ring2_Boolean_isLowerThan
   (
     Ring2_Context *context,
-    Ring2_Boolean x,
-    Ring2_Boolean y
+    Ring2_Value const* x,
+    Ring2_Value const* y,
+    Ring2_Value* z
   )
-{ return x < y; }
+{
+  Ring2_Value_setBoolean(z, Ring2_Value_getBoolean(x) < Ring2_Value_getBoolean(y));
+}
 
-Ring1_CheckReturn() Ring2_Boolean
+void
 Ring2_Boolean_isLowerThanOrEqualTo
   (
     Ring2_Context *context,
-    Ring2_Boolean x,
-    Ring2_Boolean y
+    Ring2_Value const* x,
+    Ring2_Value const* y,
+    Ring2_Value* z
   )
-{ return x <= y; }
+{
+  Ring2_Value_setBoolean(z, Ring2_Value_getBoolean(x) <= Ring2_Value_getBoolean(y));
+}
 
-Ring1_CheckReturn() Ring2_Boolean
+void
 Ring2_Boolean_isGreaterThan
   (
     Ring2_Context *context,
-    Ring2_Boolean x,
-    Ring2_Boolean y
+    Ring2_Value const* x,
+    Ring2_Value const* y,
+    Ring2_Value* z
   )
-{ return x > y;}
+{
+  Ring2_Value_setBoolean(z, Ring2_Value_getBoolean(x) > Ring2_Value_getBoolean(y));
+}
 
-Ring1_CheckReturn() Ring2_Boolean
+void
 Ring2_Boolean_isGreaterThanOrEqualTo
   (
     Ring2_Context *context,
-    Ring2_Boolean x,
-    Ring2_Boolean y
+    Ring2_Value const* x,
+    Ring2_Value const* y,
+    Ring2_Value* z
   )
-{ return x >= y; }
+{
+  Ring2_Value_setBoolean(z, Ring2_Value_getBoolean(x) >= Ring2_Value_getBoolean(y));
+}
 
-Ring1_CheckReturn() Ring2_Boolean
+void
 Ring2_Boolean_and
   (
     Ring2_Context *context,
-    Ring2_Boolean x,
-    Ring2_Boolean y
+    Ring2_Value const* x,
+    Ring2_Value const* y,
+    Ring2_Value* z
   )
-{ return x && y; }
+{
+  Ring2_Value_setBoolean(z, Ring2_Value_getBoolean(x) && Ring2_Value_getBoolean(y));
+}
 
-Ring1_CheckReturn() Ring2_Boolean
+void
 Ring2_Boolean_or
   (
     Ring2_Context *context,
-    Ring2_Boolean x,
-    Ring2_Boolean y
+    Ring2_Value const* x,
+    Ring2_Value const* y,
+    Ring2_Value* z
   )
-{ return x || y; }
+{
+  Ring2_Value_setBoolean(z, Ring2_Value_getBoolean(x) || Ring2_Value_getBoolean(y));
+}
 
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Boolean_affirmate

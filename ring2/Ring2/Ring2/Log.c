@@ -11,30 +11,17 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-static int g_referenceCount = 0;
-
 Ring1_CheckReturn() Ring1_Result
 Ring2_LogModule_startup
   (
   )
-{
-  if (0 == g_referenceCount) {
-    /*Intentionally empty.*/
-  }
-  g_referenceCount++;
-  return Ring1_Result_Success;
-}
+{ return Ring1_Result_Success; }
 
 void
 Ring2_LogModule_shutdown
   (
   )
-{ 
-  if (1 == g_referenceCount) {
-    /*Intentionally empty.*/
-  }
-  g_referenceCount--;
-}
+{ }
 
 void
 Ring2_log

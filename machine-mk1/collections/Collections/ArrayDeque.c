@@ -108,7 +108,7 @@ static void Machine_ArrayDeque_constructClass(Machine_ArrayDeque_Class* self) {
 
 static void Machine_ArrayDeque_visit(Machine_ArrayDeque* self) {
   for (size_t i = 0, n = self->size; i < n; ++i) {
-    Ring2_Value_visit(&(self->elements[i]));
+    Ring2_Value_visit(Ring2_Gc_get(), &(self->elements[i]));
   }
 }
 

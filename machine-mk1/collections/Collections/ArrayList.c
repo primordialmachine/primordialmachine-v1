@@ -162,7 +162,7 @@ static void removeAtFast(Machine_ArrayList* self, size_t index) {
 
 static void Machine_ArrayList_visit(Machine_ArrayList* self) {
   for (size_t i = 0, n = self->size; i < n; ++i) {
-    Ring2_Value_visit(&(self->elements[i]));
+    Ring2_Value_visit(Ring2_Gc_get(), &(self->elements[i]));
   }
 }
 

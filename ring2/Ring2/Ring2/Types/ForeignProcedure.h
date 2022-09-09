@@ -64,7 +64,7 @@ Ring2_ForeignProcedure_isEqualTo
 Ring1_CheckReturn() bool
 Ring2_ForeignProcedure_isNotEqualTo
   (
-    Ring2_Context* context,
+    Ring2_Context *context,
     Ring2_ForeignProcedure* x,
     Ring2_ForeignProcedure* y
   );
