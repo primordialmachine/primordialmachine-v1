@@ -48,6 +48,8 @@ Thumbs.db
 *.mov
 *.wmv
 
+.vs/
+
 # Mkx.
 machine-mk1/.vs/
 machine-mk1/products/
