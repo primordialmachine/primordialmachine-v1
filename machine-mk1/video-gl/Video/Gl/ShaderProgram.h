@@ -7,8 +7,8 @@
 #if !defined(MACHINE_VIDEO_GL_PRIVATE)
 #error("Do not include `Video/Gl/ShaderProgram.h` directly, include `_Video_Gl.h` instead.")
 #endif
+#include "Ring2/Library/_Include.h"
 #include "Video/Gl/UtilitiesGL.h"
-#include "_Collections.h"
 #include "_Video.h"
 
 MACHINE_DECLARE_CLASSTYPE(Machine_Gl_ShaderProgram)

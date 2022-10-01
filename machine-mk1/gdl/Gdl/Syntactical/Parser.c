@@ -3,6 +3,7 @@
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #include "Gdl/Syntactical/Parser.h"
 
+#include "Ring2/Library/_Include.h"
 #include <string.h>
 
 static void Machine_Gdl_Parser_visit(Machine_Gdl_Parser* self) {

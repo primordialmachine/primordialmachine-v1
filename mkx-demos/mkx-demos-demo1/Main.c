@@ -5,8 +5,8 @@
 extern "C" {
 #endif
 
+#include "Ring2/Library/_Include.h"
 #include "_Launcher.h"
-#include "_Collections.h"
 #include "_Fonts.h"
 #include "_Images.h"
 #include "_Runtime.h"
@@ -62,7 +62,7 @@ static void run(Scene* self) {
       oldHeight = newHeight;
     }
     Scene_onUpdate(self, (Ring2_Real32)oldWidth, (Ring2_Real32)oldHeight);
-    Machine_update();
+    Ring2_Gc_run(Ring2_Gc_get(), NULL);
     Machine_Video_Canvas_swapFrameBuffers(Machine_getVideoCanvas());
     Machine_Video_Canvas_pollEvents(Machine_getVideoCanvas());
   }
@@ -119,7 +119,7 @@ void main0() {
     Ring2_pushJumpTarget(&jumpTarget2);
     if (!setjmp(jumpTarget2.environment)) {
       Ring2_Gc_lock(g_scene);
-      Machine_update();
+      Ring2_Gc_run(Ring2_Gc_get(), NULL);
 
       Ring2_Integer width, height;
       Machine_Video_Canvas_getFrameBuffersSize(Machine_getVideoCanvas(), &width, &height);
@@ -129,15 +129,15 @@ void main0() {
       run(g_scene);
       Ring2_popJumpTarget();
 
-      Ring2_Gc_unlock(g_scene);
       Scene* s = g_scene;
       g_scene = NULL;
       Scene_onShutdown(s);
+      Ring2_Gc_unlock(s);
     } else {
-      Ring2_Gc_unlock(g_scene);
       Scene* s = g_scene;
       g_scene = NULL;
       Scene_onShutdown(s);
+      Ring2_Gc_unlock(s);
       Ring2_popJumpTarget();
       Ring2_jump();
     }

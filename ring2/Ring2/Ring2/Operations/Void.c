@@ -7,8 +7,6 @@
 #define RING2_INTERNAL (1)
 #include "Ring2/Operations/Void.h"
 
-#include "Ring1/Intrinsic/Crt.h"
-
 Ring1_CheckReturn() Ring2_Integer
 Ring2_Void_getHashValue
   (
@@ -89,4 +87,8 @@ Ring2_Void_toString
     Ring2_Context *context,
     Ring2_Void x
   )
-{ return Ring2_String_create(Ring2_Context_get(), "void", crt_strlen("void")); }
+{
+  static char const* bytes = "void";
+  static size_t const numberOfBytes = sizeof("void") - 1;
+  return Ring2_String_create(Ring2_Context_get(), bytes, numberOfBytes);
+}

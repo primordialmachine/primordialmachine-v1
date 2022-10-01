@@ -5,6 +5,7 @@
 #include "Gui/Gdl/ListToVector.h"
 
 #include "Gui/Gdl/ValueToReal.h"
+#include "Ring2/Library/_Include.h"
 
 Machine_Math_Vector3* Machine_Gui_Gdl_listToVector3(Machine_List const* list) {
   size_t size = Machine_Collection_getSize((Machine_Collection const*)list);

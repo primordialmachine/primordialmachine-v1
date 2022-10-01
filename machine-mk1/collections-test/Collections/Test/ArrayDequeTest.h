@@ -1,11 +1,21 @@
 /// @file Collections/Test/ArrayDequeTest.h
-/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
-/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
+/// @copyright Copyright (c) 2021-2022 Michael Heilmann. All rights reserved.
+/// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 #if !defined(MACHINE_COLLECTIONS_TEST_ARRAYDEQUETEST_H_INCLUDED)
 #define MACHINE_COLLECTIONS_TEST_ARRAYDEQUETEST_H_INCLUDED
 
-void Machine_Collections_Test_ArrayDequeTest_test1();
-void Machine_Collections_Test_ArrayDequeTest_test2();
-void Machine_Collections_Test_ArrayDequeTest_test3();
+
+#include "Ring1/Test.h"
+#include "Ring2/_Include.h"
+
+
+/// @brief Register the tests for the array deque data structure with the test list.
+/// @param tests The test list.
+void
+Ring2_Test_registerArrayDequeTests
+  (
+    Ring2_Tests *tests
+  );
+
 
 #endif // MACHINE_COLLECTIONS_TEST_ARRAYDEQUETEST_H_INCLUDED

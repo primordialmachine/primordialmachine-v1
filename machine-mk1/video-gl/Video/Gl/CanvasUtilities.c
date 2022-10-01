@@ -4,11 +4,11 @@
 #define MACHINE_VIDEO_GL_PRIVATE (1)
 #include "Video/Gl/CanvasUtilities.h"
 
+#include "Ring2/Library/_Include.h"
 #include "Video/Gl/Input/Keyboard.h"
 #include "Video/Gl/Input/MouseButton.h"
 #include "Video/Gl/Input/MousePointer.h"
 #include "Video/Gl/UtilitiesGl.h"
-#include "_Collections.h"
 #include "_Input.h"
 
 #define VERBOSE (0)

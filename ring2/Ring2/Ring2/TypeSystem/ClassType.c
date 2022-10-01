@@ -7,12 +7,15 @@
 #define RING2_INTERNAL (1)
 #include "Ring2/TypeSystem/ClassType.h"
 
+
 #include "Ring2/TypeSystem/EnumerationType.h"
 #include "Ring2/TypeSystem/InterfaceType.h"
 #include "Ring2/Gc.h"
 #include "Ring2/JumpTarget.h"
 #include "Ring1/Memory.h"
 #include "Ring1/Status.h"
+#include "Ring2/TypeSystem.h"
+
 
 static void Machine_ClassType_finalize(void *gc, Machine_ClassType* self) {
   if (self->parent) {
@@ -46,11 +49,12 @@ static void Machine_ClassType_visit(void *gc, Machine_ClassType* self) {
 }
 
 Machine_ClassType* Machine_createClassType(Machine_CreateClassTypeArgs* args) {
-  static Ring2_Gc_Type const gcType = {
-    .finalize = (Ring2_Gc_FinalizeCallback*)&Machine_ClassType_finalize,
-    .visit = (Ring2_Gc_VisitCallback*)&Machine_ClassType_visit,
+  static const Ring2_Gc_Type TYPE = {
+    .finalize = &Machine_ClassType_finalize,
+    .visit = &Machine_ClassType_visit,
   };
-  Machine_ClassType* classType = Ring2_ObjectModule_allocate(Ring2_Gc_get(), sizeof(Machine_ClassType), &gcType);
+  Machine_ClassType* classType = (Machine_ClassType *)Ring2_Type_allocate(sizeof(Machine_ClassType),
+                                                                          &TYPE);
   if (!classType) {
     Ring2_jump();
   }

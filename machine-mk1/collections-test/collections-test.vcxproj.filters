@@ -36,16 +36,10 @@
     <ClCompile Include="Collections\Test\ArrayDequeTest.c">
       <Filter>Quelldateien\Collections\Test</Filter>
     </ClCompile>
-    <ClCompile Include="Collections\Test\ListTest.c">
+    <ClCompile Include="Collections\Test\ArrayListTest.c">
       <Filter>Quelldateien\Collections\Test</Filter>
     </ClCompile>
-    <ClCompile Include="Collections\Test\MapTest.c">
-      <Filter>Quelldateien\Collections\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Collections\Test\ListTest.c">
-      <Filter>Quelldateien\Collections\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Collections\Test\MapTest.c">
+    <ClCompile Include="Collections\Test\HashMapTest.c">
       <Filter>Quelldateien\Collections\Test</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,16 +50,10 @@
     <ClInclude Include="Collections\Test\ArrayDequeTest.h">
       <Filter>Headerdateien\Collections\Test</Filter>
     </ClInclude>
-    <ClInclude Include="Collections\Test\ListTest.h">
+    <ClInclude Include="Collections\Test\ArrayListTest.h">
       <Filter>Headerdateien\Collections\Test</Filter>
     </ClInclude>
-    <ClInclude Include="Collections\Test\MapTest.h">
-      <Filter>Headerdateien\Collections\Test</Filter>
-    </ClInclude>
-    <ClInclude Include="Collections\Test\ListTest.h">
-      <Filter>Headerdateien\Collections\Test</Filter>
-    </ClInclude>
-    <ClInclude Include="Collections\Test\MapTest.h">
+    <ClInclude Include="Collections\Test\HashMapTest.h">
       <Filter>Headerdateien\Collections\Test</Filter>
     </ClInclude>
   </ItemGroup>

@@ -7,16 +7,63 @@
 #define RING2_INTERNAL (1)
 #include "Ring2/Types/Object.h"
 
+#include <assert.h>
+#include "Ring1/Hash.h"
 #include "Ring1/Memory.h"
 #include "Ring1/Status.h"
+#include "Ring1/Hash.h"
+#include "Ring2/_Include.h"
 #include <assert.h>
 
-static void Machine_Gc_preMarkCallback(Ring2_Gc* gc, void* context);
-static void Machine_Gc_sweepCallback(Ring2_Gc* gc, void* context, Ring2_Gc_SweepStatistics *statistics);
+/*PREMARK*/ static void
+Mkx_Interpreter_ObjectHeap_preMark
+  (
+    Ring2_Gc* gc,
+    void* context
+  );
 
-static Ring2_Gc_Tag* g_objects = NULL;
+/*SWEEP*/ static void
+Mkx_Interpreter_ObjectHeap_sweep
+  (
+    Ring2_Gc* gc,
+    void* context,
+    Ring2_Gc_SweepStatistics* statistics
+  );
+
+// List of objects.
+static Ring2_Gc_Tag* g_objects;
+
+#include "Ring2/Types/Value.h"
+#include "Ring1/Status.h"
+#include "Ring1/Memory.h"
+#include "Ring2/JumpTarget.h"
+
+#include <stdio.h>
+#include <string.h>
+
+/// @brief The type of an object heap.
+typedef struct Mkx_Interpreter_ObjectHeap Mkx_Interpreter_ObjectHeap;
+
+static Mkx_Interpreter_ObjectHeap*
+Mkx_Interpreter_ObjectHeap_create
+  (
+  );
+
+static void
+Mkx_Interpreter_ObjectHeap_destroy
+  (
+    Mkx_Interpreter_ObjectHeap* objectHeap
+  );
+
+struct Mkx_Interpreter_ObjectHeap {
+  Ring1_Memory_ModuleHandle memoryModuleHandle;
+  Ring2_Gc_Tag *objects;
+};
+
+static Mkx_Interpreter_ObjectHeap* g_objectHeap = NULL;
 
 static Ring2_Gc_PreMarkCallbackId g_preMarkCallbackId = Ring2_Gc_PreMarkCallbackId_Invalid;
+
 static Ring2_Gc_SweepCallbackId g_sweepCallbackId = Ring2_Gc_SweepCallbackId_Invalid;
 
 Ring1_CheckReturn() Ring1_Result
@@ -24,98 +71,177 @@ Ring2_ObjectModule_startup
   (
   )
 {
-  if (Ring2_Gc_startup()) {
+  assert(NULL == g_objectHeap);
+  g_objectHeap = Mkx_Interpreter_ObjectHeap_create();
+  if (!g_objectHeap) {
     return Ring1_Result_Failure;
   }
-  g_preMarkCallbackId = Ring2_Gc_addPreMarkCallback(Ring2_Gc_get(), NULL, &Machine_Gc_preMarkCallback);
-  if (g_preMarkCallbackId == Ring2_Gc_PreMarkCallbackId_Invalid) {
-    Ring2_Gc_shutdown();
+  g_preMarkCallbackId = Ring2_Gc_addPreMarkCallback(Ring2_Gc_get(), NULL,
+                                                    (Ring2_Gc_PreMarkCallback*)&Mkx_Interpreter_ObjectHeap_preMark);
+  if (!g_preMarkCallbackId) {
+    Mkx_Interpreter_ObjectHeap_destroy(g_objectHeap);
+    g_objectHeap = NULL;
+    
     return Ring1_Result_Failure;
   }
-  g_sweepCallbackId = Ring2_Gc_addSweepCallback(Ring2_Gc_get(), NULL, &Machine_Gc_sweepCallback);
-  if (g_sweepCallbackId == Ring2_Gc_SweepCallbackId_Invalid) {
-    Ring2_Gc_shutdown();
+
+  g_sweepCallbackId = Ring2_Gc_addSweepCallback(Ring2_Gc_get(), NULL,
+                                                (Ring2_Gc_SweepCallback*)& Mkx_Interpreter_ObjectHeap_sweep);
+  if (!g_sweepCallbackId) {
+    Ring2_Gc_removePreMarkCallback(Ring2_Gc_get(), g_preMarkCallbackId);
+    g_preMarkCallbackId = Ring2_Gc_PreMarkCallbackId_Invalid;
+
+    Mkx_Interpreter_ObjectHeap_destroy(g_objectHeap);
+    g_objectHeap = NULL;
     return Ring1_Result_Failure;
   }
   return Ring1_Result_Success;
 }
 
-void 
+void
 Ring2_ObjectModule_shutdown
   (
   )
-{ Ring2_Gc_shutdown(); }
+{
+  assert(Ring2_Gc_SweepCallbackId_Invalid != g_sweepCallbackId);
+  Ring2_Gc_removeSweepCallback(Ring2_Gc_get(), g_sweepCallbackId);
+  g_sweepCallbackId = Ring2_Gc_SweepCallbackId_Invalid;
 
-void *
-Ring2_ObjectModule_allocate
+  assert(Ring2_Gc_PreMarkCallbackId_Invalid != g_preMarkCallbackId);
+  Ring2_Gc_removePreMarkCallback(Ring2_Gc_get(), g_preMarkCallbackId);
+  g_preMarkCallbackId = Ring2_Gc_PreMarkCallbackId_Invalid;
+
+  assert(NULL != g_objectHeap);
+  Mkx_Interpreter_ObjectHeap_destroy(g_objectHeap);
+  g_objectHeap = NULL;
+}
+
+static Mkx_Interpreter_ObjectHeap*
+Mkx_Interpreter_ObjectHeap_create
   (
-    Ring2_Gc *gc,
-    size_t size,
-    Ring2_Gc_Type const *type
   )
-{ return Ring2_Gc_allocate(gc, size, type, &g_objects); }
+{
+  Ring1_Memory_ModuleHandle handle = Ring1_Memory_ModuleHandle_acquire();
+  if (!handle) {
+    return NULL;
+  }
+  Mkx_Interpreter_ObjectHeap* objectHeap;
+  if (Ring1_Memory_allocate(&objectHeap, sizeof(Mkx_Interpreter_ObjectHeap))) {
+    Ring1_Memory_ModuleHandle_relinquish(handle);
+    return NULL;
+  }
+  objectHeap->objects = NULL;
+  objectHeap->memoryModuleHandle = handle;
+  return objectHeap;
+}
 
-static void Machine_Gc_preMarkCallback(Ring2_Gc *gc, void *context) {
-  for (Ring2_Gc_Tag* object = g_objects; NULL != object; object = object->objectNext) {
-    Ring2_Gc_Tag_setWhite(object);
-    if (Ring2_Gc_Tag_getLockCount(object) > 0) {
-      Ring2_Gc_visit(Ring2_Gc_get(), Ring2_Gc_toAddress(object));
+static void
+Mkx_Interpreter_ObjectHeap_destroy
+  (
+    Mkx_Interpreter_ObjectHeap *objectHeap
+  )
+{
+  Ring1_Memory_ModuleHandle handle = objectHeap->memoryModuleHandle;
+  objectHeap->objects = NULL;
+  Ring1_Memory_deallocate(objectHeap);
+  Ring1_Memory_ModuleHandle_relinquish(handle);
+}
+
+/*PREMARK*/ void
+Mkx_Interpreter_ObjectHeap_preMark
+  (
+    Ring2_Gc* gc,
+    void* context
+  )
+{
+  Ring2_Gc_Tag* current = g_objectHeap->objects;
+  while (current) {
+    if (Ring2_Gc_Tag_getLockCount(current) > 0) {
+      Ring2_Gc_visit(gc, Ring2_Gc_toAddress(current));
     }
+    current = current->objectNext;
   }
 }
 
-static void Machine_Gc_sweepCallback(Ring2_Gc *gc, void* context, Ring2_Gc_SweepStatistics *statistics) {
-  Ring2_Gc_Tag **previous = &g_objects, *current = g_objects;
+/*SWEEP*/ void
+Mkx_Interpreter_ObjectHeap_sweep
+  (
+    Ring2_Gc* gc,
+    void* context,
+    Ring2_Gc_SweepStatistics* statistics
+  )
+{
+  statistics->dead = 0;
+  statistics->live = 0;
+  Ring2_Gc_Tag** previous = &(g_objectHeap->objects),
+               * current = g_objectHeap->objects;
   while (current) {
     if (Ring2_Gc_Tag_isWhite(current)) {
-      // Remove object from list.
-      Ring2_Gc_Tag* tag = current;
+      Ring2_Gc_Tag* object = current;
       *previous = current->objectNext;
       current = current->objectNext;
-      // Finalize.
-      if (tag->type) {
-        if (tag->type && tag->type->finalize) {
-          tag->type->finalize(Ring2_Gc_get(), Ring2_Gc_toAddress(tag));
-        }
+      Ring2_Gc_Tag_notifyWeakReferences(object);
+      if (object->type->finalize) {
+        object->type->finalize(gc, Ring2_Gc_toAddress(object));
       }
-      // Notify weak reference.
-      Ring2_Gc_Tag_notifyWeakReferences(tag);
-      // Deallocate.
-      Ring2_Gc_Tag_uninitialize(tag);
-      Ring1_Memory_deallocate(tag);
-      if (statistics) {
-        statistics->dead++;
-      }
+      Ring1_Memory_deallocate(object);
+      statistics->dead++;
     } else {
       Ring2_Gc_Tag_setWhite(current);
       previous = &current->objectNext;
       current = current->objectNext;
-      if (statistics) {
-        statistics->live++;
-      }
+      statistics->live++;
     }
   }
 }
 
-#include "Ring1/Hash.h"
-#include "Ring2/_Include.h"
-#include <assert.h>
-
-static Ring2_Integer Machine_Object_getHashValueImpl(Ring2_Context *context, Machine_Object const* self) {
+static Ring1_CheckReturn() Ring2_Integer
+Machine_Object_getHashValueImpl
+  (
+    Ring2_Context* context,
+    Machine_Object const* self
+  )
+{
   int64_t temporary;
   Ring1_Hash_toI64_p(&temporary, self);
   return temporary;
 }
 
-static Ring2_Boolean Machine_Object_isEqualToImpl(Ring2_Context *context, Machine_Object const* self,
-                                                  Ring2_Value const* other) {
+static Ring1_CheckReturn() Ring2_Boolean
+Machine_Object_isEqualToImpl
+  (
+    Ring2_Context* context,
+    Machine_Object const* self,
+    Ring2_Value const* other
+  )
+{
   if (!Ring2_Value_isObject(other)) {
     return false;
   }
-  return self == Ring2_Value_getObject(other);
+  return self == (Machine_Object *)Ring2_Value_getObject(other);
 }
 
-static Ring2_String* Machine_Object_toStringImpl(Ring2_Context *context, Machine_Object const* self) {
+static Ring1_CheckReturn() Ring2_Boolean
+Machine_Object_isNotEqualToImpl
+  (
+    Ring2_Context* context,
+    Machine_Object const* self,
+    Ring2_Value const* other
+  )
+{
+  if (!Ring2_Value_isObject(other)) {
+    return true;
+  }
+  return self != (Machine_Object *)Ring2_Value_getObject(other);
+}
+
+static Ring1_CheckReturn() Ring2_String*
+Machine_Object_toStringImpl
+  (
+    Ring2_Context* context,
+    Machine_Object const* self
+  )
+{
   static_assert(INTPTR_MAX <= Ring2_Integer_Greatest,
                 "Machine_Integer can not represent an identity value");
   static_assert(INTPTR_MIN >= Ring2_Integer_Least,
@@ -126,10 +252,12 @@ static Ring2_String* Machine_Object_toStringImpl(Ring2_Context *context, Machine
 static void Machine_Object_constructClass(Machine_Object_Class* self) {
   self->getHashValue = &Machine_Object_getHashValueImpl;
   self->isEqualTo = &Machine_Object_isEqualToImpl;
+  self->isNotEqualTo = &Machine_Object_isNotEqualToImpl;
   self->toString = &Machine_Object_toStringImpl;
 }
 
 static Machine_ClassType* g_Machine_Object_ClassType = NULL;
+
 static void Machine_Object_onTypeDestroyed() {
   g_Machine_Object_ClassType = NULL;
 }
@@ -202,31 +330,63 @@ Machine_ClassType* Machine_getClassType(Machine_Object* object) {
   return object->classType;
 }
 
-Machine_Object* Machine_allocateClassObject(Machine_ClassType* type, size_t numberOfArguments,
-                                            Ring2_Value const* arguments) {
-  static Ring2_Gc_Type const gcType = {
-    .finalize = (Ring2_Gc_FinalizeCallback*)&Machine_ClassObject_finalize,
-    .visit = (Ring2_Gc_VisitCallback*)&Machine_ClassObject_visit,
+Machine_Object*
+Machine_allocateClassObject
+  (
+    Machine_ClassType* type,
+    size_t numberOfArguments,
+    Ring2_Value const* arguments
+  )
+{
+  static const Ring2_Gc_Type TYPE = {
+    .finalize = &Machine_ClassObject_finalize,
+    .visit = &Machine_ClassObject_visit,
   };
-  Machine_Object *o = Ring2_ObjectModule_allocate(Ring2_Gc_get(), type->object.size, &gcType);
-  if (!o) {
+  Machine_Object *object = Ring2_Gc_allocate(Ring2_Gc_get(),
+                                             (size_t) type->object.size,
+                                             &TYPE, 
+                                             &g_objectHeap->objects);
+  if (Ring1_Unlikely(!object)) {
+    Ring1_Status_set(Ring1_Status_InvalidOperation);
     Ring2_jump();
   }
-  Ring2_Gc_Tag* t = Ring2_Gc_toTag(o);
-  o->classType = type;
-  Ring2_Gc_lock(o->classType);
-  type->object.construct((Machine_Object*)o, numberOfArguments, arguments);
-  return o;
+  Ring2_Gc_Tag* t = Ring2_Gc_toTag(object);
+  object->classType = type;
+  Ring2_Gc_lock(object->classType);
+  type->object.construct(object, numberOfArguments, arguments);
+  return object;
 }
 
-Ring2_Integer Machine_Object_getHashValue(Ring2_Context* context, Machine_Object const* self) {
-  MACHINE_VIRTUALCALL_IMPL(Machine_Object, getHashValue, return, context, self);
-}
+Ring1_CheckReturn() Ring2_Integer
+Machine_Object_getHashValue
+  (
+    Ring2_Context* context,
+    Machine_Object const* self
+  )
+{ MACHINE_VIRTUALCALL_IMPL(Machine_Object, getHashValue, return, context, self); }
 
-Ring2_Boolean Machine_Object_isEqualTo(Ring2_Context* context, Machine_Object const* self, Ring2_Value const* other) {
-  MACHINE_VIRTUALCALL_IMPL(Machine_Object, isEqualTo, return, context, self, other);
-}
+Ring1_CheckReturn() Ring2_Boolean
+Machine_Object_isEqualTo
+  (
+    Ring2_Context* context,
+    Machine_Object const* self,
+    Ring2_Value const* other
+  )
+{ MACHINE_VIRTUALCALL_IMPL(Machine_Object, isEqualTo, return, context, self, other); }
 
-Ring2_String* Machine_Object_toString(Ring2_Context* context, Machine_Object const* self) {
-  MACHINE_VIRTUALCALL_IMPL(Machine_Object, toString, return, context, self);
-}
+Ring1_CheckReturn() Ring2_Boolean
+Machine_Object_isNotEqualTo
+  (
+    Ring2_Context* context,
+    Machine_Object const* self,
+    Ring2_Value const* other
+  )
+{ MACHINE_VIRTUALCALL_IMPL(Machine_Object, isNotEqualTo, return, context, self, other); }
+
+Ring1_CheckReturn() Ring2_String*
+Machine_Object_toString
+  (
+    Ring2_Context* context,
+    Machine_Object const* self
+  )
+{ MACHINE_VIRTUALCALL_IMPL(Machine_Object, toString, return, context, self); }

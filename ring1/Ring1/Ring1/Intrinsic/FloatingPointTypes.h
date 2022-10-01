@@ -9,7 +9,7 @@
 
 #include "Ring1/Intrinsic/Configuration.h"
 #include "Ring1/Result.h"
-#include "Ring1/Intrinsic/CheckReturn.h"
+#include "Ring1/Annotations/_Include.h"
 #include <math.h>
 #include <stdint.h>
 

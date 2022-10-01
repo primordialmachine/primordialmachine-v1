@@ -7,10 +7,11 @@
 #define RING2_INTERNAL (1)
 #include "Ring2/Operations/Real32.h"
 
-#include <stdio.h>
 #include <math.h>
+#include <stdio.h>
 #include "Ring1/Hash.h"
-#include "Ring2/_Include.h"
+#include "Ring1/Status.h"
+#include "Ring2/JumpTarget.h"
 
 Ring1_CheckReturn() Ring2_Integer
 Ring2_Real32_getHashValue

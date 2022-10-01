@@ -264,6 +264,12 @@
     <Filter Include="Quelldateien\Ring1\FileSystem">
       <UniqueIdentifier>{88708724-eb9e-43e5-9356-76722653f1a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring1\Annotations">
+      <UniqueIdentifier>{a6d926d7-96c1-428c-81e9-48a6227f6b3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Annotations">
+      <UniqueIdentifier>{674c0be4-aa82-4b06-8245-a40235504f24}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring1\Intrinsic\Subtract\subtract.h">
@@ -311,9 +317,6 @@
     <ClInclude Include="Ring1\Intrinsic\Subtract\Configuration.h">
       <Filter>Headerdateien\Ring1\Intrinsic\Subtract</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\CheckReturn.h">
-      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
-    </ClInclude>
     <ClInclude Include="Ring1\Intrinsic\Add\add.h">
       <Filter>Headerdateien\Ring1\Intrinsic\Add</Filter>
     </ClInclude>
@@ -359,9 +362,6 @@
     <ClInclude Include="Ring1\Intrinsic\atomicIncrement.h">
       <Filter>Headerdateien\Ring1\Intrinsic</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\CheckReturn.h">
-      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
-    </ClInclude>
     <ClInclude Include="Ring1\Intrinsic\clamp.h">
       <Filter>Headerdateien\Ring1\Intrinsic</Filter>
     </ClInclude>
@@ -380,9 +380,6 @@
     <ClInclude Include="Ring1\Intrinsic\isPowerOfTwo.h">
       <Filter>Headerdateien\Ring1\Intrinsic</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Likely.h">
-      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
-    </ClInclude>
     <ClInclude Include="Ring1\Intrinsic\maximum.h">
       <Filter>Headerdateien\Ring1\Intrinsic</Filter>
     </ClInclude>
@@ -396,9 +393,6 @@
       <Filter>Headerdateien\Ring1\Intrinsic</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\Intrinsic\ThreadLocal.h">
-      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Unlikely.h">
       <Filter>Headerdateien\Ring1\Intrinsic</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\Test\Commons.h">
@@ -617,15 +611,6 @@
     <ClInclude Include="Ring1\Time.h">
       <Filter>Headerdateien\Ring1</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\NoReturn.h">
-      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Deprecated.h">
-      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Inline.h">
-      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
-    </ClInclude>
     <ClInclude Include="Ring1\ByteBuffer.h">
       <Filter>Headerdateien\Ring1</Filter>
     </ClInclude>
@@ -671,11 +656,35 @@
     <ClInclude Include="Ring1\InlineArray.h">
       <Filter>Headerdateien\Ring1</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\Annotations\CheckReturn.h">
+      <Filter>Headerdateien\Ring1\Annotations</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Annotations\Deprecated.h">
+      <Filter>Headerdateien\Ring1\Annotations</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Annotations\Inline.h">
+      <Filter>Headerdateien\Ring1\Annotations</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Annotations\Likely.h">
+      <Filter>Headerdateien\Ring1\Annotations</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Annotations\NonNull.h">
+      <Filter>Headerdateien\Ring1\Annotations</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Annotations\NoReturn.h">
+      <Filter>Headerdateien\Ring1\Annotations</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Annotations\Obsolete.h">
+      <Filter>Headerdateien\Ring1\Annotations</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Annotations\Unlikely.h">
+      <Filter>Headerdateien\Ring1\Annotations</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Annotations\_Include.h">
+      <Filter>Headerdateien\Ring1\Annotations</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ring1\Intrinsic\CheckReturn.c">
-      <Filter>Quelldateien\Ring1\Intrinsic</Filter>
-    </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\ThreadLocal.c">
       <Filter>Quelldateien\Ring1\Intrinsic</Filter>
     </ClCompile>
@@ -753,12 +762,6 @@
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\Multiply\X64\multiply_u64.c">
       <Filter>Quelldateien\Ring1\Intrinsic\Multiply\X64</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring1\Intrinsic\Likely.c">
-      <Filter>Quelldateien\Ring1\Intrinsic</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring1\Intrinsic\Unlikely.c">
-      <Filter>Quelldateien\Ring1\Intrinsic</Filter>
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\Multiply\multiply.c">
       <Filter>Quelldateien\Ring1\Intrinsic\Multiply</Filter>
@@ -841,12 +844,6 @@
     <ClCompile Include="Ring1\Time.c">
       <Filter>Quelldateien\Ring1</Filter>
     </ClCompile>
-    <ClCompile Include="Ring1\Intrinsic\Deprecated.c">
-      <Filter>Quelldateien\Ring1\Intrinsic</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring1\Intrinsic\Inline.c">
-      <Filter>Quelldateien\Ring1\Intrinsic</Filter>
-    </ClCompile>
     <ClCompile Include="Ring1\ByteBuffer.c">
       <Filter>Quelldateien\Ring1</Filter>
     </ClCompile>
@@ -891,6 +888,33 @@
     </ClCompile>
     <ClCompile Include="Ring1\InlineArray.c">
       <Filter>Quelldateien\Ring1</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Annotations\_Include.c">
+      <Filter>Quelldateien\Ring1\Annotations</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Annotations\CheckReturn.c">
+      <Filter>Quelldateien\Ring1\Annotations</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Annotations\Deprecated.c">
+      <Filter>Quelldateien\Ring1\Annotations</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Annotations\Inline.c">
+      <Filter>Quelldateien\Ring1\Annotations</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Annotations\Likely.c">
+      <Filter>Quelldateien\Ring1\Annotations</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Annotations\NonNull.c">
+      <Filter>Quelldateien\Ring1\Annotations</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Annotations\NoReturn.c">
+      <Filter>Quelldateien\Ring1\Annotations</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Annotations\Obsolete.c">
+      <Filter>Quelldateien\Ring1\Annotations</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Annotations\Unlikely.c">
+      <Filter>Quelldateien\Ring1\Annotations</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

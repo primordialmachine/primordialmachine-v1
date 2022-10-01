@@ -9,8 +9,9 @@
 
 #include "Ring2/TypeSystem/ClassType.h"
 #include "Ring2/TypeSystem/InterfaceType.h"
-#include "Ring2/JumpTarget.h"
 #include "Ring2/Gc.h"
+#include "Ring2/JumpTarget.h"
+#include "Ring1/InlineArray.h"
 #include "Ring1/Status.h"
 
 Ring1_CheckReturn() bool

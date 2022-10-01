@@ -231,6 +231,13 @@ Ring2_Boolean_toString
     Ring2_Boolean x
   );
 
+Ring1_CheckReturn() Ring2_Boolean
+Ring2_Boolean_fromString
+  (
+    Ring2_Context* context,
+    Ring2_String* w
+  );
+
 #endif // Ring2_Configuration_withBoolean
 
 #endif // RING2_OPERATIONS_BOOLEAN_H_INCLUDED

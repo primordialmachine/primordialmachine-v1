@@ -9,7 +9,7 @@
 #endif
 
 #include "Ring2/_Include.h"
-#include "Runtime/ByteBuffer.h"
+#include "Ring2/Library/_Include.h"
 
 /// @brief Get the contents of a file.
 /// @param path The path.

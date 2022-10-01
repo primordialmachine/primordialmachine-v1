@@ -116,11 +116,11 @@
     <ProjectReference Include="..\..\ring1\Ring1\Ring1.vcxproj">
       <Project>{d7db575d-7eaa-47de-8999-44f4e1361d34}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\ring2\Ring2.Library\Ring2.Library.vcxproj">
+      <Project>{793157ce-6f58-4c53-bf1e-15716a4ce6bf}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\ring2\Ring2\Ring2.vcxproj">
       <Project>{3ade4501-5d5c-4878-9632-f81c3de2429c}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\collections\machine-mk1-collections.vcxproj">
-      <Project>{6eb4ab0f-86e3-4ab8-850e-449c7a78878b}</Project>
     </ProjectReference>
     <ProjectReference Include="..\core\machine-mk1-core.vcxproj">
       <Project>{f34866d8-3093-4b44-a225-7da2b5cd8e83}</Project>

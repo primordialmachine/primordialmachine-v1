@@ -12,7 +12,7 @@
 #endif
 
 #include "Ring2/Configuration.h"
-#include "Ring1/Intrinsic/CheckReturn.h"
+#include "Ring1/Annotations/_Include.h"
 #include "Ring1/Result.h"
 
 /// @brief Starts up the "types" module.
@@ -31,7 +31,7 @@ Ring2_TypesModule_shutdown
 
 #if defined(Ring2_Configuration_withArray) && 1 == Ring2_Configuration_withArray
 
-  #include "Ring2/Types/Array.h"
+  //#include "Ring2/Types/Array.h"
 
 #endif // Ring2_Configuration_withArray
 

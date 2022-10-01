@@ -2,6 +2,7 @@
 #include "Video/Canvas.h"
 
 #include "_Input.h"
+#include "Ring2/Library/_Include.h"
 
 static void visit(Machine_Video_Canvas* self);
 

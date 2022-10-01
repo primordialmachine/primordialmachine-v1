@@ -4,7 +4,7 @@
 #if !defined(RING1_TIME_H_INCLUDED)
 #define RING1_TIME_H_INCLUDED
 
-#include "Ring1/Intrinsic/CheckReturn.h"
+#include "Ring1/Annotations/_Include.h"
 #include "Ring1/Module.h"
 #include "Ring1/Result.h"
 

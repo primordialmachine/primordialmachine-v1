@@ -22,6 +22,15 @@ Ring1_Intrinsic_atomicGet_s32
     volatile int32_t const* variable
   );
 
+/// @brief Atomically get the value of a variable.
+/// @param variable A pointer to the variable.
+/// @return The value of the variable.
+uint32_t
+Ring1_Intrinsic_atomicGet_u32
+  (
+    volatile uint32_t* variable
+  );
+
 #endif // _MSC_VER
 
 

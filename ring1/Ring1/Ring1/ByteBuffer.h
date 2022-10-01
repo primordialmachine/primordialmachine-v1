@@ -9,7 +9,7 @@
 
 #include "Ring1/Module.h"
 #include "Ring1/Result.h"
-#include "Ring1/Intrinsic/CheckReturn.h"
+#include "Ring1/Annotations/_Include.h"
 
 Ring1_Module_Declare(ByteBuffer)
 

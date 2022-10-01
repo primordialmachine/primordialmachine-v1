@@ -28,5 +28,14 @@ Ring1_Intrinsic_atomicGet_s32
   return *variable;
 }
 
+uint32_t
+Ring1_Intrinsic_atomicGet_u32
+  (
+    volatile uint32_t* variable
+  )
+{
+  MemoryBarrier(); // Issues a full read write barrier for compiler and processor.
+  return *variable;
+}
 
 #endif // _MSC_VER

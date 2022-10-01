@@ -69,9 +69,12 @@ static void Scene4_onStartup(Scene4* self) {
   self->guiContext = Machine_Gui_Context_create(Machine_Gdl_Context_create(),
                                                 Machine_Context2_create(videoContext));
   //
-  self->font = Machine_FontsContext_createFont(
-      Machine_DefaultFonts_createContext(videoContext, Machines_DefaultImages_createContext()),
-      Ring2_String_create(Ring2_Context_get(), FONT_FILE, strlen(FONT_FILE)), FONT_SIZE);
+  Machine_ImagesContext *imagesContext = Machines_DefaultImages_createContext();
+  //
+  Machine_FontsContext* fontsContext = Machine_DefaultFonts_createContext(videoContext, imagesContext);
+  //
+  self->font = Machine_FontsContext_createFont(fontsContext,
+                                               Ring2_String_create(Ring2_Context_get(), FONT_FILE, strlen(FONT_FILE)), FONT_SIZE);
   //
   self->text1 = Machine_Text_Layout_create(Ring2_String_create(Ring2_Context_get(), "", strlen("")), self->font);
   {

@@ -7,7 +7,7 @@
 #if !defined(RING2_LOG_H_INCLUDED)
 #define RING2_LOG_H_INCLUDED
 
-#include "Ring1/Intrinsic/CheckReturn.h"
+#include "Ring1/Annotations/_Include.h"
 #include "Ring1/Result.h"
 
 Ring1_CheckReturn() Ring1_Result

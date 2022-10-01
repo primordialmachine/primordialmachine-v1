@@ -12,7 +12,7 @@
 #endif
 
 #include "Ring2/Configuration.h"
-#include "Ring1/Intrinsic/CheckReturn.h"
+#include "Ring1/Annotations/_Include.h"
 #include "Ring1/Result.h"
 
 /// @brief Starts up the "operations" module.
@@ -55,6 +55,8 @@ Ring2_OperationsModule_shutdown
 
 #if defined(Ring2_Configuration_withObject) && 1 == Ring2_Configuration_withObject
 
+  #include "Ring2/Operations/Object.h"
+
 #endif // Ring2_Configuration_withObject
 
 #if defined(Ring2_Configuration_withReal) && 1 == Ring2_Configuration_withReal
@@ -75,5 +77,7 @@ Ring2_OperationsModule_shutdown
   #include "Ring2/Operations/Void.h"
 
 #endif // Ring2_Configuration_withVoid
+
+#include "Ring2/Operations/Value.h"
 
 #endif // RING2_OPERATIONS_H_INCLUDED

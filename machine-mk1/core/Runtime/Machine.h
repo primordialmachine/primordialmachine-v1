@@ -19,7 +19,4 @@ Ring1_Result Machine_startup();
 /// @warning Undefined if the machine is already uninitialized.
 void Machine_shutdown();
 
-/// @brief Update the machine.
-void Machine_update();
-
 #endif // MACHINE_RUNTIME_MACHINE_H_INCLUDED

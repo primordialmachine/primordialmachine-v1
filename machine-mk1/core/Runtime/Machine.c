@@ -2,8 +2,6 @@
 #include "Runtime/Machine.h"
 
 #include "Ring2/_Include.h"
-#include "Runtime/StackModule.h"
-#include "Runtime/StaticVariablesModule.h"
 #include "Ring1/Time.h"
 #include "Ring1/Status.h"
 #include <stdio.h>
@@ -15,10 +13,8 @@ static const struct {
   void (*uninitialize)();
 } MODULES[] = {
   { &Ring2_Context_startup, &Ring2_Context_shutdown },
-  { &Machine_initializeStackModule, &Machine_uninitializeStackModule },
-  { &Machine_initializeStaticVariablesModule, &Machine_uninitializeStaticVariablesModule },
 };
-static size_t const NUMBER_OF_MODULES = 3;
+static size_t const NUMBER_OF_MODULES = 1;
 
 static Ring1_Result startupModules() {
   for (size_t i = 0, n = NUMBER_OF_MODULES; i < n; ++i) {
@@ -58,10 +54,6 @@ Ring1_Result Machine_startup() {
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-void Machine_update() {
-  Ring2_Gc_run(Ring2_Gc_get(), NULL);
-}
 
 void Machine_shutdown() {
   static const size_t MAX_RUN = 8;

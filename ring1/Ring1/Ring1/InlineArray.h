@@ -3,7 +3,7 @@
 
 #include <stddef.h>
 #include "Ring1/Result.h"
-#include "Ring1/Intrinsic/CheckReturn.h"
+#include "Ring1/Annotations/_Include.h"
 
 typedef struct Ring1_InlineArrayDispatch {
   size_t elementSize;

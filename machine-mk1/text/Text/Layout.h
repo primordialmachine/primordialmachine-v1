@@ -6,7 +6,7 @@
 #if !defined(MACHINE_TEXT_PRIVATE)
 #error("Do not include this file directly, include `_Text.h` instead.")
 #endif
-#include "_Collections.h"
+#include "Ring2/Library/_Include.h"
 #include "_Math.h"
 #include "_Graphics2.h"
 
@@ -36,7 +36,7 @@ struct Machine_Text_Layout {
   /// @brief The font of this layout.
   Machine_Font* font;
   Ring2_String* text;
-  Machine_PointerArray* lines;
+  Machine_ArrayList* lines;
   bool yup;
 
   /// @brief Combination of layout flags.

@@ -7,13 +7,13 @@
 #define RING2_INTERNAL (1)
 #include "Ring2/TypeSystem/InterfaceType.h"
 
-#include "Ring2/Types/Object.h"
 #include "Ring2/TypeSystem/ClassType.h"
 #include "Ring2/TypeSystem/EnumerationType.h"
 #include "Ring2/Gc.h"
 #include "Ring2/JumpTarget.h"
 #include "Ring1/Memory.h"
 #include "Ring1/Status.h"
+#include "Ring2/TypeSystem.h"
 
 static void Machine_InterfaceType_finalize(void *gc, Machine_InterfaceType* self) {
   if (self->extendsArrayInitialized) {
@@ -31,11 +31,12 @@ static void Machine_InterfaceType_visit(void *gc, Machine_InterfaceType* self) {
 }
 
 Machine_InterfaceType* Machine_createInterfaceType(Machine_CreateInterfaceTypeArgs* args) {
-  static Ring2_Gc_Type const gcType = {
-    .finalize = (Ring2_Gc_FinalizeCallback*)&Machine_InterfaceType_finalize,
-    .visit = (Ring2_Gc_VisitCallback*)Machine_InterfaceType_visit,
+  static const Ring2_Gc_Type TYPE = {
+    .finalize = &Machine_InterfaceType_finalize,
+    .visit = &Machine_InterfaceType_visit,
   };
-  Machine_InterfaceType* interfaceType = Ring2_ObjectModule_allocate(Ring2_Gc_get(), sizeof(Machine_InterfaceType), &gcType);
+  Machine_InterfaceType* interfaceType = (Machine_InterfaceType *)Ring2_Type_allocate(sizeof(Machine_InterfaceType),
+                                                                                      &TYPE);
   if (!interfaceType) {
     Ring1_Status_set(Ring1_Status_AllocationFailed);
     Ring2_jump();

@@ -15,19 +15,14 @@
 
 #if defined(Ring2_Configuration_withObject) && 1 == Ring2_Configuration_withObject
 
-#include "Ring1/Intrinsic/CheckReturn.h"
-#include "Ring1/Result.h"
-#include "Ring2/Gc.h"
-#include "Ring2/Types/Integer.h"
 #include "Ring2/Types/Boolean.h"
+#include "Ring2/Types/Integer.h"
+#include "Ring1/Annotations/_Include.h"
+#include "Ring2/Configuration.h"
+#include "Ring2/Gc.h"
 typedef struct Ring2_String Ring2_String;
-typedef struct Machine_ClassType Machine_ClassType;
 typedef struct Ring2_Context Ring2_Context;
 typedef struct Ring2_Value Ring2_Value;
-
-typedef struct Machine_Object_Class Machine_Object_Class;
-
-typedef struct Machine_Object Machine_Object;
 
 Ring1_CheckReturn() Ring1_Result
 Ring2_ObjectModule_startup
@@ -39,23 +34,17 @@ Ring2_ObjectModule_shutdown
   (
   );
 
-/// @brief Allocate a GC object.
-/// @param arguments A pointer to a Machine_Gc_AllocationArguments structure providing the arguments for the allocation.
-/// @return A pointer to the object on success, a null pointer on failure.
-void *
-Ring2_ObjectModule_allocate
-  (
-    Ring2_Gc *gc,
-    size_t size,
-    Ring2_Gc_Type const *type
-  );
+typedef struct Machine_ClassType Machine_ClassType;
 
-#endif // Ring2_Configuration_withObject
+typedef struct Machine_Object_Class Machine_Object_Class;
+
+typedef struct Machine_Object Machine_Object;
 
 struct Machine_Object_Class {
-  Ring2_Integer (*getHashValue)(Ring2_Context *, Machine_Object const *);
-  Ring2_Boolean(*isEqualTo)(Ring2_Context *, Machine_Object const *, Ring2_Value const *);
-  Ring2_String* (*toString)(Ring2_Context *, Machine_Object const *);
+  Ring2_Integer (*getHashValue)(Ring2_Context* context, Machine_Object const* self);
+  Ring2_Boolean (*isEqualTo)(Ring2_Context* context, Machine_Object const* self, Ring2_Value const* other);
+  Ring2_Boolean (*isNotEqualTo)(Ring2_Context* context, Machine_Object const* self, Ring2_Value const* other);
+  Ring2_String* (*toString)(Ring2_Context* context, Machine_Object const* self);
 };
 
 struct Machine_Object {
@@ -63,22 +52,6 @@ struct Machine_Object {
 };
 
 Machine_ClassType* Machine_Object_getType();
-
-/// @brief Get the hash value of this object.
-/// @param self This object.
-/// @return The hash value.
-Ring2_Integer Machine_Object_getHashValue(Ring2_Context* context, Machine_Object const* self);
-
-/// @brief Get if an object is equal to another object.
-/// @param self This object.
-/// @param other The other object.
-/// @return @a true if this object is equal to another object, @a false otherwise.
-Ring2_Boolean Machine_Object_isEqualTo(Ring2_Context* context, Machine_Object const* self, Ring2_Value const* other);
-
-/// @brief Convert an object to a <code>String</code> value.
-/// @param self This object.
-/// @return The <code>String</code> value.
-Ring2_String* Machine_Object_toString(Ring2_Context* context, Machine_Object const* self);
 
 /// @brief Construct this object.
 /// @param self This object.
@@ -132,4 +105,6 @@ Machine_ClassType* Machine_getClassType(Machine_Object* object);
 #define MACHINE_VIRTUALCALL_RETURN_ARGS(TYPENAME, METHODNAME, ...)                                 \
   MACHINE_VIRTUALCALL_IMPL(TYPENAME, METHODNAME, return, self, __VA_ARGS__);
 
-#endif // RING2_TYPES_VOID_H_INCLUDED
+#endif // Ring2_Configuration_withObject
+
+#endif // RING2_TYPES_OBJECT_H_INCLUDED

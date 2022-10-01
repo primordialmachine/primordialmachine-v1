@@ -13,24 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Quelldateien\GDL">
+    <Filter Include="Quelldateien\Gdl">
       <UniqueIdentifier>{308dd482-0dcb-407a-9849-52e67d1c6cd1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headerdateien\GDL">
+    <Filter Include="Headerdateien\Gdl">
       <UniqueIdentifier>{6b030912-0cd7-4990-b02e-8a974c7582c1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GDL\Test1.h">
-      <Filter>Headerdateien\GDL</Filter>
+      <Filter>Headerdateien\Gdl</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GDL\Main.c">
-      <Filter>Quelldateien\GDL</Filter>
+      <Filter>Quelldateien\Gdl</Filter>
     </ClCompile>
     <ClCompile Include="GDL\Test1.c">
-      <Filter>Quelldateien\GDL</Filter>
+      <Filter>Quelldateien\Gdl</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

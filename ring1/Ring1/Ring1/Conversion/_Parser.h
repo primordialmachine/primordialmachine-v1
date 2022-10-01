@@ -1,8 +1,7 @@
 #if !defined(RING1_CONVERSION__PARSER_H_INCLUDED)
 #define RING1_CONVERSION__PARSER_H_INCLUDED
 
-#include "Ring1/Intrinsic/CheckReturn.h"
-#include "Ring1/Intrinsic/Inline.h"
+#include "Ring1/Annotations/_Include.h"
 #include "Ring1/Result.h"
 #include <stdbool.h>
 #include <stddef.h>

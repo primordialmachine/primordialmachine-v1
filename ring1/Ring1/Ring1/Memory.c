@@ -6,7 +6,6 @@
 
 #include "Ring1/Memory.h"
 
-#include "Ring1/Intrinsic/Unlikely.h"
 #include "Ring1/Intrinsic/Multiply/multiply.h"
 
 #include <stdlib.h> // For EXIT_FAILURE.

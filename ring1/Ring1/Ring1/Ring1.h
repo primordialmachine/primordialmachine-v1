@@ -7,10 +7,8 @@
 #if !defined(RING1_RING1_H_INCLUDED)
 #define RING1_RING1_H_INCLUDED
 
-#include "Ring1/Intrinsic/CheckReturn.h"
+#include "Ring1/Annotations/_Include.h"
 #include "Ring1/Intrinsic/Crt.h"
-#include "Ring1/Intrinsic/Deprecated.h"
-#include "Ring1/Intrinsic/Inline.h"
 #include "Ring1/Memory.h"
 
 #endif // RING1_RING1_H_INCLUDED

@@ -7,7 +7,7 @@
 #if !defined(RING1_STATUS_H_INCLUDED)
 #define RING1_STATUS_H_INCLUDED
 
-#include "Ring1/Intrinsic/CheckReturn.h"
+#include "Ring1/Annotations/_Include.h"
 
 // https://documentation.primordialmachine.com/api/ring1-library/status-library/Ring1_Status
 typedef int Ring1_Status;

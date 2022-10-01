@@ -30,12 +30,6 @@
     <ClCompile Include="_Runtime.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Runtime\StringBuffer.c">
-      <Filter>Quelldateien\Runtime</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\ByteBuffer.c">
-      <Filter>Quelldateien\Runtime</Filter>
-    </ClCompile>
     <ClCompile Include="Runtime\Io.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
@@ -54,22 +48,10 @@
     <ClCompile Include="Runtime\Arguments.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
-    <ClCompile Include="Runtime\StackModule.c">
-      <Filter>Quelldateien\Runtime</Filter>
-    </ClCompile>
     <ClCompile Include="Runtime\StaticVariablesModule.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
     <ClCompile Include="Runtime\StaticVariablesModule.c">
-      <Filter>Quelldateien\Runtime</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\StaticVariablesModule.c">
-      <Filter>Quelldateien\Runtime</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\ArrayUtilities.c">
-      <Filter>Quelldateien\Runtime</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime\ByteBufferReader.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
     <ClCompile Include="Runtime\Time.c">
@@ -78,19 +60,10 @@
     <ClCompile Include="Runtime\Machine.c">
       <Filter>Quelldateien\Runtime</Filter>
     </ClCompile>
-    <ClCompile Include="Runtime\WeakReference.c">
-      <Filter>Quelldateien\Runtime</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_Runtime.h">
       <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\StringBuffer.h">
-      <Filter>Headerdateien\Runtime</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\ByteBuffer.h">
-      <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\Io.h">
       <Filter>Headerdateien\Runtime</Filter>
@@ -113,31 +86,16 @@
     <ClInclude Include="Runtime\Arguments.h">
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
-    <ClInclude Include="Runtime\StackModule.h">
-      <Filter>Headerdateien\Runtime</Filter>
-    </ClInclude>
     <ClInclude Include="Runtime\StaticVariablesModule.h">
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\StaticVariablesModule.h">
-      <Filter>Headerdateien\Runtime</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\StaticVariablesModule.h">
-      <Filter>Headerdateien\Runtime</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\ArrayUtilities.h">
-      <Filter>Headerdateien\Runtime</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\ByteBufferReader.h">
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\Time.h">
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
     <ClInclude Include="Runtime\Machine.h">
-      <Filter>Headerdateien\Runtime</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime\WeakReference.h">
       <Filter>Headerdateien\Runtime</Filter>
     </ClInclude>
   </ItemGroup>

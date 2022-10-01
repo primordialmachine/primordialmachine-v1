@@ -2,7 +2,7 @@
 #error("Do not include `Video/_header.i` directly, include `_Video.h` instead.")
 #endif
 
-#include "_Collections.h"
+#include "Ring2/Library/_Include.h"
 #include "_Input.h"
 #include "_Math.h"
 #include "_Runtime.h"

@@ -12,8 +12,7 @@
 #endif
 
 #include "Ring1/Result.h"
-#include "Ring1/Intrinsic/CheckReturn.h"
-#include "Ring1/Intrinsic/Inline.h"
+#include "Ring1/Annotations/_Include.h"
 #include "Ring2/Gc/Type.h"
 #include "Ring2/Gc/Tag.h"
 #include "Ring2/Gc/RunStatistics.h"

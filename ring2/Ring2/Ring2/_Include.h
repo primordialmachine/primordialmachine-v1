@@ -9,12 +9,16 @@
 
 #define RING2_INTERNAL (1)
 #include "Ring2/Assert.h"
-#include "Ring2/Gc.h"
-#include "Ring2/Types.h"
 #include "Ring2/Context.h"
+#include "Ring2/Gc.h"
 #include "Ring2/JumpTarget.h"
 #include "Ring2/Log.h"
 #include "Ring2/Operations.h"
+#include "Ring2/Stack.h"
+#include "Ring2/StaticVariables.h"
+#include "Ring2/Test/Test.h"
+#include "Ring2/Test/Tests.h"
+#include "Ring2/Types.h"
 #include "Ring2/TypeSystem/ClassType.h"
 #include "Ring2/TypeSystem/EnumerationType.h"
 #include "Ring2/TypeSystem/InterfaceType.h"

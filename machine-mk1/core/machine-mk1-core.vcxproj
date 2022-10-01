@@ -20,27 +20,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Runtime\Arguments.c" />
-    <ClCompile Include="Runtime\ArrayUtilities.c" />
-    <ClCompile Include="Runtime\ByteBuffer.c" />
-    <ClCompile Include="Runtime\ByteBufferReader.c" />
     <ClCompile Include="Runtime\Io.c" />
     <ClCompile Include="Runtime\Io\getFileContents.c" />
     <ClCompile Include="Runtime\Io\setFileContents.c" />
     <ClCompile Include="Runtime\Io\_FileHandle.c" />
     <ClCompile Include="Runtime\Io\_FileMapping.c" />
     <ClCompile Include="Runtime\Machine.c" />
-    <ClCompile Include="Runtime\StackModule.c" />
-    <ClCompile Include="Runtime\StaticVariablesModule.c" />
-    <ClCompile Include="Runtime\StringBuffer.c" />
     <ClCompile Include="Runtime\Time.c" />
-    <ClCompile Include="Runtime\WeakReference.c" />
     <ClCompile Include="_Runtime.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Runtime\Arguments.h" />
-    <ClInclude Include="Runtime\ArrayUtilities.h" />
-    <ClInclude Include="Runtime\ByteBuffer.h" />
-    <ClInclude Include="Runtime\ByteBufferReader.h" />
     <ClInclude Include="Runtime\Configuration.h" />
     <ClInclude Include="Runtime\Io.h" />
     <ClInclude Include="Runtime\Io\getFileContents.h" />
@@ -48,16 +38,15 @@
     <ClInclude Include="Runtime\Io\_FileHandle.h" />
     <ClInclude Include="Runtime\Io\_FileMapping.h" />
     <ClInclude Include="Runtime\Machine.h" />
-    <ClInclude Include="Runtime\StackModule.h" />
-    <ClInclude Include="Runtime\StaticVariablesModule.h" />
-    <ClInclude Include="Runtime\StringBuffer.h" />
     <ClInclude Include="Runtime\Time.h" />
-    <ClInclude Include="Runtime\WeakReference.h" />
     <ClInclude Include="_Runtime.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ring1\Ring1\Ring1.vcxproj">
       <Project>{d7db575d-7eaa-47de-8999-44f4e1361d34}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ring2\Ring2.Library\Ring2.Library.vcxproj">
+      <Project>{793157ce-6f58-4c53-bf1e-15716a4ce6bf}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\ring2\Ring2\Ring2.vcxproj">
       <Project>{3ade4501-5d5c-4878-9632-f81c3de2429c}</Project>

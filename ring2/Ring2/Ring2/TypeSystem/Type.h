@@ -7,12 +7,14 @@
 #if !defined(RING2_TYPESYSTEM_TYPE_H_INCLUDED)
 #define RING2_TYPESYSTEM_TYPE_H_INCLUDED
 
+
 #if !defined(RING2_INTERNAL) || 1 != RING2_INTERNAL
 #error("Do not include `Ring2/TypeSystem/Type.h` directly. Include `Ring2/_Include.h` instead.")
 #endif
 
 #include <stdint.h>
 #include <stdbool.h>
+#include "Ring2/Types/Object.h"
 #include "Ring1/Ring1.h"
 
 /// @brief Type flags. See Machine_Type for more information.
@@ -51,6 +53,9 @@ typedef struct Machine_Type Machine_Type;
 typedef void(Machine_TypeRemovedCallback)();
 
 struct Machine_Type {
+  Ring2_Gc_FinalizeCallback* finalize;
+  Ring2_Gc_VisitCallback* visit;
+
   /// @brief Either Machine_TypeFlags_Class or Machine_TypeFlags_Interface must be set.
   ///        If the type has been initialized, then Machine_TypeFlags_Initialized must be set.
   uint32_t flags;

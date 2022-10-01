@@ -8,8 +8,7 @@
 #define RING2_JUMPTARGET_JUMPTARGET1_H_INCLUDED
 
 #include "Ring2/Configuration.h"
-#include "Ring1/Intrinsic/CheckReturn.h"
-#include "Ring1/Intrinsic/NoReturn.h"
+#include "Ring1/Annotations/_Include.h"
 #include "Ring1/Result.h"
 #include <setjmp.h>
 

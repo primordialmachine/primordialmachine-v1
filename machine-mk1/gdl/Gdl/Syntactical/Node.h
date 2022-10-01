@@ -6,7 +6,7 @@
 
 #include "Gdl/Context.h"
 #include "Gdl/Syntactical/NodeKind.h"
-#include "_Collections.h"
+#include "Ring2/Library/_Include.h"
 
 MACHINE_DECLARE_CLASSTYPE(Machine_Gdl_Node)
 

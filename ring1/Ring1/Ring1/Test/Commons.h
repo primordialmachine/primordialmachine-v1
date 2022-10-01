@@ -5,7 +5,7 @@
 #error("Do not include `Ring1/Test/Commons.h` directly. Include `Ring1/Test.h` instead.")
 #endif
 
-#include "Ring1/Intrinsic/CheckReturn.h"
+#include "Ring1/Annotations/_Include.h"
 #include "Ring1/Result.h"
 
 // @brief Type of a test context.

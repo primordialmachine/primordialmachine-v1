@@ -7,10 +7,9 @@
 #define RING2_INTERNAL (1)
 #include "Ring2/TypeSystem/EnumerationType.h"
 
-#include "Ring2/Gc.h"
-#include "Ring2/JumpTarget.h"
-#include "Ring2/Types/Object.h"
 #include "Ring1/Status.h"
+#include "Ring2/JumpTarget.h"
+#include "Ring2/TypeSystem.h"
 
 static void Machine_EnumerationType_finalize(Ring2_Gc *gc, Machine_EnumerationType* self) {
   Ring2_Type_finalize((Machine_Type*)self);
@@ -21,11 +20,12 @@ static void Machine_EnumerationType_visit(Ring2_Gc *gc, Machine_EnumerationType*
 }
 
 Machine_EnumerationType* Machine_createEnumerationType(Machine_CreateEnumerationTypeArgs* args) {
-  static Ring2_Gc_Type const gcType = {
-    .finalize = (Ring2_Gc_FinalizeCallback*)&Machine_EnumerationType_finalize,
-    .visit = (Ring2_Gc_VisitCallback*)Machine_EnumerationType_visit,
+  static const Ring2_Gc_Type TYPE = {
+    .finalize = &Machine_EnumerationType_finalize,
+    .visit = &Machine_EnumerationType_visit,
   };
-  Machine_EnumerationType* enumerationType = Ring2_ObjectModule_allocate(Ring2_Gc_get(), sizeof(Machine_EnumerationType), &gcType);
+  Machine_EnumerationType* enumerationType = (Machine_EnumerationType *)Ring2_Type_allocate(sizeof(Machine_EnumerationType), 
+                                                                                            &TYPE);
   if (!enumerationType) {
     Ring1_Status_set(Ring1_Status_AllocationFailed);
     Ring2_jump();

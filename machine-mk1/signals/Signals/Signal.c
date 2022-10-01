@@ -2,10 +2,9 @@
 #include "Signals/Signal.h"
 
 
-
 #include "Ring1/Status.h"
+#include "Ring2/Library/_Include.h"
 #include "Signals/Connection.h"
-
 
 
 static void Machine_Signals_Signal_visit(Machine_Signals_Signal* self);
@@ -43,7 +42,7 @@ void Machine_Signals_Signal_subscribe(Machine_Signals_Signal* self, Ring2_String
 
 void Machine_Signals_Signal_unsubscribe(Machine_Signals_Signal* self, Ring2_String* name, Machine_Object* context, Ring2_ForeignProcedure* callback) {
   Ring2_Value contextValue;
-  Ring2_Value_setObject(&contextValue, context);
+  Ring2_Value_setObject(&contextValue, (Machine_Object *)context);
   for (size_t i = 0, n = Machine_Collection_getSize((Machine_Collection*)(self->connections)); i < n; ++i) {
     Ring2_Value temporary = Machine_List_getAt(self->connections, i);
     Machine_Signals_Connection* c = (Machine_Signals_Connection*)Ring2_Value_getObject(&temporary);
@@ -77,7 +76,7 @@ void Machine_Signals_Signal_emit(Machine_Signals_Signal* self, Ring2_String* nam
             = (Machine_Signals_Connection*)Ring2_Value_getObject(&temporary);
         if (Ring2_String_isEqualTo(Ring2_Context_get(), c->name, name)) {
           Ring2_assertNotNull(c->callback);
-          Ring2_Value_setObject(&(arguments1[0]), c->context);
+          Ring2_Value_setObject(&(arguments1[0]), (Machine_Object *)c->context);
           Ring2_Value result = { Ring2_Value_Tag_Void, Ring2_Void_Void };
           c->callback(Ring2_Context_get(), &result, numberOfArguments1, arguments1);
         }

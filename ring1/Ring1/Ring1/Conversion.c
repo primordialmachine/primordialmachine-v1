@@ -6,7 +6,6 @@
 
 #include "Ring1/Conversion.h"
 
-#include "Ring1/Intrinsic/Unlikely.h"
 #include "Ring1/Memory.h"
 
 static Ring1_CheckReturn() Ring1_Result

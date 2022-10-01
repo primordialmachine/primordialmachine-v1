@@ -8,7 +8,7 @@
 #define RING1_TEST_H_INCLUDED
 
 #include <stdbool.h>
-#include "Ring1/Intrinsic/CheckReturn.h"
+#include "Ring1/Annotations/_Include.h"
 #include "Ring1/Result.h"
 
 /// @public

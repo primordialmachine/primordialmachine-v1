@@ -5,6 +5,7 @@
 #define MACHINE_GDL_EXTENSIONS_H_INCLUDED
 
 #include "Gdl/Syntactical/Node.h"
+#include "Ring2/Library/_Include.h"
 
 /// @brief Convert a node to a value of type <code>Boolean</code>.
 /// @param self This node. Must be of kind Machine_Gdl_NodeKind_Boolean.

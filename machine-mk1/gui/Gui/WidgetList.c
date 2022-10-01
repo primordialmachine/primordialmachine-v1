@@ -11,7 +11,7 @@ struct Machine_Gui_WidgetList_Class {
 struct Machine_Gui_WidgetList {
   Machine_Object __parent;
 
-  Machine_PointerArray* backing;
+  Machine_ArrayList* backing;
 };
 
 static void Machine_Gui_WidgetList_visit(Machine_Gui_WidgetList* self) {
@@ -27,7 +27,7 @@ static void Machine_Gui_WidgetList_constructClass(
 void Machine_Gui_WidgetList_construct(Machine_Gui_WidgetList* self, size_t numberOfArguments,
                                       Ring2_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  self->backing = Machine_PointerArray_create();
+  self->backing = Machine_ArrayList_create();
   Machine_setClassType((Machine_Object*)self, Machine_Gui_WidgetList_getType());
 }
 
@@ -45,13 +45,17 @@ Machine_Gui_WidgetList* Machine_Gui_WidgetList_create() {
 }
 
 size_t Machine_Gui_WidgetList_getSize(Machine_Gui_WidgetList* self) {
-  return Machine_PointerArray_getSize(self->backing);
+  return Machine_Collection_getSize(Ring1_cast(Machine_Collection *, self->backing));
 }
 
 Machine_Gui_Widget* Machine_Gui_WidgetList_getAt(Machine_Gui_WidgetList* self, size_t index) {
-  return (Machine_Gui_Widget*)Machine_PointerArray_getAt(self->backing, index);
+  Ring2_Value t;
+  t = Machine_List_getAt(Ring1_cast(Machine_List*, self->backing), index);
+  return Ring1_cast(Machine_Gui_Widget *, Ring2_Value_getObject(&t));
 }
 
 void Machine_Gui_WidgetList_append(Machine_Gui_WidgetList* self, Machine_Gui_Widget* widget) {
-  Machine_PointerArray_append(self->backing, widget);
+  Ring2_Value t;
+  Ring2_Value_setObject(&t, Ring1_cast(Machine_Object *, widget));
+  Machine_List_append(Ring1_cast(Machine_List *, self->backing), t);
 }

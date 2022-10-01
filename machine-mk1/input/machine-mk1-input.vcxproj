@@ -154,6 +154,9 @@
     <ProjectReference Include="..\..\ring1\Ring1\Ring1.vcxproj">
       <Project>{d7db575d-7eaa-47de-8999-44f4e1361d34}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\ring2\Ring2.Library\Ring2.Library.vcxproj">
+      <Project>{793157ce-6f58-4c53-bf1e-15716a4ce6bf}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\ring2\Ring2\Ring2.vcxproj">
       <Project>{3ade4501-5d5c-4878-9632-f81c3de2429c}</Project>
     </ProjectReference>

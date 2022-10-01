@@ -8,7 +8,6 @@
 
 #include "Ring1/Memory.h"
 #include "Ring1/Status.h"
-#include "Ring1/Intrinsic/Unlikely.h"
 
 Ring1_CheckReturn() Ring1_Result
 Ring1_Conversion_stringToBool

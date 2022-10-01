@@ -2,7 +2,7 @@
 #define RING1_INTRINSIC_ADD_H_INCLUDED
 
 #include <inttypes.h>
-#include "Ring1/Intrinsic/CheckReturn.h"
+#include "Ring1/Annotations/_Include.h"
 #include "Ring1/Result.h"
 
 // https://documentation.primordialmachine.com/api/ring1-library/intrinsic-library/Ring1_Intrinsic_add

@@ -2,7 +2,7 @@
 #define RING1_INTRINSIC_NEXTPOWEROFTWO_H_INCLUDED
 
 #include <stdint.h>
-#include "Ring1/Intrinsic/CheckReturn.h"
+#include "Ring1/Annotations/_Include.h"
 #include "Ring1/Result.h"
 
 Ring1_CheckReturn() Ring1_Result

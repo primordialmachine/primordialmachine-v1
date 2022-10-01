@@ -5,14 +5,12 @@
 #include "Font.h"
 
 
-
 #include "Ring1/Status.h"
 #include "FontsContext.h"
 
 #include <inttypes.h>
 #include <ft2build.h>
 #include FT_FREETYPE_H
-
 
 
 typedef struct Node Node;
@@ -66,15 +64,12 @@ static void Map_finalize(void *gc, Map* self) {
     Ring1_Memory_deallocate(self->buckets);
     self->buckets = NULL;
   }
+  Ring1_Memory_deallocate(self);
 }
 
 static Map* Map_create() {
-  static Ring2_Gc_Type const gcType = {
-    .finalize = (Ring2_Gc_FinalizeCallback*)&Map_finalize,
-    .visit = (Ring2_Gc_VisitCallback*)&Map_visit,
-  };
-  Map* self = Ring2_ObjectModule_allocate(Ring2_Gc_get(), sizeof(Map), &gcType);
-  if (!self) {
+  Map* self;
+  if (Ring1_Memory_allocate(&self, sizeof(Map))) {
     Ring2_jump();
   }
   self->size = 0;
@@ -82,6 +77,7 @@ static Map* Map_create() {
   self->buckets = NULL;
   if (Ring1_Memory_allocateArray((void **) & self->buckets, 8, sizeof(Node*))) {
     self->capacity = 0;
+    Ring1_Memory_deallocate(self);
     Ring2_jump();
   }
   for (size_t i = 0; i < 8; ++i) {
@@ -202,7 +198,7 @@ static void Machine_Fonts_Font_constructClass(Machine_Fonts_Font_Class* self) {
 
 static void Machine_Fonts_Font_visit(Machine_Fonts_Font* self) {
   if (self->map) {
-    Ring2_Gc_visit(Ring2_Gc_get(), self->map);
+    Map_visit(Ring2_Gc_get(), self->map);
   }
   if (self->vertices) {
     Ring2_Gc_visit(Ring2_Gc_get(), self->vertices);
@@ -216,12 +212,19 @@ static void Machine_Fonts_Font_visit(Machine_Fonts_Font* self) {
   if (self->context) {
     Ring2_Gc_visit(Ring2_Gc_get(), self->context);
   }
+  if (self->map) {
+    Map_visit(Ring2_Gc_get(), self->map);
+  }
 }
 
 static void Machine_Fonts_Font_destruct(Machine_Fonts_Font* self) {
   if (self->face) {
     FT_Done_Face(self->face);
     self->face = NULL;
+  }
+  if (self->map) {
+    Map_finalize(Ring2_Gc_get(), self->map);
+    self->map = NULL;
   }
   Ring2_Gc_unlock(self->context);
   self->context = NULL;

@@ -10,7 +10,6 @@
 #define NOMINMAX
 #include <Windows.h>
 
-#include "Ring1/Intrinsic/Unlikely.h"
 #include "Ring1/Status.h"
 
 Ring1_CheckReturn() Ring1_Result

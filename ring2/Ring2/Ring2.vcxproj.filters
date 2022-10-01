@@ -51,6 +51,12 @@
     <Filter Include="Quelldateien\Ring2\TypeSystem">
       <UniqueIdentifier>{2727a010-5070-407b-9643-2a97ef514935}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring2\Test">
+      <UniqueIdentifier>{26af2a86-44de-44c3-bcb5-f1a477c11eb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring2\Test">
+      <UniqueIdentifier>{fb6bdd27-652c-47e3-a580-a9c735b41239}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring2\JumpTarget.h">
@@ -158,6 +164,33 @@
     <ClInclude Include="Ring2\Types\ForeignProcedure.h">
       <Filter>Headerdateien\Ring2\Types</Filter>
     </ClInclude>
+    <ClInclude Include="Ring2\TypeSystem.h">
+      <Filter>Headerdateien\Ring2</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Operations\Object.h">
+      <Filter>Headerdateien\Ring2\Operations</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Operations\Value.h">
+      <Filter>Headerdateien\Ring2\Operations</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Types\Array.h">
+      <Filter>Headerdateien\Ring2\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Operations\Array.h">
+      <Filter>Headerdateien\Ring2\Operations</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\Test.h">
+      <Filter>Headerdateien\Ring2\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\Tests.h">
+      <Filter>Headerdateien\Ring2\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Stack.h">
+      <Filter>Headerdateien\Ring2</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\StaticVariables.h">
+      <Filter>Headerdateien\Ring2</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring2\JumpTarget.c">
@@ -261,6 +294,33 @@
     </ClCompile>
     <ClCompile Include="Ring2\Operations\ForeignProcedure.c">
       <Filter>Quelldateien\Ring2\Operations</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\TypeSystem.c">
+      <Filter>Quelldateien\Ring2</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Operations\Object.c">
+      <Filter>Quelldateien\Ring2\Operations</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Operations\Value.c">
+      <Filter>Quelldateien\Ring2\Operations</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Types\Array.c">
+      <Filter>Quelldateien\Ring2\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Operations\Array.c">
+      <Filter>Quelldateien\Ring2\Operations</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\Test.c">
+      <Filter>Quelldateien\Ring2\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\Tests.c">
+      <Filter>Quelldateien\Ring2\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Stack.c">
+      <Filter>Quelldateien\Ring2</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\StaticVariables.c">
+      <Filter>Quelldateien\Ring2</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -15,7 +15,7 @@
 
 #if defined(Ring2_Configuration_withForeignProcedure) && 1 == Ring2_Configuration_withForeignProcedure
 
-#include "Ring1/Intrinsic/CheckReturn.h"
+#include "Ring1/Annotations/_Include.h"
 #include <stdint.h>
 #include <stdbool.h>
 typedef struct Ring2_Context Ring2_Context; // Forward declaration.

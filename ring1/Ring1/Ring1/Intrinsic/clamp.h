@@ -8,7 +8,7 @@
 #define RING1_INTRINSIC_CLAMP_H_INCLUDED
 
 #include <inttypes.h>
-#include "Ring1/Intrinsic/CheckReturn.h"
+#include "Ring1/Annotations/_Include.h"
 #include "Ring1/Result.h"
 
 #define IMPLEMENTATION(SUFFIX, TYPE) \

@@ -10,6 +10,7 @@
 #include "Gui/BorderNode.h"
 #include "Gui/GroupNode.h"
 #include "Gui/TextNode.h"
+#include "Ring2/Library/_Include.h"
 
 /// @brief
 /// <code>

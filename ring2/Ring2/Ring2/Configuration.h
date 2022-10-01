@@ -11,6 +11,8 @@
 #error("Do not include `Ring2/Configuration.h` directly. Include `Ring2/_Include.h` instead.")
 #endif
 
+#define Ring2_Configuration_withArray (0)
+
 #define Ring2_Configuration_withBoolean (1)
 
 #define Ring2_Configuration_withForeignProcedure (1)

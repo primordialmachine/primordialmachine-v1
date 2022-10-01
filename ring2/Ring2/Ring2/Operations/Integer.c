@@ -9,7 +9,9 @@
 
 #include <stdio.h>
 #include "Ring1/Hash.h"
-#include "Ring2/_Include.h"
+#include "Ring1/Status.h"
+#include "Ring1/Conversion.h"
+#include "Ring2/JumpTarget.h"
 
 Ring1_CheckReturn() Ring2_Integer
 Ring2_Integer_getHashValue

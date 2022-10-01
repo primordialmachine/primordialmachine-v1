@@ -7,7 +7,7 @@
 #if !defined(RING1_CONVERSION_STRINGTOUINT_H_INCLUDED)
 #define RING1_CONVERSION_STRINGTOUINT_H_INCLUDED
 
-#include "Ring1/Intrinsic/CheckReturn.h"
+#include "Ring1/Annotations/_Include.h"
 #include "Ring1/Result.h"
 #include <inttypes.h>
 

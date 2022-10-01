@@ -7,9 +7,9 @@
 #define RING2_INTERNAL (1)
 #include "Ring2/Operations/Boolean.h"
 
-#include <stdio.h>
 #include "Ring1/Hash.h"
-#include "Ring2/_Include.h"
+#include "Ring1/Conversion.h"
+#include "Ring2/JumpTarget.h"
 
 Ring1_CheckReturn() Ring2_Integer
 Ring2_Boolean_getHashValue
@@ -138,13 +138,37 @@ Ring2_Boolean_negate
   )
 { return !x; }
 
-Ring1_CheckReturn() Ring2_String *
+Ring1_CheckReturn() Ring2_String*
 Ring2_Boolean_toString
   (
-    Ring2_Context *context,
-    Ring2_Boolean value
+    Ring2_Context* context,
+    Ring2_Boolean x
   )
 {
-  return value ? Ring2_String_create(Ring2_Context_get(), "true", crt_strlen("true"))
-               : Ring2_String_create(Ring2_Context_get(), "false", crt_strlen("false"));
+  if (x) {
+    static char const* bytes = "true";
+    static size_t const numberOfBytes = sizeof("true") - 1;
+    return Ring2_String_create(Ring2_Context_get(), bytes, numberOfBytes);
+  } else {
+    static char const* bytes = "false";
+    static size_t const numberOfBytes = sizeof("false") - 1;
+    return Ring2_String_create(Ring2_Context_get(), bytes, numberOfBytes);
+  }
+}
+
+Ring1_CheckReturn() Ring2_Boolean
+Ring2_Boolean_fromString
+  (
+    Ring2_Context* context,
+    Ring2_String* w
+  )
+{
+  char const* start = Ring2_String_getBytes(Ring2_Context_get(), w),
+            * end = Ring2_String_getBytes(Ring2_Context_get(), w)
+                  + Ring2_String_getNumberOfBytes(Ring2_Context_get(), w);
+  bool v;
+  if (Ring1_Conversion_stringToBool(&v, start, end)) {
+    Ring2_jump();
+  }
+  return v;
 }
