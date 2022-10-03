@@ -8,7 +8,7 @@
 #error("Do not include `Math/Vector4.h` directly, include `_Math.h` instead.")
 #endif
 
-#include "_Runtime.h"
+#include "Ring2/Library/_Include.h"
 
 /// C-level definition of a 3D vector.
 /// The HLL-level definition is

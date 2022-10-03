@@ -7,8 +7,7 @@
 #if !defined(MACHINE_GUI_PRIVATE)
 #error("Do not include `Gui/Gdl/Context.h` directly, include `_Gui.h` instead.")
 #endif
-#include "_GDL.h"
-#include "_Runtime.h"
+#include "_Gdl.h"
 
 /// @brief A context.
 /// @extends Machine.Object

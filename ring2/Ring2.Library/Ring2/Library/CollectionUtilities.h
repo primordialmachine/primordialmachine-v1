@@ -8,7 +8,7 @@
 #define RING2_LIBRARY_COLLECTIONUTILITIES_H_INCLUDED
 
 #if !defined(RING2_LIBRARY_PRIVATE) || 1 != RING2_LIBRARY_PRIVATE
-#error("Do not include `Ring2/Library/CollectionUtilities.h` directly, include `Ring2/Library/_Include.h` instead.")
+#error("Do not include `Ring2/Library/CollectionUtilities.h` directly. Include `Ring2/Library/_Include.h` instead.")
 #endif
 
 #include "Ring1/Status.h"
@@ -206,5 +206,6 @@ CollectionUtilities_copyOfArray
     return arrayNew;
   }
 }
+
 
 #endif // RING2_LIBRARY_COLLECTIONUTILITIES_H_INCLUDED

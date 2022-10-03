@@ -7,11 +7,12 @@
 #if !defined(RING2_LIBRARY_DEQUE_H_INCLUDED)
 #define RING2_LIBRARY_DEQUE_H_INCLUDED
 
-#if !defined(RING2_LIBRARY_PRIVATE) || 1 != RING2_LIBRARY_PRIVATE
-#error("Do not include `Ring2/Library/Deque.h` directly, include `Ring2/Library/_Include.h` instead.")
-#endif
 
+#if !defined(RING2_LIBRARY_PRIVATE) || 1 != RING2_LIBRARY_PRIVATE
+#error("Do not include `Ring2/Library/Deque.h` directly. Include `Ring2/Library/_Include.h` instead.")
+#endif
 #include "Ring2/_Include.h"
+
 
 /// @brief A double-ended queue.
 /// @details Supports fast insertion and removal at its both ends.
@@ -45,5 +46,6 @@ Ring2_Value Machine_Deque_popBack(Machine_Deque* self);
 /// @param self This deque.
 /// @param value The value.
 void Machine_Deque_pushBack(Machine_Deque* self, Ring2_Value value);
+
 
 #endif // RING2_LIBRARY_DEQUE_H_INCLUDED

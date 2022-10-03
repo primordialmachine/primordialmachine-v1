@@ -11,9 +11,9 @@
 #if !defined(RING2_INTERNAL) || 1 != RING2_INTERNAL
 #error("Do not include `Ring2/TypeSystem.h` directly. Include `Ring2/_Include.h` instead.")
 #endif
+#include "Ring2/_header.h.i"
 
-#include "Ring1/Annotations/_Include.h"
-#include "Ring1/Result.h"
+
 #include "Ring2/Gc.h"
 typedef struct Machine_Type Machine_Type;
 

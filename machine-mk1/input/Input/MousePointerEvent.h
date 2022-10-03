@@ -7,7 +7,7 @@
 #if !defined(MACHINE_INPUT_PRIVATE)
 #error("Do not include this file directly, include `_Input.h` instead.")
 #endif
-#include "_Runtime.h"
+#include "Ring2/Library/_Include.h"
 
 MACHINE_DECLARE_ENUMERATIONTYPE(Machine_MousePointerActions)
 

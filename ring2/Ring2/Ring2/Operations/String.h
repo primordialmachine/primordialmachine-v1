@@ -7,15 +7,15 @@
 #if !defined(RING2_OPERATIONS_STRING_H_INCLUDED)
 #define RING2_OPERATIONS_STRING_H_INCLUDED
 
+
 #if !defined(RING2_INTERNAL) || 1 != RING2_INTERNAL
 #error("Do not include `Ring2/Operations/String.h` directly. Include `Ring2/_Include.h` instead.")
 #endif
+#include "Ring2/_header.h.i"
 
-#include "Ring2/Configuration.h"
 
 #if defined(Ring2_Configuration_withString) && 1 == Ring2_Configuration_withString
 
-#include "Ring2/Context.h"
 #include "Ring2/Types.h"
 
 /// @brief Get if a <code>String</code> value is in an "equal to" relation with another <code>String</code> value.

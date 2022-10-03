@@ -7,13 +7,12 @@
 #if !defined(RING2_OPERATIONS_H_INCLUDED)
 #define RING2_OPERATIONS_H_INCLUDED
 
+
 #if !defined(RING2_INTERNAL) || 1 != RING2_INTERNAL
 #error("Do not include `Ring2/Operations.h` directly. Include `Ring2/_Include.h` instead.")
 #endif
+#include "Ring2/_header.h.i"
 
-#include "Ring2/Configuration.h"
-#include "Ring1/Annotations/_Include.h"
-#include "Ring1/Result.h"
 
 /// @brief Starts up the "operations" module.
 /// @remarks Also starts up the "jump target" module and the "types" module.

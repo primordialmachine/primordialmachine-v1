@@ -5,8 +5,7 @@
 extern "C" {
 #endif
 
-#include "_Runtime.h"
-#include "Ring2/_Include.h"
+#include "Ring2/Library/_Include.h"
 #include "Collections/Test/PairTest.h"
 #include "Collections/Test/ArrayListTest.h"
 #include "Collections/Test/HashMapTest.h"
@@ -19,7 +18,7 @@ int main() {
   if (Ring1_Test_Context_create(&ctx)) {
     return EXIT_FAILURE;
   }
-  if (Machine_startup()) {
+  if (Ring2_Context_startup()) {
     Ring1_Test_Context_destroy(ctx);
     ctx = NULL;
     return EXIT_FAILURE;
@@ -68,7 +67,7 @@ int main() {
     Ring2_popJumpTarget();
   }
   Ring1_Status status = Ring1_Status_get();
-  Machine_shutdown();
+  Ring2_Context_shutdown();
   Ring1_Test_Context_destroy(ctx);
   ctx = NULL;
   return status ? EXIT_FAILURE : EXIT_SUCCESS;

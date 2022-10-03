@@ -7,11 +7,12 @@
 #if !defined(RING2_LIBRARY_ARRAYDEQUE_H_INCLUDED)
 #define RING2_LIBRARY_ARRAYDEQUE_H_INCLUDED
 
-#if !defined(RING2_LIBRARY_PRIVATE) || 1 != RING2_LIBRARY_PRIVATE
-#error("Do not include `Ring2/Library/ArrayDeque.h` directly, include `Ring2/Library/_Include.h` instead.")
-#endif
 
+#if !defined(RING2_LIBRARY_PRIVATE) || 1 != RING2_LIBRARY_PRIVATE
+#error("Do not include `Ring2/Library/ArrayDeque.h` directly. Include `Ring2/Library/_Include.h` instead.")
+#endif
 #include "Ring2/_Include.h"
+
 
 /// @brief An array deque.
 /// We have a write position WRITE and a rear position READ.
@@ -63,5 +64,6 @@ void Machine_ArrayDeque_construct(Machine_ArrayDeque* self, size_t numberOfArgum
 /// @brief Create an empty queue.
 /// @return The queue.
 Machine_ArrayDeque* Machine_ArrayDeque_create();
+
 
 #endif // RING2_LIBRARY_ARRAYDEQUE_H_INCLUDED

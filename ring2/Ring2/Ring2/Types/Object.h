@@ -7,22 +7,18 @@
 #if !defined(RING2_TYPES_OBJECT_H_INCLUDED)
 #define RING2_TYPES_OBJECT_H_INCLUDED
 
+
 #if !defined(RING2_INTERNAL) || 1 != RING2_INTERNAL
 #error("Do not include `Ring2/Types/Object.h` directly. Include `Ring2/_Include.h` instead.")
 #endif
+#include "Ring2/_header.h.i"
 
-#include "Ring2/Configuration.h"
 
 #if defined(Ring2_Configuration_withObject) && 1 == Ring2_Configuration_withObject
 
 #include "Ring2/Types/Boolean.h"
 #include "Ring2/Types/Integer.h"
-#include "Ring1/Annotations/_Include.h"
-#include "Ring2/Configuration.h"
 #include "Ring2/Gc.h"
-typedef struct Ring2_String Ring2_String;
-typedef struct Ring2_Context Ring2_Context;
-typedef struct Ring2_Value Ring2_Value;
 
 Ring1_CheckReturn() Ring1_Result
 Ring2_ObjectModule_startup

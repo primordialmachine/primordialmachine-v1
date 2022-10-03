@@ -9,7 +9,7 @@ extern "C" {
 #include <stdlib.h>
 
 int main() {
-  if (Machine_startup()) {
+  if (Ring2_Context_startup()) {
     return EXIT_FAILURE;
   }
   Ring2_JumpTarget jumpTarget;
@@ -19,7 +19,7 @@ int main() {
     Ring2_popJumpTarget();
   }
   Ring1_Status status = Ring1_Status_get();
-  Machine_shutdown();
+  Ring2_Context_shutdown();
   return status ? EXIT_FAILURE : EXIT_SUCCESS;
 }
 

@@ -7,12 +7,13 @@
 #if !defined(RING2_TYPESYSTEM_INTERFACETYPE_H_INCLUDED)
 #define RING2_TYPESYSTEM_INTERFACETYPE_H_INCLUDED
 
+
 #if !defined(RING2_INTERNAL) || 1 != RING2_INTERNAL
 #error("Do not include `Ring2/TypeSystem/InterfaceType.h` directly. Include `Ring2/_Include.h` instead.")
 #endif
-
 #include "Ring2/TypeSystem/Type.h"
 #include "Ring1/InlineArray.h"
+
 
 /// @brief Flags set if the prerequisites were added.
 #define Machine_InterfaceTypeFlags_PrerequisitesAdded (1<<1)

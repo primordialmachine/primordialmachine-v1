@@ -2,13 +2,11 @@
 #include "Text/Layout.h"
 
 
-
 #include "_Graphics2.h"
 #include "_Fonts.h"
 #include "Text/LayoutLine.h"
 #include <string.h>
 #include <math.h>
-
 
 
 static const float OFFSET_X = 0.f;

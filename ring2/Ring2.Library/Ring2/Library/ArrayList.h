@@ -7,11 +7,12 @@
 #if !defined(RING2_LIBRARY_ARRAYLIST_H_INCLUDED)
 #define RING2_LIBRARY_ARRAYLIST_H_INCLUDED
 
-#if !defined(RING2_LIBRARY_PRIVATE) || 1 != RING2_LIBRARY_PRIVATE
-#error("Do not include `Ring2/Library/ArrayList.h` directly, include `Ring2/Library/_Include.h` instead.")
-#endif
 
+#if !defined(RING2_LIBRARY_PRIVATE) || 1 != RING2_LIBRARY_PRIVATE
+#error("Do not include `Ring2/Library/ArrayList.h` directly. Include `Ring2/Library/_Include.h` instead.")
+#endif
 #include "Ring2/_Include.h"
+
 
 /// The version of the Ring2.ArrayList type implementation.
 #define RING2_LIBRARY_ARRAYLIST_VERSION (2)
@@ -35,5 +36,6 @@ Machine_ArrayList *
 Machine_ArrayList_create
   (
   );
+
 
 #endif // RING2_LIBRARY_ARRAYLIST_H_INCLUDED

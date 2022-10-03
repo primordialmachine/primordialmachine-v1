@@ -21,6 +21,12 @@
     <Filter Include="Quelldateien\Ring2\Library">
       <UniqueIdentifier>{e1269a85-8e0c-414e-8a6a-d0ee5e23f3c0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring2\Library\Io">
+      <UniqueIdentifier>{4959a508-208a-4a4b-8605-56aa27439bf8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring2\Library\Io">
+      <UniqueIdentifier>{19619385-5e91-4faf-878d-80d5a87e5f42}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring2\Library\_Include.h">
@@ -74,6 +80,24 @@
     <ClInclude Include="Ring2\Library\WeakReference.h">
       <Filter>Headerdateien\Ring2\Library</Filter>
     </ClInclude>
+    <ClInclude Include="Ring2\Library\Time.h">
+      <Filter>Headerdateien\Ring2\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Library\Io\_FileHandle.h">
+      <Filter>Headerdateien\Ring2\Library\Io</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Library\Io\_FileMapping.h">
+      <Filter>Headerdateien\Ring2\Library\Io</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Library\Io\getFileContents.h">
+      <Filter>Headerdateien\Ring2\Library\Io</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Library\Io\setFileContents.h">
+      <Filter>Headerdateien\Ring2\Library\Io</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Library\Io.h">
+      <Filter>Headerdateien\Ring2\Library</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring2\Library\_Include.c">
@@ -125,6 +149,24 @@
       <Filter>Quelldateien\Ring2\Library</Filter>
     </ClCompile>
     <ClCompile Include="Ring2\Library\WeakReference.c">
+      <Filter>Quelldateien\Ring2\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Library\Time.c">
+      <Filter>Quelldateien\Ring2\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Library\Io\_FileHandle.c">
+      <Filter>Quelldateien\Ring2\Library\Io</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Library\Io\_FileMapping.c">
+      <Filter>Quelldateien\Ring2\Library\Io</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Library\Io\getFileContents.c">
+      <Filter>Quelldateien\Ring2\Library\Io</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Library\Io\setFileContents.c">
+      <Filter>Quelldateien\Ring2\Library\Io</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Library\Io.c">
       <Filter>Quelldateien\Ring2\Library</Filter>
     </ClCompile>
   </ItemGroup>

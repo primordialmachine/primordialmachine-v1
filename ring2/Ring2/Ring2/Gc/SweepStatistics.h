@@ -12,8 +12,7 @@
 /// Type of a statistics for
 /// - a sweep phase of a single arena or
 /// - sweep phases of multiple arenas.
-typedef struct Ring2_Gc_SweepStatistics
-{
+typedef struct Ring2_Gc_SweepStatistics {
 
   /// @brief The number of dead objects.
   int64_t dead;

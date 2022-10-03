@@ -7,16 +7,16 @@
 #if !defined(RING2_TYPES_ARRAY_H_INCLUDED)
 #define RING2_TYPES_ARRAY_H_INCLUDED
 
-#include "Ring2/Configuration.h"
+
+#if !defined(RING2_INTERNAL) || 1 != RING2_INTERNAL
+#error("Do not include `Ring2/Types/Array.h` directly, include `Ring2/_Include.h` instead.")
+#endif
+#include "Ring2/_header.h.i"
+
 
 #if defined(Ring2_Configuration_withArray) && 1 == Ring2_Configuration_withArray
 
-#include "Ring2/Context.h"
 #include "Ring2/Gc.h"
-#include "Ring1/Annotations/_Include.h"
-#include "Ring1/Result.h"
-
-typedef struct Ring2_String Ring2_String;
 
 /// @brief The C-level representation of an <code>Array</code> value.
 typedef struct Ring2_Array Ring2_Array;

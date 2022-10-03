@@ -8,7 +8,7 @@
 #error("Do not include `Math/Rectangle2.h` directly, include `_Math.h` instead.")
 #endif
 
-#include "_Runtime.h"
+#include "Ring2/Library/_Include.h"
 typedef struct Machine_Math_Vector2 Machine_Math_Vector2;
 typedef struct Machine_Math_Vector3 Machine_Math_Vector3;
 

@@ -7,11 +7,12 @@
 #if !defined(RING2_TYPESYSTEM_ENUMERATIONTYPE_H_INCLUDED)
 #define RING2_TYPESYSTEM_ENUMERATIONTYPE_H_INCLUDED
 
+
 #if !defined(RING2_INTERNAL) || 1 != RING2_INTERNAL
 #error("Do not include `Ring2/TypeSystem/EnumerationType.h` directly. Include `Ring2/_Include.h` instead.")
 #endif
-
 #include "Ring2/TypeSystem/Type.h"
+
 
 /// @brief The description of an enumeration type.
 typedef struct Machine_EnumerationType Machine_EnumerationType;

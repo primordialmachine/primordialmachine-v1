@@ -9,6 +9,7 @@
 
 #include "Ring1/Hash.h"
 #include "Ring1/Status.h"
+#include "Ring2/Context.h"
 #include "Ring2/JumpTarget.h"
 #include "Ring2/Types/String.h"
 #include <stdio.h>

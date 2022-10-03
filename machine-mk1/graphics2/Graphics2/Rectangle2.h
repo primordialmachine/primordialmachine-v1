@@ -7,7 +7,7 @@
 
 
 #if !defined(MACHINE_GRAPHICS2_PRIVATE)
-#error("Do not include `Graphics2/Rectangle2.h` directly, include `_Graphics2.h` instead.")
+#error("Do not include `Graphics2/Rectangle2.h` directly. Include `_Graphics2.h` instead.")
 #endif
 #include "Graphics2/Shape2.h"
 

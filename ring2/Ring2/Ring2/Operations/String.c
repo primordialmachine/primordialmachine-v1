@@ -9,6 +9,7 @@
 
 #include "Ring1/Status.h"
 #include "Ring1/Memory.h"
+#include "Ring2/Context.h"
 #include "Ring2/JumpTarget.h"
 
 static int

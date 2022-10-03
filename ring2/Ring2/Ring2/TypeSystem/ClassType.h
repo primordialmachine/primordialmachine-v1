@@ -7,10 +7,10 @@
 #if !defined(RING2_TYPESYSTEM_CLASSTYPE_H_INCLUDED)
 #define RING2_TYPESYSTEM_CLASSTYPE_H_INCLUDED
 
+
 #if !defined(RING2_INTERNAL) || 1 != RING2_INTERNAL
 #error("Do not include `Ring2/TypeSystem/ClassType.h` directly. Include `Ring2/_Include.h` instead.")
 #endif
-
 #include "Ring2/TypeSystem/Type.h"
 #include "Ring1/InlineArray.h"
 typedef struct Machine_EnumerationType Machine_EnumerationType;

@@ -9,7 +9,6 @@ extern "C" {
 #include "_Launcher.h"
 #include "_Fonts.h"
 #include "_Images.h"
-#include "_Runtime.h"
 #include "_Scenes.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -165,13 +164,13 @@ void main1() {
 }
 
 int main() {
-  if (Machine_startup()) {
+  if (Ring2_Context_startup()) {
     fprintf(stderr, "%s:%d: Machine_startup() failed\n", __FILE__, __LINE__);
     return EXIT_FAILURE;
   }
   main1();
   Ring1_Status status = Ring1_Status_get();
-  Machine_shutdown();
+  Ring2_Context_shutdown();
   return status == Ring1_Status_Success ? EXIT_SUCCESS : EXIT_FAILURE;
 }
 

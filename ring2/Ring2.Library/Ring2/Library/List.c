@@ -1,6 +1,6 @@
 // Copyright (c) 2021-2022 Michael Heilmann. All rights reserved.
 
-/// @file Ring2/Library//List.c
+/// @file Ring2/Library/List.c
 /// @copyright Copyright (c) 2021-2022 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 

@@ -7,11 +7,15 @@
 #if !defined(RING2_OPERATIONS_OBJECT_H_INCLUDED)
 #define RING2_OPERATIONS_OBJECT_H_INCLUDED
 
-#include "Ring2/Configuration.h"
+
+#if !defined(RING2_INTERNAL) || 1 != RING2_INTERNAL
+#error("Do not include `Ring2/Operations/Object.h` directly. Include `Ring2/_Include.h` instead.")
+#endif
+#include "Ring2/_header.h.i"
+
 
 #if defined(Ring2_Configuration_withObject) && 1 == Ring2_Configuration_withObject
 
-#include "Ring2/Context.h"
 #include "Ring2/Types.h"
 #include "Ring2/Types/Value.h"
 

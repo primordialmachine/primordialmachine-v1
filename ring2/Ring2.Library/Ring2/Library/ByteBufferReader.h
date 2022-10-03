@@ -7,11 +7,12 @@
 #if !defined(RING2_LIBRARY_BYTEBUFFERREADER_H_INCLUDED)
 #define RING2_LIBRARY_BYTEBUFFERREADER_H_INCLUDED
 
-#if !defined(RING2_LIBRARY_PRIVATE) || 1 != RING2_LIBRARY_PRIVATE
-#error("Do not include `Ring2/Library/ByteBufferReader.h` directly, include `Ring2/Library/_Include.h` instead.")
-#endif
 
+#if !defined(RING2_LIBRARY_PRIVATE) || 1 != RING2_LIBRARY_PRIVATE
+#error("Do not include `Ring2/Library/ByteBufferReader.h` directly. Include `Ring2/Library/_Include.h` instead.")
+#endif
 #include "Ring2/Library/ByteBuffer.h"
+
 
 MACHINE_DECLARE_CLASSTYPE(Machine_ByteBufferReader)
 
@@ -34,5 +35,6 @@ size_t Machine_ByteBufferReader_getPosition(Machine_ByteBufferReader* self);
 /// @param n The number of Bytes to read.
 /// @param m A pointer to a variable. Receives the number of Bytes read.
 void Machine_ByteBufferReader_read(Machine_ByteBufferReader* self, char* p, size_t n, size_t* m);
+
 
 #endif // RING2_LIBRARY_BYTEBUFFERREADER_H_INCLUDED

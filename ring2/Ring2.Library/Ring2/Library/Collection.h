@@ -7,11 +7,12 @@
 #if !defined(RING2_LIBRARY_COLLECTION_H_INCLUDED)
 #define RING2_LIBRARY_COLLECTION_H_INCLUDED
 
-#if !defined(RING2_LIBRARY_PRIVATE) || 1 != RING2_LIBRARY_PRIVATE
-#error("Do not include `Ring2/Library/Collection.h` directly, include `Ring2/Library/_Include.h` instead.")
-#endif
 
+#if !defined(RING2_LIBRARY_PRIVATE) || 1 != RING2_LIBRARY_PRIVATE
+#error("Do not include `Ring2/Library/Collection.h` directly. Include `Ring2/Library/_Include.h` instead.")
+#endif
 #include "Ring2/_Include.h"
+
 
 MACHINE_DECLARE_INTERFACETYPE(Machine_Collection)
 
@@ -50,5 +51,6 @@ Machine_Collection_isEmpty
   (
     Machine_Collection const* self
   );
+
 
 #endif // RING2_LIBRARY_COLLECTION_H_INCLUDED

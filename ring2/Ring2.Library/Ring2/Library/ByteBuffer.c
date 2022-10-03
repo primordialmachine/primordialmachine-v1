@@ -10,6 +10,7 @@
 
 
 #include "Ring1/ByteBuffer.h"
+#include "Ring1/Memory.h"
 #include "Ring1/Status.h"
 
 

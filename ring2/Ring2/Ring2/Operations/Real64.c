@@ -7,11 +7,16 @@
 #define RING2_INTERNAL (1)
 #include "Ring2/Operations/Real64.h"
 
-#include <stdio.h>
+
 #include <math.h>
+#include <stdio.h>
+#include "Ring1/Conversion.h"
 #include "Ring1/Hash.h"
 #include "Ring1/Status.h"
+#include "Ring2/Context.h"
 #include "Ring2/JumpTarget.h"
+#include "Ring2/Operations/_Buffer.h"
+
 
 Ring1_CheckReturn() Ring2_Integer
 Ring2_Real64_getHashValue
@@ -153,11 +158,24 @@ Ring2_Real64_toString
     Ring2_Real64 x
   )
 {
-  char buffer[1024 + 1];
-  int n = snprintf(buffer, 1024 + 1, "%g", x);
-  if (n < 0 || n > 1024 + 1) {
-    Ring1_Status_set(Ring1_Status_ConversionFailed);
-    Ring2_jump();
-  }
-  return Ring2_String_create(Ring2_Context_get(), buffer, (size_t)n);
+  #define DEFAULT_BUFFER_SIZE 20 + 1
+
+  int bufferSize = DEFAULT_BUFFER_SIZE;
+  char* buffer;
+
+  do {
+    if (Ring2_Operations__Buffer_get(&buffer, bufferSize)) {
+      Ring1_Status_set(Ring1_Status_AllocationFailed);
+      Ring2_jump();
+    }
+    int result = snprintf(buffer, bufferSize, "%g", x);
+    if (result < 0) {
+      Ring1_Status_set(Ring1_Status_EnvironmentFailed);
+      Ring2_jump();
+    }
+    if (bufferSize >= result) {
+      return Ring2_String_create(Ring2_Context_get(), buffer, result);
+    }
+    bufferSize = result + 1;
+  } while (true);
 }

@@ -7,11 +7,12 @@
 #if !defined(RING2_TYPES_REAL_H_INCLUDED)
 #define RING2_TYPES_REAL_H_INCLUDED
 
+
 #if !defined(RING2_INTERNAL) || 1 != RING2_INTERNAL
 #error("Do not include `Ring2/Types/Real.h` directly. Include `Ring2/_Include.h` instead.")
 #endif
+#include "Ring2/_header.h.i"
 
-#include "Ring2/Configuration.h"
 
 #if defined(Ring2_Configuration_withReal) && 1 == Ring2_Configuration_withReal
 

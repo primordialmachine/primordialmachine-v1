@@ -7,9 +7,14 @@
 #if !defined(RING2_STACK_H_INCLUDED)
 #define RING2_STACK_H_INCLUDED
 
-#include "Ring2/Configuration.h"
+
+#if !defined(RING2_INTERNAL) || 1 != RING2_INTERNAL
+#error("Do not include `Ring2/Stack.h` directly. Include `Ring2/_Include.h` instead.")
+#endif
+#include "Ring2/_header.h.i"
 #include "Ring2/Types/Value.h"
 #include "Ring2/Gc.h"
+
 
 Ring1_CheckReturn() Ring1_Result
 Mkx_Interpreter_Stack_startup

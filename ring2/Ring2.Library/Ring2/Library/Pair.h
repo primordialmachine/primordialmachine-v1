@@ -1,17 +1,18 @@
 // Copyright (c) 2020-2022 Michael Heilmann. All rights reserved.
 
-/// @file Collections/Pair.h
+/// @file Ring2/Library/Pair.h
 /// @copyright Copyright (c) 2020-2022 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
 #if !defined(RING2_LIBRARY_PAIR_H_INCLUDED)
 #define RING2_LIBRARY_PAIR_H_INCLUDED
 
+
 #if !defined(RING2_LIBRARY_PRIVATE) || 1 != RING2_LIBRARY_PRIVATE
 #error("Do not include `Ring2/Library/Pair.h` directly, include `Ring2/Library/_Include.h` instead.")
 #endif
-
 #include "Ring2/_Include.h"
+
 
 /// @brief A pair.
 MACHINE_DECLARE_CLASSTYPE(Machine_Pair)
@@ -44,5 +45,6 @@ Machine_Pair* Machine_Pair_create(Ring2_Value first, Ring2_Value second);
 /// @param index The index. Must be @a 0 or @a 1.
 /// @return The value.
 Ring2_Value Machine_Pair_get(Machine_Pair* self, Ring2_Integer index);
+
 
 #endif // RING2_LIBRARY_PAIR_H_INCLUDED

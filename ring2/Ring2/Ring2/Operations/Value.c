@@ -8,7 +8,6 @@
 #include "Ring2/Operations/Value.h"
 
 #include "Ring1/Status.h"
-#include "Ring1/Annotations/_Include.h"
 #include "Ring2/Operations.h"
 #include "Ring2/JumpTarget.h"
 #include "Ring2/Gc.h"

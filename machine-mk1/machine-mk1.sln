@@ -9,9 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ring2", "Ring2", "{2A3E46BB
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ring1", "..\ring1\Ring1\Ring1.vcxproj", "{D7DB575D-7EAA-47DE-8999-44F4E1361D34}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-core", "core\machine-mk1-core.vcxproj", "{F34866D8-3093-4B44-A225-7DA2B5CD8E83}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-collections-test", "collections-test\collections-test.vcxproj", "{9A210B5D-2599-4EA4-A258-CCECD94235E4}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ring2.Library.Test", "collections-test\collections-test.vcxproj", "{9A210B5D-2599-4EA4-A258-CCECD94235E4}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "machine-mk1-fonts", "fonts\machine-mk1-fonts.vcxproj", "{36897CC2-2E49-4CE8-804D-AA172EC849E0}"
 EndProject
@@ -61,14 +59,6 @@ Global
 		{D7DB575D-7EAA-47DE-8999-44F4E1361D34}.Release|x64.Build.0 = Release|x64
 		{D7DB575D-7EAA-47DE-8999-44F4E1361D34}.Release|x86.ActiveCfg = Release|Win32
 		{D7DB575D-7EAA-47DE-8999-44F4E1361D34}.Release|x86.Build.0 = Release|Win32
-		{F34866D8-3093-4B44-A225-7DA2B5CD8E83}.Debug|x64.ActiveCfg = Debug|x64
-		{F34866D8-3093-4B44-A225-7DA2B5CD8E83}.Debug|x64.Build.0 = Debug|x64
-		{F34866D8-3093-4B44-A225-7DA2B5CD8E83}.Debug|x86.ActiveCfg = Debug|Win32
-		{F34866D8-3093-4B44-A225-7DA2B5CD8E83}.Debug|x86.Build.0 = Debug|Win32
-		{F34866D8-3093-4B44-A225-7DA2B5CD8E83}.Release|x64.ActiveCfg = Release|x64
-		{F34866D8-3093-4B44-A225-7DA2B5CD8E83}.Release|x64.Build.0 = Release|x64
-		{F34866D8-3093-4B44-A225-7DA2B5CD8E83}.Release|x86.ActiveCfg = Release|Win32
-		{F34866D8-3093-4B44-A225-7DA2B5CD8E83}.Release|x86.Build.0 = Release|Win32
 		{9A210B5D-2599-4EA4-A258-CCECD94235E4}.Debug|x64.ActiveCfg = Debug|x64
 		{9A210B5D-2599-4EA4-A258-CCECD94235E4}.Debug|x64.Build.0 = Debug|x64
 		{9A210B5D-2599-4EA4-A258-CCECD94235E4}.Debug|x86.ActiveCfg = Debug|Win32

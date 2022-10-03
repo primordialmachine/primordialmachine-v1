@@ -43,6 +43,7 @@
     <ClInclude Include="Ring2\Operations\String.h" />
     <ClInclude Include="Ring2\Operations\Value.h" />
     <ClInclude Include="Ring2\Operations\Void.h" />
+    <ClInclude Include="Ring2\Operations\_Buffer.h" />
     <ClInclude Include="Ring2\Stack.h" />
     <ClInclude Include="Ring2\StaticVariables.h" />
     <ClInclude Include="Ring2\Test\Test.h" />
@@ -88,6 +89,7 @@
     <ClCompile Include="Ring2\Operations\String.c" />
     <ClCompile Include="Ring2\Operations\Value.c" />
     <ClCompile Include="Ring2\Operations\Void.c" />
+    <ClCompile Include="Ring2\Operations\_Buffer.c" />
     <ClCompile Include="Ring2\Stack.c" />
     <ClCompile Include="Ring2\StaticVariables.c" />
     <ClCompile Include="Ring2\Test\Test.c" />
@@ -113,6 +115,9 @@
     <ProjectReference Include="..\..\ring1\Ring1\Ring1.vcxproj">
       <Project>{d7db575d-7eaa-47de-8999-44f4e1361d34}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ring2\_header.h.i" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

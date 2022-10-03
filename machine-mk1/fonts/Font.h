@@ -7,7 +7,7 @@
 
 
 #if !defined(MACHINE_FONTS_PRIVATE)
-#error("Do not include `Fonts/Font.h` directly, include `_Fonts.h` instead.")
+#error("Do not include `Fonts/Font.h` directly. Include `_Fonts.h` instead.")
 #endif
 #include "_Video.h"
 

@@ -5,11 +5,10 @@
 #define MACHINE_GUI_GDL_LISTTOVECTOR3_H_INCLUDED
 
 #if !defined(MACHINE_GUI_PRIVATE)
-#error("Do not include this file directly, include `_Gui.h` instead.")
+#error("Do not include this file directly. Include `_Gui.h` instead.")
 #endif
 #include "Ring2/Library/_Include.h"
 #include "_Math.h"
-#include "_Runtime.h"
 
 /// @brief
 /// Convert

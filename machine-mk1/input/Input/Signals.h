@@ -7,7 +7,7 @@
 #if !defined(MACHINE_INPUT_PRIVATE)
 #error("Do not include this file directly, include `_Input.h` instead.")
 #endif
-#include "_Runtime.h"
+#include "Ring2/Library/_Include.h"
 
 #define DefineSignal(Name, String) Ring2_String* Machine_Input_SignalName_##Name();
 #include "Input/Signals.i"

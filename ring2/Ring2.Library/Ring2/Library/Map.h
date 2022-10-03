@@ -7,12 +7,13 @@
 #if !defined(RING2_LIBRARY_MAP_H_INCLUDED)
 #define RING2_LIBRARY_MAP_H_INCLUDED
 
+
 #if !defined(RING2_LIBRARY_PRIVATE) || 1 != RING2_LIBRARY_PRIVATE
 #error("Do not include `Ring2/Library/Map.h` directly, include `Ring2/Library/_Include.h` instead.")
 #endif
-
 #include "Ring2/_Include.h"
 typedef struct Machine_List Machine_List;
+
 
 /// @extends Machine.ICollection.
 MACHINE_DECLARE_INTERFACETYPE(Machine_Map)
@@ -54,5 +55,6 @@ Ring2_Value Machine_Map_get(Machine_Map const* self, Ring2_Value key);
 /// @param self This map.
 /// @return A Machine_List of Machine_Pair values.
 Machine_List* Machine_Map_toList(Machine_Map const* self);
+
 
 #endif // RING2_LIBRARY_MAP_H_INCLUDED

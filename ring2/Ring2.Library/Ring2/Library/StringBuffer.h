@@ -10,7 +10,6 @@
 #if !defined(RING2_LIBRARY_PRIVATE) || 1 != RING2_LIBRARY_PRIVATE
 #error("Do not include `Ring2/Library/StringBuffer.h` directly, include `Ring/Library/_Include.h` instead.")
 #endif
-
 #include "Ring2/_Include.h"
 
 /// The version of the Ring2.Library.StringBuffer type implementation.

@@ -4,7 +4,7 @@
 #if !defined(MACHINE_GDL_LEXICAL_TOKENKIND_H_INCLUDED)
 #define MACHINE_GDL_LEXICAL_TOKENKIND_H_INCLUDED
 
-#include "_Runtime.h"
+#include "Ring2/Library/_Include.h"
 
 MACHINE_DECLARE_ENUMERATIONTYPE(Machine_Gdl_TokenKind)
 

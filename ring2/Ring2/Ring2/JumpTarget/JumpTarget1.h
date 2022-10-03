@@ -7,9 +7,7 @@
 #if !defined(RING2_JUMPTARGET_JUMPTARGET1_H_INCLUDED)
 #define RING2_JUMPTARGET_JUMPTARGET1_H_INCLUDED
 
-#include "Ring2/Configuration.h"
-#include "Ring1/Annotations/_Include.h"
-#include "Ring1/Result.h"
+#include "Ring2/_header.h.i"
 #include <setjmp.h>
 
 /// @brief Starts up the "jump target" module.

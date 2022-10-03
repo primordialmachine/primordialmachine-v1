@@ -7,7 +7,7 @@
 
 
 #if !defined(MACHINE_GRAPHICS2_PRIVATE)
-#error("Do not include `Graphics2/Context2.h` directly, include `_Graphics2.h` instead.")
+#error("Do not include `Graphics2/Context2.h` directly. Include `_Graphics2.h` instead.")
 #endif
 #include "_Math.h"
 #include "_Video.h"

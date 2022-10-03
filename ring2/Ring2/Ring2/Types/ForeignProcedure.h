@@ -7,20 +7,17 @@
 #if !defined(RING2_TYPES_FOREIGNPROCEDURE_H_INCLUDED)
 #define RING2_TYPES_FOREIGNPROCEDURE_H_INCLUDED
 
-#if !defined(RING2_INTERNAL)
+
+#if !defined(RING2_INTERNAL) || 1 != RING2_INTERNAL
 #error("Do not include `Ring2/Types/ForeignProcedure.h` directly, include `Ring2/_Include.h` instead.")
 #endif
+#include "Ring2/_header.h.i"
 
-#include "Ring2/Configuration.h"
 
 #if defined(Ring2_Configuration_withForeignProcedure) && 1 == Ring2_Configuration_withForeignProcedure
 
-#include "Ring1/Annotations/_Include.h"
 #include <stdint.h>
 #include <stdbool.h>
-typedef struct Ring2_Context Ring2_Context; // Forward declaration.
-typedef struct Ring2_String Ring2_String;   // Forward declaration.
-typedef struct Ring2_Value Ring2_Value; // Forward declaration.
 
 /// @brief The C-level representation of the <code>ForeignProcedure</code> type.
 typedef void(Ring2_ForeignProcedure)(Ring2_Context* context,

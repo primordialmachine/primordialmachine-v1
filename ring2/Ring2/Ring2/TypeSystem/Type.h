@@ -11,11 +11,9 @@
 #if !defined(RING2_INTERNAL) || 1 != RING2_INTERNAL
 #error("Do not include `Ring2/TypeSystem/Type.h` directly. Include `Ring2/_Include.h` instead.")
 #endif
-
 #include <stdint.h>
 #include <stdbool.h>
-#include "Ring2/Types/Object.h"
-#include "Ring1/Ring1.h"
+#include "Ring2/Gc.h"
 
 /// @brief Type flags. See Machine_Type for more information.
 #define Ring2_TypeFlags_Class (1)

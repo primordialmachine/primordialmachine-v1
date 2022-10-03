@@ -7,9 +7,12 @@
 #define RING2_INTERNAL (1)
 #include "Ring2/TypeSystem/EnumerationType.h"
 
+
+#include "Ring1/Memory.h"
 #include "Ring1/Status.h"
 #include "Ring2/JumpTarget.h"
 #include "Ring2/TypeSystem.h"
+
 
 static void Machine_EnumerationType_finalize(Ring2_Gc *gc, Machine_EnumerationType* self) {
   Ring2_Type_finalize((Machine_Type*)self);

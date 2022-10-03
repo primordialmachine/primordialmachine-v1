@@ -4,9 +4,9 @@
 
 
 #if !defined(MACHINE_TEXT_PRIVATE)
-#error("Do not include this file directly, include `_Text.h` instead.")
+#error("Do not include this file directly. Include `_Text.h` instead.")
 #endif
-#include "_Runtime.h"
+#include "Ring2/Library/_Include.h"
 
 
 

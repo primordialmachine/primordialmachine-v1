@@ -7,17 +7,16 @@
 #if !defined(RING2_TYPES_STRING_H_INCLUDED)
 #define RING2_TYPES_STRING_H_INCLUDED
 
+
 #if !defined(RING2_INTERNAL) || 1 != RING2_INTERNAL
 #error("Do not include `Ring2/Types/String.h` directly. Include `Ring2/_Include.h` instead.")
 #endif
+#include "Ring2/_header.h.i"
 
-#include "Ring2/Configuration.h"
 
 #if defined(Ring2_Configuration_withString) && 1 == Ring2_Configuration_withString
 
-#include "Ring1/Result.h"
 #include "Ring2/Gc.h"
-#include "Ring2/Context.h"
 
 /// C level representation of a string.
 typedef struct Ring2_String Ring2_String;

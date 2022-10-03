@@ -7,11 +7,12 @@
 #if !defined(RING2_LIBRARY_HASHMAP_H_INCLUDED)
 #define RING2_LIBRARY_HASHMAP_H_INCLUDED
 
-#if !defined(RING2_LIBRARY_PRIVATE) || 1 != RING2_LIBRARY_PRIVATE
-#error("Do not include `Ring2/Library/HashMap.h` directly, include `Ring2/Library/_Include.h` instead.")
-#endif
 
+#if !defined(RING2_LIBRARY_PRIVATE) || 1 != RING2_LIBRARY_PRIVATE
+#error("Do not include `Ring2/Library/HashMap.h` directly. Include `Ring2/Library/_Include.h` instead.")
+#endif
 #include "Ring2/_Include.h"
+
 
 /// The version of the Ring2.HashMap type implementation.
 #define RING2_LIBRARY_HASHMAP_VERSION (2)
@@ -50,5 +51,6 @@ Machine_HashMap_remove
     Machine_HashMap* self,
     Ring2_Value key
   );
+
 
 #endif // RING2_LIBRARY_HASHMAP_H_INCLUDED

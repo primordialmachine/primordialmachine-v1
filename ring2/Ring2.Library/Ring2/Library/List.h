@@ -7,11 +7,12 @@
 #if !defined(RING2_LIBRARY_LIST_H_INCLUDED)
 #define RING2_LIBRARY_LIST_H_INCLUDED
 
-#if !defined(RING2_LIBRARY_PRIVATE) || 1 != RING2_LIBRARY_PRIVATE
-#error("Do not include `Ring2/Library/List.h` directly, include `Ring2/Library/_Include.h` instead.")
-#endif
 
+#if !defined(RING2_LIBRARY_PRIVATE) || 1 != RING2_LIBRARY_PRIVATE
+#error("Do not include `Ring2/Library/List.h` directly. Include `Ring2/Library/_Include.h` instead.")
+#endif
 #include "Ring2/_Include.h"
+
 
 /// @brief If this evaluates to @a 1, then the Machine.List.slice is provided.
 #define Machine_List_withReverse (0)
@@ -94,5 +95,6 @@ void Machine_List_reverse(Machine_List* self);
 Machine_List* Machine_List_slice(Machine_List* self, int64_t start, int64_t length);
 
 #endif
+
 
 #endif // RING2_LIBRARY_LIST_H_INCLUDED

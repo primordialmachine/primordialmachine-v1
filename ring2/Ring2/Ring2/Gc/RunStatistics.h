@@ -10,8 +10,7 @@
 #include "Ring2/Gc/SweepStatistics.h"
 
 /// Type of a statistics for a run.
-typedef struct Ring2_Gc_RunStatistics
-{
+typedef struct Ring2_Gc_RunStatistics {
   Ring2_Gc_SweepStatistics sweep;
 } Ring2_Gc_RunStatistics;
 

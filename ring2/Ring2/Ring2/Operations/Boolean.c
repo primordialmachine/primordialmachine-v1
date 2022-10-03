@@ -7,9 +7,12 @@
 #define RING2_INTERNAL (1)
 #include "Ring2/Operations/Boolean.h"
 
-#include "Ring1/Hash.h"
+
+#include "Ring2/Context.h"
 #include "Ring1/Conversion.h"
+#include "Ring1/Hash.h"
 #include "Ring2/JumpTarget.h"
+
 
 Ring1_CheckReturn() Ring2_Integer
 Ring2_Boolean_getHashValue

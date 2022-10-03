@@ -7,11 +7,12 @@
 #if !defined(RING2_LIBRARY_HASHSET_H_INCLUDED)
 #define RING2_LIBRARY_HASHSET_H_INCLUDED
 
-#if !defined(RING2_LIBRARY_PRIVATE) || 1 != RING2_LIBRARY_PRIVATE
-#error("Do not include `Ring2/Library/HashSet.h` directly, include `Ring2/Library/_Include.h` instead.")
-#endif
 
+#if !defined(RING2_LIBRARY_PRIVATE) || 1 != RING2_LIBRARY_PRIVATE
+#error("Do not include `Ring2/Library/HashSet.h` directly. Include `Ring2/Library/_Include.h` instead.")
+#endif
 #include "Ring2/_Include.h"
+
 
 /// The version of the Ring2.HashSet type implementation.
 #define RING2_LIBRARY_HASHSET_VERSION (2)
@@ -96,6 +97,7 @@ Machine_HashSet_getSize
   );
 
 #if defined(Ring2_Configuration_withArray) && 1 == Ring2_Configuration_withArray
+
 /// @brief Get the values.
 /// @param self This hash set.
 /// @return An array.
@@ -105,6 +107,8 @@ Machine_HashSet_getEntries
   (
     Machine_HashSet* self
   );
+
 #endif
+
 
 #endif // RING2_LIBRARY_HASHSET_H_INCLUDED

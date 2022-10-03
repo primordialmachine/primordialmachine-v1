@@ -7,11 +7,16 @@
 #define RING2_INTERNAL (1)
 #include "Ring2/Operations/Integer.h"
 
+
+#include <math.h>
 #include <stdio.h>
+#include "Ring1/Conversion.h"
 #include "Ring1/Hash.h"
 #include "Ring1/Status.h"
-#include "Ring1/Conversion.h"
+#include "Ring2/Context.h"
 #include "Ring2/JumpTarget.h"
+#include "Ring2/Operations/_Buffer.h"
+
 
 Ring1_CheckReturn() Ring2_Integer
 Ring2_Integer_getHashValue
@@ -171,11 +176,27 @@ Ring2_Integer_toString
     Ring2_Integer x
   )
 {
-  char buffer[1024 + 1];
-  int n = snprintf(buffer, 1024 + 1, "%" PRIu64, x);
-  if (n < 0 || n > 1024 + 1) {
-    Ring1_Status_set(Ring1_Status_ConversionFailed);
-    Ring2_jump();
-  }
-  return Ring2_String_create(Ring2_Context_get(), buffer, (size_t)n);
+  // Maximum value of an int64_t is +9,223,372,036,854,775,807 which are 19 digits and an optional sign.
+  // Minimum value of an int64_t is -9,223,372,036,854,775,808 which are 19 digits and a mandatory sign.
+  // Hence the maximum length of a string representing an Ring2_Integer is 20 characters.
+  #define DEFAULT_BUFFER_SIZE 20 + 1
+
+  int bufferSize = DEFAULT_BUFFER_SIZE;
+  char* buffer;
+  
+  do {
+    if (Ring2_Operations__Buffer_get(&buffer, bufferSize)) {
+      Ring1_Status_set(Ring1_Status_AllocationFailed);
+      Ring2_jump();
+    }
+    int result = snprintf(buffer, bufferSize, "%" PRId64, x);
+    if (result < 0) {
+      Ring1_Status_set(Ring1_Status_EnvironmentFailed);
+      Ring2_jump();
+    }
+    if (bufferSize >= result) {
+      return Ring2_String_create(Ring2_Context_get(), buffer, result);
+    }
+    bufferSize = result + 1;
+  } while (true);
 }

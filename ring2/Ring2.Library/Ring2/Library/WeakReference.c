@@ -10,7 +10,6 @@
 
 
 #include "Ring2/_Include.h"
-#include "Ring2/Library/_Include.h"
 
 
 static void

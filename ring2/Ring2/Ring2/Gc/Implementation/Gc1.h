@@ -3,6 +3,7 @@
 /// @file Ring2/Gc/Implementation/Gc1.h
 /// @copyright Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
+
 /// @brief A precise, non-incremental, mark-and-sweep GC.
 
 #if !defined(RING2_GC_IMPLEMENTATION_GC1_H_INCLUDED)

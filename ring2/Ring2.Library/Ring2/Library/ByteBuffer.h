@@ -7,11 +7,12 @@
 #if !defined(RING2_LIBRARY_BYTEBUFFER_H_INCLUDED)
 #define RING2_LIBRARY_BYTEBUFFER_H_INCLUDED
 
-#if !defined(RING2_LIBRARY_PRIVATE) || 1 != RING2_LIBRARY_PRIVATE
-#error("Do not include `Ring2/Library/ByteBuffer.h` directly, include `Ring2/Library/_Include.h` instead.")
-#endif
 
+#if !defined(RING2_LIBRARY_PRIVATE) || 1 != RING2_LIBRARY_PRIVATE
+#error("Do not include `Ring2/Library/ByteBuffer.h` directly. Include `Ring2/Library/_Include.h` instead.")
+#endif
 #include "Ring2/_Include.h"
+
 
 MACHINE_DECLARE_CLASSTYPE(Machine_ByteBuffer)
 
@@ -55,5 +56,6 @@ size_t Machine_ByteBuffer_getNumberOfBytes(Machine_ByteBuffer const* self);
 /// @return @a true if the Bytes are equal, @a false otherwise.
 Ring2_Boolean Machine_ByteBuffer_compareBytes(Machine_ByteBuffer const* self, char const* p,
                                               size_t n);
+
 
 #endif // RING2_LIBRARY_BYTEBUFFER_H_INCLUDED

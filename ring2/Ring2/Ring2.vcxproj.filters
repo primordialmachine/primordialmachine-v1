@@ -191,6 +191,9 @@
     <ClInclude Include="Ring2\StaticVariables.h">
       <Filter>Headerdateien\Ring2</Filter>
     </ClInclude>
+    <ClInclude Include="Ring2\Operations\_Buffer.h">
+      <Filter>Headerdateien\Ring2\Operations</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring2\JumpTarget.c">
@@ -322,5 +325,13 @@
     <ClCompile Include="Ring2\StaticVariables.c">
       <Filter>Quelldateien\Ring2</Filter>
     </ClCompile>
+    <ClCompile Include="Ring2\Operations\_Buffer.c">
+      <Filter>Quelldateien\Ring2\Operations</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ring2\_header.h.i">
+      <Filter>Headerdateien\Ring2</Filter>
+    </None>
   </ItemGroup>
 </Project>

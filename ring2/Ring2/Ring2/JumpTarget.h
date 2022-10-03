@@ -10,7 +10,6 @@
 #if !defined(RING2_INTERNAL) || 1 != RING2_INTERNAL
 #error("Do not include `Ring2/JumpTarget.h` directly. Include `Ring2/_Include.h` instead.")
 #endif
-
 #include "Ring2/JumpTarget/JumpTarget1.h"
 
 #endif // RING2_JUMPTARGET_H_INCLUDED

@@ -7,8 +7,12 @@
 #if !defined(RING2_LOG_H_INCLUDED)
 #define RING2_LOG_H_INCLUDED
 
-#include "Ring1/Annotations/_Include.h"
-#include "Ring1/Result.h"
+
+#if !defined(RING2_INTERNAL) || 1 != RING2_INTERNAL
+#error("Do not include `Ring2/Log.h` directly. Include `Ring2/_Include.h` instead.")
+#endif
+#include "Ring2/_header.h.i"
+
 
 Ring1_CheckReturn() Ring1_Result
 Ring2_LogModule_startup

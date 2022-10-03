@@ -7,7 +7,7 @@
 #if !defined(MACHINE_VIDEO_GL_PRIVATE)
 #error("Do not include `Video/Gl/UtilitiesGl.h` directly, include `_Video_Gl.h` instead.")
 #endif
-#include "_Runtime.h"
+#include "Ring2/Library/_Include.h"
 
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
