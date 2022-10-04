@@ -3,7 +3,10 @@
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #include "Gdl/Lexical/Scanner.h"
 
+
+#include "Ring1/Intrinsic.h"
 #include <string.h>
+
 
 typedef struct KEYWORD {
   const char* bytes;
@@ -54,7 +57,7 @@ static void Machine_Gdl_Scanner_construct(Machine_Gdl_Scanner* self, size_t numb
   self->tokenStart = 0;
   self->tokenText = Machine_ByteBuffer_create();
   Machine_ByteBuffer_appendBytes(self->tokenText, "<start of input>", strlen("<start of input>"));
-  Machine_setClassType((Machine_Object*)self, Machine_Gdl_Scanner_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Gdl_Scanner_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gdl_Scanner, Machine_Object, &Machine_Gdl_Scanner_visit,

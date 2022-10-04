@@ -4,6 +4,10 @@
 #define MACHINE_VIDEO_PRIVATE (1)
 #include "Video/Image.h"
 
+
+#include "Ring1/Intrinsic.h"
+
+
 static void Machine_Image_destruct(Machine_Image* self) { /*Intentionally empty.*/
 }
 
@@ -12,7 +16,7 @@ void Machine_Image_construct(Machine_Image* self, size_t numberOfArguments,
   static size_t const NUMBER_OF_ARGUMENTS = 0;
   static Ring2_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_Object_construct((Machine_Object*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
-  Machine_setClassType((Machine_Object*)self, Machine_Image_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Image_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Image, Machine_Object, NULL, &Machine_Image_construct,

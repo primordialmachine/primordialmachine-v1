@@ -4,7 +4,10 @@
 #define MACHINE_VIDEO_PRIVATE (1)
 #include "Video/VertexDescriptor.h"
 
+
+#include "Ring1/Intrinsic.h"
 #include "Ring1/Status.h"
+
 
 #define TRACE_VISIT (0)
 
@@ -54,7 +57,7 @@ static void Machine_VertexDescriptor_construct(Machine_VertexDescriptor* self,
   if (Ring1_Memory_allocate(&self->p, 0)) {
     Ring2_jump();
   }
-  Machine_setClassType((Machine_Object*)self, Machine_VertexDescriptor_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_VertexDescriptor_getType());
 }
 
 static void Machine_VertexDescriptor_destruct(Machine_VertexDescriptor* self) {

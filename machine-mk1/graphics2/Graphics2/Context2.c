@@ -5,9 +5,8 @@
 #include "Graphics2/Context2.h"
 
 
-
+#include "Ring1/Intrinsic.h"
 #include <string.h>
-
 
 
 static void Machine_Context2_visit(Machine_Context2* self) {
@@ -65,7 +64,7 @@ void Machine_Context2_construct(Machine_Context2* self, size_t numberOfArguments
   Machine_Binding_setVariableBinding(self->binding, Ring2_String_create(Ring2_Context_get(), "vertex_position", strlen("vertex_position") + 1), 0);
 
   //
-  Machine_setClassType((Machine_Object*)self, Machine_Context2_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Context2_getType());
 }
 
 Machine_Context2* Machine_Context2_create(Machine_VideoContext* videoContext) {

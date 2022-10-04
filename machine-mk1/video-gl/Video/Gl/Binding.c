@@ -5,9 +5,8 @@
 #include "Video/Gl/Binding.h"
 
 
-
+#include "Ring1/Intrinsic.h"
 #include "Video/Gl/ShaderProgram.h"
-
 
 
 static void Machine_Gl_Binding_constructClass(Machine_Gl_Binding_Class* self);
@@ -260,7 +259,7 @@ static void Machine_Gl_Binding_constructClass(Machine_Gl_Binding_Class* self) {
 static void Machine_Gl_Binding_construct(Machine_Gl_Binding* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   Machine_Binding_construct((Machine_Binding*)self, numberOfArguments, arguments);
   self->id = 0;
-  Machine_setClassType((Machine_Object*)self, Machine_Gl_Binding_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Gl_Binding_getType());
 }
 
 Machine_Gl_Binding* Machine_Gl_Binding_create(Machine_ShaderProgram* program, Machine_VertexDescriptor* vertexDescriptor, Machine_VideoBuffer* buffer) {

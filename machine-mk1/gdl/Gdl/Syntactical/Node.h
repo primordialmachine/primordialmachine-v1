@@ -19,7 +19,7 @@ struct Machine_Gdl_Node {
 
   /// @brief The parent node of this node if any, null pointer otherwise.
   Machine_Gdl_Node* parent;
-  Machine_List* children;
+  Ring2_List* children;
 
   Machine_Gdl_NodeKind kind;
   Ring2_String* text;

@@ -5,6 +5,8 @@
 #include "Video/Gl/Texture.h"
 
 
+#include "Ring1/Intrinsic.h"
+
 
 static void Machine_Gl_Texture_destruct(Machine_Gl_Texture* self) {
   if (self->id) {
@@ -62,7 +64,7 @@ void Machine_Gl_Texture_construct_fromImage(Machine_Gl_Texture* self, Machine_Im
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();
   };
-  Machine_setClassType((Machine_Object*)self, Machine_Texture_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Texture_getType());
 }
 
 void Machine_Gl_Texture_construct(Machine_Gl_Texture* self, size_t numberOfArguments, Ring2_Value const* arguments) {

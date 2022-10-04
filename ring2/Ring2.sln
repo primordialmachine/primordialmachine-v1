@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ring2", "Ring2\Ring2.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ring2.Library", "Ring2.Library\Ring2.Library.vcxproj", "{793157CE-6F58-4C53-BF1E-15716A4CE6BF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ring2.Library.Test", "Ring2.Library.Test\Ring2.Library.Test.vcxproj", "{9A210B5D-2599-4EA4-A258-CCECD94235E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -45,6 +47,14 @@ Global
 		{793157CE-6F58-4C53-BF1E-15716A4CE6BF}.Release|x64.Build.0 = Release|x64
 		{793157CE-6F58-4C53-BF1E-15716A4CE6BF}.Release|x86.ActiveCfg = Release|Win32
 		{793157CE-6F58-4C53-BF1E-15716A4CE6BF}.Release|x86.Build.0 = Release|Win32
+		{9A210B5D-2599-4EA4-A258-CCECD94235E4}.Debug|x64.ActiveCfg = Debug|x64
+		{9A210B5D-2599-4EA4-A258-CCECD94235E4}.Debug|x64.Build.0 = Debug|x64
+		{9A210B5D-2599-4EA4-A258-CCECD94235E4}.Debug|x86.ActiveCfg = Debug|Win32
+		{9A210B5D-2599-4EA4-A258-CCECD94235E4}.Debug|x86.Build.0 = Debug|Win32
+		{9A210B5D-2599-4EA4-A258-CCECD94235E4}.Release|x64.ActiveCfg = Release|x64
+		{9A210B5D-2599-4EA4-A258-CCECD94235E4}.Release|x64.Build.0 = Release|x64
+		{9A210B5D-2599-4EA4-A258-CCECD94235E4}.Release|x86.ActiveCfg = Release|Win32
+		{9A210B5D-2599-4EA4-A258-CCECD94235E4}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +63,7 @@ Global
 		{D7DB575D-7EAA-47DE-8999-44F4E1361D34} = {1EF7367C-4FA5-4A13-AAC4-3AF3EB9133E1}
 		{3ADE4501-5D5C-4878-9632-F81C3DE2429C} = {2A3E46BB-7EA0-4BA6-9417-FE83F2320251}
 		{793157CE-6F58-4C53-BF1E-15716A4CE6BF} = {2A3E46BB-7EA0-4BA6-9417-FE83F2320251}
+		{9A210B5D-2599-4EA4-A258-CCECD94235E4} = {2A3E46BB-7EA0-4BA6-9417-FE83F2320251}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0B435C73-7861-4C3E-B9A3-C9BD14EA6D9F}

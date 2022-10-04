@@ -8,14 +8,14 @@
 #include "Ring2/Context.h"
 
 
+#include <stdio.h>
+#include "Ring1/Memory.h"
 #include "Ring2/JumpTarget.h"
 #include "Ring2/Log.h"
-#include "Ring1/Memory.h"
 #include "Ring2/Operations.h"
 #include "Ring2/Stack.h"
 #include "Ring2/StaticVariables.h"
 #include "Ring2/TypeSystem.h"
-#include <stdio.h>
 
 
 static Ring2_Context* g_context = NULL;

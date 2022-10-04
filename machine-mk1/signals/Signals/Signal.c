@@ -2,6 +2,7 @@
 #include "Signals/Signal.h"
 
 
+#include "Ring1/Intrinsic.h"
 #include "Ring1/Status.h"
 #include "Ring2/Library/_Include.h"
 #include "Signals/Connection.h"
@@ -19,10 +20,10 @@ static void Machine_Signals_Signal_visit(Machine_Signals_Signal* self) {
 }
 
 void Machine_Signals_Signal_construct(Machine_Signals_Signal* self, size_t numberOfArguments, const Ring2_Value* arguments) {
-  Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
+  Machine_Object_construct(Ring1_cast(Machine_Object *, self), numberOfArguments, arguments);
   Ring2_assert(numberOfArguments == 0, Ring1_Status_InvalidNumberOfArguments);
-  self->connections = (Machine_List *)Machine_ArrayList_create();
-  Machine_setClassType((Machine_Object*)self, Machine_Signals_Signal_getType());
+  self->connections = (Ring2_List *)Ring2_ArrayList_create();
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Signals_Signal_getType());
 }
 
 Machine_Signals_Signal* Machine_Signals_Signal_create() {
@@ -37,19 +38,19 @@ void Machine_Signals_Signal_subscribe(Machine_Signals_Signal* self, Ring2_String
   Machine_Signals_Connection* connection = Machine_Signals_Connection_create(name, context, callback);
   Ring2_Value value;
   Ring2_Value_setObject(&value, (Machine_Object*)connection);
-  Machine_List_append(self->connections, value);
+  Ring2_List_append(self->connections, value);
 }
 
 void Machine_Signals_Signal_unsubscribe(Machine_Signals_Signal* self, Ring2_String* name, Machine_Object* context, Ring2_ForeignProcedure* callback) {
   Ring2_Value contextValue;
   Ring2_Value_setObject(&contextValue, (Machine_Object *)context);
-  for (size_t i = 0, n = Machine_Collection_getSize((Machine_Collection*)(self->connections)); i < n; ++i) {
-    Ring2_Value temporary = Machine_List_getAt(self->connections, i);
+  for (int64_t i = 0, n = Ring2_Collection_getSize((Ring2_Collection*)(self->connections)); i < n; ++i) {
+    Ring2_Value temporary = Ring2_List_getAt(self->connections, i);
     Machine_Signals_Connection* c = (Machine_Signals_Connection*)Ring2_Value_getObject(&temporary);
     if (Ring2_String_isEqualTo(Ring2_Context_get(), c->name, name) &&
         Machine_Object_isEqualTo(Ring2_Context_get(), c->context, &contextValue) &&
         Ring2_ForeignProcedure_isEqualTo(Ring2_Context_get(), c->callback, callback)) {
-      Machine_List_removeAtFast(self->connections, i);
+      Ring2_List_removeAtFast(self->connections, i);
       break;
     }
   }
@@ -69,9 +70,9 @@ void Machine_Signals_Signal_emit(Machine_Signals_Signal* self, Ring2_String* nam
     Ring2_JumpTarget jt;
     Ring2_pushJumpTarget(&jt);
     if (!setjmp(jt.environment)) {
-      for (size_t i = 0, n = Machine_Collection_getSize((Machine_Collection*)self->connections);
+      for (size_t i = 0, n = Ring2_Collection_getSize((Ring2_Collection*)self->connections);
            i < n; ++i) {
-        Ring2_Value temporary = Machine_List_getAt(self->connections, i);
+        Ring2_Value temporary = Ring2_List_getAt(self->connections, i);
         Machine_Signals_Connection* c
             = (Machine_Signals_Connection*)Ring2_Value_getObject(&temporary);
         if (Ring2_String_isEqualTo(Ring2_Context_get(), c->name, name)) {

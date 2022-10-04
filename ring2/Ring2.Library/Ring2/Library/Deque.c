@@ -15,7 +15,7 @@
 
 
 static void addPrerequisites(Machine_InterfaceType* self) {
-  Machine_InterfaceType_extend(self, (Machine_Type*)Machine_Collection_getType());
+  Machine_InterfaceType_extend(self, (Machine_Type*)Ring2_Collection_getType());
 }
 
 MACHINE_DEFINE_INTERFACETYPE(Machine_Deque, &addPrerequisites)

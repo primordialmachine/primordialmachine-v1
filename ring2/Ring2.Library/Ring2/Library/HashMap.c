@@ -8,27 +8,150 @@
 #include "Ring2/Library/HashMap.h"
 #undef RING2_LIBRARY_PRIVATE
 
+
 #define RING2_LIBRARY_PRIVATE (1)
-#include "Ring2/Library/Collection.h"
-#include "Ring2/Library/List.h"
-#include "Ring2/Library/Map.h"
-#include "Ring2/Library/Pair.h"
-#include "Ring2/Library/ArrayList.h"
+#include "Ring2/Library/CollectionUtilities.h"
 #undef RING2_LIBRARY_PRIVATE
-
-
+#include "Ring1/Intrinsic.h"
 #include "Ring1/Memory.h"
-#include <assert.h>
-#include <stdio.h>
-
-
 #include "Ring1/Status.h"
 #include "Ring2/Library/_Include.h"
-
-
-#include <math.h>
+#include <assert.h>
 #include <float.h>
+#include <math.h>
 
+
+typedef struct Node {
+  /// @brief The node which was moved out of place because of this node.
+  struct Node* next;
+  /// @brief The key.
+  Ring2_Value key;
+  /// @brief The value.
+  Ring2_Value value;
+  /// @brief The hash value. Cached from Mkx_Interpreter_Value_hashValue(context, &key).
+  int64_t hashValue;
+} Node;
+
+struct Ring2_HashMap_Class {
+  Machine_Object_Class _parent;
+};
+
+struct Ring2_HashMap {
+  Machine_Object _parent;
+  Node **buckets;
+  int64_t size, capacity;
+};
+
+
+/// @brief The minimal capacity.
+static int64_t const MINIMAL_CAPACITY = 8;
+
+/// @brief The maximal capacity.
+static int64_t const MAXIMAL_CAPACITY = (INT64_MAX < SIZE_MAX ? INT64_MAX : SIZE_MAX) / sizeof(Node*);
+
+
+static Ring2_Boolean
+defaultEqual
+  (
+    Ring2_Value const* x,
+    Ring2_Value const* y
+  );
+
+static void
+maybeResize
+  (
+    Ring2_HashMap *self
+  );
+
+// Ring2.Collection
+static void
+clear
+  (
+    Ring2_HashMap* self
+  );
+
+// Ring2.Collection
+static int64_t
+getSize
+  (
+    Ring2_HashMap const* self
+  );
+
+// Ring2.Collection
+static bool
+isEmpty
+  (
+    Ring2_HashMap const* self
+  );
+
+// Ring2.Map
+static Ring2_Value
+get
+  (
+    Ring2_HashMap const* self,
+    Ring2_Value key
+  );
+
+// Ring2.Map
+static void
+_remove
+  (
+    Ring2_HashMap* self,
+    Ring2_Value key
+  );
+
+// Ring2.Map
+static void
+set
+  (
+    Ring2_HashMap* self,
+    Ring2_Value key,
+    Ring2_Value value
+  );
+
+static Ring2_List*
+toList
+  (
+    Ring2_HashMap const* self
+  );
+
+static void
+implement_Ring2_Collection
+  (
+    Ring2_Collection_Dispatch* self
+  );
+
+static void
+implement_Ring2_Map
+  (
+    Ring2_Map_Dispatch* self
+  );
+
+static void
+implementInterfaces
+  (
+    Machine_ClassType* self
+  );
+
+static void
+Ring2_HashMap_destruct
+  (
+    Ring2_HashMap* self
+  );
+
+static void
+Ring2_HashMap_visit
+  (
+    Ring2_HashMap* self
+  );
+
+MACHINE_DEFINE_CLASSTYPE(Ring2_HashMap /*type*/,
+                         Machine_Object /*parentType*/,
+                         &Ring2_HashMap_visit /*visit*/,
+                         &Ring2_HashMap_construct /*construct*/,
+                         &Ring2_HashMap_destruct /*destruct*/,
+                         NULL /*constructClass*/,
+                         &implementInterfaces)
 
 static Ring2_Boolean
 defaultEqual
@@ -60,160 +183,10 @@ defaultEqual
   }
 }
 
-typedef struct Node {
-  /// @brief The node which was moved out of place because of this node.
-  struct Node* next;
-  /// @brief The key.
-  Ring2_Value key;
-  /// @brief The value.
-  Ring2_Value value;
-  /// @brief The hash value. Cached from Mkx_Interpreter_Value_hashValue(context, &key).
-  int64_t hashValue;
-} Node;
-
-struct Machine_HashMap_Class {
-  Machine_Object_Class _parent;
-};
-
-struct Machine_HashMap {
-  Machine_Object _parent;
-  Node **buckets;
-  int64_t size, capacity;
-};
-
-
-/// @brief The minimal capacity.
-static int64_t const MINIMAL_CAPACITY = 8;
-
-/// @brief The maximal capacity.
-static int64_t const MAXIMAL_CAPACITY = (INT64_MAX < SIZE_MAX ? INT64_MAX : SIZE_MAX) / sizeof(Node*);
-
-
-static void
-clear
-  (
-    Machine_HashMap* self
-  );
-
-static Ring2_Value
-get
-  (
-    Machine_HashMap const* self,
-    Ring2_Value key
-  );
-
-static int64_t
-getSize
-  (
-    Machine_HashMap const* self
-  );
-
-static void
-maybeResize
-  (
-    Machine_HashMap *self
-  );
-
-static void
-set
-  (
-    Machine_HashMap* self,
-    Ring2_Value key,
-    Ring2_Value value
-  );
-
-static Machine_List*
-toList
-  (
-    Machine_HashMap const* self
-  );
-
-static void
-implement_Machine_Collection
-  (
-    Machine_Collection_Dispatch* self
-  );
-
-static void
-implement_Machine_Map
-  (
-    Machine_Map_Dispatch* self
-  );
-
-static void
-implementInterfaces
-  (
-    Machine_ClassType* self
-  );
-
-static void
-Machine_HashMap_destruct
-  (
-    Machine_HashMap* self
-  );
-
-static void
-Machine_HashMap_visit
-  (
-    Machine_HashMap* self
-  );
-
-MACHINE_DEFINE_CLASSTYPE(Machine_HashMap /*type*/,
-                         Machine_Object /*parentType*/,
-                         &Machine_HashMap_visit /*visit*/,
-                         &Machine_HashMap_construct /*construct*/,
-                         &Machine_HashMap_destruct /*destruct*/,
-                         NULL /*constructClass*/,
-                         &implementInterfaces)
-
-static void
-clear
-  (
-    Machine_HashMap* self
-  )
-{
-  if (self->buckets) {
-    for (int64_t i = 0, n = self->capacity; i < n; ++i) {
-      Node** bucket = &(self->buckets[i]);
-      while (*bucket) {
-        Node* node = *bucket;
-        *bucket = node->next;
-        Ring1_Memory_deallocate(node);
-        self->size--;
-      }
-    }
-  }
-}
-
-static Ring2_Value
-get
-  (
-    Machine_HashMap const* self,
-    Ring2_Value key
-  )
-{
-  int64_t hashValue = Ring2_Value_getHashValue(Ring2_Context_get(), &key);
-  int64_t hashIndex = hashValue % self->capacity;
-  for (Node* node = self->buckets[hashIndex]; NULL != node; node = node->next) {
-    if (node->hashValue == hashValue && Ring2_Value_isEqualTo(Ring2_Context_get(), &key, &node->key))
-    { return node->value; }
-  }
-  Ring2_Value result;
-  Ring2_Value_setVoid(&result, Ring2_Void_Void);
-  return result;
-}
-
-static int64_t
-getSize
-  (
-    Machine_HashMap const* self
-  )
-{ return self->size; }
-
 static void
 maybeResize
   ( 
-    Machine_HashMap *self
+    Ring2_HashMap *self
   )
 {
   int64_t oldCapacity = self->capacity;
@@ -254,14 +227,144 @@ maybeResize
   }
 }
 
+// Ring2.Collection
+static void
+clear
+  (
+    Ring2_HashMap* self
+  )
+{
+  if (self->buckets) {
+    for (int64_t i = 0, n = self->capacity; i < n; ++i) {
+      Node** bucket = &(self->buckets[i]);
+      while (*bucket) {
+        Node* node = *bucket;
+        *bucket = node->next;
+        Ring1_Memory_deallocate(node);
+        self->size--;
+      }
+    }
+  }
+}
+
+// Ring2.Collection
+static int64_t
+getSize
+  (
+    Ring2_HashMap const* self
+  )
+{ return self->size; }
+
+// Ring2.Collection
+static bool
+isEmpty
+  (
+    Ring2_HashMap const* self
+  )
+{ return 0 == self->size; }
+
+// Ring2.Map
+static Ring2_Value
+get
+  (
+    Ring2_HashMap const* self,
+    Ring2_Value key
+  )
+{
+  if (Ring2_Value_isVoid(&key)) {
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
+    Ring2_jump();
+  } else if (Ring2_Value_isReal32(&key)) {
+    if (isnan(Ring2_Value_getReal32(&key))) {
+      Ring1_Status_set(Ring1_Status_InvalidArgument);
+      Ring2_jump();   
+    }
+  } else if (Ring2_Value_isReal64(&key)) {
+    if (isnan(Ring2_Value_getReal64(&key))) {
+      Ring1_Status_set(Ring1_Status_InvalidArgument);
+      Ring2_jump();  
+    }
+  }
+
+  int64_t hashValue = Ring2_Value_getHashValue(Ring2_Context_get(), &key);
+  int64_t hashIndex = hashValue % self->capacity;
+  for (Node* node = self->buckets[hashIndex]; NULL != node; node = node->next) {
+    if (node->hashValue == hashValue && Ring2_Value_isEqualTo(Ring2_Context_get(), &key, &node->key))
+    { return node->value; }
+  }
+  Ring2_Value result;
+  Ring2_Value_setVoid(&result, Ring2_Void_Void);
+  return result;
+}
+
+// Ring2.Map
+static void
+_remove
+  (
+    Ring2_HashMap* self,
+    Ring2_Value key
+  )
+{
+  if (Ring2_Value_isVoid(&key)) {
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
+    Ring2_jump();
+  } else if (Ring2_Value_isReal32(&key)) {
+    if (isnan(Ring2_Value_getReal32(&key))) {
+      Ring1_Status_set(Ring1_Status_InvalidArgument);
+      Ring2_jump();   
+    }
+  } else if (Ring2_Value_isReal64(&key)) {
+    if (isnan(Ring2_Value_getReal64(&key))) {
+      Ring1_Status_set(Ring1_Status_InvalidArgument);
+      Ring2_jump();  
+    }
+  }
+
+  int64_t hashValue = Ring2_Value_getHashValue(Ring2_Context_get(), &key);
+  int64_t hashIndex = hashValue % self->capacity;
+  Node** previous = &self->buckets[hashIndex];
+  Node* current = self->buckets[hashIndex];
+  while (current != NULL) {
+    if (current->hashValue == hashValue &&
+        Ring2_Value_isEqualTo(Ring2_Context_get(), &key, &current->key)) {
+      *previous = current->next;
+      Ring1_Memory_deallocate(current);
+      self->size--;
+      maybeResize(self);
+      break;
+    }
+  }
+}
+
+// Ring2.Map
 static void
 set
   (
-    Machine_HashMap* self,
+    Ring2_HashMap* self,
     Ring2_Value key,
     Ring2_Value value
   )
 {
+  if (Ring2_Value_isVoid(&value)) {
+    _remove(self, key);
+    return;
+  }
+
+  if (Ring2_Value_isVoid(&key)) {
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
+    Ring2_jump();
+  } else if (Ring2_Value_isReal32(&key)) {
+    if (isnan(Ring2_Value_getReal32(&key))) {
+      Ring1_Status_set(Ring1_Status_InvalidArgument);
+      Ring2_jump();   
+    }
+  } else if (Ring2_Value_isReal64(&key)) {
+    if (isnan(Ring2_Value_getReal64(&key))) {
+      Ring1_Status_set(Ring1_Status_InvalidArgument);
+      Ring2_jump();  
+    }
+  }
+  
   int64_t hashValue = Ring2_Value_getHashValue(Ring2_Context_get(), &key);
   int64_t hashIndex = hashValue % self->capacity;
   Node* node;
@@ -284,44 +387,45 @@ set
   maybeResize(self);
 }
 
-static Machine_List*
+static Ring2_List*
 toList
   (
-    Machine_HashMap const* self
+    Ring2_HashMap const* self
   )
 { 
-  Machine_List* list = (Machine_List*)Machine_ArrayList_create();
+  Ring2_List* list = (Ring2_List*)Ring2_ArrayList_create();
   for (int64_t i = 0, n = self->capacity; i < n; ++i) {
     for (Node* node = self->buckets[i]; NULL != node; node = node->next) {
       Machine_Pair* pair = Machine_Pair_create(node->key, node->value);
       Ring2_Value temporary;
       Ring2_Value_setObject(&temporary, (Machine_Object *)pair);
-      Machine_List_append(list, temporary);
+      Ring2_List_append(list, temporary);
     }
   }
   return list;
 }
 
-
 static void
-implement_Machine_Collection
+implement_Ring2_Collection
   (
-    Machine_Collection_Dispatch* self
+    Ring2_Collection_Dispatch* self
   )
 {
-  self->clear = (void (*)(Machine_Collection*)) & clear;
-  self->getSize = (int64_t(*)(Machine_Collection const*)) & getSize;
+  self->clear = (void (*)(Ring2_Collection*)) & clear;
+  self->getSize = (int64_t(*)(Ring2_Collection const*)) & getSize;
+  self->isEmpty = (bool (*)(Ring2_Collection const*)) & isEmpty;
 }
 
 static void
-implement_Machine_Map
+implement_Ring2_Map
   (
-    Machine_Map_Dispatch* self
+    Ring2_Map_Dispatch* self
   )
 {
-  self->get = (Ring2_Value (*)(Machine_Map const*, Ring2_Value)) & get;
-  self->set = (void (*)(Machine_Map*, Ring2_Value, Ring2_Value)) & set;
-  self->toList = (Machine_List * (*)(Machine_Map const*)) & toList;
+  self->get = (Ring2_Value (*)(Ring2_Map const*, Ring2_Value)) & get;
+  self->remove = (void (*)(Ring2_Map*, Ring2_Value)) & _remove;
+  self->set = (void (*)(Ring2_Map*, Ring2_Value, Ring2_Value)) & set;
+  self->toList = (Ring2_List * (*)(Ring2_Map const*)) & toList;
 }
 
 static void
@@ -330,16 +434,16 @@ implementInterfaces
     Machine_ClassType* self
   )
 {
-  Machine_ClassType_implement(self, Machine_Collection_getType(),
-                              (Machine_InterfaceConstructCallback*)&implement_Machine_Collection);
-  Machine_ClassType_implement(self, Machine_Map_getType(),
-                              (Machine_InterfaceConstructCallback*)&implement_Machine_Map);
+  Machine_ClassType_implement(self, Ring2_Collection_getType(),
+                              (Machine_InterfaceConstructCallback*)&implement_Ring2_Collection);
+  Machine_ClassType_implement(self, Ring2_Map_getType(),
+                              (Machine_InterfaceConstructCallback*)&implement_Ring2_Map);
 }
 
 static void
-Machine_HashMap_destruct
+Ring2_HashMap_destruct
   (
-    Machine_HashMap* self
+    Ring2_HashMap* self
   )
 {
   clear(self);
@@ -350,9 +454,9 @@ Machine_HashMap_destruct
 }
 
 static void
-Machine_HashMap_visit
+Ring2_HashMap_visit
   (
-    Machine_HashMap* self
+    Ring2_HashMap* self
   )
 {
   if (self->buckets) {
@@ -385,9 +489,9 @@ Machine_HashMap_visit
 }
 
 void
-Machine_HashMap_construct
+Ring2_HashMap_construct
   (
-    Machine_HashMap *self,
+    Ring2_HashMap *self,
     size_t numberOfArguments,
     Ring2_Value const *arguments
   )
@@ -401,38 +505,27 @@ Machine_HashMap_construct
     Ring2_jump();
   }
   Ring1_Memory_zeroFillArray(self->buckets, (size_t)self->capacity, sizeof(Node*));
-  Machine_setClassType(Ring1_cast(Machine_Object*, self), Machine_HashMap_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object*, self), Ring2_HashMap_getType());
 }
 
-Machine_HashMap *
-Machine_HashMap_create
+Ring2_HashMap *
+Ring2_HashMap_create
   (
   )
 {
-  Machine_ClassType* ty = Machine_HashMap_getType();
+  Machine_ClassType* ty = Ring2_HashMap_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   Ring2_Value ARGUMENTS[1] = { Ring2_Value_StaticInitializerVoid() };
-  Machine_HashMap* self = (Machine_HashMap *)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Ring2_HashMap* self = (Ring2_HashMap *)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }
 
-void
-Machine_HashMap_remove
-  (
-    Machine_HashMap* self,
-    Ring2_Value key
-  )
-{
-  Ring2_Value value;
-  Ring2_Value_setVoid(&value, Ring2_Void_Void);
-  set(self, key, value);
-}
-
 #if defined(Ring2_Configuration_withArray) && 1 == Ring2_Configuration_withArray
+
 Ring2_Array*
-Machine_HashMap_getPairs
+Ring2_HashMap_getPairs
   (
-    Machine_HashMap *self
+    Ring2_HashMap *self
   )
 {
   Ring2_Array* a = Ring2_ArrayHeap_createArray(Ring2_Context_get(), self->size);
@@ -449,4 +542,5 @@ Machine_HashMap_getPairs
   }
   return a;
 }
+
 #endif

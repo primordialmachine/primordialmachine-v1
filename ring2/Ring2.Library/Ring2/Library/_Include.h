@@ -22,6 +22,8 @@
 #include "Ring2/Library/List.h"
 #include "Ring2/Library/Map.h"
 #include "Ring2/Library/Pair.h"
+#include "Ring2/Library/Set.h"
+#include "Ring2/Library/Stack.h"
 #include "Ring2/Library/StringBuffer.h"
 #include "Ring2/Library/Time.h"
 #include "Ring2/Library/WeakReference.h"

@@ -43,14 +43,14 @@ Ring2_Integer Machine_Gdl_Node_toInteger(Machine_Gdl_Node* self, Machine_Gdl_Con
 /// Machine_Gdl_Node_toString(Machine_Gdl_Node const *).
 /// - GDL void is mapped to <code>Void</code> as defined by
 /// Machine_Gdl_Node_toVoid(Machine_Gdl_Node const*).
-Machine_List* Machine_Gdl_Node_toList(Machine_Gdl_Node const* self, Machine_Gdl_Context* context);
+Ring2_List* Machine_Gdl_Node_toList(Machine_Gdl_Node const* self, Machine_Gdl_Context* context);
 
 /// @brief Convert a node to a value of type <code>Map</code>.
 /// @param self This node. Must be of kind Machine_Gdl_NodeKind_Map.
 /// @return The value of type <code>Map</code>.
 /// @extension
 /// @remark Pair elements are subjected to the conversions as described in Machine_Gdl_Node_toList.
-Machine_Map* Machine_Gdl_Node_toMap(Machine_Gdl_Node const* self, Machine_Gdl_Context* context);
+Ring2_Map* Machine_Gdl_Node_toMap(Machine_Gdl_Node const* self, Machine_Gdl_Context* context);
 
 /// @brief Convert a node to a value of type <code>Pair</code>.
 /// @param self This node. Must be of kind Machine_Gdl_NodeKind_Pair.

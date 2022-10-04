@@ -3,6 +3,10 @@
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #include "Gdl/Lexical/Token.h"
 
+
+#include "Ring1/Intrinsic.h"
+
+
 static void Machine_Gdl_Token_visit(Machine_Gdl_Token *self) {
   if (self->text) {
     Ring2_Gc_visit(Ring2_Gc_get(), self->text);
@@ -14,7 +18,7 @@ static void Machine_Gdl_Token_construct(Machine_Gdl_Token* self, size_t numberOf
   self->kind = Ring2_Value_getInteger(&arguments[0]);
   self->text = Ring2_Value_getString(&arguments[1]);
   self->offset = Ring2_Value_getInteger(&arguments[2]);
-  Machine_setClassType((Machine_Object*)self, Machine_Gdl_Token_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Gdl_Token_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gdl_Token, Machine_Object, &Machine_Gdl_Token_visit,

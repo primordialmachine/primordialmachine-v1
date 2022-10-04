@@ -3,6 +3,10 @@
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #include "Gdl/Syntactical/Node.h"
 
+
+#include "Ring1/Intrinsic.h"
+
+
 static void Machine_Gdl_Node_visit(Machine_Gdl_Node* self);
 
 static void Machine_Gdl_Node_construct(Machine_Gdl_Node* self, size_t numberOfArguments,
@@ -25,9 +29,9 @@ static void Machine_Gdl_Node_construct(Machine_Gdl_Node* self, size_t numberOfAr
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->kind = Ring2_Value_getInteger(&(arguments[0]));
   self->text = Ring2_Value_getString(&(arguments[1]));
-  self->children = (Machine_List*)Machine_ArrayList_create();
+  self->children = (Ring2_List*)Ring2_ArrayList_create();
   self->parent = NULL;
-  Machine_setClassType((Machine_Object*)self, Machine_Gdl_Node_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Gdl_Node_getType());
 }
 
 Machine_Gdl_Node* Machine_Gdl_Node_create(Machine_Gdl_NodeKind kind, Ring2_String* text) {

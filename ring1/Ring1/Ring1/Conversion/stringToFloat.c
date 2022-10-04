@@ -6,10 +6,10 @@
 
 #include "Ring1/Conversion/stringToFloat.h"
 
+#include "Ring1/Conversion/_Buffer.h"
 #include "Ring1/Conversion/_Parser.h"
 #include "Ring1/Memory.h"
 #include "Ring1/Status.h"
-#include <malloc.h>
 #include <string.h>
 #include <stdlib.h>
 
@@ -110,16 +110,14 @@ Ring1_Conversion_stringToFloat
     Ring1_Status_set(Ring1_Status_ConversionFailed);
     return Ring1_Result_Failure;
   }
-  char* buffer = realloc(NULL, (end - start) + 1);
-  if (!buffer) {
-    Ring1_Status_set(Ring1_Status_ConversionFailed);
+  char* buffer = NULL;
+  if (Ring1_Conversion__Buffer_get(&buffer, end - start + 1)) {
     return Ring1_Result_Failure;
   }
   memcpy(buffer, start, end - start);
   buffer[end - start] = '\0';
   char* current = NULL;
   float v = strtof(start, &current);
-  free(buffer);
   if (current != end) {
     Ring1_Status_set(Ring1_Status_ConversionFailed);
     return Ring1_Result_Failure;
@@ -151,16 +149,14 @@ Ring1_Conversion_stringToDouble
     Ring1_Status_set(Ring1_Status_ConversionFailed);
     return Ring1_Result_Failure;
   }
-  char *buffer = realloc(NULL, (end - start) + 1);
-  if (!buffer) {
-    Ring1_Status_set(Ring1_Status_ConversionFailed);
+  char* buffer = NULL;
+  if (Ring1_Conversion__Buffer_get(&buffer, end - start + 1)) {
     return Ring1_Result_Failure;
   }
   memcpy(buffer, start, end - start);
   buffer[end - start] = '\0';
   char* current = NULL;
   double v = strtod(start, &current);
-  free(buffer);
   if (current != end) {
     Ring1_Status_set(Ring1_Status_ConversionFailed);
     return Ring1_Result_Failure;

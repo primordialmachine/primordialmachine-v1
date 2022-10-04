@@ -258,6 +258,20 @@ Ring2_Integer_toString
     Ring2_Integer x
   );
 
+/// @brief Convert a <code>String</code> value to an <code>Integer</code> value.
+/// @param x The <code>String</code> value.
+/// @return The <code>Integer</code> value.
+/// @error Ring1_Status_ConversionFailed
+/// The <code>String</code> value cannot be converted a <code>Integer</code> value.
+/// @error Ring1_Status_AllocationFailed
+/// An allocation failed.
+Ring1_CheckReturn() Ring2_Integer
+Ring2_Integer_fromString
+  (
+    Ring2_Context* context,
+    Ring2_String* x
+  );
+
 #endif // Ring2_Configuration_withInteger
 
 #endif // RING2_OPERATIONS_INTEGER_H_INCLUDED

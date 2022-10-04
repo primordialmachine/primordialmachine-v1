@@ -5,6 +5,7 @@
 extern "C" {
 #endif
 
+#include "Ring1/Intrinsic.h"
 #include "Ring2/Library/_Include.h"
 #include "_Launcher.h"
 #include "_Fonts.h"
@@ -36,13 +37,13 @@ static void loadIcons() {
     "primordialmachine-180x180.png",
     "primordialmachine-256x256.png",
   };
-  Machine_List* vals = (Machine_List*)Machine_ArrayList_create();
+  Ring2_List* vals = Ring1_cast(Ring2_List *, Ring2_ArrayList_create());
   for (size_t i = 0, n = (sizeof(PATHS) / sizeof(const char*)); i < n; ++i) {
     Machine_Image* image = Machine_ImagesContext_createFromPath(
         Machines_DefaultImages_createContext(), Ring2_String_create(Ring2_Context_get(), PATHS[i], strlen(PATHS[i])));
     Ring2_Value val;
     Ring2_Value_setObject(&val, (Machine_Object*)image);
-    Machine_List_append(vals, val);
+    Ring2_List_append(vals, val);
   }
   Machine_Video_Canvas_setCanvasIcons(Machine_getVideoCanvas(), vals);
 }

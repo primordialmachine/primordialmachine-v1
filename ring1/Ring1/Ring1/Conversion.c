@@ -6,6 +6,7 @@
 
 #include "Ring1/Conversion.h"
 
+#include "Ring1/Conversion/_Buffer.h"
 #include "Ring1/Memory.h"
 
 static Ring1_CheckReturn() Ring1_Result
@@ -31,6 +32,11 @@ initializeModule
   if (Ring1_Unlikely(!g_memoryModuleHandle)) {
     return Ring1_Result_Failure;
   }
+  if (Ring1_Conversion__Buffer_startup()) {
+    Ring1_Memory_ModuleHandle_relinquish(g_memoryModuleHandle);
+    g_memoryModuleHandle = Ring1_Memory_ModuleHandle_Invalid;
+    return Ring1_Result_Failure;
+  }
   return Ring1_Result_Success;
 }
 
@@ -39,6 +45,7 @@ uninitializeModule
   (
   )
 {
+  Ring1_Conversion__Buffer_shutdown();
   Ring1_Memory_ModuleHandle_relinquish(g_memoryModuleHandle);
   g_memoryModuleHandle = Ring1_Memory_ModuleHandle_Invalid;
 }

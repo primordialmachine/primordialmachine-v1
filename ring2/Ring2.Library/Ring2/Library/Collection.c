@@ -9,25 +9,25 @@
 #undef RING2_LIBRARY_PRIVATE
 
 
-MACHINE_DEFINE_INTERFACETYPE(Machine_Collection, NULL)
+MACHINE_DEFINE_INTERFACETYPE(Ring2_Collection, NULL)
 
 void
-Machine_Collection_clear
+Ring2_Collection_clear
   (
-    Machine_Collection* self
+    Ring2_Collection* self
   )
-{ MACHINE_VIRTUALIFACECALL_IMPL(Machine_Collection, clear, , self); }
+{ MACHINE_VIRTUALIFACECALL_IMPL(Ring2_Collection, clear, , self); }
 
 Ring1_CheckReturn() int64_t
-Machine_Collection_getSize
+Ring2_Collection_getSize
   (
-    Machine_Collection const* self
+    Ring2_Collection const* self
   )
-{ MACHINE_VIRTUALIFACECALL_IMPL(Machine_Collection, getSize, return, self); }
+{ MACHINE_VIRTUALIFACECALL_IMPL(Ring2_Collection, getSize, return, self); }
 
 Ring1_CheckReturn() bool
-Machine_Collection_isEmpty
+Ring2_Collection_isEmpty
   (
-    Machine_Collection const* self
+    Ring2_Collection const* self
   )
-{ MACHINE_VIRTUALIFACECALL_IMPL(Machine_Collection, isEmpty, return, self); }
+{ MACHINE_VIRTUALIFACECALL_IMPL(Ring2_Collection, isEmpty, return, self); }

@@ -4,6 +4,7 @@
 #define MACHINE_VIDEO_PRIVATE (1)
 #include "Video/Binding.h"
 
+#include "Ring1/Intrinsic.h"
 #include "Video/Buffer.h"
 #include "Video/ShaderProgram.h"
 #include "Video/VertexDescriptor.h"
@@ -27,7 +28,7 @@ static void Machine_Binding_Node_construct(Machine_Binding_Node* self, size_t nu
   self->name = Machine_Extensions_getStringArgument(numberOfArguments, arguments, 0);
   self->isVariable = Machine_Extensions_getBooleanArgument(numberOfArguments, arguments, 1);
   self->value = arguments[2];
-  Machine_setClassType((Machine_Object*)self, Machine_Binding_Node_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Binding_Node_getType());
 }
 
 static void Machine_Binding_Node_visit(Machine_Binding_Node* self) {
@@ -103,7 +104,7 @@ void Machine_Binding_construct(Machine_Binding* self, size_t numberOfArguments,
   self->buffer = (Machine_VideoBuffer*)Machine_Extensions_getObjectArgument(
       numberOfArguments, arguments, 2, Machine_VideoBuffer_getType());
   self->nodes = NULL;
-  Machine_setClassType((Machine_Object*)self, Machine_Binding_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Binding_getType());
 }
 
 static void Machine_Binding_addUpdateConstantImpl(Machine_Binding* self, Ring2_String* name,

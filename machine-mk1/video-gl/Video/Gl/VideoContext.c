@@ -5,7 +5,7 @@
 #include "Video/Gl/VideoContext.h"
 
 
-
+#include "Ring1/Intrinsic.h"
 #include "Ring1/Status.h"
 #include "Video/Gl/UtilitiesGL.h"
 #include "Video/Gl/Binding.h"
@@ -14,7 +14,6 @@
 #include "Video/Gl/CanvasUtilities.h"
 #include "Video/Gl/ShaderProgram.h"
 #include "Video/Gl/Texture.h"
-
 
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -405,7 +404,7 @@ void Machine_Gl_VideoContext_construct(Machine_Gl_VideoContext* self, size_t num
       self->clipDistances->a[i].enabled = false;
     }
   }
-  Machine_setClassType((Machine_Object*)self, Machine_Gl_VideoContext_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Gl_VideoContext_getType());
 }
 
 Machine_Gl_VideoContext* Machine_Gl_VideoContext_create() {

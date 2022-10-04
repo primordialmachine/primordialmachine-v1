@@ -14,22 +14,22 @@
 #include "Ring2/_Include.h"
 
 
-MACHINE_DECLARE_INTERFACETYPE(Machine_Collection)
+MACHINE_DECLARE_INTERFACETYPE(Ring2_Collection)
 
-struct Machine_Collection_Dispatch {
+struct Ring2_Collection_Dispatch {
   Machine_InterfaceDispatch parent;
 
-  void (*clear)(Machine_Collection* self);
-  int64_t (*getSize)(Machine_Collection const* self);
-  bool (*isEmpty)(Machine_Collection const* self);
+  void (*clear)(Ring2_Collection* self);
+  int64_t (*getSize)(Ring2_Collection const* self);
+  bool (*isEmpty)(Ring2_Collection const* self);
 };
 
 /// @brief Clear this collection.
 /// @param self A pointer to this collection.
 void
-Machine_Collection_clear
+Ring2_Collection_clear
   (
-    Machine_Collection* self
+    Ring2_Collection* self
   );
 
 /// @brief Get the size of this collection.
@@ -37,9 +37,9 @@ Machine_Collection_clear
 /// @return The size of this collection.
 /// @error Machine_Status_InvalidArgument @a self is null.
 Ring1_CheckReturn() int64_t
-Machine_Collection_getSize
+Ring2_Collection_getSize
   (
-    Machine_Collection const* self
+    Ring2_Collection const* self
   );
 
 /// @brief Get if this collection is empty.
@@ -47,9 +47,9 @@ Machine_Collection_getSize
 /// @return @a true if this collection is empty, @a false otherwise.
 /// @error Machine_Status_InvalidArgument @a self is null.
 Ring1_CheckReturn() bool
-Machine_Collection_isEmpty
+Ring2_Collection_isEmpty
   (
-    Machine_Collection const* self
+    Ring2_Collection const* self
   );
 
 

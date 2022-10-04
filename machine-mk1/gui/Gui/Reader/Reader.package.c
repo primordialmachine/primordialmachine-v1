@@ -8,7 +8,7 @@
 #include "Gui/Gdl/ListToVector.h"
 #include "Gui/Reader/Reader.h"
 
-static void checkKind(Machine_Gui_Context* self, Machine_Map const* source,
+static void checkKind(Machine_Gui_Context* self, Ring2_Map const* source,
                       Ring2_String* expected) {
   Machine_Gui_Gdl_Context* context = self->gdlContext;
   if (!Machine_Gui_Reader_hasString(self, source, context->KIND)) {
@@ -23,7 +23,7 @@ static void checkKind(Machine_Gui_Context* self, Machine_Map const* source,
 }
 
 Machine_Gui_LayoutModel* Machine_Gui_Reader_readLayout(Machine_Gui_Context* self,
-                                                       Machine_Map const* source) {
+                                                       Ring2_Map const* source) {
   Machine_Gui_Gdl_Context* subContext = self->gdlContext;
   Machine_Gui_LayoutModel* model = Machine_Gui_LayoutModel_create();
   if (Machine_Gui_Reader_hasString(self, source, subContext->DIRECTION)) {
@@ -65,18 +65,16 @@ Machine_Gui_LayoutModel* Machine_Gui_Reader_readLayout(Machine_Gui_Context* self
 }
 
 Machine_Gui_GroupNode* Machine_Gui_Reader_readGroupNode(Machine_Gui_Context* self,
-                                                        Machine_Map const* source) {
+                                                        Ring2_Map const* source) {
   Machine_Gui_Gdl_Context* subContext = self->gdlContext;
   checkKind(self, source, subContext->GROUPNODEKIND);
   Machine_Gui_GroupNode* widget = Machine_Gui_GroupNode_create(self);
   if (Machine_Gui_Reader_hasList(self, source, subContext->CHILDREN)) {
-    Machine_List* temporary1 = Machine_Gui_Reader_getList(self, source, subContext->CHILDREN);
-    for (size_t i = 0, n = Machine_Collection_getSize((Machine_Collection*)temporary1); i < n;
-         ++i) {
-      Ring2_Value temporary2 = Machine_List_getAt(temporary1, i);
-      Machine_Map* temporary3 = (Machine_Map*)Ring2_Value_getObject(&temporary2);
-      Machine_Gui_Widget* childWidget
-          = Machine_Gui_Reader_readWidget(self, temporary3);
+    Ring2_List* temporary1 = Machine_Gui_Reader_getList(self, source, subContext->CHILDREN);
+    for (int64_t i = 0, n = Ring2_Collection_getSize((Ring2_Collection*)temporary1); i < n; ++i) {
+      Ring2_Value temporary2 = Ring2_List_getAt(temporary1, i);
+      Ring2_Map* temporary3 = (Ring2_Map*)Ring2_Value_getObject(&temporary2);
+      Machine_Gui_Widget* childWidget = Machine_Gui_Reader_readWidget(self, temporary3);
 
       // TODO: Should be Machine_Gui_Widget_appendChild.
       Machine_Gui_WidgetList_append(widget->children, childWidget);
@@ -84,7 +82,7 @@ Machine_Gui_GroupNode* Machine_Gui_Reader_readGroupNode(Machine_Gui_Context* sel
     }
   }
   if (Machine_Gui_Reader_hasMap(self, source, subContext->LAYOUT)) {
-    Machine_Map* temporary1 = Machine_Gui_Reader_getMap(self, source, subContext->LAYOUT);
+    Ring2_Map* temporary1 = Machine_Gui_Reader_getMap(self, source, subContext->LAYOUT);
     Machine_Gui_LayoutModel* layout = Machine_Gui_Reader_readLayout(self, temporary1);
     Machine_Gui_GroupNode_setLayoutModel(widget, layout);
   }
@@ -92,7 +90,7 @@ Machine_Gui_GroupNode* Machine_Gui_Reader_readGroupNode(Machine_Gui_Context* sel
 }
 
 Machine_Gui_BorderNode* Machine_Gui_Reader_readBorderNode(Machine_Gui_Context* self,
-                                                          Machine_Map const* source) {
+                                                          Ring2_Map const* source) {
   Machine_Gui_Gdl_Context* subContext = self->gdlContext;
   checkKind(self, source, subContext->BORDERNODEKIND);
   Machine_Gui_BorderNode* widget = Machine_Gui_BorderNode_create(self);
@@ -126,7 +124,7 @@ Machine_Gui_BorderNode* Machine_Gui_Reader_readBorderNode(Machine_Gui_Context* s
     Machine_Gui_BorderNode_setBorderColor(widget, temporary2);
   }
   if (Machine_Gui_Reader_hasMap(self, source, subContext->CHILD)) {
-    Machine_Map* temporary = Machine_Gui_Reader_getMap(self, source, subContext->CHILD);
+    Ring2_Map* temporary = Machine_Gui_Reader_getMap(self, source, subContext->CHILD);
     Machine_Gui_Widget* childWidget = Machine_Gui_Reader_readWidget(self, temporary);
     Machine_Gui_BorderNode_setChild(widget, childWidget);
   }
@@ -134,7 +132,7 @@ Machine_Gui_BorderNode* Machine_Gui_Reader_readBorderNode(Machine_Gui_Context* s
 }
 
 Machine_Gui_TextNode* Machine_Gui_Reader_readTextNode(Machine_Gui_Context* self,
-                                                      Machine_Map const* source) {
+                                                      Ring2_Map const* source) {
   Machine_Gui_Gdl_Context* subContext = self->gdlContext;
   checkKind(self, source, subContext->TEXTNODEKIND);
   Machine_Gui_TextNode* widget = Machine_Gui_TextNode_create(self);

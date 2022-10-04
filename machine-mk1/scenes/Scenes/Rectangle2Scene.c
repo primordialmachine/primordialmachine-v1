@@ -1,14 +1,15 @@
 #include "Scenes/Rectangle2Scene.h"
 
-#include <string.h>
 
+#include "Ring1/Intrinsic.h"
+#include <string.h>
 #include "_Gui.h"
 #include "_Images.h"
 #include "_Text.h"
 #include "_Video.h"
-
 #include "_Fonts.h"
 #include "_Graphics2.h"
+
 
 static void Rectangle2Scene_destruct(Rectangle2Scene* self);
 
@@ -98,7 +99,7 @@ static void Rectangle2Scene_constructClass(Rectangle2Scene_Class* self) {
 void Rectangle2Scene_construct(Rectangle2Scene* self, size_t numberOfArguments,
                                Ring2_Value const* arguments) {
   Scene_construct((Scene*)self, numberOfArguments, arguments);
-  Machine_setClassType((Machine_Object*)self, Rectangle2Scene_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Rectangle2Scene_getType());
 }
 
 void Rectangle2Scene_destruct(Rectangle2Scene* self) {

@@ -8,16 +8,9 @@
 #include "Ring2/Operations.h"
 
 #include "Ring2/Types.h"
-#include "Ring2/JumpTarget.h"
-#include "Ring1/Conversion.h"
 #include "Ring2/Operations/_Buffer.h"
 
 static int g_referenceCount = 0;
-
-#include "Ring1/Conversion.h"
-
-static Ring1_Conversion_ModuleHandle g_conversionModuleHandle =
-  Ring1_Conversion_ModuleHandle_Invalid;
 
 Ring1_CheckReturn() Ring1_Result
 Ring2_OperationsModule_startup
@@ -28,28 +21,8 @@ Ring2_OperationsModule_startup
     if (Ring2_Operations__Buffer_startup()) {
       return Ring1_Result_Failure;
     }
-    g_conversionModuleHandle = Ring1_Conversion_ModuleHandle_acquire();
-    if (!g_conversionModuleHandle) {
-      Ring2_Operations__Buffer_shutdown();
-      
-      return Ring1_Result_Failure;
-    }
     if (Ring2_TypesModule_startup()) {
       Ring2_Operations__Buffer_shutdown();
-
-      Ring1_Conversion_ModuleHandle_relinquish(g_conversionModuleHandle);
-      g_conversionModuleHandle = Ring1_Conversion_ModuleHandle_Invalid;
-      
-      return Ring1_Result_Failure;
-    }
-    if (Ring2_JumpTargetModule_startup()) {
-      Ring2_TypesModule_shutdown();
-
-      Ring2_Operations__Buffer_shutdown();
-
-      Ring1_Conversion_ModuleHandle_relinquish(g_conversionModuleHandle);
-      g_conversionModuleHandle = Ring1_Conversion_ModuleHandle_Invalid;
-      
       return Ring1_Result_Failure;
     }
   }
@@ -63,10 +36,7 @@ Ring2_OperationsModule_shutdown
   )
 {
   if (1 == g_referenceCount) {
-    Ring2_JumpTargetModule_shutdown();
     Ring2_TypesModule_shutdown();
-    Ring1_Conversion_ModuleHandle_relinquish(g_conversionModuleHandle);
-    g_conversionModuleHandle = Ring1_Conversion_ModuleHandle_Invalid;
     Ring2_Operations__Buffer_shutdown();
   }
   g_referenceCount--;

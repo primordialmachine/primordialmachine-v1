@@ -12,6 +12,7 @@
 #define RING2_LIBRARY_PRIVATE (1)
 #include "Ring2/Library/ArgumentsUtilities.h"
 #undef RING2_LIBRARY_PRIVATE
+#include "Ring1/Intrinsic.h"
 #include "Ring1/Memory.h"
 
 
@@ -38,7 +39,7 @@ void Machine_ByteBufferReader_construct(Machine_ByteBufferReader* self, size_t n
   self->byteBuffer = (Machine_ByteBuffer*)Machine_Extensions_getObjectArgument(
       numberOfArguments, arguments, 0, Machine_ByteBuffer_getType());
   self->position = 0;
-  Machine_setClassType((Machine_Object*)self, Machine_ByteBufferReader_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_ByteBufferReader_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_ByteBufferReader, Machine_Object, NULL,

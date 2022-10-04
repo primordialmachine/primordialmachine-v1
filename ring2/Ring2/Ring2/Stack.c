@@ -8,18 +8,17 @@
 #include "Ring2/Stack.h"
 
 
+#include <stdio.h>
 #include "Ring1/Memory.h"
 #include "Ring1/Status.h"
 #include "Ring2/JumpTarget.h"
 #include "Ring2/Types/Value.h"
 #include <assert.h>
-#include <stdio.h>
 
 
 typedef struct Mkx_Interpreter_Stack Mkx_Interpreter_Stack;
 
-struct Mkx_Interpreter_Stack
-{
+struct Mkx_Interpreter_Stack {
   Ring2_Value* values;
   int64_t size;
   int64_t capacity;
@@ -106,9 +105,10 @@ ensureFreeCapacity
     Ring2_Integer required
   )
 {
-  if (!required) return;
-  if (required < 0)
-  {
+  if (!required) {
+    return;
+  }
+  if (required < 0) {
     fprintf(stderr, "invalid argument");
     Ring1_Status_set(Ring1_Status_ArgumentOutOfRange);
     Ring2_jump();
@@ -124,13 +124,11 @@ Mkx_Interpreter_Stack_create
   )
 {
   Ring1_Memory_ModuleHandle handle = Ring1_Memory_ModuleHandle_acquire();
-  if (!handle)
-  {
+  if (!handle) {
     return NULL;
   }
   Mkx_Interpreter_Stack* stack;
-  if (Ring1_Memory_allocate(&stack, sizeof(Mkx_Interpreter_Stack)))
-  {
+  if (Ring1_Memory_allocate(&stack, sizeof(Mkx_Interpreter_Stack))) {
     Ring1_Memory_ModuleHandle_relinquish(handle);
     return NULL;
   }
@@ -142,9 +140,7 @@ Mkx_Interpreter_Stack_create
     Ring1_Memory_ModuleHandle_relinquish(handle);
     return NULL;
   }
-
-  for (size_t i = 0, n = 8; i < n; ++i)
-  {
+  for (size_t i = 0, n = 8; i < n; ++i) {
     Ring2_Value_setVoid(stack->values + i, Ring2_Void_Void); 
   }
   stack->memoryModuleHandle = handle;

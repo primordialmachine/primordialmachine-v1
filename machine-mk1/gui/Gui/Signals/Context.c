@@ -4,7 +4,10 @@
 #define MACHINE_GUI_PRIVATE (1)
 #include "Gui/Signals/Context.h"
 
+
+#include "Ring1/Intrinsic.h"
 #include <string.h>
+
 
 static void Machine_Gui_Signals_Context_visit(Machine_Gui_Signals_Context* self) {
 #define DEFINE(NAME, STRING)                                                                       \
@@ -23,7 +26,7 @@ static void Machine_Gui_Signals_Context_construct(Machine_Gui_Signals_Context* s
 #include "Gui/Signals/Context.i"
 #undef DEFINE
 
-  Machine_setClassType((Machine_Object*)self, Machine_Gui_Signals_Context_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Gui_Signals_Context_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gui_Signals_Context, Machine_Object,

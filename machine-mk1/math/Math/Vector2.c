@@ -1,11 +1,15 @@
 #define MACHINE_MATH_PRIVATE (1)
 #include "Math/Vector2.h"
 
+
+#include "Ring1/Intrinsic.h"
+
+
 static void Machine_Math_Vector2_construct(Machine_Math_Vector2* self, size_t numberOfArguments, const Ring2_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->x = 0.f;
   self->y = 0.f;
-  Machine_setClassType((Machine_Object*)self, Machine_Math_Vector2_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Math_Vector2_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Math_Vector2, Machine_Object, NULL,

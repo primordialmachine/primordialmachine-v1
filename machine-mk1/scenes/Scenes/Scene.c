@@ -1,6 +1,9 @@
 #include "Scene.h"
 
+
+#include "Ring1/Intrinsic.h"
 #include "_Video.h"
+
 
 static void Scene_destruct(Scene* self);
 
@@ -22,7 +25,7 @@ void Scene_construct(Scene* self, size_t numberOfArguments, Ring2_Value const* a
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->videoContext = (Machine_VideoContext*)Machine_Extensions_getObjectArgument(
       numberOfArguments, arguments, 0, Machine_VideoContext_getType());
-  Machine_setClassType((Machine_Object*)self, Scene_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Scene_getType());
 }
 
 static void Scene_destruct(Scene* self) { /*Intentionally empty.*/

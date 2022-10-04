@@ -2,9 +2,8 @@
 #include "Math/Matrix4.h"
 
 
-
+#include "Ring1/Intrinsic.h"
 #include <math.h>
-
 
 
 #define BEGINFOREACH() \
@@ -18,7 +17,7 @@ static void Machine_Math_Matrix4_construct(Machine_Math_Matrix4* self, size_t nu
   BEGINFOREACH()
       self->e[i][j] = 0.0f;
   ENDFOREACH()
-  Machine_setClassType((Machine_Object*)self, Machine_Math_Matrix4_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Math_Matrix4_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Math_Matrix4, Machine_Object, NULL,

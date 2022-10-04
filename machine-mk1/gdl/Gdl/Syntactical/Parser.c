@@ -3,8 +3,11 @@
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #include "Gdl/Syntactical/Parser.h"
 
+
+#include "Ring1/Intrinsic.h"
 #include "Ring2/Library/_Include.h"
 #include <string.h>
+
 
 static void Machine_Gdl_Parser_visit(Machine_Gdl_Parser* self) {
   if (self->scanner) {
@@ -15,7 +18,7 @@ static void Machine_Gdl_Parser_visit(Machine_Gdl_Parser* self) {
 static void Machine_Gdl_Parser_construct(Machine_Gdl_Parser* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->scanner = Machine_Gdl_Scanner_create(Ring2_String_create(Ring2_Context_get(), "<empty input>", strlen("<empty input>")), Machine_ByteBuffer_create());
-  Machine_setClassType((Machine_Object*)self, Machine_Gdl_Parser_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Gdl_Parser_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gdl_Parser, Machine_Object, &Machine_Gdl_Parser_visit,
@@ -123,14 +126,14 @@ static Machine_Gdl_Node* parsePair(Machine_Gdl_Parser* self) {
   Machine_Gdl_Node* keyNode = parseKey(self);
   {
     Ring2_Value_setObject(&temporary, (Machine_Object*)keyNode);
-    Machine_List_append(pairNode->children, temporary);
+    Ring2_List_append(pairNode->children, temporary);
   }
   checkKind(self, Machine_Gdl_TokenKind_Colon);
   next(self);
   Machine_Gdl_Node* valueNode = parseValue(self);
   {
     Ring2_Value_setObject(&temporary, (Machine_Object*)valueNode);
-    Machine_List_append(pairNode->children, temporary);
+    Ring2_List_append(pairNode->children, temporary);
   }
   return pairNode;
 }
@@ -142,7 +145,7 @@ static Machine_Gdl_Node *parseList(Machine_Gdl_Parser* self) {
     Machine_Gdl_Node* child = parseValue(self);
     Ring2_Value temporary;
     Ring2_Value_setObject(&temporary, (Machine_Object*)child);
-    Machine_List_append(parent->children, temporary);
+    Ring2_List_append(parent->children, temporary);
     if (currentKind(self) == Machine_Gdl_TokenKind_Comma) {
       next(self);
     }
@@ -159,7 +162,7 @@ static Machine_Gdl_Node* parseMap(Machine_Gdl_Parser* self) {
     Machine_Gdl_Node* child = parsePair(self);
     Ring2_Value temporary;
     Ring2_Value_setObject(&temporary, (Machine_Object*)child);
-    Machine_List_append(parent->children, temporary);
+    Ring2_List_append(parent->children, temporary);
     if (currentKind(self) == Machine_Gdl_TokenKind_Comma) {
       next(self);
     }
@@ -179,13 +182,13 @@ Machine_Gdl_Node* Machine_Gdl_Parser_parse(Machine_Gdl_Parser* self, Ring2_Strin
     Machine_Gdl_Node* child = parseList(self);
     Ring2_Value temporary;
     Ring2_Value_setObject(&temporary, (Machine_Object*)child);
-    Machine_List_append(parent->children, temporary);
+    Ring2_List_append(parent->children, temporary);
   } break;
   case Machine_Gdl_TokenKind_LeftCurlyBracket: {
     Machine_Gdl_Node* child = parseMap(self);
     Ring2_Value temporary;
     Ring2_Value_setObject(&temporary, (Machine_Object*)child);
-    Machine_List_append(parent->children, temporary);
+    Ring2_List_append(parent->children, temporary);
   } break;
   default:
     Ring1_Status_set(Ring1_Status_InvalidSyntactics);

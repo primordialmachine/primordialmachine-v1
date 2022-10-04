@@ -18,39 +18,21 @@
 #define RING2_LIBRARY_ARRAYSTACK_VERSION (2)
 
 /// @brief A stack.
-MACHINE_DECLARE_CLASSTYPE(Machine_ArrayStack)
+MACHINE_DECLARE_CLASSTYPE(Ring2_ArrayStack)
 
 void
-Machine_ArrayStack_construct
+Ring2_ArrayStack_construct
   (
-    Machine_ArrayStack *self,
+    Ring2_ArrayStack *self,
     size_t numberOfArguments,
     Ring2_Value const *arguments
   );
 
 /// @brief Create a stack.
 /// @return The stack.
-Machine_ArrayStack *
-Machine_ArrayStack_create
+Ring2_ArrayStack *
+Ring2_ArrayStack_create
   (
-  );
-
-/// @brief Push a value on the top of this stack.
-/// @param value The value.
-void
-Machine_ArrayStack_push
-  (
-    Machine_ArrayStack* self,
-    Ring2_Value value
-  );
-
-/// @brief Pop the value on top of this stack.
-/// @param self This stack.
-/// @return The value.
-Ring2_Value
-Machine_ArrayStack_pop
-  (
-    Machine_ArrayStack* self
   );
 
 

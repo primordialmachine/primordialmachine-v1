@@ -11,11 +11,10 @@
 #error("Do not include `Ring2/Library/CollectionUtilities.h` directly. Include `Ring2/Library/_Include.h` instead.")
 #endif
 
+#include <stdio.h>
+#include "Ring1/Memory.h"
 #include "Ring1/Status.h"
 #include "Ring2/_Include.h"
-#include "Ring1/Memory.h"
-#include <stdbool.h>
-#include <stdio.h>
 #include <assert.h>
 
 

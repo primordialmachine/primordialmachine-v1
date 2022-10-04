@@ -15,47 +15,80 @@
 
 
 static void addPrerequisites(Machine_InterfaceType* self){
-  Machine_InterfaceType_extend(self, (Machine_Type *)Machine_Collection_getType());
+  Machine_InterfaceType_extend(self, (Machine_Type *)Ring2_Collection_getType());
 }
 
-MACHINE_DEFINE_INTERFACETYPE(Machine_List, &addPrerequisites)
+MACHINE_DEFINE_INTERFACETYPE(Ring2_List, &addPrerequisites)
 
-Ring2_Value Machine_List_getAt(Machine_List const* self, int64_t index) {
-  MACHINE_VIRTUALIFACECALL_IMPL(Machine_List, getAt, return, self, index);
-}
+Ring2_Value
+Ring2_List_getAt
+  (
+    Ring2_List const* self,
+    int64_t index
+  )
+{ MACHINE_VIRTUALIFACECALL_IMPL(Ring2_List, getAt, return, self, index); }
 
-void Machine_List_prepend(Machine_List* self, Ring2_Value value) {
-  MACHINE_VIRTUALIFACECALL_IMPL(Machine_List, prepend, , self, value);
-}
+void
+Ring2_List_prepend
+  (
+    Ring2_List* self,
+    Ring2_Value value
+  )
+{ MACHINE_VIRTUALIFACECALL_IMPL(Ring2_List, prepend, , self, value); }
 
-void Machine_List_append(Machine_List* self, Ring2_Value value) {
-  MACHINE_VIRTUALIFACECALL_IMPL(Machine_List, append, , self, value);
-}
+void
+Ring2_List_append
+  (
+    Ring2_List* self,
+    Ring2_Value value
+  )
+{ MACHINE_VIRTUALIFACECALL_IMPL(Ring2_List, append, , self, value); }
 
-void Machine_List_insertAt(Machine_List* self, int64_t index, Ring2_Value value) {
-  MACHINE_VIRTUALIFACECALL_IMPL(Machine_List, insertAt, , self, index, value);
-}
+void
+Ring2_List_insertAt
+  (
+    Ring2_List* self,
+    int64_t index,
+    Ring2_Value value
+  )
+{ MACHINE_VIRTUALIFACECALL_IMPL(Ring2_List, insertAt, , self, index, value); }
 
-void Machine_List_removeAt(Machine_List* self, int64_t index) {
-  MACHINE_VIRTUALIFACECALL_IMPL(Machine_List, removeAt, , self, index);
-}
+void
+Ring2_List_removeAt
+  (
+    Ring2_List* self,
+    int64_t index
+  )
+{ MACHINE_VIRTUALIFACECALL_IMPL(Ring2_List, removeAt, , self, index); }
 
-void Machine_List_removeAtFast(Machine_List* self, int64_t index) {
-  MACHINE_VIRTUALIFACECALL_IMPL(Machine_List, removeAtFast, , self, index);
-}
+void
+Ring2_List_removeAtFast
+  (
+    Ring2_List* self,
+    int64_t index
+  )
+{ MACHINE_VIRTUALIFACECALL_IMPL(Ring2_List, removeAtFast, , self, index); }
 
-#if defined(Machine_List_withReverse) && Machine_List_withReverse == 1
+#if defined(Ring2_List_withReverse) && Ring2_List_withReverse == 1
 
-void Machine_List_reverse(Machine_List* self) {
-  MACHINE_VIRTUALIFACECALL_IMPL(Machine_List, reverse, , self);
-}
+void
+Ring2_List_reverse
+  (
+    Ring2_List* self
+  )
+{ MACHINE_VIRTUALIFACECALL_IMPL(Ring2_List, reverse, , self); }
 
 #endif
 
-#if defined(Machine_List_withSlice) && Machine_List_withSlice == 1
+#if defined(Ring2_List_withSlice) && Ring2_List_withSlice == 1
 
-Machine_List* Machine_List_slice(Machine_List* self, size_t start, size_t length) {
-  MACHINE_VIRTUALIFACECALL_IMPL(Machine_List, slice, return, self, start, length);
-}
+Ring2_List*
+Ring2_List_slice
+  (
+    Ring2_List* self,
+    int64_t start,
+    int64_t length
+  )
+{ MACHINE_VIRTUALIFACECALL_IMPL(Ring2_List, slice, return, self, start, length); }
 
 #endif

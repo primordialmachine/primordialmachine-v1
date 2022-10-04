@@ -14,26 +14,23 @@
 #include "Ring2/_Include.h"
 
 
-/// The version of the Ring2.ArrayList type implementation.
-#define RING2_LIBRARY_ARRAYLIST_VERSION (2)
-
 /// @brief An array list
 /// @remark
 /// Array lists support the equal (by reference), not equal (by reference), and hash value (hash reference) operations.
-MACHINE_DECLARE_CLASSTYPE(Machine_ArrayList)
+MACHINE_DECLARE_CLASSTYPE(Ring2_ArrayList)
 
 void
-Machine_ArrayList_construct
+Ring2_ArrayList_construct
   (
-    Machine_ArrayList *self,
+    Ring2_ArrayList *self,
     size_t numberOfArguments,
     Ring2_Value const *arguments
   );
 
 /// @brief Create an array.
 /// @return The array.
-Machine_ArrayList *
-Machine_ArrayList_create
+Ring2_ArrayList *
+Ring2_ArrayList_create
   (
   );
 

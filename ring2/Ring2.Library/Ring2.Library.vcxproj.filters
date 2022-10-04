@@ -83,12 +83,6 @@
     <ClInclude Include="Ring2\Library\Time.h">
       <Filter>Headerdateien\Ring2\Library</Filter>
     </ClInclude>
-    <ClInclude Include="Ring2\Library\Io\_FileHandle.h">
-      <Filter>Headerdateien\Ring2\Library\Io</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring2\Library\Io\_FileMapping.h">
-      <Filter>Headerdateien\Ring2\Library\Io</Filter>
-    </ClInclude>
     <ClInclude Include="Ring2\Library\Io\getFileContents.h">
       <Filter>Headerdateien\Ring2\Library\Io</Filter>
     </ClInclude>
@@ -97,6 +91,15 @@
     </ClInclude>
     <ClInclude Include="Ring2\Library\Io.h">
       <Filter>Headerdateien\Ring2\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Library\Stack.h">
+      <Filter>Headerdateien\Ring2\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Library\Set.h">
+      <Filter>Headerdateien\Ring2\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Library\Io\Initialize.h">
+      <Filter>Headerdateien\Ring2\Library\Io</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -154,12 +157,6 @@
     <ClCompile Include="Ring2\Library\Time.c">
       <Filter>Quelldateien\Ring2\Library</Filter>
     </ClCompile>
-    <ClCompile Include="Ring2\Library\Io\_FileHandle.c">
-      <Filter>Quelldateien\Ring2\Library\Io</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring2\Library\Io\_FileMapping.c">
-      <Filter>Quelldateien\Ring2\Library\Io</Filter>
-    </ClCompile>
     <ClCompile Include="Ring2\Library\Io\getFileContents.c">
       <Filter>Quelldateien\Ring2\Library\Io</Filter>
     </ClCompile>
@@ -168,6 +165,15 @@
     </ClCompile>
     <ClCompile Include="Ring2\Library\Io.c">
       <Filter>Quelldateien\Ring2\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Library\Stack.c">
+      <Filter>Quelldateien\Ring2\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Library\Set.c">
+      <Filter>Quelldateien\Ring2\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Library\Io\Initialize.c">
+      <Filter>Quelldateien\Ring2\Library\Io</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

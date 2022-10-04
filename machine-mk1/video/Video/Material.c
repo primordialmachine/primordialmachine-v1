@@ -4,6 +4,10 @@
 #define MACHINE_VIDEO_PRIVATE (1)
 #include "Video/Material.h"
 
+
+#include "Ring1/Intrinsic.h"
+
+
 static void Machine_Material_visit(Machine_Material* self);
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Material, Machine_Object, &Machine_Material_visit,
@@ -18,7 +22,7 @@ void Machine_Material_construct(Machine_Material* self, size_t numberOfArguments
   self->incomingBlendFunction = Machine_BlendFunction_IncomingAlpha;
   self->depthTestFunction = Machine_DepthTestFunction_Always;
   self->depthWriteEnabled = false;
-  Machine_setClassType((Machine_Object*)self, Machine_Material_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Material_getType());
 }
 
 Machine_Material* Machine_Material_create() {

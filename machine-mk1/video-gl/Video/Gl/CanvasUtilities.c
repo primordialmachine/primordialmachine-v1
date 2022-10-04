@@ -4,6 +4,7 @@
 #define MACHINE_VIDEO_GL_PRIVATE (1)
 #include "Video/Gl/CanvasUtilities.h"
 
+
 #include "Ring2/Library/_Include.h"
 #include "Video/Gl/Input/Keyboard.h"
 #include "Video/Gl/Input/MouseButton.h"
@@ -11,10 +12,11 @@
 #include "Video/Gl/UtilitiesGl.h"
 #include "_Input.h"
 
+
 #define VERBOSE (0)
 
 static size_t g_referenceCount = 0;
-static Machine_List* g_events = NULL;
+static Ring2_List* g_events = NULL;
 
 static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int modifiers) {
   Machine_Video_Gl_Canvas* canvas = glfwGetWindowUserPointer(window);
@@ -132,7 +134,7 @@ void Machine_Glfw_startupCanvasInput() {
     Ring2_JumpTarget jumpTarget;
     Ring2_pushJumpTarget(&jumpTarget);
     if (!setjmp(jumpTarget.environment)) {
-      g_events = (Machine_List*)Machine_ArrayList_create();
+      g_events = (Ring2_List*)Ring2_ArrayList_create();
       Ring2_Gc_lock(g_events);
       Ring2_popJumpTarget();
     } else {

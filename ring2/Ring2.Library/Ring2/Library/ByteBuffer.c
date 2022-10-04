@@ -10,6 +10,7 @@
 
 
 #include "Ring1/ByteBuffer.h"
+#include "Ring1/Intrinsic.h"
 #include "Ring1/Memory.h"
 #include "Ring1/Status.h"
 
@@ -29,7 +30,7 @@ static void Machine_ByteBuffer_construct(Machine_ByteBuffer* self, size_t number
   if (Ring1_ByteBuffer_initialize(&self->byteBuffer)) {
     Ring2_jump();
   }
-  Machine_setClassType((Machine_Object*)self, Machine_ByteBuffer_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_ByteBuffer_getType());
 }
 
 static void Machine_ByteBuffer_destruct(Machine_ByteBuffer* self) {

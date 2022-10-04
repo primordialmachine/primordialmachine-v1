@@ -2,9 +2,8 @@
 #include "ImagesContext.h"
 
 
-
+#include "Ring1/Intrinsic.h"
 #include "Image.h"
-
 
 
 static void constructClass(Machine_Images_ImagesContext_Class* self);
@@ -27,7 +26,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Images_ImagesContext, Machine_ImagesContext, NU
 
 void Machine_Images_ImagesContext_construct(Machine_Images_ImagesContext* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   Machine_ImagesContext_construct((Machine_ImagesContext*)self, numberOfArguments, arguments);
-  Machine_setClassType((Machine_Object*)self, Machine_Images_ImagesContext_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Images_ImagesContext_getType());
 }
 
 Machine_Images_ImagesContext* Machine_Images_ImagesContext_create() {

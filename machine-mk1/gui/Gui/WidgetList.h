@@ -23,7 +23,7 @@ Machine_Gui_WidgetList* Machine_Gui_WidgetList_create();
 /// @brief Get the size of this widget list.
 /// @param self This widget list.
 /// @return The size.
-size_t Machine_Gui_WidgetList_getSize(Machine_Gui_WidgetList* self);
+int64_t Machine_Gui_WidgetList_getSize(Machine_Gui_WidgetList* self);
 
 /// @brief Get the widget at an index in this widget list.
 /// @param self This widget list.

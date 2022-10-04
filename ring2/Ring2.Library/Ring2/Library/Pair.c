@@ -9,6 +9,9 @@
 #undef RING2_LIBRARY_PRIVATE
 
 
+#include "Ring1/Intrinsic.h"
+
+
 MACHINE_DEFINE_CLASSTYPE(Machine_Pair, Machine_Object, NULL, &Machine_Pair_construct, NULL, NULL,
                          NULL)
 
@@ -18,7 +21,7 @@ void Machine_Pair_construct(Machine_Pair* self, size_t numberOfArguments,
   Ring2_assert(numberOfArguments == 2, Ring1_Status_InvalidNumberOfArguments);
   self->first = arguments[0];
   self->second = arguments[1];
-  Machine_setClassType((Machine_Object*)self, Machine_Pair_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Pair_getType());
 }
 
 Machine_Pair* Machine_Pair_create(Ring2_Value first, Ring2_Value second) {

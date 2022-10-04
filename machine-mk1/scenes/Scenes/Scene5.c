@@ -1,14 +1,15 @@
 #include "Scene5.h"
 
-#include <string.h>
 
+#include "Ring1/Intrinsic.h"
+#include <string.h>
 #include "_Gui.h"
 #include "_Images.h"
 #include "_Text.h"
 #include "_Video.h"
-
 #include "_Fonts.h"
 #include "_Graphics2.h"
+
 
 static void Scene5_constructClass(Scene5_Class* self);
 
@@ -53,7 +54,7 @@ MACHINE_DEFINE_CLASSTYPE(Scene5, Scene, &Scene5_visit, &Scene5_construct, NULL,
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 static Machine_Gui_Widget* loadWidget(Machine_Gui_Context* context, Machine_Gdl_Node* node) {
-  Machine_Map* map = Machine_Gdl_Node_toMap(node, context->gdlContext->context);
+  Ring2_Map* map = Machine_Gdl_Node_toMap(node, context->gdlContext->context);
   return Machine_Gui_Reader_readWidget(context, map);
 }
 
@@ -66,7 +67,7 @@ static Machine_Gui_Widget* loadWidgetByPath(Machine_Gui_Context* context, const 
   Machine_Gdl_Node* node = Machine_Gdl_Parser_parse(parser, inputPath, inputText);
   Ring2_assert(node->kind == Machine_Gdl_NodeKind_CompilationUnit,
                Ring1_Status_InvalidSemantics);
-  Ring2_Value temporary = Machine_List_getAt(node->children, 0);
+  Ring2_Value temporary = Ring2_List_getAt(node->children, 0);
   node = (Machine_Gdl_Node*)Ring2_Value_getObject(&temporary);
   Ring2_assert(node->kind == Machine_Gdl_NodeKind_Map, Ring1_Status_InvalidSemantics);
   return loadWidget(context, node);
@@ -207,7 +208,7 @@ static void Scene5_constructClass(Scene5_Class* self) {
 
 void Scene5_construct(Scene5* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   Scene_construct((Scene*)self, numberOfArguments, arguments);
-  Machine_setClassType((Machine_Object*)self, Scene5_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Scene5_getType());
 }
 
 void Scene5_destruct(Scene5* self) {

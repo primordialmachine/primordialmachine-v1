@@ -5,9 +5,9 @@
 #include "Font.h"
 
 
+#include "Ring1/Intrinsic.h"
 #include "Ring1/Status.h"
 #include "FontsContext.h"
-
 #include <inttypes.h>
 #include <ft2build.h>
 #include FT_FREETYPE_H
@@ -388,7 +388,7 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
       Ring2_jump();
     }
   }
-  Machine_setClassType((Machine_Object*)self, Machine_Fonts_Font_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Fonts_Font_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Fonts_Font, Machine_Font, &Machine_Fonts_Font_visit,

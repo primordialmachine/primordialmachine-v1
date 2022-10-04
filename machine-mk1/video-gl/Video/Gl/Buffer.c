@@ -5,9 +5,10 @@
 #include "Video/Gl/Buffer.h"
 
 
-
+#include "Ring1/Intrinsic.h"
 #include "Ring1/Status.h"
 #include <string.h>
+
 
 static void Machine_Gl_VideoBuffer_constructClass(Machine_Gl_VideoBuffer_Class* self);
 
@@ -49,7 +50,7 @@ void Machine_Gl_VideoBuffer_construct(Machine_Gl_VideoBuffer* self, size_t numbe
   glGenBuffers(1, &self->id);
   glBindBuffer(GL_ARRAY_BUFFER, self->id);
   glBufferData(GL_ARRAY_BUFFER, 0 * sizeof(uint8_t), ((Machine_VideoBuffer *)self)->p, GL_STATIC_DRAW);
-  Machine_setClassType((Machine_Object*)self, Machine_Gl_VideoBuffer_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Gl_VideoBuffer_getType());
 }
 
 Machine_Gl_VideoBuffer* Machine_Gl_VideoBuffer_create() {

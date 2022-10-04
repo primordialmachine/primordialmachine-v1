@@ -4,6 +4,10 @@
 #define MACHINE_VIDEO_PRIVATE (1)
 #include "Video/Font.h"
 
+
+#include "Ring1/Intrinsic.h"
+
+
 static void Machine_Font_destruct(Machine_Font* self)
 {/*Intentionally empty.*/}
 
@@ -11,7 +15,7 @@ void Machine_Font_construct(Machine_Font* self, size_t numberOfArguments, Ring2_
   static size_t const NUMBER_OF_ARGUMENTS = 0;
   static Ring2_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_Object_construct((Machine_Object*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
-  Machine_setClassType((Machine_Object*)self, Machine_Font_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Font_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Font, Machine_Object, NULL, &Machine_Font_construct,

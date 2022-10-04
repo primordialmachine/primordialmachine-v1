@@ -4,6 +4,10 @@
 #define MACHINE_VIDEO_PRIVATE (1)
 #include "Video/VideoContext.h"
 
+
+#include "Ring1/Intrinsic.h"
+
+
 static void Machine_VideoContext_visit(Machine_VideoContext* self) { /*Intentionally empty.*/
 }
 
@@ -13,7 +17,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_VideoContext, Machine_Object, &Machine_VideoCon
 void Machine_VideoContext_construct(Machine_VideoContext* self, size_t numberOfArguments,
                                     Ring2_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  Machine_setClassType((Machine_Object*)self, Machine_VideoContext_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_VideoContext_getType());
 }
 
 void Machine_VideoContext_setClearColor(Machine_VideoContext* self,

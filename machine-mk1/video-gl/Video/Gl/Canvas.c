@@ -4,10 +4,13 @@
 #define MACHINE_VIDEO_GL_PRIVATE (1)
 #include "Video/Gl/Canvas.h"
 
+
+#include "Ring1/Intrinsic.h"
 #include "Ring1/Status.h"
 #include "Ring2/Library/_Include.h"
 #include "Video/Gl/CanvasUtilities.h"
 #include <stdio.h>
+
 
 #include "Video/Gl/Amd/PowerExpress.i"
 #include "Video/Gl/Nvidia/Optimus.i"
@@ -91,18 +94,18 @@ static void Machine_Video_Gl_Canvas_swapFrameBuffers(Machine_Video_Gl_Canvas* se
 }
 
 static void Machine_Video_Gl_Canvas_setCanvasIcons(Machine_Video_Gl_Canvas* self,
-                                                   Machine_List* images) {
+                                                   Ring2_List* images) {
   GLFWimage* targetImages = NULL;
 
   Ring2_JumpTarget jumpTarget;
   Ring2_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
-    size_t numberOfImages = Machine_Collection_getSize((Machine_Collection*)images);
+    size_t numberOfImages = Ring2_Collection_getSize((Ring2_Collection*)images);
     if (Ring1_Memory_allocateArray(&targetImages, numberOfImages, sizeof(GLFWimage))) {
       Ring2_jump();
     }
     for (size_t i = 0, n = numberOfImages; i < n; ++i) {
-      Ring2_Value temporary = Machine_List_getAt(images, i);
+      Ring2_Value temporary = Ring2_List_getAt(images, i);
       Machine_Image* image = (Machine_Image*)Ring2_Value_getObject(&temporary);
       Ring2_Integer w, h;
       void const* p;
@@ -152,7 +155,7 @@ static void Machine_Video_Gl_Canvas_constructClass(Machine_Video_Gl_Canvas_Class
   ((Machine_Video_Canvas_Class*)self)->swapFrameBuffers
       = (void (*)(Machine_Video_Canvas*)) & Machine_Video_Gl_Canvas_swapFrameBuffers;
   ((Machine_Video_Canvas_Class*)self)->setCanvasIcons
-      = (void (*)(Machine_Video_Canvas*, Machine_List*)) & Machine_Video_Gl_Canvas_setCanvasIcons;
+      = (void (*)(Machine_Video_Canvas*, Ring2_List*)) & Machine_Video_Gl_Canvas_setCanvasIcons;
   ((Machine_Video_Canvas_Class*)self)->pollEvents
       = (void (*)(Machine_Video_Canvas*)) & Machine_Video_Gl_Canvas_pollEvents;
   ((Machine_Video_Canvas_Class*)self)->getQuitRequested
@@ -166,7 +169,7 @@ void Machine_Video_Gl_Canvas_construct(Machine_Video_Gl_Canvas* self, size_t num
   Machine_Video_Canvas_construct((Machine_Video_Canvas*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   Machine_Glfw_startupCanvas();
   Machine_Glfw_startupCanvasInput();
-  Machine_setClassType((Machine_Object*)self, Machine_Video_Gl_Canvas_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Video_Gl_Canvas_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Video_Gl_Canvas, Machine_Video_Canvas, NULL,

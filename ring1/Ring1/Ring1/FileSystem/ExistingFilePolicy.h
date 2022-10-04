@@ -7,9 +7,8 @@
 #if !defined(RING1_FILESYSTEM_EXISTINGFILEPOLICY_H_INCLUDED)
 #define RING1_FILESYSTEM_EXISTINGFILEPOLICY_H_INCLUDED
 
-// https://documentation.primordialmachine.com/ring1-library/filesystem-library/Ring1_FileSystem_ExistingFilePolicy
-typedef enum Ring1_FileSystem_ExistingFilePolicy
-{
+// https://primordialmachine.com/api/ring1-library/filesystem-library/Ring1_FileSystem_ExistingFilePolicy
+typedef enum Ring1_FileSystem_ExistingFilePolicy {
 
   Ring1_FileSystem_ExistingFilePolicy_Retain,
 

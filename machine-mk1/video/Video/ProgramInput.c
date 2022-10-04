@@ -4,6 +4,10 @@
 #define MACHINE_VIDEO_PRIVATE (1)
 #include "Video/ProgramInput.h"
 
+
+#include "Ring1/Intrinsic.h"
+
+
 static void Machine_ProgramInput_visit(Machine_ProgramInput* self) {
   if (self->name) {
     Ring2_Gc_visit(Ring2_Gc_get(), self->name);
@@ -16,7 +20,7 @@ static void Machine_ProgramInput_construct(Machine_ProgramInput* self, size_t nu
   self->name = Ring2_Value_getString(&arguments[0]);
   self->type = Ring2_Value_getInteger(&arguments[1]);
   self->kind = Ring2_Value_getInteger(&arguments[2]);
-  Machine_setClassType((Machine_Object*)self, Machine_ProgramInput_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_ProgramInput_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_ProgramInput, Machine_Object, &Machine_ProgramInput_visit,

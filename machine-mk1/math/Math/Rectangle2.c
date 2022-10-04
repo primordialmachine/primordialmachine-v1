@@ -1,7 +1,10 @@
 #define MACHINE_MATH_PRIVATE (1)
 #include "Math/Rectangle2.h"
 
+
+#include "Ring1/Intrinsic.h"
 #include "Math/Vector2.h"
+
 
 static void Machine_Math_Rectangle2_construct(Machine_Math_Rectangle2* self, size_t numberOfArguments, const Ring2_Value* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
@@ -9,7 +12,7 @@ static void Machine_Math_Rectangle2_construct(Machine_Math_Rectangle2* self, siz
   self->y = 0.f;
   self->w = 0.f;
   self->h = 0.f;
-  Machine_setClassType((Machine_Object*)self, Machine_Math_Rectangle2_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Math_Rectangle2_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Math_Rectangle2, Machine_Object, NULL,

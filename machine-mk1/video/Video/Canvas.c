@@ -1,8 +1,11 @@
 #define MACHINE_VIDEO_PRIVATE (1)
 #include "Video/Canvas.h"
 
-#include "_Input.h"
+
+#include "Ring1/Intrinsic.h"
 #include "Ring2/Library/_Include.h"
+#include "_Input.h"
+
 
 static void visit(Machine_Video_Canvas* self);
 
@@ -23,9 +26,9 @@ void Machine_Video_Canvas_construct(Machine_Video_Canvas* self, size_t numberOfA
   static size_t const NUMBER_OF_ARGUMENTS = 0;
   static Ring2_Value const ARGUMENTS[] = { Ring2_Value_StaticInitializerVoid() };
   Machine_Object_construct((Machine_Object*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
-  self->events = (Machine_Deque*)Machine_ArrayDeque_create();
+  self->events = (Machine_Deque*)Ring2_ArrayDeque_create();
   self->signal = Machine_Signals_Signal_create();
-  Machine_setClassType((Machine_Object*)self, Machine_Video_Canvas_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Video_Canvas_getType());
 }
 
 void Machine_Video_Canvas_getFrameBuffersSize(Machine_Video_Canvas* self, Ring2_Integer* width,
@@ -41,7 +44,7 @@ void Machine_Video_Canvas_swapFrameBuffers(Machine_Video_Canvas* self) {
   MACHINE_VIRTUALCALL_NORETURN_NOARGS(Machine_Video_Canvas, swapFrameBuffers);
 }
 
-void Machine_Video_Canvas_setCanvasIcons(Machine_Video_Canvas* self, Machine_List* images) {
+void Machine_Video_Canvas_setCanvasIcons(Machine_Video_Canvas* self, Ring2_List* images) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_Video_Canvas, setCanvasIcons, images);
 }
 
@@ -54,7 +57,7 @@ Ring2_Boolean Machine_Video_Canvas_getQuitRequested(Machine_Video_Canvas* self) 
 }
 
 void Machine_Video_Canvas_pumpEvents(Machine_Video_Canvas* self) {
-  while (Machine_Collection_getSize((Machine_Collection*)self->events) > 0) {
+  while (Ring2_Collection_getSize((Ring2_Collection*)self->events) > 0) {
     Ring2_Value value = Machine_Deque_popFront((Machine_Deque*)self->events);
     Machine_Object* object = Ring2_Value_getObject(&value);
     Machine_Type* type = (Machine_Type*)Machine_getClassType(object);

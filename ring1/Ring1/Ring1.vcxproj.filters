@@ -270,6 +270,36 @@
     <Filter Include="Quelldateien\Ring1\Annotations">
       <UniqueIdentifier>{674c0be4-aa82-4b06-8245-a40235504f24}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Quelldateien\Ring1\FileSystem\Winapi">
+      <UniqueIdentifier>{f5a53477-5a9d-434e-a0ec-92ad5f005daf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\FileSystem\Libc">
+      <UniqueIdentifier>{18d610b2-e632-4657-aed4-43894a131004}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\FileSystem\Libc">
+      <UniqueIdentifier>{f550fbba-001a-4d5c-a52a-43f5ff124a96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\FileSystem\Winapi">
+      <UniqueIdentifier>{4aa29330-46e2-4698-aa45-b0ef73a99953}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\Collections">
+      <UniqueIdentifier>{7f6f7a36-db80-40bd-9f86-b4669db91de8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Collections">
+      <UniqueIdentifier>{1c683294-7584-4fc9-a55d-012a97fca1dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\Collections\Commons">
+      <UniqueIdentifier>{ed9a9b6a-999c-44b0-8922-9ac9f3b882ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Collections\Commons">
+      <UniqueIdentifier>{cfe537ea-d426-47a2-b57d-7bb02a069a6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\Collections\PointerHashMap">
+      <UniqueIdentifier>{84e97f75-e5f6-4a90-a550-c452e1cfb2bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Collections\PointerHashMap">
+      <UniqueIdentifier>{2664dbfb-b664-4b39-af5d-915acab1af17}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring1\Intrinsic\Subtract\subtract.h">
@@ -647,7 +677,7 @@
     <ClInclude Include="Ring1\FileSystem\NonExistingFilePolicy.h">
       <Filter>Headerdateien\Ring1\FileSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Ring1.h">
+    <ClInclude Include="Ring1\_Include.h">
       <Filter>Headerdateien\Ring1</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\Intrinsic\Crt.h">
@@ -682,6 +712,69 @@
     </ClInclude>
     <ClInclude Include="Ring1\Annotations\_Include.h">
       <Filter>Headerdateien\Ring1\Annotations</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Conversion\_Buffer.h">
+      <Filter>Headerdateien\Ring1\Conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic.h">
+      <Filter>Headerdateien\Ring1</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\atomicCompareExchange.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\lerp.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\Winapi\FileHandle.h">
+      <Filter>Headerdateien\Ring1\FileSystem\Winapi</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\Winapi\FileMemoryMapping.h">
+      <Filter>Headerdateien\Ring1\FileSystem\Winapi</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\Winapi\getFileContents.h">
+      <Filter>Headerdateien\Ring1\FileSystem\Winapi</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\Winapi\setFileContents.h">
+      <Filter>Headerdateien\Ring1\FileSystem\Winapi</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\Libc\FileHandle.h">
+      <Filter>Headerdateien\Ring1\FileSystem\Libc</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\Libc\getFileContents.h">
+      <Filter>Headerdateien\Ring1\FileSystem\Libc</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\Libc\setFileContents.h">
+      <Filter>Headerdateien\Ring1\FileSystem\Libc</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Collections\PointerList.h">
+      <Filter>Headerdateien\Ring1\Collections</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Collections\Commons\AddedCallback.h">
+      <Filter>Headerdateien\Ring1\Collections\Commons</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Collections\Commons\EqualCallback.h">
+      <Filter>Headerdateien\Ring1\Collections\Commons</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Collections\Commons\HashCallback.h">
+      <Filter>Headerdateien\Ring1\Collections\Commons</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Collections\Commons\RemovedCallback.h">
+      <Filter>Headerdateien\Ring1\Collections\Commons</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Collections\Commons\Where.h">
+      <Filter>Headerdateien\Ring1\Collections\Commons</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Collections\Commons.h">
+      <Filter>Headerdateien\Ring1\Collections</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Atom.h">
+      <Filter>Headerdateien\Ring1</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Collections\PointerHashMap\Variant1.h">
+      <Filter>Headerdateien\Ring1\Collections\PointerHashMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Collections\PointerHashMap.h">
+      <Filter>Headerdateien\Ring1\Collections</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -880,10 +973,7 @@
     <ClCompile Include="Ring1\FileSystem\NonExistingFilePolicy.c">
       <Filter>Quelldateien\Ring1\FileSystem</Filter>
     </ClCompile>
-    <ClCompile Include="Ring1\Ring1.c">
-      <Filter>Quelldateien\Ring1</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring1\Intrinsic\Crt.c">
+    <ClCompile Include="Ring1\_Include.c">
       <Filter>Quelldateien\Ring1</Filter>
     </ClCompile>
     <ClCompile Include="Ring1\InlineArray.c">
@@ -915,6 +1005,51 @@
     </ClCompile>
     <ClCompile Include="Ring1\Annotations\Unlikely.c">
       <Filter>Quelldateien\Ring1\Annotations</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Conversion\_Buffer.c">
+      <Filter>Quelldateien\Ring1\Conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic.c">
+      <Filter>Quelldateien\Ring1</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\atomicCompareExchange.c">
+      <Filter>Quelldateien\Ring1\Intrinsic</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\lerp.c">
+      <Filter>Quelldateien\Ring1\Intrinsic</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\Libc\FileHandle.c">
+      <Filter>Quelldateien\Ring1\FileSystem\Libc</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\Libc\getFileContents.c">
+      <Filter>Quelldateien\Ring1\FileSystem\Libc</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\Libc\setFileContents.c">
+      <Filter>Quelldateien\Ring1\FileSystem\Libc</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\Winapi\FileHandle.c">
+      <Filter>Quelldateien\Ring1\FileSystem\Winapi</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\Winapi\FileMemoryMapping.c">
+      <Filter>Quelldateien\Ring1\FileSystem\Winapi</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\Winapi\getFileContents.c">
+      <Filter>Quelldateien\Ring1\FileSystem\Winapi</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\Winapi\setFileContents.c">
+      <Filter>Quelldateien\Ring1\FileSystem\Winapi</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Crt.c">
+      <Filter>Quelldateien\Ring1\Intrinsic</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Collections\PointerList.c">
+      <Filter>Quelldateien\Ring1\Collections</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Atom.c">
+      <Filter>Quelldateien\Ring1</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Collections\PointerHashMap.c">
+      <Filter>Quelldateien\Ring1\Collections</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

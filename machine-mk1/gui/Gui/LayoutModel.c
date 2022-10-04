@@ -4,6 +4,10 @@
 #define MACHINE_GUI_PRIVATE (1)
 #include "Gui/LayoutModel.h"
 
+
+#include "Ring1/Intrinsic.h"
+
+
 MACHINE_DEFINE_ENUMERATIONTYPE(Machine_Gui_Layout_Justification)
 
 MACHINE_DEFINE_ENUMERATIONTYPE(Machine_Gui_Layout_Direction)
@@ -17,7 +21,7 @@ void Machine_Gui_LayoutModel_construct(Machine_Gui_LayoutModel* self, size_t num
   self->primaryDirection = Machine_Gui_Layout_Direction_Column;
   self->primaryJustification = Machine_Gui_Layout_Justification_Start;
   self->primaryInterChildSpacing = 0.f;
-  Machine_setClassType((Machine_Object*)self, Machine_Gui_LayoutModel_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Gui_LayoutModel_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gui_LayoutModel, Machine_Object, &Machine_Gui_LayoutModel_visit,

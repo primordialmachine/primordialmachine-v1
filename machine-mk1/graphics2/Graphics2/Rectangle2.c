@@ -5,10 +5,9 @@
 #include "Graphics2/Rectangle2.h"
 
 
-
+#include "Ring1/Intrinsic.h"
 #include "Graphics2/Context2.h"
 #include <string.h>
-
 
 
 static void Machine_Rectangle2_visit(Machine_Rectangle2* self) {
@@ -68,7 +67,7 @@ void Machine_Rectangle2_construct(Machine_Rectangle2* self, size_t numberOfArgum
   self->color = Machine_Math_Vector4_create();
   Machine_Math_Vector4_set(self->color, 1.f, 1.f, 1.f, 1.f);
 
-  Machine_setClassType((Machine_Object*)self, Machine_Rectangle2_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Rectangle2_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Rectangle2, Machine_Shape2, &Machine_Rectangle2_visit,

@@ -4,6 +4,7 @@
 #define MACHINE_GUI_PRIVATE (1)
 #include "Gui/TextNode.h"
 
+#include "Ring1/Intrinsic.h"
 #include "Gui/Context.h"
 #include "Gui/Widget.h"
 #include "_Graphics2.h"
@@ -11,6 +12,7 @@
 #include "_Text.h"
 #include "_Video.h"
 #include <string.h>
+
 
 struct Machine_Gui_TextNode_Class {
   Machine_Gui_Widget_Class __parent;
@@ -79,7 +81,7 @@ void Machine_Gui_TextNode_construct(Machine_Gui_TextNode* self, size_t numberOfA
   Machine_Gui_Widget_subscribe((Machine_Gui_Widget*)self,
                                ((Machine_Gui_Widget*)self)->context->signalsContext->SizeChanged,
                                (Machine_Object*)self, &boundsChangedCallback);
-  Machine_setClassType((Machine_Object*)self, Machine_Gui_TextNode_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Gui_TextNode_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gui_TextNode, Machine_Gui_Widget, &Machine_Gui_TextNode_visit,

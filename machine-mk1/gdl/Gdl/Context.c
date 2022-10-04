@@ -3,7 +3,10 @@
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
 #include "Gdl/Context.h"
 
+
+#include "Ring1/Intrinsic.h"
 #include <string.h>
+
 
 static void Machine_Gdl_Context_visit(Machine_Gdl_Context* self) {
   if (self->trueLiteral) {
@@ -23,7 +26,7 @@ static void Machine_Gdl_Context_construct(Machine_Gdl_Context* self, size_t numb
   self->trueLiteral = Ring2_String_create(Ring2_Context_get(), "true", strlen("true"));
   self->falseLiteral = Ring2_String_create(Ring2_Context_get(), "false", strlen("false"));
   self->voidLiteral = Ring2_String_create(Ring2_Context_get(), "void", strlen("void"));
-  Machine_setClassType((Machine_Object*)self, Machine_Gdl_Context_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Gdl_Context_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gdl_Context, Machine_Object, &Machine_Gdl_Context_visit,

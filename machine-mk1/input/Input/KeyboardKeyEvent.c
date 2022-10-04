@@ -4,7 +4,10 @@
 #define MACHINE_INPUT_PRIVATE (1)
 #include "Input/KeyboardKeyEvent.h"
 
+
+#include "Ring1/Intrinsic.h"
 #include <string.h>
+
 
 MACHINE_DEFINE_ENUMERATIONTYPE(Machine_KeyboardKeyActions)
 
@@ -63,7 +66,7 @@ static void Machine_KeyboardKeyEvent_construct(Machine_KeyboardKeyEvent* self,
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->key = Ring2_Value_getInteger(&arguments[0]);
   self->action = Ring2_Value_getInteger(&arguments[1]);
-  Machine_setClassType((Machine_Object*)self, Machine_KeyboardKeyEvent_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_KeyboardKeyEvent_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_KeyboardKeyEvent, Machine_Object, &Machine_KeyboardKeyEvent_visit,

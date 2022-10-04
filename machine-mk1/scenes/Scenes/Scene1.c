@@ -1,14 +1,15 @@
 #include "Scene1.h"
 
-#include <string.h>
 
+#include "Ring1/Intrinsic.h"
+#include <string.h>
 #include "_Gui.h"
 #include "_Images.h"
 #include "_Text.h"
 #include "_Video.h"
-
 #include "_Fonts.h"
 #include "_Graphics2.h"
+
 
 static const struct {
   Ring2_Real32 x, y;
@@ -117,7 +118,7 @@ static void Scene1_constructClass(Scene1_Class* self) {
 
 void Scene1_construct(Scene1* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   Scene_construct((Scene*)self, numberOfArguments, arguments);
-  Machine_setClassType((Machine_Object*)self, Scene1_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Scene1_getType());
 }
 
 void Scene1_destruct(Scene1* self) {

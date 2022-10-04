@@ -4,7 +4,10 @@
 #define MACHINE_GUI_PRIVATE (1)
 #include "Gui/Widget.h"
 
+
+#include "Ring1/Intrinsic.h"
 #include "Gui/Context.h"
+
 
 static void Machine_Gui_Widget_constructClass(Machine_Gui_Widget_Class* self);
 
@@ -135,7 +138,7 @@ void Machine_Gui_Widget_construct(Machine_Gui_Widget* self, size_t numberOfArgum
   self->rectangle = Machine_Math_Rectangle2_create();
   self->parent = NULL;
   self->signal = Machine_Signals_Signal_create();
-  Machine_setClassType((Machine_Object*)self, Machine_Gui_Widget_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Gui_Widget_getType());
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

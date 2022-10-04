@@ -1,6 +1,10 @@
 #define MACHINE_SIGNALS_PRIVATE (1)
 #include "Signals/Connection.h"
 
+
+#include "Ring1/Intrinsic.h"
+
+
 static void Machine_Signals_Connection_visit(Machine_Signals_Connection* self);
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Signals_Connection, Machine_Object,
@@ -22,7 +26,7 @@ void Machine_Signals_Connection_construct(Machine_Signals_Connection* self, size
   self->name = (Ring2_String*)Ring2_Value_getString(&arguments[0]);
   self->context = (Machine_Object*)Ring2_Value_getObject(&arguments[1]);
   self->callback = (Ring2_ForeignProcedure*)Ring2_Value_getForeignProcedure(&arguments[2]);
-  Machine_setClassType((Machine_Object*)self, Machine_Signals_Connection_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Signals_Connection_getType());
 }
 
 Machine_Signals_Connection* Machine_Signals_Connection_create(Ring2_String* name, Machine_Object* context, Ring2_ForeignProcedure* callback) {

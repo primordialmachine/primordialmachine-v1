@@ -1,6 +1,10 @@
 #define MACHINE_TEXT_PRIVATE (1)
 #include "Text/LayoutLine.h"
 
+
+#include "Ring1/Intrinsic.h"
+
+
 void Machine_Text_LayoutLine_construct(Machine_Text_LayoutLine* self, size_t numberOfArguments, const Ring2_Value* arguments);
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Text_LayoutLine, Machine_Object, NULL,
@@ -10,7 +14,7 @@ void Machine_Text_LayoutLine_construct(Machine_Text_LayoutLine* self, size_t num
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->start = Ring2_Value_getInteger(&arguments[0]);
   self->length = Ring2_Value_getInteger(&arguments[1]);
-  Machine_setClassType((Machine_Object*)self, Machine_Text_LayoutLine_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Text_LayoutLine_getType());
 }
 
 Machine_Text_LayoutLine* Machine_Text_LayoutLine_create(Ring2_Integer start, Ring2_Integer length) {

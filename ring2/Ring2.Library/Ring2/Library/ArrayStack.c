@@ -10,179 +10,28 @@
 
 
 #define RING2_LIBRARY_PRIVATE (1)
-#include "Ring2/Library/Collection.h"
 #include "Ring2/Library/CollectionUtilities.h"
 #undef RING2_IBRARY_PRIVATE
+#include "Ring1/Intrinsic.h"
+#include "Ring2/Library/_Include.h"
 
 
-struct Machine_ArrayStack_Class {
-  Machine_Object_Class _parent;
-};
+#include "Ring2/Library/ArrayStack.decls.i"
 
-struct Machine_ArrayStack {
-  Machine_Object _parent;
-  Ring2_Value* values;
-  int64_t size, capacity;
-};
-
-// Ring2.Collection
-static void
-clear
-  (
-    Machine_ArrayStack* self
-  );
-
-// Ring2.Collection
-static int64_t
-getSize
-  (
-    Machine_ArrayStack const* self
-  );
-
-// Ring2.Collection
-static bool
-isEmpty
-  (
-    Machine_ArrayStack const* self
-  );
-
-static void
-grow
-  (
-    Machine_ArrayStack* self,
-    int64_t required
-  );
-
-static void
-ensureFreeCapacity
-  (
-    Machine_ArrayStack* self,
-    int64_t required
-  );
-
-static void
-Machine_ArrayStack_destruct
-  (
-    Machine_ArrayStack* self
-  );
-
-static void
-Machine_ArrayStack_visit
-  (
-    Machine_ArrayStack* self
-  );
-
-static void
-implement_Machine_Collection
-  (
-    Machine_Collection_Dispatch* self
-  );
-
-static void
-implementInterfaces
-  (
-    Machine_ClassType* self
-  );
-
-MACHINE_DEFINE_CLASSTYPE(Machine_ArrayStack /*type*/,
+MACHINE_DEFINE_CLASSTYPE(Ring2_ArrayStack /*type*/,
                          Machine_Object /*parentType*/,
-                         &Machine_ArrayStack_visit /*visit*/,
-                         &Machine_ArrayStack_construct /*construct*/,
-                         &Machine_ArrayStack_destruct /*destruct*/,
+                         &Ring2_ArrayStack_visit /*visit*/,
+                         &Ring2_ArrayStack_construct /*construct*/,
+                         &Ring2_ArrayStack_destruct /*destruct*/,
                          NULL /*constructClass*/,
-                         &implementInterfaces)
+                         &implementInterfaces /*implementInterfaces*/)
 
-// Ring2.Collection
-static void
-clear
-  (
-    Machine_ArrayStack* self
-  )
-{ self->size = 0; }
-
-// Ring2.Collection
-static int64_t
-getSize
-  (
-    Machine_ArrayStack const* self
-  )
-{ return self->size; }
-
-// Ring2.Collection
-static bool
-isEmpty
-  (
-    Machine_ArrayStack const* self
-  )
-{ return 0 == self->size; }
-
-static void
-grow
-  (
-    Machine_ArrayStack* self,
-    int64_t required
-  )
-{ CollectionUtilities_grow(Ring2_Context_get(), &self->values, &self->size, &self->capacity, required); }
-
-static void
-ensureFreeCapacity
-  (
-    Machine_ArrayStack *self,
-    int64_t required
-  )
-{ CollectionUtilities_ensureFreeCapacity(Ring2_Context_get(), &self->values, &self->size, &self->capacity, required); }
-
-static void
-Machine_ArrayStack_destruct
-  (
-    Machine_ArrayStack *self
-  )
-{
-  if (self->values) {
-    Ring1_Memory_deallocate(self->values);
-    self->values = NULL;
-  }
-}
-
-static void
-Machine_ArrayStack_visit
-  (
-    Machine_ArrayStack *self
-  )
-{
-  if (self->values) {
-    Ring2_Gc* gc = Ring2_Gc_get();
-    for (int64_t i = 0, n = self->size; i < n; ++i) {
-      Ring2_Value_visit(gc, self->values + i);
-    }
-  }
-}
-
-static void
-implement_Machine_Collection
-  (
-    Machine_Collection_Dispatch* self
-  )
-{
-  self->clear = (void (*)(Machine_Collection*)) & clear;
-  self->getSize = (int64_t (*)(Machine_Collection const*)) & getSize;
-  self->isEmpty = (bool (*)(Machine_Collection const*)) & isEmpty;
-}
-
-static void
-implementInterfaces
-  (
-    Machine_ClassType* self
-  )
-{
-  Machine_ClassType_implement(self, Machine_Collection_getType(),
-                              (Machine_InterfaceConstructCallback*)&implement_Machine_Collection);
-}
+#include "Ring2/Library/ArrayStack.defns.i"
 
 void
-Machine_ArrayStack_construct
+Ring2_ArrayStack_construct
   (
-    Machine_ArrayStack *self,
+    Ring2_ArrayStack *self,
     size_t numberOfArguments,
     Ring2_Value const *arguments
   )
@@ -195,40 +44,17 @@ Machine_ArrayStack_construct
     fprintf(stderr, "allocation failed");
     Ring2_jump();
   }
-  Machine_setClassType(Ring1_cast(Machine_Object*, self), Machine_ArrayStack_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object*, self), Ring2_ArrayStack_getType());
 }
 
-Machine_ArrayStack*
-Machine_ArrayStack_create
+Ring2_ArrayStack*
+Ring2_ArrayStack_create
   (
   )
 {
-  Machine_ClassType* ty = Machine_ArrayStack_getType();
+  Machine_ClassType* ty = Ring2_ArrayStack_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   Ring2_Value ARGUMENTS[1] = { Ring2_Value_StaticInitializerVoid() };
-  Machine_ArrayStack* self = (Machine_ArrayStack*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Ring2_ArrayStack* self = (Ring2_ArrayStack*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
-}
-
-void
-Machine_ArrayStack_push
-  (
-    Machine_ArrayStack* self,
-    Ring2_Value value
-  )
-{
-  ensureFreeCapacity(self, 1);
-  *(self->values + self->size) = value;
-  self->size++;
-}
-
-Ring2_Value
-Machine_ArrayStack_pop
-  (
-    Machine_ArrayStack* self
-  )
-{
-  Ring2_Value value = *(self->values + self->size - 1);
-  self->size--;
-  return value;
 }

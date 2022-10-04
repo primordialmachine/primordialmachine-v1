@@ -8,6 +8,10 @@
 #include "Ring2/Test/Test.h"
 #undef RING2_INTERNAL
 
+
+#include "Ring1/Intrinsic.h"
+
+
 static void
 Ring2_Test_destruct
   (

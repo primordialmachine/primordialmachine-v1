@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ring1.Intrinsic.Test", "Rin
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ring1", "Ring1\Ring1.vcxproj", "{D7DB575D-7EAA-47DE-8999-44F4E1361D34}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ring1.Atom.Test", "Ring1.Atom.Test\Ring1.Atom.Test.vcxproj", "{EF972270-0C90-4ADC-AB7E-13EEA56B3F0D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{D7DB575D-7EAA-47DE-8999-44F4E1361D34}.Release|x64.Build.0 = Release|x64
 		{D7DB575D-7EAA-47DE-8999-44F4E1361D34}.Release|x86.ActiveCfg = Release|Win32
 		{D7DB575D-7EAA-47DE-8999-44F4E1361D34}.Release|x86.Build.0 = Release|Win32
+		{EF972270-0C90-4ADC-AB7E-13EEA56B3F0D}.Debug|x64.ActiveCfg = Debug|x64
+		{EF972270-0C90-4ADC-AB7E-13EEA56B3F0D}.Debug|x64.Build.0 = Debug|x64
+		{EF972270-0C90-4ADC-AB7E-13EEA56B3F0D}.Debug|x86.ActiveCfg = Debug|Win32
+		{EF972270-0C90-4ADC-AB7E-13EEA56B3F0D}.Debug|x86.Build.0 = Debug|Win32
+		{EF972270-0C90-4ADC-AB7E-13EEA56B3F0D}.Release|x64.ActiveCfg = Release|x64
+		{EF972270-0C90-4ADC-AB7E-13EEA56B3F0D}.Release|x64.Build.0 = Release|x64
+		{EF972270-0C90-4ADC-AB7E-13EEA56B3F0D}.Release|x86.ActiveCfg = Release|Win32
+		{EF972270-0C90-4ADC-AB7E-13EEA56B3F0D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

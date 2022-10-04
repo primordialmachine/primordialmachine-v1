@@ -4,8 +4,11 @@
 #define MACHINE_GUI_PRIVATE (1)
 #include "Gui/GroupNode.h"
 
+
+#include "Ring1/Intrinsic.h"
 #include "Gui/Context.h"
 #include "_Video.h"
+
 
 static void Machine_Gui_GroupNode_visit(Machine_Gui_GroupNode* self) {
   if (self->layoutModel) {
@@ -48,7 +51,7 @@ void Machine_Gui_GroupNode_construct(Machine_Gui_GroupNode* self, size_t numberO
   Machine_Gui_Widget_construct((Machine_Gui_Widget*)self, numberOfArguments, arguments);
   self->layoutModel = Machine_Gui_LayoutModel_create();
   self->children = Machine_Gui_WidgetList_create();
-  Machine_setClassType((Machine_Object*)self, Machine_Gui_GroupNode_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Gui_GroupNode_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gui_GroupNode, Machine_Gui_Widget, &Machine_Gui_GroupNode_visit,

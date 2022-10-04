@@ -14,7 +14,30 @@
 #include "Ring2/Library/CollectionUtilities.h"
 #include "Ring2/Library/Deque.h"
 #undef RING2_LIBRARY_PRIVATE
+#include "Ring1/Intrinsic.h"
+#include "Ring2/Library/_Include.h"
 
+
+struct Ring2_ArrayDeque_Class {
+  Machine_Object_Class parent;
+};
+
+struct Ring2_ArrayDeque {
+  Machine_Object parent;
+  /// @brief The size of the queue.
+  int64_t size;
+  /// @brief The capacity of the queue.
+  /// @initial @a 0.
+  int64_t capacity;
+  /// @brief The head of the queue.
+  /// @initial @a 0.
+  int64_t head;
+  /// @brief The tail of the queue.
+  /// @initial @a 0.
+  int64_t tail;
+  /// @brief A pointer to an array of @a capacity Ring2_Value elements.
+  Ring2_Value* elements;
+};
 
 /// @brief Modular @a mod increment of @a i by @a 1.
 /// Same as
@@ -24,7 +47,27 @@
 /// @pre mod > 0
 /// @pre 0 <= i < mod
 /// @post 0 <= i < mod
-static size_t Machine_modIncrement1_sz(size_t mod, size_t i) {
+static size_t
+Machine_modIncrement1_sz
+  (
+    size_t mod,
+    size_t i
+  )
+{
+  assert(mod > 0);
+  assert(0 <= i && i < mod);
+  if (++i >= mod)
+    return 0;
+  return i;
+}
+
+static int64_t
+Machine_modIncrement1_s64
+  (
+    int64_t mod,
+    int64_t i
+  )
+{
   assert(mod > 0);
   assert(0 <= i && i < mod);
   if (++i >= mod)
@@ -40,7 +83,28 @@ static size_t Machine_modIncrement1_sz(size_t mod, size_t i) {
 /// @pre mod > 0
 /// @pre 0 <= i < mod
 /// @post 0 <= i < mod
-static size_t Machine_modDecrement1_sz(size_t mod, size_t i) {
+static size_t
+Machine_modDecrement1_sz
+  (
+    size_t mod,
+    size_t i
+  )
+{
+  assert(mod > 0);
+  assert(0 <= i && i < mod);
+  if (i == 0)
+    return mod - 1;
+  else
+    return --i;
+}
+
+static int64_t
+Machine_modDecrement1_s64
+  (
+    int64_t mod,
+    int64_t i
+  )
+{
   assert(mod > 0);
   assert(0 <= i && i < mod);
   if (i == 0)
@@ -55,7 +119,25 @@ static size_t Machine_modDecrement1_sz(size_t mod, size_t i) {
 /// @pre mod > 0
 /// @pre 0 <= i, j < n
 /// @post 0 <= i < n
-static size_t Machine_modAdd_sz(size_t mod, size_t i, size_t j) {
+static size_t
+Machine_modAdd_sz
+  (
+    size_t mod,
+    size_t i,
+    size_t j
+  )
+{
+  return (i + j) % mod;
+}
+
+static int64_t
+Machine_modAdd_s64
+  (
+    int64_t mod,
+    int64_t i,
+    int64_t j
+  )
+{
   return (i + j) % mod;
 }
 
@@ -70,7 +152,30 @@ static size_t Machine_modAdd_sz(size_t mod, size_t i, size_t j) {
 /// @pre mod > 0
 /// @pre 0 <= i, j < n,
 /// @post 0 <= i < n
-static size_t Machine_modSub_sz(size_t mod, size_t i, size_t j) {
+static size_t
+Machine_modSub_sz
+  (
+    size_t mod,
+    size_t i,
+    size_t j
+  )
+{
+  if (i < j) {
+    j -= i;
+    i = mod - j;
+  } else {
+    i -= j;
+  }
+}
+
+static int64_t
+Machine_modSub_s64
+  (
+    int64_t mod,
+    int64_t i,
+    int64_t j
+  )
+{
   if (i < j) {
     j -= i;
     i = mod - j;
@@ -85,76 +190,139 @@ static int64_t const maximalCapacity = (INT64_MAX < SIZE_MAX ? INT64_MAX : SIZE_
 static void
 clear
   (
-    Machine_ArrayDeque* self
+    Ring2_ArrayDeque* self
   );
 
 // Ring2.Collection
 static int64_t
 getSize
   (
-    Machine_ArrayDeque const* self
+    Ring2_ArrayDeque const* self
   );
 
 // Ring2.Collection
 static bool
 isEmpty
   (
-    Machine_ArrayDeque const* self
+    Ring2_ArrayDeque const* self
   );
 
-static void pushFront(Machine_ArrayDeque* self, Ring2_Value value);
+// Ring2.Deque
+static void
+pushFront
+  (
+    Ring2_ArrayDeque* self,
+    Ring2_Value value
+  );
 
-static Ring2_Value popFront(Machine_ArrayDeque* self);
+// Ring2.Deque
+static Ring2_Value
+popFront
+  (
+    Ring2_ArrayDeque* self
+  );
 
-static void pushBack(Machine_ArrayDeque* self, Ring2_Value value);
+// Ring2.Deque
+static void
+pushBack
+  (
+    Ring2_ArrayDeque* self,
+    Ring2_Value value
+  );
 
-static Ring2_Value popBack(Machine_ArrayDeque* self);
+// Ring2.Deque
+static Ring2_Value
+popBack
+  (
+    Ring2_ArrayDeque* self
+  );
 
-static void Machine_ArrayDeque_visit(Machine_ArrayDeque* self);
+static void
+Ring2_ArrayDeque_visit
+  (
+    Ring2_ArrayDeque* self
+  );
 
-static void Machine_ArrayDeque_destruct(Machine_ArrayDeque* self);
+static void
+Ring2_ArrayDeque_destruct
+  (
+    Ring2_ArrayDeque* self
+  );
 
-static void Machine_ArrayDeque_implement_Machine_Collection(Machine_Collection_Dispatch* self) {
-  self->clear = (void (*)(Machine_Collection*)) & clear;
-  self->getSize = (int64_t (*)(Machine_Collection const*)) & getSize;
-  self->isEmpty = (bool (*)(Machine_Collection const*)) & isEmpty;
+static void
+Ring2_ArrayDeque_implement_Ring2_Collection
+  (
+    Ring2_Collection_Dispatch* self
+  )
+{
+  self->clear = Ring1_cast(void (*)(Ring2_Collection*), & clear);
+  self->getSize = Ring1_cast(int64_t (*)(Ring2_Collection const*), & getSize);
+  self->isEmpty = Ring1_cast(bool (*)(Ring2_Collection const*), & isEmpty);
 }
 
-static void Machine_ArrayDeque_implement_Machine_Deque(Machine_Deque_Dispatch* self) {
-  self->pushFront = (void (*)(Machine_Deque*, Ring2_Value)) & pushFront;
-  self->popFront = (Ring2_Value(*)(Machine_Deque*)) & popFront;
-  self->pushBack = (void (*)(Machine_Deque*, Ring2_Value)) & pushBack;
-  self->popBack = (Ring2_Value(*)(Machine_Deque*)) & popBack;
+static void
+Ring2_ArrayDeque_implement_Machine_Deque
+  (
+    Machine_Deque_Dispatch* self
+  )
+{
+  self->pushFront = Ring1_cast(void (*)(Machine_Deque*, Ring2_Value), &pushFront);
+  self->popFront = Ring1_cast(Ring2_Value(*)(Machine_Deque*), &popFront);
+  self->pushBack = Ring1_cast(void (*)(Machine_Deque*, Ring2_Value), &pushBack);
+  self->popBack = Ring1_cast(Ring2_Value(*)(Machine_Deque*), &popBack);
 }
 
-static void Machine_ArrayDeque_constructClass(Machine_ArrayDeque_Class* self) {
-}
+static void
+Ring2_ArrayDeque_constructClass
+  (
+    Ring2_ArrayDeque_Class* self
+  )
+{ }
 
-static void Machine_ArrayDeque_visit(Machine_ArrayDeque* self) {
+static void
+Ring2_ArrayDeque_visit
+  (
+    Ring2_ArrayDeque* self
+  )
+{
   for (int64_t i = 0, n = self->size; i < n; ++i) {
     Ring2_Value_visit(Ring2_Gc_get(), &(self->elements[i]));
   }
 }
 
-static void Machine_ArrayDeque_implementInterfaces(Machine_ClassType* self) {
-  Machine_ClassType_implement(
-      self, Machine_Collection_getType(),
-      (Machine_InterfaceConstructCallback*)&Machine_ArrayDeque_implement_Machine_Collection);
-  Machine_ClassType_implement(
-      self, Machine_Deque_getType(),
-      (Machine_InterfaceConstructCallback*)&Machine_ArrayDeque_implement_Machine_Deque);
+static void
+Ring2_ArrayDeque_implementInterfaces
+  (
+    Machine_ClassType* self
+  )
+{
+  Machine_ClassType_implement(self, Ring2_Collection_getType(),
+                              (Machine_InterfaceConstructCallback*)&Ring2_ArrayDeque_implement_Ring2_Collection);
+  Machine_ClassType_implement(self, Machine_Deque_getType(),
+                              (Machine_InterfaceConstructCallback*)&Ring2_ArrayDeque_implement_Machine_Deque);
 }
 
-static void Machine_ArrayDeque_destruct(Machine_ArrayDeque* self) {
+static void
+Ring2_ArrayDeque_destruct
+  (
+    Ring2_ArrayDeque* self
+  )
+{
   if (self->elements) {
     Ring1_Memory_deallocate(self->elements);
     self->elements = NULL;
   }
 }
 
-static void Machine_ArrayDeque_construct(Machine_ArrayDeque* self, size_t numberOfArguments,
-                                         Ring2_Value const* arguments) {
-  Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
+static void
+Ring2_ArrayDeque_construct
+  (
+    Ring2_ArrayDeque* self,
+    size_t numberOfArguments,
+    Ring2_Value const* arguments
+  )
+{
+  Machine_Object_construct(Ring1_cast(Machine_Object*, self), numberOfArguments, arguments);
   self->capacity = 0;
   self->size = 0;
   self->head = 0;
@@ -163,56 +331,66 @@ static void Machine_ArrayDeque_construct(Machine_ArrayDeque* self, size_t number
   if (Ring1_Memory_allocateArray(&self->elements, self->capacity, sizeof(Ring2_Value))) {
     Ring2_jump();
   }
-  Machine_setClassType((Machine_Object*)self, Machine_ArrayDeque_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object*, self), Ring2_ArrayDeque_getType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_ArrayDeque, Machine_Object, &Machine_ArrayDeque_visit,
-                         &Machine_ArrayDeque_construct, &Machine_ArrayDeque_destruct,
-                         &Machine_ArrayDeque_constructClass,
-                         &Machine_ArrayDeque_implementInterfaces)
+MACHINE_DEFINE_CLASSTYPE(Ring2_ArrayDeque,
+                         Machine_Object,
+                         &Ring2_ArrayDeque_visit,
+                         &Ring2_ArrayDeque_construct,
+                         &Ring2_ArrayDeque_destruct,
+                         &Ring2_ArrayDeque_constructClass,
+                         &Ring2_ArrayDeque_implementInterfaces)
 
 // Ring2.Collection
 static void
 clear
   (
-    Machine_ArrayDeque* self
+    Ring2_ArrayDeque* self
   )
 { self->size = 0; }
 
+// Ring2.Collection
 static int64_t
 getSize
   (
-    Machine_ArrayDeque const* self
+    Ring2_ArrayDeque const* self
   )
 { return self->size; }
 
+// Ring2.Collection
 static bool
 isEmpty
   (
-    Machine_ArrayDeque const* self
+    Ring2_ArrayDeque const* self
   )
 { return 0 == self->size; }
 
 /// @brief This is the less optimized but more intuitive version of "grow".
 /// @param self A pointer to this queue.
-static void grow1(Machine_ArrayDeque* self, size_t requiredAdditionalCapacity) {
+static void
+grow1
+  (
+    Ring2_ArrayDeque* self,
+    size_t requiredAdditionalCapacity
+  )
+{
   // Nothing to do.
   if (requiredAdditionalCapacity == 0) {
     return;
   }
-  size_t oldCapacity = self->capacity;
-  size_t newCapacity;
-  if (Ring1_Memory_recomputeSize_sz(0, maximalCapacity, oldCapacity, requiredAdditionalCapacity, 
-                                    &newCapacity, true)) {
+  int64_t oldCapacity = self->capacity;
+  int64_t newCapacity;
+  if (Ring1_Memory_recomputeSize_s64(0, maximalCapacity, oldCapacity, requiredAdditionalCapacity, 
+                                     &newCapacity, true)) {
     Ring2_jump();
   }
   Ring2_Value* oldElements = self->elements;
   // Make a copy of the old array.
-  Ring2_Value* newElements
-      = CollectionUtilities_copyOfArray(newCapacity, oldElements, oldCapacity, true);
+  Ring2_Value* newElements = CollectionUtilities_copyOfArray(newCapacity, oldElements, oldCapacity, true);
   if (self->tail < self->head || (self->tail == self->head && self->size > 0)) {
     // We must preserve the invariant that the 1st, 2nd, 3rd, ... elements
-    // pushed to the front reside at the indices capacity-1, capacity-2, capacity -3, ...
+    // pushed to the front reside at the indices capacity-1, capacity-2, capacity-3, ...
     //
     // ======================================================================
     // Example #1:
@@ -267,7 +445,7 @@ static void grow1(Machine_ArrayDeque* self, size_t requiredAdditionalCapacity) {
     // a + 2 = a + head
     // a + 4 = a + head + newCapacity - oldCapacity
     // 2 = oldCapacity - head
-    size_t deltaCapacity = newCapacity - oldCapacity;
+    int64_t deltaCapacity = newCapacity - oldCapacity;
     Ring1_Memory_copySlow(newElements + self->head + deltaCapacity, newElements + self->head,
                           (oldCapacity - self->head) * sizeof(Ring2_Value));
     self->head += deltaCapacity;
@@ -278,13 +456,24 @@ static void grow1(Machine_ArrayDeque* self, size_t requiredAdditionalCapacity) {
 
 /// @brief This is the less optimized but more intuitive version of "maybeGrow".
 /// @param self A pointer to this queue.
-static void maybeGrow1(Machine_ArrayDeque* self) {
+static void
+maybeGrow1
+  (
+    Ring2_ArrayDeque* self
+  )
+{
   if (self->size == self->capacity) {
     grow1(self, 1);
   }
 }
 
-static Ring2_Value popBack(Machine_ArrayDeque* self) {
+// Ring2.Deque
+static Ring2_Value
+popBack
+  (
+    Ring2_ArrayDeque* self
+  )
+{
   if (self->size == 0) {
     Ring1_Status_set(Ring1_Status_IndexOutOfBounds);
     Ring2_jump();
@@ -296,7 +485,14 @@ static Ring2_Value popBack(Machine_ArrayDeque* self) {
   return value;
 }
 
-static void pushBack(Machine_ArrayDeque* self, Ring2_Value value) {
+// Ring2.Deque
+static void
+pushBack
+  (
+    Ring2_ArrayDeque* self,
+    Ring2_Value value
+  )
+{
   maybeGrow1(self);
   int64_t newTail = Machine_modIncrement1_sz(self->capacity, self->tail);
   int64_t newSize = self->size + 1;
@@ -305,7 +501,13 @@ static void pushBack(Machine_ArrayDeque* self, Ring2_Value value) {
   self->size = newSize;
 }
 
-static Ring2_Value popFront(Machine_ArrayDeque* self) {
+// Ring2.Deque
+static Ring2_Value
+popFront
+  (
+    Ring2_ArrayDeque* self
+  )
+{
   if (self->size == 0) {
     Ring1_Status_set(Ring1_Status_IndexOutOfBounds);
     Ring2_jump();
@@ -317,7 +519,13 @@ static Ring2_Value popFront(Machine_ArrayDeque* self) {
   return value;
 }
 
-static void pushFront(Machine_ArrayDeque* self, Ring2_Value value) {
+// Ring2.Deque
+static void
+pushFront
+  (
+    Ring2_ArrayDeque* self, Ring2_Value value
+  )
+{
   maybeGrow1(self);
   int64_t newHead = Machine_modDecrement1_sz(self->capacity, self->head);
   int64_t newSize = self->size + 1;
@@ -326,11 +534,14 @@ static void pushFront(Machine_ArrayDeque* self, Ring2_Value value) {
   self->size = newSize;
 }
 
-Machine_ArrayDeque* Machine_ArrayDeque_create() {
-  Machine_ClassType* ty = Machine_ArrayDeque_getType();
+Ring2_ArrayDeque*
+Ring2_ArrayDeque_create
+  (
+  )
+{
+  Machine_ClassType* ty = Ring2_ArrayDeque_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Ring2_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
-  Machine_ArrayDeque* self
-      = (Machine_ArrayDeque*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  static Ring2_Value const ARGUMENTS[] = { Ring2_Value_StaticInitializerVoid() };
+  Ring2_ArrayDeque* self = (Ring2_ArrayDeque*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }

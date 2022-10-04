@@ -30,22 +30,40 @@ struct Machine_Deque_Dispatch {
 /// @brief Dequeue a value from the front of this deque.
 /// @param self This deque.
 /// @return The value.
-Ring2_Value Machine_Deque_popFront(Machine_Deque* self);
+Ring2_Value
+Machine_Deque_popFront
+  (
+    Machine_Deque* self
+  );
 
 /// @brief Enqueue a value to the front of this deque.
 /// @param self This deque.
 /// @param value The value.
-void Machine_Deque_pushFront(Machine_Deque* self, Ring2_Value value);
+void
+Machine_Deque_pushFront
+  (
+    Machine_Deque* self,
+    Ring2_Value value
+  );
 
 /// @brief Dequeue a value from thhe back of this deque.
 /// @param self This deque.
 /// @return The value.
-Ring2_Value Machine_Deque_popBack(Machine_Deque* self);
+Ring2_Value
+Machine_Deque_popBack
+  (
+    Machine_Deque* self
+  );
 
 /// @brief Enqueue a value to the back of this deque.
 /// @param self This deque.
 /// @param value The value.
-void Machine_Deque_pushBack(Machine_Deque* self, Ring2_Value value);
+void
+Machine_Deque_pushBack
+  (
+    Machine_Deque* self,
+    Ring2_Value value
+  );
 
 
 #endif // RING2_LIBRARY_DEQUE_H_INCLUDED

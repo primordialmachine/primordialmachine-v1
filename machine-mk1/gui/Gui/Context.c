@@ -4,6 +4,10 @@
 #define MACHINE_GUI_PRIVATE (1)
 #include "Gui/Context.h"
 
+
+#include "Ring1/Intrinsic.h"
+
+
 static void Machine_Gui_Context_visit(Machine_Gui_Context* self) {
   if (self->gdlContext) {
     Ring2_Gc_visit(Ring2_Gc_get(), self->gdlContext);
@@ -33,7 +37,7 @@ static void Machine_Gui_Context_construct(Machine_Gui_Context* self, size_t numb
   static const int FONT_SIZE = 16;
   self->defaultFontFile = Ring2_String_create(Ring2_Context_get(), FONT_FILE, crt_strlen(FONT_FILE));
   self->defaultFontSize = FONT_SIZE;
-  Machine_setClassType((Machine_Object*)self, Machine_Gui_Context_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Gui_Context_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gui_Context, Machine_Object, &Machine_Gui_Context_visit,

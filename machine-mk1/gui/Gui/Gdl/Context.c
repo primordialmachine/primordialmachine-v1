@@ -4,7 +4,10 @@
 #define MACHINE_GUI_PRIVATE (1)
 #include "Gui/Gdl/Context.h"
 
+
+#include "Ring1/Intrinsic.h"
 #include <string.h>
+
 
 static void Machine_Gui_Gdl_Context_visit(Machine_Gui_Gdl_Context* self) {
   if (self->context) {
@@ -29,7 +32,7 @@ static void Machine_Gui_Gdl_Context_construct(Machine_Gui_Gdl_Context* self,
 #include "Gui/Gdl/Context.i"
 #undef DEFINE
 
-  Machine_setClassType((Machine_Object*)self, Machine_Gui_Gdl_Context_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Gui_Gdl_Context_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gui_Gdl_Context, Machine_Object, &Machine_Gui_Gdl_Context_visit,

@@ -4,7 +4,10 @@
 #define MACHINE_INPUT_PRIVATE (1)
 #include "Input/MousePointerEvent.h"
 
+
+#include "Ring1/Intrinsic.h"
 #include <string.h>
+
 
 MACHINE_DEFINE_ENUMERATIONTYPE(Machine_MousePointerActions)
 
@@ -68,7 +71,7 @@ static void Machine_MousePointerEvent_construct(Machine_MousePointerEvent* self,
   self->action = Ring2_Value_getInteger(&arguments[0]);
   self->x = Ring2_Value_getReal32(&arguments[1]);
   self->y = Ring2_Value_getReal32(&arguments[2]);
-  Machine_setClassType((Machine_Object*)self, Machine_MousePointerEvent_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_MousePointerEvent_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_MousePointerEvent, Machine_Object,

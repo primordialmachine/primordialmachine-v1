@@ -5,11 +5,10 @@
 #include "FontsContext.h"
 
 
-
+#include "Ring1/Intrinsic.h"
 #include "Font.h"
 #include <ft2build.h>
 #include FT_FREETYPE_H
-
 
 
 static int g_referenceCount = 0;
@@ -58,7 +57,7 @@ void Machine_Fonts_FontsContext_construct(Machine_Fonts_FontsContext* self, size
   }
   self->library = &g_library;
   g_referenceCount++;
-  Machine_setClassType((Machine_Object*)self, Machine_Fonts_FontsContext_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Fonts_FontsContext_getType());
 }
 
 Machine_Fonts_FontsContext* Machine_Fonts_FontsContext_create(Machine_VideoContext* videoContext, Machine_ImagesContext *imagesContext) {

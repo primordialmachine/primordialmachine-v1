@@ -8,8 +8,8 @@
 #include "Ring2/Library/Io/setFileContents.h"
 
 
-#include "Ring1/Memory.h"
-#include "Ring2/Library/Io/_FileMapping.h"
+#include "Ring1/FileSystem.h"
+#include "Ring2/Library/Io/Initialize.h"
 
 
 void
@@ -19,19 +19,11 @@ Machine_setFileContents
     Machine_ByteBuffer* bytes
   )
 {
-  _Machine_FileMapping fileMapping;
-  _Machine_FileMapping_openWrite(&fileMapping, path, Machine_ByteBuffer_getNumberOfBytes(bytes));
-  Ring2_JumpTarget jumpTarget;
-  Ring2_pushJumpTarget(&jumpTarget);
-  if (!setjmp(jumpTarget.environment)) {
-    Ring1_Memory_copyFast(fileMapping.bytes, Machine_ByteBuffer_getBytes(bytes),
-                          Machine_ByteBuffer_getNumberOfBytes(bytes));
-    Ring2_popJumpTarget();
-    _Machine_FileMapping_close(&fileMapping);
-  }
-  else {
-    Ring2_popJumpTarget();
-    _Machine_FileMapping_close(&fileMapping);
+  Machine_Io_initialize();
+  path = Ring2_String_concatenate(Ring2_Context_get(), path, Ring2_String_create(Ring2_Context_get(), "", 1));
+  if (Ring1_FileSystem_setFileContents(Ring2_String_getBytes(Ring2_Context_get(), path),
+                                       Machine_ByteBuffer_getBytes(bytes),
+                                       Machine_ByteBuffer_getNumberOfBytes(bytes))) {
     Ring2_jump();
   }
 }

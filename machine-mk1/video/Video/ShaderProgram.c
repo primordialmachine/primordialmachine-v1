@@ -4,6 +4,10 @@
 #define MACHINE_VIDEO_PRIVATE (1)
 #include "Video/ShaderProgram.h"
 
+
+#include "Ring1/Intrinsic.h"
+
+
 static void Machine_ShaderProgram_visit(Machine_ShaderProgram* self) { /*Intentionally empty.*/
 }
 
@@ -15,7 +19,7 @@ void Machine_ShaderProgram_construct(Machine_ShaderProgram* self, size_t numberO
   static size_t const NUMBER_OF_ARGUMENTS = 0;
   static Ring2_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_Object_construct((Machine_Object*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
-  Machine_setClassType((Machine_Object*)self, Machine_ShaderProgram_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_ShaderProgram_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_ShaderProgram, Machine_Object, Machine_ShaderProgram_visit,

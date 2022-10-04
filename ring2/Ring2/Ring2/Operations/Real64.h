@@ -250,6 +250,20 @@ Ring2_Real64_toString
     Ring2_Real64 x
   );
 
+/// @brief Convert a <code>String</code> value to a <code>Real64</code> value.
+/// @param x The <code>String</code> value.
+/// @return The <code>Real64</code> value.
+/// @error Ring1_Status_ConversionFailed
+/// The <code>String</code> value cannot be converetd to a <code>Real64</code> value.
+/// @error Ring1_Status_AllocationFailed
+/// An allocation failed.
+Ring1_CheckReturn() Ring2_Real64
+Ring2_Real64_fromString
+  (
+    Ring2_Context* context,
+    Ring2_String *x
+  );
+
 #endif // Ring2_Configuration_withReal
 
 #endif // RING2_OPERATIONS_REAL64_H_INCLUDE

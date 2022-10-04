@@ -4,9 +4,12 @@
 #define MACHINE_IMAGES_PRIVATE (1)
 #include "Image.h"
 
+
+#include "Ring1/Intrinsic.h"
 #include "Ring1/Status.h"
 #include <png.h>
 #include <string.h>
+
 
 struct Machine_Images_Image_Class {
   Machine_Image_Class __parent;
@@ -214,7 +217,7 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
   };
   self->pixels = pixels;
   // (5) Set class type.
-  Machine_setClassType((Machine_Object*)self, Machine_Images_Image_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Images_Image_getType());
 }
 
 void Machine_Images_Image_constructFromPath(Machine_Images_Image* self, Ring2_String* path) {
@@ -243,7 +246,7 @@ void Machine_Images_Image_constructDirect(Machine_Images_Image* self,
                         width * height * Machine_PixelFormat_getBytesPerPixel(pixelFormat));
 
   // (4) Set class type.
-  Machine_setClassType((Machine_Object*)self, Machine_Images_Image_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Images_Image_getType());
 }
 
 Machine_Images_Image* Machine_Images_Image_createImageFromPath(Ring2_String* path) {

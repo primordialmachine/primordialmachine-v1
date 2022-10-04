@@ -1,14 +1,15 @@
 #include "LayoutScene.h"
 
-#include <string.h>
 
+#include "Ring1/Intrinsic.h"
+#include <string.h>
 #include "_Gui.h"
 #include "_Images.h"
 #include "_Text.h"
 #include "_Video.h"
-
 #include "_Fonts.h"
 #include "_Graphics2.h"
+
 
 #define FONT_FILE "fonts/RobotoSlab/RobotoSlab-Regular.ttf"
 #define FONT_SIZE 20
@@ -149,7 +150,7 @@ static void LayoutScene_constructClass(LayoutScene_Class* self) {
 void LayoutScene_construct(LayoutScene* self, size_t numberOfArguments,
                            Ring2_Value const* arguments) {
   Scene_construct((Scene*)self, numberOfArguments, arguments);
-  Machine_setClassType((Machine_Object*)self, LayoutScene_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), LayoutScene_getType());
 }
 
 void LayoutScene_destruct(LayoutScene* self) {

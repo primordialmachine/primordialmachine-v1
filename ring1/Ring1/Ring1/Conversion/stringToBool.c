@@ -6,8 +6,12 @@
 
 #include "Ring1/Conversion/stringToBool.h"
 
+#include "Ring1/Conversion/_Buffer.h"
+#include "Ring1/Conversion/_Parser.h"
 #include "Ring1/Memory.h"
 #include "Ring1/Status.h"
+#include <string.h>
+#include <stdlib.h>
 
 Ring1_CheckReturn() Ring1_Result
 Ring1_Conversion_stringToBool

@@ -4,6 +4,10 @@
 #define MACHINE_GUI_PRIVATE (1)
 #include "Gui/BorderModel.h"
 
+
+#include "Ring1/Intrinsic.h"
+
+
 static void Machine_Gui_BorderModel_visit(Machine_Gui_BorderModel* self) {
   if (self->color) {
     Ring2_Gc_visit(Ring2_Gc_get(), self->color);
@@ -23,7 +27,7 @@ void Machine_Gui_BorderModel_construct(Machine_Gui_BorderModel* self, size_t num
   self->bottomWidth = 1.f;
   self->color = Machine_Math_Vector4_create();
   Machine_Math_Vector4_set(self->color, 0.1f, 0.1f, 0.1f, 1.f);
-  Machine_setClassType((Machine_Object*)self, Machine_Gui_BorderModel_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Gui_BorderModel_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Gui_BorderModel, Machine_Object, &Machine_Gui_BorderModel_visit,

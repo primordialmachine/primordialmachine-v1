@@ -4,10 +4,13 @@
 #define MACHINE_GUI_PRIVATE (1)
 #include "Gui/BorderNode.h"
 
+
+#include "Ring1/Intrinsic.h"
 #include "Gui/BorderModel.h"
 #include "Gui/Context.h"
 #include "_Graphics2.h"
 #include "_Video.h"
+
 
 struct Machine_Gui_BorderNode_Class {
   Machine_Gui_Widget_Class __parent;
@@ -276,7 +279,7 @@ static void Machine_Gui_BorderNode_construct(Machine_Gui_BorderNode* self, size_
   Machine_Gui_Widget_subscribe((Machine_Gui_Widget*)self,
                                ((Machine_Gui_Widget*)self)->context->signalsContext->SizeChanged,
                                (Machine_Object*)self, &boundsChangedCallback);
-  Machine_setClassType((Machine_Object*)self, Machine_Gui_BorderNode_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Gui_BorderNode_getType());
 }
 
 Machine_Gui_BorderNode* Machine_Gui_BorderNode_create(Machine_Gui_Context* context) {

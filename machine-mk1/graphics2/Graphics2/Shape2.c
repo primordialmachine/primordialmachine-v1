@@ -5,9 +5,8 @@
 #include "Graphics2/Shape2.h"
 
 
-
+#include "Ring1/Intrinsic.h"
 #include <string.h>
-
 
 
 static void Machine_Shape2_visit(Machine_Shape2* self)
@@ -15,7 +14,7 @@ static void Machine_Shape2_visit(Machine_Shape2* self)
 
 void Machine_Shape2_construct(Machine_Shape2* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  Machine_setClassType((Machine_Object*)self, Machine_Shape2_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Shape2_getType());
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Shape2, Machine_Object, &Machine_Shape2_visit,
