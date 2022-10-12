@@ -29,36 +29,41 @@ matrix:
 
 artifacts:
     # Ring1.Atom.Test
-    - path: ring1\products\x64\Release\Ring1.Atom.Test\Ring1.Atom.Test.exe
-      name: Ring1.Atom.Test-x64-release.exe
-    - path: ring1\products\x64\Debug\Ring1.Atom.Test\Ring1.Atom.Test.exe
-      name: Ring1.Atom.Test-x64-debug.exe
-    - path: ring1\products\x86\Release\Ring1.Atom.Test\Ring1.Atom.Test.exe
-      name: Ring1.Atom.Test-x86-release.exe
-    - path: ring1\products\x86\Debug\Ring1.Atom.Test\Ring1.Atom.Test.exe
-      name: Ring1.Atom.Test-x86-debug.exe
+    - path: ring1\products\$(platform)\$(configuration)\Ring1.Atom.Test\Ring1.Atom.Test.exe
+      name: Ring1.Atom.Test-$(platform)-$(configuration).exe
     # Ring1.Intrinsic.Test
-    - path: ring1\products\x64\Release\Ring1.Intrinsic.Test\Ring1.Intrinsic.Test.exe
-      name: Ring1.Intrinsic.Test-x64-release.exe
-    - path: ring1\products\x64\Debug\Ring1.Intrinsic.Test\Ring1.Intrinsic.Test.exe
-      name: Ring1.Intrinsic.Test-x64-debug.exe
-    - path: ring1\products\x86\Release\Ring1.Intrinsic.Test\Ring1.Intrinsic.Test.exe
-      name: Ring1.Intrinsic.Test-x86-release.exe
-    - path: ring1\products\x86\Debug\Ring1.Intrinsic.Test\Ring1.Intrinsic.Test.exe
-      name: Ring1.Intrinsic.Test-x86-debug.exe
+    - path: ring1\products\$(platform)\$(configuration)\Ring1.Intrinsic.Test\Ring1.Intrinsic.Test.exe
+      name: Ring1.Intrinsic.Test-$(platform)-$(configuration).exe
 
 # Execute test scripts.
 test_script:
     - ps: |
-          $name = 'Ring1.Atom.Test';
-          Write-Host "Begin Test $name";
-          Add-AppveyorTest -Name $name -Filename a.exe -Outcome Running;
-          Update-AppveyorTest -Name $name -Filename a.exe -Outcome Passed -Duration 1000;
-          Write-Host "End Test $name";
+          $name = 'Ring1.Intrinsic.Test';
+          $prefix = "${env:appveyor_build_folder}\Ring1\products\${env:platform}\${env:configuration}\Ring1.Intrinsic.Test";
+          $suffix = 'Ring1.Intrinsic.Test.exe';
+          [int]$startMs = (Get-Date).Millisecond
+          cd ${prefix}
+          Invoke-Expression "./${suffix}"
+          $code = $LastExitCode
+          [int]$endMs = (Get-Date).Millisecond
+          if ($code -eq 0) {
+            Add-AppveyorTest -Name ${name} -Filename "${prefix}\${suffix}" -Outcome Passed -Duration $($endMs - $startMs);
+          } else {
+            Add-AppveyorTest -Name ${name} -Filename "${prefix}\${suffix}" -Outcome Failed -Duration $($endMs - $startMs);
+          }
 
     - ps: |
-          $name = 'Ring1.Intrinsic.Test';
-          Write-Host "Begin Test $name";
-          Add-AppveyorTest -Name "$name" -Filename a.exe -Outcome Running;
-          Update-AppveyorTest -Name "$name" -Filename a.exe -Outcome Passed -Duration 1000;
-          Write-Host "End Test $name";
+          $name = 'Ring1.Atom.Test';
+          $prefix = "${env:appveyor_build_folder}\Ring1\products\${env:platform}\${env:configuration}\Ring1.Atom.Test";
+          $suffix = 'Ring1.Atom.Test.exe';
+          [int]$startMs = (Get-Date).Millisecond
+          cd ${prefix}
+          Invoke-Expression "./${suffix}"
+          $code = $LastExitCode
+          [int]$endMs = (Get-Date).Millisecond
+          if ($code -eq 0) {
+            Add-AppveyorTest -Name ${name} -Filename "${prefix}\${suffix}" -Outcome Passed -Duration $($endMs - $startMs);
+          } else {
+            Add-AppveyorTest -Name ${name} -Filename "${prefix}\${suffix}" -Outcome Failed -Duration $($endMs - $startMs);
+          }
+

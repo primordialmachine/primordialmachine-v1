@@ -28,27 +28,22 @@ matrix:
     fast_finish: true
 
 artifacts:
-    - path: ring2\products\x64\Release\Ring2.Library.Test\Ring2.Library.Test.exe
-      name: Ring2.Library.Test-x64-release.exe
-    - path: ring2\products\x64\Debug\Ring2.Library.Test\Ring2.Library.Test.exe
-      name: Ring2.Library.Test-x64-debug.exe
-    - path: ring2\products\x86\Release\Ring2.Library.Test\Ring2.Library.Test.exe
-      name: Ring2.Library.Test-x86-release.exe
-    - path: ring2\products\x86\Debug\Ring2.Library.Test\Ring2.Library.Test.exe
-      name: Ring2.Library.Test-x86-debug.exe
+    - path: ring2\products\$(platform)\$(configuration)\Ring2.Library.Test\Ring2.Library.Test.exe
+      name: Ring2.Library.Test-$(platform)-$(configuration).exe
 
 # Execute test scripts.
 test_script:
     - ps: |
-          $name = 'Ring2.Test';
-          Write-Host "Begin Test $name";
-          Add-AppveyorTest -Name $name -Filename a.exe -Outcome Running;
-          Update-AppveyorTest -Name $name -Filename a.exe -Outcome Passed -Duration 1000;
-          Write-Host "End Test $name";
-
-    - ps: |
           $name = 'Ring2.Library.Test';
-          Write-Host "Begin Test $name";
-          Add-AppveyorTest -Name "$name" -Filename a.exe -Outcome Running;
-          Update-AppveyorTest -Name "$name" -Filename a.exe -Outcome Passed -Duration 1000;
-          Write-Host "End Test $name";
+          $prefix = "${env:appveyor_build_folder}\Ring2\products\${env:platform}\${env:configuration}\Ring2.Library.Test";
+          $suffix = 'Ring2.Library.Test.exe';
+          [int]$startMs = (Get-Date).Millisecond
+          cd ${prefix}
+          Invoke-Expression "./${suffix}"
+          $code = $LastExitCode
+          [int]$endMs = (Get-Date).Millisecond
+          if ($code -eq 0) {
+            Add-AppveyorTest -Name ${name} -Filename "${prefix}\${suffix}" -Outcome Passed -Duration $($endMs - $startMs);
+          } else {
+            Add-AppveyorTest -Name ${name} -Filename "${prefix}\${suffix}" -Outcome Failed -Duration $($endMs - $startMs);
+          }
