@@ -4,7 +4,9 @@
 /// @copyright Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
+#define RING1_COLLECTIONS_PRIVATE (1)
 #include "Ring1/Collections/PointerHashMap.h"
+#undef RING1_COLLECTIONS_PRIVATE
 
 
 #include "Ring1/Memory.h"
@@ -13,38 +15,21 @@
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-static Ring1_Result
-initializeModule
-  (
-  );
-
-static void
-uninitializeModule
-  (
-  );
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-Ring1_Module_Define(PointerHashMap, initializeModule, uninitializeModule)
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-typedef struct Handles
-{
+typedef struct Handles {
   Ring1_Memory_ModuleHandle memory;
 } Handles;
 
 static Handles g_handles = { .memory = Ring1_Memory_ModuleHandle_Invalid };
 
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
 static Ring1_Result
 initializeModule
   (
   )
-{
+{ 
   g_handles.memory = Ring1_Memory_ModuleHandle_acquire();
-  if (!g_handles.memory) return Ring1_Result_Failure;
+  if (!g_handles.memory) {
+    return Ring1_Result_Failure;
+  }
   return Ring1_Result_Success;
 }
 
@@ -57,6 +42,9 @@ uninitializeModule
   g_handles.memory = Ring1_Memory_ModuleHandle_Invalid;
 }
 
+
+Ring1_Module_Define(Ring1, PointerHashMap, initializeModule, uninitializeModule)
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 Ring1_CheckReturn() Ring1_Result
@@ -64,12 +52,12 @@ Mkx_PointerHashMap_initialize
   (
     Mkx_PointerHashMap *hashMap,
     int64_t initialCapacity,
-    Mkx_Collection_AddedCallback* keyAdded,
-    Mkx_Collection_RemovedCallback* keyRemoved,
-    Mkx_Collection_HashCallback* hashKey,
-    Mkx_Collection_EqualCallback* areKeysEqual,
-    Mkx_Collection_AddedCallback* valueAdded,
-    Mkx_Collection_RemovedCallback* valueRemoved
+    Ring1_AddedCallback* keyAdded,
+    Ring1_RemovedCallback* keyRemoved,
+    Ring1_GetHashCallback* hashKey,
+    Ring1_IsEqualToCallback* areKeysEqual,
+    Ring1_AddedCallback* valueAdded,
+    Ring1_RemovedCallback* valueRemoved
   )
 {
   // Validate arguments.

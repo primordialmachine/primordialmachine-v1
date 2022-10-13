@@ -12,21 +12,9 @@
 #error("Do not include `Ring2/Types.h` directly. Include `Ring2/_Include.h` instead.")
 #endif
 #include "Ring2/_header.h.i"
+#include "Ring1/Module.h"
 
-
-/// @brief Starts up the "types" module.
-/// @remarks Also starts up the "jump target" module.
-Ring1_CheckReturn() Ring1_Result
-Ring2_TypesModule_startup
-  (
-  );
-
-/// @brief Shuts down the "types" module.
-/// @remarks Also shuts down the "jump target" module.
-void
-Ring2_TypesModule_shutdown
-  (
-  );
+Ring1_Module_Declare(Ring2, TypesModule)
 
 #if defined(Ring2_Configuration_withArray) && 1 == Ring2_Configuration_withArray
 

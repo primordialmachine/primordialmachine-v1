@@ -12,21 +12,13 @@
 #error("Do not include `Ring2/TypeSystem.h` directly. Include `Ring2/_Include.h` instead.")
 #endif
 #include "Ring2/_header.h.i"
+#include "Ring1/Module.h"
 
 
 #include "Ring2/Gc.h"
 typedef struct Machine_Type Machine_Type;
 
-
-Ring1_CheckReturn() Ring1_Result
-Ring2_TypeSystem_startup
-  (
-  );
-
-void
-Ring2_TypeSystem_shutdown
-  (
-  );
+Ring1_Module_Declare(Ring2, TypeSystemModule)
 
 Ring1_CheckReturn() Machine_Type*
 Ring2_Type_allocate

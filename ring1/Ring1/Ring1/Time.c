@@ -15,7 +15,7 @@ uninitializeModule
   (
   );
 
-Ring1_Module_Define(Time, initializeModule, uninitializeModule)
+Ring1_Module_Define(Ring1, Time, initializeModule, uninitializeModule)
 
 static Ring1_Result
 initializeModule

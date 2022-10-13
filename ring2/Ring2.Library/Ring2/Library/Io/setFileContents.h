@@ -15,12 +15,22 @@
 
 /// @brief Set the contents of a file.
 /// @param path The path.
-/// @param bytes The Bytes.
+/// @param byteBuffer The Byte buffer which contents are to be used as the contents of the file.
 void
-Machine_setFileContents
+Machine_setFileContentsByteBuffer
   (
     Ring2_String* path,
-    Ring2_ByteBuffer* bytes
+    Ring2_ByteBuffer* byteBuffer
+  );
+
+/// @brief Set the contents of a file.
+/// @param path The path.
+/// @param string The string which contents to be used as the contents of the file.
+void
+Machine_setFileContentsString
+  (
+    Ring2_String* path,
+    Ring2_String* string
   );
 
 #endif // RING2_LIBRARY_IO_SETFILECONTENTS_H_INCLUDED

@@ -69,7 +69,7 @@ uninitializeModule
   g_handles.memory = Ring1_Memory_ModuleHandle_Invalid;
 }
 
-Ring1_Module_Define(ByteBuffer, initializeModule, uninitializeModule)
+Ring1_Module_Define(Ring1, ByteBuffer, initializeModule, uninitializeModule)
 
 typedef struct Impl
 {

@@ -12,17 +12,9 @@
 #error("Do not include `Ring2/Log.h` directly. Include `Ring2/_Include.h` instead.")
 #endif
 #include "Ring2/_header.h.i"
+#include "Ring1/Module.h"
 
-
-Ring1_CheckReturn() Ring1_Result
-Ring2_LogModule_startup
-  (
-  );
-
-void
-Ring2_LogModule_shutdown
-  (
-  );
+Ring1_Module_Declare(Ring2, LogModule)
 
 /// @brief To error log.
 #define Ring2_LogFlags_ToErrors (4)

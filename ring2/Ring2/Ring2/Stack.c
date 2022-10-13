@@ -193,6 +193,8 @@ Mkx_Interpreter_Stack_shutdown
   g_stack = NULL;
 }
 
+Ring1_Module_Define(Ring2, StackModule, Mkx_Interpreter_Stack_startup, Mkx_Interpreter_Stack_shutdown)
+
 #if defined(Ring2_Configuration_withArray) && 1 == Ring2_Configuration_withArray
 
 void

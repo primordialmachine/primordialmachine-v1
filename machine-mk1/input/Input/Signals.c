@@ -26,7 +26,7 @@ static void uninitializeCallback() {
 
 static void ensureInitialized() {
   if (!g_registered) {
-    if (Machine_registerStaticVariables(&uninitializeCallback)) {
+    if (Ring2_registerStaticVariables(&uninitializeCallback)) {
       Ring2_jump();
     }
     g_registered = true;

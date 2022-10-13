@@ -9,19 +9,12 @@
 #error("Do not include `Ring2/StaticVariables.h` directly. Include `Ring2/_Include.h` instead.")
 #endif
 #include "Ring2/_header.h.i"
+#include "Ring1/Module.h"
 
 
-Ring1_CheckReturn() Ring1_Result
-Machine_initializeStaticVariablesModule
-  (
-  );
+Ring1_Module_Declare(Ring2, StaticVariablesModule)
 
-void
-Machine_uninitializeStaticVariablesModule
-  (
-  );
-
-typedef void(Machine_UninitializeStaticVariablesCallback)();
+typedef void(Ring2_UninitializeStaticVariablesCallback)();
 
 /// @brief Register an uninitialize static fields callback.
 /// @param callback The callback.
@@ -44,7 +37,7 @@ typedef void(Machine_UninitializeStaticVariablesCallback)();
 ///
 /// static void uninitializeStaticVariablesCallback() {
 ///   if (g_string) {
-///     Machine_Gc_unlock(g_string);
+///     Ring2_Gc_unlock(g_string);
 ///     g_string = NULL;
 ///   }
 /// }
@@ -52,8 +45,8 @@ typedef void(Machine_UninitializeStaticVariablesCallback)();
 /// Ring2_String *getString() {
 ///   if (!g_string) {
 ///     g_string = Ring2_String_create(...);
-///     Machine_Gc_lock(g_string);
-///     if (Machine_registerStaticVariables(&uninitializeStaticVariablesCallback)) {
+///     Ring2_Gc_lock(g_string);
+///     if (Ring2_registerStaticVariables(&uninitializeStaticVariablesCallback)) {
 ///       Machine_Gc_unlock(g_string);
 ///       g_string = NULL;
 ///     }
@@ -63,13 +56,13 @@ typedef void(Machine_UninitializeStaticVariablesCallback)();
 /// }
 /// </code>
 Ring1_CheckReturn() Ring1_Result
-Machine_registerStaticVariables
+Ring2_registerStaticVariables
   (
-    Machine_UninitializeStaticVariablesCallback* callback
+    Ring2_UninitializeStaticVariablesCallback* callback
   );
 
 void
-Machine_notifyStaticVariablesUninitialize
+Ring2_notifyStaticVariablesUninitialize
   (
   );
 

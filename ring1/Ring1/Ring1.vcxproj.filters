@@ -288,17 +288,29 @@
     <Filter Include="Quelldateien\Ring1\Collections">
       <UniqueIdentifier>{1c683294-7584-4fc9-a55d-012a97fca1dc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headerdateien\Ring1\Collections\Commons">
-      <UniqueIdentifier>{ed9a9b6a-999c-44b0-8922-9ac9f3b882ab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Quelldateien\Ring1\Collections\Commons">
-      <UniqueIdentifier>{cfe537ea-d426-47a2-b57d-7bb02a069a6c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Headerdateien\Ring1\Collections\PointerHashMap">
       <UniqueIdentifier>{84e97f75-e5f6-4a90-a550-c452e1cfb2bb}</UniqueIdentifier>
     </Filter>
     <Filter Include="Quelldateien\Ring1\Collections\PointerHashMap">
       <UniqueIdentifier>{2664dbfb-b664-4b39-af5d-915acab1af17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\Console">
+      <UniqueIdentifier>{5c6ba7e7-05e1-4728-976a-23bb2173d259}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Console">
+      <UniqueIdentifier>{1aacbe6f-9531-4167-8680-8dfd85e08708}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Console\Windows">
+      <UniqueIdentifier>{338b9910-15c6-42d7-9a72-547dce902eed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Console\Null">
+      <UniqueIdentifier>{3759f361-2e48-43c4-95dc-6ae2ba599394}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\Console\Null">
+      <UniqueIdentifier>{d2580e92-2790-42d3-85b0-d45e25435cc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\Console\Windows">
+      <UniqueIdentifier>{c2c26e24-63f8-4283-9d83-e5fc67860f61}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -683,9 +695,6 @@
     <ClInclude Include="Ring1\Intrinsic\Crt.h">
       <Filter>Headerdateien\Ring1\Intrinsic</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\InlineArray.h">
-      <Filter>Headerdateien\Ring1</Filter>
-    </ClInclude>
     <ClInclude Include="Ring1\Annotations\CheckReturn.h">
       <Filter>Headerdateien\Ring1\Annotations</Filter>
     </ClInclude>
@@ -749,24 +758,6 @@
     <ClInclude Include="Ring1\Collections\PointerList.h">
       <Filter>Headerdateien\Ring1\Collections</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Collections\Commons\AddedCallback.h">
-      <Filter>Headerdateien\Ring1\Collections\Commons</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Collections\Commons\EqualCallback.h">
-      <Filter>Headerdateien\Ring1\Collections\Commons</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Collections\Commons\HashCallback.h">
-      <Filter>Headerdateien\Ring1\Collections\Commons</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Collections\Commons\RemovedCallback.h">
-      <Filter>Headerdateien\Ring1\Collections\Commons</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Collections\Commons\Where.h">
-      <Filter>Headerdateien\Ring1\Collections\Commons</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\Collections\Commons.h">
-      <Filter>Headerdateien\Ring1\Collections</Filter>
-    </ClInclude>
     <ClInclude Include="Ring1\Atom.h">
       <Filter>Headerdateien\Ring1</Filter>
     </ClInclude>
@@ -774,6 +765,39 @@
       <Filter>Headerdateien\Ring1\Collections\PointerHashMap</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\Collections\PointerHashMap.h">
+      <Filter>Headerdateien\Ring1\Collections</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Console.h">
+      <Filter>Headerdateien\Ring1</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Console\Null\Connection.h">
+      <Filter>Headerdateien\Ring1\Console\Null</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Console\Windows\Connection.h">
+      <Filter>Headerdateien\Ring1\Console\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Console\Configuration.h">
+      <Filter>Headerdateien\Ring1\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Console\ConnectionBase.h">
+      <Filter>Headerdateien\Ring1\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Collections\_Include.h">
+      <Filter>Headerdateien\Ring1\Collections</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Collections\PointerDeque.h">
+      <Filter>Headerdateien\Ring1\Collections</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Collections\Callbacks.h">
+      <Filter>Headerdateien\Ring1\Collections</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Module\Dependencies.h">
+      <Filter>Headerdateien\Ring1\Module</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Module\Handle.h">
+      <Filter>Headerdateien\Ring1\Module</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Collections\InlineArray.h">
       <Filter>Headerdateien\Ring1\Collections</Filter>
     </ClInclude>
   </ItemGroup>
@@ -976,9 +1000,6 @@
     <ClCompile Include="Ring1\_Include.c">
       <Filter>Quelldateien\Ring1</Filter>
     </ClCompile>
-    <ClCompile Include="Ring1\InlineArray.c">
-      <Filter>Quelldateien\Ring1</Filter>
-    </ClCompile>
     <ClCompile Include="Ring1\Annotations\_Include.c">
       <Filter>Quelldateien\Ring1\Annotations</Filter>
     </ClCompile>
@@ -1051,6 +1072,33 @@
     <ClCompile Include="Ring1\Collections\PointerHashMap.c">
       <Filter>Quelldateien\Ring1\Collections</Filter>
     </ClCompile>
+    <ClCompile Include="Ring1\Console.c">
+      <Filter>Quelldateien\Ring1</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Console\ConnectionBase.c">
+      <Filter>Quelldateien\Ring1\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Console\Windows\Connection.c">
+      <Filter>Quelldateien\Ring1\Console\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Console\Null\Connection.c">
+      <Filter>Quelldateien\Ring1\Console\Null</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Collections\_Include.c">
+      <Filter>Quelldateien\Ring1\Collections</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Collections\PointerDeque.c">
+      <Filter>Quelldateien\Ring1\Collections</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Module\Dependencies.c">
+      <Filter>Quelldateien\Ring1\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Module\Handle.c">
+      <Filter>Quelldateien\Ring1\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Collections\InlineArray.c">
+      <Filter>Quelldateien\Ring1\Collections</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <MASM Include="Ring1\Intrinsic\Multiply\X86\multiply_s8.asm">
@@ -1089,5 +1137,10 @@
     <MASM Include="Ring1\Intrinsic\Multiply\X64\multiply_u32.asm">
       <Filter>Quelldateien\Ring1\Intrinsic\Multiply\X64</Filter>
     </MASM>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ring1\Console\Windows\Color.i">
+      <Filter>Headerdateien\Ring1\Console\Windows</Filter>
+    </None>
   </ItemGroup>
 </Project>

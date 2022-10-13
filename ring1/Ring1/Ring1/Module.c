@@ -6,6 +6,10 @@
 
 #include "Ring1/Module.h"
 
+
+#include "Ring1/Status.h"
+
+
 void
 Ring1_Module_lock
   (

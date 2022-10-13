@@ -40,7 +40,6 @@ Machine_getFileContentsAsByteBuffer
   )
 {
   Machine_Io_initialize();
-  path = Ring2_String_concatenate(Ring2_Context_get(), path, Ring2_String_create(Ring2_Context_get(), "", 1));
   Ring2_ByteBuffer* byteBuffer = Ring2_ByteBuffer_create();
   Machine_appendFileContents(path, byteBuffer);
   return byteBuffer;
@@ -54,7 +53,7 @@ Machine_appendFileContents
   )
 {
   Machine_Io_initialize();
-  path = Ring2_String_concatenate(Ring2_Context_get(), path, Ring2_String_create(Ring2_Context_get(), "", 1));
+  path = Machine_Io_makePathname(Ring2_Context_get(), path);
   if (Ring1_FileSystem_receiveFileContents(Ring2_String_getBytes(Ring2_Context_get(), path), byteBuffer, &onReceiveByteBuffer)) {
     Ring2_jump();
   }
@@ -67,5 +66,7 @@ Machine_getFileContentsAsString
   )
 {
   Ring2_ByteBuffer* byteBuffer = Machine_getFileContentsAsByteBuffer(path);
-  return Machine_Object_toString(Ring2_Context_get(), Ring1_cast(Machine_Object*, byteBuffer));
+  return Ring2_String_create(Ring2_Context_get(),
+                             Ring2_ByteBuffer_getBytes(byteBuffer),
+                             Ring2_ByteBuffer_getNumberOfBytes(byteBuffer));
 }

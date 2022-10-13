@@ -1,8 +1,11 @@
-#define RING1_PRIVATE (1)
-#include "Ring1/InlineArray.h"
+#define RING1_COLLECTIONS_PRIVATE (1)
+#include "Ring1/Collections/InlineArray.h"
+#undef RING1_COLLECTIONS_PRIVATE
+
 
 #include "Ring1/Status.h"
 #include "Ring1/Memory.h"
+
 
 Ring1_CheckReturn() Ring1_Status
 Ring1_InlineArray_initialize

@@ -134,7 +134,7 @@ Ring2_TypeSystem_sweep
 }
 
 Ring1_CheckReturn() Ring1_Result
-Ring2_TypeSystem_startup
+Ring2_TypeSystemModule_startup
   (
   )
 {
@@ -167,7 +167,7 @@ Ring2_TypeSystem_startup
 }
 
 void
-Ring2_TypeSystem_shutdown
+Ring2_TypeSystemModule_shutdown
   (
   )
 { 
@@ -204,3 +204,5 @@ Ring2_Type_allocate
   }
   return self;
 }
+
+Ring1_Module_Define(Ring2, TypeSystemModule, Ring2_TypeSystemModule_startup, Ring2_TypeSystemModule_shutdown)

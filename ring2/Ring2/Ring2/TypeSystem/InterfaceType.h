@@ -12,7 +12,7 @@
 #error("Do not include `Ring2/TypeSystem/InterfaceType.h` directly. Include `Ring2/_Include.h` instead.")
 #endif
 #include "Ring2/TypeSystem/Type.h"
-#include "Ring1/InlineArray.h"
+#include "Ring1/Collections/InlineArray.h"
 
 
 /// @brief Flags set if the prerequisites were added.

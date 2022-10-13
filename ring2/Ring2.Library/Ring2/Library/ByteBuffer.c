@@ -130,7 +130,7 @@ Ring2_ByteBuffer_getBytes
   return bytes;
 }
 
-size_t
+int64_t
 Ring2_ByteBuffer_getNumberOfBytes
   (
     Ring2_ByteBuffer const* self

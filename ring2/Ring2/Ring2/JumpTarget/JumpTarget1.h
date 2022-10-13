@@ -8,19 +8,10 @@
 #define RING2_JUMPTARGET_JUMPTARGET1_H_INCLUDED
 
 #include "Ring2/_header.h.i"
+#include "Ring1/Module.h"
 #include <setjmp.h>
 
-/// @brief Starts up the "jump target" module.
-Ring1_CheckReturn() Ring1_Result
-Ring2_JumpTargetModule_startup
-  (
-  );
-
-/// @brief Shuts down the "jump target" module.
-void
-Ring2_JumpTargetModule_shutdown
-  (
-  );
+Ring1_Module_Declare(Ring2, JumpTargetModule)
 
 /// @brief C-level representation of a jump target.
 typedef struct Ring2_JumpTarget Ring2_JumpTarget;

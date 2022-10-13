@@ -120,6 +120,9 @@ Ring1_Atom_Test_notEqual
   handle = Ring1_Atom_ModuleHandle_Invalid;
 }
 
+static void onFree(char **s) {
+  free(*s);
+}
 
 /// @brief Unit test function asserting creation of many atoms for non-equivalent strings are non-equivalent.
 /// @param ctx A pointer to the test context.
@@ -139,7 +142,7 @@ Ring1_Atom_Test_many
   }
   Ring1_PointerList strings;
   int result;
-  result = Ring1_PointerList_initialize(&strings, NULL, &free);
+  result = Ring1_PointerList_initialize(&strings, NULL, &onFree);
   RING1_TEST_ASSERT_EQ(ctx, result, 0);
   if (result) return;
   char* string = _strdup("Hello, World!");

@@ -8,6 +8,7 @@
 #include "Ring2/Library/Io/Initialize.h"
 
 
+#include <stdio.h>
 #include "Ring1/Status.h"
 #include "Ring1/FileSystem.h"
 #include "Ring2/_Include.h"
@@ -35,11 +36,45 @@ Machine_Io_initialize
       Ring1_Status_set(Ring1_Status_EnvironmentFailed);
       Ring2_jump();
     }
-    if (Machine_registerStaticVariables(&onUninitializeStaticVariables)) {
+    if (Ring2_registerStaticVariables(&onUninitializeStaticVariables)) {
       Ring1_FileSystem_ModuleHandle_relinquish(g_moduleHandle);
       g_moduleHandle = Ring1_FileSystem_ModuleHandle_Invalid;
       Ring1_Status_set(Ring1_Status_EnvironmentFailed);
       Ring2_jump();
     }
   }
+}
+
+Ring2_String*
+Machine_Io_makePathname
+  (
+    Ring2_Context* context,
+    const Ring2_String* source
+  )
+{
+  Ring2_String* temporary;
+
+  temporary =
+    Ring2_String_create
+    (
+      context,
+      "",
+      1
+    );
+
+  if (-1 != Ring2_String_firstOccurrenceOf(context, source, temporary)) {
+    fprintf(stderr, "invalid pathname: string contains the zero-terminator character\n");
+    Ring1_Status_set(Ring1_Status_InvalidLexics);
+    Ring2_jump();
+  }
+
+  temporary =
+    Ring2_String_concatenate
+      (
+        context,
+        source,
+        temporary
+      );
+
+  return temporary;
 }

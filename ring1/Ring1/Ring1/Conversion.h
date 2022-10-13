@@ -13,6 +13,6 @@
 #include "Ring1/Conversion/stringToInt.h"
 #include "Ring1/Conversion/stringToUint.h"
 
-Ring1_Module_Declare(Conversion)
+Ring1_Module_Declare(Ring1, Conversion)
 
 #endif // RING1_CONVERSION_H_INCLUDED

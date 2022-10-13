@@ -10,34 +10,32 @@
 #include "Ring2/Types.h"
 #include "Ring2/Operations/_Buffer.h"
 
-static int g_referenceCount = 0;
+Ring1_BeginDependencies()
+  Ring1_Dependency(Ring2, TypesModule)
+Ring1_EndDependencies()
 
-Ring1_CheckReturn() Ring1_Result
+static Ring1_CheckReturn() Ring1_Result
 Ring2_OperationsModule_startup
   (
   )
 {
-  if (0 == g_referenceCount) {
-    if (Ring2_Operations__Buffer_startup()) {
-      return Ring1_Result_Failure;
-    }
-    if (Ring2_TypesModule_startup()) {
-      Ring2_Operations__Buffer_shutdown();
-      return Ring1_Result_Failure;
-    }
+  if (Ring2_Operations__Buffer_startup()) {
+    return Ring1_Result_Failure;
   }
-  g_referenceCount++;
+  if (startupDependencies()) {
+    Ring2_Operations__Buffer_shutdown();
+    return Ring1_Result_Failure;
+  }
   return Ring1_Result_Success;
 }
 
-void
+static void
 Ring2_OperationsModule_shutdown
   (
   )
 {
-  if (1 == g_referenceCount) {
-    Ring2_TypesModule_shutdown();
-    Ring2_Operations__Buffer_shutdown();
-  }
-  g_referenceCount--;
+  shutdownDependencies();
+  Ring2_Operations__Buffer_shutdown();
 }
+
+Ring1_Module_Define(Ring2, OperationsModule, Ring2_OperationsModule_startup, Ring2_OperationsModule_shutdown)

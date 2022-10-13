@@ -13,8 +13,7 @@
 #include "Ring1/Status.h"
 
 
-Ring1_Module_Declare(Atom)
-
+Ring1_Module_Declare(Ring1, Atom)
 
 
 /// @brief A deque of pointers.

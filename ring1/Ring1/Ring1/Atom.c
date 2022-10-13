@@ -8,7 +8,7 @@
 
 
 #include "Ring1/Memory.h"
-#include "Ring1/Collections/PointerHashMap.h"
+#include "Ring1/Collections/_Include.h"
 #include "Ring1/ReferenceCounter.h"
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -25,7 +25,7 @@ typedef struct Value Value;
 Ring1_NonNull(1) static void
 valueRemoved
   (
-    Value* value
+    Value** value
   );
 
 /// @brief Callback invoked to determine if an entry is removed from the hash map.
@@ -108,12 +108,12 @@ Key_equalTo
 Ring1_NonNull(1) static void
 valueRemoved
   (
-    Value* value
+    Value** value
   )
 {
-  Ring1_Memory_deallocate(value->key.bytes);
-  value->key.bytes = NULL;
-  Ring1_Memory_deallocate(value);
+  Ring1_Memory_deallocate((*value)->key.bytes);
+  (*value)->key.bytes = NULL;
+  Ring1_Memory_deallocate(*value);
 }
 
 Ring1_NonNull(1, 2) static int
@@ -143,61 +143,35 @@ static int64_t g_dead = 0;
 /// @brief The number of live atoms.
 static int64_t g_live = 0;
 
-typedef struct Handles
-{
-  Ring1_Memory_ModuleHandle memory;
-  Ring1_PointerHashMap_ModuleHandle pointerHashMap;
-} Handles;
+Ring1_BeginDependencies()
+  Ring1_Dependency(Ring1, Memory)
+  Ring1_Dependency(Ring1, Collections)
+Ring1_EndDependencies()
 
-static Handles g_handles = { .memory = Ring1_Memory_ModuleHandle_Invalid,
-                             .pointerHashMap = Ring1_PointerHashMap_ModuleHandle_Invalid };
-
-Ring1_Module_Define(Atom, initializeModule, uninitializeModule)
+Ring1_Module_Define(Ring1, Atom, initializeModule, uninitializeModule)
 
 static Ring1_Result
 initializeModule
   (
   )
 {
-  g_handles.memory = Ring1_Memory_ModuleHandle_Invalid;
-  g_handles.pointerHashMap = Ring1_PointerHashMap_ModuleHandle_Invalid;
-  g_handles.memory = Ring1_Memory_ModuleHandle_Invalid;
   g_hashMap = NULL;
   //
-  g_handles.memory = Ring1_Memory_ModuleHandle_acquire();
-  if (Ring1_Unlikely(!g_handles.memory)) goto Failure;
-  //
-  g_handles.pointerHashMap = Ring1_PointerHashMap_ModuleHandle_acquire();
-  if (Ring1_Unlikely(!g_handles.pointerHashMap)) goto Failure;
+  if (startupDependencies()) {
+    return Ring1_Result_Failure;    
+  }
   //
   if (Ring1_Memory_allocate(&g_hashMap, sizeof(Mkx_PointerHashMap))) {
-    goto Failure;
+    shutdownDependencies();
+    return Ring1_Result_Failure;
   }
-  if (Ring1_Unlikely(Mkx_PointerHashMap_initialize(g_hashMap, Mkx_PointerHashMap_Capacity_Default, NULL, NULL, &Key_getHashValue, &Key_equalTo, NULL, (Mkx_Collection_RemovedCallback *)&valueRemoved)))
-  {
+  if (Ring1_Unlikely(Mkx_PointerHashMap_initialize(g_hashMap, Ring1_PointerHashMap_Capacity_Default, NULL, NULL, &Key_getHashValue, &Key_equalTo, NULL, (Ring1_RemovedCallback *)&valueRemoved))) {
     Ring1_Memory_deallocate(g_hashMap);
     g_hashMap = NULL;
-    goto Failure;
+    shutdownDependencies();
+    return Ring1_Result_Failure;
   }
   return Ring1_Result_Success;
-Failure:
-  if (g_hashMap)
-  {
-    Mkx_PointerHashMap_uninitialize(g_hashMap);
-    Ring1_Memory_deallocate(g_hashMap);
-    g_hashMap = NULL;
-}
-  if (g_handles.pointerHashMap)
-  {
-    Ring1_PointerHashMap_ModuleHandle_relinquish(g_handles.pointerHashMap);
-    g_handles.pointerHashMap = Ring1_PointerHashMap_ModuleHandle_Invalid;
-  }
-  if (g_handles.memory)
-  {
-    Ring1_Memory_ModuleHandle_relinquish(g_handles.memory);
-    g_handles.memory = Ring1_Memory_ModuleHandle_Invalid;
-  }
-  return Ring1_Result_Failure;
 }
 
 static void
@@ -208,10 +182,7 @@ uninitializeModule
   Mkx_PointerHashMap_uninitialize(g_hashMap);
   Ring1_Memory_deallocate(g_hashMap);
   g_hashMap = NULL;
-  Ring1_PointerHashMap_ModuleHandle_relinquish(g_handles.pointerHashMap);
-  g_handles.pointerHashMap = Ring1_PointerHashMap_ModuleHandle_Invalid;
-  Ring1_Memory_ModuleHandle_relinquish(g_handles.memory);
-  g_handles.memory = Ring1_Memory_ModuleHandle_Invalid;
+  shutdownDependencies();
 }
 
 Ring1_NonNull(1) static inline int64_t

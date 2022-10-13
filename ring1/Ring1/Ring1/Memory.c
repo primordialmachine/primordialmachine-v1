@@ -56,7 +56,7 @@ uninitializeModule
   (
   );
 
-Ring1_Module_Define(Memory, initializeModule, uninitializeModule)
+Ring1_Module_Define(Ring1, Memory, initializeModule, uninitializeModule)
 
 #if defined(RING1_MEMORY_WITH_STATISTICS) && 1 == RING1_MEMORY_WITH_STATISTICS
 static Ring1_Memory_Statistics g_statistics = { 0 };

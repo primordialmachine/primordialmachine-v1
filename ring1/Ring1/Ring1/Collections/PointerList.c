@@ -4,48 +4,41 @@
 /// @copyright Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
+#define RING1_COLLECTIONS_PRIVATE (1)
 #include "Ring1/Collections/PointerList.h"
+#undef RING1_COLLECTIONS_PRIVATE
 
 
 #include "Ring1/Memory.h"
 
 
-typedef struct Handles {
-  Ring1_Memory_ModuleHandle memory;
-} Handles;
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-static Handles g_handles = { .memory = Ring1_Memory_ModuleHandle_Invalid };
+Ring1_BeginDependencies()
+  Ring1_Dependency(Ring1, Memory)
+Ring1_EndDependencies()
 
 static Ring1_Result
 initializeModule
   (
   )
-{ 
-  g_handles.memory = Ring1_Memory_ModuleHandle_acquire();
-  if (!g_handles.memory) {
-    return Ring1_Result_Failure;
-  }
-  return Ring1_Result_Success;
-}
+{ return startupDependencies(); }
 
 static void
 uninitializeModule
   (
   )
-{
-  Ring1_Memory_ModuleHandle_relinquish(g_handles.memory);
-  g_handles.memory = Ring1_Memory_ModuleHandle_Invalid;
-}
+{ shutdownDependencies(); }
 
+Ring1_Module_Define(Ring1, PointerList, initializeModule, uninitializeModule)
 
-Ring1_Module_Define(PointerList, initializeModule, uninitializeModule)
-
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 typedef struct Impl {
   void **elements;
   int64_t size, capacity;
-  Mkx_Collection_AddedCallback *added;
-  Mkx_Collection_RemovedCallback *removed;
+  Ring1_AddedCallback *added;
+  Ring1_RemovedCallback *removed;
 } Impl;
 
 
@@ -60,7 +53,7 @@ clear
     while (pimpl->size > 0)
     {
       void *element = pimpl->elements[--pimpl->size];
-      pimpl->removed(element);
+      pimpl->removed(&element);
     }
   }
   else
@@ -147,7 +140,7 @@ insertAt
   pimpl->elements[index] = element;
   pimpl->size++;
   if (pimpl->added) {
-    pimpl->added(element);
+    pimpl->added(&element);
   }
   return Ring1_Result_Success;
 }
@@ -206,8 +199,8 @@ static inline Ring1_CheckReturn() Ring1_Result
 initialize
   (
     Impl* pimpl,
-    Mkx_Collection_AddedCallback* added,
-    Mkx_Collection_RemovedCallback* removed
+    Ring1_AddedCallback* added,
+    Ring1_RemovedCallback* removed
   )
 {
   pimpl->added = added;
@@ -310,8 +303,8 @@ Ring1_CheckReturn() Ring1_Result
 Ring1_PointerList_initialize
   (
     Ring1_PointerList* pointerList,
-    Mkx_Collection_AddedCallback *added,
-    Mkx_Collection_RemovedCallback *removed
+    Ring1_AddedCallback *added,
+    Ring1_RemovedCallback *removed
   )
 {
   Impl* pimpl = NULL;
@@ -371,8 +364,8 @@ Ring1_CheckReturn() Ring1_Result
 Ring1_PointerList_filter
   (
     Ring1_PointerList* pointerList,
-    Mkx_Collection_WherePredicateContext* whereContext,
-    Mkx_Collection_WherePredicateCallback* whereCallback
+    Ring1_WhereContext* whereContext,
+    Ring1_WhereCallback* whereCallback
   )
 {
   Impl* pimpl = pointerList->pimpl;

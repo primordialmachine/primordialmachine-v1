@@ -14,15 +14,15 @@
 #include "Ring1/Module.h"
 #include "Ring1/Result.h"
 
-Ring1_Module_Declare(FileSystem)
+Ring1_Module_Declare(Ring1, FileSystem)
 
 // Callback invoked when n Bytes pointed to by p should be appended to an opaque context.
 typedef Ring1_Result(Ring1_FileSystem_ReceiveCallback)(void* context, void* p, size_t n);
 
-// https://documentation.primordialmachine.com/ring1-library/filesystem-library/Ring1_FileSystem_AllocateCallback
+// https://primordialmachine.com/api/ring1-library/filesystem-library/Ring1_FileSystem_AllocateCallback
 typedef Ring1_Result(Ring1_FileSystem_AllocateCallback)(void** p, size_t n);
 
-// https://documentation.primordialmachine.com/ring1-library/filesystem-library/Ring1_FileSystem_DeallocateCallback
+// https://primordialmachine.com/api/ring1-library/filesystem-library/Ring1_FileSystem_DeallocateCallback
 typedef Ring1_Result(Ring1_FileSystem_DeallocateCallback)(void* p);
 
 Ring1_CheckReturn() Ring1_Result

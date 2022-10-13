@@ -13,15 +13,15 @@ typedef struct Node Node;
 
 struct Node {
   Node* next;
-  Machine_UninitializeStaticVariablesCallback* callback;
+  Ring2_UninitializeStaticVariablesCallback* callback;
 };
 
 static Node* g_nodes = NULL;
 
 Ring1_CheckReturn() Ring1_Result
-Machine_registerStaticVariables
+Ring2_registerStaticVariables
   (
-    Machine_UninitializeStaticVariablesCallback* callback
+    Ring2_UninitializeStaticVariablesCallback* callback
   )
 {
   if (!callback) {
@@ -39,13 +39,13 @@ Machine_registerStaticVariables
 }
 
 Ring1_CheckReturn() Ring1_Result
-Machine_initializeStaticVariablesModule
+Ring2_initializeStaticVariablesModule
   (
   )
 { return Ring1_Result_Success; }
 
 void
-Machine_uninitializeStaticVariablesModule
+Ring2_uninitializeStaticVariablesModule
   (
   )
 {
@@ -56,8 +56,10 @@ Machine_uninitializeStaticVariablesModule
   }
 }
 
+Ring1_Module_Define(Ring2, StaticVariablesModule, Ring2_initializeStaticVariablesModule, Ring2_uninitializeStaticVariablesModule)
+
 void
-Machine_notifyStaticVariablesUninitialize
+Ring2_notifyStaticVariablesUninitialize
   (
   )
 {

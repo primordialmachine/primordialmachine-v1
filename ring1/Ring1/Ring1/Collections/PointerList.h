@@ -8,13 +8,13 @@
 #define RING1_COLLECTIONS_POINTERLIST_H_INCLUDED
 
 
-#include "Ring1/Collections/Commons.h"
+#include "Ring1/Collections/Callbacks.h"
 #include "Ring1/Module.h"
 
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-Ring1_Module_Declare(PointerList)
+Ring1_Module_Declare(Ring1, PointerList)
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -55,8 +55,8 @@ Ring1_CheckReturn() Ring1_Result
 Ring1_PointerList_initialize
   (
     Ring1_PointerList* self,
-    Mkx_Collection_AddedCallback *added,
-    Mkx_Collection_RemovedCallback *removed
+    Ring1_AddedCallback *added,
+    Ring1_RemovedCallback *removed
   );
 
 /// https://primordialmachine.com/api/ring1-library/pointerlist-library/Ring1_PointerList_uninitialize
@@ -95,7 +95,7 @@ Ring1_PointerList_visit
 /// @param pointerList A pointer to the pointer list.
 /// @param whereContext A pointer passed as the "where" context to the "where" callback.
 /// @param whereCallback A pointer to a "where" callback function.
-/// @return #Ring1_Status_Success on success, a failure status code on failure.
+/// @return #Ring1_Result_Success on success. #Ring1_Result_Failure on failure.
 /// @remark
 /// Elements for which the "where" callback returns @a true remains in the collection.
 /// Other elements are removed.
@@ -103,8 +103,8 @@ Ring1_CheckReturn() Ring1_Result
 Ring1_PointerList_filter
   (
     Ring1_PointerList* pointerList,
-    Mkx_Collection_WherePredicateContext* whereContext,
-    Mkx_Collection_WherePredicateCallback* whereCallback
+    Ring1_WhereContext* whereContext,
+    Ring1_WhereCallback* whereCallback
   );
 
 // https://primordialmachine.com/api/ring1-library/pointerlist-library/Ring1_PointerList_clear 

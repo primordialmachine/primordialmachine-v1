@@ -11,7 +11,7 @@
 #include "Ring1/Result.h"
 #include "Ring1/Annotations/_Include.h"
 
-Ring1_Module_Declare(ByteBuffer)
+Ring1_Module_Declare(Ring1, ByteBuffer)
 
 // https://documentation.primordialmachine.com/api/ring1-library/bytebuffer-library/Ring1_ByteBuffer_Capacity_Least
 #define Ring1_ByteBuffer_Capacity_Least (0)

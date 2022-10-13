@@ -31,31 +31,23 @@ uninitializeModule
   (
   );
 
-Ring1_Module_Define(FileSystem, initializeModule, uninitializeModule)
+Ring1_BeginDependencies()
+  Ring1_Dependency(Ring1, Memory)
+Ring1_EndDependencies()
 
-static Ring1_Memory_ModuleHandle g_memoryModuleHandle =
-    Ring1_Memory_ModuleHandle_Invalid;
+Ring1_Module_Define(Ring1, FileSystem, initializeModule, uninitializeModule)
 
 static Ring1_Result
 initializeModule
   (
   )
-{
-  g_memoryModuleHandle = Ring1_Memory_ModuleHandle_acquire();
-  if (!g_memoryModuleHandle) {
-    return Ring1_Result_Failure;
-  }
-  return Ring1_Result_Success;
-}
+{ return startupDependencies(); }
 
 static void
 uninitializeModule
   (
   )
-{
-  Ring1_Memory_ModuleHandle_relinquish(g_memoryModuleHandle);
-  g_memoryModuleHandle = Ring1_Memory_ModuleHandle_Invalid;
-}
+{ shutdownDependencies(); }
 
 Ring1_CheckReturn() Ring1_Result
 Ring1_FileSystem_receiveFileContents

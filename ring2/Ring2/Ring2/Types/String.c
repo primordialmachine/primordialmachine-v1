@@ -15,6 +15,18 @@
 #include "Ring1/Status.h"
 #include "Ring1/Memory.h"
 
+static Ring1_CheckReturn() Ring1_Result
+Ring2_StringModule_startup
+  (
+  );
+
+static void
+Ring2_StringModule_shutdown
+  (
+  );
+
+Ring1_Module_Define(Ring2, StringModule, Ring2_StringModule_startup, Ring2_StringModule_shutdown)
+
 static void
 Ring2_StringModule_preMarkCallback
   (
@@ -80,9 +92,6 @@ static_assert(Ring2_Gc_MaximumAllocatableSize >= sizeof(Ring2_String),
 
 static_assert(Ring2_String_MaximumNumberOfBytes > 0,
               "Ring2_String_MaximumNumberOfBytes must be greater than 0");
-
-
-static int g_referenceCount = 0;
 
 static Ring2_StringHeap* g_stringHeap = NULL;
 
@@ -155,36 +164,30 @@ static void unregisterStringModule() {
   stringModulePreMarkCallbackId = Ring2_Gc_PreMarkCallbackId_Invalid;
 }
 
-Ring1_CheckReturn() Ring1_Result
+static Ring1_CheckReturn() Ring1_Result
 Ring2_StringModule_startup
   (
   )
 {
-  if (g_referenceCount == 0) {
-    if (createTable(&g_stringHeap)) {
-      return Ring1_Result_Failure;
-    }
-    if (registerStringModule()) {
-      destroyTable(g_stringHeap);
-      g_stringHeap = NULL;
-      return Ring1_Result_Failure;
-    }
+  if (createTable(&g_stringHeap)) {
+    return Ring1_Result_Failure;
   }
-  g_referenceCount++;
+  if (registerStringModule()) {
+    destroyTable(g_stringHeap);
+    g_stringHeap = NULL;
+    return Ring1_Result_Failure;
+  }
   return Ring1_Result_Success;
 }
 
-void
+static void
 Ring2_StringModule_shutdown
   (
   )
 {
-  if (1 == g_referenceCount) {
-    unregisterStringModule();
-    destroyTable(g_stringHeap);
-    g_stringHeap = NULL;
-  }
-  g_referenceCount--;
+  unregisterStringModule();
+  destroyTable(g_stringHeap);
+  g_stringHeap = NULL;
 }
 
 static void

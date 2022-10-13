@@ -21,15 +21,7 @@
 /// C level representation of a string.
 typedef struct Ring2_String Ring2_String;
 
-Ring1_CheckReturn() Ring1_Result
-Ring2_StringModule_startup
-  (
-  );
-
-void
-Ring2_StringModule_shutdown
-  (
-  );
+Ring1_Module_Declare(Ring2, StringModule)
 
 /// @brief Create a string.
 /// @param p, n The Bytes.

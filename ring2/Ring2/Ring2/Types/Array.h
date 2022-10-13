@@ -29,15 +29,7 @@ Ring2_ArrayModule_sweep
     Ring2_Gc_SweepStatistics* statistics
   );
 
-Ring1_CheckReturn() Ring1_Result
-Ring2_ArrayModule_startup
-  (
-  );
-
-void
-Ring2_ArrayModule_shutdown
-  (
-  );
+Ring1_Module_Declare(Ring2, ArrayModule)
 
 Ring1_CheckReturn() Ring2_Array*
 Ring2_ArrayHeap_createArray

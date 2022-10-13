@@ -12,7 +12,7 @@
 #error("Do not include `Ring2/TypeSystem/ClassType.h` directly. Include `Ring2/_Include.h` instead.")
 #endif
 #include "Ring2/TypeSystem/Type.h"
-#include "Ring1/InlineArray.h"
+#include "Ring1/Collections/InlineArray.h"
 typedef struct Machine_EnumerationType Machine_EnumerationType;
 typedef struct Machine_InterfaceType Machine_InterfaceType;
 typedef struct Machine_InterfaceDispatch Machine_InterfaceDispatch;

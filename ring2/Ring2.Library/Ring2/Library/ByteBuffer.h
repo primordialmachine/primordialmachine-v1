@@ -78,7 +78,7 @@ Ring2_ByteBuffer_getBytes
 /// @brief Get the number of Bytes of this Byte buffer.
 /// @param self This Byte buffer.
 /// @return The number of Bytes of this Byte buffer.
-size_t
+int64_t
 Ring2_ByteBuffer_getNumberOfBytes
   (
     Ring2_ByteBuffer const* self

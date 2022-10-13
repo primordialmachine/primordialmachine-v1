@@ -36,11 +36,20 @@ static_assert(Ring2_Gc_MaximumAllocatableSize >= sizeof(Ring2_Array),
 static_assert(Ring2_Array_MaximumLength > 0,
               "Ring2_Array_MaximumLength must be greater than 0");
 
-struct Ring2_ArrayHeap
-{
+struct Ring2_ArrayHeap {
   Ring1_Memory_ModuleHandle memoryModuleHandle;
   Ring2_Gc_Tag* arrays;
 };
+
+static Ring1_CheckReturn() Ring1_Result
+Ring2_ArrayModule_startup
+  (
+  );
+
+static void
+Ring2_ArrayModule_shutdown
+  (
+  );
 
 /*VISIT*/ static void
 visit
@@ -75,13 +84,13 @@ Ring2_ArrayHeap_destroy
     Ring2_ArrayHeap* arrayHeap
   );
 
+Ring1_Module_Define(Ring2, ArrayModule, Ring2_ArrayModule_startup, Ring2_ArrayModule_shutdown)
+
 static Ring2_ArrayHeap* g_arrayHeap = NULL;
 
 static Ring2_Gc_PreMarkCallbackId g_preMarkCallbackId = Ring2_Gc_PreMarkCallbackId_Invalid;
 
 static Ring2_Gc_SweepCallbackId g_sweepCallbackId = Ring2_Gc_SweepCallbackId_Invalid;
-
-static int64_t g_referenceCount = 0;
 
 /*VISIT*/ static void
 visit
@@ -90,8 +99,7 @@ visit
     Ring2_Array* x
   )
 {
-  for (int64_t i = 0, n = x->length; i < n; ++i)
-  {
+  for (int64_t i = 0, n = x->length; i < n; ++i) {
     Ring2_Value_visit(gc, x->values + i);
   }
 }
@@ -128,56 +136,50 @@ Ring2_ArrayHeap_destroy
   Ring1_Memory_ModuleHandle_relinquish(handle);
 }
 
-Ring1_CheckReturn() Ring1_Result
+static Ring1_CheckReturn() Ring1_Result
 Ring2_ArrayModule_startup
   (
   )
 {
-  if (0 == g_referenceCount) {
-    g_arrayHeap = Ring2_ArrayHeap_create();
-    if (!g_arrayHeap) {
-      return Ring1_Result_Failure;
-    }
-    g_sweepCallbackId = Ring2_Gc_addSweepCallback(Ring2_Gc_get(), NULL,
-                                                  (Ring2_Gc_SweepCallback*)&Ring2_ArrayModule_sweep);
-    if (!g_sweepCallbackId) {
-      Ring2_ArrayHeap_destroy(g_arrayHeap);
-      g_arrayHeap = NULL;
-      
-      return Ring1_Result_Failure;
-    }
-    g_preMarkCallbackId = Ring2_Gc_addPreMarkCallback(Ring2_Gc_get(), NULL,
-                                                      (Ring2_Gc_PreMarkCallback*)&Ring2_ArrayModule_preMark);
-    if (!g_preMarkCallbackId) {
-      Ring2_Gc_removeSweepCallback(Ring2_Gc_get(), g_sweepCallbackId);
-      g_sweepCallbackId = Ring2_Gc_SweepCallbackId_Invalid;
-
-      Ring2_ArrayHeap_destroy(g_arrayHeap);
-      g_arrayHeap = NULL;
-      
-      return Ring1_Result_Failure;
-    }
+  g_arrayHeap = Ring2_ArrayHeap_create();
+  if (!g_arrayHeap) {
+    return Ring1_Result_Failure;
   }
-  g_referenceCount++;
-  return Ring1_Result_Success;
-}
-
-void
-Ring2_ArrayModule_shutdown
-  (
-  )
-{
-  if (1 == g_referenceCount) {
-     Ring2_Gc_removePreMarkCallback(Ring2_Gc_get(), g_preMarkCallbackId);
-    g_sweepCallbackId = Ring2_Gc_PreMarkCallbackId_Invalid;
-
+  g_sweepCallbackId = Ring2_Gc_addSweepCallback(Ring2_Gc_get(), NULL,
+                                                (Ring2_Gc_SweepCallback*)&Ring2_ArrayModule_sweep);
+  if (!g_sweepCallbackId) {
+    Ring2_ArrayHeap_destroy(g_arrayHeap);
+    g_arrayHeap = NULL;
+      
+    return Ring1_Result_Failure;
+  }
+  g_preMarkCallbackId = Ring2_Gc_addPreMarkCallback(Ring2_Gc_get(), NULL,
+                                                    (Ring2_Gc_PreMarkCallback*)&Ring2_ArrayModule_preMark);
+  if (!g_preMarkCallbackId) {
     Ring2_Gc_removeSweepCallback(Ring2_Gc_get(), g_sweepCallbackId);
     g_sweepCallbackId = Ring2_Gc_SweepCallbackId_Invalid;
 
     Ring2_ArrayHeap_destroy(g_arrayHeap);
     g_arrayHeap = NULL;
+      
+    return Ring1_Result_Failure;
   }
-  g_referenceCount--;
+  return Ring1_Result_Success;
+}
+
+static void
+Ring2_ArrayModule_shutdown
+  (
+  )
+{
+  Ring2_Gc_removePreMarkCallback(Ring2_Gc_get(), g_preMarkCallbackId);
+  g_sweepCallbackId = Ring2_Gc_PreMarkCallbackId_Invalid;
+
+  Ring2_Gc_removeSweepCallback(Ring2_Gc_get(), g_sweepCallbackId);
+  g_sweepCallbackId = Ring2_Gc_SweepCallbackId_Invalid;
+
+  Ring2_ArrayHeap_destroy(g_arrayHeap);
+  g_arrayHeap = NULL;
 }
 
 /*PREMARK*/ static void

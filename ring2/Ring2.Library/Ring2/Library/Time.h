@@ -11,7 +11,7 @@
 #if !defined(RING2_LIBRARY_PRIVATE) || 1 != RING2_LIBRARY_PRIVATE
 #error("Do not include `Ring2/Library/Time.h` directly, include `Ring2/Library/_Include.h` instead.")
 #endif
-#include "Ring1/Ring1.h"
+#include "Ring1/_Include.h"
 
 
 /// @brief Get the time, in milliseconds, since the start of the system.

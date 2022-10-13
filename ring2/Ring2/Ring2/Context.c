@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include "Ring1/Memory.h"
+#include "Ring1/Status.h"
 #include "Ring2/JumpTarget.h"
 #include "Ring2/Log.h"
 #include "Ring2/Operations.h"
@@ -32,26 +33,22 @@ Ring2_Context_get
   return g_context;
 }
 
-static const struct {
-  Ring1_Result (*startup)();
-  void (*shutdown)();
-} modules[] = {
+Ring1_BeginDependencies()
+  Ring1_Dependency(Ring1, Memory)
   //
-  { &Ring2_LogModule_startup, &Ring2_LogModule_shutdown },
-  { &Ring2_Gc_startup, &Ring2_Gc_shutdown },
-  { &Ring2_JumpTargetModule_startup, &Ring2_JumpTargetModule_shutdown },
+  Ring1_Dependency(Ring2, LogModule)
+  Ring1_Dependency(Ring2, GcModule)
+  Ring1_Dependency(Ring2, JumpTargetModule)
   //
-  { &Ring2_TypeSystem_startup, &Ring2_TypeSystem_shutdown },
+  Ring1_Dependency(Ring2, TypeSystemModule)
   //
-  { &Ring2_TypesModule_startup, &Ring2_TypesModule_shutdown },
-  { &Ring2_OperationsModule_startup, &Ring2_OperationsModule_shutdown },
+  Ring1_Dependency(Ring2, TypesModule)
+  Ring1_Dependency(Ring2, OperationsModule)
   //
-  { &Machine_initializeStaticVariablesModule, &Machine_uninitializeStaticVariablesModule },
+  Ring1_Dependency(Ring2, StaticVariablesModule)
   //
-  { &Mkx_Interpreter_Stack_startup, &Mkx_Interpreter_Stack_shutdown },
-};
-
-static const numberOfModules = 8;
+  Ring1_Dependency(Ring2, StackModule)
+Ring1_EndDependencies()
 
 Ring1_CheckReturn() Ring1_Result
 Ring2_Context_startup
@@ -59,31 +56,12 @@ Ring2_Context_startup
   )
 {
   if (!g_context) {
-    Ring1_Memory_ModuleHandle memoryModule =
-      Ring1_Memory_ModuleHandle_acquire();
-    if (!memoryModule) {
+    if (startupDependencies()) {
       return Ring1_Result_Failure;
     }
     if (Ring1_Memory_allocate(&g_context, sizeof(Ring2_Context))) {
-      Ring1_Memory_ModuleHandle_relinquish(memoryModule);
-      memoryModule = Ring1_Memory_ModuleHandle_Invalid;
+      shutdownDependencies();
       return Ring1_Result_Failure;
-    }
-    g_context->memoryModule = memoryModule;
-    for (size_t i = 0, n = numberOfModules; i < n; ++i) {
-      if (modules[i].startup()) {
-        while (i > 0) {
-          modules[--i].shutdown();
-        }
-        //
-        Ring1_Memory_ModuleHandle memoryModule = g_context->memoryModule;
-        Ring1_Memory_deallocate(g_context);
-        g_context = NULL;
-        //
-        Ring1_Memory_ModuleHandle_relinquish(memoryModule);
-        memoryModule = Ring1_Memory_ModuleHandle_Invalid;
-        return Ring1_Result_Failure;    
-      }
     }
   }
   return Ring1_Result_Success;
@@ -130,16 +108,9 @@ Ring2_Context_shutdown
     // Iterate the GC until the number of live objects does not change anymore.
     runGc(g_context, 4);
     //
-    size_t i = numberOfModules;
-    while(i > 0) {
-      modules[--i].shutdown();
-    }
-    //
-    Ring1_Memory_ModuleHandle memoryModule = g_context->memoryModule;
     Ring1_Memory_deallocate(g_context);
     g_context = NULL;
     //
-    Ring1_Memory_ModuleHandle_relinquish(memoryModule);
-    memoryModule = Ring1_Memory_ModuleHandle_Invalid;
+    shutdownDependencies();
   }
 }

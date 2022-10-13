@@ -13,15 +13,16 @@
 #include "Ring2/_Include.h"
 
 
-static Ring1_Time_ModuleHandle g_moduleHandle = Ring1_Time_ModuleHandle_Invalid;
+Ring1_BeginDependencies()
+  Ring1_Dependency(Ring1, Time)
+  Ring1_Dependency(Ring2, StaticVariablesModule)
+Ring1_EndDependencies()
 
-static void
-relinquish
-  (
-  )
-{
-  Ring1_Time_ModuleHandle_relinquish(g_moduleHandle);
-  g_moduleHandle = Ring1_Time_ModuleHandle_Invalid;
+static bool g_initialized = false;
+
+static void onShutdown() {
+  shutdownDependencies();
+  g_initialized = false;
 }
 
 static void
@@ -29,18 +30,17 @@ ensureInitialized
   (
   )
 {
-  if (!g_moduleHandle) {
-    g_moduleHandle = Ring1_Time_ModuleHandle_acquire();
-    if (!g_moduleHandle) {
+  if (!g_initialized) {
+    if (startupDependencies()) {
       Ring1_Status_set(Ring1_Status_EnvironmentFailed);
       Ring2_jump();
     }
-    if (Machine_registerStaticVariables(&relinquish)) {
-      Ring1_Time_ModuleHandle_relinquish(g_moduleHandle);
-      g_moduleHandle = Ring1_Time_ModuleHandle_Invalid;
+    if (Ring2_registerStaticVariables(&onShutdown)) {
+      shutdownDependencies();
       Ring1_Status_set(Ring1_Status_EnvironmentFailed);
       Ring2_jump();
     }
+    g_initialized = true;
   }
 }
 

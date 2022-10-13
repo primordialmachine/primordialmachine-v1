@@ -30,15 +30,18 @@
     <ClInclude Include="Ring1\Annotations\_Include.h" />
     <ClInclude Include="Ring1\Atom.h" />
     <ClInclude Include="Ring1\ByteBuffer.h" />
-    <ClInclude Include="Ring1\Collections\Commons.h" />
-    <ClInclude Include="Ring1\Collections\Commons\AddedCallback.h" />
-    <ClInclude Include="Ring1\Collections\Commons\EqualCallback.h" />
-    <ClInclude Include="Ring1\Collections\Commons\HashCallback.h" />
-    <ClInclude Include="Ring1\Collections\Commons\RemovedCallback.h" />
-    <ClInclude Include="Ring1\Collections\Commons\Where.h" />
+    <ClInclude Include="Ring1\Collections\Callbacks.h" />
+    <ClInclude Include="Ring1\Collections\InlineArray.h" />
+    <ClInclude Include="Ring1\Collections\PointerDeque.h" />
     <ClInclude Include="Ring1\Collections\PointerHashMap.h" />
     <ClInclude Include="Ring1\Collections\PointerHashMap\Variant1.h" />
     <ClInclude Include="Ring1\Collections\PointerList.h" />
+    <ClInclude Include="Ring1\Collections\_Include.h" />
+    <ClInclude Include="Ring1\Console.h" />
+    <ClInclude Include="Ring1\Console\Configuration.h" />
+    <ClInclude Include="Ring1\Console\ConnectionBase.h" />
+    <ClInclude Include="Ring1\Console\Null\Connection.h" />
+    <ClInclude Include="Ring1\Console\Windows\Connection.h" />
     <ClInclude Include="Ring1\Conversion.h" />
     <ClInclude Include="Ring1\Conversion\stringtoBool.h" />
     <ClInclude Include="Ring1\Conversion\stringToFloat.h" />
@@ -57,7 +60,6 @@
     <ClInclude Include="Ring1\FileSystem\Winapi\getFileContents.h" />
     <ClInclude Include="Ring1\FileSystem\Winapi\setFileContents.h" />
     <ClInclude Include="Ring1\Hash.h" />
-    <ClInclude Include="Ring1\InlineArray.h" />
     <ClInclude Include="Ring1\Intrinsic.h" />
     <ClInclude Include="Ring1\Intrinsic\Add\X64\add_s16.h" />
     <ClInclude Include="Ring1\Intrinsic\Add\X64\add_s32.h" />
@@ -129,6 +131,8 @@
     <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_u32.h" />
     <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_u64.h" />
     <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_u8.h" />
+    <ClInclude Include="Ring1\Module\Dependencies.h" />
+    <ClInclude Include="Ring1\Module\Handle.h" />
     <ClInclude Include="Ring1\_Include.h" />
     <ClInclude Include="Ring1\Test\Commons.h" />
     <ClInclude Include="Ring1\Test\Configuration.h" />
@@ -462,8 +466,15 @@
     <ClCompile Include="Ring1\Annotations\_Include.c" />
     <ClCompile Include="Ring1\Atom.c" />
     <ClCompile Include="Ring1\ByteBuffer.c" />
+    <ClCompile Include="Ring1\Collections\InlineArray.c" />
+    <ClCompile Include="Ring1\Collections\PointerDeque.c" />
     <ClCompile Include="Ring1\Collections\PointerHashMap.c" />
     <ClCompile Include="Ring1\Collections\PointerList.c" />
+    <ClCompile Include="Ring1\Collections\_Include.c" />
+    <ClCompile Include="Ring1\Console.c" />
+    <ClCompile Include="Ring1\Console\ConnectionBase.c" />
+    <ClCompile Include="Ring1\Console\Null\Connection.c" />
+    <ClCompile Include="Ring1\Console\Windows\Connection.c" />
     <ClCompile Include="Ring1\Conversion.c" />
     <ClCompile Include="Ring1\Conversion\stringToBool.c" />
     <ClCompile Include="Ring1\Conversion\stringToFloat.c" />
@@ -482,7 +493,6 @@
     <ClCompile Include="Ring1\FileSystem\Winapi\getFileContents.c" />
     <ClCompile Include="Ring1\FileSystem\Winapi\setFileContents.c" />
     <ClCompile Include="Ring1\Hash.c" />
-    <ClCompile Include="Ring1\InlineArray.c" />
     <ClCompile Include="Ring1\Intrinsic.c" />
     <ClCompile Include="Ring1\Intrinsic\atomicCompareExchange.c" />
     <ClCompile Include="Ring1\Intrinsic\clamp.c" />
@@ -573,6 +583,8 @@
     <ClCompile Include="Ring1\Memory\Statistics.c" />
     <ClCompile Include="Ring1\Memory\Windows\getPageSize.c" />
     <ClCompile Include="Ring1\Module.c" />
+    <ClCompile Include="Ring1\Module\Dependencies.c" />
+    <ClCompile Include="Ring1\Module\Handle.c" />
     <ClCompile Include="Ring1\ReferenceCounter.c" />
     <ClCompile Include="Ring1\Result.c" />
     <ClCompile Include="Ring1\_Include.c" />
@@ -582,6 +594,9 @@
     <ClCompile Include="Ring1\Test\Node.c" />
     <ClCompile Include="Ring1\Time.c" />
     <ClCompile Include="Ring1\FileSystem.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ring1\Console\Windows\Color.i" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

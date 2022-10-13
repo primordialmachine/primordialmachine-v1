@@ -13,17 +13,33 @@
 
 
 void
-Machine_setFileContents
+Machine_setFileContentsByteBuffer
   (
     Ring2_String* path,
-    Ring2_ByteBuffer* bytes
+    Ring2_ByteBuffer* byteBuffer
   )
 {
   Machine_Io_initialize();
-  path = Ring2_String_concatenate(Ring2_Context_get(), path, Ring2_String_create(Ring2_Context_get(), "", 1));
+  path = Machine_Io_makePathname(Ring2_Context_get(), path);
   if (Ring1_FileSystem_setFileContents(Ring2_String_getBytes(Ring2_Context_get(), path),
-                                       Ring2_ByteBuffer_getBytes(bytes),
-                                       Ring2_ByteBuffer_getNumberOfBytes(bytes))) {
+                                       Ring2_ByteBuffer_getBytes(byteBuffer),
+                                       Ring2_ByteBuffer_getNumberOfBytes(byteBuffer))) {
+    Ring2_jump();
+  }
+}
+
+void
+Machine_setFileContentsString
+  (
+    Ring2_String* path,
+    Ring2_String* string
+  )
+{
+  Machine_Io_initialize();
+  path = Machine_Io_makePathname(Ring2_Context_get(), path);
+  if (Ring1_FileSystem_setFileContents(Ring2_String_getBytes(Ring2_Context_get(), path),
+                                       Ring2_String_getBytes(Ring2_Context_get(), string),
+                                       Ring2_String_getNumberOfBytes(Ring2_Context_get(), string))) {
     Ring2_jump();
   }
 }

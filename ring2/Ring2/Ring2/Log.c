@@ -23,6 +23,8 @@ Ring2_LogModule_shutdown
   )
 { }
 
+Ring1_Module_Define(Ring2, LogModule, Ring2_LogModule_startup, Ring2_LogModule_shutdown)
+
 void
 Ring2_log
   (

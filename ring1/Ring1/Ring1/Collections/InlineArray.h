@@ -1,5 +1,5 @@
-#if !defined(RING1_INLINEARRAY_H_INCLUDED)
-#define RING1_INLINEARRAY_H_INCLUDED
+#if !defined(RING1_COLLECTIONS_INLINEARRAY_H_INCLUDED)
+#define RING1_COLLECTIONS_INLINEARRAY_H_INCLUDED
 
 #include <stddef.h>
 #include "Ring1/Result.h"
@@ -78,4 +78,4 @@ Ring1_InlineArray_getAt
     size_t index
   );
 
-#endif // RING1_INLINEARRAY_H_INCLUDED
+#endif // RING1_COLLECTIONS_INLINEARRAY_H_INCLUDED

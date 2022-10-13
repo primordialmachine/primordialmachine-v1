@@ -16,7 +16,10 @@
 #include "Ring2/Gc/Tag.h"
 #include "Ring2/Gc/RunStatistics.h"
 #include "Ring2/Gc/SweepStatistics.h"
+#include "Ring1/Module.h"
 #include <stdint.h>
+
+Ring1_Module_Declare(Ring2, GcModule)
 
 /// The maximal size, in Bytes, of a memory block as an int64_t value.
 #define Ring2_Gc_MaximumAllocatableSize \
@@ -97,20 +100,6 @@ Ring2_Gc_removeSweepCallback
 
 Ring1_CheckReturn() Ring2_Gc*
 Ring2_Gc_get
-  (
-  );
-
-/// @brief Startup the GC module.
-/// @return #Ring1_Result_Success on success, #Ring1_Result_Failure on failure.
-/// @remark This function sets the by-thread status variable on failure.
-Ring1_CheckReturn() Ring1_Result
-Ring2_Gc_startup
-  (
-  );
-
-/// @brief Shutdown the GC module.
-void
-Ring2_Gc_shutdown
   (
   );
 

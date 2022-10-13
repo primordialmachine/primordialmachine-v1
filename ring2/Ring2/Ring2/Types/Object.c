@@ -15,6 +15,16 @@
 #include "Ring2/_Include.h"
 #include <assert.h>
 
+static Ring1_CheckReturn() Ring1_Result
+Ring2_ObjectModule_startup
+  (
+  );
+
+static void
+Ring2_ObjectModule_shutdown
+  (
+  );
+
 /*PREMARK*/ static void
 Mkx_Interpreter_ObjectHeap_preMark
   (
@@ -66,7 +76,7 @@ static Ring2_Gc_PreMarkCallbackId g_preMarkCallbackId = Ring2_Gc_PreMarkCallback
 
 static Ring2_Gc_SweepCallbackId g_sweepCallbackId = Ring2_Gc_SweepCallbackId_Invalid;
 
-Ring1_CheckReturn() Ring1_Result
+static Ring1_CheckReturn() Ring1_Result
 Ring2_ObjectModule_startup
   (
   )
@@ -98,7 +108,7 @@ Ring2_ObjectModule_startup
   return Ring1_Result_Success;
 }
 
-void
+static void
 Ring2_ObjectModule_shutdown
   (
   )
@@ -115,6 +125,8 @@ Ring2_ObjectModule_shutdown
   Mkx_Interpreter_ObjectHeap_destroy(g_objectHeap);
   g_objectHeap = NULL;
 }
+
+Ring1_Module_Define(Ring2, ObjectModule, Ring2_ObjectModule_startup, Ring2_ObjectModule_shutdown)
 
 static Mkx_Interpreter_ObjectHeap*
 Mkx_Interpreter_ObjectHeap_create

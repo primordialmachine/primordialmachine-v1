@@ -8,7 +8,7 @@
 #include "Ring2/TypeSystem/Type.h"
 
 
-#include "Ring1/InlineArray.h"
+#include "Ring1/Collections/InlineArray.h"
 #include "Ring1/Memory.h"
 #include "Ring1/Status.h"
 #include "Ring2/TypeSystem/ClassType.h"

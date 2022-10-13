@@ -8,30 +8,30 @@
 #define RING1_COLLECTIONS_POINTERHASHMAP_H_INCLUDED
 
 
-#include "Ring1/Collections/Commons.h"
+#include "Ring1/Collections/Callbacks.h"
 #include "Ring1/Module.h"
 
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-Ring1_Module_Declare(PointerHashMap)
+Ring1_Module_Declare(Ring1, PointerHashMap)
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /// @brief The maximum capacity of a pointer hash map.
-#define Mkx_PointerHashMap_Capacity_Maximum ((SIZE_MAX < INT64_MAX ? SIZE_MAX : INT64_MAX) / sizeof(void *))
+#define Ring1_PointerHashMap_Capacity_Greatest ((SIZE_MAX < INT64_MAX ? SIZE_MAX : INT64_MAX) / sizeof(void *))
 
 /// @brief The minimum capacity of a pointer hash map.
 /// Must not be @a 0.
-#define Mkx_PointerHashMap_Capacity_Minimum (8)
+#define Ring1_PointerHashMap_Capacity_Least (8)
 
 /// @brief The default capacity of a pointer hash map.
-#define Mkx_PointerHashMap_Capacity_Default (8)
+#define Ring1_PointerHashMap_Capacity_Default (8)
 
 /// @brief A hash map of pointers.
 /// @remark Implemented using the PIMPL idiom.
 /// Supports null pointers.
-typedef struct Mkx_PointerHashMape { void *pimpl; } Mkx_PointerHashMap;
+typedef struct Mkx_PointerHashMap { void *pimpl; } Mkx_PointerHashMap;
 
 /// @brief A forward iterator for a hash map of pointers.
 /// @remark Implemented using the PIMPL idiom.
@@ -65,12 +65,12 @@ Mkx_PointerHashMap_initialize
   (
     Mkx_PointerHashMap *hashMap,
     int64_t initialCapacity,
-    Mkx_Collection_AddedCallback *keyAdded,
-    Mkx_Collection_RemovedCallback *keyRemoved,
-    Mkx_Collection_HashCallback *hashKey,
-    Mkx_Collection_EqualCallback *areKeysEqual,
-    Mkx_Collection_AddedCallback *valueAdded,
-    Mkx_Collection_RemovedCallback *valueRemoved
+    Ring1_AddedCallback *keyAdded,
+    Ring1_RemovedCallback *keyRemoved,
+    Ring1_GetHashCallback *hashKey,
+    Ring1_IsEqualToCallback *areKeysEqual,
+    Ring1_AddedCallback *valueAdded,
+    Ring1_RemovedCallback *valueRemoved
   );
 
 /// @brief Uninitialize a pointer hash map.

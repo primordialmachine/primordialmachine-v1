@@ -19,7 +19,7 @@ uninitializeModule
   (
   );
 
-Ring1_Module_Define(Conversion, initializeModule, uninitializeModule)
+Ring1_Module_Define(Ring1, Conversion, initializeModule, uninitializeModule)
 
 static Ring1_Memory_ModuleHandle g_memoryModuleHandle = Ring1_Memory_ModuleHandle_Invalid;
 

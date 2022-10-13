@@ -20,15 +20,7 @@
 #include "Ring2/Types/Integer.h"
 #include "Ring2/Gc.h"
 
-Ring1_CheckReturn() Ring1_Result
-Ring2_ObjectModule_startup
-  (
-  );
-
-void
-Ring2_ObjectModule_shutdown
-  (
-  );
+Ring1_Module_Declare(Ring2, ObjectModule)
 
 typedef struct Machine_ClassType Machine_ClassType;
 

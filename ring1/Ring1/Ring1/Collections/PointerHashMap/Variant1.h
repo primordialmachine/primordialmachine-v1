@@ -26,17 +26,17 @@ struct Impl {
   /// @brief The size of this hash map i.e. the number of sum of the sizes of the overflow lists.
   int64_t size;
   /// @brief A pointer to an "added" callback function or a null pointer.
-  Mkx_Collection_AddedCallback *keyAdded;
+  Ring1_AddedCallback *keyAdded;
   /// @brief A pointer to a "removed" callback function or a null pointer.
-  Mkx_Collection_RemovedCallback *keyRemoved;
+  Ring1_RemovedCallback *keyRemoved;
   /// @brief A pointer to a "hash" callback function or a null pointer.
-  Mkx_Collection_HashCallback* hashKey;
+  Ring1_GetHashCallback* hashKey;
   /// @brief A pointer to an "equal" callback function or a null pointer.
-  Mkx_Collection_EqualCallback* areKeysEqual;
+  Ring1_IsEqualToCallback* areKeysEqual;
   /// @brief A pointer to a "value added" callback function or a null pointer.
-  Mkx_Collection_AddedCallback* valueAdded;
+  Ring1_AddedCallback* valueAdded;
   /// @brief A pointer to a "value removed" callback function or a null pointer.
-  Mkx_Collection_RemovedCallback* valueRemoved;
+  Ring1_RemovedCallback* valueRemoved;
 }; // struct Impl
 
 struct IteratorImpl {
@@ -110,14 +110,14 @@ maybeResize
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     return Ring1_Result_Failure;
   }
-  if (pimpl->capacity < Mkx_PointerHashMap_Capacity_Maximum &&
+  if (pimpl->capacity < Ring1_PointerHashMap_Capacity_Greatest &&
       (double)pimpl->capacity < (double)pimpl->capacity * 0.75) {
     Bucket *oldBuckets, *newBuckets;
     int64_t oldCapacity, newCapacity;
     // Compute the new length of the buckets array.
     oldCapacity = pimpl->capacity;
-    if (Ring1_Unlikely(Ring1_Memory_recomputeSize_s64(Mkx_PointerHashMap_Capacity_Minimum,
-                                                      Mkx_PointerHashMap_Capacity_Maximum,
+    if (Ring1_Unlikely(Ring1_Memory_recomputeSize_s64(Ring1_PointerHashMap_Capacity_Least,
+                                                      Ring1_PointerHashMap_Capacity_Greatest,
                                                       oldCapacity, 1, &newCapacity, true))) {
       return Ring1_Result_Failure;
     }
@@ -319,12 +319,12 @@ add
           return Ring1_Result_Failure;
         } else {
           if (node->key != lookup.key) {
-            if (invokeKeyAdded && pimpl->keyAdded) pimpl->keyAdded(lookup.key);
-            if (invokeKeyRemoved && pimpl->keyRemoved) pimpl->keyRemoved(node->key);
+            if (invokeKeyAdded && pimpl->keyAdded) pimpl->keyAdded(&lookup.key);
+            if (invokeKeyRemoved && pimpl->keyRemoved) pimpl->keyRemoved(&node->key);
           }
           if (node->value != value) {
-            if (invokeValueAdded && pimpl->valueAdded) pimpl->valueAdded(value);
-            if (invokeValueRemoved && pimpl->valueRemoved) pimpl->valueRemoved(node->value);
+            if (invokeValueAdded && pimpl->valueAdded) pimpl->valueAdded(&value);
+            if (invokeValueRemoved && pimpl->valueRemoved) pimpl->valueRemoved(&node->value);
           }
           node->key = lookup.key;
           node->value = value;
@@ -346,10 +346,10 @@ add
   pimpl->size++;
 
   if (invokeKeyAdded && pimpl->keyAdded) {
-    (*pimpl->keyAdded)(lookup.key);
+    (*pimpl->keyAdded)(&lookup.key);
   }
   if (invokeValueAdded && pimpl->valueAdded) {
-    (*pimpl->valueAdded)(value);
+    (*pimpl->valueAdded)(&value);
   }
 
   maybeResize(pimpl);
@@ -363,8 +363,8 @@ clear
     Impl *pimpl
   )
 {
-  Mkx_Collection_RemovedCallback *keyRemoved = pimpl->keyRemoved;
-  Mkx_Collection_RemovedCallback* valueRemoved = pimpl->valueRemoved;
+  Ring1_RemovedCallback *keyRemoved = pimpl->keyRemoved;
+  Ring1_RemovedCallback* valueRemoved = pimpl->valueRemoved;
   for (int64_t i = 0, n = pimpl->capacity; i < n; ++i) {
     Bucket* bucket = &(pimpl->buckets[i]);
     while (*bucket) {
@@ -372,8 +372,8 @@ clear
       Node* node = *bucket;
       *bucket = node->next;
       // Invoke the key removed and value removed callbacks.
-      if (keyRemoved) keyRemoved(node->key);
-      if (valueRemoved) valueRemoved(node->value);
+      if (keyRemoved) keyRemoved(&node->key);
+      if (valueRemoved) valueRemoved(&node->value);
       // Deallocate the node.
       Ring1_Memory_deallocate(node);
     }
@@ -479,10 +479,10 @@ remove
       }
       if (areKeysEqual) {
         if (invokeKeyRemoved && pimpl->keyRemoved) {
-          pimpl->keyRemoved(current->key);
+          pimpl->keyRemoved(&current->key);
         }
         if (invokeValueRemoved && pimpl->valueRemoved) {
-          pimpl->valueRemoved(current->value);
+          pimpl->valueRemoved(&current->value);
         }
         *previous = current->next;
         pimpl->size--;
@@ -500,12 +500,12 @@ initialize
   (
     Impl* pimpl,
     int64_t initialCapacity,
-    Mkx_Collection_AddedCallback* keyAdded,
-    Mkx_Collection_RemovedCallback* keyRemoved,
-    Mkx_Collection_HashCallback* hashKey,
-    Mkx_Collection_EqualCallback* areKeysEqual,
-    Mkx_Collection_AddedCallback* valueAdded,
-    Mkx_Collection_RemovedCallback* valueRemoved
+    Ring1_AddedCallback* keyAdded,
+    Ring1_RemovedCallback* keyRemoved,
+    Ring1_GetHashCallback* hashKey,
+    Ring1_IsEqualToCallback* areKeysEqual,
+    Ring1_AddedCallback* valueAdded,
+    Ring1_RemovedCallback* valueRemoved
   )
 {
   // Validate arguments.
@@ -515,11 +515,11 @@ initialize
   }
 
   // Validate arguments: Bound the capacity.
-  if (Ring1_Unlikely(initialCapacity > Mkx_PointerHashMap_Capacity_Maximum)) {
-    initialCapacity = Mkx_PointerHashMap_Capacity_Maximum;
+  if (Ring1_Unlikely(initialCapacity > Ring1_PointerHashMap_Capacity_Greatest)) {
+    initialCapacity = Ring1_PointerHashMap_Capacity_Greatest;
   }
-  if (Ring1_Unlikely(initialCapacity < Mkx_PointerHashMap_Capacity_Minimum)) {
-    initialCapacity = Mkx_PointerHashMap_Capacity_Minimum;
+  if (Ring1_Unlikely(initialCapacity < Ring1_PointerHashMap_Capacity_Least)) {
+    initialCapacity = Ring1_PointerHashMap_Capacity_Least;
   }
 
   // Validate arguments.

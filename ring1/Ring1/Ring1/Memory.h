@@ -14,7 +14,7 @@
 #include "Ring1/Annotations/_Include.h"
 #include "Ring1/Result.h"
 
-Ring1_Module_Declare(Memory)
+Ring1_Module_Declare(Ring1, Memory)
 
 // https://documentation.primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_allocate
 Ring1_CheckReturn() Ring1_Result
