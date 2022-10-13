@@ -346,7 +346,7 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
     '+',
     '-',
   };
-  Machine_ByteBuffer* temporary = Machine_ByteBuffer_create();
+  Ring2_ByteBuffer* temporary = Ring2_ByteBuffer_create();
   for (size_t i = 0, n = sizeof(codepoints) / sizeof(uint32_t); i < n; ++i) {
     const uint32_t codepoint = codepoints[i];
     if (FT_Load_Char(self->face, codepoint, FT_LOAD_RENDER)) {
@@ -363,10 +363,10 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
     Ring2_JumpTarget jt;
     Ring2_pushJumpTarget(&jt);
     if (!setjmp(jt.environment)) {
-      Machine_ByteBuffer_clear(temporary);
+      Ring2_ByteBuffer_clear(temporary);
       if (self->face->glyph->bitmap.buffer) {
-        Machine_ByteBuffer_appendBytes(temporary, self->face->glyph->bitmap.buffer,
-                                       (size_t)self->face->glyph->bitmap.width * (size_t)self->face->glyph->bitmap.rows);
+        Ring2_ByteBuffer_appendBytes(temporary, self->face->glyph->bitmap.buffer,
+                                     (size_t)self->face->glyph->bitmap.width * (size_t)self->face->glyph->bitmap.rows);
       }
       Machine_Image* image = Machine_ImagesContext_createDirect(
           fontsContext->imageContext, Machine_PixelFormat_GRAYSCALE,

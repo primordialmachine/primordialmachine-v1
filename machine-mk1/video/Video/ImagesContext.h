@@ -14,7 +14,7 @@ struct Machine_ImagesContext_Class {
   Machine_Image* (*createFromPath)(Machine_ImagesContext* self, Ring2_String* path);
   Machine_Image* (*createDirect)(Machine_ImagesContext* self, Machine_PixelFormat pixelFormat,
                                  Ring2_Integer width, Ring2_Integer height,
-                                 Machine_ByteBuffer* pixels);
+                                 Ring2_ByteBuffer* pixels);
 };
 
 struct Machine_ImagesContext {
@@ -42,6 +42,6 @@ Machine_Image* Machine_ImagesContext_createFromPath(Machine_ImagesContext* self,
 Machine_Image* Machine_ImagesContext_createDirect(Machine_ImagesContext* self,
                                                   Machine_PixelFormat pixelFormat,
                                                   Ring2_Integer width, Ring2_Integer height,
-                                                  Machine_ByteBuffer* pixels);
+                                                  Ring2_ByteBuffer* pixels);
 
 #endif // MACHINE_VIDEO_IMAGESCONTEXT_H_INCLUDED

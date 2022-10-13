@@ -25,7 +25,7 @@ Machine_Image* Machine_ImagesContext_createFromPath(Machine_ImagesContext* self,
 Machine_Image* Machine_ImagesContext_createDirect(Machine_ImagesContext* self,
                                                   Machine_PixelFormat pixelFormat,
                                                   Ring2_Integer width, Ring2_Integer height,
-                                                  Machine_ByteBuffer* pixels) {
+                                                  Ring2_ByteBuffer* pixels) {
   MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_ImagesContext, createDirect, pixelFormat, width, height,
                                   pixels);
 }

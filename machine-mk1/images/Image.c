@@ -55,8 +55,10 @@ void Machine_Images_Image_construct(Machine_Images_Image* self, size_t numberOfA
         = Machine_Extensions_getIntegerArgument(numberOfArguments, arguments, 0);
     Ring2_Integer width = Machine_Extensions_getIntegerArgument(numberOfArguments, arguments, 1);
     Ring2_Integer height = Machine_Extensions_getIntegerArgument(numberOfArguments, arguments, 2);
-    Machine_ByteBuffer* pixels = (Machine_ByteBuffer*)Machine_Extensions_getObjectArgument(
-        numberOfArguments, arguments, 3, Machine_ByteBuffer_getType());
+    Ring2_ByteBuffer* pixels = (Ring2_ByteBuffer*)Machine_Extensions_getObjectArgument(numberOfArguments,
+                                                                                       arguments,
+                                                                                       3,
+                                                                                       Ring2_ByteBuffer_getType());
     Machine_Images_Image_constructDirect(self, (Machine_PixelFormat)pixelFormat, width, height,
                                          pixels);
   } else {
@@ -92,7 +94,7 @@ static void _Io_read(png_structp pngPtr, png_bytep data, png_size_t length) {
 }
 
 void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
-                                                  Machine_ByteBuffer* byteBuffer) {
+                                                  Ring2_ByteBuffer* byteBuffer) {
   // (1) Supertype constructor.
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Ring2_Value ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
@@ -114,8 +116,8 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
   // Machine_ByteBufferReader* byteBufferReader = Machine_ByteBufferReader_create(byteBuffer);
   _Io_State state;
   state.position = 0;
-  state.bytes = Machine_ByteBuffer_getBytes(byteBuffer);
-  state.numberOfBytes = Machine_ByteBuffer_getNumberOfBytes(byteBuffer);
+  state.bytes = Ring2_ByteBuffer_getBytes(byteBuffer);
+  state.numberOfBytes = Ring2_ByteBuffer_getNumberOfBytes(byteBuffer);
 
   // (1) read header.
   Ring1_Memory_copyFast(&(header[0]), state.bytes, 8);
@@ -221,13 +223,13 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
 }
 
 void Machine_Images_Image_constructFromPath(Machine_Images_Image* self, Ring2_String* path) {
-  Machine_ByteBuffer* byteBuffer = Machine_getFileContents(path);
+  Ring2_ByteBuffer* byteBuffer = Machine_getFileContentsAsByteBuffer(path);
   Machine_Images_Image_constructFromByteBuffer(self, byteBuffer);
 }
 
 void Machine_Images_Image_constructDirect(Machine_Images_Image* self,
                                           Machine_PixelFormat pixelFormat, Ring2_Integer width,
-                                          Ring2_Integer height, Machine_ByteBuffer* pixels) {
+                                          Ring2_Integer height, Ring2_ByteBuffer* pixels) {
   // (1) Supertype constructor.
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Ring2_Value ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
@@ -242,7 +244,7 @@ void Machine_Images_Image_constructDirect(Machine_Images_Image* self,
                                  Machine_PixelFormat_getBytesPerPixel(pixelFormat))) {
     Ring2_jump();
   }
-  Ring1_Memory_copyFast(self->pixels, Machine_ByteBuffer_getBytes(pixels),
+  Ring1_Memory_copyFast(self->pixels, Ring2_ByteBuffer_getBytes(pixels),
                         width * height * Machine_PixelFormat_getBytesPerPixel(pixelFormat));
 
   // (4) Set class type.
@@ -262,7 +264,7 @@ Machine_Images_Image* Machine_Images_Image_createImageFromPath(Ring2_String* pat
 Machine_Images_Image* Machine_Images_Image_createImageDirect(Machine_PixelFormat pixelFormat,
                                                              Ring2_Integer width,
                                                              Ring2_Integer height,
-                                                             Machine_ByteBuffer* pixels) {
+                                                             Ring2_ByteBuffer* pixels) {
   Machine_ClassType* ty = Machine_Images_Image_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 4;
   Ring2_Value ARGUMENTS[4];

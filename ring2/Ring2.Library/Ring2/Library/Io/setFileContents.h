@@ -20,7 +20,7 @@ void
 Machine_setFileContents
   (
     Ring2_String* path,
-    Machine_ByteBuffer* bytes
+    Ring2_ByteBuffer* bytes
   );
 
 #endif // RING2_LIBRARY_IO_SETFILECONTENTS_H_INCLUDED

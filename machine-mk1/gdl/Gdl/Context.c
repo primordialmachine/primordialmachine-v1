@@ -33,7 +33,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gdl_Context, Machine_Object, &Machine_Gdl_Conte
                          &Machine_Gdl_Context_construct, NULL, NULL, NULL)
 
 Machine_Gdl_Context* Machine_Gdl_Context_create(Ring2_String* inputName,
-                                                Machine_ByteBuffer* inputBytes) {
+                                                Ring2_ByteBuffer* inputBytes) {
   Machine_ClassType* ty = Machine_Gdl_Context_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
   static Ring2_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };

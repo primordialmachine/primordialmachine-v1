@@ -62,7 +62,7 @@ static Machine_Gui_Widget* loadWidget(Machine_Gui_Context* context, Machine_Gdl_
 
 static Machine_Gui_Widget* loadWidgetByPath(Machine_Gui_Context* context, const char* path) {
   Ring2_String* inputPath = Ring2_String_create(Ring2_Context_get(), path, strlen(path));
-  Machine_ByteBuffer* inputText = Machine_getFileContents(inputPath);
+  Ring2_ByteBuffer* inputText = Machine_getFileContentsAsByteBuffer(inputPath);
   Machine_Gdl_Parser* parser = Machine_Gdl_Parser_create();
   Machine_Gdl_Node* node = Machine_Gdl_Parser_parse(parser, inputPath, inputText);
   Ring2_assert(node->kind == Machine_Gdl_NodeKind_CompilationUnit,

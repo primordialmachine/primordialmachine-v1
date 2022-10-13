@@ -9,13 +9,14 @@
 
 
 #include "Ring1/FileSystem.h"
+#include "Ring1/Intrinsic.h"
 #include "Ring2/Library/Io/Initialize.h"
 
 
 static Ring1_Result
-onReceive
+onReceiveByteBuffer
   (
-    Machine_ByteBuffer *self,
+    Ring2_ByteBuffer *self,
     const char *p,
     size_t n
   )
@@ -23,7 +24,7 @@ onReceive
   Ring2_JumpTarget jumpTarget;
   Ring2_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
-    Machine_ByteBuffer_appendBytes(self, p, n);
+    Ring2_ByteBuffer_appendBytes(self, p, n);
     Ring2_popJumpTarget();
     return Ring1_Result_Success;
   } else {
@@ -32,17 +33,39 @@ onReceive
   }
 }
 
-Machine_ByteBuffer*
-Machine_getFileContents
+Ring2_ByteBuffer*
+Machine_getFileContentsAsByteBuffer
   (
     Ring2_String* path
   )
 {
   Machine_Io_initialize();
   path = Ring2_String_concatenate(Ring2_Context_get(), path, Ring2_String_create(Ring2_Context_get(), "", 1));
-  Machine_ByteBuffer* byteBuffer = Machine_ByteBuffer_create();
-  if (Ring1_FileSystem_receiveFileContents(Ring2_String_getBytes(Ring2_Context_get(), path), byteBuffer, &onReceive)) {
+  Ring2_ByteBuffer* byteBuffer = Ring2_ByteBuffer_create();
+  Machine_appendFileContents(path, byteBuffer);
+  return byteBuffer;
+}
+
+void
+Machine_appendFileContents
+  (
+    Ring2_String* path,
+    Ring2_ByteBuffer* byteBuffer
+  )
+{
+  Machine_Io_initialize();
+  path = Ring2_String_concatenate(Ring2_Context_get(), path, Ring2_String_create(Ring2_Context_get(), "", 1));
+  if (Ring1_FileSystem_receiveFileContents(Ring2_String_getBytes(Ring2_Context_get(), path), byteBuffer, &onReceiveByteBuffer)) {
     Ring2_jump();
   }
-  return byteBuffer;
+}
+
+Ring2_String *
+Machine_getFileContentsAsString
+  (
+    Ring2_String *path
+  )
+{
+  Ring2_ByteBuffer* byteBuffer = Machine_getFileContentsAsByteBuffer(path);
+  return Machine_Object_toString(Ring2_Context_get(), Ring1_cast(Machine_Object*, byteBuffer));
 }

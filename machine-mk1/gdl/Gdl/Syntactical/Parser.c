@@ -17,7 +17,7 @@ static void Machine_Gdl_Parser_visit(Machine_Gdl_Parser* self) {
 
 static void Machine_Gdl_Parser_construct(Machine_Gdl_Parser* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  self->scanner = Machine_Gdl_Scanner_create(Ring2_String_create(Ring2_Context_get(), "<empty input>", strlen("<empty input>")), Machine_ByteBuffer_create());
+  self->scanner = Machine_Gdl_Scanner_create(Ring2_String_create(Ring2_Context_get(), "<empty input>", strlen("<empty input>")), Ring2_ByteBuffer_create());
   Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Gdl_Parser_getType());
 }
 
@@ -172,7 +172,7 @@ static Machine_Gdl_Node* parseMap(Machine_Gdl_Parser* self) {
   return parent;
 }
 
-Machine_Gdl_Node* Machine_Gdl_Parser_parse(Machine_Gdl_Parser* self, Ring2_String* inputName, Machine_ByteBuffer* inputBytes) {
+Machine_Gdl_Node* Machine_Gdl_Parser_parse(Machine_Gdl_Parser* self, Ring2_String* inputName, Ring2_ByteBuffer* inputBytes) {
   Machine_Gdl_Scanner_setInput(self->scanner, inputName, inputBytes);
   checkKind(self, Machine_Gdl_TokenKind_StartOfInput);
   next(self);

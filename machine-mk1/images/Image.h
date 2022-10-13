@@ -12,11 +12,11 @@
 
 MACHINE_DECLARE_CLASSTYPE(Machine_Images_Image)
 
-void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self, Machine_ByteBuffer* byteBuffer);
+void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self, Ring2_ByteBuffer* byteBuffer);
 
 void Machine_Images_Image_constructFromPath(Machine_Images_Image* self, Ring2_String* path);
 
-void Machine_Images_Image_constructDirect(Machine_Images_Image* self, Machine_PixelFormat pixelFormat, Ring2_Integer width, Ring2_Integer height, Machine_ByteBuffer* pixels);
+void Machine_Images_Image_constructDirect(Machine_Images_Image* self, Machine_PixelFormat pixelFormat, Ring2_Integer width, Ring2_Integer height, Ring2_ByteBuffer* pixels);
 
 /// @brief Create an image from a file.
 /// @param path A pointer to the string denoting the path of the file.
@@ -29,7 +29,7 @@ Machine_Images_Image* Machine_Images_Image_createImageFromPath(Ring2_String* pat
 /// @param height The number of pixels along the vertical axis.
 /// @param pixels A pointer to a Byte buffer containing the pixels.
 /// @return A pointer to the image.
-Machine_Images_Image* Machine_Images_Image_createImageDirect(Machine_PixelFormat pixelFormat, Ring2_Integer width, Ring2_Integer height, Machine_ByteBuffer* pixels);
+Machine_Images_Image* Machine_Images_Image_createImageDirect(Machine_PixelFormat pixelFormat, Ring2_Integer width, Ring2_Integer height, Ring2_ByteBuffer* pixels);
 
 
 

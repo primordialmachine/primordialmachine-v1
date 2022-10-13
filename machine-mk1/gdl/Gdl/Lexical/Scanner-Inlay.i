@@ -6,10 +6,10 @@ static int current(Machine_Gdl_Scanner const* self);
 
 static void write(Machine_Gdl_Scanner const* self, int symbol) {
   if (symbol == Symbol_EndOfInput) {
-    Machine_ByteBuffer_appendBytes(self->tokenText, "<end of input>", strlen("<end of input>"));
+    Ring2_ByteBuffer_appendBytes(self->tokenText, "<end of input>", strlen("<end of input>"));
   } else {
     char temporary = (char)symbol;
-    Machine_ByteBuffer_appendBytes(self->tokenText, &temporary, 1);
+    Ring2_ByteBuffer_appendBytes(self->tokenText, &temporary, 1);
   }
 }
 
@@ -35,7 +35,7 @@ static void writeAndNext(Machine_Gdl_Scanner* self, int symbol) {
 
 static int current(Machine_Gdl_Scanner const* self) {
   if (self->currentPos == self->endPos) return Symbol_EndOfInput;
-  return Machine_ByteBuffer_getBytes(self->inputBytes)[self->currentPos];
+  return Ring2_ByteBuffer_getBytes(self->inputBytes)[self->currentPos];
 }
 
 static bool is(Machine_Gdl_Scanner const* self, int expectedSymbol) {

@@ -16,14 +16,14 @@ void
 Machine_setFileContents
   (
     Ring2_String* path,
-    Machine_ByteBuffer* bytes
+    Ring2_ByteBuffer* bytes
   )
 {
   Machine_Io_initialize();
   path = Ring2_String_concatenate(Ring2_Context_get(), path, Ring2_String_create(Ring2_Context_get(), "", 1));
   if (Ring1_FileSystem_setFileContents(Ring2_String_getBytes(Ring2_Context_get(), path),
-                                       Machine_ByteBuffer_getBytes(bytes),
-                                       Machine_ByteBuffer_getNumberOfBytes(bytes))) {
+                                       Ring2_ByteBuffer_getBytes(bytes),
+                                       Ring2_ByteBuffer_getNumberOfBytes(bytes))) {
     Ring2_jump();
   }
 }

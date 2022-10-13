@@ -38,6 +38,9 @@ artifacts:
 # Execute test scripts.
 test_script:
     - ps: |
+          $fail = $False;
+
+    - ps: |
           $name = 'Ring1.Intrinsic.Test';
           $prefix = "${env:appveyor_build_folder}\Ring1\products\${env:platform}\${env:configuration}\Ring1.Intrinsic.Test";
           $suffix = 'Ring1.Intrinsic.Test.exe';
@@ -50,6 +53,7 @@ test_script:
             Add-AppveyorTest -Name ${name} -Filename "${prefix}\${suffix}" -Outcome Passed -Duration $($endMs - $startMs);
           } else {
             Add-AppveyorTest -Name ${name} -Filename "${prefix}\${suffix}" -Outcome Failed -Duration $($endMs - $startMs);
+            $fail = $True;
           }
 
     - ps: |
@@ -65,5 +69,11 @@ test_script:
             Add-AppveyorTest -Name ${name} -Filename "${prefix}\${suffix}" -Outcome Passed -Duration $($endMs - $startMs);
           } else {
             Add-AppveyorTest -Name ${name} -Filename "${prefix}\${suffix}" -Outcome Failed -Duration $($endMs - $startMs);
+            $fail = $True;
+          }
+
+    - ps: |
+          if ($fail) {
+            throw "unit test(s) failed";
           }
 

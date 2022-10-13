@@ -11,8 +11,8 @@
   }
 
 static void test_1_1() {
-  Machine_ByteBuffer* inputText = Machine_ByteBuffer_create();
-  Machine_ByteBuffer_appendBytes(inputText, "", strlen(""));
+  Ring2_ByteBuffer* inputText = Ring2_ByteBuffer_create();
+  Ring2_ByteBuffer_appendBytes(inputText, "", strlen(""));
   Machine_Gdl_Scanner* scanner = Machine_Gdl_Scanner_create(Ring2_String_create(Ring2_Context_get(), "", strlen("")), inputText);
   CHECK(Machine_Gdl_TokenKind_StartOfInput);
   Machine_Gdl_Scanner_step(scanner);
@@ -22,8 +22,8 @@ static void test_1_1() {
 }
 
 static void test_1_2() {
-  Machine_ByteBuffer *inputText = Machine_ByteBuffer_create();
-  Machine_ByteBuffer_appendBytes(inputText, "{:true,false.void;}", strlen("{:true,false.void;}"));
+  Ring2_ByteBuffer *inputText = Ring2_ByteBuffer_create();
+  Ring2_ByteBuffer_appendBytes(inputText, "{:true,false.void;}", strlen("{:true,false.void;}"));
   Machine_Gdl_Scanner* scanner = Machine_Gdl_Scanner_create(Ring2_String_create(Ring2_Context_get(), "", strlen("")), inputText);
 
   CHECK(Machine_Gdl_TokenKind_StartOfInput); Machine_Gdl_Scanner_step(scanner);

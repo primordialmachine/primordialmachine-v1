@@ -17,7 +17,7 @@ struct Machine_Gdl_Scanner {
   Machine_Object __parent;
 
   Ring2_String* inputName;
-  Machine_ByteBuffer* inputBytes;
+  Ring2_ByteBuffer* inputBytes;
   /// @brief The end position.
   size_t endPos;
   /// @brief The current position.
@@ -26,14 +26,14 @@ struct Machine_Gdl_Scanner {
   /// @default token type "start of input" with text "<start of input>" and offset 0.
   Machine_Gdl_TokenKind tokenKind;
   size_t tokenStart;
-  Machine_ByteBuffer* tokenText;
+  Ring2_ByteBuffer* tokenText;
 };
 
 Machine_Gdl_Scanner* Machine_Gdl_Scanner_create(Ring2_String* inputName,
-                                                Machine_ByteBuffer* inputBytes);
+                                                Ring2_ByteBuffer* inputBytes);
 
 void Machine_Gdl_Scanner_setInput(Machine_Gdl_Scanner* self, Ring2_String* inputName,
-                                  Machine_ByteBuffer* inputBytes);
+                                  Ring2_ByteBuffer* inputBytes);
 
 /// @brief Compute the next token.
 /// @param self This scanner.

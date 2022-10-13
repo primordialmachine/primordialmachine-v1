@@ -34,6 +34,9 @@ artifacts:
 # Execute test scripts.
 test_script:
     - ps: |
+          $fail = $False;
+
+    - ps: |
           $name = 'Ring2.Library.Test';
           $prefix = "${env:appveyor_build_folder}\Ring2\products\${env:platform}\${env:configuration}\Ring2.Library.Test";
           $suffix = 'Ring2.Library.Test.exe';
@@ -46,4 +49,10 @@ test_script:
             Add-AppveyorTest -Name ${name} -Filename "${prefix}\${suffix}" -Outcome Passed -Duration $($endMs - $startMs);
           } else {
             Add-AppveyorTest -Name ${name} -Filename "${prefix}\${suffix}" -Outcome Failed -Duration $($endMs - $startMs);
+            $fail = $True;
+          }
+
+    - ps: |
+          if ($fail) {
+            throw "unit test(s) failed";
           }

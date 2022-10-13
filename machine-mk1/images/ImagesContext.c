@@ -12,12 +12,12 @@ static Machine_Images_Image* createFromPath(Machine_Images_ImagesContext* self, 
   return Machine_Images_Image_createImageFromPath(path);
 }
 
-static Machine_Images_Image* createDirect(Machine_Images_ImagesContext* self, Machine_PixelFormat pixelFormat, Ring2_Integer width, Ring2_Integer height, Machine_ByteBuffer* pixels) {
+static Machine_Images_Image* createDirect(Machine_Images_ImagesContext* self, Machine_PixelFormat pixelFormat, Ring2_Integer width, Ring2_Integer height, Ring2_ByteBuffer* pixels) {
   return Machine_Images_Image_createImageDirect(pixelFormat, width, height, pixels);
 }
 
 static void constructClass(Machine_Images_ImagesContext_Class* self) {
-  ((Machine_ImagesContext_Class*)self)->createDirect = (Machine_Image * (*)(Machine_ImagesContext*, Machine_PixelFormat, Ring2_Integer, Ring2_Integer, Machine_ByteBuffer*)) & createDirect;
+  ((Machine_ImagesContext_Class*)self)->createDirect = (Machine_Image * (*)(Machine_ImagesContext*, Machine_PixelFormat, Ring2_Integer, Ring2_Integer, Ring2_ByteBuffer*)) & createDirect;
   ((Machine_ImagesContext_Class*)self)->createFromPath = (Machine_Image * (*)(Machine_ImagesContext*, Ring2_String*)) & createFromPath;
 }
 
