@@ -7,10 +7,7 @@
 #if !defined(MACHINE_GUI_PRIVATE)
 #error("Do not include this file directly, include `_Gui.h` instead.")
 #endif
-#include "Ring2/Library/_Include.h"
-#include "_Graphics2.h"
-#include "_Math.h"
-#include "_Signals.h"
+#include "Gui/header.h.i"
 typedef struct Machine_Gui_Context Machine_Gui_Context;
 
 /// @brief Base of all widgets.

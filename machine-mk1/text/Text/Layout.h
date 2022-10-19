@@ -36,7 +36,7 @@ struct Machine_Text_Layout {
   /// @brief The font of this layout.
   Machine_Font* font;
   Ring2_String* text;
-  Ring2_ArrayList* lines;
+  Ring2_Collections_ArrayList* lines;
   bool yup;
 
   /// @brief Combination of layout flags.

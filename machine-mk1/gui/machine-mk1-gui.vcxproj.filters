@@ -139,5 +139,8 @@
     <None Include="Gui\Signals\Context.i">
       <Filter>Quelldateien\Gui\Signals</Filter>
     </None>
+    <None Include="Gui\header.h.i">
+      <Filter>Headerdateien\Gui</Filter>
+    </None>
   </ItemGroup>
 </Project>

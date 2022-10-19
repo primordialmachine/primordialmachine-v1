@@ -68,11 +68,11 @@ static Ring2_String* getLog_noraise(GLuint id) {
 }
 
 static size_t Machine_Gl_ShaderProgram_getNumberOfInputsImpl(Machine_Gl_ShaderProgram const* self) {
-  return Ring2_Collection_getSize((Ring2_Collection*)self->inputs);
+  return Ring2_Collections_Collection_getSize((Ring2_Collections_Collection*)self->inputs);
 }
 
 static Machine_ProgramInput* Machine_Gl_ShaderProgram_getInputAtImpl(Machine_Gl_ShaderProgram const* self, size_t index) {
-  Ring2_Value temporary = Ring2_List_getAt(self->inputs, index);
+  Ring2_Value temporary = Ring2_Collections_List_getAt(self->inputs, index);
   return (Machine_ProgramInput*)Ring2_Value_getObject(&temporary);
 }
 
@@ -88,7 +88,7 @@ static Ring2_Boolean Machine_Gl_ShaderProgram_addUpdateInputImpl(Machine_Gl_Shad
   Machine_ProgramInput* input = Machine_ProgramInput_create(name, type, kind);
   Ring2_Value temporary;
   Ring2_Value_setObject(&temporary, (Machine_Object*)input);
-  Ring2_List_append(self->inputs, temporary);
+  Ring2_Collections_List_append(self->inputs, temporary);
   return false;
 }
 
@@ -210,7 +210,7 @@ static void constructFromText(Machine_Gl_ShaderProgram* self, char const* vertex
   self->vertexProgramId = vertexShaderId;
   self->geometryProgramId = geometryShaderId;
   self->fragmentProgramId = fragmentShaderId;
-  self->inputs = Ring1_cast(Ring2_List *, Ring2_ArrayList_create());
+  self->inputs = Ring1_cast(Ring2_Collections_List *, Ring2_Collections_ArrayList_create());
 }
 
 static void Machine_Gl_ShaderProgram_constructClass(Machine_Gl_ShaderProgram_Class* self) {

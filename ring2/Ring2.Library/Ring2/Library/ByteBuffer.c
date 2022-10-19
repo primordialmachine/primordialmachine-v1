@@ -48,13 +48,13 @@ Ring2_ByteBuffer_destruct
   Ring1_ByteBuffer_uninitialize(&self->byteBuffer);
 }
 
-MACHINE_DEFINE_CLASSTYPE(Ring2_ByteBuffer,
-                         Machine_Object,
-                         NULL,
-                         &Ring2_ByteBuffer_construct,
-                         &Ring2_ByteBuffer_destruct,
-                         NULL,
-                         NULL)
+MACHINE_DEFINE_CLASSTYPE(Ring2_ByteBuffer/*type*/,
+                         Machine_Object/*parentType*/,
+                         NULL/*visit*/,
+                         &Ring2_ByteBuffer_construct/*construct*/,
+                         &Ring2_ByteBuffer_destruct/*destruct*/,
+                         NULL/*constructClasses*/,
+                         NULL/*implementInterfaces*/)
 
 Ring2_ByteBuffer*
 Ring2_ByteBuffer_create

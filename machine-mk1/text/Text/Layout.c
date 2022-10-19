@@ -42,7 +42,7 @@ static void Machine_Text_Layout_visit(Machine_Text_Layout* self) {
   }
 }
 
-static void parse(Ring2_String* text, Ring2_List* lines) {
+static void parse(Ring2_String* text, Ring2_Collections_List* lines) {
   const char* start = Ring2_String_getBytes(Ring2_Context_get(), text),
             * end = Ring2_String_getBytes(Ring2_Context_get(), text) + Ring2_String_getNumberOfBytes(Ring2_Context_get(), text);
 
@@ -60,7 +60,7 @@ static void parse(Ring2_String* text, Ring2_List* lines) {
       Machine_Text_LayoutLine* line = Machine_Text_LayoutLine_create(lineStart - start, lineEnd - lineStart);
       Ring2_Value t;
       Ring2_Value_setObject(&t, (Machine_Object *)line);
-      Ring2_List_append(lines, t);
+      Ring2_Collections_List_append(lines, t);
       lineStart = lineEnd;
     }
     lineEnd++;
@@ -69,11 +69,11 @@ static void parse(Ring2_String* text, Ring2_List* lines) {
     Machine_Text_LayoutLine* line = Machine_Text_LayoutLine_create(lineStart - start, lineEnd - lineStart);
     Ring2_Value t;
     Ring2_Value_setObject(&t, (Machine_Object *)line);
-    Ring2_List_append(lines, t);
+    Ring2_Collections_List_append(lines, t);
   }
 }
 
-static void updateLinesBounds(Machine_Math_Vector2* position, Machine_Font* font, Ring2_String* text, Ring2_List* lines, bool yup) {
+static void updateLinesBounds(Machine_Math_Vector2* position, Machine_Font* font, Ring2_String* text, Ring2_Collections_List* lines, bool yup) {
   Machine_Math_Vector2* position0 = Machine_Math_Vector2_create();
 #if defined(WITH_SNAPTOGRID)
   // Snap to pixel (ensure there are no artifacts).
@@ -87,8 +87,8 @@ static void updateLinesBounds(Machine_Math_Vector2* position, Machine_Font* font
   Machine_Math_Vector2* cursorPosition = Machine_Math_Vector2_create();
   Machine_Math_Rectangle2* lineBounds = Machine_Math_Rectangle2_create();
 
-  for (int64_t i = 0, n = Ring2_Collection_getSize(Ring1_cast(Ring2_Collection *, lines)); i < n; ++i) {
-    Ring2_Value t = Ring2_List_getAt(lines, i);
+  for (int64_t i = 0, n = Ring2_Collections_Collection_getSize(Ring1_cast(Ring2_Collections_Collection *, lines)); i < n; ++i) {
+    Ring2_Value t = Ring2_Collections_List_getAt(lines, i);
     Machine_Text_LayoutLine* layoutLine = (Machine_Text_LayoutLine*)Ring2_Value_getObject(&t);
     const char* bytes = Ring2_String_getBytes(Ring2_Context_get(), text);
 
@@ -138,8 +138,8 @@ static void updateLinesBounds(Machine_Math_Vector2* position, Machine_Font* font
     Machine_Math_Vector2_set(cursorPosition, 0.f,  Machine_Math_Vector2_getY(cursorPosition) + Machine_Font_getBaselineDistance(font));
   }
 
-  for (int64_t i = 0, n = Ring2_Collection_getSize(Ring1_cast(Ring2_Collection *, lines)); i < n; ++i) {
-    Ring2_Value t = Ring2_List_getAt(lines, i);
+  for (int64_t i = 0, n = Ring2_Collections_Collection_getSize(Ring1_cast(Ring2_Collections_Collection *, lines)); i < n; ++i) {
+    Ring2_Value t = Ring2_Collections_List_getAt(lines, i);
     Machine_Text_LayoutLine* layoutLine = Ring1_cast(Machine_Text_LayoutLine *, Ring2_Value_getObject(&t));
     layoutLine->top += Machine_Math_Vector2_getY(position0);
     layoutLine->left += Machine_Math_Vector2_getX(position0);
@@ -167,8 +167,8 @@ static void updateBounds(Machine_Text_Layout* self) {
 
   const char* bytes = Ring2_String_getBytes(Ring2_Context_get(), self->text);
 
-  for (int64_t i = 0, n = Ring2_Collection_getSize(Ring1_cast(Ring2_Collection *, self->lines)); i < n; ++i) {
-    Ring2_Value e = Ring2_List_getAt(Ring1_cast(Ring2_List *, self->lines), i);
+  for (int64_t i = 0, n = Ring2_Collections_Collection_getSize(Ring1_cast(Ring2_Collections_Collection *, self->lines)); i < n; ++i) {
+    Ring2_Value e = Ring2_Collections_List_getAt(Ring1_cast(Ring2_Collections_List *, self->lines), i);
     Machine_Text_LayoutLine* layoutLine = (Machine_Text_LayoutLine*)Ring2_Value_getObject(&e);
     Machine_Math_Vector2_set(p, layoutLine->left, layoutLine->top);
     Machine_Math_Rectangle2_addPoint(bounds, p);
@@ -196,7 +196,7 @@ void Machine_Text_Layout_construct(Machine_Text_Layout* self, size_t numberOfArg
   Machine_Math_Vector2_set(self->position, 0.f, 0.f);
   self->text = Ring2_Value_getString(arguments + 0);
   self->font = (Machine_Font *)Ring2_Value_getObject(arguments + 1);
-  self->lines = Ring2_ArrayList_create();
+  self->lines = Ring2_Collections_ArrayList_create();
   self->yup = true;
   self->flags |= LINES_DIRTY;
   Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Text_Layout_getType());
@@ -217,13 +217,13 @@ Machine_Text_Layout* Machine_Text_Layout_create(Ring2_String* text, Machine_Font
 
 const Machine_Math_Rectangle2* Machine_Text_Layout_getBounds(Machine_Text_Layout* self) {
   if ((self->flags & LINES_DIRTY) == LINES_DIRTY) {
-    Ring2_Collection_clear(Ring1_cast(Ring2_Collection *, self->lines));
-    parse(self->text, Ring1_cast(Ring2_List *, self->lines));
+    Ring2_Collections_Collection_clear(Ring1_cast(Ring2_Collections_Collection *, self->lines));
+    parse(self->text, Ring1_cast(Ring2_Collections_List *, self->lines));
     self->flags |= LINE_BOUNDS_DIRTY;
     self->flags &= ~LINES_DIRTY;
   }
   if ((self->flags & LINE_BOUNDS_DIRTY) == LINE_BOUNDS_DIRTY) {
-    updateLinesBounds(self->position, self->font, self->text, Ring1_cast(Ring2_List *, self->lines), self->yup);
+    updateLinesBounds(self->position, self->font, self->text, Ring1_cast(Ring2_Collections_List *, self->lines), self->yup);
     self->flags |= BOUNDS_DIRTY;
     self->flags &= ~LINE_BOUNDS_DIRTY;
   }
@@ -236,13 +236,13 @@ const Machine_Math_Rectangle2* Machine_Text_Layout_getBounds(Machine_Text_Layout
 
 void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* context2) {
   if ((self->flags & LINES_DIRTY) == LINES_DIRTY) {
-    Ring2_Collection_clear(Ring1_cast(Ring2_Collection *, self->lines));
-    parse(self->text, Ring1_cast(Ring2_List *, self->lines));
+    Ring2_Collections_Collection_clear(Ring1_cast(Ring2_Collections_Collection *, self->lines));
+    parse(self->text, Ring1_cast(Ring2_Collections_List *, self->lines));
     self->flags |= LINE_BOUNDS_DIRTY;
     self->flags &= ~LINES_DIRTY;
   }
   if ((self->flags & LINE_BOUNDS_DIRTY) == LINE_BOUNDS_DIRTY) {
-    updateLinesBounds(self->position, self->font, self->text, Ring1_cast(Ring2_List *, self->lines), self->yup);
+    updateLinesBounds(self->position, self->font, self->text, Ring1_cast(Ring2_Collections_List *, self->lines), self->yup);
     self->flags |= BOUNDS_DIRTY;
     self->flags &= ~LINE_BOUNDS_DIRTY;
   }
@@ -348,8 +348,8 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* con
 
   Machine_Math_Vector2* symbolAdvance = Machine_Math_Vector2_create();
   Machine_Math_Rectangle2* symbolBounds = Machine_Math_Rectangle2_create();
-  for (int64_t i = 0, n = Ring2_Collection_getSize(Ring1_cast(Ring2_Collection *, self->lines)); i < n; ++i) {
-    Ring2_Value t = Ring2_List_getAt(Ring1_cast(Ring2_List *, self->lines), i);
+  for (int64_t i = 0, n = Ring2_Collections_Collection_getSize(Ring1_cast(Ring2_Collections_Collection *, self->lines)); i < n; ++i) {
+    Ring2_Value t = Ring2_Collections_List_getAt(Ring1_cast(Ring2_Collections_List *, self->lines), i);
     Machine_Text_LayoutLine* layoutLine = (Machine_Text_LayoutLine*)Ring2_Value_getObject(&t);
     for (size_t j = layoutLine->start, m = layoutLine->start + layoutLine->length; j < m; ++j) {
       uint32_t codepoint = bytes[j];

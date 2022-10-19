@@ -2,6 +2,7 @@
 
 
 #include "Ring1/Intrinsic.h"
+#include "Ring3/Gdl/_Include.h"
 #include <string.h>
 #include "_Gui.h"
 #include "_Images.h"

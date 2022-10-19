@@ -20,6 +20,10 @@
 /// Ring1_NonNull() void f(void *x, void *y, void *z)
 /// @endcode
 /// Indicates that x, y, and z must be non null.
+/// @remark
+/// GCC/CLANG supports via this attribute via
+/// @see https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#Common-Function-Attributes
+/// MSVC does not support this attribute.
 #if defined(__GNUC__)
   #define Ring1_NonNull(...) __attribute((nonnull(__VA_ARGS__)))
 #elif defined(_MSC_VER)

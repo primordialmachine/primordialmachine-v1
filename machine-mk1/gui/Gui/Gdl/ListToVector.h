@@ -17,7 +17,7 @@
 /// a value of type <code>Math.Vector3</code>.
 /// @param value A pointer to a value.
 /// @return The value of type <code>Real</code>.
-Machine_Math_Vector3* Machine_Gui_Gdl_listToVector3(Ring2_List const* list);
+Machine_Math_Vector3* Machine_Gui_Gdl_listToVector3(Ring2_Collections_List const* list);
 
 /// @brief
 /// Convert
@@ -26,6 +26,6 @@ Machine_Math_Vector3* Machine_Gui_Gdl_listToVector3(Ring2_List const* list);
 /// a value of type <code>Math.Vector4</code>.
 /// @param value A pointer to a value.
 /// @return The value of type <code>Real</code>.
-Machine_Math_Vector4* Machine_Gui_Gdl_listToVector4(Ring2_List const* list);
+Machine_Math_Vector4* Machine_Gui_Gdl_listToVector4(Ring2_Collections_List const* list);
 
 #endif // MACHINE_GUI_GDL_LISTTOVECTOR3_H_INCLUDED

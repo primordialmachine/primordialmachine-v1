@@ -16,7 +16,7 @@
 #define VERBOSE (0)
 
 static size_t g_referenceCount = 0;
-static Ring2_List* g_events = NULL;
+static Ring2_Collections_List* g_events = NULL;
 
 static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int modifiers) {
   Machine_Video_Gl_Canvas* canvas = glfwGetWindowUserPointer(window);
@@ -134,7 +134,7 @@ void Machine_Glfw_startupCanvasInput() {
     Ring2_JumpTarget jumpTarget;
     Ring2_pushJumpTarget(&jumpTarget);
     if (!setjmp(jumpTarget.environment)) {
-      g_events = (Ring2_List*)Ring2_ArrayList_create();
+      g_events = (Ring2_Collections_List*)Ring2_Collections_ArrayList_create();
       Ring2_Gc_lock(g_events);
       Ring2_popJumpTarget();
     } else {

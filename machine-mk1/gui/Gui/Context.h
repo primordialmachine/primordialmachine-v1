@@ -7,10 +7,10 @@
 #if !defined(MACHINE_GUI_PRIVATE)
 #error("Do not include this file directly, include `_Gui.h` instead.")
 #endif
+#include "Gui/header.h.i"
 #include "Gui/Gdl/Context.h"
 #include "Gui/GroupNode.h"
 #include "Gui/Signals/Context.h"
-#include "_Graphics2.h"
 
 /// @brief A GUI context.
 /// @extends Machine.Object

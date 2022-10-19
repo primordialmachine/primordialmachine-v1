@@ -94,18 +94,18 @@ static void Machine_Video_Gl_Canvas_swapFrameBuffers(Machine_Video_Gl_Canvas* se
 }
 
 static void Machine_Video_Gl_Canvas_setCanvasIcons(Machine_Video_Gl_Canvas* self,
-                                                   Ring2_List* images) {
+                                                   Ring2_Collections_List* images) {
   GLFWimage* targetImages = NULL;
 
   Ring2_JumpTarget jumpTarget;
   Ring2_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
-    size_t numberOfImages = Ring2_Collection_getSize((Ring2_Collection*)images);
+    size_t numberOfImages = Ring2_Collections_Collection_getSize((Ring2_Collections_Collection*)images);
     if (Ring1_Memory_allocateArray(&targetImages, numberOfImages, sizeof(GLFWimage))) {
       Ring2_jump();
     }
     for (size_t i = 0, n = numberOfImages; i < n; ++i) {
-      Ring2_Value temporary = Ring2_List_getAt(images, i);
+      Ring2_Value temporary = Ring2_Collections_List_getAt(images, i);
       Machine_Image* image = (Machine_Image*)Ring2_Value_getObject(&temporary);
       Ring2_Integer w, h;
       void const* p;
@@ -155,7 +155,7 @@ static void Machine_Video_Gl_Canvas_constructClass(Machine_Video_Gl_Canvas_Class
   ((Machine_Video_Canvas_Class*)self)->swapFrameBuffers
       = (void (*)(Machine_Video_Canvas*)) & Machine_Video_Gl_Canvas_swapFrameBuffers;
   ((Machine_Video_Canvas_Class*)self)->setCanvasIcons
-      = (void (*)(Machine_Video_Canvas*, Ring2_List*)) & Machine_Video_Gl_Canvas_setCanvasIcons;
+      = (void (*)(Machine_Video_Canvas*, Ring2_Collections_List*)) & Machine_Video_Gl_Canvas_setCanvasIcons;
   ((Machine_Video_Canvas_Class*)self)->pollEvents
       = (void (*)(Machine_Video_Canvas*)) & Machine_Video_Gl_Canvas_pollEvents;
   ((Machine_Video_Canvas_Class*)self)->getQuitRequested

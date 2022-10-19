@@ -27,15 +27,18 @@
     <Filter Include="Quelldateien\Ring2\Library\Io">
       <UniqueIdentifier>{19619385-5e91-4faf-878d-80d5a87e5f42}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring2\Library\Collections">
+      <UniqueIdentifier>{ef3b606a-f9b8-4711-b579-4825cc2e264b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring2\Library\Collections">
+      <UniqueIdentifier>{b32d689b-747a-486d-86db-b2b0ed3a3a58}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring2\Library\_Include.h">
       <Filter>Headerdateien\Ring2\Library</Filter>
     </ClInclude>
     <ClInclude Include="Ring2\Library\StringBuffer.h">
-      <Filter>Headerdateien\Ring2\Library</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring2\Library\Pair.h">
       <Filter>Headerdateien\Ring2\Library</Filter>
     </ClInclude>
     <ClInclude Include="Ring2\Library\ByteBuffer.h">
@@ -45,36 +48,6 @@
       <Filter>Headerdateien\Ring2\Library</Filter>
     </ClInclude>
     <ClInclude Include="Ring2\Library\ArgumentsUtilities.h">
-      <Filter>Headerdateien\Ring2\Library</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring2\Library\Deque.h">
-      <Filter>Headerdateien\Ring2\Library</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring2\Library\List.h">
-      <Filter>Headerdateien\Ring2\Library</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring2\Library\Map.h">
-      <Filter>Headerdateien\Ring2\Library</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring2\Library\Collection.h">
-      <Filter>Headerdateien\Ring2\Library</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring2\Library\HashMap.h">
-      <Filter>Headerdateien\Ring2\Library</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring2\Library\ArrayList.h">
-      <Filter>Headerdateien\Ring2\Library</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring2\Library\ArrayDeque.h">
-      <Filter>Headerdateien\Ring2\Library</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring2\Library\ArrayStack.h">
-      <Filter>Headerdateien\Ring2\Library</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring2\Library\CollectionUtilities.h">
-      <Filter>Headerdateien\Ring2\Library</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring2\Library\HashSet.h">
       <Filter>Headerdateien\Ring2\Library</Filter>
     </ClInclude>
     <ClInclude Include="Ring2\Library\WeakReference.h">
@@ -92,14 +65,50 @@
     <ClInclude Include="Ring2\Library\Io.h">
       <Filter>Headerdateien\Ring2\Library</Filter>
     </ClInclude>
-    <ClInclude Include="Ring2\Library\Stack.h">
-      <Filter>Headerdateien\Ring2\Library</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring2\Library\Set.h">
-      <Filter>Headerdateien\Ring2\Library</Filter>
-    </ClInclude>
     <ClInclude Include="Ring2\Library\Io\Initialize.h">
       <Filter>Headerdateien\Ring2\Library\Io</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Library\Collections\ArrayDeque.h">
+      <Filter>Headerdateien\Ring2\Library\Collections</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Library\Collections\ArrayList.h">
+      <Filter>Headerdateien\Ring2\Library\Collections</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Library\Collections\ArrayStack.h">
+      <Filter>Headerdateien\Ring2\Library\Collections</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Library\Collections\Collection.h">
+      <Filter>Headerdateien\Ring2\Library\Collections</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Library\Collections\CollectionUtilities.h">
+      <Filter>Headerdateien\Ring2\Library\Collections</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Library\Collections\Deque.h">
+      <Filter>Headerdateien\Ring2\Library\Collections</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Library\Collections\HashMap.h">
+      <Filter>Headerdateien\Ring2\Library\Collections</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Library\Collections\HashSet.h">
+      <Filter>Headerdateien\Ring2\Library\Collections</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Library\Collections\List.h">
+      <Filter>Headerdateien\Ring2\Library\Collections</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Library\Collections\Map.h">
+      <Filter>Headerdateien\Ring2\Library\Collections</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Library\Collections\Pair.h">
+      <Filter>Headerdateien\Ring2\Library\Collections</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Library\Collections\Set.h">
+      <Filter>Headerdateien\Ring2\Library\Collections</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Library\Collections\Stack.h">
+      <Filter>Headerdateien\Ring2\Library\Collections</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Library\Collections\_Include.h">
+      <Filter>Headerdateien\Ring2\Library\Collections</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -109,9 +118,6 @@
     <ClCompile Include="Ring2\Library\StringBuffer.c">
       <Filter>Quelldateien\Ring2\Library</Filter>
     </ClCompile>
-    <ClCompile Include="Ring2\Library\Pair.c">
-      <Filter>Quelldateien\Ring2\Library</Filter>
-    </ClCompile>
     <ClCompile Include="Ring2\Library\ByteBuffer.c">
       <Filter>Quelldateien\Ring2\Library</Filter>
     </ClCompile>
@@ -119,36 +125,6 @@
       <Filter>Quelldateien\Ring2\Library</Filter>
     </ClCompile>
     <ClCompile Include="Ring2\Library\ArgumentsUtilities.c">
-      <Filter>Quelldateien\Ring2\Library</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring2\Library\Deque.c">
-      <Filter>Quelldateien\Ring2\Library</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring2\Library\List.c">
-      <Filter>Quelldateien\Ring2\Library</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring2\Library\Map.c">
-      <Filter>Quelldateien\Ring2\Library</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring2\Library\Collection.c">
-      <Filter>Quelldateien\Ring2\Library</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring2\Library\ArrayDeque.c">
-      <Filter>Quelldateien\Ring2\Library</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring2\Library\ArrayList.c">
-      <Filter>Quelldateien\Ring2\Library</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring2\Library\HashMap.c">
-      <Filter>Quelldateien\Ring2\Library</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring2\Library\ArrayStack.c">
-      <Filter>Quelldateien\Ring2\Library</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring2\Library\CollectionUtilities.c">
-      <Filter>Quelldateien\Ring2\Library</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring2\Library\HashSet.c">
       <Filter>Quelldateien\Ring2\Library</Filter>
     </ClCompile>
     <ClCompile Include="Ring2\Library\WeakReference.c">
@@ -166,14 +142,64 @@
     <ClCompile Include="Ring2\Library\Io.c">
       <Filter>Quelldateien\Ring2\Library</Filter>
     </ClCompile>
-    <ClCompile Include="Ring2\Library\Stack.c">
-      <Filter>Quelldateien\Ring2\Library</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring2\Library\Set.c">
-      <Filter>Quelldateien\Ring2\Library</Filter>
-    </ClCompile>
     <ClCompile Include="Ring2\Library\Io\Initialize.c">
       <Filter>Quelldateien\Ring2\Library\Io</Filter>
     </ClCompile>
+    <ClCompile Include="Ring2\Library\Collections\ArrayDeque.c">
+      <Filter>Quelldateien\Ring2\Library\Collections</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Library\Collections\ArrayList.c">
+      <Filter>Quelldateien\Ring2\Library\Collections</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Library\Collections\ArrayStack.c">
+      <Filter>Quelldateien\Ring2\Library\Collections</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Library\Collections\Collection.c">
+      <Filter>Quelldateien\Ring2\Library\Collections</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Library\Collections\CollectionUtilities.c">
+      <Filter>Quelldateien\Ring2\Library\Collections</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Library\Collections\Deque.c">
+      <Filter>Quelldateien\Ring2\Library\Collections</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Library\Collections\HashMap.c">
+      <Filter>Quelldateien\Ring2\Library\Collections</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Library\Collections\HashSet.c">
+      <Filter>Quelldateien\Ring2\Library\Collections</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Library\Collections\List.c">
+      <Filter>Quelldateien\Ring2\Library\Collections</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Library\Collections\Map.c">
+      <Filter>Quelldateien\Ring2\Library\Collections</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Library\Collections\Pair.c">
+      <Filter>Quelldateien\Ring2\Library\Collections</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Library\Collections\Set.c">
+      <Filter>Quelldateien\Ring2\Library\Collections</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Library\Collections\Stack.c">
+      <Filter>Quelldateien\Ring2\Library\Collections</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Library\Collections\_Include.c">
+      <Filter>Quelldateien\Ring2\Library\Collections</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ring2\Library\Collections\ArrayList.decls.i">
+      <Filter>Headerdateien\Ring2\Library\Collections</Filter>
+    </None>
+    <None Include="Ring2\Library\Collections\ArrayList.defns.i">
+      <Filter>Headerdateien\Ring2\Library\Collections</Filter>
+    </None>
+    <None Include="Ring2\Library\Collections\ArrayStack.decls.i">
+      <Filter>Headerdateien\Ring2\Library\Collections</Filter>
+    </None>
+    <None Include="Ring2\Library\Collections\ArrayStack.defns.i">
+      <Filter>Headerdateien\Ring2\Library\Collections</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -28,11 +28,11 @@
     <ProjectReference Include="..\..\ring2\Ring2\Ring2.vcxproj">
       <Project>{3ade4501-5d5c-4878-9632-f81c3de2429c}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\ring3\Ring3.Gdl\Ring3.Gdl.vcxproj">
+      <Project>{a45e158d-8db9-4d07-9642-a79c583a5dd1}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\fonts\machine-mk1-fonts.vcxproj">
       <Project>{36897cc2-2e49-4ce8-804d-aa172ec849e0}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\gdl\machine-mk1-gdl.vcxproj">
-      <Project>{a45e158d-8db9-4d07-9642-a79c583a5dd1}</Project>
     </ProjectReference>
     <ProjectReference Include="..\graphics2\machine-mk1-graphics2.vcxproj">
       <Project>{f4aa48f9-3c29-4cc5-b219-c357284103b2}</Project>
@@ -107,6 +107,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </None>
+    <None Include="Gui\header.h.i" />
     <None Include="Gui\Signals\Context.i">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>

@@ -35,7 +35,7 @@ struct Machine_Signals_Signal_Class {
 
 struct Machine_Signals_Signal {
   Machine_Object parent__;
-  Ring2_List* connections;
+  Ring2_Collections_List* connections;
 };
 
 void Machine_Signals_Signal_construct(Machine_Signals_Signal* self, size_t numberOfArguments, Ring2_Value const* arguments);

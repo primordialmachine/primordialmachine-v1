@@ -7,6 +7,7 @@
 #if !defined(RING1_ANNOTATIONS__INCLUDE_H_INCLUDED)
 #define RING1_ANNOTATIONS__INCLUDE_H_INCLUDED
 
+#pragma push_macro("RING1_PRIVATE")
 #define RING1_PRIVATE (1)
 #include "Ring1/Annotations/CheckReturn.h"
 #include "Ring1/Annotations/Deprecated.h"
@@ -17,5 +18,6 @@
 #include "Ring1/Annotations/Obsolete.h"
 #include "Ring1/Annotations/Unlikely.h"
 #undef RING1_PRIVATE
+#pragma pop_macro("RING1_PRIVATE")
 
 #endif // RING1_ANNOTATIONS__INCLUDE_H_INCLUDED

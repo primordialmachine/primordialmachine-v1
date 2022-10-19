@@ -54,13 +54,17 @@ and_u8
   return value & mask;
 }
 
-#define Flags_Color_White (1)
+/// @brief The color "white".
+#define Ring2_Gc_Flags_Color_White (1)
 
-#define Flags_Color_Gray (Flags_Color_White | Flags_Color_Black)
+/// @brief The color "black".
+#define Ring2_Gc_Flags_Color_Black (2)
 
-#define Flags_Color_Black (2)
+/// @brief The color "gray".
+#define Ring2_Gc_Flags_Color_Gray (Ring2_Gc_Flags_Color_White | Ring2_Gc_Flags_Color_Black)
 
-#define Flags_Color_Mask (Flags_Color_White | Flags_Color_Gray | Flags_Color_Black)
+/// @brief Bitwise or of The color "white", "black", and "gray".
+#define Ring2_Gc_Flags_Color_Mask (Ring2_Gc_Flags_Color_White | Ring2_Gc_Flags_Color_Gray | Ring2_Gc_Flags_Color_Black)
 
 void
 Ring2_Gc_Tag_initialize
@@ -69,7 +73,7 @@ Ring2_Gc_Tag_initialize
   )
 {
   tag->locks = 0;
-  tag->flags = Flags_Color_White;
+  tag->flags = Ring2_Gc_Flags_Color_White;
   tag->type = NULL;
   tag->weakReferences = NULL;
 }
@@ -145,13 +149,15 @@ Ring2_Gc_Tag_notifyWeakReferences
   }
 }
 
+// Colour an object "white".
+// Undefined behavior if o does not point to a Ring2_Gc_Tag object.
 void
 Ring2_Gc_Tag_setWhite
   (
     Ring2_Gc_Tag* tag
   )
 {
-  tag->flags = or_u8(clear_u8(tag->flags, Flags_Color_Mask), Flags_Color_White);
+  tag->flags = or_u8(clear_u8(tag->flags, Ring2_Gc_Flags_Color_Mask), Ring2_Gc_Flags_Color_White);
 }
 
 bool
@@ -160,16 +166,18 @@ Ring2_Gc_Tag_isWhite
     Ring2_Gc_Tag const* tag
   )
 {
-  return Flags_Color_White == and_u8(tag->flags, Flags_Color_Mask);
+  return Ring2_Gc_Flags_Color_White == and_u8(tag->flags, Ring2_Gc_Flags_Color_Mask);
 }
 
+// Colour and object "gray".
+// Undefined behavior if o does not point to a Ring2_Gc_Tag object.
 void
 Ring2_Gc_Tag_setGray
   (
     Ring2_Gc_Tag* tag
   )
 {
-  tag->flags = or_u8(clear_u8(tag->flags, Flags_Color_Mask), Flags_Color_Gray);
+  tag->flags = or_u8(clear_u8(tag->flags, Ring2_Gc_Flags_Color_Mask), Ring2_Gc_Flags_Color_Gray);
 }
 
 bool
@@ -178,16 +186,18 @@ Ring2_Gc_Tag_isGray
     Ring2_Gc_Tag const* tag
   )
 {
-  return Flags_Color_Gray == and_u8(tag->flags, Flags_Color_Mask);
+  return Ring2_Gc_Flags_Color_Gray == and_u8(tag->flags, Ring2_Gc_Flags_Color_Mask);
 }
 
+// Colour and object "black".
+// Undefined behavior if o does not point to a Ring2_Gc_Tag object.
 void
 Ring2_Gc_Tag_setBlack
   (
     Ring2_Gc_Tag* tag
   )
 {
-  tag->flags = or_u8(clear_u8(tag->flags, Flags_Color_Mask), Flags_Color_Black);
+  tag->flags = or_u8(clear_u8(tag->flags, Ring2_Gc_Flags_Color_Mask), Ring2_Gc_Flags_Color_Black);
 }
 
 bool
@@ -196,7 +206,7 @@ Ring2_Gc_Tag_isBlack
     Ring2_Gc_Tag const* tag
   )
 {
-  return Flags_Color_Black == and_u8(tag->flags, Flags_Color_Mask);
+  return Ring2_Gc_Flags_Color_Black == and_u8(tag->flags, Ring2_Gc_Flags_Color_Mask);
 }
 
 void

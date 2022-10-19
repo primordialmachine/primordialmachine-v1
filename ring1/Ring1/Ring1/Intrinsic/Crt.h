@@ -26,4 +26,12 @@ char* crt_strdup(char const *x);
 
 size_t crt_strlen(char const *x);
 
+/// @brief printf/scanf-style format specifier for size_t.
+/// @remark This is necessary because of Redmon Retards' (aka Microsoft's) Visual C++.
+#if defined(_MSC_VER)
+  #define PRIuZ "Iu"
+#else
+  #define PRIuZ "zu"
+#endif
+
 #endif // RING1_CRT_H_INCLUDED

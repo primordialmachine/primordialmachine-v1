@@ -26,8 +26,9 @@ Ring1_Module_Declare(Ring2, StringModule)
 /// @brief Create a string.
 /// @param p, n The Bytes.
 /// @return The string.
-/// @error #Ring1_Status_InvalidArgument @a p is a null pointer.
-/// @error #Ring1_Status_TooLong @a n exceeds a certain limit.
+/// @error #Ring1_Status_InvalidArgument @a contextis a null pointer.
+/// @error #Ring1_Status_InvalidArgument @a bytes is a null pointer.
+/// @error #Ring1_Status_TooLong @a numberOfBytes exceeds a certain limit.
 Ring1_CheckReturn() Ring2_String *
 Ring2_String_create
   (

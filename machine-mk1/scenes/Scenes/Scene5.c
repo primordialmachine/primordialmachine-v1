@@ -2,6 +2,7 @@
 
 
 #include "Ring1/Intrinsic.h"
+#include "Ring3/Gdl/_Include.h"
 #include <string.h>
 #include "_Gui.h"
 #include "_Images.h"
@@ -54,20 +55,20 @@ MACHINE_DEFINE_CLASSTYPE(Scene5, Scene, &Scene5_visit, &Scene5_construct, NULL,
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 static Machine_Gui_Widget* loadWidget(Machine_Gui_Context* context, Machine_Gdl_Node* node) {
-  Ring2_Map* map = Machine_Gdl_Node_toMap(node, context->gdlContext->context);
+  Ring2_Collections_Map* map = Machine_Gdl_Node_toMap(node, context->gdlContext->context);
   return Machine_Gui_Reader_readWidget(context, map);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 static Machine_Gui_Widget* loadWidgetByPath(Machine_Gui_Context* context, const char* path) {
-  Ring2_String* inputPath = Ring2_String_create(Ring2_Context_get(), path, strlen(path));
+  Ring2_String* inputPath = Ring2_String_create(Ring2_Context_get(), path, crt_strlen(path));
   Ring2_ByteBuffer* inputText = Machine_getFileContentsAsByteBuffer(inputPath);
   Machine_Gdl_Parser* parser = Machine_Gdl_Parser_create();
   Machine_Gdl_Node* node = Machine_Gdl_Parser_parse(parser, inputPath, inputText);
   Ring2_assert(node->kind == Machine_Gdl_NodeKind_CompilationUnit,
                Ring1_Status_InvalidSemantics);
-  Ring2_Value temporary = Ring2_List_getAt(node->children, 0);
+  Ring2_Value temporary = Ring2_Collections_List_getAt(node->children, 0);
   node = (Machine_Gdl_Node*)Ring2_Value_getObject(&temporary);
   Ring2_assert(node->kind == Machine_Gdl_NodeKind_Map, Ring1_Status_InvalidSemantics);
   return loadWidget(context, node);

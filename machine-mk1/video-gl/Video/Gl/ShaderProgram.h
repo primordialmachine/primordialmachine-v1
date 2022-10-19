@@ -28,7 +28,7 @@ struct Machine_Gl_ShaderProgram {
   /// @brief The OpenGL fragment program ID.
   GLuint fragmentProgramId;
   /// @brief List of Machine.ProgramInput objects.
-  Ring2_List* inputs;
+  Ring2_Collections_List* inputs;
 };
 
 void Machine_Gl_ShaderProgram_construct(Machine_Gl_ShaderProgram* self, size_t numberOfArguments,

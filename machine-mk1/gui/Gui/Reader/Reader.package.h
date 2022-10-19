@@ -22,7 +22,7 @@
 /// @param source A pointer to the source map.
 /// @return A pointer to the widget.
 Machine_Gui_GroupNode* Machine_Gui_Reader_readGroupNode(Machine_Gui_Context* self,
-                                                        Ring2_Map const* source);
+                                                        Ring2_Collections_Map const* source);
 
 /// @brief
 /// <code>
@@ -37,7 +37,7 @@ Machine_Gui_GroupNode* Machine_Gui_Reader_readGroupNode(Machine_Gui_Context* sel
 /// @param source A pointer to the source map.
 /// @return A pointer to the widget.
 Machine_Gui_BorderNode* Machine_Gui_Reader_readBorderNode(Machine_Gui_Context* self,
-                                                          Ring2_Map const* source);
+                                                          Ring2_Collections_Map const* source);
 
 /// @brief
 /// <code>
@@ -49,7 +49,7 @@ Machine_Gui_BorderNode* Machine_Gui_Reader_readBorderNode(Machine_Gui_Context* s
 /// @param source A pointer to the source map.
 /// @return A pointer to the widget.
 Machine_Gui_TextNode* Machine_Gui_Reader_readTextNode(Machine_Gui_Context* self,
-                                                      Ring2_Map const* source);
+                                                      Ring2_Collections_Map const* source);
 
 /// @brief
 /// <code>
@@ -60,7 +60,7 @@ Machine_Gui_TextNode* Machine_Gui_Reader_readTextNode(Machine_Gui_Context* self,
 /// @param source A pointer to the source map.
 /// @return A pointer to the layout model.
 Machine_Gui_LayoutModel* Machine_Gui_Reader_readLayout(Machine_Gui_Context* self,
-                                                       Ring2_Map const* source);
+                                                       Ring2_Collections_Map const* source);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -70,20 +70,20 @@ Machine_Gui_LayoutModel* Machine_Gui_Reader_readLayout(Machine_Gui_Context* self
 /// @param map The map.
 /// @param key The key.
 /// @return @a true if such a key/value pair exists, @a false otherwise.
-static inline bool Machine_Gui_Reader_hasString(Machine_Gui_Context* self, Ring2_Map const* map,
+static inline bool Machine_Gui_Reader_hasString(Machine_Gui_Context* self, Ring2_Collections_Map const* map,
                                                 Ring2_String * key) {
   Ring2_Value keyValue;
   Ring2_Value_setString(&keyValue, key);
-  Ring2_Value valueValue = Ring2_Map_get(map, keyValue);
+  Ring2_Value valueValue = Ring2_Collections_Map_get(map, keyValue);
   return Ring2_Value_isString(&valueValue);
 }
 
 // USED
-static inline Ring2_String* Machine_Gui_Reader_getString(Ring2_Map const* map,
+static inline Ring2_String* Machine_Gui_Reader_getString(Ring2_Collections_Map const* map,
                                                          Ring2_String * key) {
   Ring2_Value keyValue;
   Ring2_Value_setString(&keyValue, key);
-  Ring2_Value valueValue = Ring2_Map_get(map, keyValue);
+  Ring2_Value valueValue = Ring2_Collections_Map_get(map, keyValue);
   if (!Ring2_Value_isString(&valueValue)) {
     Ring1_Status_set(Ring1_Status_ConversionFailed);
     Ring2_jump();
@@ -99,20 +99,20 @@ static inline Ring2_String* Machine_Gui_Reader_getString(Ring2_Map const* map,
 /// @param map The map.
 /// @param key The key.
 /// @return @a true if such a key/value pair exists, @a false otherwise.
-static inline bool Machine_Gui_Reader_hasReal(Machine_Gui_Context* self, Ring2_Map const* map,
+static inline bool Machine_Gui_Reader_hasReal(Machine_Gui_Context* self, Ring2_Collections_Map const* map,
                                               Ring2_String *key) {
   Ring2_Value keyValue;
   Ring2_Value_setString(&keyValue, key);
-  Ring2_Value valueValue = Ring2_Map_get(map, keyValue);
+  Ring2_Value valueValue = Ring2_Collections_Map_get(map, keyValue);
   return Ring2_Value_isInteger(&valueValue) || Ring2_Value_isReal32(&valueValue);
 }
 
 // USED
-static inline Ring2_Real32 Machine_Gui_Reader_getReal(Ring2_Map const* map,
+static inline Ring2_Real32 Machine_Gui_Reader_getReal(Ring2_Collections_Map const* map,
                                                       Ring2_String *key) {
   Ring2_Value keyValue;
   Ring2_Value_setString(&keyValue, key);
-  Ring2_Value valueValue = Ring2_Map_get(map, keyValue);
+  Ring2_Value valueValue = Ring2_Collections_Map_get(map, keyValue);
   if (!Ring2_Value_isInteger(&valueValue) && !Ring2_Value_isReal32(&valueValue)) {
     Ring1_Status_set(Ring1_Status_ConversionFailed);
     Ring2_jump();
@@ -132,20 +132,20 @@ static inline Ring2_Real32 Machine_Gui_Reader_getReal(Ring2_Map const* map,
 /// @param map The map.
 /// @param key The key.
 /// @return @a true if such a key/value pair exists, @a false otherwise.
-static inline bool Machine_Gui_Reader_hasObject(Machine_Gui_Context* self, Ring2_Map const* map,
+static inline bool Machine_Gui_Reader_hasObject(Machine_Gui_Context* self, Ring2_Collections_Map const* map,
                                                 Ring2_String *key) {
   Ring2_Value keyValue;
   Ring2_Value_setString(&keyValue, key);
-  Ring2_Value valueValue = Ring2_Map_get(map, keyValue);
+  Ring2_Value valueValue = Ring2_Collections_Map_get(map, keyValue);
   return Ring2_Value_isObject(&valueValue);
 }
 
 // USED
-static inline Machine_Object* Machine_Gui_Reader_getObject(Ring2_Map const* map,
+static inline Machine_Object* Machine_Gui_Reader_getObject(Ring2_Collections_Map const* map,
                                                            Ring2_String *key) {
   Ring2_Value keyValue;
   Ring2_Value_setString(&keyValue, key);
-  Ring2_Value valueValue = Ring2_Map_get(map, keyValue);
+  Ring2_Value valueValue = Ring2_Collections_Map_get(map, keyValue);
   if (!Ring2_Value_isObject(&valueValue)) {
     Ring1_Status_set(Ring1_Status_ConversionFailed);
     Ring2_jump();
@@ -155,70 +155,70 @@ static inline Machine_Object* Machine_Gui_Reader_getObject(Ring2_Map const* map,
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-static inline Ring2_Value getMapOrVoid(Machine_Gui_Context* self, Ring2_Map const* map,
+static inline Ring2_Value getMapOrVoid(Machine_Gui_Context* self, Ring2_Collections_Map const* map,
                                        Ring2_String *key) {
   Ring2_Value keyValue;
   Ring2_Value_setString(&keyValue, key);
-  Ring2_Value valueValue = Ring2_Map_get(map, keyValue);
+  Ring2_Value valueValue = Ring2_Collections_Map_get(map, keyValue);
   if (!Ring2_Value_isObject(&valueValue)) {
     return valueValue;
   }
   Machine_Object* object = Ring2_Value_getObject(&valueValue);
-  if (!Machine_Type_isSubTypeOf((Machine_Type *)Machine_getClassType(object), (Machine_Type *)Ring2_Map_getType())) {
+  if (!Machine_Type_isSubTypeOf((Machine_Type *)Machine_getClassType(object), (Machine_Type *)Ring2_Collections_Map_getType())) {
     Ring2_Value_setVoid(&valueValue, Ring2_Void_Void);
   }
   return valueValue;
 }
 
-static inline bool Machine_Gui_Reader_hasMap(Machine_Gui_Context* self, Ring2_Map const* map,
+static inline bool Machine_Gui_Reader_hasMap(Machine_Gui_Context* self, Ring2_Collections_Map const* map,
                                              Ring2_String *key) {
   Ring2_Value v = getMapOrVoid(self, map, key);
   return !Ring2_Value_isVoid(&v);
 }
 
-static inline Ring2_Map* Machine_Gui_Reader_getMap(Machine_Gui_Context* self,
-                                                   Ring2_Map const* map,
-                                                   Ring2_String *key) {
+static inline Ring2_Collections_Map* Machine_Gui_Reader_getMap(Machine_Gui_Context* self,
+                                                               Ring2_Collections_Map const* map,
+                                                               Ring2_String *key) {
   Ring2_Value v = getMapOrVoid(self, map, key);
   if (Ring2_Value_isVoid(&v)) {
     Ring1_Status_set(Ring1_Status_InvalidSemantics);
     Ring2_jump();
   }
-  return (Ring2_Map*)Ring2_Value_getObject(&v);
+  return (Ring2_Collections_Map*)Ring2_Value_getObject(&v);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-static inline Ring2_Value getListOrVoid(Machine_Gui_Context* self, Ring2_Map const* map,
+static inline Ring2_Value getListOrVoid(Machine_Gui_Context* self, Ring2_Collections_Map const* map,
                                         Ring2_String *key) {
   Ring2_Value keyValue;
   Ring2_Value_setString(&keyValue, key);
-  Ring2_Value valueValue = Ring2_Map_get(map, keyValue);
+  Ring2_Value valueValue = Ring2_Collections_Map_get(map, keyValue);
   if (!Ring2_Value_isObject(&valueValue)) {
     return valueValue;
   }
   Machine_Object* object = Ring2_Value_getObject(&valueValue);
-  if (!Machine_Type_isSubTypeOf((Machine_Type *)Machine_getClassType(object), (Machine_Type *)Ring2_List_getType())) {
+  if (!Machine_Type_isSubTypeOf((Machine_Type *)Machine_getClassType(object), (Machine_Type *)Ring2_Collections_List_getType())) {
     Ring2_Value_setVoid(&valueValue, Ring2_Void_Void);
   }
   return valueValue;
 }
 
-static inline bool Machine_Gui_Reader_hasList(Machine_Gui_Context* self, Ring2_Map const* map,
+static inline bool Machine_Gui_Reader_hasList(Machine_Gui_Context* self, Ring2_Collections_Map const* map,
                                               Ring2_String *key) {
   Ring2_Value v = getListOrVoid(self, map, key);
   return !Ring2_Value_isVoid(&v);
 }
 
-static inline Ring2_List* Machine_Gui_Reader_getList(Machine_Gui_Context* self,
-                                                     Ring2_Map const* map,
-                                                     Ring2_String *key) {
+static inline Ring2_Collections_List* Machine_Gui_Reader_getList(Machine_Gui_Context* self,
+                                                                 Ring2_Collections_Map const* map,
+                                                                 Ring2_String *key) {
   Ring2_Value v = getListOrVoid(self, map, key);
   if (Ring2_Value_isVoid(&v)) {
     Ring1_Status_set(Ring1_Status_InvalidSemantics);
     Ring2_jump();
   }
-  return (Ring2_List*)Ring2_Value_getObject(&v);
+  return (Ring2_Collections_List*)Ring2_Value_getObject(&v);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

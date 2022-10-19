@@ -44,6 +44,7 @@ $projects = @(
   '.\mkx-demos',
   '.\ring1',
   '.\ring2',
+  '.\ring3',
   '.\scribe'
 );
 

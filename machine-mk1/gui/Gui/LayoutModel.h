@@ -7,7 +7,7 @@
 #if !defined(MACHINE_GUI_PRIVATE)
 #error("Do not include `Gui/LayoutModel.h` file directly, include `_Gui.h` instead.")
 #endif
-#include "_Math.h"
+#include "Gui/header.h.i"
 
 /// @brief Denotes how elements layed out along an axis are justified along that axis.
 MACHINE_DECLARE_ENUMERATIONTYPE(Machine_Gui_Layout_Justification)

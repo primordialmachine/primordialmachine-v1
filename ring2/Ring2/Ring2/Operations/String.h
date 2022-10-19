@@ -153,7 +153,7 @@ Ring2_String_firstOccurrenceOf
 /// - <tt>n</tt> is negative,
 /// - <tt>i + n</tt> overflows,
 /// - <tt>i + n</tt> is greater than
-/// <tt>Mkx_Interpreter_String_getNumberOfBytes(w)</tt>.
+/// <tt>Ring2_String_getNumberOfBytes(w)</tt>.
 Ring1_CheckReturn() Ring2_String*
 Ring2_String_substring
   (

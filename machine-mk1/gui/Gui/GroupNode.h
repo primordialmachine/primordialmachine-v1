@@ -7,6 +7,7 @@
 #if !defined(MACHINE_GUI_PRIVATE)
 #error("Do not include `Gui/GroupNode.h` directly, include `_Gui.h` instead.")
 #endif
+#include "Gui/header.h.i"
 #include "Gui/Widget.h"
 #include "Gui/WidgetList.h"
 

@@ -268,6 +268,10 @@ Mkx_Interpreter_Stack_clear
 /// @param stackIndex The stack index.
 /// @return A pointer to the value on success, a null pointer on failure.
 /// This function fails iff @a stack is a null pointer or @a stackIndex is out of bounds.
+/// @remark
+/// Stack indices are zero-based indices where
+/// - the index \f$0\f$ denotes the value on the top on the stack and
+/// - the index equal to the size of the stack minus one the value on the bottom of the stack.
 Ring2_Value*
 Mkx_Interpreter_Stack_getAt
   (

@@ -7,8 +7,8 @@
 #if !defined(MACHINE_GUI_PRIVATE)
 #error("Do not include this file directly, include `_Gui.h` instead.")
 #endif
+#include "Gui/header.h.i"
 #include "Gui/Widget.h"
-#include "_Fonts.h"
 
 /// @brief A text node.
 /// @extends Machine.Gui.Widget

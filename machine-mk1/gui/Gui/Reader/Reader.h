@@ -21,6 +21,6 @@
 /// @return A pointer to the widget.
 /// @todo Restruct visibility to "package".
 Machine_Gui_Widget* Machine_Gui_Reader_readWidget(Machine_Gui_Context* self,
-                                                  Ring2_Map const* source);
+                                                  Ring2_Collections_Map const* source);
 
 #endif // MACHINE_GUI_READER_H_INCLUDED

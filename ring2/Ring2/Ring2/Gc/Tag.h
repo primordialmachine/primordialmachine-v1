@@ -26,9 +26,10 @@ typedef struct Ring2_Gc_Tag Ring2_Gc_Tag;
 
 /// Ring2_Gc_Tag object must be allocated on 32/64 Bit boundaries
 /// as Ring2_Gc_Tag.locks must be allocated on 32/64 Bit boundaries.
-struct Ring2_Gc_Tag
-{
+struct Ring2_Gc_Tag {
+
   /// @brief The number of locks on this GC object.
+  /// A lock count greater than @a 0 forces the GC to consider the object as "live".
   Ring1_ReferenceCounter locks;
 
   /// @brief The flags of this GC object
@@ -42,10 +43,22 @@ struct Ring2_Gc_Tag
   /// empty, the null pointer otherwise.
   Ring2_Gc_WeakReference* weakReferences;
 
-  /// @brief Link of this object into the global list of objects.
+  /// @brief
+  /// A pointer to the successor of this object in a singly-linked list of objects or a null pointer
+  /// if this object is last object in the singly linked list or is not in a singly linked list at all.
+  /// 
+  /// There are different lists for different types of objects, for example:
+  /// - Arrays are kept in the list of arrays of the array heap.
+  /// - Objects are kept in the list of objects of the object heap.
+  /// - Strings are kept in the list of strings of the string heap.
+  /// - etc.
   Ring2_Gc_Tag* objectNext;
 
-  /// @brief Link of this object into the gray list (during mark phase), null otherwise.
+  /// @brief
+  /// A pointer to the successor of this object in the singly-linked list of objects or a null pointer
+  /// if this object is the last object in the singly linked list or is not in a singly linked list at all.
+  /// 
+  /// This pointer is for the garbage collectors.
   Ring2_Gc_Tag* grayNext;
 };
 

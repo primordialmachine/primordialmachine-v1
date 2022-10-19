@@ -128,17 +128,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ring2\Library\Test\ArrayListTest.c" />
-    <ClCompile Include="Ring2\Library\Test\HashMapTest.c" />
-    <ClCompile Include="Ring2\Library\Test\Main.c" />
-    <ClCompile Include="Ring2\Library\Test\ArrayDequeTest.c" />
-    <ClCompile Include="Ring2\Library\Test\PairTest.c" />
+    <ClCompile Include="Ring2\Library\Collections\Test\ArrayDequeTest.c" />
+    <ClCompile Include="Ring2\Library\Collections\Test\ArrayListTest.c" />
+    <ClCompile Include="Ring2\Library\Collections\Test\HashMapTest.c" />
+    <ClCompile Include="Ring2\Library\Collections\Test\Main.c" />
+    <ClCompile Include="Ring2\Library\Collections\Test\PairTest.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ring2\Library\Test\ArrayListTest.h" />
-    <ClInclude Include="Ring2\Library\Test\HashMapTest.h" />
-    <ClInclude Include="Ring2\Library\Test\ArrayDequeTest.h" />
-    <ClInclude Include="Ring2\Library\Test\PairTest.h" />
+    <ClInclude Include="Ring2\Library\Collections\Test\ArrayDequeTest.h" />
+    <ClInclude Include="Ring2\Library\Collections\Test\ArrayListTest.h" />
+    <ClInclude Include="Ring2\Library\Collections\Test\HashMapTest.h" />
+    <ClInclude Include="Ring2\Library\Collections\Test\PairTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

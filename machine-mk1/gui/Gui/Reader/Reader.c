@@ -8,7 +8,7 @@
 #include "Gui/Reader/Reader.package.h"
 
 Machine_Gui_Widget* Machine_Gui_Reader_readWidget(Machine_Gui_Context* self,
-                                                  Ring2_Map const* source) {
+                                                  Ring2_Collections_Map const* source) {
   Ring2_String* s = NULL;
   Machine_Gui_Gdl_Context* guiGdlContext = self->gdlContext;
   if (!Machine_Gui_Reader_hasString(self, source, guiGdlContext->KIND)) {

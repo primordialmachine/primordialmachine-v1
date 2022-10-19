@@ -14,42 +14,51 @@
 
 #if defined(Ring2_Configuration_withArray) && 1 == Ring2_Configuration_withArray
   #include "Ring2/Types/Array.h"
+  /// @brief Tag indicating a value object stores an <c>Array</c> value.
   #define Ring2_Value_Tag_Array (1)
 #endif
 
 #if defined(Ring2_Configuration_withBoolean) && 1 == Ring2_Configuration_withBoolean
   #include "Ring2/Types/Boolean.h"
+  /// @brief Tag indicating a value object stores a <c>Boolean</c> value.
   #define Ring2_Value_Tag_Boolean (2)
 #endif
 
 #if defined(Ring2_Configuration_withForeignProcedure) && 1 == Ring2_Configuration_withForeignProcedure
   #include "Ring2/Types/ForeignProcedure.h"
+  /// @brief Tag indicating a value object stores a <c>ForeignProcedure</c> value.
   #define Ring2_Value_Tag_ForeignProcedure (3)
 #endif
 
 #if defined(Ring2_Configuration_withInteger) && 1 == Ring2_Configuration_withInteger
   #include "Ring2/Types/Integer.h"
+  /// @brief Tag indicating a value object stores an <c>Integer</c> value.
   #define Ring2_Value_Tag_Integer (4)
 #endif
 
 #if defined(Ring2_Configuration_withObject) && 1 == Ring2_Configuration_withObject
   #include "Ring2/Types/Object.h"
+  /// @brief Tag indicating a value object stores an <c>Object</c> value.
   #define Ring2_Value_Tag_Object (5)
 #endif
 
 #if defined(Ring2_Configuration_withReal) && 1 == Ring2_Configuration_withReal
   #include "Ring2/Types/Real.h"
+  /// @brief Tag indicating a value object stores a <c>Real32</c> value.
   #define Ring2_Value_Tag_Real32 (6)
+  /// @brief Tag indicating a value object stores a <c>Real64</c> value.
   #define Ring2_Value_Tag_Real64 (7)
 #endif
 
 #if defined(Ring2_Configuration_withString) && 1 == Ring2_Configuration_withString
   #include "Ring2/Types/String.h"
+  /// @brief Tag indicating a value object stores a <c>String</c> value.
   #define Ring2_Value_Tag_String (8)
 #endif
 
 #if defined(Ring2_Configuration_withVoid) && 1 == Ring2_Configuration_withVoid
   #include "Ring2/Types/Void.h"
+  /// @brief Tag indicating a value object stores a <c>Void</c> value.
   #define Ring2_Value_Tag_Void (9)
 #endif
 
@@ -113,6 +122,9 @@ typedef struct Ring2_Value {
 
 } Ring2_Value;
 
+/// @brief Get the tag of a value.
+/// @param value A pointer to the value.
+/// @return The tag of the value
 Ring1_CheckReturn() inline uint8_t
 Ring2_Value_getTag
   (
@@ -123,7 +135,7 @@ Ring2_Value_getTag
 #if defined (Ring2_Configuration_withArray) && 1 == Ring2_Configuration_withArray
 
 /// @brief
-/// Read an <code>Array</code> value from a value object.
+/// Load an <code>Array</code> value from a value object.
 /// @param value
 /// A pointer to the value object.
 /// @return
@@ -169,7 +181,7 @@ Ring2_Value_isArray
   { Ring2_Value_Tag_Boolean, v }
 
 /// @brief
-/// Read a <code>Boolean</code> value from a value object.
+/// Load a <code>Boolean</code> value from a value object.
 /// @param value
 /// A pointer to the value object.
 /// @return
@@ -214,7 +226,7 @@ Ring2_Value_setBoolean
   { Ring2_Value_Tag_ForeignFunction, v }
 
 /// @brief
-/// Read a <code>ForeignProcedure</code> value object from a value object.
+/// Load a <code>ForeignProcedure</code> value object from a value object.
 /// @param value
 /// A pointer to the value object.
 /// @return
@@ -259,7 +271,7 @@ Ring2_Value_setForeignProcedure
   { Ring2_Value_Tag_Integer, v }
 
 /// @brief
-/// Read a <code>Integer</code> value from a value object.
+/// Load a <code>Integer</code> value from a value object.
 /// @param value
 /// A pointer to the value object.
 /// @return
@@ -304,7 +316,7 @@ Ring2_Value_setInteger
   { Ring2_Value_Tag_Object, v }
 
 /// @brief
-/// Read a <code>Object</code> value object from a value object.
+/// Load a <code>Object</code> value object from a value object.
 /// @param value
 /// A pointer to the value object.
 /// @return
@@ -349,7 +361,7 @@ Ring2_Value_setObject
   { Ring2_Value_Tag_Real32, v }
 
 /// @brief
-/// Read a <code>Real32</code> value from a value object.
+/// Load a <code>Real32</code> value from a value object.
 /// @param value
 /// A pointer to the value object.
 /// @return
@@ -390,7 +402,7 @@ Ring2_Value_setReal32
   { Ring2_Value_Tag_Real32, v }
 
 /// @brief
-/// Read a <code>Real64</code> value from a value object.
+/// Load a <code>Real64</code> value from a value object.
 /// @param value
 /// A pointer to the value object.
 /// @return
@@ -435,7 +447,7 @@ Ring2_Value_setReal64
   { Ring2_Value_Tag_String, v }
 
 /// @brief
-/// Read a <code>String</code> value object from a value object.
+/// Load a <code>String</code> value object from a value object.
 /// @param value
 /// A pointer to the value object.
 /// @return
@@ -480,7 +492,7 @@ Ring2_Value_setString
   { Ring2_Value_Tag_Void, Ring2_Void_Void }
 
 /// @brief
-/// Read a <code>Void</code> value from a value object.
+/// Load a <code>Void</code> value from a value object.
 /// @param value
 /// A pointer to the value object.
 /// @return
@@ -539,6 +551,9 @@ Ring2_Value_swap
     Ring2_Value* y
   );
 
+/// @brief Visit a value.
+/// @param gc A pointer to the GC object.
+/// @param value A pointer to the value.
 /*VISIT*/ void
 Ring2_Value_visit
   (

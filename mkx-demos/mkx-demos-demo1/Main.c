@@ -37,13 +37,13 @@ static void loadIcons() {
     "primordialmachine-180x180.png",
     "primordialmachine-256x256.png",
   };
-  Ring2_List* vals = Ring1_cast(Ring2_List *, Ring2_ArrayList_create());
+  Ring2_Collections_List* vals = Ring1_cast(Ring2_Collections_List *, Ring2_Collections_ArrayList_create());
   for (size_t i = 0, n = (sizeof(PATHS) / sizeof(const char*)); i < n; ++i) {
     Machine_Image* image = Machine_ImagesContext_createFromPath(
         Machines_DefaultImages_createContext(), Ring2_String_create(Ring2_Context_get(), PATHS[i], strlen(PATHS[i])));
     Ring2_Value val;
     Ring2_Value_setObject(&val, (Machine_Object*)image);
-    Ring2_List_append(vals, val);
+    Ring2_Collections_List_append(vals, val);
   }
   Machine_Video_Canvas_setCanvasIcons(Machine_getVideoCanvas(), vals);
 }

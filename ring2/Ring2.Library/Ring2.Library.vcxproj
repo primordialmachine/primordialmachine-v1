@@ -20,25 +20,26 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring2\Library\ArgumentsUtilities.h" />
-    <ClInclude Include="Ring2\Library\ArrayDeque.h" />
-    <ClInclude Include="Ring2\Library\ArrayList.h" />
-    <ClInclude Include="Ring2\Library\ArrayStack.h" />
     <ClInclude Include="Ring2\Library\ByteBuffer.h" />
     <ClInclude Include="Ring2\Library\ByteBufferReader.h" />
-    <ClInclude Include="Ring2\Library\Collection.h" />
-    <ClInclude Include="Ring2\Library\CollectionUtilities.h" />
-    <ClInclude Include="Ring2\Library\Deque.h" />
-    <ClInclude Include="Ring2\Library\HashMap.h" />
-    <ClInclude Include="Ring2\Library\HashSet.h" />
+    <ClInclude Include="Ring2\Library\Collections\ArrayDeque.h" />
+    <ClInclude Include="Ring2\Library\Collections\ArrayList.h" />
+    <ClInclude Include="Ring2\Library\Collections\ArrayStack.h" />
+    <ClInclude Include="Ring2\Library\Collections\Collection.h" />
+    <ClInclude Include="Ring2\Library\Collections\CollectionUtilities.h" />
+    <ClInclude Include="Ring2\Library\Collections\Deque.h" />
+    <ClInclude Include="Ring2\Library\Collections\HashMap.h" />
+    <ClInclude Include="Ring2\Library\Collections\HashSet.h" />
+    <ClInclude Include="Ring2\Library\Collections\List.h" />
+    <ClInclude Include="Ring2\Library\Collections\Map.h" />
+    <ClInclude Include="Ring2\Library\Collections\Pair.h" />
+    <ClInclude Include="Ring2\Library\Collections\Set.h" />
+    <ClInclude Include="Ring2\Library\Collections\Stack.h" />
+    <ClInclude Include="Ring2\Library\Collections\_Include.h" />
     <ClInclude Include="Ring2\Library\Io.h" />
     <ClInclude Include="Ring2\Library\Io\getFileContents.h" />
     <ClInclude Include="Ring2\Library\Io\Initialize.h" />
     <ClInclude Include="Ring2\Library\Io\setFileContents.h" />
-    <ClInclude Include="Ring2\Library\List.h" />
-    <ClInclude Include="Ring2\Library\Map.h" />
-    <ClInclude Include="Ring2\Library\Pair.h" />
-    <ClInclude Include="Ring2\Library\Set.h" />
-    <ClInclude Include="Ring2\Library\Stack.h" />
     <ClInclude Include="Ring2\Library\StringBuffer.h" />
     <ClInclude Include="Ring2\Library\Time.h" />
     <ClInclude Include="Ring2\Library\WeakReference.h" />
@@ -46,25 +47,26 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring2\Library\ArgumentsUtilities.c" />
-    <ClCompile Include="Ring2\Library\ArrayDeque.c" />
-    <ClCompile Include="Ring2\Library\ArrayList.c" />
-    <ClCompile Include="Ring2\Library\ArrayStack.c" />
     <ClCompile Include="Ring2\Library\ByteBuffer.c" />
     <ClCompile Include="Ring2\Library\ByteBufferReader.c" />
-    <ClCompile Include="Ring2\Library\Collection.c" />
-    <ClCompile Include="Ring2\Library\CollectionUtilities.c" />
-    <ClCompile Include="Ring2\Library\Deque.c" />
-    <ClCompile Include="Ring2\Library\HashMap.c" />
-    <ClCompile Include="Ring2\Library\HashSet.c" />
+    <ClCompile Include="Ring2\Library\Collections\ArrayDeque.c" />
+    <ClCompile Include="Ring2\Library\Collections\ArrayList.c" />
+    <ClCompile Include="Ring2\Library\Collections\ArrayStack.c" />
+    <ClCompile Include="Ring2\Library\Collections\Collection.c" />
+    <ClCompile Include="Ring2\Library\Collections\CollectionUtilities.c" />
+    <ClCompile Include="Ring2\Library\Collections\Deque.c" />
+    <ClCompile Include="Ring2\Library\Collections\HashMap.c" />
+    <ClCompile Include="Ring2\Library\Collections\HashSet.c" />
+    <ClCompile Include="Ring2\Library\Collections\List.c" />
+    <ClCompile Include="Ring2\Library\Collections\Map.c" />
+    <ClCompile Include="Ring2\Library\Collections\Pair.c" />
+    <ClCompile Include="Ring2\Library\Collections\Set.c" />
+    <ClCompile Include="Ring2\Library\Collections\Stack.c" />
+    <ClCompile Include="Ring2\Library\Collections\_Include.c" />
     <ClCompile Include="Ring2\Library\Io.c" />
     <ClCompile Include="Ring2\Library\Io\getFileContents.c" />
     <ClCompile Include="Ring2\Library\Io\Initialize.c" />
     <ClCompile Include="Ring2\Library\Io\setFileContents.c" />
-    <ClCompile Include="Ring2\Library\List.c" />
-    <ClCompile Include="Ring2\Library\Map.c" />
-    <ClCompile Include="Ring2\Library\Pair.c" />
-    <ClCompile Include="Ring2\Library\Set.c" />
-    <ClCompile Include="Ring2\Library\Stack.c" />
     <ClCompile Include="Ring2\Library\StringBuffer.c" />
     <ClCompile Include="Ring2\Library\Time.c" />
     <ClCompile Include="Ring2\Library\WeakReference.c" />
@@ -77,6 +79,12 @@
     <ProjectReference Include="..\..\ring2\Ring2\Ring2.vcxproj">
       <Project>{3ade4501-5d5c-4878-9632-f81c3de2429c}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ring2\Library\Collections\ArrayList.decls.i" />
+    <None Include="Ring2\Library\Collections\ArrayList.defns.i" />
+    <None Include="Ring2\Library\Collections\ArrayStack.decls.i" />
+    <None Include="Ring2\Library\Collections\ArrayStack.defns.i" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

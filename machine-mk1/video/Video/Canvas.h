@@ -14,7 +14,7 @@ struct Machine_Video_Canvas_Class {
                               Ring2_Integer* height);
   void (*maximizeCanvas)(Machine_Video_Canvas* self);
   void (*swapFrameBuffers)(Machine_Video_Canvas* self);
-  void (*setCanvasIcons)(Machine_Video_Canvas* self, Ring2_List* images);
+  void (*setCanvasIcons)(Machine_Video_Canvas* self, Ring2_Collections_List* images);
   void (*pollEvents)(Machine_Video_Canvas* self);
   Ring2_Boolean (*getQuitRequested)(Machine_Video_Canvas* self);
 };
@@ -22,7 +22,7 @@ struct Machine_Video_Canvas_Class {
 struct Machine_Video_Canvas {
   Machine_Object parent__;
   Machine_Signals_Signal* signal;
-  Machine_Deque* events;
+  Ring2_Collections_Deque* events;
 };
 
 void Machine_Video_Canvas_construct(Machine_Video_Canvas* self, size_t numberOfArguments,
@@ -49,7 +49,7 @@ void Machine_Video_Canvas_swapFrameBuffers(Machine_Video_Canvas* self);
 /// @brief Set the icons of this canvas.
 /// @param self This canvas.
 /// @param images The icons.
-void Machine_Video_Canvas_setCanvasIcons(Machine_Video_Canvas* self, Ring2_List* images);
+void Machine_Video_Canvas_setCanvasIcons(Machine_Video_Canvas* self, Ring2_Collections_List* images);
 
 /// @brief Poll the events of this canvas.
 /// @param self This canvas.
