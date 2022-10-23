@@ -1,0 +1,66 @@
+# AppVeyor configuration for AppVeyor project "primordialmachine".
+clone_depth: 1
+
+# Build worker image (VM template).
+image: Visual Studio 2022
+
+# Build branch "master" only.
+branches:
+    only:
+        - master
+        - develop
+    
+# Environment variables.
+environment:
+    module: 'Ring3'
+    module_lowercase: 'ring3'
+
+# Build platform "x64" and "x86".
+platform:
+    - x64
+    - x86
+
+# Build configurations "Debug" and "Release".
+configuration:
+    - Release
+    - Debug
+
+build:
+    parallel: true                             # enable MSBuild parallel builds
+    project: $(module_lowercase)/$(module).sln # path to Visual Studio solution or project
+
+# If one matrix entry fails, all entries fails (https://www.appveyor.com/docs/build-configuration#failing-strategy).
+matrix:
+    fast_finish: true
+
+artifacts:
+    # Ring3.Gdl.Test
+    - path: $(module_lowercase)\products\$(platform)\$(configuration)\$(pm_module).Gdl.Test\$(pm_module).Gdl.Test.exe
+      name: $(module).Gdl.Test-$(platform)-$(configuration).exe
+
+# Execute test scripts.
+test_script:
+    - ps: |
+          $fail = $False;
+
+    - ps: |
+          $name = "${env:module}.Gdl.Test";
+          $prefix = "${env:appveyor_build_folder}\${env:module}\products\${env:platform}\${env:configuration}\${name}";
+          $suffix = "${name}.exe";
+          [int]$startMs = (Get-Date).Millisecond
+          cd ${prefix}
+          Invoke-Expression "./${suffix}"
+          $code = $LastExitCode
+          [int]$endMs = (Get-Date).Millisecond
+          if ($code -eq 0) {
+            Add-AppveyorTest -Name ${name} -Filename "${prefix}\${suffix}" -Outcome Passed -Duration $($endMs - $startMs);
+          } else {
+            Add-AppveyorTest -Name ${name} -Filename "${prefix}\${suffix}" -Outcome Failed -Duration $($endMs - $startMs);
+            $fail = $True;
+          }
+
+    - ps: |
+          if ($fail) {
+            throw "unit test(s) failed";
+          }
+
