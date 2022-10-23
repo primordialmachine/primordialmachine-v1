@@ -46,6 +46,18 @@ Developers can usually be found in the Primordial Machine Gitter channel:
 ## CI & CD
 
 ### Appveyor CI Build Status
+*Primordial Machine* currently consits of three modules called *Tier1*, *Tier2*, and *Tier3*.
+The table below displays the build status for the
+[master branch](https://github.com/primordialmachine/primordialmachine/tree/master)
+and the
+[development branch](https://github.com/primordialmachine/primordialmachine/tree/develop)
+of these modules.
+
+|             | Tier 1 | Tier 2 | Tier 3 |
+| ----------- | ------ | ------ | ------ |
+| Master      | n/a    | n/a    | n/a    |
+| Development | n/a    | n/a    | n/a    |
+
 Appveyor CI build status of [master](https://github.com/primordialmachine/primordialmachine/tree/master) branch:
 [![Build status](https://ci.appveyor.com/api/projects/status/52qbxatouwqe762j/branch/master?svg=true)](https://ci.appveyor.com/project/primordialmachine/primordialmachine/branch/master)
 

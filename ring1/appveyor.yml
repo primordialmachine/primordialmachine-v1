@@ -6,8 +6,14 @@ image: Visual Studio 2022
 
 # Build branch "master" only.
 branches:
-  only:
-    - master
+    only:
+        - master
+        - develop
+
+# Environment variables.
+environment:
+    module: 'Ring1'
+    module_lowercase: 'ring1'
 
 # Build platform "x64" and "x86".
 platform:
@@ -20,8 +26,8 @@ configuration:
     - Debug
 
 build:
-    parallel: true                       # enable MSBuild parallel builds
-    project: Ring1/Ring1.sln             # path to Visual Studio solution or project
+    parallel: true                             # enable MSBuild parallel builds
+    project: $(module_lowercase)/$(module).sln # path to Visual Studio solution or project
 
 # If one matrix entry fails, all entries fails (https://www.appveyor.com/docs/build-configuration#failing-strategy).
 matrix:
@@ -29,11 +35,11 @@ matrix:
 
 artifacts:
     # Ring1.Atom.Test
-    - path: ring1\products\$(platform)\$(configuration)\Ring1.Atom.Test\Ring1.Atom.Test.exe
-      name: Ring1.Atom.Test-$(platform)-$(configuration).exe
+    - path: $(module_lowercase)\products\$(platform)\$(configuration)\$(module).Atom.Test\$(module).Atom.Test.exe
+      name: $(module).Atom.Test-$(platform)-$(configuration).exe
     # Ring1.Intrinsic.Test
-    - path: ring1\products\$(platform)\$(configuration)\Ring1.Intrinsic.Test\Ring1.Intrinsic.Test.exe
-      name: Ring1.Intrinsic.Test-$(platform)-$(configuration).exe
+    - path: $(module_lowercase)\products\$(platform)\$(configuration)\$(module).Intrinsic.Test\$(module).Intrinsic.Test.exe
+      name: $(module).Intrinsic.Test-$(platform)-$(configuration).exe
 
 # Execute test scripts.
 test_script:
@@ -41,9 +47,9 @@ test_script:
           $fail = $False;
 
     - ps: |
-          $name = 'Ring1.Intrinsic.Test';
-          $prefix = "${env:appveyor_build_folder}\Ring1\products\${env:platform}\${env:configuration}\Ring1.Intrinsic.Test";
-          $suffix = 'Ring1.Intrinsic.Test.exe';
+          $name = "${env:module}.Intrinsic.Test";
+          $prefix = "${env:appveyor_build_folder}\${env:module}\products\${env:platform}\${env:configuration}\${name}";
+          $suffix = "${name}.exe";
           [int]$startMs = (Get-Date).Millisecond
           cd ${prefix}
           Invoke-Expression "./${suffix}"
@@ -57,9 +63,9 @@ test_script:
           }
 
     - ps: |
-          $name = 'Ring1.Atom.Test';
-          $prefix = "${env:appveyor_build_folder}\Ring1\products\${env:platform}\${env:configuration}\Ring1.Atom.Test";
-          $suffix = 'Ring1.Atom.Test.exe';
+          $name = "${env:module}.Atom.Test";
+          $prefix = "${env:appveyor_build_folder}\${env:module}\products\${env:platform}\${env:configuration}\${name}";
+          $suffix = "${name}.exe";
           [int]$startMs = (Get-Date).Millisecond
           cd ${prefix}
           Invoke-Expression "./${suffix}"
