@@ -6,7 +6,6 @@
 
 #include "Ring2/_Include.h"
 #include "Ring2/Library/_Include.h"
-#include <string.h>
 
 
 static void
@@ -139,16 +138,21 @@ Ring2_Test_registerArrayDequeTests
     Ring2_Tests *tests
   )
 {
-    Ring2_Tests_addTest(tests,
-                        Ring2_String_create(Ring2_Context_get(), "Ring2.Library.Collections.Test.ArrayDeque1", 
-                                                      crt_strlen("Ring2.Library.Collections.Test.ArrayDeque1")),
-                        &test1);
-    Ring2_Tests_addTest(tests,
-                        Ring2_String_create(Ring2_Context_get(), "Ring2.Library.Collections.Test.ArrayDeque2",
-                                                      crt_strlen("Ring2.Library.Collections.Test.ArrayDeque2")),
-                        &test2);
-    Ring2_Tests_addTest(tests,
-                        Ring2_String_create(Ring2_Context_get(), "Ring2.Library.Collections.Test.ArrayDeque3",
-                                                      crt_strlen("Ring2.Library.Collections.Test.ArrayDeque3")),
-                        &test3);
+  Ring2_String* prefix = Ring2_String_create(Ring2_Context_get(), "Ring2.Library.Collections.Test.ArrayDequeTest",
+                                                       crt_strlen("Ring2.Library.Collections.Test.ArrayDequeTest"));
+  Ring2_Tests_addTest(tests,
+                      Ring2_String_concatenate(Ring2_Context_get(), prefix,
+                                                                    Ring2_String_create(Ring2_Context_get(), "1",
+                                                                                                  crt_strlen("1"))),
+                      &test1);
+  Ring2_Tests_addTest(tests,
+                      Ring2_String_concatenate(Ring2_Context_get(), prefix,
+                                                                    Ring2_String_create(Ring2_Context_get(), "2",
+                                                                                                  crt_strlen("2"))),
+                      &test2);
+  Ring2_Tests_addTest(tests,
+                      Ring2_String_concatenate(Ring2_Context_get(), prefix,
+                                                                    Ring2_String_create(Ring2_Context_get(), "3",
+                                                                                                  crt_strlen("3"))),
+                      &test3);
 }

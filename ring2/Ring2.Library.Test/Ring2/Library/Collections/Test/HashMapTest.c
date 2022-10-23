@@ -6,7 +6,6 @@
 
 #include "Ring2/_Include.h"
 #include "Ring2/Library/_Include.h"
-#include <string.h>
 
 
 static void
@@ -40,9 +39,12 @@ Ring2_Test_registerHashMapTests
     Ring2_Tests *tests
   )
 {
+  Ring2_String* prefix = Ring2_String_create(Ring2_Context_get(), "Ring2.Library.Collections.Test.HashMapTest",
+                                                       crt_strlen("Ring2.Library.Collections.Test.HashMapTest"));
   Ring2_Tests_addTest(tests,
-                      Ring2_String_create(Ring2_Context_get(), "Ring2.Library.Collections.Test.HashMap1",
-                                                    crt_strlen("Ring2.Library.Collections.Test.HashMap1")),
+                      Ring2_String_concatenate(Ring2_Context_get(), prefix,
+                                                                    Ring2_String_create(Ring2_Context_get(), "1",
+                                                                                                  crt_strlen("1"))),
                       &test1);
 
 }

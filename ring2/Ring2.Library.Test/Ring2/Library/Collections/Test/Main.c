@@ -1,4 +1,4 @@
-/// @file Collections/Test/Main.c
+/// @file Ring2/Library/Collections/Test/Main.c
 /// @copyright Copyright (c) 2021-2022 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 #if defined(__cplusplus)
@@ -9,7 +9,9 @@ extern "C" {
 #include "Ring1/Test.h"
 #include "Ring2/Library/Collections/Test/ArrayDequeTest.h"
 #include "Ring2/Library/Collections/Test/ArrayListTest.h"
+#include "Ring2/Library/Collections/Test/ArrayStack.h"
 #include "Ring2/Library/Collections/Test/HashMapTest.h"
+#include "Ring2/Library/Collections/Test/HashSetTest.h"
 #include "Ring2/Library/Collections/Test/PairTest.h"
 #include <stdlib.h>
 
@@ -32,13 +34,13 @@ main
   Ring2_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
     Ring2_Tests* tests = Ring2_Tests_create();
-    Ring2_Value result = Ring2_Value_StaticInitializerVoid();
-    Ring2_Value arguments[] = { Ring2_Value_StaticInitializerVoid() };
 
-    Ring2_Test_registerPairTests(tests);
-    Ring2_Test_registerArrayListTests(tests);
-    Ring2_Test_registerHashMapTests(tests);
     Ring2_Test_registerArrayDequeTests(tests);
+    Ring2_Test_registerArrayListTests(tests);
+    Ring2_Test_registerArrayStackTests(tests);
+    Ring2_Test_registerHashMapTests(tests);
+    Ring2_Test_registerHashSetTests(tests);
+    Ring2_Test_registerPairTests(tests);
 
     Ring2_Tests_run(tests);
 

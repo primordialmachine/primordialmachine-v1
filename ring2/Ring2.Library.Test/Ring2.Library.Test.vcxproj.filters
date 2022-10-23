@@ -19,14 +19,8 @@
     <Filter Include="Quelldateien\Ring2">
       <UniqueIdentifier>{308dd482-0dcb-407a-9849-52e67d1c6cd1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Quelldateien\Ring2\Test">
-      <UniqueIdentifier>{dca3a514-9b8c-4b4e-882a-8dd3265beea8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Headerdateien\Ring2\Library">
       <UniqueIdentifier>{dbc02108-5941-4706-a2d2-ef425de20312}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Quelldateien\Ring2\Test\Library">
-      <UniqueIdentifier>{30889c10-9feb-4d2f-8672-8e5a1e241e36}</UniqueIdentifier>
     </Filter>
     <Filter Include="Headerdateien\Ring2\Library\Collections">
       <UniqueIdentifier>{d9e5a183-0b18-48de-abcb-cde8d5d70865}</UniqueIdentifier>
@@ -34,28 +28,37 @@
     <Filter Include="Headerdateien\Ring2\Library\Collections\Test">
       <UniqueIdentifier>{5e99c7c3-ed00-48bc-94cc-70a704f637cb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Quelldateien\Ring2\Test\Library\Collections">
+    <Filter Include="Quelldateien\Ring2\Library">
+      <UniqueIdentifier>{30889c10-9feb-4d2f-8672-8e5a1e241e36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring2\Library\Collections">
       <UniqueIdentifier>{ee248ce4-02cd-429f-9eb6-2165eebf5d6d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Quelldateien\Ring2\Test\Library\Collections\Test">
+    <Filter Include="Quelldateien\Ring2\Library\Collections\Test">
       <UniqueIdentifier>{829fec64-487d-486e-bda6-b339bbb0a084}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring2\Library\Collections\Test\ArrayDequeTest.c">
-      <Filter>Quelldateien\Ring2\Test\Library\Collections\Test</Filter>
+      <Filter>Quelldateien\Ring2\Library\Collections\Test</Filter>
     </ClCompile>
     <ClCompile Include="Ring2\Library\Collections\Test\ArrayListTest.c">
-      <Filter>Quelldateien\Ring2\Test\Library\Collections\Test</Filter>
+      <Filter>Quelldateien\Ring2\Library\Collections\Test</Filter>
     </ClCompile>
     <ClCompile Include="Ring2\Library\Collections\Test\HashMapTest.c">
-      <Filter>Quelldateien\Ring2\Test\Library\Collections\Test</Filter>
+      <Filter>Quelldateien\Ring2\Library\Collections\Test</Filter>
     </ClCompile>
     <ClCompile Include="Ring2\Library\Collections\Test\Main.c">
-      <Filter>Quelldateien\Ring2\Test\Library\Collections\Test</Filter>
+      <Filter>Quelldateien\Ring2\Library\Collections\Test</Filter>
     </ClCompile>
     <ClCompile Include="Ring2\Library\Collections\Test\PairTest.c">
-      <Filter>Quelldateien\Ring2\Test\Library\Collections\Test</Filter>
+      <Filter>Quelldateien\Ring2\Library\Collections\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Library\Collections\Test\HashSetTest.c">
+      <Filter>Quelldateien\Ring2\Library\Collections\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Library\Collections\Test\ArrayStack.c">
+      <Filter>Quelldateien\Ring2\Library\Collections\Test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +72,12 @@
       <Filter>Headerdateien\Ring2\Library\Collections\Test</Filter>
     </ClInclude>
     <ClInclude Include="Ring2\Library\Collections\Test\PairTest.h">
+      <Filter>Headerdateien\Ring2\Library\Collections\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Library\Collections\Test\HashSetTest.h">
+      <Filter>Headerdateien\Ring2\Library\Collections\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Library\Collections\Test\ArrayStack.h">
       <Filter>Headerdateien\Ring2\Library\Collections\Test</Filter>
     </ClInclude>
   </ItemGroup>
