@@ -15,6 +15,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ring2.Library", "Ring2.Libr
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ring2.Library.Test", "Ring2.Library.Test\Ring2.Library.Test.vcxproj", "{9A210B5D-2599-4EA4-A258-CCECD94235E4}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ring2.Test", "Ring2.Test\Ring2.Test.vcxproj", "{DC8519C3-E6DC-45DF-822B-27EEE292EE79}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -55,6 +57,14 @@ Global
 		{9A210B5D-2599-4EA4-A258-CCECD94235E4}.Release|x64.Build.0 = Release|x64
 		{9A210B5D-2599-4EA4-A258-CCECD94235E4}.Release|x86.ActiveCfg = Release|Win32
 		{9A210B5D-2599-4EA4-A258-CCECD94235E4}.Release|x86.Build.0 = Release|Win32
+		{DC8519C3-E6DC-45DF-822B-27EEE292EE79}.Debug|x64.ActiveCfg = Debug|x64
+		{DC8519C3-E6DC-45DF-822B-27EEE292EE79}.Debug|x64.Build.0 = Debug|x64
+		{DC8519C3-E6DC-45DF-822B-27EEE292EE79}.Debug|x86.ActiveCfg = Debug|Win32
+		{DC8519C3-E6DC-45DF-822B-27EEE292EE79}.Debug|x86.Build.0 = Debug|Win32
+		{DC8519C3-E6DC-45DF-822B-27EEE292EE79}.Release|x64.ActiveCfg = Release|x64
+		{DC8519C3-E6DC-45DF-822B-27EEE292EE79}.Release|x64.Build.0 = Release|x64
+		{DC8519C3-E6DC-45DF-822B-27EEE292EE79}.Release|x86.ActiveCfg = Release|Win32
+		{DC8519C3-E6DC-45DF-822B-27EEE292EE79}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +74,7 @@ Global
 		{3ADE4501-5D5C-4878-9632-F81C3DE2429C} = {2A3E46BB-7EA0-4BA6-9417-FE83F2320251}
 		{793157CE-6F58-4C53-BF1E-15716A4CE6BF} = {2A3E46BB-7EA0-4BA6-9417-FE83F2320251}
 		{9A210B5D-2599-4EA4-A258-CCECD94235E4} = {2A3E46BB-7EA0-4BA6-9417-FE83F2320251}
+		{DC8519C3-E6DC-45DF-822B-27EEE292EE79} = {2A3E46BB-7EA0-4BA6-9417-FE83F2320251}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0B435C73-7861-4C3E-B9A3-C9BD14EA6D9F}

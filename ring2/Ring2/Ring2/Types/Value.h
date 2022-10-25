@@ -134,6 +134,9 @@ Ring2_Value_getTag
 
 #if defined (Ring2_Configuration_withArray) && 1 == Ring2_Configuration_withArray
 
+#define Ring2_Value_StaticInitializerArray(v)                                                  \
+  { .tag = Ring2_Value_Tag_Array, .arrayValue = v }
+
 /// @brief
 /// Load an <code>Array</code> value from a value object.
 /// @param value
@@ -178,7 +181,7 @@ Ring2_Value_isArray
 #if defined(Ring2_Configuration_withBoolean) && 1 == Ring2_Configuration_withBoolean
 
 #define Ring2_Value_StaticInitializerBoolean(v)                                                  \
-  { Ring2_Value_Tag_Boolean, v }
+  { .tag = Ring2_Value_Tag_Boolean, .booleanValue = v }
 
 /// @brief
 /// Load a <code>Boolean</code> value from a value object.
@@ -223,7 +226,7 @@ Ring2_Value_setBoolean
 #if defined(Ring2_Configuration_withForeignProcedure) && 1 == Ring2_Configuration_withForeignProcedure
 
 #define Ring2_Value_StaticInitializerForeignProcedure(v)                                         \
-  { Ring2_Value_Tag_ForeignFunction, v }
+  { .tag = Ring2_Value_Tag_ForeignProcedure, .foreignProcedureValue = v }
 
 /// @brief
 /// Load a <code>ForeignProcedure</code> value object from a value object.
@@ -268,7 +271,7 @@ Ring2_Value_setForeignProcedure
 #if defined(Ring2_Configuration_withInteger) && 1 == Ring2_Configuration_withInteger
 
 #define Ring2_Value_StaticInitializerInteger(v)                                                  \
-  { Ring2_Value_Tag_Integer, v }
+  { .tag = Ring2_Value_Tag_Integer, .integerValue = v }
 
 /// @brief
 /// Load a <code>Integer</code> value from a value object.
@@ -312,8 +315,8 @@ Ring2_Value_setInteger
 
 #if defined(Ring2_Configuration_withObject) && 1 == Ring2_Configuration_withObject
 
-#define Machine_Value_StaticInitializerObject(v)                                                   \
-  { Ring2_Value_Tag_Object, v }
+#define Ring2_Value_StaticInitializerObject(v)                                                   \
+  { .tag = Ring2_Value_Tag_Object, .objectValue = v }
 
 /// @brief
 /// Load a <code>Object</code> value object from a value object.
@@ -358,7 +361,7 @@ Ring2_Value_setObject
 #if defined(Ring2_Configuration_withReal) && 1 == Ring2_Configuration_withReal
 
 #define Ring2_Value_StaticInitializerReal32(v)                                                     \
-  { Ring2_Value_Tag_Real32, v }
+  { .tag = Ring2_Value_Tag_Real32, .real32Value = v }
 
 /// @brief
 /// Load a <code>Real32</code> value from a value object.
@@ -399,7 +402,7 @@ Ring2_Value_setReal32
   );
 
 #define Ring2_Value_StaticInitializerReal64(v)                                                     \
-  { Ring2_Value_Tag_Real32, v }
+  { .tag = Ring2_Value_Tag_Real64, .real64Value = v }
 
 /// @brief
 /// Load a <code>Real64</code> value from a value object.
@@ -444,7 +447,7 @@ Ring2_Value_setReal64
 #if defined(Ring2_Configuration_withString) && 1 == Ring2_Configuration_withString
 
 #define Ring2_Value_StaticInitializerString(v)                                                   \
-  { Ring2_Value_Tag_String, v }
+  { .tag = Ring2_Value_Tag_String, .stringValue = v }
 
 /// @brief
 /// Load a <code>String</code> value object from a value object.
@@ -489,7 +492,7 @@ Ring2_Value_setString
 #if defined(Ring2_Configuration_withVoid) && 1 == Ring2_Configuration_withVoid
 
 #define Ring2_Value_StaticInitializerVoid()                                                      \
-  { Ring2_Value_Tag_Void, Ring2_Void_Void }
+  { .tag = Ring2_Value_Tag_Void, .voidValue = Ring2_Void_Void }
 
 /// @brief
 /// Load a <code>Void</code> value from a value object.
