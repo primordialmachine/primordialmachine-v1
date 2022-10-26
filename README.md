@@ -1,71 +1,69 @@
-# Last Men Standing
-This repository contains a simulation/game called *Last Men Standing* (henceforth: *LMS*) and which is released into the public domain.
+# Primordial Machine
+This repository contains the sources and assets of a game and its engine called *Primordial Machine*.
+Furthermore, it contains the sources of the documentation of the software and the underlying principles and methods used to built the game and the software.
+The sources, the assets, and the documentation are made available publicly by
+the eponymous organization *Primordial Machine* under a free software license.
 
-## The vision
-In the year 1994, I envisioned a game which might perhaps was called a rogue like game nowadays.
+### The purpose
+Primordial Machine - the engine and the game and the documentation - are made available publicly for recreational and educational purposes.
 
-However, the vision makes certain demands on the quality of video and audio, haptics, and mechanics of the game, which could not be realized with the means at the time. For example, the computing power of computing devices (which were available to the wider public) was insufficient. For example, the audio and video devices with output of a certain quality were not available to the wider public. ... Back then a seemingly overwhelming set of barriers made me stop efforts to realize my vision. The vision became a childhood memory, a vivid techno-dream that is part of the nostalgia you succumb to from a certain age on.
-
-In the year 2021, I realized that many of these barriers are gone. Audio and video devices with output of sufficient quality are available to the wider public. The computing power of computing devices (which are available to the wider public) is sufficient. I also realized, the limiting factor will be me and my ability to create a community of artists / programmers to realize my vision. Challenge accepted.
-
-## Code of Operations
+### Code of Operations
 This information technology project consists of an ever repeating cycle of tasks executed with a specific weighting and order depending on the needs of the project:
 
-- Evolve the assets/the code of *LMS*.
-- Grow the community of artists / programmers.
-- Communicate *my* vision of *LMS* to the artists / programmers and players alike.
-- Grow the community of players.
+- Evolve the assets/the sources/the documentation of *Primordial Machine*.
+- Grow the community of artists / programmers / writers.
+- Communicate *my* vision of *Primordial Machine* to the artists / programmers / writers and players alike.
 
-The individual project member can determine - for himself - to which task he/she devotes his/her time to. Remember: Every task is important.
+The individual project member can determine - for himself - to which task he/she devotes his/her time to.
+Remember: Every task is important.
 
 ## Code of Conduct
 Every organization requires a code of conduct. That code of conduct might evolve. Before joining this project, please be perfectly aware of a few thing:
 
-- This is a *personal pet project* of mine: You can join my vision, you can share my vision, you convince me to change my vision. But you may not go against my vision in this project.
-- I intend this not to be a technology-/self-centered project producing a game for a small or specific target audience. This is for the masses, for the players.
+- This is a *personal pet project* of mine: You can join my vision, you can share my vision, you convince me to change my vision.
+  But you may not go against my vision in this project.
+- I intend this not to be a technology-/self-centered project producing a game for a small or specific target audience.
+  This is for the masses, for the players.
 
 # The results
 
-> :warning: **Warning**: *Last Men Standing* is under development and is not yet ready for use! This is a *personal pet project* and I only get a couple of hours a week so progress can be slow. But hopefully there soon is enough material to show the intended direction of the project. 
-
-> :warning: **Warning**: You cannot actually do much with *LMS* in its current state! 
-
-The instructions below allow you to run the technology demo - trivial technology for that matter - the game is currently is. Currently this project is merely a demonstration of some technical trivialities:
- - WGL and OpenGL 2.0,
- - GLFW and GLAD, and
- - FreeType 2.
+> :warning: **Warning**: *Primordial Machine* is under development and is not yet ready for use!
+This is a *personal pet project* and I only get a couple of hours a week so progress can be slow.
+But hopefully there soon is enough material to show the intended direction of the project. 
 
 ## License
-*Last Men Standing* is made available publicly under the
+*Primordial Machine* is made available publicly under the
 [GNU AGPLv3 License](https://github.com/primordialmachine/primordialmachine/blob/master/LICENSE).
 
 ## Contact
-Developers can usually be found in the Primordial Machine Gitter channel:
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/primordialmachine/primordialmachine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+The preferred way to of contacting me is via my E-Mail [contact@primordialmachine.com](mailto:contact@primordialmachine.com).
+I am also available on Gitter [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/primordialmachine/primordialmachine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge).
 
 ## CI & CD
 
 ### Appveyor CI Build Status
 *Primordial Machine* currently consits of three modules called *Tier1*, *Tier2*, and *Tier3*.
-The table below displays the build status for the
+The table below displays the Appveyor CI build status for the
 [master branch](https://github.com/primordialmachine/primordialmachine/tree/master)
 and the
 [development branch](https://github.com/primordialmachine/primordialmachine/tree/develop)
 of these modules.
 
-|             | Tier 1 | Tier 2 | Tier 3 |
-| ----------- | ------ | ------ | ------ |
-| Master      | n/a    | n/a    | n/a    |
-| Development | n/a    | n/a    | n/a    |
+|      |Master                                                                                                                                                                           |Develop                                                                                                                                        |
+|------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
+|Tier 1|[![Build status](https://ci.appveyor.com/api/projects/status/x7jiybp3h9v65vkf/branch/master?svg=true)](https://ci.appveyor.com/project/primordialmachine/primordialmachine-ring1)|[![Build status](https://ci.appveyor.com/api/projects/status/x7jiybp3h9v65vkf/branch/develop?svg=true)](https://ci.appveyor.com/project/primordialmachine/primordialmachine-ring1)|
+|Tier 2|[![Build status](https://ci.appveyor.com/api/projects/status/orfo5j3ocsvejhvq/branch/master?svg=true)](https://ci.appveyor.com/project/primordialmachine/primordialmachine-ring2)|[![Build status](https://ci.appveyor.com/api/projects/status/orfo5j3ocsvejhvq/branch/develop?svg=true)](https://ci.appveyor.com/project/primordialmachine/primordialmachine-ring2)|
+|Tier 3|[![Build status](https://ci.appveyor.com/api/projects/status/fhroe16qxuv8gysa/branch/master?svg=true)](https://ci.appveyor.com/project/primordialmachine/primordialmachine-ring3)|[![Build status](https://ci.appveyor.com/api/projects/status/fhroe16qxuv8gysa/branch/develop?svg=true)](https://ci.appveyor.com/project/primordialmachine/primordialmachine-ring3)|
 
-Appveyor CI build status of [master](https://github.com/primordialmachine/primordialmachine/tree/master) branch:
-[![Build status](https://ci.appveyor.com/api/projects/status/52qbxatouwqe762j/branch/master?svg=true)](https://ci.appveyor.com/project/primordialmachine/primordialmachine/branch/master)
+## How to build
+Currently, *Primordial Machnine* is known to build under Visual Studio 2022 Community/Windows 11 targeting Windows 11.
+By design, the effort to port *Primordial Machine* to other build environments and other execution environments should be moderate.
+Please refer to section *How to contribute* if you want to contribute a port to the project.
 
-## Build and run.
-__To be done.__
+### Building under Visual Studio 2022/Community/Windows 11 for Windows 11
+For a description on how to build and run *Primordial Machine* for Windows 11 under Visual Studio 2022/Community/Windows 11,
+follow the instructions [here](/building-under-visual-studio-2022-windows-11.md).
 
-## Releases.
-__To be done.__
-
-## Contribute
-__To be done.__
+## How to contribute
+If you want to contribute to the source code, the assets, or the documentation, feel free to contact the project under the
+e-mail address [contact@primordialmachine.com](mailto:contact@primordialmachine.com).
