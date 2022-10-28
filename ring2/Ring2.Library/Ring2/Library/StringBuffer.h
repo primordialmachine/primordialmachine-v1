@@ -12,24 +12,21 @@
 #endif
 #include "Ring2/_Include.h"
 
-/// The version of the Ring2.Library.StringBuffer type implementation.
-#define RING2_LIBRARY_STRINGBUFFER_VERSION (2)
-
 /// @brief A Byte buffer.
-MACHINE_DECLARE_CLASSTYPE(Machine_StringBuffer)
+MACHINE_DECLARE_CLASSTYPE(Ring2_StringBuffer)
 
 void
-Machine_StringBuffer_construct
+Ring2_StringBuffer_construct
   (
-    Machine_StringBuffer *self,
+    Ring2_StringBuffer *self,
     size_t numberOfArguments,
     Ring2_Value const *arguments
   );
 
 /// @brief Create a string buffer.
 /// @return The string buffer.
-Machine_StringBuffer*
-Machine_StringBuffer_create
+Ring2_StringBuffer*
+Ring2_StringBuffer_create
   (
   );
 
@@ -37,9 +34,9 @@ Machine_StringBuffer_create
 /// @param self This string buffer.
 /// @param byte The Byte.
 void
-Machine_StringBuffer_appendByte
+Ring2_StringBuffer_appendByte
   (
-    Machine_StringBuffer* self,
+    Ring2_StringBuffer* self,
     char byte
   );
 
@@ -48,9 +45,9 @@ Machine_StringBuffer_appendByte
 /// @param bytes A pointer to an array of @a numberOfBytes Bytes.
 /// @param numberOfBytes The number of Bytes.
 void
-Machine_StringBuffer_appendBytes
+Ring2_StringBuffer_appendBytes
   (
-    Machine_StringBuffer* self,
+    Ring2_StringBuffer* self,
     char const* bytes,
     size_t numberOfBytes
   );
@@ -59,18 +56,18 @@ Machine_StringBuffer_appendBytes
 /// @param self This string buffer.
 /// @param string The string.
 void
-Machine_StringBuffer_appendString
+Ring2_StringBuffer_appendString
   (
-    Machine_StringBuffer* self,
+    Ring2_StringBuffer* self,
     Ring2_String* string
   );
 
 /// @brief Clear this string buffer.
 /// @param self This string buffer.
 void
-Machine_StringBuffer_clear
+Ring2_StringBuffer_clear
   (
-    Machine_StringBuffer* self
+    Ring2_StringBuffer* self
   );
 
 /// @brief Get the Bytes in this string buffer.
@@ -80,17 +77,17 @@ Machine_StringBuffer_clear
 /// - must not be modified and
 /// - is valid as long as this string buffer exists and is not modified.
 const char*
-Machine_StringBuffer_getBytes
+Ring2_StringBuffer_getBytes
   (
-    Machine_StringBuffer* self
+    Ring2_StringBuffer* self
   );
 
 /// @brief Get the number of Bytes in this string buffer.
 /// @param self This string buffer.
 size_t
-Machine_StringBuffer_getNumberOfBytes
+Ring2_StringBuffer_getNumberOfBytes
   (
-    Machine_StringBuffer* self
+    Ring2_StringBuffer* self
   );
 
 #endif // RING2_LIBRARY_STRINGBUFFER_H_INCLUDED

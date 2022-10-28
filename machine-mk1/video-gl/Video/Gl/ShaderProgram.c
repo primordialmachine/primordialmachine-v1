@@ -274,12 +274,12 @@ Machine_Gl_ShaderProgram* Machine_Gl_ShaderProgram_create(Ring2_String* vertexPr
 /// The shader version string (for fragment, geometry, and vertex shaders).
 #define GLSL_VERSION_STRING "#version 330 core"
 
-static void defineFloatConstants(Machine_StringBuffer* code) {
+static void defineFloatConstants(Ring2_StringBuffer* code) {
 #define T(t) t, strlen(t)
-  Machine_StringBuffer_appendBytes(code, T("#define FLT_MAX 3.402823466e+38" "\n"));
-  Machine_StringBuffer_appendBytes(code, T("#define FLT_MIN 1.175494351e-38" "\n"));
-  Machine_StringBuffer_appendBytes(code, T("#define DBL_MAX 1.7976931348623158e+308" "\n"));
-  Machine_StringBuffer_appendBytes(code, T("#define DBL_MIN 2.2250738585072014e-308" "\n"));
+  Ring2_StringBuffer_appendBytes(code, T("#define FLT_MAX 3.402823466e+38" "\n"));
+  Ring2_StringBuffer_appendBytes(code, T("#define FLT_MIN 1.175494351e-38" "\n"));
+  Ring2_StringBuffer_appendBytes(code, T("#define DBL_MAX 1.7976931348623158e+308" "\n"));
+  Ring2_StringBuffer_appendBytes(code, T("#define DBL_MIN 2.2250738585072014e-308" "\n"));
 #undef T
 }
 
@@ -289,23 +289,23 @@ static void defineFloatConstants(Machine_StringBuffer* code) {
 /// @param worldToView Add uniform <code>uniform mat4 worldToViewMatrix</code>.
 /// @param viewToProjection Add uniform <code>uniform mat4 viewToProjectionMatrix</code>.
 /// @param modelToProjection Add uniform <code>uniform mat4 modelToProjectionMatrix</code>.
-static void defineMatrixUniforms(Machine_StringBuffer* code, Ring2_Boolean modelToWorld, Ring2_Boolean worldToView, Ring2_Boolean viewToProjection, Ring2_Boolean modelToProjection) {
+static void defineMatrixUniforms(Ring2_StringBuffer* code, Ring2_Boolean modelToWorld, Ring2_Boolean worldToView, Ring2_Boolean viewToProjection, Ring2_Boolean modelToProjection) {
 #define T(t) t, strlen(t)
   // model -> world
   if (modelToWorld) {
-    Machine_StringBuffer_appendBytes(code, T("uniform mat4 modelToWorldMatrix;\n"));
+    Ring2_StringBuffer_appendBytes(code, T("uniform mat4 modelToWorldMatrix;\n"));
   }
   // world -> view
   if (worldToView) {
-    Machine_StringBuffer_appendBytes(code, T("uniform mat4 worldToViewMatrix;\n"));
+    Ring2_StringBuffer_appendBytes(code, T("uniform mat4 worldToViewMatrix;\n"));
   }
   // view -> projection
   if (viewToProjection) {
-    Machine_StringBuffer_appendBytes(code, T("uniform mat4 viewToProjectionMatrix;\n"));
+    Ring2_StringBuffer_appendBytes(code, T("uniform mat4 viewToProjectionMatrix;\n"));
   }
   if (modelToProjection) {
-    //Machine_StringBuffer_appendBytes(code, T("uniform mat4 modelToProjectionMatrix;\n"));
-    Machine_StringBuffer_appendBytes(code, T("uniform mat4 modelToProjectionMatrix = mat4(1);\n"));
+    //Ring2_StringBuffer_appendBytes(code, T("uniform mat4 modelToProjectionMatrix;\n"));
+    Ring2_StringBuffer_appendBytes(code, T("uniform mat4 modelToProjectionMatrix = mat4(1);\n"));
   }
 #undef T
 }
@@ -320,80 +320,80 @@ Machine_Gl_ShaderProgram_generateDefaultShader
     Ring2_Boolean withTexture
   )
 {
-  Machine_StringBuffer* code = Machine_StringBuffer_create();
+  Ring2_StringBuffer* code = Ring2_StringBuffer_create();
   Ring2_String *v, *g, *f;
 #define T(t) t, strlen(t)
 #define TZ(t) t, strlen(t) + 1
 
   // Vertex program.
-  Machine_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
+  Ring2_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
 
   defineFloatConstants(code);
   defineMatrixUniforms(code, false, false, false, true);
 
-  Machine_StringBuffer_appendBytes(code, T("attribute vec2 vertex_position;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("attribute vec2 vertex_position;\n"));
 
 
   if (withMeshColor) {
-    Machine_StringBuffer_appendBytes(code, T("uniform vec3 mesh_color = vec3(1.f, 1.f, 1.f);\n"));
+    Ring2_StringBuffer_appendBytes(code, T("uniform vec3 mesh_color = vec3(1.f, 1.f, 1.f);\n"));
   }
   if (withVertexColor) {
-    Machine_StringBuffer_appendBytes(code, T("attribute vec3 vertex_color;\n"));
+    Ring2_StringBuffer_appendBytes(code, T("attribute vec3 vertex_color;\n"));
   }
   if (withTextureCoordinate) {
-    Machine_StringBuffer_appendBytes(code, T("attribute vec2 vertex_texture_coordinate_1;\n"));
+    Ring2_StringBuffer_appendBytes(code, T("attribute vec2 vertex_texture_coordinate_1;\n"));
   }
 
-  Machine_StringBuffer_appendBytes(code, T("out vec3 color;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("out vec3 color;\n"));
 
   if (withTextureCoordinate) {
-    Machine_StringBuffer_appendBytes(code, T("out vec2 texture_coordinate_1;\n"));
+    Ring2_StringBuffer_appendBytes(code, T("out vec2 texture_coordinate_1;\n"));
   }
 
-  Machine_StringBuffer_appendBytes(code, T("void main()\n"
-                                           "{\n"
-                                           "    gl_Position = modelToProjectionMatrix * vec4(vertex_position, 0.0, 1.0);\n"));
+  Ring2_StringBuffer_appendBytes(code, T("void main()\n"
+                                         "{\n"
+                                         "    gl_Position = modelToProjectionMatrix * vec4(vertex_position, 0.0, 1.0);\n"));
 
-  Machine_StringBuffer_appendBytes(code, T("    color = vec3(1.0, 1.0, 1.0);\n"));
+  Ring2_StringBuffer_appendBytes(code, T("    color = vec3(1.0, 1.0, 1.0);\n"));
   if (withMeshColor) {
-    Machine_StringBuffer_appendBytes(code, T("    color = mesh_color;\n"));
+    Ring2_StringBuffer_appendBytes(code, T("    color = mesh_color;\n"));
   }
   if (withVertexColor) {
-    Machine_StringBuffer_appendBytes(code, T("    color = vertex_color;\n"));
+    Ring2_StringBuffer_appendBytes(code, T("    color = vertex_color;\n"));
   }
   if (withTextureCoordinate) {
-    Machine_StringBuffer_appendBytes(code, T("    texture_coordinate_1 = vertex_texture_coordinate_1;\n"));
+    Ring2_StringBuffer_appendBytes(code, T("    texture_coordinate_1 = vertex_texture_coordinate_1;\n"));
   }
 
-  Machine_StringBuffer_appendBytes(code, T("}\n"));
-  Machine_StringBuffer_appendBytes(code, "", 1);
+  Ring2_StringBuffer_appendBytes(code, T("}\n"));
+  Ring2_StringBuffer_appendBytes(code, "", 1);
   v = Machine_Object_toString(Ring2_Context_get(), (Machine_Object *)code);
-  Machine_StringBuffer_clear(code);
+  Ring2_StringBuffer_clear(code);
 
   // Geometry program.
-  Machine_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
+  Ring2_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
   g = Machine_Object_toString(Ring2_Context_get(), (Machine_Object *)code);
-  Machine_StringBuffer_clear(code);
+  Ring2_StringBuffer_clear(code);
 
   // Fragment program.
-  Machine_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
-  Machine_StringBuffer_appendBytes(code, T("in vec3 color;\n"));
-  Machine_StringBuffer_appendBytes(code, T("in vec2 texture_coordinate_1;\n"));
+  Ring2_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
+  Ring2_StringBuffer_appendBytes(code, T("in vec3 color;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("in vec2 texture_coordinate_1;\n"));
   if (withTextureCoordinate && withTexture) {
-    Machine_StringBuffer_appendBytes(code, T("uniform sampler2D texture_1;\n"));
+    Ring2_StringBuffer_appendBytes(code, T("uniform sampler2D texture_1;\n"));
   }
-  Machine_StringBuffer_appendBytes(code, T("void main()\n"
+  Ring2_StringBuffer_appendBytes(code, T("void main()\n"
                                            "{\n"));
   if (withTextureCoordinate && withTexture) {
-    Machine_StringBuffer_appendBytes(code, T("    gl_FragColor = texture2D(texture_1, texture_coordinate_1);\n"));
+    Ring2_StringBuffer_appendBytes(code, T("    gl_FragColor = texture2D(texture_1, texture_coordinate_1);\n"));
   }
   else {
-    Machine_StringBuffer_appendBytes(code, T("    gl_FragColor = vec4(color, 1.0);\n"));
+    Ring2_StringBuffer_appendBytes(code, T("    gl_FragColor = vec4(color, 1.0);\n"));
   }
-  Machine_StringBuffer_appendBytes(code, T("}\n"));
-  Machine_StringBuffer_appendBytes(code, "", 1);
+  Ring2_StringBuffer_appendBytes(code, T("}\n"));
+  Ring2_StringBuffer_appendBytes(code, "", 1);
   f = Machine_Object_toString(Ring2_Context_get(), (Machine_Object *)code);
-  Machine_StringBuffer_clear(code);
+  Ring2_StringBuffer_clear(code);
 
   Machine_ShaderProgram* shaderProgram = (Machine_ShaderProgram *)Machine_Gl_ShaderProgram_create(v, NULL, f);
   Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(Ring2_Context_get(), TZ("vertex_position")),
@@ -417,51 +417,51 @@ Machine_Gl_ShaderProgram_generateShape2Shader
   (
   )
 {
-  Machine_StringBuffer* code = Machine_StringBuffer_create();
+  Ring2_StringBuffer* code = Ring2_StringBuffer_create();
   Ring2_String *v, *g, *f;
 #define T(t) t, strlen(t)
 #define TZ(t) t, strlen(t) + 1
 
   // Vertex program.
-  Machine_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
+  Ring2_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
 
   defineFloatConstants(code);
   defineMatrixUniforms(code, false, false, false, true);
 
-  Machine_StringBuffer_appendBytes(code, T("attribute vec2 vertex_position;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("attribute vec2 vertex_position;\n"));
 
 
-  Machine_StringBuffer_appendBytes(code, T("uniform vec4 mesh_color = vec4(1.f, 1.f, 1.f, 1.f);\n"));
+  Ring2_StringBuffer_appendBytes(code, T("uniform vec4 mesh_color = vec4(1.f, 1.f, 1.f, 1.f);\n"));
 
 
-  Machine_StringBuffer_appendBytes(code, T("out vec4 color;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("out vec4 color;\n"));
 
-  Machine_StringBuffer_appendBytes(code, T("void main()\n"
-                                           "{\n"
-                                           "    gl_Position = modelToProjectionMatrix * vec4(vertex_position, 0.0, 1.0);\n"));
+  Ring2_StringBuffer_appendBytes(code, T("void main()\n"
+                                         "{\n"
+                                         "    gl_Position = modelToProjectionMatrix * vec4(vertex_position, 0.0, 1.0);\n"));
 
-  Machine_StringBuffer_appendBytes(code, T("    color = mesh_color;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("    color = mesh_color;\n"));
 
-  Machine_StringBuffer_appendBytes(code, T("}\n"));
-  Machine_StringBuffer_appendBytes(code, "", 1);
+  Ring2_StringBuffer_appendBytes(code, T("}\n"));
+  Ring2_StringBuffer_appendBytes(code, "", 1);
   v = Machine_Object_toString(Ring2_Context_get(), (Machine_Object *)code);
-  Machine_StringBuffer_clear(code);
+  Ring2_StringBuffer_clear(code);
 
   // Geometry program.
-  Machine_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
+  Ring2_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
   g = Machine_Object_toString(Ring2_Context_get(), (Machine_Object *)code);
-  Machine_StringBuffer_clear(code);
+  Ring2_StringBuffer_clear(code);
 
   // Fragment program.
-  Machine_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
-  Machine_StringBuffer_appendBytes(code, T("in vec4 color;\n"));
-  Machine_StringBuffer_appendBytes(code, T("void main()\n"
+  Ring2_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
+  Ring2_StringBuffer_appendBytes(code, T("in vec4 color;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("void main()\n"
                                            "{\n"));
-  Machine_StringBuffer_appendBytes(code, T("    gl_FragColor = color;\n"));
-  Machine_StringBuffer_appendBytes(code, T("}\n"));
-  Machine_StringBuffer_appendBytes(code, "", 1);
+  Ring2_StringBuffer_appendBytes(code, T("    gl_FragColor = color;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("}\n"));
+  Ring2_StringBuffer_appendBytes(code, "", 1);
   f = Machine_Object_toString(Ring2_Context_get(), (Machine_Object *)code);
-  Machine_StringBuffer_clear(code);
+  Ring2_StringBuffer_clear(code);
 
   Machine_ShaderProgram* shaderProgram = (Machine_ShaderProgram*)Machine_Gl_ShaderProgram_create(v, NULL, f);
   Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(Ring2_Context_get(), TZ("vertex_position")),
@@ -478,114 +478,114 @@ Machine_Gl_ShaderProgram_generateText2Shader
     Ring2_Boolean highPrecision
   )
 {
-  Machine_StringBuffer* code = Machine_StringBuffer_create();
+  Ring2_StringBuffer* code = Ring2_StringBuffer_create();
   Ring2_String *v, *g, *f;
 #define T(t) t, strlen(t)
 #define TZ(t) t, strlen(t) + 1
 
   // Vertex shader.
-  Machine_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
+  Ring2_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
   if (highPrecision) {
-    Machine_StringBuffer_appendBytes(code, T("precision highp float;\n"));
+    Ring2_StringBuffer_appendBytes(code, T("precision highp float;\n"));
   }
 
   defineFloatConstants(code);
 
   static Ring2_Boolean const withClipDistance = true;
 
-  Machine_StringBuffer_appendBytes(code, T("out struct VS2GS {\n"));
-  Machine_StringBuffer_appendBytes(code, T("  vec2 texture_coordinate_1;\n"));
-  Machine_StringBuffer_appendBytes(code, T("  vec3 color;\n"));
-  Machine_StringBuffer_appendBytes(code, T("} vertex;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("out struct VS2GS {\n"));
+  Ring2_StringBuffer_appendBytes(code, T("  vec2 texture_coordinate_1;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("  vec3 color;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("} vertex;\n"));
 
   defineMatrixUniforms(code, true, false, false, true);
-  Machine_StringBuffer_appendBytes(code, T("uniform vec3 mesh_color;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("uniform vec3 mesh_color;\n"));
 
-  Machine_StringBuffer_appendBytes(code, T("in vec2 vertex_position;\n"));
-  Machine_StringBuffer_appendBytes(code, T("in vec2 vertex_texture_coordinate_1;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("in vec2 vertex_position;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("in vec2 vertex_texture_coordinate_1;\n"));
 
   if (withClipDistance) {
-    Machine_StringBuffer_appendBytes(code, T("uniform vec4 clipPlane0;\n"));
-    Machine_StringBuffer_appendBytes(code, T("uniform vec4 clipPlane1;\n"));
-    Machine_StringBuffer_appendBytes(code, T("uniform vec4 clipPlane2;\n"));
-    Machine_StringBuffer_appendBytes(code, T("uniform vec4 clipPlane3;\n"));
-    Machine_StringBuffer_appendBytes(code, T("out float gl_ClipDistance[4];\n"));
+    Ring2_StringBuffer_appendBytes(code, T("uniform vec4 clipPlane0;\n"));
+    Ring2_StringBuffer_appendBytes(code, T("uniform vec4 clipPlane1;\n"));
+    Ring2_StringBuffer_appendBytes(code, T("uniform vec4 clipPlane2;\n"));
+    Ring2_StringBuffer_appendBytes(code, T("uniform vec4 clipPlane3;\n"));
+    Ring2_StringBuffer_appendBytes(code, T("out float gl_ClipDistance[4];\n"));
   }
 
-  Machine_StringBuffer_appendBytes(code, T("void main()\n"
-                                           "{\n"
-                                           "    vec4 worldPosition = modelToWorldMatrix * vec4(vertex_position, 0.0, 1.0);\n"
-                                           "    gl_Position = modelToProjectionMatrix * vec4(vertex_position, 0.0, 1.0);\n"));
-  Machine_StringBuffer_appendBytes(code, T("    vertex.texture_coordinate_1 = vertex_texture_coordinate_1;\n"));
-  Machine_StringBuffer_appendBytes(code, T("    vertex.color = mesh_color;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("void main()\n"
+                                         "{\n"
+                                         "    vec4 worldPosition = modelToWorldMatrix * vec4(vertex_position, 0.0, 1.0);\n"
+                                         "    gl_Position = modelToProjectionMatrix * vec4(vertex_position, 0.0, 1.0);\n"));
+  Ring2_StringBuffer_appendBytes(code, T("    vertex.texture_coordinate_1 = vertex_texture_coordinate_1;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("    vertex.color = mesh_color;\n"));
   if (withClipDistance) {
-    Machine_StringBuffer_appendBytes(code, T("    gl_ClipDistance[0] = +dot(worldPosition, clipPlane0);\n"));
-    Machine_StringBuffer_appendBytes(code, T("    gl_ClipDistance[1] = +dot(worldPosition, clipPlane1);\n"));
-    Machine_StringBuffer_appendBytes(code, T("    gl_ClipDistance[2] = +dot(worldPosition, clipPlane2);\n"));
-    Machine_StringBuffer_appendBytes(code, T("    gl_ClipDistance[3] = +dot(worldPosition, clipPlane3);\n"));
+    Ring2_StringBuffer_appendBytes(code, T("    gl_ClipDistance[0] = +dot(worldPosition, clipPlane0);\n"));
+    Ring2_StringBuffer_appendBytes(code, T("    gl_ClipDistance[1] = +dot(worldPosition, clipPlane1);\n"));
+    Ring2_StringBuffer_appendBytes(code, T("    gl_ClipDistance[2] = +dot(worldPosition, clipPlane2);\n"));
+    Ring2_StringBuffer_appendBytes(code, T("    gl_ClipDistance[3] = +dot(worldPosition, clipPlane3);\n"));
   }
 
-  Machine_StringBuffer_appendBytes(code, T("}\n"));
-  Machine_StringBuffer_appendBytes(code, "", 1);
+  Ring2_StringBuffer_appendBytes(code, T("}\n"));
+  Ring2_StringBuffer_appendBytes(code, "", 1);
   v = Machine_Object_toString(Ring2_Context_get(), (Machine_Object *)code);
-  Machine_StringBuffer_clear(code);
+  Ring2_StringBuffer_clear(code);
 
   // Geometry program.
-  Machine_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
+  Ring2_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
   if (highPrecision) {
-    Machine_StringBuffer_appendBytes(code, T("precision highp float;\n"));
+    Ring2_StringBuffer_appendBytes(code, T("precision highp float;\n"));
   }
-  Machine_StringBuffer_appendBytes(code, T("in struct VS2GS {\n"));
-  Machine_StringBuffer_appendBytes(code, T("  vec2 texture_coordinate_1;\n"));
-  Machine_StringBuffer_appendBytes(code, T("  vec3 color;\n"));
-  Machine_StringBuffer_appendBytes(code, T("} vertex[];\n"));
-  Machine_StringBuffer_appendBytes(code, T("out struct GS2FS {\n"));
-  Machine_StringBuffer_appendBytes(code, T("  vec2 texture_coordinate_1;\n"));
-  Machine_StringBuffer_appendBytes(code, T("  vec3 color;\n"));
-  Machine_StringBuffer_appendBytes(code, T("} fragment;\n"));
-  Machine_StringBuffer_appendBytes(code, T("layout(triangles) in;"));
-  Machine_StringBuffer_appendBytes(code, T("layout(triangle_strip, max_vertices = 3) out;"));
-  Machine_StringBuffer_appendBytes(code, T("void main()\n"
-                                           "{for(int i = 0; i < 3; i++) {\n"));
-  Machine_StringBuffer_appendBytes(code, T("    gl_Position = gl_in[i].gl_Position;\n"));
-  Machine_StringBuffer_appendBytes(code, T("    fragment.texture_coordinate_1 = vertex[i].texture_coordinate_1;\n"));
-  Machine_StringBuffer_appendBytes(code, T("    fragment.color = vertex[i].color;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("in struct VS2GS {\n"));
+  Ring2_StringBuffer_appendBytes(code, T("  vec2 texture_coordinate_1;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("  vec3 color;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("} vertex[];\n"));
+  Ring2_StringBuffer_appendBytes(code, T("out struct GS2FS {\n"));
+  Ring2_StringBuffer_appendBytes(code, T("  vec2 texture_coordinate_1;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("  vec3 color;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("} fragment;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("layout(triangles) in;"));
+  Ring2_StringBuffer_appendBytes(code, T("layout(triangle_strip, max_vertices = 3) out;"));
+  Ring2_StringBuffer_appendBytes(code, T("void main()\n"
+                                         "{for(int i = 0; i < 3; i++) {\n"));
+  Ring2_StringBuffer_appendBytes(code, T("    gl_Position = gl_in[i].gl_Position;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("    fragment.texture_coordinate_1 = vertex[i].texture_coordinate_1;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("    fragment.color = vertex[i].color;\n"));
   if (withClipDistance) {
-    Machine_StringBuffer_appendBytes(code, T("  gl_ClipDistance[0] = gl_in[i].gl_ClipDistance[0];\n"));
-    Machine_StringBuffer_appendBytes(code, T("  gl_ClipDistance[1] = gl_in[i].gl_ClipDistance[1];\n"));
-    Machine_StringBuffer_appendBytes(code, T("  gl_ClipDistance[2] = gl_in[i].gl_ClipDistance[2];\n"));
-    Machine_StringBuffer_appendBytes(code, T("  gl_ClipDistance[3] = gl_in[i].gl_ClipDistance[3];\n"));
+    Ring2_StringBuffer_appendBytes(code, T("  gl_ClipDistance[0] = gl_in[i].gl_ClipDistance[0];\n"));
+    Ring2_StringBuffer_appendBytes(code, T("  gl_ClipDistance[1] = gl_in[i].gl_ClipDistance[1];\n"));
+    Ring2_StringBuffer_appendBytes(code, T("  gl_ClipDistance[2] = gl_in[i].gl_ClipDistance[2];\n"));
+    Ring2_StringBuffer_appendBytes(code, T("  gl_ClipDistance[3] = gl_in[i].gl_ClipDistance[3];\n"));
   }
 
-  Machine_StringBuffer_appendBytes(code, T(" EmitVertex(); } EndPrimitive();}\n"));
-  Machine_StringBuffer_appendBytes(code, "", 1);
+  Ring2_StringBuffer_appendBytes(code, T(" EmitVertex(); } EndPrimitive();}\n"));
+  Ring2_StringBuffer_appendBytes(code, "", 1);
   g = Machine_Object_toString(Ring2_Context_get(), (Machine_Object *)code);
-  Machine_StringBuffer_clear(code);
+  Ring2_StringBuffer_clear(code);
 
   // Fragment shader.
-  Machine_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
+  Ring2_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
   if (highPrecision) {
-    Machine_StringBuffer_appendBytes(code, T("precision highp float;\n"));
+    Ring2_StringBuffer_appendBytes(code, T("precision highp float;\n"));
   }
-  Machine_StringBuffer_appendBytes(code, T("in struct GS2FS {\n"));
-  Machine_StringBuffer_appendBytes(code, T("  vec2 texture_coordinate_1;\n"));
-  Machine_StringBuffer_appendBytes(code, T("  vec3 color;\n"));
-  Machine_StringBuffer_appendBytes(code, T("} fragment;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("in struct GS2FS {\n"));
+  Ring2_StringBuffer_appendBytes(code, T("  vec2 texture_coordinate_1;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("  vec3 color;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("} fragment;\n"));
 
-  Machine_StringBuffer_appendBytes(code, T("uniform sampler2D texture_1;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("uniform sampler2D texture_1;\n"));
 
-  Machine_StringBuffer_appendBytes(code, T("void main()\n"
+  Ring2_StringBuffer_appendBytes(code, T("void main()\n"
                                            "{\n"));
-  Machine_StringBuffer_appendBytes(code, T("    if (gl_ClipDistance[0] < 0 || gl_ClipDistance[1] < 0 || gl_ClipDistance[2] < 0 || gl_ClipDistance[3] < 0) {\n"));
-  Machine_StringBuffer_appendBytes(code, T("        discard;"));
-  Machine_StringBuffer_appendBytes(code, T("    } else {\n"));
-  Machine_StringBuffer_appendBytes(code, T("      float a = texture2D(texture_1, fragment.texture_coordinate_1).r;\n"));
-  Machine_StringBuffer_appendBytes(code, T("      gl_FragColor = vec4(fragment.color.r, fragment.color.g, fragment.color.b, a);\n"));
-  Machine_StringBuffer_appendBytes(code, T("    }\n"));
-  Machine_StringBuffer_appendBytes(code, T("}\n"));
-  Machine_StringBuffer_appendBytes(code, "", 1);
+  Ring2_StringBuffer_appendBytes(code, T("    if (gl_ClipDistance[0] < 0 || gl_ClipDistance[1] < 0 || gl_ClipDistance[2] < 0 || gl_ClipDistance[3] < 0) {\n"));
+  Ring2_StringBuffer_appendBytes(code, T("        discard;"));
+  Ring2_StringBuffer_appendBytes(code, T("    } else {\n"));
+  Ring2_StringBuffer_appendBytes(code, T("      float a = texture2D(texture_1, fragment.texture_coordinate_1).r;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("      gl_FragColor = vec4(fragment.color.r, fragment.color.g, fragment.color.b, a);\n"));
+  Ring2_StringBuffer_appendBytes(code, T("    }\n"));
+  Ring2_StringBuffer_appendBytes(code, T("}\n"));
+  Ring2_StringBuffer_appendBytes(code, "", 1);
   f = Machine_Object_toString(Ring2_Context_get(), (Machine_Object *)code);
-  Machine_StringBuffer_clear(code);
+  Ring2_StringBuffer_clear(code);
 
   Machine_ShaderProgram* shaderProgram = (Machine_ShaderProgram*)Machine_Gl_ShaderProgram_create(v, g, f);
   Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(Ring2_Context_get(), TZ("vertex_position")),

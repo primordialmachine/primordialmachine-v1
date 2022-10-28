@@ -33,24 +33,24 @@ static void Machine_KeyboardKeyEvent_visit(
 }
 
 static Ring2_String* Machine_KeyboardKeyEvent_toStringImpl(Ring2_Context *context, Machine_KeyboardKeyEvent const* self) {
-  Machine_StringBuffer* stringBuffer = Machine_StringBuffer_create();
+  Ring2_StringBuffer* stringBuffer = Ring2_StringBuffer_create();
 
-  Machine_StringBuffer_appendBytes(stringBuffer, "{ ", strlen("{ "));
+  Ring2_StringBuffer_appendBytes(stringBuffer, "{ ", strlen("{ "));
 
-  Machine_StringBuffer_appendBytes(stringBuffer, "type: 'keyboard-key-event'",
-                                   strlen("type: 'keyboard-key-event'"));
-  Machine_StringBuffer_appendBytes(stringBuffer, ", ", strlen(", "));
+  Ring2_StringBuffer_appendBytes(stringBuffer, "type: 'keyboard-key-event'",
+                                 strlen("type: 'keyboard-key-event'"));
+  Ring2_StringBuffer_appendBytes(stringBuffer, ", ", strlen(", "));
 
-  Machine_StringBuffer_appendBytes(stringBuffer, "keyAction: '", strlen("keyAction: '"));
-  Machine_StringBuffer_appendString(stringBuffer,
-                                    Machine_KeyboardKeyActions_toString(self->action));
-  Machine_StringBuffer_appendBytes(stringBuffer, "', ", strlen("', "));
+  Ring2_StringBuffer_appendBytes(stringBuffer, "keyAction: '", strlen("keyAction: '"));
+  Ring2_StringBuffer_appendString(stringBuffer,
+                                  Machine_KeyboardKeyActions_toString(self->action));
+  Ring2_StringBuffer_appendBytes(stringBuffer, "', ", strlen("', "));
 
-  Machine_StringBuffer_appendBytes(stringBuffer, "key: '", strlen("key: '"));
-  Machine_StringBuffer_appendString(stringBuffer, Machine_KeyboardKeys_toString(self->key));
-  Machine_StringBuffer_appendBytes(stringBuffer, "'", strlen("'"));
+  Ring2_StringBuffer_appendBytes(stringBuffer, "key: '", strlen("key: '"));
+  Ring2_StringBuffer_appendString(stringBuffer, Machine_KeyboardKeys_toString(self->key));
+  Ring2_StringBuffer_appendBytes(stringBuffer, "'", strlen("'"));
 
-  Machine_StringBuffer_appendBytes(stringBuffer, " }", strlen(" }"));
+  Ring2_StringBuffer_appendBytes(stringBuffer, " }", strlen(" }"));
 
   return Machine_Object_toString(Ring2_Context_get(), (Machine_Object*)stringBuffer);
 }

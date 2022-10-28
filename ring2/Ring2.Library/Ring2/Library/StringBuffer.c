@@ -16,11 +16,11 @@
 #include "Ring1/Status.h"
 
 
-struct Machine_StringBuffer_Class {
+struct Ring2_StringBuffer_Class {
   Machine_Object_Class _parent;
 };
 
-struct Machine_StringBuffer {
+struct Ring2_StringBuffer {
   Machine_Object _parent;
   Ring1_ByteBuffer* pimpl;
 };
@@ -29,34 +29,34 @@ static Ring2_String*
 toString
   (
     Ring2_Context *context,
-    Machine_StringBuffer* self
+    Ring2_StringBuffer* self
   );
 
 static void
-Machine_StringBuffer_constructClass
+Ring2_StringBuffer_constructClass
   (
-    Machine_StringBuffer_Class *self
+    Ring2_StringBuffer_Class *self
   );
 
 static void
-Machine_StringBuffer_destruct
+Ring2_StringBuffer_destruct
   (
-    Machine_StringBuffer* self
+    Ring2_StringBuffer* self
   );
 
-MACHINE_DEFINE_CLASSTYPE(Machine_StringBuffer /*type*/,
+MACHINE_DEFINE_CLASSTYPE(Ring2_StringBuffer /*type*/,
                          Machine_Object /*parentType*/,
                          NULL /*visit*/,
-                         &Machine_StringBuffer_construct /*construct*/,
-                         &Machine_StringBuffer_destruct /*destruct*/,
-                         &Machine_StringBuffer_constructClass /*constructClass*/,
+                         &Ring2_StringBuffer_construct /*construct*/,
+                         &Ring2_StringBuffer_destruct /*destruct*/,
+                         &Ring2_StringBuffer_constructClass /*constructClass*/,
                          NULL)
 
 static Ring2_String*
 toString
   (
     Ring2_Context *context,
-    Machine_StringBuffer* self
+    Ring2_StringBuffer* self
   )
 {
   char const* bytes;
@@ -69,18 +69,18 @@ toString
 }
 
 static void
-Machine_StringBuffer_constructClass
+Ring2_StringBuffer_constructClass
   (
-    Machine_StringBuffer_Class *self
+    Ring2_StringBuffer_Class *self
   )
 {
   Ring1_cast(Machine_Object_Class*, self)->toString = (Ring2_String *(*)(Ring2_Context *, Machine_Object const *))&toString;
 }
 
 static void
-Machine_StringBuffer_destruct
+Ring2_StringBuffer_destruct
   (
-    Machine_StringBuffer* self
+    Ring2_StringBuffer* self
   )
 {
   if (self->pimpl) {
@@ -91,9 +91,9 @@ Machine_StringBuffer_destruct
 }
 
 void
-Machine_StringBuffer_construct
+Ring2_StringBuffer_construct
   (
-    Machine_StringBuffer *self,
+    Ring2_StringBuffer *self,
     size_t numberOfArguments,
     Ring2_Value const *arguments
   )
@@ -110,25 +110,25 @@ Machine_StringBuffer_construct
     Ring2_jump();
   }
   self->pimpl = pimpl;
-  Machine_setClassType(Ring1_cast(Machine_Object*, self), Machine_StringBuffer_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object*, self), Ring2_StringBuffer_getType());
 }
 
-Machine_StringBuffer *
-Machine_StringBuffer_create
+Ring2_StringBuffer *
+Ring2_StringBuffer_create
   (
   )
 {
-  Machine_ClassType* ty = Machine_StringBuffer_getType();
+  Machine_ClassType* ty = Ring2_StringBuffer_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   Ring2_Value ARGUMENTS[1] = { Ring2_Value_StaticInitializerVoid() };
-  Machine_StringBuffer* self = (Machine_StringBuffer*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Ring2_StringBuffer* self = (Ring2_StringBuffer*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }
 
 void
-Machine_StringBuffer_appendByte
+Ring2_StringBuffer_appendByte
   (
-    Machine_StringBuffer* self,
+    Ring2_StringBuffer* self,
     char byte
   )
 {
@@ -137,9 +137,9 @@ Machine_StringBuffer_appendByte
 }
 
 void
-Machine_StringBuffer_appendBytes
+Ring2_StringBuffer_appendBytes
   (
-    Machine_StringBuffer* self,
+    Ring2_StringBuffer* self,
     char const* bytes,
     size_t numberOfBytes
   )
@@ -149,27 +149,27 @@ Machine_StringBuffer_appendBytes
 }
 
 void
-Machine_StringBuffer_appendString
+Ring2_StringBuffer_appendString
   (
-    Machine_StringBuffer* self,
+    Ring2_StringBuffer* self,
     Ring2_String* string
   )
 { 
-  Machine_StringBuffer_appendBytes(self, Ring2_String_getBytes(Ring2_Context_get(), string),
-                                   (size_t)Ring2_String_getNumberOfBytes(Ring2_Context_get(), string));
+  Ring2_StringBuffer_appendBytes(self, Ring2_String_getBytes(Ring2_Context_get(), string),
+                                 (size_t)Ring2_String_getNumberOfBytes(Ring2_Context_get(), string));
 }
 
 void
-Machine_StringBuffer_clear
+Ring2_StringBuffer_clear
   (
-    Machine_StringBuffer* self
+    Ring2_StringBuffer* self
   )
 { Ring1_ByteBuffer_clear(self->pimpl); }
 
 const char*
-Machine_StringBuffer_getBytes
+Ring2_StringBuffer_getBytes
   (
-    Machine_StringBuffer* self
+    Ring2_StringBuffer* self
   )
 {
   char const* bytes;
@@ -179,9 +179,9 @@ Machine_StringBuffer_getBytes
 }
 
 size_t
-Machine_StringBuffer_getNumberOfBytes
+Ring2_StringBuffer_getNumberOfBytes
   (
-    Machine_StringBuffer* self
+    Ring2_StringBuffer* self
   )
 { 
   size_t numberOfBytes;
