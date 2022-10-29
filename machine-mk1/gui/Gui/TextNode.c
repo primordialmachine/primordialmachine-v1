@@ -4,6 +4,7 @@
 #define MACHINE_GUI_PRIVATE (1)
 #include "Gui/TextNode.h"
 
+
 #include "Ring1/Intrinsic.h"
 #include "Gui/Context.h"
 #include "Gui/Widget.h"
@@ -11,7 +12,6 @@
 #include "_Images.h"
 #include "_Text.h"
 #include "_Video.h"
-#include <string.h>
 
 
 struct Machine_Gui_TextNode_Class {

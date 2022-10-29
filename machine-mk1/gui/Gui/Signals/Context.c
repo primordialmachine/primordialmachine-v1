@@ -6,7 +6,6 @@
 
 
 #include "Ring1/Intrinsic.h"
-#include <string.h>
 
 
 static void Machine_Gui_Signals_Context_visit(Machine_Gui_Signals_Context* self) {
