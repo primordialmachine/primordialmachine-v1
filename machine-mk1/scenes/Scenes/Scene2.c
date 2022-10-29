@@ -2,7 +2,6 @@
 
 
 #include "Ring1/Intrinsic.h"
-#include <string.h>
 #include "_Gui.h"
 #include "_Images.h"
 #include "_Text.h"
@@ -73,10 +72,10 @@ static void Scene2_onStartup(Scene2* self) {
       = Machine_VideoContext_createBinding(videoContext, self->shaderProgram, vd, self->vertices);
   Machine_Binding_setVariableBinding(
       self->binding, 
-      Ring2_String_create(Ring2_Context_get(), "vertex_position", strlen("vertex_position") + 1), 0);
+      Ring2_String_create(Ring2_Context_get(), "vertex_position", crt_strlen("vertex_position") + 1), 0);
   Machine_Binding_setVariableBinding(
       self->binding, 
-      Ring2_String_create(Ring2_Context_get(), "vertex_color", strlen("vertex_color") + 1), 1);
+      Ring2_String_create(Ring2_Context_get(), "vertex_color", crt_strlen("vertex_color") + 1), 1);
 
   Machine_Math_Vector4* c = Machine_Math_Vector4_create();
   Machine_Math_Vector4_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
@@ -103,7 +102,7 @@ static void Scene2_onUpdate(Scene2* self, Ring2_Real32 width, Ring2_Real32 heigh
   Machine_Binding_activate(self->binding);
   Machine_Binding_bindMatrix4(
       self->binding,
-      Ring2_String_create(Ring2_Context_get(), "modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1),
+      Ring2_String_create(Ring2_Context_get(), "modelToProjectionMatrix", crt_strlen("modelToProjectionMatrix") + 1),
       mvp2);
 
   Machine_VideoContext_drawIndirect(videoContext, 0, 6, indices);

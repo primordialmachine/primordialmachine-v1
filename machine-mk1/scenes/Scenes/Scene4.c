@@ -3,7 +3,6 @@
 
 #include "Ring1/Intrinsic.h"
 #include "Ring3/Gdl/_Include.h"
-#include <string.h>
 #include "_Gui.h"
 #include "_Images.h"
 #include "_Text.h"
@@ -75,8 +74,7 @@ static void Scene4_onStartup(Scene4* self) {
   //
   Machine_FontsContext* fontsContext = Machine_DefaultFonts_createContext(videoContext, imagesContext);
   //
-  self->font = Machine_FontsContext_createFont(fontsContext,
-                                               Ring2_String_create(Ring2_Context_get(), FONT_FILE, strlen(FONT_FILE)), FONT_SIZE);
+  self->font = Machine_FontsContext_createFont(fontsContext, Ring2_String_fromC(FONT_FILE), FONT_SIZE);
   //
   self->text1 = Machine_Text_Layout_create(Ring2_String_fromC(""), self->font);
   {

@@ -2,7 +2,6 @@
 
 
 #include "Ring1/Intrinsic.h"
-#include <string.h>
 #include "_Gui.h"
 #include "_Images.h"
 #include "_Text.h"

@@ -2,7 +2,6 @@
 
 
 #include "Ring1/Intrinsic.h"
-#include <string.h>
 #include "_Gui.h"
 #include "_Images.h"
 #include "_Text.h"
@@ -115,18 +114,17 @@ static void Scene3_startup(Scene3* self) {
   Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_RfGfBf);
   Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_UfVf);
 
-  self->binding
-      = Machine_VideoContext_createBinding(videoContext, self->shaderProgram, vd, self->vertices);
-  Machine_Binding_setVariableBinding(
-      self->binding, Ring2_String_create(Ring2_Context_get(), "vertex_position", strlen("vertex_position") + 1), 0);
-  Machine_Binding_setVariableBinding(
-      self->binding, Ring2_String_create(Ring2_Context_get(), "vertex_color", strlen("vertex_color") + 1), 1);
-  Machine_Binding_setVariableBinding(
-      self->binding,
-      Ring2_String_create(Ring2_Context_get(),
-                          "vertex_texture_coordinate_1",
-                          strlen("vertex_texture_coordinate_1") + 1),
-      2);
+  self->binding = Machine_VideoContext_createBinding(videoContext, self->shaderProgram, vd, self->vertices);
+
+  Machine_Binding_setVariableBinding(self->binding, Ring2_String_create(Ring2_Context_get(),
+                                                                        "vertex_position",
+                                                             crt_strlen("vertex_position") + 1), 0);
+  Machine_Binding_setVariableBinding(self->binding, Ring2_String_create(Ring2_Context_get(),
+                                                                        "vertex_color",
+                                                             crt_strlen("vertex_color") + 1), 1);
+  Machine_Binding_setVariableBinding(self->binding, Ring2_String_create(Ring2_Context_get(),
+                                                                        "vertex_texture_coordinate_1",
+                                                             crt_strlen("vertex_texture_coordinate_1") + 1), 2);
 
   Machine_Math_Vector4* c = Machine_Math_Vector4_create();
   Machine_Math_Vector4_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
@@ -151,12 +149,16 @@ static void Scene3_update(Scene3* self, Ring2_Real32 width, Ring2_Real32 height)
   Machine_Math_Matrix4* mvp2 = Machine_Math_Matrix4_product(p2, m2);
 
   Machine_Binding_activate(self->binding);
-  Machine_Binding_bindMatrix4(
-      self->binding,
-      Ring2_String_create(Ring2_Context_get(), "modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1),
-      mvp2);
+  Machine_Binding_bindMatrix4(self->binding,
+                              Ring2_String_create(Ring2_Context_get(),
+                                                  "modelToProjectionMatrix",
+                                                   crt_strlen("modelToProjectionMatrix") + 1),
+                              mvp2);
   Machine_Binding_bindSampler(self->binding,
-                              Ring2_String_create(Ring2_Context_get(), "texture_1", strlen("texture_1")), 0);
+                              Ring2_String_create(Ring2_Context_get(),
+                                                  "texture_1",
+                                                   crt_strlen("texture_1")),
+                              0);
   Machine_VideoContext_bindTexture(videoContext, 0, self->texture);
 
   Machine_VideoContext_drawIndirect(videoContext, 0, 6, indices);
