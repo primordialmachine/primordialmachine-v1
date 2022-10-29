@@ -6,7 +6,6 @@
 #include "_Graphics2.h"
 #include "_Fonts.h"
 #include "Text/LayoutLine.h"
-#include <string.h>
 #include <math.h>
 
 
@@ -298,7 +297,7 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* con
       float d = -Machine_Math_Vector3_dot(n2, p2);
       Machine_Math_Vector4* x = Machine_Math_Vector4_create();
       Machine_Math_Vector4_set(x, N[0], N[1], N[2], d);
-      Machine_Binding_bindVector4(binding, Ring2_String_create(Ring2_Context_get(), "clipPlane0", strlen("clipPlane0") + 1), x);
+      Machine_Binding_bindVector4(binding, Ring2_String_create(Ring2_Context_get(), "clipPlane0", crt_strlen("clipPlane0") + 1), x);
     }
     // right
     {
@@ -309,7 +308,7 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* con
       float d = -Machine_Math_Vector3_dot(n2, p2);
       Machine_Math_Vector4* x = Machine_Math_Vector4_create();
       Machine_Math_Vector4_set(x, N[0], N[1], N[2], d);
-      Machine_Binding_bindVector4(binding, Ring2_String_create(Ring2_Context_get(), "clipPlane1", strlen("clipPlane1") + 1), x);
+      Machine_Binding_bindVector4(binding, Ring2_String_create(Ring2_Context_get(), "clipPlane1", crt_strlen("clipPlane1") + 1), x);
     }
     // bottom
     {
@@ -319,7 +318,7 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* con
       float d = -Machine_Math_Vector3_dot(n2, p2);
       Machine_Math_Vector4* x = Machine_Math_Vector4_create();
       Machine_Math_Vector4_set(x, N[0], N[1], N[2], d);
-      Machine_Binding_bindVector4(binding, Ring2_String_create(Ring2_Context_get(), "clipPlane2", strlen("clipPlane2") + 1), x);
+      Machine_Binding_bindVector4(binding, Ring2_String_create(Ring2_Context_get(), "clipPlane2", crt_strlen("clipPlane2") + 1), x);
     }
     // top
     {
@@ -330,12 +329,12 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* con
       float d = -Machine_Math_Vector3_dot(n2, p2);
       Machine_Math_Vector4* x = Machine_Math_Vector4_create();
       Machine_Math_Vector4_set(x, N[0], N[1], N[2], d);
-      Machine_Binding_bindVector4(binding, Ring2_String_create(Ring2_Context_get(), "clipPlane3", strlen("clipPlane3") + 1), x);
+      Machine_Binding_bindVector4(binding, Ring2_String_create(Ring2_Context_get(), "clipPlane3", crt_strlen("clipPlane3") + 1), x);
     }
   }
-  Machine_Binding_bindVector3(binding, Ring2_String_create(Ring2_Context_get(), "mesh_color", strlen("mesh_color") + 1), self->color);
-  Machine_Binding_bindMatrix4(binding, Ring2_String_create(Ring2_Context_get(), "modelToWorldMatrix", strlen("modelToWorldMatrix") + 1), modelSpaceToWorldSpace);
-  Machine_Binding_bindMatrix4(binding, Ring2_String_create(Ring2_Context_get(), "modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), modelSpaceToProjectiveSpace);
+  Machine_Binding_bindVector3(binding, Ring2_String_create(Ring2_Context_get(), "mesh_color", crt_strlen("mesh_color") + 1), self->color);
+  Machine_Binding_bindMatrix4(binding, Ring2_String_create(Ring2_Context_get(), "modelToWorldMatrix", crt_strlen("modelToWorldMatrix") + 1), modelSpaceToWorldSpace);
+  Machine_Binding_bindMatrix4(binding, Ring2_String_create(Ring2_Context_get(), "modelToProjectionMatrix", crt_strlen("modelToProjectionMatrix") + 1), modelSpaceToProjectiveSpace);
 
   Machine_VideoContext_setDepthTestFunction(context2->videoContext, Machine_DepthTestFunction_Always);
   Machine_VideoContext_setDepthWriteEnabled(context2->videoContext, false);
@@ -386,7 +385,7 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* con
       };
       static const size_t UNIT = 0;
       Machine_VideoContext_bindTexture(context2->videoContext, 0, symbolTexture);
-      Machine_Binding_bindSampler(binding, Ring2_String_create(Ring2_Context_get(), "texture_1", strlen("texture_1")), UNIT);
+      Machine_Binding_bindSampler(binding, Ring2_String_create(Ring2_Context_get(), "texture_1", crt_strlen("texture_1")), UNIT);
       Machine_VideoContext_drawIndirect(context2->videoContext, 0, 6, indices);
 
       cursorPosition[0] += Machine_Math_Vector2_getX(symbolAdvance);
