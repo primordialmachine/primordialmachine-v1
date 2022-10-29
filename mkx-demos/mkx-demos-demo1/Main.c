@@ -13,7 +13,6 @@ extern "C" {
 #include "_Scenes.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 static Scene* g_scene = NULL;
 
