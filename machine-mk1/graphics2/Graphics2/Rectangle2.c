@@ -7,7 +7,6 @@
 
 #include "Ring1/Intrinsic.h"
 #include "Graphics2/Context2.h"
-#include <string.h>
 
 
 static void Machine_Rectangle2_visit(Machine_Rectangle2* self) {
@@ -49,8 +48,8 @@ static void Machine_Rectangle2_render(Machine_Rectangle2* self, Machine_Context2
   Machine_VideoBuffer_setData(context->vertices, sizeof(VERTICES), (void const*)VERTICES);
 
   Machine_Binding_activate(context->binding);
-  Machine_Binding_bindMatrix4(context->binding, Ring2_String_create(Ring2_Context_get(), "modelToProjectionMatrix", strlen("modelToProjectionMatrix") + 1), wvp2);
-  Machine_Binding_bindVector4(context->binding, Ring2_String_create(Ring2_Context_get(), "mesh_color", strlen("mesh_color") + 1), self->color);
+  Machine_Binding_bindMatrix4(context->binding, Ring2_String_create(Ring2_Context_get(), "modelToProjectionMatrix", crt_strlen("modelToProjectionMatrix") + 1), wvp2);
+  Machine_Binding_bindVector4(context->binding, Ring2_String_create(Ring2_Context_get(), "mesh_color", crt_strlen("mesh_color") + 1), self->color);
 
   Machine_VideoContext_drawIndirect(context->videoContext, 0, 6, indices);
 }

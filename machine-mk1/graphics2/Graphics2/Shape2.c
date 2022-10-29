@@ -6,7 +6,6 @@
 
 
 #include "Ring1/Intrinsic.h"
-#include <string.h>
 
 
 static void Machine_Shape2_visit(Machine_Shape2* self)
