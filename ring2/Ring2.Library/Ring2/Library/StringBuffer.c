@@ -65,7 +65,7 @@ toString
   { Ring2_jump(); }
   if (Ring1_ByteBuffer_getNumberOfBytes(&numberOfBytes, self->pimpl))
   { Ring2_jump(); }
-  return Ring2_String_create(Ring2_Context_get(), bytes, numberOfBytes);
+  return Ring2_String_create(bytes, numberOfBytes);
 }
 
 static void
@@ -155,8 +155,8 @@ Ring2_StringBuffer_appendString
     Ring2_String* string
   )
 { 
-  Ring2_StringBuffer_appendBytes(self, Ring2_String_getBytes(Ring2_Context_get(), string),
-                                 (size_t)Ring2_String_getNumberOfBytes(Ring2_Context_get(), string));
+  Ring2_StringBuffer_appendBytes(self, Ring2_String_getBytes(string),
+                                 (size_t)Ring2_String_getNumberOfBytes(string));
 }
 
 void

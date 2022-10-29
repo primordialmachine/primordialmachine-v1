@@ -318,7 +318,7 @@ Ring2_ArrayModule_toString
     Ring1_Status_set(Ring1_Status_InvalidOperation);
     Ring2_jump();
   }
-  return Ring2_String_create(context, buffer, strlen(buffer));
+  return Ring2_String_create(buffer, strlen(buffer));
 }
 
 #endif

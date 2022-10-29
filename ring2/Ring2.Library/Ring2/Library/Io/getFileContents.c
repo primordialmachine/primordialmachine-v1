@@ -54,7 +54,7 @@ Machine_appendFileContents
 {
   Machine_Io_initialize();
   path = Machine_Io_makePathname(Ring2_Context_get(), path);
-  if (Ring1_FileSystem_receiveFileContents(Ring2_String_getBytes(Ring2_Context_get(), path), byteBuffer, &onReceiveByteBuffer)) {
+  if (Ring1_FileSystem_receiveFileContents(Ring2_String_getBytes(path), byteBuffer, &onReceiveByteBuffer)) {
     Ring2_jump();
   }
 }
@@ -66,7 +66,6 @@ Machine_getFileContentsAsString
   )
 {
   Ring2_ByteBuffer* byteBuffer = Machine_getFileContentsAsByteBuffer(path);
-  return Ring2_String_create(Ring2_Context_get(),
-                             Ring2_ByteBuffer_getBytes(byteBuffer),
+  return Ring2_String_create(Ring2_ByteBuffer_getBytes(byteBuffer),
                              Ring2_ByteBuffer_getNumberOfBytes(byteBuffer));
 }

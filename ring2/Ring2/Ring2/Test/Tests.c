@@ -50,9 +50,9 @@ printString
     Ring2_String *s
   )
 {
-  Ring2_Integer n = Ring2_String_getNumberOfBytes(Ring2_Context_get(), s);
+  Ring2_Integer n = Ring2_String_getNumberOfBytes(s);
   Ring2_Integer m = 0;
-  const char* p = Ring2_String_getBytes(Ring2_Context_get(), s);
+  const char* p = Ring2_String_getBytes(s);
   while (n > INT_MAX) {
     fprintf(stdout, "%.*s", (int)n, p + m);
     m += INT_MAX;

@@ -21,7 +21,7 @@ Machine_setFileContentsByteBuffer
 {
   Machine_Io_initialize();
   path = Machine_Io_makePathname(Ring2_Context_get(), path);
-  if (Ring1_FileSystem_setFileContents(Ring2_String_getBytes(Ring2_Context_get(), path),
+  if (Ring1_FileSystem_setFileContents(Ring2_String_getBytes(path),
                                        Ring2_ByteBuffer_getBytes(byteBuffer),
                                        Ring2_ByteBuffer_getNumberOfBytes(byteBuffer))) {
     Ring2_jump();
@@ -37,9 +37,9 @@ Machine_setFileContentsString
 {
   Machine_Io_initialize();
   path = Machine_Io_makePathname(Ring2_Context_get(), path);
-  if (Ring1_FileSystem_setFileContents(Ring2_String_getBytes(Ring2_Context_get(), path),
-                                       Ring2_String_getBytes(Ring2_Context_get(), string),
-                                       Ring2_String_getNumberOfBytes(Ring2_Context_get(), string))) {
+  if (Ring1_FileSystem_setFileContents(Ring2_String_getBytes(path),
+                                       Ring2_String_getBytes(string),
+                                       Ring2_String_getNumberOfBytes(string))) {
     Ring2_jump();
   }
 }

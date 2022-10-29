@@ -268,7 +268,6 @@ static Ring2_Gc_Type const g_gcType = {
 Ring1_CheckReturn() Ring2_String *
 Ring2_String_create
   (
-    Ring2_Context* context,
     char const* bytes,
     int64_t numberOfBytes
   )
@@ -328,27 +327,28 @@ Ring2_String_concatenate
     Ring2_String const *other
   )
 {
-  if (Ring2_String_MaximumNumberOfBytes - Ring2_String_getNumberOfBytes(context, self) <
-      Ring2_String_getNumberOfBytes(context, other)) {
+  if (Ring2_String_MaximumNumberOfBytes - Ring2_String_getNumberOfBytes(self) <
+      Ring2_String_getNumberOfBytes(other)) {
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();
   }
-  int64_t n = Ring2_String_getNumberOfBytes(context, self)
-            + Ring2_String_getNumberOfBytes(context, other);
+  int64_t n = Ring2_String_getNumberOfBytes(self)
+            + Ring2_String_getNumberOfBytes(other);
   char* buffer;
   if (Ring1_Memory_allocate(&buffer, (size_t)n)) {
     Ring1_Status_set(Ring1_Status_AllocationFailed);
     Ring2_jump();
   }
-  Ring1_Memory_copyFast(buffer, Ring2_String_getBytes(context, self),
-                        Ring2_String_getNumberOfBytes(context, self));
-  Ring1_Memory_copyFast(buffer + Ring2_String_getNumberOfBytes(context, self),
-                        Ring2_String_getBytes(context, other),
-                        Ring2_String_getNumberOfBytes(context, other));
+  Ring1_Memory_copyFast(buffer,
+                        Ring2_String_getBytes(self),
+                        Ring2_String_getNumberOfBytes(self));
+  Ring1_Memory_copyFast(buffer + Ring2_String_getNumberOfBytes(self),
+                        Ring2_String_getBytes(other),
+                        Ring2_String_getNumberOfBytes(other));
   Ring2_JumpTarget jumpTarget;
   Ring2_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
-    Ring2_String* z = Ring2_String_create(context, buffer, n);
+    Ring2_String* z = Ring2_String_create(buffer, n);
     Ring2_popJumpTarget();
     Ring1_Memory_deallocate(buffer);
     return z;
@@ -381,7 +381,6 @@ Ring2_String_toString
 Ring1_CheckReturn() const char *
 Ring2_String_getBytes
   (
-    Ring2_Context* context,
     Ring2_String const* self
   )
 {
@@ -391,7 +390,6 @@ Ring2_String_getBytes
 Ring1_CheckReturn() int64_t
 Ring2_String_getNumberOfBytes
   (
-    Ring2_Context* context,
     Ring2_String const* self
   )
 {
@@ -402,7 +400,6 @@ Ring2_String_getNumberOfBytes
 Ring1_CheckReturn() int64_t
 Ring2_String_getMaximumNumberOfBytes
   (
-    Ring2_Context* context
   )
 { return Ring2_String_MaximumNumberOfBytes; }
 

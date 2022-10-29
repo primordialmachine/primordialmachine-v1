@@ -25,9 +25,9 @@ Ring2_String_printv
   )
 {
   Ring2_StringBuffer* stringBuffer = Ring2_StringBuffer_create(context);
-  char const* start = Ring2_String_getBytes(context, format),
-            * end = Ring2_String_getBytes(context, format)
-                  + Ring2_String_getNumberOfBytes(context, format);
+  char const* start = Ring2_String_getBytes(format),
+            * end = Ring2_String_getBytes(format)
+                  + Ring2_String_getNumberOfBytes(format);
   char const* current = start;
   while (start != end)
   {
@@ -141,4 +141,4 @@ Ring2_String_fromC
   (
     const char* p
   )
-{ return Ring2_String_create(Ring2_Context_get(), p, crt_strlen(p)); }
+{ return Ring2_String_create(p, crt_strlen(p)); }

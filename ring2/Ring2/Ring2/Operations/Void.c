@@ -92,5 +92,5 @@ Ring2_Void_toString
 {
   static char const* bytes = "void";
   static size_t const numberOfBytes = sizeof("void") - 1;
-  return Ring2_String_create(Ring2_Context_get(), bytes, numberOfBytes);
+  return Ring2_String_create(bytes, numberOfBytes);
 }

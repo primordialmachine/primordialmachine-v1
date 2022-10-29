@@ -54,13 +54,7 @@ Machine_Io_makePathname
 {
   Ring2_String* temporary;
 
-  temporary =
-    Ring2_String_create
-    (
-      context,
-      "",
-      1
-    );
+  temporary = Ring2_String_create("", 1);
 
   if (-1 != Ring2_String_firstOccurrenceOf(context, source, temporary)) {
     fprintf(stderr, "invalid pathname: string contains the zero-terminator character\n");

@@ -32,7 +32,6 @@ Ring1_Module_Declare(Ring2, StringModule)
 Ring1_CheckReturn() Ring2_String *
 Ring2_String_create
   (
-    Ring2_Context* context,
     char const* bytes,
     int64_t numberOfBytes
   );
@@ -62,7 +61,6 @@ Ring2_String_concatenate
 Ring1_CheckReturn() char const *
 Ring2_String_getBytes
   (
-    Ring2_Context* context,
     Ring2_String const* self
   );
 
@@ -73,7 +71,6 @@ Ring2_String_getBytes
 Ring1_CheckReturn() int64_t
 Ring2_String_getNumberOfBytes
   (
-    Ring2_Context* context,
     Ring2_String const* self
   );
 
@@ -101,12 +98,10 @@ Ring2_String_toString
   );
 
 /// @brief Get the maximum number of Bytes of a string.
-/// @param context A pointer to the context.
 /// @return The maximum number of Bytes of a string.
 Ring1_CheckReturn() int64_t
 Ring2_String_getMaximumNumberOfBytes
   (
-    Ring2_Context* context
   );
 
 #endif // Ring2_Configuration_withString

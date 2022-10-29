@@ -151,11 +151,11 @@ Ring2_Boolean_toString
   if (x) {
     static char const* bytes = "true";
     static size_t const numberOfBytes = sizeof("true") - 1;
-    return Ring2_String_create(Ring2_Context_get(), bytes, numberOfBytes);
+    return Ring2_String_create(bytes, numberOfBytes);
   } else {
     static char const* bytes = "false";
     static size_t const numberOfBytes = sizeof("false") - 1;
-    return Ring2_String_create(Ring2_Context_get(), bytes, numberOfBytes);
+    return Ring2_String_create(bytes, numberOfBytes);
   }
 }
 
@@ -166,9 +166,9 @@ Ring2_Boolean_fromString
     Ring2_String* w
   )
 {
-  char const* start = Ring2_String_getBytes(Ring2_Context_get(), w),
-            * end = Ring2_String_getBytes(Ring2_Context_get(), w)
-                  + Ring2_String_getNumberOfBytes(Ring2_Context_get(), w);
+  char const* start = Ring2_String_getBytes(w),
+            * end = Ring2_String_getBytes(w)
+                  + Ring2_String_getNumberOfBytes(w);
   bool v;
   if (Ring1_Conversion_stringToBool(&v, start, end)) {
     Ring2_jump();

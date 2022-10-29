@@ -195,7 +195,7 @@ Ring2_Integer_toString
       Ring2_jump();
     }
     if (bufferSize >= result) {
-      return Ring2_String_create(Ring2_Context_get(), buffer, result);
+      return Ring2_String_create(buffer, result);
     }
     bufferSize = result + 1;
   } while (true);
@@ -208,9 +208,9 @@ Ring2_Integer_fromString
     Ring2_String* x
   )
 {
-  const char* start = Ring2_String_getBytes(Ring2_Context_get(), x),
-            * end = Ring2_String_getBytes(Ring2_Context_get(), x)
-                  + Ring2_String_getNumberOfBytes(Ring2_Context_get(), x);
+  const char* start = Ring2_String_getBytes(x),
+            * end = Ring2_String_getBytes(x)
+                  + Ring2_String_getNumberOfBytes(x);
   int64_t value;
   if (Ring1_Conversion_stringToInt64(&value, start, end)) {
     Ring2_jump();
