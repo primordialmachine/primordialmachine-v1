@@ -83,7 +83,7 @@ CollectionUtilities_ensureFreeCapacity
     Ring2_jump();
   }
   int64_t actual = *capacity - *size;
-  if (actual > required)
+  if (actual >= required)
   { return; }
   CollectionUtilities_grow(context, values, size, capacity, required - actual);
 }
