@@ -7,7 +7,6 @@
 
 #include "Ring1/Intrinsic.h"
 #include "Ring2/Library/_Include.h"
-#include <string.h>
 
 
 static void Machine_Gl_ShaderProgram_visit(Machine_Gl_ShaderProgram* self) {
@@ -275,7 +274,7 @@ Machine_Gl_ShaderProgram* Machine_Gl_ShaderProgram_create(Ring2_String* vertexPr
 #define GLSL_VERSION_STRING "#version 330 core"
 
 static void defineFloatConstants(Ring2_StringBuffer* code) {
-#define T(t) t, strlen(t)
+#define T(t) t, crt_strlen(t)
   Ring2_StringBuffer_appendBytes(code, T("#define FLT_MAX 3.402823466e+38" "\n"));
   Ring2_StringBuffer_appendBytes(code, T("#define FLT_MIN 1.175494351e-38" "\n"));
   Ring2_StringBuffer_appendBytes(code, T("#define DBL_MAX 1.7976931348623158e+308" "\n"));
@@ -290,7 +289,7 @@ static void defineFloatConstants(Ring2_StringBuffer* code) {
 /// @param viewToProjection Add uniform <code>uniform mat4 viewToProjectionMatrix</code>.
 /// @param modelToProjection Add uniform <code>uniform mat4 modelToProjectionMatrix</code>.
 static void defineMatrixUniforms(Ring2_StringBuffer* code, Ring2_Boolean modelToWorld, Ring2_Boolean worldToView, Ring2_Boolean viewToProjection, Ring2_Boolean modelToProjection) {
-#define T(t) t, strlen(t)
+#define T(t) t, crt_strlen(t)
   // model -> world
   if (modelToWorld) {
     Ring2_StringBuffer_appendBytes(code, T("uniform mat4 modelToWorldMatrix;\n"));
@@ -322,8 +321,8 @@ Machine_Gl_ShaderProgram_generateDefaultShader
 {
   Ring2_StringBuffer* code = Ring2_StringBuffer_create();
   Ring2_String *v, *g, *f;
-#define T(t) t, strlen(t)
-#define TZ(t) t, strlen(t) + 1
+#define T(t) t, crt_strlen(t)
+#define TZ(t) t, crt_strlen(t) + 1
 
   // Vertex program.
   Ring2_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
@@ -419,8 +418,8 @@ Machine_Gl_ShaderProgram_generateShape2Shader
 {
   Ring2_StringBuffer* code = Ring2_StringBuffer_create();
   Ring2_String *v, *g, *f;
-#define T(t) t, strlen(t)
-#define TZ(t) t, strlen(t) + 1
+#define T(t) t, crt_strlen(t)
+#define TZ(t) t, crt_strlen(t) + 1
 
   // Vertex program.
   Ring2_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
@@ -480,8 +479,8 @@ Machine_Gl_ShaderProgram_generateText2Shader
 {
   Ring2_StringBuffer* code = Ring2_StringBuffer_create();
   Ring2_String *v, *g, *f;
-#define T(t) t, strlen(t)
-#define TZ(t) t, strlen(t) + 1
+#define T(t) t, crt_strlen(t)
+#define TZ(t) t, crt_strlen(t) + 1
 
   // Vertex shader.
   Ring2_StringBuffer_appendBytes(code, T(GLSL_VERSION_STRING "\n"));
