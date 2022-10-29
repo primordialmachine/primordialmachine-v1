@@ -78,22 +78,22 @@ static void Scene4_onStartup(Scene4* self) {
   self->font = Machine_FontsContext_createFont(fontsContext,
                                                Ring2_String_create(Ring2_Context_get(), FONT_FILE, strlen(FONT_FILE)), FONT_SIZE);
   //
-  self->text1 = Machine_Text_Layout_create(Ring2_String_create(Ring2_Context_get(), "", strlen("")), self->font);
+  self->text1 = Machine_Text_Layout_create(Ring2_String_fromC(""), self->font);
   {
     const char* text = "Nanobox IV\n400 units of unprimed nanites.";
-    Machine_Text_Layout_setText(self->text1, Ring2_String_create(Ring2_Context_get(), text, strlen(text)));
+    Machine_Text_Layout_setText(self->text1, Ring2_String_fromC(text));
   }
   //
-  self->text2 = Machine_Text_Layout_create(Ring2_String_create(Ring2_Context_get(), "", strlen("")), self->font);
+  self->text2 = Machine_Text_Layout_create(Ring2_String_fromC(""), self->font);
   {
     const char* text = "13 of 18 units\n7 of 9 units";
-    Machine_Text_Layout_setText(self->text2, Ring2_String_create(Ring2_Context_get(), text, strlen(text)));
+    Machine_Text_Layout_setText(self->text2, Ring2_String_fromC(text));
   }
   //
   self->textNode1 = Machine_Gui_TextNode_create(self->guiContext);
   {
     const char* text = "Nanobox IV\n400 units of unprimed nanites.";
-    Machine_Gui_TextNode_setText(self->textNode1, Ring2_String_create(Ring2_Context_get(), text, strlen(text)));
+    Machine_Gui_TextNode_setText(self->textNode1, Ring2_String_fromC(text));
   }
   //
   Machine_Math_Vector4* c = Machine_Math_Vector4_create();

@@ -14,10 +14,10 @@ MACHINE_DEFINE_ENUMERATIONTYPE(Machine_MouseButtonActions)
 Ring2_String* Machine_MouseButtonActions_toString(Machine_MouseButtonActions self) {
   switch (self) {
     case Machine_MouseButtonActions_Press:
-      return Ring2_String_create(Ring2_Context_get(), "press", strlen("press"));
+      return Ring2_String_fromC("press");
       break;
     case Machine_MouseButtonActions_Release:
-      return Ring2_String_create(Ring2_Context_get(), "release", strlen("release"));
+      return Ring2_String_fromC("release");
       break;
     case Machine_MouseButtonActions_Undetermined:
     default:

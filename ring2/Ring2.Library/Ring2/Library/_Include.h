@@ -15,6 +15,7 @@
 #include "Ring2/Library/Collections/_Include.h"
 #include "Ring2/Library/Io.h"
 #include "Ring2/Library/StringBuffer.h"
+#include "Ring2/Library/StringExtensions.h"
 #include "Ring2/Library/Time.h"
 #include "Ring2/Library/WeakReference.h"
 #undef RING2_LIBRARY_PRIVATE

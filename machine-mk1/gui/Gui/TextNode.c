@@ -71,7 +71,7 @@ void Machine_Gui_TextNode_construct(Machine_Gui_TextNode* self, size_t numberOfA
   Machine_FontsContext* fontsContext = Machine_DefaultFonts_createContext(
       guiContext->context2->videoContext, Machines_DefaultImages_createContext());
   Machine_Font* font = Machine_FontsContext_createFont(fontsContext, guiContext->defaultFontFile, guiContext->defaultFontSize);
-  self->foreground = Machine_Text_Layout_create(Ring2_String_create(Ring2_Context_get(), "", strlen("")), font);
+  self->foreground = Machine_Text_Layout_create(Ring2_String_fromC(""), font);
   self->background = Machine_Rectangle2_create();
   self->childDirty = true;
   Machine_Gui_Widget_subscribe(

@@ -100,9 +100,8 @@ MACHINE_DEFINE_CLASSTYPE(Scene3, Scene, &Scene3_visit, &Scene3_construct, NULL,
 static void Scene3_startup(Scene3* self) {
   Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
 
-  self->image = Machine_ImagesContext_createFromPath(
-      Machines_DefaultImages_createContext(),
-      Ring2_String_create(Ring2_Context_get(), "test-transparency-1.png", strlen("test-transparency-1.png")));
+  self->image = Machine_ImagesContext_createFromPath(Machines_DefaultImages_createContext(),
+                                                     Ring2_String_fromC("test-transparency-1.png"));
   self->texture = Machine_VideoContext_createTextureFromImage(videoContext, self->image);
 
   self->vertices = Machine_VideoContext_createBuffer(videoContext);
