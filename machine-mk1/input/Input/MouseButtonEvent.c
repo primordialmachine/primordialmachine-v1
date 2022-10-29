@@ -6,7 +6,6 @@
 
 
 #include "Ring1/Intrinsic.h"
-#include <string.h>
 
 
 MACHINE_DEFINE_ENUMERATIONTYPE(Machine_MouseButtonActions)
@@ -32,29 +31,29 @@ static void Machine_MouseButtonEvent_visit(Machine_MouseButtonEvent* self) {
 static Ring2_String* Machine_MouseButtonEvent_toStringImpl(Ring2_Context *context, Machine_MouseButtonEvent const* self) {
   Ring2_StringBuffer* stringBuffer = Ring2_StringBuffer_create();
 
-  Ring2_StringBuffer_appendBytes(stringBuffer, "{ ", strlen("{ "));
+  Ring2_StringBuffer_appendBytes(stringBuffer, "{ ", crt_strlen("{ "));
 
   Ring2_StringBuffer_appendBytes(stringBuffer, "type: 'mouse-button-event'",
-                                   strlen("type: 'mouse-button-event'"));
-  Ring2_StringBuffer_appendBytes(stringBuffer, ", ", strlen(", "));
+                                    crt_strlen("type: 'mouse-button-event'"));
+  Ring2_StringBuffer_appendBytes(stringBuffer, ", ", crt_strlen(", "));
 
-  Ring2_StringBuffer_appendBytes(stringBuffer, "action: '", strlen("action: '"));
+  Ring2_StringBuffer_appendBytes(stringBuffer, "action: '", crt_strlen("action: '"));
   Ring2_StringBuffer_appendString(stringBuffer,
                                   Machine_MouseButtonActions_toString(self->action));
-  Ring2_StringBuffer_appendBytes(stringBuffer, "', ", strlen("', "));
+  Ring2_StringBuffer_appendBytes(stringBuffer, "', ", crt_strlen("', "));
 
-  Ring2_StringBuffer_appendBytes(stringBuffer, "button: ", strlen("button: "));
+  Ring2_StringBuffer_appendBytes(stringBuffer, "button: ", crt_strlen("button: "));
   Ring2_StringBuffer_appendString(stringBuffer, Ring2_Integer_toString(Ring2_Context_get(), self->button));
-  Ring2_StringBuffer_appendBytes(stringBuffer, ", ", strlen(", "));
+  Ring2_StringBuffer_appendBytes(stringBuffer, ", ", crt_strlen(", "));
 
-  Ring2_StringBuffer_appendBytes(stringBuffer, "x: ", strlen("x: "));
+  Ring2_StringBuffer_appendBytes(stringBuffer, "x: ", crt_strlen("x: "));
   Ring2_StringBuffer_appendString(stringBuffer, Ring2_Real32_toString(Ring2_Context_get(), self->x));
-  Ring2_StringBuffer_appendBytes(stringBuffer, ", ", strlen(", "));
+  Ring2_StringBuffer_appendBytes(stringBuffer, ", ", crt_strlen(", "));
 
-  Ring2_StringBuffer_appendBytes(stringBuffer, "y: ", strlen("y: "));
+  Ring2_StringBuffer_appendBytes(stringBuffer, "y: ", crt_strlen("y: "));
   Ring2_StringBuffer_appendString(stringBuffer, Ring2_Real32_toString(Ring2_Context_get(), self->y));
 
-  Ring2_StringBuffer_appendBytes(stringBuffer, " }", strlen(" }"));
+  Ring2_StringBuffer_appendBytes(stringBuffer, " }", crt_strlen(" }"));
 
   return Machine_Object_toString(Ring2_Context_get(), (Machine_Object*)stringBuffer);
 }

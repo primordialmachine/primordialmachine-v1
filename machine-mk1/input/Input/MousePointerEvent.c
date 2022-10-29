@@ -6,7 +6,6 @@
 
 
 #include "Ring1/Intrinsic.h"
-#include <string.h>
 
 
 MACHINE_DEFINE_ENUMERATIONTYPE(Machine_MousePointerActions)
@@ -14,13 +13,13 @@ MACHINE_DEFINE_ENUMERATIONTYPE(Machine_MousePointerActions)
 Ring2_String* Machine_MousePointerActions_toString(Machine_MousePointerActions self) {
   switch (self) {
     case Machine_MousePointerActions_Move:
-      return Ring2_String_create(Ring2_Context_get(), "move", strlen("move"));
+      return Ring2_String_fromC("move");
       break;
     case Machine_MousePointerActions_Enter:
-      return Ring2_String_create(Ring2_Context_get(), "enter", strlen("enter"));
+      return Ring2_String_fromC("enter");
       break;
     case Machine_MousePointerActions_Exit:
-      return Ring2_String_create(Ring2_Context_get(), "exit", strlen("exit"));
+      return Ring2_String_fromC("exit");
       break;
     case Machine_MousePointerActions_Undetermined:
     default:
@@ -36,25 +35,33 @@ static Ring2_String* Machine_MousePointerEvent_toStringImpl(
     Ring2_Context* context, Machine_MousePointerEvent const* self) {
   Ring2_StringBuffer* stringBuffer = Ring2_StringBuffer_create();
 
-  Ring2_StringBuffer_appendBytes(stringBuffer, "{ ", strlen("{ "));
+  Ring2_StringBuffer_appendBytes(stringBuffer, "{ ",
+                                    crt_strlen("{ "));
 
   Ring2_StringBuffer_appendBytes(stringBuffer, "type: 'mouse-pointer-event'",
-                                 strlen("type: 'mouse-pointer-event'"));
-  Ring2_StringBuffer_appendBytes(stringBuffer, ", ", strlen(", "));
+                                    crt_strlen("type: 'mouse-pointer-event'"));
+  Ring2_StringBuffer_appendBytes(stringBuffer, ", ",
+                                    crt_strlen(", "));
 
-  Ring2_StringBuffer_appendBytes(stringBuffer, "action: '", strlen("action: '"));
+  Ring2_StringBuffer_appendBytes(stringBuffer, "action: '",
+                                    crt_strlen("action: '"));
   Ring2_StringBuffer_appendString(stringBuffer,
-                                    Machine_MousePointerActions_toString(self->action));
-  Ring2_StringBuffer_appendBytes(stringBuffer, "', ", strlen("', "));
+                                  Machine_MousePointerActions_toString(self->action));
+  Ring2_StringBuffer_appendBytes(stringBuffer, "', ",
+                                    crt_strlen("', "));
 
-  Ring2_StringBuffer_appendBytes(stringBuffer, "x: ", strlen("x: "));
+  Ring2_StringBuffer_appendBytes(stringBuffer, "x: ",
+                                    crt_strlen("x: "));
   Ring2_StringBuffer_appendString(stringBuffer, Ring2_Real32_toString(Ring2_Context_get(), self->x));
-  Ring2_StringBuffer_appendBytes(stringBuffer, ", ", strlen(", "));
+  Ring2_StringBuffer_appendBytes(stringBuffer, ", ",
+                                    crt_strlen(", "));
 
-  Ring2_StringBuffer_appendBytes(stringBuffer, "y: ", strlen("y: "));
+  Ring2_StringBuffer_appendBytes(stringBuffer, "y: ",
+                                    crt_strlen("y: "));
   Ring2_StringBuffer_appendString(stringBuffer, Ring2_Real32_toString(Ring2_Context_get(), self->y));
 
-  Ring2_StringBuffer_appendBytes(stringBuffer, " }", strlen(" }"));
+  Ring2_StringBuffer_appendBytes(stringBuffer, " }",
+                                    crt_strlen(" }"));
 
   return Machine_Object_toString(Ring2_Context_get(), (Machine_Object*)stringBuffer);
 }
