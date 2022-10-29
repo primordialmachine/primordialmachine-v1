@@ -12,7 +12,7 @@
 static void test_1_1() {
   Ring2_ByteBuffer* inputText = Ring2_ByteBuffer_create();
   Ring2_ByteBuffer_appendBytes(inputText, "", crt_strlen(""));
-  Machine_Gdl_Scanner* scanner = Machine_Gdl_Scanner_create(Ring2_String_create(Ring2_Context_get(), "", crt_strlen("")), inputText);
+  Machine_Gdl_Scanner* scanner = Machine_Gdl_Scanner_create(Ring2_String_fromC(""), inputText);
   CHECK(Machine_Gdl_TokenKind_StartOfInput);
   Machine_Gdl_Scanner_step(scanner);
   CHECK(Machine_Gdl_TokenKind_EndOfInput);
@@ -23,7 +23,7 @@ static void test_1_1() {
 static void test_1_2() {
   Ring2_ByteBuffer *inputText = Ring2_ByteBuffer_create();
   Ring2_ByteBuffer_appendBytes(inputText, "{:true,false.void;}", crt_strlen("{:true,false.void;}"));
-  Machine_Gdl_Scanner* scanner = Machine_Gdl_Scanner_create(Ring2_String_create(Ring2_Context_get(), "", crt_strlen("")), inputText);
+  Machine_Gdl_Scanner* scanner = Machine_Gdl_Scanner_create(Ring2_String_fromC(""), inputText);
 
   CHECK(Machine_Gdl_TokenKind_StartOfInput); Machine_Gdl_Scanner_step(scanner);
 
