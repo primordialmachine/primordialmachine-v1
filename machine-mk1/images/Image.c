@@ -8,7 +8,6 @@
 #include "Ring1/Intrinsic.h"
 #include "Ring1/Status.h"
 #include <png.h>
-#include <string.h>
 
 
 struct Machine_Images_Image_Class {
