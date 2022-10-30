@@ -36,6 +36,7 @@
     <ClInclude Include="Ring2\Library\Collections\Set.h" />
     <ClInclude Include="Ring2\Library\Collections\Stack.h" />
     <ClInclude Include="Ring2\Library\Collections\_Include.h" />
+    <ClInclude Include="Ring2\Library\emit.h" />
     <ClInclude Include="Ring2\Library\Io.h" />
     <ClInclude Include="Ring2\Library\Io\getFileContents.h" />
     <ClInclude Include="Ring2\Library\Io\Initialize.h" />
@@ -64,6 +65,7 @@
     <ClCompile Include="Ring2\Library\Collections\Set.c" />
     <ClCompile Include="Ring2\Library\Collections\Stack.c" />
     <ClCompile Include="Ring2\Library\Collections\_Include.c" />
+    <ClCompile Include="Ring2\Library\emit.c" />
     <ClCompile Include="Ring2\Library\Io.c" />
     <ClCompile Include="Ring2\Library\Io\getFileContents.c" />
     <ClCompile Include="Ring2\Library\Io\Initialize.c" />

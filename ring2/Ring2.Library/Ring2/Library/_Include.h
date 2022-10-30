@@ -13,6 +13,7 @@
 #include "Ring2/Library/ByteBuffer.h"
 #include "Ring2/Library/ByteBufferReader.h"
 #include "Ring2/Library/Collections/_Include.h"
+#include "Ring2/Library/emit.h"
 #include "Ring2/Library/Io.h"
 #include "Ring2/Library/StringBuffer.h"
 #include "Ring2/Library/StringExtensions.h"

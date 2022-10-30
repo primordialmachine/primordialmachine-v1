@@ -113,6 +113,9 @@
     <ClInclude Include="Ring2\Library\StringExtensions.h">
       <Filter>Headerdateien\Ring2\Library</Filter>
     </ClInclude>
+    <ClInclude Include="Ring2\Library\emit.h">
+      <Filter>Headerdateien\Ring2\Library</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring2\Library\_Include.c">
@@ -191,6 +194,9 @@
       <Filter>Quelldateien\Ring2\Library\Collections</Filter>
     </ClCompile>
     <ClCompile Include="Ring2\Library\StringExtensions.c">
+      <Filter>Quelldateien\Ring2\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Library\emit.c">
       <Filter>Quelldateien\Ring2\Library</Filter>
     </ClCompile>
   </ItemGroup>
