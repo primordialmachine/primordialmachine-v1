@@ -248,9 +248,9 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
   //
   FT_Error error;
   // (1) Ensure string is zero terminated.
-  path = Ring2_String_concatenate(Ring2_Context_get(), path, Ring2_String_create(Ring2_Context_get(), "", 1));
+  path = Ring2_String_concatenate(Ring2_Context_get(), path, Ring2_String_create("", 1));
   // (2)
-  error = FT_New_Face(*fontsContext->library, Ring2_String_getBytes(Ring2_Context_get(), path), 0, &self->face);
+  error = FT_New_Face(*fontsContext->library, Ring2_String_getBytes(path), 0, &self->face);
   if (error) {
     Ring2_Gc_unlock(self->context);
     self->context = NULL;
@@ -285,8 +285,8 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
     Machine_VertexDescriptor_append(vertexDescriptor, Machine_VertexElementSemantics_UfVf);
 
     self->binding = Machine_VideoContext_createBinding(fontsContext->videoContext, self->shader, vertexDescriptor, self->vertices);
-    Machine_Binding_setVariableBinding(self->binding, Ring2_String_create(Ring2_Context_get(), "vertex_position", strlen("vertex_position") + 1), 0);
-    Machine_Binding_setVariableBinding(self->binding, Ring2_String_create(Ring2_Context_get(), "vertex_texture_coordinate_1", strlen("vertex_texture_coordinate_1") + 1), 1);
+    Machine_Binding_setVariableBinding(self->binding, Ring2_String_create("vertex_position", crt_strlen("vertex_position") + 1), 0);
+    Machine_Binding_setVariableBinding(self->binding, Ring2_String_create("vertex_texture_coordinate_1", crt_strlen("vertex_texture_coordinate_1") + 1), 1);
 
     Ring2_popJumpTarget();
   } else {
