@@ -152,7 +152,7 @@ static void Scene3_update(Scene3* self, Ring2_Real32 width, Ring2_Real32 height)
                               mvp2);
   Machine_Binding_bindSampler(self->binding,
                               Ring2_String_create("texture_1",
-                                                   crt_strlen("texture_1")),
+                                                   crt_strlen("texture_1") + 1),
                               0);
   Machine_VideoContext_bindTexture(videoContext, 0, self->texture);
 
