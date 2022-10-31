@@ -24,7 +24,11 @@ int crt_atexit(void(__cdecl *x)(void));
 
 char* crt_strdup(char const *x);
 
+int crt_strcmp(char const* x, char const* y);
+
 size_t crt_strlen(char const *x);
+
+void* crt_memcpy(void* x, void const* y, size_t n);
 
 /// @brief printf/scanf-style format specifier for size_t.
 /// @remark This is necessary because of Redmon Retards' (aka Microsoft's) Visual C++.

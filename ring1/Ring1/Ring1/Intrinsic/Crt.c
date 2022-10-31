@@ -36,6 +36,14 @@ char* crt_strdup(char const* s) {
   return _strdup(s);
 }
 
+int crt_strcmp(char const* x, char const* y) {
+  return strcmp(x, y);
+}
+
 size_t crt_strlen(char const* s) {
   return strlen(s);
+}
+
+void* crt_memcpy(void* x, void const* y, size_t n) {
+  return memcpy(x, y, n);
 }

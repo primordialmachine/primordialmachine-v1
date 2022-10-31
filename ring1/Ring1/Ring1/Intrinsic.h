@@ -14,6 +14,7 @@
 #include "Ring1/Intrinsic/atomicIncrement.h"
 #include "Ring1/Intrinsic/Add/add.h"
 #include "Ring1/Intrinsic/clamp.h"
+#include "Ring1/Intrinsic/Crt.h"
 #include "Ring1/Intrinsic/Concurrency/ReadWriteLock.h"
 #include "Ring1/Intrinsic/ThreadLocal.h"
 #include "Ring1/Intrinsic/CountLeadingZeroes/countLeadingZeroes.h"

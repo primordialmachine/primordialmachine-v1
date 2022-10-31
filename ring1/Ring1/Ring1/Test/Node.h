@@ -7,7 +7,7 @@
 #if !defined(RING1_TEST_NODE_H_INCLUDED)
 #define RING1_TEST_NODE_H_INCLUDED
 
-#if !defined(RING1_TEST_INTERNAL) || 1 != RING1_TEST_INTERNAL
+#if !defined(RING1_TEST_PRIVATE) || 1 != RING1_TEST_PRIVATE
 #error("Do not include `Ring1/Test/Node.h` directly. Include `Ring1/Test.h` instead.")
 #endif
 

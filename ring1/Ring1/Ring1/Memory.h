@@ -16,7 +16,7 @@
 
 Ring1_Module_Declare(Ring1, Memory)
 
-// https://documentation.primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_allocate
+// https://primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_allocate
 Ring1_CheckReturn() Ring1_Result
 Ring1_Memory_allocate
   (
@@ -24,7 +24,7 @@ Ring1_Memory_allocate
     size_t n
   );
 
-// https://documentation.primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_allocateArray
+// https://primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_allocateArray
 Ring1_CheckReturn() Ring1_Result
 Ring1_Memory_allocateArray
   (
@@ -33,7 +33,7 @@ Ring1_Memory_allocateArray
     size_t elementSize
   );
 
-// https://documentation.primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_reallocate
+// https://primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_reallocate
 Ring1_CheckReturn() Ring1_Result
 Ring1_Memory_reallocate
   (
@@ -42,7 +42,7 @@ Ring1_Memory_reallocate
     size_t n
   );
 
-// https://documentation.primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_reallocateArray
+// https://primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_reallocateArray
 Ring1_CheckReturn() Ring1_Result
 Ring1_Memory_reallocateArray
   (
@@ -52,14 +52,14 @@ Ring1_Memory_reallocateArray
     size_t elementSize
   );
 
-// https://documentation.primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_deallocate
+// https://primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_deallocate
 Ring1_Result
 Ring1_Memory_deallocate
   (
     void *p
   );
 
-// https://documentation.primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_zeroFill
+// https://primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_zeroFill
 Ring1_CheckReturn() Ring1_Result
 Ring1_Memory_zeroFill
   (
@@ -67,7 +67,7 @@ Ring1_Memory_zeroFill
     size_t n
   );
 
-// https://documentation.primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_zeroFillArray
+// https://primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_zeroFillArray
 Ring1_CheckReturn() Ring1_Result
 Ring1_Memory_zeroFillArray
   (
@@ -76,13 +76,13 @@ Ring1_Memory_zeroFillArray
     size_t elementSize
   );
 
-// https://documentation.primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_compare
+// https://primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_compare
 #define Ring1_Memory_Compare_Colexicographic (1)
 
-// https://documentation.primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_compare
+// https://primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_compare
 #define Ring1_Memory_Compare_Lexicographic (2)
 
-// https://documentation.primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_compare
+// https://primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_compare
 Ring1_CheckReturn() Ring1_Result
 Ring1_Memory_compare
   (

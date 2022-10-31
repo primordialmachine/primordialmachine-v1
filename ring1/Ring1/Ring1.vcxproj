@@ -28,7 +28,7 @@
     <ClInclude Include="Ring1\Annotations\Obsolete.h" />
     <ClInclude Include="Ring1\Annotations\Unlikely.h" />
     <ClInclude Include="Ring1\Annotations\_Include.h" />
-    <ClInclude Include="Ring1\Atom.h" />
+    <ClInclude Include="Ring1\Atom\_Include.h" />
     <ClInclude Include="Ring1\ByteBuffer.h" />
     <ClInclude Include="Ring1\Collections\Callbacks.h" />
     <ClInclude Include="Ring1\Collections\InlineArray.h" />
@@ -133,6 +133,8 @@
     <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_u8.h" />
     <ClInclude Include="Ring1\Module\Dependencies.h" />
     <ClInclude Include="Ring1\Module\Handle.h" />
+    <ClInclude Include="Ring1\TypeName\validate.h" />
+    <ClInclude Include="Ring1\TypeName\_Include.h" />
     <ClInclude Include="Ring1\_Include.h" />
     <ClInclude Include="Ring1\Test\Commons.h" />
     <ClInclude Include="Ring1\Test\Configuration.h" />
@@ -464,7 +466,7 @@
     <ClCompile Include="Ring1\Annotations\Obsolete.c" />
     <ClCompile Include="Ring1\Annotations\Unlikely.c" />
     <ClCompile Include="Ring1\Annotations\_Include.c" />
-    <ClCompile Include="Ring1\Atom.c" />
+    <ClCompile Include="Ring1\Atom\_Include.c" />
     <ClCompile Include="Ring1\ByteBuffer.c" />
     <ClCompile Include="Ring1\Collections\InlineArray.c" />
     <ClCompile Include="Ring1\Collections\PointerDeque.c" />
@@ -587,6 +589,8 @@
     <ClCompile Include="Ring1\Module\Handle.c" />
     <ClCompile Include="Ring1\ReferenceCounter.c" />
     <ClCompile Include="Ring1\Result.c" />
+    <ClCompile Include="Ring1\TypeName\validate.c" />
+    <ClCompile Include="Ring1\TypeName\_Include.c" />
     <ClCompile Include="Ring1\_Include.c" />
     <ClCompile Include="Ring1\Status.c" />
     <ClCompile Include="Ring1\Test.c" />

@@ -11,10 +11,10 @@
 #include <string.h>
 #include "Ring1/Status.h"
 
-#define RING1_TEST_INTERNAL (1)
+#define RING1_TEST_PRIVATE (1)
 #include "Ring1/Test/Node.h"
 #include "Ring1/Test/Context.h"
-#undef RING1_TEST_INTERNAL
+#undef RING1_TEST_PRIVATE
 
 /// @internal.
 /// @brief Initialize a test context.

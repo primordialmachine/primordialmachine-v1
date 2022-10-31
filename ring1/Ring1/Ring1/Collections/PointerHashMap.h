@@ -81,7 +81,7 @@ Mkx_PointerHashMap_uninitialize
     Mkx_PointerHashMap *hashMap
   );
 
-// https://primordialmachine.com/api/ring1-library/pointerhashmap-library/ring1_pointerhashmap_getsize
+// https://primordialmachine.com/api/ring1-library/collections-library/ring1_pointerhashmap_getsize
 Ring1_CheckReturn() Ring1_Result
 Mkx_PointerHashMap_getSize
   (
@@ -89,7 +89,7 @@ Mkx_PointerHashMap_getSize
     Mkx_PointerHashMap *hashMap
   );
 
-// https://primordialmachine.com/api/ring1-library/pointerhashmap-library/ring1_pointerhashmap_getcapacity
+// https://primordialmachine.com/api/ring1-library/collections-library/ring1_pointerhashmap_getcapacity
 Ring1_CheckReturn() Ring1_Result
 Mkx_PointerHashMap_getCapacity
   (
@@ -97,7 +97,7 @@ Mkx_PointerHashMap_getCapacity
     Mkx_PointerHashMap *hashMap
   );
 
-// https://primordialmachine.com/api/ring1-library/pointerhashmap-library/ring1_pointerhashmap_getfreecapacity
+// https://primordialmachine.com/api/ring1-library/collections-library/ring1_pointerhashmap_getfreecapacity
 Ring1_CheckReturn() Ring1_Result
 Mkx_PointerHashMap_getFreeCapacity
   (
@@ -105,14 +105,14 @@ Mkx_PointerHashMap_getFreeCapacity
     Mkx_PointerHashMap* hashMap
   );
 
-// https://primordialmachine.com/api/ring1-library/pointerhashmap-library/Ring1_PointerHashMap_clear
+// https://primordialmachine.com/api/ring1-library/collections-library/Ring1_PointerHashMap_clear
 void
 Mkx_PointerHashMap_clear
   (
     Mkx_PointerHashMap *hashMap
   );
 
-// https://primordialmachine.com/api/ring1-library/pointerhashmap-library/Ring1_PointerHashMap_add
+// https://primordialmachine.com/api/ring1-library/collections-library/Ring1_PointerHashMap_add
 Ring1_CheckReturn() Ring1_Result
 Mkx_PointerHashMap_add
   (
@@ -121,7 +121,7 @@ Mkx_PointerHashMap_add
     void *value
   );
 
-// https://primordialmachine.com/api/ring1-library/pointerhashmap-library/Ring1_PointerHashMap_set
+// https://primordialmachine.com/api/ring1-library/collections-library/Ring1_PointerHashMap_set
 Ring1_CheckReturn() Ring1_Result
 Mkx_PointerHashMap_set
   (
@@ -130,7 +130,7 @@ Mkx_PointerHashMap_set
     void* value
   );
 
-// https://primordialmachine.com/api/ring1-library/pointerhashmap-library/mkx_pointerhashmap_get
+// https://primordialmachine.com/api/ring1-library/collections-library/Ring1_PointerHashMap_get
 Ring1_CheckReturn() Ring1_Result
 Mkx_PointerHashMap_get
   (
@@ -139,7 +139,7 @@ Mkx_PointerHashMap_get
     void **value
   );
 
-// https://primordialmachine.com/api/ring1-library/pointerhashmap-library/mkx_pointerhashmap_removeif
+// https://primordialmachine.com/api/ring1-library/collections-library/Ring1_PointerHashMap_removeIf
 Ring1_CheckReturn() Ring1_Result
 Mkx_PointerHashMap_removeIf
   (

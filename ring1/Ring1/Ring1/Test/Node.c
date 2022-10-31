@@ -4,9 +4,9 @@
 /// @copyright Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
-#define RING1_TEST_INTERNAL (1)
+#define RING1_TEST_PRIVATE (1)
 #include "Ring1/Test/Node.h"
-#undef RING1_TEST_INTERNAL
+#undef RING1_TEST_PRIVATE
 
 #include "Ring1/Status.h"
 #include <stdio.h>

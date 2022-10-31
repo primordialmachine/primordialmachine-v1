@@ -312,6 +312,18 @@
     <Filter Include="Headerdateien\Ring1\Console\Windows">
       <UniqueIdentifier>{c2c26e24-63f8-4283-9d83-e5fc67860f61}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Quelldateien\Ring1\Atom">
+      <UniqueIdentifier>{49b80c19-5f99-4f38-b85e-51c1aebbd17c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\Atom">
+      <UniqueIdentifier>{22a78931-fa09-4305-bbce-acedd6764793}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\TypeName">
+      <UniqueIdentifier>{7f68623d-1b9a-42be-86ad-392f688d22fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\TypeName">
+      <UniqueIdentifier>{4a956128-c810-4827-ba17-df81dcbde1c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring1\Intrinsic\Subtract\subtract.h">
@@ -758,9 +770,6 @@
     <ClInclude Include="Ring1\Collections\PointerList.h">
       <Filter>Headerdateien\Ring1\Collections</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Atom.h">
-      <Filter>Headerdateien\Ring1</Filter>
-    </ClInclude>
     <ClInclude Include="Ring1\Collections\PointerHashMap\Variant1.h">
       <Filter>Headerdateien\Ring1\Collections\PointerHashMap</Filter>
     </ClInclude>
@@ -799,6 +808,15 @@
     </ClInclude>
     <ClInclude Include="Ring1\Collections\InlineArray.h">
       <Filter>Headerdateien\Ring1\Collections</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Atom\_Include.h">
+      <Filter>Headerdateien\Ring1\Atom</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\TypeName\_Include.h">
+      <Filter>Headerdateien\Ring1\TypeName</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\TypeName\validate.h">
+      <Filter>Headerdateien\Ring1\TypeName</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1066,9 +1084,6 @@
     <ClCompile Include="Ring1\Collections\PointerList.c">
       <Filter>Quelldateien\Ring1\Collections</Filter>
     </ClCompile>
-    <ClCompile Include="Ring1\Atom.c">
-      <Filter>Quelldateien\Ring1</Filter>
-    </ClCompile>
     <ClCompile Include="Ring1\Collections\PointerHashMap.c">
       <Filter>Quelldateien\Ring1\Collections</Filter>
     </ClCompile>
@@ -1098,6 +1113,15 @@
     </ClCompile>
     <ClCompile Include="Ring1\Collections\InlineArray.c">
       <Filter>Quelldateien\Ring1\Collections</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Atom\_Include.c">
+      <Filter>Quelldateien\Ring1\Atom</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\TypeName\_Include.c">
+      <Filter>Quelldateien\Ring1\TypeName</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\TypeName\validate.c">
+      <Filter>Quelldateien\Ring1\TypeName</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

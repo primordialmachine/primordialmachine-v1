@@ -1,10 +1,10 @@
 // Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 
-/// @file Ring1/Atom.c
+/// @file Ring1/Atom/_Include.c
 /// @copyright Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
-#include "Ring1/Atom.h"
+#include "Ring1/Atom/_Include.h"
 
 
 #include "Ring1/Memory.h"
@@ -22,14 +22,14 @@ typedef struct Key Key;
 typedef struct Value Value;
 
 /// @brief Callback invoked if a value is removed from the hash map.
-Ring1_NonNull(1) static void
+static void
 valueRemoved
   (
     Value** value
   );
 
 /// @brief Callback invoked to determine if an entry is removed from the hash map.
-Ring1_NonNull(1, 2) static int
+static int
 removeEntryIf
   (
     bool *result,
@@ -39,12 +39,16 @@ removeEntryIf
   );
 
 /// @brief Computes the hash value of an array of Bytes.
+/// @param result A pointer to a <code>int64_t</code> variable.
 /// @param bytes A pointer to an array of Bytes.
 /// @param numberOfBytes The number of Bytes in the array.
-/// @return The hash value, guaranteed to be non-negative.
-Ring1_NonNull(1) static inline int64_t
+/// @return #Ring1_Result_Success on success. #Ring1_Result_Failure on failure.
+/// @success <code>*result</code> was assigned the hash value.
+/// That hash value is guaranteed to be non-negative.
+static inline Ring1_Result
 computeHashValue
   (
+    int64_t *result,
     const char* bytes,
     size_t numberOfBytes
   );
@@ -61,20 +65,18 @@ uninitializeModule
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-struct Key
-{
+struct Key {
   int64_t hashValue;
   size_t numberOfBytes;
   char* bytes;
 };
 
-struct Value
-{
+struct Value {
   Ring1_ReferenceCounter referenceCount;
   Key key;
 };
 
-Ring1_NonNull(1) static int
+static Ring1_Result
 Key_getHashValue
   (
     int64_t *result,
@@ -82,10 +84,10 @@ Key_getHashValue
   )
 { 
   *result = x->hashValue;
-  return 0;
+  return Ring1_Result_Success;
 }
 
-Ring1_NonNull(1, 2) static int
+static Ring1_Result
 Key_equalTo
   (
     bool *result,
@@ -97,15 +99,16 @@ Key_equalTo
                  && x->numberOfBytes == y->numberOfBytes;
   if (!temporary1) {
     *result = false;
-    return 0;
+    return Ring1_Result_Success;
+  } else {
+    int temporary2;
+    Ring1_Memory_compare(&temporary2, x->bytes, x->numberOfBytes, y->bytes, y->numberOfBytes, Ring1_Memory_Compare_Lexicographic);
+    *result = !temporary2;
+    return Ring1_Result_Success;
   }
-  int temporary2;
-  Ring1_Memory_compare(&temporary2, x->bytes, x->numberOfBytes, y->bytes, y->numberOfBytes, Ring1_Memory_Compare_Lexicographic);
-  *result = !temporary2;
-  return 0;
 }
 
-Ring1_NonNull(1) static void
+static void
 valueRemoved
   (
     Value** value
@@ -116,7 +119,7 @@ valueRemoved
   Ring1_Memory_deallocate(*value);
 }
 
-Ring1_NonNull(1, 2) static int
+static Ring1_Result
 removeEntryIf
   (
     bool *result,
@@ -126,7 +129,7 @@ removeEntryIf
   )
 {
   *result = 0 == Ring1_ReferenceCounter_get(&value->referenceCount);
-  return 0;
+  return Ring1_Result_Success;
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -185,27 +188,28 @@ uninitializeModule
   shutdownDependencies();
 }
 
-Ring1_NonNull(1) static inline int64_t
+static inline Ring1_Result
 computeHashValue
   (
+    int64_t *result,
     const char* bytes,
     size_t numberOfBytes
   )
 {
   int64_t hashValue = (size_t)numberOfBytes;
-  for (size_t i = 0, n = numberOfBytes; i < n; ++i)
-  {
+  for (size_t i = 0, n = numberOfBytes; i < n; ++i) {
     hashValue |= ((hashValue << 5) | (hashValue >> 3)) ^ bytes[i];
   }
-  return hashValue & 0x7FFFFFFFFFFFFFFF;
+  *result = hashValue & 0x7FFFFFFFFFFFFFFF;
+  return Ring1_Result_Success;
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 Ring1_CheckReturn() Ring1_Result
-Mkx_Atom_getOrCreate
+Ring1_Atom_getOrCreate
   (
-    Mkx_Atom **result,
+    Ring1_Atom **result,
     const char* bytes,
     size_t numberOfBytes
   )
@@ -215,7 +219,10 @@ Mkx_Atom_getOrCreate
     return Ring1_Result_Failure;
   }
   // Compute the hash value.
-  int64_t hashValue = computeHashValue(bytes, numberOfBytes);
+  int64_t hashValue;
+  if (computeHashValue(&hashValue, bytes, numberOfBytes)) {
+    return Ring1_Result_Failure;
+  }
   // Check if an atom for these Bytes already exists.
   Key key = { .bytes = (char*)bytes, .numberOfBytes = numberOfBytes, .hashValue = hashValue };
   Value* value;
@@ -229,13 +236,13 @@ Mkx_Atom_getOrCreate
       g_live++;
     }
     Ring1_Atom_Module_unlock(); // UNLOCK THE MODULE.
-    *result = (Mkx_Atom *)value;
+    *result = (Ring1_Atom *)value;
     return Ring1_Result_Success;
   }
   if (Ring1_Status_get() != Ring1_Status_NotExists) {
     // An error occurred. Fail.
     Ring1_Atom_Module_unlock(); // UNLOCK THE MODULE.
-    return Ring1_Result_Success;
+    return Ring1_Result_Failure;
   }
   Ring1_Status_set(Ring1_Status_Success); // Clear the flag.
   // Atom does not exist. Create the atom with a reference count of 1.
@@ -262,36 +269,34 @@ Mkx_Atom_getOrCreate
   }
   // Return the atom.
   Ring1_Atom_Module_unlock(); // UNLOCK THE MODULE.
-  *result = (Mkx_Atom *)value;
+  *result = (Ring1_Atom *)value;
   return Ring1_Result_Success;
 }
 
-Ring1_NonNull(1) void
-Mkx_Atom_reference
+void
+Ring1_Atom_reference
   (
-    Mkx_Atom* atom
+    Ring1_Atom* atom
   )
 { Ring1_ReferenceCounter_increment(&VALUE(atom)->referenceCount); }
 
-Ring1_NonNull(1) void
-Mkx_Atom_unreference
+void
+Ring1_Atom_unreference
   (
-    Mkx_Atom* atom
+    Ring1_Atom* atom
   )
 {
   // If a reference counter of an atom seems to reach zero,
-  // then Mkx_Atom_unreference needs to acquire a lock to
-  // be mutually exclusive with Mkx_Atom_getOrCreate and
+  // then Ring1_Atom_unreference needs to acquire a lock to
+  // be mutually exclusive with Ring1_Atom_getOrCreate and
   // re-evaluate the reference count.
   //
   // Reason is:
   // Assume Thread 1 decrements the reference count of an atom to 0.
   // Thread 2 increments the reference count of that atom to 1 again.
-  if (!Ring1_ReferenceCounter_decrement(&VALUE(atom)->referenceCount))
-  {
+  if (!Ring1_ReferenceCounter_decrement(&VALUE(atom)->referenceCount)) {
     Ring1_Atom_Module_lock(); // LOCK THE MODULE.
-    if (!Ring1_ReferenceCounter_get(&VALUE(atom)->referenceCount)) // Imposes a full memory barrier.
-    {
+    if (!Ring1_ReferenceCounter_get(&VALUE(atom)->referenceCount)) {// Imposes a full memory barrier.
       // Update the dead/live counters.
       g_live--;
       g_dead++;
@@ -299,8 +304,7 @@ Mkx_Atom_unreference
       // We remove dead atoms if there are more than 8 atoms
       // and if there is a certain ratio of dead and live atoms
       // exceeded.
-      if (g_dead / 2 > g_live && g_dead + g_live > 8)
-      {
+      if (g_dead / 2 > g_live && g_dead + g_live > 8) {
         // Remove dead atoms.
         Mkx_PointerHashMap_removeIf(g_hashMap, NULL, &removeEntryIf);
       }
@@ -309,24 +313,26 @@ Mkx_Atom_unreference
   }
 }
 
-Ring1_CheckReturn() int
-Mkx_Atom_getBytes
+Ring1_CheckReturn() Ring1_Result
+Ring1_Atom_getBytes
   (
     const char **result,
-    Mkx_Atom* atom
+    Ring1_Atom* atom
   )
 {
-  if (Ring1_Unlikely(!result || !atom))
-  { return 1; }
+  if (Ring1_Unlikely(!result || !atom)) {
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
+    return Ring1_Result_Failure;
+  }
   *result = VALUE(atom)->key.bytes;
-  return 0;
+  return Ring1_Result_Success;
 }
 
 Ring1_CheckReturn() Ring1_Result
-Mkx_Atom_getNumberOfBytes
+Ring1_Atom_getNumberOfBytes
   (
     int64_t *result,
-    Mkx_Atom* atom
+    Ring1_Atom* atom
   )
 {
   if (Ring1_Unlikely(!result || !atom)) {
@@ -338,10 +344,10 @@ Mkx_Atom_getNumberOfBytes
 }
 
 Ring1_CheckReturn() Ring1_Result
-Mkx_Atom_getHashValue
+Ring1_Atom_getHashValue
   (
     int64_t* result,
-    Mkx_Atom* atom
+    Ring1_Atom* atom
   )
 {
   if (Ring1_Unlikely(!result || !atom)) {
