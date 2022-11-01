@@ -4,12 +4,16 @@
 /// @copyright Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
-#define RING2_INTERNAL (1)
+#define RING2_PRIVATE (1)
 #include "Ring2/Operations/Array.h"
+#undef RING2_PRIVATE
+
 
 #if defined(Ring2_Configuration_withArray) && 1 == Ring2_Configuration_withArray
 
+
 #include "Ring1/Status.h"
+
 
 Ring1_CheckReturn() Ring2_Boolean
 Ring2_Array_isEqualTo
@@ -36,5 +40,6 @@ Ring2_Array_toString
     Ring2_Array* self
   )
 { return Ring2_ArrayModule_toString(context, self); }
+
 
 #endif

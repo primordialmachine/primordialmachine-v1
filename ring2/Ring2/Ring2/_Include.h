@@ -7,7 +7,7 @@
 #if !defined(RING2__INCLUDE_H_INCLUDED)
 #define RING2__INCLUDE_H_INCLUDED
 
-#define RING2_INTERNAL (1)
+#define RING2_PRIVATE (1)
 #include "Ring2/Assert.h"
 #include "Ring2/Context.h"
 #include "Ring2/Gc.h"
@@ -23,6 +23,6 @@
 #include "Ring2/TypeSystem/EnumerationType.h"
 #include "Ring2/TypeSystem/InterfaceType.h"
 #include "Ring2/Types/Value.h"
-#undef RING2_INTERNAL
+#undef RING2_PRIVATE
 
 #endif // RING2__INCLUDE_H_INCLUDED

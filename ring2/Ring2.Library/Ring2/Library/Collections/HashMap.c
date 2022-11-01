@@ -151,7 +151,7 @@ MACHINE_DEFINE_CLASSTYPE(Ring2_Collections_HashMap /*type*/,
                          &Ring2_Collections_HashMap_construct /*construct*/,
                          &Ring2_Collections_HashMap_destruct /*destruct*/,
                          NULL /*constructClass*/,
-                         &implementInterfaces)
+                         &implementInterfaces /*implementInterfaces*/)
 
 static Ring2_Boolean
 defaultEqual

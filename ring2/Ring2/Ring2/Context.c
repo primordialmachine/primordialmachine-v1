@@ -4,20 +4,23 @@
 /// @copyright Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
-#define RING2_INTERNAL (1)
+#define RING2_PRIVATE (1)
 #include "Ring2/Context.h"
+#undef RING2_PRIVATE
 
 
 #include <stdio.h>
 #include "Ring1/Memory.h"
 #include "Ring1/Status.h"
+
+#define RING2_PRIVATE (1)
 #include "Ring2/JumpTarget.h"
 #include "Ring2/Log.h"
 #include "Ring2/Operations.h"
 #include "Ring2/Stack.h"
 #include "Ring2/StaticVariables.h"
 #include "Ring2/TypeSystem.h"
-
+#undef RING2_PRIVATE
 
 static Ring2_Context* g_context = NULL;
 

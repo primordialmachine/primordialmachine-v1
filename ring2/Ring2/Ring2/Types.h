@@ -8,7 +8,7 @@
 #define RING2_TYPES_H_INCLUDED
 
 
-#if !defined(RING2_INTERNAL) || 1 != RING2_INTERNAL
+#if !defined(RING2_PRIVATE) || 1 != RING2_PRIVATE
 #error("Do not include `Ring2/Types.h` directly. Include `Ring2/_Include.h` instead.")
 #endif
 #include "Ring2/_header.h.i"

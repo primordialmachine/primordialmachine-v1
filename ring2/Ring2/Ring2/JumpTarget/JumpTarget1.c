@@ -4,8 +4,9 @@
 /// @copyright Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
-#define RING2_INTERNAL (1)
+#define RING2_PRIVATE (1)
 #include "Ring2/JumpTarget/JumpTarget1.h"
+#undef RING2_PRIVATE
 
 static Ring2_JumpTarget* g_jumpTargets = NULL;
 

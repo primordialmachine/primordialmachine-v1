@@ -7,7 +7,7 @@
 #if !defined(RING2_TEST_H_INCLUDED)
 #define RING2_TEST_H_INCLUDED
 
-#if !defined(RING2_INTERNAL) || 1 != RING2_INTERNAL
+#if !defined(RING2_PRIVATE) || 1 != RING2_PRIVATE
 #error("Do not include `Ring2/Test/Tests.h` directly. Include `Ring2/_Include.h` instead.")
 #endif
 

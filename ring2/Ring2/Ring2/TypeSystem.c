@@ -4,16 +4,19 @@
 /// @copyright Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
-#define RING2_INTERNAL (1)
+#define RING2_PRIVATE (1)
 #include "Ring2/TypeSystem.h"
+#undef RING2_PRIVATE
 
 
 #include <assert.h>
-#include "Ring2/TypeSystem/Type.h"
 #include "Ring1/Memory.h"
 #include "Ring1/Status.h"
+#define RING2_PRIVATE (1)
 #include "Ring2/Gc.h"
 #include "Ring2/JumpTarget.h"
+#include "Ring2/TypeSystem/Type.h"
+#undef RING2_PRIVATE
 
 
 typedef struct Ring2_TypeSystem {

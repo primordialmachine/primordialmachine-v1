@@ -4,16 +4,21 @@
 /// @copyright Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
-#define RING2_INTERNAL (1)
+#define RING2_PRIVATE (1)
 #include "Ring2/Types/String.h"
+#undef RING2_PRIVATE
 #include <assert.h>
 
 #if defined(Ring2_Configuration_withString) && 1 == Ring2_Configuration_withString
 
-#include "Ring2/Gc.h"
-#include "Ring2/JumpTarget.h"
+
 #include "Ring1/Status.h"
 #include "Ring1/Memory.h"
+#define RING2_PRIVATE (1)
+#include "Ring2/Gc.h"
+#include "Ring2/JumpTarget.h"
+#undef RING2_PRIVATE
+
 
 static Ring1_CheckReturn() Ring1_Result
 Ring2_StringModule_startup

@@ -1,10 +1,12 @@
-#define RING2_INTERNAL (1)
+#define RING2_PRIVATE (1)
 #include "Ring2/Operations/_Buffer.h"
+#undef RING2_PRIVATE
+
 
 #include "Ring1/Memory.h"
 #include "Ring1/Status.h"
-
 #include <stdlib.h>
+
 
 struct buffer_t {
   char* p;

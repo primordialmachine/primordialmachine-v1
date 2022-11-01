@@ -5,8 +5,9 @@
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 /// @brief A precise, non-incremental, mark-and-sweep GC.
 
-#define RING2_INTERNAL (1)
+#define RING2_PRIVATE (1)
 #include "Ring2/Gc/Implementation/Gc1.h"
+#undef RING2_PRIVATE
 
 #include "Ring2/Gc/Tag.h"
 #include "Ring1/Memory.h"

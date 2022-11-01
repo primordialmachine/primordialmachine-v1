@@ -8,10 +8,11 @@
 #include "Ring2/Library/StringExtensions.h"
 #undef RING2_LIBRARY_PRIVATE
 
+
 #include "Ring1/Intrinsic.h"
 #include "Ring1/Status.h"
+#include "Ring2/_Include.h"
 #include "Ring2/Library/_Include.h"
-#include "Ring2/Operations.h"
 #include <stdarg.h>
 #include <stdio.h>
 

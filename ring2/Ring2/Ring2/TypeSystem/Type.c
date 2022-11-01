@@ -4,17 +4,20 @@
 /// @copyright Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
-#define RING2_INTERNAL (1)
+#define RING2_PRIVATE (1)
 #include "Ring2/TypeSystem/Type.h"
+#undef RING2_PRIVATE
 
 
 #include "Ring1/Collections/InlineArray.h"
 #include "Ring1/Memory.h"
 #include "Ring1/Status.h"
+#define RING2_PRIVATE (1)
 #include "Ring2/TypeSystem/ClassType.h"
 #include "Ring2/TypeSystem/InterfaceType.h"
 #include "Ring2/Gc.h"
 #include "Ring2/JumpTarget.h"
+#undef RING2_PRIVATE
 
 
 Ring1_CheckReturn() bool

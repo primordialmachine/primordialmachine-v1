@@ -4,9 +4,9 @@
 /// @copyright Copyright (c) 2022 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
-#define RING2_INTERNAL (1)
+#define RING2_PRIVATE (1)
 #include "Ring2/Test/Test.h"
-#undef RING2_INTERNAL
+#undef RING2_PRIVATE
 
 
 #include "Ring1/Intrinsic.h"
