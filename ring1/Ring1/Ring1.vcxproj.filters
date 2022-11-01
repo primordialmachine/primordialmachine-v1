@@ -818,6 +818,9 @@
     <ClInclude Include="Ring1\TypeName\validate.h">
       <Filter>Headerdateien\Ring1\TypeName</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\countDecimalDigits.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring1\Intrinsic\ThreadLocal.c">
@@ -1122,6 +1125,9 @@
     </ClCompile>
     <ClCompile Include="Ring1\TypeName\validate.c">
       <Filter>Quelldateien\Ring1\TypeName</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\countDecimalDigits.c">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

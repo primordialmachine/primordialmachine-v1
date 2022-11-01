@@ -78,6 +78,7 @@
     <ClInclude Include="Ring1\Intrinsic\Add\X86\add_u64.h" />
     <ClInclude Include="Ring1\Intrinsic\Add\X86\add_u8.h" />
     <ClInclude Include="Ring1\Intrinsic\atomicCompareExchange.h" />
+    <ClInclude Include="Ring1\Intrinsic\countDecimalDigits.h" />
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u16.h" />
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u32.h" />
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u64.h" />
@@ -498,6 +499,7 @@
     <ClCompile Include="Ring1\Intrinsic.c" />
     <ClCompile Include="Ring1\Intrinsic\atomicCompareExchange.c" />
     <ClCompile Include="Ring1\Intrinsic\clamp.c" />
+    <ClCompile Include="Ring1\Intrinsic\countDecimalDigits.c" />
     <ClCompile Include="Ring1\Intrinsic\countLeadingZeroes.c" />
     <ClCompile Include="Ring1\Intrinsic\Crt.c" />
     <ClCompile Include="Ring1\Intrinsic\Environment.c" />
