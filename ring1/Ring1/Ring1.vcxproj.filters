@@ -324,6 +324,12 @@
     <Filter Include="Quelldateien\Ring1\TypeName">
       <UniqueIdentifier>{4a956128-c810-4827-ba17-df81dcbde1c9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring1\Ap">
+      <UniqueIdentifier>{eaf2b862-b185-420a-afab-32ae1cc77825}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Ap">
+      <UniqueIdentifier>{e30dbd67-cb4d-4e3d-bc36-4c751557414b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring1\Intrinsic\Subtract\subtract.h">
@@ -818,6 +824,21 @@
     <ClInclude Include="Ring1\Intrinsic\countDecimalDigits.h">
       <Filter>Headerdateien\Ring1\Intrinsic</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\Ap\_Include.h">
+      <Filter>Headerdateien\Ring1\Ap</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Ap\ApBool.h">
+      <Filter>Headerdateien\Ring1\Ap</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Ap\ApNat.h">
+      <Filter>Headerdateien\Ring1\Ap</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Ap\ApNat.private.h">
+      <Filter>Headerdateien\Ring1\Ap</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Ap\ApInt.h">
+      <Filter>Headerdateien\Ring1\Ap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring1\Intrinsic\ThreadLocal.c">
@@ -1125,6 +1146,21 @@
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\countDecimalDigits.c">
       <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Ap\_Include.c">
+      <Filter>Quelldateien\Ring1\Ap</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Ap\ApBool.c">
+      <Filter>Quelldateien\Ring1\Ap</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Ap\ApNat.c">
+      <Filter>Quelldateien\Ring1\Ap</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Ap\ApNat.private.c">
+      <Filter>Quelldateien\Ring1\Ap</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Ap\ApInt.c">
+      <Filter>Quelldateien\Ring1\Ap</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

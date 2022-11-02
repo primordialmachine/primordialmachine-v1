@@ -28,6 +28,11 @@
     <ClInclude Include="Ring1\Annotations\Obsolete.h" />
     <ClInclude Include="Ring1\Annotations\Unlikely.h" />
     <ClInclude Include="Ring1\Annotations\_Include.h" />
+    <ClInclude Include="Ring1\Ap\ApBool.h" />
+    <ClInclude Include="Ring1\Ap\ApInt.h" />
+    <ClInclude Include="Ring1\Ap\ApNat.h" />
+    <ClInclude Include="Ring1\Ap\ApNat.private.h" />
+    <ClInclude Include="Ring1\Ap\_Include.h" />
     <ClInclude Include="Ring1\Atom\_Include.h" />
     <ClInclude Include="Ring1\ByteBuffer.h" />
     <ClInclude Include="Ring1\Collections\Callbacks.h" />
@@ -466,6 +471,11 @@
     <ClCompile Include="Ring1\Annotations\Obsolete.c" />
     <ClCompile Include="Ring1\Annotations\Unlikely.c" />
     <ClCompile Include="Ring1\Annotations\_Include.c" />
+    <ClCompile Include="Ring1\Ap\ApBool.c" />
+    <ClCompile Include="Ring1\Ap\ApInt.c" />
+    <ClCompile Include="Ring1\Ap\ApNat.c" />
+    <ClCompile Include="Ring1\Ap\ApNat.private.c" />
+    <ClCompile Include="Ring1\Ap\_Include.c" />
     <ClCompile Include="Ring1\Atom\_Include.c" />
     <ClCompile Include="Ring1\ByteBuffer.c" />
     <ClCompile Include="Ring1\Collections\InlineArray.c" />

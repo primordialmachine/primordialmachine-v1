@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1">
+      <UniqueIdentifier>{94fcf26f-fdc1-438e-be98-f5d7b851c10c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Ap">
+      <UniqueIdentifier>{c6adccb5-f6a2-4bc9-9740-7d3bceebdb73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Ap\Test">
+      <UniqueIdentifier>{3fc09828-4dd6-4497-bd10-3f201b8f5885}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1">
+      <UniqueIdentifier>{98f40830-eb05-4ee7-bf84-5337407225f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\Ap">
+      <UniqueIdentifier>{830f48d9-aed9-44cb-8e74-35af68de98e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\Ap\Test">
+      <UniqueIdentifier>{bbc34251-64c6-468c-9ca8-6005fee790c8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Ring1\Ap\Test\Main.c">
+      <Filter>Quelldateien\Ring1\Ap\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Ap\Test\ApBoolTests.c">
+      <Filter>Quelldateien\Ring1\Ap\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Ap\Test\ApNatTests.c">
+      <Filter>Quelldateien\Ring1\Ap\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Ap\Test\ApIntTests.c">
+      <Filter>Quelldateien\Ring1\Ap\Test</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Ring1\Ap\Test\ApBoolTests.h">
+      <Filter>Headerdateien\Ring1\Ap\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Ap\Test\ApNatTests.h">
+      <Filter>Headerdateien\Ring1\Ap\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Ap\Test\ApIntTests.h">
+      <Filter>Headerdateien\Ring1\Ap\Test</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

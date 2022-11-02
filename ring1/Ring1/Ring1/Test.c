@@ -158,6 +158,7 @@ Ring1_Test_Context_assert
   if (!success)
   {
     ctx->currentNode->flags |= RING1_TEST_NODE_FLAG_HASERRORS;
+    fprintf(stderr, "%s: ", ctx->currentNode->name);
     fprintf(stderr, "%s", message);
   }
 }

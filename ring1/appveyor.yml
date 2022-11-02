@@ -34,6 +34,9 @@ matrix:
     fast_finish: true
 
 artifacts:
+    # Ring1.Ap.Test
+    - path: $(module_lowercase)\products\$(platform)\$(configuration)\$(module).Ap.Test\$(module).Ap.Test.exe
+      name: $(module).Ap.Test-$(platform)-$(configuration).exe
     # Ring1.Atom.Test
     - path: $(module_lowercase)\products\$(platform)\$(configuration)\$(module).Atom.Test\$(module).Atom.Test.exe
       name: $(module).Atom.Test-$(platform)-$(configuration).exe
