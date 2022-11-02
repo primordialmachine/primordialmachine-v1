@@ -12,7 +12,7 @@
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_add_s8.
 /// @param ctx A pointer to the test context.
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_add_s8
   (
     Ring1_Test_Context *ctx
@@ -55,11 +55,13 @@ Ring1_Intrinsic_Test_add_s8
   RING1_TEST_ASSERT_EQ(ctx, Ring1_Status_get(), Ring1_Status_NumericOverflow);
   RING1_TEST_ASSERT_EQ(ctx, z, INT8_MAX - 1);
   Ring1_Status_set(Ring1_Status_Success);
+
+  return Ring1_Result_Success;
 }
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_add_u8.
 /// @param ctx A pointer to the test context.
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_add_u8
   (
     Ring1_Test_Context *ctx
@@ -86,11 +88,13 @@ Ring1_Intrinsic_Test_add_u8
   RING1_TEST_ASSERT_EQ(ctx, Ring1_Status_get(), Ring1_Status_NumericOverflow);
   RING1_TEST_ASSERT_EQ(ctx, z, 1);
   Ring1_Status_set(Ring1_Status_Success);
+
+  return Ring1_Result_Success;
 }
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_add_s16.
 /// @param ctx A pointer to the test context.
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_add_s16
   (
     Ring1_Test_Context *ctx
@@ -133,11 +137,13 @@ Ring1_Intrinsic_Test_add_s16
   RING1_TEST_ASSERT_EQ(ctx, Ring1_Status_get(), Ring1_Status_NumericOverflow);
   RING1_TEST_ASSERT_EQ(ctx, z, INT16_MAX - 1);
   Ring1_Status_set(Ring1_Status_Success);
+
+  return Ring1_Result_Success;
 }
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_add_u16.
 /// @param ctx A pointer to the test context.
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_add_u16
   (
     Ring1_Test_Context *ctx
@@ -164,11 +170,13 @@ Ring1_Intrinsic_Test_add_u16
   RING1_TEST_ASSERT_EQ(ctx, Ring1_Status_get(), Ring1_Status_NumericOverflow);
   RING1_TEST_ASSERT_EQ(ctx, z, 1);
   Ring1_Status_set(Ring1_Status_Success);
+
+  return Ring1_Result_Success;
 }
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_add_s32.
 /// @param ctx A pointer to the test context.
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_add_s32
   (
     Ring1_Test_Context *ctx
@@ -211,11 +219,13 @@ Ring1_Intrinsic_Test_add_s32
   RING1_TEST_ASSERT_EQ(ctx, Ring1_Status_get(), Ring1_Status_NumericOverflow);
   RING1_TEST_ASSERT_EQ(ctx, z, INT32_MAX - 1);
   Ring1_Status_set(Ring1_Status_Success);
+
+  return Ring1_Result_Success;
 }
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_add_u32.
 /// @param ctx A pointer to the test context.
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_add_u32
   (
     Ring1_Test_Context *ctx
@@ -242,11 +252,13 @@ Ring1_Intrinsic_Test_add_u32
   RING1_TEST_ASSERT_EQ(ctx, Ring1_Status_get(), Ring1_Status_NumericOverflow);
   RING1_TEST_ASSERT_EQ(ctx, z, 1);
   Ring1_Status_set(Ring1_Status_Success);
+
+  return Ring1_Result_Success;
 }
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_add_s64.
 /// @param ctx A pointer to the test context.
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_add_s64
   (
     Ring1_Test_Context* ctx
@@ -289,11 +301,13 @@ Ring1_Intrinsic_Test_add_s64
   RING1_TEST_ASSERT_EQ(ctx, Ring1_Status_get(), Ring1_Status_NumericOverflow);
   RING1_TEST_ASSERT_EQ(ctx, z, INT64_MAX - 1);
   Ring1_Status_set(Ring1_Status_Success);
+
+  return Ring1_Result_Success;
 }
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_add_u64.
 /// @param ctx A pointer to the test context.
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_add_u64
   (
     Ring1_Test_Context *ctx
@@ -320,11 +334,13 @@ Ring1_Intrinsic_Test_add_u64
   RING1_TEST_ASSERT_EQ(ctx, Ring1_Status_get(), Ring1_Status_NumericOverflow);
   RING1_TEST_ASSERT_EQ(ctx, z, 1);
   Ring1_Status_set(Ring1_Status_Success);
+
+  return Ring1_Result_Success;
 }
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_add_sz.
 /// @param ctx A pointer to the test context.
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_add_sz
   (
     Ring1_Test_Context *ctx
@@ -351,6 +367,8 @@ Ring1_Intrinsic_Test_add_sz
   RING1_TEST_ASSERT_EQ(ctx, Ring1_Status_get(), Ring1_Status_NumericOverflow);
   RING1_TEST_ASSERT_EQ(ctx, z, 1);
   Ring1_Status_set(Ring1_Status_Success);
+
+  return Ring1_Result_Success;
 }
 
 Ring1_Result

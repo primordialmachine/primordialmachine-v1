@@ -16,7 +16,7 @@
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Success); \
   RING1_TEST_ASSERT_EQ(ctx, result, EXPECTED);
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_isPowerOfTwo_s8
   (
     Ring1_Test_Context* ctx
@@ -30,9 +30,10 @@ Ring1_Intrinsic_Test_isPowerOfTwo_s8
   Define(s8, 1, true);
   // Case of x = 2.
   Define(s8, 2, true);
+  return Ring1_Result_Success;
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_isPowerOfTwo_u8
   (
     Ring1_Test_Context* ctx
@@ -46,9 +47,10 @@ Ring1_Intrinsic_Test_isPowerOfTwo_u8
   Define(u8, 1, true);
   // Case of x = 2.
   Define(u8, 2, true);
+  return Ring1_Result_Success;
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_isPowerOfTwo_s16
   (
     Ring1_Test_Context* ctx
@@ -62,9 +64,10 @@ Ring1_Intrinsic_Test_isPowerOfTwo_s16
   Define(s16, 1, true);
   // Case of x = 2.
   Define(s16, 2, true);
+  return Ring1_Result_Success;
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_isPowerOfTwo_u16
   (
     Ring1_Test_Context* ctx
@@ -78,9 +81,10 @@ Ring1_Intrinsic_Test_isPowerOfTwo_u16
   Define(u16, 1, true);
   // Case of x = 2.
   Define(u16, 2, true);
+  return Ring1_Result_Success;
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_isPowerOfTwo_s32
   (
     Ring1_Test_Context* ctx
@@ -94,9 +98,10 @@ Ring1_Intrinsic_Test_isPowerOfTwo_s32
   Define(s32, 1, true);
   // Case of x = 2.
   Define(s32, 2, true);
+  return Ring1_Result_Success;
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_isPowerOfTwo_u32
   (
     Ring1_Test_Context* ctx
@@ -110,9 +115,10 @@ Ring1_Intrinsic_Test_isPowerOfTwo_u32
   Define(u32, 1, true);
   // Case of x = 2.
   Define(u32, 2, true);
+  return Ring1_Result_Success;
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_isPowerOfTwo_s64
   (
     Ring1_Test_Context* ctx
@@ -126,9 +132,10 @@ Ring1_Intrinsic_Test_isPowerOfTwo_s64
   Define(s64, 1, true);
   // Case of x = 2.
   Define(s64, 2, true);
+  return Ring1_Result_Success;
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_isPowerOfTwo_u64
   (
     Ring1_Test_Context* ctx
@@ -142,9 +149,10 @@ Ring1_Intrinsic_Test_isPowerOfTwo_u64
   Define(u64, 1, true);
   // Case of x = 2.
   Define(u64, 2, true);
+  return Ring1_Result_Success;
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_isPowerOfTwo_sz
   (
     Ring1_Test_Context* ctx
@@ -158,6 +166,7 @@ Ring1_Intrinsic_Test_isPowerOfTwo_sz
   Define(sz, 1, true);
   // Case of x = 2.
   Define(sz, 2, true);
+  return Ring1_Result_Success;
 }
 
 #undef Define

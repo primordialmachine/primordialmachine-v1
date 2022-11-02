@@ -12,7 +12,7 @@
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_countLeadingZeroes_u8.
 /// @param ctx A pointer to the test context.
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_countLeadingZeroes_u8
   (
     Ring1_Test_Context *ctx
@@ -30,11 +30,13 @@ Ring1_Intrinsic_Test_countLeadingZeroes_u8
 
   RING1_TEST_ASSERT_EQ(ctx, Ring1_Result_Success, Ring1_Intrinsic_countLeadingZeroes_u8(&n, UINT8_MAX));
   RING1_TEST_ASSERT_EQ(ctx, 0, n);
+
+  return Ring1_Result_Success;
 }
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_countLeadingZeroes_u16.
 /// @param ctx A pointer to the test context.
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_countLeadingZeroes_u16
   (
     Ring1_Test_Context *ctx
@@ -52,11 +54,13 @@ Ring1_Intrinsic_Test_countLeadingZeroes_u16
 
   RING1_TEST_ASSERT_EQ(ctx, Ring1_Result_Success, Ring1_Intrinsic_countLeadingZeroes_u16(&n, UINT16_MAX));
   RING1_TEST_ASSERT_EQ(ctx, 0, n);
+
+  return Ring1_Result_Success;
 }
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_countLeadingZeroes_u32.
 /// @param ctx A pointer to the test context.
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_countLeadingZeroes_u32
   (
     Ring1_Test_Context *ctx
@@ -74,11 +78,13 @@ Ring1_Intrinsic_Test_countLeadingZeroes_u32
 
   RING1_TEST_ASSERT_EQ(ctx, Ring1_Result_Success, Ring1_Intrinsic_countLeadingZeroes_u32(&n, UINT32_MAX));
   RING1_TEST_ASSERT_EQ(ctx, 0, n);
+
+  return Ring1_Result_Success;
 }
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_countLeadingZeroes_u64.
 /// @param ctx A pointer to the test context.
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_countLeadingZeroes_u64
   (
     Ring1_Test_Context* ctx
@@ -94,6 +100,8 @@ Ring1_Intrinsic_Test_countLeadingZeroes_u64
 
   RING1_TEST_ASSERT_EQ(ctx, Ring1_Result_Success, Ring1_Intrinsic_countLeadingZeroes_u64(&n, UINT64_MAX));
   RING1_TEST_ASSERT_EQ(ctx, 0, n);
+
+  return Ring1_Result_Success;
 }
 
 Ring1_Result

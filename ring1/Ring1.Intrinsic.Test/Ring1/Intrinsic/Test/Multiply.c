@@ -12,8 +12,8 @@
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_multiply_s8.
 /// @param ctx A pointer to the test context.
-void
-Mkx_Intrinsic_Test_multiply_s8
+static Ring1_NoDiscardResult() Ring1_Result
+Ring1_Intrinsic_Test_multiply_s8
   (
     Ring1_Test_Context *ctx
   )
@@ -50,12 +50,14 @@ Mkx_Intrinsic_Test_multiply_s8
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Failure);
   RING1_TEST_ASSERT_EQ(ctx, z, 0);
   Ring1_Status_set(Ring1_Status_Success);
+
+  return Ring1_Result_Success;
 }
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_multiply_u8.
 /// @param ctx A pointer to the test context.
-void
-Mkx_Intrinsic_Test_multiply_u8
+static Ring1_NoDiscardResult() Ring1_Result
+Ring1_Intrinsic_Test_multiply_u8
   (
     Ring1_Test_Context *ctx
   )
@@ -78,12 +80,14 @@ Mkx_Intrinsic_Test_multiply_u8
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Failure);
   RING1_TEST_ASSERT_EQ(ctx, z, UINT8_MAX - 1);
   Ring1_Status_set(Ring1_Status_Success);
+
+  return Ring1_Result_Success;
 }
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_multiply_s16.
 /// @param ctx A pointer to the test context.
-void
-Mkx_Intrinsic_Test_multiply_s16
+static Ring1_NoDiscardResult() Ring1_Result
+Ring1_Intrinsic_Test_multiply_s16
   (
     Ring1_Test_Context *ctx
   )
@@ -120,12 +124,14 @@ Mkx_Intrinsic_Test_multiply_s16
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Failure);
   RING1_TEST_ASSERT_EQ(ctx, z, 0);
   Ring1_Status_set(Ring1_Status_Success);
+
+  return Ring1_Result_Success;
 }
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_multiply_u16.
 /// @param ctx A pointer to the test context.
-void
-Mkx_Intrinsic_Test_multiply_u16
+static Ring1_NoDiscardResult() Ring1_Result
+Ring1_Intrinsic_Test_multiply_u16
   (
     Ring1_Test_Context *ctx
   )
@@ -148,12 +154,14 @@ Mkx_Intrinsic_Test_multiply_u16
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Failure);
   RING1_TEST_ASSERT_EQ(ctx, z, UINT16_MAX - 1);
   Ring1_Status_set(Ring1_Status_Success);
+
+  return Ring1_Result_Success;
 }
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_multiply_s32.
 /// @param ctx A pointer to the test context.
-void
-Mkx_Intrinsic_Test_multiply_s32
+static Ring1_NoDiscardResult() Ring1_Result
+Ring1_Intrinsic_Test_multiply_s32
   (
     Ring1_Test_Context *ctx
   )
@@ -190,12 +198,14 @@ Mkx_Intrinsic_Test_multiply_s32
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Failure);
   RING1_TEST_ASSERT_EQ(ctx, z, 0);
   Ring1_Status_set(Ring1_Status_Success);
+
+  return Ring1_Result_Success;
 }
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_multiply_u32.
 /// @param ctx A pointer to the test context.
-void
-Mkx_Intrinsic_Test_multiply_u32
+static Ring1_NoDiscardResult() Ring1_Result
+Ring1_Intrinsic_Test_multiply_u32
   (
     Ring1_Test_Context *ctx
   )
@@ -218,12 +228,17 @@ Mkx_Intrinsic_Test_multiply_u32
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Failure);
   RING1_TEST_ASSERT_EQ(ctx, z, UINT32_MAX - 1);
   Ring1_Status_set(Ring1_Status_Success);
+
+  return Ring1_Result_Success;
 }
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_multiply_s64.
 /// @param ctx A pointer to the test context.
-void
-Mkx_Intrinsic_Test_multiply_s64(Ring1_Test_Context* ctx)
+static Ring1_NoDiscardResult() Ring1_Result
+Ring1_Intrinsic_Test_multiply_s64
+  (
+    Ring1_Test_Context* ctx
+  )
 {
   int64_t z;
   Ring1_Result r;
@@ -257,12 +272,17 @@ Mkx_Intrinsic_Test_multiply_s64(Ring1_Test_Context* ctx)
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Failure);
   RING1_TEST_ASSERT_EQ(ctx, z, 0);
   Ring1_Status_set(Ring1_Status_Success);
+
+  return Ring1_Result_Success;
 }
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_multiply_u64.
 /// @param ctx A pointer to the test context.
-void
-Mkx_Intrinsic_Test_multiply_u64(Ring1_Test_Context* ctx)
+static Ring1_NoDiscardResult() Ring1_Result
+Ring1_Intrinsic_Test_multiply_u64
+  (
+    Ring1_Test_Context* ctx
+  )
 {
   uint64_t z;
   Ring1_Result r;
@@ -282,9 +302,11 @@ Mkx_Intrinsic_Test_multiply_u64(Ring1_Test_Context* ctx)
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Failure);
   RING1_TEST_ASSERT_EQ(ctx, z, UINT64_MAX - 1);
   Ring1_Status_set(Ring1_Status_Success);
+
+  return Ring1_Result_Success;
 }
 
-Ring1_Result
+Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_registerMultiplyTests
   (
     Ring1_Test_Context* ctx
@@ -292,15 +314,15 @@ Ring1_Intrinsic_Test_registerMultiplyTests
 {
   return
     //
-       Ring1_Test_Context_addTest(ctx, "Mkx.Intrinsic.Test.multiply[s8]", &Mkx_Intrinsic_Test_multiply_s8)
-    || Ring1_Test_Context_addTest(ctx, "Mkx.Intrinsic.Test.multiply[u8]", &Mkx_Intrinsic_Test_multiply_u8)
+       Ring1_Test_Context_addTest(ctx, "Mkx.Intrinsic.Test.multiply[s8]", &Ring1_Intrinsic_Test_multiply_s8)
+    || Ring1_Test_Context_addTest(ctx, "Mkx.Intrinsic.Test.multiply[u8]", &Ring1_Intrinsic_Test_multiply_u8)
     //
-    || Ring1_Test_Context_addTest(ctx, "Mkx.Intrinsic.Test.multiply[s16]", &Mkx_Intrinsic_Test_multiply_s16)
-    || Ring1_Test_Context_addTest(ctx, "Mkx.Intrinsic.Test.multiply[u16]", &Mkx_Intrinsic_Test_multiply_u16)
+    || Ring1_Test_Context_addTest(ctx, "Mkx.Intrinsic.Test.multiply[s16]", &Ring1_Intrinsic_Test_multiply_s16)
+    || Ring1_Test_Context_addTest(ctx, "Mkx.Intrinsic.Test.multiply[u16]", &Ring1_Intrinsic_Test_multiply_u16)
     //
-    || Ring1_Test_Context_addTest(ctx, "Mkx.Intrinsic.Test.multiply[s32]", &Mkx_Intrinsic_Test_multiply_s32)
-    || Ring1_Test_Context_addTest(ctx, "Mkx.Intrinsic.Test.multiply[u32]", &Mkx_Intrinsic_Test_multiply_u32)
+    || Ring1_Test_Context_addTest(ctx, "Mkx.Intrinsic.Test.multiply[s32]", &Ring1_Intrinsic_Test_multiply_s32)
+    || Ring1_Test_Context_addTest(ctx, "Mkx.Intrinsic.Test.multiply[u32]", &Ring1_Intrinsic_Test_multiply_u32)
     //
-    || Ring1_Test_Context_addTest(ctx, "Mkx.Intrinsic.Test.multiply[s64]", &Mkx_Intrinsic_Test_multiply_s64)
-    || Ring1_Test_Context_addTest(ctx, "Mkx.Intrinsic.Test.multiply[u64]", &Mkx_Intrinsic_Test_multiply_u64);
+    || Ring1_Test_Context_addTest(ctx, "Mkx.Intrinsic.Test.multiply[s64]", &Ring1_Intrinsic_Test_multiply_s64)
+    || Ring1_Test_Context_addTest(ctx, "Mkx.Intrinsic.Test.multiply[u64]", &Ring1_Intrinsic_Test_multiply_u64);
 }

@@ -12,10 +12,20 @@
 #include "Ring1/Result.h"
 
 /// @public
+// @brief Type of a test context.
 typedef struct Ring1_Test_Context Ring1_Test_Context;
 
-/// @public
-typedef void(Ring1_Test_Function)(Ring1_Test_Context* ctx);
+/// @brief Type of a test node.
+typedef struct Ring1_Test_Node Ring1_Test_Node;
+
+/// @brief The tyoe of a test function.
+/// @param context The test context.
+/// @return #Ring1_Result_Success on success. #Ring1_Result_Failure on failure.
+/// @remark
+/// The test function is considered as failed
+/// - if the test context error flag is set
+/// - it returns #Ring1_Result_Failure
+typedef Ring1_Result (Ring1_Test_Function)(Ring1_Test_Context* context);
 
 /// @public
 /// @brief Create a test context.

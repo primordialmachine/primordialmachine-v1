@@ -8,27 +8,98 @@
 #include <stdint.h>
 #include <setjmp.h> // jmp_buf
 
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
 typedef jmp_buf crt_jmp_buf;
 
-int crt_setjmp(jmp_buf x);
+int
+crt_setjmp
+  (
+    jmp_buf x
+  );
 
-void crt_longjmp(jmp_buf x, int y);
+#if defined(_MSC_VER)
+__declspec(noreturn)
+#endif
+void
+crt_longjmp
+  (
+    crt_jmp_buf x,
+    int y
+  );
 
-void *crt_malloc(size_t x);
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-void* crt_realloc(void* x, size_t y);
+void *
+crt_malloc
+  (
+    size_t x
+  );
 
-void crt_free(void* x);
+void*
+crt_realloc
+  (
+    void* x,
+    size_t y
+  );
 
-int crt_atexit(void(__cdecl *x)(void));
+void
+crt_free
+  (
+    void* x
+  );
 
-char* crt_strdup(char const *x);
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-int crt_strcmp(char const* x, char const* y);
+#if defined(_MSC_VER)
+_Check_return_
+#endif
+char*
+crt_strdup
+  (
+    char const *x
+  );
 
-size_t crt_strlen(char const *x);
+#if defined(_MSC_VER)
+_Check_return_
+#endif
+int
+crt_strcmp(char const* x, char const* y);
 
-void* crt_memcpy(void* x, void const* y, size_t n);
+#if defined(_MSC_VER)
+_Check_return_
+#endif
+size_t
+crt_strlen
+  (
+    char const *x
+  );
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+void*
+crt_memcpy
+  (
+    void* x,
+    void const* y,
+    size_t n
+  );
+
+void*
+crt_memset
+  (
+    void* p,
+    int v,
+    size_t n
+  );
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+int
+crt_atexit
+  (
+    void(__cdecl *x)(void)
+  );
 
 /// @brief printf/scanf-style format specifier for size_t.
 /// @remark This is necessary because of Redmon Retards' (aka Microsoft's) Visual C++.

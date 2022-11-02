@@ -449,9 +449,6 @@
     <ClInclude Include="Ring1\Intrinsic\ThreadLocal.h">
       <Filter>Headerdateien\Ring1\Intrinsic</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Test\Commons.h">
-      <Filter>Headerdateien\Ring1\Test</Filter>
-    </ClInclude>
     <ClInclude Include="Ring1\Test\Configuration.h">
       <Filter>Headerdateien\Ring1\Test</Filter>
     </ClInclude>

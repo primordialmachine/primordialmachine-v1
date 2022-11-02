@@ -22,7 +22,7 @@
     Ring1_Status_set(Ring1_Status_Success);                                    \
   }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_maximum_f32
   (
     Ring1_Test_Context* ctx
@@ -33,9 +33,10 @@ Ring1_Intrinsic_Test_maximum_f32
   ExpectFailure(&r, 0.f, Ring1_Intrinsic_Fp_NoNumber_f32, f32);                             // maximum is no number.
   ExpectFailure(&r, Ring1_Intrinsic_Fp_NoNumber_f32, 0.f, f32);                             // minimum is no number.
   ExpectFailure(&r, Ring1_Intrinsic_Fp_NoNumber_f32, Ring1_Intrinsic_Fp_NoNumber_f32, f32); // both maximum and minimum is no number.
+  return Ring1_Result_Success;
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_maximum_f64
   (
     Ring1_Test_Context* ctx
@@ -46,6 +47,7 @@ Ring1_Intrinsic_Test_maximum_f64
   ExpectFailure(&r, 0., Ring1_Intrinsic_Fp_NoNumber_f32, f64);                              // maximum is no number.
   ExpectFailure(&r, Ring1_Intrinsic_Fp_NoNumber_f64, 0., f64);                              // minimum is no number.
   ExpectFailure(&r, Ring1_Intrinsic_Fp_NoNumber_f64, Ring1_Intrinsic_Fp_NoNumber_f64, f64); // both maximum and minimum is no number.
+  return Ring1_Result_Success;
 }
 
 #undef ExpectFailure
@@ -73,7 +75,7 @@ Ring1_Intrinsic_Test_maximum_f64
     RING1_TEST_ASSERT_EQ(ctx, _received, expected);                            \
   }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_maximum_s8
   (
     Ring1_Test_Context* ctx
@@ -88,9 +90,10 @@ Ring1_Intrinsic_Test_maximum_s8
   ExpectSuccess(INT8_MIN, INT8_MAX, int8_t, s8, INT8_MAX);
   ExpectSuccess(INT8_MAX, INT8_MIN, int8_t, s8, INT8_MAX);
   ExpectSuccess(INT8_MAX, INT8_MAX, int8_t, s8, INT8_MAX);
+  return Ring1_Result_Success;
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_maximum_u8
   (
     Ring1_Test_Context* ctx
@@ -105,9 +108,10 @@ Ring1_Intrinsic_Test_maximum_u8
   ExpectSuccess(UINT8_MIN, UINT8_MAX, uint8_t, u8, UINT8_MAX);
   ExpectSuccess(UINT8_MAX, UINT8_MIN, uint8_t, u8, UINT8_MAX);
   ExpectSuccess(UINT8_MAX, UINT8_MAX, uint8_t, u8, UINT8_MAX);
+  return Ring1_Result_Success;
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_maximum_s16
   (
     Ring1_Test_Context* ctx
@@ -122,9 +126,10 @@ Ring1_Intrinsic_Test_maximum_s16
   ExpectSuccess(INT16_MIN, INT16_MAX, int16_t, s16, INT16_MAX);
   ExpectSuccess(INT16_MAX, INT16_MIN, int16_t, s16, INT16_MAX);
   ExpectSuccess(INT16_MAX, INT16_MAX, int16_t, s16, INT16_MAX);
+  return Ring1_Result_Success;
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_maximum_u16
   (
     Ring1_Test_Context* ctx
@@ -139,9 +144,10 @@ Ring1_Intrinsic_Test_maximum_u16
   ExpectSuccess(UINT16_MIN, UINT16_MAX, uint16_t, u16, UINT16_MAX);
   ExpectSuccess(UINT16_MAX, UINT16_MIN, uint16_t, u16, UINT16_MAX);
   ExpectSuccess(UINT16_MAX, UINT16_MAX, uint16_t, u16, UINT16_MAX);
+  return Ring1_Result_Success;
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_maximum_s32
   (
     Ring1_Test_Context* ctx
@@ -156,9 +162,10 @@ Ring1_Intrinsic_Test_maximum_s32
   ExpectSuccess(INT32_MIN, INT32_MAX, int32_t, s32, INT32_MAX);
   ExpectSuccess(INT32_MAX, INT32_MIN, int32_t, s32, INT32_MAX);
   ExpectSuccess(INT32_MAX, INT32_MAX, int32_t, s32, INT32_MAX);
+  return Ring1_Result_Success;
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_maximum_u32
   (
     Ring1_Test_Context* ctx
@@ -173,9 +180,10 @@ Ring1_Intrinsic_Test_maximum_u32
   ExpectSuccess(UINT32_MIN, UINT32_MAX, uint32_t, u32, UINT32_MAX);
   ExpectSuccess(UINT32_MAX, UINT32_MIN, uint32_t, u32, UINT32_MAX);
   ExpectSuccess(UINT32_MAX, UINT32_MAX, uint32_t, u32, UINT32_MAX);
+  return Ring1_Result_Success;
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_maximum_s64
   (
     Ring1_Test_Context* ctx
@@ -190,9 +198,10 @@ Ring1_Intrinsic_Test_maximum_s64
   ExpectSuccess(INT64_MIN, INT64_MAX, int64_t, s64, INT64_MAX);
   ExpectSuccess(INT64_MAX, INT64_MIN, int64_t, s64, INT64_MAX);
   ExpectSuccess(INT64_MAX, INT64_MAX, int64_t, s64, INT64_MAX);
+  return Ring1_Result_Success;
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_maximum_u64
   (
     Ring1_Test_Context* ctx
@@ -207,9 +216,10 @@ Ring1_Intrinsic_Test_maximum_u64
   ExpectSuccess(UINT64_MIN, UINT64_MAX, uint64_t, u64, UINT64_MAX);
   ExpectSuccess(UINT64_MAX, UINT64_MIN, uint64_t, u64, UINT64_MAX);
   ExpectSuccess(UINT64_MAX, UINT64_MAX, uint64_t, u64, UINT64_MAX);
+  return Ring1_Result_Success;
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_maximum_sz
   (
     Ring1_Test_Context* ctx
@@ -224,6 +234,7 @@ Ring1_Intrinsic_Test_maximum_sz
   ExpectSuccess(SIZE_MIN, SIZE_MAX, size_t, sz, SIZE_MAX);
   ExpectSuccess(SIZE_MAX, SIZE_MIN, size_t, sz, SIZE_MAX);
   ExpectSuccess(SIZE_MAX, SIZE_MAX, size_t, sz, SIZE_MAX);
+  return Ring1_Result_Success;
 }
 
 #undef ExpectSuccess

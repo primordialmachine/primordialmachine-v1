@@ -12,7 +12,7 @@
 
 /// @brief Unit test function asserting correctness of Mkx_Intrinsic_subtract_s8.
 /// @param ctx A pointer to the test context.
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_subtract_s8
   (
     Ring1_Test_Context *ctx
@@ -42,11 +42,13 @@ Ring1_Intrinsic_Test_subtract_s8
   r = Ring1_Intrinsic_subtract_s8(&z, -3, -4);
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Success);
   RING1_TEST_ASSERT_EQ(ctx, z, 1);
+
+  return Ring1_Result_Success;
 }
 
 /// @brief Unit test function asserting correctness of Mkx_Intrinsic_subtract_u8.
 /// @param ctx A pointer to the test context.
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_subtract_u8
   (
     Ring1_Test_Context *ctx
@@ -77,11 +79,13 @@ Ring1_Intrinsic_Test_subtract_u8
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Failure);
   RING1_TEST_ASSERT_EQ(ctx, z, 1);
   Ring1_Status_set(Ring1_Status_Success);
+
+  return Ring1_Result_Success;
 }
 
 /// @brief Unit test function asserting correctness of Mkx_Intrinsic_subtract_s16.
 /// @param ctx A pointer to the test context.
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_subtract_s16
   (
     Ring1_Test_Context *ctx
@@ -111,11 +115,13 @@ Ring1_Intrinsic_Test_subtract_s16
   r = Ring1_Intrinsic_subtract_s16(&z, -3, -4);
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Success);
   RING1_TEST_ASSERT_EQ(ctx, z, 1);
+
+  return Ring1_Result_Success;
 }
 
 /// @brief Unit test function asserting correctness of Mkx_Intrinsic_subtract_u16.
 /// @param ctx A pointer to the test context.
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_subtract_u16
   (
     Ring1_Test_Context *ctx
@@ -146,11 +152,13 @@ Ring1_Intrinsic_Test_subtract_u16
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Failure);
   RING1_TEST_ASSERT_EQ(ctx, z, 1);
   Ring1_Status_set(Ring1_Status_Success);
+
+  return Ring1_Result_Success;
 }
 
 /// @brief Unit test function asserting correctness of Mkx_Intrinsic_subtract_s32.
 /// @param ctx A pointer to the test context.
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_subtract_s32
   (
     Ring1_Test_Context *ctx
@@ -180,11 +188,13 @@ Ring1_Intrinsic_Test_subtract_s32
   r = Ring1_Intrinsic_subtract_s32(&z, -3, -4);
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Success);
   RING1_TEST_ASSERT_EQ(ctx, z, 1);
+
+  return Ring1_Result_Success;
 }
 
 /// @brief Unit test function asserting correctness of Mkx_Intrinsic_subtract_u32.
 /// @param ctx A pointer to the test context.
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_subtract_u32
   (
     Ring1_Test_Context *ctx
@@ -215,11 +225,13 @@ Ring1_Intrinsic_Test_subtract_u32
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Failure);
   RING1_TEST_ASSERT_EQ(ctx, z, 1);
   Ring1_Status_set(Ring1_Status_Success);
+
+  return Ring1_Result_Success;
 }
 
 /// @brief Unit test function asserting correctness of Mkx_Intrinsic_subtract_s64.
 /// @param ctx A pointer to the test context.
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_subtract_s64
   (
     Ring1_Test_Context *ctx
@@ -249,11 +261,13 @@ Ring1_Intrinsic_Test_subtract_s64
   r = Ring1_Intrinsic_subtract_s64(&z, -3, -4);
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Success);
   RING1_TEST_ASSERT_EQ(ctx, z, 1);
+
+  return Ring1_Result_Success;
 }
 
 /// @brief Unit test function asserting correctness of Mkx_Intrinsic_subtract_u64.
 /// @param ctx A pointer to the test context.
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_subtract_u64
   (
     Ring1_Test_Context *ctx
@@ -284,11 +298,13 @@ Ring1_Intrinsic_Test_subtract_u64
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Failure);
   RING1_TEST_ASSERT_EQ(ctx, z, 1);
   Ring1_Status_set(Ring1_Status_Success);
+
+  return Ring1_Result_Success;
 }
 
 /// @brief Unit test function asserting correctness of Mkx_Intrinsic_subtract_sz.
 /// @param ctx A pointer to the test context.
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_subtract_sz
   (
     Ring1_Test_Context *ctx
@@ -319,6 +335,8 @@ Ring1_Intrinsic_Test_subtract_sz
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Failure);
   RING1_TEST_ASSERT_EQ(ctx, z, 1);
   Ring1_Status_set(Ring1_Status_Success);
+
+  return Ring1_Result_Success;
 }
 
 Ring1_Result

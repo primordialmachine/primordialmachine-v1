@@ -9,55 +9,7 @@
 
 #include "Ring1/Test.h"
 
-void
-Mkx_Intrinsic_Test_multiply_s8
-  (
-    Ring1_Test_Context *ctx
-  );
-
-void
-Mkx_Intrinsic_Test_multiply_u8
-  (
-    Ring1_Test_Context *ctx
-  );
-
-void
-Mkx_Intrinsic_Test_multiply_s16
-  (
-    Ring1_Test_Context *ctx
-  );
-
-void
-Mkx_Intrinsic_Test_multiply_u16
-  (
-    Ring1_Test_Context *ctx
-  );
-
-void
-Mkx_Intrinsic_Test_multiply_s32
-  (
-    Ring1_Test_Context *ctx
-  );
-
-void
-Mkx_Intrinsic_Test_multiply_u32
-  (
-    Ring1_Test_Context *ctx
-  );
-
-void
-Mkx_Intrinsic_Test_multiply_s64
-  (
-    Ring1_Test_Context* ctx
-  );
-
-void
-Mkx_Intrinsic_Test_multiply_u64
-  (
-    Ring1_Test_Context* ctx
-  );
-
-Ring1_Result
+Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_registerMultiplyTests
   (
     Ring1_Test_Context* ctx

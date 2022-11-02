@@ -10,7 +10,7 @@
 #include <inttypes.h>
 #include "Ring1/Status.h"
 
-void
+static Ring1_NoDiscardResult() Ring1_Result
 Mkx_Intrinsic_Test_nextPowerOfTwo_s8
   (
     Ring1_Test_Context* ctx
@@ -67,9 +67,11 @@ Mkx_Intrinsic_Test_nextPowerOfTwo_s8
   r = Ring1_Intrinsic_nextPowerOfTwo_s8(&y, x);
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Success);
   RING1_TEST_ASSERT_EQ(ctx, y, 16);
+
+  return Ring1_Result_Success;
 }
 
-void
+static Ring1_NoDiscardResult() Ring1_Result
 Mkx_Intrinsic_Test_nextPowerOfTwo_u8
   (
     Ring1_Test_Context* ctx
@@ -133,9 +135,11 @@ Mkx_Intrinsic_Test_nextPowerOfTwo_u8
   r = Ring1_Intrinsic_nextPowerOfTwo_u8(&y, x);
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Success);
   RING1_TEST_ASSERT_EQ(ctx, y, 16);
+
+  return Ring1_Result_Success;
 }
 
-void
+static Ring1_NoDiscardResult() Ring1_Result
 Mkx_Intrinsic_Test_nextPowerOfTwo_s16
   (
     Ring1_Test_Context* ctx
@@ -192,9 +196,11 @@ Mkx_Intrinsic_Test_nextPowerOfTwo_s16
   r = Ring1_Intrinsic_nextPowerOfTwo_s16(&y, x);
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Success);
   RING1_TEST_ASSERT_EQ(ctx, y, 16);
+  
+  return Ring1_Result_Success;
 }
 
-void
+static Ring1_NoDiscardResult() Ring1_Result
 Mkx_Intrinsic_Test_nextPowerOfTwo_u16
   (
     Ring1_Test_Context* ctx
@@ -258,9 +264,11 @@ Mkx_Intrinsic_Test_nextPowerOfTwo_u16
   r = Ring1_Intrinsic_nextPowerOfTwo_u16(&y, x);
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Success);
   RING1_TEST_ASSERT_EQ(ctx, y, 16);
+
+  return Ring1_Result_Success;
 }
 
-void
+static Ring1_NoDiscardResult() Ring1_Result
 Mkx_Intrinsic_Test_nextPowerOfTwo_s32
   (
     Ring1_Test_Context* ctx
@@ -317,9 +325,11 @@ Mkx_Intrinsic_Test_nextPowerOfTwo_s32
   r = Ring1_Intrinsic_nextPowerOfTwo_s32(&y, x);
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Success);
   RING1_TEST_ASSERT_EQ(ctx, y, 16);
+
+  return Ring1_Result_Success;
 }
 
-void
+static Ring1_NoDiscardResult() Ring1_Result
 Mkx_Intrinsic_Test_nextPowerOfTwo_u32
   (
     Ring1_Test_Context* ctx
@@ -383,9 +393,11 @@ Mkx_Intrinsic_Test_nextPowerOfTwo_u32
   r = Ring1_Intrinsic_nextPowerOfTwo_u32(&y, x);
   RING1_TEST_ASSERT_EQ(ctx, y, 16);
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Success);
+
+  return Ring1_Result_Success;
 }
 
-void
+static Ring1_NoDiscardResult() Ring1_Result
 Mkx_Intrinsic_Test_nextPowerOfTwo_s64
   (
     Ring1_Test_Context* ctx
@@ -442,9 +454,11 @@ Mkx_Intrinsic_Test_nextPowerOfTwo_s64
   r = Ring1_Intrinsic_nextPowerOfTwo_s64(&y, x);
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Success);
   RING1_TEST_ASSERT_EQ(ctx, y, 16);
+
+  return Ring1_Result_Success;
 }
 
-void
+static Ring1_NoDiscardResult() Ring1_Result
 Mkx_Intrinsic_Test_nextPowerOfTwo_u64
   (
     Ring1_Test_Context* ctx
@@ -508,9 +522,11 @@ Mkx_Intrinsic_Test_nextPowerOfTwo_u64
   r = Ring1_Intrinsic_nextPowerOfTwo_u64(&y, x);
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Success);
   RING1_TEST_ASSERT_EQ(ctx, y, 16);
+
+  return Ring1_Result_Success;
 }
 
-void
+static Ring1_NoDiscardResult() Ring1_Result
 Mkx_Intrinsic_Test_nextPowerOfTwo_sz
   (
     Ring1_Test_Context* ctx
@@ -574,6 +590,8 @@ Mkx_Intrinsic_Test_nextPowerOfTwo_sz
   r = Ring1_Intrinsic_nextPowerOfTwo_sz(&y, x);
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Success);
   RING1_TEST_ASSERT_EQ(ctx, y, 16);
+
+  return Ring1_Result_Success;
 }
 
 Ring1_Result

@@ -1,7 +1,11 @@
 #if !defined(RING1_TEST_CONTEXT_H_INCLUDED)
 #define RING1_TEST_CONTEXT_H_INCLUDED
 
-#include "Ring1/Test/Commons.h"
+#if !defined(RING1_TEST_PRIVATE) || 1 != RING1_TEST_PRIVATE
+#error("Do not include `Ring1/Test/Context.h` directly. Include `Ring1/Test.h` instead.")
+#endif
+
+#include "Ring1/Test.h"
 
 struct Ring1_Test_Context
 {

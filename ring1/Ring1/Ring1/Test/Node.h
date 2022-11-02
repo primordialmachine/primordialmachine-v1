@@ -11,7 +11,7 @@
 #error("Do not include `Ring1/Test/Node.h` directly. Include `Ring1/Test.h` instead.")
 #endif
 
-#include "Ring1/Test/Commons.h"
+#include "Ring1/Test.h"
 
 /// @todo Should not be part of the public API.
 /// @brief Indicates a test node was not evaluated.

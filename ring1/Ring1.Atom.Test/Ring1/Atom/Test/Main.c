@@ -13,7 +13,7 @@
 /// @brief Unit test asserting atoms for equivalent strings are equivalent.
 /// @param ctx A pointer to the test context.
 /// @todo The atom module (un)initialization could (and should) be performed in a test (suite) startup/test (suite) shutdown method.
-void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Atom_Test_equal
   (
     Ring1_Test_Context *ctx
@@ -23,7 +23,7 @@ Ring1_Atom_Test_equal
   handle = Ring1_Atom_ModuleHandle_acquire();
   RING1_TEST_ASSERT_NEQ(ctx, handle, Ring1_Atom_ModuleHandle_Invalid);
   if (!handle) {
-    return;
+    return Ring1_Result_Failure;
   }
   Ring1_Atom* x0;
   int result;
@@ -34,7 +34,7 @@ Ring1_Atom_Test_equal
     x0 = NULL;
     Ring1_Atom_ModuleHandle_relinquish(handle);
     handle = Ring1_Atom_ModuleHandle_Invalid;
-    return;
+    return Ring1_Result_Failure;
   }
   Ring1_Atom* x1;
   result = Ring1_Atom_getOrCreate(&x1, "x", crt_strlen("x"));
@@ -44,7 +44,7 @@ Ring1_Atom_Test_equal
     x0 = NULL;
     Ring1_Atom_ModuleHandle_relinquish(handle);
     handle = Ring1_Atom_ModuleHandle_Invalid;
-    return;
+    return Ring1_Result_Failure;
   }
   // Must be equal.
   RING1_TEST_ASSERT_EQ(ctx, x0, x1);
@@ -55,7 +55,7 @@ Ring1_Atom_Test_equal
     x0 = NULL;
     Ring1_Atom_ModuleHandle_relinquish(handle);
     handle = Ring1_Atom_ModuleHandle_Invalid;
-    return;
+    return Ring1_Result_Failure;
   }
   Ring1_Atom_unreference(x1);
   x1 = NULL;
@@ -63,12 +63,13 @@ Ring1_Atom_Test_equal
   x0 = NULL;
   Ring1_Atom_ModuleHandle_relinquish(handle);
   handle = Ring1_Atom_ModuleHandle_Invalid;
+  return Ring1_Result_Success;
 }
 
 /// @brief Unit test function asserting atoms for non-equivalent strings are non-equivalent.
 /// @param ctx A pointer to the test context.
 /// @todo The atom module (un)initialization could (and should) be performed in a test (suite) startup/test (suite) shutdown method.
-void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Atom_Test_notEqual
   (
     Ring1_Test_Context *ctx
@@ -78,7 +79,7 @@ Ring1_Atom_Test_notEqual
   handle = Ring1_Atom_ModuleHandle_acquire();
   RING1_TEST_ASSERT_NEQ(ctx, handle, Ring1_Atom_ModuleHandle_Invalid);
   if (!handle) {
-    return;
+    return Ring1_Result_Failure;
   }
   Ring1_Atom* x0;
   int result;
@@ -89,7 +90,7 @@ Ring1_Atom_Test_notEqual
     x0 = NULL;
     Ring1_Atom_ModuleHandle_relinquish(handle);
     handle = Ring1_Atom_ModuleHandle_Invalid;
-    return;
+    return Ring1_Result_Failure;
   }
   Ring1_Atom* x1;
   result = Ring1_Atom_getOrCreate(&x1, "y", crt_strlen("y"));
@@ -99,7 +100,7 @@ Ring1_Atom_Test_notEqual
     x0 = NULL;
     Ring1_Atom_ModuleHandle_relinquish(handle);
     handle = Ring1_Atom_ModuleHandle_Invalid;
-    return;
+    return Ring1_Result_Failure;
   }
   // Must not be equal.
   RING1_TEST_ASSERT_NEQ(ctx, x0, x1);
@@ -110,7 +111,7 @@ Ring1_Atom_Test_notEqual
     x0 = NULL;
     Ring1_Atom_ModuleHandle_relinquish(handle);
     handle = Ring1_Atom_ModuleHandle_Invalid;
-    return;
+    return Ring1_Result_Failure;
   }
   Ring1_Atom_unreference(x1);
   x1 = NULL;
@@ -118,9 +119,15 @@ Ring1_Atom_Test_notEqual
   x0 = NULL;
   Ring1_Atom_ModuleHandle_relinquish(handle);
   handle = Ring1_Atom_ModuleHandle_Invalid;
+  return Ring1_Result_Success;
 }
 
-static void onFree(char **s) {
+static void
+onFree
+  (
+    char **s
+  )
+{
   free(*s);
 }
 
@@ -128,7 +135,7 @@ static void onFree(char **s) {
 /// @param ctx A pointer to the test context.
 /// @todo The atom module (un)initialization could (and should) be performed in a test (suite) startup/test (suite) shutdown method.
 /// @todo Actually implement the test according to its description.
-void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Atom_Test_many
   (
     Ring1_Test_Context *ctx
@@ -138,20 +145,22 @@ Ring1_Atom_Test_many
   handle = Ring1_Atom_ModuleHandle_acquire();
   RING1_TEST_ASSERT_NEQ(ctx, handle, Ring1_Atom_ModuleHandle_Invalid);
   if (!handle) {
-    return;
+    return Ring1_Result_Failure;
   }
   Ring1_PointerList strings;
   int result;
   result = Ring1_PointerList_initialize(&strings, NULL, &onFree);
   RING1_TEST_ASSERT_EQ(ctx, result, Ring1_Result_Success);
-  if (result) return;
+  if (result) {
+    return Ring1_Result_Failure;
+  }
   char* string = crt_strdup("Hello, World!");
   RING1_TEST_ASSERT_NOTNULL(ctx, string);
   if (!string) {
     Ring1_PointerList_uninitialize(&strings);
     Ring1_Atom_ModuleHandle_relinquish(handle);
     handle = Ring1_Atom_ModuleHandle_Invalid;
-    return;
+    return Ring1_Result_Failure;
   }
   result = Ring1_PointerList_insertBack(&strings, string);
   RING1_TEST_ASSERT_EQ(ctx, result, Ring1_Result_Success);
@@ -160,7 +169,7 @@ Ring1_Atom_Test_many
     Ring1_PointerList_uninitialize(&strings);
     Ring1_Atom_ModuleHandle_relinquish(handle);
     handle = Ring1_Atom_ModuleHandle_Invalid;
-    return;
+    return Ring1_Result_Failure;
   }
   Ring1_Atom* x0;
   result = Ring1_Atom_getOrCreate(&x0, "x", crt_strlen("x"));
@@ -171,7 +180,7 @@ Ring1_Atom_Test_many
     Ring1_PointerList_uninitialize(&strings);
     Ring1_Atom_ModuleHandle_relinquish(handle);
     handle = Ring1_Atom_ModuleHandle_Invalid;
-    return;
+    return Ring1_Result_Failure;
   }
   Ring1_Atom* x1;
   result = Ring1_Atom_getOrCreate(&x1, "y", crt_strlen("y"));
@@ -182,7 +191,7 @@ Ring1_Atom_Test_many
     Ring1_PointerList_uninitialize(&strings);
     Ring1_Atom_ModuleHandle_relinquish(handle);
     handle = Ring1_Atom_ModuleHandle_Invalid;
-    return;
+    return Ring1_Result_Failure;
   }
   // Must not be equal.
   RING1_TEST_ASSERT_NEQ(ctx, x0, x1);
@@ -194,7 +203,7 @@ Ring1_Atom_Test_many
     Ring1_PointerList_uninitialize(&strings);
     Ring1_Atom_ModuleHandle_relinquish(handle);
     handle = Ring1_Atom_ModuleHandle_Invalid;
-    return;
+    return Ring1_Result_Failure;
   }
   Ring1_Atom_unreference(x1);
   x1 = NULL;
@@ -203,6 +212,7 @@ Ring1_Atom_Test_many
   Ring1_PointerList_uninitialize(&strings);
   Ring1_Atom_ModuleHandle_relinquish(handle);
   handle = Ring1_Atom_ModuleHandle_Invalid;
+  return Ring1_Result_Success;
 }
 
 Ring1_Result

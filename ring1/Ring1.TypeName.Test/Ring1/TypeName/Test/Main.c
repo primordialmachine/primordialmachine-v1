@@ -19,24 +19,25 @@
 /// @param GENERATOR
 /// Name of the generator function.
 #define Define(NAME, EXPECTED, GENERATOR) \
-  void NAME(Ring1_Test_Context *ctx) { \
+  static Ring1_NoDiscardResult() Ring1_Result \
+  NAME(Ring1_Test_Context *ctx) { \
     Ring1_TypeName_ModuleHandle handle = Ring1_TypeName_ModuleHandle_acquire(); \
     RING1_TEST_ASSERT_NEQ(ctx, handle, Ring1_TypeName_ModuleHandle_Invalid); \
     if (!handle) { \
-      return; \
+      return Ring1_Result_Failure; \
     } \
     Ring1_TypeName *typeName; \
     if (GENERATOR(&typeName, ctx)) { \
       Ring1_TypeName_ModuleHandle_relinquish(handle); \
       handle = Ring1_TypeName_ModuleHandle_Invalid; \
-      return; \
+      return Ring1_Result_Failure; \
     } \
     char *received; \
     if (Ring1_TypeName_toString(&received, typeName)) { \
       Ring1_TypeName_unref(typeName); \
       Ring1_TypeName_ModuleHandle_relinquish(handle); \
       handle = Ring1_TypeName_ModuleHandle_Invalid; \
-      return; \
+      return Ring1_Result_Failure; \
     } \
     fprintf(stdout, "expected: %s, received: %s\n", EXPECTED, received); \
     RING1_TEST_ASSERT_EQ(ctx, crt_strcmp(received, EXPECTED), 0); \
@@ -44,6 +45,7 @@
     Ring1_Memory_deallocate(received); \
     Ring1_TypeName_ModuleHandle_relinquish(handle); \
     handle = Ring1_TypeName_ModuleHandle_Invalid; \
+    return Ring1_Result_Success; \
   }
 
 /// @brief Unit test function validating scalar type name creation.
@@ -55,7 +57,7 @@
 /// - returns the scalar type "x"
 /// @param result A pointer to a <code>Ring1_TypeName *</code> variable.
 /// @param ctx A pointer to the test context.
-Ring1_CheckReturn() Ring1_Result
+static Ring1_NoDiscardResult() Ring1_Result
 generateScalar
   (
     Ring1_TypeName **result,
@@ -99,7 +101,7 @@ Define(Ring1_TypeName_Test_Scalar, "Ring1.TypeName.Test.A", generateScalar)
 /// @brief Unit test function validating 1d array type name creation.
 /// @param result A pointer to a <code>Ring1_TypeName *</code> variable.
 /// @param ctx A pointer to the test context.
-Ring1_CheckReturn() Ring1_Result
+static Ring1_NoDiscardResult() Ring1_Result
 generateArray1
   (
     Ring1_TypeName **result,
@@ -132,7 +134,7 @@ Define(Ring1_TypeName_Test_Array1, "[Ring1.TypeName.Test.A]", generateArray1)
 /// @brief Unit test function validating 2d array type name creation.
 /// @param result A pointer to a <code>Ring1_TypeName *</code> variable.
 /// @param ctx A pointer to the test context.
-Ring1_CheckReturn() Ring1_Result
+static Ring1_NoDiscardResult() Ring1_Result
 generateArray2
   (
     Ring1_TypeName **result,
@@ -162,7 +164,7 @@ generateArray2
 
 Define(Ring1_TypeName_Test_Array2, "[[Ring1.TypeName.Test.A]]", generateArray2)
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_TypeName_Test_InvalidTypeName
   (
     Ring1_Test_Context *ctx
@@ -171,7 +173,7 @@ Ring1_TypeName_Test_InvalidTypeName
   Ring1_TypeName_ModuleHandle handle = Ring1_TypeName_ModuleHandle_acquire();
   RING1_TEST_ASSERT_NEQ(ctx, handle, Ring1_TypeName_ModuleHandle_Invalid);
   if (!handle) {
-    return;
+    return Ring1_Result_Failure;
   }
   Ring1_TypeName* typeName;
   Ring1_Result r;
@@ -182,7 +184,7 @@ Ring1_TypeName_Test_InvalidTypeName
   RING1_TEST_ASSERT_EQ(ctx, Ring1_Status_get(), Ring1_Status_InvalidSyntactics);
   if (r != Ring1_Result_Failure) {
     Ring1_TypeName_unref(typeName);
-    return;
+    return Ring1_Result_Failure;
   }  
 
   r = Ring1_TypeName_getOrCreateScalar(&typeName, "a.");
@@ -190,7 +192,7 @@ Ring1_TypeName_Test_InvalidTypeName
   RING1_TEST_ASSERT_EQ(ctx, Ring1_Status_get(), Ring1_Status_InvalidSyntactics);
   if (r != Ring1_Result_Failure) {
     Ring1_TypeName_unref(typeName);
-    return;
+    return Ring1_Result_Failure;
   }  
 
   r = Ring1_TypeName_getOrCreateScalar(&typeName, "1.1");
@@ -198,11 +200,13 @@ Ring1_TypeName_Test_InvalidTypeName
   RING1_TEST_ASSERT_EQ(ctx, Ring1_Status_get(), Ring1_Status_InvalidSyntactics);
   if (r != Ring1_Result_Failure) {
     Ring1_TypeName_unref(typeName);
-    return;
+    return Ring1_Result_Failure;
   }  
 
   Ring1_TypeName_ModuleHandle_relinquish(handle);
   handle = Ring1_TypeName_ModuleHandle_Invalid;
+
+  return Ring1_Result_Success;
 }
 
 Ring1_Result

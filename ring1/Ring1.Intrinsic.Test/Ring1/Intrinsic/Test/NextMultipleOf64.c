@@ -10,7 +10,7 @@
 #include <inttypes.h>
 #include "Ring1/Status.h"
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_nextMultipleOf64_u8
   (
     Ring1_Test_Context* ctx
@@ -38,9 +38,11 @@ Ring1_Intrinsic_Test_nextMultipleOf64_u8
   r = Ring1_Intrinsic_nextMultipleOf64_u8(&y, 64);
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Success);
   RING1_TEST_ASSERT_EQ(ctx, y, 64);
+
+  return Ring1_Result_Success;
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_nextMultipleOf64_u16
   (
     Ring1_Test_Context* ctx
@@ -68,9 +70,11 @@ Ring1_Intrinsic_Test_nextMultipleOf64_u16
   r = Ring1_Intrinsic_nextMultipleOf64_u16(&y, 64);
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Success);
   RING1_TEST_ASSERT_EQ(ctx, y, 64);
+
+  return Ring1_Result_Success;
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_nextMultipleOf64_u32
   (
     Ring1_Test_Context* ctx
@@ -98,9 +102,11 @@ Ring1_Intrinsic_Test_nextMultipleOf64_u32
   r = Ring1_Intrinsic_nextMultipleOf64_u32(&y, 64);
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Success);
   RING1_TEST_ASSERT_EQ(ctx, y, 64);
+
+  return Ring1_Result_Success;
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_nextMultipleOf64_u64
   (
     Ring1_Test_Context* ctx
@@ -128,9 +134,11 @@ Ring1_Intrinsic_Test_nextMultipleOf64_u64
   r = Ring1_Intrinsic_nextMultipleOf64_u64(&y, 64);
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Success);
   RING1_TEST_ASSERT_EQ(ctx, y, 64);
+
+  return Ring1_Result_Success;
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_nextMultipleOf64_sz
   (
     Ring1_Test_Context* ctx
@@ -158,6 +166,8 @@ Ring1_Intrinsic_Test_nextMultipleOf64_sz
   r = Ring1_Intrinsic_nextMultipleOf64_sz(&y, 64);
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Success);
   RING1_TEST_ASSERT_EQ(ctx, y, 64);
+
+  return Ring1_Result_Success;
 }
 
 Ring1_Result

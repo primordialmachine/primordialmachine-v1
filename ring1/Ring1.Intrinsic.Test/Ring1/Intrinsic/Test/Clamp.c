@@ -36,7 +36,7 @@
     Ring1_Status_set(Ring1_Status_Success);                                    \
   }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_clamp_f32
   (
     Ring1_Test_Context* ctx
@@ -52,9 +52,10 @@ Ring1_Intrinsic_Test_clamp_f32
   ExpectSuccess(0, -7, +3, float, -Ring1_Intrinsic_Fp_Infinity_f32, +Ring1_Intrinsic_Fp_Infinity_f32, f32, 0);   /* case of within bounds */
   ExpectSuccess(-9, -7, +3, float, -Ring1_Intrinsic_Fp_Infinity_f32, +Ring1_Intrinsic_Fp_Infinity_f32, f32, -7); /* case of outside lower bound */
   ExpectSuccess(+5, -7, +3, float, -Ring1_Intrinsic_Fp_Infinity_f32, +Ring1_Intrinsic_Fp_Infinity_f32, f32, +3); /* case of outside upper bound */
+  return Ring1_Result_Success;
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_clamp_f64
   (
     Ring1_Test_Context* ctx
@@ -66,6 +67,7 @@ Ring1_Intrinsic_Test_clamp_f64
   ExpectFailure(&r, 0, Ring1_Intrinsic_Fp_NoNumber_f64, 0, f64);
   ExpectFailure(&r, 0, 0, Ring1_Intrinsic_Fp_NoNumber_f64, f64);
   ExpectFailure(&r, 0, +Ring1_Intrinsic_Fp_Infinity_f64, -Ring1_Intrinsic_Fp_Infinity_f64, f64);
+  return Ring1_Result_Success;
 }
 
 #undef ExpectSuccess
@@ -101,7 +103,8 @@ Ring1_Intrinsic_Test_clamp_f64
   ExpectFailure(&r, 0, typeMax, typeMin, typeSuffix); \
   ExpectSuccess(+5, +3, +7, typeName, typeSuffix, +5); /* case of within bounds */ \
   ExpectSuccess(+1, +3, +7, typeName, typeSuffix, +3); /* case of outside lower bound */ \
-  ExpectSuccess(+9, +3, +7, typeName, typeSuffix, +7); /* case of outside upper bound */
+  ExpectSuccess(+9, +3, +7, typeName, typeSuffix, +7); /* case of outside upper bound */ \
+  return Ring1_Result_Success;
 
 #define OnSigned(typeName, typeSuffix, typeMin, typeMax) \
   typeName r; \
@@ -109,9 +112,10 @@ Ring1_Intrinsic_Test_clamp_f64
   ExpectFailure(&r, 0, typeMax, typeMin, typeSuffix); \
   ExpectSuccess(0, -7, +3, typeName, typeSuffix, 0);   /* case of within bounds */ \
   ExpectSuccess(-9, -7, +3, typeName, typeSuffix, -7); /* case of outside lower bound */ \
-  ExpectSuccess(+5, -7, +3, typeName, typeSuffix, +3); /* case of outside upper bound */
+  ExpectSuccess(+5, -7, +3, typeName, typeSuffix, +3); /* case of outside upper bound */ \
+  return Ring1_Result_Success;
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_clamp_s8
   (
     Ring1_Test_Context* ctx
@@ -123,9 +127,10 @@ Ring1_Intrinsic_Test_clamp_s8
   ExpectSuccess(0, -7, +3, int8_t, s8, 0);   // case of within bounds
   ExpectSuccess(-9, -7, +3, int8_t, s8, -7); // case of outside lower bound
   ExpectSuccess(+5, -7, +3, int8_t, s8, +3); // case of outside upper bound
+  return Ring1_Result_Success;
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_clamp_u8
   (
     Ring1_Test_Context* ctx
@@ -134,7 +139,7 @@ Ring1_Intrinsic_Test_clamp_u8
   OnUnsigned(uint8_t, u8, UINT8_MIN, UINT8_MAX)
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_clamp_s16
   (
     Ring1_Test_Context* ctx
@@ -143,7 +148,7 @@ Ring1_Intrinsic_Test_clamp_s16
   OnSigned(int16_t, s16, INT16_MIN, INT16_MAX);
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_clamp_u16
   (
     Ring1_Test_Context* ctx
@@ -152,7 +157,7 @@ Ring1_Intrinsic_Test_clamp_u16
   OnUnsigned(uint16_t, u16, UINT16_MIN, UINT16_MAX)
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_clamp_s32
   (
     Ring1_Test_Context* ctx
@@ -161,7 +166,7 @@ Ring1_Intrinsic_Test_clamp_s32
   OnSigned(int32_t, s32, INT32_MIN, INT32_MAX);
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_clamp_u32
   (
     Ring1_Test_Context* ctx
@@ -170,7 +175,7 @@ Ring1_Intrinsic_Test_clamp_u32
   OnUnsigned(uint32_t, u32, UINT32_MIN, UINT32_MAX)
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_clamp_s64
   (
     Ring1_Test_Context* ctx
@@ -179,7 +184,7 @@ Ring1_Intrinsic_Test_clamp_s64
   OnSigned(int64_t, s64, INT64_MIN, INT64_MAX);
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_clamp_u64
   (
     Ring1_Test_Context* ctx
@@ -188,7 +193,7 @@ Ring1_Intrinsic_Test_clamp_u64
   OnUnsigned(uint64_t, u64, UINT64_MIN, UINT64_MAX)
 }
 
-static void
+static Ring1_NoDiscardResult() Ring1_Result
 Ring1_Intrinsic_Test_clamp_sz
   (
     Ring1_Test_Context* ctx
