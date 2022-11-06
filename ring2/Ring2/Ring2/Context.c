@@ -8,7 +8,6 @@
 #include "Ring2/Context.h"
 #undef RING2_PRIVATE
 
-
 #include <stdio.h>
 #include "Ring1/Memory.h"
 #include "Ring1/Status.h"

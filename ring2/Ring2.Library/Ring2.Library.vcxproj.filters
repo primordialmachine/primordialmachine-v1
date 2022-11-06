@@ -68,6 +68,9 @@
     <ClInclude Include="Ring2\Library\Io\Initialize.h">
       <Filter>Headerdateien\Ring2\Library\Io</Filter>
     </ClInclude>
+    <ClInclude Include="Ring2\Library\StringExtensions.h">
+      <Filter>Headerdateien\Ring2\Library</Filter>
+    </ClInclude>
     <ClInclude Include="Ring2\Library\Collections\ArrayDeque.h">
       <Filter>Headerdateien\Ring2\Library\Collections</Filter>
     </ClInclude>
@@ -150,6 +153,9 @@
     </ClCompile>
     <ClCompile Include="Ring2\Library\Io\Initialize.c">
       <Filter>Quelldateien\Ring2\Library\Io</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Library\StringExtensions.c">
+      <Filter>Quelldateien\Ring2\Library</Filter>
     </ClCompile>
     <ClCompile Include="Ring2\Library\Collections\ArrayDeque.c">
       <Filter>Quelldateien\Ring2\Library\Collections</Filter>

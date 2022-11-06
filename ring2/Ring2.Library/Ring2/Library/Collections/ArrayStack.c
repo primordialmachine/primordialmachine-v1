@@ -1,6 +1,6 @@
 // Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 
-/// @file Ring2/Library/Collections/Stack.c
+/// @file Ring2/Library/Collections/ArrayStack.c
 /// @copyright Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com).
 

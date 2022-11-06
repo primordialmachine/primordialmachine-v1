@@ -154,13 +154,13 @@ testString
     Ring2_Value const *arguments
   )
 {
-  Ring2_Value v = Ring2_Value_StaticInitializerString(Ring2_String_create(Ring2_Context_get(), "", crt_strlen("")));
+  Ring2_Value v = Ring2_Value_StaticInitializerString(Ring2_String_create("", crt_strlen("")));
   RING2_TEST_ASSERT(Ring2_Value_isString(&v));
 
   Ring2_Value_setVoid(&v, Ring2_Void_Void);
   RING2_TEST_ASSERT(Ring2_Value_isVoid(&v));
 
-  Ring2_Value_setString(&v, Ring2_String_create(Ring2_Context_get(), "", crt_strlen("")));
+  Ring2_Value_setString(&v, Ring2_String_create("", crt_strlen("")));
   RING2_TEST_ASSERT(Ring2_Value_isString(&v));
 }
 
@@ -189,51 +189,51 @@ Ring2_Test_registerValueTests
     Ring2_Tests *tests
   )
 {
-  Ring2_String* prefix = Ring2_String_create(Ring2_Context_get(), "Ring2.Test.ValueTest",
-                                                       crt_strlen("Ring2.Test.Valuetest"));
+  Ring2_String* prefix = Ring2_String_create("Ring2.Test.ValueTest",
+                                  crt_strlen("Ring2.Test.Valuetest"));
   Ring2_Tests_addTest(tests,
                       Ring2_String_concatenate(Ring2_Context_get(), prefix,
-                                                                    Ring2_String_create(Ring2_Context_get(), "Array",
-                                                                                                  crt_strlen("Array"))),
+                                                                    Ring2_String_create("Array",
+                                                                             crt_strlen("Array"))),
                       &testArray);
   Ring2_Tests_addTest(tests,
                       Ring2_String_concatenate(Ring2_Context_get(), prefix,
-                                                                    Ring2_String_create(Ring2_Context_get(), "Boolean",
-                                                                                                  crt_strlen("Boolean"))),
+                                                                    Ring2_String_create("Boolean",
+                                                                             crt_strlen("Boolean"))),
                       &testBoolean);
   Ring2_Tests_addTest(tests,
                       Ring2_String_concatenate(Ring2_Context_get(), prefix,
-                                                                    Ring2_String_create(Ring2_Context_get(), "ForeignProcedure",
-                                                                                                  crt_strlen("ForeignProcedure"))),
+                                                                    Ring2_String_create("ForeignProcedure",
+                                                                             crt_strlen("ForeignProcedure"))),
                       &testForeignProcedure);
   Ring2_Tests_addTest(tests,
                       Ring2_String_concatenate(Ring2_Context_get(), prefix,
-                                                                    Ring2_String_create(Ring2_Context_get(), "Integer",
-                                                                                                  crt_strlen("Integer"))),
+                                                                    Ring2_String_create("Integer",
+                                                                             crt_strlen("Integer"))),
                       &testInteger);
   Ring2_Tests_addTest(tests,
                       Ring2_String_concatenate(Ring2_Context_get(), prefix,
-                                                                    Ring2_String_create(Ring2_Context_get(), "Object",
-                                                                                                  crt_strlen("Object"))),
+                                                                    Ring2_String_create("Object",
+                                                                             crt_strlen("Object"))),
                       &testObject);
   Ring2_Tests_addTest(tests,
                       Ring2_String_concatenate(Ring2_Context_get(), prefix,
-                                                                    Ring2_String_create(Ring2_Context_get(), "Real32",
-                                                                                                  crt_strlen("Real32"))),
+                                                                    Ring2_String_create("Real32",
+                                                                             crt_strlen("Real32"))),
                       &testReal32);
   Ring2_Tests_addTest(tests,
                       Ring2_String_concatenate(Ring2_Context_get(), prefix,
-                                                                    Ring2_String_create(Ring2_Context_get(), "Real64",
-                                                                                                  crt_strlen("Real64"))),
+                                                                    Ring2_String_create("Real64",
+                                                                             crt_strlen("Real64"))),
                       &testReal64);
   Ring2_Tests_addTest(tests,
                       Ring2_String_concatenate(Ring2_Context_get(), prefix,
-                                                                    Ring2_String_create(Ring2_Context_get(), "String",
-                                                                                                  crt_strlen("String"))),
+                                                                    Ring2_String_create("String",
+                                                                             crt_strlen("String"))),
                       &testString);
   Ring2_Tests_addTest(tests,
                       Ring2_String_concatenate(Ring2_Context_get(), prefix,
-                                                                    Ring2_String_create(Ring2_Context_get(), "Void",
-                                                                                                  crt_strlen("Void"))),
+                                                                    Ring2_String_create("Void",
+                                                                             crt_strlen("Void"))),
                       &testVoid);
 }

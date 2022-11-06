@@ -39,12 +39,10 @@ Ring2_Test_registerArrayStackTests
     Ring2_Tests *tests
   )
 {
-  Ring2_String* prefix = Ring2_String_create(Ring2_Context_get(), "Ring2.Library.Collections.Test.ArrayStackTest",
-                                                       crt_strlen("Ring2.Library.Collections.Test.ArrayStackTest"));
+  Ring2_String* prefix = Ring2_String_fromC("Ring2.Library.Collections.Test.ArrayStackTest");
   Ring2_Tests_addTest(tests,
                       Ring2_String_concatenate(Ring2_Context_get(), prefix,
-                                                                    Ring2_String_create(Ring2_Context_get(), "1",
-                                                                                                  crt_strlen("1"))),
+                                                                    Ring2_String_fromC("1")),
                       &test1);
 
 }
