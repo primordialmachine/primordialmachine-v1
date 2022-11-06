@@ -9,7 +9,9 @@
 
 #include "Ring1/Atom/_Include.h"
 #include "Ring1/Annotations/_Include.h"
-#include "Ring1/Intrinsic/Crt.h"
+#include "Ring1/Collections/_Include.h"
+#include "Ring1/Intrinsic/_Include.h"
+#include "Ring1/TypeName/_Include.h"
 #include "Ring1/Memory.h"
 
 #endif // RING1__INCLUDE_H_INCLUDED

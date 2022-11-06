@@ -137,6 +137,7 @@
     <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_u32.h" />
     <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_u64.h" />
     <ClInclude Include="Ring1\Intrinsic\Subtract\X86\subtract_u8.h" />
+    <ClInclude Include="Ring1\Intrinsic\_Include.h" />
     <ClInclude Include="Ring1\Module\Dependencies.h" />
     <ClInclude Include="Ring1\Module\Handle.h" />
     <ClInclude Include="Ring1\TypeName\validate.h" />
@@ -591,6 +592,7 @@
     <ClCompile Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo_u8.c" />
     <ClCompile Include="Ring1\Intrinsic\Subtract\subtract.c" />
     <ClCompile Include="Ring1\Intrinsic\ThreadLocal.c" />
+    <ClCompile Include="Ring1\Intrinsic\_Include.c" />
     <ClCompile Include="Ring1\Memory.c" />
     <ClCompile Include="Ring1\Memory\recomputeSize.c" />
     <ClCompile Include="Ring1\Memory\Statistics.c" />
