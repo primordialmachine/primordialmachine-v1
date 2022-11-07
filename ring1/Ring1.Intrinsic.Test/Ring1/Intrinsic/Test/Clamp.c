@@ -44,14 +44,14 @@ Ring1_Intrinsic_Test_clamp_f32
 { 
   float r;
   ExpectFailure(NULL, 0, 0, 0, f32);
-  ExpectFailure(&r, Ring1_Intrinsic_Fp_NoNumber_f32, 0, 0, f32);
-  ExpectFailure(&r, 0, Ring1_Intrinsic_Fp_NoNumber_f32, 0, f32);
-  ExpectFailure(&r, 0, 0, Ring1_Intrinsic_Fp_NoNumber_f32, f32);
-  ExpectFailure(&r, 0, +Ring1_Intrinsic_Fp_Infinity_f32, -Ring1_Intrinsic_Fp_Infinity_f32, f32);
-  ExpectSuccess(0.f, -Ring1_Intrinsic_Fp_Infinity_f32, +Ring1_Intrinsic_Fp_Infinity_f32, float, -Ring1_Intrinsic_Fp_Infinity_f32, +Ring1_Intrinsic_Fp_Infinity_f32, f32, 0.f);
-  ExpectSuccess(0, -7, +3, float, -Ring1_Intrinsic_Fp_Infinity_f32, +Ring1_Intrinsic_Fp_Infinity_f32, f32, 0);   /* case of within bounds */
-  ExpectSuccess(-9, -7, +3, float, -Ring1_Intrinsic_Fp_Infinity_f32, +Ring1_Intrinsic_Fp_Infinity_f32, f32, -7); /* case of outside lower bound */
-  ExpectSuccess(+5, -7, +3, float, -Ring1_Intrinsic_Fp_Infinity_f32, +Ring1_Intrinsic_Fp_Infinity_f32, f32, +3); /* case of outside upper bound */
+  ExpectFailure(&r, Ring1_Fp_NoNumber_f32, 0, 0, f32);
+  ExpectFailure(&r, 0, Ring1_Fp_NoNumber_f32, 0, f32);
+  ExpectFailure(&r, 0, 0, Ring1_Fp_NoNumber_f32, f32);
+  ExpectFailure(&r, 0, +Ring1_Fp_Infinity_f32, -Ring1_Fp_Infinity_f32, f32);
+  ExpectSuccess(0.f, -Ring1_Fp_Infinity_f32, +Ring1_Fp_Infinity_f32, float, -Ring1_Intrinsic_Fp_Infinity_f32, +Ring1_Intrinsic_Fp_Infinity_f32, f32, 0.f);
+  ExpectSuccess(0, -7, +3, float, -Ring1_Fp_Infinity_f32, +Ring1_Intrinsic_Fp_Infinity_f32, f32, 0);   /* case of within bounds */
+  ExpectSuccess(-9, -7, +3, float, -Ring1_Fp_Infinity_f32, +Ring1_Intrinsic_Fp_Infinity_f32, f32, -7); /* case of outside lower bound */
+  ExpectSuccess(+5, -7, +3, float, -Ring1_Fp_Infinity_f32, +Ring1_Intrinsic_Fp_Infinity_f32, f32, +3); /* case of outside upper bound */
   return Ring1_Result_Success;
 }
 
@@ -63,10 +63,10 @@ Ring1_Intrinsic_Test_clamp_f64
 {
   double r;
   ExpectFailure(NULL, 0, 0, 0, f64);
-  ExpectFailure(&r, Ring1_Intrinsic_Fp_NoNumber_f64, 0, 0, f64);
-  ExpectFailure(&r, 0, Ring1_Intrinsic_Fp_NoNumber_f64, 0, f64);
-  ExpectFailure(&r, 0, 0, Ring1_Intrinsic_Fp_NoNumber_f64, f64);
-  ExpectFailure(&r, 0, +Ring1_Intrinsic_Fp_Infinity_f64, -Ring1_Intrinsic_Fp_Infinity_f64, f64);
+  ExpectFailure(&r, Ring1_Fp_NoNumber_f64, 0, 0, f64);
+  ExpectFailure(&r, 0, Ring1_Fp_NoNumber_f64, 0, f64);
+  ExpectFailure(&r, 0, 0, Ring1_Fp_NoNumber_f64, f64);
+  ExpectFailure(&r, 0, +Ring1_Fp_Infinity_f64, -Ring1_Fp_Infinity_f64, f64);
   return Ring1_Result_Success;
 }
 

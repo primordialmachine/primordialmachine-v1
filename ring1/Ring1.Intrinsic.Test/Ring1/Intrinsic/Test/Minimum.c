@@ -30,9 +30,9 @@ Ring1_Intrinsic_Test_minimum_f32
 {
   ExpectFailure(NULL, 0.f, 0.f, f32);
   float r;
-  ExpectFailure(&r, 0.f, Ring1_Intrinsic_Fp_NoNumber_f32, f32);                             // maximum is no number.
-  ExpectFailure(&r, Ring1_Intrinsic_Fp_NoNumber_f32, 0.f, f32);                             // minimum is no number.
-  ExpectFailure(&r, Ring1_Intrinsic_Fp_NoNumber_f32, Ring1_Intrinsic_Fp_NoNumber_f32, f32); // both maximum and minimum is no number.
+  ExpectFailure(&r, 0.f, Ring1_Fp_NoNumber_f32, f32);                   // maximum is no number.
+  ExpectFailure(&r, Ring1_Fp_NoNumber_f32, 0.f, f32);                   // minimum is no number.
+  ExpectFailure(&r, Ring1_Fp_NoNumber_f32, Ring1_Fp_NoNumber_f32, f32); // both maximum and minimum is no number.
   return Ring1_Result_Success;
 }
 
@@ -44,9 +44,9 @@ Ring1_Intrinsic_Test_minimum_f64
 {
   ExpectFailure(NULL, 0., 0., f32);
   double r;
-  ExpectFailure(&r, 0., Ring1_Intrinsic_Fp_NoNumber_f32, f64);                              // maximum is no number.
-  ExpectFailure(&r, Ring1_Intrinsic_Fp_NoNumber_f64, 0., f64);                              // minimum is no number.
-  ExpectFailure(&r, Ring1_Intrinsic_Fp_NoNumber_f64, Ring1_Intrinsic_Fp_NoNumber_f64, f64); // both maximum and minimum are no number.
+  ExpectFailure(&r, 0., Ring1_Fp_NoNumber_f32, f64);                    // maximum is no number.
+  ExpectFailure(&r, Ring1_Fp_NoNumber_f64, 0., f64);                    // minimum is no number.
+  ExpectFailure(&r, Ring1_Fp_NoNumber_f64, Ring1_Fp_NoNumber_f64, f64); // both maximum and minimum are no number.
   return Ring1_Result_Success;
 }
 
