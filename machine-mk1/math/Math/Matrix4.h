@@ -1,8 +1,13 @@
-/// @file Math/Matrix4.h
-/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
-/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#if !defined(MACHINE_MATH_MATRIX4_H_INCLUDED)
-#define MACHINE_MATH_MATRIX4_H_INCLUDED
+/// @file Ring3/Math/Matrix4.h
+/// @copyright Copyright (c) 2021-2022 Michael Heilmann. All rights reserved.
+/// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
+
+#if !defined(RING3_MATH_MATRIX4_H_INCLUDED)
+#define RING3_MATH_MATRIX4_H_INCLUDED
+
+#if !defined(RING3_MATH_PRIVATE)
+#error("Do not include `Ring3/Math/Matrix4.h` directly, include `Ring3/Math/_Include.h` instead.")
+#endif
 
 #include "Ring2/Library/_Include.h"
 
@@ -48,5 +53,4 @@ Machine_Math_Matrix4* Machine_Math_Matrix4_product(Machine_Math_Matrix4* a, Mach
 /// @param d The angle, in radians.
 void Machine_Math_Matrix4_rotateZ(Machine_Math_Matrix4* a, float r);
 
-
-#endif // MACHINE_MATH_MATRIX4_H_INCLUDED
+#endif // RING3_MATH_MATRIX4_H_INCLUDED

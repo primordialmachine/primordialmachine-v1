@@ -1,11 +1,12 @@
-/// @file Math/Vector3.h
-/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
+/// @file Ring3/Math/Vector3.h
 /// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#if !defined(MACHINE_MATH_VECTOR3_H_INCLUDED)
-#define MACHINE_MATH_VECTOR3_H_INCLUDED
+/// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
-#if !defined(MACHINE_MATH_PRIVATE)
-#error("Do not include this file directly, include `_Math.h` instead.")
+#if !defined(RING3_MATH_VECTOR3_H_INCLUDED)
+#define RING3_MATH_VECTOR3_H_INCLUDED
+
+#if !defined(RING3_MATH_PRIVATE)
+#error("Do not include `Ring3/Math/Vector3.h` directly, include `Ring3/Math/_Include.h` instead.")
 #endif
 
 #include "Ring2/Library/_Include.h"
@@ -84,6 +85,4 @@ float Machine_Math_Vector3_getY(const Machine_Math_Vector3* a);
 
 float Machine_Math_Vector3_getZ(const Machine_Math_Vector3* a);
 
-
-
-#endif // MACHINE_MATH_VECTOR3_H_INCLUDED
+#endif // RING3_MATH_VECTOR3_H_INCLUDED

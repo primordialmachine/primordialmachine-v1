@@ -1,4 +1,8 @@
-#define MACHINE_MATH_PRIVATE (1)
+/// @file Ring3/Math/Matrix4.c
+/// @copyright Copyright (c) 2021-2022 Michael Heilmann. All rights reserved.
+/// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
+
+#define RING3_MATH_PRIVATE (1)
 #include "Math/Matrix4.h"
 
 

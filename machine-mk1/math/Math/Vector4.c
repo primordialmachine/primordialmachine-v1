@@ -1,4 +1,8 @@
-#define MACHINE_MATH_PRIVATE (1)
+/// @file Ring3/Math/Vector4.c
+/// @copyright Copyright (c) 2021-2022 Michael Heilmann. All rights reserved.
+/// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
+
+#define RING3_MATH_PRIVATE (1)
 #include "Math/Vector4.h"
 
 static void Machine_Math_Vector4_construct(Machine_Math_Vector4* self, size_t numberOfArguments, const Ring2_Value* arguments) {

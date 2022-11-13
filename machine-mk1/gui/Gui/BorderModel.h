@@ -7,7 +7,7 @@
 #if !defined(MACHINE_GUI_PRIVATE)
 #error("Do not include this file directly, include `_Gui.h` instead.")
 #endif
-#include "_Math.h"
+#include "Math/_Include.h"
 
 /// @brief Border attributes.
 MACHINE_DECLARE_CLASSTYPE(Machine_Gui_BorderModel)

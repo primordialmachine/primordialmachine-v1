@@ -1,4 +1,8 @@
-#define MACHINE_MATH_PRIVATE (1)
+/// @file Ring3/Math/Vector2.c
+/// @copyright Copyright (c) 2021-2022 Michael Heilmann. All rights reserved.
+/// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
+
+#define RING3_MATH_PRIVATE (1)
 #include "Math/Vector2.h"
 
 

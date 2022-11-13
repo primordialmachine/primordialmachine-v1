@@ -7,7 +7,7 @@
 #error("Do not include this file directly. Include `_Text.h` instead.")
 #endif
 #include "Ring2/Library/_Include.h"
-#include "_Math.h"
+#include "Math/_Include.h"
 #include "_Graphics2.h"
 
 

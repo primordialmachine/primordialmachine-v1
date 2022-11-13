@@ -1,4 +1,4 @@
-#define MACHINE_MATH_PRIVATE (1)
+#define RING3_MATH_PRIVATE (1)
 #include "Math/Rectangle2.h"
 
 

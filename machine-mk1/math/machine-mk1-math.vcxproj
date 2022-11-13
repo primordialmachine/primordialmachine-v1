@@ -24,15 +24,15 @@
     <ClCompile Include="Math\Vector2.c" />
     <ClCompile Include="Math\Vector3.c" />
     <ClCompile Include="Math\Vector4.c" />
-    <ClCompile Include="_Math.c" />
+    <ClCompile Include="Math\_Include.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Matrix4.h" />
-    <ClInclude Include="_Math.h" />
     <ClInclude Include="Math\Rectangle2.h" />
     <ClInclude Include="Math\Vector2.h" />
     <ClInclude Include="Math\Vector3.h" />
     <ClInclude Include="Math\Vector4.h" />
+    <ClInclude Include="Math\_Include.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ring1\Ring1\Ring1.vcxproj">

@@ -1,11 +1,12 @@
-/// @file Math/Rectangle2.h
-/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
-/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#if !defined(MACHINE_MATH_RECTANGLE2_H_INCLUDED)
-#define MACHINE_MATH_RECTANGLE2_H_INCLUDED
+/// @file Ring3/Math/Rectangle2.h
+/// @copyright Copyright (c) 2021-2022 Michael Heilmann. All rights reserved.
+/// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
-#if !defined(MACHINE_MATH_PRIVATE)
-#error("Do not include `Math/Rectangle2.h` directly, include `_Math.h` instead.")
+#if !defined(RING3_MATH_RECTANGLE2_H_INCLUDED)
+#define RING3_MATH_RECTANGLE2_H_INCLUDED
+
+#if !defined(RING3_MATH_PRIVATE)
+#error("Do not include `Ring3/Math/Rectangle2.h` directly, include `Ring3/Math/_Include.h` instead.")
 #endif
 
 #include "Ring2/Library/_Include.h"
@@ -119,4 +120,4 @@ void Machine_Math_Rectangle2_inset(Machine_Math_Rectangle2* self, float minx, fl
 /// @param t The translation vector.
 void Machine_Math_Rectangle2_translate(Machine_Math_Rectangle2* self, const Machine_Math_Vector2* t);
 
-#endif // MACHINE_MATH_RECTANGLE2_H_INCLUDED
+#endif // RING3_MATH_RECTANGLE2_H_INCLUDED

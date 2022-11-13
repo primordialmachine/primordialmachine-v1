@@ -4,7 +4,7 @@
 
 #include "Ring2/Library/_Include.h"
 #include "_Input.h"
-#include "_Math.h"
+#include "Math/_Include.h"
 #include "_Signals.h"
 
 // Forward declaration.
