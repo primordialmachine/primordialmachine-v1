@@ -1,4 +1,4 @@
-# Building under CMake/Visual Studio 2022/Windows 11
+# Building using CMake/Visual Studio 2022/Windows 11
 This document describes how to build *Primordial Machine*
 using *CMake*, *Microsoft Visual Studio 2022*, and *Microsoft Windows 11*.
 

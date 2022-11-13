@@ -1,6 +1,5 @@
-# Building under Visual Studio 2022/Windows 11
-In the directory in which this file is located in,
-you can find the folders containing solution files.
+# Building using Visual Studio 2022/Windows 11
+In the directory in which this file is located in, you can find the folders containing solution files.
 The following solution folders are available.
 - `Scribe` containing `Scribe.sln`
 - `Ring1` containing `Ring1.sln`

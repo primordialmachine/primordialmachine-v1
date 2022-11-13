@@ -62,10 +62,10 @@ Please refer to section *How to contribute* if you want to contribute a port to 
 
 For a description on how to build and run *Primordial Machine* for Windows 11 under Visual Studio 2022/Community/Windows 11
 using CMake,
-follow the instructions [here](/building-under-cmake-visual-studio-2022-windows-11.md).
+follow the instructions [here](/building-using-cmake-visual-studio-2022-windows-11.md).
 
 For a description on how to build and run *Primordial Machine* for Windows 11 under Visual Studio 2022/Community/Windows 11,
-follow the instructions [here](/building-under-visual-studio-2022-windows-11.md).
+follow the instructions [here](/building-using-visual-studio-2022-windows-11.md).
 
 ## How to contribute
 If you want to contribute to the source code, the assets, or the documentation, feel free to contact the project under the
