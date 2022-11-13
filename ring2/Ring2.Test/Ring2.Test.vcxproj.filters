@@ -27,6 +27,18 @@
     <Filter Include="Quelldateien\Ring2\Test\Fixtures">
       <UniqueIdentifier>{dbe3526d-cc1b-47df-b466-60dfd084621b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring2\Test\Stack">
+      <UniqueIdentifier>{967dfc2d-e277-4d76-b87f-b584aad91926}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring2\Test\String">
+      <UniqueIdentifier>{1ddfe850-d696-4f4a-a5dc-9b52a178d48a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring2\Test\String">
+      <UniqueIdentifier>{7d9dbd4c-ea74-4991-be48-a3f0b63f7d3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring2\Test\Stack">
+      <UniqueIdentifier>{f74a4826-b23e-4382-a5c5-91e02068174b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring2\Test\Main.c">
@@ -41,6 +53,39 @@
     <ClCompile Include="Ring2\Test\Fixtures\Object.c">
       <Filter>Quelldateien\Ring2\Test\Fixtures</Filter>
     </ClCompile>
+    <ClCompile Include="Ring2\Test\Common.c">
+      <Filter>Quelldateien\Ring2\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\Stack.c">
+      <Filter>Quelldateien\Ring2\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\String.c">
+      <Filter>Quelldateien\Ring2\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\Stack\pushArray.c">
+      <Filter>Quelldateien\Ring2\Test\Stack</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\Stack\pushBoolean.c">
+      <Filter>Quelldateien\Ring2\Test\Stack</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\Stack\pushInteger.c">
+      <Filter>Quelldateien\Ring2\Test\Stack</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\Stack\pushReal.c">
+      <Filter>Quelldateien\Ring2\Test\Stack</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\Stack\pushString.c">
+      <Filter>Quelldateien\Ring2\Test\Stack</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\Stack\pushVoid.c">
+      <Filter>Quelldateien\Ring2\Test\Stack</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\String\concatenate.c">
+      <Filter>Quelldateien\Ring2\Test\String</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\String\firstOccurrenceOf.c">
+      <Filter>Quelldateien\Ring2\Test\String</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring2\Test\Value.h">
@@ -51,6 +96,39 @@
     </ClInclude>
     <ClInclude Include="Ring2\Test\Fixtures\Object.h">
       <Filter>Headerdateien\Ring2\Test\Fixtures</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\Common.h">
+      <Filter>Headerdateien\Ring2\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\Stack.h">
+      <Filter>Headerdateien\Ring2\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\String.h">
+      <Filter>Headerdateien\Ring2\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\Stack\pushArray.h">
+      <Filter>Headerdateien\Ring2\Test\Stack</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\Stack\pushBoolean.h">
+      <Filter>Headerdateien\Ring2\Test\Stack</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\Stack\pushInteger.h">
+      <Filter>Headerdateien\Ring2\Test\Stack</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\Stack\pushReal.h">
+      <Filter>Headerdateien\Ring2\Test\Stack</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\Stack\pushString.h">
+      <Filter>Headerdateien\Ring2\Test\Stack</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\Stack\pushVoid.h">
+      <Filter>Headerdateien\Ring2\Test\Stack</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\String\concatenate.h">
+      <Filter>Headerdateien\Ring2\Test\String</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\String\firstOccurrenceOf.h">
+      <Filter>Headerdateien\Ring2\Test\String</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

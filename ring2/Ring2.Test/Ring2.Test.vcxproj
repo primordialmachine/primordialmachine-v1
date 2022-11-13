@@ -19,12 +19,24 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Ring2\Test\Common.c" />
     <ClCompile Include="Ring2\Test\Fixtures\ForeignProcedure.c" />
     <ClCompile Include="Ring2\Test\Fixtures\Object.c" />
     <ClCompile Include="Ring2\Test\Main.c" />
+    <ClCompile Include="Ring2\Test\Stack.c" />
+    <ClCompile Include="Ring2\Test\Stack\pushArray.c" />
+    <ClCompile Include="Ring2\Test\Stack\pushBoolean.c" />
+    <ClCompile Include="Ring2\Test\Stack\pushInteger.c" />
+    <ClCompile Include="Ring2\Test\Stack\pushReal.c" />
+    <ClCompile Include="Ring2\Test\Stack\pushString.c" />
+    <ClCompile Include="Ring2\Test\Stack\pushVoid.c" />
+    <ClCompile Include="Ring2\Test\String.c" />
+    <ClCompile Include="Ring2\Test\String\concatenate.c" />
+    <ClCompile Include="Ring2\Test\String\firstOccurrenceOf.c" />
     <ClCompile Include="Ring2\Test\Value.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ring2\Test\Common.h" />
     <ClInclude Include="Ring2\Test\Fixtures\ForeignProcedure.h" />
     <ClInclude Include="Ring2\Test\Fixtures\Object.h" />
   </ItemGroup>
@@ -37,6 +49,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ring2\Test\Stack.h" />
+    <ClInclude Include="Ring2\Test\Stack\pushArray.h" />
+    <ClInclude Include="Ring2\Test\Stack\pushBoolean.h" />
+    <ClInclude Include="Ring2\Test\Stack\pushInteger.h" />
+    <ClInclude Include="Ring2\Test\Stack\pushReal.h" />
+    <ClInclude Include="Ring2\Test\Stack\pushString.h" />
+    <ClInclude Include="Ring2\Test\Stack\pushVoid.h" />
+    <ClInclude Include="Ring2\Test\String.h" />
+    <ClInclude Include="Ring2\Test\String\concatenate.h" />
+    <ClInclude Include="Ring2\Test\String\firstOccurrenceOf.h" />
     <ClInclude Include="Ring2\Test\Value.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
