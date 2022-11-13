@@ -9,6 +9,11 @@ if(CMAKE_SIZEOF_VOID_P EQUAL 8)
 elseif(CMAKE_SIZEOF_VOID_P EQUAL 4)
   message(STATUS "Architecture: X86")
   file(GLOB_RECURSE asm_files "${CMAKE_CURRENT_SOURCE_DIR}/Ring1/Intrinsic/*/X86/*.asm")
+  set_source_files_properties(
+      ${asm_files}
+      PROPERTIES
+      COMPILE_FLAGS "/safeseh"
+  )
 endif()
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${asm_files})
 message(STATUS "ASM: ${asm_files}")
