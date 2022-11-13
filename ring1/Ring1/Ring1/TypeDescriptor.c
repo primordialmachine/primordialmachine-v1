@@ -11,6 +11,35 @@ struct Ring1_TypeDescriptor {
   char *name;
 };
 
+Ring1_Result areNamesEqual(bool *result, const char *x, const char *y) {
+  *result = !crt_strcmp(x, y);
+  return Ring1_Result_Success;
+}
+
+Ring1_Result hashName_u64(uint64_t *result, const char *name) {
+  static_assert(SIZE_MAX <= UINT64_MAX, "unsupported environment");
+  uint64_t hv = (uint64_t)crt_strlen(name);
+  for (uint64_t i = 0, n = (uint64_t)crt_strlen(name); i < n; ++i) {
+    hv = ((hv << 5) ^ (hv >> 3)) | (uint64_t)name[i];
+  }
+  *result = hv;
+  return Ring1_Result_Success;
+}
+
+Ring1_Result hashName(int64_t *result, const char *name) {
+  uint64_t hv;
+  if (hashName_u64(&hv, name)) {
+    return Ring1_Result_Failure;
+  }
+  *result = (int64_t)(hv & 0x7fffffffffffffff);
+  return Ring1_Result_Success;
+}
+
+void valueRemoved(Ring1_TypeDescriptor *typeDescriptor) {
+  Ring1_Memory_deallocate(typeDescriptor->name);
+  Ring1_Memory_deallocate(typeDescriptor);
+}
+
 static Mkx_PointerHashMap *g_types = NULL;
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -25,9 +54,7 @@ uninitializeModule
   (
   );
 
-static Ring1_Result
-
-Ring1_Module_Define(TypeDescriptor, initializeModule, uninitializeModule)
+Ring1_Module_Define(Ring1, TypeDescriptor, initializeModule, uninitializeModule)
 
 static Ring1_Result
 initializeModule
@@ -38,10 +65,10 @@ initializeModule
   if (Ring1_Memory_allocate(&g_types, sizeof(Ring1_TypeDescriptor))) {
     return Ring1_Result_Failure;
   }
-  if (Mkx_PointerHashMap_initialize(&g_types, 0,
+  if (Mkx_PointerHashMap_initialize(g_types, 0,
                                     NULL /*keyAdded*/,
                                     NULL /*keyRemoved*/,
-                                    &hashhName /*hashKey*/,
+                                    &hashName /*hashKey*/,
                                     &areNamesEqual /*areKeysEqual*/,
                                     NULL,
                                     &valueRemoved/*valueRemoved*/)) {
@@ -56,6 +83,10 @@ static void
 uninitializeModule
   (
   )
-{ }
+{ 
+  Mkx_PointerHashMap_uninitialize(g_types);
+  Ring1_Memory_deallocate(g_types);
+  g_types = NULL;
+}
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
