@@ -33,6 +33,14 @@ install:
     - move C:\projects\deps\cmake-* C:\projects\deps\cmake # Move to a version-agnostic directory
     - set PATH=C:\projects\deps\cmake\bin;%PATH%
     - cmake --version
+    
+# Generate solution and project files.     
+before_build:
+    - cmd: if "%platform%"=="x86" set CMAKE_GENERATOR_NAME=Visual Studio 17 2022
+    - cmd: if "%platform%"=="x64" set CMAKE_GENERATOR_NAME=Visual Studio 17 2022
+    - cmd: if "%platform%"=="x86" set CMAKE_ARCHITECTURE_NAME=Win32
+    - cmd: if "%platform%"=="x64" set CMAKE_ARCHITECTURE_NAME=x64
+    - cmake -G "%CMAKE_GENERATOR_NAME%" -A %CMAKE_ARCHITECTURE_NAME% CMakeLists.txt
 
 build:
     parallel: true                             # enable MSBuild parallel builds
