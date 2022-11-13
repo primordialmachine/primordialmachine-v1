@@ -12,6 +12,8 @@ extern "C" {
 #include "Ring1/Status.h"
 #include "Ring2/_Include.h"
 #include "Ring2/Test/Value.h"
+#include "Ring2/Test/Stack.h"
+#include "Ring2/Test/String.h"
 #include <stdlib.h>
 
 
@@ -32,12 +34,30 @@ main
     return EXIT_FAILURE;
   }
   Ring2_JumpTarget jumpTarget;
+  Ring2_Tests* tests = NULL;
+
   Ring2_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
-    Ring2_Tests* tests = Ring2_Tests_create();
-    Ring2_Test_registerValueTests(tests);
-    Ring2_Tests_run(tests);
+    tests = Ring2_Tests_create();
+    Ring2_Gc_lock(tests);
+    Ring2_JumpTarget jumpTarget2;
+    Ring2_pushJumpTarget(&jumpTarget2);
+    if (!setjmp(jumpTarget.environment)) {
+      Ring2_Test_registerValueTests(tests);
+      Ring2_Test_registerStackTests(tests);
+      Ring2_Test_registerStringTests(tests);
+      Ring2_Tests_run(tests);
+      Ring2_popJumpTarget();
+      Ring2_Gc_unlock(tests);
+    } else {
+      Ring2_popJumpTarget();
+      Ring2_Gc_unlock(tests);
+      Ring2_jump();
+    }
     Ring2_popJumpTarget();
+  } else {
+    Ring2_popJumpTarget();
+    Ring2_Gc_unlock(tests);
   }
   Ring1_Status status = Ring1_Status_get();
   Ring2_Context_shutdown();

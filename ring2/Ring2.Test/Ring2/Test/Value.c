@@ -190,7 +190,7 @@ Ring2_Test_registerValueTests
   )
 {
   Ring2_String* prefix = Ring2_String_create("Ring2.Test.ValueTest",
-                                  crt_strlen("Ring2.Test.Valuetest"));
+                                  crt_strlen("Ring2.Test.ValueTest"));
   Ring2_Tests_addTest(tests,
                       Ring2_String_concatenate(Ring2_Context_get(), prefix,
                                                                     Ring2_String_create("Array",
