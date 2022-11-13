@@ -60,7 +60,10 @@ Currently, *Primordial Machnine* is known to build under Visual Studio 2022 Comm
 By design, the effort to port *Primordial Machine* to other build environments and other execution environments should be moderate.
 Please refer to section *How to contribute* if you want to contribute a port to the project.
 
-### Building under Visual Studio 2022/Community/Windows 11 for Windows 11
+For a description on how to build and run *Primordial Machine* for Windows 11 under Visual Studio 2022/Community/Windows 11
+using CMake,
+follow the instructions [here](/building-under-cmake-visual-studio-2022-windows-11.md).
+
 For a description on how to build and run *Primordial Machine* for Windows 11 under Visual Studio 2022/Community/Windows 11,
 follow the instructions [here](/building-under-visual-studio-2022-windows-11.md).
 
