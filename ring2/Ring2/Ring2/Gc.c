@@ -115,7 +115,7 @@ Ring2_GcModule_shutdown
   g_gc = NULL;
 }
 
-Ring1_Module_Define(Ring2, GcModule, &Ring2_GcModule_startup, &Ring2_GcModule_shutdown)
+Ring1_Module_Define(Ring2, GcModule, Ring2_GcModule_startup, Ring2_GcModule_shutdown)
 
 void*
 Ring2_Gc_allocate
