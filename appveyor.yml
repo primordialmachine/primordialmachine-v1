@@ -8,17 +8,18 @@ image: Visual Studio 2022
 branches:
   only:
     - master
+    - develop
 
-# Build platform "x64" and "x86".
+# Build platform "x64" and "Win32".
 platform:
     - x64
-    - x86
+    - Win32
 
-# Build configurations "Debug" and "Release".
+# Build configurations "Release" and "Debug".
 configuration:
     - Release
     - Debug
-    
+
 install:
     # Download and install CMake.
     - set CMAKE_URL="https://cmake.org/files/v3.24/cmake-3.24.3-windows-x86_64.zip"
@@ -27,45 +28,149 @@ install:
     - move C:\projects\deps\cmake-* C:\projects\deps\cmake # Move to a version-agnostic directory
     - set PATH=C:\projects\deps\cmake\bin;%PATH%
     - cmake --version
-    
-# Generate solution and project files.     
+
+# Generate solution and project files.
 before_build:
-    - cmd: if "%platform%"=="x86" set CMAKE_GENERATOR_NAME=Visual Studio 17 2022
+    - cmd: if "%platform%"=="Win32" set CMAKE_GENERATOR_NAME=Visual Studio 17 2022
     - cmd: if "%platform%"=="x64" set CMAKE_GENERATOR_NAME=Visual Studio 17 2022
-    - cmd: if "%platform%"=="x86" set CMAKE_ARCHITECTURE_NAME=Win32
+    - cmd: if "%platform%"=="Win32" set CMAKE_ARCHITECTURE_NAME=Win32
     - cmd: if "%platform%"=="x64" set CMAKE_ARCHITECTURE_NAME=x64
     - cmake -G "%CMAKE_GENERATOR_NAME%" -A %CMAKE_ARCHITECTURE_NAME% CMakeLists.txt
 
 build:
-    parallel: true                       # enable MSBuild parallel builds
-    project: machine-mk1/machine-mk1.sln # path to Visual Studio solution or project
+    parallel: true                 # enable MSBuild parallel builds
+    project: primordialmachine.sln # path to Visual Studio solution or project
 
 # If one matrix entry fails, all entries fails (https://www.appveyor.com/docs/build-configuration#failing-strategy).
 matrix:
     fast_finish: true
 
 artifacts:
-    - path: machine-mk1\products\x64\Release\machine-mk1\machine-mk1.exe
-      name: machine-mk1-x64-release.exe
-    - path: machine-mk1\products\x64\Debug\machine-mk1\machine-mk1.exe
-      name: machine-mk1-x64-debug.exe
-    - path: machine-mk1\products\x86\Release\machine-mk1\machine-mk1.exe
-      name: machine-mk1-x86-release.exe
-    - path: machine-mk1\products\x86\Debug\machine-mk1\machine-mk1.exe
-      name: machine-mk1-x86-debug.exe
+    - path: ring1\Ring1.Ap.Test\$(CONFIGURATION)\PrimordialMachine.Ring1.Ap.Test.exe
+      name: PrimordialMachine.Ring1.Ap.Test-$(CONFIGURATION).exe
+    #
+    - path: ring1\Ring1.Atom.Test\$(CONFIGURATION)\PrimordialMachine.Ring1.Atom.Test.exe
+      name: PrimordialMachine.Ring1.Atom.Test-$(CONFIGURATION).exe
+    #
+    - path: ring1\Ring1.Intrinsic.Test\$(CONFIGURATION)\PrimordialMachine.Ring1.Intrinsic.Test.exe
+      name: PrimordialMachine.Ring1.Intrinsic.Test-$(CONFIGURATION).exe
+    #
+    - path: ring1\Ring1.Console.Demo\$(CONFIGURATION)\PrimordialMachine.Ring1.Console.Demo.exe
+      name: PrimordialMachine.Ring1.Console.Demo-$(CONFIGURATION).exe
+    #
+    - path: ring1\Ring1.TypeName.Test\$(CONFIGURATION)\PrimordialMachine.Ring1.TypeName.Test.exe
+      name: PrimordialMachine.Ring1.TypeName.Test-$(CONFIGURATION).exe
+    #
+    - path: ring2\Ring2.Test\$(CONFIGURATION)\PrimordialMachine.Ring2.Test.exe
+      name: PrimordialMachine.Ring2.Test-$(CONFIGURATION).exe
+    #
+    - path: ring2\Ring2.Library.Test\$(CONFIGURATION)\PrimordialMachine.Ring2.Library.Test.exe
+      name: PrimordialMachine.Ring2.Library.Test-$(CONFIGURATION).exe
+    #
+    - path: ring3\Ring3.Gdl.Test\$(CONFIGURATION)\PrimordialMachine.Ring3.Gdl.Test.exe
+      name: PrimordialMachine.Ring3.Gdl.Test-$(CONFIGURATION).exe
 
 # Execute test scripts.
 test_script:
     - ps: |
-          $name = 'List Test #1';
-          Write-Host "Begin Test $name";
-          Add-AppveyorTest -Name $name -Filename a.exe -Outcome Running;
-          Update-AppveyorTest -Name $name -Filename a.exe -Outcome Passed -Duration 1000;
-          Write-Host "End Test $name";
+          $fail = $False;
+
+    # Ring1
+    - ps: |
+          $name = "PrimordialMachine.Ring1.Ap.Test";
+          $path = "${env:APPVEYOR_BUILD_FOLDER}\ring1\Ring1.Ap.Test\${env:CONFIGURATION}";
+          [int]$startMs = (Get-Date).Millisecond
+          cd ${path}
+          Invoke-Expression "./${name}.exe"
+          $code = $LastExitCode
+          [int]$endMs = (Get-Date).Millisecond
+          if ($code -eq 0) {
+            Add-AppveyorTest -Name ${name} -Filename "${name}.exe" -Outcome Passed -Duration $($endMs - $startMs);
+          } else {
+            Add-AppveyorTest -Name ${name} -Filename "${name}.exe" -Outcome Failed -Duration $($endMs - $startMs);
+            $fail = $True;
+          }
 
     - ps: |
-          $name = 'Map Test #1';
-          Write-Host "Begin Test $name";
-          Add-AppveyorTest -Name "$name" -Filename a.exe -Outcome Running;
-          Update-AppveyorTest -Name "$name" -Filename a.exe -Outcome Passed -Duration 1000;
-          Write-Host "End Test $name";
+          $name = "PrimordialMachine.Ring1.Intrinsic.Test";
+          $path = "${env:APPVEYOR_BUILD_FOLDER}\ring1\Ring1.Intrinsic.Test\${env:CONFIGURATION}";
+          [int]$startMs = (Get-Date).Millisecond
+          cd ${path}
+          Invoke-Expression "./${name}.exe"
+          $code = $LastExitCode
+          [int]$endMs = (Get-Date).Millisecond
+          if ($code -eq 0) {
+            Add-AppveyorTest -Name ${name} -Filename "${name}.exe" -Outcome Passed -Duration $($endMs - $startMs);
+          } else {
+            Add-AppveyorTest -Name ${name} -Filename "${name}.exe" -Outcome Failed -Duration $($endMs - $startMs);
+            $fail = $True;
+          }
+
+    - ps: |
+          $name = "PrimordialMachine.Ring1.Atom.Test";
+          $path = "${env:APPVEYOR_BUILD_FOLDER}\ring1\Ring1.Atom.Test\${env:CONFIGURATION}";
+          [int]$startMs = (Get-Date).Millisecond
+          cd ${path}
+          Invoke-Expression "./${name}.exe"
+          $code = $LastExitCode
+          [int]$endMs = (Get-Date).Millisecond
+          if ($code -eq 0) {
+            Add-AppveyorTest -Name ${name} -Filename "${name}.exe" -Outcome Passed -Duration $($endMs - $startMs);
+          } else {
+            Add-AppveyorTest -Name ${name} -Filename "${name}.exe" -Outcome Failed -Duration $($endMs - $startMs);
+            $fail = $True;
+          }
+
+    # Ring2
+    - ps: |
+          $name = "PrimordialMachine.Ring2.Test";
+          $path = "${env:APPVEYOR_BUILD_FOLDER}\ring2\Ring2.Test\${env:CONFIGURATION}";
+          [int]$startMs = (Get-Date).Millisecond
+          cd ${path}
+          Invoke-Expression "./${name}.exe"
+          $code = $LastExitCode
+          [int]$endMs = (Get-Date).Millisecond
+          if ($code -eq 0) {
+            Add-AppveyorTest -Name ${name} -Filename "${name}.exe" -Outcome Passed -Duration $($endMs - $startMs);
+          } else {
+            Add-AppveyorTest -Name ${name} -Filename "${name}.exe" -Outcome Failed -Duration $($endMs - $startMs);
+            $fail = $True;
+          }
+
+    - ps: |
+          $name = "PrimordialMachine.Ring2.Library.Test";
+          $path = "${env:APPVEYOR_BUILD_FOLDER}\ring2\Ring2.Library.Test\${env:CONFIGURATION}";
+          [int]$startMs = (Get-Date).Millisecond
+          cd ${path}
+          Invoke-Expression "./${name}.exe"
+          $code = $LastExitCode
+          [int]$endMs = (Get-Date).Millisecond
+          if ($code -eq 0) {
+            Add-AppveyorTest -Name ${name} -Filename "${name}.exe" -Outcome Passed -Duration $($endMs - $startMs);
+          } else {
+            Add-AppveyorTest -Name ${name} -Filename "${name}.exe" -Outcome Failed -Duration $($endMs - $startMs);
+            $fail = $True;
+          }
+
+    # Ring3
+    - ps: |
+          $name = "PrimordialMachine.Ring3.Gdl.Test";
+          $path = "${env:APPVEYOR_BUILD_FOLDER}\ring3\Ring3.Gdl.Test\${env:CONFIGURATION}";
+          [int]$startMs = (Get-Date).Millisecond
+          cd ${path}
+          Invoke-Expression "./${name}.exe"
+          $code = $LastExitCode
+          [int]$endMs = (Get-Date).Millisecond
+          if ($code -eq 0) {
+            Add-AppveyorTest -Name ${name} -Filename "${name}.exe" -Outcome Passed -Duration $($endMs - $startMs);
+          } else {
+            Add-AppveyorTest -Name ${name} -Filename "${name}.exe" -Outcome Failed -Duration $($endMs - $startMs);
+            $fail = $True;
+          }
+
+    #
+    - ps: |
+          if ($fail) {
+            throw "unit test(s) failed";
+          }
+
