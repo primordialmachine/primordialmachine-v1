@@ -7,7 +7,7 @@
 #error("Do not include this file directly. Include `_Text.h` instead.")
 #endif
 #include "Ring2/Library/_Include.h"
-#include "Math/_Include.h"
+#include "Ring3/Math/_Include.h"
 #include "_Graphics2.h"
 
 
@@ -30,9 +30,9 @@ struct Machine_Text_Layout_Class {
 struct Machine_Text_Layout {
   Machine_Object parent;
   /// @brief The position of this layout.
-  Machine_Math_Vector2* position;
+  Ring3_Math_Vector2* position;
   /// @brief The color of this layout.
-  Machine_Math_Vector3* color;
+  Ring3_Math_Vector3* color;
   /// @brief The font of this layout.
   Machine_Font* font;
   Ring2_String* text;
@@ -44,7 +44,7 @@ struct Machine_Text_Layout {
 
   /// @brief Pointer to the clip rectangle or the null pointer.
   /// Default is the null pointer.
-  Machine_Math_Rectangle2* clipRectangle;
+  Ring3_Math_Rectangle2* clipRectangle;
 
 
   /// @brief If rendering visual bounds is enabled.
@@ -66,7 +66,7 @@ Machine_Text_Layout* Machine_Text_Layout_create(Ring2_String* text, Machine_Font
 /// @brief Get the bounds of this text layout.
 /// @param self This text layout.
 /// @return The bounds of this text layout.
-const Machine_Math_Rectangle2* Machine_Text_Layout_getBounds(Machine_Text_Layout* self);
+const Ring3_Math_Rectangle2* Machine_Text_Layout_getBounds(Machine_Text_Layout* self);
 
 /// @brief Render this text layout.
 /// @param self This text layout.
@@ -90,24 +90,24 @@ Ring2_String* Machine_Text_Layout_getText(Machine_Text_Layout* self);
 /// @brief Set the position of this text layout.
 /// @param self This text layout.
 /// @param position The position.
-void Machine_Text_Layout_setPosition(Machine_Text_Layout* self, Machine_Math_Vector2 *position);
+void Machine_Text_Layout_setPosition(Machine_Text_Layout* self, Ring3_Math_Vector2 *position);
 
 /// @brief Get the position of this text layout.
 /// @param self This text layout.
 /// @return The position.
-const Machine_Math_Vector2* Machine_Text_Layout_getPosition(Machine_Text_Layout* self);
+const Ring3_Math_Vector2* Machine_Text_Layout_getPosition(Machine_Text_Layout* self);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /// @brief Set the color of this text layout.
 /// @param self This text layout.
 /// @param color The color.
-void Machine_Text_Layout_setColor(Machine_Text_Layout* self, const Machine_Math_Vector3* color);
+void Machine_Text_Layout_setColor(Machine_Text_Layout* self, const Ring3_Math_Vector3* color);
 
 /// @brief Get the color of this text layout.
 /// @param self This text layout.
 /// @return The color.
-const Machine_Math_Vector3* Machine_Text_Layout_getColor(Machine_Text_Layout* self);
+const Ring3_Math_Vector3* Machine_Text_Layout_getColor(Machine_Text_Layout* self);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -124,9 +124,9 @@ bool Machine_Text_Layout_getRenderVisualBoundsEnabled(Machine_Text_Layout* self)
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-void Machine_Text_Layout_setClipRectangle(Machine_Text_Layout* self, Machine_Math_Rectangle2* clipRectangle);
+void Machine_Text_Layout_setClipRectangle(Machine_Text_Layout* self, Ring3_Math_Rectangle2* clipRectangle);
 
-Machine_Math_Rectangle2* Machine_Text_Layout_getClipRectangle(Machine_Text_Layout* self);
+Ring3_Math_Rectangle2* Machine_Text_Layout_getClipRectangle(Machine_Text_Layout* self);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 

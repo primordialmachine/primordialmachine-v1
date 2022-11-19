@@ -42,7 +42,7 @@ struct Machine_Gl_VideoContext {
   // Initially (0,0,w,h) where w and h are the frame buffer width and height.
   // Specified in frame buffer coordinates where positive x-axis (positive y-axis) is pointing right
   // (up) and the bottom left corner is at (0,0).
-  Machine_Math_Rectangle2* viewportRectangle;
+  Ring3_Math_Rectangle2* viewportRectangle;
 };
 
 void Machine_Gl_VideoContext_construct(Machine_Gl_VideoContext* self, size_t numberOfArguments,

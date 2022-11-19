@@ -4,8 +4,8 @@
 
 #include "Ring2/Library/_Include.h"
 #include "_Input.h"
-#include "Math/_Include.h"
 #include "_Signals.h"
+#include "Ring3/Math/_Include.h"
 
 // Forward declaration.
 typedef struct Machine_Font Machine_Font;

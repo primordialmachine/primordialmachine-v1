@@ -1,7 +1,7 @@
 #if !defined(MKX_LAUNCHER_H_INCLUDED)
 #define MKX_LAUNCHER_H_INCLUDED
 
-#include "Math/_Include.h"
+#include "Ring3/Math/_Include.h"
 #include "_Video.h"
 
 /// @brief Increment the video module by @a 1.

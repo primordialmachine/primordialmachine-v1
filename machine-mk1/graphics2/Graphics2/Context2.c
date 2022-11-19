@@ -44,11 +44,11 @@ void Machine_Context2_construct(Machine_Context2* self, size_t numberOfArguments
   self->height = 0.f;
   self->aspectRatio = 0.f;
 
-  self->modelSpaceToProjectiveSpace = Machine_Math_Matrix4_create();
-  Machine_Math_Matrix4_setIdentity(self->modelSpaceToProjectiveSpace);
+  self->modelSpaceToProjectiveSpace = Ring3_Math_Matrix4_create();
+  Ring3_Math_Matrix4_setIdentity(self->modelSpaceToProjectiveSpace);
 
-  self->modelSpaceToWorldSpace = Machine_Math_Matrix4_create();
-  Machine_Math_Matrix4_setIdentity(self->modelSpaceToWorldSpace);
+  self->modelSpaceToWorldSpace = Ring3_Math_Matrix4_create();
+  Ring3_Math_Matrix4_setIdentity(self->modelSpaceToWorldSpace);
 
   self->originBottomLeft = true;
 
@@ -78,12 +78,12 @@ Machine_Context2* Machine_Context2_create(Machine_VideoContext* videoContext) {
 static void updateModelSpaceToProjectiveSpace(Machine_Context2* self) {
   if (self->width > 0.f && self->height > 0.f) {
     if (self->originBottomLeft) {
-      Machine_Math_Matrix4_setOrtho(self->modelSpaceToProjectiveSpace, 0.f, self->width, self->height, 0.f, 1.f, -1.f);
+      Ring3_Math_Matrix4_setOrtho(self->modelSpaceToProjectiveSpace, 0.f, self->width, self->height, 0.f, 1.f, -1.f);
     } else {
-      Machine_Math_Matrix4_setOrtho(self->modelSpaceToProjectiveSpace, 0.f, self->width, 0.f, self->height, 1.f, -1.f);
+      Ring3_Math_Matrix4_setOrtho(self->modelSpaceToProjectiveSpace, 0.f, self->width, 0.f, self->height, 1.f, -1.f);
     }
   } else {
-    Machine_Math_Matrix4_setIdentity(self->modelSpaceToProjectiveSpace);
+    Ring3_Math_Matrix4_setIdentity(self->modelSpaceToProjectiveSpace);
   }
 }
 
@@ -104,11 +104,11 @@ Ring2_Real32 Machine_Context2_getTargetHeight(Machine_Context2 const* self) {
   return self->height;
 }
 
-Machine_Math_Matrix4 const* Machine_Context2_getModelSpaceToProjectiveSpaceMatrix(Machine_Context2 const* self) {
+Ring3_Math_Matrix4 const* Machine_Context2_getModelSpaceToProjectiveSpaceMatrix(Machine_Context2 const* self) {
   return self->modelSpaceToProjectiveSpace;
 }
 
-Machine_Math_Matrix4 const* Machine_Context2_getModelSpaceToWorldSpaceMatrix(Machine_Context2 const* self) {
+Ring3_Math_Matrix4 const* Machine_Context2_getModelSpaceToWorldSpaceMatrix(Machine_Context2 const* self) {
   return self->modelSpaceToWorldSpace;
 }
 

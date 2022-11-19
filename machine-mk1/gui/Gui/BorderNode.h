@@ -34,14 +34,13 @@ void Machine_Gui_BorderNode_setChild(Machine_Gui_BorderNode* self, Machine_Gui_W
 /// @brief Get the color of this border.
 /// @param self This border node.
 /// @return The color.
-Machine_Math_Vector4 const* Machine_Gui_BorderNode_getBorderColor(
-    Machine_Gui_BorderNode const* self);
+Ring3_Math_Vector4 const* Machine_Gui_BorderNode_getBorderColor(Machine_Gui_BorderNode const* self);
 
 /// @brief Set the color of this border.
 /// @param self This border node.
 /// @param color The color.
 void Machine_Gui_BorderNode_setBorderColor(Machine_Gui_BorderNode* self,
-                                           Machine_Math_Vector4 const* color);
+                                           Ring3_Math_Vector4 const* color);
 
 /// @brief Get the border width.
 /// @param self This border node.

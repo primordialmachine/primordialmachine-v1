@@ -26,9 +26,9 @@ struct Machine_Rectangle2_Class {
 
 struct Machine_Rectangle2 {
   Machine_Shape2 __parent;
-  Machine_Math_Vector2* position;
-  Machine_Math_Vector2* size;
-  Machine_Math_Vector4* color;
+  Ring3_Math_Vector2* position;
+  Ring3_Math_Vector2* size;
+  Ring3_Math_Vector4* color;
 };
 
 void Machine_Rectangle2_construct(Machine_Rectangle2* self, size_t numberOfArguments, const Ring2_Value* arguments);
@@ -39,46 +39,46 @@ Machine_Rectangle2* Machine_Rectangle2_create();
 /// @brief Set  the rectangle.
 /// @param self This rectangle.
 /// @param rectangle The rectangle.
-void Machine_Rectangle2_setRectangle(Machine_Rectangle2* self, Machine_Math_Rectangle2 const* rectangle);
+void Machine_Rectangle2_setRectangle(Machine_Rectangle2* self, Ring3_Math_Rectangle2 const* rectangle);
 
 /// @brief Get the rectangle.
 /// @param self This rectangle.
 /// @return The rectangle.
-Machine_Math_Rectangle2* Machine_Rectangle2_getRectangle(Machine_Rectangle2 const* self);
+Ring3_Math_Rectangle2* Machine_Rectangle2_getRectangle(Machine_Rectangle2 const* self);
 
 /// @brief Set the color of this rectangle.
 /// @param self This rectangle. 
 /// @param color The color.
-void Machine_Rectangle2_setColor(Machine_Rectangle2* self, Machine_Math_Vector4 const* color);
+void Machine_Rectangle2_setColor(Machine_Rectangle2* self, Ring3_Math_Vector4 const* color);
 
 /// @brief Get the color of this rectangle.
 /// @param self This rectangle.
 /// @return The color.
-Machine_Math_Vector4 const* Machine_Rectangle2_getColor(Machine_Rectangle2 const* self);
+Ring3_Math_Vector4 const* Machine_Rectangle2_getColor(Machine_Rectangle2 const* self);
 
 /// @brief Set the size of this rectangle.
 /// @param self This rectangle.
 /// @param size The size.
 /// @todo Validate arguments.
-void Machine_Rectangle2_setSize(Machine_Rectangle2* self, Machine_Math_Vector2 const* size);
+void Machine_Rectangle2_setSize(Machine_Rectangle2* self, Ring3_Math_Vector2 const* size);
 
 /// @brief Get the size of this rectangle.
 /// @param self This rectangle.
 /// @return The size.
 /// @todo Validate arguments.
-Machine_Math_Vector2 const* Machine_Rectangle2_getSize(Machine_Rectangle2 const* self);
+Ring3_Math_Vector2 const* Machine_Rectangle2_getSize(Machine_Rectangle2 const* self);
 
 /// @brief Set the size of this rectangle.
 /// @param self This rectangle.
 /// @param position The position.
 /// @todo Validate arguments.
-void Machine_Rectangle2_setPosition(Machine_Rectangle2* self, Machine_Math_Vector2 const* position);
+void Machine_Rectangle2_setPosition(Machine_Rectangle2* self, Ring3_Math_Vector2 const* position);
 
 /// @brief Get the position of this rectangle.
 /// @param self This rectangle.
 /// @return The position.
 /// @todo Validate arguments.
-Machine_Math_Vector2 const* Machine_Rectangle2_getPosition(Machine_Rectangle2 const* self);
+Ring3_Math_Vector2 const* Machine_Rectangle2_getPosition(Machine_Rectangle2 const* self);
 
 
 

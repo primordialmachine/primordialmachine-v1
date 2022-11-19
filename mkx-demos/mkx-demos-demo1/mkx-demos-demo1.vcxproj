@@ -142,9 +142,6 @@
     <ProjectReference Include="..\..\machine-mk1\launcher\machine-mk1-launcher.vcxproj">
       <Project>{29849b18-9b8f-4827-9ed7-c1c4d0aac4e2}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\machine-mk1\math\machine-mk1-math.vcxproj">
-      <Project>{681c50f0-37bf-4661-bf5a-21a29abf2b63}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\machine-mk1\scenes\machine-mk1-scenes.vcxproj">
       <Project>{ff0cdd29-2e2b-437d-b886-0fb704f1cae2}</Project>
     </ProjectReference>
@@ -168,6 +165,9 @@
     </ProjectReference>
     <ProjectReference Include="..\..\ring2\Ring2\Ring2.vcxproj">
       <Project>{3ade4501-5d5c-4878-9632-f81c3de2429c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ring3\Ring3.Math\Ring3.Math.vcxproj">
+      <Project>{681c50f0-37bf-4661-bf5a-21a29abf2b63}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

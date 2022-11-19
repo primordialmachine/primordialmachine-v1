@@ -47,13 +47,13 @@ struct Machine_Binding_Class {
   Ring2_Boolean (*setVariableBinding)(Machine_Binding* self, Ring2_String* name, size_t index);
   size_t (*getVariableBinding)(Machine_Binding const* self, Ring2_String* name);
   void (*bindMatrix4)(Machine_Binding* self, Ring2_String* name,
-                      Machine_Math_Matrix4 const* value);
+                      Ring3_Math_Matrix4 const* value);
   void (*bindVector2)(Machine_Binding* self, Ring2_String* name,
-                      Machine_Math_Vector2 const* value);
+                      Ring3_Math_Vector2 const* value);
   void (*bindVector3)(Machine_Binding* self, Ring2_String* name,
-                      Machine_Math_Vector3 const* value);
+                      Ring3_Math_Vector3 const* value);
   void (*bindVector4)(Machine_Binding* self, Ring2_String* name,
-                      Machine_Math_Vector4 const* value);
+                      Ring3_Math_Vector4 const* value);
   void (*bindSampler)(Machine_Binding* self, Ring2_String* name, size_t const value);
   void (*activate)(Machine_Binding* self);
   void (*addUpdateConstant)(Machine_Binding* self, Ring2_String* name,
@@ -97,7 +97,7 @@ void Machine_Binding_activate(Machine_Binding* self);
 /// @param value The value.
 /// @error The specified name does not denote a constant.
 void Machine_Binding_bindMatrix4(Machine_Binding* self, Ring2_String* name,
-                                 Machine_Math_Matrix4 const* value);
+                                 Ring3_Math_Matrix4 const* value);
 
 /// @brief Bind a vector to a constant.
 /// @param self This binding.
@@ -105,7 +105,7 @@ void Machine_Binding_bindMatrix4(Machine_Binding* self, Ring2_String* name,
 /// @param value The value.
 /// @error The specified name does not denote a constant.
 void Machine_Binding_bindVector2(Machine_Binding* self, Ring2_String* name,
-                                 Machine_Math_Vector2 const* value);
+                                 Ring3_Math_Vector2 const* value);
 
 /// @brief Bind a vector to a constant.
 /// @param self This binding.
@@ -113,7 +113,7 @@ void Machine_Binding_bindVector2(Machine_Binding* self, Ring2_String* name,
 /// @param value The value.
 /// @error The specified name does not denote a constant.
 void Machine_Binding_bindVector3(Machine_Binding* self, Ring2_String* name,
-                                 Machine_Math_Vector3 const* value);
+                                 Ring3_Math_Vector3 const* value);
 
 /// @brief Bind a vector to a constant.
 /// @param self This binding.
@@ -121,7 +121,7 @@ void Machine_Binding_bindVector3(Machine_Binding* self, Ring2_String* name,
 /// @param value The value.
 /// @error The specified name does not denote a constant.
 void Machine_Binding_bindVector4(Machine_Binding* self, Ring2_String* name,
-                                 Machine_Math_Vector4 const* value);
+                                 Ring3_Math_Vector4 const* value);
 
 /// @brief Bind a texture unit index to a texture sampler.
 /// @param self This binding.

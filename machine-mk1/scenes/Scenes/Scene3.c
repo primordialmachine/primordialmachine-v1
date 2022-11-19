@@ -123,8 +123,8 @@ static void Scene3_startup(Scene3* self) {
   Machine_Binding_setVariableBinding(self->binding, Ring2_String_create("vertex_texture_coordinate_1",
                                                              crt_strlen("vertex_texture_coordinate_1") + 1), 2);
 
-  Machine_Math_Vector4* c = Machine_Math_Vector4_create();
-  Machine_Math_Vector4_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
+  Ring3_Math_Vector4* c = Ring3_Math_Vector4_create();
+  Ring3_Math_Vector4_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
   Machine_VideoContext_setClearColor(videoContext, c);
 }
 
@@ -139,11 +139,11 @@ static void Scene3_update(Scene3* self, Ring2_Real32 width, Ring2_Real32 height)
   Machine_VideoContext_setViewportRectangle(videoContext, 0, 0, width, height);
   Machine_VideoContext_clearColorBuffer(videoContext);
 
-  Machine_Math_Matrix4* m2 = Machine_Math_Matrix4_create();
-  Machine_Math_Matrix4_rotateZ(m2, Machine_Time_getNowSecondsFloat());
-  Machine_Math_Matrix4* p2 = Machine_Math_Matrix4_create();
-  Machine_Math_Matrix4_setOrtho(p2, -ratio, +ratio, -1.f, +1.f, 1.f, -1.f);
-  Machine_Math_Matrix4* mvp2 = Machine_Math_Matrix4_product(p2, m2);
+  Ring3_Math_Matrix4* m2 = Ring3_Math_Matrix4_create();
+  Ring3_Math_Matrix4_rotateZ(m2, Machine_Time_getNowSecondsFloat());
+  Ring3_Math_Matrix4* p2 = Ring3_Math_Matrix4_create();
+  Ring3_Math_Matrix4_setOrtho(p2, -ratio, +ratio, -1.f, +1.f, 1.f, -1.f);
+  Ring3_Math_Matrix4* mvp2 = Ring3_Math_Matrix4_product(p2, m2);
 
   Machine_Binding_activate(self->binding);
   Machine_Binding_bindMatrix4(self->binding,

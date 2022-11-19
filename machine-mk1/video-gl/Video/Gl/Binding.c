@@ -98,7 +98,7 @@ static size_t Machine_Binding_getVariableBindingImpl(Machine_Gl_Binding const* s
   return (size_t)-1;
 }
 
-static void Machine_Binding_bindMatrix4Impl(Machine_Gl_Binding* self, Ring2_String* name, Machine_Math_Matrix4 const* value) {
+static void Machine_Binding_bindMatrix4Impl(Machine_Gl_Binding* self, Ring2_String* name, Ring3_Math_Matrix4 const* value) {
   Ring2_Value temporary2;
   Ring2_Value_setObject(&temporary2, (Machine_Object*)value);
   Machine_Binding_addUpdateConstant((Machine_Binding*)self, name, &temporary2);
@@ -110,7 +110,7 @@ static void Machine_Binding_bindMatrix4Impl(Machine_Gl_Binding* self, Ring2_Stri
   Machine_UtilitiesGl_call(glUniformMatrix4fv(location, 1, GL_TRUE, (GLfloat const*)value->e));
 }
 
-static void Machine_Binding_bindVector2Impl(Machine_Gl_Binding* self, Ring2_String* name, Machine_Math_Vector2 const* value) {
+static void Machine_Binding_bindVector2Impl(Machine_Gl_Binding* self, Ring2_String* name, Ring3_Math_Vector2 const* value) {
   Ring2_Value temporary2;
   Ring2_Value_setObject(&temporary2, (Machine_Object*)value);
   Machine_Binding_addUpdateConstant((Machine_Binding *)self, name, &temporary2);
@@ -136,11 +136,11 @@ static void Machine_Binding_bindVector2Impl(Machine_Gl_Binding* self, Ring2_Stri
   if (location == -1) {
     return;
   }
-  const GLfloat temporary[] = { Machine_Math_Vector2_getX(value), Machine_Math_Vector2_getY(value) };
+  const GLfloat temporary[] = { Ring3_Math_Vector2_getX(value), Ring3_Math_Vector2_getY(value) };
   Machine_UtilitiesGl_call(glUniform2fv(location, 1, temporary));
 }
 
-static void Machine_Binding_bindVector3Impl(Machine_Gl_Binding* self, Ring2_String* name, Machine_Math_Vector3 const* value) {
+static void Machine_Binding_bindVector3Impl(Machine_Gl_Binding* self, Ring2_String* name, Ring3_Math_Vector3 const* value) {
   Ring2_Value temporary2;
   Ring2_Value_setObject(&temporary2, (Machine_Object*)value);
   Machine_Binding_addUpdateConstant((Machine_Binding*)self, name, &temporary2);
@@ -166,11 +166,11 @@ static void Machine_Binding_bindVector3Impl(Machine_Gl_Binding* self, Ring2_Stri
   if (location == -1) {
     return;
   }
-  const GLfloat temporary[] = { Machine_Math_Vector3_getX(value), Machine_Math_Vector3_getY(value), Machine_Math_Vector3_getZ(value) };
+  const GLfloat temporary[] = { Ring3_Math_Vector3_getX(value), Ring3_Math_Vector3_getY(value), Ring3_Math_Vector3_getZ(value) };
   Machine_UtilitiesGl_call(glUniform3fv(location, 1, temporary));
 }
 
-static void Machine_Binding_bindVector4Impl(Machine_Binding* self, Ring2_String* name, Machine_Math_Vector4 const* value) {
+static void Machine_Binding_bindVector4Impl(Machine_Binding* self, Ring2_String* name, Ring3_Math_Vector4 const* value) {
   Ring2_Value temporary2;
   Ring2_Value_setObject(&temporary2, (Machine_Object*)value);
   Machine_Binding_addUpdateConstant((Machine_Binding*)self, name, &temporary2);
@@ -196,7 +196,7 @@ static void Machine_Binding_bindVector4Impl(Machine_Binding* self, Ring2_String*
   if (location == -1) {
     return;
   }
-  const GLfloat temporary[] = { Machine_Math_Vector4_getX(value), Machine_Math_Vector4_getY(value), Machine_Math_Vector4_getZ(value), Machine_Math_Vector4_getW(value) };
+  const GLfloat temporary[] = { Ring3_Math_Vector4_getX(value), Ring3_Math_Vector4_getY(value), Ring3_Math_Vector4_getZ(value), Ring3_Math_Vector4_getW(value) };
   Machine_UtilitiesGl_call(glUniform4fv(location, 1, temporary));
 }
 
@@ -248,10 +248,10 @@ static void Machine_Binding_activateImpl(Machine_Gl_Binding* self) {
 static void Machine_Gl_Binding_constructClass(Machine_Gl_Binding_Class* self) {
   ((Machine_Binding_Class*)self)->setVariableBinding = (Ring2_Boolean(*)(Machine_Binding*, Ring2_String*, size_t)) & Machine_Binding_setVariableBindingImpl;
   ((Machine_Binding_Class*)self)->getVariableBinding = (size_t(*)(Machine_Binding const*, Ring2_String*)) & Machine_Binding_getVariableBindingImpl;
-  ((Machine_Binding_Class*)self)->bindMatrix4 = (void (*)(Machine_Binding*, Ring2_String*, Machine_Math_Matrix4 const*)) & Machine_Binding_bindMatrix4Impl;
-  ((Machine_Binding_Class*)self)->bindVector2 = (void (*)(Machine_Binding*, Ring2_String*, Machine_Math_Vector2 const*)) & Machine_Binding_bindVector2Impl;
-  ((Machine_Binding_Class*)self)->bindVector3 = (void (*)(Machine_Binding*, Ring2_String*, Machine_Math_Vector3 const*)) & Machine_Binding_bindVector3Impl;
-  ((Machine_Binding_Class*)self)->bindVector4 = (void (*)(Machine_Binding*, Ring2_String*, Machine_Math_Vector4 const*)) & Machine_Binding_bindVector4Impl;
+  ((Machine_Binding_Class*)self)->bindMatrix4 = (void (*)(Machine_Binding*, Ring2_String*, Ring3_Math_Matrix4 const*)) & Machine_Binding_bindMatrix4Impl;
+  ((Machine_Binding_Class*)self)->bindVector2 = (void (*)(Machine_Binding*, Ring2_String*, Ring3_Math_Vector2 const*)) & Machine_Binding_bindVector2Impl;
+  ((Machine_Binding_Class*)self)->bindVector3 = (void (*)(Machine_Binding*, Ring2_String*, Ring3_Math_Vector3 const*)) & Machine_Binding_bindVector3Impl;
+  ((Machine_Binding_Class*)self)->bindVector4 = (void (*)(Machine_Binding*, Ring2_String*, Ring3_Math_Vector4 const*)) & Machine_Binding_bindVector4Impl;
   ((Machine_Binding_Class*)self)->bindSampler = (void (*)(Machine_Binding*, Ring2_String*, size_t const)) & Machine_Binding_bindSamplerImpl;
   ((Machine_Binding_Class*)self)->activate = (void (*)(Machine_Binding*)) & Machine_Binding_activateImpl;
 }

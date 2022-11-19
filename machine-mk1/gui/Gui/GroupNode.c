@@ -19,19 +19,18 @@ static void Machine_Gui_GroupNode_visit(Machine_Gui_GroupNode* self) {
   }
 }
 
-static Machine_Math_Vector2 const* Machine_Gui_GroupNode_getPreferredSize(
+static Ring3_Math_Vector2 const* Machine_Gui_GroupNode_getPreferredSize(
     Machine_Gui_GroupNode const* self) {
-  return Machine_Math_Rectangle2_getSize(
-      Machine_Gui_Widget_getRectangle((Machine_Gui_Widget*)self));
+  return Ring3_Math_Rectangle2_getSize(Machine_Gui_Widget_getRectangle((Machine_Gui_Widget*)self));
 }
 
 static void Machine_Gui_GroupNode_render(Machine_Gui_GroupNode* self, Machine_Context2* ctx2) {
   Machine_Gui_Context* ctx = Machine_Gui_Context_create(
       Machine_Gdl_Context_create(), Machine_Context2_create(ctx2->videoContext));
-  Machine_Math_Vector2 const* size = Machine_Gui_Widget_getSize((Machine_Gui_Widget*)self);
+  Ring3_Math_Vector2 const* size = Machine_Gui_Widget_getSize((Machine_Gui_Widget*)self);
   Machine_Context2* tmp = Machine_Context2_create(ctx2->videoContext);
-  Machine_Context2_setTargetSize(tmp, Machine_Math_Vector2_getX(size),
-                                 Machine_Math_Vector2_getY(size));
+  Machine_Context2_setTargetSize(tmp, Ring3_Math_Vector2_getX(size),
+                                      Ring3_Math_Vector2_getY(size));
   for (size_t i = 0, n = Machine_Gui_WidgetList_getSize(self->children); i < n; ++i) {
     Machine_Gui_Widget* widget = Machine_Gui_WidgetList_getAt(self->children, i);
     Machine_Gui_Widget_render(widget, tmp);
@@ -42,7 +41,7 @@ static void Machine_Gui_GroupNode_constructClass(Machine_Gui_GroupNode_Class* se
   ((Machine_Gui_Widget_Class*)self)->render
       = (void (*)(Machine_Gui_Widget*, Machine_Context2*)) & Machine_Gui_GroupNode_render;
   ((Machine_Gui_Widget_Class*)self)->getPreferredSize
-      = (Machine_Math_Vector2 const* (*)(Machine_Gui_Widget const*))
+      = (Ring3_Math_Vector2 const* (*)(Machine_Gui_Widget const*))
         & Machine_Gui_GroupNode_getPreferredSize;
 }
 
@@ -82,19 +81,19 @@ void Machine_Gui_GroupNode_relayout(Machine_Gui_GroupNode* self, Ring2_Real32 ca
                                     Ring2_Real32 canvasHeight) {
   // Set the size of all children to the same value: That value is the component-wise maxima vector
   // of the preferred sizes of all children.
-  Machine_Math_Vector2* preferredSize = Machine_Math_Vector2_clone(
+  Ring3_Math_Vector2* preferredSize = Ring3_Math_Vector2_clone(
       Machine_Gui_Widget_getPreferredSize(Machine_Gui_WidgetList_getAt(self->children, 0)));
   for (size_t i = 1, n = Machine_Gui_WidgetList_getSize(self->children); i < n; ++i) {
-    Machine_Math_Vector2_maxima(
-        preferredSize, preferredSize,
-        Machine_Gui_Widget_getPreferredSize(Machine_Gui_WidgetList_getAt(self->children, i)));
+    Ring3_Math_Vector2_maxima(preferredSize, preferredSize,
+                              Machine_Gui_Widget_getPreferredSize(Machine_Gui_WidgetList_getAt(self->children, i)));
   }
   for (size_t i = 0, n = Machine_Gui_WidgetList_getSize(self->children); i < n; ++i) {
     Machine_Gui_Widget_setSize(Machine_Gui_WidgetList_getAt(self->children, i), preferredSize);
   }
   // Layout the children.
-  Machine_Math_Vector2 const* size = Machine_Gui_Widget_getSize((Machine_Gui_Widget*)self);
-  Machine_Gui_WidgetList_layout(self->children, Machine_Math_Vector2_getX(size),
-                                Machine_Math_Vector2_getY(size), canvasWidth, canvasHeight,
-                                self->layoutModel);
+  Ring3_Math_Vector2 const* size = Machine_Gui_Widget_getSize((Machine_Gui_Widget*)self);
+  Machine_Gui_WidgetList_layout(self->children, Ring3_Math_Vector2_getX(size),
+                                                Ring3_Math_Vector2_getY(size),
+                                                canvasWidth, canvasHeight,
+                                                self->layoutModel);
 }

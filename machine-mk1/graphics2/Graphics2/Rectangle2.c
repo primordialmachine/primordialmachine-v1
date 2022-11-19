@@ -22,12 +22,12 @@ static void Machine_Rectangle2_visit(Machine_Rectangle2* self) {
 }
 
 static void Machine_Rectangle2_render(Machine_Rectangle2* self, Machine_Context2 *context) {
-  Machine_Math_Matrix4 const*wvp2 = Machine_Context2_getModelSpaceToProjectiveSpaceMatrix(context);
+  Ring3_Math_Matrix4 const*wvp2 = Machine_Context2_getModelSpaceToProjectiveSpaceMatrix(context);
 
-  Ring2_Real32 l = Machine_Math_Vector2_getX(self->position);
-  Ring2_Real32 r = l + Machine_Math_Vector2_getX(self->size);
-  Ring2_Real32 b = Machine_Math_Vector2_getY(self->position);
-  Ring2_Real32 t = b + Machine_Math_Vector2_getY(self->size);
+  Ring2_Real32 l = Ring3_Math_Vector2_getX(self->position);
+  Ring2_Real32 r = l + Ring3_Math_Vector2_getX(self->size);
+  Ring2_Real32 b = Ring3_Math_Vector2_getY(self->position);
+  Ring2_Real32 t = b + Ring3_Math_Vector2_getY(self->size);
 
   static const uint8_t indices[] = {
     0, 1, 2,
@@ -60,11 +60,11 @@ static void Machine_Rectangle2_constructClass(Machine_Rectangle2_Class* self) {
 
 void Machine_Rectangle2_construct(Machine_Rectangle2* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   Machine_Shape2_construct((Machine_Shape2*)self, numberOfArguments, arguments);
-  self->position = Machine_Math_Vector2_create();
-  self->size = Machine_Math_Vector2_create();
+  self->position = Ring3_Math_Vector2_create();
+  self->size = Ring3_Math_Vector2_create();
 
-  self->color = Machine_Math_Vector4_create();
-  Machine_Math_Vector4_set(self->color, 1.f, 1.f, 1.f, 1.f);
+  self->color = Ring3_Math_Vector4_create();
+  Ring3_Math_Vector4_set(self->color, 1.f, 1.f, 1.f, 1.f);
 
   Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Rectangle2_getType());
 }
@@ -81,38 +81,38 @@ Machine_Rectangle2* Machine_Rectangle2_create() {
   return self;
 }
 
-void Machine_Rectangle2_setRectangle(Machine_Rectangle2* self, Machine_Math_Rectangle2 const* rectangle) {
-  Machine_Math_Vector2_copy(self->position, Machine_Math_Rectangle2_getPosition(rectangle));
-  Machine_Math_Vector2_copy(self->size, Machine_Math_Rectangle2_getSize(rectangle));
+void Machine_Rectangle2_setRectangle(Machine_Rectangle2* self, Ring3_Math_Rectangle2 const* rectangle) {
+  Ring3_Math_Vector2_copy(self->position, Ring3_Math_Rectangle2_getPosition(rectangle));
+  Ring3_Math_Vector2_copy(self->size, Ring3_Math_Rectangle2_getSize(rectangle));
 }
 
-Machine_Math_Rectangle2* Machine_Rectangle2_getRectangle(Machine_Rectangle2 const* self) {
-  Machine_Math_Rectangle2* rectangle = Machine_Math_Rectangle2_create();
-  Machine_Math_Rectangle2_setPosition(rectangle, self->position);
-  Machine_Math_Rectangle2_setSize(rectangle, self->size);
+Ring3_Math_Rectangle2* Machine_Rectangle2_getRectangle(Machine_Rectangle2 const* self) {
+  Ring3_Math_Rectangle2* rectangle = Ring3_Math_Rectangle2_create();
+  Ring3_Math_Rectangle2_setPosition(rectangle, self->position);
+  Ring3_Math_Rectangle2_setSize(rectangle, self->size);
   return rectangle;
 }
 
-void Machine_Rectangle2_setColor(Machine_Rectangle2* self, Machine_Math_Vector4 const* color) {
-  Machine_Math_Vector4_copy(self->color, color);
+void Machine_Rectangle2_setColor(Machine_Rectangle2* self, Ring3_Math_Vector4 const* color) {
+  Ring3_Math_Vector4_copy(self->color, color);
 }
 
-Machine_Math_Vector4 const* Machine_Rectangle2_getColor(Machine_Rectangle2 const* self) {
+Ring3_Math_Vector4 const* Machine_Rectangle2_getColor(Machine_Rectangle2 const* self) {
   return self->color;
 }
 
-void Machine_Rectangle2_setSize(Machine_Rectangle2* self, Machine_Math_Vector2 const* size) {
-  Machine_Math_Vector2_copy(self->size, size);
+void Machine_Rectangle2_setSize(Machine_Rectangle2* self, Ring3_Math_Vector2 const* size) {
+  Ring3_Math_Vector2_copy(self->size, size);
 }
 
-Machine_Math_Vector2 const* Machine_Rectangle2_getSize(Machine_Rectangle2 const* self) {
+Ring3_Math_Vector2 const* Machine_Rectangle2_getSize(Machine_Rectangle2 const* self) {
   return self->size;
 }
 
-void Machine_Rectangle2_setPosition(Machine_Rectangle2* self, Machine_Math_Vector2 const* position) {
-  Machine_Math_Vector2_copy(self->position, position);
+void Machine_Rectangle2_setPosition(Machine_Rectangle2* self, Ring3_Math_Vector2 const* position) {
+  Ring3_Math_Vector2_copy(self->position, position);
 }
 
-Machine_Math_Vector2 const* Machine_Rectangle2_getPosition(Machine_Rectangle2 const* self) {
+Ring3_Math_Vector2 const* Machine_Rectangle2_getPosition(Machine_Rectangle2 const* self) {
   return self->position;
 }
