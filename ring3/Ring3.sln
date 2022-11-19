@@ -19,6 +19,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ring3.Gdl.Test", "Ring3.Gdl
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ring3.Math", "Ring3.Math\Ring3.Math.vcxproj", "{681C50F0-37BF-4661-BF5A-21A29ABF2B63}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ring3.Signals", "Ring3.Signals\Ring3.Signals.vcxproj", "{5F81C516-CCE8-4C62-B1E8-22C1EA40A25C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -75,6 +77,23 @@ Global
 		{681C50F0-37BF-4661-BF5A-21A29ABF2B63}.Release|x64.Build.0 = Release|x64
 		{681C50F0-37BF-4661-BF5A-21A29ABF2B63}.Release|x86.ActiveCfg = Release|Win32
 		{681C50F0-37BF-4661-BF5A-21A29ABF2B63}.Release|x86.Build.0 = Release|Win32
+		{5F81C516-CCE8-4C62-B1E8-22C1EA40A25C}.Debug|x64.ActiveCfg = Debug|x64
+		{5F81C516-CCE8-4C62-B1E8-22C1EA40A25C}.Debug|x64.Build.0 = Debug|x64
+		{5F81C516-CCE8-4C62-B1E8-22C1EA40A25C}.Debug|x86.ActiveCfg = Debug|Win32
+		{5F81C516-CCE8-4C62-B1E8-22C1EA40A25C}.Debug|x86.Build.0 = Debug|Win32
+		{5F81C516-CCE8-4C62-B1E8-22C1EA40A25C}.Release|x64.ActiveCfg = Release|x64
+		{5F81C516-CCE8-4C62-B1E8-22C1EA40A25C}.Release|x64.Build.0 = Release|x64
+		{5F81C516-CCE8-4C62-B1E8-22C1EA40A25C}.Release|x86.ActiveCfg = Release|Win32
+		{5F81C516-CCE8-4C62-B1E8-22C1EA40A25C}.Release|x86.Build.0 = Release|Win32
+		{5C9B780E-6BD4-4058-BB5A-0E556EDC7052}.Debug|x64.ActiveCfg = Debug|x64
+		{5C9B780E-6BD4-4058-BB5A-0E556EDC7052}.Debug|x64.Build.0 = Debug|x64
+		{5C9B780E-6BD4-4058-BB5A-0E556EDC7052}.Debug|x86.ActiveCfg = Debug|Win32
+		{5C9B780E-6BD4-4058-BB5A-0E556EDC7052}.Debug|x86.Build.0 = Debug|Win32
+		{5C9B780E-6BD4-4058-BB5A-0E556EDC7052}.Release|x64.ActiveCfg = Release|x64
+		{5C9B780E-6BD4-4058-BB5A-0E556EDC7052}.Release|x64.Build.0 = Release|x64
+		{5C9B780E-6BD4-4058-BB5A-0E556EDC7052}.Release|x86.ActiveCfg = Release|Win32
+		{5C9B780E-6BD4-4058-BB5A-0E556EDC7052}.Release|x86.Build.0 = Release|Win32
+		{FD4C313C-D599-4313-ADB7-034796537586}.Debug|x64.ActiveCfg = Debug|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -154,8 +154,8 @@
     <ProjectReference Include="..\input\machine-mk1-input.vcxproj">
       <Project>{d18ee412-e5ae-4b7b-b291-46231dca6511}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\signals\machine-mk1-signals.vcxproj">
-      <Project>{849b7daf-7563-43b6-9131-fda4995767f0}</Project>
+    <ProjectReference Include="..\..\ring3\Ring3.Signals\Ring3.Signals.vcxproj">
+      <Project>{5f81c516-cce8-4c62-b1e8-22c1ea40a25c}</Project>
     </ProjectReference>
     <ProjectReference Include="..\video\machine-mk1-video.vcxproj">
       <Project>{ea697f45-b77e-4384-8bf1-6001586e058c}</Project>

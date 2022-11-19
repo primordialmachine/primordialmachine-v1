@@ -7,7 +7,7 @@
 #if !defined(MACHINE_GUI_PRIVATE)
 #error("Do not include this file directly, include `_Gui.h` instead.")
 #endif
-#include "_Signals.h"
+#include "Ring3/Signals/_Include.h"
 
 /// @brief A GUI signals context.
 /// @extends Machine.Object
