@@ -43,6 +43,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ring3.Input", "..\ring3\Rin
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ring3.Visuals", "..\ring3\Ring3.Visuals\Ring3.Visuals.vcxproj", "{FD4C313C-D599-4313-ADB7-034796537586}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ring3.Audials", "..\ring3\Ring3.Audials\Ring3.Audials.vcxproj", "{717399D1-50AA-4D5C-B2AB-D324805C4D82}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -187,6 +189,14 @@ Global
 		{FD4C313C-D599-4313-ADB7-034796537586}.Release|x64.Build.0 = Release|x64
 		{FD4C313C-D599-4313-ADB7-034796537586}.Release|x86.ActiveCfg = Release|Win32
 		{FD4C313C-D599-4313-ADB7-034796537586}.Release|x86.Build.0 = Release|Win32
+		{717399D1-50AA-4D5C-B2AB-D324805C4D82}.Debug|x64.ActiveCfg = Debug|x64
+		{717399D1-50AA-4D5C-B2AB-D324805C4D82}.Debug|x64.Build.0 = Debug|x64
+		{717399D1-50AA-4D5C-B2AB-D324805C4D82}.Debug|x86.ActiveCfg = Debug|Win32
+		{717399D1-50AA-4D5C-B2AB-D324805C4D82}.Debug|x86.Build.0 = Debug|Win32
+		{717399D1-50AA-4D5C-B2AB-D324805C4D82}.Release|x64.ActiveCfg = Release|x64
+		{717399D1-50AA-4D5C-B2AB-D324805C4D82}.Release|x64.Build.0 = Release|x64
+		{717399D1-50AA-4D5C-B2AB-D324805C4D82}.Release|x86.ActiveCfg = Release|Win32
+		{717399D1-50AA-4D5C-B2AB-D324805C4D82}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -200,6 +210,7 @@ Global
 		{5F81C516-CCE8-4C62-B1E8-22C1EA40A25C} = {CF0ED842-634F-414B-A86C-E936A6E056B2}
 		{5C9B780E-6BD4-4058-BB5A-0E556EDC7052} = {CF0ED842-634F-414B-A86C-E936A6E056B2}
 		{FD4C313C-D599-4313-ADB7-034796537586} = {CF0ED842-634F-414B-A86C-E936A6E056B2}
+		{717399D1-50AA-4D5C-B2AB-D324805C4D82} = {CF0ED842-634F-414B-A86C-E936A6E056B2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0B435C73-7861-4C3E-B9A3-C9BD14EA6D9F}
