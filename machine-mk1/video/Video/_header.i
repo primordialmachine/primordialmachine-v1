@@ -3,7 +3,7 @@
 #endif
 
 #include "Ring2/Library/_Include.h"
-#include "_Input.h"
+#include "Ring3/Input/_Include.h"
 #include "Ring3/Math/_Include.h"
 #include "Ring3/Signals/_Include.h"
 

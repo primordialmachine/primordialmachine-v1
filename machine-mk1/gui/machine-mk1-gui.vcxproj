@@ -31,6 +31,9 @@
     <ProjectReference Include="..\..\ring3\Ring3.Gdl\Ring3.Gdl.vcxproj">
       <Project>{a45e158d-8db9-4d07-9642-a79c583a5dd1}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\ring3\Ring3.Input\Ring3.Input.vcxproj">
+      <Project>{5c9b780e-6bd4-4058-bb5a-0e556edc7052}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\ring3\Ring3.Math\Ring3.Math.vcxproj">
       <Project>{681c50f0-37bf-4661-bf5a-21a29abf2b63}</Project>
     </ProjectReference>
@@ -45,9 +48,6 @@
     </ProjectReference>
     <ProjectReference Include="..\images\machine-mk1-images.vcxproj">
       <Project>{f0b732b5-824d-40ab-aa0a-a067b6a852f9}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\input\machine-mk1-input.vcxproj">
-      <Project>{d18ee412-e5ae-4b7b-b291-46231dca6511}</Project>
     </ProjectReference>
     <ProjectReference Include="..\text\machine-mk1-text.vcxproj">
       <Project>{194f7d9b-b888-48d5-9fe9-4236dd82567e}</Project>

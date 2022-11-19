@@ -21,6 +21,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ring3.Math", "Ring3.Math\Ri
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ring3.Signals", "Ring3.Signals\Ring3.Signals.vcxproj", "{5F81C516-CCE8-4C62-B1E8-22C1EA40A25C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ring3.Input", "Ring3.Input\Ring3.Input.vcxproj", "{5C9B780E-6BD4-4058-BB5A-0E556EDC7052}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64

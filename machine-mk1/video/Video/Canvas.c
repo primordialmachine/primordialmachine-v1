@@ -1,11 +1,9 @@
 #define MACHINE_VIDEO_PRIVATE (1)
 #include "Video/Canvas.h"
 
-
 #include "Ring1/Intrinsic.h"
 #include "Ring2/Library/_Include.h"
-#include "_Input.h"
-
+#include "Ring3/Input/_Include.h"
 
 static void visit(Machine_Video_Canvas* self);
 

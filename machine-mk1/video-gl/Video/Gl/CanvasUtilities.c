@@ -10,7 +10,7 @@
 #include "Video/Gl/Input/MouseButton.h"
 #include "Video/Gl/Input/MousePointer.h"
 #include "Video/Gl/UtilitiesGl.h"
-#include "_Input.h"
+#include "Ring3/Input/_Include.h"
 
 
 #define VERBOSE (0)

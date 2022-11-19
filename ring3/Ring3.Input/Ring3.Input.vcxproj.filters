@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Ressourcendateien">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien\Ring3">
+      <UniqueIdentifier>{50715f08-2d43-4289-bdba-78af193a565b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring3\Input">
+      <UniqueIdentifier>{03398335-eb5e-4ef9-8bd6-60b1df6022eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring3">
+      <UniqueIdentifier>{45fa4c22-175b-468a-bf38-4e3adfd19bb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring3\Input">
+      <UniqueIdentifier>{3dedef78-8e8f-41de-808f-cdcddd43de1c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Ring3\Input\_Include.c">
+      <Filter>Quelldateien\Ring3\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Input\KeyboardKeyEvent.c">
+      <Filter>Quelldateien\Ring3\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Input\KeyboardKeys.c">
+      <Filter>Quelldateien\Ring3\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Input\MouseButtonEvent.c">
+      <Filter>Quelldateien\Ring3\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Input\MousePointerEvent.c">
+      <Filter>Quelldateien\Ring3\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Input\Signals.c">
+      <Filter>Quelldateien\Ring3\Input</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Ring3\Input\_Include.h">
+      <Filter>Headerdateien\Ring3\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Input\KeyboardKeyEvent.h">
+      <Filter>Headerdateien\Ring3\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Input\KeyboardKeys.h">
+      <Filter>Headerdateien\Ring3\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Input\MouseButtonEvent.h">
+      <Filter>Headerdateien\Ring3\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Input\MousePointerEvent.h">
+      <Filter>Headerdateien\Ring3\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Input\Signals.h">
+      <Filter>Headerdateien\Ring3\Input</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ring3\Input\KeyboardKeys.i">
+      <Filter>Headerdateien\Ring3\Input</Filter>
+    </None>
+    <None Include="Ring3\Input\Signals.i">
+      <Filter>Headerdateien\Ring3\Input</Filter>
+    </None>
+  </ItemGroup>
+</Project>

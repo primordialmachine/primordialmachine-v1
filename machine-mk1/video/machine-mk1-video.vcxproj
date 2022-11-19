@@ -196,11 +196,11 @@
     <ProjectReference Include="..\..\ring2\Ring2\Ring2.vcxproj">
       <Project>{3ade4501-5d5c-4878-9632-f81c3de2429c}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\ring3\Ring3.Input\Ring3.Input.vcxproj">
+      <Project>{5c9b780e-6bd4-4058-bb5a-0e556edc7052}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\ring3\Ring3.Math\Ring3.Math.vcxproj">
       <Project>{681c50f0-37bf-4661-bf5a-21a29abf2b63}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\input\machine-mk1-input.vcxproj">
-      <Project>{d18ee412-e5ae-4b7b-b291-46231dca6511}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\ring3\Ring3.Signals\Ring3.Signals.vcxproj">
       <Project>{5f81c516-cce8-4c62-b1e8-22c1ea40a25c}</Project>

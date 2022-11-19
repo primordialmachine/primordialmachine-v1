@@ -9,7 +9,7 @@
 #endif
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
-#include "_Input.h"
+#include "Ring3/Input/_Include.h"
 
 /// @brief
 /// @param key The GLFW key.

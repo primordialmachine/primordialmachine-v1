@@ -1,7 +1,7 @@
 #if !defined(MACHINE_SCENE_H_INCLUDED)
 #define MACHINE_SCENE_H_INCLUDED
 
-#include "_Input.h"
+#include "Ring3/Input/_Include.h"
 #include "_Video.h"
 
 MACHINE_DECLARE_CLASSTYPE(Scene)
