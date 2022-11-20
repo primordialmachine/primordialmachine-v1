@@ -109,7 +109,7 @@ static void alignCenter(Machine_Text_Layout* layout, Ring2_Real32 width, Ring2_R
 }
 
 static void LayoutScene_onCanvasSizeChanged(LayoutScene* self,
-                                            Machine_CanvasSizeChangedEvent* event) {
+                                            Ring3_CanvasSizeChangedEvent* event) {
   Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
   // Set the 2D context's target size.
   Machine_Context2_setTargetSize(self->context2, event->width, event->height);

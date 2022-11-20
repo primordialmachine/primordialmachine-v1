@@ -41,7 +41,7 @@ Machine_Gui_Context* Machine_Gui_Context_create(Machine_Gdl_Context* gdlContext,
                                                 Machine_Context2* context2);
 
 void Machine_Gui_Context_onCanvasSizechanged(Machine_Gui_Context* self,
-                                             Machine_CanvasSizeChangedEvent* event);
+                                             Ring3_CanvasSizeChangedEvent* event);
 
 Ring2_Real32 Machine_Gui_Context_getCanvasWidth(Machine_Gui_Context* self);
 

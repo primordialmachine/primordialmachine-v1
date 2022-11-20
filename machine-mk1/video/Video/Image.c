@@ -31,6 +31,6 @@ void Machine_Image_getSize(Machine_Image const* self, Ring2_Integer* width,
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_Image, getSize, width, height);
 }
 
-Machine_PixelFormat Machine_Image_getPixelFormat(Machine_Image const* self) {
+Ring3_PixelFormat Machine_Image_getPixelFormat(Machine_Image const* self) {
   MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_Image, getPixelFormat);
 }

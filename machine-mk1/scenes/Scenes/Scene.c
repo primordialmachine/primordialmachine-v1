@@ -53,7 +53,7 @@ void Scene_onStartup(Scene* self) {
   MACHINE_VIRTUALCALL_NORETURN_NOARGS(Scene, onStartup);
 }
 
-void Scene_onCanvasSizeChanged(Scene* self, Machine_CanvasSizeChangedEvent* event) {
+void Scene_onCanvasSizeChanged(Scene* self, Ring3_CanvasSizeChangedEvent* event) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Scene, onCanvasSizeChanged, event);
 }
 

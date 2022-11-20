@@ -369,7 +369,7 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
                                      (size_t)self->face->glyph->bitmap.width * (size_t)self->face->glyph->bitmap.rows);
       }
       Machine_Image* image = Machine_ImagesContext_createDirect(
-          fontsContext->imageContext, Machine_PixelFormat_GRAYSCALE,
+          fontsContext->imageContext, Ring3_PixelFormat_GRAYSCALE,
           self->face->glyph->bitmap.width, self->face->glyph->bitmap.rows, temporary);
       Machine_Texture* texture = Machine_VideoContext_createTextureFromImage(fontsContext->videoContext, image);
       Map_set(self->map, codepoint,

@@ -152,7 +152,7 @@ static void updateText3(Scene4* self, Ring2_Real32 width, Ring2_Real32 height) {
   Machine_Gui_Widget_setPosition((Machine_Gui_Widget*)self->textNode1, newPosition);
 }
 
-static void Scene4_onCanvasSizeChanged(Scene4* self, Machine_CanvasSizeChangedEvent* event) {
+static void Scene4_onCanvasSizeChanged(Scene4* self, Ring3_CanvasSizeChangedEvent* event) {
   Machine_Gui_Context_onCanvasSizechanged(self->guiContext, event);
   updateText1(self, event->width, event->height);
   updateText2(self, event->width, event->height);

@@ -6,6 +6,11 @@
 #define RING3_VISUALS__INCLUDE_H_INCLUDED
 
 #define RING3_VISUALS_PRIVATE (1)
+#include "Ring3/Visuals/BlendFunction.h"
+#include "Ring3/Visuals/CanvasSizeChangedEvent.h"
+#include "Ring3/Visuals/DepthTestFunction.h"
+#include "Ring3/Visuals/PixelFormat.h"
+#include "Ring3/Visuals/VertexElementSemantics.h"
 #undef RING3_VISUALS_PRIVATE
 
 #endif // RING3_VISUALS__INCLUDE_H_INCLUDED

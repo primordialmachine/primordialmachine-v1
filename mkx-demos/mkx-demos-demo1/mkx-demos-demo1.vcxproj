@@ -169,6 +169,9 @@
     <ProjectReference Include="..\..\ring3\Ring3.Signals\Ring3.Signals.vcxproj">
       <Project>{5f81c516-cce8-4c62-b1e8-22c1ea40a25c}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\ring3\Ring3.Visuals\Ring3.Visuals.vcxproj">
+      <Project>{fd4c313c-d599-4313-adb7-034796537586}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

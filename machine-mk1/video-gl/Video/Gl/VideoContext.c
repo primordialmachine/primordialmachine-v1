@@ -18,11 +18,11 @@
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-static void setDepthTestFunction(Machine_Gl_VideoContext* self, Machine_DepthTestFunction depthTestFunction) {
+static void setDepthTestFunction(Machine_Gl_VideoContext* self, Ring3_DepthTestFunction depthTestFunction) {
   self->depthTestFunction = depthTestFunction;
 }
 
-static Machine_DepthTestFunction getDepthTestFunction(Machine_Gl_VideoContext const* self) {
+static Ring3_DepthTestFunction getDepthTestFunction(Machine_Gl_VideoContext const* self) {
   return self->depthTestFunction;
 }
 
@@ -70,21 +70,21 @@ static Ring2_Boolean getClipDistanceEnabled(Machine_Gl_VideoContext const* self,
 
 
 
-static void setIncomingBlendFunction(Machine_Gl_VideoContext* self, Machine_BlendFunction incomingBlendFunction) {
+static void setIncomingBlendFunction(Machine_Gl_VideoContext* self, Ring3_BlendFunction incomingBlendFunction) {
   self->incomingBlendFunction = incomingBlendFunction;
 }
 
-static Machine_BlendFunction getIncomingBlendFunction(Machine_Gl_VideoContext const* self) {
+static Ring3_BlendFunction getIncomingBlendFunction(Machine_Gl_VideoContext const* self) {
   return self->incomingBlendFunction;
 }
 
 
 
-static void setExistingBlendFunction(Machine_Gl_VideoContext* self, Machine_BlendFunction existingBlendFunction) {
+static void setExistingBlendFunction(Machine_Gl_VideoContext* self, Ring3_BlendFunction existingBlendFunction) {
   self->existingBlendFunction = existingBlendFunction;
 }
 
-static Machine_BlendFunction getExistingBlendFunction(Machine_Gl_VideoContext const* self) {
+static Ring3_BlendFunction getExistingBlendFunction(Machine_Gl_VideoContext const* self) {
   return self->existingBlendFunction;
 }
 
@@ -237,15 +237,15 @@ static void Machine_Gl_VideoContext_destruct(Machine_Gl_VideoContext* self) {
 }
 
 /// @EXTENSION 
-static GLenum Machine_BlendFunction_toGL(Machine_BlendFunction self) {
+static GLenum Machine_BlendFunction_toGL(Ring3_BlendFunction self) {
   switch (self) {
-  case Machine_BlendFunction_IncomingAlpha:
+  case Ring3_BlendFunction_IncomingAlpha:
     return GL_SRC_ALPHA;
-  case Machine_BlendFunction_OneMinusIncomingAlpha:
+  case Ring3_BlendFunction_OneMinusIncomingAlpha:
     return GL_ONE_MINUS_SRC_ALPHA;
-  case Machine_BlendFunction_Zero:
+  case Ring3_BlendFunction_Zero:
     return GL_ZERO;
-  case Machine_BlendFunction_One:
+  case Ring3_BlendFunction_One:
     return GL_ONE;
   default:
     Ring1_Status_set(Ring1_Status_InvalidArgument);
@@ -254,21 +254,21 @@ static GLenum Machine_BlendFunction_toGL(Machine_BlendFunction self) {
 }
 
 /// @EXTENSION
-static GLenum Machine_DepthTestFunction_toGL(Machine_DepthTestFunction self) {
+static GLenum Machine_DepthTestFunction_toGL(Ring3_DepthTestFunction self) {
   switch (self) {
-  case Machine_DepthTestFunction_LessThan:
+  case Ring3_DepthTestFunction_LessThan:
     return GL_LESS;
-  case Machine_DepthTestFunction_LessThanOrEqualTo:
+  case Ring3_DepthTestFunction_LessThanOrEqualTo:
     return GL_LEQUAL;
-  case Machine_DepthTestFunction_EqualTo:
+  case Ring3_DepthTestFunction_EqualTo:
     return GL_EQUAL;
-  case Machine_DepthTestFunction_GreaterThan:
+  case Ring3_DepthTestFunction_GreaterThan:
     return GL_GREATER;
-  case Machine_DepthTestFunction_GreaterThanOrEqualTo:
+  case Ring3_DepthTestFunction_GreaterThanOrEqualTo:
     return GL_GEQUAL;
-  case Machine_DepthTestFunction_Always:
+  case Ring3_DepthTestFunction_Always:
     return GL_ALWAYS;
-  case Machine_DepthTestFunction_Never:
+  case Ring3_DepthTestFunction_Never:
     return GL_NEVER;
   default:
     Ring1_Status_set(Ring1_Status_InvalidArgument);
@@ -309,8 +309,8 @@ static void write(Machine_Gl_VideoContext const* self) {
 static void Machine_Gl_VideoContext_constructClass(Machine_Gl_VideoContext_Class* self) {
   self->write = &write;
 
-  ((Machine_VideoContext_Class*)self)->setDepthTestFunction = (void (*)(Machine_VideoContext*, Machine_DepthTestFunction)) & setDepthTestFunction;
-  ((Machine_VideoContext_Class*)self)->getDepthTestFunction = (Machine_DepthTestFunction(*)(Machine_VideoContext const*)) & getDepthTestFunction;
+  ((Machine_VideoContext_Class*)self)->setDepthTestFunction = (void (*)(Machine_VideoContext*, Ring3_DepthTestFunction)) & setDepthTestFunction;
+  ((Machine_VideoContext_Class*)self)->getDepthTestFunction = (Ring3_DepthTestFunction(*)(Machine_VideoContext const*)) & getDepthTestFunction;
 
   ((Machine_VideoContext_Class*)self)->setDepthWriteEnabled = (void (*)(Machine_VideoContext*, Ring2_Boolean)) & setDepthWriteEnabled;
   ((Machine_VideoContext_Class*)self)->getDepthWriteEnabled = (Ring2_Boolean(*)(Machine_VideoContext const*)) & getDepthWriteEnabled;
@@ -322,11 +322,11 @@ static void Machine_Gl_VideoContext_constructClass(Machine_Gl_VideoContext_Class
   ((Machine_VideoContext_Class*)self)->setClipDistanceEnabled = (void (*)(Machine_VideoContext*, Ring2_Integer index, Ring2_Boolean)) & setClipDistanceEnabled;
   ((Machine_VideoContext_Class*)self)->getClipDistanceEnabled = (Ring2_Boolean(*)(Machine_VideoContext const*, Ring2_Integer index)) & getClipDistanceEnabled;
 
-  ((Machine_VideoContext_Class*)self)->setIncomingBlendFunction = (void (*)(Machine_VideoContext*, Machine_BlendFunction)) & setIncomingBlendFunction;
-  ((Machine_VideoContext_Class*)self)->getIncomingBlendFunction = (Machine_BlendFunction(*)(Machine_VideoContext const*)) & getIncomingBlendFunction;
+  ((Machine_VideoContext_Class*)self)->setIncomingBlendFunction = (void (*)(Machine_VideoContext*, Ring3_BlendFunction)) & setIncomingBlendFunction;
+  ((Machine_VideoContext_Class*)self)->getIncomingBlendFunction = (Ring3_BlendFunction(*)(Machine_VideoContext const*)) & getIncomingBlendFunction;
 
-  ((Machine_VideoContext_Class*)self)->setExistingBlendFunction = (void (*)(Machine_VideoContext*, Machine_BlendFunction)) & setExistingBlendFunction;
-  ((Machine_VideoContext_Class*)self)->getExistingBlendFunction = (Machine_BlendFunction(*)(Machine_VideoContext const*)) & getExistingBlendFunction;
+  ((Machine_VideoContext_Class*)self)->setExistingBlendFunction = (void (*)(Machine_VideoContext*, Ring3_BlendFunction)) & setExistingBlendFunction;
+  ((Machine_VideoContext_Class*)self)->getExistingBlendFunction = (Ring3_BlendFunction(*)(Machine_VideoContext const*)) & getExistingBlendFunction;
 
   ((Machine_VideoContext_Class*)self)->setClearColor = (void (*)(Machine_VideoContext*, Ring3_Math_Vector4 const*)) & setClearColor;
   ((Machine_VideoContext_Class*)self)->getClearColor = (Ring3_Math_Vector4 const* (*)(Machine_VideoContext const*)) & getClearColor;
@@ -364,10 +364,10 @@ void Machine_Gl_VideoContext_construct(Machine_Gl_VideoContext* self, size_t num
   self->clearColor[2] = 0.f;
   self->clearColor[3] = 0.f;
   self->clearDepth = 1.f;
-  self->depthTestFunction = Machine_DepthTestFunction_Always;
+  self->depthTestFunction = Ring3_DepthTestFunction_Always;
   self->depthWriteEnabled = false;
-  self->existingBlendFunction = Machine_BlendFunction_OneMinusIncomingAlpha;
-  self->incomingBlendFunction = Machine_BlendFunction_IncomingAlpha;
+  self->existingBlendFunction = Ring3_BlendFunction_OneMinusIncomingAlpha;
+  self->incomingBlendFunction = Ring3_BlendFunction_IncomingAlpha;
   {
     Ring2_Integer width, height;
     int w, h;

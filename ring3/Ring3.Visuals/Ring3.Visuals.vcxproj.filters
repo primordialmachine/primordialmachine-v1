@@ -30,9 +30,39 @@
     <ClInclude Include="Ring3\Visuals\_Include.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
+    <ClInclude Include="Ring3\Visuals\BlendFunction.h">
+      <Filter>Headerdateien\Ring3\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Visuals\CanvasSizeChangedEvent.h">
+      <Filter>Headerdateien\Ring3\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Visuals\DepthTestFunction.h">
+      <Filter>Headerdateien\Ring3\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Visuals\PixelFormat.h">
+      <Filter>Headerdateien\Ring3\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Visuals\VertexElementSemantics.h">
+      <Filter>Headerdateien\Ring3\Visuals</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring3\Visuals\_Include.c">
+      <Filter>Quelldateien\Ring3\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Visuals\BlendFunction.c">
+      <Filter>Quelldateien\Ring3\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Visuals\CanvasSizeChangedEvent.c">
+      <Filter>Quelldateien\Ring3\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Visuals\DepthTestFunction.c">
+      <Filter>Quelldateien\Ring3\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Visuals\PixelFormat.c">
+      <Filter>Quelldateien\Ring3\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Visuals\VertexElementSemantics.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
   </ItemGroup>

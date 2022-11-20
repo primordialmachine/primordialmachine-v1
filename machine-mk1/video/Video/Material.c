@@ -18,9 +18,9 @@ static void Machine_Material_visit(Machine_Material* self)
 
 void Machine_Material_construct(Machine_Material* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  self->existingBlendFunction = Machine_BlendFunction_OneMinusIncomingAlpha;
-  self->incomingBlendFunction = Machine_BlendFunction_IncomingAlpha;
-  self->depthTestFunction = Machine_DepthTestFunction_Always;
+  self->existingBlendFunction = Ring3_BlendFunction_OneMinusIncomingAlpha;
+  self->incomingBlendFunction = Ring3_BlendFunction_IncomingAlpha;
+  self->depthTestFunction = Ring3_DepthTestFunction_Always;
   self->depthWriteEnabled = false;
   Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Material_getType());
 }
@@ -43,29 +43,29 @@ void Machine_Material_assign(Machine_Material* self, Machine_Material const* oth
 }
 
 
-void Machine_Material_setExistingBlendFunction(Machine_Material* self, Machine_BlendFunction existingBlendFunction) {
+void Machine_Material_setExistingBlendFunction(Machine_Material* self, Ring3_BlendFunction existingBlendFunction) {
   self->existingBlendFunction = existingBlendFunction;
 }
 
-Machine_BlendFunction Machine_Material_getExistingBlendFunction(Machine_Material const* self) {
+Ring3_BlendFunction Machine_Material_getExistingBlendFunction(Machine_Material const* self) {
   return self->existingBlendFunction;
 }
 
 
-void Machine_Material_setIncomingBlendFunction(Machine_Material* self, Machine_BlendFunction incomingBlendFunction) {
+void Machine_Material_setIncomingBlendFunction(Machine_Material* self, Ring3_BlendFunction incomingBlendFunction) {
   self->incomingBlendFunction = incomingBlendFunction;
 }
 
-Machine_BlendFunction Machine_Material_getIncomingBlendFunction(Machine_Material const* self) {
+Ring3_BlendFunction Machine_Material_getIncomingBlendFunction(Machine_Material const* self) {
   return self->incomingBlendFunction;
 }
 
 
-void Machine_Material_setDepthTestFunction(Machine_Material* self, Machine_DepthTestFunction depthTestFunction) {
+void Machine_Material_setDepthTestFunction(Machine_Material* self, Ring3_DepthTestFunction depthTestFunction) {
   self->depthTestFunction = depthTestFunction;
 }
 
-Machine_DepthTestFunction Machine_Material_getDepthTestFunction(Machine_Material const* self) {
+Ring3_DepthTestFunction Machine_Material_getDepthTestFunction(Machine_Material const* self) {
   return self->depthTestFunction;
 }
 

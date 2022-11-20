@@ -55,7 +55,7 @@ static void Rectangle2Scene_onStartup(Rectangle2Scene* self) {
 }
 
 static void Rectangle2Scene_onCanvasSizeChanged(Rectangle2Scene* self,
-                                                Machine_CanvasSizeChangedEvent* event) {
+                                                Ring3_CanvasSizeChangedEvent* event) {
   Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
   // Set the 2D context's target size.
   Machine_Context2_setTargetSize(self->context2, event->width, event->height);
@@ -75,7 +75,7 @@ static void Rectangle2Scene_onCanvasSizeChanged(Rectangle2Scene* self,
 static void Rectangle2Scene_onUpdate(Rectangle2Scene* self, Ring2_Real32 width,
                                      Ring2_Real32 height) {
   Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
-  Rectangle2Scene_onCanvasSizeChanged(self, Machine_CanvasSizeChangedEvent_create(width, height));
+  Rectangle2Scene_onCanvasSizeChanged(self, Ring3_CanvasSizeChangedEvent_create(width, height));
   // Clear color buffer.
   Machine_VideoContext_clearColorBuffer(videoContext);
   // Render the rectangle.

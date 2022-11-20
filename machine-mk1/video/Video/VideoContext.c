@@ -30,23 +30,23 @@ Ring3_Math_Vector4 const* Machine_VideoContext_getClearColor(Machine_VideoContex
 }
 
 void Machine_VideoContext_setIncomingBlendFunction(Machine_VideoContext* self,
-                                                   Machine_BlendFunction incomingBlendFunction) {
+                                                   Ring3_BlendFunction incomingBlendFunction) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_VideoContext, setIncomingBlendFunction,
                                     incomingBlendFunction);
 }
 
-Machine_BlendFunction Machine_VideoContext_getIncomingBlendFunction(
+Ring3_BlendFunction Machine_VideoContext_getIncomingBlendFunction(
     Machine_VideoContext const* self) {
   MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_VideoContext, getIncomingBlendFunction);
 }
 
 void Machine_VideoContext_setExistingBlendFunction(Machine_VideoContext* self,
-                                                   Machine_BlendFunction existingBlendFunction) {
+                                                   Ring3_BlendFunction existingBlendFunction) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_VideoContext, setExistingBlendFunction,
                                     existingBlendFunction);
 }
 
-Machine_BlendFunction Machine_VideoContext_getExistingBlendFunction(
+Ring3_BlendFunction Machine_VideoContext_getExistingBlendFunction(
     Machine_VideoContext const* self) {
   MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_VideoContext, getExistingBlendFunction);
 }
@@ -61,11 +61,11 @@ Ring2_Boolean Machine_VideoContext_getDepthWriteEnabled(Machine_VideoContext con
 }
 
 void Machine_VideoContext_setDepthTestFunction(Machine_VideoContext* self,
-                                               Machine_DepthTestFunction depthTestFunction) {
+                                               Ring3_DepthTestFunction depthTestFunction) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_VideoContext, setDepthTestFunction, depthTestFunction);
 }
 
-Machine_DepthTestFunction Machine_VideoContext_getDepthTestFunction(
+Ring3_DepthTestFunction Machine_VideoContext_getDepthTestFunction(
     Machine_VideoContext const* self) {
   MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_VideoContext, getDepthTestFunction);
 }

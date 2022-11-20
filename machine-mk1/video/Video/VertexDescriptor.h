@@ -5,7 +5,7 @@
 #define MACHINE_VIDEO_VERTEXDESCRIPTOR_H_INCLUDED
 
 #include "Video/_header.i"
-#include "Video/VertexElementSemantics.h"
+#include "Video/External.h"
 
 MACHINE_DECLARE_CLASSTYPE(Machine_VertexDescriptor)
 

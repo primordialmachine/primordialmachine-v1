@@ -5,14 +5,14 @@
 #define MACHINE_VIDEO_IMAGESCONTEXT_H_INCLUDED
 
 #include "Video/_header.i"
-#include "Video/PixelFormat.h"
+#include "Video/External.h"
 
 MACHINE_DECLARE_CLASSTYPE(Machine_ImagesContext);
 
 struct Machine_ImagesContext_Class {
   Machine_Object_Class parent;
   Machine_Image* (*createFromPath)(Machine_ImagesContext* self, Ring2_String* path);
-  Machine_Image* (*createDirect)(Machine_ImagesContext* self, Machine_PixelFormat pixelFormat,
+  Machine_Image* (*createDirect)(Machine_ImagesContext* self, Ring3_PixelFormat pixelFormat,
                                  Ring2_Integer width, Ring2_Integer height,
                                  Ring2_ByteBuffer* pixels);
 };
@@ -40,7 +40,7 @@ Machine_Image* Machine_ImagesContext_createFromPath(Machine_ImagesContext* self,
 /// @param width, height The width and the height, both in pixels, of the image.
 /// @param pixels A pointer to an Byte buffer containing the Bytes of the pixels of the image.
 Machine_Image* Machine_ImagesContext_createDirect(Machine_ImagesContext* self,
-                                                  Machine_PixelFormat pixelFormat,
+                                                  Ring3_PixelFormat pixelFormat,
                                                   Ring2_Integer width, Ring2_Integer height,
                                                   Ring2_ByteBuffer* pixels);
 

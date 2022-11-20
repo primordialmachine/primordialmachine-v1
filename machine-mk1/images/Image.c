@@ -19,7 +19,7 @@ struct Machine_Images_Image {
 
   int width;
   int height;
-  Machine_PixelFormat pixelFormat;
+  Ring3_PixelFormat pixelFormat;
   void* pixels;
 };
 
@@ -29,7 +29,7 @@ static void getSize(Machine_Images_Image const* self, Ring2_Integer* width,
   *height = self->height;
 }
 
-static Machine_PixelFormat getPixelFormat(Machine_Images_Image const* self) {
+static Ring3_PixelFormat getPixelFormat(Machine_Images_Image const* self) {
   return self->pixelFormat;
 }
 
@@ -58,7 +58,7 @@ void Machine_Images_Image_construct(Machine_Images_Image* self, size_t numberOfA
                                                                                        arguments,
                                                                                        3,
                                                                                        Ring2_ByteBuffer_getType());
-    Machine_Images_Image_constructDirect(self, (Machine_PixelFormat)pixelFormat, width, height,
+    Machine_Images_Image_constructDirect(self, (Ring3_PixelFormat)pixelFormat, width, height,
                                          pixels);
   } else {
     Ring1_Status_set(Ring1_Status_InvalidNumberOfArguments);
@@ -68,7 +68,7 @@ void Machine_Images_Image_construct(Machine_Images_Image* self, size_t numberOfA
 
 static void constructClass(Machine_Images_Image_Class* self) {
   ((Machine_Image_Class*)self)->getPixelFormat
-      = (Machine_PixelFormat(*)(Machine_Image const*)) & getPixelFormat;
+      = (Ring3_PixelFormat(*)(Machine_Image const*)) & getPixelFormat;
   ((Machine_Image_Class*)self)->getPixels = (void const* (*)(Machine_Image const*)) & getPixels;
   ((Machine_Image_Class*)self)->getSize
       = (void (*)(Machine_Image const*, Ring2_Integer*, Ring2_Integer*)) & getSize;
@@ -203,10 +203,10 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
   self->height = height;
   switch (color_type) {
     case PNG_COLOR_TYPE_RGBA:
-      self->pixelFormat = Machine_PixelFormat_RGBA;
+      self->pixelFormat = Ring3_PixelFormat_RGBA;
       break;
     case PNG_COLOR_TYPE_RGB:
-      self->pixelFormat = Machine_PixelFormat_RGB;
+      self->pixelFormat = Ring3_PixelFormat_RGB;
       break;
     default:
       Ring1_Memory_deallocate(pixels);
@@ -227,7 +227,7 @@ void Machine_Images_Image_constructFromPath(Machine_Images_Image* self, Ring2_St
 }
 
 void Machine_Images_Image_constructDirect(Machine_Images_Image* self,
-                                          Machine_PixelFormat pixelFormat, Ring2_Integer width,
+                                          Ring3_PixelFormat pixelFormat, Ring2_Integer width,
                                           Ring2_Integer height, Ring2_ByteBuffer* pixels) {
   // (1) Supertype constructor.
   static const size_t NUMBER_OF_ARGUMENTS = 0;
@@ -240,11 +240,11 @@ void Machine_Images_Image_constructDirect(Machine_Images_Image* self,
   self->pixelFormat = pixelFormat;
   self->pixels = NULL;
   if (Ring1_Memory_allocateArray(&self->pixels, width * height,
-                                 Machine_PixelFormat_getBytesPerPixel(pixelFormat))) {
+                                 Ring3_PixelFormat_getBytesPerPixel(pixelFormat))) {
     Ring2_jump();
   }
   Ring1_Memory_copyFast(self->pixels, Ring2_ByteBuffer_getBytes(pixels),
-                        width * height * Machine_PixelFormat_getBytesPerPixel(pixelFormat));
+                        width * height * Ring3_PixelFormat_getBytesPerPixel(pixelFormat));
 
   // (4) Set class type.
   Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Images_Image_getType());
@@ -260,7 +260,7 @@ Machine_Images_Image* Machine_Images_Image_createImageFromPath(Ring2_String* pat
   return self;
 }
 
-Machine_Images_Image* Machine_Images_Image_createImageDirect(Machine_PixelFormat pixelFormat,
+Machine_Images_Image* Machine_Images_Image_createImageDirect(Ring3_PixelFormat pixelFormat,
                                                              Ring2_Integer width,
                                                              Ring2_Integer height,
                                                              Ring2_ByteBuffer* pixels) {

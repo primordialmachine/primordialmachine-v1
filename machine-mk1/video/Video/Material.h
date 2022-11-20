@@ -5,8 +5,7 @@
 #define MACHINE_VIDEO_MATERIAL_H_INCLUDED
 
 #include "Video/_header.i"
-#include "Video/BlendFunction.h"
-#include "Video/DepthTestFunction.h"
+#include "Video/External.h"
 
 MACHINE_DECLARE_CLASSTYPE(Machine_Material)
 
@@ -17,11 +16,11 @@ struct Machine_Material_Class {
 struct Machine_Material {
   Machine_Object parent;
 
-  Machine_BlendFunction existingBlendFunction;
-  Machine_BlendFunction incomingBlendFunction;
+  Ring3_BlendFunction existingBlendFunction;
+  Ring3_BlendFunction incomingBlendFunction;
 
   Ring2_Boolean depthWriteEnabled;
-  Machine_DepthTestFunction depthTestFunction;
+  Ring3_DepthTestFunction depthTestFunction;
 };
 
 void Machine_Material_construct(Machine_Material* self, size_t numberOfArguments,
@@ -35,34 +34,34 @@ void Machine_Material_assign(Machine_Material* self, Machine_Material const* oth
 /// @param self This material.
 /// @param existingBlendFunction The blend function for the existing color.
 void Machine_Material_setExistingBlendFunction(Machine_Material* self,
-                                               Machine_BlendFunction existingBlendFunction);
+                                               Ring3_BlendFunction existingBlendFunction);
 
 /// @brief Get the blend function for the existing color.
 /// @param self This material.
 /// @return The blend function for the existing color.
-Machine_BlendFunction Machine_Material_getExistingBlendFunction(Machine_Material const* self);
+Ring3_BlendFunction Machine_Material_getExistingBlendFunction(Machine_Material const* self);
 
 /// @brief Set the blend function for the incoming color.
 /// @param self This material.
 /// @param incomingBlendFunction The blend function for the incoming color.
 void Machine_Material_setIncomingBlendFunction(Machine_Material* self,
-                                               Machine_BlendFunction incomingBlendFunction);
+                                               Ring3_BlendFunction incomingBlendFunction);
 
 /// @brief Get the blend function for the incoming color.
 /// @param self This material.
 /// @return The blend function for the incoming color.
-Machine_BlendFunction Machine_Material_getIncomingBlendFunction(Machine_Material const* self);
+Ring3_BlendFunction Machine_Material_getIncomingBlendFunction(Machine_Material const* self);
 
 /// @brief Set the depth test function.
 /// @param self This material.
 /// @param depthTestFunction The depth test function.
 void Machine_Material_setDepthTestFunction(Machine_Material* self,
-                                           Machine_DepthTestFunction depthTestFunction);
+                                           Ring3_DepthTestFunction depthTestFunction);
 
 /// @brief Get the depth test function.
 /// @param self This material.
 /// @return The depth test function.
-Machine_DepthTestFunction Machine_Material_getDepthTestFunction(Machine_Material const* self);
+Ring3_DepthTestFunction Machine_Material_getDepthTestFunction(Machine_Material const* self);
 
 /// @brief Set if depth write is enabled/disabled.
 /// @param self This material.

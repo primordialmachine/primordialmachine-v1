@@ -30,9 +30,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ring3\Visuals\BlendFunction.h" />
+    <ClInclude Include="Ring3\Visuals\CanvasSizeChangedEvent.h" />
+    <ClInclude Include="Ring3\Visuals\DepthTestFunction.h" />
+    <ClInclude Include="Ring3\Visuals\PixelFormat.h" />
+    <ClInclude Include="Ring3\Visuals\VertexElementSemantics.h" />
     <ClInclude Include="Ring3\Visuals\_Include.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Ring3\Visuals\BlendFunction.c" />
+    <ClCompile Include="Ring3\Visuals\CanvasSizeChangedEvent.c" />
+    <ClCompile Include="Ring3\Visuals\DepthTestFunction.c" />
+    <ClCompile Include="Ring3\Visuals\PixelFormat.c" />
+    <ClCompile Include="Ring3\Visuals\VertexElementSemantics.c" />
     <ClCompile Include="Ring3\Visuals\_Include.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

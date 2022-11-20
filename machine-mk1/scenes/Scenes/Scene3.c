@@ -128,7 +128,7 @@ static void Scene3_startup(Scene3* self) {
   Machine_VideoContext_setClearColor(videoContext, c);
 }
 
-static void Scene3_onCanvasSizeChanged(Scene3* self, Machine_CanvasSizeChangedEvent* event) {
+static void Scene3_onCanvasSizeChanged(Scene3* self, Ring3_CanvasSizeChangedEvent* event) {
 }
 
 static void Scene3_update(Scene3* self, Ring2_Real32 width, Ring2_Real32 height) {

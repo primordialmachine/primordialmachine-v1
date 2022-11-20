@@ -56,7 +56,7 @@ Machine_Gui_Context* Machine_Gui_Context_create(Machine_Gdl_Context* gdlContext,
 }
 
 void Machine_Gui_Context_onCanvasSizechanged(Machine_Gui_Context* self,
-                                             Machine_CanvasSizeChangedEvent* event) {
+                                             Ring3_CanvasSizeChangedEvent* event) {
   Machine_Context2_setTargetSize(self->context2, event->width, event->height);
 }
 

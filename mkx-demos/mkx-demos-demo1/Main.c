@@ -55,7 +55,7 @@ static void run(Scene* self) {
     Ring2_Integer newWidth, newHeight;
     Machine_Video_Canvas_getFrameBuffersSize(Machine_getVideoCanvas(), &newWidth, &newHeight);
     if (oldWidth != newWidth || oldHeight != newHeight) {
-      Scene_onCanvasSizeChanged(self, Machine_CanvasSizeChangedEvent_create(
+      Scene_onCanvasSizeChanged(self, Ring3_CanvasSizeChangedEvent_create(
                                           (Ring2_Real32)newWidth, (Ring2_Real32)newHeight));
       oldWidth = newWidth;
       oldHeight = newHeight;
@@ -122,7 +122,7 @@ void main0() {
 
       Ring2_Integer width, height;
       Machine_Video_Canvas_getFrameBuffersSize(Machine_getVideoCanvas(), &width, &height);
-      Scene_onCanvasSizeChanged(g_scene, Machine_CanvasSizeChangedEvent_create(
+      Scene_onCanvasSizeChanged(g_scene, Ring3_CanvasSizeChangedEvent_create(
                                              (Ring2_Real32)width, (Ring2_Real32)height));
 
       run(g_scene);

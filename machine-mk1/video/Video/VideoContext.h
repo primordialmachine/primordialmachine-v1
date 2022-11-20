@@ -6,9 +6,8 @@
 
 #include "Video/_header.i"
 #include "Video/Binding.h"
-#include "Video/BlendFunction.h"
 #include "Video/Buffer.h"
-#include "Video/DepthTestFunction.h"
+#include "Video/External.h"
 #include "Video/Image.h"
 #include "Video/ShaderProgram.h"
 #include "Video/Texture.h"
@@ -26,23 +25,23 @@ struct Machine_VideoContext_Class {
   Ring3_Math_Vector4 const* (*getClearColor)(Machine_VideoContext const* self);
 
   void (*setIncomingBlendFunction)(Machine_VideoContext* self,
-                                   Machine_BlendFunction incomingBlendFunction);
+                                   Ring3_BlendFunction incomingBlendFunction);
 
-  Machine_BlendFunction (*getIncomingBlendFunction)(Machine_VideoContext const* self);
+  Ring3_BlendFunction (*getIncomingBlendFunction)(Machine_VideoContext const* self);
 
   void (*setExistingBlendFunction)(Machine_VideoContext* self,
-                                   Machine_BlendFunction existingBlendFunction);
+                                   Ring3_BlendFunction existingBlendFunction);
 
-  Machine_BlendFunction (*getExistingBlendFunction)(Machine_VideoContext const* self);
+  Ring3_BlendFunction (*getExistingBlendFunction)(Machine_VideoContext const* self);
 
   void (*setDepthWriteEnabled)(Machine_VideoContext* self, Ring2_Boolean depthWriteEnabled);
 
   Ring2_Boolean (*getDepthWriteEnabled)(Machine_VideoContext const* self);
 
   void (*setDepthTestFunction)(Machine_VideoContext* self,
-                               Machine_DepthTestFunction depthTestFunction);
+                               Ring3_DepthTestFunction depthTestFunction);
 
-  Machine_DepthTestFunction (*getDepthTestFunction)(Machine_VideoContext const* self);
+  Ring3_DepthTestFunction (*getDepthTestFunction)(Machine_VideoContext const* self);
 
   void (*setClearDepth)(Machine_VideoContext* self, Ring2_Real32 clearDepth);
 
@@ -121,26 +120,26 @@ Ring3_Math_Vector4 const* Machine_VideoContext_getClearColor(Machine_VideoContex
 /// @param self This video context.
 /// @param incomingBlendFunction The blend function for the incoming color.
 void Machine_VideoContext_setIncomingBlendFunction(Machine_VideoContext* self,
-                                                   Machine_BlendFunction incomingBlendFunction);
+                                                   Ring3_BlendFunction incomingBlendFunction);
 
 /// @brief Get the blend function for the incoming color.
 /// @param self This video context.
 /// @return The blend function for the incoming color.
 /// @default Default is <code>incoming alpha</code>.
-Machine_BlendFunction Machine_VideoContext_getIncomingBlendFunction(
+Ring3_BlendFunction Machine_VideoContext_getIncomingBlendFunction(
     Machine_VideoContext const* self);
 
 /// @brief Set the blend function for the existing color.
 /// @param self This video context.
 /// @param existingBlendFunction The blend function for the existing color.
 void Machine_VideoContext_setExistingBlendFunction(Machine_VideoContext* self,
-                                                   Machine_BlendFunction existingBlendFunction);
+                                                   Ring3_BlendFunction existingBlendFunction);
 
 /// @brief Get the blend function for the existing color.
 /// @param self This video context.
 /// @return The blend function for the existing color.
 /// @default Default is <code>one minus incoming alpha</code>.
-Machine_BlendFunction Machine_VideoContext_getExistingBlendFunction(
+Ring3_BlendFunction Machine_VideoContext_getExistingBlendFunction(
     Machine_VideoContext const* self);
 
 /// @brief Set if depth write is enabled/disabled.
@@ -159,13 +158,13 @@ Ring2_Boolean Machine_VideoContext_getDepthWriteEnabled(Machine_VideoContext con
 /// @param self This video context.
 /// @param depthTestFunction The depth test function.
 void Machine_VideoContext_setDepthTestFunction(Machine_VideoContext* self,
-                                               Machine_DepthTestFunction depthTestFunction);
+                                               Ring3_DepthTestFunction depthTestFunction);
 
 /// @brief Get the depth test function.
 /// @param self This video context.
 /// @return The depth test function.
 /// @default The default depth test function is <code>always/</code>.
-Machine_DepthTestFunction Machine_VideoContext_getDepthTestFunction(
+Ring3_DepthTestFunction Machine_VideoContext_getDepthTestFunction(
     Machine_VideoContext const* self);
 
 /// @brief Set the clear depth.

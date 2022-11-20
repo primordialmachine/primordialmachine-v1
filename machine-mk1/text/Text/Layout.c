@@ -336,10 +336,10 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* con
   Machine_Binding_bindMatrix4(binding, Ring2_String_create("modelToWorldMatrix", crt_strlen("modelToWorldMatrix") + 1), modelSpaceToWorldSpace);
   Machine_Binding_bindMatrix4(binding, Ring2_String_create("modelToProjectionMatrix", crt_strlen("modelToProjectionMatrix") + 1), modelSpaceToProjectiveSpace);
 
-  Machine_VideoContext_setDepthTestFunction(context2->videoContext, Machine_DepthTestFunction_Always);
+  Machine_VideoContext_setDepthTestFunction(context2->videoContext, Ring3_DepthTestFunction_Always);
   Machine_VideoContext_setDepthWriteEnabled(context2->videoContext, false);
-  Machine_VideoContext_setIncomingBlendFunction(context2->videoContext, Machine_BlendFunction_IncomingAlpha);
-  Machine_VideoContext_setExistingBlendFunction(context2->videoContext, Machine_BlendFunction_OneMinusIncomingAlpha);
+  Machine_VideoContext_setIncomingBlendFunction(context2->videoContext, Ring3_BlendFunction_IncomingAlpha);
+  Machine_VideoContext_setExistingBlendFunction(context2->videoContext, Ring3_BlendFunction_OneMinusIncomingAlpha);
 
   float cursorPosition[] = { position0[0], position0[1] };
 

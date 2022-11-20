@@ -6,7 +6,7 @@
 
 MACHINE_DECLARE_CLASSTYPE(Scene)
 
-typedef void Scene_OnCanvaSizeChangedCallback(Scene* self, Machine_CanvasSizeChangedEvent* event);
+typedef void Scene_OnCanvaSizeChangedCallback(Scene* self, Ring3_CanvasSizeChangedEvent* event);
 
 typedef void Scene_OnStartupCallback(Scene* self);
 
@@ -55,7 +55,7 @@ void Scene_onStartup(Scene* self);
 /// @brief Invoked if the canvas size changed event was received.
 /// @param self This scene.
 /// @param event The event.
-void Scene_onCanvasSizeChanged(Scene* self, Machine_CanvasSizeChangedEvent* event);
+void Scene_onCanvasSizeChanged(Scene* self, Ring3_CanvasSizeChangedEvent* event);
 
 /// @brief Invoked if a mouse pointer event was received.
 /// @param self This scene.

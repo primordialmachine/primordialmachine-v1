@@ -98,7 +98,7 @@ static void renderText1(Scene5* self) {
   Machine_Gui_Widget_render((Machine_Gui_Widget*)self->mainMenu, context);
 }
 
-static void updateText1(Scene5* self, Machine_CanvasSizeChangedEvent* event) {
+static void updateText1(Scene5* self, Ring3_CanvasSizeChangedEvent* event) {
   Ring3_Math_Vector2* v = Ring3_Math_Vector2_create();
   Ring3_Math_Vector2_set(v, event->width, event->height);
   Machine_Gui_Context_setRootGroup(self->guiContext, self->mainMenu);
@@ -121,7 +121,7 @@ Ring2_Real32 Machine_Real_maxima(Ring2_Real32 x, Ring2_Real32 y) {
   return x > y ? x : y;
 }
 
-static void updateHeader(Scene5* self, Machine_CanvasSizeChangedEvent* event) {
+static void updateHeader(Scene5* self, Ring3_CanvasSizeChangedEvent* event) {
   static Ring2_Real32 const MARGIN_X = 5.f, MARGIN_Y = 5.f;
 
   Ring3_Math_Vector2* MARGIN = Ring3_Math_Vector2_create();
@@ -152,7 +152,7 @@ static void renderFooter(Scene5* self) {
   Machine_Gui_Widget_render((Machine_Gui_Widget*)self->footer, tmp);
 }
 
-static void updateFooter(Scene5* self, Machine_CanvasSizeChangedEvent* event) {
+static void updateFooter(Scene5* self, Ring3_CanvasSizeChangedEvent* event) {
   static Ring2_Real32 const MARGIN_X = 5.f, MARGIN_Y = 5.f;
 
   Ring3_Math_Vector2* MARGIN = Ring3_Math_Vector2_create();
@@ -176,7 +176,7 @@ static void updateFooter(Scene5* self, Machine_CanvasSizeChangedEvent* event) {
   Machine_Gui_Widget_setPosition((Machine_Gui_Widget*)self->footer, temporary);
 }
 
-static void Scene5_onCanvasSizeChanged(Scene5* self, Machine_CanvasSizeChangedEvent* event) {
+static void Scene5_onCanvasSizeChanged(Scene5* self, Ring3_CanvasSizeChangedEvent* event) {
   Machine_Gui_Context_onCanvasSizechanged(self->guiContext, event);
   updateText1(self, event);
   updateHeader(self, event);

@@ -6,17 +6,14 @@
 
 #define MACHINE_VIDEO_PRIVATE (1)
 #include "Video/Binding.h"
-#include "Video/BlendFunction.h"
 #include "Video/Buffer.h"
 #include "Video/Canvas.h"
-#include "Video/CanvasSizeChangedEvent.h"
-#include "Video/DepthTestFunction.h"
+#include "Video/External.h"
 #include "Video/Font.h"
 #include "Video/FontsContext.h"
 #include "Video/Image.h"
 #include "Video/ImagesContext.h"
 #include "Video/Material.h"
-#include "Video/PixelFormat.h"
 #include "Video/ProgramInput.h"
 #include "Video/ProgramInputKind.h"
 #include "Video/ProgramInputType.h"
@@ -24,7 +21,6 @@
 #include "Video/ShaderProgram.h"
 #include "Video/Texture.h"
 #include "Video/VertexDescriptor.h"
-#include "Video/VertexElementSemantics.h"
 #include "Video/VideoContext.h"
 #undef MACHINE_VIDEO_PRIVATE
 
