@@ -6,6 +6,8 @@
 #define RING3_AUDIALS__INCLUDE_H_INCLUDED
 
 #define RING3_AUDIALS_PRIVATE (1)
+#include "Ring3/Audials/PcmBuffer.h"
+#include "Ring3/Audials/PcmDescriptor.h"
 #undef RING3_AUDIALS_PRIVATE
 
 #endif // RING3_AUDIALS__INCLUDE_H_INCLUDED

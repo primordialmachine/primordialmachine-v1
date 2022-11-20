@@ -14,38 +14,27 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="Headerdateien\Ring3">
-      <UniqueIdentifier>{f03bc2c9-fe08-44b2-8871-576798b83133}</UniqueIdentifier>
+      <UniqueIdentifier>{4ca7c94f-9f55-46be-837f-2bf9c49aac02}</UniqueIdentifier>
     </Filter>
     <Filter Include="Quelldateien\Ring3">
-      <UniqueIdentifier>{a2c84bdd-d3e9-4327-8224-0ab37010a346}</UniqueIdentifier>
+      <UniqueIdentifier>{93de0c0e-9800-4739-a824-5652b589c819}</UniqueIdentifier>
     </Filter>
     <Filter Include="Quelldateien\Ring3\Audials">
-      <UniqueIdentifier>{faede18f-cc51-41de-bf6e-069bb2401551}</UniqueIdentifier>
+      <UniqueIdentifier>{308dd482-0dcb-407a-9849-52e67d1c6cd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring3\Audials\Demo">
+      <UniqueIdentifier>{c06dea88-b55e-450a-9cc3-e5d8f415e8a1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Headerdateien\Ring3\Audials">
-      <UniqueIdentifier>{638052dd-d0cd-4647-b629-6cf151d9462d}</UniqueIdentifier>
+      <UniqueIdentifier>{6b030912-0cd7-4990-b02e-8a974c7582c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring3\Audials\Demo">
+      <UniqueIdentifier>{bb498786-fee1-49f1-bf0a-090d701e070f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ring3\Audials\_Include.h">
-      <Filter>Headerdateien\Ring3\Audials</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring3\Audials\PcmDescriptor.h">
-      <Filter>Headerdateien\Ring3\Audials</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring3\Audials\PcmBuffer.h">
-      <Filter>Headerdateien\Ring3\Audials</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Ring3\Audials\_Include.c">
-      <Filter>Quelldateien\Ring3\Audials</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring3\Audials\PcmDescriptor.c">
-      <Filter>Quelldateien\Ring3\Audials</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring3\Audials\PcmBuffer.c">
-      <Filter>Quelldateien\Ring3\Audials</Filter>
+    <ClCompile Include="Ring3\Audials\Demo\Main.c">
+      <Filter>Quelldateien\Ring3\Audials\Demo</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
