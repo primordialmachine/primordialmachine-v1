@@ -103,5 +103,8 @@
     <None Include="Ring3\Gdl\Syntactical\Parser-inlay.i">
       <Filter>Quelldateien\Ring3\Gdl\Syntactical</Filter>
     </None>
+    <None Include="Ring3\Gdl\header.h.i">
+      <Filter>Headerdateien\Ring3\Gdl</Filter>
+    </None>
   </ItemGroup>
 </Project>
