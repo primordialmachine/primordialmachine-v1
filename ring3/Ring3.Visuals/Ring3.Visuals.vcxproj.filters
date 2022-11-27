@@ -45,6 +45,18 @@
     <ClInclude Include="Ring3\Visuals\VertexElementSemantics.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
+    <ClInclude Include="Ring3\Visuals\MaterialBuilder.h">
+      <Filter>Headerdateien\Ring3\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Visuals\DefaultMaterialBuilder.h">
+      <Filter>Headerdateien\Ring3\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Visuals\Material.h">
+      <Filter>Headerdateien\Ring3\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Visuals\Material.protected.h">
+      <Filter>Headerdateien\Ring3\Visuals</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring3\Visuals\_Include.c">
@@ -63,6 +75,18 @@
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
     <ClCompile Include="Ring3\Visuals\VertexElementSemantics.c">
+      <Filter>Quelldateien\Ring3\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Visuals\MaterialBuilder.c">
+      <Filter>Quelldateien\Ring3\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Visuals\DefaultMaterialBuilder.c">
+      <Filter>Quelldateien\Ring3\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Visuals\Material.c">
+      <Filter>Quelldateien\Ring3\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Visuals\Material.protected.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
   </ItemGroup>

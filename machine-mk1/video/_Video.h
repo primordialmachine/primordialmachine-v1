@@ -13,7 +13,6 @@
 #include "Video/FontsContext.h"
 #include "Video/Image.h"
 #include "Video/ImagesContext.h"
-#include "Video/Material.h"
 #include "Video/ProgramInput.h"
 #include "Video/ProgramInputKind.h"
 #include "Video/ProgramInputType.h"

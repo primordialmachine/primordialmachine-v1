@@ -27,9 +27,6 @@
     <ClCompile Include="Video\ProgramKind.c">
       <Filter>Quelldateien\Video</Filter>
     </ClCompile>
-    <ClCompile Include="Video\Material.c">
-      <Filter>Quelldateien\Video</Filter>
-    </ClCompile>
     <ClCompile Include="Video\Buffer.c">
       <Filter>Quelldateien\Video</Filter>
     </ClCompile>
@@ -81,9 +78,6 @@
       <Filter>Headerdateien\Video</Filter>
     </ClInclude>
     <ClInclude Include="Video\ProgramKind.h">
-      <Filter>Headerdateien\Video</Filter>
-    </ClInclude>
-    <ClInclude Include="Video\Material.h">
       <Filter>Headerdateien\Video</Filter>
     </ClInclude>
     <ClInclude Include="Video\Texture.h">

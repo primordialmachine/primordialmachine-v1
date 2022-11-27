@@ -146,7 +146,6 @@
     <ClCompile Include="Video\FontsContext.c" />
     <ClCompile Include="Video\Image.c" />
     <ClCompile Include="Video\ImagesContext.c" />
-    <ClCompile Include="Video\Material.c" />
     <ClCompile Include="Video\ProgramInput.c" />
     <ClCompile Include="Video\ProgramInputKind.c" />
     <ClCompile Include="Video\ProgramInputType.c" />
@@ -166,7 +165,6 @@
     <ClInclude Include="Video\FontsContext.h" />
     <ClInclude Include="Video\Image.h" />
     <ClInclude Include="Video\ImagesContext.h" />
-    <ClInclude Include="Video\Material.h" />
     <ClInclude Include="Video\ProgramInput.h" />
     <ClInclude Include="Video\ProgramInputKind.h" />
     <ClInclude Include="Video\ProgramInputType.h" />
