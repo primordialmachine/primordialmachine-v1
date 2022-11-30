@@ -31,11 +31,11 @@ Ring1_Module_Declare(Ring1, PointerHashMap)
 /// @brief A hash map of pointers.
 /// @remark Implemented using the PIMPL idiom.
 /// Supports null pointers.
-typedef struct Mkx_PointerHashMap { void *pimpl; } Mkx_PointerHashMap;
+typedef struct Ring1_PointerHashMap { void *pimpl; } Ring1_PointerHashMap;
 
 /// @brief A forward iterator for a hash map of pointers.
 /// @remark Implemented using the PIMPL idiom.
-typedef struct Mkx_PointerHashMap_Iterator { void* pimpl; } Mkx_PointerHashMap_Iterator;
+typedef struct Ring1_PointerHashMap_Iterator { void* pimpl; } Ring1_PointerHashMap_Iterator;
 
 /// @brief The type of a callback function invoked during the "REMOVE IF" operation on a map.
 /// This callback is invoked for each key/value pair in the map exactly once with the specified opaque context pointer as its 1st argument and the key and the value as the 2nd and 3rd arguments.
@@ -44,7 +44,7 @@ typedef struct Mkx_PointerHashMap_Iterator { void* pimpl; } Mkx_PointerHashMap_I
 /// @param value The value.
 /// @return @a true if the key/value pair shall be removed, @a false otherwise.
 /// @remark The function must not mutate the list.
-typedef int (Mkx_PointerHashMap_RemoveIfCallback)(bool *result, void* context, void *key, void *value);
+typedef int (Ring1_PointerHashMap_RemoveIfCallback)(bool *result, void* context, void *key, void *value);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -61,9 +61,9 @@ typedef int (Mkx_PointerHashMap_RemoveIfCallback)(bool *result, void* context, v
 /// @param valueRemoved A pointer to a value removed callback function or a null pointer.
 /// @return #Ring1_Result_Success on success. #Ring1_Result_Failure on failure.
 Ring1_CheckReturn() Ring1_Result
-Mkx_PointerHashMap_initialize
+Ring1_PointerHashMap_initialize
   (
-    Mkx_PointerHashMap *hashMap,
+    Ring1_PointerHashMap *hashMap,
     int64_t initialCapacity,
     Ring1_AddedCallback *keyAdded,
     Ring1_RemovedCallback *keyRemoved,
@@ -76,93 +76,93 @@ Mkx_PointerHashMap_initialize
 /// @brief Uninitialize a pointer hash map.
 /// @param hashMap A pointer to an initialized pointer hash map.
 void
-Mkx_PointerHashMap_uninitialize
+Ring1_PointerHashMap_uninitialize
   (
-    Mkx_PointerHashMap *hashMap
+    Ring1_PointerHashMap *hashMap
   );
 
 // https://primordialmachine.com/api/ring1-library/collections-library/ring1_pointerhashmap_getsize
 Ring1_CheckReturn() Ring1_Result
-Mkx_PointerHashMap_getSize
+Ring1_PointerHashMap_getSize
   (
     int64_t *result,
-    Mkx_PointerHashMap *hashMap
+    Ring1_PointerHashMap *hashMap
   );
 
 // https://primordialmachine.com/api/ring1-library/collections-library/ring1_pointerhashmap_getcapacity
 Ring1_CheckReturn() Ring1_Result
-Mkx_PointerHashMap_getCapacity
+Ring1_PointerHashMap_getCapacity
   (
     int64_t *result,
-    Mkx_PointerHashMap *hashMap
+    Ring1_PointerHashMap *hashMap
   );
 
 // https://primordialmachine.com/api/ring1-library/collections-library/ring1_pointerhashmap_getfreecapacity
 Ring1_CheckReturn() Ring1_Result
-Mkx_PointerHashMap_getFreeCapacity
+Ring1_PointerHashMap_getFreeCapacity
   (
     int64_t *result,
-    Mkx_PointerHashMap* hashMap
+    Ring1_PointerHashMap* hashMap
   );
 
 // https://primordialmachine.com/api/ring1-library/collections-library/Ring1_PointerHashMap_clear
 void
-Mkx_PointerHashMap_clear
+Ring1_PointerHashMap_clear
   (
-    Mkx_PointerHashMap *hashMap
+    Ring1_PointerHashMap *hashMap
   );
 
 // https://primordialmachine.com/api/ring1-library/collections-library/Ring1_PointerHashMap_add
 Ring1_CheckReturn() Ring1_Result
-Mkx_PointerHashMap_add
+Ring1_PointerHashMap_add
   (
-    Mkx_PointerHashMap* hashMap,
+    Ring1_PointerHashMap* hashMap,
     void *key,
     void *value
   );
 
 // https://primordialmachine.com/api/ring1-library/collections-library/Ring1_PointerHashMap_set
 Ring1_CheckReturn() Ring1_Result
-Mkx_PointerHashMap_set
+Ring1_PointerHashMap_set
   (
-    Mkx_PointerHashMap* hashMap,
+    Ring1_PointerHashMap* hashMap,
     void* key,
     void* value
   );
 
 // https://primordialmachine.com/api/ring1-library/collections-library/Ring1_PointerHashMap_get
 Ring1_CheckReturn() Ring1_Result
-Mkx_PointerHashMap_get
+Ring1_PointerHashMap_get
   (
-    Mkx_PointerHashMap *hashMap,
+    Ring1_PointerHashMap *hashMap,
     void *key,
     void **value
   );
 
 // https://primordialmachine.com/api/ring1-library/collections-library/Ring1_PointerHashMap_removeIf
 Ring1_CheckReturn() Ring1_Result
-Mkx_PointerHashMap_removeIf
+Ring1_PointerHashMap_removeIf
   (
-    Mkx_PointerHashMap* pointerHashMap,
+    Ring1_PointerHashMap* pointerHashMap,
     void *context,
-    Mkx_PointerHashMap_RemoveIfCallback* removeIf
+    Ring1_PointerHashMap_RemoveIfCallback* removeIf
   );
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 // https://primordialmachine.com/api/ring1-library/pointerhashmap-library/ring1_pointerhashmap_iterator_initialize
 Ring1_CheckReturn() Ring1_Result
-Mkx_PointerHashMap_Iterator_initialize
+Ring1_PointerHashMap_Iterator_initialize
   (
-    Mkx_PointerHashMap_Iterator* iterator,
-    Mkx_PointerHashMap *target
+    Ring1_PointerHashMap_Iterator* iterator,
+    Ring1_PointerHashMap *target
   );
 
 // https://primordialmachine.com/api/ring1-library/pointerhashmap-library/ring1_pointerhashmap_iterator_uninitialize
 void
-Mkx_PointerHashMap_Iterator_uninitialize
+Ring1_PointerHashMap_Iterator_uninitialize
   (
-    Mkx_PointerHashMap_Iterator *iterator
+    Ring1_PointerHashMap_Iterator *iterator
   );
 
 /// @brief Get if an iterator has a value i.e. has not reached the end of its iteration.
@@ -170,19 +170,19 @@ Mkx_PointerHashMap_Iterator_uninitialize
 /// @return @a true if the iterator has a value, @a false otherwise
 /// @undefined @a iterator does not point to an iterator
 Ring1_CheckReturn() Ring1_Result
-Mkx_PointerHashMap_Iterator_hasValue
+Ring1_PointerHashMap_Iterator_hasValue
   (
     bool *result,
-    Mkx_PointerHashMap_Iterator* iterator
+    Ring1_PointerHashMap_Iterator* iterator
   );
 
 /// @return #Ring1_Result_Success on success. #Ring1_Result_Failure on failure.
 /// @error #Ring1_Status_InvalidOperation the iterator reached the end of its iteration
 /// @error #Ring1_Status_InvalidArgument @a iterator, @a key, or @a value is a null pointer.
 Ring1_CheckReturn() Ring1_Result
-Mkx_PointerHashMap_Iterator_getValue
+Ring1_PointerHashMap_Iterator_getValue
   (
-    Mkx_PointerHashMap_Iterator *iterator,
+    Ring1_PointerHashMap_Iterator *iterator,
     void **key,
     void **value
   );
@@ -191,9 +191,9 @@ Mkx_PointerHashMap_Iterator_getValue
 /// @param iterator A pointer to the iterator.
 /// @return #Ring1_Result_Success on success. #Ring1_Result_Failure on failure.
 Ring1_CheckReturn() Ring1_Result
-Mkx_PointerHashMap_Iterator_increment
+Ring1_PointerHashMap_Iterator_increment
   (
-    Mkx_PointerHashMap_Iterator* iterator
+    Ring1_PointerHashMap_Iterator* iterator
   );
 
 /// @brief If the iterator has not reached the end of its iteration, remove the current element.
@@ -202,9 +202,9 @@ Mkx_PointerHashMap_Iterator_increment
 /// @error #Ring1_Status_InvalidOperation the iterator reached the end of its iteration
 /// @error #Ring1_Status_InvalidArgument @a iterator, @a key, or @a value is a null pointer.
 Ring1_CheckReturn() Ring1_Result
-Mkx_PointerHashMap_Iterator_remove
+Ring1_PointerHashMap_Iterator_remove
   (
-    Mkx_PointerHashMap_Iterator *iterator
+    Ring1_PointerHashMap_Iterator *iterator
   );
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

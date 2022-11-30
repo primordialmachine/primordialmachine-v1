@@ -138,7 +138,7 @@ removeEntryIf
 static Ring1_ReadWriteLock g_lock = Ring1_ReadWriteLock_Initializer;
 
 /// @brief The hash map.
-static Mkx_PointerHashMap* g_hashMap = NULL;
+static Ring1_PointerHashMap* g_hashMap = NULL;
 
 /// @brief The number of dead atoms.
 static int64_t g_dead = 0;
@@ -164,11 +164,11 @@ initializeModule
     return Ring1_Result_Failure;    
   }
   //
-  if (Ring1_Memory_allocate(&g_hashMap, sizeof(Mkx_PointerHashMap))) {
+  if (Ring1_Memory_allocate(&g_hashMap, sizeof(Ring1_PointerHashMap))) {
     shutdownDependencies();
     return Ring1_Result_Failure;
   }
-  if (Ring1_Unlikely(Mkx_PointerHashMap_initialize(g_hashMap, Ring1_PointerHashMap_Capacity_Default, NULL, NULL, &Key_getHashValue, &Key_equalTo, NULL, (Ring1_RemovedCallback *)&valueRemoved))) {
+  if (Ring1_Unlikely(Ring1_PointerHashMap_initialize(g_hashMap, Ring1_PointerHashMap_Capacity_Default, NULL, NULL, &Key_getHashValue, &Key_equalTo, NULL, (Ring1_RemovedCallback *)&valueRemoved))) {
     Ring1_Memory_deallocate(g_hashMap);
     g_hashMap = NULL;
     shutdownDependencies();
@@ -182,7 +182,7 @@ uninitializeModule
   (
   )
 {
-  Mkx_PointerHashMap_uninitialize(g_hashMap);
+  Ring1_PointerHashMap_uninitialize(g_hashMap);
   Ring1_Memory_deallocate(g_hashMap);
   g_hashMap = NULL;
   shutdownDependencies();
@@ -227,7 +227,7 @@ Ring1_Atom_getOrCreate
   Key key = { .bytes = (char*)bytes, .numberOfBytes = numberOfBytes, .hashValue = hashValue };
   Value* value;
   Ring1_Atom_Module_lock(); // LOCK THE MODULE.
-  if (!Mkx_PointerHashMap_get(g_hashMap, &key, &value)) {
+  if (!Ring1_PointerHashMap_get(g_hashMap, &key, &value)) {
     // Atom exists. Increment its reference count and return it.
     Ring1_ReferenceCounter_increment(&value->referenceCount);
     // If the atom was resurrected, update the dead/live counters.
@@ -261,7 +261,7 @@ Ring1_Atom_getOrCreate
   }
   Ring1_Memory_copyArrayFast(value->key.bytes, bytes, numberOfBytes, sizeof(char));
   // Add the atom to the hash table.
-  if (Mkx_PointerHashMap_add(g_hashMap, &value->key, value)) {
+  if (Ring1_PointerHashMap_add(g_hashMap, &value->key, value)) {
     Ring1_Memory_deallocate(value->key.bytes);
     Ring1_Memory_deallocate(value);
     Ring1_Atom_Module_unlock(); // UNLOCK THE MODULE.
@@ -306,7 +306,7 @@ Ring1_Atom_unreference
       // exceeded.
       if (g_dead / 2 > g_live && g_dead + g_live > 8) {
         // Remove dead atoms.
-        Mkx_PointerHashMap_removeIf(g_hashMap, NULL, &removeEntryIf);
+        Ring1_PointerHashMap_removeIf(g_hashMap, NULL, &removeEntryIf);
       }
     }
     Ring1_Atom_Module_unlock(); // UNLOCK THE MODULE.

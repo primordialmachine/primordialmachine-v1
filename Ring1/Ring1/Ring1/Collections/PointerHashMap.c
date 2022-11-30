@@ -48,9 +48,9 @@ Ring1_Module_Define(Ring1, PointerHashMap, initializeModule, uninitializeModule)
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 Ring1_CheckReturn() Ring1_Result
-Mkx_PointerHashMap_initialize
+Ring1_PointerHashMap_initialize
   (
-    Mkx_PointerHashMap *hashMap,
+    Ring1_PointerHashMap *hashMap,
     int64_t initialCapacity,
     Ring1_AddedCallback* keyAdded,
     Ring1_RemovedCallback* keyRemoved,
@@ -84,9 +84,9 @@ Mkx_PointerHashMap_initialize
 }
 
 void
-Mkx_PointerHashMap_uninitialize
+Ring1_PointerHashMap_uninitialize
   (
-    Mkx_PointerHashMap *hashMap
+    Ring1_PointerHashMap *hashMap
   )
 {
   uninitialize(hashMap->pimpl);
@@ -95,113 +95,113 @@ Mkx_PointerHashMap_uninitialize
 }
 
 Ring1_CheckReturn() Ring1_Result
-Mkx_PointerHashMap_getSize
+Ring1_PointerHashMap_getSize
   (
     int64_t *result,
-    Mkx_PointerHashMap *hashMap
+    Ring1_PointerHashMap *hashMap
   )
 { return getSize(result, hashMap->pimpl); }
 
 Ring1_CheckReturn() Ring1_Result
-Mkx_PointerHashMap_getCapacity
+Ring1_PointerHashMap_getCapacity
   (
     int64_t *result,
-    Mkx_PointerHashMap *hashMap
+    Ring1_PointerHashMap *hashMap
   )
 { return getCapacity(result, hashMap->pimpl); }
 
 Ring1_CheckReturn() Ring1_Result
-Mkx_PointerHashMap_getFreeCapacity
+Ring1_PointerHashMap_getFreeCapacity
   (
     int64_t *result,
-    Mkx_PointerHashMap* hashMap
+    Ring1_PointerHashMap* hashMap
   )
 { return getFreeCapacity(result, hashMap->pimpl); }
 
 void
-Mkx_PointerHashMap_clear
+Ring1_PointerHashMap_clear
   (
-    Mkx_PointerHashMap *hashMap
+    Ring1_PointerHashMap *hashMap
   )
 { clear(hashMap->pimpl); }
 
 Ring1_CheckReturn() Ring1_Result
-Mkx_PointerHashMap_add
+Ring1_PointerHashMap_add
   (
-    Mkx_PointerHashMap* hashMap,
+    Ring1_PointerHashMap* hashMap,
     void* key,
     void* value
   )
 { return add(hashMap->pimpl, key, value, true, true, true, true, true); }
 
 Ring1_CheckReturn() Ring1_Result
-Mkx_PointerHashMap_set
+Ring1_PointerHashMap_set
   (
-    Mkx_PointerHashMap* hashMap,
+    Ring1_PointerHashMap* hashMap,
     void* key,
     void* value
   )
 { return add(hashMap->pimpl, key, value, false, true, true, true, true); }
 
 Ring1_CheckReturn() Ring1_Result
-Mkx_PointerHashMap_get
+Ring1_PointerHashMap_get
   (
-    Mkx_PointerHashMap* hashMap,
+    Ring1_PointerHashMap* hashMap,
     void* key,
     void* *value
   )
 { return get(hashMap->pimpl, key, value); }
 
 Ring1_CheckReturn() Ring1_Result
-Mkx_PointerHashMap_remove
+Ring1_PointerHashMap_remove
   (
-    Mkx_PointerHashMap *hashMap,
+    Ring1_PointerHashMap *hashMap,
     void *key
   )
 { return remove(hashMap->pimpl, key, true, true); }
 
 Ring1_CheckReturn() Ring1_Result
-Mkx_PointerHashMap_removeIf
+Ring1_PointerHashMap_removeIf
   (
-    Mkx_PointerHashMap* pointerHashMap,
+    Ring1_PointerHashMap* pointerHashMap,
     void* context,
-    Mkx_PointerHashMap_RemoveIfCallback* removeIf
+    Ring1_PointerHashMap_RemoveIfCallback* removeIf
   )
 {
-  Mkx_PointerHashMap_Iterator iterator;
-  Mkx_PointerHashMap_Iterator_initialize(&iterator, pointerHashMap);
+  Ring1_PointerHashMap_Iterator iterator;
+  Ring1_PointerHashMap_Iterator_initialize(&iterator, pointerHashMap);
   bool hasValue;
-  if (Mkx_PointerHashMap_Iterator_hasValue(&hasValue, &iterator)) {
+  if (Ring1_PointerHashMap_Iterator_hasValue(&hasValue, &iterator)) {
     return Ring1_Result_Failure;
   }
   while (hasValue) {
     void *key, *value;
-    Mkx_PointerHashMap_Iterator_getValue(&iterator, &key, &value);
+    Ring1_PointerHashMap_Iterator_getValue(&iterator, &key, &value);
     bool result;
     if ((*removeIf)(&result, context, key, value)) {
-      Mkx_PointerHashMap_Iterator_uninitialize(&iterator);
+      Ring1_PointerHashMap_Iterator_uninitialize(&iterator);
       return Ring1_Result_Failure;
     }
     if (result) {
-      Mkx_PointerHashMap_Iterator_remove(&iterator);
+      Ring1_PointerHashMap_Iterator_remove(&iterator);
     } else {
-      Mkx_PointerHashMap_Iterator_increment(&iterator);
+      Ring1_PointerHashMap_Iterator_increment(&iterator);
     }
-    if (Mkx_PointerHashMap_Iterator_hasValue(&hasValue, &iterator)) {
+    if (Ring1_PointerHashMap_Iterator_hasValue(&hasValue, &iterator)) {
       return Ring1_Result_Failure;
     }
   }
-  Mkx_PointerHashMap_Iterator_uninitialize(&iterator);
+  Ring1_PointerHashMap_Iterator_uninitialize(&iterator);
   return Ring1_Result_Success;
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 Ring1_CheckReturn() Ring1_Result
-Mkx_PointerHashMap_Iterator_initialize
+Ring1_PointerHashMap_Iterator_initialize
   (
-    Mkx_PointerHashMap_Iterator* iterator,
-    Mkx_PointerHashMap* target
+    Ring1_PointerHashMap_Iterator* iterator,
+    Ring1_PointerHashMap* target
   )
 {
   IteratorImpl* pimpl;
@@ -217,9 +217,9 @@ Mkx_PointerHashMap_Iterator_initialize
 }
 
 void
-Mkx_PointerHashMap_Iterator_uninitialize
+Ring1_PointerHashMap_Iterator_uninitialize
   (
-    Mkx_PointerHashMap_Iterator *iterator
+    Ring1_PointerHashMap_Iterator *iterator
   )
 {
   Ring1_Memory_deallocate(iterator->pimpl);
@@ -227,32 +227,32 @@ Mkx_PointerHashMap_Iterator_uninitialize
 }
 
 Ring1_CheckReturn() Ring1_Result
-Mkx_PointerHashMap_Iterator_hasValue
+Ring1_PointerHashMap_Iterator_hasValue
   (
     bool *result,
-    Mkx_PointerHashMap_Iterator* iterator
+    Ring1_PointerHashMap_Iterator* iterator
   )
 { return Iterator_hasValue(result, iterator->pimpl); }
 
 Ring1_CheckReturn() Ring1_Result
-Mkx_PointerHashMap_Iterator_getValue
+Ring1_PointerHashMap_Iterator_getValue
   (
-    Mkx_PointerHashMap_Iterator* iterator,
+    Ring1_PointerHashMap_Iterator* iterator,
     void** key,
     void** value
   )
 { return Iterator_getValue(iterator->pimpl, key, value); }
 
 Ring1_CheckReturn() Ring1_Result
-Mkx_PointerHashMap_Iterator_increment
+Ring1_PointerHashMap_Iterator_increment
   (
-    Mkx_PointerHashMap_Iterator* iterator
+    Ring1_PointerHashMap_Iterator* iterator
   )
 { return Iterator_increment(iterator->pimpl); }
 
 Ring1_Result
-Mkx_PointerHashMap_Iterator_remove
+Ring1_PointerHashMap_Iterator_remove
   (
-    Mkx_PointerHashMap_Iterator* iterator
+    Ring1_PointerHashMap_Iterator* iterator
   )
 { return Iterator_remove(iterator->pimpl); }

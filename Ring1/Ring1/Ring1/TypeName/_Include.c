@@ -87,7 +87,7 @@ valueRemoved
 static Ring1_ReadWriteLock g_lock = Ring1_ReadWriteLock_Initializer;
 
 /// @brief The hash map.
-static Mkx_PointerHashMap* g_types = NULL;
+static Ring1_PointerHashMap* g_types = NULL;
 
 /// @brief The number of dead type names.
 static int64_t g_dead = 0;
@@ -114,18 +114,18 @@ initializeModule
     return Ring1_Result_Failure;    
   }
   //
-  if (Ring1_Memory_allocate(&g_types, sizeof(Mkx_PointerHashMap))) {
+  if (Ring1_Memory_allocate(&g_types, sizeof(Ring1_PointerHashMap))) {
     shutdownDependencies();
     return Ring1_Result_Failure;
   }
-  if (Mkx_PointerHashMap_initialize(g_types,
-                                    Ring1_PointerHashMap_Capacity_Default,
-                                    NULL,
-                                    NULL,
-                                    &hashTypeKey,
-                                    &isTypeKeyEqualTo,
-                                    NULL,
-                                    &valueRemoved)) {
+  if (Ring1_PointerHashMap_initialize(g_types,
+                                      Ring1_PointerHashMap_Capacity_Default,
+                                      NULL,
+                                      NULL,
+                                      &hashTypeKey,
+                                      &isTypeKeyEqualTo,
+                                      NULL,
+                                      &valueRemoved)) {
     Ring1_Memory_deallocate(g_types);
     g_types = NULL;
     shutdownDependencies();
@@ -139,7 +139,7 @@ uninitializeModule
   (
   )
 {
-  Mkx_PointerHashMap_uninitialize(g_types);
+  Ring1_PointerHashMap_uninitialize(g_types);
   Ring1_Memory_deallocate(g_types);
   g_types = NULL;
   shutdownDependencies();
@@ -237,7 +237,7 @@ Ring1_TypeName_unref
       // exceeded.
       if (g_dead / 2 > g_live && g_dead + g_live > 8) {
         // Remove dead atoms.
-        Mkx_PointerHashMap_removeIf(g_types, NULL, &removeEntryIf);
+        Ring1_PointerHashMap_removeIf(g_types, NULL, &removeEntryIf);
       }
     }
     Ring1_TypeName_Module_unlock(); // UNLOCK THE MODULE.
@@ -280,7 +280,7 @@ Ring1_TypeName_getOrCreateArray
   }
   TypeName* typeName;
   Ring1_TypeName_Module_lock(); // LOCK THE MODULE.
-  if (Mkx_PointerHashMap_get(g_types, &typeNameKey, &typeName)) {
+  if (Ring1_PointerHashMap_get(g_types, &typeNameKey, &typeName)) {
     if (Ring1_Status_get() != Ring1_Status_NotExists) {
       Ring1_TypeName_Module_unlock(); // UNLOCK THE MODULE.
       return Ring1_Result_Failure;
@@ -292,7 +292,7 @@ Ring1_TypeName_getOrCreateArray
     }
     typeName->referenceCount = 1;
     typeName->key = typeNameKey;
-    if (Mkx_PointerHashMap_set(g_types, &typeName->key, typeName)) {
+    if (Ring1_PointerHashMap_set(g_types, &typeName->key, typeName)) {
       Ring1_Memory_deallocate(typeName);
       typeName = NULL;
       Ring1_TypeName_Module_unlock(); // UNLOCK THE MODULE.
@@ -333,7 +333,7 @@ Ring1_TypeName_getOrCreateScalar
 
   TypeName* typeName;
   Ring1_TypeName_Module_lock(); // LOCK THE MODULE.
-  if (Mkx_PointerHashMap_get(g_types, &typeNameKey, &typeName)) {
+  if (Ring1_PointerHashMap_get(g_types, &typeNameKey, &typeName)) {
     if (Ring1_Status_get() != Ring1_Status_NotExists) {
       Ring1_Atom_unreference(nameAtom);
       Ring1_TypeName_Module_unlock(); // UNLOCK THE MODULE.
@@ -347,7 +347,7 @@ Ring1_TypeName_getOrCreateScalar
     }
     typeName->referenceCount = 1;
     typeName->key = typeNameKey;
-    if (Mkx_PointerHashMap_set(g_types, &typeName->key, typeName)) {
+    if (Ring1_PointerHashMap_set(g_types, &typeName->key, typeName)) {
       Ring1_Memory_deallocate(typeName);
       typeName = NULL;
       Ring1_Atom_unreference(nameAtom);
