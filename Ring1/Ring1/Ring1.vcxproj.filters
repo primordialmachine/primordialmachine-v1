@@ -270,16 +270,10 @@
     <Filter Include="Quelldateien\Ring1\Annotations">
       <UniqueIdentifier>{674c0be4-aa82-4b06-8245-a40235504f24}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Quelldateien\Ring1\FileSystem\Winapi">
+    <Filter Include="Quelldateien\Ring1\FileSystem\Windows">
       <UniqueIdentifier>{f5a53477-5a9d-434e-a0ec-92ad5f005daf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Quelldateien\Ring1\FileSystem\Libc">
-      <UniqueIdentifier>{18d610b2-e632-4657-aed4-43894a131004}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headerdateien\Ring1\FileSystem\Libc">
-      <UniqueIdentifier>{f550fbba-001a-4d5c-a52a-43f5ff124a96}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headerdateien\Ring1\FileSystem\Winapi">
+    <Filter Include="Headerdateien\Ring1\FileSystem\Windows">
       <UniqueIdentifier>{4aa29330-46e2-4698-aa45-b0ef73a99953}</UniqueIdentifier>
     </Filter>
     <Filter Include="Headerdateien\Ring1\Collections">
@@ -692,9 +686,6 @@
     <ClInclude Include="Ring1\Conversion\_Parser.h">
       <Filter>Headerdateien\Ring1\Conversion</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\FileSystem.h">
-      <Filter>Headerdateien\Ring1</Filter>
-    </ClInclude>
     <ClInclude Include="Ring1\FileSystem\ExistingFilePolicy.h">
       <Filter>Headerdateien\Ring1\FileSystem</Filter>
     </ClInclude>
@@ -749,26 +740,17 @@
     <ClInclude Include="Ring1\Intrinsic\lerp.h">
       <Filter>Headerdateien\Ring1\Intrinsic</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\FileSystem\Winapi\FileHandle.h">
-      <Filter>Headerdateien\Ring1\FileSystem\Winapi</Filter>
+    <ClInclude Include="Ring1\FileSystem\Windows\FileHandle.h">
+      <Filter>Headerdateien\Ring1\FileSystem\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\FileSystem\Winapi\FileMemoryMapping.h">
-      <Filter>Headerdateien\Ring1\FileSystem\Winapi</Filter>
+    <ClInclude Include="Ring1\FileSystem\Windows\FileMemoryMapping.h">
+      <Filter>Headerdateien\Ring1\FileSystem\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\FileSystem\Winapi\getFileContents.h">
-      <Filter>Headerdateien\Ring1\FileSystem\Winapi</Filter>
+    <ClInclude Include="Ring1\FileSystem\Windows\getFileContents.h">
+      <Filter>Headerdateien\Ring1\FileSystem\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\FileSystem\Winapi\setFileContents.h">
-      <Filter>Headerdateien\Ring1\FileSystem\Winapi</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\FileSystem\Libc\FileHandle.h">
-      <Filter>Headerdateien\Ring1\FileSystem\Libc</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\FileSystem\Libc\getFileContents.h">
-      <Filter>Headerdateien\Ring1\FileSystem\Libc</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\FileSystem\Libc\setFileContents.h">
-      <Filter>Headerdateien\Ring1\FileSystem\Libc</Filter>
+    <ClInclude Include="Ring1\FileSystem\Windows\setFileContents.h">
+      <Filter>Headerdateien\Ring1\FileSystem\Windows</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\Collections\PointerList.h">
       <Filter>Headerdateien\Ring1\Collections</Filter>
@@ -841,6 +823,36 @@
     </ClInclude>
     <ClInclude Include="Ring1\Intrinsic\_Include.h">
       <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\FileAttributes.h">
+      <Filter>Headerdateien\Ring1\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\Windows\getFileAttributes.h">
+      <Filter>Headerdateien\Ring1\FileSystem\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\MemoryCallbacks.h">
+      <Filter>Headerdateien\Ring1\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\getFileContents.h">
+      <Filter>Headerdateien\Ring1\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\Windows\receiveFileContents.h">
+      <Filter>Headerdateien\Ring1\FileSystem\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\setFileContents.h">
+      <Filter>Headerdateien\Ring1\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\ReceiveCallback.h">
+      <Filter>Headerdateien\Ring1\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\getFileAttributes.h">
+      <Filter>Headerdateien\Ring1\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\_Include.h">
+      <Filter>Headerdateien\Ring1\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\Configuration.h">
+      <Filter>Headerdateien\Ring1\FileSystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1027,9 +1039,6 @@
     <ClCompile Include="Ring1\Conversion\_Parser.c">
       <Filter>Quelldateien\Ring1\Conversion</Filter>
     </ClCompile>
-    <ClCompile Include="Ring1\FileSystem.c">
-      <Filter>Quelldateien\Ring1</Filter>
-    </ClCompile>
     <ClCompile Include="Ring1\FileSystem\ExistingFilePolicy.c">
       <Filter>Quelldateien\Ring1\FileSystem</Filter>
     </ClCompile>
@@ -1081,26 +1090,17 @@
     <ClCompile Include="Ring1\Intrinsic\lerp.c">
       <Filter>Quelldateien\Ring1\Intrinsic</Filter>
     </ClCompile>
-    <ClCompile Include="Ring1\FileSystem\Libc\FileHandle.c">
-      <Filter>Quelldateien\Ring1\FileSystem\Libc</Filter>
+    <ClCompile Include="Ring1\FileSystem\Windows\FileHandle.c">
+      <Filter>Quelldateien\Ring1\FileSystem\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="Ring1\FileSystem\Libc\getFileContents.c">
-      <Filter>Quelldateien\Ring1\FileSystem\Libc</Filter>
+    <ClCompile Include="Ring1\FileSystem\Windows\FileMemoryMapping.c">
+      <Filter>Quelldateien\Ring1\FileSystem\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="Ring1\FileSystem\Libc\setFileContents.c">
-      <Filter>Quelldateien\Ring1\FileSystem\Libc</Filter>
+    <ClCompile Include="Ring1\FileSystem\Windows\getFileContents.c">
+      <Filter>Quelldateien\Ring1\FileSystem\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="Ring1\FileSystem\Winapi\FileHandle.c">
-      <Filter>Quelldateien\Ring1\FileSystem\Winapi</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring1\FileSystem\Winapi\FileMemoryMapping.c">
-      <Filter>Quelldateien\Ring1\FileSystem\Winapi</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring1\FileSystem\Winapi\getFileContents.c">
-      <Filter>Quelldateien\Ring1\FileSystem\Winapi</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring1\FileSystem\Winapi\setFileContents.c">
-      <Filter>Quelldateien\Ring1\FileSystem\Winapi</Filter>
+    <ClCompile Include="Ring1\FileSystem\Windows\setFileContents.c">
+      <Filter>Quelldateien\Ring1\FileSystem\Windows</Filter>
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\Crt.c">
       <Filter>Quelldateien\Ring1\Intrinsic</Filter>
@@ -1167,6 +1167,33 @@
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\_Include.c">
       <Filter>Quelldateien\Ring1\Intrinsic</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\FileAttributes.c">
+      <Filter>Quelldateien\Ring1\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\Windows\getFileAttributes.c">
+      <Filter>Quelldateien\Ring1\FileSystem\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\MemoryCallbacks.c">
+      <Filter>Quelldateien\Ring1\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\getFileContents.c">
+      <Filter>Quelldateien\Ring1\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\Windows\receiveFileContents.c">
+      <Filter>Quelldateien\Ring1\FileSystem\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\setFileContents.c">
+      <Filter>Quelldateien\Ring1\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\ReceiveCallback.c">
+      <Filter>Quelldateien\Ring1\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\getFileAttributes.c">
+      <Filter>Quelldateien\Ring1\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\_Include.c">
+      <Filter>Quelldateien\Ring1\FileSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -54,16 +54,23 @@
     <ClInclude Include="Ring1\Conversion\stringToUint.h" />
     <ClInclude Include="Ring1\Conversion\_Buffer.h" />
     <ClInclude Include="Ring1\Conversion\_Parser.h" />
+    <ClInclude Include="Ring1\FileSystem\Configuration.h" />
     <ClInclude Include="Ring1\FileSystem\ExistingFilePolicy.h" />
     <ClInclude Include="Ring1\FileSystem\FileAccessMode.h" />
-    <ClInclude Include="Ring1\FileSystem\Libc\FileHandle.h" />
-    <ClInclude Include="Ring1\FileSystem\Libc\getFileContents.h" />
-    <ClInclude Include="Ring1\FileSystem\Libc\setFileContents.h" />
+    <ClInclude Include="Ring1\FileSystem\FileAttributes.h" />
+    <ClInclude Include="Ring1\FileSystem\getFileAttributes.h" />
+    <ClInclude Include="Ring1\FileSystem\getFileContents.h" />
+    <ClInclude Include="Ring1\FileSystem\MemoryCallbacks.h" />
     <ClInclude Include="Ring1\FileSystem\NonExistingFilePolicy.h" />
-    <ClInclude Include="Ring1\FileSystem\Winapi\FileHandle.h" />
-    <ClInclude Include="Ring1\FileSystem\Winapi\FileMemoryMapping.h" />
-    <ClInclude Include="Ring1\FileSystem\Winapi\getFileContents.h" />
-    <ClInclude Include="Ring1\FileSystem\Winapi\setFileContents.h" />
+    <ClInclude Include="Ring1\FileSystem\ReceiveCallback.h" />
+    <ClInclude Include="Ring1\FileSystem\setFileContents.h" />
+    <ClInclude Include="Ring1\FileSystem\Windows\FileHandle.h" />
+    <ClInclude Include="Ring1\FileSystem\Windows\FileMemoryMapping.h" />
+    <ClInclude Include="Ring1\FileSystem\Windows\getFileAttributes.h" />
+    <ClInclude Include="Ring1\FileSystem\Windows\getFileContents.h" />
+    <ClInclude Include="Ring1\FileSystem\Windows\receiveFileContents.h" />
+    <ClInclude Include="Ring1\FileSystem\Windows\setFileContents.h" />
+    <ClInclude Include="Ring1\FileSystem\_Include.h" />
     <ClInclude Include="Ring1\Hash.h" />
     <ClInclude Include="Ring1\Intrinsic.h" />
     <ClInclude Include="Ring1\Intrinsic\Add\X64\add_s16.h" />
@@ -147,7 +154,6 @@
     <ClInclude Include="Ring1\Test\Context.h" />
     <ClInclude Include="Ring1\Test\Node.h" />
     <ClInclude Include="Ring1\Time.h" />
-    <ClInclude Include="Ring1\FileSystem.h" />
     <MASM Include="Ring1\Intrinsic\Add\X64\add_s16.asm">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -497,14 +503,20 @@
     <ClCompile Include="Ring1\Conversion\_Parser.c" />
     <ClCompile Include="Ring1\FileSystem\ExistingFilePolicy.c" />
     <ClCompile Include="Ring1\FileSystem\FileAccessMode.c" />
-    <ClCompile Include="Ring1\FileSystem\Libc\FileHandle.c" />
-    <ClCompile Include="Ring1\FileSystem\Libc\getFileContents.c" />
-    <ClCompile Include="Ring1\FileSystem\Libc\setFileContents.c" />
+    <ClCompile Include="Ring1\FileSystem\FileAttributes.c" />
+    <ClCompile Include="Ring1\FileSystem\getFileAttributes.c" />
+    <ClCompile Include="Ring1\FileSystem\getFileContents.c" />
+    <ClCompile Include="Ring1\FileSystem\MemoryCallbacks.c" />
     <ClCompile Include="Ring1\FileSystem\NonExistingFilePolicy.c" />
-    <ClCompile Include="Ring1\FileSystem\Winapi\FileHandle.c" />
-    <ClCompile Include="Ring1\FileSystem\Winapi\FileMemoryMapping.c" />
-    <ClCompile Include="Ring1\FileSystem\Winapi\getFileContents.c" />
-    <ClCompile Include="Ring1\FileSystem\Winapi\setFileContents.c" />
+    <ClCompile Include="Ring1\FileSystem\ReceiveCallback.c" />
+    <ClCompile Include="Ring1\FileSystem\setFileContents.c" />
+    <ClCompile Include="Ring1\FileSystem\Windows\FileHandle.c" />
+    <ClCompile Include="Ring1\FileSystem\Windows\FileMemoryMapping.c" />
+    <ClCompile Include="Ring1\FileSystem\Windows\getFileAttributes.c" />
+    <ClCompile Include="Ring1\FileSystem\Windows\getFileContents.c" />
+    <ClCompile Include="Ring1\FileSystem\Windows\receiveFileContents.c" />
+    <ClCompile Include="Ring1\FileSystem\Windows\setFileContents.c" />
+    <ClCompile Include="Ring1\FileSystem\_Include.c" />
     <ClCompile Include="Ring1\Hash.c" />
     <ClCompile Include="Ring1\Intrinsic.c" />
     <ClCompile Include="Ring1\Intrinsic\atomicCompareExchange.c" />
@@ -610,7 +622,6 @@
     <ClCompile Include="Ring1\Test\Context.c" />
     <ClCompile Include="Ring1\Test\Node.c" />
     <ClCompile Include="Ring1\Time.c" />
-    <ClCompile Include="Ring1\FileSystem.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Ring1\Console\Windows\Color.i" />

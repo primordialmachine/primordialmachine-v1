@@ -109,6 +109,8 @@ typedef int Ring1_Status;
 
 #define Ring1_Status_InternalError (32)
 
+#define Ring1_Status_FileNotFound (33)
+
 // https://documentation.primordialmachine.com/api/ring1-library/status-library/Ring1_Status_get
 Ring1_CheckReturn() Ring1_Status
 Ring1_Status_get

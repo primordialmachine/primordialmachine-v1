@@ -1,10 +1,10 @@
 // Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 
-/// @file Ring1/FileSystem/Winapi/FileHandle.c
+/// @file Ring1/FileSystem/Windows/FileHandle.c
 /// @copyright Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
-#include "Ring1/FileSystem/Winapi/FileHandle.h"
+#include "Ring1/FileSystem/Windows/FileHandle.h"
 
 #include "Ring1/Memory.h"
 #include "Ring1/Status.h"
@@ -14,7 +14,7 @@ static HANDLE g_inputFileHandle = INVALID_HANDLE_VALUE;
 static HANDLE g_errorFileHandle = INVALID_HANDLE_VALUE;
 
 Ring1_CheckReturn() Ring1_Result
-Ring1_FileSystem_Winapi_startup() {
+Ring1_FileSystem_Windows_startup() {
   //
   g_outputFileHandle = GetStdHandle(STD_OUTPUT_HANDLE);
   if (g_outputFileHandle == INVALID_HANDLE_VALUE) {
@@ -38,13 +38,13 @@ Ring1_FileSystem_Winapi_startup() {
 }
 
 void
-Ring1_FileSystem_Winapi_shutdown() {
+Ring1_FileSystem_Windows_shutdown() {
 }
 
 Ring1_CheckReturn() Ring1_Result
-Ring1_FileSystem_Winapi_FileHandle_create
+Ring1_FileSystem_Windows_FileHandle_create
   (
-    Ring1_FileSystem_Winapi_FileHandle** result,
+    Ring1_FileSystem_Windows_FileHandle** result,
     const char *pathname,
     Ring1_FileSystem_FileAccessMode fileAccessMode,
     Ring1_FileSystem_ExistingFilePolicy existingFilePolicy,
@@ -117,8 +117,8 @@ Ring1_FileSystem_Winapi_FileHandle_create
   }
   dwDesiredAccess |= policyMapping->dwDesiredAccessModifier;
 
-  Ring1_FileSystem_Winapi_FileHandle* self;
-  if (Ring1_Memory_allocate(&self, sizeof(Ring1_FileSystem_Winapi_FileHandle))) {
+  Ring1_FileSystem_Windows_FileHandle* self;
+  if (Ring1_Memory_allocate(&self, sizeof(Ring1_FileSystem_Windows_FileHandle))) {
     Ring1_Status_set(Ring1_Status_AllocationFailed);
     return Ring1_Result_Failure;
   }
@@ -139,17 +139,17 @@ Ring1_FileSystem_Winapi_FileHandle_create
 }
 
 Ring1_CheckReturn() Ring1_Result
-Ring1_FileSystem_Winapi_FileHandle_createStandardOutput
+Ring1_FileSystem_Windows_FileHandle_createStandardOutput
   (
-    Ring1_FileSystem_Winapi_FileHandle** result
+    Ring1_FileSystem_Windows_FileHandle** result
   )
 {
   if (Ring1_Unlikely(!result)) {
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     return Ring1_Result_Failure;
   }
-  Ring1_FileSystem_Winapi_FileHandle* self;
-  if (Ring1_Memory_allocate(&self, sizeof(Ring1_FileSystem_Winapi_FileHandle))) {
+  Ring1_FileSystem_Windows_FileHandle* self;
+  if (Ring1_Memory_allocate(&self, sizeof(Ring1_FileSystem_Windows_FileHandle))) {
     return Ring1_Result_Failure;
   }
   self->hFileHandle = g_outputFileHandle;
@@ -163,17 +163,17 @@ Ring1_FileSystem_Winapi_FileHandle_createStandardOutput
 }
 
 Ring1_CheckReturn() Ring1_Result
-Ring1_FileSystem_Winapi_FileHandle_createStandardError
+Ring1_FileSystem_Windows_FileHandle_createStandardError
   (
-    Ring1_FileSystem_Winapi_FileHandle** result
+    Ring1_FileSystem_Windows_FileHandle** result
   )
 {
   if (Ring1_Unlikely(!result)) {
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     return Ring1_Result_Failure;
   }
-  Ring1_FileSystem_Winapi_FileHandle* self;
-  if (Ring1_Memory_allocate(&self, sizeof(Ring1_FileSystem_Winapi_FileHandle))) {
+  Ring1_FileSystem_Windows_FileHandle* self;
+  if (Ring1_Memory_allocate(&self, sizeof(Ring1_FileSystem_Windows_FileHandle))) {
     return Ring1_Result_Failure;
   }
   self->hFileHandle = g_errorFileHandle;
@@ -187,17 +187,17 @@ Ring1_FileSystem_Winapi_FileHandle_createStandardError
 }
 
 Ring1_CheckReturn() Ring1_Result
-Ring1_FileSystem_Winapi_FileHandle_createStandardInput
+Ring1_FileSystem_Windows_FileHandle_createStandardInput
   (
-    Ring1_FileSystem_Winapi_FileHandle** result
+    Ring1_FileSystem_Windows_FileHandle** result
   )
 {
   if (Ring1_Unlikely(!result)) {
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     return Ring1_Result_Failure;
   }
-  Ring1_FileSystem_Winapi_FileHandle* self;
-  if (Ring1_Memory_allocate(&self, sizeof(Ring1_FileSystem_Winapi_FileHandle))) {
+  Ring1_FileSystem_Windows_FileHandle* self;
+  if (Ring1_Memory_allocate(&self, sizeof(Ring1_FileSystem_Windows_FileHandle))) {
     return Ring1_Result_Failure;
   }
   self->hFileHandle = g_inputFileHandle;
@@ -211,10 +211,10 @@ Ring1_FileSystem_Winapi_FileHandle_createStandardInput
 }
 
 Ring1_CheckReturn() Ring1_Result
-Ring1_FileSystem_Winapi_FileHandle_getFileSize
+Ring1_FileSystem_Windows_FileHandle_getFileSize
   (
     size_t *result,
-    Ring1_FileSystem_Winapi_FileHandle *self
+    Ring1_FileSystem_Windows_FileHandle *self
   )
 {
   if (Ring1_Unlikely(!result)) {
@@ -237,9 +237,9 @@ Ring1_FileSystem_Winapi_FileHandle_getFileSize
 }
 
 void
-Ring1_FileSystem_Winapi_FileHandle_destroy
+Ring1_FileSystem_Windows_FileHandle_destroy
   (
-    Ring1_FileSystem_Winapi_FileHandle *self
+    Ring1_FileSystem_Windows_FileHandle *self
   )
 { 
   if (self->hFileHandle != INVALID_HANDLE_VALUE && self->hFileHandle != NULL) {
