@@ -125,7 +125,7 @@ Ring1_ApNat_add2
     Ring1_ApNat* second
   );
 
-/// @brief Compute difference sum of this ApNat object and another ApNat object and assign the values of the difference to this ApNat object.
+/// @brief Compute the difference of this ApNat object and another ApNat object and assign the values of the difference to this ApNat object.
 /// @param self A pointer to this ApNat object.
 /// @param other A pointer to the other ApNat object.
 /// @return
@@ -141,7 +141,7 @@ Ring1_ApNat_subtract
     Ring1_ApNat* other
   );
 
-/// @brief Compute difference sum of one ApNat object and another ApNat object and assign the values of the difference to this ApNat object.
+/// @brief Compute the difference of one ApNat object and another ApNat object and assign the values of the difference to this ApNat object.
 /// @param self A pointer to this ApNat object.
 /// @param first A pointer to the first ApNat object.
 /// @param second A pointer to the second ApNat object.
@@ -157,6 +157,22 @@ Ring1_ApNat_subtract2
     Ring1_ApNat* self,
     Ring1_ApNat* first,
     Ring1_ApNat* second
+  );
+
+/// @brief Compute the product of one ApNat object and another ApNat object and assign the values of the product to this ApNat object.
+/// @param self A pointer to this ApNat object.
+/// @param first A pointer to the first ApNat object.
+/// @param second A pointer to the second ApNat object.
+/// @return
+/// #Ring_Result_Success on success.
+/// #Ring_Result_Failure on failure.
+/// @remarks
+/// The values of this ApNat object are not modified if an error occurs.
+Ring1_NoDiscardResult() Ring1_Result
+Ring1_ApNat_multiply
+  (
+    Ring1_ApNat* self,
+    Ring1_ApNat* other
   );
 
 /// @brief

@@ -105,6 +105,19 @@ Ring1_ApInt_add
     Ring1_ApInt* other
   );
 
+/// @brief Compute the product of this ApInt object and another ApInt object and assign the values of the product to this ApInt object.
+/// @param self A pointer to this ApInt object.
+/// @param other A pointer to the other ApInt object.
+/// @return
+/// #Ring_Result_Success on success.
+/// #Ring_Result_Failure on failure.
+Ring1_NoDiscardResult() Ring1_Result
+Ring1_ApInt_multiply
+  (
+    Ring1_ApInt* self,
+    Ring1_ApInt* other
+  );
+
 /// @brief Assign the values of another ApInt object to this ApInt object.
 /// @param self A pointer to this ApInt object.
 /// @param other A pointer to the other ApInt object.

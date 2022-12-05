@@ -27,6 +27,12 @@
     <Filter Include="Headerdateien\Ring1\Ap\Test">
       <UniqueIdentifier>{bbc34251-64c6-468c-9ca8-6005fee790c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Quelldateien\Ring1\Ap\Test\Nat">
+      <UniqueIdentifier>{c7fa19f6-c167-47c7-8c40-d9ff7078cc0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\Ap\Test\Nat">
+      <UniqueIdentifier>{62084f99-518f-4e84-8af2-28c1860e1c5f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring1\Ap\Test\Main.c">
@@ -41,6 +47,15 @@
     <ClCompile Include="Ring1\Ap\Test\ApIntTests.c">
       <Filter>Quelldateien\Ring1\Ap\Test</Filter>
     </ClCompile>
+    <ClCompile Include="Ring1\Ap\Test\Nat\Add.c">
+      <Filter>Quelldateien\Ring1\Ap\Test\Nat</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Ap\Test\Nat\Subtract.c">
+      <Filter>Quelldateien\Ring1\Ap\Test\Nat</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Ap\Test\Nat\Multiply.c">
+      <Filter>Quelldateien\Ring1\Ap\Test\Nat</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring1\Ap\Test\ApBoolTests.h">
@@ -51,6 +66,15 @@
     </ClInclude>
     <ClInclude Include="Ring1\Ap\Test\ApIntTests.h">
       <Filter>Headerdateien\Ring1\Ap\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Ap\Test\Nat\Add.h">
+      <Filter>Headerdateien\Ring1\Ap\Test\Nat</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Ap\Test\Nat\Subtract.h">
+      <Filter>Headerdateien\Ring1\Ap\Test\Nat</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Ap\Test\Nat\Multiply.h">
+      <Filter>Headerdateien\Ring1\Ap\Test\Nat</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -182,6 +182,21 @@ Ring1_ApInt_add
 }
 
 Ring1_NoDiscardResult() Ring1_Result
+Ring1_ApInt_multiply
+  (
+    Ring1_ApInt* self,
+    Ring1_ApInt* other
+  )
+{
+  bool sign = self->sign != other->sign;
+  if (Ring1_ApNat_multiply(&self->magnitude, &other->magnitude)) {
+    return Ring1_Result_Failure;
+  }
+  self->sign = sign;
+  return Ring1_Result_Success;
+}
+
+Ring1_NoDiscardResult() Ring1_Result
 Ring1_ApInt_assign
   (
     Ring1_ApInt* self,

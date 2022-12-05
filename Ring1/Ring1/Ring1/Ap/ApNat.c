@@ -379,6 +379,50 @@ Ring1_ApNat_subtract2
 }
 
 Ring1_NoDiscardResult() Ring1_Result
+Ring1_ApNat_multiply
+  (
+    Ring1_ApNat* self,
+    Ring1_ApNat* other
+  )
+{
+  // if self has n digits and other has m digits,
+  // then the product has at most n + m digits.
+  uint8_t *temporary = malloc(sizeof(uint8_t) * (self->numberOfDigits + other->numberOfDigits));
+  if (!temporary) {
+    Ring1_Status_set(Ring1_Status_AllocationFailed);
+    return Ring1_Result_Failure;
+  }
+  for (size_t i = 0; i < self->numberOfDigits + other->numberOfDigits; ++i) {
+    temporary[i] = 0;
+  }
+
+  size_t j = 0;
+  for (size_t i = 0; i < other->numberOfDigits; ++i) {
+    uint8_t carry = 0;
+    uint8_t current = 0;
+    j = i;
+    for (; j < self->numberOfDigits + i; ++j) {
+      current = temporary[j]
+              + (other->digits[i] * self->digits[j - i])
+              + carry;
+      carry = current / 10;
+      temporary[j] = current % 10;
+    }
+    if (carry > 0) {
+      current = temporary[j] + carry;
+      carry = current / 10;
+      temporary[j] = current % 10;
+    }
+  }
+
+  free(self->digits);
+  self->digits = temporary;
+  self->numberOfDigits = j;
+
+  return Ring1_Result_Success;
+}
+
+Ring1_NoDiscardResult() Ring1_Result
 Ring1_ApNat_assign
   (
     Ring1_ApNat* self,
