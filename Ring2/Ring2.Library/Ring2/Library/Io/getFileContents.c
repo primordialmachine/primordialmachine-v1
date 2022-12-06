@@ -8,7 +8,7 @@
 #include "Ring2/Library/Io/getFileContents.h"
 
 
-#include "Ring1/FileSystem.h"
+#include "Ring1/FileSystem/_Include.h"
 #include "Ring1/Intrinsic.h"
 #include "Ring2/Library/Io/Initialize.h"
 
