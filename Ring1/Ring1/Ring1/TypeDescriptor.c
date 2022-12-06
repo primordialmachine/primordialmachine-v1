@@ -40,7 +40,7 @@ void valueRemoved(Ring1_TypeDescriptor *typeDescriptor) {
   Ring1_Memory_deallocate(typeDescriptor);
 }
 
-static Mkx_PointerHashMap *g_types = NULL;
+static Ring1_PointerHashMap *g_types = NULL;
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
