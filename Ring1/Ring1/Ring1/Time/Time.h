@@ -1,8 +1,8 @@
-/// @file Ring1/Time.h
-/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
-/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#if !defined(RING1_TIME_H_INCLUDED)
-#define RING1_TIME_H_INCLUDED
+/// @file Ring1/Time/Time.h
+/// @copyright Copyright (c) 2021-2022 Michael Heilmann. All rights reserved.
+/// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
+#if !defined(RING1_TIME_TIME_H_INCLUDED)
+#define RING1_TIME_TIME_H_INCLUDED
 
 #include "Ring1/Annotations/_Include.h"
 #include "Ring1/Module.h"
@@ -52,4 +52,4 @@ Ring1_Time_getNowMinutes_f32
     float* result
   );
 
-#endif // RING1_TIME_H_INCLUDED
+#endif // RING1_TIME_TIME_H_INCLUDED

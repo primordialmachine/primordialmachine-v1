@@ -1,7 +1,7 @@
-/// @file Ring1/Time.c
-/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
-/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#include "Ring1/Time.h"
+/// @file Ring1/Time/Time.c
+/// @copyright Copyright (c) 2021-2022 Michael Heilmann. All rights reserved.
+/// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
+#include "Ring1/Time/Time.h"
 
 #include "Ring1/Status.h"
 

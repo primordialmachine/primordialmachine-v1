@@ -5,9 +5,7 @@
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
 #include <stdlib.h>
-#include "Ring1/_Include.h"
-#include "Ring1/Collections/_Include.h"
-#include "Ring1/Atom/_Include.h"
+#include "Ring1/All/_Include.h"
 #include "Ring1/Test.h"
 
 /// @brief Unit test asserting atoms for equivalent strings are equivalent.

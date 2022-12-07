@@ -6,8 +6,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "Ring1/_Include.h"
-#include "Ring1/Collections/_Include.h"
+#include "Ring1/All/_Include.h"
 #include "Ring1/TypeName/_Include.h"
 #include "Ring1/Test.h"
 

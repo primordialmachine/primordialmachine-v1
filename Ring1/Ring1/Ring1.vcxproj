@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ring1\All\_Include.h" />
     <ClInclude Include="Ring1\Annotations\CheckReturn.h" />
     <ClInclude Include="Ring1\Annotations\Deprecated.h" />
     <ClInclude Include="Ring1\Annotations\Inline.h" />
@@ -147,13 +148,13 @@
     <ClInclude Include="Ring1\Intrinsic\_Include.h" />
     <ClInclude Include="Ring1\Module\Dependencies.h" />
     <ClInclude Include="Ring1\Module\Handle.h" />
+    <ClInclude Include="Ring1\Time\Time.h" />
+    <ClInclude Include="Ring1\Time\_Include.h" />
     <ClInclude Include="Ring1\TypeName\validate.h" />
     <ClInclude Include="Ring1\TypeName\_Include.h" />
-    <ClInclude Include="Ring1\_Include.h" />
     <ClInclude Include="Ring1\Test\Configuration.h" />
     <ClInclude Include="Ring1\Test\Context.h" />
     <ClInclude Include="Ring1\Test\Node.h" />
-    <ClInclude Include="Ring1\Time.h" />
     <MASM Include="Ring1\Intrinsic\Add\X64\add_s16.asm">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -469,6 +470,7 @@
     <ClInclude Include="Ring1\Test.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Ring1\All\_Include.c" />
     <ClCompile Include="Ring1\Annotations\CheckReturn.c" />
     <ClCompile Include="Ring1\Annotations\Deprecated.c" />
     <ClCompile Include="Ring1\Annotations\Inline.c" />
@@ -614,14 +616,14 @@
     <ClCompile Include="Ring1\Module\Handle.c" />
     <ClCompile Include="Ring1\ReferenceCounter.c" />
     <ClCompile Include="Ring1\Result.c" />
+    <ClCompile Include="Ring1\Time\Time.c" />
+    <ClCompile Include="Ring1\Time\_Include.c" />
     <ClCompile Include="Ring1\TypeName\validate.c" />
     <ClCompile Include="Ring1\TypeName\_Include.c" />
-    <ClCompile Include="Ring1\_Include.c" />
     <ClCompile Include="Ring1\Status.c" />
     <ClCompile Include="Ring1\Test.c" />
     <ClCompile Include="Ring1\Test\Context.c" />
     <ClCompile Include="Ring1\Test\Node.c" />
-    <ClCompile Include="Ring1\Time.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Ring1\Console\Windows\Color.i" />

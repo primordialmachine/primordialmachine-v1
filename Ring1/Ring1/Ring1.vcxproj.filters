@@ -324,6 +324,18 @@
     <Filter Include="Quelldateien\Ring1\Ap">
       <UniqueIdentifier>{e30dbd67-cb4d-4e3d-bc36-4c751557414b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Quelldateien\Ring1\Time">
+      <UniqueIdentifier>{d6efff89-c736-467b-9ca8-2bafc665f3dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\Time">
+      <UniqueIdentifier>{2032d1f0-964f-4271-81ed-0c278a0cf375}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\All">
+      <UniqueIdentifier>{081c4331-4095-44fa-9258-48a966cce170}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\All">
+      <UniqueIdentifier>{8cf2c5a0-0201-4b95-abd6-72732bc2e290}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring1\Intrinsic\Subtract\subtract.h">
@@ -659,9 +671,6 @@
     <ClInclude Include="Ring1\Intrinsic\Add\X86\add_u64.h">
       <Filter>Headerdateien\Ring1\Intrinsic\Add\X86</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Time.h">
-      <Filter>Headerdateien\Ring1</Filter>
-    </ClInclude>
     <ClInclude Include="Ring1\ByteBuffer.h">
       <Filter>Headerdateien\Ring1</Filter>
     </ClInclude>
@@ -694,9 +703,6 @@
     </ClInclude>
     <ClInclude Include="Ring1\FileSystem\NonExistingFilePolicy.h">
       <Filter>Headerdateien\Ring1\FileSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring1\_Include.h">
-      <Filter>Headerdateien\Ring1</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\Intrinsic\Crt.h">
       <Filter>Headerdateien\Ring1\Intrinsic</Filter>
@@ -853,6 +859,15 @@
     </ClInclude>
     <ClInclude Include="Ring1\FileSystem\Configuration.h">
       <Filter>Headerdateien\Ring1\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Time\_Include.h">
+      <Filter>Headerdateien\Ring1\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Time\Time.h">
+      <Filter>Headerdateien\Ring1\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\All\_Include.h">
+      <Filter>Headerdateien\Ring1\All</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1012,9 +1027,6 @@
     <ClCompile Include="Ring1\Memory\Statistics.c">
       <Filter>Quelldateien\Ring1\Memory</Filter>
     </ClCompile>
-    <ClCompile Include="Ring1\Time.c">
-      <Filter>Quelldateien\Ring1</Filter>
-    </ClCompile>
     <ClCompile Include="Ring1\ByteBuffer.c">
       <Filter>Quelldateien\Ring1</Filter>
     </ClCompile>
@@ -1047,9 +1059,6 @@
     </ClCompile>
     <ClCompile Include="Ring1\FileSystem\NonExistingFilePolicy.c">
       <Filter>Quelldateien\Ring1\FileSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring1\_Include.c">
-      <Filter>Quelldateien\Ring1</Filter>
     </ClCompile>
     <ClCompile Include="Ring1\Annotations\_Include.c">
       <Filter>Quelldateien\Ring1\Annotations</Filter>
@@ -1194,6 +1203,15 @@
     </ClCompile>
     <ClCompile Include="Ring1\FileSystem\_Include.c">
       <Filter>Quelldateien\Ring1\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Time\_Include.c">
+      <Filter>Quelldateien\Ring1\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Time\Time.c">
+      <Filter>Quelldateien\Ring1\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\All\_Include.c">
+      <Filter>Quelldateien\Ring1\All</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
