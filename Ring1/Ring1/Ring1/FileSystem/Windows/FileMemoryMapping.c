@@ -125,7 +125,7 @@ Ring1_FileSystem_Windows_FileMemoryMapping_openWrite
 }
 
 void
-Ring1_FileSystem_WindowsFileMemoryMapping_close
+Ring1_FileSystem_Windows_FileMemoryMapping_close
   (
     Ring1_FileSystem_Windows_FileMemoryMapping* self
   )
