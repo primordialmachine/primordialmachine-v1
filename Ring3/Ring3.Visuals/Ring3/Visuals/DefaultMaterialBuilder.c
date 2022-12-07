@@ -37,7 +37,7 @@ static void
 setExistingBlendFunctionImpl
   (
     Ring3_DefaultMaterialBuilder* self,
-    Ring3_DepthTestFunction existingBlendFunction
+    Ring3_BlendFunction existingBlendFunction
   )
 { self->existingBlendFunction = existingBlendFunction; }
 
@@ -52,7 +52,7 @@ static void
 setIncomingBlendFunctionImpl
   (
     Ring3_DefaultMaterialBuilder* self,
-    Ring3_DepthTestFunction incomingBlendFunction
+    Ring3_BlendFunction incomingBlendFunction
   )
 { self->incomingBlendFunction = incomingBlendFunction; }
 
@@ -90,15 +90,15 @@ Ring3_DefaultMaterialBuilder_implement_Ring3_MaterialBuilder
     Ring3_MaterialBuilder_Dispatch* self
   )
 {
-  self->getDepthTestFunction = &getDepthTestFunctionImpl;
-  self->setDepthTestFunction = &setDepthTestFunctionImpl;
-  self->getExistingBlendFunction = &getExistingBlendFunctionImpl;
-  self->setExistingBlendFunction = &setExistingBlendFunctionImpl;
-  self->getIncomingBlendFunction = &getIncomingBlendFunctionImpl;
-  self->setIncomingBlendFunction = &setIncomingBlendFunctionImpl;
-  self->getDepthWriteEnabled = &getDepthWriteEnabledImpl;
-  self->setDepthWriteEnabled = &setDepthWriteEnabledImpl;
-  self->build = &buildImpl;
+  self->getDepthTestFunction = (Ring3_DepthTestFunction (*)(const Ring3_MaterialBuilder *)) & getDepthTestFunctionImpl;
+  self->setDepthTestFunction = (void (*)(Ring3_MaterialBuilder *, Ring3_DepthTestFunction)) & setDepthTestFunctionImpl;
+  self->getExistingBlendFunction = (Ring3_BlendFunction (*)(const Ring3_MaterialBuilder*)) & getExistingBlendFunctionImpl;
+  self->setExistingBlendFunction = (void (*)(Ring3_MaterialBuilder *, Ring3_BlendFunction)) & setExistingBlendFunctionImpl;
+  self->getIncomingBlendFunction = (Ring3_BlendFunction (*)(const Ring3_MaterialBuilder *)) & getIncomingBlendFunctionImpl;
+  self->setIncomingBlendFunction = (void (*)(Ring3_MaterialBuilder *, Ring3_BlendFunction)) & setIncomingBlendFunctionImpl;
+  self->getDepthWriteEnabled = (bool (*)(const Ring3_MaterialBuilder *)) & getDepthWriteEnabledImpl;
+  self->setDepthWriteEnabled = (void (*)(Ring3_MaterialBuilder *, bool)) & setDepthWriteEnabledImpl;
+  self->build = (Ring3_Material *(*)(const Ring3_MaterialBuilder *)) & buildImpl;
 }
 
 static void
