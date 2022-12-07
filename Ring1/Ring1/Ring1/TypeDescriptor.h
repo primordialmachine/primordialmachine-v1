@@ -17,7 +17,7 @@ typedef struct Ring1_TypeDescriptor Ring1_TypeDescriptor;
 /// @brief Descriptor of a scalar type.
 /// Scalar types are
 /// - boolean (<code>Boolean</code>),
-/// - integer-number (<code>Integer(8,16,32,64)?</code>),
+/// - integer-number (<code>Integer(8|16|32|64)?</code>),
 /// - natural-number (<code>Natural(8|16|32|64)?</code>), and
 /// - real-number (<code>Real(32|64)?</code>)
 /// types.
