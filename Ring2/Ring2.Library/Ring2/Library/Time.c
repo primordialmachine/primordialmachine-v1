@@ -8,7 +8,6 @@
 #include "Ring2/Library/Time.h"
 
 
-#include "Ring1/Time.h"
 #include "Ring1/Status.h"
 #include "Ring2/_Include.h"
 

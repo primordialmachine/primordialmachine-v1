@@ -9,7 +9,7 @@
 #undef RING2_PRIVATE
 
 #include <stdio.h>
-#include "Ring1/Memory.h"
+#include "Ring1/All/_Include.h"
 #include "Ring1/Status.h"
 
 #define RING2_PRIVATE (1)
@@ -36,7 +36,7 @@ Ring2_Context_get
 }
 
 Ring1_BeginDependencies()
-  Ring1_Dependency(Ring1, Memory)
+  Ring1_Dependency(Ring1, All)
   //
   Ring1_Dependency(Ring2, LogModule)
   Ring1_Dependency(Ring2, GcModule)

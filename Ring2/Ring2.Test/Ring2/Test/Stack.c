@@ -12,7 +12,7 @@
 #include "Ring2/Test/Stack/pushReal.h"
 #include "Ring2/Test/Stack/pushString.h"
 #include "Ring2/Test/Stack/pushVoid.h"
-#include "Ring1/_Include.h"
+#include "Ring1/All/_Include.h"
 
 void
 Ring2_Test_registerStackTests

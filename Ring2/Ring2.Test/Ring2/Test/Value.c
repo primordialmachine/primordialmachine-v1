@@ -7,8 +7,7 @@
 #include "Ring2/Test/Value.h"
 
 #include "Ring1/Intrinsic.h"
-#include "Ring1/_Include.h"
-#include "Ring2/_Include.h"
+#include "Ring1/All/_Include.h"
 #include "Ring2/Test/Fixtures/ForeignProcedure.h"
 #include "Ring2/Test/Fixtures/Object.h"
 
