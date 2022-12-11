@@ -869,6 +869,9 @@
     <ClInclude Include="Ring1\All\_Include.h">
       <Filter>Headerdateien\Ring1\All</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\Windows\getCurrentDirectory.h">
+      <Filter>Headerdateien\Ring1\FileSystem\Windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring1\Intrinsic\ThreadLocal.c">
@@ -1212,6 +1215,12 @@
     </ClCompile>
     <ClCompile Include="Ring1\All\_Include.c">
       <Filter>Quelldateien\Ring1\All</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\Windows\getCurrentDirectory.c">
+      <Filter>Quelldateien\Ring1\FileSystem\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\getCurrentDirectory.c">
+      <Filter>Quelldateien\Ring1\FileSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

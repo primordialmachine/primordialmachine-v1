@@ -67,6 +67,7 @@
     <ClInclude Include="Ring1\FileSystem\setFileContents.h" />
     <ClInclude Include="Ring1\FileSystem\Windows\FileHandle.h" />
     <ClInclude Include="Ring1\FileSystem\Windows\FileMemoryMapping.h" />
+    <ClInclude Include="Ring1\FileSystem\Windows\getCurrentDirectory.h" />
     <ClInclude Include="Ring1\FileSystem\Windows\getFileAttributes.h" />
     <ClInclude Include="Ring1\FileSystem\Windows\getFileContents.h" />
     <ClInclude Include="Ring1\FileSystem\Windows\receiveFileContents.h" />
@@ -506,6 +507,7 @@
     <ClCompile Include="Ring1\FileSystem\ExistingFilePolicy.c" />
     <ClCompile Include="Ring1\FileSystem\FileAccessMode.c" />
     <ClCompile Include="Ring1\FileSystem\FileAttributes.c" />
+    <ClCompile Include="Ring1\FileSystem\getCurrentDirectory.c" />
     <ClCompile Include="Ring1\FileSystem\getFileAttributes.c" />
     <ClCompile Include="Ring1\FileSystem\getFileContents.c" />
     <ClCompile Include="Ring1\FileSystem\MemoryCallbacks.c" />
@@ -514,6 +516,7 @@
     <ClCompile Include="Ring1\FileSystem\setFileContents.c" />
     <ClCompile Include="Ring1\FileSystem\Windows\FileHandle.c" />
     <ClCompile Include="Ring1\FileSystem\Windows\FileMemoryMapping.c" />
+    <ClCompile Include="Ring1\FileSystem\Windows\getCurrentDirectory.c" />
     <ClCompile Include="Ring1\FileSystem\Windows\getFileAttributes.c" />
     <ClCompile Include="Ring1\FileSystem\Windows\getFileContents.c" />
     <ClCompile Include="Ring1\FileSystem\Windows\receiveFileContents.c" />
