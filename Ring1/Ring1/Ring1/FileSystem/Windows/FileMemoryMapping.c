@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include "Ring1/Status.h"
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_FileSystem_Windows_FileMemoryMapping_openRead
   (
     Ring1_FileSystem_Windows_FileMemoryMapping* self,
@@ -71,7 +71,7 @@ Ring1_FileSystem_Windows_FileMemoryMapping_openRead
   }
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_FileSystem_Windows_FileMemoryMapping_openWrite
   (
     Ring1_FileSystem_Windows_FileMemoryMapping* self,

@@ -10,7 +10,7 @@
 #include "Ring1/Status.h"
 #include <stdio.h>
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 doMultiply
   (
     Ring1_Test_Context *ctx,
@@ -87,7 +87,7 @@ doMultiply
 
 #include "Ring1/Intrinsic/_Include.h"
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 multiply
   (
     Ring1_Test_Context *ctx
@@ -119,7 +119,7 @@ multiply
   return Ring1_Result_Success;
 }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Ap_Test_Nat_registerMultiplyTests
   (
     Ring1_Test_Context* ctx

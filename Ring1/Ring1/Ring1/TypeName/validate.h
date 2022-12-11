@@ -10,7 +10,7 @@
 /// @return #Ring1_Result_Success on success. #Ring1_Result_Failure on failure.
 /// @remark This function sets the by-thread status variable on failure.
 /// @error #Ring1_Status_InvalidSyntactics the string does not represent a valid scalar type name.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 isScalarTypeName
   (
     const char *p

@@ -11,7 +11,7 @@
 #include <math.h>
 
 #define IMPLEMENTATION(SUFFIX, TYPE)                                           \
-  Ring1_CheckReturn() Ring1_Result                                             \
+  Ring1_NoDiscardReturn() Ring1_Result                                             \
   Ring1_Intrinsic_maximum_##SUFFIX(TYPE* result, TYPE const x, TYPE const y)   \
   {                                                                            \
     if (!result || isnan(x) || isnan(y)) {                                     \
@@ -29,7 +29,7 @@ IMPLEMENTATION(f64, double)
 #undef IMPLEMENTATION
 
 #define IMPLEMENTATION(SUFFIX, TYPE)                                                               \
-  Ring1_CheckReturn() Ring1_Result                                                                 \
+  Ring1_NoDiscardReturn() Ring1_Result                                                                 \
   Ring1_Intrinsic_maximum_##SUFFIX(TYPE* result, TYPE const x, TYPE const y)                       \
   {                                                                                                \
     if (!result) {                                                                                 \

@@ -206,7 +206,7 @@ computeHashValue
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Atom_getOrCreate
   (
     Ring1_Atom **result,
@@ -313,7 +313,7 @@ Ring1_Atom_unreference
   }
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Atom_getBytes
   (
     const char **result,
@@ -328,7 +328,7 @@ Ring1_Atom_getBytes
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Atom_getNumberOfBytes
   (
     int64_t *result,
@@ -343,7 +343,7 @@ Ring1_Atom_getNumberOfBytes
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Atom_getHashValue
   (
     int64_t* result,

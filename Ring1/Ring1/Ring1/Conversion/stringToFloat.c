@@ -13,7 +13,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-Ring1_CheckReturn() bool
+Ring1_NoDiscardReturn() bool
 parse
   (
     char const* start,
@@ -87,7 +87,7 @@ parse
   return true;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Conversion_stringToFloat
   (
     float *result,
@@ -126,7 +126,7 @@ Ring1_Conversion_stringToFloat
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Conversion_stringToDouble
   (
     double *result,

@@ -9,7 +9,7 @@
 #include <stdio.h>
 
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 resize
   (
     Ring1_ApNat *x,
@@ -43,7 +43,7 @@ resize
   return Ring1_Result_Success;
 }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 grow
   (
     Ring1_ApNat *x,

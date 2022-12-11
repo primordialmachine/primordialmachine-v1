@@ -11,7 +11,7 @@
 #include "Ring1/FileSystem/Windows/FileMemoryMapping.h"
 #include <stdio.h>
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_FileSystem_Windows_setFileContents
   (
     const char* pathname,

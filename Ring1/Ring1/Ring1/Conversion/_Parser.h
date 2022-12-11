@@ -6,7 +6,7 @@
 #include <stdbool.h>
 #include <stddef.h>
 
-Ring1_Inline() Ring1_CheckReturn() bool
+Ring1_Inline() Ring1_NoDiscardReturn() bool
 isString
   (
     char const** new,
@@ -30,7 +30,7 @@ isString
   return true;
 }
 
-Ring1_Inline() Ring1_CheckReturn() bool
+Ring1_Inline() Ring1_NoDiscardReturn() bool
 isDigit
   (
     char const** new,

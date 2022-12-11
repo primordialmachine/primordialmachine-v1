@@ -87,7 +87,7 @@
 /// @brief Get the raw bits of a single-precision floating-point value.
 /// @param x The single-precision floating-point value.
 /// @return The raw bits of the single-precision floating-point value.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Fp_getRawBits_f32
   (
     uint32_t *result,
@@ -100,7 +100,7 @@ Ring1_Fp_getRawBits_f32
 /// @remark If x is no number, then the bits returned have the sign bit set to 1 and all payload bits set to zero.
 /// @remark If x is negative zero, then this function returns the bits of the positive zero.
 /// @see https://en.wikipedia.org/wiki/Single-precision_floating-point_format
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Fp_getBits_f32
   (
     uint32_t* result,
@@ -115,7 +115,7 @@ Ring1_Fp_getBits_f32
 /// The significant is a value <code>1 * 2^23 + b[22] * 2^52 + ... + b[0] * 2^0</code>.
 /// @post
 /// <code>*result</code> was assigned a value <code>[0 - 127 - 23, 255 - 127 - 23]</code>.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Fp_split_f32
   (
     float x,
@@ -131,7 +131,7 @@ Ring1_Fp_split_f32
 /// @brief Get the raw bits of a double-precision floating-point value.
 /// @param x The double-precision floating-point value.
 /// @return The raw bits of the double-precision floating-point value.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Fp_getRawBits_f64
   (
     uint64_t* result,
@@ -144,7 +144,7 @@ Ring1_Fp_getRawBits_f64
 /// @remark If x is no number, then the bits returned have the sign bit set to 1 and all payload bits set to zero.
 /// @remark If x is negative zero, then this function returns the bits of the positive zero.
 /// @see https://en.wikipedia.org/wiki/Double-precision_floating-point_format
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Fp_getBits_f64
   (
     uint64_t *result,
@@ -159,7 +159,7 @@ Ring1_Fp_getBits_f64
 /// The significant is a value <code>1 * 2^52 + b[51] * 2^51 + ... + b[0] * 2^0</code>.
 /// @post
 /// <code>*result</code> was assigned a value <code>[0 - 1023 - 52, 2047 - 1023 - 52]</code>.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Fp_split_f64
   (
     double x,

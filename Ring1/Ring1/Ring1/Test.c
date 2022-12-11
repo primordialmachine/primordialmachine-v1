@@ -20,7 +20,7 @@
 /// @brief Initialize a test context.
 /// @param ctx A pointer to the uninitialized test context.
 /// @return #Ring1_Status_Success on success, a failure status code on failure.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Test_Context_initialize
   (
     Ring1_Test_Context* ctx
@@ -36,7 +36,7 @@ Ring1_Test_Context_uninitialize
   );
 
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Test_Context_initialize
   (
     Ring1_Test_Context* ctx
@@ -50,7 +50,7 @@ Ring1_Test_Context_initialize
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Test_Context_addTest
   (
     Ring1_Test_Context* ctx,
@@ -66,7 +66,7 @@ Ring1_Test_Context_addTest
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Test_Context_create
   ( 
     Ring1_Test_Context** ctx
@@ -118,7 +118,7 @@ Ring1_Test_Context_removeAllTests
   }
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Test_Context_runAllTests
   (
     Ring1_Test_Context *ctx

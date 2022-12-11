@@ -21,14 +21,14 @@ typedef struct Ring1_FileSystem_Windows_FileMemoryMapping {
   size_t numberOfBytes;
 } Ring1_FileSystem_Windows_FileMemoryMapping; // struct Ring1_FileSystem_Windows_FileMemoryMapping
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_FileSystem_Windows_FileMemoryMapping_openRead
   (
     Ring1_FileSystem_Windows_FileMemoryMapping* self,
     const char* path
   );
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_FileSystem_Windows_FileMemoryMapping_openWrite
   (
     Ring1_FileSystem_Windows_FileMemoryMapping* self,

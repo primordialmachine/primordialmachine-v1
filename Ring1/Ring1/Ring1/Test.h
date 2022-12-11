@@ -32,7 +32,7 @@ typedef Ring1_Result (Ring1_Test_Function)(Ring1_Test_Context* context);
 /// @param ctx A pointer to a Ring1_Test_Context * variable.
 /// If this function succeeds, that variable is assigned a pointer to the created Ring1_Test_Context object.
 /// @return #Ring1_Result_Success on success, #Ring1_Result_Failure on failure.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Test_Context_create
   (
     Ring1_Test_Context **ctx
@@ -51,7 +51,7 @@ Ring1_Test_Context_destroy
 /// @brief Execute all tests.
 /// @param ctx A pointer to the test context.
 /// @return #Ring1_Result_Success on success, #Ring1_Result_Failure on failure.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Test_Context_runAllTests
   (
     Ring1_Test_Context *ctx
@@ -63,7 +63,7 @@ Ring1_Test_Context_runAllTests
 /// @todo Fail if a test with the same name exists.
 /// @return #Ring1_Status_Success on success, a failure status code on failure.
 /// @remark The test is in the state RING1_TEST_NODE_FLAG_ISNOTEVALUATED.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Test_Context_addTest
   (
     Ring1_Test_Context* ctx,

@@ -9,7 +9,7 @@
 #include "Ring1/Ap/Test/ApIntTests.h"
 #include "Ring1/Ap/Test/ApNatTests.h"
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Ap_Test_run
   (
   )

@@ -40,7 +40,7 @@ typedef struct TypeName {
   TypeNameKey key;
 } TypeName;
 
-static Ring1_CheckReturn() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 initializeModule
   (
   );
@@ -50,14 +50,14 @@ uninitializeModule
   (
   );
 
-static Ring1_CheckReturn() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 hashTypeKey
   (
     int64_t* result,
     TypeNameKey* x
   );
 
-static Ring1_CheckReturn() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 isTypeKeyEqualTo
   (
     bool* result,
@@ -65,7 +65,7 @@ isTypeKeyEqualTo
     TypeNameKey const* y
   );
 
-static Ring1_CheckReturn() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 removeEntryIf
   (
     bool* result,
@@ -103,7 +103,7 @@ Ring1_EndDependencies()
 
 Ring1_Module_Define(Ring1, TypeName, initializeModule, uninitializeModule)
 
-static Ring1_CheckReturn() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 initializeModule
   (
   )
@@ -145,7 +145,7 @@ uninitializeModule
   shutdownDependencies();
 }
 
-static Ring1_CheckReturn() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 hashTypeKey
   (
     int64_t *result,
@@ -161,7 +161,7 @@ hashTypeKey
   return Ring1_Result_Success;
 }
 
-static Ring1_CheckReturn() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 isTypeKeyEqualTo
   (
     bool *result,
@@ -174,7 +174,7 @@ isTypeKeyEqualTo
   return Ring1_Result_Success;
 }
 
-static Ring1_CheckReturn() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 removeEntryIf
   (
     bool *result,
@@ -244,7 +244,7 @@ Ring1_TypeName_unref
   }
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_TypeName_getOrCreateArray
   (
     Ring1_TypeName** result,
@@ -313,7 +313,7 @@ Ring1_TypeName_getOrCreateArray
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_TypeName_getOrCreateScalar
   (
     Ring1_TypeName** result,
@@ -369,7 +369,7 @@ Ring1_TypeName_getOrCreateScalar
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_TypeName_toString
   (
     char **result,

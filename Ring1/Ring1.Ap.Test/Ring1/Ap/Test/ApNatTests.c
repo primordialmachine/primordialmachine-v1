@@ -15,7 +15,7 @@
 #include <stdio.h>
 
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 doTestConversion
   (
     Ring1_Test_Context *ctx,
@@ -53,7 +53,7 @@ doTestConversion
   return Ring1_Result_Success;
 }
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 ApNatTestConversion
   (
     Ring1_Test_Context *ctx
@@ -72,7 +72,7 @@ ApNatTestConversion
   return Ring1_Result_Success;
 }
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 doTestCompare
   (
     Ring1_Test_Context *ctx,
@@ -115,7 +115,7 @@ doTestCompare
   return Ring1_Result_Success;
 }
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 ApNatTestCompare
   (
     Ring1_Test_Context *ctx
@@ -140,7 +140,7 @@ ApNatTestCompare
   return Ring1_Result_Success;
 }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Ap_Test_registerApNatTests
   (
     Ring1_Test_Context* ctx

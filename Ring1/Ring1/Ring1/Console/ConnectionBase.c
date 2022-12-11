@@ -15,7 +15,7 @@ Ring1_Console_ConnectionBase_destruct
   )
 {/*Intentionally empty.*/}
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Console_ConnectionBase_construct
   (
     Ring1_Console_ConnectionBase *connection
@@ -30,7 +30,7 @@ Ring1_Console_ConnectionBase_construct
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Console_ConnectionBase_flush
   (
     Ring1_Console_ConnectionBase* connection
@@ -42,7 +42,7 @@ Ring1_Console_ConnectionBase_flush
   return connection->flush(connection);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Console_ConnectionBase_getColor
   (
     Ring1_Console_ConnectionBase* connection,
@@ -55,7 +55,7 @@ Ring1_Console_ConnectionBase_getColor
   return connection->getColor(connection, color);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Console_ConnectionBase_setColor
   (
     Ring1_Console_ConnectionBase* connection,
@@ -68,7 +68,7 @@ Ring1_Console_ConnectionBase_setColor
   return connection->setColor(connection, color);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Console_ConnectionBase_write
   (
     Ring1_Console_ConnectionBase* connection,

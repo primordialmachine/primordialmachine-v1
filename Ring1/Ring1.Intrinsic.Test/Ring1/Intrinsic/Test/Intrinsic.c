@@ -20,7 +20,7 @@
 #include "Ring1/Intrinsic/Test/NextPowerOfTwo.h"
 #include "Ring1/Intrinsic/Test/Subtract.h"
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Mkx_Intrinsic_Test_runAll
   (
   )

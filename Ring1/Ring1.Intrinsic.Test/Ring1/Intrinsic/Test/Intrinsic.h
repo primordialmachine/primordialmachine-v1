@@ -9,7 +9,7 @@
 
 #include "Ring1/Test.h"
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Mkx_Intrinsic_Test_runAll
   (
   );

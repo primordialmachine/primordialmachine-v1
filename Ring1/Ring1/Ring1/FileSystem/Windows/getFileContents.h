@@ -16,7 +16,7 @@
 #include "Ring1/Annotations/_Include.h"
 #include "Ring1/Result.h"
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_FileSystem_Windows_getFileContents
   (
     const char* pathname,

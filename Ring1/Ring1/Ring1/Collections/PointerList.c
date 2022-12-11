@@ -42,7 +42,7 @@ typedef struct Impl {
 } Impl;
 
 
-static inline Ring1_CheckReturn() Ring1_Result
+static inline Ring1_NoDiscardReturn() Ring1_Result
 clear
   (
     Impl *pimpl
@@ -63,7 +63,7 @@ clear
   return Ring1_Result_Success;
 }
 
-static inline Ring1_CheckReturn() Ring1_Result
+static inline Ring1_NoDiscardReturn() Ring1_Result
 getAt
   (
     const Impl *pimpl,
@@ -83,7 +83,7 @@ getAt
   return Ring1_Result_Success;
 }
 
-static inline Ring1_CheckReturn() Ring1_Result
+static inline Ring1_NoDiscardReturn() Ring1_Result
 getSize
   (
     int64_t *size,
@@ -98,7 +98,7 @@ getSize
   return Ring1_Result_Success;
 }
 
-static inline Ring1_CheckReturn() Ring1_Result
+static inline Ring1_NoDiscardReturn() Ring1_Result
 insertAt
   (
     Impl* pimpl,
@@ -145,7 +145,7 @@ insertAt
   return Ring1_Result_Success;
 }
 
-static inline Ring1_CheckReturn() Ring1_Result
+static inline Ring1_NoDiscardReturn() Ring1_Result
 insertFront
   (
     Impl* pimpl,
@@ -153,7 +153,7 @@ insertFront
   )
 { return insertAt(pimpl, 0, element); }
 
-static inline Ring1_CheckReturn() Ring1_Result
+static inline Ring1_NoDiscardReturn() Ring1_Result
 insertBack
   (
     Impl *pimpl,
@@ -161,7 +161,7 @@ insertBack
   )
 { return insertAt(pimpl, pimpl->size, element); }
 
-static inline Ring1_CheckReturn() Ring1_Result
+static inline Ring1_NoDiscardReturn() Ring1_Result
 find
   (
     Impl* pimpl,
@@ -195,7 +195,7 @@ find
   return Ring1_Status_Success;
 }
 
-static inline Ring1_CheckReturn() Ring1_Result
+static inline Ring1_NoDiscardReturn() Ring1_Result
 initialize
   (
     Impl* pimpl,
@@ -213,7 +213,7 @@ initialize
   return Ring1_Result_Success;
 }
 
-static inline Ring1_CheckReturn() Ring1_Result
+static inline Ring1_NoDiscardReturn() Ring1_Result
 removeAt
   (
     Impl* pimpl,
@@ -262,7 +262,7 @@ removeAt
   return Ring1_Result_Success;
 }
 
-static inline Ring1_CheckReturn() Ring1_Result
+static inline Ring1_NoDiscardReturn() Ring1_Result
 removeBack
   (
     Impl* pimpl,
@@ -299,7 +299,7 @@ removeBack
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerList_initialize
   (
     Ring1_PointerList* pointerList,
@@ -319,7 +319,7 @@ Ring1_PointerList_initialize
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerList_uninitialize
   (
     Ring1_PointerList* pointerList
@@ -334,7 +334,7 @@ Ring1_PointerList_uninitialize
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerList_find
   (
     Ring1_PointerList* pointerList,
@@ -360,7 +360,7 @@ Ring1_PointerList_visit
   }
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerList_filter
   (
     Ring1_PointerList* pointerList,
@@ -394,7 +394,7 @@ Ring1_PointerList_filter
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerList_clear
   (
     Ring1_PointerList* self
@@ -407,7 +407,7 @@ Ring1_PointerList_clear
   return clear((Impl *)self->pimpl);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerList_getAt
   (
     Ring1_PointerList* self,
@@ -422,7 +422,7 @@ Ring1_PointerList_getAt
   return getAt((Impl *)self->pimpl, index, element);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerList_getSize
   (
     int64_t *size,
@@ -436,7 +436,7 @@ Ring1_PointerList_getSize
   return getSize(size, self->pimpl);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerList_insertAt
   (
     Ring1_PointerList* pointerList,
@@ -445,7 +445,7 @@ Ring1_PointerList_insertAt
   )
 { return insertAt((Impl *)pointerList->pimpl, index, element); }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerList_insertBack
   (
     Ring1_PointerList* pointerList,
@@ -453,7 +453,7 @@ Ring1_PointerList_insertBack
   )
 { return insertBack((Impl *)pointerList->pimpl, element); }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerList_insertFront
   (
     Ring1_PointerList* pointerList,
@@ -461,7 +461,7 @@ Ring1_PointerList_insertFront
   )
 { return insertFront((Impl *)pointerList->pimpl, element ); }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerList_removeAt
   (
     Ring1_PointerList* self,
@@ -476,7 +476,7 @@ Ring1_PointerList_removeAt
   return removeAt(self->pimpl, index, false, element);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerList_stealAt
   (
     Ring1_PointerList* self,
@@ -491,7 +491,7 @@ Ring1_PointerList_stealAt
   return removeAt(self->pimpl, index, false, element);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerList_removeBack
   (
     Ring1_PointerList* self,
@@ -505,7 +505,7 @@ Ring1_PointerList_removeBack
   return removeBack(self->pimpl, true, element);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerList_stealBack
   (
     Ring1_PointerList* self,

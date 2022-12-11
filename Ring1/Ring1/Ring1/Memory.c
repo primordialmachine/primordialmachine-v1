@@ -88,7 +88,7 @@ uninitializeModule
 #endif
 }
 
-static Ring1_CheckReturn() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 allocate
   (
     void** result,
@@ -129,7 +129,7 @@ allocate
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_allocate
   (
     void **result,
@@ -150,7 +150,7 @@ Ring1_Memory_allocate
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_allocateArray
   (
     void **result,
@@ -177,7 +177,7 @@ Ring1_Memory_allocateArray
   return Ring1_Result_Success;
 }
 
-static Ring1_CheckReturn() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 reallocate
   (
     void** result,
@@ -213,7 +213,7 @@ reallocate
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_reallocate
   (
     void **result,
@@ -236,7 +236,7 @@ Ring1_Memory_reallocate
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_reallocateArray
   (
     void **result,
@@ -282,7 +282,7 @@ Ring1_Memory_deallocate
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_zeroFill
   (
     void *p,
@@ -300,7 +300,7 @@ Ring1_Memory_zeroFill
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_zeroFillArray
   (
     void* p,
@@ -429,7 +429,7 @@ Ring1_compareMemoryColexicographic1
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_compare
   (
     int *result,
@@ -469,7 +469,7 @@ Ring1_Memory_compare
   };
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_copyFast
   (
     void *p,
@@ -493,7 +493,7 @@ Ring1_Memory_copyFast
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_copyArrayFast
   (
     void* p,
@@ -523,7 +523,7 @@ Ring1_Memory_copyArrayFast
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_copySlow
   (
     void *p,
@@ -542,7 +542,7 @@ Ring1_Memory_copySlow
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_copyArraySlow
   (
     void* target,
@@ -568,7 +568,7 @@ Ring1_Memory_copyArraySlow
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_getPageSze
   (
     size_t *result

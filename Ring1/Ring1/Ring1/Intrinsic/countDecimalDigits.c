@@ -8,7 +8,7 @@
 #include "Ring1/Intrinsic/countDecimalDigits.h"
 #undef RING_PRIVATE
 
-Ring1_NoDiscardResult() uint8_t
+Ring1_NoDiscardReturn() uint8_t
 Ring1_countDecimalDigits_u8
   (
     uint8_t value
@@ -26,7 +26,7 @@ Ring1_countDecimalDigits_u8
   }
 }
   
-Ring1_NoDiscardResult() uint8_t
+Ring1_NoDiscardReturn() uint8_t
 Ring1_countDecimalDigits_u16
   (
     uint16_t value
@@ -44,7 +44,7 @@ Ring1_countDecimalDigits_u16
   }  
 }
   
-Ring1_NoDiscardResult() uint8_t
+Ring1_NoDiscardReturn() uint8_t
 Ring1_countDecimalDigits_u32
   (
     uint32_t value
@@ -62,7 +62,7 @@ Ring1_countDecimalDigits_u32
   }  
 }
 
-Ring1_NoDiscardResult() uint8_t
+Ring1_NoDiscardReturn() uint8_t
 Ring1_countDecimalDigits_u64
   (
     uint64_t value

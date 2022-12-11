@@ -20,7 +20,7 @@ Ring1_Conversion__Buffer_shutdown
 /// @return #Ring1_Result_Success on success. #Ring1_Result_Failure on failure.
 /// @warning
 /// Undefined if the "Conversion._Buffer" module is already initialized.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Conversion__Buffer_startup
   (
   );
@@ -29,7 +29,7 @@ Ring1_Conversion__Buffer_startup
 /// @return #Ring1_Result_Success on success. #Ring1_Result_Failure on failure.
 /// @warning
 /// Undefined if the "Conversion._Buffer" module is not yet initialized.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Conversion__Buffer_get
   (
     char **result,

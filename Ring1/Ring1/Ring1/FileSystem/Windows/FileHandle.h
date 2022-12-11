@@ -20,7 +20,7 @@
 #include "Ring1/FileSystem/FileAccessMode.h"
 #include "Ring1/FileSystem/NonExistingFilePolicy.h"
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_FileSystem_Windows_startup
   (
   );
@@ -38,7 +38,7 @@ typedef struct Ring1_FileSystem_Windows_FileHandle
 } Ring1_FileSystem_Windows_FileHandle;
 
 // file must exist
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_FileSystem_Windows_FileHandle_create
   (
     Ring1_FileSystem_Windows_FileHandle **result,
@@ -48,25 +48,25 @@ Ring1_FileSystem_Windows_FileHandle_create
     Ring1_FileSystem_NonExistingFilePolicy nonExistingFilePolicy
   );
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_FileSystem_Windows_FileHandle_createStandardOutput
   (
     Ring1_FileSystem_Windows_FileHandle** result
   );
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_FileSystem_Windows_FileHandle_createStandardError
   (
     Ring1_FileSystem_Windows_FileHandle** result
   );
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_FileSystem_Windows_FileHandle_createStandardInput
   (
     Ring1_FileSystem_Windows_FileHandle** result
   );
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_FileSystem_Windows_FileHandle_getFileSize
   (
     size_t *result,

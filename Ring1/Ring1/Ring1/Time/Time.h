@@ -11,42 +11,42 @@
 Ring1_Module_Declare(Ring1, Time)
 
 // https://primordialmachine.com/api/ring1-library/time-library/Ring1_Time_getNowMilliseconds
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Time_getNowMilliseconds_u64
   (
     uint64_t* result
   );
 
 // https://primordialmachine.com/api/ring1-library/time-library/Ring1_Time_getNowSeconds
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Time_getNowSeconds_u64
   (
     uint64_t* result
   );
 
 // https://primordialmachine.com/api/ring1-library/time-library/Ring1_Time_getNowMinutes
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Time_getNowMinutes_u64
   (
     uint64_t* result
   );
 
 // https://primordialmachine.com/api/ring1-library/time-library/Ring1_Time_getNowMilliseconds
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Time_getNowMilliseconds_f32
   (
     float* result
   );
 
 // https://primordialmachine.com/api/ring1-library/time-library/Ring1_Time_getNowSeconds
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Time_getNowSeconds_f32
   (
     float* result
   );
 
 // https://primordialmachine.com/api/ring1-library/time-library/Ring1_Time_getNowMinutes
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Time_getNowMinutes_f32
   (
     float* result

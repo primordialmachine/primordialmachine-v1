@@ -22,14 +22,14 @@ Ring1_Console_WindowsConnection_destruct
   Ring1_Console_ConnectionBase_destruct(RING1_CONSOLE_CONNECTIONBASE(connection));
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Console_WindowsConnection_flush
   (
     Ring1_Console_WindowsConnection* connection
   )
 { return Ring1_Result_Success; }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Console_WindowsConnection_getColor
   (
     Ring1_Console_WindowsConnection *connection,
@@ -51,7 +51,7 @@ Ring1_Console_WindowsConnection_getColor
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Console_WindowsConnection_setColor
   (
     Ring1_Console_WindowsConnection* connection,
@@ -73,7 +73,7 @@ Ring1_Console_WindowsConnection_setColor
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Console_WindowsConnection_write
   (
     Ring1_Console_WindowsConnection* connection,
@@ -92,7 +92,7 @@ Ring1_Console_WindowsConnection_write
 
 #define Ring1_Console_WindowsConnection_CreationFlags_StandardError (2)
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Console_WindowsConnection_construct
   (
     Ring1_Console_WindowsConnection *connection,

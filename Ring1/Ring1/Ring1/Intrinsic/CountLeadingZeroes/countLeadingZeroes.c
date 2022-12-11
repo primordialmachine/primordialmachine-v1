@@ -17,7 +17,7 @@
 #include "Ring1/Result.h"
 #include "Ring1/Status.h"
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_countLeadingZeroes_u8
   (
     short* result,
@@ -38,7 +38,7 @@ Ring1_Intrinsic_countLeadingZeroes_u8
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_countLeadingZeroes_u16
   (
     short* result,
@@ -59,7 +59,7 @@ Ring1_Intrinsic_countLeadingZeroes_u16
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_countLeadingZeroes_u32
   (
     short *result,
@@ -80,7 +80,7 @@ Ring1_Intrinsic_countLeadingZeroes_u32
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_countLeadingZeroes_u64
   (
     short *result,

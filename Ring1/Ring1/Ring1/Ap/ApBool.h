@@ -16,13 +16,13 @@ typedef struct Ring1_ApBool {
   bool value;
 } Ring1_ApBool;
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApBool_print
   (
     Ring1_ApBool *self
   );
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApBool_initialize_bool
   (
     Ring1_ApBool* self,
@@ -39,14 +39,14 @@ Ring1_ApBool_uninitialize
 /// @param self This ApBool.
 /// @param other The other ApBool.
 /// @return #Ring_Result_Success on success. #Ring_Result_Failure on failure.
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApBool_assign
   (
     Ring1_ApBool* self,
     Ring1_ApBool* other
   );
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApBool_toBool
   (
     bool *result,

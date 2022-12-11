@@ -21,7 +21,7 @@
 
 Ring1_Module_Declare(Ring1, FileSystem)
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_FileSystem_receiveFileContents
   (
     const char* pathname,

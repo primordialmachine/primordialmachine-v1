@@ -12,7 +12,7 @@
 
 /// @brief Unit test function asserting correctness of Mkx_Intrinsic_subtract_s8.
 /// @param ctx A pointer to the test context.
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_subtract_s8
   (
     Ring1_Test_Context *ctx
@@ -48,7 +48,7 @@ Ring1_Intrinsic_Test_subtract_s8
 
 /// @brief Unit test function asserting correctness of Mkx_Intrinsic_subtract_u8.
 /// @param ctx A pointer to the test context.
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_subtract_u8
   (
     Ring1_Test_Context *ctx
@@ -85,7 +85,7 @@ Ring1_Intrinsic_Test_subtract_u8
 
 /// @brief Unit test function asserting correctness of Mkx_Intrinsic_subtract_s16.
 /// @param ctx A pointer to the test context.
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_subtract_s16
   (
     Ring1_Test_Context *ctx
@@ -121,7 +121,7 @@ Ring1_Intrinsic_Test_subtract_s16
 
 /// @brief Unit test function asserting correctness of Mkx_Intrinsic_subtract_u16.
 /// @param ctx A pointer to the test context.
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_subtract_u16
   (
     Ring1_Test_Context *ctx
@@ -158,7 +158,7 @@ Ring1_Intrinsic_Test_subtract_u16
 
 /// @brief Unit test function asserting correctness of Mkx_Intrinsic_subtract_s32.
 /// @param ctx A pointer to the test context.
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_subtract_s32
   (
     Ring1_Test_Context *ctx
@@ -194,7 +194,7 @@ Ring1_Intrinsic_Test_subtract_s32
 
 /// @brief Unit test function asserting correctness of Mkx_Intrinsic_subtract_u32.
 /// @param ctx A pointer to the test context.
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_subtract_u32
   (
     Ring1_Test_Context *ctx
@@ -231,7 +231,7 @@ Ring1_Intrinsic_Test_subtract_u32
 
 /// @brief Unit test function asserting correctness of Mkx_Intrinsic_subtract_s64.
 /// @param ctx A pointer to the test context.
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_subtract_s64
   (
     Ring1_Test_Context *ctx
@@ -267,7 +267,7 @@ Ring1_Intrinsic_Test_subtract_s64
 
 /// @brief Unit test function asserting correctness of Mkx_Intrinsic_subtract_u64.
 /// @param ctx A pointer to the test context.
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_subtract_u64
   (
     Ring1_Test_Context *ctx
@@ -304,7 +304,7 @@ Ring1_Intrinsic_Test_subtract_u64
 
 /// @brief Unit test function asserting correctness of Mkx_Intrinsic_subtract_sz.
 /// @param ctx A pointer to the test context.
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_subtract_sz
   (
     Ring1_Test_Context *ctx

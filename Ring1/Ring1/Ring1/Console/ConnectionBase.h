@@ -38,33 +38,33 @@ Ring1_Console_ConnectionBase_destruct
 /// @brief Construct a console connection.
 /// @param connection A pointer to the unconstructed console connection.
 /// @return #Ring1_Status_Success on success, a failure status code on failure.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Console_ConnectionBase_construct
   (
     Ring1_Console_ConnectionBase* connection
   );
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Console_ConnectionBase_flush
   (
     Ring1_Console_ConnectionBase* connection
   );
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Console_ConnectionBase_getColor
   (
     Ring1_Console_ConnectionBase* connection,
     Ring1_Console_Color* color
   );
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Console_ConnectionBase_setColor
   (
     Ring1_Console_ConnectionBase* connection,
     Ring1_Console_Color color
   );
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Console_ConnectionBase_write
   (
     Ring1_Console_ConnectionBase* connection,

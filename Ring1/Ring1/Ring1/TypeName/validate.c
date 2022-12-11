@@ -16,7 +16,7 @@ typedef struct State {
   short symbol;
 } State;
 
-Ring1_Inline() Ring1_CheckReturn() void
+Ring1_Inline() Ring1_NoDiscardReturn() void
 next
   (
     State *state
@@ -33,7 +33,7 @@ next
   }
 }
 
-Ring1_Inline() Ring1_CheckReturn() bool
+Ring1_Inline() Ring1_NoDiscardReturn() bool
 isEnd
   (
     State *state
@@ -42,7 +42,7 @@ isEnd
   return END  == state->symbol;
 }
 
-Ring1_Inline() Ring1_CheckReturn() bool
+Ring1_Inline() Ring1_NoDiscardReturn() bool
 isPeriod
   (
     State *state
@@ -51,7 +51,7 @@ isPeriod
   return '.'  == state->symbol;
 }
 
-Ring1_Inline() Ring1_CheckReturn() bool
+Ring1_Inline() Ring1_NoDiscardReturn() bool
 isUnderscore
   (
     State *state
@@ -60,7 +60,7 @@ isUnderscore
   return '_'  == state->symbol;
 }
 
-Ring1_Inline() Ring1_CheckReturn() bool
+Ring1_Inline() Ring1_NoDiscardReturn() bool
 isAlphabetic
   (
     State *state
@@ -70,7 +70,7 @@ isAlphabetic
       || ('A' <= state->symbol && state->symbol <= 'Z');
 }
 
-Ring1_Inline() Ring1_CheckReturn() bool
+Ring1_Inline() Ring1_NoDiscardReturn() bool
 isNumeric
   (
     State *state
@@ -79,7 +79,7 @@ isNumeric
   return ('0' <= state->symbol && state->symbol <= '9');
 }
 
-static Ring1_CheckReturn() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 onNameComponent
   (
     State *state
@@ -95,7 +95,7 @@ onNameComponent
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 isScalarTypeName
   (
     const char *p

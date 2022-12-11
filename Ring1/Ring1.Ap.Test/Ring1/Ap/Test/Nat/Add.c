@@ -10,7 +10,7 @@
 #include "Ring1/Status.h"
 #include <stdio.h>
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 doAddition
   (
     Ring1_Test_Context *ctx,
@@ -82,7 +82,7 @@ doAddition
   return Ring1_Result_Success;
 }
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 addition
   (
     Ring1_Test_Context *ctx
@@ -98,7 +98,7 @@ addition
   return Ring1_Result_Success;
 }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Ap_Test_Nat_registerAddTests
   (
     Ring1_Test_Context* ctx

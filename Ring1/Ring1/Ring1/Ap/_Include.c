@@ -2,7 +2,7 @@
 #include "Ring1/Ap/_Include.h"
 #undef RING1_AP_PRIVATE
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 initialize
   (
   );
@@ -14,7 +14,7 @@ uninitialize
 
 Ring1_Module_Define(Ring1, Ap, initialize, uninitialize)
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 initialize
   (
   )

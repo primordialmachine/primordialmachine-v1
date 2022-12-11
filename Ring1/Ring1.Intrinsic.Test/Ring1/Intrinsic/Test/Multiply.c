@@ -12,7 +12,7 @@
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_multiply_s8.
 /// @param ctx A pointer to the test context.
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_multiply_s8
   (
     Ring1_Test_Context *ctx
@@ -56,7 +56,7 @@ Ring1_Intrinsic_Test_multiply_s8
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_multiply_u8.
 /// @param ctx A pointer to the test context.
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_multiply_u8
   (
     Ring1_Test_Context *ctx
@@ -86,7 +86,7 @@ Ring1_Intrinsic_Test_multiply_u8
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_multiply_s16.
 /// @param ctx A pointer to the test context.
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_multiply_s16
   (
     Ring1_Test_Context *ctx
@@ -130,7 +130,7 @@ Ring1_Intrinsic_Test_multiply_s16
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_multiply_u16.
 /// @param ctx A pointer to the test context.
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_multiply_u16
   (
     Ring1_Test_Context *ctx
@@ -160,7 +160,7 @@ Ring1_Intrinsic_Test_multiply_u16
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_multiply_s32.
 /// @param ctx A pointer to the test context.
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_multiply_s32
   (
     Ring1_Test_Context *ctx
@@ -204,7 +204,7 @@ Ring1_Intrinsic_Test_multiply_s32
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_multiply_u32.
 /// @param ctx A pointer to the test context.
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_multiply_u32
   (
     Ring1_Test_Context *ctx
@@ -234,7 +234,7 @@ Ring1_Intrinsic_Test_multiply_u32
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_multiply_s64.
 /// @param ctx A pointer to the test context.
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_multiply_s64
   (
     Ring1_Test_Context* ctx
@@ -278,7 +278,7 @@ Ring1_Intrinsic_Test_multiply_s64
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_multiply_u64.
 /// @param ctx A pointer to the test context.
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_multiply_u64
   (
     Ring1_Test_Context* ctx
@@ -306,7 +306,7 @@ Ring1_Intrinsic_Test_multiply_u64
   return Ring1_Result_Success;
 }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_registerMultiplyTests
   (
     Ring1_Test_Context* ctx

@@ -21,13 +21,13 @@ typedef struct Ring1_ApNat {
   uint8_t *digits; ///< array of decimal digits.
 } Ring1_ApNat;
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_print
   (
     Ring1_ApNat* self
   );
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_initialize_u8
   (
     Ring1_ApNat* self,
@@ -35,7 +35,7 @@ Ring1_ApNat_initialize_u8
     int64_t leastNumberOfDigits
   );
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_initialize_u16
   (
     Ring1_ApNat* self,
@@ -43,7 +43,7 @@ Ring1_ApNat_initialize_u16
     int64_t leastNumberOfDigits
   );
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_initialize_u32
   (
     Ring1_ApNat* self,
@@ -51,7 +51,7 @@ Ring1_ApNat_initialize_u32
     int64_t leastNumberOfDigits
   );
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_initialize_u64
   (
     Ring1_ApNat* self,
@@ -65,7 +65,7 @@ Ring1_ApNat_uninitialize
     Ring1_ApNat* self
   );
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_set_u8
   (
     Ring1_ApNat* self,
@@ -73,7 +73,7 @@ Ring1_ApNat_set_u8
     int64_t numberOfDigits
   );
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_set_u16
   (
     Ring1_ApNat* self,
@@ -81,7 +81,7 @@ Ring1_ApNat_set_u16
     int64_t numberOfDigits
   );
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_set_u32
   (
     Ring1_ApNat* self,
@@ -89,7 +89,7 @@ Ring1_ApNat_set_u32
     int64_t numberOfDigits
   );
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_set_u64
   (
     Ring1_ApNat* self,
@@ -103,7 +103,7 @@ Ring1_ApNat_set_u64
 /// @return
 /// #Ring_Result_Success on success.
 /// #Ring_Result_Failure on failure.
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_add
   (
     Ring1_ApNat* self,
@@ -117,7 +117,7 @@ Ring1_ApNat_add
 /// @return
 /// #Ring_Result_Success on success.
 /// #Ring_Result_Failure on failure.
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_add2
   (
     Ring1_ApNat* self,
@@ -134,7 +134,7 @@ Ring1_ApNat_add2
 /// @remarks
 /// The values of this ApNat object are not modified if an error occurs.
 /// @error #Ring1_Status_NumericOverflow the first ApNat object is smaller than the other ApNat object
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_subtract
   (
     Ring1_ApNat* self,
@@ -151,7 +151,7 @@ Ring1_ApNat_subtract
 /// @remarks
 /// The values of this ApNat object are not modified if an error occurs.
 /// @error #Ring1_Status_NumericOverflow the first ApNat object is smaller than the other ApNat object
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_subtract2
   (
     Ring1_ApNat* self,
@@ -168,7 +168,7 @@ Ring1_ApNat_subtract2
 /// #Ring_Result_Failure on failure.
 /// @remarks
 /// The values of this ApNat object are not modified if an error occurs.
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_multiply
   (
     Ring1_ApNat* self,
@@ -184,7 +184,7 @@ Ring1_ApNat_multiply
 /// @return
 /// #Ring_Result_Success on success.
 /// #Ring_Result_Failure on failure.
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_assign
   (
     Ring1_ApNat* self,
@@ -206,7 +206,7 @@ Ring1_ApNat_assign
 /// <code>*result</code> is assigned
 /// - @a -1 (@a +1) if this @a ApNat object is smaller (greater) than the other @a ApNat object.
 /// - @a 0 if both @a ApNat objects are equal. 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_compare
   (
     int64_t* result,
@@ -223,7 +223,7 @@ Ring1_ApNat_compare
 /// @return
 /// #Ring1_Result_Success on success.
 /// #Ring1_Result_Failure on failure.
-Ring1_Inline() Ring1_NoDiscardResult() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_isLowerThan
   (
     bool* result,
@@ -248,7 +248,7 @@ Ring1_ApNat_isLowerThan
 /// @return
 /// #Ring1_Result_Success on success.
 /// #Ring1_Result_Failure on failure.
-Ring1_Inline() Ring1_NoDiscardResult() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_isLowerThanOrEqualTo
   (
     bool* result,
@@ -273,7 +273,7 @@ Ring1_ApNat_isLowerThanOrEqualTo
 /// @return
 /// #Ring1_Result_Success on success.
 /// #Ring1_Result_Failure on failure.
-Ring1_Inline() Ring1_NoDiscardResult() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_isGreaterThan
   (
     bool* result,
@@ -298,7 +298,7 @@ Ring1_ApNat_isGreaterThan
 /// @return
 /// #Ring1_Result_Success on success.
 /// #Ring1_Result_Failure on failure.
-Ring1_Inline() Ring1_NoDiscardResult() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_isGreaterThanOrEqualTo
   (
     bool* result,
@@ -323,7 +323,7 @@ Ring1_ApNat_isGreaterThanOrEqualTo
 /// @return
 /// #Ring1_Result_Success on success.
 /// #Ring1_Result_Failure on failure.
-Ring1_Inline() Ring1_NoDiscardResult() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_isEqualTo
   (
     bool* result,
@@ -348,7 +348,7 @@ Ring1_ApNat_isEqualTo
 /// @return
 /// #Ring1_Result_Success on success.
 /// #Ring1_Result_Failure on failure.
-Ring1_Inline() Ring1_NoDiscardResult() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_isNotEqualTo
   (
     bool* result,
@@ -364,7 +364,7 @@ Ring1_ApNat_isNotEqualTo
   return Ring1_Result_Success;
 }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_toU64
   (
     uint64_t* result,

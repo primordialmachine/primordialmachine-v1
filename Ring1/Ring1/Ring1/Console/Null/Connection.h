@@ -22,27 +22,27 @@ Ring1_Console_NullConnection_destruct
     Ring1_Console_NullConnection* connection
   );
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Console_NullConnection_flush
   (
     Ring1_Console_NullConnection* connection
   );
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Console_NullConnection_getColor
   (
     Ring1_Console_NullConnection* connection,
     Ring1_Console_Color* color
   );
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Console_NullConnection_setColor
   (
     Ring1_Console_NullConnection* connection,
     Ring1_Console_Color color
   );
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Console_NullConnection_write
   (
     Ring1_Console_NullConnection* connection,
@@ -50,7 +50,7 @@ Ring1_Console_NullConnection_write
     size_t numberOfBytes
   );
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Console_NullConnection_construct
   (
     Ring1_Console_NullConnection* connection

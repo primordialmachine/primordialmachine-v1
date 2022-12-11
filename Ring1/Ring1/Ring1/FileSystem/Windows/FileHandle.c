@@ -13,7 +13,7 @@ static HANDLE g_outputFileHandle = INVALID_HANDLE_VALUE;
 static HANDLE g_inputFileHandle = INVALID_HANDLE_VALUE;
 static HANDLE g_errorFileHandle = INVALID_HANDLE_VALUE;
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_FileSystem_Windows_startup() {
   //
   g_outputFileHandle = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -41,7 +41,7 @@ void
 Ring1_FileSystem_Windows_shutdown() {
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_FileSystem_Windows_FileHandle_create
   (
     Ring1_FileSystem_Windows_FileHandle** result,
@@ -138,7 +138,7 @@ Ring1_FileSystem_Windows_FileHandle_create
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_FileSystem_Windows_FileHandle_createStandardOutput
   (
     Ring1_FileSystem_Windows_FileHandle** result
@@ -162,7 +162,7 @@ Ring1_FileSystem_Windows_FileHandle_createStandardOutput
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_FileSystem_Windows_FileHandle_createStandardError
   (
     Ring1_FileSystem_Windows_FileHandle** result
@@ -186,7 +186,7 @@ Ring1_FileSystem_Windows_FileHandle_createStandardError
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_FileSystem_Windows_FileHandle_createStandardInput
   (
     Ring1_FileSystem_Windows_FileHandle** result
@@ -210,7 +210,7 @@ Ring1_FileSystem_Windows_FileHandle_createStandardInput
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_FileSystem_Windows_FileHandle_getFileSize
   (
     size_t *result,

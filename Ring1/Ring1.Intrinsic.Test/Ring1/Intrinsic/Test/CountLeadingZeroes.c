@@ -12,7 +12,7 @@
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_countLeadingZeroes_u8.
 /// @param ctx A pointer to the test context.
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_countLeadingZeroes_u8
   (
     Ring1_Test_Context *ctx
@@ -36,7 +36,7 @@ Ring1_Intrinsic_Test_countLeadingZeroes_u8
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_countLeadingZeroes_u16.
 /// @param ctx A pointer to the test context.
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_countLeadingZeroes_u16
   (
     Ring1_Test_Context *ctx
@@ -60,7 +60,7 @@ Ring1_Intrinsic_Test_countLeadingZeroes_u16
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_countLeadingZeroes_u32.
 /// @param ctx A pointer to the test context.
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_countLeadingZeroes_u32
   (
     Ring1_Test_Context *ctx
@@ -84,7 +84,7 @@ Ring1_Intrinsic_Test_countLeadingZeroes_u32
 
 /// @brief Unit test function asserting correctness of Ring1_Intrinsic_countLeadingZeroes_u64.
 /// @param ctx A pointer to the test context.
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_countLeadingZeroes_u64
   (
     Ring1_Test_Context* ctx

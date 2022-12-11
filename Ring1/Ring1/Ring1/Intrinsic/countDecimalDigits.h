@@ -18,7 +18,7 @@
 /// the number of digits for the values 1 to 9 is 1,
 /// the number of digits for th values 10 to 19 is 2,
 /// etc.
-Ring1_NoDiscardResult() uint8_t
+Ring1_NoDiscardReturn() uint8_t
 Ring1_countDecimalDigits_u8
   (
     uint8_t value
@@ -32,7 +32,7 @@ Ring1_countDecimalDigits_u8
 /// the number of digits for the values 1 to 9 is 1,
 /// the number of digits for th values 10 to 19 is 2,
 /// etc.
-Ring1_NoDiscardResult() uint8_t
+Ring1_NoDiscardReturn() uint8_t
 Ring1_countDecimalDigits_u16
   (
     uint16_t value
@@ -46,7 +46,7 @@ Ring1_countDecimalDigits_u16
 /// the number of digits for the values 1 to 9 is 1,
 /// the number of digits for th values 10 to 19 is 2,
 /// etc.
-Ring1_NoDiscardResult() uint8_t
+Ring1_NoDiscardReturn() uint8_t
 Ring1_countDecimalDigits_u32
   (
     uint32_t value
@@ -60,7 +60,7 @@ Ring1_countDecimalDigits_u32
 /// the number of digits for the values 1 to 9 is 1,
 /// the number of digits for th values 10 to 19 is 2,
 /// etc.
-Ring1_NoDiscardResult() uint8_t
+Ring1_NoDiscardReturn() uint8_t
 Ring1_countDecimalDigits_u64
   (
     uint64_t value

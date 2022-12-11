@@ -10,7 +10,7 @@
 #include <float.h>
 #include <math.h>
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_clamp_f32
   (
     float *result,
@@ -30,7 +30,7 @@ Ring1_Intrinsic_clamp_f32
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_clamp_f64
   (
     double *result,

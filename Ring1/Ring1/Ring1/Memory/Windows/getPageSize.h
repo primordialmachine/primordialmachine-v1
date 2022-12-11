@@ -5,7 +5,7 @@
 #include "Ring1/Result.h"
 #include <stddef.h>
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_Windows_getPageSize
   (
     size_t* result

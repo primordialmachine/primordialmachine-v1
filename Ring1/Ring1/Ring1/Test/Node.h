@@ -43,7 +43,7 @@ struct Ring1_Test_Node
 };
 
 /// @todo Should not be part of the public API.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Test_Node_create
   (
     Ring1_Test_Node** node,

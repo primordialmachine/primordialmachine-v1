@@ -13,7 +13,7 @@ Ring1_BeginDependencies()
   Ring1_Dependency(Ring1, FileSystem)
 Ring1_EndDependencies()
 
-static Ring1_CheckReturn() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 initializeModule
   (
   );

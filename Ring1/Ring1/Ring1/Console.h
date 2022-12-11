@@ -76,7 +76,7 @@ typedef void Ring1_Console_Connection;
 /// @return A pointer to the "output" connection on success, a null pointer on failure.
 /// @remark The "output" connection is the standard output handle.
 /// @remark An object returned must be unreferenced using Ring1_Console_Connection_unref when no longer required.
-Ring1_CheckReturn() Ring1_Console_Connection*
+Ring1_NoDiscardReturn() Ring1_Console_Connection*
 Ring1_Console_getOutputConnection
   (
   );
@@ -85,7 +85,7 @@ Ring1_Console_getOutputConnection
 /// @return A pointer to the "error" connection on success, a null pointer on failure.
 /// @remark The "error" connection writes to the standard error handle.
 /// @remark An object returned must be unreferenced using Ring1_Console_Connection_unref when no longer required.
-Ring1_CheckReturn() Ring1_Console_Connection*
+Ring1_NoDiscardReturn() Ring1_Console_Connection*
 Ring1_Console_getErrorConnection
   (
   );
@@ -93,7 +93,7 @@ Ring1_Console_getErrorConnection
 /// @brief Flush a connection.
 /// @param connection A pointer to the console.
 /// @return #Ring1_Status_Success on success, a failure status code on failure.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Console_Connection_flush
   (
     Ring1_Console_Connection *connection
@@ -103,7 +103,7 @@ Ring1_Console_Connection_flush
 /// @param result A pointer to a <code>Mkx_Console_Color</code> variable.
 /// @param connection A pointer to the connection.
 /// @return #Ring1_Status_Success on success, a failure status code on failure.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Console_Connection_getColor
   (
     Ring1_Console_Color *result,
@@ -114,7 +114,7 @@ Ring1_Console_Connection_getColor
 /// @param connection A pointer to the connection.
 /// @param color The color.
 /// @return #Ring1_Status_Success on success, a failure status code on failure.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Console_Connection_setColor
   (
     Ring1_Console_Connection* connection,
@@ -126,7 +126,7 @@ Ring1_Console_Connection_setColor
 /// @param bytes A pointer to an array of @a numberOfBytes Bytes.
 /// @param numberOfBytes The number of Bytes in the array pointed to by @a bytes.
 /// @return #Ring1_Status_Success on success, a failure status code on failure.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Console_Connection_write
   (
     Ring1_Console_Connection* connection,

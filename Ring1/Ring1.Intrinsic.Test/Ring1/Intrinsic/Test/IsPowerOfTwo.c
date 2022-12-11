@@ -16,7 +16,7 @@
   RING1_TEST_ASSERT_EQ(ctx, r, Ring1_Result_Success); \
   RING1_TEST_ASSERT_EQ(ctx, result, EXPECTED);
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_isPowerOfTwo_s8
   (
     Ring1_Test_Context* ctx
@@ -33,7 +33,7 @@ Ring1_Intrinsic_Test_isPowerOfTwo_s8
   return Ring1_Result_Success;
 }
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_isPowerOfTwo_u8
   (
     Ring1_Test_Context* ctx
@@ -50,7 +50,7 @@ Ring1_Intrinsic_Test_isPowerOfTwo_u8
   return Ring1_Result_Success;
 }
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_isPowerOfTwo_s16
   (
     Ring1_Test_Context* ctx
@@ -67,7 +67,7 @@ Ring1_Intrinsic_Test_isPowerOfTwo_s16
   return Ring1_Result_Success;
 }
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_isPowerOfTwo_u16
   (
     Ring1_Test_Context* ctx
@@ -84,7 +84,7 @@ Ring1_Intrinsic_Test_isPowerOfTwo_u16
   return Ring1_Result_Success;
 }
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_isPowerOfTwo_s32
   (
     Ring1_Test_Context* ctx
@@ -101,7 +101,7 @@ Ring1_Intrinsic_Test_isPowerOfTwo_s32
   return Ring1_Result_Success;
 }
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_isPowerOfTwo_u32
   (
     Ring1_Test_Context* ctx
@@ -118,7 +118,7 @@ Ring1_Intrinsic_Test_isPowerOfTwo_u32
   return Ring1_Result_Success;
 }
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_isPowerOfTwo_s64
   (
     Ring1_Test_Context* ctx
@@ -135,7 +135,7 @@ Ring1_Intrinsic_Test_isPowerOfTwo_s64
   return Ring1_Result_Success;
 }
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_isPowerOfTwo_u64
   (
     Ring1_Test_Context* ctx
@@ -152,7 +152,7 @@ Ring1_Intrinsic_Test_isPowerOfTwo_u64
   return Ring1_Result_Success;
 }
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_Test_isPowerOfTwo_sz
   (
     Ring1_Test_Context* ctx

@@ -11,7 +11,7 @@
 /// @brief Unit test asserting atoms for equivalent strings are equivalent.
 /// @param ctx A pointer to the test context.
 /// @todo The atom module (un)initialization could (and should) be performed in a test (suite) startup/test (suite) shutdown method.
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Atom_Test_equal
   (
     Ring1_Test_Context *ctx
@@ -67,7 +67,7 @@ Ring1_Atom_Test_equal
 /// @brief Unit test function asserting atoms for non-equivalent strings are non-equivalent.
 /// @param ctx A pointer to the test context.
 /// @todo The atom module (un)initialization could (and should) be performed in a test (suite) startup/test (suite) shutdown method.
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Atom_Test_notEqual
   (
     Ring1_Test_Context *ctx
@@ -133,7 +133,7 @@ onFree
 /// @param ctx A pointer to the test context.
 /// @todo The atom module (un)initialization could (and should) be performed in a test (suite) startup/test (suite) shutdown method.
 /// @todo Actually implement the test according to its description.
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Atom_Test_many
   (
     Ring1_Test_Context *ctx

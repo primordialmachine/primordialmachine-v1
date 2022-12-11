@@ -18,7 +18,7 @@
 /// @param GENERATOR
 /// Name of the generator function.
 #define Define(NAME, EXPECTED, GENERATOR) \
-  static Ring1_NoDiscardResult() Ring1_Result \
+  static Ring1_NoDiscardReturn() Ring1_Result \
   NAME(Ring1_Test_Context *ctx) { \
     Ring1_TypeName_ModuleHandle handle = Ring1_TypeName_ModuleHandle_acquire(); \
     RING1_TEST_ASSERT_NEQ(ctx, handle, Ring1_TypeName_ModuleHandle_Invalid); \
@@ -56,7 +56,7 @@
 /// - returns the scalar type "x"
 /// @param result A pointer to a <code>Ring1_TypeName *</code> variable.
 /// @param ctx A pointer to the test context.
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 generateScalar
   (
     Ring1_TypeName **result,
@@ -100,7 +100,7 @@ Define(Ring1_TypeName_Test_Scalar, "Ring1.TypeName.Test.A", generateScalar)
 /// @brief Unit test function validating 1d array type name creation.
 /// @param result A pointer to a <code>Ring1_TypeName *</code> variable.
 /// @param ctx A pointer to the test context.
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 generateArray1
   (
     Ring1_TypeName **result,
@@ -133,7 +133,7 @@ Define(Ring1_TypeName_Test_Array1, "[Ring1.TypeName.Test.A]", generateArray1)
 /// @brief Unit test function validating 2d array type name creation.
 /// @param result A pointer to a <code>Ring1_TypeName *</code> variable.
 /// @param ctx A pointer to the test context.
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 generateArray2
   (
     Ring1_TypeName **result,
@@ -163,7 +163,7 @@ generateArray2
 
 Define(Ring1_TypeName_Test_Array2, "[[Ring1.TypeName.Test.A]]", generateArray2)
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Ring1_TypeName_Test_InvalidTypeName
   (
     Ring1_Test_Context *ctx

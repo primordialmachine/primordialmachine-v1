@@ -7,7 +7,7 @@
 #include "Ring1/Memory.h"
 
 
-Ring1_CheckReturn() Ring1_Status
+Ring1_NoDiscardReturn() Ring1_Status
 Ring1_InlineArray_initialize
   (
     Ring1_InlineArray* self,
@@ -39,7 +39,7 @@ Ring1_InlineArray_uninitialize
   }
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_InlineArray_append
   (
     Ring1_InlineArray* self,
@@ -53,14 +53,14 @@ Ring1_InlineArray_append
   return Ring1_InlineArray_insert(self, self->size, data);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_InlineArray_prepend
   (
     Ring1_InlineArray* self,
     void* data)
 { return Ring1_InlineArray_insert(self, 0, data); }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_InlineArray_insert
   (
     Ring1_InlineArray* self,

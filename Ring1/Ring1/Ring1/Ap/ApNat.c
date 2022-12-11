@@ -13,7 +13,7 @@
 #include <stdio.h>
 
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 trim
   (
     Ring1_ApNat *self
@@ -31,7 +31,7 @@ trim
   return Ring1_Result_Success;
 }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_print
   (
     Ring1_ApNat *self
@@ -51,7 +51,7 @@ Ring1_ApNat_print
   return Ring1_Result_Success;
 }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_initialize_u8
   (
     Ring1_ApNat *self,
@@ -60,7 +60,7 @@ Ring1_ApNat_initialize_u8
   )
 { return Ring1_ApNat_initialize_u64(self, value, numberOfDigits); }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_initialize_u16
   (
     Ring1_ApNat *self,
@@ -69,7 +69,7 @@ Ring1_ApNat_initialize_u16
   )
 { return Ring1_ApNat_initialize_u64(self, value, numberOfDigits); }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_initialize_u32
   (
     Ring1_ApNat *self,
@@ -78,7 +78,7 @@ Ring1_ApNat_initialize_u32
   )
 { return Ring1_ApNat_initialize_u64(self, value, numberOfDigits); }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_initialize_u64
   (
     Ring1_ApNat *self,
@@ -127,7 +127,7 @@ Ring1_ApNat_uninitialize
   return Ring1_Result_Success;
 }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_set_u8
   (
     Ring1_ApNat* self,
@@ -136,7 +136,7 @@ Ring1_ApNat_set_u8
   )
 { return Ring1_ApNat_set_u16(self, value, numberOfDigits); }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_set_u16
   (
     Ring1_ApNat* self,
@@ -145,7 +145,7 @@ Ring1_ApNat_set_u16
   )
 { return Ring1_ApNat_set_u32(self, value, numberOfDigits); }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_set_u32
   (
     Ring1_ApNat* self,
@@ -154,7 +154,7 @@ Ring1_ApNat_set_u32
   )
 { return Ring1_ApNat_set_u64(self, value, numberOfDigits); }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_set_u64
   (
     Ring1_ApNat* self,
@@ -188,7 +188,7 @@ Ring1_ApNat_set_u64
   return Ring1_Result_Success;
 }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_add
   (
     Ring1_ApNat* self,
@@ -233,7 +233,7 @@ Ring1_ApNat_add
   return Ring1_Result_Success;
 }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_add2
   (
     Ring1_ApNat* self,
@@ -261,7 +261,7 @@ Ring1_ApNat_add2
   return Ring1_Result_Success;
 }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_subtract
   (
     Ring1_ApNat* self,
@@ -350,7 +350,7 @@ Ring1_ApNat_subtract
   return Ring1_Result_Success;
 }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_subtract2
   (
     Ring1_ApNat* self,
@@ -378,7 +378,7 @@ Ring1_ApNat_subtract2
   return Ring1_Result_Success;
 }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_multiply
   (
     Ring1_ApNat* self,
@@ -422,7 +422,7 @@ Ring1_ApNat_multiply
   return Ring1_Result_Success;
 }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_assign
   (
     Ring1_ApNat* self,
@@ -445,7 +445,7 @@ Ring1_ApNat_assign
   return Ring1_Result_Success;
 }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_compare
   (
     int64_t* result,
@@ -492,7 +492,7 @@ Ring1_ApNat_compare
   return Ring1_Result_Success;
 }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_toU64
   (
     uint64_t* result,

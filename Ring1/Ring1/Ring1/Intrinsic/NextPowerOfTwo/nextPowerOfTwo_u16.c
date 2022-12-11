@@ -9,7 +9,7 @@
 #include "Ring1/Intrinsic/CountLeadingZeroes/countLeadingZeroes.h"
 #include "Ring1/Status.h"
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_nextPowerOfTwo_u16
   (
     uint16_t *result,

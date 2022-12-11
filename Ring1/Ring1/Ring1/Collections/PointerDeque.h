@@ -45,7 +45,7 @@ typedef struct Ring1_PointerDeque { void *pimpl; } Ring1_PointerDeque;
 /// @param added A pointer to an added callback function or a null pointer.
 /// @param removed A pointer to a removed callback function or a null pointer.
 /// @return #Ring1_Status_Success on success, a failure status code on failure.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerDeque_initialize
   (
     Ring1_PointerDeque *pointerDeque,
@@ -67,7 +67,7 @@ Ring1_PointerDeque_uninitialize
 /// @param requiredAdditionalCapacity The amount to increase the capacity at least by. Must be non-negative.
 /// @return #Ring1_Status_Success on success, a failure status code on failure.
 /// @post The capacity was increased by at least the specified amount on success. On failure, the deque was not observably modified.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerDeque_increaseCapacity
   (
     Ring1_PointerDeque *pointerDeque,
@@ -82,7 +82,7 @@ Ring1_PointerDeque_increaseCapacity
 /// @remark
 /// Elements for which the "where" callback returns @a true remains in the collection.
 /// Other elements are removed.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerDeque_filter
   (
     Ring1_PointerDeque* pointerDeque,
@@ -91,7 +91,7 @@ Ring1_PointerDeque_filter
   );
 
 /// https://primordialmachine.com/api/ring1-library/collections-library/Ring1_PointerDeque_ensurefreeCapacity
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerDeque_ensureFreeCapacity
   (
     Ring1_PointerDeque *pointerDeque,
@@ -99,7 +99,7 @@ Ring1_PointerDeque_ensureFreeCapacity
   );
 
 // https://primordialmachine.com/api/ring1-library/collections-library/Ring1_PointerDeque_getSize
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerDeque_getSize
   (
     int64_t *size,
@@ -107,7 +107,7 @@ Ring1_PointerDeque_getSize
   );
 
 // https://primordialmachine.com/api/ring1-library/collections-library/Ring1_PointerDeque_getCapacity
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerDeque_getCapacity
   (
     int64_t *capacity,
@@ -115,7 +115,7 @@ Ring1_PointerDeque_getCapacity
   );
 
 // https://primordialmachine.com/api/ring1-library/collections-library/Ring1_PointerDeque_getFreeCapacity
-Ring1_CheckReturn() int64_t
+Ring1_NoDiscardReturn() int64_t
 Ring1_PointerDeque_getFreeCapacity
   (
     Ring1_PointerDeque *pointerDeque
@@ -129,7 +129,7 @@ Ring1_PointerDeque_clear
   );
 
 // https://primordialmachine.com/api/ring1-library/collections-library/Ring1_PointerDeque_insertAt
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerDeque_insertAt
   (
     Ring1_PointerDeque* pointerDeque,
@@ -138,7 +138,7 @@ Ring1_PointerDeque_insertAt
   );
 
 // https://primordialmachine.com/api/ring1-library/collections-library/Ring1_PointerDeque_insertBack
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerDeque_insertBack
   (
     Ring1_PointerDeque *pointerDeque,
@@ -146,7 +146,7 @@ Ring1_PointerDeque_insertBack
   );
 
 // https://primordialmachine.com/api/ring1-library/collections-library/Ring1_PointerDeque_insertFront
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerDeque_insertFront
   (
     Ring1_PointerDeque *pointerDeque,
@@ -154,7 +154,7 @@ Ring1_PointerDeque_insertFront
   );
 
 // https://primordialmachine.com/api/ring1-library/collections-library/Ring1_PointerDeque_getAt
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerDeque_getAt
   (
     Ring1_PointerDeque *pointerDeque,
@@ -170,7 +170,7 @@ Ring1_PointerDeque_getAt
 /// @error #Ring1_Status_IsEmpty the deque is empty.
 /// @error #Ring1_Status_IndexOutOfBounds @a index is negative or greater than or equal the size of the queue.
 /// @error #Ring1_Status_InvalidArgument @a pointerDeque is a null pointer.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerDeque_removeAt
   (
     Ring1_PointerDeque *pointerDeque,
@@ -188,7 +188,7 @@ Ring1_PointerDeque_removeAt
 /// @error #Ring1_Status_IsEmpty the deque is empty.
 /// @error #Ring1_Status_IndexOutOfBounds @a index is negative or greater than or equal the size of the queue.
 /// @error #Ring1_Status_InvalidArgument @a pointerDeque is a null pointer.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerDeque_stealAt
   (
     Ring1_PointerDeque* pointerDeque,
@@ -204,7 +204,7 @@ Ring1_PointerDeque_stealAt
 /// @remark If a Ring1_RemovedCallback is specified, it is invoked on the element.
 /// @error #Ring1_Status_IsEmpty the deque is empty.
 /// @error #Ring1_Status_InvalidArgument @a pointerDeque is a null pointer.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerDeque_removeFront
   (
     Ring1_PointerDeque* pointerDeque,
@@ -221,7 +221,7 @@ Ring1_PointerDeque_removeFront
 /// the associated Ring1_RemovedCallback is not invoked on the element.
 /// @error #Ring1_Status_IsEmpty the deque is empty.
 /// @error #Ring1_Status_InvalidArgument @a pointerDeque is a null pointer.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerDeque_stealFront
   (
     Ring1_PointerDeque* pointerDeque,

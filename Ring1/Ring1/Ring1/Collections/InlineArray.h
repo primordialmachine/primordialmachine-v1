@@ -21,7 +21,7 @@ typedef struct Ring1_InlineArray {
 /// @param dispatch A pointer to the dispatch.
 /// The struct must remain unchanged throughout the lifetime of this array.
 /// @return @a 0 on success, a non-zero value on failure.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_InlineArray_initialize
   (
     Ring1_InlineArray* self,
@@ -40,7 +40,7 @@ Ring1_InlineArray_uninitialize
 /// @param self A pointer to this array.
 /// @param data A pointer to the data.
 /// @return @a 0 on success, a non-zero value on failure.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_InlineArray_append
   (
     Ring1_InlineArray* self,
@@ -51,7 +51,7 @@ Ring1_InlineArray_append
 /// @param self A pointer to this array.
 /// @param data A pointer to the data.
 /// @return @a 0 on success, a non-zero value on failure.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_InlineArray_prepend
   (
     Ring1_InlineArray* self,
@@ -63,7 +63,7 @@ Ring1_InlineArray_prepend
 /// @param index the index at which to insert. Must be within @a 0 and @a n where @a n is the size of the array.
 /// @param data A pointer to the data.
 /// @return @a 0 on success, a non-zero value on failure.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_InlineArray_insert
   (
     Ring1_InlineArray* self,

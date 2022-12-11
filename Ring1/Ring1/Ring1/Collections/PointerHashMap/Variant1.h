@@ -54,7 +54,7 @@ struct IteratorImpl {
 /// #Ring1_Result_Success on success. #Ring1_Result_Failure on failure.
 /// @success
 /// A pointer to an array of @a capacity <code>Node *</code> elements was assigned to <code>*buckets*</code>.
-Ring1_Inline() Ring1_CheckReturn() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 allocateBuckets
   (
     Bucket **buckets,
@@ -100,7 +100,7 @@ deallocateBuckets
 /// @return #Ring1_Resullt_Success on success. #Ring1_Result_Failure on failure.
 /// @remark
 /// If the hash map is 75% filled and its capacity is below the maximum capacity, we try to increase the capacity.
-Ring1_Inline() Ring1_CheckReturn() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 maybeResize
   (
     Impl *pimpl
@@ -146,7 +146,7 @@ maybeResize
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-Ring1_Inline() Ring1_CheckReturn() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 Iterator_hasValue
   (
     bool *result,
@@ -157,7 +157,7 @@ Iterator_hasValue
   return Ring1_Result_Success;
 }
 
-Ring1_Inline() Ring1_CheckReturn() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 Iterator_getValue
   (
     IteratorImpl *pimpl,
@@ -204,7 +204,7 @@ Iterator_revalidate
   }
 }
 
-Ring1_Inline() Ring1_CheckReturn() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 Iterator_increment
   (
     IteratorImpl* pimpl
@@ -219,7 +219,7 @@ Iterator_increment
   return Ring1_Result_Success;
 }
 
-Ring1_Inline() Ring1_CheckReturn() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 Iterator_remove
   (
     IteratorImpl* pimpl
@@ -233,7 +233,7 @@ Iterator_remove
   return Ring1_Result_Success;
 }
 
-Ring1_Inline() Ring1_CheckReturn() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 Iterator_initialize
   (
     IteratorImpl* iterator,
@@ -259,7 +259,7 @@ typedef struct Lookup {
   void* key;
 } Lookup;
 
-Ring1_Inline() Ring1_CheckReturn() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 computeLookup
   (
     Lookup *result,
@@ -281,7 +281,7 @@ computeLookup
   return Ring1_Result_Success;
 }
 
-Ring1_Inline() Ring1_CheckReturn() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 add
   (
     Impl *pimpl,
@@ -381,7 +381,7 @@ clear
   pimpl->size = 0;
 }
 
-Ring1_Inline() Ring1_CheckReturn() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 get
   (
     Impl* pimpl,
@@ -416,7 +416,7 @@ get
   return Ring1_Result_Failure;
 }
 
-Ring1_Inline() Ring1_CheckReturn() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 getCapacity
   (
     int64_t *result,
@@ -427,7 +427,7 @@ getCapacity
   return Ring1_Result_Success;
 }
 
-Ring1_Inline() Ring1_CheckReturn() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 getFreeCapacity
   (
     int64_t *result,
@@ -438,7 +438,7 @@ getFreeCapacity
   return Ring1_Result_Success;
 }
 
-Ring1_Inline() Ring1_CheckReturn() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 getSize
   (
     int64_t *result,
@@ -449,7 +449,7 @@ getSize
   return Ring1_Result_Success;
 }
 
-Ring1_Inline() Ring1_CheckReturn() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 remove
   (
     Impl* pimpl,
@@ -495,7 +495,7 @@ remove
   return Ring1_Result_Failure;
 }
 
-Ring1_Inline() Ring1_CheckReturn() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 initialize
   (
     Impl* pimpl,

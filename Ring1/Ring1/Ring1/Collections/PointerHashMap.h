@@ -60,7 +60,7 @@ typedef int (Ring1_PointerHashMap_RemoveIfCallback)(bool *result, void* context,
 /// @param valueAdded A pointer to an value added callback function or a null pointer.
 /// @param valueRemoved A pointer to a value removed callback function or a null pointer.
 /// @return #Ring1_Result_Success on success. #Ring1_Result_Failure on failure.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerHashMap_initialize
   (
     Ring1_PointerHashMap *hashMap,
@@ -82,7 +82,7 @@ Ring1_PointerHashMap_uninitialize
   );
 
 // https://primordialmachine.com/api/ring1-library/collections-library/ring1_pointerhashmap_getsize
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerHashMap_getSize
   (
     int64_t *result,
@@ -90,7 +90,7 @@ Ring1_PointerHashMap_getSize
   );
 
 // https://primordialmachine.com/api/ring1-library/collections-library/ring1_pointerhashmap_getcapacity
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerHashMap_getCapacity
   (
     int64_t *result,
@@ -98,7 +98,7 @@ Ring1_PointerHashMap_getCapacity
   );
 
 // https://primordialmachine.com/api/ring1-library/collections-library/ring1_pointerhashmap_getfreecapacity
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerHashMap_getFreeCapacity
   (
     int64_t *result,
@@ -113,7 +113,7 @@ Ring1_PointerHashMap_clear
   );
 
 // https://primordialmachine.com/api/ring1-library/collections-library/Ring1_PointerHashMap_add
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerHashMap_add
   (
     Ring1_PointerHashMap* hashMap,
@@ -122,7 +122,7 @@ Ring1_PointerHashMap_add
   );
 
 // https://primordialmachine.com/api/ring1-library/collections-library/Ring1_PointerHashMap_set
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerHashMap_set
   (
     Ring1_PointerHashMap* hashMap,
@@ -131,7 +131,7 @@ Ring1_PointerHashMap_set
   );
 
 // https://primordialmachine.com/api/ring1-library/collections-library/Ring1_PointerHashMap_get
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerHashMap_get
   (
     Ring1_PointerHashMap *hashMap,
@@ -140,7 +140,7 @@ Ring1_PointerHashMap_get
   );
 
 // https://primordialmachine.com/api/ring1-library/collections-library/Ring1_PointerHashMap_removeIf
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerHashMap_removeIf
   (
     Ring1_PointerHashMap* pointerHashMap,
@@ -151,7 +151,7 @@ Ring1_PointerHashMap_removeIf
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 // https://primordialmachine.com/api/ring1-library/pointerhashmap-library/ring1_pointerhashmap_iterator_initialize
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerHashMap_Iterator_initialize
   (
     Ring1_PointerHashMap_Iterator* iterator,
@@ -169,7 +169,7 @@ Ring1_PointerHashMap_Iterator_uninitialize
 /// @param iterator A pointer to the iterator.
 /// @return @a true if the iterator has a value, @a false otherwise
 /// @undefined @a iterator does not point to an iterator
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerHashMap_Iterator_hasValue
   (
     bool *result,
@@ -179,7 +179,7 @@ Ring1_PointerHashMap_Iterator_hasValue
 /// @return #Ring1_Result_Success on success. #Ring1_Result_Failure on failure.
 /// @error #Ring1_Status_InvalidOperation the iterator reached the end of its iteration
 /// @error #Ring1_Status_InvalidArgument @a iterator, @a key, or @a value is a null pointer.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerHashMap_Iterator_getValue
   (
     Ring1_PointerHashMap_Iterator *iterator,
@@ -190,7 +190,7 @@ Ring1_PointerHashMap_Iterator_getValue
 /// @brief Increment the iterator if it has not reached the end of its iteration.
 /// @param iterator A pointer to the iterator.
 /// @return #Ring1_Result_Success on success. #Ring1_Result_Failure on failure.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerHashMap_Iterator_increment
   (
     Ring1_PointerHashMap_Iterator* iterator
@@ -201,7 +201,7 @@ Ring1_PointerHashMap_Iterator_increment
 /// @return #Ring1_Result_Success on success. #Ring1_Result_Failure on failure.
 /// @error #Ring1_Status_InvalidOperation the iterator reached the end of its iteration
 /// @error #Ring1_Status_InvalidArgument @a iterator, @a key, or @a value is a null pointer.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerHashMap_Iterator_remove
   (
     Ring1_PointerHashMap_Iterator *iterator

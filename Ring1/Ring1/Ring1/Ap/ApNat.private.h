@@ -22,7 +22,7 @@
 /// @param x The ApNat.
 /// @param numberOfDigitsadditional The new number of digits. Must be greater than @a 0.
 /// @return #Ring_Result_Success on success. #Ring_Result_Failure on failure.
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 resize
   (
     Ring1_ApNat* x,
@@ -33,7 +33,7 @@ resize
 /// @param x The ApNat.-
 /// @param additional The additional number of digits.
 /// @return #Ring_Result_Success on success. #Ring_Result_Failure on failure.
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 grow
   (
     Ring1_ApNat* x,

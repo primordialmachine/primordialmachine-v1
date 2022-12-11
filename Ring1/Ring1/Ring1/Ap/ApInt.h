@@ -16,13 +16,13 @@ typedef struct Ring1_ApInt {
   bool sign; ///< @brief The number is positive or positive zero if @a true, the number is negative or negative zero if @a false.
 } Ring1_ApInt;
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApInt_print
   (
     Ring1_ApInt* self
   );
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApInt_initialize_u8
   (
     Ring1_ApInt* self,
@@ -30,7 +30,7 @@ Ring1_ApInt_initialize_u8
     int64_t leastNumberOfDigits
   );
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApInt_initialize_u16
   (
     Ring1_ApInt* self,
@@ -38,7 +38,7 @@ Ring1_ApInt_initialize_u16
     int64_t leastNumberOfDigits
   );
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApInt_initialize_u32
   (
     Ring1_ApInt* self,
@@ -46,7 +46,7 @@ Ring1_ApInt_initialize_u32
     int64_t leastNumberOfDigits
   );
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApInt_initialize_u64
   (
     Ring1_ApInt* self,
@@ -54,7 +54,7 @@ Ring1_ApInt_initialize_u64
     int64_t leastNumberOfDigits
   );
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApInt_initialize_s8
   (
     Ring1_ApInt* self,
@@ -62,7 +62,7 @@ Ring1_ApInt_initialize_s8
     int64_t leastNumberOfDigits
   );
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApInt_initialize_s16
   (
     Ring1_ApInt* self,
@@ -70,7 +70,7 @@ Ring1_ApInt_initialize_s16
     int64_t leastNumberOfDigits
   );
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApInt_initialize_s32
   (
     Ring1_ApInt* self,
@@ -78,7 +78,7 @@ Ring1_ApInt_initialize_s32
     int64_t leastNumberOfDigits
   );
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApInt_initialize_s64
   (
     Ring1_ApInt* self,
@@ -98,7 +98,7 @@ Ring1_ApInt_uninitialize
 /// @return
 /// #Ring_Result_Success on success.
 /// #Ring_Result_Failure on failure.
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApInt_add
   (
     Ring1_ApInt* self,
@@ -111,7 +111,7 @@ Ring1_ApInt_add
 /// @return
 /// #Ring_Result_Success on success.
 /// #Ring_Result_Failure on failure.
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApInt_multiply
   (
     Ring1_ApInt* self,
@@ -124,7 +124,7 @@ Ring1_ApInt_multiply
 /// @return
 /// #Ring_Result_Success on success.
 /// #Ring_Result_Failure on failure.
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApInt_assign
   (
     Ring1_ApInt* self,
@@ -146,7 +146,7 @@ Ring1_ApInt_assign
 /// <code>*result</code> is assigned
 /// - @a -1 (@a +1) if this @a ApInt object is smaller (greater) than the other @a ApInt object.
 /// - @a 0 if both @a ApInt objects are equal. 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApInt_compare
   (
     int64_t* result,
@@ -163,7 +163,7 @@ Ring1_ApInt_compare
 /// @return
 /// #Ring1_Result_Success on success.
 /// #Ring1_Result_Failure on failure.
-Ring1_Inline() Ring1_NoDiscardResult() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApInt_isLowerThan
   (
     bool* result,
@@ -188,7 +188,7 @@ Ring1_ApInt_isLowerThan
 /// @return
 /// #Ring1_Result_Success on success.
 /// #Ring1_Result_Failure on failure.
-Ring1_Inline() Ring1_NoDiscardResult() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApInt_isLowerThanOrEqualTo
   (
     bool* result,
@@ -213,7 +213,7 @@ Ring1_ApInt_isLowerThanOrEqualTo
 /// @return
 /// #Ring1_Result_Success on success.
 /// #Ring1_Result_Failure on failure.
-Ring1_Inline() Ring1_NoDiscardResult() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApInt_isGreaterThan
   (
     bool* result,
@@ -238,7 +238,7 @@ Ring1_ApInt_isGreaterThan
 /// @return
 /// #Ring1_Result_Success on success.
 /// #Ring1_Result_Failure on failure.
-Ring1_Inline() Ring1_NoDiscardResult() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApInt_isGreaterThanOrEqualTo
   (
     bool* result,
@@ -263,7 +263,7 @@ Ring1_ApInt_isGreaterThanOrEqualTo
 /// @return
 /// #Ring1_Result_Success on success.
 /// #Ring1_Result_Failure on failure.
-Ring1_Inline() Ring1_NoDiscardResult() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApInt_isEqualTo
   (
     bool* result,
@@ -288,7 +288,7 @@ Ring1_ApInt_isEqualTo
 /// @return
 /// #Ring1_Result_Success on success.
 /// #Ring1_Result_Failure on failure.
-Ring1_Inline() Ring1_NoDiscardResult() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApInt_isNotEqualTo
   (
     bool* result,
@@ -304,14 +304,14 @@ Ring1_ApInt_isNotEqualTo
   return Ring1_Result_Success;
 }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApInt_toS64
   (
     int64_t* result,
     Ring1_ApInt* self
   );
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApInt_toU64
   (
     uint64_t* result,

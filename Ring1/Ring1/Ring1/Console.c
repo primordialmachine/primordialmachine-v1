@@ -47,26 +47,26 @@ uninitializeModule
   memory = Ring1_Memory_ModuleHandle_Invalid;
 }
 
-Ring1_CheckReturn() Ring1_Console_Connection*
+Ring1_NoDiscardReturn() Ring1_Console_Connection*
 Ring1_Console_getOutputConnection
   (
   )
 { return Ring1_Console_WindowsConnection_create(Ring1_Console_WindowsConnection_CreationFlags_StandardOutput); }
 
-Ring1_CheckReturn() Ring1_Console_Connection*
+Ring1_NoDiscardReturn() Ring1_Console_Connection*
 Ring1_Console_getErrorConnection
   (
   )
 { return Ring1_Console_WindowsConnection_create(Ring1_Console_WindowsConnection_CreationFlags_StandardError); }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Console_Connection_flush
   (
     Ring1_Console_Connection *connection
   )
 { return Ring1_Console_ConnectionBase_flush(connection); }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Console_Connection_getColor
   (
     Ring1_Console_Color *result,
@@ -74,7 +74,7 @@ Ring1_Console_Connection_getColor
   )
 { return Ring1_Console_ConnectionBase_getColor(connection, result); }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Console_Connection_setColor
   (
     Ring1_Console_Connection* connection,
@@ -82,7 +82,7 @@ Ring1_Console_Connection_setColor
   )
 { return Ring1_Console_ConnectionBase_setColor(connection, color); }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Console_Connection_write
   (
     Ring1_Console_Connection* connection,

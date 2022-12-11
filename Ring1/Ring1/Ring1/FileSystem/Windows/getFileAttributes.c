@@ -11,7 +11,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_FileSystem_Windows_getFileAttributes
   (
     const char *pathname,

@@ -21,7 +21,7 @@
   return Ring1_Result_Success;
   
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_nextMultipleOf32_u8
   (
     uint8_t *result,
@@ -31,7 +31,7 @@ Ring1_Intrinsic_nextMultipleOf32_u8
   Implementation_u(UINT8_MAX);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_nextMultipleOf32_u16
   (
     uint16_t *result,
@@ -41,7 +41,7 @@ Ring1_Intrinsic_nextMultipleOf32_u16
   Implementation_u(UINT16_MAX);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_nextMultipleOf32_u32
   (
     uint32_t *result,
@@ -51,7 +51,7 @@ Ring1_Intrinsic_nextMultipleOf32_u32
   Implementation_u(UINT32_MAX);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_nextMultipleOf32_u64
   (
     uint64_t *result,
@@ -61,7 +61,7 @@ Ring1_Intrinsic_nextMultipleOf32_u64
   Implementation_u(UINT64_MAX);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_nextMultipleOf32_sz
   (
     size_t *result,

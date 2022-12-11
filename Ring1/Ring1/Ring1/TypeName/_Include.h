@@ -32,7 +32,7 @@ Ring1_TypeName_unref
 /// @error #Ring1_Status_InvalidArgument the dimensionality is smaller than or equal to 0.
 /// @error #Ring1_Status_InvalidArgument the dimensionality is too big.
 /// @error #Ring1_Status_AllocationFailed an allocation failed.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_TypeName_getOrCreateArray
   (
     Ring1_TypeName **result,
@@ -50,14 +50,14 @@ Ring1_TypeName_getOrCreateArray
 /// @error #Ring1_Status_InvalidArgument the dimensionality is smaller than or equal to 0.
 /// @error #Ring1_Status_InvalidArgument the dimensionality is too big.
 /// @error #Ring1_Status_AllocationFailed an allocation failed.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_TypeName_getOrCreateScalar
   (
     Ring1_TypeName **result,
     const char *name
   );
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_TypeName_toString
   (
     char **result,

@@ -29,7 +29,7 @@ doTestConversion_u64
   Ring1_ApInt_uninitialize(&x);
 }
 
-static Ring1_CheckReturn() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 ApIntTestConversion
   (
     Ring1_Test_Context *ctx
@@ -44,7 +44,7 @@ ApIntTestConversion
   return Ring1_Result_Success;
 }
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 doTestAddition
   (
     Ring1_Test_Context *ctx,
@@ -122,7 +122,7 @@ doTestAddition
   return Ring1_Result_Success;
 }
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 ApIntTestAddition1
   (
     Ring1_Test_Context *ctx
@@ -167,7 +167,7 @@ ApIntTestAddition1
   return Ring1_Result_Success;
 }
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 ApIntTestAddition2
   (
     Ring1_Test_Context *ctx
@@ -195,7 +195,7 @@ ApIntTestAddition2
   return Ring1_Result_Success;
 }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Ap_Test_registerApIntTests
   (
     Ring1_Test_Context* ctx

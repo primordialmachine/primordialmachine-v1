@@ -77,7 +77,7 @@ typedef struct Impl
   size_t size, capacity;
 } Impl;
 
-Ring1_Inline() Ring1_CheckReturn() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 increaseCapacity
   (
     Impl *pimpl,
@@ -113,7 +113,7 @@ increaseCapacity
   return Ring1_Result_Success;
 }
 
-Ring1_Inline() Ring1_CheckReturn() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 initialize
   (
     Impl *pimpl
@@ -140,7 +140,7 @@ uninitialize
   pimpl->size = 0;
 }
 
-Ring1_Inline() Ring1_CheckReturn() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 insertBytesAt
   (
     Impl* pimpl,
@@ -176,7 +176,7 @@ insertBytesAt
   return Ring1_Result_Success;
 }
 
-Ring1_Inline() Ring1_CheckReturn() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 insertByteAt
   (
     Impl* pimpl,
@@ -185,7 +185,7 @@ insertByteAt
   )
 { return insertBytesAt(pimpl, index, &byte, 1); }
 
-Ring1_Inline() Ring1_CheckReturn() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 appendByte
   (
     Impl *pimpl,
@@ -193,7 +193,7 @@ appendByte
   )
 { return insertByteAt(pimpl, pimpl->size, byte); }
 
-Ring1_Inline() Ring1_CheckReturn() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 appendBytes
   (
     Impl *pimpl,
@@ -202,7 +202,7 @@ appendBytes
   )
 { return insertBytesAt(pimpl, pimpl->size, bytes, numberOfBytes); }
 
-Ring1_Inline() Ring1_CheckReturn() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 prependByte
   (
     Impl* pimpl,
@@ -210,7 +210,7 @@ prependByte
   )
 { return insertByteAt(pimpl, 0, byte); }
 
-Ring1_Inline() Ring1_CheckReturn() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 prependBytes
   (
     Impl* pimpl,
@@ -219,7 +219,7 @@ prependBytes
   )
 { return insertBytesAt(pimpl, 0, bytes, numberOfBytes); }
 
-Ring1_Inline() Ring1_CheckReturn() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 clear
   (
     Impl *pimpl
@@ -233,7 +233,7 @@ clear
   return Ring1_Result_Success;
 }
 
-Ring1_Inline() Ring1_CheckReturn() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 getBytes
   (
     char const **result,
@@ -248,7 +248,7 @@ getBytes
   return Ring1_Result_Success;
 }
 
-Ring1_Inline() Ring1_CheckReturn() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 getNumberOfBytes
   (
     size_t *result,
@@ -263,7 +263,7 @@ getNumberOfBytes
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ByteBuffer_initialize
   (
     Ring1_ByteBuffer* byteBuffer
@@ -293,7 +293,7 @@ Ring1_ByteBuffer_uninitialize
   byteBuffer->pimpl = NULL;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ByteBuffer_insertByteAt
   (
     Ring1_ByteBuffer* byteBuffer,
@@ -308,7 +308,7 @@ Ring1_ByteBuffer_insertByteAt
   return insertByteAt(byteBuffer->pimpl, index, byte);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ByteBuffer_insertBytesAt
   (
     Ring1_ByteBuffer* byteBuffer,
@@ -324,7 +324,7 @@ Ring1_ByteBuffer_insertBytesAt
   return insertBytesAt(byteBuffer->pimpl, index, bytes, numberOfBytes);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ByteBuffer_appendByte
   (
     Ring1_ByteBuffer* byteBuffer,
@@ -338,7 +338,7 @@ Ring1_ByteBuffer_appendByte
   return appendByte(byteBuffer->pimpl, byte);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ByteBuffer_appendBytes
   (
     Ring1_ByteBuffer* byteBuffer,
@@ -353,7 +353,7 @@ Ring1_ByteBuffer_appendBytes
   return appendBytes(byteBuffer->pimpl, bytes, numberOfBytes);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ByteBuffer_prependByte
   (
     Ring1_ByteBuffer* byteBuffer,
@@ -367,7 +367,7 @@ Ring1_ByteBuffer_prependByte
   return prependByte(byteBuffer->pimpl, byte);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ByteBuffer_prependBytes
   (
     Ring1_ByteBuffer* byteBuffer,
@@ -382,7 +382,7 @@ Ring1_ByteBuffer_prependBytes
   return prependBytes(byteBuffer->pimpl, bytes, numberOfBytes);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ByteBuffer_clear
   (
     Ring1_ByteBuffer* byteBuffer
@@ -395,7 +395,7 @@ Ring1_ByteBuffer_clear
   return clear(byteBuffer->pimpl);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ByteBuffer_getBytes
   (
     char const **result,
@@ -409,7 +409,7 @@ Ring1_ByteBuffer_getBytes
   return getBytes(result, byteBuffer->pimpl);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ByteBuffer_getNumberOfBytes
   (
     size_t *result,

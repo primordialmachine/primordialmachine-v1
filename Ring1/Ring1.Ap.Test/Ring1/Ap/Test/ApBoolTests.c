@@ -11,7 +11,7 @@
 #include <stdio.h>
 
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 ApBoolTest1
   (
     Ring1_Test_Context *ctx
@@ -38,7 +38,7 @@ ApBoolTest1
   return Ring1_Result_Success;
 }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Ap_Test_registerApBoolTests
   (
     Ring1_Test_Context* ctx

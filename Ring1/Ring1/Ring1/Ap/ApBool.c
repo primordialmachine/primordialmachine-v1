@@ -8,7 +8,7 @@
 #include <stdio.h>
 
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApBool_print
   (
     Ring1_ApBool *self
@@ -22,7 +22,7 @@ Ring1_ApBool_print
   return Ring1_Result_Success;
 }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApBool_initialize_bool
   (
     Ring1_ApBool *self,
@@ -45,7 +45,7 @@ Ring1_ApBool_uninitialize
   return Ring1_Result_Success;
 }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApBool_assign
   (
     Ring1_ApBool* self,
@@ -60,7 +60,7 @@ Ring1_ApBool_assign
   return Ring1_Result_Success;
 }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApBool_toBool
   (
     bool *result,

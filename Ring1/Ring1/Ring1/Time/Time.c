@@ -34,7 +34,7 @@ uninitializeModule
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Time_getNowMilliseconds_u64
   (
     uint64_t *result
@@ -54,7 +54,7 @@ Ring1_Time_getNowMilliseconds_u64
 
 #endif
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Time_getNowSeconds_u64
   (
     uint64_t *result
@@ -72,7 +72,7 @@ Ring1_Time_getNowSeconds_u64
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Time_getNowMinutes_u64
   (
     uint64_t *result
@@ -93,7 +93,7 @@ Ring1_Time_getNowMinutes_u64
 
 #include <float.h>
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Time_getNowMilliseconds_f32
   (
     float *result
@@ -115,7 +115,7 @@ Ring1_Time_getNowMilliseconds_f32
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Time_getNowSeconds_f32
   (
     float* result
@@ -133,7 +133,7 @@ Ring1_Time_getNowSeconds_f32
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Time_getNowMinutes_f32
   (
     float *result

@@ -17,7 +17,7 @@
 #include "Ring1/Result.h"
 #include "Ring1/FileSystem/ReceiveCallback.h"
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_FileSystem_Windows_receiveFileContents
   (
     const char* pathname,

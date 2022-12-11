@@ -10,7 +10,7 @@
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Hash_toSz_p
   (
     size_t *result,
@@ -25,7 +25,7 @@ Ring1_Hash_toSz_p
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Hash_toI64_p
   (
     int64_t *result,
@@ -48,7 +48,7 @@ Ring1_Hash_toI64_p
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Hash_toSz_b
   (
     size_t* result,
@@ -64,7 +64,7 @@ Ring1_Hash_toSz_b
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Hash_toI64_b
   (
     int64_t* result,
@@ -82,7 +82,7 @@ Ring1_Hash_toI64_b
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Hash_toI64_i64
   (
     int64_t* result,
@@ -97,7 +97,7 @@ Ring1_Hash_toI64_i64
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Hash_toSz_i64
   (
     size_t* result,
@@ -118,7 +118,7 @@ Ring1_Hash_toSz_i64
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Hash_toI64_i32
   (
     int64_t* result,
@@ -133,7 +133,7 @@ Ring1_Hash_toI64_i32
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Hash_toSz_i32
   (
     size_t* result,
@@ -148,7 +148,7 @@ Ring1_Hash_toSz_i32
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Hash_toI64_i16
   (
     int64_t* result,
@@ -163,7 +163,7 @@ Ring1_Hash_toI64_i16
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Hash_toSz_i16
   (
     size_t* result,
@@ -178,7 +178,7 @@ Ring1_Hash_toSz_i16
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Hash_toI64_i8
   (
     int64_t* result,
@@ -193,7 +193,7 @@ Ring1_Hash_toI64_i8
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Hash_toSz_i8
   (
     size_t* result,
@@ -210,7 +210,7 @@ Ring1_Hash_toSz_i8
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Hash_toSz_u64
   (
     size_t* result,
@@ -225,7 +225,7 @@ Ring1_Hash_toSz_u64
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Hash_toSz_u32
   (
     size_t* result,
@@ -240,7 +240,7 @@ Ring1_Hash_toSz_u32
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Hash_toSz_u16
   (
     size_t* result,
@@ -255,7 +255,7 @@ Ring1_Hash_toSz_u16
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Hash_toSz_u8
   (
     size_t* result,
@@ -275,7 +275,7 @@ Ring1_Hash_toSz_u8
 #include <float.h>
 #include <math.h>
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Hash_toSz_f32
   (
     size_t* result,
@@ -319,7 +319,7 @@ Ring1_Hash_toSz_f32
   };
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Hash_toI64_f32
   (
     int64_t* result,
@@ -363,7 +363,7 @@ Ring1_Hash_toI64_f32
   };
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Hash_toSz_f64
   (
     size_t* result,
@@ -407,7 +407,7 @@ Ring1_Hash_toSz_f64
   };
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Hash_toI64_f64
   (
     int64_t* result,

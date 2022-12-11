@@ -51,7 +51,7 @@ typedef void (Ring1_PointerList_VisitCallback)(void* context, void* element);
 typedef Ring1_Result (Ring1_PointerList_FindCallback)(bool *result, void* context, void* element);
 
 /// https://primordialmachine.com/api/ring1-library/pointerlist-library/Ring1_PointerList_initialize
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerList_initialize
   (
     Ring1_PointerList* self,
@@ -60,7 +60,7 @@ Ring1_PointerList_initialize
   );
 
 /// https://primordialmachine.com/api/ring1-library/pointerlist-library/Ring1_PointerList_uninitialize
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerList_uninitialize
   (
     Ring1_PointerList* self
@@ -73,7 +73,7 @@ Ring1_PointerList_uninitialize
 /// @param position A pointer to an int variable receiving the position on success.
 /// If this function succeeds and the element was not found, the variable is assigned -1.
 /// @return #Ring1_Status_Success on success, a failure status code on failure.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerList_find
   (
     Ring1_PointerList* pointerList,
@@ -99,7 +99,7 @@ Ring1_PointerList_visit
 /// @remark
 /// Elements for which the "where" callback returns @a true remains in the collection.
 /// Other elements are removed.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerList_filter
   (
     Ring1_PointerList* pointerList,
@@ -108,14 +108,14 @@ Ring1_PointerList_filter
   );
 
 // https://primordialmachine.com/api/ring1-library/pointerlist-library/Ring1_PointerList_clear 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerList_clear
   (
     Ring1_PointerList* self
   );
 
 // https://primordialmachine.com/api/ring1-library/pointerlist-library/Ring1_PointerList_insertAt
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerList_insertAt
   (
     Ring1_PointerList* self,
@@ -124,7 +124,7 @@ Ring1_PointerList_insertAt
   );
 
 // https://primordialmachine.com/api/ring1-library/pointerlist-library/Ring1_PointerList_insertBack
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerList_insertBack
   (
     Ring1_PointerList* self,
@@ -132,7 +132,7 @@ Ring1_PointerList_insertBack
   );
 
 // https://primordialmachine.com/api/ring1-library/pointerlist-library/Ring1_PointerList_insertFront
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerList_insertFront
   (
     Ring1_PointerList* self,
@@ -140,7 +140,7 @@ Ring1_PointerList_insertFront
   );
 
 // https://primordialmachine.com/api/ring1-library/pointerlist-library/Ring1_PointerList_getAt
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerList_getAt
   (
     Ring1_PointerList* self,
@@ -152,7 +152,7 @@ Ring1_PointerList_getAt
 /// @param pointerList A pointer to the pointer list.
 /// @param index The index of the element to be removed.
 /// @remark If a Ring1_PointerList_RemovedCallback is specified, it is invoked on the element.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerList_removeAt
   (
     Ring1_PointerList* pointerList,
@@ -164,7 +164,7 @@ Ring1_PointerList_removeAt
 /// @param pointerList A pointer to the pointer list.
 /// @param index The index of the element to be removed.
 /// @remark Unlike Ring1_PointerList_removeAt, the Ring1_PointerList_RemovedCallback is not invoked on the element.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerList_stealAt
   (
     Ring1_PointerList* seöf,
@@ -176,7 +176,7 @@ Ring1_PointerList_stealAt
 /// - Ring1_PointerList_Status_Empty if the queue is empty.
 /// Another non-zero status code on failure.
 /// @remark If a Ring1_PointerList_RemovedCallback is specified, it is invoked on the element.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerList_removeBack
   (
     Ring1_PointerList* self,
@@ -187,7 +187,7 @@ Ring1_PointerList_removeBack
 /// - Ring1_PointerList_Status_Empty if the queue is empty.
 /// Another non-zero status code on failure.
 /// @remark Unlike Ring1_PointerList_removeBack, the Ring1_PointerList_RemovedCallback is not invoked on the element.
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerList_stealBack
   (
     Ring1_PointerList* self,
@@ -195,7 +195,7 @@ Ring1_PointerList_stealBack
   );
 
 // https://documentation.primordialmachine.com/utility-library/pointerlist-library#Ring1_pointerlist_getsize
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerList_getSize
   (
     int64_t *result,

@@ -9,7 +9,7 @@
 #include "Ring1/Status.h"
 #include "Ring1/Intrinsic/NextPowerOfTwo/nextPowerOfTwo.h"
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_recomputeSize_u8
   (
     uint8_t min,
@@ -50,7 +50,7 @@ Ring1_Memory_recomputeSize_u8
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_recomputeSize_s8
   (
     int8_t min,
@@ -92,7 +92,7 @@ Ring1_Memory_recomputeSize_s8
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_recomputeSize_u16
   (
     uint16_t min,
@@ -133,7 +133,7 @@ Ring1_Memory_recomputeSize_u16
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_recomputeSize_s16
   (
     int16_t min,
@@ -174,7 +174,7 @@ Ring1_Memory_recomputeSize_s16
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_recomputeSize_u32
   (
     uint32_t min,
@@ -215,7 +215,7 @@ Ring1_Memory_recomputeSize_u32
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_recomputeSize_s32
   (
     int32_t min,
@@ -256,7 +256,7 @@ Ring1_Memory_recomputeSize_s32
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_recomputeSize_u64
   (
     uint64_t min,
@@ -297,7 +297,7 @@ Ring1_Memory_recomputeSize_u64
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_recomputeSize_s64
   (
     int64_t min,
@@ -338,7 +338,7 @@ Ring1_Memory_recomputeSize_s64
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_recomputeSize_sz
   (
     size_t min,

@@ -11,7 +11,7 @@ typedef struct Ring1_ModuleDependency {
   void (*relinquish)(Ring1_ModuleHandle moduleHandle);
 } Ring1_ModuleDependency;
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ModuleDependencies_initialize
   (
     size_t numberOfDependencies,
@@ -34,7 +34,7 @@ Ring1_ModuleDependencies_uninitialize
 #define Ring1_EndDependencies() \
   }; \
   \
-  static Ring1_Result \
+  static Ring1_NoDiscardReturn() \
   startupDependencies() { \
     return Ring1_ModuleDependencies_initialize(sizeof(moduleDependencies) / sizeof(Ring1_ModuleDependency), moduleDependencies); \
   } \

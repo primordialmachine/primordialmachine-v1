@@ -10,17 +10,17 @@
 #include "Ring1/Intrinsic/Configuration.h"
 
 // Indicates that the result should not be used in a void context.
-// https://primordialmachine.com/api/ring1-library/intrinsic-library/Ring1_NoDiscardResult
+// https://primordialmachine.com/api/ring1-library/intrinsic-library/Ring1_NoDiscardReturn
 #if defined(__GNUC__)
-  #define Ring1_NoDiscardResult() [[nodiscard]]
+  #define Ring1_NoDiscardReturn() [[nodiscard]]
 #elif defined(_MSC_VER)
   #include <sal.h>
-  #define Ring1_NoDiscardResult() _Check_return_
+  #define Ring1_NoDiscardReturn() _Check_return_
 #else
   #error("environment not supported")
 #endif
 
 // @deprecated
-#define Ring1_CheckReturn() Ring1_NoDiscardResult()
+#define Ring1_CheckReturn() Ring1_NoDiscardReturn()
 
 #endif // RING1_INTRINSIC_CHECKRETURN_H_INCLUDED

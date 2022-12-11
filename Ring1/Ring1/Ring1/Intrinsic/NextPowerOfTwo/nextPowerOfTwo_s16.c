@@ -8,7 +8,7 @@
 
 #include "Ring1/Status.h"
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_nextPowerOfTwo_s16
   (
     int16_t *result,

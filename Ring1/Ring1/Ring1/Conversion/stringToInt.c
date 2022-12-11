@@ -17,7 +17,7 @@
 
 #define MAXMOD10 (INT64_MAX % 10)
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Conversion_stringToInt64
   (
     int64_t* result,
@@ -76,7 +76,7 @@ Ring1_Conversion_stringToInt64
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Conversion_stringToInt32
   (
     int32_t *result,
@@ -96,7 +96,7 @@ Ring1_Conversion_stringToInt32
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Conversion_stringToInt16
   (
     int16_t *result,
@@ -116,7 +116,7 @@ Ring1_Conversion_stringToInt16
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Conversion_stringToInt8
   (
     int8_t *result,

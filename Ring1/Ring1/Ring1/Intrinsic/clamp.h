@@ -12,7 +12,7 @@
 #include "Ring1/Result.h"
 
 #define IMPLEMENTATION(SUFFIX, TYPE) \
-  Ring1_CheckReturn() Ring1_Result \
+  Ring1_NoDiscardReturn() Ring1_Result \
   Ring1_Intrinsic_clamp_##SUFFIX \
     ( \
       TYPE* result, \

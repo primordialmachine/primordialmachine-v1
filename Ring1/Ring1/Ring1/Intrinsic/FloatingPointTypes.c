@@ -10,7 +10,7 @@
 
 #if defined(Ring1_Intrinsic_WithFp32) && 1 == Ring1_Intrinsic_WithFp32
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Fp_getRawBits_f32
   (
     uint32_t *result,
@@ -29,7 +29,7 @@ Ring1_Fp_getRawBits_f32
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Fp_getBits_f32
   (
     uint32_t *result,
@@ -59,7 +59,7 @@ Ring1_Fp_getBits_f32
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Fp_split_f32
   (
     float x,
@@ -98,7 +98,7 @@ Ring1_Fp_split_f32
 
 #if defined(Ring1_Intrinsic_WithFp64) && 1 == Ring1_Intrinsic_WithFp64
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Fp_getRawBits_f64
   (
     uint64_t *result,
@@ -117,7 +117,7 @@ Ring1_Fp_getRawBits_f64
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Fp_getBits_f64
   (
     uint64_t *result,
@@ -147,7 +147,7 @@ Ring1_Fp_getBits_f64
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Fp_split_f64
   (
     double x,

@@ -24,7 +24,7 @@
   #error("target architecture not supported")
 #endif
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_add_u8
   (
     uint8_t *result,
@@ -50,7 +50,7 @@ Ring1_Intrinsic_add_u8
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_add_s8
   (
     int8_t *result,
@@ -76,7 +76,7 @@ Ring1_Intrinsic_add_s8
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_add_u16
   (
     uint16_t *result,
@@ -102,7 +102,7 @@ Ring1_Intrinsic_add_u16
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_add_s16
   (
     int16_t *result,
@@ -128,7 +128,7 @@ Ring1_Intrinsic_add_s16
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_add_u32
   (
     uint32_t *result,
@@ -154,7 +154,7 @@ Ring1_Intrinsic_add_u32
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_add_s32
   (
     int32_t *result,
@@ -180,7 +180,7 @@ Ring1_Intrinsic_add_s32
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_add_u64
   (
     uint64_t *result,
@@ -206,7 +206,7 @@ Ring1_Intrinsic_add_u64
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_add_s64
   (
     int64_t *result,
@@ -232,7 +232,7 @@ Ring1_Intrinsic_add_s64
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_add_sz
   (
     size_t *result,

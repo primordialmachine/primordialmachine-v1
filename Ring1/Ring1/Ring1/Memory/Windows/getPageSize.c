@@ -12,7 +12,7 @@
 
 #include "Ring1/Status.h"
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_Windows_getPageSize
   (
     size_t* result

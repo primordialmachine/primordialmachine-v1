@@ -13,7 +13,7 @@
 #include <stddef.h>
 
 // https://documentation.primordialmachine.com/ring1-library/filesystem-library/Ring1_FileSystem_setFileContents
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_FileSystem_setFileContents
   (
     char const* pathname,

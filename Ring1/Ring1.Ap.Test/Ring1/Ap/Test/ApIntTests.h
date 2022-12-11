@@ -9,7 +9,7 @@
 
 #include "Ring1/Test.h"
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Ap_Test_registerApIntTests
   (
     Ring1_Test_Context *ctx

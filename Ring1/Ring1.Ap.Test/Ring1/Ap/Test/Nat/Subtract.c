@@ -10,7 +10,7 @@
 #include "Ring1/Status.h"
 #include <stdio.h>
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 doSubtraction
   (
     Ring1_Test_Context *ctx,
@@ -88,7 +88,7 @@ doSubtraction
   return Ring1_Result_Success;
 }
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 subtract
   (
     Ring1_Test_Context *ctx
@@ -112,7 +112,7 @@ subtract
   return Ring1_Result_Success;
 }
 
-Ring1_NoDiscardResult() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Ap_Test_Nat_registerSubtractTests
   (
     Ring1_Test_Context* ctx

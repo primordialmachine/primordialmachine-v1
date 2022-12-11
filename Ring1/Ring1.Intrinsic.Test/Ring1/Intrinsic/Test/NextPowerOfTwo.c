@@ -10,7 +10,7 @@
 #include <inttypes.h>
 #include "Ring1/Status.h"
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Mkx_Intrinsic_Test_nextPowerOfTwo_s8
   (
     Ring1_Test_Context* ctx
@@ -71,7 +71,7 @@ Mkx_Intrinsic_Test_nextPowerOfTwo_s8
   return Ring1_Result_Success;
 }
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Mkx_Intrinsic_Test_nextPowerOfTwo_u8
   (
     Ring1_Test_Context* ctx
@@ -139,7 +139,7 @@ Mkx_Intrinsic_Test_nextPowerOfTwo_u8
   return Ring1_Result_Success;
 }
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Mkx_Intrinsic_Test_nextPowerOfTwo_s16
   (
     Ring1_Test_Context* ctx
@@ -200,7 +200,7 @@ Mkx_Intrinsic_Test_nextPowerOfTwo_s16
   return Ring1_Result_Success;
 }
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Mkx_Intrinsic_Test_nextPowerOfTwo_u16
   (
     Ring1_Test_Context* ctx
@@ -268,7 +268,7 @@ Mkx_Intrinsic_Test_nextPowerOfTwo_u16
   return Ring1_Result_Success;
 }
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Mkx_Intrinsic_Test_nextPowerOfTwo_s32
   (
     Ring1_Test_Context* ctx
@@ -329,7 +329,7 @@ Mkx_Intrinsic_Test_nextPowerOfTwo_s32
   return Ring1_Result_Success;
 }
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Mkx_Intrinsic_Test_nextPowerOfTwo_u32
   (
     Ring1_Test_Context* ctx
@@ -397,7 +397,7 @@ Mkx_Intrinsic_Test_nextPowerOfTwo_u32
   return Ring1_Result_Success;
 }
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Mkx_Intrinsic_Test_nextPowerOfTwo_s64
   (
     Ring1_Test_Context* ctx
@@ -458,7 +458,7 @@ Mkx_Intrinsic_Test_nextPowerOfTwo_s64
   return Ring1_Result_Success;
 }
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Mkx_Intrinsic_Test_nextPowerOfTwo_u64
   (
     Ring1_Test_Context* ctx
@@ -526,7 +526,7 @@ Mkx_Intrinsic_Test_nextPowerOfTwo_u64
   return Ring1_Result_Success;
 }
 
-static Ring1_NoDiscardResult() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 Mkx_Intrinsic_Test_nextPowerOfTwo_sz
   (
     Ring1_Test_Context* ctx

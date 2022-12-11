@@ -47,7 +47,7 @@ Ring1_Module_Define(Ring1, PointerHashMap, initializeModule, uninitializeModule)
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerHashMap_initialize
   (
     Ring1_PointerHashMap *hashMap,
@@ -94,7 +94,7 @@ Ring1_PointerHashMap_uninitialize
   hashMap->pimpl = NULL;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerHashMap_getSize
   (
     int64_t *result,
@@ -102,7 +102,7 @@ Ring1_PointerHashMap_getSize
   )
 { return getSize(result, hashMap->pimpl); }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerHashMap_getCapacity
   (
     int64_t *result,
@@ -110,7 +110,7 @@ Ring1_PointerHashMap_getCapacity
   )
 { return getCapacity(result, hashMap->pimpl); }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerHashMap_getFreeCapacity
   (
     int64_t *result,
@@ -125,7 +125,7 @@ Ring1_PointerHashMap_clear
   )
 { clear(hashMap->pimpl); }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerHashMap_add
   (
     Ring1_PointerHashMap* hashMap,
@@ -134,7 +134,7 @@ Ring1_PointerHashMap_add
   )
 { return add(hashMap->pimpl, key, value, true, true, true, true, true); }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerHashMap_set
   (
     Ring1_PointerHashMap* hashMap,
@@ -143,7 +143,7 @@ Ring1_PointerHashMap_set
   )
 { return add(hashMap->pimpl, key, value, false, true, true, true, true); }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerHashMap_get
   (
     Ring1_PointerHashMap* hashMap,
@@ -152,7 +152,7 @@ Ring1_PointerHashMap_get
   )
 { return get(hashMap->pimpl, key, value); }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerHashMap_remove
   (
     Ring1_PointerHashMap *hashMap,
@@ -160,7 +160,7 @@ Ring1_PointerHashMap_remove
   )
 { return remove(hashMap->pimpl, key, true, true); }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerHashMap_removeIf
   (
     Ring1_PointerHashMap* pointerHashMap,
@@ -197,7 +197,7 @@ Ring1_PointerHashMap_removeIf
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerHashMap_Iterator_initialize
   (
     Ring1_PointerHashMap_Iterator* iterator,
@@ -226,7 +226,7 @@ Ring1_PointerHashMap_Iterator_uninitialize
   iterator->pimpl = NULL;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerHashMap_Iterator_hasValue
   (
     bool *result,
@@ -234,7 +234,7 @@ Ring1_PointerHashMap_Iterator_hasValue
   )
 { return Iterator_hasValue(result, iterator->pimpl); }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerHashMap_Iterator_getValue
   (
     Ring1_PointerHashMap_Iterator* iterator,
@@ -243,7 +243,7 @@ Ring1_PointerHashMap_Iterator_getValue
   )
 { return Iterator_getValue(iterator->pimpl, key, value); }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerHashMap_Iterator_increment
   (
     Ring1_PointerHashMap_Iterator* iterator

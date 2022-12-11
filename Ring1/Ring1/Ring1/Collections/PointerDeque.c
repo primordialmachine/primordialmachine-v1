@@ -76,7 +76,7 @@ MOD
   )
 { return index % capacity; }
 
-Ring1_Inline() Ring1_CheckReturn() Ring1_Result
+Ring1_Inline() Ring1_NoDiscardReturn() Ring1_Result
 increaseCapacity
   (
     Impl *pimpl,
@@ -399,7 +399,7 @@ getAt
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerDeque_initialize
   (
     Ring1_PointerDeque *pointerDeque,
@@ -455,7 +455,7 @@ Ring1_PointerDeque_uninitialize
   pointerDeque->pimpl = NULL;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerDeque_increaseCapacity
   (
     Ring1_PointerDeque *pointerDeque,
@@ -463,7 +463,7 @@ Ring1_PointerDeque_increaseCapacity
   )
 { return increaseCapacity(pointerDeque->pimpl, requiredAdditionalCapacity); }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerDeque_filter
   (
     Ring1_PointerDeque* pointerDeque,
@@ -499,7 +499,7 @@ Ring1_PointerDeque_filter
   return Ring1_Result_Success;
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerDeque_ensureFreeCapacity
   (
     Ring1_PointerDeque *pointerDeque,
@@ -507,7 +507,7 @@ Ring1_PointerDeque_ensureFreeCapacity
   )
 { return ensureFreeCapacity(pointerDeque->pimpl, requiredFreeCapacity); }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerDeque_getSize
   (
     int64_t *size,
@@ -525,7 +525,7 @@ Ring1_PointerDeque_getSize
   return getSize(size, pointerDeque->pimpl);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerDeque_getCapacity
   (
     int64_t *capacity,
@@ -556,7 +556,7 @@ Ring1_PointerDeque_clear
   return clear(pointerDeque->pimpl);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerDeque_insertAt
   (
     Ring1_PointerDeque* pointerDeque,
@@ -571,7 +571,7 @@ Ring1_PointerDeque_insertAt
   return insertAt(pointerDeque->pimpl, index, true, pointer);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerDeque_insertBack
   (
     Ring1_PointerDeque *pointerDeque,
@@ -585,7 +585,7 @@ Ring1_PointerDeque_insertBack
   return insertBack(pointerDeque->pimpl, pointer);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerDeque_insertFront
   (
     Ring1_PointerDeque *pointerDeque,
@@ -599,7 +599,7 @@ Ring1_PointerDeque_insertFront
   return insertFront(pointerDeque->pimpl, pointer);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerDeque_getAt
   (
     Ring1_PointerDeque *pointerDeque,
@@ -614,7 +614,7 @@ Ring1_PointerDeque_getAt
   return getAt(pointerDeque->pimpl, index, element);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerDeque_removeAt
   (
     Ring1_PointerDeque *pointerDeque,
@@ -629,7 +629,7 @@ Ring1_PointerDeque_removeAt
   return removeAt(pointerDeque->pimpl, index, true, element);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerDeque_stealAt
   (
     Ring1_PointerDeque* pointerDeque,
@@ -644,7 +644,7 @@ Ring1_PointerDeque_stealAt
   return removeAt(pointerDeque->pimpl, index, false, element);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerDeque_removeFront
   (
     Ring1_PointerDeque* pointerDeque,
@@ -658,7 +658,7 @@ Ring1_PointerDeque_removeFront
   return removeAt(pointerDeque->pimpl, 0, true, element);
 }
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerDeque_stealFront
   (
     Ring1_PointerDeque* pointerDeque,

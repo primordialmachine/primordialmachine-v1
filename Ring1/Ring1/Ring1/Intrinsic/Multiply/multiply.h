@@ -5,7 +5,7 @@
 #include "Ring1/Annotations/_Include.h"
 #include "Ring1/Result.h"
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_multiply_s8
   (
     int8_t *result,
@@ -13,7 +13,7 @@ Ring1_Intrinsic_multiply_s8
     int8_t y
   );
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_multiply_u8
   (
     uint8_t *result,
@@ -21,7 +21,7 @@ Ring1_Intrinsic_multiply_u8
     uint8_t y
   );
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_multiply_s16
   (
     int16_t *result,
@@ -29,7 +29,7 @@ Ring1_Intrinsic_multiply_s16
     int16_t y
   );
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_multiply_u16
   (
     uint16_t *result,
@@ -37,7 +37,7 @@ Ring1_Intrinsic_multiply_u16
     uint16_t y
   );
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_multiply_s32
   (
     int32_t *result,
@@ -45,7 +45,7 @@ Ring1_Intrinsic_multiply_s32
     int32_t y
   );
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_multiply_u32
   (
     uint32_t *result,
@@ -53,7 +53,7 @@ Ring1_Intrinsic_multiply_u32
     uint32_t y
   );
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_multiply_s64
   (
     int64_t *result,
@@ -61,7 +61,7 @@ Ring1_Intrinsic_multiply_s64
     int64_t y
   );
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_multiply_u64
   (
     uint64_t *result,
@@ -69,7 +69,7 @@ Ring1_Intrinsic_multiply_u64
     uint64_t y
   );
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Intrinsic_multiply_sz
   (
     size_t *result,

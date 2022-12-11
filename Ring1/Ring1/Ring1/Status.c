@@ -10,7 +10,7 @@
 
 Ring1_ThreadLocal() static Ring1_Status g_status = Ring1_Status_Success;
 
-Ring1_CheckReturn() Ring1_Status
+Ring1_NoDiscardReturn() Ring1_Status
 Ring1_Status_get
   (
   )

@@ -13,7 +13,7 @@
 #include <malloc.h>
 #include <string.h>
 
-Ring1_CheckReturn() Ring1_Result
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Test_Node_create
   (
     Ring1_Test_Node** node,

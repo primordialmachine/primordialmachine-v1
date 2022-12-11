@@ -9,7 +9,7 @@
 #include "Ring1/Conversion/_Buffer.h"
 #include "Ring1/Memory.h"
 
-static Ring1_CheckReturn() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 initializeModule
   (
   );
@@ -23,7 +23,7 @@ Ring1_Module_Define(Ring1, Conversion, initializeModule, uninitializeModule)
 
 static Ring1_Memory_ModuleHandle g_memoryModuleHandle = Ring1_Memory_ModuleHandle_Invalid;
 
-static Ring1_CheckReturn() Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 initializeModule
   (
   )
