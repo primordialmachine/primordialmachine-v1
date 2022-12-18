@@ -7,7 +7,7 @@
 #include "Ring1/Intrinsic/Test/Maximum.h"
 
 #include "Ring1/Intrinsic/Environment.h"
-#include "Ring1/Intrinsic/FloatingPointTYpes.h"
+#include "Ring1/Intrinsic/FloatingPointTypes.h"
 #include "Ring1/Intrinsic/maximum.h"
 #include "Ring1/Status.h"
 

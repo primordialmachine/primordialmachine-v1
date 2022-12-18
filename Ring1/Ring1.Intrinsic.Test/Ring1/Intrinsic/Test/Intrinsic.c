@@ -11,6 +11,7 @@
 #include "Ring1/Intrinsic/Test/Add.h"
 #include "Ring1/Intrinsic/Test/Clamp.h"
 #include "Ring1/Intrinsic/Test/CountLeadingZeroes.h"
+#include "Ring1/Intrinsic/Test/FloatingPointTypes.h"
 #include "Ring1/Intrinsic/Test/IsPowerOfTwo.h"
 #include "Ring1/Intrinsic/Test/Maximum.h"
 #include "Ring1/Intrinsic/Test/Minimum.h"
@@ -33,6 +34,7 @@ Mkx_Intrinsic_Test_runAll
   if (Ring1_Intrinsic_Test_registerIsPowerOfTwoTests(ctx)
       || Ring1_Intrinsic_Test_registerMultiplyTests(ctx)
       || Ring1_Intrinsic_Test_registerAddTests(ctx)
+      || Ring1_Intrinsic_Test_registerFloatingPointTypesTests(ctx)
       || Ring1_Intrinsic_Test_registerSubtractTests(ctx)
       || Ring1_Intrinsic_Test_registerNextPowerOfTwoTests(ctx)
       || Ring1_Intrinsic_Test_registerNextMultipleOf32Tests(ctx)

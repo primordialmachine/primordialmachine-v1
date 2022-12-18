@@ -37,6 +37,8 @@
 /// @brief Symbolic constant evaluating to an uint32_t value.
 /// Masks the significant bits of the raw bits of a single-precision floating-point value (23 bits from index 22 to index 0).
 #define Ring1_Fp_SignificantMask_f32 (UINT32_C(0x007FFFFF))
+static_assert(Ring1_Fp_SignificantMask_f32 == (UINT32_C(1) << UINT32_C(23)) - 1, "incorrect definition of symbolic constant");
+
                                            
 /// @brief Symbolic constant evaluating to an uint32_t value.
 /// Represents the raw bits of a single-precision floating point value representing the negative zero.
@@ -71,6 +73,7 @@
 /// @brief Symbolic constant evaluating to an uint64_t value.
 /// Masks the significant bits of the raw bits of a double-precision floating-point value (52 bits from index 51 to index 0).
 #define Ring1_Fp_SignificantMask_f64 (UINT64_C(0x000FFFFFFFFFFFFF))
+static_assert(Ring1_Fp_SignificantMask_f64 == (UINT64_C(1) << UINT64_C(52)) - 1, "incorrect definition of symbolic constant");
 
 /// @brief Symbolic constant evaluating to an uint64_t value.
 /// Represents the raw bits of a single-precision floating point value representing the negative zero.
@@ -121,7 +124,8 @@ Ring1_Fp_split_f32
     float x,
     bool* sign,
     int32_t* significant,
-    int32_t* exponent
+    int32_t* exponent,
+    bool normalize
   );
 
 #endif // Ring1_Intrinsic_WithFp32
@@ -165,7 +169,8 @@ Ring1_Fp_split_f64
     double x,
     bool* sign,
     int64_t* significant,
-    int64_t* exponent
+    int64_t* exponent,
+    bool normalize
   );
 
 #endif // Ring1_Intrinsic_WithFp64

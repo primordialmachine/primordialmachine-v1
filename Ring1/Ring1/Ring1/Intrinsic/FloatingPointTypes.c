@@ -65,7 +65,8 @@ Ring1_Fp_split_f32
     float x,
     bool *sign,
     int32_t *significant,
-    int32_t* exponent
+    int32_t* exponent,
+    bool normalize
   )
 {
   uint32_t a;
@@ -78,8 +79,10 @@ Ring1_Fp_split_f32
     *sign = b;
   }
   // exponent
+  int64_t unbiasedExponent = 0;
   {
     uint32_t b = (a & Ring1_Fp_ExponentMask_f32) >> UINT64_C(23);
+    unbiasedExponent = b;
     int32_t c = ((int32_t)a) - INT32_C(127) - INT32_C(23);
     // -23 because we actually have to divide the exponent bits by 2^23.
     *exponent = c;
@@ -87,9 +90,25 @@ Ring1_Fp_split_f32
   // significant
   {
     uint32_t b = a & Ring1_Fp_SignificantMask_f32;
-    b = b | (UINT32_C(1) << UINT32_C(23));
+    if (unbiasedExponent == 0) {
+      // subnormal if b != 0: sign x 2^(1 - 1075) x 0.fraction = 0
+      // signed zero if b = 0: sign x 2^(1 - 1075) x 0.0 = 0
+      b = b << 1;
+    } else {
+      // normal: sign x 1.fraction x 2^(-1075)
+      b = b | (UINT64_C(1) << UINT64_C(52));
+    }
+    // b = b | (UINT32_C(1) << UINT32_C(23));
     int32_t c = (int32_t)b;
     *significant = c;
+  }
+  if ((*significant) != 0 && normalize) {
+    // As long as the significant is divisble by 2,
+    // divide significant by 2 and add 1 to the exponent.
+    while ((*significant % 2) == 0) {
+      (*significant) >>= 1;
+      (*exponent)++;
+    }
   }
   return Ring1_Result_Success;
 }
@@ -153,7 +172,8 @@ Ring1_Fp_split_f64
     double x,
     bool *sign,
     int64_t *significant,
-    int64_t* exponent
+    int64_t* exponent,
+    bool normalize
   )
 {
   uint64_t a;
@@ -166,18 +186,35 @@ Ring1_Fp_split_f64
     *sign = b;
   }
   // exponent
+  int64_t unbiasedExponent = 0;
   {
     uint64_t b = (a & Ring1_Fp_ExponentMask_f64) >> UINT64_C(52);
-    int64_t c = ((int64_t)a) - INT64_C(1023) - INT64_C(52);
+    unbiasedExponent = b;
+    int64_t c = ((int64_t)b) - INT64_C(1023) - INT64_C(52);
     // -52 because we actually have to divide the exponent bits by 2^52.
     *exponent = c;
   }
   // significant
   {
     uint64_t b = a & Ring1_Fp_SignificantMask_f64;
-    b = b | (UINT64_C(1) << UINT64_C(52));
+    if (unbiasedExponent == 0) {
+      // subnormal if b != 0: sign x 2^(1 - 1075) x 0.fraction = 0
+      // signed zero if b = 0: sign x 2^(1 - 1075) x 0.0 = 0
+      b = b << 1;
+    } else {
+      // normal: sign x 1.fraction x 2^(-1075)
+      b = b | (UINT64_C(1) << UINT64_C(52));
+    }
     int64_t c = (int64_t)b;
     *significant = c;
+  }
+  if ((*significant) != 0 && normalize) {
+    // As long as the significant is divisble by 2,
+    // divide significant by 2 and add 1 to the exponent.
+    while ((*significant % 2) == 0) {
+      (*significant) >>= 1;
+      (*exponent)++;
+    }
   }
   return Ring1_Result_Success;
 }

@@ -68,6 +68,9 @@
     <ClCompile Include="Ring1\Intrinsic\Test\Clamp.c">
       <Filter>Quelldateien\Ring1\Intrinsic\Test</Filter>
     </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Test\FloatingPointTypes.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\Test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring1\Intrinsic\Test\Add.h">
@@ -104,6 +107,9 @@
       <Filter>Headerdateien\Ring1\Intrinsic\Test</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\Intrinsic\Test\Clamp.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Test\FloatingPointTypes.h">
       <Filter>Headerdateien\Ring1\Intrinsic\Test</Filter>
     </ClInclude>
   </ItemGroup>
