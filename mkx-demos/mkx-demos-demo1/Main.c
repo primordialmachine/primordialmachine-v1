@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 #include "Ring2/Library/_Include.h"
 #include "_Launcher.h"
 #include "_Fonts.h"
