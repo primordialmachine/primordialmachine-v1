@@ -5,7 +5,7 @@
 #include "FontsContext.h"
 
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 #include "Font.h"
 #include <ft2build.h>
 #include FT_FREETYPE_H
