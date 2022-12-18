@@ -2,7 +2,7 @@
 #include "ImagesContext.h"
 
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 #include "Image.h"
 
 
