@@ -5,7 +5,7 @@
 #include "Graphics2/Context2.h"
 
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 
 
 static void Machine_Context2_visit(Machine_Context2* self) {

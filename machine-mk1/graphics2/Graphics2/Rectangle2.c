@@ -5,7 +5,7 @@
 #include "Graphics2/Rectangle2.h"
 
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 #include "Graphics2/Context2.h"
 
 

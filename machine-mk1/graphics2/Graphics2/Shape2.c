@@ -5,7 +5,7 @@
 #include "Graphics2/Shape2.h"
 
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 
 
 static void Machine_Shape2_visit(Machine_Shape2* self)
