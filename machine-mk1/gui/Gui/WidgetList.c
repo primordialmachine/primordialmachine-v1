@@ -5,7 +5,7 @@
 #include "Gui/WidgetList.h"
 
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 
 
 struct Machine_Gui_WidgetList_Class {
