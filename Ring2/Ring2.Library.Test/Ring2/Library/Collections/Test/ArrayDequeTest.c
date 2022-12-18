@@ -138,17 +138,21 @@ Ring2_Test_registerArrayDequeTests
     Ring2_Tests *tests
   )
 {
-  Ring2_String* prefix = Ring2_String_fromC("Ring2.Library.Collections.Test.ArrayDequeTest");
+  Ring2_String* prefix = Ring2_String_create("Ring2.Library.Collections.Test.ArrayDequeTest",
+                                  crt_strlen("Ring2.Library.Collections.Test.ArrayDequeTest"));
   Ring2_Tests_addTest(tests,
                       Ring2_String_concatenate(Ring2_Context_get(), prefix,
-                                                                    Ring2_String_fromC("1")),
+                                                                    Ring2_String_create("1",
+                                                                             crt_strlen("1"))),
                       &test1);
   Ring2_Tests_addTest(tests,
                       Ring2_String_concatenate(Ring2_Context_get(), prefix,
-                                                                    Ring2_String_fromC("2")),
+                                                                    Ring2_String_create("2",
+                                                                             crt_strlen("2"))),
                       &test2);
   Ring2_Tests_addTest(tests,
                       Ring2_String_concatenate(Ring2_Context_get(), prefix,
-                                                                    Ring2_String_fromC("3")),
+                                                                    Ring2_String_create("3",
+                                                                             crt_strlen("3"))),
                       &test3);
 }
