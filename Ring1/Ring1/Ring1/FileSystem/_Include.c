@@ -17,7 +17,7 @@
   #error("RING1_FILESYSTEM_CONFIGURATION_BACKEND must be defined to RING1_FILESYSTEM_CONFIGURATION_BACKEND_LIBC or RING1_FILESYSTEM_CONFIGURATION_BACKEND_WINAPI")
 #endif
 
-#include "Ring1/Memory.h"
+#include "Ring1/Memory/_Include.h"
 
 static Ring1_Result
 initializeModule

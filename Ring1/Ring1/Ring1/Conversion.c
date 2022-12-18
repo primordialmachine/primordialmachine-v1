@@ -7,7 +7,7 @@
 #include "Ring1/Conversion.h"
 
 #include "Ring1/Conversion/_Buffer.h"
-#include "Ring1/Memory.h"
+#include "Ring1/Memory/_Include.h"
 
 static Ring1_NoDiscardReturn() Ring1_Result
 initializeModule

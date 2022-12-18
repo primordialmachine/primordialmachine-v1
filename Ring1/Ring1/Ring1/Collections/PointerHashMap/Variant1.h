@@ -2,7 +2,7 @@
 #define RING1_COLLECTIONS_POINTERHASHMAP_VARIANT1_H_INCLUDED
 
 #include "Ring1/Collections/PointerHashMap.h"
-#include "Ring1/Memory.h"
+#include "Ring1/Memory/_Include.h"
 
 typedef struct Node Node;
 

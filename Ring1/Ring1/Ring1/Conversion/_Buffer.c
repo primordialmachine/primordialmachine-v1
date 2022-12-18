@@ -1,6 +1,6 @@
 #include "Ring1/Conversion/_Buffer.h"
 
-#include "Ring1/Memory.h"
+#include "Ring1/Memory/_Include.h"
 #include "Ring1/Status.h"
 #include <stdlib.h>
 

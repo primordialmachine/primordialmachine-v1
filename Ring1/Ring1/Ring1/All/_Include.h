@@ -12,7 +12,7 @@
 #include "Ring1/Collections/_Include.h"
 #include "Ring1/FileSystem/_Include.h"
 #include "Ring1/Intrinsic/_Include.h"
-#include "Ring1/Memory.h"
+#include "Ring1/Memory/_Include.h"
 #include "Ring1/Module.h"
 #include "Ring1/Time/_Include.h"
 #include "Ring1/TypeName/_Include.h"

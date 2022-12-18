@@ -17,7 +17,7 @@
   #error("RING1_FILESYSTEM_CONFIGURATION_BACKEND must be defined to RING1_FILESYSTEM_CONFIGURATION_BACKEND_LINUNX, RING1_FILESYSTEM_CONFIGURATION_BACKEND_OSX, or RING1_FILESYSTEM_CONFIGURATION_BACKEND_WINDOWS")
 #endif
 
-#include "Ring1/Memory.h"
+#include "Ring1/Memory/_Include.h"
 
 Ring1_CheckReturn() Ring1_Result
 Ring1_FileSystem_getCurrentDirectory

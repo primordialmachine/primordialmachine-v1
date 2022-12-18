@@ -9,7 +9,7 @@
 #undef RING1_COLLECTIONS_PRIVATE
 
 
-#include "Ring1/Memory.h"
+#include "Ring1/Memory/_Include.h"
 #include "Ring1/Collections/PointerHashMap/Variant1.h"
 
 

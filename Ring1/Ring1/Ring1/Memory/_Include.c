@@ -1,10 +1,12 @@
 // Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 
-/// @file Ring1/Memory.c
+/// @file Ring1/Memory/_Include.c
 /// @copyright Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
-#include "Ring1/Memory.h"
+#define RING1_MEMORY_PRIVATE (1)
+#include "Ring1/Memory/_Include.h"
+#undef RING1_MEMORY_PRIVATE
 
 #include "Ring1/Intrinsic/Multiply/multiply.h"
 

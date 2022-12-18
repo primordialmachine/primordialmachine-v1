@@ -1,11 +1,11 @@
 // Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 
-/// @file Ring1/Memory.h
+/// @file Ring1/Memory/_Include.h
 /// @copyright Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
-#if !defined(RING1_MEMORY_H_INCLUDED)
-#define RING1_MEMORY_H_INCLUDED
+#if !defined(RING1_MEMORY__INCLUDE_H_INCLUDED)
+#define RING1_MEMORY__INCLUDE_H_INCLUDED
 
 #include "Ring1/Memory/Configuration.h"
 #include "Ring1/Module.h"
@@ -94,7 +94,7 @@ Ring1_Memory_compare
     int flags
   );
 
-// https://documentation.primordialmachine.com/ring1-libraries/memory-library/Ring1_Memory_copyFast
+// https://primordialmachine.com/ring1-libraries/memory-library/Ring1_Memory_copyFast
 Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_copyFast
   (
@@ -103,7 +103,7 @@ Ring1_Memory_copyFast
     size_t n
   );
 
-// https://documentation.primordialmachine.com/api/ring1-libraries/memory-library/Ring1_Memory_copyArrayFast
+// https://primordialmachine.com/api/ring1-libraries/memory-library/Ring1_Memory_copyArrayFast
 Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_copyArrayFast
   (
@@ -113,7 +113,7 @@ Ring1_Memory_copyArrayFast
     size_t elementSize
   );
   
-// https://documentation.primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_copySlow
+// https://primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_copySlow
 Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_copySlow
   (
@@ -122,7 +122,7 @@ Ring1_Memory_copySlow
     size_t n
   );
 
-// https://documentation.primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_copyArraySlow
+// https://primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_copyArraySlow
 Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_copyArraySlow
   (
@@ -132,11 +132,11 @@ Ring1_Memory_copyArraySlow
     size_t elementSize
   );
 
-// https://documentation.primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_getPageSize
+// https://primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_getPageSize
 Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_getPageSze
   (
     size_t *result
   );
 
-#endif  // RING1_MEMORY_H_INCLUDED
+#endif  // RING1_MEMORY__INCLUDE_H_INCLUDED

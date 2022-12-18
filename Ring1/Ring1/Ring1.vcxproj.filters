@@ -347,9 +347,6 @@
     <ClInclude Include="Ring1\Intrinsic\Concurrency\ReadWriteLock.h">
       <Filter>Headerdateien\Ring1\Intrinsic\Concurrency</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Memory.h">
-      <Filter>Headerdateien\Ring1</Filter>
-    </ClInclude>
     <ClInclude Include="Ring1\Module\Configuration.h">
       <Filter>Headerdateien\Ring1\Module</Filter>
     </ClInclude>
@@ -737,9 +734,6 @@
     <ClInclude Include="Ring1\Conversion\_Buffer.h">
       <Filter>Headerdateien\Ring1\Conversion</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic.h">
-      <Filter>Headerdateien\Ring1</Filter>
-    </ClInclude>
     <ClInclude Include="Ring1\Intrinsic\atomicCompareExchange.h">
       <Filter>Headerdateien\Ring1\Intrinsic</Filter>
     </ClInclude>
@@ -872,6 +866,9 @@
     <ClInclude Include="Ring1\FileSystem\Windows\getCurrentDirectory.h">
       <Filter>Headerdateien\Ring1\FileSystem\Windows</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\Memory\_Include.h">
+      <Filter>Headerdateien\Ring1\Memory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring1\Intrinsic\ThreadLocal.c">
@@ -1000,9 +997,6 @@
     <ClCompile Include="Ring1\Intrinsic\nextMultipleOf64.c">
       <Filter>Quelldateien\Ring1\Intrinsic</Filter>
     </ClCompile>
-    <ClCompile Include="Ring1\Memory.c">
-      <Filter>Quelldateien\Ring1</Filter>
-    </ClCompile>
     <ClCompile Include="Ring1\Module.c">
       <Filter>Quelldateien\Ring1</Filter>
     </ClCompile>
@@ -1092,9 +1086,6 @@
     </ClCompile>
     <ClCompile Include="Ring1\Conversion\_Buffer.c">
       <Filter>Quelldateien\Ring1\Conversion</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring1\Intrinsic.c">
-      <Filter>Quelldateien\Ring1</Filter>
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\atomicCompareExchange.c">
       <Filter>Quelldateien\Ring1\Intrinsic</Filter>
@@ -1221,6 +1212,9 @@
     </ClCompile>
     <ClCompile Include="Ring1\FileSystem\getCurrentDirectory.c">
       <Filter>Quelldateien\Ring1\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Memory\_Include.c">
+      <Filter>Quelldateien\Ring1\Memory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -8,7 +8,7 @@
 
 
 #include "Ring1/Status.h"
-#include "Ring1/Memory.h"
+#include "Ring1/Memory/_Include.h"
 
 
 #define Ring1_ByteBuffer_TraceEnabled (1)

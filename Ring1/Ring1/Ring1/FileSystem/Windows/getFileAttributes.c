@@ -6,7 +6,7 @@
 
 #include "Ring1/FileSystem/Windows/getFileAttributes.h"
 
-#include "Ring1/Memory.h"
+#include "Ring1/Memory/_Include.h"
 #include "Ring1/Status.h"
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>

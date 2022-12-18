@@ -8,7 +8,7 @@
 #define RING1_COLLECTIONS_CALLBACKS_H_INCLUDED
 
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/Intrinsic/_Include.h"
 #include "Ring1/Status.h"
 #include <stdbool.h>
 

@@ -7,7 +7,7 @@
 #include "Ring1/Atom/_Include.h"
 
 
-#include "Ring1/Memory.h"
+#include "Ring1/Memory/_Include.h"
 #include "Ring1/Collections/_Include.h"
 #include "Ring1/ReferenceCounter.h"
 
