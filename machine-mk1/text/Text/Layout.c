@@ -2,7 +2,7 @@
 #include "Text/Layout.h"
 
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 #include "_Graphics2.h"
 #include "_Fonts.h"
 #include "Text/LayoutLine.h"

@@ -2,7 +2,7 @@
 #include "Text/LayoutLine.h"
 
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 
 
 void Machine_Text_LayoutLine_construct(Machine_Text_LayoutLine* self, size_t numberOfArguments, const Ring2_Value* arguments);
