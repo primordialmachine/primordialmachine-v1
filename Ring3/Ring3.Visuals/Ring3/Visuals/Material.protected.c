@@ -5,7 +5,7 @@
 #include "Ring3/Visuals/Material.protected.h"
 #undef RING3_VISUALS_PRIVATE
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 #include "Ring2/Library/_Include.h"
 
 void

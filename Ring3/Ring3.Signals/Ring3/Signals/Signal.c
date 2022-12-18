@@ -5,8 +5,7 @@
 #define RING3_SIGNALS_PRIVATE (1)
 #include "Ring3/Signals/Signal.h"
 
-#include "Ring1/Intrinsic.h"
-#include "Ring1/Status.h"
+#include "Ring1/All/_Include.h"
 #include "Ring2/Library/_Include.h"
 #include "Ring3/Signals/Connection.h"
 

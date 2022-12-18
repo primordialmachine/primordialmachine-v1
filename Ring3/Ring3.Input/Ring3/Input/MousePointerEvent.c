@@ -5,7 +5,7 @@
 #define RING3_INPUT_PRIVATE (1)
 #include "Ring3/Input/MousePointerEvent.h"
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 
 MACHINE_DEFINE_ENUMERATIONTYPE(Machine_MousePointerActions)
 

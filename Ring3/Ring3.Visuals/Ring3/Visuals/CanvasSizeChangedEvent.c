@@ -6,7 +6,7 @@
 #include "Ring3/Visuals/CanvasSizeChangedEvent.h"
 #undef RING2_VISUALS_PRIVATE
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 
 static void
 Ring3_CanvasSizeChangedEvent_visit

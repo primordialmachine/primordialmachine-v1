@@ -7,7 +7,7 @@
 #undef RING3_GDL_PRIVATE
 
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 
 
 static void Machine_Gdl_Context_visit(Machine_Gdl_Context* self) {

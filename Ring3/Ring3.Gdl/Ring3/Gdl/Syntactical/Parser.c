@@ -7,7 +7,7 @@
 #undef RING3_GDL_PRIVATE
 
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 #define RING3_GDL_PRIVATE (1)
 #include "Ring3/Gdl/Context.h"
 #include "Ring3/Gdl/Lexical/Scanner.h"

@@ -5,7 +5,7 @@
 #define RING3_MATH_PRIVATE (1)
 #include "Ring3/Math/Vector2.h"
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 #include <math.h>
 
 static void

@@ -6,7 +6,7 @@
 #include "Ring3/Audials/PcmDescriptor.h"
 #undef RING3_AUDIALS_PRIVATE
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 #include "Ring2/Library/_Include.h"
 
 MACHINE_DEFINE_CLASSTYPE(Ring3_Audials_PcmDescriptor,

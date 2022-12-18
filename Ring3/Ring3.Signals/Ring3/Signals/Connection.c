@@ -5,7 +5,7 @@
 #define RING3_SIGNALS_PRIVATE (1)
 #include "Ring3/Signals/Connection.h"
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 
 static void
 Machine_Signals_Connection_visit
