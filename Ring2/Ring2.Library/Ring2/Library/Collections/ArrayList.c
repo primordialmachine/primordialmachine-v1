@@ -12,7 +12,7 @@
 #define RING2_LIBRARY_COLLECTIONS_PRIVATE (1)
 #include "Ring2/Library/Collections/CollectionUtilities.h"
 #undef RING2_LIBRARY_COLLECTIONS_PRIVATE
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 #include "Ring2/Library/_Include.h"
 
 

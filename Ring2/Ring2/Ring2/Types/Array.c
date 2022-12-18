@@ -12,8 +12,7 @@
 #if defined(Ring2_Configuration_withArray) && 1 == Ring2_Configuration_withArray
 
 
-#include "Ring1/Memory.h"
-#include "Ring1/Status.h"
+#include "Ring1/All/_Include.h"
 #define RING2_PRIVATE (1)
 #include "Ring2/JumpTarget.h"
 #include "Ring2/Types/Value.h"

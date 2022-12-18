@@ -12,8 +12,7 @@
 #define RING2_LIBRARY_PRIVATE (1)
 #include "Ring2/Library/ArgumentsUtilities.h"
 #undef RING2_LIBRARY_PRIVATE
-#include "Ring1/Intrinsic.h"
-#include "Ring1/Memory.h"
+#include "Ring1/All/_Include.h"
 
 
 struct Machine_ByteBufferReader_Class {

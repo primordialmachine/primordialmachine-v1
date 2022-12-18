@@ -10,7 +10,7 @@
 #undef RING2_PRIVATE
 
 #include "Ring2/Gc/Tag.h"
-#include "Ring1/Memory.h"
+#include "Ring1/All/_Include.h"
 #include <assert.h>
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

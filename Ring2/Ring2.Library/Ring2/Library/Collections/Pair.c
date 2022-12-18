@@ -9,7 +9,7 @@
 #undef RING2_LIBRARY_COLLECTIONS_PRIVATE
 
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 
 
 MACHINE_DEFINE_CLASSTYPE(Ring2_Collections_Pair /*type*/,

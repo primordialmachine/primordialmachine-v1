@@ -11,9 +11,7 @@
 
 #include <stdio.h>
 #include "Ring1/ByteBuffer.h"
-#include "Ring1/Intrinsic.h"
-#include "Ring1/Memory.h"
-#include "Ring1/Status.h"
+#include "Ring1/All/_Include.h"
 
 
 struct Ring2_StringBuffer_Class {

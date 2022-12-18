@@ -13,8 +13,7 @@
 #include "Ring2/JumpTarget.h"
 #include "Ring2/Test/Test.h"
 #undef RING2_PRIVATE
-#include "Ring1/Intrinsic.h"
-#include "Ring1/Memory.h"
+#include "Ring1/All/_Include.h"
 #include <limits.h>
 #include <stdio.h>
 

@@ -3,8 +3,7 @@
 #undef RING2_PRIVATE
 
 
-#include "Ring1/Memory.h"
-#include "Ring1/Status.h"
+#include "Ring1/All/_Include.h"
 #include <stdlib.h>
 
 

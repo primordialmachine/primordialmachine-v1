@@ -9,15 +9,18 @@
 #undef RING2_PRIVATE
 
 
+#include "Ring1/All/_Include.h"
+#include "Ring1/Hash.h"
 #include <assert.h>
-#include "Ring1/Hash.h"
-#include "Ring1/Memory.h"
-#include "Ring1/Status.h"
-#include "Ring1/Hash.h"
+#include <stdio.h>
+#include <string.h>
 #define RING2_PRIVATE (1)
-#include "Ring2/_Include.h"
+#include "Ring2/Assert.h"
+#include "Ring2/JumpTarget.h"
+#include "Ring2/Operations/Integer.h"
+#include "Ring2/Types/Value.h"
+#include "Ring2/TypeSystem/ClassType.h"
 #undef RING2_PRIVATE
-#include <assert.h>
 
 
 static Ring1_CheckReturn() Ring1_Result
@@ -47,14 +50,6 @@ Mkx_Interpreter_ObjectHeap_sweep
 
 // List of objects.
 static Ring2_Gc_Tag* g_objects;
-
-#include "Ring2/Types/Value.h"
-#include "Ring1/Status.h"
-#include "Ring1/Memory.h"
-#include "Ring2/JumpTarget.h"
-
-#include <stdio.h>
-#include <string.h>
 
 /// @brief The type of an object heap.
 typedef struct Mkx_Interpreter_ObjectHeap Mkx_Interpreter_ObjectHeap;

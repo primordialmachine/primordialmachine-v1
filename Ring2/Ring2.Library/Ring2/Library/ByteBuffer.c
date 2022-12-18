@@ -10,8 +10,8 @@
 
 
 #include "Ring1/ByteBuffer.h"
-#include "Ring1/Intrinsic.h"
-#include "Ring1/Memory.h"
+#include "Ring1/Intrinsic/_Include.h"
+#include "Ring1/Memory/_Include.h"
 #include "Ring1/Status.h"
 
 

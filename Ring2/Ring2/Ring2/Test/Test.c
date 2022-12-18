@@ -9,7 +9,7 @@
 #undef RING2_PRIVATE
 
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 
 
 static void

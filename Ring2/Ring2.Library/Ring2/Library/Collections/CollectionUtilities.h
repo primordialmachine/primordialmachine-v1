@@ -12,9 +12,7 @@
 #endif
 
 #include <stdio.h>
-#include "Ring1/Intrinsic.h"
-#include "Ring1/Memory.h"
-#include "Ring1/Status.h"
+#include "Ring1/All/_Include.h"
 #include "Ring2/_Include.h"
 #include <assert.h>
 
