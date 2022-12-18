@@ -5,7 +5,7 @@
 #include "Video/FontsContext.h"
 
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 
 
 MACHINE_DEFINE_CLASSTYPE(Machine_FontsContext, Machine_Object, NULL,

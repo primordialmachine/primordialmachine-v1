@@ -5,8 +5,7 @@
 #include "Video/VertexDescriptor.h"
 
 
-#include "Ring1/Intrinsic.h"
-#include "Ring1/Status.h"
+#include "Ring1/All/_Include.h"
 
 
 #define TRACE_VISIT (0)

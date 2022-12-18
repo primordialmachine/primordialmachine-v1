@@ -5,7 +5,7 @@
 #include "Video/Font.h"
 
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 
 
 static void Machine_Font_destruct(Machine_Font* self)

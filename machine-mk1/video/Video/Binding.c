@@ -4,7 +4,7 @@
 #define MACHINE_VIDEO_PRIVATE (1)
 #include "Video/Binding.h"
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 #include "Video/Buffer.h"
 #include "Video/ShaderProgram.h"
 #include "Video/VertexDescriptor.h"

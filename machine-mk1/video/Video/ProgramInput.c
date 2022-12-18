@@ -5,7 +5,7 @@
 #include "Video/ProgramInput.h"
 
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 
 
 static void Machine_ProgramInput_visit(Machine_ProgramInput* self) {

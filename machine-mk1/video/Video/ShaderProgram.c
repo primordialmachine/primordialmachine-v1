@@ -5,7 +5,7 @@
 #include "Video/ShaderProgram.h"
 
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 
 
 static void Machine_ShaderProgram_visit(Machine_ShaderProgram* self) { /*Intentionally empty.*/

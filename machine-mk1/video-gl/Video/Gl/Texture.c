@@ -5,7 +5,7 @@
 #include "Video/Gl/Texture.h"
 
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 
 
 static void Machine_Gl_Texture_destruct(Machine_Gl_Texture* self) {

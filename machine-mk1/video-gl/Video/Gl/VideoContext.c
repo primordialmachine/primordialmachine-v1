@@ -5,8 +5,7 @@
 #include "Video/Gl/VideoContext.h"
 
 
-#include "Ring1/Intrinsic.h"
-#include "Ring1/Status.h"
+#include "Ring1/All/_Include.h"
 #include "Video/Gl/UtilitiesGL.h"
 #include "Video/Gl/Binding.h"
 #include "Video/Gl/Buffer.h"

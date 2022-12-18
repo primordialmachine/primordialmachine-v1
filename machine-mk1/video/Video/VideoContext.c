@@ -5,7 +5,7 @@
 #include "Video/VideoContext.h"
 
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 
 
 static void Machine_VideoContext_visit(Machine_VideoContext* self) { /*Intentionally empty.*/

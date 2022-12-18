@@ -5,7 +5,7 @@
 #include "Video/Texture.h"
 
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 
 
 static void Machine_Texture_destruct(Machine_Texture* self) { /*Intentionally empty.*/

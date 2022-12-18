@@ -5,8 +5,7 @@
 #include "Video/Buffer.h"
 
 
-#include "Ring1/Intrinsic.h"
-#include "Ring1/Status.h"
+#include "Ring1/All/_Include.h"
 
 
 static void Machine_VideoBuffer_destruct(Machine_VideoBuffer* self) {

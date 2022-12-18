@@ -5,7 +5,7 @@
 #include "Video/Gl/Binding.h"
 
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 #include "Video/Gl/ShaderProgram.h"
 
 

@@ -5,8 +5,7 @@
 #include "Video/Gl/Buffer.h"
 
 
-#include "Ring1/Intrinsic.h"
-#include "Ring1/Status.h"
+#include "Ring1/All/_Include.h"
 
 
 static void Machine_Gl_VideoBuffer_constructClass(Machine_Gl_VideoBuffer_Class* self);
