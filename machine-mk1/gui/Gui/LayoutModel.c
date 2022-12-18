@@ -5,7 +5,7 @@
 #include "Gui/LayoutModel.h"
 
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 
 
 MACHINE_DEFINE_ENUMERATIONTYPE(Machine_Gui_Layout_Justification)

@@ -5,7 +5,7 @@
 #include "Gui/GroupNode.h"
 
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 #include "Gui/Context.h"
 #include "_Video.h"
 

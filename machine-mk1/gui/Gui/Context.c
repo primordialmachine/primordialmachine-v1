@@ -5,7 +5,7 @@
 #include "Gui/Context.h"
 
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 
 
 static void Machine_Gui_Context_visit(Machine_Gui_Context* self) {

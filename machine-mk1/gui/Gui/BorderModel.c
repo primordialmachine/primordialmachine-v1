@@ -5,7 +5,7 @@
 #include "Gui/BorderModel.h"
 
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 
 
 static void Machine_Gui_BorderModel_visit(Machine_Gui_BorderModel* self) {

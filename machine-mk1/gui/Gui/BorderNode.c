@@ -5,7 +5,7 @@
 #include "Gui/BorderNode.h"
 
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 #include "Gui/BorderModel.h"
 #include "Gui/Context.h"
 #include "_Graphics2.h"
