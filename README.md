@@ -37,7 +37,6 @@ But hopefully there soon is enough material to show the intended direction of th
 
 ## Contact
 The preferred way to of contacting me is via my E-Mail [contact@primordialmachine.com](mailto:contact@primordialmachine.com).
-I am also available on Gitter [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/primordialmachine/primordialmachine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge).
 
 ## CI & CD
 
@@ -62,10 +61,10 @@ Please refer to section *How to contribute* if you want to contribute a port to 
 
 For a description on how to build and run *Primordial Machine* for Windows 11 under Visual Studio 2022/Community/Windows 11
 using CMake,
-follow the instructions [here](/building-using-cmake-visual-studio-2022-windows-11.md).
+follow the instructions [here](/Documentation/Build/CMake-VisualStudio2022-Windows11.md).
 
 For a description on how to build and run *Primordial Machine* for Windows 11 under Visual Studio 2022/Community/Windows 11,
-follow the instructions [here](/building-using-visual-studio-2022-windows-11.md).
+follow the instructions [here](/Documentation/Build/VisualStudio2022-Windows11.md).
 
 ## How to contribute
 If you want to contribute to the source code, the assets, or the documentation, feel free to contact the project under the
