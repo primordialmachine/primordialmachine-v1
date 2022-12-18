@@ -1,7 +1,7 @@
 #include "Scene2.h"
 
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 #include "_Gui.h"
 #include "_Images.h"
 #include "_Text.h"
