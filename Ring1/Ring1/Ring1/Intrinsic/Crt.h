@@ -57,14 +57,28 @@ _Check_return_
 char*
 crt_strdup
   (
-    char const *x
+    char const *a
+  );
+  
+#if defined(_MSC_VER)
+_Check_return_
+#endif
+char*
+crt_strndup
+  (
+    char const *a,
+    size_t l
   );
 
 #if defined(_MSC_VER)
 _Check_return_
 #endif
 int
-crt_strcmp(char const* x, char const* y);
+crt_strcmp
+  (
+    char const* a,
+    char const* b
+  );
 
 #if defined(_MSC_VER)
 _Check_return_
@@ -72,7 +86,7 @@ _Check_return_
 size_t
 crt_strlen
   (
-    char const *x
+    char const *a
   );
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

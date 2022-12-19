@@ -62,9 +62,47 @@ _Check_return_
 char*
 crt_strdup
   (
-    char const* s
+    char const* a
   )
-{ return _strdup(s); }
+{ return _strdup(a); }
+
+// Provide strndup for Visual C++.
+#if defined(_MSC_VER)
+
+char*
+strndup
+  (
+    char const* a,
+    size_t l
+  );
+
+char*
+strndup
+  (
+    const char* a,
+    size_t l
+  )
+{
+  size_t m = strnlen_s(a, l);
+  char *b = (char *)malloc(m + 1);
+  if (NULL == b)
+    return NULL;
+  b[m] = '\0';
+  return (char*)memcpy(b, a, m);
+}
+
+#endif
+
+#if defined(_MSC_VER)
+_Check_return_
+#endif
+char*
+crt_strndup
+  (
+    char const *a,
+    size_t l
+  )
+{ return strndup(a, l); }
 
 #if defined(_MSC_VER)
 _Check_return_
@@ -72,10 +110,10 @@ _Check_return_
 int
 crt_strcmp
   (
-    char const* x,
-    char const* y
+    char const* a,
+    char const* b
   )
-{ return strcmp(x, y); }
+{ return strcmp(a, b); }
 
 #if defined(_MSC_VER)
 _Check_return_
@@ -83,9 +121,9 @@ _Check_return_
 size_t
 crt_strlen
   (
-    char const* s
+    char const* a
   )
-{ return strlen(s); }
+{ return strlen(a); }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
