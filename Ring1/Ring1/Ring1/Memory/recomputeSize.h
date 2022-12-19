@@ -13,7 +13,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-// https://documentation.primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_recomputeSize
+// https://primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_recomputeSize
 Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_recomputeSize_u8
   (
@@ -25,7 +25,7 @@ Ring1_Memory_recomputeSize_u8
     bool saturate
   );
 
-// https://documentation.primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_recomputeSize
+// https://primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_recomputeSize
 Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_recomputeSize_s8
   (
@@ -37,7 +37,7 @@ Ring1_Memory_recomputeSize_s8
     bool saturate
   );
 
-// https://documentation.primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_recomputeSize
+// https://primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_recomputeSize
 Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_recomputeSize_u16
   (
@@ -49,7 +49,7 @@ Ring1_Memory_recomputeSize_u16
     bool saturate
   );
 
-// https://documentation.primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_recomputeSize
+// https://primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_recomputeSize
 Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_recomputeSize_s16
   (
@@ -61,7 +61,7 @@ Ring1_Memory_recomputeSize_s16
     bool saturate
   );
 
-// https://documentation.primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_recomputeSize
+// https://primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_recomputeSize
 Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_recomputeSize_u32
   (
@@ -73,7 +73,7 @@ Ring1_Memory_recomputeSize_u32
     bool saturate
   );
 
-// https://documentation.primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_recomputeSize
+// https://primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_recomputeSize
 Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_recomputeSize_s32
   (
@@ -85,7 +85,7 @@ Ring1_Memory_recomputeSize_s32
     bool saturate
   );
 
-// https://documentation.primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_recomputeSize
+// https://primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_recomputeSize
 Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_recomputeSize_u64
   (
@@ -97,7 +97,7 @@ Ring1_Memory_recomputeSize_u64
     bool saturate
   );
 
-// https://documentation.primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_recomputeSize
+// https://primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_recomputeSize
 Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_recomputeSize_s64
   (
@@ -109,7 +109,7 @@ Ring1_Memory_recomputeSize_s64
     bool saturate
   );
 
-// https://documentation.primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_recomputeSize
+// https://primordialmachine.com/api/ring1-library/memory-library/Ring1_Memory_recomputeSize
 Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Memory_recomputeSize_sz
   (

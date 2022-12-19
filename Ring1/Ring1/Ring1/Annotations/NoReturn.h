@@ -9,7 +9,7 @@
 
 #include "Ring1/Intrinsic/Configuration.h"
 
-// https://documentation.primordialmachine.com/api/ring1-library/intrinsic-library/Ring1_NoReturn
+// https://primordialmachine.com/api/ring1-library/intrinsic-library/Ring1_Intrinsic_NoReturn
 #if defined(__GNUC__)
   #define Ring1_NoReturn() __attribute__((noreturn))
 #elif defined(_MSC_VER)
