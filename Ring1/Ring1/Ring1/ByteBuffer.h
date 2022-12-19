@@ -13,13 +13,13 @@
 
 Ring1_Module_Declare(Ring1, ByteBuffer)
 
-// https://documentation.primordialmachine.com/api/ring1-library/bytebuffer-library/Ring1_ByteBuffer_Capacity_Least
+// https://primordialmachine.com/api/ring1-library/bytebuffer-library/Ring1_ByteBuffer_Capacity_Least
 #define Ring1_ByteBuffer_Capacity_Least (0)
 
-// https://documentation.primordialmachine.com/api/ring1-library/bytebuffer-library/Ring1_ByteBuffer_Capacity_Default
+// https://primordialmachine.com/api/ring1-library/bytebuffer-library/Ring1_ByteBuffer_Capacity_Default
 #define Ring1_ByteBuffer_Capacity_Default (8)
 
-// https://documentation.primordialmachine.com/api/ring1-library/bytebuffer-library/Ring1_ByteBuffer_Cpacity_Greatest
+// https://primordialmachine.com/api/ring1-library/bytebuffer-library/Ring1_ByteBuffer_Cpacity_Greatest
 #define Ring1_ByteBuffer_Capacity_Greatest ((SIZE_MAX < INT64_MAX ? SIZE_MAX : INT64_MAX) / sizeof(char))
 
 // Perform some sanity checks on the capacity values.
@@ -30,17 +30,17 @@ static_assert(Ring1_ByteBuffer_Capacity_Least <= Ring1_ByteBuffer_Capacity_Defau
 static_assert(Ring1_ByteBuffer_Capacity_Default <= Ring1_ByteBuffer_Capacity_Greatest,
               "default capacity must smaller than or equal to greatest capacity");
 
-// https://documentation.primordialmachine.com/api/ring1-library/bytebuffer-library/Ring1_ByteBuffer
+// https://primordialmachine.com/api/ring1-library/bytebuffer-library/Ring1_ByteBuffer
 typedef struct Ring1_ByteBuffer { void *pimpl; } Ring1_ByteBuffer;
 
-// https://documentation.primordialmachine.com/api/ring1-library/bytebuffer-library/Ring1_ByteBuffer_initialize
+// https://primordialmachine.com/api/ring1-library/bytebuffer-library/Ring1_ByteBuffer_initialize
 Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ByteBuffer_initialize
   (
     Ring1_ByteBuffer *byteBuffer
   );
 
-// https://documentation.primordialmachine.com/api/ring1-library/bytebuffer-library/Ring1_ByteBuffer_uninitialize
+// https://primordialmachine.com/api/ring1-library/bytebuffer-library/Ring1_ByteBuffer_uninitialize
 void
 Ring1_ByteBuffer_uninitialize
   (
@@ -64,7 +64,7 @@ Ring1_ByteBuffer_insertBytesAt
     size_t numberOfBytes
   );
 
-// https://documentation.primordialmachine.com/api/ring1-library/bytebuffer-library/Ring1_ByteBuffer_appendByte
+// https://primordialmachine.com/api/ring1-library/bytebuffer-library/Ring1_ByteBuffer_appendByte
 Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ByteBuffer_appendByte
   (
@@ -72,7 +72,7 @@ Ring1_ByteBuffer_appendByte
     char byte
   );
 
-// https://documentation.primordialmachine.com/api/ring1-library/bytebuffer-library/Ring1_ByteBuffer_appendBytes
+// https://primordialmachine.com/api/ring1-library/bytebuffer-library/Ring1_ByteBuffer_appendBytes
 Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ByteBuffer_appendBytes
   (
@@ -96,14 +96,14 @@ Ring1_ByteBuffer_prependBytes
     size_t numberOfBytes
   );
 
-// https://documentation.primordialmachine.com/api/ring1-library/bytebuffer-library/Ring1_ByteBuffer_clear
+// https://primordialmachine.com/api/ring1-library/bytebuffer-library/Ring1_ByteBuffer_clear
 Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ByteBuffer_clear
   (
     Ring1_ByteBuffer* byteBuffer
   );
 
-// https://documentation.primordialmachine.com/api/ring1-library/bytebuffer-library/Ring1_ByteBuffer_getBytes
+// https://primordialmachine.com/api/ring1-library/bytebuffer-library/Ring1_ByteBuffer_getBytes
 Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ByteBuffer_getBytes
   (
@@ -111,7 +111,7 @@ Ring1_ByteBuffer_getBytes
     Ring1_ByteBuffer const* byteBuffer
   );
 
-// https://documentation.primordialmachine.com/api/ring1-library/bytebuffer-library/Ring1_ByteBuffer_getNumberOfBytes
+// https://primordialmachine.com/api/ring1-library/bytebuffer-library/Ring1_ByteBuffer_getNumberOfBytes
 Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ByteBuffer_getNumberOfBytes
   (

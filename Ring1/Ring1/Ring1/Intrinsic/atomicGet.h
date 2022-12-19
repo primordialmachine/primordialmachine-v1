@@ -15,7 +15,7 @@
 
 #if defined(_MSC_VER)
 
-/// https://documentation.primordialmachine.com/api/ring1-library/intrinsic-library/Ring1_Intrinsic_atomicGet_s32
+/// https://primordialmachine.com/api/ring1-library/intrinsic-library/Ring1_Intrinsic_atomicGet_s32
 int32_t
 Ring1_Intrinsic_atomicGet_s32
   (
