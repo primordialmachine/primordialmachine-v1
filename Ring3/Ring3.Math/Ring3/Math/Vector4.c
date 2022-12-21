@@ -201,6 +201,29 @@ Ring3_Math_Vector4_minima
 }
 
 Ring1_NoDiscardReturn() Ring3_Math_Vector4 *
+Ring3_Math_Vector4_multiplyScalar
+  (
+    Ring3_Math_Vector4 const* a,
+    Ring2_Real32 b
+  )
+{
+  return Ring3_Math_Vector4_create(a->x * b, a->y * b, a->z * b, a->w * b);
+}
+
+void
+Ring3_Math_Vector4_multiplyScalarInSitu
+  (
+    Ring3_Math_Vector4 *a,
+    Ring2_Real32 b
+  )
+{
+  a->x /= b;
+  a->y /= b;
+  a->z /= b;
+  a->w /= b;
+}
+
+Ring1_NoDiscardReturn() Ring3_Math_Vector4 *
 Ring3_Math_Vector4_divideScalar
   (
     Ring3_Math_Vector4 const* a,

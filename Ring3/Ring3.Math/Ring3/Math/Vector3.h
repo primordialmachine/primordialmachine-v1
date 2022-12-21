@@ -151,6 +151,28 @@ Ring3_Math_Vector3_minima
     const Ring3_Math_Vector3* a,
     const Ring3_Math_Vector3* b
   );
+  
+/// @brief Compute the product of a vector and a scalar.
+/// @param a The vector.
+/// @param b The scalar.
+/// @return The product.
+Ring1_NoDiscardReturn() Ring3_Math_Vector3 *
+Ring3_Math_Vector3_multiplyScalar
+  (
+    Ring3_Math_Vector3 const* a,
+    Ring2_Real32 b
+  );
+
+/// @brief Compute the product of a vector and a scalar.
+/// Store the result in the vector.
+/// @param a The vector.
+/// @param b The scalar.
+void
+Ring3_Math_Vector3_multiplyScalarInSitu
+  (
+    Ring3_Math_Vector3 *a,
+    Ring2_Real32 b
+  );
 
 /// @brief Compute the quotient of a vector and a scalar.
 /// @param a The vector.
