@@ -188,6 +188,24 @@ Ring3_Math_Vector2_squaredLength
     const Ring3_Math_Vector2* a
   );
 
+/// @brief Compute the normalized vector of a vector.
+/// @param a The vector.
+/// @return The normalized vector.
+Ring1_NoDiscardReturn() Ring3_Math_Vector2 *
+Ring3_Math_Vector2_normalize
+  (
+    Ring3_Math_Vector2 const* a
+  );
+
+/// @brief Compute the normalized vector of a vector.
+/// Store the result in the vector.
+/// @param a The vector.
+void
+Ring3_Math_Vector2_normalizeInSitu
+  (
+    Ring3_Math_Vector2 *a
+  );
+
 void
 Ring3_Math_Vector2_set
   (

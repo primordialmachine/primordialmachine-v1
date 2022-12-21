@@ -215,6 +215,26 @@ Ring3_Math_Vector2_squaredLength
        + (a->y * a->y);
 }
 
+Ring1_NoDiscardReturn() Ring3_Math_Vector2 *
+Ring3_Math_Vector2_normalize
+  (
+    Ring3_Math_Vector2 const* a
+  )
+{
+  Ring2_Real32 l = Ring3_Math_Vector2_length(a);
+  return Ring3_Math_Vector2_divideScalar(a, l);
+}
+
+void
+Ring3_Math_Vector2_normalizeInSitu
+  (
+    Ring3_Math_Vector2 *a
+  )
+{
+  Ring2_Real32 l = Ring3_Math_Vector2_length(a);
+  Ring3_Math_Vector2_divideScalarInSitu(a, l);
+}
+
 void
 Ring3_Math_Vector2_set
   (
