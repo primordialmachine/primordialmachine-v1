@@ -153,6 +153,17 @@ Ring3_Math_Vector3_minima
   );
 
 /// @brief Compute the quotient of a vector and a scalar.
+/// @param a The vector.
+/// @param b The scalar.
+/// @return The quotient.
+Ring1_NoDiscardReturn() Ring3_Math_Vector3 *
+Ring3_Math_Vector3_divideScalar
+  (
+    Ring3_Math_Vector3 const* a,
+    Ring2_Real32 b
+  );
+
+/// @brief Compute the quotient of a vector and a scalar.
 /// Store the result in the vector.
 /// @param a The vector.
 /// @param b The scalar.

@@ -189,6 +189,16 @@ Ring3_Math_Vector3_minima
 #undef MIN
 }
 
+Ring1_NoDiscardReturn() Ring3_Math_Vector3 *
+Ring3_Math_Vector3_divideScalar
+  (
+    Ring3_Math_Vector3 const* a,
+    Ring2_Real32 b
+  )
+{
+  return Ring3_Math_Vector3_create(a->x / b, a->y / b, a->z / b);
+}
+
 void
 Ring3_Math_Vector3_divideScalarInSitu
   (
