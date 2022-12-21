@@ -27,12 +27,12 @@ struct Ring3_Math_Vector2 {
   Ring2_Real32 x, y;
 };
 
-Ring1_CheckReturn() Ring3_Math_Vector2*
+Ring1_NoDiscardReturn() Ring3_Math_Vector2*
 Ring3_Math_Vector2_create
   (
   );
 
-Ring1_CheckReturn() Ring3_Math_Vector2*
+Ring1_NoDiscardReturn() Ring3_Math_Vector2*
 Ring3_Math_Vector2_clone
   (
     const Ring3_Math_Vector2 *self
@@ -60,7 +60,7 @@ Ring3_Math_Vector2_add
     const Ring3_Math_Vector2* b
   );
 
-Ring1_CheckReturn() Ring3_Math_Vector2*
+Ring1_NoDiscardReturn() Ring3_Math_Vector2*
 Ring3_Math_Vector2_sum
   (
     const Ring3_Math_Vector2* a,
@@ -83,7 +83,7 @@ Ring3_Math_Vector2_subtract
 /// @param a The first vector.
 /// @param b The second vector.
 /// @return The difference vector.
-Ring1_CheckReturn() Ring3_Math_Vector2*
+Ring1_NoDiscardReturn() Ring3_Math_Vector2*
 Ring3_Math_Vector2_difference
   (
     const Ring3_Math_Vector2* a,
@@ -102,7 +102,7 @@ Ring3_Math_Vector2_multiply
     const Ring3_Math_Vector2* b
   );
 
-Ring1_CheckReturn() Ring3_Math_Vector2*
+Ring1_NoDiscardReturn() Ring3_Math_Vector2*
 Ring3_Math_Vector2_product
   (
     const Ring3_Math_Vector2* a,
@@ -113,7 +113,7 @@ Ring3_Math_Vector2_product
 /// @param a The first vector.
 /// @param b The second vector.
 /// @return The dot product of the vectors.
-Ring1_CheckReturn() Ring2_Real32
+Ring1_NoDiscardReturn() Ring2_Real32
 Ring3_Math_Vector2_dot
   (
     const Ring3_Math_Vector2* a,
@@ -152,13 +152,13 @@ Ring3_Math_Vector2_set
     Ring2_Real32 y
   );
 
-Ring1_CheckReturn() Ring2_Real32
+Ring1_NoDiscardReturn() Ring2_Real32
 Ring3_Math_Vector2_getX
   (
     const Ring3_Math_Vector2* a
   );
 
-Ring1_CheckReturn() Ring2_Real32
+Ring1_NoDiscardReturn() Ring2_Real32
 Ring3_Math_Vector2_getY
   (
     const Ring3_Math_Vector2* a

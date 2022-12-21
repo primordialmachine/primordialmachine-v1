@@ -31,7 +31,7 @@ MACHINE_DEFINE_CLASSTYPE(Ring3_Math_Vector3,
                          NULL,
                          NULL)
 
-Ring1_CheckReturn() Ring3_Math_Vector3*
+Ring1_NoDiscardReturn() Ring3_Math_Vector3*
 Ring3_Math_Vector3_create
   (
   )
@@ -43,7 +43,7 @@ Ring3_Math_Vector3_create
   return self;
 }
 
-Ring1_CheckReturn() Ring3_Math_Vector3*
+Ring1_NoDiscardReturn() Ring3_Math_Vector3*
 Ring3_Math_Vector3_clone
   (
     const Ring3_Math_Vector3* self
@@ -79,7 +79,7 @@ Ring3_Math_Vector3_add
   c->z = a->z + b->z;
 }
 
-Ring1_CheckReturn() Ring3_Math_Vector3 *
+Ring1_NoDiscardReturn() Ring3_Math_Vector3 *
 Ring3_Math_Vector3_sum
   (
     const Ring3_Math_Vector3* a,
@@ -106,7 +106,7 @@ Ring3_Math_Vector3_subtract
   c->z = a->z - b->z;
 }
 
-Ring1_CheckReturn() Ring3_Math_Vector3*
+Ring1_NoDiscardReturn() Ring3_Math_Vector3*
 Ring3_Math_Vector3_difference
   (
     const Ring3_Math_Vector3* a,
@@ -133,7 +133,7 @@ Ring3_Math_Vector3_multiply
   c->z = a->z * b->z;
 }
 
-Ring1_CheckReturn() Ring3_Math_Vector3*
+Ring1_NoDiscardReturn() Ring3_Math_Vector3*
 Ring3_Math_Vector3_product
   (
     const Ring3_Math_Vector3* a,
@@ -147,7 +147,7 @@ Ring3_Math_Vector3_product
   return c;
 }
 
-Ring1_CheckReturn() Ring2_Real32
+Ring1_NoDiscardReturn() Ring2_Real32
 Ring3_Math_Vector3_dot
   (
     const Ring3_Math_Vector3* a,
@@ -203,21 +203,21 @@ Ring3_Math_Vector3_set
   self->z = z;
 }
 
-Ring1_CheckReturn() Ring2_Real32
+Ring1_NoDiscardReturn() Ring2_Real32
 Ring3_Math_Vector3_getX
   (
     const Ring3_Math_Vector3* self
   )
 { return self->x; }
 
-Ring1_CheckReturn() Ring2_Real32
+Ring1_NoDiscardReturn() Ring2_Real32
 Ring3_Math_Vector3_getY
   (
     const Ring3_Math_Vector3* self
   )
 { return self->y; }
 
-Ring1_CheckReturn() Ring2_Real32
+Ring1_NoDiscardReturn() Ring2_Real32
 Ring3_Math_Vector3_getZ
   (
     const Ring3_Math_Vector3* self

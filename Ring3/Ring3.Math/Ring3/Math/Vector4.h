@@ -27,12 +27,12 @@ struct Ring3_Math_Vector4 {
   Ring2_Real32 x, y, z, w;
 };
 
-Ring1_CheckReturn() Ring3_Math_Vector4*
+Ring1_NoDiscardReturn() Ring3_Math_Vector4*
 Ring3_Math_Vector4_create
   (
   );
 
-Ring1_CheckReturn() Ring3_Math_Vector4*
+Ring1_NoDiscardReturn() Ring3_Math_Vector4*
 Ring3_Math_Vector4_clone
   (
     const Ring3_Math_Vector4* self
@@ -60,7 +60,7 @@ Ring3_Math_Vector4_add
     const Ring3_Math_Vector4* b
   );
 
-Ring1_CheckReturn() Ring3_Math_Vector4*
+Ring1_NoDiscardReturn() Ring3_Math_Vector4*
 Ring3_Math_Vector4_sum
   (
     const Ring3_Math_Vector4* a,
@@ -83,7 +83,7 @@ Ring3_Math_Vector4_subtract
 /// @param a The first vector.
 /// @param b The second vector.
 /// @return The difference vector.
-Ring1_CheckReturn() Ring3_Math_Vector4*
+Ring1_NoDiscardReturn() Ring3_Math_Vector4*
 Ring3_Math_Vector4_difference
   (
     const Ring3_Math_Vector4* a,
@@ -106,7 +106,7 @@ Ring3_Math_Vector4_multiply
 /// @param a The first vector.
 /// @param b The second vector.
 /// @return The component-wise protect vector.
-Ring1_CheckReturn() Ring3_Math_Vector4*
+Ring1_NoDiscardReturn() Ring3_Math_Vector4*
 Ring3_Math_Vector4_product
   (
     const Ring3_Math_Vector4* a,
@@ -117,7 +117,7 @@ Ring3_Math_Vector4_product
 /// @param a The first vector.
 /// @param b The second vector.
 /// @return The dot product of the vectors.
-Ring1_CheckReturn() Ring2_Real32
+Ring1_NoDiscardReturn() Ring2_Real32
 Ring3_Math_Vector4_dot
   (
     const Ring3_Math_Vector4* a,
@@ -158,25 +158,25 @@ Ring3_Math_Vector4_set
     Ring2_Real32 w
   );
 
-Ring1_CheckReturn() Ring2_Real32
+Ring1_NoDiscardReturn() Ring2_Real32
 Ring3_Math_Vector4_getX
   (
     const Ring3_Math_Vector4* a
   );
 
-Ring1_CheckReturn() Ring2_Real32
+Ring1_NoDiscardReturn() Ring2_Real32
 Ring3_Math_Vector4_getY
   (
     const Ring3_Math_Vector4* a
   );
 
-Ring1_CheckReturn() Ring2_Real32
+Ring1_NoDiscardReturn() Ring2_Real32
 Ring3_Math_Vector4_getZ
   (
     const Ring3_Math_Vector4* a
   );
 
-Ring1_CheckReturn() Ring2_Real32
+Ring1_NoDiscardReturn() Ring2_Real32
 Ring3_Math_Vector4_getW
   (
     const Ring3_Math_Vector4* a

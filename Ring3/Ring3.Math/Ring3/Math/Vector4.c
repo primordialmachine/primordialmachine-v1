@@ -32,7 +32,7 @@ MACHINE_DEFINE_CLASSTYPE(Ring3_Math_Vector4,
                          NULL,
                          NULL)
 
-Ring1_CheckReturn() Ring3_Math_Vector4*
+Ring1_NoDiscardReturn() Ring3_Math_Vector4*
 Ring3_Math_Vector4_create
   (
   )
@@ -44,7 +44,7 @@ Ring3_Math_Vector4_create
   return self;
 }
 
-Ring1_CheckReturn() Ring3_Math_Vector4*
+Ring1_NoDiscardReturn() Ring3_Math_Vector4*
 Ring3_Math_Vector4_clone
   (
     const Ring3_Math_Vector4* self
@@ -82,7 +82,7 @@ Ring3_Math_Vector4_add
   c->w = a->w + b->w;
 }
 
-Ring1_CheckReturn() Ring3_Math_Vector4*
+Ring1_NoDiscardReturn() Ring3_Math_Vector4*
 Ring3_Math_Vector4_sum
   (
     const Ring3_Math_Vector4* a,
@@ -111,7 +111,7 @@ Ring3_Math_Vector4_subtract
   c->w = a->w - b->w;
 }
 
-Ring1_CheckReturn() Ring3_Math_Vector4*
+Ring1_NoDiscardReturn() Ring3_Math_Vector4*
 Ring3_Math_Vector4_difference
   (
     const Ring3_Math_Vector4* a,
@@ -140,7 +140,7 @@ Ring3_Math_Vector4_multiply
   c->w = a->w * b->w;
 }
 
-Ring1_CheckReturn() Ring3_Math_Vector4*
+Ring1_NoDiscardReturn() Ring3_Math_Vector4*
 Ring3_Math_Vector4_product
   (
     const Ring3_Math_Vector4* a,
@@ -155,7 +155,7 @@ Ring3_Math_Vector4_product
   return c;
 }
 
-Ring1_CheckReturn() Ring2_Real32
+Ring1_NoDiscardReturn() Ring2_Real32
 Ring3_Math_Vector4_dot
   (
     const Ring3_Math_Vector4* a,
@@ -216,28 +216,28 @@ Ring3_Math_Vector4_set
   self->w = w;
 }
 
-Ring1_CheckReturn() Ring2_Real32
+Ring1_NoDiscardReturn() Ring2_Real32
 Ring3_Math_Vector4_getX
   (
     const Ring3_Math_Vector4* self
   )
 { return self->x; }
 
-Ring1_CheckReturn() Ring2_Real32
+Ring1_NoDiscardReturn() Ring2_Real32
 Ring3_Math_Vector4_getY
   (
     const Ring3_Math_Vector4* self
   )
 { return self->y; }
 
-Ring1_CheckReturn() Ring2_Real32
+Ring1_NoDiscardReturn() Ring2_Real32
 Ring3_Math_Vector4_getZ
   (
     const Ring3_Math_Vector4* self
   )
 { return self->z; }
 
-Ring1_CheckReturn() Ring2_Real32
+Ring1_NoDiscardReturn() Ring2_Real32
 Ring3_Math_Vector4_getW
   (
     const Ring3_Math_Vector4* self
