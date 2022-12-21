@@ -60,6 +60,10 @@ Ring3_Math_Vector2_add
     const Ring3_Math_Vector2* b
   );
 
+/// @brief Compute the sum of two vectors.
+/// @param a The first vector.
+/// @param b The second vector.
+/// @return The sum vector.
 Ring1_NoDiscardReturn() Ring3_Math_Vector2*
 Ring3_Math_Vector2_sum
   (
