@@ -176,7 +176,7 @@ Ring3_Math_Vector4_maxima
     const Ring3_Math_Vector4* b
   )
 {
-#define MAX(x,y) ((x) > (y) ? (x) : (y)) 
+#define MAX(x,y) ((x) > (y) ? (x) : (y))
   c->x = MAX(a->x, b->x);
   c->y = MAX(a->y, b->y);
   c->z = MAX(a->z, b->z);
@@ -219,7 +219,7 @@ Ring3_Math_Vector4_divideScalarInSitu
 {
   a->x /= b;
   a->y /= b;
-  a->z /= b; 
+  a->z /= b;
   a->w /= b;
 }
 

@@ -157,7 +157,7 @@ Ring3_Math_Vector2_maxima
     const Ring3_Math_Vector2* b
   )
 {
-#define MAX(x,y) ((x) > (y) ? (x) : (y)) 
+#define MAX(x,y) ((x) > (y) ? (x) : (y))
   c->x = MAX(a->x, b->x);
   c->y = MAX(a->y, b->y);
 #undef MAX
