@@ -163,6 +163,24 @@ Ring3_Math_Vector3_divideScalarInSitu
     Ring2_Real32 b
   );
 
+/// @brief Get the length of a vector.
+/// @param a The vector.
+/// @return The length of the vector.
+Ring1_NoDiscardReturn() Ring2_Real32
+Ring3_Math_Vector3_length
+  (
+    const Ring3_Math_Vector3* a
+  );
+
+/// @brief Get the squared length of a vector.
+/// @param a The vector.
+/// @return The squared length of the vector.
+Ring1_NoDiscardReturn() Ring2_Real32
+Ring3_Math_Vector3_squaredLength
+  (
+    const Ring3_Math_Vector3* a
+  );
+
 void
 Ring3_Math_Vector3_set
   (

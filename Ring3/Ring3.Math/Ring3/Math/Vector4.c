@@ -213,6 +213,25 @@ Ring3_Math_Vector4_divideScalarInSitu
   a->w /= b;
 }
 
+Ring1_NoDiscardReturn() Ring2_Real32
+Ring3_Math_Vector4_length
+  (
+    const Ring3_Math_Vector4* a
+  )
+{ return sqrtf(Ring3_Math_Vector4_squaredLength(a)); }
+
+Ring1_NoDiscardReturn() Ring2_Real32
+Ring3_Math_Vector4_squaredLength
+  (
+    const Ring3_Math_Vector4* a
+  )
+{
+  return (a->x * a->x)
+       + (a->y * a->y)
+       + (a->z * a->z)
+       + (a->w * a->w);
+}
+
 void
 Ring3_Math_Vector4_set
   (
