@@ -283,3 +283,33 @@ Ring3_Math_Vector3_getZ
     const Ring3_Math_Vector3* self
   )
 { return self->z; }
+
+Ring1_NoDiscardReturn() Ring3_Math_Vector3 *
+Ring3_Math_Vector3_cross
+  (
+    Ring3_Math_Vector3 const *a,
+    Ring3_Math_Vector3 const *b
+  )
+{
+  float temporary[] = {
+    a->y * b->z - a->z * b->y,
+    a->z * b->x - a->x * b->z,
+    a->x * b->y - a->y * b->x,
+  };
+  return Ring3_Math_Vector3_create(temporary[0], temporary[1], temporary[2]);
+}
+
+void
+Ring3_Math_Vector3_crossInSitu
+  (
+    Ring3_Math_Vector3 *a,
+    Ring3_Math_Vector3 const *b
+  )
+{
+  float temporary[] = {
+    a->y * b->z - a->z * b->y,
+    a->z * b->x - a->x * b->z,
+    a->x * b->y - a->y * b->x,
+  };
+  Ring3_Math_Vector3_set(a, temporary[0], temporary[1], temporary[2]);
+}

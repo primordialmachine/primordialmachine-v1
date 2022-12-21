@@ -237,4 +237,26 @@ Ring3_Math_Vector3_getZ
     const Ring3_Math_Vector3* a
   );
 
+/// @brief Compute the cross product of two vectors.
+/// @param a The first vector.
+/// @param b The second vector.
+/// @return The cross product of the first vector and the second vector.
+Ring1_NoDiscardReturn() Ring3_Math_Vector3 *
+Ring3_Math_Vector3_cross
+  (
+    Ring3_Math_Vector3 const* a,
+    Ring3_Math_Vector3 const* b
+  );
+  
+/// @brief Compute the cross product of two vectors.
+/// Store the result in the first vector.
+/// @param a The first vector.
+/// @param b The second vector.
+void
+Ring3_Math_Vector3_crossInSitu
+  (
+    Ring3_Math_Vector3* a,
+    Ring3_Math_Vector3 const* b
+  );
+
 #endif // RING3_MATH_VECTOR3_H_INCLUDED
