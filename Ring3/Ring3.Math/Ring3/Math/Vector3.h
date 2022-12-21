@@ -151,7 +151,7 @@ Ring3_Math_Vector3_minima
     const Ring3_Math_Vector3* a,
     const Ring3_Math_Vector3* b
   );
-  
+
 /// @brief Compute the product of a vector and a scalar.
 /// @param a The vector.
 /// @param b The scalar.
@@ -269,7 +269,7 @@ Ring3_Math_Vector3_cross
     Ring3_Math_Vector3 const* a,
     Ring3_Math_Vector3 const* b
   );
-  
+
 /// @brief Compute the cross product of two vectors.
 /// Store the result in the first vector.
 /// @param a The first vector.
