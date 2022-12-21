@@ -6,6 +6,12 @@
 #define RING3_MATH__INCLUDE_H_INCLUDED
 
 #define RING3_MATH_PRIVATE (1)
+#include "Ring3/Math/ColorRgbaF64.h"
+#include "Ring3/Math/ColorRgbaF64Extensions.h"
+#include "Ring3/Math/ColorRgbaU8.h"
+#include "Ring3/Math/ColorRgbaU8Extensions.h"
+#include "Ring3/Math/ColorRgbU8.h"
+#include "Ring3/Math/ColorRgbU8Extensions.h"
 #include "Ring3/Math/Matrix4.h"
 #include "Ring3/Math/Rectangle2.h"
 #include "Ring3/Math/Vector2.h"

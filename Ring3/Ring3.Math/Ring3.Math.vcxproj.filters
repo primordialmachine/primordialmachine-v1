@@ -45,6 +45,24 @@
     <ClCompile Include="Ring3\Math\_Include.c">
       <Filter>Quelldateien\Ring3\Math</Filter>
     </ClCompile>
+    <ClCompile Include="Ring3\Math\ColorRgbaU8.c">
+      <Filter>Quelldateien\Ring3\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Math\ColorRgbU8.c">
+      <Filter>Quelldateien\Ring3\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Math\ColorRgbaF64.c">
+      <Filter>Quelldateien\Ring3\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Math\ColorRgbaF64Extensions.c">
+      <Filter>Quelldateien\Ring3\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Math\ColorRgbaU8Extensions.c">
+      <Filter>Quelldateien\Ring3\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Math\ColorRgbU8Extensions.c">
+      <Filter>Quelldateien\Ring3\Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring3\Math\Rectangle2.h">
@@ -63,6 +81,24 @@
       <Filter>Headerdateien\Ring3\Math</Filter>
     </ClInclude>
     <ClInclude Include="Ring3\Math\_Include.h">
+      <Filter>Headerdateien\Ring3\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Math\ColorRgbaF64.h">
+      <Filter>Headerdateien\Ring3\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Math\ColorRgbaU8.h">
+      <Filter>Headerdateien\Ring3\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Math\ColorRgbU8.h">
+      <Filter>Headerdateien\Ring3\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Math\ColorRgbaF64Extensions.h">
+      <Filter>Headerdateien\Ring3\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Math\ColorRgbaU8Extensions.h">
+      <Filter>Headerdateien\Ring3\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Math\ColorRgbU8Extensions.h">
       <Filter>Headerdateien\Ring3\Math</Filter>
     </ClInclude>
   </ItemGroup>

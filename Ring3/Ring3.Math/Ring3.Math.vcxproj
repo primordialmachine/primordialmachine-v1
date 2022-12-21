@@ -19,8 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Ring3\Math\ColorRgbaU8Extensions.c" />
+    <ClCompile Include="Ring3\Math\ColorRgbU8Extensions.c" />
     <ClCompile Include="Ring3\Math\Matrix4.c" />
     <ClCompile Include="Ring3\Math\Rectangle2.c" />
+    <ClCompile Include="Ring3\Math\ColorRgbaF64.c" />
+    <ClCompile Include="Ring3\Math\ColorRgbaF64Extensions.c" />
+    <ClCompile Include="Ring3\Math\ColorRgbaU8.c" />
+    <ClCompile Include="Ring3\Math\ColorRgbU8.c" />
     <ClCompile Include="Ring3\Math\Vector2.c" />
     <ClCompile Include="Ring3\Math\Vector3.c" />
     <ClCompile Include="Ring3\Math\Vector4.c" />
@@ -29,6 +35,12 @@
   <ItemGroup>
     <ClInclude Include="Ring3\Math\Matrix4.h" />
     <ClInclude Include="Ring3\Math\Rectangle2.h" />
+    <ClInclude Include="Ring3\Math\ColorRgbaF64.h" />
+    <ClInclude Include="Ring3\Math\ColorRgbaU8.h" />
+    <ClInclude Include="Ring3\Math\ColorRgbU8.h" />
+    <ClInclude Include="Ring3\Math\ColorRgbaF64Extensions.h" />
+    <ClInclude Include="Ring3\Math\ColorRgbaU8Extensions.h" />
+    <ClInclude Include="Ring3\Math\ColorRgbU8Extensions.h" />
     <ClInclude Include="Ring3\Math\Vector2.h" />
     <ClInclude Include="Ring3\Math\Vector3.h" />
     <ClInclude Include="Ring3\Math\Vector4.h" />
