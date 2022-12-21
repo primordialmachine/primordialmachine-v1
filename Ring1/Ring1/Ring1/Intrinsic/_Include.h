@@ -13,6 +13,7 @@
 #include "Ring1/Intrinsic/atomicGet.h"
 #include "Ring1/Intrinsic/atomicIncrement.h"
 #include "Ring1/Intrinsic/Add/add.h"
+#include "Ring1/Intrinsic/ByteOrder.h"
 #include "Ring1/Intrinsic/clamp.h"
 #include "Ring1/Intrinsic/countDecimalDigits.h"
 #include "Ring1/Intrinsic/Crt.h"

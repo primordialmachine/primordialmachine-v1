@@ -869,6 +869,9 @@
     <ClInclude Include="Ring1\Memory\_Include.h">
       <Filter>Headerdateien\Ring1\Memory</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\ByteOrder.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring1\Intrinsic\ThreadLocal.c">
@@ -1215,6 +1218,9 @@
     </ClCompile>
     <ClCompile Include="Ring1\Memory\_Include.c">
       <Filter>Quelldateien\Ring1\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\ByteOrder.c">
+      <Filter>Quelldateien\Ring1\Intrinsic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
