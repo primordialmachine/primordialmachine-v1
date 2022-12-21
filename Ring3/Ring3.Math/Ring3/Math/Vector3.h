@@ -24,7 +24,7 @@ struct Ring3_Math_Vector3_Class {
 
 struct Ring3_Math_Vector3 {
   Machine_Object parent;
-  float x, y, z;
+  Ring2_Real32 x, y, z;
 };
 
 Ring1_CheckReturn() Ring3_Math_Vector3*
@@ -121,7 +121,7 @@ Ring3_Math_Vector3_product
 /// @param a The first vector.
 /// @param b The second vector.
 /// @return The dot product of the vectors.
-Ring1_CheckReturn() float
+Ring1_CheckReturn() Ring2_Real32
 Ring3_Math_Vector3_dot
   (
     const Ring3_Math_Vector3* a,
@@ -156,24 +156,24 @@ void
 Ring3_Math_Vector3_set
   (
     Ring3_Math_Vector3* a,
-    float x,
-    float y,
-    float z
+    Ring2_Real32 x,
+    Ring2_Real32 y,
+    Ring2_Real32 z
   );
 
-Ring1_CheckReturn() float
+Ring1_CheckReturn() Ring2_Real32
 Ring3_Math_Vector3_getX
   (
     const Ring3_Math_Vector3* a
   );
 
-Ring1_CheckReturn() float
+Ring1_CheckReturn() Ring2_Real32
 Ring3_Math_Vector3_getY
   (
     const Ring3_Math_Vector3* a
   );
 
-Ring1_CheckReturn() float
+Ring1_CheckReturn() Ring2_Real32
 Ring3_Math_Vector3_getZ
   (
     const Ring3_Math_Vector3* a

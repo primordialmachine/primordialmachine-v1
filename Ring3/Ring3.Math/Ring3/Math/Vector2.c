@@ -138,7 +138,7 @@ Ring3_Math_Vector2_product
   return c;
 }
 
-Ring1_CheckReturn() float
+Ring1_CheckReturn() Ring2_Real32
 Ring3_Math_Vector2_dot
   (
     const Ring3_Math_Vector2* a,
@@ -181,22 +181,22 @@ void
 Ring3_Math_Vector2_set
   (
     Ring3_Math_Vector2* self,
-    float x,
-    float y
+    Ring2_Real32 x,
+    Ring2_Real32 y
   )
 {
   self->x = x;
   self->y = y;
 }
 
-Ring1_CheckReturn() float
+Ring1_CheckReturn() Ring2_Real32
 Ring3_Math_Vector2_getX
   (
     const Ring3_Math_Vector2* self
   )
 { return self->x; }
 
-Ring1_CheckReturn() float
+Ring1_CheckReturn() Ring2_Real32
 Ring3_Math_Vector2_getY
   (
     const Ring3_Math_Vector2* self
