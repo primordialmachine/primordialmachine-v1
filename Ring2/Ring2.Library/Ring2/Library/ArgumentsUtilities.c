@@ -14,7 +14,7 @@
 #include "Ring1/Status.h"
 
 
-Ring2_Boolean
+Ring1_CheckReturn() Ring2_Boolean
 Machine_Extensions_getBooleanArgument
   (
     size_t numberOfArguments,
@@ -34,7 +34,7 @@ Machine_Extensions_getBooleanArgument
   return v;
 }
 
-Ring2_Integer
+Ring1_CheckReturn() Ring2_Integer
 Machine_Extensions_getIntegerArgument
   (
     size_t numberOfArguments,
@@ -54,7 +54,47 @@ Machine_Extensions_getIntegerArgument
   return v;
 }
 
-Ring2_String*
+Ring1_CheckReturn() Ring2_Real32
+Machine_Extensions_getReal32Argument
+  (
+    size_t numberOfArguments,
+    Ring2_Value const* arguments,
+    size_t i
+  )
+{
+  if (i >= numberOfArguments) {
+    Ring1_Status_set(Ring1_Status_InvalidNumberOfArguments);
+    Ring2_jump();
+  }
+  if (!Ring2_Value_isReal32(arguments + i)) {
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
+    Ring2_jump();
+  }
+  Ring2_Real32 v = Ring2_Value_getReal32(arguments + i);
+  return v;
+}
+
+Ring1_CheckReturn() Ring2_Real64
+Machine_Extensions_getReal64Argument
+  (
+    size_t numberOfArguments,
+    Ring2_Value const* arguments,
+    size_t i
+  )
+{
+  if (i >= numberOfArguments) {
+    Ring1_Status_set(Ring1_Status_InvalidNumberOfArguments);
+    Ring2_jump();
+  }
+  if (!Ring2_Value_isReal64(arguments + i)) {
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
+    Ring2_jump();
+  }
+  Ring2_Real64 v = Ring2_Value_getReal64(arguments + i);
+  return v;
+}
+
+Ring1_CheckReturn() Ring2_String *
 Machine_Extensions_getStringArgument
   (
     size_t numberOfArguments,
@@ -74,7 +114,7 @@ Machine_Extensions_getStringArgument
   return v;
 }
 
-Machine_Object*
+Ring1_CheckReturn() Machine_Object *
 Machine_Extensions_getObjectArgument
   (
     size_t numberOfArguments,
