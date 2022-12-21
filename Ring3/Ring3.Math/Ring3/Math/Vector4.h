@@ -148,6 +148,17 @@ Ring3_Math_Vector4_minima
     const Ring3_Math_Vector4* b
   );
 
+/// @brief Compute the quotient of a vector and a scalar.
+/// Store the result in the vector.
+/// @param a The vector.
+/// @param b The scalar.
+void
+Ring3_Math_Vector4_divideScalarInSitu
+  (
+    Ring3_Math_Vector4 *a,
+    Ring2_Real32 b
+  );
+
 void
 Ring3_Math_Vector4_set
   (

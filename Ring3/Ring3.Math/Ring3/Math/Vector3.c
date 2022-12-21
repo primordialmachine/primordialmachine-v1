@@ -190,6 +190,18 @@ Ring3_Math_Vector3_minima
 }
 
 void
+Ring3_Math_Vector3_divideScalarInSitu
+  (
+    Ring3_Math_Vector3 *a,
+    Ring2_Real32 b
+  )
+{
+  a->x /= b;
+  a->y /= b;
+  a->z /= b; 
+}
+
+void
 Ring3_Math_Vector3_set
   (
     Ring3_Math_Vector3* self,
