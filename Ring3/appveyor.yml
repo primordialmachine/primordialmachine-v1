@@ -44,7 +44,7 @@ before_build:
 
 build:
     parallel: true                             # enable MSBuild parallel builds
-    project: $(module_lowercase)/$(module).sln # path to Visual Studio solution or project
+    project: $(module)/$(module).sln # path to Visual Studio solution or project
 
 # If one matrix entry fails, all entries fails (https://www.appveyor.com/docs/build-configuration#failing-strategy).
 matrix:
@@ -52,7 +52,7 @@ matrix:
 
 artifacts:
     # Ring3.Gdl.Test
-    - path: $(module_lowercase)\products\$(platform)\$(configuration)\$(module).Gdl.Test\$(module).Gdl.Test.exe
+    - path: $(module)\products\$(platform)\$(configuration)\$(module).Gdl.Test\$(module).Gdl.Test.exe
       name: $(module).Gdl.Test-$(platform)-$(configuration).exe
 
 # Execute test scripts.

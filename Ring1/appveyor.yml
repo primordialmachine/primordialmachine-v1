@@ -44,7 +44,7 @@ before_build:
 
 build:
     parallel: true                             # enable MSBuild parallel builds
-    project: $(module_lowercase)/$(module).sln # path to Visual Studio solution or project
+    project: $(module)/$(module).sln # path to Visual Studio solution or project
 
 # If one matrix entry fails, all entries fails (https://www.appveyor.com/docs/build-configuration#failing-strategy).
 matrix:
@@ -52,13 +52,13 @@ matrix:
 
 artifacts:
     # Ring1.Ap.Test
-    - path: $(module_lowercase)\products\$(platform)\$(configuration)\$(module).Ap.Test\$(module).Ap.Test.exe
+    - path: $(module)\products\$(platform)\$(configuration)\$(module).Ap.Test\$(module).Ap.Test.exe
       name: $(module).Ap.Test-$(platform)-$(configuration).exe
     # Ring1.Atom.Test
-    - path: $(module_lowercase)\products\$(platform)\$(configuration)\$(module).Atom.Test\$(module).Atom.Test.exe
+    - path: $(module)\products\$(platform)\$(configuration)\$(module).Atom.Test\$(module).Atom.Test.exe
       name: $(module).Atom.Test-$(platform)-$(configuration).exe
     # Ring1.Intrinsic.Test
-    - path: $(module_lowercase)\products\$(platform)\$(configuration)\$(module).Intrinsic.Test\$(module).Intrinsic.Test.exe
+    - path: $(module)\products\$(platform)\$(configuration)\$(module).Intrinsic.Test\$(module).Intrinsic.Test.exe
       name: $(module).Intrinsic.Test-$(platform)-$(configuration).exe
 
 # Execute test scripts.
