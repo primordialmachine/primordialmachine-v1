@@ -6,7 +6,7 @@
 
 #include "Ring2/Test/Fixtures/Object.h"
 
-#include "Ring1/Intrinsic.h"
+#include "Ring1/All/_Include.h"
 #include "Ring2/_Include.h"
 
 MACHINE_DEFINE_CLASSTYPE(Ring2_Test_Fixtures_A /*type*/,

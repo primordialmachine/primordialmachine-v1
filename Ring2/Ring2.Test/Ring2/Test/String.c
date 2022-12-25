@@ -6,7 +6,6 @@
 
 #include "Ring2/Test/String.h"
 
-#include "Ring1/Intrinsic.h"
 #include "Ring1/All/_Include.h"
 #include "Ring2/Test/String/concatenate.h"
 #include "Ring2/Test/String/firstOccurrenceOf.h"
