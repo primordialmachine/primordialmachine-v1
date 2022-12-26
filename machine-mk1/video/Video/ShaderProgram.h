@@ -5,9 +5,6 @@
 #define MACHINE_VIDEO_SHADERPROGRAM_H_INCLUDED
 
 #include "Video/_header.i"
-#include "Video/ProgramInput.h"
-#include "Video/ProgramInputKind.h"
-#include "Video/ProgramInputType.h"
 
 /// @brief A shader program.
 MACHINE_DECLARE_CLASSTYPE(Machine_ShaderProgram)
@@ -15,9 +12,9 @@ MACHINE_DECLARE_CLASSTYPE(Machine_ShaderProgram)
 struct Machine_ShaderProgram_Class {
   Machine_Object_Class parent;
   size_t (*getNumberOfInputs)(Machine_ShaderProgram const* self);
-  Machine_ProgramInput* (*getInputAt)(Machine_ShaderProgram const* self, size_t index);
+  Ring3_GpuProgramInputDescriptor* (*getInputAt)(Machine_ShaderProgram const* self, size_t index);
   Ring2_Boolean (*addUpdateInput)(Machine_ShaderProgram* self, Ring2_String* name,
-                                  Machine_ProgramInputType type, Machine_ProgramInputKind kind);
+                                  Ring3_GpuProgramInputType type, Ring3_GpuProgramInputKind kind);
 };
 
 struct Machine_ShaderProgram {
@@ -36,8 +33,12 @@ size_t Machine_ShaderProgram_getNumberOfInputs(Machine_ShaderProgram const* self
 /// @param self This shader program.
 /// @param index The index.
 /// @return The input.
-Machine_ProgramInput* Machine_ShaderProgram_getInputAt(Machine_ShaderProgram const* self,
-                                                       size_t index);
+Ring3_GpuProgramInputDescriptor*
+Machine_ShaderProgram_getInputAt
+  (
+    Machine_ShaderProgram const* self,
+    size_t index
+  );
 
 /// @brief Add/modify an input to this shader program.
 /// @param self This shader program.
@@ -47,7 +48,7 @@ Machine_ProgramInput* Machine_ShaderProgram_getInputAt(Machine_ShaderProgram con
 /// @return @a true if an existing input was modified, @a false if a new input was added.
 Ring2_Boolean Machine_ShaderProgram_addUpdateInput(Machine_ShaderProgram* self,
                                                    Ring2_String* name,
-                                                   Machine_ProgramInputType type,
-                                                   Machine_ProgramInputKind kind);
+                                                   Ring3_GpuProgramInputType type,
+                                                   Ring3_GpuProgramInputKind kind);
 
 #endif // MACHINE_VIDEO_SHADERPROGRAM_H_INCLUDED

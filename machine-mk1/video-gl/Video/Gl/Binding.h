@@ -26,7 +26,13 @@ struct Machine_Gl_Binding {
   GLuint id;
 };
 
-Machine_Gl_Binding* Machine_Gl_Binding_create(Machine_ShaderProgram* program, Machine_VertexDescriptor* vertexDescriptor, Machine_VideoBuffer* buffer);
+Machine_Gl_Binding*
+Machine_Gl_Binding_create
+  (
+    Machine_ShaderProgram* program,
+    Ring3_VertexDescriptor* vertexDescriptor,
+    Machine_VideoBuffer* buffer
+  );
 
 
 

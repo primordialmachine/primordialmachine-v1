@@ -56,8 +56,8 @@ void Machine_Context2_construct(Machine_Context2* self, size_t numberOfArguments
   self->vertices = Machine_VideoContext_createBuffer(videoContext);
   self->shader = Machine_VideoContext_generateShape2Shader(videoContext);
 
-  Machine_VertexDescriptor* vertexDescriptor = Machine_VertexDescriptor_create();
-  Machine_VertexDescriptor_append(vertexDescriptor, Machine_VertexElementSemantics_XfYf);
+  Ring3_VertexDescriptor* vertexDescriptor = Ring3_VertexDescriptor_create();
+  Ring3_VertexDescriptor_append(vertexDescriptor, Ring3_VertexElementSemantics_XfYf);
 
   self->binding = Machine_VideoContext_createBinding(videoContext, self->shader, vertexDescriptor, self->vertices);
   Machine_Binding_setVariableBinding(self->binding, Ring2_String_create("vertex_position", crt_strlen("vertex_position") + 1), 0);

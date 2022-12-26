@@ -70,38 +70,38 @@ static size_t Machine_Gl_ShaderProgram_getNumberOfInputsImpl(Machine_Gl_ShaderPr
   return Ring2_Collections_Collection_getSize((Ring2_Collections_Collection*)self->inputs);
 }
 
-static Machine_ProgramInput* Machine_Gl_ShaderProgram_getInputAtImpl(Machine_Gl_ShaderProgram const* self, size_t index) {
+static Ring3_GpuProgramInputDescriptor* Machine_Gl_ShaderProgram_getInputAtImpl(Machine_Gl_ShaderProgram const* self, size_t index) {
   Ring2_Value temporary = Ring2_Collections_List_getAt(self->inputs, index);
-  return (Machine_ProgramInput*)Ring2_Value_getObject(&temporary);
+  return (Ring3_GpuProgramInputDescriptor*)Ring2_Value_getObject(&temporary);
 }
 
-static Ring2_Boolean Machine_Gl_ShaderProgram_addUpdateInputImpl(Machine_Gl_ShaderProgram* self, Ring2_String* name, Machine_ProgramInputType type, Machine_ProgramInputKind kind) {
+static Ring2_Boolean Machine_Gl_ShaderProgram_addUpdateInputImpl(Machine_Gl_ShaderProgram* self, Ring2_String* name, Ring3_GpuProgramInputType type, Ring3_GpuProgramInputKind kind) {
   for (size_t i = 0, n = Machine_ShaderProgram_getNumberOfInputs((Machine_ShaderProgram *)self); i < n; ++i) {
-    Machine_ProgramInput* input = Machine_ShaderProgram_getInputAt((Machine_ShaderProgram *)self, i);
+    Ring3_GpuProgramInputDescriptor* input = Machine_ShaderProgram_getInputAt((Machine_ShaderProgram *)self, i);
     if (Ring2_String_isEqualTo(Ring2_Context_get(), input->name, name)) {
       input->type = type;
       input->kind = kind;
       return true;
     }
   }
-  Machine_ProgramInput* input = Machine_ProgramInput_create(name, type, kind);
+  Ring3_GpuProgramInputDescriptor* input = Ring3_GpuProgramInputDescriptor_create(name, type, kind);
   Ring2_Value temporary;
   Ring2_Value_setObject(&temporary, (Machine_Object*)input);
   Ring2_Collections_List_append(self->inputs, temporary);
   return false;
 }
 
-static GLuint compileShader(char const* programText, Machine_ProgramKind programKind) {
+static GLuint compileShader(char const* programText, Ring3_GpuProgramKind programKind) {
   GLuint id;
 
   switch (programKind) {
-  case Machine_ProgramKind_Fragment:
+  case Ring3_GpuProgramKind_Fragment:
     id = glCreateShader(GL_FRAGMENT_SHADER);
     break;
-  case Machine_ProgramKind_Geometry:
+  case Ring3_GpuProgramKind_Geometry:
     id = glCreateShader(GL_GEOMETRY_SHADER);
     break;
-  case Machine_ProgramKind_Vertex:
+  case Ring3_GpuProgramKind_Vertex:
     id = glCreateShader(GL_VERTEX_SHADER);
     break;
   default:
@@ -159,21 +159,21 @@ static void constructFromText(Machine_Gl_ShaderProgram* self, char const* vertex
 
   GLint result;
 
-  vertexShaderId = compileShader(vertexProgramText, Machine_ProgramKind_Vertex);
+  vertexShaderId = compileShader(vertexProgramText, Ring3_GpuProgramKind_Vertex);
   if (vertexShaderId == 0) {
     Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__, "vertex shader compilation failed\n");
     ON_ERROR();
   }
 
   if (geometryProgramText) {
-    geometryShaderId = compileShader(geometryProgramText, Machine_ProgramKind_Geometry);
+    geometryShaderId = compileShader(geometryProgramText, Ring3_GpuProgramKind_Geometry);
     if (geometryShaderId == 0) {
       Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__, "geometry shader compilation failed\n");
       ON_ERROR();
     }
   }
 
-  fragmentShaderId = compileShader(fragmentProgramText, Machine_ProgramKind_Fragment);
+  fragmentShaderId = compileShader(fragmentProgramText, Ring3_GpuProgramKind_Fragment);
   if (fragmentShaderId == 0) {
     Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__, "fragment shader compilation failed\n");
     ON_ERROR();
@@ -214,8 +214,8 @@ static void constructFromText(Machine_Gl_ShaderProgram* self, char const* vertex
 
 static void Machine_Gl_ShaderProgram_constructClass(Machine_Gl_ShaderProgram_Class* self) {
   ((Machine_ShaderProgram_Class*)self)->getNumberOfInputs = (size_t(*)(Machine_ShaderProgram const*)) & Machine_Gl_ShaderProgram_getNumberOfInputsImpl;
-  ((Machine_ShaderProgram_Class*)self)->getInputAt = (Machine_ProgramInput * (*)(Machine_ShaderProgram const*, size_t)) & Machine_Gl_ShaderProgram_getInputAtImpl;
-  ((Machine_ShaderProgram_Class*)self)->addUpdateInput = (Ring2_Boolean(*)(Machine_ShaderProgram*, Ring2_String*, Machine_ProgramInputType, Machine_ProgramInputKind)) & Machine_Gl_ShaderProgram_addUpdateInputImpl;
+  ((Machine_ShaderProgram_Class*)self)->getInputAt = (Ring3_GpuProgramInputDescriptor * (*)(Machine_ShaderProgram const*, size_t)) & Machine_Gl_ShaderProgram_getInputAtImpl;
+  ((Machine_ShaderProgram_Class*)self)->addUpdateInput = (Ring2_Boolean(*)(Machine_ShaderProgram*, Ring2_String*, Ring3_GpuProgramInputType, Ring3_GpuProgramInputKind)) & Machine_Gl_ShaderProgram_addUpdateInputImpl;
 }
 
 void Machine_Gl_ShaderProgram_construct(Machine_Gl_ShaderProgram* self, size_t numberOfArguments, Ring2_Value const* arguments) {
@@ -396,14 +396,14 @@ Machine_Gl_ShaderProgram_generateDefaultShader
 
   Machine_ShaderProgram* shaderProgram = (Machine_ShaderProgram *)Machine_Gl_ShaderProgram_create(v, NULL, f);
   Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertex_position")),
-                                       Machine_ProgramInputType_Vector2, Machine_ProgramInputKind_Variable);
+                                       Ring3_GpuProgramInputType_Vector2, Ring3_GpuProgramInputKind_Variable);
   if (withVertexColor) {
     Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertex_color")),
-                                         Machine_ProgramInputType_Vector3, Machine_ProgramInputKind_Variable);
+                                         Ring3_GpuProgramInputType_Vector3, Ring3_GpuProgramInputKind_Variable);
   }
   if (withTextureCoordinate) {
     Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertex_texture_coordinate_1")),
-                                         Machine_ProgramInputType_Vector2, Machine_ProgramInputKind_Variable);
+                                         Ring3_GpuProgramInputType_Vector2, Ring3_GpuProgramInputKind_Variable);
   }
   return shaderProgram;
 
@@ -464,7 +464,7 @@ Machine_Gl_ShaderProgram_generateShape2Shader
 
   Machine_ShaderProgram* shaderProgram = (Machine_ShaderProgram*)Machine_Gl_ShaderProgram_create(v, NULL, f);
   Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertex_position")),
-                                       Machine_ProgramInputType_Vector2, Machine_ProgramInputKind_Variable);
+                                       Ring3_GpuProgramInputType_Vector2, Ring3_GpuProgramInputKind_Variable);
   return shaderProgram;
 
 #undef TZ
@@ -588,9 +588,9 @@ Machine_Gl_ShaderProgram_generateText2Shader
 
   Machine_ShaderProgram* shaderProgram = (Machine_ShaderProgram*)Machine_Gl_ShaderProgram_create(v, g, f);
   Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertex_position")),
-                                       Machine_ProgramInputType_Vector2, Machine_ProgramInputKind_Variable);
+                                       Ring3_GpuProgramInputType_Vector2, Ring3_GpuProgramInputKind_Variable);
   Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertex_texture_coordinate_1")),
-                                       Machine_ProgramInputType_Vector2, Machine_ProgramInputKind_Variable);
+                                       Ring3_GpuProgramInputType_Vector2, Ring3_GpuProgramInputKind_Variable);
   return shaderProgram;
 
 #undef TZ

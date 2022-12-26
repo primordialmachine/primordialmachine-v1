@@ -24,25 +24,10 @@
     <ClCompile Include="_Video.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Video\ProgramKind.c">
-      <Filter>Quelldateien\Video</Filter>
-    </ClCompile>
-    <ClCompile Include="Video\Buffer.c">
+    <ClCompile Include="Video\VideoBuffer.c">
       <Filter>Quelldateien\Video</Filter>
     </ClCompile>
     <ClCompile Include="Video\Texture.c">
-      <Filter>Quelldateien\Video</Filter>
-    </ClCompile>
-    <ClCompile Include="Video\ProgramInputType.c">
-      <Filter>Quelldateien\Video</Filter>
-    </ClCompile>
-    <ClCompile Include="Video\ProgramInput.c">
-      <Filter>Quelldateien\Video</Filter>
-    </ClCompile>
-    <ClCompile Include="Video\VertexDescriptor.c">
-      <Filter>Quelldateien\Video</Filter>
-    </ClCompile>
-    <ClCompile Include="Video\ProgramInputKind.c">
       <Filter>Quelldateien\Video</Filter>
     </ClCompile>
     <ClCompile Include="Video\ShaderProgram.c">
@@ -77,25 +62,10 @@
     <ClInclude Include="Video\External.h">
       <Filter>Headerdateien\Video</Filter>
     </ClInclude>
-    <ClInclude Include="Video\ProgramKind.h">
-      <Filter>Headerdateien\Video</Filter>
-    </ClInclude>
     <ClInclude Include="Video\Texture.h">
       <Filter>Headerdateien\Video</Filter>
     </ClInclude>
-    <ClInclude Include="Video\Buffer.h">
-      <Filter>Headerdateien\Video</Filter>
-    </ClInclude>
-    <ClInclude Include="Video\ProgramInputType.h">
-      <Filter>Headerdateien\Video</Filter>
-    </ClInclude>
-    <ClInclude Include="Video\ProgramInput.h">
-      <Filter>Headerdateien\Video</Filter>
-    </ClInclude>
-    <ClInclude Include="Video\VertexDescriptor.h">
-      <Filter>Headerdateien\Video</Filter>
-    </ClInclude>
-    <ClInclude Include="Video\ProgramInputKind.h">
+    <ClInclude Include="Video\VideoBuffer.h">
       <Filter>Headerdateien\Video</Filter>
     </ClInclude>
     <ClInclude Include="Video\ShaderProgram.h">

@@ -11,7 +11,6 @@
 
 #include "Ring2/_Include.h"
 
-
 /// @brief An event pertaining to a canvas of which the size has changed.
 /// @extends Machine.Object
 /// @todo Should extend from Machine.Event.

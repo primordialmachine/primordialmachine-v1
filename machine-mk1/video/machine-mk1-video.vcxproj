@@ -140,38 +140,28 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Video\Binding.c" />
-    <ClCompile Include="Video\Buffer.c" />
+    <ClCompile Include="Video\VideoBuffer.c" />
     <ClCompile Include="Video\Canvas.c" />
     <ClCompile Include="Video\Font.c" />
     <ClCompile Include="Video\FontsContext.c" />
     <ClCompile Include="Video\Image.c" />
     <ClCompile Include="Video\ImagesContext.c" />
-    <ClCompile Include="Video\ProgramInput.c" />
-    <ClCompile Include="Video\ProgramInputKind.c" />
-    <ClCompile Include="Video\ProgramInputType.c" />
-    <ClCompile Include="Video\ProgramKind.c" />
     <ClCompile Include="Video\ShaderProgram.c" />
     <ClCompile Include="Video\Texture.c" />
-    <ClCompile Include="Video\VertexDescriptor.c" />
     <ClCompile Include="Video\VideoContext.c" />
     <ClCompile Include="_Video.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Video\Binding.h" />
-    <ClInclude Include="Video\Buffer.h" />
+    <ClInclude Include="Video\VideoBuffer.h" />
     <ClInclude Include="Video\Canvas.h" />
     <ClInclude Include="Video\External.h" />
     <ClInclude Include="Video\Font.h" />
     <ClInclude Include="Video\FontsContext.h" />
     <ClInclude Include="Video\Image.h" />
     <ClInclude Include="Video\ImagesContext.h" />
-    <ClInclude Include="Video\ProgramInput.h" />
-    <ClInclude Include="Video\ProgramInputKind.h" />
-    <ClInclude Include="Video\ProgramInputType.h" />
-    <ClInclude Include="Video\ProgramKind.h" />
     <ClInclude Include="Video\ShaderProgram.h" />
     <ClInclude Include="Video\Texture.h" />
-    <ClInclude Include="Video\VertexDescriptor.h" />
     <ClInclude Include="Video\VideoContext.h" />
     <ClInclude Include="_Video.h" />
   </ItemGroup>

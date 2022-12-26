@@ -57,6 +57,24 @@
     <ClInclude Include="Ring3\Visuals\Material.protected.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
+    <ClInclude Include="Ring3\Visuals\GpuProgramInputKind.h">
+      <Filter>Headerdateien\Ring3\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Visuals\GpuProgramInputType.h">
+      <Filter>Headerdateien\Ring3\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Visuals\GpuProgramKind.h">
+      <Filter>Headerdateien\Ring3\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Visuals\GpuProgramInputDescriptor.h">
+      <Filter>Headerdateien\Ring3\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Visuals\VertexDescriptor.h">
+      <Filter>Headerdateien\Ring3\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Visuals\VertexElementDescriptor.h">
+      <Filter>Headerdateien\Ring3\Visuals</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring3\Visuals\_Include.c">
@@ -87,6 +105,24 @@
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
     <ClCompile Include="Ring3\Visuals\Material.protected.c">
+      <Filter>Quelldateien\Ring3\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Visuals\GpuProgramInputKind.c">
+      <Filter>Quelldateien\Ring3\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Visuals\GpuProgramInputType.c">
+      <Filter>Quelldateien\Ring3\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Visuals\GpuProgramKind.c">
+      <Filter>Quelldateien\Ring3\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Visuals\GpuProgramInputDescriptor.c">
+      <Filter>Quelldateien\Ring3\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Visuals\VertexDescriptor.c">
+      <Filter>Quelldateien\Ring3\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Visuals\VertexElementDescriptor.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
   </ItemGroup>

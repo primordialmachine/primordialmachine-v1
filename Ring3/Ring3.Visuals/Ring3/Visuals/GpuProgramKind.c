@@ -1,9 +1,9 @@
-/// @file Ring3/Visuals/VertexElementSemantics.c
+/// @file Ring3/Visuals/GpuProgramKind.c
 /// @copyright Copyright (c) 2021-2022 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
 #define RING3_VISUALS_PRIVATE (1)
-#include "Ring3/Visuals/VertexElementSemantics.h"
+#include "Ring3/Visuals/GpuProgramKind.h"
 #undef RING3_VISUALS_PRIVATE
 
-MACHINE_DEFINE_ENUMERATIONTYPE(Ring3_VertexElementSemantics)
+MACHINE_DEFINE_ENUMERATIONTYPE(Ring3_GpuProgramKind)

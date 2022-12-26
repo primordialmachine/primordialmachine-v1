@@ -1,6 +1,7 @@
 /// @file Ring3/Visuals/Material.h
 /// @copyright Copyright (c) 2021-2022 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
+
 #if !defined(RING3_VISUALS_MATERIAL_H_INCLUDED)
 #define RING3_VISUALS_MATERIAL_H_INCLUDED
 

@@ -6,12 +6,11 @@
 
 #include "Video/_header.i"
 #include "Video/Binding.h"
-#include "Video/Buffer.h"
+#include "Video/VideoBuffer.h"
 #include "Video/External.h"
 #include "Video/Image.h"
 #include "Video/ShaderProgram.h"
 #include "Video/Texture.h"
-#include "Video/VertexDescriptor.h"
 
 /// @brief A video context.
 /// @extends Machine.Object
@@ -75,7 +74,7 @@ struct Machine_VideoContext_Class {
                                           Ring2_String* fragmentProgramText);
 
   Machine_Binding* (*createBinding)(Machine_VideoContext* self, Machine_ShaderProgram* program,
-                                    Machine_VertexDescriptor* vertexDescriptor,
+                                    Ring3_VertexDescriptor* vertexDescriptor,
                                     Machine_VideoBuffer* buffer);
 
   void (*drawDirect)(Machine_VideoContext* self, Ring2_Integer i, Ring2_Integer n);
@@ -264,7 +263,7 @@ Machine_ShaderProgram* Machine_VideoContext_createProgram(Machine_VideoContext* 
 /// @return The binding.
 Machine_Binding* Machine_VideoContext_createBinding(Machine_VideoContext* self,
                                                     Machine_ShaderProgram* program,
-                                                    Machine_VertexDescriptor* vertexDescriptor,
+                                                    Ring3_VertexDescriptor* vertexDescriptor,
                                                     Machine_VideoBuffer* buffer);
 
 /// @brief Render @a n consecutive vertices starting with the vertex at (zero-based) index @a 0.

@@ -133,7 +133,7 @@ Machine_ShaderProgram* Machine_VideoContext_createProgram(Machine_VideoContext* 
 
 Machine_Binding* Machine_VideoContext_createBinding(Machine_VideoContext* self,
                                                     Machine_ShaderProgram* program,
-                                                    Machine_VertexDescriptor* vertexDescriptor,
+                                                    Ring3_VertexDescriptor* vertexDescriptor,
                                                     Machine_VideoBuffer* buffer) {
   MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_VideoContext, createBinding, program, vertexDescriptor,
                                   buffer);

@@ -6,4 +6,4 @@
 #include "Ring3/Visuals/PixelFormat.h"
 #undef RING2_VISUALS_PRIVATE
 
-MACHINE_DEFINE_ENUMERATIONTYPE(Machine_PixelFormat)
+MACHINE_DEFINE_ENUMERATIONTYPE(Ring3_PixelFormat)

@@ -279,9 +279,9 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
     self->vertices = Machine_VideoContext_createBuffer(fontsContext->videoContext);
     self->shader = Machine_VideoContext_generateText2Shader(fontsContext->videoContext, true);
 
-    Machine_VertexDescriptor* vertexDescriptor = Machine_VertexDescriptor_create();
-    Machine_VertexDescriptor_append(vertexDescriptor, Machine_VertexElementSemantics_XfYf);
-    Machine_VertexDescriptor_append(vertexDescriptor, Machine_VertexElementSemantics_UfVf);
+    Ring3_VertexDescriptor* vertexDescriptor = Ring3_VertexDescriptor_create();
+    Ring3_VertexDescriptor_append(vertexDescriptor, Ring3_VertexElementSemantics_XfYf);
+    Ring3_VertexDescriptor_append(vertexDescriptor, Ring3_VertexElementSemantics_UfVf);
 
     self->binding = Machine_VideoContext_createBinding(fontsContext->videoContext, self->shader, vertexDescriptor, self->vertices);
     Machine_Binding_setVariableBinding(self->binding, Ring2_String_create("vertex_position", crt_strlen("vertex_position") + 1), 0);

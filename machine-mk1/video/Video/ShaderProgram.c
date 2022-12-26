@@ -22,22 +22,32 @@ void Machine_ShaderProgram_construct(Machine_ShaderProgram* self, size_t numberO
   Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_ShaderProgram_getType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_ShaderProgram, Machine_Object, Machine_ShaderProgram_visit,
-                         Machine_ShaderProgram_construct, Machine_ShaderProgram_destruct, NULL,
+MACHINE_DEFINE_CLASSTYPE(Machine_ShaderProgram,
+                         Machine_Object,
+                         &Machine_ShaderProgram_visit,
+                         &Machine_ShaderProgram_construct,
+                         &Machine_ShaderProgram_destruct,
+                         NULL,
                          NULL)
 
 size_t Machine_ShaderProgram_getNumberOfInputs(Machine_ShaderProgram const* self) {
   MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_ShaderProgram, getNumberOfInputs);
 }
 
-Machine_ProgramInput* Machine_ShaderProgram_getInputAt(Machine_ShaderProgram const* self,
-                                                       size_t index) {
-  MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_ShaderProgram, getInputAt, index);
-}
+Ring3_GpuProgramInputDescriptor*
+Machine_ShaderProgram_getInputAt
+  (
+    Machine_ShaderProgram const* self,
+    size_t index
+  )
+{ MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_ShaderProgram, getInputAt, index); }
 
-Ring2_Boolean Machine_ShaderProgram_addUpdateInput(Machine_ShaderProgram* self,
-                                                   Ring2_String* name,
-                                                   Machine_ProgramInputType type,
-                                                   Machine_ProgramInputKind kind) {
-  MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_ShaderProgram, addUpdateInput, name, type, kind);
-}
+Ring2_Boolean
+Machine_ShaderProgram_addUpdateInput
+  (
+    Machine_ShaderProgram* self,
+    Ring2_String* name,
+    Ring3_GpuProgramInputType type,
+    Ring3_GpuProgramInputKind kind
+  )
+{ MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_ShaderProgram, addUpdateInput, name, type, kind); }

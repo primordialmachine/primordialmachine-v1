@@ -172,7 +172,7 @@ static Machine_ShaderProgram* createProgram(Machine_Gl_VideoContext* self, Ring2
   return (Machine_ShaderProgram*)Machine_Gl_ShaderProgram_create(vertexProgramText, geometryProgramText, fragmentProgramText);
 }
 
-static Machine_Binding* createBinding(Machine_Gl_VideoContext* self, Machine_ShaderProgram* program, Machine_VertexDescriptor* vertexDescriptor, Machine_VideoBuffer* buffer) {
+static Machine_Binding* createBinding(Machine_Gl_VideoContext* self, Machine_ShaderProgram* program, Ring3_VertexDescriptor* vertexDescriptor, Machine_VideoBuffer* buffer) {
   return (Machine_Binding*)Machine_Gl_Binding_create(program, vertexDescriptor, buffer);
 }
 
@@ -342,7 +342,7 @@ static void Machine_Gl_VideoContext_constructClass(Machine_Gl_VideoContext_Class
   ((Machine_VideoContext_Class*)self)->createBuffer = (Machine_VideoBuffer * (*)(Machine_VideoContext*)) & createBuffer;
   ((Machine_VideoContext_Class*)self)->createTextureFromImage = (Machine_Texture * (*)(Machine_VideoContext*, Machine_Image*)) & createTextureFromImage;
   ((Machine_VideoContext_Class*)self)->createProgram = (Machine_ShaderProgram * (*)(Machine_VideoContext*, Ring2_String*, Ring2_String*, Ring2_String*)) & createProgram;
-  ((Machine_VideoContext_Class*)self)->createBinding = (Machine_Binding * (*)(Machine_VideoContext*, Machine_ShaderProgram*, Machine_VertexDescriptor*, Machine_VideoBuffer*)) & createBinding;
+  ((Machine_VideoContext_Class*)self)->createBinding = (Machine_Binding * (*)(Machine_VideoContext*, Machine_ShaderProgram*, Ring3_VertexDescriptor*, Machine_VideoBuffer*)) & createBinding;
 
   ((Machine_VideoContext_Class*)self)->bindTexture = (void (*)(Machine_VideoContext*, size_t, Machine_Texture*)) & bindTexture;
 

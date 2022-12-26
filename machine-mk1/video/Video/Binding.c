@@ -5,9 +5,8 @@
 #include "Video/Binding.h"
 
 #include "Ring1/All/_Include.h"
-#include "Video/Buffer.h"
+#include "Video/VideoBuffer.h"
 #include "Video/ShaderProgram.h"
-#include "Video/VertexDescriptor.h"
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -99,8 +98,8 @@ void Machine_Binding_construct(Machine_Binding* self, size_t numberOfArguments,
   self->dirty = true;
   self->program = (Machine_ShaderProgram*)Machine_Extensions_getObjectArgument(
       numberOfArguments, arguments, 0, Machine_ShaderProgram_getType());
-  self->vertexDescriptor = (Machine_VertexDescriptor*)Machine_Extensions_getObjectArgument(
-      numberOfArguments, arguments, 1, Machine_VertexDescriptor_getType());
+  self->vertexDescriptor = (Ring3_VertexDescriptor*)Machine_Extensions_getObjectArgument(
+      numberOfArguments, arguments, 1, Ring3_VertexDescriptor_getType());
   self->buffer = (Machine_VideoBuffer*)Machine_Extensions_getObjectArgument(
       numberOfArguments, arguments, 2, Machine_VideoBuffer_getType());
   self->nodes = NULL;

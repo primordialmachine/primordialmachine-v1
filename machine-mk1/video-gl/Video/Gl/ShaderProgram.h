@@ -31,29 +31,50 @@ struct Machine_Gl_ShaderProgram {
   Ring2_Collections_List* inputs;
 };
 
-void Machine_Gl_ShaderProgram_construct(Machine_Gl_ShaderProgram* self, size_t numberOfArguments,
-                                        Ring2_Value const* arguments);
+void
+Machine_Gl_ShaderProgram_construct
+  (
+    Machine_Gl_ShaderProgram* self,
+    size_t numberOfArguments,
+    Ring2_Value const* arguments
+  );
 
-Machine_Gl_ShaderProgram* Machine_Gl_ShaderProgram_create(Ring2_String* vertexProgramText,
-                                                          Ring2_String* geometryProgramText,
-                                                          Ring2_String* fragmentProgramText);
+Machine_Gl_ShaderProgram*
+Machine_Gl_ShaderProgram_create
+  (
+    Ring2_String* vertexProgramText,
+    Ring2_String* geometryProgramText,
+    Ring2_String* fragmentProgramText
+  );
 
 /// @param withMeshColor <code>uniform vec3 mesh_color</code>
 /// @param withVertexColor <code>attribute vec3 vertex_color</code>
 /// @param withTextureCoordinate <code>attribute vec2 vertex_texture_coordinate</code>
 /// @param withTexture <code>uniform sampler2D texture;</code>. @a withTextureCoordinate must be @a
 /// true if this is @a true.
-Machine_ShaderProgram* Machine_Gl_ShaderProgram_generateDefaultShader(
-    Ring2_Boolean withMeshColor, Ring2_Boolean withVertexColor,
-    Ring2_Boolean withTextureCoordinate, Ring2_Boolean withTexture);
+Machine_ShaderProgram*
+Machine_Gl_ShaderProgram_generateDefaultShader
+  (
+    Ring2_Boolean withMeshColor,
+    Ring2_Boolean withVertexColor,
+    Ring2_Boolean withTextureCoordinate,
+    Ring2_Boolean withTexture
+  );
 
 /// @brief Create a shader program for rendering an untextured, colored, rectangle.
 /// @return The shader program.
-Machine_ShaderProgram* Machine_Gl_ShaderProgram_generateShape2Shader();
+Machine_ShaderProgram*
+Machine_Gl_ShaderProgram_generateShape2Shader
+  (
+  );
 
 /// @brief Create a shader program for rendering 2D text.
 /// Provides <code>vec3 mesh_color</code> to colorize the text.
 /// @return The shader program.
-Machine_ShaderProgram* Machine_Gl_ShaderProgram_generateText2Shader(Ring2_Boolean highPrecision);
+Machine_ShaderProgram*
+Machine_Gl_ShaderProgram_generateText2Shader
+  (
+    Ring2_Boolean highPrecision
+  );
 
 #endif // MACHINE_GL_SHADERPROGRAM_H_INCLUDED

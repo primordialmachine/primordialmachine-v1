@@ -9,9 +9,15 @@
 #include "Ring3/Visuals/BlendFunction.h"
 #include "Ring3/Visuals/CanvasSizeChangedEvent.h"
 #include "Ring3/Visuals/DepthTestFunction.h"
+#include "Ring3/Visuals/GpuProgramInputDescriptor.h"
+#include "Ring3/Visuals/GpuProgramInputKind.h"
+#include "Ring3/Visuals/GpuProgramInputType.h"
+#include "Ring3/Visuals/GpuProgramKind.h"
 #include "Ring3/Visuals/Material.h"
 #include "Ring3/Visuals/MaterialBuilder.h"
 #include "Ring3/Visuals/PixelFormat.h"
+#include "Ring3/Visuals/VertexDescriptor.h"
+#include "Ring3/Visuals/VertexElementDescriptor.h"
 #include "Ring3/Visuals/VertexElementSemantics.h"
 #undef RING3_VISUALS_PRIVATE
 

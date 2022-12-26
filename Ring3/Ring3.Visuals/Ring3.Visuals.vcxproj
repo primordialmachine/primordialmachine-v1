@@ -34,10 +34,16 @@
     <ClInclude Include="Ring3\Visuals\CanvasSizeChangedEvent.h" />
     <ClInclude Include="Ring3\Visuals\DefaultMaterialBuilder.h" />
     <ClInclude Include="Ring3\Visuals\DepthTestFunction.h" />
+    <ClInclude Include="Ring3\Visuals\GpuProgramInputDescriptor.h" />
     <ClInclude Include="Ring3\Visuals\Material.h" />
     <ClInclude Include="Ring3\Visuals\Material.protected.h" />
     <ClInclude Include="Ring3\Visuals\MaterialBuilder.h" />
     <ClInclude Include="Ring3\Visuals\PixelFormat.h" />
+    <ClInclude Include="Ring3\Visuals\GpuProgramInputKind.h" />
+    <ClInclude Include="Ring3\Visuals\GpuProgramInputType.h" />
+    <ClInclude Include="Ring3\Visuals\GpuProgramKind.h" />
+    <ClInclude Include="Ring3\Visuals\VertexDescriptor.h" />
+    <ClInclude Include="Ring3\Visuals\VertexElementDescriptor.h" />
     <ClInclude Include="Ring3\Visuals\VertexElementSemantics.h" />
     <ClInclude Include="Ring3\Visuals\_Include.h" />
   </ItemGroup>
@@ -46,10 +52,16 @@
     <ClCompile Include="Ring3\Visuals\CanvasSizeChangedEvent.c" />
     <ClCompile Include="Ring3\Visuals\DefaultMaterialBuilder.c" />
     <ClCompile Include="Ring3\Visuals\DepthTestFunction.c" />
+    <ClCompile Include="Ring3\Visuals\GpuProgramInputDescriptor.c" />
     <ClCompile Include="Ring3\Visuals\Material.c" />
     <ClCompile Include="Ring3\Visuals\Material.protected.c" />
     <ClCompile Include="Ring3\Visuals\MaterialBuilder.c" />
     <ClCompile Include="Ring3\Visuals\PixelFormat.c" />
+    <ClCompile Include="Ring3\Visuals\GpuProgramInputKind.c" />
+    <ClCompile Include="Ring3\Visuals\GpuProgramInputType.c" />
+    <ClCompile Include="Ring3\Visuals\GpuProgramKind.c" />
+    <ClCompile Include="Ring3\Visuals\VertexDescriptor.c" />
+    <ClCompile Include="Ring3\Visuals\VertexElementDescriptor.c" />
     <ClCompile Include="Ring3\Visuals\VertexElementSemantics.c" />
     <ClCompile Include="Ring3\Visuals\_Include.c" />
   </ItemGroup>

@@ -31,9 +31,9 @@ static void Machine_Gl_Binding_destruct(Machine_Gl_Binding* self) {
   }
 }
 
-static void bindVar(Machine_Gl_Binding const* self, size_t inputIndex, Machine_ProgramInput const* input) {
+static void bindVar(Machine_Gl_Binding const* self, size_t inputIndex, Ring3_GpuProgramInputDescriptor const* input) {
   Ring2_assertNotNull(input);
-  Ring2_assert(input->kind == Machine_ProgramInputKind_Variable, Ring1_Status_InvalidArgument);
+  Ring2_assert(input->kind == Ring3_GpuProgramInputKind_Variable, Ring1_Status_InvalidArgument);
 
   // Get the index of the corresponding vertex element.
   size_t vertexElementIndex = Machine_Binding_getVariableBinding((Machine_Binding*)self, input->name);
@@ -46,19 +46,19 @@ static void bindVar(Machine_Gl_Binding const* self, size_t inputIndex, Machine_P
     Ring2_log(Ring2_LogFlags_ToWarnings, __FILE__, __LINE__, "input %s optimized out\n", Ring2_String_getBytes(input->name));
     return;
   }
-  size_t vertexSize = Machine_VertexDescriptor_getVertexSize(((Machine_Binding*)self)->vertexDescriptor);
-  Machine_VertexElementSemantics semantics = Machine_VertexDescriptor_getElementSemantics(((Machine_Binding*)self)->vertexDescriptor, vertexElementIndex);
-  size_t offset = Machine_VertexDescriptor_getElementOffset(((Machine_Binding*)self)->vertexDescriptor, vertexElementIndex);
+  size_t vertexSize = Ring3_VertexDescriptor_getVertexSize(((Machine_Binding*)self)->vertexDescriptor);
+  Ring3_VertexElementSemantics semantics = Ring3_VertexDescriptor_getElementSemantics(((Machine_Binding*)self)->vertexDescriptor, vertexElementIndex);
+  size_t offset = Ring3_VertexDescriptor_getElementOffset(((Machine_Binding*)self)->vertexDescriptor, vertexElementIndex);
   Machine_UtilitiesGl_call(glEnableVertexAttribArray(inputIndex));
   Machine_UtilitiesGl_call(glBindBuffer(GL_ARRAY_BUFFER, *((GLuint*)Machine_VideoBuffer_getId(((Machine_Binding*)self)->buffer))));
   switch (semantics) {
-  case Machine_VertexElementSemantics_XfYf:
+  case Ring3_VertexElementSemantics_XfYf:
     Machine_UtilitiesGl_call(glVertexAttribPointer(attributeLocation, 2, GL_FLOAT, GL_FALSE, vertexSize, (void*)offset));
     break;
-  case Machine_VertexElementSemantics_RfGfBf:
+  case Ring3_VertexElementSemantics_RfGfBf:
     Machine_UtilitiesGl_call(glVertexAttribPointer(attributeLocation, 3, GL_FLOAT, GL_FALSE, vertexSize, (void*)offset));
     break;
-  case Machine_VertexElementSemantics_UfVf:
+  case Ring3_VertexElementSemantics_UfVf:
     Machine_UtilitiesGl_call(glVertexAttribPointer(attributeLocation, 2, GL_FLOAT, GL_FALSE, vertexSize, (void*)offset));
     break;
   };
@@ -227,8 +227,8 @@ static void Machine_Binding_activateImpl(Machine_Gl_Binding* self) {
       Ring2_jump();
     }
     for (size_t i = 0, j = 0, n = Machine_ShaderProgram_getNumberOfInputs(((Machine_Binding*)self)->program); i < n;) {
-      Machine_ProgramInput const* input = Machine_ShaderProgram_getInputAt(((Machine_Binding*)self)->program, i);
-      if (input->kind == Machine_ProgramInputKind_Variable) {
+      Ring3_GpuProgramInputDescriptor const* input = Machine_ShaderProgram_getInputAt(((Machine_Binding*)self)->program, i);
+      if (input->kind == Ring3_GpuProgramInputKind_Variable) {
         bindVar(self, j, input);
         j++;
       }
@@ -262,7 +262,7 @@ static void Machine_Gl_Binding_construct(Machine_Gl_Binding* self, size_t number
   Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Gl_Binding_getType());
 }
 
-Machine_Gl_Binding* Machine_Gl_Binding_create(Machine_ShaderProgram* program, Machine_VertexDescriptor* vertexDescriptor, Machine_VideoBuffer* buffer) {
+Machine_Gl_Binding* Machine_Gl_Binding_create(Machine_ShaderProgram* program, Ring3_VertexDescriptor* vertexDescriptor, Machine_VideoBuffer* buffer) {
   Machine_ClassType* ty = Machine_Gl_Binding_getType();
   size_t numberOfArguments = 3;
   Ring2_Value arguments[3];

@@ -109,10 +109,10 @@ static void Scene3_startup(Scene3* self) {
   self->shaderProgram
       = Machine_VideoContext_generateDefaultShader(videoContext, false, true, true, true);
 
-  Machine_VertexDescriptor* vd = Machine_VertexDescriptor_create();
-  Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_XfYf);
-  Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_RfGfBf);
-  Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_UfVf);
+  Ring3_VertexDescriptor* vd = Ring3_VertexDescriptor_create();
+  Ring3_VertexDescriptor_append(vd, Ring3_VertexElementSemantics_XfYf);
+  Ring3_VertexDescriptor_append(vd, Ring3_VertexElementSemantics_RfGfBf);
+  Ring3_VertexDescriptor_append(vd, Ring3_VertexElementSemantics_UfVf);
 
   self->binding = Machine_VideoContext_createBinding(videoContext, self->shaderProgram, vd, self->vertices);
 

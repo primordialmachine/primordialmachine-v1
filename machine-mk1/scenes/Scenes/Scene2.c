@@ -64,9 +64,9 @@ static void Scene2_onStartup(Scene2* self) {
   self->shaderProgram
       = Machine_VideoContext_generateDefaultShader(videoContext, false, true, false, false);
 
-  Machine_VertexDescriptor* vd = Machine_VertexDescriptor_create();
-  Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_XfYf);
-  Machine_VertexDescriptor_append(vd, Machine_VertexElementSemantics_RfGfBf);
+  Ring3_VertexDescriptor* vd = Ring3_VertexDescriptor_create();
+  Ring3_VertexDescriptor_append(vd, Ring3_VertexElementSemantics_XfYf);
+  Ring3_VertexDescriptor_append(vd, Ring3_VertexElementSemantics_RfGfBf);
 
   self->binding
       = Machine_VideoContext_createBinding(videoContext, self->shaderProgram, vd, self->vertices);
