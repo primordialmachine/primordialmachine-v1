@@ -6,7 +6,7 @@
 #include "Ring3/Math/Rectangle2.h"
 
 #include "Ring1/All/_Include.h"
-#include "Ring3/Math/Vector2.h"
+#include "Ring3/Math/Vector2f32.h"
 
 static void
 Ring3_Math_Rectangle2_construct
@@ -73,21 +73,21 @@ void
 Ring3_Math_Rectangle2_setPosition
   (
     Ring3_Math_Rectangle2* self,
-    const Ring3_Math_Vector2* position
+    const Ring3_Math_Vector2f32* position
   )
 {
-  self->x = Ring3_Math_Vector2_getX(position);
-  self->y = Ring3_Math_Vector2_getY(position);
+  self->x = Ring3_Math_Vector2f32_getX(position);
+  self->y = Ring3_Math_Vector2f32_getY(position);
 }
 
-Ring1_CheckReturn() Ring3_Math_Vector2*
+Ring1_CheckReturn() Ring3_Math_Vector2f32*
 Ring3_Math_Rectangle2_getPosition
   (
     const Ring3_Math_Rectangle2* self
   )
 {
-  Ring3_Math_Vector2* p = Ring3_Math_Vector2_create();
-  Ring3_Math_Vector2_set(p, self->x, self->y);
+  Ring3_Math_Vector2f32* p = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(p, self->x, self->y);
   return p;
 }
 
@@ -95,32 +95,32 @@ void
 Ring3_Math_Rectangle2_setSize
   (
     Ring3_Math_Rectangle2* self,
-    const Ring3_Math_Vector2* size
+    const Ring3_Math_Vector2f32* size
   )
 {
-  self->w = Ring3_Math_Vector2_getX(size);
-  self->h = Ring3_Math_Vector2_getY(size);
+  self->w = Ring3_Math_Vector2f32_getX(size);
+  self->h = Ring3_Math_Vector2f32_getY(size);
 }
 
-Ring1_CheckReturn() const Ring3_Math_Vector2*
+Ring1_CheckReturn() const Ring3_Math_Vector2f32*
 Ring3_Math_Rectangle2_getSize
   (
     const Ring3_Math_Rectangle2* self
   )
 {
-  Ring3_Math_Vector2* size = Ring3_Math_Vector2_create();
-  Ring3_Math_Vector2_set(size, self->w, self->h);
+  Ring3_Math_Vector2f32* size = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(size, self->w, self->h);
   return size;
 }
 
-Ring1_CheckReturn() const Ring3_Math_Vector2 *
+Ring1_CheckReturn() const Ring3_Math_Vector2f32*
 Ring3_Math_Rectangle2_getCenter
   (
     const Ring3_Math_Rectangle2 *self
   )
 {
-  Ring3_Math_Vector2 *center = Ring3_Math_Vector2_create();
-  Ring3_Math_Vector2_set(center, self->x + self->w * 0.5f, self->y + self->h * 0.5f);
+  Ring3_Math_Vector2f32 *center = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(center, self->x + self->w * 0.5f, self->y + self->h * 0.5f);
   return center;
 }
 
@@ -128,27 +128,27 @@ void
 Ring3_Math_Rectangle2_addPoint
   (
     Ring3_Math_Rectangle2* self,
-    const Ring3_Math_Vector2* point
+    const Ring3_Math_Vector2f32* point
   )
 {
-  if (self->x > Ring3_Math_Vector2_getX(point)) {
-    float d = self->x - Ring3_Math_Vector2_getX(point);
-    self->x = Ring3_Math_Vector2_getX(point);
+  if (self->x > Ring3_Math_Vector2f32_getX(point)) {
+    float d = self->x - Ring3_Math_Vector2f32_getX(point);
+    self->x = Ring3_Math_Vector2f32_getX(point);
     self->w += d;
   }
 
-  if (self->x + self->w < Ring3_Math_Vector2_getX(point)) {
-    self->w = Ring3_Math_Vector2_getX(point) - self->x;
+  if (self->x + self->w < Ring3_Math_Vector2f32_getX(point)) {
+    self->w = Ring3_Math_Vector2f32_getX(point) - self->x;
   }
 
-  if (self->y > Ring3_Math_Vector2_getY(point)) {
-    float d = self->y - Ring3_Math_Vector2_getY(point);
-    self->y = Ring3_Math_Vector2_getY(point);
+  if (self->y > Ring3_Math_Vector2f32_getY(point)) {
+    float d = self->y - Ring3_Math_Vector2f32_getY(point);
+    self->y = Ring3_Math_Vector2f32_getY(point);
     self->h += d;
   }
 
-  if (self->y + self->h < Ring3_Math_Vector2_getY(point)) {
-    self->h = Ring3_Math_Vector2_getY(point) - self->y;
+  if (self->y + self->h < Ring3_Math_Vector2f32_getY(point)) {
+    self->h = Ring3_Math_Vector2f32_getY(point) - self->y;
   }
 }
 
@@ -175,25 +175,25 @@ Ring3_Math_Rectangle2_setCenter
   self->y = y - self->h * .5f;
 }
 
-Ring1_CheckReturn() Ring3_Math_Vector2*
+Ring1_CheckReturn() Ring3_Math_Vector2f32*
 Ring3_Math_Rectangle2_getMin
   (
     const Ring3_Math_Rectangle2* self
   )
 {
-  Ring3_Math_Vector2* p = Ring3_Math_Vector2_create();
-  Ring3_Math_Vector2_set(p, self->x, self->y);
+  Ring3_Math_Vector2f32* p = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(p, self->x, self->y);
   return p;
 }
 
-Ring1_CheckReturn() Ring3_Math_Vector2*
+Ring1_CheckReturn() Ring3_Math_Vector2f32*
 Ring3_Math_Rectangle2_getMax
   (
     const Ring3_Math_Rectangle2* self
   )
 {
-  Ring3_Math_Vector2* p = Ring3_Math_Vector2_create();
-  Ring3_Math_Vector2_set(p, self->x + self->w, self->y + self->h);
+  Ring3_Math_Vector2f32* p = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(p, self->x + self->w, self->y + self->h);
   return p;
 }
 
@@ -271,9 +271,9 @@ void
 Ring3_Math_Rectangle2_translate
   (
     Ring3_Math_Rectangle2* self,
-    const Ring3_Math_Vector2* t
+    const Ring3_Math_Vector2f32* t
   )
 {
-  self->x += Ring3_Math_Vector2_getX(t);
-  self->y += Ring3_Math_Vector2_getY(t);
+  self->x += Ring3_Math_Vector2f32_getX(t);
+  self->y += Ring3_Math_Vector2f32_getY(t);
 }

@@ -94,36 +94,35 @@ static void Scene4_onStartup(Scene4* self) {
     Machine_Gui_TextNode_setText(self->textNode1, Ring2_String_fromC(text));
   }
   //
-  Ring3_Math_Vector4* c = Ring3_Math_Vector4_create();
-  Ring3_Math_Vector4_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
+  Ring3_Math_Vector4f32* c = Ring3_Math_Vector4f32_create();
+  Ring3_Math_Vector4f32_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
   Machine_VideoContext_setClearColor(videoContext, c);
 }
 
 static void alignLeftTop(Machine_Text_Layout* layout, Ring2_Real32 width, Ring2_Real32 height) {
-  Ring3_Math_Vector2* MARGIN = Ring3_Math_Vector2_create();
-  Ring3_Math_Vector2_set(MARGIN, 5.f, 5.f);
+  Ring3_Math_Vector2f32* MARGIN = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(MARGIN, 5.f, 5.f);
 
   const Ring3_Math_Rectangle2* bounds = Machine_Text_Layout_getBounds(layout);
-  const Ring3_Math_Vector2* position = Ring3_Math_Rectangle2_getPosition(bounds);
-  Ring3_Math_Vector2* delta = Ring3_Math_Vector2_difference(MARGIN, position);
-  Ring3_Math_Vector2* position2
-      = Ring3_Math_Vector2_sum(Machine_Text_Layout_getPosition(layout), delta);
+  const Ring3_Math_Vector2f32* position = Ring3_Math_Rectangle2_getPosition(bounds);
+  Ring3_Math_Vector2f32* delta = Ring3_Math_Vector2f32_difference(MARGIN, position);
+  Ring3_Math_Vector2f32* position2 = Ring3_Math_Vector2f32_sum(Machine_Text_Layout_getPosition(layout), delta);
   Machine_Text_Layout_setPosition(layout, position2);
 }
 
 static void alignCenter(Machine_Text_Layout* layout, Ring2_Real32 width, Ring2_Real32 height) {
-  Ring3_Math_Vector2* HALF = Ring3_Math_Vector2_create();
-  Ring3_Math_Vector2_set(HALF, 0.5f, 0.5f);
-  Ring3_Math_Vector2* CANVAS_SIZE = Ring3_Math_Vector2_create();
-  Ring3_Math_Vector2_set(CANVAS_SIZE, width, height);
-  Ring3_Math_Vector2* CANVAS_HALF_SIZE = Ring3_Math_Vector2_product(CANVAS_SIZE, HALF);
-  Ring3_Math_Vector2* CANVAS_CENTER = Ring3_Math_Vector2_clone(CANVAS_HALF_SIZE);
+  Ring3_Math_Vector2f32* HALF = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(HALF, 0.5f, 0.5f);
+  Ring3_Math_Vector2f32* CANVAS_SIZE = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(CANVAS_SIZE, width, height);
+  Ring3_Math_Vector2f32* CANVAS_HALF_SIZE = Ring3_Math_Vector2f32_product(CANVAS_SIZE, HALF);
+  Ring3_Math_Vector2f32* CANVAS_CENTER = Ring3_Math_Vector2f32_clone(CANVAS_HALF_SIZE);
 
   const Ring3_Math_Rectangle2* bounds = Machine_Text_Layout_getBounds(layout);
-  const Ring3_Math_Vector2* center = Ring3_Math_Rectangle2_getCenter(bounds);
-  Ring3_Math_Vector2* delta = Ring3_Math_Vector2_difference(CANVAS_CENTER, center);
-  const Ring3_Math_Vector2* oldPosition = Machine_Text_Layout_getPosition(layout);
-  Ring3_Math_Vector2* newPosition = Ring3_Math_Vector2_sum(oldPosition, delta);
+  const Ring3_Math_Vector2f32* center = Ring3_Math_Rectangle2_getCenter(bounds);
+  Ring3_Math_Vector2f32* delta = Ring3_Math_Vector2f32_difference(CANVAS_CENTER, center);
+  const Ring3_Math_Vector2f32* oldPosition = Machine_Text_Layout_getPosition(layout);
+  Ring3_Math_Vector2f32* newPosition = Ring3_Math_Vector2f32_sum(oldPosition, delta);
   Machine_Text_Layout_setPosition(layout, newPosition);
 }
 
@@ -136,19 +135,19 @@ static void updateText2(Scene4* self, Ring2_Real32 width, Ring2_Real32 height) {
 }
 
 static void updateText3(Scene4* self, Ring2_Real32 width, Ring2_Real32 height) {
-  Ring3_Math_Vector2* MARGIN = Ring3_Math_Vector2_create();
-  Ring3_Math_Vector2_set(MARGIN, 5.f, height * 0.5f);
-  Ring3_Math_Vector2* SIZE = Ring3_Math_Vector2_create();
-  Ring3_Math_Vector2_set(SIZE, 64, 64);
+  Ring3_Math_Vector2f32* MARGIN = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(MARGIN, 5.f, height * 0.5f);
+  Ring3_Math_Vector2f32* SIZE = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(SIZE, 64, 64);
 
   Machine_Gui_Widget_setSize((Machine_Gui_Widget*)self->textNode1, SIZE);
   const Ring3_Math_Rectangle2* bounds
       = Machine_Gui_Widget_getRectangle((Machine_Gui_Widget*)self->textNode1);
-  const Ring3_Math_Vector2* leftTop = Ring3_Math_Rectangle2_getPosition(bounds);
-  Ring3_Math_Vector2* delta = Ring3_Math_Vector2_difference(MARGIN, leftTop);
-  const Ring3_Math_Vector2* oldPosition
+  const Ring3_Math_Vector2f32* leftTop = Ring3_Math_Rectangle2_getPosition(bounds);
+  Ring3_Math_Vector2f32* delta = Ring3_Math_Vector2f32_difference(MARGIN, leftTop);
+  const Ring3_Math_Vector2f32* oldPosition
       = Machine_Gui_Widget_getPosition((Machine_Gui_Widget*)self->textNode1);
-  const Ring3_Math_Vector2* newPosition = Ring3_Math_Vector2_sum(oldPosition, delta);
+  const Ring3_Math_Vector2f32* newPosition = Ring3_Math_Vector2f32_sum(oldPosition, delta);
   Machine_Gui_Widget_setPosition((Machine_Gui_Widget*)self->textNode1, newPosition);
 }
 
@@ -200,8 +199,5 @@ Scene4* Scene4_create(Machine_VideoContext* videoContext) {
   Ring2_Value ARGUMENTS[1];
   Ring2_Value_setObject(&(ARGUMENTS[0]), (Machine_Object*)videoContext);
   Scene4* self = (Scene4*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
-  if (!self) {
-    Ring2_jump();
-  }
   return self;
 }

@@ -15,7 +15,7 @@ struct Machine_Font_Class {
   Ring2_Real32 (*getBaselineDistance)(Machine_Font* self);
   Ring2_Boolean (*getCodePointInfo)(Machine_Font* self, uint32_t codepoint,
                                     Ring3_Math_Rectangle2* bounds,
-                                    Ring3_Math_Vector2* advance, Machine_Texture** texture);
+                                    Ring3_Math_Vector2f32* advance, Machine_Texture** texture);
   Machine_Binding* (*getVideoBinding)(Machine_Font* self);
   Machine_ShaderProgram* (*getVideoShaderProgram)(Machine_Font* self);
   Machine_VideoBuffer* (*getVideoBuffer)(Machine_Font* self);
@@ -60,7 +60,7 @@ Machine_Font_getCodePointInfo
     Machine_Font* self,
     uint32_t codepoint,
     Ring3_Math_Rectangle2* bounds,
-    Ring3_Math_Vector2* advance,
+    Ring3_Math_Vector2f32* advance,
     Machine_Texture** texture
   );
 

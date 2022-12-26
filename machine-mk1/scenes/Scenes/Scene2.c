@@ -77,8 +77,8 @@ static void Scene2_onStartup(Scene2* self) {
       self->binding, 
       Ring2_String_create("vertex_color", crt_strlen("vertex_color") + 1), 1);
 
-  Ring3_Math_Vector4* c = Ring3_Math_Vector4_create();
-  Ring3_Math_Vector4_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
+  Ring3_Math_Vector4f32* c = Ring3_Math_Vector4f32_create();
+  Ring3_Math_Vector4f32_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
   Machine_VideoContext_setClearColor(videoContext, c);
 }
 

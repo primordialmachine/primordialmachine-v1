@@ -25,8 +25,8 @@ void Machine_Gui_BorderModel_construct(Machine_Gui_BorderModel* self, size_t num
   self->rightWidth = 1.f;
   self->topWidth = 1.f;
   self->bottomWidth = 1.f;
-  self->color = Ring3_Math_Vector4_create();
-  Ring3_Math_Vector4_set(self->color, 0.1f, 0.1f, 0.1f, 1.f);
+  self->color = Ring3_Math_Vector4f32_create();
+  Ring3_Math_Vector4f32_set(self->color, 0.1f, 0.1f, 0.1f, 1.f);
   Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Gui_BorderModel_getType());
 }
 
@@ -43,13 +43,13 @@ Machine_Gui_BorderModel* Machine_Gui_BorderModel_create() {
   return self;
 }
 
-Ring3_Math_Vector4 const* Machine_Gui_BorderModel_getColor(Machine_Gui_BorderModel const* self) {
+Ring3_Math_Vector4f32 const* Machine_Gui_BorderModel_getColor(Machine_Gui_BorderModel const* self) {
   return self->color;
 }
 
 void Machine_Gui_BorderModel_setColor(Machine_Gui_BorderModel* self,
-                                      Ring3_Math_Vector4 const* color) {
-  Ring3_Math_Vector4_copy(self->color, color);
+                                      Ring3_Math_Vector4f32 const* color) {
+  Ring3_Math_Vector4f32_copy(self->color, color);
 }
 
 Ring2_Real32 Machine_Gui_BorderModel_getLeftWidth(Machine_Gui_BorderModel const* self) {

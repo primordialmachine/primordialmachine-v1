@@ -153,7 +153,7 @@ static Ring2_Real32 Machine_Fonts_Font_getBaselineDistance(Machine_Fonts_Font* s
   return self->baselineDistance;
 }
 
-static Ring2_Boolean Machine_Fonts_Font_getCodePointInfo(Machine_Fonts_Font* self, uint32_t codepoint, Ring3_Math_Rectangle2* bounds, Ring3_Math_Vector2* advance, Machine_Texture** texture) {
+static Ring2_Boolean Machine_Fonts_Font_getCodePointInfo(Machine_Fonts_Font* self, uint32_t codepoint, Ring3_Math_Rectangle2* bounds, Ring3_Math_Vector2f32* advance, Machine_Texture** texture) {
   if (isWhitespace(codepoint)) {
     codepoint = ' ';
   }
@@ -165,13 +165,13 @@ static Ring2_Boolean Machine_Fonts_Font_getCodePointInfo(Machine_Fonts_Font* sel
     Ring2_log(Ring2_LogFlags_ToWarnings, __FILE__, __LINE__, "%"PRIu32" not found\n", codepoint);
     return false;
   }
-  Ring3_Math_Vector2* v = Ring3_Math_Vector2_create();
-  Ring3_Math_Vector2_set(v, node->bearingx, node->bearingy);
+  Ring3_Math_Vector2f32* v = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(v, node->bearingx, node->bearingy);
   Ring3_Math_Rectangle2_setPosition(bounds, v);
-  Ring3_Math_Vector2_set(v, node->w, node->h);
+  Ring3_Math_Vector2f32_set(v, node->w, node->h);
   Ring3_Math_Rectangle2_setSize(bounds, v);
   *texture = node->texture;
-  Ring3_Math_Vector2_set(advance, node->advancex, node->advancey);
+  Ring3_Math_Vector2f32_set(advance, node->advancex, node->advancey);
   return true;
 }
 
@@ -189,7 +189,7 @@ static Machine_VideoBuffer* Machine_Fonts_Font_getVideoBuffer(Machine_Fonts_Font
 
 static void Machine_Fonts_Font_constructClass(Machine_Fonts_Font_Class* self) {
   ((Machine_Font_Class*)self)->getBaselineDistance = (Ring2_Real32(*)(Machine_Font*)) & Machine_Fonts_Font_getBaselineDistance;
-  ((Machine_Font_Class*)self)->getCodePointInfo = (Ring2_Boolean(*)(Machine_Font*, uint32_t codepoint, Ring3_Math_Rectangle2 * bounds, Ring3_Math_Vector2 * advance, Machine_Texture * *texture)) & Machine_Fonts_Font_getCodePointInfo;
+  ((Machine_Font_Class*)self)->getCodePointInfo = (Ring2_Boolean(*)(Machine_Font*, uint32_t codepoint, Ring3_Math_Rectangle2* bounds, Ring3_Math_Vector2f32* advance, Machine_Texture * *texture)) & Machine_Fonts_Font_getCodePointInfo;
   ((Machine_Font_Class*)self)->getVideoBinding = (Machine_Binding * (*)(Machine_Font*)) & Machine_Fonts_Font_getVideoBinding;
   ((Machine_Font_Class*)self)->getVideoBuffer = (Machine_VideoBuffer * (*)(Machine_Font*)) & Machine_Fonts_Font_getVideoBuffer;
   ((Machine_Font_Class*)self)->getVideoShaderProgram = (Machine_ShaderProgram * (*)(Machine_Font*)) & Machine_Fonts_Font_getVideoShaderProgram;

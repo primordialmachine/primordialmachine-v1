@@ -80,8 +80,8 @@ void Machine_Gui_Context_onRender(Machine_Gui_Context* self) {
   Ring2_Real32 targetWidth = Machine_Context2_getTargetWidth(self->context2),
                targetHeight = Machine_Context2_getTargetHeight(self->context2);
   if (targetWidth > 0.f && targetHeight > 0.f && self->rootGroup) {
-    Ring3_Math_Vector2* canvasSize = Ring3_Math_Vector2_create();
-    Ring3_Math_Vector2_set(canvasSize, targetWidth, targetHeight);
+    Ring3_Math_Vector2f32* canvasSize = Ring3_Math_Vector2f32_create();
+    Ring3_Math_Vector2f32_set(canvasSize, targetWidth, targetHeight);
     Machine_Gui_Widget_setSize((Machine_Gui_Widget*)self->rootGroup, canvasSize);
     Machine_Gui_GroupNode_relayout(self->rootGroup, targetWidth, targetHeight);
   }

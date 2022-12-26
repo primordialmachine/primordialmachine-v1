@@ -34,7 +34,7 @@ static void Machine_Gui_BorderNode_visit(Machine_Gui_BorderNode* self);
 static void Machine_Gui_BorderNode_construct(Machine_Gui_BorderNode* self, size_t numberOfArguments,
                                              Ring2_Value const* arguments);
 
-static Ring3_Math_Vector2 const* Machine_Gui_BorderNode_getPreferredSize(
+static Ring3_Math_Vector2f32 const* Machine_Gui_BorderNode_getPreferredSize(
     Machine_Gui_BorderNode const* self);
 
 static Ring3_Math_Rectangle2 const* Machine_Gui_BorderNode_getCanvasRectangle(
@@ -82,7 +82,7 @@ static void Machine_Gui_BorderNode_render(Machine_Gui_BorderNode* self, Machine_
     Machine_Gui_Widget_render(self->child, context);
 
     {
-      Ring3_Math_Vector4 const* c = Machine_Gui_BorderModel_getColor(self->borderModel);
+      Ring3_Math_Vector4f32 const* c = Machine_Gui_BorderModel_getColor(self->borderModel);
       Machine_Rectangle2_setColor(self->borderRectangle, c);
     }
     Ring2_Real32 lw = Machine_Gui_BorderModel_getLeftWidth(self->borderModel),
@@ -96,13 +96,13 @@ static void Machine_Gui_BorderNode_render(Machine_Gui_BorderNode* self, Machine_
         Ring3_Math_Rectangle2* r = Ring3_Math_Rectangle2_create();
 
         //
-        Ring3_Math_Vector2* position = Ring3_Math_Vector2_create();
-        Ring3_Math_Vector2_set(position, Ring3_Math_Rectangle2_getMinX(R),
-                               Ring3_Math_Rectangle2_getMinY(R));
+        Ring3_Math_Vector2f32* position = Ring3_Math_Vector2f32_create();
+        Ring3_Math_Vector2f32_set(position, Ring3_Math_Rectangle2_getMinX(R),
+                                            Ring3_Math_Rectangle2_getMinY(R));
 
         //
-        Ring3_Math_Vector2* size = Ring3_Math_Vector2_create();
-        Ring3_Math_Vector2_set(size, lw, tw);
+        Ring3_Math_Vector2f32* size = Ring3_Math_Vector2f32_create();
+        Ring3_Math_Vector2f32_set(size, lw, tw);
 
         Ring3_Math_Rectangle2_setPosition(r, position);
         Ring3_Math_Rectangle2_setSize(r, size);
@@ -114,13 +114,13 @@ static void Machine_Gui_BorderNode_render(Machine_Gui_BorderNode* self, Machine_
         Ring3_Math_Rectangle2* r = Ring3_Math_Rectangle2_create();
 
         //
-        Ring3_Math_Vector2* position = Ring3_Math_Vector2_create();
-        Ring3_Math_Vector2_set(position, Ring3_Math_Rectangle2_getMaxX(R) - rw,
-                                 Ring3_Math_Rectangle2_getMinY(R));
+        Ring3_Math_Vector2f32* position = Ring3_Math_Vector2f32_create();
+        Ring3_Math_Vector2f32_set(position, Ring3_Math_Rectangle2_getMaxX(R) - rw,
+                                            Ring3_Math_Rectangle2_getMinY(R));
 
         //
-        Ring3_Math_Vector2* size = Ring3_Math_Vector2_create();
-        Ring3_Math_Vector2_set(size, rw, tw);
+        Ring3_Math_Vector2f32* size = Ring3_Math_Vector2f32_create();
+        Ring3_Math_Vector2f32_set(size, rw, tw);
 
         Ring3_Math_Rectangle2_setPosition(r, position);
         Ring3_Math_Rectangle2_setSize(r, size);
@@ -132,13 +132,13 @@ static void Machine_Gui_BorderNode_render(Machine_Gui_BorderNode* self, Machine_
         Ring3_Math_Rectangle2* r = Ring3_Math_Rectangle2_create();
 
         //
-        Ring3_Math_Vector2* position = Ring3_Math_Vector2_create();
-        Ring3_Math_Vector2_set(position, Ring3_Math_Rectangle2_getMinX(R),
-                                 Ring3_Math_Rectangle2_getMaxY(R) - bw);
+        Ring3_Math_Vector2f32* position = Ring3_Math_Vector2f32_create();
+        Ring3_Math_Vector2f32_set(position, Ring3_Math_Rectangle2_getMinX(R),
+                                            Ring3_Math_Rectangle2_getMaxY(R) - bw);
 
         //
-        Ring3_Math_Vector2* size = Ring3_Math_Vector2_create();
-        Ring3_Math_Vector2_set(size, lw, bw);
+        Ring3_Math_Vector2f32* size = Ring3_Math_Vector2f32_create();
+        Ring3_Math_Vector2f32_set(size, lw, bw);
 
         Ring3_Math_Rectangle2_setPosition(r, position);
         Ring3_Math_Rectangle2_setSize(r, size);
@@ -150,13 +150,13 @@ static void Machine_Gui_BorderNode_render(Machine_Gui_BorderNode* self, Machine_
         Ring3_Math_Rectangle2* r = Ring3_Math_Rectangle2_create();
 
         //
-        Ring3_Math_Vector2* position = Ring3_Math_Vector2_create();
-        Ring3_Math_Vector2_set(position, Ring3_Math_Rectangle2_getMaxX(R) - rw,
-                                 Ring3_Math_Rectangle2_getMaxY(R) - bw);
+        Ring3_Math_Vector2f32* position = Ring3_Math_Vector2f32_create();
+        Ring3_Math_Vector2f32_set(position, Ring3_Math_Rectangle2_getMaxX(R) - rw,
+                                            Ring3_Math_Rectangle2_getMaxY(R) - bw);
 
         //
-        Ring3_Math_Vector2* size = Ring3_Math_Vector2_create();
-        Ring3_Math_Vector2_set(size, rw, bw);
+        Ring3_Math_Vector2f32* size = Ring3_Math_Vector2f32_create();
+        Ring3_Math_Vector2f32_set(size, rw, bw);
 
         Ring3_Math_Rectangle2_setPosition(r, position);
         Ring3_Math_Rectangle2_setSize(r, size);
@@ -168,14 +168,13 @@ static void Machine_Gui_BorderNode_render(Machine_Gui_BorderNode* self, Machine_
         Ring3_Math_Rectangle2* r = Ring3_Math_Rectangle2_create();
 
         //
-        Ring3_Math_Vector2* position = Ring3_Math_Vector2_create();
-        Ring3_Math_Vector2_set(position, Ring3_Math_Rectangle2_getMinX(R),
-                                 Ring3_Math_Rectangle2_getMinY(R) + tw);
+        Ring3_Math_Vector2f32* position = Ring3_Math_Vector2f32_create();
+        Ring3_Math_Vector2f32_set(position, Ring3_Math_Rectangle2_getMinX(R),
+                                            Ring3_Math_Rectangle2_getMinY(R) + tw);
 
         //
-        Ring3_Math_Vector2* size = Ring3_Math_Vector2_create();
-        Ring3_Math_Vector2_set(
-            size, lw, Ring3_Math_Vector2_getY(Ring3_Math_Rectangle2_getSize(R)) - tw - bw);
+        Ring3_Math_Vector2f32* size = Ring3_Math_Vector2f32_create();
+        Ring3_Math_Vector2f32_set(size, lw, Ring3_Math_Vector2f32_getY(Ring3_Math_Rectangle2_getSize(R)) - tw - bw);
 
         Ring3_Math_Rectangle2_setPosition(r, position);
         Ring3_Math_Rectangle2_setSize(r, size);
@@ -187,14 +186,13 @@ static void Machine_Gui_BorderNode_render(Machine_Gui_BorderNode* self, Machine_
         Ring3_Math_Rectangle2* r = Ring3_Math_Rectangle2_create();
 
         //
-        Ring3_Math_Vector2* position = Ring3_Math_Vector2_create();
-        Ring3_Math_Vector2_set(position, Ring3_Math_Rectangle2_getMaxX(R) - rw,
-                                 Ring3_Math_Rectangle2_getMinY(R) + tw);
+        Ring3_Math_Vector2f32* position = Ring3_Math_Vector2f32_create();
+        Ring3_Math_Vector2f32_set(position, Ring3_Math_Rectangle2_getMaxX(R) - rw,
+                                            Ring3_Math_Rectangle2_getMinY(R) + tw);
 
         //
-        Ring3_Math_Vector2* size = Ring3_Math_Vector2_create();
-        Ring3_Math_Vector2_set(
-            size, rw, Ring3_Math_Vector2_getY(Ring3_Math_Rectangle2_getSize(R)) - tw - bw);
+        Ring3_Math_Vector2f32* size = Ring3_Math_Vector2f32_create();
+        Ring3_Math_Vector2f32_set(size, rw, Ring3_Math_Vector2f32_getY(Ring3_Math_Rectangle2_getSize(R)) - tw - bw);
 
         Ring3_Math_Rectangle2_setPosition(r, position);
         Ring3_Math_Rectangle2_setSize(r, size);
@@ -206,14 +204,13 @@ static void Machine_Gui_BorderNode_render(Machine_Gui_BorderNode* self, Machine_
         Ring3_Math_Rectangle2* r = Ring3_Math_Rectangle2_create();
 
         //
-        Ring3_Math_Vector2* position = Ring3_Math_Vector2_create();
-        Ring3_Math_Vector2_set(position, Ring3_Math_Rectangle2_getMinX(R) + lw,
-                                 Ring3_Math_Rectangle2_getMinY(R));
+        Ring3_Math_Vector2f32* position = Ring3_Math_Vector2f32_create();
+        Ring3_Math_Vector2f32_set(position, Ring3_Math_Rectangle2_getMinX(R) + lw,
+                                            Ring3_Math_Rectangle2_getMinY(R));
 
         //
-        Ring3_Math_Vector2* size = Ring3_Math_Vector2_create();
-        Ring3_Math_Vector2_set(
-            size, Ring3_Math_Vector2_getX(Ring3_Math_Rectangle2_getSize(R)) - lw - rw, tw);
+        Ring3_Math_Vector2f32* size = Ring3_Math_Vector2f32_create();
+        Ring3_Math_Vector2f32_set(size, Ring3_Math_Vector2f32_getX(Ring3_Math_Rectangle2_getSize(R)) - lw - rw, tw);
 
         Ring3_Math_Rectangle2_setPosition(r, position);
         Ring3_Math_Rectangle2_setSize(r, size);
@@ -225,14 +222,13 @@ static void Machine_Gui_BorderNode_render(Machine_Gui_BorderNode* self, Machine_
         Ring3_Math_Rectangle2* r = Ring3_Math_Rectangle2_create();
 
         //
-        Ring3_Math_Vector2* position = Ring3_Math_Vector2_create();
-        Ring3_Math_Vector2_set(position, Ring3_Math_Rectangle2_getMinX(R) + lw,
-                                 Ring3_Math_Rectangle2_getMaxY(R) - bw);
+        Ring3_Math_Vector2f32* position = Ring3_Math_Vector2f32_create();
+        Ring3_Math_Vector2f32_set(position, Ring3_Math_Rectangle2_getMinX(R) + lw,
+                                            Ring3_Math_Rectangle2_getMaxY(R) - bw);
 
         //
-        Ring3_Math_Vector2* size = Ring3_Math_Vector2_create();
-        Ring3_Math_Vector2_set(
-            size, Ring3_Math_Vector2_getX(Ring3_Math_Rectangle2_getSize(R)) - lw - rw, bw);
+        Ring3_Math_Vector2f32* size = Ring3_Math_Vector2f32_create();
+        Ring3_Math_Vector2f32_set(size, Ring3_Math_Vector2f32_getX(Ring3_Math_Rectangle2_getSize(R)) - lw - rw, bw);
 
         Ring3_Math_Rectangle2_setPosition(r, position);
         Ring3_Math_Rectangle2_setSize(r, size);
@@ -258,7 +254,7 @@ static void Machine_Gui_BorderNode_constructClass(Machine_Gui_BorderNode_Class* 
   ((Machine_Gui_Widget_Class*)self)->render
       = (void (*)(Machine_Gui_Widget*, Machine_Context2*)) & Machine_Gui_BorderNode_render;
   ((Machine_Gui_Widget_Class*)self)->getPreferredSize
-      = (Ring3_Math_Vector2 const* (*)(Machine_Gui_Widget const*))
+      = (Ring3_Math_Vector2f32 const* (*)(Machine_Gui_Widget const*))
         & Machine_Gui_BorderNode_getPreferredSize;
   ((Machine_Gui_Widget_Class*)self)->getCanvasRectangle
       = (Ring3_Math_Rectangle2 const* (*)(Machine_Gui_Widget const*))
@@ -310,13 +306,13 @@ void Machine_Gui_BorderNode_setChild(Machine_Gui_BorderNode* self, Machine_Gui_W
   self->childDirty = true;
 }
 
-Ring3_Math_Vector4 const* Machine_Gui_BorderNode_getBorderColor(
+Ring3_Math_Vector4f32 const* Machine_Gui_BorderNode_getBorderColor(
     Machine_Gui_BorderNode const* self) {
   return Machine_Gui_BorderModel_getColor(self->borderModel);
 }
 
 void Machine_Gui_BorderNode_setBorderColor(Machine_Gui_BorderNode* self,
-                                           Ring3_Math_Vector4 const* color) {
+                                           Ring3_Math_Vector4f32 const* color) {
   Machine_Gui_BorderModel_setColor(self->borderModel, color);
 }
 
@@ -356,16 +352,16 @@ void Machine_Gui_BorderNode_setBottomBorderWidth(Machine_Gui_BorderNode* self, R
   Machine_Gui_BorderModel_setBottomWidth(self->borderModel, width);
 }
 
-static Ring3_Math_Vector2 const* Machine_Gui_BorderNode_getPreferredSize(
+static Ring3_Math_Vector2f32 const* Machine_Gui_BorderNode_getPreferredSize(
     Machine_Gui_BorderNode const* self) {
-  Ring3_Math_Vector2 const* preferredSize = self->child
+  Ring3_Math_Vector2f32 const* preferredSize = self->child
                                                   ? Machine_Gui_Widget_getPreferredSize(self->child)
-                                                  : Ring3_Math_Vector2_create();
-  Ring3_Math_Vector2* borderSize = Ring3_Math_Vector2_create();
+                                                  : Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32* borderSize = Ring3_Math_Vector2f32_create();
   Ring2_Real32 w = Machine_Gui_BorderModel_getLeftWidth(self->borderModel)
                    + Machine_Gui_BorderModel_getRightWidth(self->borderModel);
   Ring2_Real32 h = Machine_Gui_BorderModel_getTopWidth(self->borderModel)
                    + Machine_Gui_BorderModel_getBottomWidth(self->borderModel);
-  Ring3_Math_Vector2_set(borderSize, w, h);
-  return Ring3_Math_Vector2_sum(preferredSize, borderSize);
+  Ring3_Math_Vector2f32_set(borderSize, w, h);
+  return Ring3_Math_Vector2f32_sum(preferredSize, borderSize);
 }

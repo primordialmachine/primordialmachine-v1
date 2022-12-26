@@ -37,12 +37,12 @@ Ring2_String* Machine_Gui_TextNode_getText(Machine_Gui_TextNode const* self);
 /// @param self This text node.
 /// @param backgroundColor The background color.
 void Machine_Gui_TextNode_setBackgroundColor(Machine_Gui_TextNode* self,
-                                             Ring3_Math_Vector4 const* backgroundColor);
+                                             Ring3_Math_Vector4f32 const* backgroundColor);
 
 /// @brief Get the background color.
 /// @param self This text node.
 /// @return The background color.
-Ring3_Math_Vector4 const* Machine_Gui_TextNode_getBackgroundColor(Machine_Gui_TextNode const* self);
+Ring3_Math_Vector4f32 const* Machine_Gui_TextNode_getBackgroundColor(Machine_Gui_TextNode const* self);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -50,12 +50,12 @@ Ring3_Math_Vector4 const* Machine_Gui_TextNode_getBackgroundColor(Machine_Gui_Te
 /// @param self This text node.
 /// @param foregroundColor The foreground color.
 void Machine_Gui_TextNode_setForegroundColor(Machine_Gui_TextNode* self,
-                                             Ring3_Math_Vector3 const* foregroundColor);
+                                             Ring3_Math_Vector3f32 const* foregroundColor);
 
 /// @brief Set the foreground color.
 /// @param self This text node.
 /// @return The foreground color.
-Ring3_Math_Vector3 const* Machine_Gui_TextNode_getForegroundColor(Machine_Gui_TextNode const* self);
+Ring3_Math_Vector3f32 const* Machine_Gui_TextNode_getForegroundColor(Machine_Gui_TextNode const* self);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 

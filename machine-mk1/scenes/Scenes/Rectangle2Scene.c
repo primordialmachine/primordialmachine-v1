@@ -49,8 +49,8 @@ static void Rectangle2Scene_onStartup(Rectangle2Scene* self) {
   // Create the 2D rectangle.
   self->rectangle2 = Machine_Rectangle2_create();
   // Set the clear color.
-  Ring3_Math_Vector4* c = Ring3_Math_Vector4_create();
-  Ring3_Math_Vector4_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
+  Ring3_Math_Vector4f32* c = Ring3_Math_Vector4f32_create();
+  Ring3_Math_Vector4f32_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
   Machine_VideoContext_setClearColor(videoContext, c);
 }
 
@@ -63,11 +63,11 @@ static void Rectangle2Scene_onCanvasSizeChanged(Rectangle2Scene* self,
   Machine_VideoContext_setViewportRectangle(videoContext, 0, 0, event->width, event->height);
   // Set the 2D rectangle's rectangle.
   Ring3_Math_Rectangle2* r = Ring3_Math_Rectangle2_create();
-  Ring3_Math_Vector2* v = Ring3_Math_Vector2_create();
-  Ring3_Math_Vector2_set(v, event->width / 2.f - event->width / 4.f,
-                           event->height / 2.f - event->height / 4.f);
+  Ring3_Math_Vector2f32* v = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(v, event->width / 2.f - event->width / 4.f,
+                               event->height / 2.f - event->height / 4.f);
   Ring3_Math_Rectangle2_setPosition(r, v);
-  Ring3_Math_Vector2_set(v, event->width / 2.f, event->height / 2.f);
+  Ring3_Math_Vector2f32_set(v, event->width / 2.f, event->height / 2.f);
   Ring3_Math_Rectangle2_setSize(r, v);
   Machine_Rectangle2_setRectangle(self->rectangle2, r);
 }

@@ -19,9 +19,9 @@ MACHINE_DECLARE_CLASSTYPE(Machine_VideoContext)
 struct Machine_VideoContext_Class {
   Machine_Object_Class parent;
 
-  void (*setClearColor)(Machine_VideoContext* self, Ring3_Math_Vector4 const* clearColor);
+  void (*setClearColor)(Machine_VideoContext* self, Ring3_Math_Vector4f32 const* clearColor);
 
-  Ring3_Math_Vector4 const* (*getClearColor)(Machine_VideoContext const* self);
+  Ring3_Math_Vector4f32 const* (*getClearColor)(Machine_VideoContext const* self);
 
   void (*setIncomingBlendFunction)(Machine_VideoContext* self,
                                    Ring3_BlendFunction incomingBlendFunction);
@@ -107,13 +107,13 @@ void Machine_VideoContext_construct(Machine_VideoContext* self, size_t numberOfA
 /// @param self This video context.
 /// @param clearColor The clear color.
 void Machine_VideoContext_setClearColor(Machine_VideoContext* self,
-                                        Ring3_Math_Vector4 const* clearColor);
+                                        Ring3_Math_Vector4f32 const* clearColor);
 
 /// @brief Get the clear color.
 /// @param self This video context.
 /// @return The clear color.
 /// @default Default color is opaque black.
-Ring3_Math_Vector4 const* Machine_VideoContext_getClearColor(Machine_VideoContext const* self);
+Ring3_Math_Vector4f32 const* Machine_VideoContext_getClearColor(Machine_VideoContext const* self);
 
 /// @brief Set the blend function for the incoming color.
 /// @param self This video context.

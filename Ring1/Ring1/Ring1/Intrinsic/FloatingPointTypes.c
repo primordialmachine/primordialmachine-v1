@@ -11,6 +11,24 @@
 #if defined(Ring1_Intrinsic_WithFp32) && 1 == Ring1_Intrinsic_WithFp32
 
 Ring1_NoDiscardReturn() Ring1_Result
+Ring1_Fp_equalToWithTolerance_f32
+  (
+    bool* result,
+    float x,
+    float y,
+    float a,
+    float r
+  )
+{
+  if (Ring1_Unlikely(!result)) {
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
+    return Ring1_Result_Failure;
+  }
+  *result = (fabs(x - y) <= a + r * fabs(y));
+  return Ring1_Result_Success;
+}
+
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Fp_getRawBits_f32
   (
     uint32_t *result,
@@ -116,6 +134,24 @@ Ring1_Fp_split_f32
 #endif // Ring1_Intrinsic_WithFp32
 
 #if defined(Ring1_Intrinsic_WithFp64) && 1 == Ring1_Intrinsic_WithFp64
+
+Ring1_NoDiscardReturn() Ring1_Result
+Ring1_Fp_equalToWithTolerance_f64
+  (
+    bool* result,
+    double x,
+    double y,
+    double a,
+    double r
+  )
+{
+  if (Ring1_Unlikely(!result)) {
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
+    return Ring1_Result_Failure;
+  }
+  *result = (fabs(x - y) <= a + r * fabs(y));
+  return Ring1_Result_Success;
+}
 
 Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Fp_getRawBits_f64

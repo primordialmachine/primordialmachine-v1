@@ -30,9 +30,9 @@ struct Machine_Text_Layout_Class {
 struct Machine_Text_Layout {
   Machine_Object parent;
   /// @brief The position of this layout.
-  Ring3_Math_Vector2* position;
+  Ring3_Math_Vector2f32* position;
   /// @brief The color of this layout.
-  Ring3_Math_Vector3* color;
+  Ring3_Math_Vector3f32* color;
   /// @brief The font of this layout.
   Machine_Font* font;
   Ring2_String* text;
@@ -90,24 +90,24 @@ Ring2_String* Machine_Text_Layout_getText(Machine_Text_Layout* self);
 /// @brief Set the position of this text layout.
 /// @param self This text layout.
 /// @param position The position.
-void Machine_Text_Layout_setPosition(Machine_Text_Layout* self, Ring3_Math_Vector2 *position);
+void Machine_Text_Layout_setPosition(Machine_Text_Layout* self, Ring3_Math_Vector2f32 *position);
 
 /// @brief Get the position of this text layout.
 /// @param self This text layout.
 /// @return The position.
-const Ring3_Math_Vector2* Machine_Text_Layout_getPosition(Machine_Text_Layout* self);
+const Ring3_Math_Vector2f32* Machine_Text_Layout_getPosition(Machine_Text_Layout* self);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /// @brief Set the color of this text layout.
 /// @param self This text layout.
 /// @param color The color.
-void Machine_Text_Layout_setColor(Machine_Text_Layout* self, const Ring3_Math_Vector3* color);
+void Machine_Text_Layout_setColor(Machine_Text_Layout* self, const Ring3_Math_Vector3f32* color);
 
 /// @brief Get the color of this text layout.
 /// @param self This text layout.
 /// @return The color.
-const Ring3_Math_Vector3* Machine_Text_Layout_getColor(Machine_Text_Layout* self);
+const Ring3_Math_Vector3f32* Machine_Text_Layout_getColor(Machine_Text_Layout* self);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 

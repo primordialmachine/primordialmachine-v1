@@ -39,7 +39,7 @@ static void Machine_Gui_TextNode_visit(Machine_Gui_TextNode* self) {
   }
 }
 
-static Ring3_Math_Vector2 const* Machine_Gui_TextNode_getPreferredSize(
+static Ring3_Math_Vector2f32 const* Machine_Gui_TextNode_getPreferredSize(
     Machine_Gui_TextNode const* self);
 
 static void Machine_Gui_TextNode_render(Machine_Gui_TextNode* self, Machine_Context2* ctx2);
@@ -59,7 +59,7 @@ static void Machine_Gui_TextNode_constructClass(Machine_Gui_TextNode_Class* self
   ((Machine_Gui_Widget_Class*)self)->render
       = (void (*)(Machine_Gui_Widget*, Machine_Context2*)) & Machine_Gui_TextNode_render;
   ((Machine_Gui_Widget_Class*)self)->getPreferredSize
-      = (Ring3_Math_Vector2 const* (*)(Machine_Gui_Widget const*))
+      = (Ring3_Math_Vector2f32 const* (*)(Machine_Gui_Widget const*))
         & Machine_Gui_TextNode_getPreferredSize;
 }
 
@@ -100,7 +100,7 @@ Machine_Gui_TextNode* Machine_Gui_TextNode_create(Machine_Gui_Context* context) 
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-static Ring3_Math_Vector2 const* Machine_Gui_TextNode_getPreferredSize(
+static Ring3_Math_Vector2f32 const* Machine_Gui_TextNode_getPreferredSize(
     Machine_Gui_TextNode const* self) {
   return Ring3_Math_Rectangle2_getSize(Machine_Text_Layout_getBounds(self->foreground));
 }
@@ -120,13 +120,13 @@ Ring2_String* Machine_Gui_TextNode_getText(Machine_Gui_TextNode const* self) {
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 void Machine_Gui_TextNode_setBackgroundColor(Machine_Gui_TextNode* self,
-                                             Ring3_Math_Vector4 const* backgroundColor) {
+                                             Ring3_Math_Vector4f32 const* backgroundColor) {
   Machine_Rectangle2_setColor(self->background, backgroundColor);
   Machine_Gui_Widget_emitPositionChangedSignal((Machine_Gui_Widget*)self);
   Machine_Gui_Widget_emitSizeChangedSignal((Machine_Gui_Widget*)self);
 }
 
-Ring3_Math_Vector4 const* Machine_Gui_TextNode_getBackgroundColor(
+Ring3_Math_Vector4f32 const* Machine_Gui_TextNode_getBackgroundColor(
     Machine_Gui_TextNode const* self) {
   return Machine_Rectangle2_getColor(self->background);
 }
@@ -134,13 +134,13 @@ Ring3_Math_Vector4 const* Machine_Gui_TextNode_getBackgroundColor(
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 void Machine_Gui_TextNode_setForegroundColor(Machine_Gui_TextNode* self,
-                                             Ring3_Math_Vector3 const* foregroundColor) {
+                                             Ring3_Math_Vector3f32 const* foregroundColor) {
   Machine_Text_Layout_setColor(self->foreground, foregroundColor);
   Machine_Gui_Widget_emitPositionChangedSignal((Machine_Gui_Widget*)self);
   Machine_Gui_Widget_emitSizeChangedSignal((Machine_Gui_Widget*)self);
 }
 
-Ring3_Math_Vector3 const* Machine_Gui_TextNode_getForegroundColor(
+Ring3_Math_Vector3f32 const* Machine_Gui_TextNode_getForegroundColor(
     Machine_Gui_TextNode const* self) {
   return Machine_Text_Layout_getColor(self->foreground);
 }
@@ -156,14 +156,14 @@ static void Machine_Gui_TextNode_render2(Machine_Gui_TextNode* self, Ring2_Real3
     Machine_Rectangle2_setRectangle(self->background, ((Machine_Gui_Widget*)self)->rectangle);
     // TODO: Only do this layouting if necessary.
     Ring3_Math_Rectangle2* clipRect = Machine_Rectangle2_getRectangle(self->background);
-    Ring3_Math_Vector2 const* widgetCenter
+    Ring3_Math_Vector2f32 const* widgetCenter
         = Ring3_Math_Rectangle2_getCenter(Machine_Rectangle2_getRectangle(self->background));
 
     Ring3_Math_Rectangle2 const* textBounds = Machine_Text_Layout_getBounds(self->foreground);
-    Ring3_Math_Vector2 const* textCenter = Ring3_Math_Rectangle2_getCenter(textBounds);
-    Ring3_Math_Vector2* delta = Ring3_Math_Vector2_difference(widgetCenter, textCenter);
-    Ring3_Math_Vector2 const* oldPosition = Machine_Text_Layout_getPosition(self->foreground);
-    Ring3_Math_Vector2* newPosition = Ring3_Math_Vector2_sum(oldPosition, delta);
+    Ring3_Math_Vector2f32 const* textCenter = Ring3_Math_Rectangle2_getCenter(textBounds);
+    Ring3_Math_Vector2f32* delta = Ring3_Math_Vector2f32_difference(widgetCenter, textCenter);
+    Ring3_Math_Vector2f32 const* oldPosition = Machine_Text_Layout_getPosition(self->foreground);
+    Ring3_Math_Vector2f32* newPosition = Ring3_Math_Vector2f32_sum(oldPosition, delta);
     Machine_Text_Layout_setPosition(self->foreground, newPosition);
     Machine_Text_Layout_setClipRectangle(self->foreground, clipRect);
 

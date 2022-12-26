@@ -10,8 +10,8 @@
 #endif
 
 #include "Ring2/Library/_Include.h"
-typedef struct Ring3_Math_Vector2 Ring3_Math_Vector2;
-typedef struct Ring3_Math_Vector3 Ring3_Math_Vector3;
+typedef struct Ring3_Math_Vector2f32 Ring3_Math_Vector2f32;
+typedef struct Ring3_Math_Vector3f32 Ring3_Math_Vector3f32;
 
 /// C-level definition of a 2D rectangle.
 /// The HLL-level definition is
@@ -55,13 +55,13 @@ void
 Ring3_Math_Rectangle2_setPosition
   (
     Ring3_Math_Rectangle2* self,
-    const Ring3_Math_Vector2* position
+    const Ring3_Math_Vector2f32* position
   );
 
 /// @brief Get the position of this rectangle.
 /// @param self This rectangle.
 /// @return The position.
-Ring1_CheckReturn() Ring3_Math_Vector2*
+Ring1_CheckReturn() Ring3_Math_Vector2f32*
 Ring3_Math_Rectangle2_getPosition
   (
     const Ring3_Math_Rectangle2* self
@@ -74,13 +74,13 @@ void
 Ring3_Math_Rectangle2_setSize
   (
     Ring3_Math_Rectangle2* self,
-    const Ring3_Math_Vector2* size
+    const Ring3_Math_Vector2f32* size
   );
 
 /// @brief Get the size of this rectangle.
 /// @param self This rectangle.
 /// @return The size of this rectangle.
-Ring1_CheckReturn() const Ring3_Math_Vector2*
+Ring1_CheckReturn() const Ring3_Math_Vector2f32*
 Ring3_Math_Rectangle2_getSize
   (
     const Ring3_Math_Rectangle2* self
@@ -89,7 +89,7 @@ Ring3_Math_Rectangle2_getSize
 /// @brief Get the center of this rectangle.
 /// @param self This rectangle.
 /// @return The center of this rectangle.
-Ring1_CheckReturn() const Ring3_Math_Vector2*
+Ring1_CheckReturn() const Ring3_Math_Vector2f32*
 Ring3_Math_Rectangle2_getCenter
   (
     const Ring3_Math_Rectangle2* self
@@ -102,7 +102,7 @@ void
 Ring3_Math_Rectangle2_addPoint
   (
     Ring3_Math_Rectangle2* self,
-    const Ring3_Math_Vector2* point
+    const Ring3_Math_Vector2f32* point
   );
 
 /// @brief Add a rectangle to this rectangle.
@@ -129,7 +129,7 @@ Ring3_Math_Rectangle2_setCenter
 /// @brief Get the minimum of this rectangle.
 /// @param self This rectangle.
 /// @return The minimum.
-Ring1_CheckReturn() Ring3_Math_Vector2*
+Ring1_CheckReturn() Ring3_Math_Vector2f32*
 Ring3_Math_Rectangle2_getMin
   (
     const Ring3_Math_Rectangle2* self
@@ -138,7 +138,7 @@ Ring3_Math_Rectangle2_getMin
 /// @brief Get the maximum of this rectangle.
 /// @param self This rectangle.
 /// @return The maximum.
-Ring1_CheckReturn() Ring3_Math_Vector2*
+Ring1_CheckReturn() Ring3_Math_Vector2f32*
 Ring3_Math_Rectangle2_getMax
   (
     const Ring3_Math_Rectangle2* self
@@ -204,7 +204,7 @@ void
 Ring3_Math_Rectangle2_translate
   (
     Ring3_Math_Rectangle2* self,
-    const Ring3_Math_Vector2* t
+    const Ring3_Math_Vector2f32* t
   );
 
 #endif // RING3_MATH_RECTANGLE2_H_INCLUDED

@@ -88,8 +88,8 @@ static void Scene5_startup(Scene5* self) {
   self->footer
       = (Machine_Gui_Widget*)loadWidgetByPath(self->guiContext, "scenes/scene5/footer.txt");
   //
-  Ring3_Math_Vector4* c = Ring3_Math_Vector4_create();
-  Ring3_Math_Vector4_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
+  Ring3_Math_Vector4f32* c = Ring3_Math_Vector4f32_create();
+  Ring3_Math_Vector4f32_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
   Machine_VideoContext_setClearColor(videoContext, c);
 }
 
@@ -99,8 +99,8 @@ static void renderText1(Scene5* self) {
 }
 
 static void updateText1(Scene5* self, Ring3_CanvasSizeChangedEvent* event) {
-  Ring3_Math_Vector2* v = Ring3_Math_Vector2_create();
-  Ring3_Math_Vector2_set(v, event->width, event->height);
+  Ring3_Math_Vector2f32* v = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(v, event->width, event->height);
   Machine_Gui_Context_setRootGroup(self->guiContext, self->mainMenu);
   Machine_Gui_Widget_setSize((Machine_Gui_Widget*)self->mainMenu, v);
 
@@ -124,19 +124,19 @@ Ring2_Real32 Machine_Real_maxima(Ring2_Real32 x, Ring2_Real32 y) {
 static void updateHeader(Scene5* self, Ring3_CanvasSizeChangedEvent* event) {
   static Ring2_Real32 const MARGIN_X = 5.f, MARGIN_Y = 5.f;
 
-  Ring3_Math_Vector2* MARGIN = Ring3_Math_Vector2_create();
-  Ring3_Math_Vector2_set(MARGIN, MARGIN_X, MARGIN_Y);
-  Ring3_Math_Vector2* canvasSize = Ring3_Math_Vector2_create();
-  Ring3_Math_Vector2_set(canvasSize, event->width, event->height);
+  Ring3_Math_Vector2f32* MARGIN = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(MARGIN, MARGIN_X, MARGIN_Y);
+  Ring3_Math_Vector2f32* canvasSize = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(canvasSize, event->width, event->height);
   // Set the size to the best size.
-  Ring3_Math_Vector2 const* preferredSize = Machine_Gui_Widget_getPreferredSize(self->header);
-  Ring3_Math_Vector2* temporary = Ring3_Math_Vector2_create();
-  Ring2_Real32 height = Ring3_Math_Vector2_getY(canvasSize) * (1.f / 6.f);
-  Ring3_Math_Vector2_set(temporary,
-                           Machine_Real_maxima(Ring3_Math_Vector2_getX(preferredSize),
-                                               Ring3_Math_Vector2_getX(canvasSize))
-                               - Ring3_Math_Vector2_getX(MARGIN) * 2.f,
-                           height);
+  Ring3_Math_Vector2f32 const* preferredSize = Machine_Gui_Widget_getPreferredSize(self->header);
+  Ring3_Math_Vector2f32* temporary = Ring3_Math_Vector2f32_create();
+  Ring2_Real32 height = Ring3_Math_Vector2f32_getY(canvasSize) * (1.f / 6.f);
+  Ring3_Math_Vector2f32_set(temporary,
+                            Machine_Real_maxima(Ring3_Math_Vector2f32_getX(preferredSize),
+                                                Ring3_Math_Vector2f32_getX(canvasSize))
+                            - Ring3_Math_Vector2f32_getX(MARGIN) * 2.f,
+                            height);
   Machine_Gui_Widget_setSize((Machine_Gui_Widget*)self->header, temporary);
   // Set the position to the margins.
   Machine_Gui_Widget_setPosition((Machine_Gui_Widget*)self->header, MARGIN);
@@ -155,24 +155,24 @@ static void renderFooter(Scene5* self) {
 static void updateFooter(Scene5* self, Ring3_CanvasSizeChangedEvent* event) {
   static Ring2_Real32 const MARGIN_X = 5.f, MARGIN_Y = 5.f;
 
-  Ring3_Math_Vector2* MARGIN = Ring3_Math_Vector2_create();
-  Ring3_Math_Vector2_set(MARGIN, MARGIN_X, MARGIN_Y);
-  Ring3_Math_Vector2* canvasSize = Ring3_Math_Vector2_create();
-  Ring3_Math_Vector2_set(canvasSize, event->width, event->height);
+  Ring3_Math_Vector2f32* MARGIN = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(MARGIN, MARGIN_X, MARGIN_Y);
+  Ring3_Math_Vector2f32* canvasSize = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(canvasSize, event->width, event->height);
   // Set the size to the best size.
-  Ring3_Math_Vector2 const* preferredSize = Machine_Gui_Widget_getPreferredSize(self->footer);
-  Ring3_Math_Vector2* temporary = Ring3_Math_Vector2_create();
-  Ring2_Real32 height = Ring3_Math_Vector2_getY(canvasSize) * (1.f / 6.f);
-  Ring3_Math_Vector2_set(temporary,
-                           Machine_Real_maxima(Ring3_Math_Vector2_getX(preferredSize),
-                                               Ring3_Math_Vector2_getX(canvasSize))
-                               - Ring3_Math_Vector2_getX(MARGIN) * 2.f,
-                           Ring3_Math_Vector2_getY(canvasSize) * (1.f / 6.f));
+  Ring3_Math_Vector2f32 const* preferredSize = Machine_Gui_Widget_getPreferredSize(self->footer);
+  Ring3_Math_Vector2f32* temporary = Ring3_Math_Vector2f32_create();
+  Ring2_Real32 height = Ring3_Math_Vector2f32_getY(canvasSize) * (1.f / 6.f);
+  Ring3_Math_Vector2f32_set(temporary,
+                            Machine_Real_maxima(Ring3_Math_Vector2f32_getX(preferredSize),
+                                                Ring3_Math_Vector2f32_getX(canvasSize))
+                            - Ring3_Math_Vector2f32_getX(MARGIN) * 2.f,
+                            Ring3_Math_Vector2f32_getY(canvasSize) * (1.f / 6.f));
   Machine_Gui_Widget_setSize((Machine_Gui_Widget*)self->footer, temporary);
   // Set the position to the margins.
-  Ring3_Math_Vector2_set(temporary, Ring3_Math_Vector2_getX(MARGIN),
-                           Ring3_Math_Vector2_getY(canvasSize) - height
-                               - Ring3_Math_Vector2_getY(MARGIN));
+  Ring3_Math_Vector2f32_set(temporary, Ring3_Math_Vector2f32_getX(MARGIN),
+                            Ring3_Math_Vector2f32_getY(canvasSize) - height
+                            - Ring3_Math_Vector2f32_getY(MARGIN));
   Machine_Gui_Widget_setPosition((Machine_Gui_Widget*)self->footer, temporary);
 }
 

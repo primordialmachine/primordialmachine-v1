@@ -17,15 +17,15 @@
 /// a value of type <code>Math.Vector3</code>.
 /// @param value A pointer to a value.
 /// @return The value of type <code>Real</code>.
-Ring3_Math_Vector3* Machine_Gui_Gdl_listToVector3(Ring2_Collections_List const* list);
+Ring3_Math_Vector3f32* Machine_Gui_Gdl_listToVector3(Ring2_Collections_List const* list);
 
 /// @brief
 /// Convert
 /// a list with 4 values of type <code>Integer</code> or <code>Real</code>
 /// to
-/// a value of type <code>Math.Vector4</code>.
+/// a value of type <code>Ring3.Math.Vector4f32</code>.
 /// @param value A pointer to a value.
 /// @return The value of type <code>Real</code>.
-Ring3_Math_Vector4* Machine_Gui_Gdl_listToVector4(Ring2_Collections_List const* list);
+Ring3_Math_Vector4f32* Machine_Gui_Gdl_listToVector4(Ring2_Collections_List const* list);
 
 #endif // MACHINE_GUI_GDL_LISTTOVECTOR3_H_INCLUDED

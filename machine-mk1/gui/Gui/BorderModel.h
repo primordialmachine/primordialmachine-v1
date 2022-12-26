@@ -20,7 +20,7 @@ struct Machine_Gui_BorderModel {
   Machine_Object __parent;
 
   /// @brief The color of the border.
-  Ring3_Math_Vector4* color;
+  Ring3_Math_Vector4f32* color;
 
   /// @brief The width of the left border.
   Ring2_Real32 leftWidth;
@@ -47,13 +47,13 @@ Machine_Gui_BorderModel* Machine_Gui_BorderModel_create();
 /// @brief Get the color of this border model.
 /// @param self This border model.
 /// @return The color.
-Ring3_Math_Vector4 const* Machine_Gui_BorderModel_getColor(Machine_Gui_BorderModel const* self);
+Ring3_Math_Vector4f32 const* Machine_Gui_BorderModel_getColor(Machine_Gui_BorderModel const* self);
 
 /// @brief Set the color of this border model.
 /// @param self This border model.
 /// @param color The color.
 void Machine_Gui_BorderModel_setColor(Machine_Gui_BorderModel* self,
-                                      Ring3_Math_Vector4 const* color);
+                                      Ring3_Math_Vector4f32 const* color);
 
 /// @brief Get the width of the left border.
 /// @param self This border model.

@@ -40,13 +40,13 @@ static void Machine_Gui_Widget_setRectangleImpl(Machine_Gui_Widget* self,
 }
 
 static void Machine_Gui_Widget_setPositionImpl(Machine_Gui_Widget* self,
-                                               Ring3_Math_Vector2 const* position) {
+                                               Ring3_Math_Vector2f32 const* position) {
   Ring3_Math_Rectangle2_setPosition(self->rectangle, position);
   Machine_Gui_Widget_emitPositionChangedSignal(self);
 }
 
 static void Machine_Gui_Widget_setSizeImpl(Machine_Gui_Widget* self,
-                                           Ring3_Math_Vector2 const* size) {
+                                           Ring3_Math_Vector2f32 const* size) {
   Ring3_Math_Rectangle2_setSize(self->rectangle, size);
   Machine_Gui_Widget_emitSizeChangedSignal(self);
 }
@@ -61,22 +61,22 @@ static Ring3_Math_Rectangle2 const* Machine_Gui_Widget_getCanvasRectangleImpl(
   return Machine_Gui_Widget_getRectangle(self);
 }
 
-static Ring3_Math_Vector2 const* Machine_Gui_Widget_getPositionImpl(
+static Ring3_Math_Vector2f32 const* Machine_Gui_Widget_getPositionImpl(
     Machine_Gui_Widget const* self) {
   return Ring3_Math_Rectangle2_getPosition(Machine_Gui_Widget_getRectangle(self));
 }
 
-static Ring3_Math_Vector2 const* Machine_Gui_Widget_getSizeImpl(Machine_Gui_Widget const* self) {
+static Ring3_Math_Vector2f32 const* Machine_Gui_Widget_getSizeImpl(Machine_Gui_Widget const* self) {
   return Ring3_Math_Rectangle2_getSize(Machine_Gui_Widget_getRectangle(self));
 }
 
-static Ring3_Math_Vector2 const* Machine_Gui_Widget_getAbsolutePositionImpl(
+static Ring3_Math_Vector2f32 const* Machine_Gui_Widget_getAbsolutePositionImpl(
     Machine_Gui_Widget const* self) {
-  Ring3_Math_Vector2 const* position = Machine_Gui_Widget_getPosition(self);
+  Ring3_Math_Vector2f32 const* position = Machine_Gui_Widget_getPosition(self);
   if (self->parent) {
-    Ring3_Math_Vector2* position_ = Ring3_Math_Vector2_clone(position);
-    Ring3_Math_Vector2_add(position_, position_,
-                             Machine_Gui_Widget_getAbsolutePosition(self->parent));
+    Ring3_Math_Vector2f32* position_ = Ring3_Math_Vector2f32_clone(position);
+    Ring3_Math_Vector2f32_add(position_, position_,
+                              Machine_Gui_Widget_getAbsolutePosition(self->parent));
     return position_;
   } else {
     return position;
@@ -113,13 +113,13 @@ static Ring3_Math_Rectangle2 const* Machine_Gui_Widget_getAbsoluteCanvasRectangl
 static void Machine_Gui_Widget_constructClass(Machine_Gui_Widget_Class* self) {
   self->getRectangle = (Ring3_Math_Rectangle2 const* (*)(Machine_Gui_Widget const*))
                        & Machine_Gui_Widget_getRectangleImpl;
-  self->getPosition = (Ring3_Math_Vector2 const* (*)(Machine_Gui_Widget const*))
+  self->getPosition = (Ring3_Math_Vector2f32 const* (*)(Machine_Gui_Widget const*))
                       & Machine_Gui_Widget_getPositionImpl;
-  self->getSize = (Ring3_Math_Vector2 const* (*)(Machine_Gui_Widget const*))
+  self->getSize = (Ring3_Math_Vector2f32 const* (*)(Machine_Gui_Widget const*))
                   & Machine_Gui_Widget_getSizeImpl;
   self->getCanvasRectangle = (Ring3_Math_Rectangle2 const* (*)(Machine_Gui_Widget const*))
                              & Machine_Gui_Widget_getCanvasRectangleImpl;
-  self->getAbsolutePosition = (Ring3_Math_Vector2 const* (*)(Machine_Gui_Widget const*))
+  self->getAbsolutePosition = (Ring3_Math_Vector2f32 const* (*)(Machine_Gui_Widget const*))
                               & Machine_Gui_Widget_getAbsolutePositionImpl;
   self->getAbsoluteRectangle = (Ring3_Math_Rectangle2 const* (*)(Machine_Gui_Widget const*))
                                & Machine_Gui_Widget_getAbsoluteRectangleImpl;
@@ -150,21 +150,21 @@ void Machine_Gui_Widget_render(Machine_Gui_Widget* self, Machine_Context2* ctx2)
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 void Machine_Gui_Widget_setPosition(Machine_Gui_Widget* self,
-                                    Ring3_Math_Vector2 const* position) {
+                                    Ring3_Math_Vector2f32 const* position) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_Gui_Widget, setPosition, position);
 }
 
-Ring3_Math_Vector2 const* Machine_Gui_Widget_getPosition(Machine_Gui_Widget const* self) {
+Ring3_Math_Vector2f32 const* Machine_Gui_Widget_getPosition(Machine_Gui_Widget const* self) {
   MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_Gui_Widget, getPosition);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-void Machine_Gui_Widget_setSize(Machine_Gui_Widget* self, Ring3_Math_Vector2 const* size) {
+void Machine_Gui_Widget_setSize(Machine_Gui_Widget* self, Ring3_Math_Vector2f32 const* size) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_Gui_Widget, setSize, size);
 }
 
-Ring3_Math_Vector2 const* Machine_Gui_Widget_getSize(Machine_Gui_Widget const* self) {
+Ring3_Math_Vector2f32 const* Machine_Gui_Widget_getSize(Machine_Gui_Widget const* self) {
   MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_Gui_Widget, getSize);
 }
 
@@ -186,13 +186,13 @@ Ring3_Math_Rectangle2 const* Machine_Gui_Widget_getCanvasRectangle(
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-Ring3_Math_Vector2 const* Machine_Gui_Widget_getPreferredSize(Machine_Gui_Widget const* self) {
+Ring3_Math_Vector2f32 const* Machine_Gui_Widget_getPreferredSize(Machine_Gui_Widget const* self) {
   MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_Gui_Widget, getPreferredSize);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-Ring3_Math_Vector2 const* Machine_Gui_Widget_getAbsolutePosition(Machine_Gui_Widget const* self) {
+Ring3_Math_Vector2f32 const* Machine_Gui_Widget_getAbsolutePosition(Machine_Gui_Widget const* self) {
   MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_Gui_Widget, getAbsolutePosition);
 }
 

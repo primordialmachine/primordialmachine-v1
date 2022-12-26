@@ -25,18 +25,15 @@
     <Filter Include="Quelldateien\Ring3\Math">
       <UniqueIdentifier>{81ded2be-d177-442d-be19-8b8e3a5872aa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring3\Math\Kernels">
+      <UniqueIdentifier>{151529a9-e4d6-4a09-bcee-6f023f3a6ed9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring3\Math\Kernels">
+      <UniqueIdentifier>{d244ec1a-0b23-4990-bd27-f3cd41477dd6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring3\Math\Rectangle2.c">
-      <Filter>Quelldateien\Ring3\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring3\Math\Vector2.c">
-      <Filter>Quelldateien\Ring3\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring3\Math\Vector3.c">
-      <Filter>Quelldateien\Ring3\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring3\Math\Vector4.c">
       <Filter>Quelldateien\Ring3\Math</Filter>
     </ClCompile>
     <ClCompile Include="Ring3\Math\Matrix4.c">
@@ -63,18 +60,18 @@
     <ClCompile Include="Ring3\Math\ColorRgbU8Extensions.c">
       <Filter>Quelldateien\Ring3\Math</Filter>
     </ClCompile>
+    <ClCompile Include="Ring3\Math\Vector2f32.c">
+      <Filter>Quelldateien\Ring3\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Math\Vector3f32.c">
+      <Filter>Quelldateien\Ring3\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Math\Vector4f32.c">
+      <Filter>Quelldateien\Ring3\Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring3\Math\Rectangle2.h">
-      <Filter>Headerdateien\Ring3\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring3\Math\Vector2.h">
-      <Filter>Headerdateien\Ring3\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring3\Math\Vector3.h">
-      <Filter>Headerdateien\Ring3\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring3\Math\Vector4.h">
       <Filter>Headerdateien\Ring3\Math</Filter>
     </ClInclude>
     <ClInclude Include="Ring3\Math\Matrix4.h">
@@ -100,6 +97,18 @@
     </ClInclude>
     <ClInclude Include="Ring3\Math\ColorRgbU8Extensions.h">
       <Filter>Headerdateien\Ring3\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Math\Vector2f32.h">
+      <Filter>Headerdateien\Ring3\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Math\Vector3f32.h">
+      <Filter>Headerdateien\Ring3\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Math\Vector4f32.h">
+      <Filter>Headerdateien\Ring3\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Math\Kernels\VectorKernel.h">
+      <Filter>Headerdateien\Ring3\Math\Kernels</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

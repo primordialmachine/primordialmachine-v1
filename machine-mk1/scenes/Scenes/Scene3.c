@@ -123,8 +123,8 @@ static void Scene3_startup(Scene3* self) {
   Machine_Binding_setVariableBinding(self->binding, Ring2_String_create("vertex_texture_coordinate_1",
                                                              crt_strlen("vertex_texture_coordinate_1") + 1), 2);
 
-  Ring3_Math_Vector4* c = Ring3_Math_Vector4_create();
-  Ring3_Math_Vector4_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
+  Ring3_Math_Vector4f32* c = Ring3_Math_Vector4f32_create();
+  Ring3_Math_Vector4f32_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
   Machine_VideoContext_setClearColor(videoContext, c);
 }
 

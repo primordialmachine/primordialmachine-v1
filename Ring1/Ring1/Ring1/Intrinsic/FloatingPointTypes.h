@@ -87,6 +87,33 @@ static_assert(Ring1_Fp_SignificantMask_f64 == (UINT64_C(1) << UINT64_C(52)) - 1,
 
 #if defined(Ring1_Intrinsic_WithFp32) && 1 == Ring1_Intrinsic_WithFp32
 
+/// @brief Compare two scalars with tolerance.
+/// @param result A pointer to a <code>bool</code> variable.
+/// @param x, y The scalars to compare.
+/// @param a, r The absolute tolerance and the relative tolerance.
+/// @return #Ring1_Result_Success on success. #Ring1_Result_Failure on failure.
+/// @success
+/// <code>*result</code>
+/// was assigned
+/// <code>true</code>
+/// if both scalars are equal.
+/// Otherwise it was assigned
+/// <code>false</code>
+/// @failure <code>result</code> was not dereferenced.
+/// @remark
+/// The following comparison function is used:
+/// Given an absolute tolerance \f$a\f$ and a relative tolerance \f$r\f$ then two scalars \f$x\f$ and \f$y\f$ are equal if \f$|x - y| \leq (a + r \cdot |y|)\f$ holds.
+/// @remark <code>1e-05</code> is a reasonable value for <code>absolute</code>, <code>1e-08</code> a reasonable value for <code>relative</code>.
+Ring1_NoDiscardReturn() Ring1_Result
+Ring1_Fp_equalToWithTolerance_f32
+  (
+    bool* result,
+    float x,
+    float y,
+    float a,
+    float r
+  );
+
 /// @brief Get the raw bits of a single-precision floating-point value.
 /// @param x The single-precision floating-point value.
 /// @return The raw bits of the single-precision floating-point value.
@@ -131,6 +158,33 @@ Ring1_Fp_split_f32
 #endif // Ring1_Intrinsic_WithFp32
 
 #if defined(Ring1_Intrinsic_WithFp64) && 1 == Ring1_Intrinsic_WithFp64
+
+/// @brief Compare two scalars with tolerance.
+/// @param result A pointer to a <code>bool</code> variable.
+/// @param x, y The scalars to compare.
+/// @param a, r The absolute tolerance and the relative tolerance.
+/// @return #Ring1_Result_Success on success. #Ring1_Result_Failure on failure.
+/// @success
+/// <code>*result</code>
+/// was assigned
+/// <code>true</code>
+/// if both scalars are equal.
+/// Otherwise it was assigned
+/// <code>false</code>
+/// @failure <code>result</code> was not dereferenced.
+/// @remark
+/// The following comparison function is used:
+/// Given an absolute tolerance \f$a\f$ and a relative tolerance \f$r\f$ then two scalars \f$x\f$ and \f$y\f$ are equal if \f$|x - y| \leq (a + r \cdot |y|)\f$ holds.
+/// @remark <code>1e-05</code> is a reasonable value for <code>absolute</code>, <code>1e-08</code> a reasonable value for <code>relative</code>.
+Ring1_NoDiscardReturn() Ring1_Result
+Ring1_Fp_equalToWithTolerance_f64
+  (
+    bool* result,
+    double x,
+    double y,
+    double a,
+    double r
+  );
 
 /// @brief Get the raw bits of a double-precision floating-point value.
 /// @param x The double-precision floating-point value.

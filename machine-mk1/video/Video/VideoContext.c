@@ -21,11 +21,11 @@ void Machine_VideoContext_construct(Machine_VideoContext* self, size_t numberOfA
 }
 
 void Machine_VideoContext_setClearColor(Machine_VideoContext* self,
-                                        Ring3_Math_Vector4 const* clearColor) {
+                                        Ring3_Math_Vector4f32 const* clearColor) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_VideoContext, setClearColor, clearColor);
 }
 
-Ring3_Math_Vector4 const* Machine_VideoContext_getClearColor(Machine_VideoContext const* self) {
+Ring3_Math_Vector4f32 const* Machine_VideoContext_getClearColor(Machine_VideoContext const* self) {
   MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_VideoContext, getClearColor);
 }
 

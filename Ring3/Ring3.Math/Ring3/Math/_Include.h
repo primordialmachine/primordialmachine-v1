@@ -14,9 +14,9 @@
 #include "Ring3/Math/ColorRgbU8Extensions.h"
 #include "Ring3/Math/Matrix4.h"
 #include "Ring3/Math/Rectangle2.h"
-#include "Ring3/Math/Vector2.h"
-#include "Ring3/Math/Vector3.h"
-#include "Ring3/Math/Vector4.h"
+#include "Ring3/Math/Vector2f32.h"
+#include "Ring3/Math/Vector3f32.h"
+#include "Ring3/Math/Vector4f32.h"
 #undef RING3_MATH_PRIVATE
 
 #endif // RING3_MATH__INCLUDE_H_INCLUDED

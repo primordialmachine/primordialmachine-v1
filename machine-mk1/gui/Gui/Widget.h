@@ -22,15 +22,15 @@ struct Machine_Gui_Widget_Class {
   void (*setRectangle)(Machine_Gui_Widget* self, Ring3_Math_Rectangle2 const* rectangle);
   Ring3_Math_Rectangle2 const* (*getCanvasRectangle)(Machine_Gui_Widget const* self);
 
-  Ring3_Math_Vector2 const* (*getPosition)(Machine_Gui_Widget const* self);
-  void (*setPosition)(Machine_Gui_Widget* self, Ring3_Math_Vector2 const* position);
+  Ring3_Math_Vector2f32 const* (*getPosition)(Machine_Gui_Widget const* self);
+  void (*setPosition)(Machine_Gui_Widget* self, Ring3_Math_Vector2f32 const* position);
 
-  Ring3_Math_Vector2 const* (*getSize)(Machine_Gui_Widget const* self);
-  void (*setSize)(Machine_Gui_Widget* self, Ring3_Math_Vector2 const* size);
+  Ring3_Math_Vector2f32 const* (*getSize)(Machine_Gui_Widget const* self);
+  void (*setSize)(Machine_Gui_Widget* self, Ring3_Math_Vector2f32 const* size);
 
-  Ring3_Math_Vector2 const* (*getPreferredSize)(Machine_Gui_Widget const* self);
+  Ring3_Math_Vector2f32 const* (*getPreferredSize)(Machine_Gui_Widget const* self);
 
-  Ring3_Math_Vector2 const* (*getAbsolutePosition)(Machine_Gui_Widget const* self);
+  Ring3_Math_Vector2f32 const* (*getAbsolutePosition)(Machine_Gui_Widget const* self);
   Ring3_Math_Rectangle2 const* (*getAbsoluteRectangle)(Machine_Gui_Widget const* self);
   Ring3_Math_Rectangle2 const* (*getAbsoluteCanvasRectangle)(Machine_Gui_Widget const* self);
 };
@@ -67,24 +67,24 @@ void Machine_Gui_Widget_render(Machine_Gui_Widget* self, Machine_Context2* ctx2)
 /// @brief Set the position.
 /// @param self This widget.
 /// @param position The position.
-void Machine_Gui_Widget_setPosition(Machine_Gui_Widget* self, Ring3_Math_Vector2 const* position);
+void Machine_Gui_Widget_setPosition(Machine_Gui_Widget* self, Ring3_Math_Vector2f32 const* position);
 
 /// @brief Get the position.
 /// @param self This widget.
 /// @return The position.
-Ring3_Math_Vector2 const* Machine_Gui_Widget_getPosition(Machine_Gui_Widget const* self);
+Ring3_Math_Vector2f32 const* Machine_Gui_Widget_getPosition(Machine_Gui_Widget const* self);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /// @brief Set the size.
 /// @param self This widget.
 /// @param size The size.
-void Machine_Gui_Widget_setSize(Machine_Gui_Widget* self, Ring3_Math_Vector2 const* size);
+void Machine_Gui_Widget_setSize(Machine_Gui_Widget* self, Ring3_Math_Vector2f32 const* size);
 
 /// @brief Get the size.
 /// @param self This widget.
 /// @return The size.
-Ring3_Math_Vector2 const* Machine_Gui_Widget_getSize(Machine_Gui_Widget const* self);
+Ring3_Math_Vector2f32 const* Machine_Gui_Widget_getSize(Machine_Gui_Widget const* self);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -110,14 +110,14 @@ Ring3_Math_Rectangle2 const* Machine_Gui_Widget_getCanvasRectangle(
 /// @brief Get the preferred size.
 /// @param self This widget.
 /// @return The preferred size.
-Ring3_Math_Vector2 const* Machine_Gui_Widget_getPreferredSize(Machine_Gui_Widget const* self);
+Ring3_Math_Vector2f32 const* Machine_Gui_Widget_getPreferredSize(Machine_Gui_Widget const* self);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /// @brief Get the absolute position.
 /// @param self This widget.
 /// @return The absolute position.
-Ring3_Math_Vector2 const* Machine_Gui_Widget_getAbsolutePosition(Machine_Gui_Widget const* self);
+Ring3_Math_Vector2f32 const* Machine_Gui_Widget_getAbsolutePosition(Machine_Gui_Widget const* self);
 
 /// @brief Get the absolute rectangle.
 /// @param self This widget.

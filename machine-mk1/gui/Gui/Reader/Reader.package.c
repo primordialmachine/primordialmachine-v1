@@ -115,12 +115,12 @@ Machine_Gui_BorderNode* Machine_Gui_Reader_readBorderNode(Machine_Gui_Context* s
     Machine_Gui_BorderNode_setBottomBorderWidth(widget, temporary);
   }
   if (Machine_Gui_Reader_hasList(self, source, subContext->BORDERCOLOR)) {
-    Ring3_Math_Vector3* temporary = Machine_Gui_Gdl_listToVector3(
+    Ring3_Math_Vector3f32* temporary = Machine_Gui_Gdl_listToVector3(
         Machine_Gui_Reader_getList(self, source, subContext->BORDERCOLOR));
-    Ring3_Math_Vector4* temporary2 = Ring3_Math_Vector4_create();
-    Ring3_Math_Vector4_set(temporary2, Ring3_Math_Vector3_getX(temporary),
-                                       Ring3_Math_Vector3_getY(temporary),
-                                       Ring3_Math_Vector3_getZ(temporary), 1.f);
+    Ring3_Math_Vector4f32* temporary2 = Ring3_Math_Vector4f32_create();
+    Ring3_Math_Vector4f32_set(temporary2, Ring3_Math_Vector3f32_getX(temporary),
+                                          Ring3_Math_Vector3f32_getY(temporary),
+                                          Ring3_Math_Vector3f32_getZ(temporary), 1.f);
     Machine_Gui_BorderNode_setBorderColor(widget, temporary2);
   }
   if (Machine_Gui_Reader_hasMap(self, source, subContext->CHILD)) {

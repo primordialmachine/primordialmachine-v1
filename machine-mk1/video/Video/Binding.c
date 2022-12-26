@@ -158,17 +158,17 @@ void Machine_Binding_bindMatrix4(Machine_Binding* self, Ring2_String* name,
 }
 
 void Machine_Binding_bindVector2(Machine_Binding* self, Ring2_String* name,
-                                 Ring3_Math_Vector2 const* value) {
+                                 Ring3_Math_Vector2f32 const* value) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_Binding, bindVector2, name, value);
 }
 
 void Machine_Binding_bindVector3(Machine_Binding* self, Ring2_String* name,
-                                 Ring3_Math_Vector3 const* value) {
+                                 Ring3_Math_Vector3f32 const* value) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_Binding, bindVector3, name, value);
 }
 
 void Machine_Binding_bindVector4(Machine_Binding* self, Ring2_String* name,
-                                 Ring3_Math_Vector4 const* value) {
+                                 Ring3_Math_Vector4f32 const* value) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_Binding, bindVector4, name, value);
 }
 

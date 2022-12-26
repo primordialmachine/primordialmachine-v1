@@ -89,17 +89,17 @@ static Ring3_BlendFunction getExistingBlendFunction(Machine_Gl_VideoContext cons
 
 
 
-static void setClearColor(Machine_Gl_VideoContext* self, Ring3_Math_Vector4 const* clearColor) {
-  self->clearColor[0] = Ring3_Math_Vector4_getX(clearColor);
-  self->clearColor[1] = Ring3_Math_Vector4_getY(clearColor);
-  self->clearColor[2] = Ring3_Math_Vector4_getZ(clearColor);
-  self->clearColor[3] = Ring3_Math_Vector4_getW(clearColor);
+static void setClearColor(Machine_Gl_VideoContext* self, Ring3_Math_Vector4f32 const* clearColor) {
+  self->clearColor[0] = Ring3_Math_Vector4f32_getX(clearColor);
+  self->clearColor[1] = Ring3_Math_Vector4f32_getY(clearColor);
+  self->clearColor[2] = Ring3_Math_Vector4f32_getZ(clearColor);
+  self->clearColor[3] = Ring3_Math_Vector4f32_getW(clearColor);
 }
 
-Ring3_Math_Vector4 const* getClearColor(Machine_Gl_VideoContext const* self) {
-  Ring3_Math_Vector4* clearColor = Ring3_Math_Vector4_create();
-  Ring3_Math_Vector4_set(clearColor, self->clearColor[0], self->clearColor[1], 
-                                     self->clearColor[2], self->clearColor[3]);
+Ring3_Math_Vector4f32 const* getClearColor(Machine_Gl_VideoContext const* self) {
+  Ring3_Math_Vector4f32* clearColor = Ring3_Math_Vector4f32_create();
+  Ring3_Math_Vector4f32_set(clearColor, self->clearColor[0], self->clearColor[1], 
+                                        self->clearColor[2], self->clearColor[3]);
   return clearColor;
 }
 
@@ -327,8 +327,8 @@ static void Machine_Gl_VideoContext_constructClass(Machine_Gl_VideoContext_Class
   ((Machine_VideoContext_Class*)self)->setExistingBlendFunction = (void (*)(Machine_VideoContext*, Ring3_BlendFunction)) & setExistingBlendFunction;
   ((Machine_VideoContext_Class*)self)->getExistingBlendFunction = (Ring3_BlendFunction(*)(Machine_VideoContext const*)) & getExistingBlendFunction;
 
-  ((Machine_VideoContext_Class*)self)->setClearColor = (void (*)(Machine_VideoContext*, Ring3_Math_Vector4 const*)) & setClearColor;
-  ((Machine_VideoContext_Class*)self)->getClearColor = (Ring3_Math_Vector4 const* (*)(Machine_VideoContext const*)) & getClearColor;
+  ((Machine_VideoContext_Class*)self)->setClearColor = (void (*)(Machine_VideoContext*, Ring3_Math_Vector4f32 const*)) & setClearColor;
+  ((Machine_VideoContext_Class*)self)->getClearColor = (Ring3_Math_Vector4f32 const* (*)(Machine_VideoContext const*)) & getClearColor;
 
   ((Machine_VideoContext_Class*)self)->setViewportRectangle = (void (*)(Machine_VideoContext*, Ring2_Real32, Ring2_Real32, Ring2_Real32, Ring2_Real32)) & setViewportRectangle;
   ((Machine_VideoContext_Class*)self)->getViewportRectangle = (void (*)(Machine_VideoContext const*, Ring2_Real32*, Ring2_Real32*, Ring2_Real32*, Ring2_Real32*)) & getViewportRectangle;
@@ -373,11 +373,11 @@ void Machine_Gl_VideoContext_construct(Machine_Gl_VideoContext* self, size_t num
     glfwGetFramebufferSize(Machine_Glfw_getWindow(), &w, &h);
     width = w; height = h;
     self->viewportRectangle = Ring3_Math_Rectangle2_create();
-    Ring3_Math_Vector2* v;
-    v = Ring3_Math_Vector2_create();
-    Ring3_Math_Vector2_set(v, 0.f, 0.f);
+    Ring3_Math_Vector2f32* v;
+    v = Ring3_Math_Vector2f32_create();
+    Ring3_Math_Vector2f32_set(v, 0.f, 0.f);
     Ring3_Math_Rectangle2_setPosition(self->viewportRectangle, v);
-    Ring3_Math_Vector2_set(v, (Ring2_Real32)width, (Ring2_Real32)height);
+    Ring3_Math_Vector2f32_set(v, (Ring2_Real32)width, (Ring2_Real32)height);
     Ring3_Math_Rectangle2_setSize(self->viewportRectangle, v);
   }
   {
