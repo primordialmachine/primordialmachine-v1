@@ -1,7 +1,7 @@
 #include "Ring1/TypeDescriptor.h"
 
 #include "Ring1/Collections/PointerHashMap.h"
-#include "Ring1/Memory.h"
+#include "Ring1/Memory/_Include.h"
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
