@@ -7,6 +7,6 @@
 
 
 
-Machine_ImagesContext* Machines_DefaultImages_createContext() {
-  return (Machine_ImagesContext*)Machine_Images_ImagesContext_create();
+Ring3_ImagesContext* Machines_DefaultImages_createContext() {
+  return (Ring3_ImagesContext*)Machine_Images_ImagesContext_create();
 }

@@ -70,7 +70,7 @@ static void Scene4_onStartup(Scene4* self) {
   self->guiContext = Machine_Gui_Context_create(Machine_Gdl_Context_create(),
                                                 Machine_Context2_create(videoContext));
   //
-  Machine_ImagesContext *imagesContext = Machines_DefaultImages_createContext();
+  Ring3_ImagesContext *imagesContext = Machines_DefaultImages_createContext();
   //
   Machine_FontsContext* fontsContext = Machine_DefaultFonts_createContext(videoContext, imagesContext);
   //

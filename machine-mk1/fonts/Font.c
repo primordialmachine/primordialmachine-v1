@@ -19,7 +19,7 @@ struct Node {
   /// @brief Unicode code point.
   uint32_t codepoint;
   /// @brief The texture.
-  Machine_Texture* texture;
+  Ring3_Texture* texture;
   /// @brief Add bearingx to the cursor position before rendering.
   float bearingx;
   /// @brief Add h - bearingy to the cursor position before rendering.
@@ -95,7 +95,7 @@ static Node* Map_get(Map* self, uint32_t codepoint) {
   return NULL;
 }
 
-static void Map_set(Map* self, uint32_t codepoint, float bearingx, float bearingy, float w, float h, float advancex, float advancey, Machine_Texture* texture) {
+static void Map_set(Map* self, uint32_t codepoint, float bearingx, float bearingy, float w, float h, float advancex, float advancey, Ring3_Texture* texture) {
   size_t hashIndex = codepoint % self->capacity;
   for (Node* node = self->buckets[hashIndex]; NULL != node; node = node->next) {
     if (node->codepoint == codepoint) {
@@ -153,7 +153,7 @@ static Ring2_Real32 Machine_Fonts_Font_getBaselineDistance(Machine_Fonts_Font* s
   return self->baselineDistance;
 }
 
-static Ring2_Boolean Machine_Fonts_Font_getCodePointInfo(Machine_Fonts_Font* self, uint32_t codepoint, Ring3_Math_Rectangle2* bounds, Ring3_Math_Vector2f32* advance, Machine_Texture** texture) {
+static Ring2_Boolean Machine_Fonts_Font_getCodePointInfo(Machine_Fonts_Font* self, uint32_t codepoint, Ring3_Math_Rectangle2* bounds, Ring3_Math_Vector2f32* advance, Ring3_Texture** texture) {
   if (isWhitespace(codepoint)) {
     codepoint = ' ';
   }
@@ -189,7 +189,7 @@ static Machine_VideoBuffer* Machine_Fonts_Font_getVideoBuffer(Machine_Fonts_Font
 
 static void Machine_Fonts_Font_constructClass(Machine_Fonts_Font_Class* self) {
   ((Machine_Font_Class*)self)->getBaselineDistance = (Ring2_Real32(*)(Machine_Font*)) & Machine_Fonts_Font_getBaselineDistance;
-  ((Machine_Font_Class*)self)->getCodePointInfo = (Ring2_Boolean(*)(Machine_Font*, uint32_t codepoint, Ring3_Math_Rectangle2* bounds, Ring3_Math_Vector2f32* advance, Machine_Texture * *texture)) & Machine_Fonts_Font_getCodePointInfo;
+  ((Machine_Font_Class*)self)->getCodePointInfo = (Ring2_Boolean(*)(Machine_Font*, uint32_t codepoint, Ring3_Math_Rectangle2* bounds, Ring3_Math_Vector2f32* advance, Ring3_Texture * *texture)) & Machine_Fonts_Font_getCodePointInfo;
   ((Machine_Font_Class*)self)->getVideoBinding = (Machine_Binding * (*)(Machine_Font*)) & Machine_Fonts_Font_getVideoBinding;
   ((Machine_Font_Class*)self)->getVideoBuffer = (Machine_VideoBuffer * (*)(Machine_Font*)) & Machine_Fonts_Font_getVideoBuffer;
   ((Machine_Font_Class*)self)->getVideoShaderProgram = (Machine_ShaderProgram * (*)(Machine_Font*)) & Machine_Fonts_Font_getVideoShaderProgram;
@@ -367,10 +367,10 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
         Ring2_ByteBuffer_appendBytes(temporary, self->face->glyph->bitmap.buffer,
                                      (size_t)self->face->glyph->bitmap.width * (size_t)self->face->glyph->bitmap.rows);
       }
-      Machine_Image* image = Machine_ImagesContext_createDirect(
+      Ring3_Image* image = Ring3_ImagesContext_createDirect(
           fontsContext->imageContext, Ring3_PixelFormat_GRAYSCALE,
           self->face->glyph->bitmap.width, self->face->glyph->bitmap.rows, temporary);
-      Machine_Texture* texture = Machine_VideoContext_createTextureFromImage(fontsContext->videoContext, image);
+      Ring3_Texture* texture = Machine_VideoContext_createTextureFromImage(fontsContext->videoContext, image);
       Map_set(self->map, codepoint,
               self->face->glyph->bitmap_left, self->face->glyph->bitmap_top,
               self->face->glyph->bitmap.width, self->face->glyph->bitmap.rows,

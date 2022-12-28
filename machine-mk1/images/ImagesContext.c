@@ -17,15 +17,15 @@ static Machine_Images_Image* createDirect(Machine_Images_ImagesContext* self, Ri
 }
 
 static void constructClass(Machine_Images_ImagesContext_Class* self) {
-  ((Machine_ImagesContext_Class*)self)->createDirect = (Machine_Image * (*)(Machine_ImagesContext*, Ring3_PixelFormat, Ring2_Integer, Ring2_Integer, Ring2_ByteBuffer*)) & createDirect;
-  ((Machine_ImagesContext_Class*)self)->createFromPath = (Machine_Image * (*)(Machine_ImagesContext*, Ring2_String*)) & createFromPath;
+  ((Ring3_ImagesContext_Class*)self)->createDirect = (Ring3_Image * (*)(Ring3_ImagesContext*, Ring3_PixelFormat, Ring2_Integer, Ring2_Integer, Ring2_ByteBuffer*)) & createDirect;
+  ((Ring3_ImagesContext_Class*)self)->createFromPath = (Ring3_Image * (*)(Ring3_ImagesContext*, Ring2_String*)) & createFromPath;
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Images_ImagesContext, Machine_ImagesContext, NULL,
+MACHINE_DEFINE_CLASSTYPE(Machine_Images_ImagesContext, Ring3_ImagesContext, NULL,
                          &Machine_Images_ImagesContext_construct, NULL, &constructClass, NULL);
 
 void Machine_Images_ImagesContext_construct(Machine_Images_ImagesContext* self, size_t numberOfArguments, Ring2_Value const* arguments) {
-  Machine_ImagesContext_construct((Machine_ImagesContext*)self, numberOfArguments, arguments);
+  Ring3_ImagesContext_construct((Ring3_ImagesContext*)self, numberOfArguments, arguments);
   Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Images_ImagesContext_getType());
 }
 

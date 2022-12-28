@@ -13,11 +13,11 @@
 MACHINE_DECLARE_CLASSTYPE(Machine_Images_ImagesContext);
 
 struct Machine_Images_ImagesContext_Class {
-  Machine_ImagesContext_Class parent;
+  Ring3_ImagesContext_Class parent;
 };
 
 struct Machine_Images_ImagesContext {
-  Machine_ImagesContext parent;
+  Ring3_ImagesContext parent;
 };
 
 void Machine_Images_ImagesContext_construct(Machine_Images_ImagesContext* self, size_t numberOfArguments, Ring2_Value const* arguments);

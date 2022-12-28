@@ -22,8 +22,8 @@ struct Ring3_CanvasSizeChangedEvent_Class {
 
 struct Ring3_CanvasSizeChangedEvent {
   Machine_Object parent;
-  float width;
-  float height;
+  Ring2_Real32 width;
+  Ring2_Real32 height;
 };
 
 /// @brief Create a canvas size changed event.
@@ -33,8 +33,8 @@ struct Ring3_CanvasSizeChangedEvent {
 Ring1_CheckReturn() Ring3_CanvasSizeChangedEvent*
 Ring3_CanvasSizeChangedEvent_create
   (
-    float width,
-    float height
+    Ring2_Real32 width,
+    Ring2_Real32 height
   );
 
 #endif // RING3_VISUALS_CANVASSIZECHANGEDEVENT_H_INCLUDED

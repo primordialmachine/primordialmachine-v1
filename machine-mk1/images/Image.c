@@ -10,11 +10,11 @@
 
 
 struct Machine_Images_Image_Class {
-  Machine_Image_Class __parent;
+  Ring3_Image_Class __parent;
 };
 
 struct Machine_Images_Image {
-  Machine_Image __parent;
+  Ring3_Image __parent;
 
   int width;
   int height;
@@ -66,14 +66,14 @@ void Machine_Images_Image_construct(Machine_Images_Image* self, size_t numberOfA
 }
 
 static void constructClass(Machine_Images_Image_Class* self) {
-  ((Machine_Image_Class*)self)->getPixelFormat
-      = (Ring3_PixelFormat(*)(Machine_Image const*)) & getPixelFormat;
-  ((Machine_Image_Class*)self)->getPixels = (void const* (*)(Machine_Image const*)) & getPixels;
-  ((Machine_Image_Class*)self)->getSize
-      = (void (*)(Machine_Image const*, Ring2_Integer*, Ring2_Integer*)) & getSize;
+  ((Ring3_Image_Class*)self)->getPixelFormat
+      = (Ring3_PixelFormat(*)(Ring3_Image const*)) & getPixelFormat;
+  ((Ring3_Image_Class*)self)->getPixels = (void const* (*)(Ring3_Image const*)) & getPixels;
+  ((Ring3_Image_Class*)self)->getSize
+      = (void (*)(Ring3_Image const*, Ring2_Integer*, Ring2_Integer*)) & getSize;
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Images_Image, Machine_Image, NULL, &Machine_Images_Image_construct,
+MACHINE_DEFINE_CLASSTYPE(Machine_Images_Image, Ring3_Image, NULL, &Machine_Images_Image_construct,
                          &Machine_Images_Image_destruct, &constructClass, NULL);
 
 typedef struct _Io_State {
@@ -96,7 +96,7 @@ void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
   // (1) Supertype constructor.
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Ring2_Value ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
-  Machine_Image_construct((Machine_Image*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Ring3_Image_construct((Ring3_Image*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
 
   // (3) Load image data.
   int y, width, height;
@@ -231,7 +231,7 @@ void Machine_Images_Image_constructDirect(Machine_Images_Image* self,
   // (1) Supertype constructor.
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Ring2_Value ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
-  Machine_Image_construct((Machine_Image*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Ring3_Image_construct((Ring3_Image*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
 
   // (3) Store.
   self->width = width;

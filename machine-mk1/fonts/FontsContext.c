@@ -46,7 +46,7 @@ static void constructClass(Machine_Fonts_FontsContext_Class* self) {
 void Machine_Fonts_FontsContext_construct(Machine_Fonts_FontsContext* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   Machine_FontsContext_construct((Machine_FontsContext*)self, numberOfArguments, arguments);
   self->videoContext = (Machine_VideoContext*)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0, Machine_VideoContext_getType());
-  self->imageContext = (Machine_ImagesContext *)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 1, Machine_ImagesContext_getType());
+  self->imageContext = (Ring3_ImagesContext *)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 1, Ring3_ImagesContext_getType());
   if (0 == g_referenceCount) {
     FT_Error error = FT_Init_FreeType(&g_library);
     if (error) {
@@ -60,7 +60,7 @@ void Machine_Fonts_FontsContext_construct(Machine_Fonts_FontsContext* self, size
   Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Fonts_FontsContext_getType());
 }
 
-Machine_Fonts_FontsContext* Machine_Fonts_FontsContext_create(Machine_VideoContext* videoContext, Machine_ImagesContext *imagesContext) {
+Machine_Fonts_FontsContext* Machine_Fonts_FontsContext_create(Machine_VideoContext* videoContext, Ring3_ImagesContext *imagesContext) {
   Machine_ClassType* ty = Machine_Fonts_FontsContext_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 2;
   Ring2_Value ARGUMENTS[2];

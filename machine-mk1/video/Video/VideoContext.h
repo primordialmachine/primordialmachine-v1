@@ -8,9 +8,7 @@
 #include "Video/Binding.h"
 #include "Video/VideoBuffer.h"
 #include "Video/External.h"
-#include "Video/Image.h"
 #include "Video/ShaderProgram.h"
-#include "Video/Texture.h"
 
 /// @brief A video context.
 /// @extends Machine.Object
@@ -19,70 +17,82 @@ MACHINE_DECLARE_CLASSTYPE(Machine_VideoContext)
 struct Machine_VideoContext_Class {
   Machine_Object_Class parent;
 
-  void (*setClearColor)(Machine_VideoContext* self, Ring3_Math_Vector4f32 const* clearColor);
+  void (*setClearColor)(Machine_VideoContext*,
+                        Ring3_Math_Vector4f32 const*);
 
-  Ring3_Math_Vector4f32 const* (*getClearColor)(Machine_VideoContext const* self);
+  Ring3_Math_Vector4f32 const* (*getClearColor)(Machine_VideoContext const*);
 
-  void (*setIncomingBlendFunction)(Machine_VideoContext* self,
-                                   Ring3_BlendFunction incomingBlendFunction);
+  void (*setIncomingBlendFunction)(Machine_VideoContext*,
+                                   Ring3_BlendFunction);
 
-  Ring3_BlendFunction (*getIncomingBlendFunction)(Machine_VideoContext const* self);
+  Ring3_BlendFunction (*getIncomingBlendFunction)(Machine_VideoContext const*);
 
-  void (*setExistingBlendFunction)(Machine_VideoContext* self,
-                                   Ring3_BlendFunction existingBlendFunction);
+  void (*setExistingBlendFunction)(Machine_VideoContext*,
+                                   Ring3_BlendFunction);
 
-  Ring3_BlendFunction (*getExistingBlendFunction)(Machine_VideoContext const* self);
+  Ring3_BlendFunction (*getExistingBlendFunction)(Machine_VideoContext const*);
 
-  void (*setDepthWriteEnabled)(Machine_VideoContext* self, Ring2_Boolean depthWriteEnabled);
+  void (*setDepthWriteEnabled)(Machine_VideoContext*,
+                               Ring2_Boolean);
 
-  Ring2_Boolean (*getDepthWriteEnabled)(Machine_VideoContext const* self);
+  Ring2_Boolean (*getDepthWriteEnabled)(Machine_VideoContext const*);
 
-  void (*setDepthTestFunction)(Machine_VideoContext* self,
-                               Ring3_DepthTestFunction depthTestFunction);
+  void (*setDepthTestFunction)(Machine_VideoContext*,
+                               Ring3_DepthTestFunction);
 
   Ring3_DepthTestFunction (*getDepthTestFunction)(Machine_VideoContext const* self);
 
-  void (*setClearDepth)(Machine_VideoContext* self, Ring2_Real32 clearDepth);
+  void (*setClearDepth)(Machine_VideoContext* self,
+                        Ring2_Real32);
 
-  Ring2_Real32 (*getClearDepth)(Machine_VideoContext const* self);
+  Ring2_Real32 (*getClearDepth)(Machine_VideoContext const*);
 
-  void (*setViewportRectangle)(Machine_VideoContext* self, Ring2_Real32 left, Ring2_Real32 bottom,
-                               Ring2_Real32 width, Ring2_Real32 height);
+  void (*setViewportRectangle)(Machine_VideoContext*,
+                               Ring2_Real32,
+                               Ring2_Real32,
+                               Ring2_Real32,
+                               Ring2_Real32);
 
-  void (*getViewportRectangle)(Machine_VideoContext const* self, Ring2_Real32* left,
-                               Ring2_Real32* bottom, Ring2_Real32* width, Ring2_Real32* height);
+  void (*getViewportRectangle)(Machine_VideoContext const*,
+                               Ring2_Real32*,
+                               Ring2_Real32*,
+                               Ring2_Real32*,
+                               Ring2_Real32*);
 
-  Ring2_Integer (*getMaximalClipDistanceCount)(Machine_VideoContext const* self);
+  Ring2_Integer (*getMaximalClipDistanceCount)(Machine_VideoContext const*);
 
-  void (*setClipDistanceEnabled)(Machine_VideoContext* self, Ring2_Integer index,
-                                 Ring2_Boolean enabled);
+  void (*setClipDistanceEnabled)(Machine_VideoContext* self,
+                                 Ring2_Integer,
+                                 Ring2_Boolean);
 
-  Ring2_Boolean (*getClipDistanceEnabled)(Machine_VideoContext const* self,
-                                          Ring2_Integer index);
+  Ring2_Boolean (*getClipDistanceEnabled)(Machine_VideoContext const*,
+                                          Ring2_Integer);
 
-  void (*clearColorBuffer)(Machine_VideoContext* self);
+  void (*clearColorBuffer)(Machine_VideoContext*);
 
-  void (*clearDepthBuffer)(Machine_VideoContext* self);
+  void (*clearDepthBuffer)(Machine_VideoContext*);
 
-  Machine_VideoBuffer* (*createBuffer)(Machine_VideoContext* self);
+  Machine_VideoBuffer* (*createBuffer)(Machine_VideoContext*);
 
-  Machine_Texture* (*createTextureFromImage)(Machine_VideoContext* self, Machine_Image* image);
+  Ring3_Texture* (*createTextureFromImage)(Machine_VideoContext*,
+                                           Ring3_Image*);
 
-  Machine_ShaderProgram* (*createProgram)(Machine_VideoContext* self,
-                                          Ring2_String* vertexProgramText,
-                                          Ring2_String* geometryProgramText,
-                                          Ring2_String* fragmentProgramText);
+  Machine_ShaderProgram* (*createProgram)(Machine_VideoContext*,
+                                          Ring2_String*,
+                                          Ring2_String*,
+                                          Ring2_String*);
 
-  Machine_Binding* (*createBinding)(Machine_VideoContext* self, Machine_ShaderProgram* program,
-                                    Ring3_VertexDescriptor* vertexDescriptor,
-                                    Machine_VideoBuffer* buffer);
+  Machine_Binding* (*createBinding)(Machine_VideoContext*,
+                                    Machine_ShaderProgram*,
+                                    Ring3_VertexDescriptor*,
+                                    Machine_VideoBuffer*);
 
   void (*drawDirect)(Machine_VideoContext* self, Ring2_Integer i, Ring2_Integer n);
 
   void (*drawIndirect)(Machine_VideoContext* self, Ring2_Integer i, Ring2_Integer n,
                        uint8_t const* indices);
 
-  void (*bindTexture)(Machine_VideoContext* self, size_t unit, Machine_Texture* texture);
+  void (*bindTexture)(Machine_VideoContext* self, size_t unit, Ring3_Texture* texture);
 
   Machine_ShaderProgram* (*generateDefaultShader)(Machine_VideoContext* self,
                                                   Ring2_Boolean withMeshColor,
@@ -100,71 +110,113 @@ struct Machine_VideoContext {
   Machine_Object parent;
 };
 
-void Machine_VideoContext_construct(Machine_VideoContext* self, size_t numberOfArguments,
-                                    Ring2_Value const* arguments);
+void
+Machine_VideoContext_construct
+  (
+    Machine_VideoContext* self,
+    size_t numberOfArguments,
+    Ring2_Value const* arguments
+  );
 
 /// @brief Set the clear color.
 /// @param self This video context.
 /// @param clearColor The clear color.
-void Machine_VideoContext_setClearColor(Machine_VideoContext* self,
-                                        Ring3_Math_Vector4f32 const* clearColor);
+void
+Machine_VideoContext_setClearColor
+  (
+    Machine_VideoContext* self,
+    Ring3_Math_Vector4f32 const* clearColor
+  );
 
 /// @brief Get the clear color.
 /// @param self This video context.
 /// @return The clear color.
 /// @default Default color is opaque black.
-Ring3_Math_Vector4f32 const* Machine_VideoContext_getClearColor(Machine_VideoContext const* self);
+Ring3_Math_Vector4f32 const*
+Machine_VideoContext_getClearColor
+  (
+    Machine_VideoContext const* self
+  );
 
 /// @brief Set the blend function for the incoming color.
 /// @param self This video context.
 /// @param incomingBlendFunction The blend function for the incoming color.
-void Machine_VideoContext_setIncomingBlendFunction(Machine_VideoContext* self,
-                                                   Ring3_BlendFunction incomingBlendFunction);
+void
+Machine_VideoContext_setIncomingBlendFunction
+  (
+    Machine_VideoContext* self,
+    Ring3_BlendFunction incomingBlendFunction
+  );
 
 /// @brief Get the blend function for the incoming color.
 /// @param self This video context.
 /// @return The blend function for the incoming color.
 /// @default Default is <code>incoming alpha</code>.
-Ring3_BlendFunction Machine_VideoContext_getIncomingBlendFunction(
-    Machine_VideoContext const* self);
+Ring3_BlendFunction
+Machine_VideoContext_getIncomingBlendFunction
+  (
+    Machine_VideoContext const* self
+  );
 
 /// @brief Set the blend function for the existing color.
 /// @param self This video context.
 /// @param existingBlendFunction The blend function for the existing color.
-void Machine_VideoContext_setExistingBlendFunction(Machine_VideoContext* self,
-                                                   Ring3_BlendFunction existingBlendFunction);
+void
+Machine_VideoContext_setExistingBlendFunction
+  (
+    Machine_VideoContext* self,
+    Ring3_BlendFunction existingBlendFunction
+  );
 
 /// @brief Get the blend function for the existing color.
 /// @param self This video context.
 /// @return The blend function for the existing color.
 /// @default Default is <code>one minus incoming alpha</code>.
-Ring3_BlendFunction Machine_VideoContext_getExistingBlendFunction(
-    Machine_VideoContext const* self);
+Ring3_BlendFunction
+Machine_VideoContext_getExistingBlendFunction
+  (
+    Machine_VideoContext const* self
+  );
 
 /// @brief Set if depth write is enabled/disabled.
 /// @param self This video context.
 /// @param depthWriteEnabled @a true enables depth write, @a false disables depth write.
-void Machine_VideoContext_setDepthWriteEnabled(Machine_VideoContext* self,
-                                               Ring2_Boolean depthWriteEnabled);
+void
+Machine_VideoContext_setDepthWriteEnabled
+  (
+    Machine_VideoContext* self,
+    Ring2_Boolean depthWriteEnabled
+  );
 
 /// @brief Get if depth write is enabled/disabled.
 /// @param self This video context.
 /// @return @a true if depth write is enabled, @a false if depth write is disabled.
 /// @default Default is <code>false</code>.
-Ring2_Boolean Machine_VideoContext_getDepthWriteEnabled(Machine_VideoContext const* self);
+Ring2_Boolean
+Machine_VideoContext_getDepthWriteEnabled
+  (
+    Machine_VideoContext const* self
+  );
 
 /// @brief Set the depth test function.
 /// @param self This video context.
 /// @param depthTestFunction The depth test function.
-void Machine_VideoContext_setDepthTestFunction(Machine_VideoContext* self,
-                                               Ring3_DepthTestFunction depthTestFunction);
+void
+Machine_VideoContext_setDepthTestFunction
+  (
+    Machine_VideoContext* self,
+    Ring3_DepthTestFunction depthTestFunction
+  );
 
 /// @brief Get the depth test function.
 /// @param self This video context.
 /// @return The depth test function.
 /// @default The default depth test function is <code>always/</code>.
-Ring3_DepthTestFunction Machine_VideoContext_getDepthTestFunction(
-    Machine_VideoContext const* self);
+Ring3_DepthTestFunction
+Machine_VideoContext_getDepthTestFunction
+  (
+    Machine_VideoContext const* self
+  );
 
 /// @brief Set the clear depth.
 /// @param self This video context.
@@ -175,15 +227,25 @@ void Machine_VideoContext_setClearDepth(Machine_VideoContext* self, Ring2_Real32
 /// @param self This video context.
 /// @return The clear depth.
 /// @default The default clear depth is @a 1.
-Ring2_Real32 Machine_VideoContext_getClearDepth(Machine_VideoContext const* self);
+Ring1_NoDiscardReturn() Ring2_Real32
+Machine_VideoContext_getClearDepth
+  (
+    Machine_VideoContext const* self
+  );
 
 /// @brief Set the current viewport rectangle.
 /// @param self This video context.
 /// @param left, bottom The lower left corner of the viewport rectangle.
 /// @param width, height The width and height of the viewport rectangle.
-void Machine_VideoContext_setViewportRectangle(Machine_VideoContext* self, Ring2_Real32 left,
-                                               Ring2_Real32 bottom, Ring2_Real32 width,
-                                               Ring2_Real32 height);
+void
+Machine_VideoContext_setViewportRectangle
+  (
+    Machine_VideoContext* self,
+    Ring2_Real32 left,
+    Ring2_Real32 bottom,
+    Ring2_Real32 width,
+    Ring2_Real32 height
+  );
 
 /// @brief Get the current viewport rectangle.
 /// @param self This video context.
@@ -236,8 +298,8 @@ void Machine_VideoContext_clearDepthBuffer(Machine_VideoContext* self);
 /// @param self This video context.
 /// @param image The image.
 /// @return The texture.
-Machine_Texture* Machine_VideoContext_createTextureFromImage(Machine_VideoContext* self,
-                                                             Machine_Image* image);
+Ring3_Texture* Machine_VideoContext_createTextureFromImage(Machine_VideoContext* self,
+                                                           Ring3_Image* image);
 
 /// @brief Create an empty buffer.
 /// @param self This video context.
@@ -283,7 +345,7 @@ void Machine_VideoContext_drawIndirect(Machine_VideoContext* self, Ring2_Integer
 /// @param unit The index of the texture unit.
 /// @param texture A pointer to the texture or the null pointer.
 void Machine_VideoContext_bindTexture(Machine_VideoContext* self, size_t unit,
-                                      Machine_Texture* texture);
+                                      Ring3_Texture* texture);
 
 /// @param self This video context.
 /// @param withMeshColor <code>vec3 mesh_color</code>

@@ -24,7 +24,7 @@ struct Machine_Fonts_FontsContext_Class {
 struct Machine_Fonts_FontsContext {
   Machine_FontsContext parent;
   Machine_VideoContext* videoContext;
-  Machine_ImagesContext* imageContext;
+  Ring3_ImagesContext* imageContext;
   FT_Library *library;
 };
 
@@ -34,7 +34,7 @@ struct Machine_Fonts_FontsContext {
 /// <code>(Machine.ImagesContext imagesContext)</code>
 void Machine_Fonts_FontsContext_construct(Machine_Fonts_FontsContext* self, size_t numberOfArguments, Ring2_Value const* arguments);
 
-Machine_Fonts_FontsContext* Machine_Fonts_FontsContext_create(Machine_VideoContext* videoContext, Machine_ImagesContext* imagesContext);
+Machine_Fonts_FontsContext* Machine_Fonts_FontsContext_create(Machine_VideoContext* videoContext, Ring3_ImagesContext* imagesContext);
 
 
 

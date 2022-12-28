@@ -12,4 +12,4 @@
 typedef struct Machine_Font Machine_Font;
 
 // Forward declaration.
-typedef struct Machine_Image Machine_Image;
+typedef struct Ring3_Image Ring3_Image;

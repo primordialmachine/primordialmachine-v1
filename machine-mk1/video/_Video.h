@@ -11,10 +11,7 @@
 #include "Video/External.h"
 #include "Video/Font.h"
 #include "Video/FontsContext.h"
-#include "Video/Image.h"
-#include "Video/ImagesContext.h"
 #include "Video/ShaderProgram.h"
-#include "Video/Texture.h"
 #include "Video/VideoContext.h"
 #undef MACHINE_VIDEO_PRIVATE
 

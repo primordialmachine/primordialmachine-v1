@@ -15,10 +15,10 @@ static void Machine_Gl_Texture_destruct(Machine_Gl_Texture* self) {
   }
 }
 
-void Machine_Gl_Texture_construct_fromImage(Machine_Gl_Texture* self, Machine_Image* image) {
+void Machine_Gl_Texture_construct_fromImage(Machine_Gl_Texture* self, Ring3_Image* image) {
   static size_t const NUMBER_OF_ARGUMENTS = 0;
   static Ring2_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
-  Machine_Texture_construct((Machine_Texture*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Ring3_Texture_construct((Ring3_Texture*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   Machine_UtilitiesGl_call(glGenTextures(1, &self->id));
   Machine_UtilitiesGl_call(glBindTexture(GL_TEXTURE_2D, self->id));
 
@@ -28,9 +28,9 @@ void Machine_Gl_Texture_construct_fromImage(Machine_Gl_Texture* self, Machine_Im
   Machine_UtilitiesGl_call(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
 
   Ring2_Integer width, height;
-  Machine_Image_getSize((Machine_Image const *)image, &width, &height);
-  Ring3_PixelFormat pixelFormat = Machine_Image_getPixelFormat(image);
-  void const* pixels = Machine_Image_getPixels(image);
+  Ring3_Image_getSize((Ring3_Image const *)image, &width, &height);
+  Ring3_PixelFormat pixelFormat = Ring3_Image_getPixelFormat(image);
+  void const* pixels = Ring3_Image_getPixels(image);
 
 
   Machine_UtilitiesGl_call(glPixelStorei(GL_UNPACK_ALIGNMENT, 1));
@@ -64,12 +64,12 @@ void Machine_Gl_Texture_construct_fromImage(Machine_Gl_Texture* self, Machine_Im
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();
   };
-  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Texture_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Ring3_Texture_getType());
 }
 
 void Machine_Gl_Texture_construct(Machine_Gl_Texture* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   if (numberOfArguments == 1) {
-    Machine_Image* image = (Machine_Image*)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0, Machine_Image_getType());
+    Ring3_Image* image = (Ring3_Image*)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0, Ring3_Image_getType());
     Machine_Gl_Texture_construct_fromImage(self, image);
   } else {
     Ring1_Status_set(Ring1_Status_InvalidNumberOfArguments);
@@ -77,10 +77,10 @@ void Machine_Gl_Texture_construct(Machine_Gl_Texture* self, size_t numberOfArgum
   }
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Gl_Texture, Machine_Texture, NULL, &Machine_Gl_Texture_construct,
+MACHINE_DEFINE_CLASSTYPE(Machine_Gl_Texture, Ring3_Texture, NULL, &Machine_Gl_Texture_construct,
                          &Machine_Gl_Texture_destruct, NULL, NULL)
 
-Machine_Gl_Texture* Machine_Gl_Texture_create(Machine_Image* image) {
+Machine_Gl_Texture* Machine_Gl_Texture_create(Ring3_Image* image) {
   Machine_ClassType* ty = Machine_Gl_Texture_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 1;
   Ring2_Value ARGUMENTS[1];

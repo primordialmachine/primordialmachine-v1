@@ -105,11 +105,11 @@ static void Machine_Video_Gl_Canvas_setCanvasIcons(Machine_Video_Gl_Canvas* self
     }
     for (size_t i = 0, n = numberOfImages; i < n; ++i) {
       Ring2_Value temporary = Ring2_Collections_List_getAt(images, i);
-      Machine_Image* image = (Machine_Image*)Ring2_Value_getObject(&temporary);
+      Ring3_Image* image = (Ring3_Image*)Ring2_Value_getObject(&temporary);
       Ring2_Integer w, h;
       void const* p;
-      Machine_Image_getSize(image, &w, &h);
-      p = Machine_Image_getPixels(image);
+      Ring3_Image_getSize(image, &w, &h);
+      p = Ring3_Image_getPixels(image);
       targetImages[i].width = w;
       targetImages[i].height = h;
       targetImages[i].pixels = (unsigned char*)p;

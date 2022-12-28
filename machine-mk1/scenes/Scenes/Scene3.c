@@ -67,8 +67,8 @@ struct Scene3 {
   Machine_ShaderProgram* shaderProgram;
   Machine_Binding* binding;
   Machine_VideoBuffer* vertices;
-  Machine_Image* image;
-  Machine_Texture* texture;
+  Ring3_Image* image;
+  Ring3_Texture* texture;
 };
 
 static void Scene3_constructClass(Scene3_Class* self);
@@ -99,8 +99,8 @@ MACHINE_DEFINE_CLASSTYPE(Scene3, Scene, &Scene3_visit, &Scene3_construct, NULL,
 static void Scene3_startup(Scene3* self) {
   Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
 
-  self->image = Machine_ImagesContext_createFromPath(Machines_DefaultImages_createContext(),
-                                                     Ring2_String_fromC("test-transparency-1.png"));
+  self->image = Ring3_ImagesContext_createFromPath(Machines_DefaultImages_createContext(),
+                                                   Ring2_String_fromC("test-transparency-1.png"));
   self->texture = Machine_VideoContext_createTextureFromImage(videoContext, self->image);
 
   self->vertices = Machine_VideoContext_createBuffer(videoContext);

@@ -103,7 +103,7 @@ static void updateLinesBounds(Ring3_Math_Vector2f32* position, Machine_Font* fon
     Ring3_Math_Rectangle2* symbolBounds = Ring3_Math_Rectangle2_create();
     for (size_t j = layoutLine->start, m = layoutLine->start + layoutLine->length; j < m; ++j) {
       uint32_t codepoint = bytes[j];
-      Machine_Texture* symbolTexture;
+      Ring3_Texture* symbolTexture;
       bool skip = !Machine_Font_getCodePointInfo(font, codepoint, symbolBounds, symbolAdvance, &symbolTexture);
       if (skip) {
         continue;
@@ -352,7 +352,7 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* con
     Machine_Text_LayoutLine* layoutLine = (Machine_Text_LayoutLine*)Ring2_Value_getObject(&t);
     for (size_t j = layoutLine->start, m = layoutLine->start + layoutLine->length; j < m; ++j) {
       uint32_t codepoint = bytes[j];
-      Machine_Texture* symbolTexture;
+      Ring3_Texture* symbolTexture;
       bool skip = !Machine_Font_getCodePointInfo(self->font, codepoint, symbolBounds, symbolAdvance, &symbolTexture);
       if (skip) continue;
 

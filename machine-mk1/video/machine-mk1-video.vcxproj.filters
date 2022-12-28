@@ -27,9 +27,6 @@
     <ClCompile Include="Video\VideoBuffer.c">
       <Filter>Quelldateien\Video</Filter>
     </ClCompile>
-    <ClCompile Include="Video\Texture.c">
-      <Filter>Quelldateien\Video</Filter>
-    </ClCompile>
     <ClCompile Include="Video\ShaderProgram.c">
       <Filter>Quelldateien\Video</Filter>
     </ClCompile>
@@ -39,13 +36,7 @@
     <ClCompile Include="Video\VideoContext.c">
       <Filter>Quelldateien\Video</Filter>
     </ClCompile>
-    <ClCompile Include="Video\Image.c">
-      <Filter>Quelldateien\Video</Filter>
-    </ClCompile>
     <ClCompile Include="Video\Font.c">
-      <Filter>Quelldateien\Video</Filter>
-    </ClCompile>
-    <ClCompile Include="Video\ImagesContext.c">
       <Filter>Quelldateien\Video</Filter>
     </ClCompile>
     <ClCompile Include="Video\FontsContext.c">
@@ -62,9 +53,6 @@
     <ClInclude Include="Video\External.h">
       <Filter>Headerdateien\Video</Filter>
     </ClInclude>
-    <ClInclude Include="Video\Texture.h">
-      <Filter>Headerdateien\Video</Filter>
-    </ClInclude>
     <ClInclude Include="Video\VideoBuffer.h">
       <Filter>Headerdateien\Video</Filter>
     </ClInclude>
@@ -77,13 +65,7 @@
     <ClInclude Include="Video\VideoContext.h">
       <Filter>Headerdateien\Video</Filter>
     </ClInclude>
-    <ClInclude Include="Video\Image.h">
-      <Filter>Headerdateien\Video</Filter>
-    </ClInclude>
     <ClInclude Include="Video\Font.h">
-      <Filter>Headerdateien\Video</Filter>
-    </ClInclude>
-    <ClInclude Include="Video\ImagesContext.h">
       <Filter>Headerdateien\Video</Filter>
     </ClInclude>
     <ClInclude Include="Video\FontsContext.h">

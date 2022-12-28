@@ -25,7 +25,7 @@ Ring2_Real32 Machine_Font_getBaselineDistance(Machine_Font* self) {
   MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_Font, getBaselineDistance);
 }
 
-Ring2_Boolean Machine_Font_getCodePointInfo(Machine_Font* self, uint32_t codepoint, Ring3_Math_Rectangle2* bounds, Ring3_Math_Vector2f32* advance, Machine_Texture** texture) {
+Ring2_Boolean Machine_Font_getCodePointInfo(Machine_Font* self, uint32_t codepoint, Ring3_Math_Rectangle2* bounds, Ring3_Math_Vector2f32* advance, Ring3_Texture** texture) {
   MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_Font, getCodePointInfo, codepoint, bounds, advance, texture);
 }
 

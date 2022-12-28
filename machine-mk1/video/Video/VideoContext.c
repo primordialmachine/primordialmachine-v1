@@ -114,8 +114,8 @@ void Machine_VideoContext_clearDepthBuffer(Machine_VideoContext* self) {
   MACHINE_VIRTUALCALL_NORETURN_NOARGS(Machine_VideoContext, clearDepthBuffer);
 }
 
-Machine_Texture* Machine_VideoContext_createTextureFromImage(Machine_VideoContext* self,
-                                                             Machine_Image* image) {
+Ring3_Texture* Machine_VideoContext_createTextureFromImage(Machine_VideoContext* self,
+                                                           Ring3_Image* image) {
   MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_VideoContext, createTextureFromImage, image);
 }
 
@@ -150,7 +150,7 @@ void Machine_VideoContext_drawIndirect(Machine_VideoContext* self, Ring2_Integer
 }
 
 void Machine_VideoContext_bindTexture(Machine_VideoContext* self, size_t unit,
-                                      Machine_Texture* texture) {
+                                      Ring3_Texture* texture) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_VideoContext, bindTexture, unit, texture);
 }
 

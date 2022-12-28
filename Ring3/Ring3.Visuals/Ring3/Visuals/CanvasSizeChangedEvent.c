@@ -40,8 +40,8 @@ MACHINE_DEFINE_CLASSTYPE(Ring3_CanvasSizeChangedEvent,
 Ring1_CheckReturn() Ring3_CanvasSizeChangedEvent*
 Ring3_CanvasSizeChangedEvent_create
   (
-    float width,
-    float height
+    Ring2_Real32 width,
+    Ring2_Real32 height
   )
 {
   Machine_ClassType* ty = Ring3_CanvasSizeChangedEvent_getType();

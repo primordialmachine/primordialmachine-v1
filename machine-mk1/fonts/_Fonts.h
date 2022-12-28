@@ -7,7 +7,7 @@
 
 
 
-Machine_FontsContext* Machine_DefaultFonts_createContext(Machine_VideoContext* videoContext, Machine_ImagesContext* imagesContext);
+Machine_FontsContext* Machine_DefaultFonts_createContext(Machine_VideoContext* videoContext, Ring3_ImagesContext* imagesContext);
 
 
 

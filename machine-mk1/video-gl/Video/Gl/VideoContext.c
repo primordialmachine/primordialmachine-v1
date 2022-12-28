@@ -164,8 +164,8 @@ static Machine_VideoBuffer* createBuffer(Machine_Gl_VideoContext *self) {
   return (Machine_VideoBuffer*)Machine_Gl_VideoBuffer_create();
 }
 
-static Machine_Texture* createTextureFromImage(Machine_Gl_VideoContext* self, Machine_Image* image) {
-  return (Machine_Texture*)Machine_Gl_Texture_create(image);
+static Ring3_Texture* createTextureFromImage(Machine_Gl_VideoContext* self, Ring3_Image* image) {
+  return (Ring3_Texture*)Machine_Gl_Texture_create(image);
 }
 
 static Machine_ShaderProgram* createProgram(Machine_Gl_VideoContext* self, Ring2_String* vertexProgramText, Ring2_String* geometryProgramText, Ring2_String* fragmentProgramText) {
@@ -178,7 +178,7 @@ static Machine_Binding* createBinding(Machine_Gl_VideoContext* self, Machine_Sha
 
 
 
-static void bindTexture(Machine_Gl_VideoContext* self, size_t textureUnit, Machine_Texture* texture) {
+static void bindTexture(Machine_Gl_VideoContext* self, size_t textureUnit, Ring3_Texture* texture) {
   Machine_Gl_Texture* textureGL = (Machine_Gl_Texture*)texture;
   Machine_UtilitiesGl_call(glActiveTexture(GL_TEXTURE0 + textureUnit));
   Machine_UtilitiesGl_call(glBindTexture(GL_TEXTURE_2D, textureGL->id));
@@ -340,11 +340,11 @@ static void Machine_Gl_VideoContext_constructClass(Machine_Gl_VideoContext_Class
   ((Machine_VideoContext_Class*)self)->clearDepthBuffer = (void (*)(Machine_VideoContext*)) & clearDepthBuffer;
 
   ((Machine_VideoContext_Class*)self)->createBuffer = (Machine_VideoBuffer * (*)(Machine_VideoContext*)) & createBuffer;
-  ((Machine_VideoContext_Class*)self)->createTextureFromImage = (Machine_Texture * (*)(Machine_VideoContext*, Machine_Image*)) & createTextureFromImage;
+  ((Machine_VideoContext_Class*)self)->createTextureFromImage = (Ring3_Texture * (*)(Machine_VideoContext*, Ring3_Image*)) & createTextureFromImage;
   ((Machine_VideoContext_Class*)self)->createProgram = (Machine_ShaderProgram * (*)(Machine_VideoContext*, Ring2_String*, Ring2_String*, Ring2_String*)) & createProgram;
   ((Machine_VideoContext_Class*)self)->createBinding = (Machine_Binding * (*)(Machine_VideoContext*, Machine_ShaderProgram*, Ring3_VertexDescriptor*, Machine_VideoBuffer*)) & createBinding;
 
-  ((Machine_VideoContext_Class*)self)->bindTexture = (void (*)(Machine_VideoContext*, size_t, Machine_Texture*)) & bindTexture;
+  ((Machine_VideoContext_Class*)self)->bindTexture = (void (*)(Machine_VideoContext*, size_t, Ring3_Texture*)) & bindTexture;
 
   ((Machine_VideoContext_Class*)self)->generateDefaultShader = (Machine_ShaderProgram * (*)(Machine_VideoContext*, Ring2_Boolean, Ring2_Boolean, Ring2_Boolean, Ring2_Boolean)) & generateDefaultShader;
   ((Machine_VideoContext_Class*)self)->generateShape2Shader = (Machine_ShaderProgram * (*)(Machine_VideoContext*)) & generateShape2Shader;

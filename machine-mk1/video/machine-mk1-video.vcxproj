@@ -144,10 +144,7 @@
     <ClCompile Include="Video\Canvas.c" />
     <ClCompile Include="Video\Font.c" />
     <ClCompile Include="Video\FontsContext.c" />
-    <ClCompile Include="Video\Image.c" />
-    <ClCompile Include="Video\ImagesContext.c" />
     <ClCompile Include="Video\ShaderProgram.c" />
-    <ClCompile Include="Video\Texture.c" />
     <ClCompile Include="Video\VideoContext.c" />
     <ClCompile Include="_Video.c" />
   </ItemGroup>
@@ -158,10 +155,7 @@
     <ClInclude Include="Video\External.h" />
     <ClInclude Include="Video\Font.h" />
     <ClInclude Include="Video\FontsContext.h" />
-    <ClInclude Include="Video\Image.h" />
-    <ClInclude Include="Video\ImagesContext.h" />
     <ClInclude Include="Video\ShaderProgram.h" />
-    <ClInclude Include="Video\Texture.h" />
     <ClInclude Include="Video\VideoContext.h" />
     <ClInclude Include="_Video.h" />
   </ItemGroup>

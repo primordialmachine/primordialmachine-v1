@@ -75,6 +75,15 @@
     <ClInclude Include="Ring3\Visuals\VertexElementDescriptor.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
+    <ClInclude Include="Ring3\Visuals\Image.h">
+      <Filter>Headerdateien\Ring3\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Visuals\Texture.h">
+      <Filter>Headerdateien\Ring3\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Visuals\ImagesContext.h">
+      <Filter>Headerdateien\Ring3\Visuals</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring3\Visuals\_Include.c">
@@ -123,6 +132,15 @@
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
     <ClCompile Include="Ring3\Visuals\VertexElementDescriptor.c">
+      <Filter>Quelldateien\Ring3\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Visuals\Image.c">
+      <Filter>Quelldateien\Ring3\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Visuals\Texture.c">
+      <Filter>Quelldateien\Ring3\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Visuals\ImagesContext.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
   </ItemGroup>

@@ -10,7 +10,7 @@
 
 
 
-Machine_ImagesContext* Machines_DefaultImages_createContext();
+Ring3_ImagesContext* Machines_DefaultImages_createContext();
 
 
 
