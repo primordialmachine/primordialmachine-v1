@@ -66,7 +66,7 @@ void
 Ring3_Math_Vector3f32_copy
   (
     Ring3_Math_Vector3f32* self,
-    const Ring3_Math_Vector3f32* other
+    Ring3_Math_Vector3f32 const* other
   )
 {
   copy_vv_f32(other->e, self->e, 3);
@@ -75,169 +75,192 @@ Ring3_Math_Vector3f32_copy
 void
 Ring3_Math_Vector3f32_add
   (
-    Ring3_Math_Vector3f32* c,
-    const Ring3_Math_Vector3f32* a,
-    const Ring3_Math_Vector3f32* b
+    Ring3_Math_Vector3f32 const* self,
+    Ring3_Math_Vector3f32 const* other,
+    Ring3_Math_Vector3f32* target
   )
 {
-  add_vv_f32(a->e, b->e, c->e, 3);
+  add_vv_f32(self->e, other->e, target->e, 3);
 }
 
 Ring1_NoDiscardReturn() Ring3_Math_Vector3f32*
 Ring3_Math_Vector3f32_sum
   (
-    const Ring3_Math_Vector3f32* a,
-    const Ring3_Math_Vector3f32* b
+    Ring3_Math_Vector3f32 const* self,
+    Ring3_Math_Vector3f32 const* other
   )
 {
-  Ring3_Math_Vector3f32* c = Ring3_Math_Vector3f32_create();
-  add_vv_f32(a->e, b->e, c->e, 3);
-  return c;
+  Ring3_Math_Vector3f32* target = Ring3_Math_Vector3f32_create();
+  add_vv_f32(self->e, other->e, target->e, 3);
+  return target;
 }
 
 void
 Ring3_Math_Vector3f32_subtract
   (
-    Ring3_Math_Vector3f32* c,
-    const Ring3_Math_Vector3f32* a,
-    const Ring3_Math_Vector3f32* b
+    Ring3_Math_Vector3f32 const* self,
+    Ring3_Math_Vector3f32 const* other,
+    Ring3_Math_Vector3f32* target
   )
 {
-  sub_vv_f32(a->e, b->e, c->e, 3);
+  sub_vv_f32(self->e, other->e, target->e, 3);
 }
 
 Ring1_NoDiscardReturn() Ring3_Math_Vector3f32*
 Ring3_Math_Vector3f32_difference
   (
-    const Ring3_Math_Vector3f32* a,
-    const Ring3_Math_Vector3f32* b
+    Ring3_Math_Vector3f32 const* self,
+    Ring3_Math_Vector3f32 const* other
   )
 {
-  Ring3_Math_Vector3f32* c = Ring3_Math_Vector3f32_create();
-  sub_vv_f32(a->e, b->e, c->e, 3);
-  return c;
+  Ring3_Math_Vector3f32* target = Ring3_Math_Vector3f32_create();
+  sub_vv_f32(self->e, other->e, target->e, 3);
+  return target;
 }
 
 void
 Ring3_Math_Vector3f32_multiply
   (
-    Ring3_Math_Vector3f32* c,
-    const Ring3_Math_Vector3f32* a,
-    const Ring3_Math_Vector3f32* b
+    Ring3_Math_Vector3f32* target,
+    Ring3_Math_Vector3f32 const* self,
+    Ring3_Math_Vector3f32 const* other
   )
 {
-  mul_vv_f32(a->e, b->e, c->e, 3);
+  mul_vv_f32(self->e, other->e, target->e, 3);
 }
 
 Ring1_NoDiscardReturn() Ring3_Math_Vector3f32*
 Ring3_Math_Vector3f32_product
   (
-    const Ring3_Math_Vector3f32* a,
-    const Ring3_Math_Vector3f32* b
+    Ring3_Math_Vector3f32 const* self,
+    Ring3_Math_Vector3f32 const* other
   )
 {
-  Ring3_Math_Vector3f32* c = Ring3_Math_Vector3f32_create();
-  mul_vv_f32(a->e, b->e, c->e, 3);
-  return c;
+  Ring3_Math_Vector3f32* target = Ring3_Math_Vector3f32_create();
+  mul_vv_f32(self->e, other->e, target->e, 3);
+  return target;
+}
+
+void
+Ring3_Math_Vector3f32_divide
+  (
+    Ring3_Math_Vector3f32* target,
+    Ring3_Math_Vector3f32 const* self,
+    Ring3_Math_Vector3f32 const* other
+  )
+{
+  div_vv_f32(self->e, other->e, target->e, 3);
+}
+
+Ring1_NoDiscardReturn() Ring3_Math_Vector3f32*
+Ring3_Math_Vector3f32_quotient
+  (
+    Ring3_Math_Vector3f32 const* self,
+    Ring3_Math_Vector3f32 const* other
+  )
+{
+  Ring3_Math_Vector3f32* target = Ring3_Math_Vector3f32_create();
+  div_vv_f32(self->e, other->e, target->e, 3);
+  return target;
 }
 
 Ring1_NoDiscardReturn() Ring2_Real32
 Ring3_Math_Vector3f32_dot
   (
-    const Ring3_Math_Vector3f32* a,
-    const Ring3_Math_Vector3f32* b
+    Ring3_Math_Vector3f32 const* self,
+    Ring3_Math_Vector3f32 const* other
   )
 {
-  Ring2_Real32 s;
-  dot_vv_f32(a->e, b->e, &s, 3);
-  return s;  
+  Ring2_Real32 target;
+  dot_vv_f32(self->e, other->e, &target, 3);
+  return target;
 }
 
 void
 Ring3_Math_Vector3f32_maxima
   (
-    Ring3_Math_Vector3f32* c,
-    const Ring3_Math_Vector3f32* a,
-    const Ring3_Math_Vector3f32* b
+    Ring3_Math_Vector3f32* target,
+    Ring3_Math_Vector3f32 const* self,
+    Ring3_Math_Vector3f32 const* other
   )
 {
-  max_vv_f32(a->e, b->e, c->e, 3);
+  max_vv_f32(self->e, other->e, target->e, 3);
 }
 
 void
 Ring3_Math_Vector3f32_minima
   (
-    Ring3_Math_Vector3f32* c,
-    const Ring3_Math_Vector3f32* a,
-    const Ring3_Math_Vector3f32* b
+    Ring3_Math_Vector3f32* target,
+    Ring3_Math_Vector3f32 const* self,
+    Ring3_Math_Vector3f32 const* other
   )
 {
-  min_vv_f32(a->e, b->e, c->e, 3);
+  min_vv_f32(self->e, other->e, target->e, 3);
 }
 
 Ring1_NoDiscardReturn() Ring3_Math_Vector3f32*
 Ring3_Math_Vector3f32_multiplyScalar
   (
-    Ring3_Math_Vector3f32 const* a,
-    Ring2_Real32 b
+    Ring3_Math_Vector3f32 const* self,
+    Ring2_Real32 other
   )
 {
-  Ring3_Math_Vector3f32* c = Ring3_Math_Vector3f32_create();
-  mul_vs_f32(a->e, b, c->e, 3);
-  return c;
+  Ring3_Math_Vector3f32* target = Ring3_Math_Vector3f32_create();
+  mul_vs_f32(self->e, other, target->e, 3);
+  return target;
 }
 
 void
 Ring3_Math_Vector3f32_multiplyScalarInSitu
   (
-    Ring3_Math_Vector3f32* a,
-    Ring2_Real32 b
+    Ring3_Math_Vector3f32* self,
+    Ring2_Real32 other
   )
 {
-  mul_vs_f32(a->e, b, a->e, 3);
+  mul_vs_f32(self->e, other, self->e, 3);
 }
 
 Ring1_NoDiscardReturn() Ring3_Math_Vector3f32*
 Ring3_Math_Vector3f32_divideScalar
   (
-    Ring3_Math_Vector3f32 const* a,
-    Ring2_Real32 b
+    Ring3_Math_Vector3f32 const* self,
+    Ring2_Real32 other
   )
 {
-  Ring3_Math_Vector3f32* c = Ring3_Math_Vector3f32_create();
-  div_vs_f32(a->e, b, c->e, 3);
-  return c;
+  Ring3_Math_Vector3f32* target = Ring3_Math_Vector3f32_create();
+  div_vs_f32(self->e, other, target->e, 3);
+  return target;
 }
 
 void
 Ring3_Math_Vector3f32_divideScalarInSitu
   (
-    Ring3_Math_Vector3f32* a,
-    Ring2_Real32 b
+    Ring3_Math_Vector3f32* self,
+    Ring2_Real32 other
   )
 {
-  div_vs_f32(a->e, b, a->e, 3);
+  div_vs_f32(self->e, other, self->e, 3);
 }
 
 Ring1_NoDiscardReturn() Ring2_Real32
 Ring3_Math_Vector3f32_length
   (
-    const Ring3_Math_Vector3f32* a
+    Ring3_Math_Vector3f32 const* self
   )
 {
   Ring2_Real32 t;
-  length_vs_f32(a->e, &t, 3);
+  length_vs_f32(self->e, &t, 3);
   return t;
 }
 
 Ring1_NoDiscardReturn() Ring2_Real32
 Ring3_Math_Vector3f32_squaredLength
   (
-    const Ring3_Math_Vector3f32* a
+    Ring3_Math_Vector3f32 const* self
   )
 {
   Ring2_Real32 t;
-  squaredLength_vs_f32(a->e, &t, 3);
+  squaredLength_vs_f32(self->e, &t, 3);
   return t;
 }
 
@@ -264,22 +287,22 @@ Ring3_Math_Vector3f32_normalizeInSitu
 Ring1_NoDiscardReturn() Ring2_Boolean
 Ring3_Math_Vector3f32_isEqualToWithTolerance
   (
-    Ring3_Math_Vector3f32 const* a,
-    Ring3_Math_Vector3f32 const* b,
+    Ring3_Math_Vector3f32 const* self,
+    Ring3_Math_Vector3f32 const* other,
     Ring2_Real32 absolute,
     Ring2_Real32 relative
   )
 {
-  if (!a || !b || absolute <= 0. || relative <= 0.) {
+  if (!self || !other || absolute <= 0. || relative <= 0.) {
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();
   }
-  if (a == b) {
+  if (self == other) {
     return true;
   }
   for (size_t i = 0, n = 3; i < n; ++i) {
     bool equal;
-    if (Ring1_Fp_equalToWithTolerance_f32(&equal, a->e[i], b->e[i], absolute, relative)) {
+    if (Ring1_Fp_equalToWithTolerance_f32(&equal, self->e[i], other->e[i], absolute, relative)) {
       Ring2_jump();
     }
     if (!equal) {

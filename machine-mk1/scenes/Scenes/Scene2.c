@@ -93,11 +93,11 @@ static void Scene2_onUpdate(Scene2* self, Ring2_Real32 width, Ring2_Real32 heigh
   Machine_VideoContext_setViewportRectangle(videoContext, 0, 0, width, height);
   Machine_VideoContext_clearColorBuffer(videoContext);
 
-  Ring3_Math_Matrix4* m2 = Ring3_Math_Matrix4_create();
-  Ring3_Math_Matrix4_rotateZ(m2, Machine_Time_getNowSecondsFloat());
-  Ring3_Math_Matrix4* p2 = Ring3_Math_Matrix4_create();
-  Ring3_Math_Matrix4_setOrtho(p2, -ratio, +ratio, -1.f, +1.f, 1.f, -1.f);
-  Ring3_Math_Matrix4* mvp2 = Ring3_Math_Matrix4_product(p2, m2);
+  Ring3_Math_Matrix4x4f32* m2 = Ring3_Math_Matrix4x4f32_create();
+  Ring3_Math_Matrix4x4f32_setRotationZ(m2, Machine_Time_getNowSecondsFloat());
+  Ring3_Math_Matrix4x4f32* p2 = Ring3_Math_Matrix4x4f32_create();
+  Ring3_Math_Matrix4x4f32_setOrtho(p2, -ratio, +ratio, -1.f, +1.f, 1.f, -1.f);
+  Ring3_Math_Matrix4x4f32* mvp2 = Ring3_Math_Matrix4x4f32_product(p2, m2);
 
   Machine_Binding_activate(self->binding);
   Machine_Binding_bindMatrix4(

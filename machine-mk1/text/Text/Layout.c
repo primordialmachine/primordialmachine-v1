@@ -127,7 +127,7 @@ static void updateLinesBounds(Ring3_Math_Vector2f32* position, Machine_Font* fon
       Ring3_Math_Rectangle2_addPoint(lineBounds, min);
       Ring3_Math_Rectangle2_addPoint(lineBounds, max);
 
-      Ring3_Math_Vector2f32_add(cursorPosition, cursorPosition, symbolAdvance);
+      Ring3_Math_Vector2f32_add(cursorPosition, symbolAdvance, cursorPosition);
     }
     layoutLine->left = Ring3_Math_Vector2f32_getX(Ring3_Math_Rectangle2_getPosition(lineBounds));
     layoutLine->width = Ring3_Math_Vector2f32_getX(Ring3_Math_Rectangle2_getSize(lineBounds));
@@ -279,8 +279,8 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Machine_Context2* con
 
   // Set the world matrix, view matrix, and projection matrix.
   Machine_Context2_setOriginBottomLeft(context2, Y_UP);
-  Ring3_Math_Matrix4 const* modelSpaceToProjectiveSpace = Machine_Context2_getModelSpaceToProjectiveSpaceMatrix(context2);
-  Ring3_Math_Matrix4 const* modelSpaceToWorldSpace = Machine_Context2_getModelSpaceToWorldSpaceMatrix(context2);
+  Ring3_Math_Matrix4x4f32 const* modelSpaceToProjectiveSpace = Machine_Context2_getModelSpaceToProjectiveSpaceMatrix(context2);
+  Ring3_Math_Matrix4x4f32 const* modelSpaceToWorldSpace = Machine_Context2_getModelSpaceToWorldSpaceMatrix(context2);
 
   Machine_ShaderProgram* shaderProgram = Machine_Font_getVideoShaderProgram(self->font);
   Machine_Binding* binding = Machine_Font_getVideoBinding(self->font);

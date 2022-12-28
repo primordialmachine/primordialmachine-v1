@@ -28,9 +28,9 @@ struct Machine_Context2 {
   Machine_VideoContext* videoContext;
 
   /// @brief The combined model space to projection space transformation matrix.
-  Ring3_Math_Matrix4* modelSpaceToProjectiveSpace;
+  Ring3_Math_Matrix4x4f32* modelSpaceToProjectiveSpace;
   /// @brief the combined model space to world space transformation matrix.
-  Ring3_Math_Matrix4* modelSpaceToWorldSpace;
+  Ring3_Math_Matrix4x4f32* modelSpaceToWorldSpace;
 
   /// @brief The width, in pixels, of the render target.
   Ring2_Real32 width;
@@ -94,12 +94,12 @@ Ring2_Real32 Machine_Context2_getTargetHeight(Machine_Context2 const* self);
 /// @brief Get the model space to projective space transformation matrix.
 /// @param self This context.
 /// @return The model space to projective space transformation matrix.
-Ring3_Math_Matrix4 const *Machine_Context2_getModelSpaceToProjectiveSpaceMatrix(Machine_Context2 const* self);
+Ring3_Math_Matrix4x4f32 const *Machine_Context2_getModelSpaceToProjectiveSpaceMatrix(Machine_Context2 const* self);
 
 /// @brief Get the model space to world space transformation matrix.
 /// @param self This context.
 /// @return The model space to world space transformation matrix.
-Ring3_Math_Matrix4 const* Machine_Context2_getModelSpaceToWorldSpaceMatrix(Machine_Context2 const* self);
+Ring3_Math_Matrix4x4f32 const* Machine_Context2_getModelSpaceToWorldSpaceMatrix(Machine_Context2 const* self);
 
 /// @brief Set if the origin of the coordinate system is mapped to the bottom/left corner or the top/left corner of the canvas.
 /// @param self This context.

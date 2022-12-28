@@ -47,7 +47,7 @@ struct Machine_Binding_Class {
   Ring2_Boolean (*setVariableBinding)(Machine_Binding* self, Ring2_String* name, size_t index);
   size_t (*getVariableBinding)(Machine_Binding const* self, Ring2_String* name);
   void (*bindMatrix4)(Machine_Binding* self, Ring2_String* name,
-                      Ring3_Math_Matrix4 const* value);
+                      Ring3_Math_Matrix4x4f32 const* value);
   void (*bindVector2)(Machine_Binding* self, Ring2_String* name,
                       Ring3_Math_Vector2f32 const* value);
   void (*bindVector3)(Machine_Binding* self, Ring2_String* name,
@@ -97,7 +97,7 @@ void Machine_Binding_activate(Machine_Binding* self);
 /// @param value The value.
 /// @error The specified name does not denote a constant.
 void Machine_Binding_bindMatrix4(Machine_Binding* self, Ring2_String* name,
-                                 Ring3_Math_Matrix4 const* value);
+                                 Ring3_Math_Matrix4x4f32 const* value);
 
 /// @brief Bind a vector to a constant.
 /// @param self This binding.

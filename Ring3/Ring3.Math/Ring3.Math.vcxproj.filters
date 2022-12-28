@@ -31,33 +31,18 @@
     <Filter Include="Quelldateien\Ring3\Math\Kernels">
       <UniqueIdentifier>{d244ec1a-0b23-4990-bd27-f3cd41477dd6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring3\Math\Transformations">
+      <UniqueIdentifier>{b2019536-3006-4b10-b888-3fdeb727add8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring3\Math\Transformations">
+      <UniqueIdentifier>{e3bcb2c2-55a9-41be-8851-995e99c8d6d8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring3\Math\Rectangle2.c">
       <Filter>Quelldateien\Ring3\Math</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Math\Matrix4.c">
-      <Filter>Quelldateien\Ring3\Math</Filter>
-    </ClCompile>
     <ClCompile Include="Ring3\Math\_Include.c">
-      <Filter>Quelldateien\Ring3\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring3\Math\ColorRgbaU8.c">
-      <Filter>Quelldateien\Ring3\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring3\Math\ColorRgbU8.c">
-      <Filter>Quelldateien\Ring3\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring3\Math\ColorRgbaF64.c">
-      <Filter>Quelldateien\Ring3\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring3\Math\ColorRgbaF64Extensions.c">
-      <Filter>Quelldateien\Ring3\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring3\Math\ColorRgbaU8Extensions.c">
-      <Filter>Quelldateien\Ring3\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring3\Math\ColorRgbU8Extensions.c">
       <Filter>Quelldateien\Ring3\Math</Filter>
     </ClCompile>
     <ClCompile Include="Ring3\Math\Vector2f32.c">
@@ -69,33 +54,54 @@
     <ClCompile Include="Ring3\Math\Vector4f32.c">
       <Filter>Quelldateien\Ring3\Math</Filter>
     </ClCompile>
+    <ClCompile Include="Ring3\Math\Matrix4x4f32.c">
+      <Filter>Quelldateien\Ring3\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Math\ColorRgbaf64.c">
+      <Filter>Quelldateien\Ring3\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Math\ColorRgbaf64Extensions.c">
+      <Filter>Quelldateien\Ring3\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Math\ColorRgbau8.c">
+      <Filter>Quelldateien\Ring3\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Math\ColorRgbau8Extensions.c">
+      <Filter>Quelldateien\Ring3\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Math\ColorRgbu8.c">
+      <Filter>Quelldateien\Ring3\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Math\ColorRgbu8Extensions.c">
+      <Filter>Quelldateien\Ring3\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Math\Sphere2f32.c">
+      <Filter>Quelldateien\Ring3\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Math\Sphere3f32.c">
+      <Filter>Quelldateien\Ring3\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Math\Ray2f32.c">
+      <Filter>Quelldateien\Ring3\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Math\Ray3f32.c">
+      <Filter>Quelldateien\Ring3\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Math\Transformations\_Include.c">
+      <Filter>Quelldateien\Ring3\Math\Transformations</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Math\Transformations\Rotation.c">
+      <Filter>Quelldateien\Ring3\Math\Transformations</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Math\Matrix3x3f32.c">
+      <Filter>Quelldateien\Ring3\Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring3\Math\Rectangle2.h">
       <Filter>Headerdateien\Ring3\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Math\Matrix4.h">
-      <Filter>Headerdateien\Ring3\Math</Filter>
-    </ClInclude>
     <ClInclude Include="Ring3\Math\_Include.h">
-      <Filter>Headerdateien\Ring3\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring3\Math\ColorRgbaF64.h">
-      <Filter>Headerdateien\Ring3\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring3\Math\ColorRgbaU8.h">
-      <Filter>Headerdateien\Ring3\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring3\Math\ColorRgbU8.h">
-      <Filter>Headerdateien\Ring3\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring3\Math\ColorRgbaF64Extensions.h">
-      <Filter>Headerdateien\Ring3\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring3\Math\ColorRgbaU8Extensions.h">
-      <Filter>Headerdateien\Ring3\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring3\Math\ColorRgbU8Extensions.h">
       <Filter>Headerdateien\Ring3\Math</Filter>
     </ClInclude>
     <ClInclude Include="Ring3\Math\Vector2f32.h">
@@ -109,6 +115,48 @@
     </ClInclude>
     <ClInclude Include="Ring3\Math\Kernels\VectorKernel.h">
       <Filter>Headerdateien\Ring3\Math\Kernels</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Math\Matrix4x4f32.h">
+      <Filter>Headerdateien\Ring3\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Math\ColorRgbaf64.h">
+      <Filter>Headerdateien\Ring3\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Math\ColorRgbaf64Extensions.h">
+      <Filter>Headerdateien\Ring3\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Math\ColorRgbau8.h">
+      <Filter>Headerdateien\Ring3\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Math\ColorRgbau8Extensions.h">
+      <Filter>Headerdateien\Ring3\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Math\ColorRgbu8.h">
+      <Filter>Headerdateien\Ring3\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Math\ColorRgbu8Extensions.h">
+      <Filter>Headerdateien\Ring3\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Math\Sphere2f32.h">
+      <Filter>Headerdateien\Ring3\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Math\Sphere3f32.h">
+      <Filter>Headerdateien\Ring3\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Math\Ray2f32.h">
+      <Filter>Headerdateien\Ring3\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Math\Ray3f32.h">
+      <Filter>Headerdateien\Ring3\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Math\Transformations\_Include.h">
+      <Filter>Headerdateien\Ring3\Math\Transformations</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Math\Transformations\Rotation.h">
+      <Filter>Headerdateien\Ring3\Math\Transformations</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Math\Matrix3x3f32.h">
+      <Filter>Headerdateien\Ring3\Math</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

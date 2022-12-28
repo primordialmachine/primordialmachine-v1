@@ -4,7 +4,9 @@
 /// @copyright Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
+#define RING3_MATH_PRIVATE (1)
 #include "Ring3/Math/ColorRgbaF64.h"
+#undef RING3_MATH_PRIVATE
 
 
 #include "Ring2/Library/ArgumentsUtilities.h"
@@ -20,7 +22,7 @@ Ring3_Math_ColorRgbaF64_construct
     size_t numberOfArguments,
     const Ring2_Value* arguments
   );
-  
+
 static Ring1_CheckReturn() Ring2_Boolean
 isEqualToImpl
   (
@@ -45,13 +47,13 @@ Ring3_Math_ColorRgbaF64_construct
     size_t numberOfArguments,
     const Ring2_Value* arguments
   );
-  
+
 static void
 Ring3_Math_ColorRgbaF64_Class_construct
   (
     Ring3_Math_ColorRgbaF64_Class *self
   );
-  
+
 // Raises an error if the argument's value is "no number".
 // Clamps the argument's vallue to the interval @code{[0,1]} if it's not within that interval.
 static Ring2_Real64
@@ -100,7 +102,7 @@ getComponentArgument
   } else {
     v = 1.f;
   }
-  return v; 
+  return v;
 }
 
 static void
@@ -197,7 +199,7 @@ Ring3_Math_ColorRgbaF64_create
   )
 {
   Machine_ClassType* ty = Ring3_Math_ColorRgbaF64_getType();
-  
+
   static const size_t NUMBER_OF_ARGUMENTS = 4;
   Ring2_Value ARGUMENTS[4] = {
     { Ring2_Value_Tag_Void, Ring2_Void_Void },
@@ -234,7 +236,7 @@ Ring3_Math_ColorRgbaF64_getRed
   (
     Ring3_Math_ColorRgbaF64* self
   )
-{ 
+{
   if (Ring1_Unlikely(!self)) {
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();

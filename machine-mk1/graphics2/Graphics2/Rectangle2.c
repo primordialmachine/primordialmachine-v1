@@ -22,7 +22,7 @@ static void Machine_Rectangle2_visit(Machine_Rectangle2* self) {
 }
 
 static void Machine_Rectangle2_render(Machine_Rectangle2* self, Machine_Context2 *context) {
-  Ring3_Math_Matrix4 const*wvp2 = Machine_Context2_getModelSpaceToProjectiveSpaceMatrix(context);
+  Ring3_Math_Matrix4x4f32 const*wvp2 = Machine_Context2_getModelSpaceToProjectiveSpaceMatrix(context);
 
   Ring2_Real32 l = Ring3_Math_Vector2f32_getX(self->position);
   Ring2_Real32 r = l + Ring3_Math_Vector2f32_getX(self->size);

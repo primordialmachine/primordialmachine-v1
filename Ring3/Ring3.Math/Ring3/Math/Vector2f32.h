@@ -37,7 +37,7 @@ Ring3_Math_Vector2f32_create
 Ring1_NoDiscardReturn() Ring3_Math_Vector2f32*
 Ring3_Math_Vector2f32_clone
   (
-    const Ring3_Math_Vector2f32* self
+    Ring3_Math_Vector2f32 const* self
   );
 
 /// @brief Copy the values of another vector into this vector.
@@ -47,219 +47,242 @@ void
 Ring3_Math_Vector2f32_copy
   (
     Ring3_Math_Vector2f32* self,
-    const Ring3_Math_Vector2f32* other
+    Ring3_Math_Vector2f32 const* other
   );
 
 /// @brief Compute the sum of two vectors.
-/// @param c The vector to store the result in.
-/// @param a The first vector.
-/// @param b The second vector.
+/// @param self This vector.
+/// @param other The other vector.
+/// @param target The vector to store the result in.
 void
 Ring3_Math_Vector2f32_add
   (
-    Ring3_Math_Vector2f32* c,
-    const Ring3_Math_Vector2f32* a,
-    const Ring3_Math_Vector2f32* b
+    Ring3_Math_Vector2f32 const* self,
+    Ring3_Math_Vector2f32 const* other,
+    Ring3_Math_Vector2f32* target
   );
 
-/// @brief Compute the sum of two vectors.
-/// @param a The first vector.
-/// @param b The second vector.
+/// @brief Compute the sum of this vector and another vector.
+/// @param self This vector.
+/// @param other The other vector.
 /// @return The sum vector.
 Ring1_NoDiscardReturn() Ring3_Math_Vector2f32*
 Ring3_Math_Vector2f32_sum
   (
-    const Ring3_Math_Vector2f32* a,
-    const Ring3_Math_Vector2f32* b
+    Ring3_Math_Vector2f32 const* self,
+    Ring3_Math_Vector2f32 const* other
   );
 
-/// @brief Compute the difference of two vectors.
-/// @param c The vector to store the result in.
-/// @param a The first vector.
-/// @param b The second vector.
+/// @brief Compute the difference of this vector and another vector.
+/// @param self This vector.
+/// @param other The other vector.
+/// @param target The vector to store the result in.
 void
 Ring3_Math_Vector2f32_subtract
   (
-    Ring3_Math_Vector2f32* c,
-    const Ring3_Math_Vector2f32* a,
-    const Ring3_Math_Vector2f32* b
+    Ring3_Math_Vector2f32 const* self,
+    Ring3_Math_Vector2f32 const* other,
+    Ring3_Math_Vector2f32* target
   );
 
-/// @brief Compute the difference of two vectors.
-/// @param a The first vector.
-/// @param b The second vector.
+/// @brief Compute the difference of this vector and another vector.
+/// @param self This vector.
+/// @param other The other vector.
 /// @return The difference vector.
 Ring1_NoDiscardReturn() Ring3_Math_Vector2f32*
 Ring3_Math_Vector2f32_difference
   (
-    const Ring3_Math_Vector2f32* a,
-    const Ring3_Math_Vector2f32* b
+    Ring3_Math_Vector2f32 const* self,
+    Ring3_Math_Vector2f32 const* other
   );
 
-/// @brief Compute the component-wise product of two vectors.
-/// @param c The vector to store the result in.
-/// @param a The first vector.
-/// @param b The second vector.
+/// @brief Compute the component-wise product of this vector and another vector.
+/// @param target The vector to store the result in.
+/// @param self This vector.
+/// @param other The other vector.
 void
 Ring3_Math_Vector2f32_multiply
   (
-    Ring3_Math_Vector2f32* c,
-    const Ring3_Math_Vector2f32* a,
-    const Ring3_Math_Vector2f32* b
+    Ring3_Math_Vector2f32* target,
+    Ring3_Math_Vector2f32 const* self,
+    Ring3_Math_Vector2f32 const* other
   );
 
-/// @brief Compute the component-wise product of two vectors.
-/// @param a The first vector.
-/// @param b The second vector.
+/// @brief Compute the component-wise product of this vector with another vector.
+/// @param self This vector.
+/// @param other The other vector.
 /// @return The component-wise product vector.
 Ring1_NoDiscardReturn() Ring3_Math_Vector2f32*
 Ring3_Math_Vector2f32_product
   (
-    const Ring3_Math_Vector2f32* a,
-    const Ring3_Math_Vector2f32* b
+    Ring3_Math_Vector2f32 const* self,
+    Ring3_Math_Vector2f32 const* other
+  );
+
+/// @brief Compute the component-wise quotient of two vectors.
+/// @param target The vector to store the result in.
+/// @param self This vector.
+/// @param other The other vector.
+void
+Ring3_Math_Vector2f32_divide
+  (
+    Ring3_Math_Vector2f32* target,
+    Ring3_Math_Vector2f32 const* self,
+    Ring3_Math_Vector2f32 const* other
+  );
+
+/// @brief Compute the component-wise quotient of this vector and another vectors.
+/// @param self This vector.
+/// @param other The other vector.
+/// @return The component-wise quotient vector.
+Ring1_NoDiscardReturn() Ring3_Math_Vector2f32*
+Ring3_Math_Vector2f32_quotient
+  (
+    Ring3_Math_Vector2f32 const* self,
+    Ring3_Math_Vector2f32 const* other
   );
 
 /// @brief Compute the dot product of two vectors.
-/// @param a The first vector.
-/// @param b The second vector.
+/// @param self This vector.
+/// @param other The other vector.
 /// @return The dot product of the vectors.
 Ring1_NoDiscardReturn() Ring2_Real32
 Ring3_Math_Vector2f32_dot
   (
-    const Ring3_Math_Vector2f32* a,
-    const Ring3_Math_Vector2f32* b
+    Ring3_Math_Vector2f32 const* self,
+    Ring3_Math_Vector2f32 const* other
   );
 
-/// @brief Get the component-wise maxima vector of two vectors i.e. a vector \f$c_i = \max(a_i,b_i)\f$
-/// @param c The vector to store the result in.
-/// @param a The first vector.
-/// @param b The second vector.
+/// @brief Get the component-wise maxima of this vector and another vector i.e. a vector \f$c_i = \max(a_i,b_i)\f$
+/// @param target The vector to store the result in.
+/// @param self This vector.
+/// @param other The other vector.
 void
 Ring3_Math_Vector2f32_maxima
   (
-    Ring3_Math_Vector2f32* c,
-    const Ring3_Math_Vector2f32* a,
-    const Ring3_Math_Vector2f32* b
+    Ring3_Math_Vector2f32* target,
+    Ring3_Math_Vector2f32 const* self,
+    Ring3_Math_Vector2f32 const* other
   );
 
-/// @brief Get the component-wise minima vector of two vectors i.e. a vector \f$c_i = \min(a_i,b_i)\f$
-/// @param c The vector to store the result in.
-/// @param a The first vector.
-/// @param b The second vector.
+/// @brief Get the component-wise minima vector of this vector and another vector i.e. a vector \f$c_i = \min(a_i,b_i)\f$
+/// @param target The vector to store the result in.
+/// @param self This vector.
+/// @param other The other vector.
 void
 Ring3_Math_Vector2f32_minima
   (
-    Ring3_Math_Vector2f32* c,
-    const Ring3_Math_Vector2f32* a,
-    const Ring3_Math_Vector2f32* b
+    Ring3_Math_Vector2f32* target,
+    Ring3_Math_Vector2f32 const* self,
+    Ring3_Math_Vector2f32 const* other
   );
 
-/// @brief Compute the product of a vector and a scalar.
-/// @param a The vector.
-/// @param b The scalar.
+/// @brief Compute the product of this vector and a scalar.
+/// @param self The vector.
+/// @param other The scalar.
 /// @return The product.
 Ring1_NoDiscardReturn() Ring3_Math_Vector2f32*
 Ring3_Math_Vector2f32_multiplyScalar
   (
-    Ring3_Math_Vector2f32 const* a,
-    Ring2_Real32 b
+    Ring3_Math_Vector2f32 const* self,
+    Ring2_Real32 other
   );
 
-/// @brief Compute the product of a vector and a scalar.
-/// Store the result in the vector.
-/// @param a The vector.
-/// @param b The scalar.
+/// @brief Compute the product of this vector and a scalar.
+/// Store the result in this vector.
+/// @param self This vector.
+/// @param other The scalar.
 void
 Ring3_Math_Vector2f32_multiplyScalarInSitu
   (
-    Ring3_Math_Vector2f32* a,
-    Ring2_Real32 b
+    Ring3_Math_Vector2f32* self,
+    Ring2_Real32 other
   );
 
-/// @brief Compute the quotient of a vector and a scalar.
-/// @param a The vector.
-/// @param b The scalar.
+/// @brief Compute the quotient of this vector and a scalar.
+/// @param self This vector.
+/// @param other The scalar.
 /// @return The quotient.
 Ring1_NoDiscardReturn() Ring3_Math_Vector2f32*
 Ring3_Math_Vector2f32_divideScalar
   (
-    Ring3_Math_Vector2f32 const* a,
-    Ring2_Real32 b
+    Ring3_Math_Vector2f32 const* self,
+    Ring2_Real32 other
   );
 
-/// @brief Compute the quotient of a vector and a scalar.
-/// Store the result in the vector.
-/// @param a The vector.
-/// @param b The scalar.
+/// @brief Compute the quotient of this vector and a scalar.
+/// Store the result in this vector.
+/// @param self This vector.
+/// @param other The scalar.
 void
 Ring3_Math_Vector2f32_divideScalarInSitu
   (
-    Ring3_Math_Vector2f32* a,
-    Ring2_Real32 b
+    Ring3_Math_Vector2f32* self,
+    Ring2_Real32 other
   );
 
-/// @brief Get the length of a vector.
-/// @param a The vector.
-/// @return The length of the vector.
+/// @brief Get the length of this vector.
+/// @param self This vector.
+/// @return The length of this vector.
 Ring1_NoDiscardReturn() Ring2_Real32
 Ring3_Math_Vector2f32_length
   (
-    const Ring3_Math_Vector2f32* a
+    Ring3_Math_Vector2f32 const* self
   );
 
-/// @brief Get the squared length of a vector.
-/// @param a The vector.
-/// @return The squared length of the vector.
+/// @brief Get the squared length of this vector.
+/// @param self This vector.
+/// @return The squared length of this vector.
 Ring1_NoDiscardReturn() Ring2_Real32
 Ring3_Math_Vector2f32_squaredLength
   (
-    const Ring3_Math_Vector2f32* a
+    Ring3_Math_Vector2f32 const* self
   );
 
-/// @brief Compute the normalized vector of a vector.
-/// @param a The vector.
+/// @brief Compute the normalized vector of this vector.
+/// @param self This vector.
 /// @return The normalized vector.
 Ring1_NoDiscardReturn() Ring3_Math_Vector2f32*
 Ring3_Math_Vector2f32_normalize
   (
-    Ring3_Math_Vector2f32 const* a
+    Ring3_Math_Vector2f32 const* self
   );
 
-/// @brief Compute the normalized vector of a vector.
-/// Store the result in the vector.
-/// @param a The vector.
+/// @brief Compute the normalized vector of this vector.
+/// Store the result in this vector.
+/// @param self This vector.
 void
 Ring3_Math_Vector2f32_normalizeInSitu
   (
-    Ring3_Math_Vector2f32* a
+    Ring3_Math_Vector2f32* self
   );
 
-/// @brief Compare two vectors with tolerance.
-/// @param result A pointer to a <code>bool</code> variable.
-/// @param a The first vector.
-/// @param b The second vector.
+/// @brief Compare this vector and another vector with tolerance.
+/// @param self This vector.
+/// @param other The other vector.
 /// @param absolute, relative The absolute tolerance and the relative tolerance. Must be non-negative.
 /// @return @a true if the vectors are equal. @a false otherwise.
 /// @remark See Ring1_Fp_equalToWithTolerance_f32 for information the comparison function.
 Ring1_NoDiscardReturn() Ring2_Boolean
 Ring3_Math_Vector2f32_isEqualToWithTolerance
   (
-    Ring3_Math_Vector2f32 const* a,
-    Ring3_Math_Vector2f32 const* b,
+    Ring3_Math_Vector2f32 const* self,
+    Ring3_Math_Vector2f32 const* other,
     Ring2_Real32 absolute,
     Ring2_Real32 relative
   );
 
 /// @brief Swap the component of this vector with the component of another vector depending on which component value is greater.
 /// That is, given two vectors $u$ and $v$, compute \f$u'\f$ and \f$v'\f$ such that \f$u'_i = \min(u_i, v_i)\f$ and \f$v'_i = \max(u_i, v_i)\f$.
-/// @param a, b The vectors.
+/// @param self This vector.
+/// @param other The other vector.
 /// @param min, max Pointers to vectors variables.
 /// @success @a *min was assigned the minimum vector, @a *max was assigned the maximum vector.
 void
 Ring3_Math_Vector2f32_extrema
   (
-    Ring3_Math_Vector2f32 const* a,
-    Ring3_Math_Vector2f32 const* b,
+    Ring3_Math_Vector2f32 const* self,
+    Ring3_Math_Vector2f32 const* other,
     Ring3_Math_Vector2f32* min,
     Ring3_Math_Vector2f32* max
   );
@@ -268,7 +291,7 @@ Ring3_Math_Vector2f32_extrema
 void
 Ring3_Math_Vector2f32_set
   (
-    Ring3_Math_Vector2f32* a,
+    Ring3_Math_Vector2f32* self,
     Ring2_Real32 x
   );
 #endif
@@ -277,7 +300,7 @@ Ring3_Math_Vector2f32_set
 void
 Ring3_Math_Vector2f32_set
   (
-    Ring3_Math_Vector2f32* a,
+    Ring3_Math_Vector2f32* self,
     Ring2_Real32 x,
     Ring2_Real32 y
   );
@@ -287,7 +310,7 @@ Ring3_Math_Vector2f32_set
 void
 Ring3_Math_Vector2f32_set
   (
-    Ring3_Math_Vector2f32* a,
+    Ring3_Math_Vector2f32* self,
     Ring2_Real32 x,
     Ring2_Real32 y,
     Ring2_Real32 z
@@ -298,7 +321,7 @@ Ring3_Math_Vector2f32_set
 void
 Ring3_Math_Vector2f32_set
   (
-    Ring3_Math_Vector2f32* a,
+    Ring3_Math_Vector2f32* self,
     Ring2_Real32 x,
     Ring2_Real32 y,
     Ring2_Real32 z,
@@ -311,7 +334,7 @@ Ring3_Math_Vector2f32_set
 Ring1_NoDiscardReturn() Ring2_Real32
 Ring3_Math_Vector2f32_getX
   (
-    const Ring3_Math_Vector2f32* a
+    Ring3_Math_Vector2f32 const* self
   );
 
 #endif
@@ -321,7 +344,7 @@ Ring3_Math_Vector2f32_getX
 Ring1_NoDiscardReturn() Ring2_Real32
 Ring3_Math_Vector2f32_getY
   (
-    const Ring3_Math_Vector2f32* a
+    Ring3_Math_Vector2f32 const* self
   );
 
 #endif
@@ -331,7 +354,7 @@ Ring3_Math_Vector2f32_getY
 Ring1_NoDiscardReturn() Ring2_Real32
 Ring3_Math_Vector2f32_getZ
   (
-    const Ring3_Math_Vector2f32* a
+    Ring3_Math_Vector2f32 const* self
   );
 
 #endif
@@ -341,33 +364,33 @@ Ring3_Math_Vector2f32_getZ
 Ring1_NoDiscardReturn() Ring2_Real32
 Ring3_Math_Vector2f32_getW
   (
-    const Ring3_Math_Vector2f32* a
+    Ring3_Math_Vector2f32 const* self
   );
 
 #endif
 
 #if RING3_MATH_VECTOR_DIMENSIONALITY == 3
 
-/// @brief Compute the cross product of two vectors.
-/// @param a The first vector.
-/// @param b The second vector.
-/// @return The cross product of the first vector and the second vector.
+/// @brief Compute the cross product of this vector and another vectors.
+/// @param self This vector.
+/// @param other The other vector.
+/// @return The cross product of this vector and another vector.
 Ring1_NoDiscardReturn() Ring3_Math_Vector2f32*
 Ring3_Math_Vector2f32_cross
   (
-    Ring3_Math_Vector2f32 const* a,
-    Ring3_Math_Vector2f32 const* b
+    Ring3_Math_Vector2f32 const* self,
+    Ring3_Math_Vector2f32 const* other
   );
 
-/// @brief Compute the cross product of two vectors.
-/// Store the result in the first vector.
-/// @param a The first vector.
-/// @param b The second vector.
+/// @brief Compute the cross product of this vector and another vector.
+/// Store the result in this vector.
+/// @param self This vector.
+/// @param other The other vector.
 void
 Ring3_Math_Vector2f32_crossInSitu
   (
-    Ring3_Math_Vector2f32* a,
-    Ring3_Math_Vector2f32 const* b
+    Ring3_Math_Vector2f32* self,
+    Ring3_Math_Vector2f32 const* other
   );
 
 #endif

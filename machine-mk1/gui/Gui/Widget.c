@@ -75,8 +75,8 @@ static Ring3_Math_Vector2f32 const* Machine_Gui_Widget_getAbsolutePositionImpl(
   Ring3_Math_Vector2f32 const* position = Machine_Gui_Widget_getPosition(self);
   if (self->parent) {
     Ring3_Math_Vector2f32* position_ = Ring3_Math_Vector2f32_clone(position);
-    Ring3_Math_Vector2f32_add(position_, position_,
-                              Machine_Gui_Widget_getAbsolutePosition(self->parent));
+    Ring3_Math_Vector2f32_add(position_,
+                              Machine_Gui_Widget_getAbsolutePosition(self->parent), position_);
     return position_;
   } else {
     return position;

@@ -153,7 +153,7 @@ void Machine_Binding_addUpdateConstant(Machine_Binding* self, Ring2_String* name
 }
 
 void Machine_Binding_bindMatrix4(Machine_Binding* self, Ring2_String* name,
-                                 Ring3_Math_Matrix4 const* value) {
+                                 Ring3_Math_Matrix4x4f32 const* value) {
   MACHINE_VIRTUALCALL_NORETURN_ARGS(Machine_Binding, bindMatrix4, name, value);
 }
 

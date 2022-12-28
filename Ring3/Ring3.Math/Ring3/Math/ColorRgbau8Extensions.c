@@ -4,9 +4,13 @@
 /// @copyright Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
+#define RING3_MATH_PRIVATE (1)
 #include "Ring3/Math/ColorRgbaU8Extensions.h"
+#undef RING3_MATH_PRIVATE
+
 
 #include "Ring1/All/_Include.h"
+
 
 void
 Ring3_Math_ColorRgbaU8_packRgb

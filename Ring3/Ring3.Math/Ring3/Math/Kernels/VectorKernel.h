@@ -14,9 +14,11 @@ typedef float VECTOR[];
  * @detail target[i] is assigned source
  */
 INLINE void copy_vv_f32(VECTOR const source, VECTOR target, size_t n) {
-  for (size_t i = 0; i < n; ++i) {
-    target[i] = source[i];
-  }  
+  if (source != target) {
+    for (size_t i = 0; i < n; ++i) {
+      target[i] = source[i];
+    }
+  }
 }
 
 /**
@@ -66,7 +68,6 @@ INLINE void mul_vs_f32(VECTOR const source1, float const source2, VECTOR target,
     target[i] = source1[i] / source2;
   }
 }
-
 
 /**
  * @param source1, source2 the source vectors

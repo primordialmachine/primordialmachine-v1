@@ -19,29 +19,43 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ring3\Math\ColorRgbaU8Extensions.c" />
-    <ClCompile Include="Ring3\Math\ColorRgbU8Extensions.c" />
-    <ClCompile Include="Ring3\Math\Matrix4.c" />
+    <ClCompile Include="Ring3\Math\ColorRgbaf64.c" />
+    <ClCompile Include="Ring3\Math\ColorRgbaf64Extensions.c" />
+    <ClCompile Include="Ring3\Math\ColorRgbau8.c" />
+    <ClCompile Include="Ring3\Math\ColorRgbau8Extensions.c" />
+    <ClCompile Include="Ring3\Math\ColorRgbu8.c" />
+    <ClCompile Include="Ring3\Math\ColorRgbu8Extensions.c" />
+    <ClCompile Include="Ring3\Math\Matrix3x3f32.c" />
+    <ClCompile Include="Ring3\Math\Matrix4x4f32.c" />
+    <ClCompile Include="Ring3\Math\Ray2f32.c" />
+    <ClCompile Include="Ring3\Math\Ray3f32.c" />
     <ClCompile Include="Ring3\Math\Rectangle2.c" />
-    <ClCompile Include="Ring3\Math\ColorRgbaF64.c" />
-    <ClCompile Include="Ring3\Math\ColorRgbaF64Extensions.c" />
-    <ClCompile Include="Ring3\Math\ColorRgbaU8.c" />
-    <ClCompile Include="Ring3\Math\ColorRgbU8.c" />
+    <ClCompile Include="Ring3\Math\Sphere2f32.c" />
+    <ClCompile Include="Ring3\Math\Sphere3f32.c" />
+    <ClCompile Include="Ring3\Math\Transformations\Rotation.c" />
+    <ClCompile Include="Ring3\Math\Transformations\_Include.c" />
     <ClCompile Include="Ring3\Math\Vector2f32.c" />
     <ClCompile Include="Ring3\Math\Vector3f32.c" />
     <ClCompile Include="Ring3\Math\Vector4f32.c" />
     <ClCompile Include="Ring3\Math\_Include.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ring3\Math\ColorRgbaf64.h" />
+    <ClInclude Include="Ring3\Math\ColorRgbaf64Extensions.h" />
+    <ClInclude Include="Ring3\Math\ColorRgbau8.h" />
+    <ClInclude Include="Ring3\Math\ColorRgbau8Extensions.h" />
+    <ClInclude Include="Ring3\Math\ColorRgbu8.h" />
+    <ClInclude Include="Ring3\Math\ColorRgbu8Extensions.h" />
     <ClInclude Include="Ring3\Math\Kernels\VectorKernel.h" />
-    <ClInclude Include="Ring3\Math\Matrix4.h" />
+    <ClInclude Include="Ring3\Math\Matrix3x3f32.h" />
+    <ClInclude Include="Ring3\Math\Matrix4x4f32.h" />
+    <ClInclude Include="Ring3\Math\Ray2f32.h" />
+    <ClInclude Include="Ring3\Math\Ray3f32.h" />
     <ClInclude Include="Ring3\Math\Rectangle2.h" />
-    <ClInclude Include="Ring3\Math\ColorRgbaF64.h" />
-    <ClInclude Include="Ring3\Math\ColorRgbaU8.h" />
-    <ClInclude Include="Ring3\Math\ColorRgbU8.h" />
-    <ClInclude Include="Ring3\Math\ColorRgbaF64Extensions.h" />
-    <ClInclude Include="Ring3\Math\ColorRgbaU8Extensions.h" />
-    <ClInclude Include="Ring3\Math\ColorRgbU8Extensions.h" />
+    <ClInclude Include="Ring3\Math\Sphere2f32.h" />
+    <ClInclude Include="Ring3\Math\Sphere3f32.h" />
+    <ClInclude Include="Ring3\Math\Transformations\Rotation.h" />
+    <ClInclude Include="Ring3\Math\Transformations\_Include.h" />
     <ClInclude Include="Ring3\Math\Vector2f32.h" />
     <ClInclude Include="Ring3\Math\Vector3f32.h" />
     <ClInclude Include="Ring3\Math\Vector4f32.h" />

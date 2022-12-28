@@ -98,7 +98,7 @@ static size_t Machine_Binding_getVariableBindingImpl(Machine_Gl_Binding const* s
   return (size_t)-1;
 }
 
-static void Machine_Binding_bindMatrix4Impl(Machine_Gl_Binding* self, Ring2_String* name, Ring3_Math_Matrix4 const* value) {
+static void Machine_Binding_bindMatrix4Impl(Machine_Gl_Binding* self, Ring2_String* name, Ring3_Math_Matrix4x4f32 const* value) {
   Ring2_Value temporary2;
   Ring2_Value_setObject(&temporary2, (Machine_Object*)value);
   Machine_Binding_addUpdateConstant((Machine_Binding*)self, name, &temporary2);
@@ -248,7 +248,7 @@ static void Machine_Binding_activateImpl(Machine_Gl_Binding* self) {
 static void Machine_Gl_Binding_constructClass(Machine_Gl_Binding_Class* self) {
   ((Machine_Binding_Class*)self)->setVariableBinding = (Ring2_Boolean(*)(Machine_Binding*, Ring2_String*, size_t)) & Machine_Binding_setVariableBindingImpl;
   ((Machine_Binding_Class*)self)->getVariableBinding = (size_t(*)(Machine_Binding const*, Ring2_String*)) & Machine_Binding_getVariableBindingImpl;
-  ((Machine_Binding_Class*)self)->bindMatrix4 = (void (*)(Machine_Binding*, Ring2_String*, Ring3_Math_Matrix4 const*)) & Machine_Binding_bindMatrix4Impl;
+  ((Machine_Binding_Class*)self)->bindMatrix4 = (void (*)(Machine_Binding*, Ring2_String*, Ring3_Math_Matrix4x4f32 const*)) & Machine_Binding_bindMatrix4Impl;
   ((Machine_Binding_Class*)self)->bindVector2 = (void (*)(Machine_Binding*, Ring2_String*, Ring3_Math_Vector2f32 const*)) & Machine_Binding_bindVector2Impl;
   ((Machine_Binding_Class*)self)->bindVector3 = (void (*)(Machine_Binding*, Ring2_String*, Ring3_Math_Vector3f32 const*)) & Machine_Binding_bindVector3Impl;
   ((Machine_Binding_Class*)self)->bindVector4 = (void (*)(Machine_Binding*, Ring2_String*, Ring3_Math_Vector4f32 const*)) & Machine_Binding_bindVector4Impl;

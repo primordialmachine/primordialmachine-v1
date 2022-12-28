@@ -68,7 +68,7 @@ static inline void Machine_Gui_WidgetList_centerColumn(Machine_Gui_WidgetList* s
     Ring2_Real32 dx = x - cx;
     Ring3_Math_Vector2f32 const* oldPosition = Machine_Gui_Widget_getPosition(widget);
     Ring3_Math_Vector2f32_set(delta, dx, 0.f);
-    Ring3_Math_Vector2f32_add(newPosition, oldPosition, delta);
+    Ring3_Math_Vector2f32_add(oldPosition, delta, newPosition);
     Machine_Gui_Widget_setPosition(widget, newPosition);
   }
 }
@@ -87,7 +87,7 @@ static inline void Machine_Gui_WidgetList_centerRow(Machine_Gui_WidgetList* self
     Ring2_Real32 dy = y - cy;
     Ring3_Math_Vector2f32 const* oldPosition = Machine_Gui_Widget_getPosition(widget);
     Ring3_Math_Vector2f32_set(delta, 0.f, dy);
-    Ring3_Math_Vector2f32_add(newPosition, oldPosition, delta);
+    Ring3_Math_Vector2f32_add(oldPosition, delta, newPosition);
     Machine_Gui_Widget_setPosition(widget, newPosition);
   }
 }
