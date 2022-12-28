@@ -3,6 +3,8 @@
 
 #include "Ring1/Annotations/_Include.h"
 #include "Ring1/Result.h"
+#include <stdint.h>
+#include <stdbool.h>
 
 typedef struct Ring1_FileSystem_Path Ring1_FileSystem_Path;
 
@@ -15,7 +17,25 @@ Ring1_CheckReturn() Ring1_Result
 Ring1_FileSystem_Path_create
   (
     Ring1_FileSystem_Path **result,
-    const char *string
+    const char *bytes,
+    size_t numberOfBytes
+  );
+  
+Ring1_CheckReturn() Ring1_Result
+Ring1_FileSystem_Path_concatenate
+  (
+    Ring1_FileSystem_Path** result,
+    Ring1_FileSystem_Path* prefix,
+    Ring1_FileSystem_Path* suffix
+  );
+
+Ring1_CheckReturn() Ring1_Result
+Ring1_FileSystem_Path_toString
+  (
+    Ring1_FileSystem_Path* self,
+    bool zeroTerminated,
+    char** bytes,
+    size_t* numberOfBytes
   );
 
 void

@@ -26,7 +26,7 @@ Ring1_Module_Declare(Ring1, FileSystem)
 Ring1_NoDiscardReturn() Ring1_Result
 Ring1_FileSystem_receiveFileContents
   (
-    const char* pathname,
+    Ring1_FileSystem_Path *path,
     void* context,
     Ring1_FileSystem_ReceiveCallback* receive
   );

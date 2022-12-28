@@ -50,16 +50,31 @@ uninitializeModule
 Ring1_NoDiscardReturn() Ring1_Result
 Ring1_FileSystem_receiveFileContents
   (
-    const char* pathname,
+    Ring1_FileSystem_Path *path,
     void* context,
     Ring1_FileSystem_ReceiveCallback* receive
   )
 {
+  char* p; size_t n;
+  if (Ring1_FileSystem_Path_toString(path, true, &p, &n)) {
+    return Ring1_Result_Failure;
+}
 #if defined(RING1_FILESYSTEM_CONFIGURATION_BACKEND) && RING1_FILESYSTEM_CONFIGURATION_BACKEND_LINUX == RING1_FILESYSTEM_CONFIGURATION_BACKEND
-  return Ring1_FileSystem_Linux_receiveFileContents(pathname, context, receive);
+  if (Ring1_FileSystem_Linux_receiveFileContents(p, context, receive)) {
+    Ring1_Memory_deallocate(p);
+    p = NULL;
+    return Ring1_Result_Failure;
+  }
 #elif defined(RING1_FILESYSTEM_CONFIGURATION_BACKEND) && RING1_FILESYSTEM_CONFIGURATION_BACKEND_WINDOWS == RING1_FILESYSTEM_CONFIGURATION_BACKEND
-  return Ring1_FileSystem_Windows_receiveFileContents(pathname, context, receive);
+  if (Ring1_FileSystem_Windows_receiveFileContents(p, context, receive)) {
+    Ring1_Memory_deallocate(p);
+    p = NULL;
+    return Ring1_Result_Failure;
+  }
 #else
   #error("RING1_FILESYSTEM_CONFIGURATION_BACKEND must be defined to RING1_FILESYSTEM_CONFIGURATION_BACKEND_LINUNX, RING1_FILESYSTEM_CONFIGURATION_BACKEND_OSX, or RING1_FILESYSTEM_CONFIGURATION_BACKEND_WINDOWS")
 #endif
+  Ring1_Memory_deallocate(p);
+  p = NULL;
+  return Ring1_Result_Success;
 }

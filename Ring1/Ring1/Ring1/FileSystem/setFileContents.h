@@ -7,18 +7,20 @@
 #if !defined(RING1_FILESYSTEM_SETFILECONTENTS_H_INCLUDED)
 #define RING1_FILESYSTEM_SETFILECONTENTS_H_INCLUDED
 
-#include "Ring1/FileSystem/MemoryCallbacks.h"
-#include "Ring1/Annotations/_Include.h"
-#include "Ring1/Result.h"
-#include <stddef.h>
 
-// https://documentation.primordialmachine.com/ring1-library/filesystem-library/Ring1_FileSystem_setFileContents
+#include "Ring1/FileSystem/MemoryCallbacks.h"
+#include "Ring1/FileSystem/Path.h"
+#include "Ring1/Result.h"
+
+
+// https://primordialmachine.com/ring1-library/filesystem-library/Ring1_FileSystem_setFileContents
 Ring1_NoDiscardReturn() Ring1_Result
 Ring1_FileSystem_setFileContents
   (
-    char const* pathname,
+    Ring1_FileSystem_Path* path,
     void const* bytes,
     size_t numberOfBytes
   );
+
 
 #endif // RING1_FILESYSTEM_SETFILECONTENTS_H_INCLUDED

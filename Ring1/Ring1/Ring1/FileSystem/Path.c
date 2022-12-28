@@ -1,137 +1,72 @@
 #include "Ring1/FileSystem/Path.h"
 
-#include "Ring1/Memory.h"
-#include "Ring1/ReferenceCounter.h"
-#include "Ring1/Status.h"
+
+#include "Ring1/Memory/_Include.h"
 #include "Ring1/Intrinsic/Crt.h"
 
 #include <stdbool.h>
 
-typedef struct State {
-  const char* start;
-  const char* end;
-  const char* current;
-} State;
-
-/// @brief Get the drive prefix if any
-/// <code>
-/// ('a'-'z'|'A - 'Z') colon
-/// </code>
-/// @param span
-/// assigned the index and the length of the drive prefix if it exists.
-/// assigned (size_t)-1 both to index and length otherwise.
-static Ring1_Result
-parseRootName
-  (
-    bool *result,
-    State *state
-  )
-{
-  if (!result) {
-    Ring1_Status_set(Ring1_Status_InvalidArgument);
-    return Ring1_Result_Failure;
-  }
-  if (!state) {
-    Ring1_Status_set(Ring1_Status_InvalidArgument);
-    return Ring1_Result_Failure;
-  }
-  const char *old = state->current;
-  // Fast fail.
-  if (!(state->current - state->end) < 2) {
-    *result = false;
-    return Ring1_Result_Success;
-  }
-  if (('a' <= *state->current && *state->current <= 'z') || ('A' <= *state->current && *state->current <= 'Z')) {
-    state->current++;
-  } else {
-    state->current = old;
-    *result = false;
-    return Ring1_Result_Success;
-  }
-  if (*state->current == ':') {
-    state->current++;
-  } else {
-    state->current = old;
-    *result = false;
-    return Ring1_Result_Success;
-  }
-  *result = true;
-  return Ring1_Result_Success;
-}
-
-/// @details
-/// - replace any forward slash with a backward slash.
-/// - replace any sequence of two or more backward slashes with a single backward slash.
-static Ring1_Result
-normalizeDirectorySeparators
-  (
-    char** result,
-    const char* source
-  )
-{
-  size_t source_l = crt_strlen(source);
-  char* target;
-  if (Ring1_Memory_allocate(&target, source_l + 1)) {
-    return Ring1_Result_Failure;
-  }
-  size_t target_l = 0;
-  bool lastWasDirectorySeparator = false;
-  const char* source_cur = source;
-  const char* source_end = source + source_l;
-  char* target_cur = target;
-  while (source_cur != source_end) {
-    if (*source_cur == '/' || *source_cur == '\\') {
-      if (!lastWasDirectorySeparator) {
-        *target_cur = '\\';
-        target_cur++;
-        source_cur++;
-        target_l++;
-      }
-      else {
-        source_cur++;
-      }
-    }
-    else {
-      lastWasDirectorySeparator = false;
-      *target_cur = *source_cur;
-      target_cur++;
-      source_cur++;
-      target_l++;
-    }
-  }
-  if (target_l < source_l) {
-    char* target1;
-    if (Ring1_Memory_allocate(&target1, target_l + 1)) {
-      Ring1_Memory_deallocate(target);
-      return Ring1_Result_Failure;
-    }
-    Ring1_Memory_copyFast(target1, target, target_l);
-    Ring1_Memory_deallocate(target);
-    target = target1;
-  }
-  target[target_l] = '\0';
-  *result = target;
-  return Ring1_Result_Success;
-}
+#include "Ring1/FileSystem/Path/unparse.h"
+#include "Ring1/FileSystem/Path/parse.h"
+#include "Ring1/FileSystem/Path/normalize.h"
 
 
 struct Ring1_FileSystem_Path {
   Ring1_ReferenceCounter referenceCount;
-  char *string;
+  TokenList* tokens;
 };
+
+static Ring1_NoDiscardReturn() Ring1_Result
+isEmpty
+  (
+    bool* result,
+    Ring1_FileSystem_Path* self
+  )
+{
+  int64_t size;
+  if (TokenList_getSize(&size, self->tokens)) {
+    return Ring1_Result_Failure;
+  }
+  *result = 0 == size;
+  return Ring1_Result_Success;
+}
+
+static Ring1_NoDiscardReturn() Ring1_Result
+isAbsolute
+  (
+    bool* result,
+    Ring1_FileSystem_Path* self
+  )
+{
+  int64_t size;
+  if (TokenList_getSize(&size, self->tokens)) {
+    return Ring1_Result_Failure;
+  }
+  if (0 == size) {
+    *result = false;
+    return Ring1_Result_Success;
+  }
+  Token* firstToken;
+  if (TokenList_getAt(&firstToken, self->tokens, 0)) {
+    return Ring1_Result_Failure;
+  }
+  *result = firstToken->type == TokenType_DrivePrefix;
+  return Ring1_Result_Success;
+}
 
 Ring1_CheckReturn() Ring1_Result
 Ring1_FileSystem_Path_create
   (
     Ring1_FileSystem_Path** result,
-    const char* string
+    const char* bytes,
+    size_t numberOfBytes
   )
 {
   if (!result) {
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     return Ring1_Result_Failure;
   }
-  if (!string) {
+  if (!bytes) {
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     return Ring1_Result_Failure;
   }
@@ -139,15 +74,101 @@ Ring1_FileSystem_Path_create
   if (Ring1_Memory_allocate(&self, sizeof(Ring1_FileSystem_Path))) {
     return Ring1_Result_Failure;
   }
-  char* temporary;
-  if (normalizeDirectorySeparators(&temporary, string)) {
+  if (Ring1_FileSystem_Path_parse(&self->tokens, bytes, numberOfBytes)) {
     Ring1_Memory_deallocate(self);
+    self = NULL;
+    return Ring1_Result_Failure;
+  }
+  if (normalize(self->tokens)) {
+    TokenList_destroy(self->tokens);
+    self->tokens = NULL;
+    Ring1_Memory_deallocate(self);
+    self = NULL;
     return Ring1_Result_Failure;
   }
   self->referenceCount = 1;
-  self->string = temporary;
   *result = self;
   return Ring1_Result_Success;
+}
+
+Ring1_CheckReturn() Ring1_Result
+Ring1_FileSystem_Path_concatenate
+  (
+    Ring1_FileSystem_Path** result,
+    Ring1_FileSystem_Path* prefix,
+    Ring1_FileSystem_Path* suffix
+  )
+{
+  if (!result) {
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
+    return Ring1_Result_Failure;
+  }
+  if (!prefix || !suffix) {
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
+    return Ring1_Result_Failure;
+  }
+  Ring1_FileSystem_Path* self;
+  if (Ring1_Memory_allocate(&self, sizeof(Ring1_FileSystem_Path))) {
+    return Ring1_Result_Failure;
+  }
+  if (TokenList_create(&self->tokens)) {
+    Ring1_Memory_deallocate(self);
+    self = NULL;
+    Ring1_Result_Failure;
+  }
+  // error if the prefix is not the empty path and the suffix is an absolute path.
+  bool prefixEmpty, suffixAbsolute;
+  if (isEmpty(&prefixEmpty, prefix) || isAbsolute(&suffixAbsolute, suffix)) {
+    TokenList_destroy(self->tokens);
+    self->tokens = NULL;
+    Ring1_Memory_deallocate(self);
+    self = NULL;
+    Ring1_Result_Failure;
+  }
+  if (!prefixEmpty && suffixAbsolute) {
+    Ring1_Status_set(Ring1_Status_InvalidOperation);
+    TokenList_destroy(self->tokens);
+    self->tokens = NULL;
+    Ring1_Memory_deallocate(self);
+    self = NULL;
+    Ring1_Result_Failure;
+  }
+  if (TokenList_pushAll(self->tokens, prefix->tokens)) {
+    TokenList_destroy(self->tokens);
+    self->tokens = NULL;
+    Ring1_Memory_deallocate(self);
+    self = NULL;
+    Ring1_Result_Failure;
+  }
+  if (TokenList_pushAll(self->tokens, suffix->tokens)) {
+    TokenList_destroy(self->tokens);
+    self->tokens = NULL;
+    Ring1_Memory_deallocate(self);
+    self = NULL;
+    Ring1_Result_Failure;
+  }
+  if (normalize(self->tokens)) {
+    TokenList_destroy(self->tokens);
+    self->tokens = NULL;
+    Ring1_Memory_deallocate(self);
+    self = NULL;
+    return Ring1_Result_Failure;
+  }
+  self->referenceCount = 1;
+  *result = self;
+  return Ring1_Result_Success;
+}
+
+Ring1_CheckReturn() Ring1_Result
+Ring1_FileSystem_Path_toString
+  (
+    Ring1_FileSystem_Path* self,
+    bool zeroTerminated,
+    char** bytes,
+    size_t* numberOfBytes
+  )
+{
+  return unparse(self->tokens, zeroTerminated, bytes, numberOfBytes);
 }
 
 void
@@ -166,7 +187,8 @@ Ring1_FileSystem_Path_unref
   )
 {
   if (!Ring1_ReferenceCounter_decrement(&self->referenceCount)) {
-    Ring1_Memory_deallocate(self->string);
+    TokenList_destroy(self->tokens);
+    self->tokens = NULL;
     Ring1_Memory_deallocate(self);
   }
 }

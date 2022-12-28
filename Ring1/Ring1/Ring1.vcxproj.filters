@@ -336,6 +336,12 @@
     <Filter Include="Quelldateien\Ring1\All">
       <UniqueIdentifier>{8cf2c5a0-0201-4b95-abd6-72732bc2e290}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring1\FileSystem\Path">
+      <UniqueIdentifier>{c770513a-895b-495b-a68f-f972a55f3e37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\FileSystem\Path">
+      <UniqueIdentifier>{b7980421-73e0-497c-88db-3b05760b0f12}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring1\Intrinsic\Subtract\subtract.h">
@@ -869,8 +875,32 @@
     <ClInclude Include="Ring1\Memory\_Include.h">
       <Filter>Headerdateien\Ring1\Memory</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\Path.h">
+      <Filter>Headerdateien\Ring1\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\Windows\getDirectoryContents.h">
+      <Filter>Headerdateien\Ring1\FileSystem\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\getDirectoryContents.h">
+      <Filter>Headerdateien\Ring1\FileSystem</Filter>
+    </ClInclude>
     <ClInclude Include="Ring1\Intrinsic\ByteOrder.h">
       <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\Path\Token.h">
+      <Filter>Headerdateien\Ring1\FileSystem\Path</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\Path\TokenList.h">
+      <Filter>Headerdateien\Ring1\FileSystem\Path</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\Path\normalize.h">
+      <Filter>Headerdateien\Ring1\FileSystem\Path</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\Path\parse.h">
+      <Filter>Headerdateien\Ring1\FileSystem\Path</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\Path\unparse.h">
+      <Filter>Headerdateien\Ring1\FileSystem\Path</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1219,8 +1249,32 @@
     <ClCompile Include="Ring1\Memory\_Include.c">
       <Filter>Quelldateien\Ring1\Memory</Filter>
     </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\Path.c">
+      <Filter>Quelldateien\Ring1\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\Windows\getDirectoryContents.c">
+      <Filter>Quelldateien\Ring1\FileSystem\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\getDirectoryContents.c">
+      <Filter>Quelldateien\Ring1\FileSystem</Filter>
+    </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\ByteOrder.c">
       <Filter>Quelldateien\Ring1\Intrinsic</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\Path\Token.c">
+      <Filter>Quelldateien\Ring1\FileSystem\Path</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\Path\TokenList.c">
+      <Filter>Quelldateien\Ring1\FileSystem\Path</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\Path\normalize.c">
+      <Filter>Quelldateien\Ring1\FileSystem\Path</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\Path\parse.c">
+      <Filter>Quelldateien\Ring1\FileSystem\Path</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\Path\unparse.c">
+      <Filter>Quelldateien\Ring1\FileSystem\Path</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

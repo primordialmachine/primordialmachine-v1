@@ -22,18 +22,33 @@
 Ring1_NoDiscardReturn() Ring1_Result
 Ring1_FileSystem_getFileContents
   (
-    char const* pathname,
+    Ring1_FileSystem_Path* path,
     Ring1_FileSystem_AllocateCallback* allocate,
     Ring1_FileSystem_DeallocateCallback* deallocate,
     char** bytes,
     size_t* numberOfBytes
   )
-{ 
+{
+  char* p; size_t n;
+  if (Ring1_FileSystem_Path_toString(path, true, &p, &n)) {
+    return Ring1_Result_Failure;
+  }
 #if defined(RING1_FILESYSTEM_CONFIGURATION_BACKEND) && RING1_FILESYSTEM_CONFIGURATION_BACKEND_LINUX == RING1_FILESYSTEM_CONFIGURATION_BACKEND
-  return Ring1_FileSystem_Linux_getFileContents(pathname, allocate, deallocate, bytes, numberOfBytes);
+  if (Ring1_FileSystem_Linux_getFileContents(p, allocate, deallocate, bytes, numberOfBytes)) {
+    Ring1_Memory_deallocate(p);
+    p = NULL;
+    return Ring1_Result_Failure;
+  }
 #elif defined(RING1_FILESYSTEM_CONFIGURATION_BACKEND) && RING1_FILESYSTEM_CONFIGURATION_BACKEND_WINDOWS == RING1_FILESYSTEM_CONFIGURATION_BACKEND
-  return Ring1_FileSystem_Windows_getFileContents(pathname, allocate, deallocate, bytes, numberOfBytes);
+  if (Ring1_FileSystem_Windows_getFileContents(p, allocate, deallocate, bytes, numberOfBytes)) {
+    Ring1_Memory_deallocate(p);
+    p = NULL;
+    return Ring1_Result_Failure;
+  }
 #else
   #error("RING1_FILESYSTEM_CONFIGURATION_BACKEND must be defined to RING1_FILESYSTEM_CONFIGURATION_BACKEND_LIBC or RING1_FILESYSTEM_CONFIGURATION_BACKEND_WINAPI")
 #endif
+  Ring1_Memory_deallocate(p);
+  p = NULL;
+  return Ring1_Result_Success;
 }

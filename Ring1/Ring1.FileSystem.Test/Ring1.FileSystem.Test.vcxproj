@@ -129,7 +129,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Ring1\FileSystem\Test\getCurrentDirectory.c" />
     <ClCompile Include="Ring1\FileSystem\Test\Main.c" />
+    <ClCompile Include="Ring1\FileSystem\Test\Path.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Ring1\FileSystem\Test\getCurrentDirectory.h" />
+    <ClInclude Include="Ring1\FileSystem\Test\Path.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

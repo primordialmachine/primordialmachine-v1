@@ -32,5 +32,19 @@
     <ClCompile Include="Ring1\FileSystem\Test\Main.c">
       <Filter>Quelldateien\Ring1\FileSystem\Test</Filter>
     </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\Test\Path.c">
+      <Filter>Quelldateien\Ring1\FileSystem\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\FileSystem\Test\getCurrentDirectory.c">
+      <Filter>Quelldateien\Ring1\FileSystem\Test</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Ring1\FileSystem\Test\Path.h">
+      <Filter>Headerdateien\Ring1\FileSystem\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\FileSystem\Test\getCurrentDirectory.h">
+      <Filter>Headerdateien\Ring1\FileSystem\Test</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

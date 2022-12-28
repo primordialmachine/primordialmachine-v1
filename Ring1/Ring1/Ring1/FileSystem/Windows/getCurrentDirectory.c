@@ -43,7 +43,7 @@ Ring1_FileSystem_Windows_getCurrentDirectory
     return Ring1_Result_Failure;
   }
   Ring1_FileSystem_Path* path;
-  if (Ring1_FileSystem_Path_create(&path, buffer)) {
+  if (Ring1_FileSystem_Path_create(&path, buffer, bufferSize - 1)) {
     Ring1_Memory_deallocate(buffer);
     return Ring1_Result_Failure;
   }

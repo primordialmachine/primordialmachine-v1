@@ -5,15 +5,50 @@
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
 #include <stdlib.h>
+#include "Ring1/FileSystem/Test/getCurrentDirectory.h"
+#include "Ring1/FileSystem/Test/Path.h"
 #include "Ring1/Test.h"
 #include "Ring1/All/_Include.h"
+
+// If defined to @a 1, then path tests are excluded.
+#define ExcludePathTests (0)
+
+// If defined to @a 1, then get current directory tests are excluded.
+#define ExcludeGetCurrentDirectoryTests (0)
+
+static Ring1_NoDiscardReturn() Ring1_Result
+testCurrentDirectory1
+  (
+    Ring1_Test_Context* ctx
+  )
+{
+  Ring1_FileSystem_Path* path;
+  if (Ring1_FileSystem_getCurrentDirectory(&path)) {
+    return Ring1_Result_Failure;
+  }
+  Ring1_FileSystem_Path_unref(path);
+  path = NULL;
+  return Ring1_Result_Success;
+}
 
 Ring1_NoDiscardReturn() Ring1_Result
 Ring1_FileSystem_Test_registerCurrrentDirectoryTests
   (
     Ring1_Test_Context* ctx
   )
-{ return Ring1_Result_Success; }
+{ 
+#if !defined(ExcludePathTests) || 1 != ExcludePathTests
+  if (Ring1_FileSystem_Test_registerPathTests(ctx)) {
+    return Ring1_Result_Failure;
+  }
+#endif
+#if !defined(ExcludeGetCurrentDirectoryTests) || 1 != ExcludeGetCurrentDirectoryTests
+  if (Ring1_FileSystem_Test_registerGetCurrentDirectoryTests(ctx)) {
+    return Ring1_Result_Failure;
+  }
+#endif
+  return Ring1_Result_Success;
+}
 
 Ring1_NoDiscardReturn() Ring1_Result
 Ring1_FileSystem_Test_run
