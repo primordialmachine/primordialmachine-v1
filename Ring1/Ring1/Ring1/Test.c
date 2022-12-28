@@ -128,7 +128,9 @@ Ring1_Test_Context_runAllTests
   for (Ring1_Test_Node* node = ctx->nodes; NULL != node; node = node->next) {
     ctx->currentNode = node;
     node->flags = RING1_TEST_NODE_FLAG_ISEVALUATING;
-    node->function(ctx);
+    if (node->function(ctx)) {
+      node->flags |= RING1_TEST_NODE_FLAG_HASERRORS;
+    }
     node->flags = (node->flags & ~RING1_TEST_NODE_FLAG_ISEVALUATING) | RING1_TEST_NODE_FLAG_ISEVALUATED;
     if (0 == (node->flags & RING1_TEST_NODE_FLAG_HASERRORS))
     {
