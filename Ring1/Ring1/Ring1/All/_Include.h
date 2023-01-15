@@ -10,6 +10,7 @@
 #include "Ring1/Atom/_Include.h"
 #include "Ring1/Annotations/_Include.h"
 #include "Ring1/Collections/_Include.h"
+#include "Ring1/Crt/_Include.h"
 #include "Ring1/FileSystem/_Include.h"
 #include "Ring1/Intrinsic/_Include.h"
 #include "Ring1/Memory/_Include.h"

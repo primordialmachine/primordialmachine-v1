@@ -2,9 +2,7 @@
 
 
 #include "Ring1/Memory/_Include.h"
-#include "Ring1/Intrinsic/Crt.h"
-
-#include <stdbool.h>
+#include "Ring1/Crt/_Include.h"
 
 #include "Ring1/FileSystem/Path/unparse.h"
 #include "Ring1/FileSystem/Path/parse.h"

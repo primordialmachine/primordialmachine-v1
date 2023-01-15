@@ -7,9 +7,9 @@
 #include "Ring1/Ap/ApNat.private.h"
 #undef RING1_AP_PRIVATE
 #include "Ring1/Status.h"
+#include "Ring1/Crt/_Include.h"
 #include "Ring1/Intrinsic/_Include.h"
 #include <assert.h>
-#include <malloc.h>
 #include <stdio.h>
 
 
@@ -91,7 +91,7 @@ Ring1_ApNat_initialize_u64
     numberOfDigits = requiredNumberOfDigits;
   }
   // Allocate array.
-  self->digits = malloc(sizeof(uint8_t) * numberOfDigits);
+  self->digits = crt_malloc(sizeof(uint8_t) * numberOfDigits);
   if (!self->digits) {
     Ring1_Status_set(Ring1_Status_AllocationFailed);
     return Ring1_Result_Failure;
@@ -121,7 +121,7 @@ Ring1_ApNat_uninitialize
   if (!self) {
     return Ring1_Result_Success;
   }
-  free(self->digits);
+  crt_free(self->digits);
   self->digits = 0;
   self->numberOfDigits = 0;
   return Ring1_Result_Success;
@@ -167,7 +167,7 @@ Ring1_ApNat_set_u64
     numberOfDigits = requiredNumberOfDigits;
   }
   // Reallocate array.
-  self->digits = realloc(self->digits, sizeof(uint8_t) * numberOfDigits);
+  self->digits = crt_realloc(self->digits, sizeof(uint8_t) * numberOfDigits);
   if (!self->digits) {
     Ring1_Status_set(Ring1_Status_AllocationFailed);
     return Ring1_Result_Failure;
@@ -311,7 +311,7 @@ Ring1_ApNat_subtract
   } else {
     // The number of digits in self is equal to the number of digits in other.
     // An underflow can occur.
-    uint8_t *temporary = malloc(sizeof(uint8_t) * numberOfDigits);
+    uint8_t *temporary = crt_malloc(sizeof(uint8_t) * numberOfDigits);
     if (!temporary) {
       Ring1_Status_set(Ring1_Status_AllocationFailed);
       return Ring1_Result_Failure;
@@ -339,11 +339,11 @@ Ring1_ApNat_subtract
       temporary[i] = z;
     }
     if (borrow) {
-      free(temporary);
+      crt_free(temporary);
       Ring1_Status_set(Ring1_Status_NumericOverflow);
       return Ring1_Result_Failure;
     } else {
-      free(self->digits);
+      crt_free(self->digits);
       self->digits = temporary;
     }
   }
@@ -387,7 +387,7 @@ Ring1_ApNat_multiply
 {
   // if self has n digits and other has m digits,
   // then the product has at most n + m digits.
-  uint8_t *temporary = malloc(sizeof(uint8_t) * (self->numberOfDigits + other->numberOfDigits));
+  uint8_t *temporary = crt_malloc(sizeof(uint8_t) * (self->numberOfDigits + other->numberOfDigits));
   if (!temporary) {
     Ring1_Status_set(Ring1_Status_AllocationFailed);
     return Ring1_Result_Failure;
@@ -415,7 +415,7 @@ Ring1_ApNat_multiply
     }
   }
 
-  free(self->digits);
+  crt_free(self->digits);
   self->digits = temporary;
   self->numberOfDigits = j;
 

@@ -16,7 +16,6 @@
 #include "Ring1/Intrinsic/ByteOrder.h"
 #include "Ring1/Intrinsic/clamp.h"
 #include "Ring1/Intrinsic/countDecimalDigits.h"
-#include "Ring1/Intrinsic/Crt.h"
 #include "Ring1/Intrinsic/Concurrency/ReadWriteLock.h"
 #include "Ring1/Intrinsic/CountLeadingZeroes/countLeadingZeroes.h"
 #include "Ring1/Intrinsic/FloatingPointTypes.h"
