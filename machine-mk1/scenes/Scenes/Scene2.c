@@ -2,7 +2,7 @@
 
 
 #include "Ring1/All/_Include.h"
-#include "_Gui.h"
+#include "Gui/_Include.h"
 #include "_Images.h"
 #include "_Text.h"
 #include "_Video.h"

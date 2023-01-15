@@ -74,7 +74,7 @@
     <ClInclude Include="Gui\TextNode.h" />
     <ClInclude Include="Gui\Widget.h" />
     <ClInclude Include="Gui\WidgetList.h" />
-    <ClInclude Include="_Gui.h" />
+    <ClInclude Include="Gui\_Include.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Gui\BorderModel.c" />
@@ -101,7 +101,7 @@
     <ClCompile Include="Gui\TextNode.c" />
     <ClCompile Include="Gui\Widget.c" />
     <ClCompile Include="Gui\WidgetList.c" />
-    <ClCompile Include="_Gui.c" />
+    <ClCompile Include="Gui\_Include.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Gui\Gdl\Context.i">

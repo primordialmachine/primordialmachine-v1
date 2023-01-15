@@ -39,9 +39,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="_Gui.c">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="Gui\WidgetList.c">
       <Filter>Quelldateien\Gui</Filter>
     </ClCompile>
@@ -84,11 +81,11 @@
     <ClCompile Include="Gui\Reader\Reader.package.c">
       <Filter>Quelldateien\Gui\Reader</Filter>
     </ClCompile>
+    <ClCompile Include="Gui\_Include.c">
+      <Filter>Quelldateien\Gui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="_Gui.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Gui\WidgetList.h">
       <Filter>Headerdateien\Gui</Filter>
     </ClInclude>
@@ -130,6 +127,9 @@
     </ClInclude>
     <ClInclude Include="Gui\Reader\Reader.package.h">
       <Filter>Headerdateien\Gui\Reader</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\_Include.h">
+      <Filter>Headerdateien\Gui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
