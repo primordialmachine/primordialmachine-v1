@@ -8,7 +8,7 @@
 #include "_Text.h"
 #include "_Video.h"
 #include "_Fonts.h"
-#include "_Graphics2.h"
+#include "Graphics2/_Include.h"
 
 
 static void Scene5_constructClass(Scene5_Class* self);

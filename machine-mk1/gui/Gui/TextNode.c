@@ -8,7 +8,7 @@
 #include "Ring1/All/_Include.h"
 #include "Gui/Context.h"
 #include "Gui/Widget.h"
-#include "_Graphics2.h"
+#include "Graphics2/_Include.h"
 #include "_Images.h"
 #include "_Text.h"
 #include "_Video.h"

@@ -3,7 +3,7 @@
 
 
 #include "Ring1/All/_Include.h"
-#include "_Graphics2.h"
+#include "Graphics2/_Include.h"
 #include "_Fonts.h"
 #include "Text/LayoutLine.h"
 #include <math.h>

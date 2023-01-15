@@ -21,7 +21,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="_Graphics2.h">
+    <ClInclude Include="Graphics2\_Include.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Graphics2\Context2.h">
@@ -35,7 +35,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="_Graphics2.c">
+    <ClCompile Include="Graphics2\_Include.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Graphics2\Context2.c">

@@ -138,13 +138,13 @@
     <ClInclude Include="Graphics2\Context2.h" />
     <ClInclude Include="Graphics2\Rectangle2.h" />
     <ClInclude Include="Graphics2\Shape2.h" />
-    <ClInclude Include="_Graphics2.h" />
+    <ClInclude Include="Graphics2\_Include.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Graphics2\Context2.c" />
     <ClCompile Include="Graphics2\Rectangle2.c" />
     <ClCompile Include="Graphics2\Shape2.c" />
-    <ClCompile Include="_Graphics2.c" />
+    <ClCompile Include="Graphics2\_Include.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
