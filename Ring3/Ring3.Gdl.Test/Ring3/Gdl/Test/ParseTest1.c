@@ -1,4 +1,8 @@
-#include "Ring3/Gdl/Test/Test1.h"
+/// @file Ring3/Gdl/Test/ParseTest1.c
+/// @copyright Copyright (c) 2021-2022 Michael Heilmann. All rights reserved.
+/// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
+
+#include "Ring3/Gdl/Test/ParseTest1.h"
 #include "Ring3/Gdl/_Include.h"
 
 #define CHECK(EXPECTED_TOKEN_KIND) \
@@ -9,10 +13,18 @@
     Ring2_jump(); \
   }
 
-static void test_1_1() {
+static void
+test_1_1
+  (
+    Ring2_Context * ctx,
+    Ring2_Value * result,
+    size_t numberOfArguments,
+    Ring2_Value const* arguments
+  )
+{
   Ring2_ByteBuffer* inputText = Ring2_ByteBuffer_create();
   Ring2_ByteBuffer_appendBytes(inputText, "", crt_strlen(""));
-  Machine_Gdl_Scanner* scanner = Machine_Gdl_Scanner_create(Ring2_String_fromC(""), inputText);
+  Machine_Gdl_Scanner* scanner = Machine_Gdl_Scanner_create(Ring2_String_fromC(false, ""), inputText);
   CHECK(Machine_Gdl_TokenKind_StartOfInput);
   Machine_Gdl_Scanner_step(scanner);
   CHECK(Machine_Gdl_TokenKind_EndOfInput);
@@ -20,10 +32,18 @@ static void test_1_1() {
   CHECK(Machine_Gdl_TokenKind_EndOfInput);
 }
 
-static void test_1_2() {
+static void
+test_1_2
+  (
+    Ring2_Context* ctx,
+    Ring2_Value* result,
+    size_t numberOfArguments,
+    Ring2_Value const* arguments
+  )
+{
   Ring2_ByteBuffer *inputText = Ring2_ByteBuffer_create();
   Ring2_ByteBuffer_appendBytes(inputText, "{:true,false.void;}", crt_strlen("{:true,false.void;}"));
-  Machine_Gdl_Scanner* scanner = Machine_Gdl_Scanner_create(Ring2_String_fromC(""), inputText);
+  Machine_Gdl_Scanner* scanner = Machine_Gdl_Scanner_create(Ring2_String_fromC(false, ""), inputText);
 
   CHECK(Machine_Gdl_TokenKind_StartOfInput); Machine_Gdl_Scanner_step(scanner);
 
@@ -43,10 +63,16 @@ static void test_1_2() {
 }
 
 void
-Ring3_Gdl_Test_gdlTest1
+Ring3_Gdl_Test_registerParseTest1
   (
+    Ring2_Tests* tests
   )
 {
-  test_1_1();
-  test_1_2();
+  Ring2_String* name;
+  name = Ring2_String_create("Ring3.Gdl.Test.parseTest_1_1",
+                  crt_strlen("Ring3.Gdl.Test.parseTest_1_1"));
+  Ring2_Tests_addTest(tests, name, &test_1_1);
+  name = Ring2_String_create("Ring3.Gdl.Test.parseTest_1_2",
+                  crt_strlen("Ring3.Gdl.Test.parseTest_1_2"));
+  Ring2_Tests_addTest(tests, name, &test_1_2);
 }

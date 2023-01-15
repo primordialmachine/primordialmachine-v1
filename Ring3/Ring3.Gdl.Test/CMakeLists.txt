@@ -16,4 +16,5 @@ set(files ${source_files} ${header_files} ${inlay_files})
 
 add_executable(${name} ${files})
 target_include_directories(${name} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+
 target_link_libraries(${name} "PrimordialMachine.Ring3.Gdl")

@@ -123,11 +123,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ring3\Gdl\Test\Test1.h" />
+    <ClInclude Include="Ring3\Gdl\Test\ParseTest1.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring3\Gdl\Test\Main.c" />
-    <ClCompile Include="Ring3\Gdl\Test\Test1.c" />
+    <ClCompile Include="Ring3\Gdl\Test\ParseTest1.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

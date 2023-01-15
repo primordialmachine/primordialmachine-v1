@@ -23,7 +23,12 @@ static const KEYWORD keywords[] = {
 };
 static const size_t numberOfKeywords = sizeof(keywords) / sizeof(KEYWORD);
 
-static void checkKeywords(Machine_Gdl_Scanner *self) {
+static void
+checkKeywords
+  (
+    Machine_Gdl_Scanner *self
+  )
+{
   for (size_t i = 0, n = numberOfKeywords; i < n; ++i) {
     const KEYWORD* keyword = &(keywords[i]);
     if (keyword->numberOfBytes > Ring2_ByteBuffer_getNumberOfBytes(self->tokenText)) {
@@ -35,7 +40,12 @@ static void checkKeywords(Machine_Gdl_Scanner *self) {
   }
 }
 
-static void Machine_Gdl_Scanner_visit(Machine_Gdl_Scanner* self) {
+static void
+Machine_Gdl_Scanner_visit
+  (
+    Machine_Gdl_Scanner* self
+  )
+{
   if (self->inputName) {
     Ring2_Gc_visit(Ring2_Gc_get(), self->inputName);
   }
@@ -47,7 +57,14 @@ static void Machine_Gdl_Scanner_visit(Machine_Gdl_Scanner* self) {
   }
 }
 
-static void Machine_Gdl_Scanner_construct(Machine_Gdl_Scanner* self, size_t numberOfArguments, Ring2_Value const* arguments) {
+static void
+Machine_Gdl_Scanner_construct
+  (
+    Machine_Gdl_Scanner* self,
+    size_t numberOfArguments,
+    Ring2_Value const* arguments
+  )
+{
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->inputName = Ring2_Value_getString(&arguments[0]);
   self->inputBytes = Ring2_ByteBuffer_create();
@@ -67,10 +84,10 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gdl_Scanner /*type*/,
                          &Machine_Gdl_Scanner_visit /*visit*/,
                          &Machine_Gdl_Scanner_construct /*construct*/,
                          NULL /*destruct*/,
-                         NULL /*constructClasses*/,
+                         NULL /*constructClass*/,
                          NULL /*implementInterfaces*/)
 
-Machine_Gdl_Scanner*
+Ring1_NoDiscardReturn() Machine_Gdl_Scanner*
 Machine_Gdl_Scanner_create
   (
     Ring2_String* inputName,
@@ -86,7 +103,14 @@ Machine_Gdl_Scanner_create
   return self;
 }
 
-void Machine_Gdl_Scanner_setInput(Machine_Gdl_Scanner* self, Ring2_String* inputName, Ring2_ByteBuffer* inputBytes) {
+void
+Machine_Gdl_Scanner_setInput
+  (
+    Machine_Gdl_Scanner* self,
+    Ring2_String* inputName,
+    Ring2_ByteBuffer* inputBytes
+  )
+{
   Ring2_ByteBuffer *inputBytesNew = Ring2_ByteBuffer_create();
   Ring2_ByteBuffer_appendBytes(inputBytesNew, Ring2_ByteBuffer_getBytes(inputBytes), Ring2_ByteBuffer_getNumberOfBytes(inputBytes));
   Ring2_ByteBuffer* tokenTextNew = Ring2_ByteBuffer_create();
@@ -107,11 +131,19 @@ void Machine_Gdl_Scanner_setInput(Machine_Gdl_Scanner* self, Ring2_String* input
 
 #include "Ring3/Gdl/Lexical/Scanner-inlay.i"
 
-static void scanSingleQuotedString(Machine_Gdl_Scanner* self)
+static void
+scanSingleQuotedString
+  (
+    Machine_Gdl_Scanner* self
+  )
 {
   self->tokenStart = self->currentPos;
   Ring2_ByteBuffer_clear(self->tokenText);
+#if Ring3_Gdl_Scanner_retainStringDelimiters == 1
+  saveAndNext(self);
+#else
   next(self);
+#endif
   while (true) {
     if (current(self) == '\\') {
       next(self);
@@ -144,15 +176,27 @@ static void scanSingleQuotedString(Machine_Gdl_Scanner* self)
       saveAndNext(self);
     }
   }
+#if Ring3_Gdl_Scanner_retainStringDelimiters == 1
+  saveAndNext(self);
+#else
   next(self);
+#endif
   self->tokenKind = Machine_Gdl_TokenKind_String;
 }
 
-static void scanDoubleQuotedString(Machine_Gdl_Scanner* self)
+static void
+scanDoubleQuotedString
+  (
+    Machine_Gdl_Scanner* self
+  )
 {
   self->tokenStart = self->currentPos;
   Ring2_ByteBuffer_clear(self->tokenText);
+#if Ring3_Gdl_Scanner_retainStringDelimiters == 1
+  saveAndNext(self);
+#else
   next(self);
+#endif
   while (true) {
     if (current(self) == '\\') {
       next(self);
@@ -188,11 +232,20 @@ static void scanDoubleQuotedString(Machine_Gdl_Scanner* self)
       saveAndNext(self);
     }
   }
+#if Ring3_Gdl_Scanner_retainStringDelimiters == 1
+  saveAndNext(self);
+#else
   next(self);
+#endif
   self->tokenKind = Machine_Gdl_TokenKind_String;
 }
 
-void Machine_Gdl_Scanner_step(Machine_Gdl_Scanner* self) {
+void
+Machine_Gdl_Scanner_step
+  (
+    Machine_Gdl_Scanner* self
+  )
+{
   if (self->tokenKind == Machine_Gdl_TokenKind_EndOfInput) {
     self->tokenKind = Machine_Gdl_TokenKind_EndOfInput;
     Ring2_ByteBuffer_clear(self->tokenText);
@@ -364,10 +417,18 @@ void Machine_Gdl_Scanner_step(Machine_Gdl_Scanner* self) {
   };
 }
 
-Machine_Gdl_TokenKind Machine_Gdl_Scanner_getTokenKind(Machine_Gdl_Scanner const* self) {
-  return self->tokenKind;
-}
+Ring1_NoDiscardReturn() Machine_Gdl_TokenKind
+Machine_Gdl_Scanner_getTokenKind
+  (
+    Machine_Gdl_Scanner const* self
+  )
+{ return self->tokenKind; }
 
-Ring2_String* Machine_Gdl_Scanner_getTokenText(Machine_Gdl_Scanner const* self) {
+Ring1_NoDiscardReturn() Ring2_String*
+Machine_Gdl_Scanner_getTokenText
+  (
+    Machine_Gdl_Scanner const* self
+  )
+{
   return Ring2_String_create(Ring2_ByteBuffer_getBytes(self->tokenText), Ring2_ByteBuffer_getNumberOfBytes(self->tokenText));
 }

@@ -19,22 +19,38 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Ring3\Gdl\Configuration.c" />
     <ClCompile Include="Ring3\Gdl\Context.c" />
     <ClCompile Include="Ring3\Gdl\Lexical\Scanner.c" />
     <ClCompile Include="Ring3\Gdl\Lexical\Token.c" />
     <ClCompile Include="Ring3\Gdl\Lexical\TokenKind.c" />
     <ClCompile Include="Ring3\Gdl\Extensions.c" />
+    <ClCompile Include="Ring3\Gdl\Literal.c" />
+    <ClCompile Include="Ring3\Gdl\Literals\BooleanLiteral.c" />
+    <ClCompile Include="Ring3\Gdl\Literals\IntegerLiteral.c" />
+    <ClCompile Include="Ring3\Gdl\Literals\RealLiteral.c" />
+    <ClCompile Include="Ring3\Gdl\Literals\StringLiteral.c" />
+    <ClCompile Include="Ring3\Gdl\Literals\VoidLiteral.c" />
+    <ClCompile Include="Ring3\Gdl\Name.c" />
     <ClCompile Include="Ring3\Gdl\Syntactical\Node.c" />
     <ClCompile Include="Ring3\Gdl\Syntactical\NodeKind.c" />
     <ClCompile Include="Ring3\Gdl\Syntactical\Parser.c" />
     <ClCompile Include="Ring3\Gdl\_Include.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ring3\Gdl\Configuration.h" />
     <ClInclude Include="Ring3\Gdl\Context.h" />
     <ClInclude Include="Ring3\Gdl\Lexical\Scanner.h" />
     <ClInclude Include="Ring3\Gdl\Lexical\Token.h" />
     <ClInclude Include="Ring3\Gdl\Lexical\TokenKind.h" />
     <ClInclude Include="Ring3\Gdl\Extensions.h" />
+    <ClInclude Include="Ring3\Gdl\Literals\BooleanLiteral.h" />
+    <ClInclude Include="Ring3\Gdl\Literals\IntegerLiteral.h" />
+    <ClInclude Include="Ring3\Gdl\Literals\RealLiteral.h" />
+    <ClInclude Include="Ring3\Gdl\Literals\StringLiteral.h" />
+    <ClInclude Include="Ring3\Gdl\Literals\VoidLiteral.h" />
+    <ClInclude Include="Ring3\Gdl\Name.h" />
+    <ClInclude Include="Ring3\Gdl\parse.h" />
     <ClInclude Include="Ring3\Gdl\Syntactical\Node.h" />
     <ClInclude Include="Ring3\Gdl\Syntactical\NodeKind.h" />
     <ClInclude Include="Ring3\Gdl\Syntactical\Parser.h" />
@@ -63,6 +79,8 @@
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</DeploymentContent>
     </None>
+    <None Include="Ring3\Gdl\Lexical\TokenKind.i" />
+    <None Include="Ring3\Gdl\Syntactical\NodeKind.i" />
     <None Include="Ring3\Gdl\Syntactical\Parser-inlay.i">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>

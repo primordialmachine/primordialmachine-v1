@@ -23,7 +23,7 @@ struct Machine_Gdl_Parser {
 
 /// @brief Create a GDL parser.
 /// @return A pointer to the GDL parser.
-Machine_Gdl_Parser*
+Ring1_NoDiscardReturn() Machine_Gdl_Parser*
 Machine_Gdl_Parser_create
   (
   );
@@ -31,7 +31,7 @@ Machine_Gdl_Parser_create
 /// @brief Parse the specified input.
 /// @param self This parser.
 /// @param inputName, inputBytes The input.
-Machine_Gdl_Node*
+Ring1_NoDiscardReturn() Machine_Gdl_Node*
 Machine_Gdl_Parser_parse
   (
     Machine_Gdl_Parser* self,

@@ -92,6 +92,18 @@ Ring1_ApInt_uninitialize
     Ring1_ApInt* self
   );
 
+/// @brief Assign this ApInt the value zero.
+/// @param self A pointer to this ApInt object.
+/// @return
+/// #Ring_Result_Success on success.
+/// #Ring_Result_Failure on failure.
+Ring1_NoDiscardReturn() Ring1_Result
+Ring1_ApInt_setZero
+  (
+    Ring1_ApInt* self,
+    int64_t numberOfDigits
+  );
+
 /// @brief Compute the sum of this ApInt object and another ApInt object and assign the values of the sum to this ApInt object.
 /// @param self A pointer to this ApInt object.
 /// @param other A pointer to the other ApInt object.

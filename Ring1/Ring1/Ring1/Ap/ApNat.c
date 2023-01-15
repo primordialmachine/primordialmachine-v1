@@ -189,6 +189,16 @@ Ring1_ApNat_set_u64
 }
 
 Ring1_NoDiscardReturn() Ring1_Result
+Ring1_ApNat_setZero
+  (
+    Ring1_ApNat* self,
+    int64_t numberOfDigits
+  )
+{
+  return Ring1_ApNat_set_u8(self, 0, numberOfDigits);
+}
+
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApNat_add
   (
     Ring1_ApNat* self,

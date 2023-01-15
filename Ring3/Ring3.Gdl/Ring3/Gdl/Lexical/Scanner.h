@@ -9,6 +9,10 @@
 #error("Do not include `Ring3/Gdl/Lexical/Scanner.h` directly. Include `Ring3/Gdl/_Include.h` instead.")
 #endif
 #include "Ring3/Gdl/Lexical/TokenKind.h"
+#include "Ring3/Gdl/Configuration.h"
+
+/// @brief Retain delimiters of strings as part of the token text.
+#define Ring3_Gdl_Scanner_retainStringDelimiters (1)
 
 MACHINE_DECLARE_CLASSTYPE(Machine_Gdl_Scanner)
 
@@ -37,7 +41,7 @@ struct Machine_Gdl_Scanner {
 /// @param inputBytes The Bytes of the input.
 /// @return A pointer to the GDL scanner.
 /// @post The GDL scanner is in its initial state w.r.t. the specified input.
-Machine_Gdl_Scanner*
+Ring1_NoDiscardReturn() Machine_Gdl_Scanner*
 Machine_Gdl_Scanner_create
   (
     Ring2_String* inputName,
@@ -68,7 +72,7 @@ Machine_Gdl_Scanner_step
 /// @brief Get the token kind of the current token.
 /// @param self This scanner.
 /// @return The token kind of the current token.
-Machine_Gdl_TokenKind
+Ring1_NoDiscardReturn() Machine_Gdl_TokenKind
 Machine_Gdl_Scanner_getTokenKind
   (
     Machine_Gdl_Scanner const* self
@@ -77,7 +81,7 @@ Machine_Gdl_Scanner_getTokenKind
 /// @brief Get the token text of the current token.
 /// @param self This scanner.
 /// @return The token text of the current token.
-Ring2_String*
+Ring1_NoDiscardReturn() Ring2_String*
 Machine_Gdl_Scanner_getTokenText
   (
     Machine_Gdl_Scanner const* self

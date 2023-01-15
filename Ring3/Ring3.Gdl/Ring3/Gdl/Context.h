@@ -25,7 +25,7 @@ struct Machine_Gdl_Context {
 
 /// @brief Create a GDL context.
 /// @return A pointer to the GDL context.
-Machine_Gdl_Context*
+Ring1_NoDiscardReturn() Machine_Gdl_Context*
 Machine_Gdl_Context_create
   (
   );

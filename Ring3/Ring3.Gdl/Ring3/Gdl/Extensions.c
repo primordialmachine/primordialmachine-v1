@@ -14,7 +14,13 @@
 #undef RING3_GDL_PRIVATE
 
 
-static Ring2_Value convert(Machine_Gdl_Node* self, Machine_Gdl_Context* context) {
+Ring1_NoDiscardReturn() static Ring2_Value
+convert
+  (
+    Machine_Gdl_Node* self,
+    Machine_Gdl_Context* context
+  )
+{
   switch (self->kind) {
   case Machine_Gdl_NodeKind_Boolean: {
     Ring2_Boolean temporary = Machine_Gdl_Node_toBoolean(self, context);
@@ -28,7 +34,7 @@ static Ring2_Value convert(Machine_Gdl_Node* self, Machine_Gdl_Context* context)
     Ring2_Value_setInteger(&value, temporary);
     return value;
   }
-  case Machine_Gdl_NodeKind_Key: {
+  case Machine_Gdl_NodeKind_Name: {
     Ring2_String* temporary = Machine_Gdl_Node_toString(self, context);
     Ring2_Value value;
     Ring2_Value_setString(&value, temporary);
@@ -47,7 +53,9 @@ static Ring2_Value convert(Machine_Gdl_Node* self, Machine_Gdl_Context* context)
     return value;
   }
   case Machine_Gdl_NodeKind_String: {
-    Ring2_String* temporary = Machine_Gdl_Node_toString(self, context);
+    // We want the canonical form of a string.
+    Ring3_Gdl_StringLiteral *stringLiteral = (Ring3_Gdl_StringLiteral*)Ring2_Value_getObject(&self->value);
+    Ring2_String* temporary = Ring3_Gdl_StringLiteral_toString(stringLiteral, true);
     Ring2_Value value;
     Ring2_Value_setString(&value, temporary);
     return value;
@@ -75,33 +83,44 @@ static Ring2_Value convert(Machine_Gdl_Node* self, Machine_Gdl_Context* context)
   };
 }
 
-Ring2_Boolean Machine_Gdl_Node_toBoolean(Machine_Gdl_Node* self, Machine_Gdl_Context* context) {
+Ring1_NoDiscardReturn() Ring2_Boolean
+Machine_Gdl_Node_toBoolean
+  (
+    Machine_Gdl_Node* self,
+    Machine_Gdl_Context* context
+  )
+{
   Ring2_assertNotNull(self);
   Ring2_assert(self->kind == Machine_Gdl_NodeKind_Boolean, Ring1_Status_InvalidArgument);
-  bool value;
-  if (Ring1_Conversion_stringToBool(&value,
-                                    Ring2_String_getBytes(self->text),
-                                    Ring2_String_getBytes(self->text) +
-                                    Ring2_String_getNumberOfBytes(self->text))) {
-    Ring2_jump();
-  }
-  return value;
+  return Ring3_Gdl_BooleanLiteral_toBoolean((Ring3_Gdl_BooleanLiteral*)Ring2_Value_getObject(&self->value));
 }
 
-Ring2_Integer Machine_Gdl_Node_toInteger(Machine_Gdl_Node* self, Machine_Gdl_Context* context) {
+Ring1_NoDiscardReturn() Ring2_Integer
+Machine_Gdl_Node_toInteger
+  (
+    Machine_Gdl_Node* self,
+    Machine_Gdl_Context* context
+  )
+{
   Ring2_assertNotNull(self);
   Ring2_assert(self->kind == Machine_Gdl_NodeKind_Integer || self->kind == Machine_Gdl_NodeKind_Real, Ring1_Status_InvalidArgument);
-  int64_t value;
-  if (Ring1_Conversion_stringToInt64(&value,
-                                     Ring2_String_getBytes(self->text),
-                                     Ring2_String_getBytes(self->text) +
-                                     Ring2_String_getNumberOfBytes(self->text))) {
+  if (Machine_Type_isSubTypeOf((Machine_Type*)Machine_getClassType(Ring2_Value_getObject(&self->value)), (Machine_Type*)Ring3_Gdl_IntegerLiteral_getType())) {
+    return Ring3_Gdl_IntegerLiteral_toInteger((Ring3_Gdl_IntegerLiteral*)Ring2_Value_getObject(&self->value));
+  } else if (Machine_Type_isSubTypeOf((Machine_Type*)Machine_getClassType(Ring2_Value_getObject(&self->value)), (Machine_Type*)Ring3_Gdl_RealLiteral_getType())) {
+    return Ring3_Gdl_RealLiteral_toInteger((Ring3_Gdl_RealLiteral*)Ring2_Value_getObject(&self->value));
+  } else {
+    Ring1_Status_set(Ring1_Status_ConversionFailed);
     Ring2_jump();
   }
-  return value;
 }
 
-Ring2_Collections_List* Machine_Gdl_Node_toList(Machine_Gdl_Node const* self, Machine_Gdl_Context* context) {
+Ring1_NoDiscardReturn() Ring2_Collections_List*
+Machine_Gdl_Node_toList
+  (
+    Machine_Gdl_Node const* self,
+    Machine_Gdl_Context* context
+  )
+{
   Ring2_assertNotNull(self);
   Ring2_assert(self->kind == Machine_Gdl_NodeKind_List, Ring1_Status_InvalidArgument);
   Ring2_Collections_List* targets = (Ring2_Collections_List *)Ring2_Collections_ArrayList_create();
@@ -114,7 +133,13 @@ Ring2_Collections_List* Machine_Gdl_Node_toList(Machine_Gdl_Node const* self, Ma
   return targets;
 }
 
-Ring2_Collections_Map* Machine_Gdl_Node_toMap(Machine_Gdl_Node const* self, Machine_Gdl_Context* context) {
+Ring1_NoDiscardReturn() Ring2_Collections_Map*
+Machine_Gdl_Node_toMap
+  (
+    Machine_Gdl_Node const* self,
+    Machine_Gdl_Context* context
+  )
+{
   Ring2_assertNotNull(self);
   Ring2_assert(self->kind == Machine_Gdl_NodeKind_Map, Ring1_Status_InvalidArgument);
   Ring2_Collections_Map* targets = (Ring2_Collections_Map *)Ring2_Collections_HashMap_create();
@@ -127,7 +152,13 @@ Ring2_Collections_Map* Machine_Gdl_Node_toMap(Machine_Gdl_Node const* self, Mach
   return targets;
 }
 
-Ring2_Collections_Pair* Machine_Gdl_Node_toPair(Machine_Gdl_Node const* self, Machine_Gdl_Context* context) {
+Ring1_NoDiscardReturn() Ring2_Collections_Pair*
+Machine_Gdl_Node_toPair
+  (
+    Machine_Gdl_Node const* self,
+    Machine_Gdl_Context* context
+  )
+{
   Ring2_assertNotNull(self);
   Ring2_assert(self->kind == Machine_Gdl_NodeKind_Pair, Ring1_Status_InvalidArgument);
   Ring2_Value x = Ring2_Collections_List_getAt(self->children, 0),
@@ -137,26 +168,51 @@ Ring2_Collections_Pair* Machine_Gdl_Node_toPair(Machine_Gdl_Node const* self, Ma
   return Ring2_Collections_Pair_create(convert(a, context), convert(b, context));
 }
 
-Ring2_Real32 Machine_Gdl_Node_toReal(Machine_Gdl_Node* self, Machine_Gdl_Context* context) {
+Ring1_NoDiscardReturn() Ring2_Real32
+Machine_Gdl_Node_toReal
+  (
+    Machine_Gdl_Node* self,
+    Machine_Gdl_Context* context
+  )
+{
   Ring2_assertNotNull(self);
   Ring2_assert(self->kind == Machine_Gdl_NodeKind_Integer || self->kind == Machine_Gdl_NodeKind_Real, Ring1_Status_InvalidArgument);
-  float value;
-  if (Ring1_Conversion_stringToFloat(&value,
-                                     Ring2_String_getBytes(self->text),
-                                     Ring2_String_getBytes(self->text) +
-                                     Ring2_String_getNumberOfBytes(self->text))) {
+  if (Machine_Type_isSubTypeOf((Machine_Type*)Machine_getClassType(Ring2_Value_getObject(&self->value)), (Machine_Type*)Ring3_Gdl_IntegerLiteral_getType())) {
+    return Ring3_Gdl_IntegerLiteral_toReal32((Ring3_Gdl_IntegerLiteral*)Ring2_Value_getObject(&self->value));
+  } else if (Machine_Type_isSubTypeOf((Machine_Type*)Machine_getClassType(Ring2_Value_getObject(&self->value)), (Machine_Type*)Ring3_Gdl_RealLiteral_getType())) {
+    return Ring3_Gdl_RealLiteral_toReal32((Ring3_Gdl_RealLiteral*)Ring2_Value_getObject(&self->value));
+  } else {
+    Ring1_Status_set(Ring1_Status_ConversionFailed);
     Ring2_jump();
   }
-  return value;
 }
 
-Ring2_String* Machine_Gdl_Node_toString(Machine_Gdl_Node const* self, Machine_Gdl_Context* context) {
+Ring1_NoDiscardReturn() Ring2_String*
+Machine_Gdl_Node_toString
+  (
+    Machine_Gdl_Node const* self,
+    Machine_Gdl_Context* context
+  )
+{
   Ring2_assertNotNull(self);
-  Ring2_assert(self->kind == Machine_Gdl_NodeKind_Key || self->kind == Machine_Gdl_NodeKind_String, Ring1_Status_InvalidArgument);
-  return self->text;
+  Ring2_assert(self->kind == Machine_Gdl_NodeKind_Name || self->kind == Machine_Gdl_NodeKind_String, Ring1_Status_InvalidArgument);
+  if (Machine_Type_isSubTypeOf((Machine_Type*)Machine_getClassType(Ring2_Value_getObject(&self->value)), (Machine_Type*)Ring3_Gdl_Name_getType())) {
+    return Ring3_Gdl_Name_toString((Ring3_Gdl_Name*)Ring2_Value_getObject(&self->value));
+  } else if (Machine_Type_isSubTypeOf((Machine_Type*)Machine_getClassType(Ring2_Value_getObject(&self->value)), (Machine_Type*)Ring3_Gdl_StringLiteral_getType())) {
+    return Ring3_Gdl_StringLiteral_toString((Ring3_Gdl_StringLiteral*)Ring2_Value_getObject(&self->value), true);
+  } else {
+    Ring1_Status_set(Ring1_Status_ConversionFailed);
+    Ring2_jump();
+  }
 }
 
-Ring2_Void Machine_Gdl_Node_toVoid(Machine_Gdl_Node const* self, Machine_Gdl_Context* context) {
+Ring1_NoDiscardReturn() Ring2_Void
+Machine_Gdl_Node_toVoid
+  (
+    Machine_Gdl_Node const* self,
+    Machine_Gdl_Context* context
+  )
+{
   Ring2_assertNotNull(self);
   Ring2_assert(self->kind == Machine_Gdl_NodeKind_Void, Ring1_Status_InvalidArgument);
   return Ring2_Void_Void;

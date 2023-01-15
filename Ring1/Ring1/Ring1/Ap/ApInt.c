@@ -129,6 +129,20 @@ Ring1_ApInt_uninitialize
 }
 
 Ring1_NoDiscardReturn() Ring1_Result
+Ring1_ApInt_setZero
+  (
+    Ring1_ApInt* self,
+    int64_t numberOfDigits
+  )
+{
+  if (Ring1_ApNat_setZero(&self->magnitude, numberOfDigits)) {
+    return Ring1_Result_Failure;
+  }
+  self->sign = true;
+  return Ring1_Result_Success;
+}
+
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApInt_add
   (
     Ring1_ApInt* self,

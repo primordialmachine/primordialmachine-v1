@@ -37,6 +37,12 @@
     <Filter Include="Quelldateien\Ring3\Gdl\Syntactical">
       <UniqueIdentifier>{8c04ed15-1710-492d-97b6-645dad5dfbf0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring3\Gdl\Literals">
+      <UniqueIdentifier>{048436e1-f0e8-4a70-b84c-6ea692f9e746}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring3\Gdl\Literals">
+      <UniqueIdentifier>{93e5ee85-39c1-485e-880f-537fd0168e77}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring3\Gdl\Lexical\Scanner.c">
@@ -64,6 +70,30 @@
       <Filter>Quelldateien\Ring3\Gdl</Filter>
     </ClCompile>
     <ClCompile Include="Ring3\Gdl\_Include.c">
+      <Filter>Quelldateien\Ring3\Gdl</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Gdl\Literals\BooleanLiteral.c">
+      <Filter>Quelldateien\Ring3\Gdl\Literals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Gdl\Literals\IntegerLiteral.c">
+      <Filter>Quelldateien\Ring3\Gdl\Literals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Gdl\Literals\RealLiteral.c">
+      <Filter>Quelldateien\Ring3\Gdl\Literals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Gdl\Literals\StringLiteral.c">
+      <Filter>Quelldateien\Ring3\Gdl\Literals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Gdl\Literal.c">
+      <Filter>Quelldateien\Ring3\Gdl</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Gdl\Literals\VoidLiteral.c">
+      <Filter>Quelldateien\Ring3\Gdl\Literals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Gdl\Name.c">
+      <Filter>Quelldateien\Ring3\Gdl</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Gdl\Configuration.c">
       <Filter>Quelldateien\Ring3\Gdl</Filter>
     </ClCompile>
   </ItemGroup>
@@ -95,6 +125,30 @@
     <ClInclude Include="Ring3\Gdl\_Include.h">
       <Filter>Headerdateien\Ring3\Gdl</Filter>
     </ClInclude>
+    <ClInclude Include="Ring3\Gdl\Literals\BooleanLiteral.h">
+      <Filter>Headerdateien\Ring3\Gdl\Literals</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Gdl\Literals\IntegerLiteral.h">
+      <Filter>Headerdateien\Ring3\Gdl\Literals</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Gdl\Literals\RealLiteral.h">
+      <Filter>Headerdateien\Ring3\Gdl\Literals</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Gdl\Literals\StringLiteral.h">
+      <Filter>Headerdateien\Ring3\Gdl\Literals</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Gdl\Literals\VoidLiteral.h">
+      <Filter>Headerdateien\Ring3\Gdl\Literals</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Gdl\Name.h">
+      <Filter>Headerdateien\Ring3\Gdl</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Gdl\parse.h">
+      <Filter>Headerdateien\Ring3\Gdl</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Gdl\Configuration.h">
+      <Filter>Headerdateien\Ring3\Gdl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Ring3\Gdl\Lexical\Scanner-Inlay.i">
@@ -102,6 +156,12 @@
     </None>
     <None Include="Ring3\Gdl\Syntactical\Parser-inlay.i">
       <Filter>Quelldateien\Ring3\Gdl\Syntactical</Filter>
+    </None>
+    <None Include="Ring3\Gdl\Syntactical\NodeKind.i">
+      <Filter>Headerdateien\Ring3\Gdl\Syntactical</Filter>
+    </None>
+    <None Include="Ring3\Gdl\Lexical\TokenKind.i">
+      <Filter>Headerdateien\Ring3\Gdl\Lexical</Filter>
     </None>
     <None Include="Ring3\Gdl\header.h.i">
       <Filter>Headerdateien\Ring3\Gdl</Filter>

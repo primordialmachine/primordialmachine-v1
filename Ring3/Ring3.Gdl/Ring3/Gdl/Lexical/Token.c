@@ -24,10 +24,22 @@ static void Machine_Gdl_Token_construct(Machine_Gdl_Token* self, size_t numberOf
   Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Gdl_Token_getType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Gdl_Token, Machine_Object, &Machine_Gdl_Token_visit,
-                         &Machine_Gdl_Token_construct, NULL, NULL, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_Gdl_Token /*type*/,
+                         Machine_Object /*parentType*/,
+                         &Machine_Gdl_Token_visit /*visit*/,
+                         &Machine_Gdl_Token_construct /*construct*/,
+                         NULL /*destruct*/,
+                         NULL /*constructClass*/,
+                         NULL /*implementInterfaces*/)
 
-Machine_Gdl_Token* Machine_Gdl_Token_create(Machine_Gdl_TokenKind kind, Ring2_String* text, Ring2_Integer offset) {
+Ring1_NoDiscardReturn() Machine_Gdl_Token*
+Machine_Gdl_Token_create
+  (
+    Machine_Gdl_TokenKind kind,
+    Ring2_String* text,
+    Ring2_Integer offset
+  )
+{
   Machine_ClassType* ty = Machine_Gdl_Token_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 3;
   Ring2_Value ARGUMENTS[3];
@@ -38,14 +50,23 @@ Machine_Gdl_Token* Machine_Gdl_Token_create(Machine_Gdl_TokenKind kind, Ring2_St
   return self;
 }
 
-Machine_Gdl_TokenKind Machine_Gdl_Token_getKind(Machine_Gdl_Token const* self) {
-  return self->kind;
-}
+Ring1_NoDiscardReturn() Machine_Gdl_TokenKind
+Machine_Gdl_Token_getKind
+  (
+    Machine_Gdl_Token const* self
+  )
+{ return self->kind; }
 
-Ring2_String* Machine_Gdl_Token_getText(Machine_Gdl_Token const* self) {
-  return self->text;
-}
+Ring1_NoDiscardReturn() Ring2_String*
+Machine_Gdl_Token_getText
+  (
+    Machine_Gdl_Token const* self
+  )
+{ return self->text; }
 
-Ring2_Integer Machine_Gdl_Token_getOffset(Machine_Gdl_Token const* self) {
-  return self->offset;
-}
+Ring1_NoDiscardReturn() Ring2_Integer
+Machine_Gdl_Token_getOffset
+  (
+    Machine_Gdl_Token const* self
+  )
+{ return self->offset; }

@@ -97,6 +97,18 @@ Ring1_ApNat_set_u64
     int64_t numberOfDigits
   );
 
+/// @brief Assign this ApNat the value zero.
+/// @param self A pointer to this ApNat object.
+/// @return
+/// #Ring_Result_Success on success.
+/// #Ring_Result_Failure on failure.
+Ring1_NoDiscardReturn() Ring1_Result
+Ring1_ApNat_setZero
+  (
+    Ring1_ApNat* self,
+    int64_t numberOfDigits
+  );
+
 /// @brief Compute the sum of this ApNat object and another ApNat object and assign the values of the sum to this ApNat object.
 /// @param self A pointer to this ApNat object.
 /// @param other A pointer to the other ApNat object.
