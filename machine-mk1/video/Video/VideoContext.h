@@ -6,7 +6,6 @@
 
 #include "Video/_header.i"
 #include "Video/Binding.h"
-#include "Video/VideoBuffer.h"
 #include "Video/External.h"
 #include "Video/ShaderProgram.h"
 
@@ -72,7 +71,7 @@ struct Machine_VideoContext_Class {
 
   void (*clearDepthBuffer)(Machine_VideoContext*);
 
-  Machine_VideoBuffer* (*createBuffer)(Machine_VideoContext*);
+  Ring3_GpuBuffer* (*createBuffer)(Machine_VideoContext*);
 
   Ring3_Texture* (*createTextureFromImage)(Machine_VideoContext*,
                                            Ring3_Image*);
@@ -85,7 +84,7 @@ struct Machine_VideoContext_Class {
   Machine_Binding* (*createBinding)(Machine_VideoContext*,
                                     Machine_ShaderProgram*,
                                     Ring3_VertexDescriptor*,
-                                    Machine_VideoBuffer*);
+                                    Ring3_GpuBuffer*);
 
   void (*drawDirect)(Machine_VideoContext* self, Ring2_Integer i, Ring2_Integer n);
 
@@ -304,7 +303,7 @@ Ring3_Texture* Machine_VideoContext_createTextureFromImage(Machine_VideoContext*
 /// @brief Create an empty buffer.
 /// @param self This video context.
 /// @return The buffer.
-Machine_VideoBuffer* Machine_VideoContext_createBuffer(Machine_VideoContext* self);
+Ring3_GpuBuffer* Machine_VideoContext_createBuffer(Machine_VideoContext* self);
 
 /// @brief Create a program.
 /// @param self This video context.
@@ -326,7 +325,7 @@ Machine_ShaderProgram* Machine_VideoContext_createProgram(Machine_VideoContext* 
 Machine_Binding* Machine_VideoContext_createBinding(Machine_VideoContext* self,
                                                     Machine_ShaderProgram* program,
                                                     Ring3_VertexDescriptor* vertexDescriptor,
-                                                    Machine_VideoBuffer* buffer);
+                                                    Ring3_GpuBuffer* buffer);
 
 /// @brief Render @a n consecutive vertices starting with the vertex at (zero-based) index @a 0.
 /// @param self This video context.

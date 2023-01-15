@@ -1,6 +1,6 @@
 /// @file Video/Gl/Buffer.h
-/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
-/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
+/// @copyright Copyright (c) 2021-2022 Michael Heilmann. All rights reserved.
+/// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 #if !defined(MACHINE_GL_BUFFER_H_INCLUDED)
 #define MACHINE_GL_BUFFER_H_INCLUDED
 
@@ -17,21 +17,31 @@
 MACHINE_DECLARE_CLASSTYPE(Machine_Gl_VideoBuffer)
 
 struct Machine_Gl_VideoBuffer_Class {
-  Machine_VideoBuffer_Class parent;
+  Ring3_GpuBuffer_Class parent;
 };
 
 struct Machine_Gl_VideoBuffer {
-  Machine_VideoBuffer __parent;
+  Ring3_GpuBuffer __parent;
+  size_t n;
+  void* p;
   GLuint id;
 };
 
-void Machine_Gl_VideoBuffer_construct(Machine_Gl_VideoBuffer* self, size_t numberOfArguments, Ring2_Value const* arguments);
+void
+Machine_Gl_VideoBuffer_construct
+  (
+    Machine_Gl_VideoBuffer* self,
+    size_t numberOfArguments,
+    Ring2_Value const* arguments
+  );
 
 
 /// @brief Create an empty buffer.
 /// @return The buffer.
-Machine_Gl_VideoBuffer* Machine_Gl_VideoBuffer_create();
-
+Machine_Gl_VideoBuffer*
+Machine_Gl_VideoBuffer_create
+  (
+  );
 
 
 #endif // MACHINE_GL_BUFFER_H_INCLUDED

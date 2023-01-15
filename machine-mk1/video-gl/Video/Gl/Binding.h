@@ -31,7 +31,7 @@ Machine_Gl_Binding_create
   (
     Machine_ShaderProgram* program,
     Ring3_VertexDescriptor* vertexDescriptor,
-    Machine_VideoBuffer* buffer
+    Ring3_GpuBuffer* buffer
   );
 
 

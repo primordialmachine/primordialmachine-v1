@@ -17,7 +17,7 @@ struct Machine_Font_Class {
                                     Ring3_Math_Vector2f32* advance, Ring3_Texture** texture);
   Machine_Binding* (*getVideoBinding)(Machine_Font* self);
   Machine_ShaderProgram* (*getVideoShaderProgram)(Machine_Font* self);
-  Machine_VideoBuffer* (*getVideoBuffer)(Machine_Font* self);
+  Ring3_GpuBuffer* (*getVideoBuffer)(Machine_Font* self);
 };
 
 struct Machine_Font {
@@ -84,7 +84,7 @@ Machine_Font_getVideoShaderProgram
 /// @brief Get the video buffer.
 /// @param self This font.
 /// @return The video buffer.
-Machine_VideoBuffer*
+Ring3_GpuBuffer*
 Machine_Font_getVideoBuffer
   (
     Machine_Font* self

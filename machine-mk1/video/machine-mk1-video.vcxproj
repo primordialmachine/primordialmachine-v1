@@ -140,7 +140,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Video\Binding.c" />
-    <ClCompile Include="Video\VideoBuffer.c" />
     <ClCompile Include="Video\Canvas.c" />
     <ClCompile Include="Video\Font.c" />
     <ClCompile Include="Video\FontsContext.c" />
@@ -150,7 +149,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Video\Binding.h" />
-    <ClInclude Include="Video\VideoBuffer.h" />
     <ClInclude Include="Video\Canvas.h" />
     <ClInclude Include="Video\External.h" />
     <ClInclude Include="Video\Font.h" />

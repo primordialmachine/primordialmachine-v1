@@ -119,7 +119,7 @@ Ring3_Texture* Machine_VideoContext_createTextureFromImage(Machine_VideoContext*
   MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_VideoContext, createTextureFromImage, image);
 }
 
-Machine_VideoBuffer* Machine_VideoContext_createBuffer(Machine_VideoContext* self) {
+Ring3_GpuBuffer* Machine_VideoContext_createBuffer(Machine_VideoContext* self) {
   MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_VideoContext, createBuffer);
 }
 
@@ -134,7 +134,7 @@ Machine_ShaderProgram* Machine_VideoContext_createProgram(Machine_VideoContext* 
 Machine_Binding* Machine_VideoContext_createBinding(Machine_VideoContext* self,
                                                     Machine_ShaderProgram* program,
                                                     Ring3_VertexDescriptor* vertexDescriptor,
-                                                    Machine_VideoBuffer* buffer) {
+                                                    Ring3_GpuBuffer* buffer) {
   MACHINE_VIRTUALCALL_RETURN_ARGS(Machine_VideoContext, createBinding, program, vertexDescriptor,
                                   buffer);
 }

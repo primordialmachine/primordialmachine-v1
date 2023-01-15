@@ -45,7 +45,7 @@ static void Machine_Rectangle2_render(Machine_Rectangle2* self, Machine_Context2
     { r, t, }, // right/top
   };
 
-  Machine_VideoBuffer_setData(context->vertices, sizeof(VERTICES), (void const*)VERTICES);
+  Ring3_GpuBuffer_setData(context->vertices, sizeof(VERTICES), (void const*)VERTICES);
 
   Machine_Binding_activate(context->binding);
   Machine_Binding_bindMatrix4(context->binding, Ring2_String_create("modelToProjectionMatrix", crt_strlen("modelToProjectionMatrix") + 1), wvp2);

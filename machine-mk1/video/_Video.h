@@ -6,7 +6,6 @@
 
 #define MACHINE_VIDEO_PRIVATE (1)
 #include "Video/Binding.h"
-#include "Video/VideoBuffer.h"
 #include "Video/Canvas.h"
 #include "Video/External.h"
 #include "Video/Font.h"

@@ -9,6 +9,7 @@
 #include "Ring3/Visuals/BlendFunction.h"
 #include "Ring3/Visuals/CanvasSizeChangedEvent.h"
 #include "Ring3/Visuals/DepthTestFunction.h"
+#include "Ring3/Visuals/GpuBuffer.h"
 #include "Ring3/Visuals/GpuProgramInputDescriptor.h"
 #include "Ring3/Visuals/GpuProgramInputKind.h"
 #include "Ring3/Visuals/GpuProgramInputType.h"

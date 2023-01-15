@@ -34,6 +34,7 @@
     <ClInclude Include="Ring3\Visuals\CanvasSizeChangedEvent.h" />
     <ClInclude Include="Ring3\Visuals\DefaultMaterialBuilder.h" />
     <ClInclude Include="Ring3\Visuals\DepthTestFunction.h" />
+    <ClInclude Include="Ring3\Visuals\GpuBuffer.h" />
     <ClInclude Include="Ring3\Visuals\GpuProgramInputDescriptor.h" />
     <ClInclude Include="Ring3\Visuals\Image.h" />
     <ClInclude Include="Ring3\Visuals\ImagesContext.h" />
@@ -55,6 +56,7 @@
     <ClCompile Include="Ring3\Visuals\CanvasSizeChangedEvent.c" />
     <ClCompile Include="Ring3\Visuals\DefaultMaterialBuilder.c" />
     <ClCompile Include="Ring3\Visuals\DepthTestFunction.c" />
+    <ClCompile Include="Ring3\Visuals\GpuBuffer.c" />
     <ClCompile Include="Ring3\Visuals\GpuProgramInputDescriptor.c" />
     <ClCompile Include="Ring3\Visuals\Image.c" />
     <ClCompile Include="Ring3\Visuals\ImagesContext.c" />

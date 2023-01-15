@@ -145,7 +145,7 @@ struct Machine_Fonts_Font {
   float baselineDistance;
 
   Machine_ShaderProgram* shader;
-  Machine_VideoBuffer* vertices;
+  Ring3_GpuBuffer* vertices;
   Machine_Binding* binding;
 };
 
@@ -183,7 +183,7 @@ static Machine_ShaderProgram* Machine_Fonts_Font_getVideoShaderProgram(Machine_F
   return self->shader;
 }
 
-static Machine_VideoBuffer* Machine_Fonts_Font_getVideoBuffer(Machine_Fonts_Font* self) {
+static Ring3_GpuBuffer* Machine_Fonts_Font_getVideoBuffer(Machine_Fonts_Font* self) {
   return self->vertices;
 }
 
@@ -191,7 +191,7 @@ static void Machine_Fonts_Font_constructClass(Machine_Fonts_Font_Class* self) {
   ((Machine_Font_Class*)self)->getBaselineDistance = (Ring2_Real32(*)(Machine_Font*)) & Machine_Fonts_Font_getBaselineDistance;
   ((Machine_Font_Class*)self)->getCodePointInfo = (Ring2_Boolean(*)(Machine_Font*, uint32_t codepoint, Ring3_Math_Rectangle2* bounds, Ring3_Math_Vector2f32* advance, Ring3_Texture * *texture)) & Machine_Fonts_Font_getCodePointInfo;
   ((Machine_Font_Class*)self)->getVideoBinding = (Machine_Binding * (*)(Machine_Font*)) & Machine_Fonts_Font_getVideoBinding;
-  ((Machine_Font_Class*)self)->getVideoBuffer = (Machine_VideoBuffer * (*)(Machine_Font*)) & Machine_Fonts_Font_getVideoBuffer;
+  ((Machine_Font_Class*)self)->getVideoBuffer = (Ring3_GpuBuffer * (*)(Machine_Font*)) & Machine_Fonts_Font_getVideoBuffer;
   ((Machine_Font_Class*)self)->getVideoShaderProgram = (Machine_ShaderProgram * (*)(Machine_Font*)) & Machine_Fonts_Font_getVideoShaderProgram;
 }
 

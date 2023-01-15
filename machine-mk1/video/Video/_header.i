@@ -13,3 +13,6 @@ typedef struct Machine_Font Machine_Font;
 
 // Forward declaration.
 typedef struct Ring3_Image Ring3_Image;
+
+// Forward declaration.
+typedef struct Ring3_GpuBuffer Ring3_GpuBuffer;

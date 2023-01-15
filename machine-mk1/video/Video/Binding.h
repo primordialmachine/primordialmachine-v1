@@ -7,7 +7,6 @@
 #include "Video/_header.i"
 typedef struct Machine_ShaderProgram Machine_ShaderProgram;
 typedef struct Ring3_VertexDescriptor Ring3_VertexDescriptor;
-typedef struct Machine_VideoBuffer Machine_VideoBuffer;
 
 /// @brief A vertex program has variable input variables and constant input variables.
 /// These variables must be bound before a program can be used.
@@ -65,7 +64,7 @@ struct Machine_Binding {
   Machine_Binding_Node* nodes;
   Machine_ShaderProgram* program;
   Ring3_VertexDescriptor* vertexDescriptor;
-  Machine_VideoBuffer* buffer;
+  Ring3_GpuBuffer* buffer;
   bool dirty;
 };
 

@@ -26,7 +26,7 @@ struct Scene1 {
 
   Machine_ShaderProgram* shaderProgram;
   Machine_Binding* binding;
-  Machine_VideoBuffer* vertices;
+  Ring3_GpuBuffer* vertices;
 };
 
 static void Scene1_constructClass(Scene1_Class* self);
@@ -52,7 +52,7 @@ static void Scene1_onStartup(Scene1* self) {
   Machine_VideoContext* videoContext = Scene_getVideoContext((Scene*)self);
 
   self->vertices = Machine_VideoContext_createBuffer(videoContext);
-  Machine_VideoBuffer_setData(self->vertices, sizeof(vertices), (void const*)vertices);
+  Ring3_GpuBuffer_setData(self->vertices, sizeof(vertices), (void const*)vertices);
 
   self->shaderProgram
       = Machine_VideoContext_generateDefaultShader(videoContext, false, true, false, false);

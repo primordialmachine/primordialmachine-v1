@@ -54,7 +54,7 @@ struct Machine_Context2 {
   /// @brief The default shader.
   Machine_ShaderProgram* shader;
   /// @brief A vertex buffer.
-  Machine_VideoBuffer* vertices;
+  Ring3_GpuBuffer* vertices;
   /// @brief Binding connection shader, vertex buffer, and a constants.
   Machine_Binding* binding;
 };

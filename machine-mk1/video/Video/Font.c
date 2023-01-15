@@ -37,6 +37,6 @@ Machine_ShaderProgram* Machine_Font_getVideoShaderProgram(Machine_Font* self) {
   MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_Font, getVideoShaderProgram);
 }
 
-Machine_VideoBuffer* Machine_Font_getVideoBuffer(Machine_Font* self) {
+Ring3_GpuBuffer* Machine_Font_getVideoBuffer(Machine_Font* self) {
   MACHINE_VIRTUALCALL_RETURN_NOARGS(Machine_Font, getVideoBuffer);
 }
