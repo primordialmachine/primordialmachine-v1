@@ -22,10 +22,10 @@
 
 Ring1_Module_Declare(Ring2, ObjectModule)
 
+typedef struct Machine_Type Machine_Type;
 typedef struct Machine_ClassType Machine_ClassType;
 
 typedef struct Machine_Object_Class Machine_Object_Class;
-
 typedef struct Machine_Object Machine_Object;
 
 struct Machine_Object_Class {
@@ -39,29 +39,66 @@ struct Machine_Object {
   Machine_ClassType* classType;
 };
 
-Machine_ClassType* Machine_Object_getType();
+Ring1_NoDiscardReturn() Machine_ClassType*
+Machine_Object_getType
+  (
+  );
 
 /// @brief Construct this object.
 /// @param self This object.
 /// @param numberOfArguments The number of arguments.
 /// @param arguments The arguments.
-void Machine_Object_construct(Machine_Object* self, size_t numberOfArguments, Ring2_Value const* arguments);
+void
+Machine_Object_construct
+  (
+    Machine_Object* self,
+    size_t numberOfArguments,
+    Ring2_Value const* arguments
+  );
 
 /// @brief Create an object.
 /// @param type A pointer to the class type.
 /// @param numberOfArguments The number of elements in the array pointed to by @a arguments.
 /// @param arguments A pointer to an array of @a numberOfArguments elements.
-Machine_Object* Machine_allocateClassObject(Machine_ClassType* type, size_t numberOfArguments, Ring2_Value const* arguments);
+Ring1_NoDiscardReturn() Machine_Object*
+Machine_allocateClassObject
+  (
+    Machine_ClassType* type,
+    size_t numberOfArguments,
+    Ring2_Value const* arguments
+  );
 
 /// @brief Set the class type of an object.
 /// @param object The object.
 /// @param classType The class type.
-void Machine_setClassType(Machine_Object* object, Machine_ClassType* classType);
+void
+Machine_setClassType
+  (
+    Machine_Object* object,
+    Machine_ClassType* classType
+  );
 
 /// @brief Get the class type of an object.
 /// @param object The object.
 /// @return The class type.
-Machine_ClassType* Machine_getClassType(Machine_Object* object);
+Ring1_NoDiscardReturn() Machine_ClassType*
+Machine_getClassType
+  (
+    Machine_Object* object
+  );
+
+/// @brief Get if the object is of the specified type.
+/// @param self A pointer to the object.
+/// @param type A pointer to the type.
+/// @return @a true if the object is of the specified type, @a false otherwise.
+/// @error #Ring1_Status_InvalidArgument @a self is a null pointer
+/// @error #Ring1_Status_InvalidArgument @a type is a null pointer
+Ring1_NoDiscardReturn() Ring2_Boolean
+Ring2_Object_isInstanceOf
+  (
+    Machine_Object* self,
+    Machine_Type* type
+  );
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 

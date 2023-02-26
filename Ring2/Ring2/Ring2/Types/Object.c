@@ -402,3 +402,18 @@ Machine_Object_toString
     Machine_Object const* self
   )
 { MACHINE_VIRTUALCALL_IMPL(Machine_Object, toString, return, context, self); }
+
+Ring1_NoDiscardReturn() Ring2_Boolean
+Ring2_Object_isInstanceOf
+  (
+    Machine_Object* self,
+    Machine_Type* type
+  )
+{
+  if (!self || !type) {
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
+    Ring2_jump();
+  }
+  Machine_Type* selfType = (Machine_Type*)Machine_getClassType(self);
+  return Machine_Type_isSubTypeOf(selfType, type);
+}
