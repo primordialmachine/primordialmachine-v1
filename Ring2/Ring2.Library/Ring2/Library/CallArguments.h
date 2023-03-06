@@ -1,21 +1,21 @@
 // Copyright (c) 2021-2022 Michael Heilmann. All rights reserved.
 
-/// @file Ring2/Library/ArgumentsUtilities.h
-/// @copyright Copyright (c) 2021-200 Michael Heilmann. All rights reserved.
+/// @file Ring2/Library/CallArguments.h
+/// @copyright Copyright (c) 2021-2023 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
-/// @brief Functionality to access argument lists.
+/// @brief Functionality to access call argument lists.
 
-#if !defined(RING2_LIBRARIES_ARGUMENTSUTILITIES_H_INCLUDED)
-#define RING2_LIBRARIES_ARGUMENTSUTILITIES_H_INCLUDED
+#if !defined(RING2_LIBRARY_CALLARGUMENTS_H_INCLUDED)
+#define RING2_LIBRARY_CALLARGUMENTS_H_INCLUDED
 
 #if !defined(RING2_LIBRARY_PRIVATE) || 1 != RING2_LIBRARY_PRIVATE
-#error("Do not include `Ring2/Library/ArgumentsUtilities.h` directly. Include `Ring2/Library/_Include.h` instead.")
+#error("Do not include `Ring2/Library/CallArguments.h` directly. Include `Ring2/Library/_Include.h` instead.")
 #endif
 #include "Ring2/_Include.h"
 
 Ring1_CheckReturn() Ring2_Boolean
-Machine_Extensions_getBooleanArgument
+Ring2_CallArguments_getBooleanArgument
   (
     size_t numberOfArguments,
     Ring2_Value const* arguments,
@@ -23,7 +23,7 @@ Machine_Extensions_getBooleanArgument
   );
 
 Ring1_CheckReturn() Ring2_Integer
-Machine_Extensions_getIntegerArgument
+Ring2_CallArguments_getIntegerArgument
   (
     size_t numberOfArguments,
     Ring2_Value const* arguments,
@@ -31,7 +31,7 @@ Machine_Extensions_getIntegerArgument
   );
 
 Ring1_CheckReturn() Ring2_Real32
-Machine_Extensions_getReal32Argument
+Ring2_CallArguments_getReal32Argument
   (
     size_t numberOfArguments,
     Ring2_Value const* arguments,
@@ -39,7 +39,7 @@ Machine_Extensions_getReal32Argument
   );
 
 Ring1_CheckReturn() Ring2_Real64
-Machine_Extensions_getReal64Argument
+Ring2_CallArguments_getReal64Argument
   (
     size_t numberOfArguments,
     Ring2_Value const* arguments,
@@ -47,20 +47,25 @@ Machine_Extensions_getReal64Argument
   );
 
 Ring1_CheckReturn() Ring2_String *
-Machine_Extensions_getStringArgument
+Ring2_CallArguments_getStringArgument
   (
     size_t numberOfArguments,
     Ring2_Value const* arguments,
     size_t i
   );
 
+
+/// @brief Validate the argument and return a pointer to the object.
+/// @param numberOfArguments, arguments The arguments.
+/// @param argumentIndex The index of the argument.
+/// @param type The type the argument must be a subtype of.
 Ring1_CheckReturn() Machine_Object *
-Machine_Extensions_getObjectArgument
+Ring2_CallArguments_getObjectArgument
   (
     size_t numberOfArguments,
     Ring2_Value const* arguments,
-    size_t i,
+    size_t argumentIndex,
     Machine_ClassType* t
   );
 
-#endif // RING2_LIBRARIES_ARGUMENTSUTILITIES_H_INCLUDED
+#endif // RING2_LIBRARY_CALLARGUMENTS_H_INCLUDED

@@ -1,13 +1,13 @@
-// Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
+// Copyright (c) 2019-2023 Michael Heilmann. All rights reserved.
 
 /// @file Ring2/Library/ArgumentsUtilities.c
-/// @copyright Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
+/// @copyright Copyright (c) 2019-2023 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
-/// @brief Functionality to access argument lists.
+/// @brief Functionality to access call argument lists.
 
 #define RING2_LIBRARY_PRIVATE (1)
-#include "Ring2/Library/ArgumentsUtilities.h"
+#include "Ring2/Library/CallArguments.h"
 #undef RING2_LIBRARY_PRIVATE
 
 
@@ -15,7 +15,7 @@
 
 
 Ring1_CheckReturn() Ring2_Boolean
-Machine_Extensions_getBooleanArgument
+Ring2_CallArguments_getBooleanArgument
   (
     size_t numberOfArguments,
     Ring2_Value const* arguments,
@@ -35,7 +35,7 @@ Machine_Extensions_getBooleanArgument
 }
 
 Ring1_CheckReturn() Ring2_Integer
-Machine_Extensions_getIntegerArgument
+Ring2_CallArguments_getIntegerArgument
   (
     size_t numberOfArguments,
     Ring2_Value const* arguments,
@@ -55,7 +55,7 @@ Machine_Extensions_getIntegerArgument
 }
 
 Ring1_CheckReturn() Ring2_Real32
-Machine_Extensions_getReal32Argument
+Ring2_CallArguments_getReal32Argument
   (
     size_t numberOfArguments,
     Ring2_Value const* arguments,
@@ -75,7 +75,7 @@ Machine_Extensions_getReal32Argument
 }
 
 Ring1_CheckReturn() Ring2_Real64
-Machine_Extensions_getReal64Argument
+Ring2_CallArguments_getReal64Argument
   (
     size_t numberOfArguments,
     Ring2_Value const* arguments,
@@ -95,7 +95,7 @@ Machine_Extensions_getReal64Argument
 }
 
 Ring1_CheckReturn() Ring2_String *
-Machine_Extensions_getStringArgument
+Ring2_CallArguments_getStringArgument
   (
     size_t numberOfArguments,
     Ring2_Value const* arguments,
@@ -115,7 +115,7 @@ Machine_Extensions_getStringArgument
 }
 
 Ring1_CheckReturn() Machine_Object *
-Machine_Extensions_getObjectArgument
+Ring2_CallArguments_getObjectArgument
   (
     size_t numberOfArguments,
     Ring2_Value const* arguments, size_t i,

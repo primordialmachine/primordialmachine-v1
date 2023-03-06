@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ring2\Library\ArgumentsUtilities.h" />
+    <ClInclude Include="Ring2\Library\CallArguments.h" />
     <ClInclude Include="Ring2\Library\ByteBuffer.h" />
     <ClInclude Include="Ring2\Library\ByteBufferReader.h" />
     <ClInclude Include="Ring2\Library\Collections\ArrayDeque.h" />
@@ -41,6 +41,7 @@
     <ClInclude Include="Ring2\Library\Io\getFileContents.h" />
     <ClInclude Include="Ring2\Library\Io\Initialize.h" />
     <ClInclude Include="Ring2\Library\Io\setFileContents.h" />
+    <ClInclude Include="Ring2\Library\RealExtensions.h" />
     <ClInclude Include="Ring2\Library\StringBuffer.h" />
     <ClInclude Include="Ring2\Library\StringExtensions.h" />
     <ClInclude Include="Ring2\Library\Time.h" />
@@ -48,7 +49,7 @@
     <ClInclude Include="Ring2\Library\_Include.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ring2\Library\ArgumentsUtilities.c" />
+    <ClCompile Include="Ring2\Library\CallArguments.c" />
     <ClCompile Include="Ring2\Library\ByteBuffer.c" />
     <ClCompile Include="Ring2\Library\ByteBufferReader.c" />
     <ClCompile Include="Ring2\Library\Collections\ArrayDeque.c" />
@@ -70,6 +71,7 @@
     <ClCompile Include="Ring2\Library\Io\getFileContents.c" />
     <ClCompile Include="Ring2\Library\Io\Initialize.c" />
     <ClCompile Include="Ring2\Library\Io\setFileContents.c" />
+    <ClCompile Include="Ring2\Library\RealExtensions.c" />
     <ClCompile Include="Ring2\Library\StringBuffer.c" />
     <ClCompile Include="Ring2\Library\StringExtensions.c" />
     <ClCompile Include="Ring2\Library\Time.c" />

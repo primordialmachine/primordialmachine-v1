@@ -1,11 +1,11 @@
-// Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
+// Copyright (c) 2019-2023 Michael Heilmann. All rights reserved.
 
 /// @file Ring2/Library/StringExtensions.h
-/// @copyright Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
+/// @copyright Copyright (c) 2019-2023 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
-#if !defined(RING2_LIBRARY_STRINGEXTENSIONS_PRINT_H_INCLUDED)
-#define RING2_LIBRARY_STRINGEXTENSIONS_PRINT_H_INCLUDED
+#if !defined(RING2_LIBRARY_STRINGEXTENSIONS_H_INCLUDED)
+#define RING2_LIBRARY_STRINGEXTENSIONS_H_INCLUDED
 
 #if !defined(RING2_LIBRARY_PRIVATE) || 1 != RING2_LIBRARY_PRIVATE
 #error("do not include `Ring2/Library/StringExtensions.h` directly. Instead, include `Ring2/Library/_Include.h`.")
@@ -41,12 +41,14 @@ Ring2_String_printf
   );
 
 /// @brief Create a string from a C string.
-/// @param p A pointer to the C string.
+/// @param includeZeroTerminator Wether to include in the create string the zero terminator of the C string.
+/// @param string A pointer to the C string.
 /// @return The string.
 Ring1_CheckReturn() Ring2_String*
 Ring2_String_fromC
   (
-    const char* p
+    bool includeZeroTerminator,
+    const char* string
   );
 
-#endif // RING2_LIBRARY_STRINGEXTENSIONS_PRINT_H_INCLUDED
+#endif // RING2_LIBRARY_STRINGEXTENSIONS_H_INCLUDED

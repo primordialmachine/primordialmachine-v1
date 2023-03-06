@@ -10,7 +10,7 @@
 
 
 #define RING2_LIBRARY_PRIVATE (1)
-#include "Ring2/Library/ArgumentsUtilities.h"
+#include "Ring2/Library/CallArguments.h"
 #undef RING2_LIBRARY_PRIVATE
 #include "Ring1/All/_Include.h"
 
@@ -35,7 +35,7 @@ static void Machine_ByteBufferReader_visit(Machine_ByteBufferReader* self) {
 void Machine_ByteBufferReader_construct(Machine_ByteBufferReader* self, size_t numberOfArguments,
                                         Ring2_Value const* arguments) {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  self->byteBuffer = (Ring2_ByteBuffer*)Machine_Extensions_getObjectArgument(numberOfArguments,
+  self->byteBuffer = (Ring2_ByteBuffer*)Ring2_CallArguments_getObjectArgument(numberOfArguments,
                                                                              arguments,
                                                                              0,
                                                                              Ring2_ByteBuffer_getType());

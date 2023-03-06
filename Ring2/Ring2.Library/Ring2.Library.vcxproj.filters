@@ -47,7 +47,7 @@
     <ClInclude Include="Ring2\Library\ByteBufferReader.h">
       <Filter>Headerdateien\Ring2\Library</Filter>
     </ClInclude>
-    <ClInclude Include="Ring2\Library\ArgumentsUtilities.h">
+    <ClInclude Include="Ring2\Library\CallArguments.h">
       <Filter>Headerdateien\Ring2\Library</Filter>
     </ClInclude>
     <ClInclude Include="Ring2\Library\WeakReference.h">
@@ -119,6 +119,9 @@
     <ClInclude Include="Ring2\Library\emit.h">
       <Filter>Headerdateien\Ring2\Library</Filter>
     </ClInclude>
+    <ClInclude Include="Ring2\Library\RealExtensions.h">
+      <Filter>Headerdateien\Ring2\Library</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring2\Library\_Include.c">
@@ -133,7 +136,7 @@
     <ClCompile Include="Ring2\Library\ByteBufferReader.c">
       <Filter>Quelldateien\Ring2\Library</Filter>
     </ClCompile>
-    <ClCompile Include="Ring2\Library\ArgumentsUtilities.c">
+    <ClCompile Include="Ring2\Library\CallArguments.c">
       <Filter>Quelldateien\Ring2\Library</Filter>
     </ClCompile>
     <ClCompile Include="Ring2\Library\WeakReference.c">
@@ -203,6 +206,9 @@
       <Filter>Quelldateien\Ring2\Library</Filter>
     </ClCompile>
     <ClCompile Include="Ring2\Library\emit.c">
+      <Filter>Quelldateien\Ring2\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Library\RealExtensions.c">
       <Filter>Quelldateien\Ring2\Library</Filter>
     </ClCompile>
   </ItemGroup>

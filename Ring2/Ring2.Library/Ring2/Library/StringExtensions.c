@@ -1,7 +1,7 @@
-// Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
+// Copyright (c) 2019-2023 Michael Heilmann. All rights reserved.
 
 /// @file Ring2/Library/StringExtensions.c
-/// @copyright Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
+/// @copyright Copyright (c) 2019-2023 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
 #define RING2_LIBRARY_PRIVATE (1)
@@ -139,6 +139,14 @@ Ring2_String_printf
 Ring1_CheckReturn() Ring2_String*
 Ring2_String_fromC
   (
-    const char* p
+    bool includeZeroTerminator,
+    const char* string
   )
-{ return Ring2_String_create(p, crt_strlen(p)); }
+{
+  if (!string) {
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
+    Ring2_jump();
+  }
+  size_t n = crt_strlen(string);
+  return Ring2_String_create(string, includeZeroTerminator ? n + 1 : n);
+}
