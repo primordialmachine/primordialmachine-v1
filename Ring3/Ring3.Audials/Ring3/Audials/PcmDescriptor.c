@@ -33,19 +33,19 @@ Ring3_Audials_PcmDescriptor_construct
     Ring2_jump();
 
   }
-  self->numberOfChannels = Machine_Extensions_getIntegerArgument(numberOfArguments, arguments, 0);
+  self->numberOfChannels = Ring2_CallArguments_getIntegerArgument(numberOfArguments, arguments, 0);
   if (self->numberOfChannels < 1 || self->numberOfChannels > Ring3_Audials_MaximumNumberOfChannels) {
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();
   }
-  self->samplesPerSecondPerChannel = Machine_Extensions_getIntegerArgument(numberOfArguments, arguments, 1);
+  self->samplesPerSecondPerChannel = Ring2_CallArguments_getIntegerArgument(numberOfArguments, arguments, 1);
   if (self->samplesPerSecondPerChannel != 8000 &&
       self->samplesPerSecondPerChannel != 44100 &&
       self->samplesPerSecondPerChannel != 48000) {
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();
   }
-  self->bitsPerSample = Machine_Extensions_getIntegerArgument(numberOfArguments, arguments, 2);
+  self->bitsPerSample = Ring2_CallArguments_getIntegerArgument(numberOfArguments, arguments, 2);
   if (self->bitsPerSample != 8 &&
       self->bitsPerSample != 16) {
     Ring1_Status_set(Ring1_Status_InvalidArgument);

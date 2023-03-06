@@ -122,13 +122,13 @@ Ring3_Audials_PcmBuffer_construct
   static Ring2_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Machine_Object_construct(Ring1_cast(Machine_Object *, self), NUMBER_OF_ARGUMENTS, ARGUMENTS);
 
-  self->length = Machine_Extensions_getIntegerArgument(numberOfArguments, arguments, 0);
+  self->length = Ring2_CallArguments_getIntegerArgument(numberOfArguments, arguments, 0);
   if (self->length < 0 || self->length > Ring3_Audials_MaximumLength) {
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();
   }
-  self->pcmDescriptor = Ring1_cast(Ring3_Audials_PcmDescriptor *, Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 1, Ring3_Audials_PcmDescriptor_getType()));
-  Ring2_Integer generatorId = Machine_Extensions_getIntegerArgument(numberOfArguments, arguments, 2);
+  self->pcmDescriptor = Ring1_cast(Ring3_Audials_PcmDescriptor *, Ring2_CallArguments_getObjectArgument(numberOfArguments, arguments, 1, Ring3_Audials_PcmDescriptor_getType()));
+  Ring2_Integer generatorId = Ring2_CallArguments_getIntegerArgument(numberOfArguments, arguments, 2);
   //
   uint32_t totalSamples = self->length * self->pcmDescriptor->samplesPerSecondPerChannel;
   if ((UINT32_MAX / (self->pcmDescriptor->bitsPerSample / 8)) /
