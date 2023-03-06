@@ -1,5 +1,6 @@
 {
   kind : 'Border',
+  name : 'Footer',
   borderWidth : 4,
   child : {
     kind : 'Border',

@@ -1,5 +1,6 @@
 {
   kind : 'Group',
+  name : 'Main Menu',
   layout : {
     direction : 'column',
     justification : 'center',

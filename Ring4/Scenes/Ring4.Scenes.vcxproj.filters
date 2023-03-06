@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Ressourcendateien">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien\Ring4">
+      <UniqueIdentifier>{0d88b98b-00b0-473b-b488-038734a04eb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring4\Scenes">
+      <UniqueIdentifier>{638052dd-d0cd-4647-b629-6cf151d9462d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring4">
+      <UniqueIdentifier>{df71b7a2-d304-42bb-b4ed-1c86d4d8dff9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring4\Scenes">
+      <UniqueIdentifier>{faede18f-cc51-41de-bf6e-069bb2401551}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Ring4\Scenes\LayoutScene.h">
+      <Filter>Headerdateien\Ring4\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring4\Scenes\Rectangle2Scene.h">
+      <Filter>Headerdateien\Ring4\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring4\Scenes\Scene.h">
+      <Filter>Headerdateien\Ring4\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring4\Scenes\Scene1.h">
+      <Filter>Headerdateien\Ring4\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring4\Scenes\Scene2.h">
+      <Filter>Headerdateien\Ring4\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring4\Scenes\Scene3.h">
+      <Filter>Headerdateien\Ring4\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring4\Scenes\Scene4.h">
+      <Filter>Headerdateien\Ring4\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring4\Scenes\Scene5.h">
+      <Filter>Headerdateien\Ring4\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring4\Scenes\_Include.h">
+      <Filter>Headerdateien\Ring4\Scenes</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Ring4\Scenes\LayoutScene.c">
+      <Filter>Quelldateien\Ring4\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring4\Scenes\Rectangle2Scene.c">
+      <Filter>Quelldateien\Ring4\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring4\Scenes\Scene.c">
+      <Filter>Quelldateien\Ring4\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring4\Scenes\Scene1.c">
+      <Filter>Quelldateien\Ring4\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring4\Scenes\Scene2.c">
+      <Filter>Quelldateien\Ring4\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring4\Scenes\Scene3.c">
+      <Filter>Quelldateien\Ring4\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring4\Scenes\Scene4.c">
+      <Filter>Quelldateien\Ring4\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring4\Scenes\Scene5.c">
+      <Filter>Quelldateien\Ring4\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring4\Scenes\_Include.c">
+      <Filter>Quelldateien\Ring4\Scenes</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
