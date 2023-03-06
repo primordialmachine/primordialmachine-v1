@@ -135,17 +135,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Ring3\Input\KeyboardKeyAction.c" />
     <ClCompile Include="Ring3\Input\KeyboardKeyEvent.c" />
-    <ClCompile Include="Ring3\Input\KeyboardKeys.c" />
+    <ClCompile Include="Ring3\Input\KeyboardKey.c" />
+    <ClCompile Include="Ring3\Input\MouseButtonAction.c" />
     <ClCompile Include="Ring3\Input\MouseButtonEvent.c" />
+    <ClCompile Include="Ring3\Input\MousePointerAction.c" />
     <ClCompile Include="Ring3\Input\MousePointerEvent.c" />
     <ClCompile Include="Ring3\Input\Signals.c" />
     <ClCompile Include="Ring3\Input\_Include.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ring3\Input\KeyboardKeyAction.h" />
     <ClInclude Include="Ring3\Input\KeyboardKeyEvent.h" />
-    <ClInclude Include="Ring3\Input\KeyboardKeys.h" />
+    <ClInclude Include="Ring3\Input\KeyboardKey.h" />
+    <ClInclude Include="Ring3\Input\MouseButtonAction.h" />
     <ClInclude Include="Ring3\Input\MouseButtonEvent.h" />
+    <ClInclude Include="Ring3\Input\MousePointerAction.h" />
     <ClInclude Include="Ring3\Input\MousePointerEvent.h" />
     <ClInclude Include="Ring3\Input\Signals.h" />
     <ClInclude Include="Ring3\Input\_Include.h" />
@@ -162,7 +168,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Ring3\Input\KeyboardKeys.i">
+    <None Include="Ring3\Input\KeyboardKey.i">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DeploymentContent>

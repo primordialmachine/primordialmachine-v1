@@ -33,7 +33,7 @@
     <ClCompile Include="Ring3\Input\KeyboardKeyEvent.c">
       <Filter>Quelldateien\Ring3\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Input\KeyboardKeys.c">
+    <ClCompile Include="Ring3\Input\KeyboardKey.c">
       <Filter>Quelldateien\Ring3\Input</Filter>
     </ClCompile>
     <ClCompile Include="Ring3\Input\MouseButtonEvent.c">
@@ -45,6 +45,15 @@
     <ClCompile Include="Ring3\Input\Signals.c">
       <Filter>Quelldateien\Ring3\Input</Filter>
     </ClCompile>
+    <ClCompile Include="Ring3\Input\MouseButtonAction.c">
+      <Filter>Quelldateien\Ring3\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Input\KeyboardKeyAction.c">
+      <Filter>Quelldateien\Ring3\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Input\MousePointerAction.c">
+      <Filter>Quelldateien\Ring3\Input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring3\Input\_Include.h">
@@ -53,7 +62,7 @@
     <ClInclude Include="Ring3\Input\KeyboardKeyEvent.h">
       <Filter>Headerdateien\Ring3\Input</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Input\KeyboardKeys.h">
+    <ClInclude Include="Ring3\Input\KeyboardKey.h">
       <Filter>Headerdateien\Ring3\Input</Filter>
     </ClInclude>
     <ClInclude Include="Ring3\Input\MouseButtonEvent.h">
@@ -65,9 +74,18 @@
     <ClInclude Include="Ring3\Input\Signals.h">
       <Filter>Headerdateien\Ring3\Input</Filter>
     </ClInclude>
+    <ClInclude Include="Ring3\Input\MouseButtonAction.h">
+      <Filter>Headerdateien\Ring3\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Input\KeyboardKeyAction.h">
+      <Filter>Headerdateien\Ring3\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Input\MousePointerAction.h">
+      <Filter>Headerdateien\Ring3\Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Ring3\Input\KeyboardKeys.i">
+    <None Include="Ring3\Input\KeyboardKey.i">
       <Filter>Headerdateien\Ring3\Input</Filter>
     </None>
     <None Include="Ring3\Input\Signals.i">

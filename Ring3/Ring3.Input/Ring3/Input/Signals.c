@@ -38,7 +38,7 @@ ensureInitialized
   }
 #define DefineSignal(NAME, STRING)                                                                 \
   if (!_##NAME) {                                                                                  \
-    _##NAME = Ring2_String_fromC(STRING);                                                          \
+    _##NAME = Ring2_String_fromC(false, STRING);                                                   \
   }
 #include "Ring3/Input/Signals.i"
 #undef DefineSignal

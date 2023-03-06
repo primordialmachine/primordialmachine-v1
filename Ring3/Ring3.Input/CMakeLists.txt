@@ -16,5 +16,5 @@ set(files ${source_files} ${header_files} ${inlay_files})
 
 add_library(${name} STATIC ${files})
 target_include_directories(${name} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
-#target_link_libraries(${name} "PrimordialMachine.Ring2")
+
 target_link_libraries(${name} "PrimordialMachine.Ring2.Library")
