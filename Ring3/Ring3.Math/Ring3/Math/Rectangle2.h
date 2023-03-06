@@ -26,8 +26,8 @@ struct Ring3_Math_Rectangle2_Class {
 
 struct Ring3_Math_Rectangle2 {
   Machine_Object parent;
-  float x, y;
-  float w, h;
+  Ring2_Real32 x, y;
+  Ring2_Real32 w, h;
 };
 
 Ring1_CheckReturn() Ring3_Math_Rectangle2*
@@ -80,7 +80,7 @@ Ring3_Math_Rectangle2_setSize
 /// @brief Get the size of this rectangle.
 /// @param self This rectangle.
 /// @return The size of this rectangle.
-Ring1_CheckReturn() const Ring3_Math_Vector2f32*
+Ring1_CheckReturn() Ring3_Math_Vector2f32*
 Ring3_Math_Rectangle2_getSize
   (
     const Ring3_Math_Rectangle2* self
@@ -89,7 +89,7 @@ Ring3_Math_Rectangle2_getSize
 /// @brief Get the center of this rectangle.
 /// @param self This rectangle.
 /// @return The center of this rectangle.
-Ring1_CheckReturn() const Ring3_Math_Vector2f32*
+Ring1_CheckReturn() Ring3_Math_Vector2f32*
 Ring3_Math_Rectangle2_getCenter
   (
     const Ring3_Math_Rectangle2* self
@@ -122,8 +122,8 @@ void
 Ring3_Math_Rectangle2_setCenter
   (
     Ring3_Math_Rectangle2* self,
-    float x,
-    float y
+    Ring2_Real32 x,
+    Ring2_Real32 y
   );
 
 /// @brief Get the minimum of this rectangle.
@@ -147,7 +147,7 @@ Ring3_Math_Rectangle2_getMax
 /// @brief Get the minimum of this rectangle along the x-axis.
 /// @param self This rectangle.
 /// @return The minimum along the x-axis.
-Ring1_CheckReturn() float
+Ring1_CheckReturn() Ring2_Real32
 Ring3_Math_Rectangle2_getMinX
   (
     const Ring3_Math_Rectangle2* self
@@ -156,7 +156,7 @@ Ring3_Math_Rectangle2_getMinX
 /// @brief Get the minimum of this rectangle along the y-axis.
 /// @param self This rectangle.
 /// @return The minimum along the y-axis.
-Ring1_CheckReturn() float
+Ring1_CheckReturn() Ring2_Real32
 Ring3_Math_Rectangle2_getMinY
   (
     const Ring3_Math_Rectangle2* self
@@ -165,7 +165,7 @@ Ring3_Math_Rectangle2_getMinY
 /// @brief Get the minimum of this rectangle along the x-axis.
 /// @param self This rectangle.
 /// @return The maximum along the x-axis.
-Ring1_CheckReturn() float
+Ring1_CheckReturn() Ring2_Real32
 Ring3_Math_Rectangle2_getMaxX
   (
     const Ring3_Math_Rectangle2* self
@@ -174,7 +174,7 @@ Ring3_Math_Rectangle2_getMaxX
 /// @brief Get the maximum of this rectangle along the y-axis.
 /// @param self This rectangle.
 /// @return The maximum along the y-axis.
-Ring1_CheckReturn() float
+Ring1_CheckReturn() Ring2_Real32
 Ring3_Math_Rectangle2_getMaxY
   (
     const Ring3_Math_Rectangle2* self
@@ -191,10 +191,10 @@ void
 Ring3_Math_Rectangle2_inset
   (
     Ring3_Math_Rectangle2* self,
-    float minx,
-    float miny,
-    float maxx,
-    float maxy
+    Ring2_Real32 minx,
+    Ring2_Real32 miny,
+    Ring2_Real32 maxx,
+    Ring2_Real32 maxy
   );
 
 /// @brief Translate this rectangle.

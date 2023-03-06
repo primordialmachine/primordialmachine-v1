@@ -9,9 +9,6 @@
 #undef RING3_MATH_PRIVATE
 
 
-#include "Ring2/Library/ArgumentsUtilities.h"
-
-
 #define With_getHashValue (0)
 
 
@@ -90,7 +87,7 @@ getComponentArgument
     size_t index
   )
 {
-  Ring2_Integer v = Machine_Extensions_getIntegerArgument(numberOfArguments, arguments, index);
+  Ring2_Integer v = Ring2_CallArguments_getIntegerArgument(numberOfArguments, arguments, index);
   if (v < 0 || v > UINT8_MAX) {
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();

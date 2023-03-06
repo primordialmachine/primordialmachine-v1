@@ -25,13 +25,13 @@ Ring3_Math_Ray3f32_construct
     Ring3_Math_Vector3f32_clone
       (
         (Ring3_Math_Vector3f32 *)
-        Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0, Ring3_Math_Vector3f32_getType())
+        Ring2_CallArguments_getObjectArgument(numberOfArguments, arguments, 0, Ring3_Math_Vector3f32_getType())
       );
   self->direction =
     Ring3_Math_Vector3f32_clone
       (
         (Ring3_Math_Vector3f32 *)
-        Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 1, Ring3_Math_Vector3f32_getType())
+        Ring2_CallArguments_getObjectArgument(numberOfArguments, arguments, 1, Ring3_Math_Vector3f32_getType())
       );
   Machine_setClassType(Ring1_cast(Machine_Object *, self), Ring3_Math_Ray3f32_getType());
 }

@@ -373,6 +373,15 @@ Ring3_Math_Matrix4x4f32_getElement
   return self->e[rowIndex][columnIndex];
 }
 
+Ring1_NoDiscardReturn() void const*
+Ring3_Math_Matrix4x4f32_getData
+  (
+    Ring3_Math_Matrix4x4f32 const* self
+  )
+{
+  return &self->e[0][0];
+}
+
 #undef RING3_MATRIX_COLUMNS
 
 #undef RING3_MATRIX_ROWS

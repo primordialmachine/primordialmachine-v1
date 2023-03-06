@@ -102,7 +102,7 @@ Ring3_Math_Rectangle2_setSize
   self->h = Ring3_Math_Vector2f32_getY(size);
 }
 
-Ring1_CheckReturn() const Ring3_Math_Vector2f32*
+Ring1_CheckReturn() Ring3_Math_Vector2f32*
 Ring3_Math_Rectangle2_getSize
   (
     const Ring3_Math_Rectangle2* self
@@ -113,7 +113,7 @@ Ring3_Math_Rectangle2_getSize
   return size;
 }
 
-Ring1_CheckReturn() const Ring3_Math_Vector2f32*
+Ring1_CheckReturn() Ring3_Math_Vector2f32*
 Ring3_Math_Rectangle2_getCenter
   (
     const Ring3_Math_Rectangle2 *self
@@ -132,7 +132,7 @@ Ring3_Math_Rectangle2_addPoint
   )
 {
   if (self->x > Ring3_Math_Vector2f32_getX(point)) {
-    float d = self->x - Ring3_Math_Vector2f32_getX(point);
+    Ring2_Real32 d = self->x - Ring3_Math_Vector2f32_getX(point);
     self->x = Ring3_Math_Vector2f32_getX(point);
     self->w += d;
   }
@@ -142,7 +142,7 @@ Ring3_Math_Rectangle2_addPoint
   }
 
   if (self->y > Ring3_Math_Vector2f32_getY(point)) {
-    float d = self->y - Ring3_Math_Vector2f32_getY(point);
+    Ring2_Real32 d = self->y - Ring3_Math_Vector2f32_getY(point);
     self->y = Ring3_Math_Vector2f32_getY(point);
     self->h += d;
   }
@@ -167,8 +167,8 @@ void
 Ring3_Math_Rectangle2_setCenter
   (
     Ring3_Math_Rectangle2* self,
-    float x,
-    float y
+    Ring2_Real32 x,
+    Ring2_Real32 y
   )
 {
   self->x = x - self->w * .5f;
@@ -197,28 +197,28 @@ Ring3_Math_Rectangle2_getMax
   return p;
 }
 
-Ring1_CheckReturn() float
+Ring1_CheckReturn() Ring2_Real32
 Ring3_Math_Rectangle2_getMinX
   (
     const Ring3_Math_Rectangle2* self
   )
 { return self->x; }
 
-Ring1_CheckReturn() float
+Ring1_CheckReturn() Ring2_Real32
 Ring3_Math_Rectangle2_getMinY
   (
     const Ring3_Math_Rectangle2* self
   )
 { return self->y; }
 
-Ring1_CheckReturn() float
+Ring1_CheckReturn() Ring2_Real32
 Ring3_Math_Rectangle2_getMaxX
   (
     const Ring3_Math_Rectangle2* self
   )
 { return self->x + self->w; }
 
-Ring1_CheckReturn() float
+Ring1_CheckReturn() Ring2_Real32
 Ring3_Math_Rectangle2_getMaxY
   (
     const Ring3_Math_Rectangle2* self
@@ -228,11 +228,11 @@ Ring3_Math_Rectangle2_getMaxY
 static void
 swap
   (
-    float* a,
-    float* b
+    Ring2_Real32* a,
+    Ring2_Real32* b
   )
 {
-  float t = *a;
+  Ring2_Real32 t = *a;
   *a = *b;
   *b = t;
 }
@@ -241,16 +241,16 @@ void
 Ring3_Math_Rectangle2_inset
   (
     Ring3_Math_Rectangle2* self,
-    float minx,
-    float miny,
-    float maxx,
-    float maxy
+    Ring2_Real32 minx,
+    Ring2_Real32 miny,
+    Ring2_Real32 maxx,
+    Ring2_Real32 maxy
   )
 {
-  float minx0 = self->x;
-  float miny0 = self->y;
-  float maxx0 = self->x + self->w;
-  float maxy0 = self->y + self->h;
+  Ring2_Real32 minx0 = self->x;
+  Ring2_Real32 miny0 = self->y;
+  Ring2_Real32 maxx0 = self->x + self->w;
+  Ring2_Real32 maxy0 = self->y + self->h;
   minx0 += minx;
   miny0 += miny;
   maxx0 -= maxx;

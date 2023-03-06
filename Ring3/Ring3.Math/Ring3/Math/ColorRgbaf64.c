@@ -9,9 +9,6 @@
 #undef RING3_MATH_PRIVATE
 
 
-#include "Ring2/Library/ArgumentsUtilities.h"
-
-
 #define With_getHashValue (0)
 
 
@@ -92,7 +89,7 @@ getComponentArgument
     size_t index
   )
 {
-  Ring2_Real64 v = Machine_Extensions_getReal64Argument(numberOfArguments, arguments, index);
+  Ring2_Real64 v = Ring2_CallArguments_getReal64Argument(numberOfArguments, arguments, index);
   if (isnan(v)) {
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();

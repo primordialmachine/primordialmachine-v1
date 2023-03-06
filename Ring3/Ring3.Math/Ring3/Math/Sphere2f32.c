@@ -23,8 +23,8 @@ Ring3_Math_Sphere2f32_construct
   )
 {
   Machine_Object_construct(Ring1_cast(Machine_Object *, self), numberOfArguments, arguments);
-  self->center = Ring3_Math_Vector2f32_clone((Ring3_Math_Vector2f32*)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0, Ring3_Math_Vector2f32_getType()));
-  self->radius = Machine_Extensions_getReal32Argument(numberOfArguments, arguments, 1);
+  self->center = Ring3_Math_Vector2f32_clone((Ring3_Math_Vector2f32*)Ring2_CallArguments_getObjectArgument(numberOfArguments, arguments, 0, Ring3_Math_Vector2f32_getType()));
+  self->radius = Ring2_CallArguments_getReal32Argument(numberOfArguments, arguments, 1);
   if (self->radius < 0) {
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();
