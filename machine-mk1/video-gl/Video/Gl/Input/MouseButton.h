@@ -16,7 +16,7 @@
 /// @param action The GLFW mouse button action.
 /// @param modifiers The GLFW modifiers.
 /// @return The mouse button event.
-Machine_MouseButtonEvent* Machine_Video_Gl_Input_mapMouseButtonEvent(GLFWwindow* window, int button,
-                                                                     int action, int modifiers);
+Ring3_MouseButtonEvent* Machine_Video_Gl_Input_mapMouseButtonEvent(GLFWwindow* window, int button,
+                                                                   int action, int modifiers);
 
 #endif // MACHINE_VIDEO_GL_INPUT_MOUSEBUTTON_H_INCLUDED

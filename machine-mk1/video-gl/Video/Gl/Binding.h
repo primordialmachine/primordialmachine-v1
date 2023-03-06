@@ -9,7 +9,7 @@
 #if !defined(MACHINE_VIDEO_GL_PRIVATE)
 #error("Do not include this file directly, include `_Video_Gl.h` instead.")
 #endif
-#include "_Video.h"
+#include "Ring3/Visuals/_Include.h"
 #include "Video/Gl/UtilitiesGl.h"
 
 
@@ -17,11 +17,11 @@
 MACHINE_DECLARE_CLASSTYPE(Machine_Gl_Binding)
 
 struct Machine_Gl_Binding_Class {
-  Machine_Binding_Class __parent;
+  Ring3_Binding_Class __parent;
 };
 
 struct Machine_Gl_Binding {
-  Machine_Binding __parent;
+  Ring3_Binding __parent;
 
   GLuint id;
 };
@@ -29,7 +29,7 @@ struct Machine_Gl_Binding {
 Machine_Gl_Binding*
 Machine_Gl_Binding_create
   (
-    Machine_ShaderProgram* program,
+    Ring3_GpuProgram* program,
     Ring3_VertexDescriptor* vertexDescriptor,
     Ring3_GpuBuffer* buffer
   );

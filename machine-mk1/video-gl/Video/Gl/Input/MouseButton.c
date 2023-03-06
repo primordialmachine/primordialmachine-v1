@@ -46,14 +46,14 @@ static Ring1_Result mapButton(int source, Ring2_Integer* target) {
   };
 }
 
-static Ring1_Result mapButtonAction(int source, Machine_MouseButtonActions* target) {
+static Ring1_Result mapButtonAction(int source, Ring3_MouseButtonAction* target) {
   switch (source) {
     case GLFW_PRESS: {
-      *target = Machine_MouseButtonActions_Press;
+      *target = Ring3_MouseButtonAction_Press;
       return Ring1_Result_Success;    
     } break;
     case GLFW_RELEASE: {
-      *target = Machine_MouseButtonActions_Release;
+      *target = Ring3_MouseButtonAction_Release;
       return Ring1_Result_Success;    
     } break;
     default:
@@ -62,16 +62,16 @@ static Ring1_Result mapButtonAction(int source, Machine_MouseButtonActions* targ
   };
 }
 
-Machine_MouseButtonEvent* Machine_Video_Gl_Input_mapMouseButtonEvent(GLFWwindow* window, int button,
-                                                                     int action, int modifiers) {
+Ring3_MouseButtonEvent* Machine_Video_Gl_Input_mapMouseButtonEvent(GLFWwindow* window, int button,
+                                                                   int action, int modifiers) {
   Ring2_Integer buttonInternal;
-  Machine_MouseButtonActions actionInternal;
+  Ring3_MouseButtonAction actionInternal;
   if (mapButton(button, &buttonInternal) || mapButtonAction(action, &actionInternal)) {
     Ring2_jump();
   }
   double x, y;
   glfwGetCursorPos(window, &x, &y);
-  Machine_MouseButtonEvent* event
-      = Machine_MouseButtonEvent_create(buttonInternal, actionInternal, x, y);
+  Ring3_MouseButtonEvent* event
+      = Ring3_MouseButtonEvent_create(buttonInternal, actionInternal, x, y);
   return event;
 }

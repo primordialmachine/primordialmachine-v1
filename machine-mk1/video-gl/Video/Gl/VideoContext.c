@@ -168,12 +168,12 @@ static Ring3_Texture* createTextureFromImage(Machine_Gl_VideoContext* self, Ring
   return (Ring3_Texture*)Machine_Gl_Texture_create(image);
 }
 
-static Machine_ShaderProgram* createProgram(Machine_Gl_VideoContext* self, Ring2_String* vertexProgramText, Ring2_String* geometryProgramText, Ring2_String* fragmentProgramText) {
-  return (Machine_ShaderProgram*)Machine_Gl_ShaderProgram_create(vertexProgramText, geometryProgramText, fragmentProgramText);
+static Ring3_GpuProgram* createProgram(Machine_Gl_VideoContext* self, Ring2_String* vertexProgramText, Ring2_String* geometryProgramText, Ring2_String* fragmentProgramText) {
+  return (Ring3_GpuProgram*)Machine_Gl_ShaderProgram_create(vertexProgramText, geometryProgramText, fragmentProgramText);
 }
 
-static Machine_Binding* createBinding(Machine_Gl_VideoContext* self, Machine_ShaderProgram* program, Ring3_VertexDescriptor* vertexDescriptor, Ring3_GpuBuffer* buffer) {
-  return (Machine_Binding*)Machine_Gl_Binding_create(program, vertexDescriptor, buffer);
+static Ring3_Binding* createBinding(Machine_Gl_VideoContext* self, Ring3_GpuProgram* program, Ring3_VertexDescriptor* vertexDescriptor, Ring3_GpuBuffer* buffer) {
+  return (Ring3_Binding*)Machine_Gl_Binding_create(program, vertexDescriptor, buffer);
 }
 
 
@@ -186,7 +186,7 @@ static void bindTexture(Machine_Gl_VideoContext* self, size_t textureUnit, Ring3
 
 
 
-static Machine_ShaderProgram*
+static Ring3_GpuProgram*
 generateDefaultShader
   (
     Machine_Gl_VideoContext* self,
@@ -196,26 +196,26 @@ generateDefaultShader
     Ring2_Boolean withTexture
   )
 {
-  return (Machine_ShaderProgram*)Machine_Gl_ShaderProgram_generateDefaultShader(withMeshColor, withVertexColor, withTextureCoordinate, withTexture);
+  return (Ring3_GpuProgram*)Machine_Gl_ShaderProgram_generateDefaultShader(withMeshColor, withVertexColor, withTextureCoordinate, withTexture);
 }
 
-static Machine_ShaderProgram*
+static Ring3_GpuProgram*
 generateShape2Shader
   (
     Machine_Gl_VideoContext* self
   )
 {
-  return (Machine_ShaderProgram*)Machine_Gl_ShaderProgram_generateShape2Shader();
+  return (Ring3_GpuProgram*)Machine_Gl_ShaderProgram_generateShape2Shader();
 }
 
-static Machine_ShaderProgram*
+static Ring3_GpuProgram*
 generateText2Shader
   (
     Machine_Gl_VideoContext* self,
     Ring2_Boolean highPrecision
   )
 {
-  return (Machine_ShaderProgram*)Machine_Gl_ShaderProgram_generateText2Shader(highPrecision);
+  return (Ring3_GpuProgram*)Machine_Gl_ShaderProgram_generateText2Shader(highPrecision);
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -308,56 +308,56 @@ static void write(Machine_Gl_VideoContext const* self) {
 static void Machine_Gl_VideoContext_constructClass(Machine_Gl_VideoContext_Class* self) {
   self->write = &write;
 
-  ((Machine_VideoContext_Class*)self)->setDepthTestFunction = (void (*)(Machine_VideoContext*, Ring3_DepthTestFunction)) & setDepthTestFunction;
-  ((Machine_VideoContext_Class*)self)->getDepthTestFunction = (Ring3_DepthTestFunction(*)(Machine_VideoContext const*)) & getDepthTestFunction;
+  ((Ring3_VisualsContext_Class*)self)->setDepthTestFunction = (void (*)(Ring3_VisualsContext*, Ring3_DepthTestFunction)) & setDepthTestFunction;
+  ((Ring3_VisualsContext_Class*)self)->getDepthTestFunction = (Ring3_DepthTestFunction(*)(Ring3_VisualsContext const*)) & getDepthTestFunction;
 
-  ((Machine_VideoContext_Class*)self)->setDepthWriteEnabled = (void (*)(Machine_VideoContext*, Ring2_Boolean)) & setDepthWriteEnabled;
-  ((Machine_VideoContext_Class*)self)->getDepthWriteEnabled = (Ring2_Boolean(*)(Machine_VideoContext const*)) & getDepthWriteEnabled;
+  ((Ring3_VisualsContext_Class*)self)->setDepthWriteEnabled = (void (*)(Ring3_VisualsContext*, Ring2_Boolean)) & setDepthWriteEnabled;
+  ((Ring3_VisualsContext_Class*)self)->getDepthWriteEnabled = (Ring2_Boolean(*)(Ring3_VisualsContext const*)) & getDepthWriteEnabled;
 
-  ((Machine_VideoContext_Class*)self)->setClearDepth = (void (*)(Machine_VideoContext*, Ring2_Real32)) & setClearDepth;
-  ((Machine_VideoContext_Class*)self)->getClearDepth = (Ring2_Real32(*)(Machine_VideoContext const*)) & getClearDepth;
+  ((Ring3_VisualsContext_Class*)self)->setClearDepth = (void (*)(Ring3_VisualsContext*, Ring2_Real32)) & setClearDepth;
+  ((Ring3_VisualsContext_Class*)self)->getClearDepth = (Ring2_Real32(*)(Ring3_VisualsContext const*)) & getClearDepth;
 
-  ((Machine_VideoContext_Class*)self)->getMaximalClipDistanceCount = (Ring2_Integer(*)(Machine_VideoContext const*)) & getMaximalClipDistanceCount;
-  ((Machine_VideoContext_Class*)self)->setClipDistanceEnabled = (void (*)(Machine_VideoContext*, Ring2_Integer index, Ring2_Boolean)) & setClipDistanceEnabled;
-  ((Machine_VideoContext_Class*)self)->getClipDistanceEnabled = (Ring2_Boolean(*)(Machine_VideoContext const*, Ring2_Integer index)) & getClipDistanceEnabled;
+  ((Ring3_VisualsContext_Class*)self)->getMaximalClipDistanceCount = (Ring2_Integer(*)(Ring3_VisualsContext const*)) & getMaximalClipDistanceCount;
+  ((Ring3_VisualsContext_Class*)self)->setClipDistanceEnabled = (void (*)(Ring3_VisualsContext*, Ring2_Integer index, Ring2_Boolean)) & setClipDistanceEnabled;
+  ((Ring3_VisualsContext_Class*)self)->getClipDistanceEnabled = (Ring2_Boolean(*)(Ring3_VisualsContext const*, Ring2_Integer index)) & getClipDistanceEnabled;
 
-  ((Machine_VideoContext_Class*)self)->setIncomingBlendFunction = (void (*)(Machine_VideoContext*, Ring3_BlendFunction)) & setIncomingBlendFunction;
-  ((Machine_VideoContext_Class*)self)->getIncomingBlendFunction = (Ring3_BlendFunction(*)(Machine_VideoContext const*)) & getIncomingBlendFunction;
+  ((Ring3_VisualsContext_Class*)self)->setIncomingBlendFunction = (void (*)(Ring3_VisualsContext*, Ring3_BlendFunction)) & setIncomingBlendFunction;
+  ((Ring3_VisualsContext_Class*)self)->getIncomingBlendFunction = (Ring3_BlendFunction(*)(Ring3_VisualsContext const*)) & getIncomingBlendFunction;
 
-  ((Machine_VideoContext_Class*)self)->setExistingBlendFunction = (void (*)(Machine_VideoContext*, Ring3_BlendFunction)) & setExistingBlendFunction;
-  ((Machine_VideoContext_Class*)self)->getExistingBlendFunction = (Ring3_BlendFunction(*)(Machine_VideoContext const*)) & getExistingBlendFunction;
+  ((Ring3_VisualsContext_Class*)self)->setExistingBlendFunction = (void (*)(Ring3_VisualsContext*, Ring3_BlendFunction)) & setExistingBlendFunction;
+  ((Ring3_VisualsContext_Class*)self)->getExistingBlendFunction = (Ring3_BlendFunction(*)(Ring3_VisualsContext const*)) & getExistingBlendFunction;
 
-  ((Machine_VideoContext_Class*)self)->setClearColor = (void (*)(Machine_VideoContext*, Ring3_Math_Vector4f32 const*)) & setClearColor;
-  ((Machine_VideoContext_Class*)self)->getClearColor = (Ring3_Math_Vector4f32 const* (*)(Machine_VideoContext const*)) & getClearColor;
+  ((Ring3_VisualsContext_Class*)self)->setClearColor = (void (*)(Ring3_VisualsContext*, Ring3_Math_Vector4f32 const*)) & setClearColor;
+  ((Ring3_VisualsContext_Class*)self)->getClearColor = (Ring3_Math_Vector4f32 const* (*)(Ring3_VisualsContext const*)) & getClearColor;
 
-  ((Machine_VideoContext_Class*)self)->setViewportRectangle = (void (*)(Machine_VideoContext*, Ring2_Real32, Ring2_Real32, Ring2_Real32, Ring2_Real32)) & setViewportRectangle;
-  ((Machine_VideoContext_Class*)self)->getViewportRectangle = (void (*)(Machine_VideoContext const*, Ring2_Real32*, Ring2_Real32*, Ring2_Real32*, Ring2_Real32*)) & getViewportRectangle;
+  ((Ring3_VisualsContext_Class*)self)->setViewportRectangle = (void (*)(Ring3_VisualsContext*, Ring2_Real32, Ring2_Real32, Ring2_Real32, Ring2_Real32)) & setViewportRectangle;
+  ((Ring3_VisualsContext_Class*)self)->getViewportRectangle = (void (*)(Ring3_VisualsContext const*, Ring2_Real32*, Ring2_Real32*, Ring2_Real32*, Ring2_Real32*)) & getViewportRectangle;
 
-  ((Machine_VideoContext_Class*)self)->drawDirect = (void (*)(Machine_VideoContext*, Ring2_Integer, Ring2_Integer)) & drawDirect;
-  ((Machine_VideoContext_Class*)self)->drawIndirect = (void (*)(Machine_VideoContext*, Ring2_Integer, Ring2_Integer, uint8_t const*)) & drawIndirect;
+  ((Ring3_VisualsContext_Class*)self)->drawDirect = (void (*)(Ring3_VisualsContext*, Ring2_Integer, Ring2_Integer)) & drawDirect;
+  ((Ring3_VisualsContext_Class*)self)->drawIndirect = (void (*)(Ring3_VisualsContext*, Ring2_Integer, Ring2_Integer, uint8_t const*)) & drawIndirect;
 
-  ((Machine_VideoContext_Class*)self)->clearColorBuffer = (void (*)(Machine_VideoContext*)) & clearColorBuffer;
-  ((Machine_VideoContext_Class*)self)->clearDepthBuffer = (void (*)(Machine_VideoContext*)) & clearDepthBuffer;
+  ((Ring3_VisualsContext_Class*)self)->clearColorBuffer = (void (*)(Ring3_VisualsContext*)) & clearColorBuffer;
+  ((Ring3_VisualsContext_Class*)self)->clearDepthBuffer = (void (*)(Ring3_VisualsContext*)) & clearDepthBuffer;
 
-  ((Machine_VideoContext_Class*)self)->createBuffer = (Ring3_GpuBuffer * (*)(Machine_VideoContext*)) & createBuffer;
-  ((Machine_VideoContext_Class*)self)->createTextureFromImage = (Ring3_Texture * (*)(Machine_VideoContext*, Ring3_Image*)) & createTextureFromImage;
-  ((Machine_VideoContext_Class*)self)->createProgram = (Machine_ShaderProgram * (*)(Machine_VideoContext*, Ring2_String*, Ring2_String*, Ring2_String*)) & createProgram;
-  ((Machine_VideoContext_Class*)self)->createBinding = (Machine_Binding * (*)(Machine_VideoContext*, Machine_ShaderProgram*, Ring3_VertexDescriptor*, Ring3_GpuBuffer*)) & createBinding;
+  ((Ring3_VisualsContext_Class*)self)->createBuffer = (Ring3_GpuBuffer * (*)(Ring3_VisualsContext*)) & createBuffer;
+  ((Ring3_VisualsContext_Class*)self)->createTextureFromImage = (Ring3_Texture * (*)(Ring3_VisualsContext*, Ring3_Image*)) & createTextureFromImage;
+  ((Ring3_VisualsContext_Class*)self)->createProgram = (Ring3_GpuProgram * (*)(Ring3_VisualsContext*, Ring2_String*, Ring2_String*, Ring2_String*)) & createProgram;
+  ((Ring3_VisualsContext_Class*)self)->createBinding = (Ring3_Binding * (*)(Ring3_VisualsContext*, Ring3_GpuProgram*, Ring3_VertexDescriptor*, Ring3_GpuBuffer*)) & createBinding;
 
-  ((Machine_VideoContext_Class*)self)->bindTexture = (void (*)(Machine_VideoContext*, size_t, Ring3_Texture*)) & bindTexture;
+  ((Ring3_VisualsContext_Class*)self)->bindTexture = (void (*)(Ring3_VisualsContext*, size_t, Ring3_Texture*)) & bindTexture;
 
-  ((Machine_VideoContext_Class*)self)->generateDefaultShader = (Machine_ShaderProgram * (*)(Machine_VideoContext*, Ring2_Boolean, Ring2_Boolean, Ring2_Boolean, Ring2_Boolean)) & generateDefaultShader;
-  ((Machine_VideoContext_Class*)self)->generateShape2Shader = (Machine_ShaderProgram * (*)(Machine_VideoContext*)) & generateShape2Shader;
-  ((Machine_VideoContext_Class*)self)->generateText2Shader = (Machine_ShaderProgram * (*)(Machine_VideoContext*, Ring2_Boolean)) & generateText2Shader;
+  ((Ring3_VisualsContext_Class*)self)->generateDefaultShader = (Ring3_GpuProgram * (*)(Ring3_VisualsContext*, Ring2_Boolean, Ring2_Boolean, Ring2_Boolean, Ring2_Boolean)) & generateDefaultShader;
+  ((Ring3_VisualsContext_Class*)self)->generateShape2Shader = (Ring3_GpuProgram * (*)(Ring3_VisualsContext*)) & generateShape2Shader;
+  ((Ring3_VisualsContext_Class*)self)->generateText2Shader = (Ring3_GpuProgram * (*)(Ring3_VisualsContext*, Ring2_Boolean)) & generateText2Shader;
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Gl_VideoContext, Machine_VideoContext,
+MACHINE_DEFINE_CLASSTYPE(Machine_Gl_VideoContext, Ring3_VisualsContext,
                          &Machine_Gl_VideoContext_visit, &Machine_Gl_VideoContext_construct,
                          &Machine_Gl_VideoContext_destruct, &Machine_Gl_VideoContext_constructClass,
                          NULL)
 
 void Machine_Gl_VideoContext_construct(Machine_Gl_VideoContext* self, size_t numberOfArguments, Ring2_Value const* arguments) {
-  Machine_VideoContext_construct((Machine_VideoContext*)self, numberOfArguments, arguments);
+  Ring3_VisualsContext_construct((Ring3_VisualsContext*)self, numberOfArguments, arguments);
   self->clearColor[0] = 0.f;
   self->clearColor[1] = 0.f;
   self->clearColor[2] = 0.f;

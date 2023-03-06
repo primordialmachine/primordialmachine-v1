@@ -9,16 +9,16 @@
 #endif
 #include "Ring2/Library/_Include.h"
 #include "Video/Gl/UtilitiesGL.h"
-#include "_Video.h"
+#include "Ring3/Visuals/_Include.h"
 
 MACHINE_DECLARE_CLASSTYPE(Machine_Gl_ShaderProgram)
 
 struct Machine_Gl_ShaderProgram_Class {
-  Machine_ShaderProgram_Class parent;
+  Ring3_GpuProgram_Class parent;
 };
 
 struct Machine_Gl_ShaderProgram {
-  Machine_ShaderProgram parent;
+  Ring3_GpuProgram parent;
   /// @brief The OpenGL program ID.
   GLuint programId;
   /// @brief The OpenGL vertex program ID.
@@ -47,12 +47,12 @@ Machine_Gl_ShaderProgram_create
     Ring2_String* fragmentProgramText
   );
 
-/// @param withMeshColor <code>uniform vec3 mesh_color</code>
-/// @param withVertexColor <code>attribute vec3 vertex_color</code>
-/// @param withTextureCoordinate <code>attribute vec2 vertex_texture_coordinate</code>
-/// @param withTexture <code>uniform sampler2D texture;</code>. @a withTextureCoordinate must be @a
-/// true if this is @a true.
-Machine_ShaderProgram*
+/// @param withMeshColor <code>uniform vec3 meshColor</code>
+/// @param withVertexColor <code>attribute vec3 vertexColor</code>
+/// @param withTextureCoordinate <code>attribute vec2 vertexTextureCoordinate1</code>
+/// @param withTexture <code>uniform sampler2D texture;</code>.
+/// @a withTextureCoordinate must be @a true if this is @a true.
+Ring3_GpuProgram*
 Machine_Gl_ShaderProgram_generateDefaultShader
   (
     Ring2_Boolean withMeshColor,
@@ -63,15 +63,15 @@ Machine_Gl_ShaderProgram_generateDefaultShader
 
 /// @brief Create a shader program for rendering an untextured, colored, rectangle.
 /// @return The shader program.
-Machine_ShaderProgram*
+Ring3_GpuProgram*
 Machine_Gl_ShaderProgram_generateShape2Shader
   (
   );
 
 /// @brief Create a shader program for rendering 2D text.
-/// Provides <code>vec3 mesh_color</code> to colorize the text.
+/// Provides <code>vec3 meshColor</code> to colorize the text.
 /// @return The shader program.
-Machine_ShaderProgram*
+Ring3_GpuProgram*
 Machine_Gl_ShaderProgram_generateText2Shader
   (
     Ring2_Boolean highPrecision

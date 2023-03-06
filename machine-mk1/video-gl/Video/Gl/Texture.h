@@ -8,7 +8,7 @@
 #error("Do not include `Video/Gl/Texture.h` directly, include `_Video_Gl.h` instead.")
 #endif
 #include "Video/Gl/UtilitiesGl.h"
-#include "_Video.h"
+#include "Ring3/Visuals/_Include.h"
 
 MACHINE_DECLARE_CLASSTYPE(Machine_Gl_Texture);
 

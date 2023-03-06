@@ -69,7 +69,12 @@ void Machine_Gl_Texture_construct_fromImage(Machine_Gl_Texture* self, Ring3_Imag
 
 void Machine_Gl_Texture_construct(Machine_Gl_Texture* self, size_t numberOfArguments, Ring2_Value const* arguments) {
   if (numberOfArguments == 1) {
-    Ring3_Image* image = (Ring3_Image*)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0, Ring3_Image_getType());
+    Ring3_Image* image =
+      (Ring3_Image*)
+      Ring2_CallArguments_getObjectArgument
+        (
+          numberOfArguments, arguments, 0, Ring3_Image_getType()
+        );
     Machine_Gl_Texture_construct_fromImage(self, image);
   } else {
     Ring1_Status_set(Ring1_Status_InvalidNumberOfArguments);

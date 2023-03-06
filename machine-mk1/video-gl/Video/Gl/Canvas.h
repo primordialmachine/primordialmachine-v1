@@ -7,16 +7,16 @@
 #if !defined(MACHINE_VIDEO_GL_PRIVATE)
 #error("Do not include `Video/Gl/Canvas.h` directly, include `_Video_Gl.h` instead.")
 #endif
-#include "_Video.h"
+#include "Ring3/Visuals/_Include.h"
 
 MACHINE_DECLARE_CLASSTYPE(Machine_Video_Gl_Canvas);
 
 struct Machine_Video_Gl_Canvas_Class {
-  Machine_Video_Canvas_Class _parent;
+  Ring3_Canvas_Class _parent;
 };
 
 struct Machine_Video_Gl_Canvas {
-  Machine_Video_Canvas _parent;
+  Ring3_Canvas _parent;
 };
 
 void Machine_Video_Gl_Canvas_construct(Machine_Video_Gl_Canvas* self, size_t numberOfArguments,

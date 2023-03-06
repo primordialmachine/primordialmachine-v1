@@ -66,18 +66,18 @@ static Ring2_String* getLog_noraise(GLuint id) {
   }
 }
 
-static size_t Machine_Gl_ShaderProgram_getNumberOfInputsImpl(Machine_Gl_ShaderProgram const* self) {
+static int64_t Machine_Gl_ShaderProgram_getNumberOfInputsImpl(Machine_Gl_ShaderProgram const* self) {
   return Ring2_Collections_Collection_getSize((Ring2_Collections_Collection*)self->inputs);
 }
 
-static Ring3_GpuProgramInputDescriptor* Machine_Gl_ShaderProgram_getInputAtImpl(Machine_Gl_ShaderProgram const* self, size_t index) {
+static Ring3_GpuProgramInputDescriptor* Machine_Gl_ShaderProgram_getInputAtImpl(Machine_Gl_ShaderProgram const* self, int64_t index) {
   Ring2_Value temporary = Ring2_Collections_List_getAt(self->inputs, index);
   return (Ring3_GpuProgramInputDescriptor*)Ring2_Value_getObject(&temporary);
 }
 
 static Ring2_Boolean Machine_Gl_ShaderProgram_addUpdateInputImpl(Machine_Gl_ShaderProgram* self, Ring2_String* name, Ring3_GpuProgramInputType type, Ring3_GpuProgramInputKind kind) {
-  for (size_t i = 0, n = Machine_ShaderProgram_getNumberOfInputs((Machine_ShaderProgram *)self); i < n; ++i) {
-    Ring3_GpuProgramInputDescriptor* input = Machine_ShaderProgram_getInputAt((Machine_ShaderProgram *)self, i);
+  for (int64_t i = 0, n = Ring3_GpuProgram_getNumberOfInputs((Ring3_GpuProgram*)self); i < n; ++i) {
+    Ring3_GpuProgramInputDescriptor* input = Ring3_GpuProgram_getInputAt((Ring3_GpuProgram*)self, i);
     if (Ring2_String_isEqualTo(Ring2_Context_get(), input->name, name)) {
       input->type = type;
       input->kind = kind;
@@ -213,26 +213,26 @@ static void constructFromText(Machine_Gl_ShaderProgram* self, char const* vertex
 }
 
 static void Machine_Gl_ShaderProgram_constructClass(Machine_Gl_ShaderProgram_Class* self) {
-  ((Machine_ShaderProgram_Class*)self)->getNumberOfInputs = (size_t(*)(Machine_ShaderProgram const*)) & Machine_Gl_ShaderProgram_getNumberOfInputsImpl;
-  ((Machine_ShaderProgram_Class*)self)->getInputAt = (Ring3_GpuProgramInputDescriptor * (*)(Machine_ShaderProgram const*, size_t)) & Machine_Gl_ShaderProgram_getInputAtImpl;
-  ((Machine_ShaderProgram_Class*)self)->addUpdateInput = (Ring2_Boolean(*)(Machine_ShaderProgram*, Ring2_String*, Ring3_GpuProgramInputType, Ring3_GpuProgramInputKind)) & Machine_Gl_ShaderProgram_addUpdateInputImpl;
+  ((Ring3_GpuProgram_Class*)self)->getNumberOfInputs = (int64_t (*)(Ring3_GpuProgram const*)) & Machine_Gl_ShaderProgram_getNumberOfInputsImpl;
+  ((Ring3_GpuProgram_Class*)self)->getInputAt = (Ring3_GpuProgramInputDescriptor* (*)(Ring3_GpuProgram const*, int64_t)) & Machine_Gl_ShaderProgram_getInputAtImpl;
+  ((Ring3_GpuProgram_Class*)self)->addUpdateInput = (Ring2_Boolean (*)(Ring3_GpuProgram*, Ring2_String*, Ring3_GpuProgramInputType, Ring3_GpuProgramInputKind)) & Machine_Gl_ShaderProgram_addUpdateInputImpl;
 }
 
 void Machine_Gl_ShaderProgram_construct(Machine_Gl_ShaderProgram* self, size_t numberOfArguments, Ring2_Value const* arguments) {
-  Machine_ShaderProgram_construct((Machine_ShaderProgram*)self, numberOfArguments, arguments);
+  Ring3_GpuProgram_construct((Ring3_GpuProgram*)self, numberOfArguments, arguments);
   if (numberOfArguments != 3) {
     Ring1_Status_set(Ring1_Status_InvalidNumberOfArguments);
     Ring2_jump();
   }
   Ring2_String *v = NULL, *g = NULL, *f = NULL;
   if (!Ring2_Value_isVoid(arguments + 0)) {
-    v = Machine_Extensions_getStringArgument(numberOfArguments, arguments, 0);
+    v = Ring2_CallArguments_getStringArgument(numberOfArguments, arguments, 0);
   }
   if (!Ring2_Value_isVoid(arguments + 1)) {
-    g = Machine_Extensions_getStringArgument(numberOfArguments, arguments, 1);
+    g = Ring2_CallArguments_getStringArgument(numberOfArguments, arguments, 1);
   }
   if (!Ring2_Value_isVoid(arguments + 2)) {
-    f = Machine_Extensions_getStringArgument(numberOfArguments, arguments, 2);
+    f = Ring2_CallArguments_getStringArgument(numberOfArguments, arguments, 2);
   }
   constructFromText(self, v ? Ring2_String_getBytes(v) : NULL,
                           g ? Ring2_String_getBytes(g) : NULL,
@@ -240,10 +240,13 @@ void Machine_Gl_ShaderProgram_construct(Machine_Gl_ShaderProgram* self, size_t n
   Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Gl_ShaderProgram_getType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Gl_ShaderProgram, Machine_ShaderProgram,
-                         Machine_Gl_ShaderProgram_visit, Machine_Gl_ShaderProgram_construct,
-                         Machine_Gl_ShaderProgram_destruct,
-                         &Machine_Gl_ShaderProgram_constructClass, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_Gl_ShaderProgram,
+                         Ring3_GpuProgram,
+                         &Machine_Gl_ShaderProgram_visit,
+                         &Machine_Gl_ShaderProgram_construct,
+                         &Machine_Gl_ShaderProgram_destruct,
+                         &Machine_Gl_ShaderProgram_constructClass,
+                         NULL)
 
 Machine_Gl_ShaderProgram* Machine_Gl_ShaderProgram_create(Ring2_String* vertexProgramText, Ring2_String* geometryProgramText, Ring2_String* fragmentProgramText) {
   Machine_ClassType* ty = Machine_Gl_ShaderProgram_getType();
@@ -310,7 +313,7 @@ static void defineMatrixUniforms(Ring2_StringBuffer* code, Ring2_Boolean modelTo
 }
 
 
-Machine_ShaderProgram*
+Ring3_GpuProgram*
 Machine_Gl_ShaderProgram_generateDefaultShader
   (
     Ring2_Boolean withMeshColor,
@@ -330,17 +333,17 @@ Machine_Gl_ShaderProgram_generateDefaultShader
   defineFloatConstants(code);
   defineMatrixUniforms(code, false, false, false, true);
 
-  Ring2_StringBuffer_appendBytes(code, T("attribute vec2 vertex_position;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("attribute vec2 vertexPosition;\n"));
 
 
   if (withMeshColor) {
-    Ring2_StringBuffer_appendBytes(code, T("uniform vec3 mesh_color = vec3(1.f, 1.f, 1.f);\n"));
+    Ring2_StringBuffer_appendBytes(code, T("uniform vec3 meshColor = vec3(1.f, 1.f, 1.f);\n"));
   }
   if (withVertexColor) {
-    Ring2_StringBuffer_appendBytes(code, T("attribute vec3 vertex_color;\n"));
+    Ring2_StringBuffer_appendBytes(code, T("attribute vec3 vertexColor;\n"));
   }
   if (withTextureCoordinate) {
-    Ring2_StringBuffer_appendBytes(code, T("attribute vec2 vertex_texture_coordinate_1;\n"));
+    Ring2_StringBuffer_appendBytes(code, T("attribute vec2 vertexTextureCoordinate1;\n"));
   }
 
   Ring2_StringBuffer_appendBytes(code, T("out vec3 color;\n"));
@@ -351,17 +354,17 @@ Machine_Gl_ShaderProgram_generateDefaultShader
 
   Ring2_StringBuffer_appendBytes(code, T("void main()\n"
                                          "{\n"
-                                         "    gl_Position = modelToProjectionMatrix * vec4(vertex_position, 0.0, 1.0);\n"));
+                                         "    gl_Position = modelToProjectionMatrix * vec4(vertexPosition, 0.0, 1.0);\n"));
 
   Ring2_StringBuffer_appendBytes(code, T("    color = vec3(1.0, 1.0, 1.0);\n"));
   if (withMeshColor) {
-    Ring2_StringBuffer_appendBytes(code, T("    color = mesh_color;\n"));
+    Ring2_StringBuffer_appendBytes(code, T("    color = meshColor;\n"));
   }
   if (withVertexColor) {
-    Ring2_StringBuffer_appendBytes(code, T("    color = vertex_color;\n"));
+    Ring2_StringBuffer_appendBytes(code, T("    color = vertexColor;\n"));
   }
   if (withTextureCoordinate) {
-    Ring2_StringBuffer_appendBytes(code, T("    texture_coordinate_1 = vertex_texture_coordinate_1;\n"));
+    Ring2_StringBuffer_appendBytes(code, T("    texture_coordinate_1 = vertexTextureCoordinate1;\n"));
   }
 
   Ring2_StringBuffer_appendBytes(code, T("}\n"));
@@ -394,16 +397,16 @@ Machine_Gl_ShaderProgram_generateDefaultShader
   f = Machine_Object_toString(Ring2_Context_get(), (Machine_Object *)code);
   Ring2_StringBuffer_clear(code);
 
-  Machine_ShaderProgram* shaderProgram = (Machine_ShaderProgram *)Machine_Gl_ShaderProgram_create(v, NULL, f);
-  Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertex_position")),
-                                       Ring3_GpuProgramInputType_Vector2, Ring3_GpuProgramInputKind_Variable);
+  Ring3_GpuProgram* shaderProgram = (Ring3_GpuProgram*)Machine_Gl_ShaderProgram_create(v, NULL, f);
+  Ring3_GpuProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertexPosition")),
+                                  Ring3_GpuProgramInputType_Vector2, Ring3_GpuProgramInputKind_Variable);
   if (withVertexColor) {
-    Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertex_color")),
-                                         Ring3_GpuProgramInputType_Vector3, Ring3_GpuProgramInputKind_Variable);
+    Ring3_GpuProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertexColor")),
+                                    Ring3_GpuProgramInputType_Vector3, Ring3_GpuProgramInputKind_Variable);
   }
   if (withTextureCoordinate) {
-    Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertex_texture_coordinate_1")),
-                                         Ring3_GpuProgramInputType_Vector2, Ring3_GpuProgramInputKind_Variable);
+    Ring3_GpuProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertexTextureCoordinate1")),
+                                    Ring3_GpuProgramInputType_Vector2, Ring3_GpuProgramInputKind_Variable);
   }
   return shaderProgram;
 
@@ -411,7 +414,7 @@ Machine_Gl_ShaderProgram_generateDefaultShader
 #undef T
 }
 
-Machine_ShaderProgram*
+Ring3_GpuProgram*
 Machine_Gl_ShaderProgram_generateShape2Shader
   (
   )
@@ -427,19 +430,19 @@ Machine_Gl_ShaderProgram_generateShape2Shader
   defineFloatConstants(code);
   defineMatrixUniforms(code, false, false, false, true);
 
-  Ring2_StringBuffer_appendBytes(code, T("attribute vec2 vertex_position;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("attribute vec2 vertexPosition;\n"));
 
 
-  Ring2_StringBuffer_appendBytes(code, T("uniform vec4 mesh_color = vec4(1.f, 1.f, 1.f, 1.f);\n"));
+  Ring2_StringBuffer_appendBytes(code, T("uniform vec4 meshColor = vec4(1.f, 1.f, 1.f, 1.f);\n"));
 
 
   Ring2_StringBuffer_appendBytes(code, T("out vec4 color;\n"));
 
   Ring2_StringBuffer_appendBytes(code, T("void main()\n"
                                          "{\n"
-                                         "    gl_Position = modelToProjectionMatrix * vec4(vertex_position, 0.0, 1.0);\n"));
+                                         "    gl_Position = modelToProjectionMatrix * vec4(vertexPosition, 0.0, 1.0);\n"));
 
-  Ring2_StringBuffer_appendBytes(code, T("    color = mesh_color;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("    color = meshColor;\n"));
 
   Ring2_StringBuffer_appendBytes(code, T("}\n"));
   Ring2_StringBuffer_appendBytes(code, "", 1);
@@ -462,16 +465,16 @@ Machine_Gl_ShaderProgram_generateShape2Shader
   f = Machine_Object_toString(Ring2_Context_get(), (Machine_Object *)code);
   Ring2_StringBuffer_clear(code);
 
-  Machine_ShaderProgram* shaderProgram = (Machine_ShaderProgram*)Machine_Gl_ShaderProgram_create(v, NULL, f);
-  Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertex_position")),
-                                       Ring3_GpuProgramInputType_Vector2, Ring3_GpuProgramInputKind_Variable);
+  Ring3_GpuProgram* shaderProgram = (Ring3_GpuProgram*)Machine_Gl_ShaderProgram_create(v, NULL, f);
+  Ring3_GpuProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertexPosition")),
+                                  Ring3_GpuProgramInputType_Vector2, Ring3_GpuProgramInputKind_Variable);
   return shaderProgram;
 
 #undef TZ
 #undef T
 }
 
-Machine_ShaderProgram*
+Ring3_GpuProgram*
 Machine_Gl_ShaderProgram_generateText2Shader
   (
     Ring2_Boolean highPrecision
@@ -498,10 +501,10 @@ Machine_Gl_ShaderProgram_generateText2Shader
   Ring2_StringBuffer_appendBytes(code, T("} vertex;\n"));
 
   defineMatrixUniforms(code, true, false, false, true);
-  Ring2_StringBuffer_appendBytes(code, T("uniform vec3 mesh_color;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("uniform vec3 meshColor;\n"));
 
-  Ring2_StringBuffer_appendBytes(code, T("in vec2 vertex_position;\n"));
-  Ring2_StringBuffer_appendBytes(code, T("in vec2 vertex_texture_coordinate_1;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("in vec2 vertexPosition;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("in vec2 vertexTextureCoordinate1;\n"));
 
   if (withClipDistance) {
     Ring2_StringBuffer_appendBytes(code, T("uniform vec4 clipPlane0;\n"));
@@ -513,10 +516,10 @@ Machine_Gl_ShaderProgram_generateText2Shader
 
   Ring2_StringBuffer_appendBytes(code, T("void main()\n"
                                          "{\n"
-                                         "    vec4 worldPosition = modelToWorldMatrix * vec4(vertex_position, 0.0, 1.0);\n"
-                                         "    gl_Position = modelToProjectionMatrix * vec4(vertex_position, 0.0, 1.0);\n"));
-  Ring2_StringBuffer_appendBytes(code, T("    vertex.texture_coordinate_1 = vertex_texture_coordinate_1;\n"));
-  Ring2_StringBuffer_appendBytes(code, T("    vertex.color = mesh_color;\n"));
+                                         "    vec4 worldPosition = modelToWorldMatrix * vec4(vertexPosition, 0.0, 1.0);\n"
+                                         "    gl_Position = modelToProjectionMatrix * vec4(vertexPosition, 0.0, 1.0);\n"));
+  Ring2_StringBuffer_appendBytes(code, T("    vertex.texture_coordinate_1 = vertexTextureCoordinate1;\n"));
+  Ring2_StringBuffer_appendBytes(code, T("    vertex.color = meshColor;\n"));
   if (withClipDistance) {
     Ring2_StringBuffer_appendBytes(code, T("    gl_ClipDistance[0] = +dot(worldPosition, clipPlane0);\n"));
     Ring2_StringBuffer_appendBytes(code, T("    gl_ClipDistance[1] = +dot(worldPosition, clipPlane1);\n"));
@@ -586,11 +589,11 @@ Machine_Gl_ShaderProgram_generateText2Shader
   f = Machine_Object_toString(Ring2_Context_get(), (Machine_Object *)code);
   Ring2_StringBuffer_clear(code);
 
-  Machine_ShaderProgram* shaderProgram = (Machine_ShaderProgram*)Machine_Gl_ShaderProgram_create(v, g, f);
-  Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertex_position")),
-                                       Ring3_GpuProgramInputType_Vector2, Ring3_GpuProgramInputKind_Variable);
-  Machine_ShaderProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertex_texture_coordinate_1")),
-                                       Ring3_GpuProgramInputType_Vector2, Ring3_GpuProgramInputKind_Variable);
+  Ring3_GpuProgram* shaderProgram = (Ring3_GpuProgram*)Machine_Gl_ShaderProgram_create(v, g, f);
+  Ring3_GpuProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertexPosition")),
+                                  Ring3_GpuProgramInputType_Vector2, Ring3_GpuProgramInputKind_Variable);
+  Ring3_GpuProgram_addUpdateInput(shaderProgram, Ring2_String_create(TZ("vertexTextureCoordinate1")),
+                                  Ring3_GpuProgramInputType_Vector2, Ring3_GpuProgramInputKind_Variable);
   return shaderProgram;
 
 #undef TZ

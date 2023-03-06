@@ -7,7 +7,7 @@
 #if !defined(MACHINE_VIDEO_GL_PRIVATE)
 #error("Do not include `Video/Gl/VideoContext.h` directly, include `_Video_Gl.h` instead.")
 #endif
-#include "_Video.h"
+#include "Ring3/Visuals/_Include.h"
 
 typedef struct Machine_Gl_VideoContext_ClipDistance {
   Ring2_Boolean enabled;
@@ -23,13 +23,13 @@ typedef struct Machine_Gl_VideoContext_ClipDistances {
 MACHINE_DECLARE_CLASSTYPE(Machine_Gl_VideoContext)
 
 struct Machine_Gl_VideoContext_Class {
-  Machine_VideoContext_Class __parent;
+  Ring3_VisualsContext_Class __parent;
 
   void (*write)(Machine_Gl_VideoContext const* self);
 };
 
 struct Machine_Gl_VideoContext {
-  Machine_VideoContext __parent;
+  Ring3_VisualsContext __parent;
 
   Ring2_Real32 clearDepth;                   // Default is <code>1</code>.
   Ring2_Real32 clearColor[4];                // Default is <code>(0,0,0,1)</code>.

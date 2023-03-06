@@ -6,12 +6,12 @@
 
 #include "Ring1/Status.h"
 
-static Ring1_Result mapKey(int source, Machine_KeyboardKeys* target) {
+static Ring1_Result mapKey(int source, Ring3_KeyboardKey* target) {
   switch (source) {
-#define MAP(FROM, TO)                                                                              \
-  case GLFW_KEY_##FROM: {                                                                          \
-    *target = Machine_KeyboardKeys_##TO;                                                           \
-    return Ring1_Result_Success;                                                                   \
+#define MAP(FROM, TO)                                                                             \
+  case GLFW_KEY_##FROM: {                                                                         \
+    *target = Ring3_KeyboardKey_##TO;                                                             \
+    return Ring1_Result_Success;                                                                  \
   } break;
 
     MAP(ESCAPE, Escape)
@@ -66,18 +66,18 @@ static Ring1_Result mapKey(int source, Machine_KeyboardKeys* target) {
   };
 }
 
-static Ring1_Result mapKeyAction(int source, Machine_KeyboardKeyActions* target) {
+static Ring1_Result mapKeyAction(int source, Ring3_KeyboardKeyAction* target) {
   switch (source) {
     case GLFW_PRESS: {
-      *target = Machine_KeyboardKeyActions_Press;
+      *target = Ring3_KeyboardKeyAction_Press;
       return Ring1_Result_Success;
     } break;
     case GLFW_RELEASE: {
-      *target = Machine_KeyboardKeyActions_Release;
+      *target = Ring3_KeyboardKeyAction_Release;
       return Ring1_Result_Success;
     } break;
     case GLFW_REPEAT: {
-      *target = Machine_KeyboardKeyActions_Repeat;
+      *target = Ring3_KeyboardKeyAction_Repeat;
       return Ring1_Result_Success;
     } break;
     default:
@@ -86,14 +86,14 @@ static Ring1_Result mapKeyAction(int source, Machine_KeyboardKeyActions* target)
   };
 }
 
-Machine_KeyboardKeyEvent* Machine_Video_Gl_Input_mapKeyboardKeyEvent(GLFWwindow* window, int key,
-                                                                     int scancode, int action,
-                                                                     int modifiers) {
-  Machine_KeyboardKeys keyInternal;
-  Machine_KeyboardKeyActions actionInternal;
+Ring3_KeyboardKeyEvent* Machine_Video_Gl_Input_mapKeyboardKeyEvent(GLFWwindow* window, int key,
+                                                                   int scancode, int action,
+                                                                   int modifiers) {
+  Ring3_KeyboardKey keyInternal;
+  Ring3_KeyboardKeyAction actionInternal;
   if (mapKey(key, &keyInternal) || mapKeyAction(action, &actionInternal)) {
     Ring2_jump();
   }
-  Machine_KeyboardKeyEvent* event = Machine_KeyboardKeyEvent_create(keyInternal, actionInternal);
+  Ring3_KeyboardKeyEvent* event = Ring3_KeyboardKeyEvent_create(keyInternal, actionInternal);
   return event;
 }

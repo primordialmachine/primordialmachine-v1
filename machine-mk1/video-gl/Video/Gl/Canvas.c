@@ -133,7 +133,7 @@ static void Machine_Video_Gl_Canvas_setCanvasIcons(Machine_Video_Gl_Canvas* self
 static void Machine_Video_Gl_Canvas_pollEvents(Machine_Video_Gl_Canvas* self) {
   glfwSetWindowUserPointer(Machine_Glfw_getWindow(), self);
   Machine_Glfw_pollEvents();
-  Machine_Video_Canvas_pumpEvents((Machine_Video_Canvas*)self);
+  Ring3_Canvas_pumpEvents((Ring3_Canvas*)self);
 }
 
 static Ring2_Boolean Machine_Video_Gl_Canvas_getQuitRequested(Machine_Video_Gl_Canvas* self) {
@@ -146,34 +146,38 @@ static void Machine_Video_Gl_Canvas_destruct(Machine_Video_Gl_Canvas* self) {
 }
 
 static void Machine_Video_Gl_Canvas_constructClass(Machine_Video_Gl_Canvas_Class* self) {
-  ((Machine_Video_Canvas_Class*)self)->getFrameBuffersSize
-      = (void (*)(Machine_Video_Canvas*, Ring2_Integer*, Ring2_Integer*))
+  ((Ring3_Canvas_Class*)self)->getFrameBuffersSize
+      = (void (*)(Ring3_Canvas*, Ring2_Integer*, Ring2_Integer*))
         & Machine_Video_Gl_Canvas_getFrameBuffersSize;
-  ((Machine_Video_Canvas_Class*)self)->maximizeCanvas
-      = (void (*)(Machine_Video_Canvas*)) & Machine_Video_Gl_Canvas_maximizeCanvas;
-  ((Machine_Video_Canvas_Class*)self)->swapFrameBuffers
-      = (void (*)(Machine_Video_Canvas*)) & Machine_Video_Gl_Canvas_swapFrameBuffers;
-  ((Machine_Video_Canvas_Class*)self)->setCanvasIcons
-      = (void (*)(Machine_Video_Canvas*, Ring2_Collections_List*)) & Machine_Video_Gl_Canvas_setCanvasIcons;
-  ((Machine_Video_Canvas_Class*)self)->pollEvents
-      = (void (*)(Machine_Video_Canvas*)) & Machine_Video_Gl_Canvas_pollEvents;
-  ((Machine_Video_Canvas_Class*)self)->getQuitRequested
-      = (Ring2_Boolean(*)(Machine_Video_Canvas*)) & Machine_Video_Gl_Canvas_getQuitRequested;
+  ((Ring3_Canvas_Class*)self)->maximizeCanvas
+      = (void (*)(Ring3_Canvas*)) & Machine_Video_Gl_Canvas_maximizeCanvas;
+  ((Ring3_Canvas_Class*)self)->swapFrameBuffers
+      = (void (*)(Ring3_Canvas*)) & Machine_Video_Gl_Canvas_swapFrameBuffers;
+  ((Ring3_Canvas_Class*)self)->setCanvasIcons
+      = (void (*)(Ring3_Canvas*, Ring2_Collections_List*)) & Machine_Video_Gl_Canvas_setCanvasIcons;
+  ((Ring3_Canvas_Class*)self)->pollEvents
+      = (void (*)(Ring3_Canvas*)) & Machine_Video_Gl_Canvas_pollEvents;
+  ((Ring3_Canvas_Class*)self)->getQuitRequested
+      = (Ring2_Boolean(*)(Ring3_Canvas*)) & Machine_Video_Gl_Canvas_getQuitRequested;
 }
 
 void Machine_Video_Gl_Canvas_construct(Machine_Video_Gl_Canvas* self, size_t numberOfArguments,
                                        Ring2_Value const* arguments) {
   static size_t const NUMBER_OF_ARGUMENTS = 0;
   static Ring2_Value const ARGUMENTS[] = { Ring2_Value_StaticInitializerVoid() };
-  Machine_Video_Canvas_construct((Machine_Video_Canvas*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Ring3_Canvas_construct((Ring3_Canvas*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   Machine_Glfw_startupCanvas();
   Machine_Glfw_startupCanvasInput();
   Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Video_Gl_Canvas_getType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Video_Gl_Canvas, Machine_Video_Canvas, NULL,
-                         &Machine_Video_Gl_Canvas_construct, &Machine_Video_Gl_Canvas_destruct,
-                         &Machine_Video_Gl_Canvas_constructClass, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_Video_Gl_Canvas,
+                         Ring3_Canvas,
+                         NULL,
+                         &Machine_Video_Gl_Canvas_construct,
+                         &Machine_Video_Gl_Canvas_destruct,
+                         &Machine_Video_Gl_Canvas_constructClass,
+                         NULL)
 
 Machine_Video_Gl_Canvas* Machine_Video_Gl_Canvas_create() {
   Machine_ClassType* ty = Machine_Video_Gl_Canvas_getType();

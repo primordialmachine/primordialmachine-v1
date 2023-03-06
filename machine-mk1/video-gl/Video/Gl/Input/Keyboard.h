@@ -17,8 +17,8 @@
 /// @param action The GLFW action.
 /// @param modifiers The GLFW modifiers.
 /// @return The keyboard key event.
-Machine_KeyboardKeyEvent* Machine_Video_Gl_Input_mapKeyboardKeyEvent(GLFWwindow* window, int key,
-                                                                     int scancode, int action,
-                                                                     int modifiers);
+Ring3_KeyboardKeyEvent* Machine_Video_Gl_Input_mapKeyboardKeyEvent(GLFWwindow* window, int key,
+                                                                   int scancode, int action,
+                                                                   int modifiers);
 
 #endif // MACHINE_VIDEO_GL_INPUT_KEYBOARD_H_INCLUDED
