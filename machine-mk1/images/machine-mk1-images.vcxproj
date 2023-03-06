@@ -40,9 +40,6 @@
     <ProjectReference Include="..\..\ring3\Ring3.Visuals\Ring3.Visuals.vcxproj">
       <Project>{fd4c313c-d599-4313-adb7-034796537586}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\video\machine-mk1-video.vcxproj">
-      <Project>{ea697f45-b77e-4384-8bf1-6001586e058c}</Project>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Image.h" />

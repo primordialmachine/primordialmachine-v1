@@ -46,17 +46,16 @@ void Machine_Images_Image_destruct(Machine_Images_Image* self) {
 void Machine_Images_Image_construct(Machine_Images_Image* self, size_t numberOfArguments,
                                     const Ring2_Value* arguments) {
   if (numberOfArguments == 1) {
-    Ring2_String* path = Machine_Extensions_getStringArgument(numberOfArguments, arguments, 0);
+    Ring2_String* path = Ring2_CallArguments_getStringArgument(numberOfArguments, arguments, 0);
     Machine_Images_Image_constructFromPath(self, path);
   } else if (numberOfArguments == 4) {
-    Ring2_Integer pixelFormat
-        = Machine_Extensions_getIntegerArgument(numberOfArguments, arguments, 0);
-    Ring2_Integer width = Machine_Extensions_getIntegerArgument(numberOfArguments, arguments, 1);
-    Ring2_Integer height = Machine_Extensions_getIntegerArgument(numberOfArguments, arguments, 2);
-    Ring2_ByteBuffer* pixels = (Ring2_ByteBuffer*)Machine_Extensions_getObjectArgument(numberOfArguments,
-                                                                                       arguments,
-                                                                                       3,
-                                                                                       Ring2_ByteBuffer_getType());
+    Ring2_Integer pixelFormat = Ring2_CallArguments_getIntegerArgument(numberOfArguments, arguments, 0);
+    Ring2_Integer width = Ring2_CallArguments_getIntegerArgument(numberOfArguments, arguments, 1);
+    Ring2_Integer height = Ring2_CallArguments_getIntegerArgument(numberOfArguments, arguments, 2);
+    Ring2_ByteBuffer* pixels = (Ring2_ByteBuffer*)Ring2_CallArguments_getObjectArgument(numberOfArguments,
+                                                                                        arguments,
+                                                                                        3,
+                                                                                        Ring2_ByteBuffer_getType());
     Machine_Images_Image_constructDirect(self, (Ring3_PixelFormat)pixelFormat, width, height,
                                          pixels);
   } else {
