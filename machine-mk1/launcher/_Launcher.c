@@ -1,28 +1,54 @@
 #include "_Launcher.h"
 
-
-
+#include "_Fonts.h"
+#include "_Images.h"
 #include "_Video_Gl.h"
 
+static Ring3_VisualsContext* g_visualsContext = NULL;
+static Ring3_Canvas* g_videoCanvas = NULL;
 
+static Ring3_ImagesContext* g_imagesContext = NULL;
 
-static Machine_VideoContext* g_videoContext = NULL;
-static Machine_Video_Canvas* g_videoCanvas = NULL;
+static Ring3_FontsContext* g_fontsContext = NULL;
 
-static void initCanvas() {
+static void shutdownImages() {
+  if (g_imagesContext) {
+    Ring2_Gc_unlock(g_imagesContext);
+    g_imagesContext = NULL;
+  }
+}
+
+static void startupImages() {
   Ring2_JumpTarget jumpTarget;
   Ring2_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
-    g_videoCanvas = (Machine_Video_Canvas*)Machine_Video_Gl_Canvas_create();
-    Ring2_Gc_lock(g_videoCanvas);
-    g_videoContext = (Machine_VideoContext*)Machine_Gl_VideoContext_create();
-    Ring2_Gc_lock(g_videoContext);
+    g_imagesContext = (Ring3_ImagesContext*)Machines_DefaultImages_createContext();
+    Ring2_Gc_lock(g_imagesContext);
     Ring2_popJumpTarget();
   } else {
     Ring2_popJumpTarget();
-    if (g_videoContext) {
-      Ring2_Gc_unlock(g_videoContext);
-      g_videoContext = NULL;
+    if (g_imagesContext) {
+      Ring2_Gc_unlock(g_imagesContext);
+      g_imagesContext = NULL;
+    }
+    Ring2_jump();
+  }
+}
+
+static void startupCanvas() {
+  Ring2_JumpTarget jumpTarget;
+  Ring2_pushJumpTarget(&jumpTarget);
+  if (!setjmp(jumpTarget.environment)) {
+    g_videoCanvas = (Ring3_Canvas*)Machine_Video_Gl_Canvas_create();
+    Ring2_Gc_lock(g_videoCanvas);
+    g_visualsContext = (Ring3_VisualsContext*)Machine_Gl_VideoContext_create();
+    Ring2_Gc_lock(g_visualsContext);
+    Ring2_popJumpTarget();
+  } else {
+    Ring2_popJumpTarget();
+    if (g_visualsContext) {
+      Ring2_Gc_unlock(g_visualsContext);
+      g_visualsContext = NULL;
     }
     if (g_videoCanvas) {
       Ring2_Gc_unlock(g_videoCanvas);
@@ -32,10 +58,10 @@ static void initCanvas() {
   }
 }
 
-static void uninitCanvas() {
-  if (g_videoContext) {
-    Ring2_Gc_unlock(g_videoContext);
-    g_videoContext = NULL;
+static void shutdownCanvas() {
+  if (g_visualsContext) {
+    Ring2_Gc_unlock(g_visualsContext);
+    g_visualsContext = NULL;
   }
   if (g_videoCanvas) {
     Ring2_Gc_unlock(g_videoCanvas);
@@ -43,18 +69,86 @@ static void uninitCanvas() {
   }
 }
 
-void Machine_Video_startup() {
-  initCanvas();
+static void shutdownFonts() {
+  if (g_fontsContext) {
+    Ring2_Gc_unlock(g_fontsContext);
+    g_fontsContext = NULL;
+  }
 }
 
-void Machine_Video_shutdown() {
-  uninitCanvas();
+static void startupFonts() {
+  Ring2_JumpTarget jumpTarget;
+  Ring2_pushJumpTarget(&jumpTarget);
+  if (!setjmp(jumpTarget.environment)) {
+    g_fontsContext = (Ring3_FontsContext*)Machine_DefaultFonts_createContext(g_visualsContext, g_imagesContext);
+    Ring2_Gc_lock(g_fontsContext);
+    Ring2_popJumpTarget();
+  } else {
+    Ring2_popJumpTarget();
+    if (g_fontsContext) {
+      Ring2_Gc_unlock(g_fontsContext);
+      g_fontsContext = NULL;
+    }
+    Ring2_jump();
+  }
 }
 
-Machine_Video_Canvas* Machine_getVideoCanvas() {
-  return g_videoCanvas;
+typedef struct ModuleInfo {
+  void (*startup)();
+  void (*shutdown)();
+} ModuleInfo;
+
+static ModuleInfo g_moduleInfos[] = {
+  { .startup = &startupCanvas, .shutdown = &shutdownCanvas },
+  { .startup = &startupImages, .shutdown = &shutdownImages },
+  { .startup = &startupFonts,  .shutdown = &shutdownFonts },
+};
+
+void Machine_Launcher_startup() {
+  size_t i = 0, n = 3;
+  Ring2_JumpTarget jumpTarget;
+  Ring2_pushJumpTarget(&jumpTarget);
+  if (!setjmp(jumpTarget.environment)) {
+    for (; i < n; ++i) {
+      g_moduleInfos[i].startup();
+    }
+    Ring2_popJumpTarget();
+  } else {
+    Ring2_popJumpTarget();
+    while (i > 0) {
+      g_moduleInfos[--i].shutdown();
+    }
+    Ring2_jump();
+  }
 }
 
-Machine_VideoContext* Machine_getVideoContext() {
-  return g_videoContext;
+void Machine_Launcher_shutdown() {
+  size_t i = 3;
+  while (i > 0) {
+    g_moduleInfos[--i].shutdown();
+  }
 }
+
+Ring1_NoDiscardReturn() Ring3_Canvas*
+Machine_Launcher_getVideoCanvas
+  (
+  )
+{ return g_videoCanvas; }
+
+Ring1_NoDiscardReturn() Ring3_VisualsContext*
+Machine_Launcher_getVisualsContext
+  (
+  )
+{ return g_visualsContext; }
+
+Ring1_NoDiscardReturn() Ring3_ImagesContext*
+Machine_Launcher_getImagesContext
+  (
+  )
+{ return g_imagesContext; }
+
+Ring1_NoDiscardReturn() Ring3_FontsContext*
+Machine_Launcher_getFontsContext
+  (
+  )
+{ return g_fontsContext; }

@@ -2,23 +2,46 @@
 #define MKX_LAUNCHER_H_INCLUDED
 
 #include "Ring3/Math/_Include.h"
-#include "_Video.h"
+#include "Ring3/Visuals/_Include.h"
 
-/// @brief Increment the video module by @a 1.
-/// FAILS if the reference count is INT_MAX.
-/// @return @a 0 on success, a non-zero value on failure.
-void Machine_Video_startup();
+/// @brief Startup the launcher.
+void
+Machine_Launcher_startup
+  (
+  );
 
-/// @brief Decrement the video module by @a 1.
-/// UNDEFINED if the reference count is @a 0.
-void Machine_Video_shutdown();
+/// @brief Shutdown the launcher.
+void
+Machine_Launcher_shutdown
+  (
+  );
 
 /// @brief Get the canvas.
 /// @return The canvas.
-Machine_Video_Canvas* Machine_getVideoCanvas();
+Ring1_NoDiscardReturn() Ring3_Canvas*
+Machine_Launcher_getVideoCanvas
+  (
+  );
 
-/// @brief Get the video context of the video module.
-/// @return The video context.
-Machine_VideoContext* Machine_getVideoContext();
+/// @brief Get the visuals context.
+/// @return The visuals context.
+Ring1_NoDiscardReturn() Ring3_VisualsContext*
+Machine_Launcher_getVisualsContext
+  (
+  );
+
+/// @brief Get the images context.
+/// @return The images context.
+Ring1_NoDiscardReturn() Ring3_ImagesContext*
+Machine_Launcher_getImagesContext
+  (
+  );
+
+/// @brief Get the fonts context.
+/// @return The fonts context.
+Ring1_NoDiscardReturn() Ring3_FontsContext*
+Machine_Launcher_getFontsContext
+  (
+  );
 
 #endif // MKX_LAUNCHER_H_INCLUDED
