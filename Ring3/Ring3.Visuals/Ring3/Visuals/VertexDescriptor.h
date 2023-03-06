@@ -24,7 +24,7 @@ Ring3_VertexDescriptor_create
 /// @brief Get the size, in Bytes, of the vertex.
 /// @param self The vertex descriptor.
 /// @return The size, in Bytes, of the vertex.
-Ring1_NoDiscardReturn() size_t
+Ring1_NoDiscardReturn() Ring2_Integer
 Ring3_VertexDescriptor_getVertexSize
   (
     Ring3_VertexDescriptor* self
@@ -33,7 +33,7 @@ Ring3_VertexDescriptor_getVertexSize
 /// Get the number of vertex elements.
 /// @param self This vertex descriptor.
 /// @return The number of vertex elements.
-Ring1_NoDiscardReturn() size_t
+Ring1_NoDiscardReturn() Ring2_Integer
 Ring3_VertexDescriptor_getNumberOfElements
   (
     Ring3_VertexDescriptor* self
@@ -47,25 +47,25 @@ Ring1_NoDiscardReturn() Ring3_VertexElementSemantics
 Ring3_VertexDescriptor_getElementSemantics
   (
     Ring3_VertexDescriptor* self,
-    size_t index
+    Ring2_Integer index
   );
 
 /// @brief Get the offset of a vertex element.
 /// @param self This vertex descriptor.
 /// @param index The index of the vertex element.
 /// @return The offset.
-Ring1_NoDiscardReturn() size_t
+Ring1_NoDiscardReturn() Ring2_Integer
 Ring3_VertexDescriptor_getElementOffset
   (
     Ring3_VertexDescriptor* self,
-    size_t index
+    Ring2_Integer index
   );
 
 void
 Ring3_VertexDescriptor_insert
   (
     Ring3_VertexDescriptor* self,
-    size_t index,
+    Ring2_Integer index,
     Ring3_VertexElementSemantics semantics
   );
 

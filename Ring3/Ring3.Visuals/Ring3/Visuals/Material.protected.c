@@ -19,13 +19,13 @@ Ring3_Material_construct
 {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
   self->existingBlendFunction = (Ring3_BlendFunction)
-    Machine_Extensions_getIntegerArgument(numberOfArguments, arguments, 0);
+    Ring2_CallArguments_getIntegerArgument(numberOfArguments, arguments, 0);
   self->depthTestFunction = (Ring3_DepthTestFunction)
-    Machine_Extensions_getIntegerArgument(numberOfArguments, arguments, 1);
+    Ring2_CallArguments_getIntegerArgument(numberOfArguments, arguments, 1);
   self->depthWriteEnabled = (Ring2_Boolean)
-    Machine_Extensions_getBooleanArgument(numberOfArguments, arguments, 2);
+    Ring2_CallArguments_getBooleanArgument(numberOfArguments, arguments, 2);
   self->incomingBlendFunction = (Ring3_BlendFunction)
-    Machine_Extensions_getIntegerArgument(numberOfArguments, arguments, 3);
+    Ring2_CallArguments_getIntegerArgument(numberOfArguments, arguments, 3);
 
   self->depthWriteEnabled = false;
   Machine_setClassType(Ring1_cast(Machine_Object*, self), Ring3_Material_getType());

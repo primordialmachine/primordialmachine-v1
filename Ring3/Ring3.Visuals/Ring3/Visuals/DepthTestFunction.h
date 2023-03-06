@@ -32,6 +32,9 @@ enum Ring3_DepthTestFunction {
 
   /// @brief Pass if incoming is equal to existing.
   Ring3_DepthTestFunction_EqualTo,
+  
+  /// @brief Pass if incoming is not equal to existing.
+  Ring3_DepthTestFunction_NotEqualTo,
 
   /// @brief Pass if incoming is greater than existing.
   Ring3_DepthTestFunction_GreaterThan,

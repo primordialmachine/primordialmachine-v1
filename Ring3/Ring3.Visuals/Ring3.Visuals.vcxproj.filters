@@ -87,6 +87,36 @@
     <ClInclude Include="Ring3\Visuals\GpuBuffer.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
+    <ClInclude Include="Ring3\Visuals\PrimitiveType.h">
+      <Filter>Headerdateien\Ring3\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Visuals\CullingMode.h">
+      <Filter>Headerdateien\Ring3\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Visuals\WindingMode.h">
+      <Filter>Headerdateien\Ring3\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Visuals\FontsContext.h">
+      <Filter>Headerdateien\Ring3\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Visuals\Canvas.h">
+      <Filter>Headerdateien\Ring3\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Visuals\GpuProgramBinding.h">
+      <Filter>Headerdateien\Ring3\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Visuals\GpuProgram.h">
+      <Filter>Headerdateien\Ring3\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Visuals\VisualsContext.h">
+      <Filter>Headerdateien\Ring3\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Visuals\Font.h">
+      <Filter>Headerdateien\Ring3\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Visuals\LightType.h">
+      <Filter>Headerdateien\Ring3\Visuals</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring3\Visuals\_Include.c">
@@ -147,6 +177,36 @@
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
     <ClCompile Include="Ring3\Visuals\GpuBuffer.c">
+      <Filter>Quelldateien\Ring3\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Visuals\PrimitiveType.c">
+      <Filter>Quelldateien\Ring3\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Visuals\CullingMode.c">
+      <Filter>Quelldateien\Ring3\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Visuals\WindingMode.c">
+      <Filter>Quelldateien\Ring3\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Visuals\FontsContext.c">
+      <Filter>Quelldateien\Ring3\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Visuals\Canvas.c">
+      <Filter>Quelldateien\Ring3\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Visuals\GpuProgramBinding.c">
+      <Filter>Quelldateien\Ring3\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Visuals\GpuProgram.c">
+      <Filter>Quelldateien\Ring3\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Visuals\Font.c">
+      <Filter>Quelldateien\Ring3\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Visuals\VisualsContext.c">
+      <Filter>Quelldateien\Ring3\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Visuals\LightType.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
   </ItemGroup>

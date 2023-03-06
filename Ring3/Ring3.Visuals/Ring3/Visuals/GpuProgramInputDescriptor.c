@@ -6,9 +6,6 @@
 #include "Ring3/Visuals/GpuProgramInputDescriptor.h"
 #undef RING3_VISUALS_PRIVATE
 
-#include "Ring1/All/_Include.h"
-
-
 static void
 Ring3_GpuProgramInputDescriptor_visit
   (

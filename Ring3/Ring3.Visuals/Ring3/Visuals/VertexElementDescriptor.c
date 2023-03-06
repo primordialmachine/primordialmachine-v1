@@ -44,7 +44,7 @@ Ring3_VertexElementDescriptor_construct
   )
 {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  self->semantics = (Ring3_VertexElementSemantics)Machine_Extensions_getIntegerArgument(numberOfArguments, arguments, 0);
+  self->semantics = (Ring3_VertexElementSemantics)Ring2_CallArguments_getIntegerArgument(numberOfArguments, arguments, 0);
   Machine_setClassType(Ring1_cast(Machine_Object *, self), Ring3_VertexElementDescriptor_getType());
 }
 

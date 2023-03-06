@@ -28,16 +28,32 @@
     <ProjectReference Include="..\..\ring2\Ring2\Ring2.vcxproj">
       <Project>{3ade4501-5d5c-4878-9632-f81c3de2429c}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\Ring3.Input\Ring3.Input.vcxproj">
+      <Project>{5c9b780e-6bd4-4058-bb5a-0e556edc7052}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Ring3.Math\Ring3.Math.vcxproj">
+      <Project>{681c50f0-37bf-4661-bf5a-21a29abf2b63}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Ring3.Signals\Ring3.Signals.vcxproj">
+      <Project>{5f81c516-cce8-4c62-b1e8-22c1ea40a25c}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring3\Visuals\BlendFunction.h" />
+    <ClInclude Include="Ring3\Visuals\Canvas.h" />
     <ClInclude Include="Ring3\Visuals\CanvasSizeChangedEvent.h" />
+    <ClInclude Include="Ring3\Visuals\CullingMode.h" />
     <ClInclude Include="Ring3\Visuals\DefaultMaterialBuilder.h" />
     <ClInclude Include="Ring3\Visuals\DepthTestFunction.h" />
+    <ClInclude Include="Ring3\Visuals\Font.h" />
+    <ClInclude Include="Ring3\Visuals\FontsContext.h" />
     <ClInclude Include="Ring3\Visuals\GpuBuffer.h" />
+    <ClInclude Include="Ring3\Visuals\GpuProgram.h" />
+    <ClInclude Include="Ring3\Visuals\GpuProgramBinding.h" />
     <ClInclude Include="Ring3\Visuals\GpuProgramInputDescriptor.h" />
     <ClInclude Include="Ring3\Visuals\Image.h" />
     <ClInclude Include="Ring3\Visuals\ImagesContext.h" />
+    <ClInclude Include="Ring3\Visuals\LightType.h" />
     <ClInclude Include="Ring3\Visuals\Material.h" />
     <ClInclude Include="Ring3\Visuals\Material.protected.h" />
     <ClInclude Include="Ring3\Visuals\MaterialBuilder.h" />
@@ -45,21 +61,31 @@
     <ClInclude Include="Ring3\Visuals\GpuProgramInputKind.h" />
     <ClInclude Include="Ring3\Visuals\GpuProgramInputType.h" />
     <ClInclude Include="Ring3\Visuals\GpuProgramKind.h" />
+    <ClInclude Include="Ring3\Visuals\PrimitiveType.h" />
     <ClInclude Include="Ring3\Visuals\Texture.h" />
     <ClInclude Include="Ring3\Visuals\VertexDescriptor.h" />
     <ClInclude Include="Ring3\Visuals\VertexElementDescriptor.h" />
     <ClInclude Include="Ring3\Visuals\VertexElementSemantics.h" />
+    <ClInclude Include="Ring3\Visuals\VisualsContext.h" />
+    <ClInclude Include="Ring3\Visuals\WindingMode.h" />
     <ClInclude Include="Ring3\Visuals\_Include.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring3\Visuals\BlendFunction.c" />
+    <ClCompile Include="Ring3\Visuals\Canvas.c" />
     <ClCompile Include="Ring3\Visuals\CanvasSizeChangedEvent.c" />
+    <ClCompile Include="Ring3\Visuals\CullingMode.c" />
     <ClCompile Include="Ring3\Visuals\DefaultMaterialBuilder.c" />
     <ClCompile Include="Ring3\Visuals\DepthTestFunction.c" />
+    <ClCompile Include="Ring3\Visuals\Font.c" />
+    <ClCompile Include="Ring3\Visuals\FontsContext.c" />
     <ClCompile Include="Ring3\Visuals\GpuBuffer.c" />
+    <ClCompile Include="Ring3\Visuals\GpuProgram.c" />
+    <ClCompile Include="Ring3\Visuals\GpuProgramBinding.c" />
     <ClCompile Include="Ring3\Visuals\GpuProgramInputDescriptor.c" />
     <ClCompile Include="Ring3\Visuals\Image.c" />
     <ClCompile Include="Ring3\Visuals\ImagesContext.c" />
+    <ClCompile Include="Ring3\Visuals\LightType.c" />
     <ClCompile Include="Ring3\Visuals\Material.c" />
     <ClCompile Include="Ring3\Visuals\Material.protected.c" />
     <ClCompile Include="Ring3\Visuals\MaterialBuilder.c" />
@@ -67,10 +93,13 @@
     <ClCompile Include="Ring3\Visuals\GpuProgramInputKind.c" />
     <ClCompile Include="Ring3\Visuals\GpuProgramInputType.c" />
     <ClCompile Include="Ring3\Visuals\GpuProgramKind.c" />
+    <ClCompile Include="Ring3\Visuals\PrimitiveType.c" />
     <ClCompile Include="Ring3\Visuals\Texture.c" />
     <ClCompile Include="Ring3\Visuals\VertexDescriptor.c" />
     <ClCompile Include="Ring3\Visuals\VertexElementDescriptor.c" />
     <ClCompile Include="Ring3\Visuals\VertexElementSemantics.c" />
+    <ClCompile Include="Ring3\Visuals\VisualsContext.c" />
+    <ClCompile Include="Ring3\Visuals\WindingMode.c" />
     <ClCompile Include="Ring3\Visuals\_Include.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

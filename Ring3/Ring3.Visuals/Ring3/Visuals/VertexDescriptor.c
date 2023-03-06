@@ -89,14 +89,14 @@ Ring3_VertexDescriptor_create
   return self;
 }
 
-Ring1_NoDiscardReturn() size_t
+Ring1_NoDiscardReturn() Ring2_Integer
 Ring3_VertexDescriptor_getVertexSize
   (
     Ring3_VertexDescriptor* self
   )
 {
-  size_t size = 0;
-  for (size_t i = 0, n = Ring2_Collections_Collection_getSize((Ring2_Collections_Collection *)self->elements); i < n; ++i) {
+  Ring2_Integer size = 0;
+  for (Ring2_Integer i = 0, n = Ring2_Collections_Collection_getSize((Ring2_Collections_Collection *)self->elements); i < n; ++i) {
     Ring2_Value v = Ring2_Collections_List_getAt(self->elements, i);
     Ring3_VertexElementDescriptor* element = (Ring3_VertexElementDescriptor*)Ring2_Value_getObject(&v);
     switch (Ring3_VertexElementDescriptor_getSemantics(element)) {
@@ -114,7 +114,7 @@ Ring3_VertexDescriptor_getVertexSize
   return size;
 }
 
-Ring1_NoDiscardReturn() size_t
+Ring1_NoDiscardReturn() Ring2_Integer
 Ring3_VertexDescriptor_getNumberOfElements
   (
     Ring3_VertexDescriptor* self
@@ -125,7 +125,7 @@ Ring1_NoDiscardReturn() Ring3_VertexElementSemantics
 Ring3_VertexDescriptor_getElementSemantics
   (
     Ring3_VertexDescriptor* self,
-    size_t index
+    Ring2_Integer index
   )
 {
   Ring2_Value v = Ring2_Collections_List_getAt(self->elements, index);
@@ -133,15 +133,15 @@ Ring3_VertexDescriptor_getElementSemantics
   return Ring3_VertexElementDescriptor_getSemantics(element);
 }
 
-Ring1_NoDiscardReturn() size_t
+Ring1_NoDiscardReturn() Ring2_Integer
 Ring3_VertexDescriptor_getElementOffset
   (
     Ring3_VertexDescriptor* self,
-    size_t index
+    Ring2_Integer index
   )
 {
-  size_t offset = 0;
-  for (size_t i = 0, n = index; i < n; ++i) {
+  Ring2_Integer offset = 0;
+  for (Ring2_Integer i = 0, n = index; i < n; ++i) {
     Ring2_Value v = Ring2_Collections_List_getAt(self->elements, i);
     Ring3_VertexElementDescriptor* element = (Ring3_VertexElementDescriptor*)Ring2_Value_getObject(&v);
     switch (Ring3_VertexElementDescriptor_getSemantics(element)) {
@@ -163,7 +163,7 @@ void
 Ring3_VertexDescriptor_insert
   (
     Ring3_VertexDescriptor* self,
-    size_t index,
+    Ring2_Integer index,
     Ring3_VertexElementSemantics semantics
   )
 {
