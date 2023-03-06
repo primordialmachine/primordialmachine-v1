@@ -30,23 +30,28 @@ static void destruct(Machine_Fonts_FontsContext* self) {
   }
 }
 
-static Machine_Font* createFont(Machine_Fonts_FontsContext* self, Ring2_String* path, Ring2_Integer pointSize) {
-  return (Machine_Font *)Machine_Fonts_Font_create((Machine_FontsContext *)self, path, pointSize);
+static Ring3_Font* createFont(Machine_Fonts_FontsContext* self, Ring2_String* path, Ring2_Integer pointSize) {
+  return (Ring3_Font *)Machine_Fonts_Font_create((Ring3_FontsContext*)self, path, pointSize);
 }
 
 static void constructClass(Machine_Fonts_FontsContext_Class* self);
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Fonts_FontsContext, Machine_FontsContext, &visit,
-                         &Machine_Fonts_FontsContext_construct, &destruct, &constructClass, NULL);
+MACHINE_DEFINE_CLASSTYPE(Machine_Fonts_FontsContext,
+                         Ring3_FontsContext,
+                         &visit,
+                         &Machine_Fonts_FontsContext_construct,
+                         &destruct,
+                         &constructClass,
+                         NULL);
 
 static void constructClass(Machine_Fonts_FontsContext_Class* self) {
-  ((Machine_FontsContext_Class*)self)->createFont = (Machine_Font * (*)(Machine_FontsContext*, Ring2_String*, Ring2_Integer)) & createFont;
+  ((Ring3_FontsContext_Class*)self)->createFont = (Ring3_Font * (*)(Ring3_FontsContext*, Ring2_String*, Ring2_Integer)) & createFont;
 }
 
 void Machine_Fonts_FontsContext_construct(Machine_Fonts_FontsContext* self, size_t numberOfArguments, Ring2_Value const* arguments) {
-  Machine_FontsContext_construct((Machine_FontsContext*)self, numberOfArguments, arguments);
-  self->videoContext = (Machine_VideoContext*)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0, Machine_VideoContext_getType());
-  self->imageContext = (Ring3_ImagesContext *)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 1, Ring3_ImagesContext_getType());
+  Ring3_FontsContext_construct((Ring3_FontsContext*)self, numberOfArguments, arguments);
+  self->videoContext = (Ring3_VisualsContext*)Ring2_CallArguments_getObjectArgument(numberOfArguments, arguments, 0, Ring3_VisualsContext_getType());
+  self->imageContext = (Ring3_ImagesContext *)Ring2_CallArguments_getObjectArgument(numberOfArguments, arguments, 1, Ring3_ImagesContext_getType());
   if (0 == g_referenceCount) {
     FT_Error error = FT_Init_FreeType(&g_library);
     if (error) {
@@ -60,7 +65,7 @@ void Machine_Fonts_FontsContext_construct(Machine_Fonts_FontsContext* self, size
   Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Fonts_FontsContext_getType());
 }
 
-Machine_Fonts_FontsContext* Machine_Fonts_FontsContext_create(Machine_VideoContext* videoContext, Ring3_ImagesContext *imagesContext) {
+Machine_Fonts_FontsContext* Machine_Fonts_FontsContext_create(Ring3_VisualsContext* videoContext, Ring3_ImagesContext *imagesContext) {
   Machine_ClassType* ty = Machine_Fonts_FontsContext_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 2;
   Ring2_Value ARGUMENTS[2];

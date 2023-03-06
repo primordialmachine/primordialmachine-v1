@@ -3,11 +3,11 @@
 
 
 
-#include "_Video.h"
+#include "Ring3/Visuals/_Include.h"
 
 
 
-Machine_FontsContext* Machine_DefaultFonts_createContext(Machine_VideoContext* videoContext, Ring3_ImagesContext* imagesContext);
+Ring3_FontsContext* Machine_DefaultFonts_createContext(Ring3_VisualsContext* videoContext, Ring3_ImagesContext* imagesContext);
 
 
 

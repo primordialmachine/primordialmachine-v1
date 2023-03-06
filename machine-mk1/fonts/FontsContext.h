@@ -9,7 +9,7 @@
 #if !defined(MACHINE_FONTS_PRIVATE)
 #error("Do not include `Fonts/FontsContext.h` directly. Include `_Fonts.h` instead.")
 #endif
-#include "_Video.h"
+#include "Ring3/Visuals/_Include.h"
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
@@ -18,12 +18,12 @@
 MACHINE_DECLARE_CLASSTYPE(Machine_Fonts_FontsContext);
 
 struct Machine_Fonts_FontsContext_Class {
-  Machine_FontsContext_Class parent;
+  Ring3_FontsContext_Class parent;
 };
 
 struct Machine_Fonts_FontsContext {
-  Machine_FontsContext parent;
-  Machine_VideoContext* videoContext;
+  Ring3_FontsContext parent;
+  Ring3_VisualsContext* videoContext;
   Ring3_ImagesContext* imageContext;
   FT_Library *library;
 };
@@ -34,7 +34,7 @@ struct Machine_Fonts_FontsContext {
 /// <code>(Machine.ImagesContext imagesContext)</code>
 void Machine_Fonts_FontsContext_construct(Machine_Fonts_FontsContext* self, size_t numberOfArguments, Ring2_Value const* arguments);
 
-Machine_Fonts_FontsContext* Machine_Fonts_FontsContext_create(Machine_VideoContext* videoContext, Ring3_ImagesContext* imagesContext);
+Machine_Fonts_FontsContext* Machine_Fonts_FontsContext_create(Ring3_VisualsContext* videoContext, Ring3_ImagesContext* imagesContext);
 
 
 

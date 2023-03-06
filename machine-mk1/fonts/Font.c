@@ -133,20 +133,20 @@ static Ring2_Boolean isNewline(uint32_t codepoint) {
 }
 
 struct Machine_Fonts_Font_Class {
-  Machine_Font_Class __parent;
+  Ring3_Font_Class __parent;
 };
 
 struct Machine_Fonts_Font {
-  Machine_Font __parent;
+  Ring3_Font __parent;
 
   Machine_Fonts_FontsContext* context;
   FT_Face face;
   Map* map;
   float baselineDistance;
 
-  Machine_ShaderProgram* shader;
+  Ring3_GpuProgram* shader;
   Ring3_GpuBuffer* vertices;
-  Machine_Binding* binding;
+  Ring3_Binding* binding;
 };
 
 static Ring2_Real32 Machine_Fonts_Font_getBaselineDistance(Machine_Fonts_Font* self) {
@@ -175,11 +175,11 @@ static Ring2_Boolean Machine_Fonts_Font_getCodePointInfo(Machine_Fonts_Font* sel
   return true;
 }
 
-static Machine_Binding* Machine_Fonts_Font_getVideoBinding(Machine_Fonts_Font* self) {
+static Ring3_Binding* Machine_Fonts_Font_getVideoBinding(Machine_Fonts_Font* self) {
   return self->binding;
 }
 
-static Machine_ShaderProgram* Machine_Fonts_Font_getVideoShaderProgram(Machine_Fonts_Font* self) {
+static Ring3_GpuProgram* Machine_Fonts_Font_getVideoShaderProgram(Machine_Fonts_Font* self) {
   return self->shader;
 }
 
@@ -188,11 +188,11 @@ static Ring3_GpuBuffer* Machine_Fonts_Font_getVideoBuffer(Machine_Fonts_Font* se
 }
 
 static void Machine_Fonts_Font_constructClass(Machine_Fonts_Font_Class* self) {
-  ((Machine_Font_Class*)self)->getBaselineDistance = (Ring2_Real32(*)(Machine_Font*)) & Machine_Fonts_Font_getBaselineDistance;
-  ((Machine_Font_Class*)self)->getCodePointInfo = (Ring2_Boolean(*)(Machine_Font*, uint32_t codepoint, Ring3_Math_Rectangle2* bounds, Ring3_Math_Vector2f32* advance, Ring3_Texture * *texture)) & Machine_Fonts_Font_getCodePointInfo;
-  ((Machine_Font_Class*)self)->getVideoBinding = (Machine_Binding * (*)(Machine_Font*)) & Machine_Fonts_Font_getVideoBinding;
-  ((Machine_Font_Class*)self)->getVideoBuffer = (Ring3_GpuBuffer * (*)(Machine_Font*)) & Machine_Fonts_Font_getVideoBuffer;
-  ((Machine_Font_Class*)self)->getVideoShaderProgram = (Machine_ShaderProgram * (*)(Machine_Font*)) & Machine_Fonts_Font_getVideoShaderProgram;
+  ((Ring3_Font_Class*)self)->getBaselineDistance = (Ring2_Real32(*)(Ring3_Font*)) & Machine_Fonts_Font_getBaselineDistance;
+  ((Ring3_Font_Class*)self)->getCodePointInfo = (Ring2_Boolean(*)(Ring3_Font*, uint32_t codepoint, Ring3_Math_Rectangle2* bounds, Ring3_Math_Vector2f32* advance, Ring3_Texture * *texture)) & Machine_Fonts_Font_getCodePointInfo;
+  ((Ring3_Font_Class*)self)->getVideoBinding = (Ring3_Binding * (*)(Ring3_Font*)) & Machine_Fonts_Font_getVideoBinding;
+  ((Ring3_Font_Class*)self)->getVideoBuffer = (Ring3_GpuBuffer * (*)(Ring3_Font*)) & Machine_Fonts_Font_getVideoBuffer;
+  ((Ring3_Font_Class*)self)->getVideoShaderProgram = (Ring3_GpuProgram * (*)(Ring3_Font*)) & Machine_Fonts_Font_getVideoShaderProgram;
 }
 
 static void Machine_Fonts_Font_visit(Machine_Fonts_Font* self) {
@@ -230,10 +230,10 @@ static void Machine_Fonts_Font_destruct(Machine_Fonts_Font* self) {
 }
 
 void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArguments, Ring2_Value const *arguments) {
-  Machine_Font_construct((Machine_Font*)self, numberOfArguments, arguments);
-  Ring2_String *path = Machine_Extensions_getStringArgument(numberOfArguments, arguments, 1);
-  Ring2_Integer pointSize = Machine_Extensions_getIntegerArgument(numberOfArguments, arguments, 2);
-  Machine_Fonts_FontsContext* fontsContext = (Machine_Fonts_FontsContext *)Machine_Extensions_getObjectArgument(numberOfArguments, arguments, 0, Machine_Fonts_FontsContext_getType());
+  Ring3_Font_construct((Ring3_Font*)self, numberOfArguments, arguments);
+  Ring2_String *path = Ring2_CallArguments_getStringArgument(numberOfArguments, arguments, 1);
+  Ring2_Integer pointSize = Ring2_CallArguments_getIntegerArgument(numberOfArguments, arguments, 2);
+  Machine_Fonts_FontsContext* fontsContext = (Machine_Fonts_FontsContext*)Ring2_CallArguments_getObjectArgument(numberOfArguments, arguments, 0, Machine_Fonts_FontsContext_getType());
   if (pointSize < 0 || pointSize > INT_MAX) {
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();
@@ -276,16 +276,20 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
   Ring2_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
     self->map = Map_create();
-    self->vertices = Machine_VideoContext_createBuffer(fontsContext->videoContext);
-    self->shader = Machine_VideoContext_generateText2Shader(fontsContext->videoContext, true);
+    self->vertices = Ring3_VisualsContext_createBuffer(fontsContext->videoContext);
+    self->shader = Ring3_VisualsContext_generateText2Shader(fontsContext->videoContext, true);
 
     Ring3_VertexDescriptor* vertexDescriptor = Ring3_VertexDescriptor_create();
     Ring3_VertexDescriptor_append(vertexDescriptor, Ring3_VertexElementSemantics_XfYf);
     Ring3_VertexDescriptor_append(vertexDescriptor, Ring3_VertexElementSemantics_UfVf);
 
-    self->binding = Machine_VideoContext_createBinding(fontsContext->videoContext, self->shader, vertexDescriptor, self->vertices);
-    Machine_Binding_setVariableBinding(self->binding, Ring2_String_create("vertex_position", crt_strlen("vertex_position") + 1), 0);
-    Machine_Binding_setVariableBinding(self->binding, Ring2_String_create("vertex_texture_coordinate_1", crt_strlen("vertex_texture_coordinate_1") + 1), 1);
+    self->binding = Ring3_VisualsContext_createBinding(fontsContext->videoContext, self->shader, vertexDescriptor, self->vertices);
+    Ring3_Binding_setVariableBinding(self->binding, Ring2_String_fromC(true, "vertexPosition"),
+                                                    Ring3_GpuProgramLocationType_Vector2Variable,
+                                                    0);
+    Ring3_Binding_setVariableBinding(self->binding, Ring2_String_fromC(true, "vertexTextureCoordinate1"),
+                                                    Ring3_GpuProgramLocationType_Vector2Variable,
+                                                    1);
 
     Ring2_popJumpTarget();
   } else {
@@ -370,7 +374,7 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
       Ring3_Image* image = Ring3_ImagesContext_createDirect(
           fontsContext->imageContext, Ring3_PixelFormat_GRAYSCALE,
           self->face->glyph->bitmap.width, self->face->glyph->bitmap.rows, temporary);
-      Ring3_Texture* texture = Machine_VideoContext_createTextureFromImage(fontsContext->videoContext, image);
+      Ring3_Texture* texture = Ring3_VisualsContext_createTextureFromImage(fontsContext->videoContext, image);
       Map_set(self->map, codepoint,
               self->face->glyph->bitmap_left, self->face->glyph->bitmap_top,
               self->face->glyph->bitmap.width, self->face->glyph->bitmap.rows,
@@ -390,11 +394,15 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
   Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Fonts_Font_getType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Fonts_Font, Machine_Font, &Machine_Fonts_Font_visit,
-                         &Machine_Fonts_Font_construct, &Machine_Fonts_Font_destruct,
-                         &Machine_Fonts_Font_constructClass, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_Fonts_Font,
+                         Ring3_Font,
+                         &Machine_Fonts_Font_visit,
+                         &Machine_Fonts_Font_construct,
+                         &Machine_Fonts_Font_destruct,
+                         &Machine_Fonts_Font_constructClass,
+                         NULL)
 
-Machine_Fonts_Font* Machine_Fonts_Font_create(Machine_FontsContext* fontsContext, Ring2_String *path, Ring2_Integer pointSize) {
+Machine_Fonts_Font* Machine_Fonts_Font_create(Ring3_FontsContext* fontsContext, Ring2_String *path, Ring2_Integer pointSize) {
   Machine_ClassType* ty = Machine_Fonts_Font_getType();
   size_t numberOfArguments = 3;
   Ring2_Value arguments[3];

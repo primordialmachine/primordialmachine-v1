@@ -43,9 +43,6 @@
     <ProjectReference Include="..\images\machine-mk1-images.vcxproj">
       <Project>{f0b732b5-824d-40ab-aa0a-a067b6a852f9}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\video\machine-mk1-video.vcxproj">
-      <Project>{ea697f45-b77e-4384-8bf1-6001586e058c}</Project>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Font.h" />
