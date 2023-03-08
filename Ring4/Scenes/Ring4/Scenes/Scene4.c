@@ -68,7 +68,7 @@ static void Scene4_onStartup(Scene4* self) {
   Ring3_FontsContext* fontsContext = Scene_getFontsContext((Scene*)self);
   //
   self->guiContext = Machine_Gui_Context_create(Machine_Gdl_Context_create(),
-                                                Ring3_Context2_create(visualsContext, imagesContext, fontsContext));
+                                                Ring3_Graphics2_Context_create(visualsContext, imagesContext, fontsContext));
   //
   self->font = Ring3_FontsContext_createFont(fontsContext, Ring2_String_fromC(false, FONT_FILE), FONT_SIZE);
   //
@@ -136,15 +136,15 @@ static void updateText3(Scene4* self, Ring2_Real32 width, Ring2_Real32 height) {
   Ring3_Math_Vector2f32* SIZE = Ring3_Math_Vector2f32_create();
   Ring3_Math_Vector2f32_set(SIZE, 64, 64);
 
-  Machine_Gui_Widget_setSize((Machine_Gui_Widget*)self->textNode1, SIZE);
+  Ring3_Gui_Widget_setSize((Ring3_Gui_Widget*)self->textNode1, SIZE);
   const Ring3_Math_Rectangle2* bounds
-      = Machine_Gui_Widget_getRectangle((Machine_Gui_Widget*)self->textNode1);
+      = Ring3_Gui_Widget_getRectangle((Ring3_Gui_Widget*)self->textNode1);
   const Ring3_Math_Vector2f32* leftTop = Ring3_Math_Rectangle2_getPosition(bounds);
   Ring3_Math_Vector2f32* delta = Ring3_Math_Vector2f32_difference(MARGIN, leftTop);
   const Ring3_Math_Vector2f32* oldPosition
-      = Machine_Gui_Widget_getPosition((Machine_Gui_Widget*)self->textNode1);
+      = Ring3_Gui_Widget_getPosition((Ring3_Gui_Widget*)self->textNode1);
   const Ring3_Math_Vector2f32* newPosition = Ring3_Math_Vector2f32_sum(oldPosition, delta);
-  Machine_Gui_Widget_setPosition((Machine_Gui_Widget*)self->textNode1, newPosition);
+  Ring3_Gui_Widget_setPosition((Ring3_Gui_Widget*)self->textNode1, newPosition);
 }
 
 static void Scene4_onCanvasSizeChanged(Scene4* self, Ring3_CanvasSizeChangedEvent* event) {
@@ -162,12 +162,12 @@ static void Scene4_onUpdate(Scene4* self, Ring2_Real32 width, Ring2_Real32 heigh
   Ring3_VisualsContext_setViewportRectangle(visualsContext, 0, 0, width, height);
   Ring3_VisualsContext_clearColorBuffer(visualsContext);
 
-  Ring3_Context2* context2 = Ring3_Context2_create(visualsContext, imagesContext, fontsContext);
-  Ring3_Context2_setTargetSize(context2, width, height);
+  Ring3_Graphics2_Context* context2 = Ring3_Graphics2_Context_create(visualsContext, imagesContext, fontsContext);
+  Ring3_Graphics2_Context_setTargetSize(context2, width, height);
   Ring3_Gui_DefaultRenderContext* defaultRenderContext = Ring3_Gui_DefaultRenderContext_create(context2);
   Machine_Text_Layout_render(self->text1, context2);
   Machine_Text_Layout_render(self->text2, context2);
-  Machine_Gui_Widget_render((Machine_Gui_Widget*)self->textNode1, (Ring3_Gui_RenderContext*)defaultRenderContext);
+  Ring3_Gui_Widget_render((Ring3_Gui_Widget*)self->textNode1, (Ring3_Gui_RenderContext*)defaultRenderContext);
 }
 
 static void Scene4_onShutdown(Scene4* self) {
@@ -199,12 +199,12 @@ Scene4_create
     Ring3_FontsContext* fontsContext
   )
 {
-  Machine_ClassType* ty = Scene4_getType();
+  Machine_Type* ty = Scene4_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 3;
   Ring2_Value ARGUMENTS[3];
-  Ring2_Value_setObject(&(ARGUMENTS[0]), (Machine_Object*)visualsContext);
-  Ring2_Value_setObject(&(ARGUMENTS[1]), (Machine_Object*)imagesContext);
-  Ring2_Value_setObject(&(ARGUMENTS[2]), (Machine_Object*)fontsContext);
-  Scene4* self = (Scene4*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Ring2_Value_setObject(&(ARGUMENTS[0]), Ring1_cast(Machine_Object*,visualsContext));
+  Ring2_Value_setObject(&(ARGUMENTS[1]), Ring1_cast(Machine_Object*,imagesContext));
+  Ring2_Value_setObject(&(ARGUMENTS[2]), Ring1_cast(Machine_Object*,fontsContext));
+  Scene4* self = Ring1_cast(Scene4*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS));
   return self;
 }

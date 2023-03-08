@@ -1,4 +1,4 @@
-#include "Ring4/Scenes/Scene5.h"
+#include "Ring4/Scenes/MainScreen.h"
 
 
 #include "Ring1/All/_Include.h"
@@ -35,14 +35,18 @@ struct Scene5 {
   Scene __parent;
   //
   Machine_Gui_Context* guiContext;
+#if Scene5_withMainMenu == 1
   /// @brief The main menu (start game, options, exit, credits).
-  Machine_Gui_Widget* mainMenu;
+  Ring3_Gui_Widget* mainMenu;
+#endif
+#if Scene5_withHeader == 1
   /// @brief Header.
-  Machine_Gui_Widget* header;
+  Ring3_Gui_Widget* header;
+#endif
+#if Scene5_withFooter == 1
   /// @brief Footer.
-  Machine_Gui_Widget* footer;
-  // @brief The group containing the.
-  Machine_Gui_GroupNode* group;
+  Ring3_Gui_Widget* footer;
+#endif
 };
 
 static void
@@ -54,18 +58,21 @@ Scene5_visit
   if (self->guiContext) {
     Ring2_Gc_visit(Ring2_Gc_get(), self->guiContext);
   }
-  if (self->group) {
-    Ring2_Gc_visit(Ring2_Gc_get(), self->group);
-  }
+#if Scene5_withMainMenu == 1
   if (self->mainMenu) {
     Ring2_Gc_visit(Ring2_Gc_get(), self->mainMenu);
   }
+#endif
+#if Scene5_withHeader == 1
   if (self->header) {
     Ring2_Gc_visit(Ring2_Gc_get(), self->header);
   }
+#endif
+#if Scene5_withFooter == 1
   if (self->footer) {
     Ring2_Gc_visit(Ring2_Gc_get(), self->footer);
   }
+#endif
 }
 
 MACHINE_DEFINE_CLASSTYPE(Scene5,
@@ -78,7 +85,7 @@ MACHINE_DEFINE_CLASSTYPE(Scene5,
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-static Machine_Gui_Widget*
+static Ring3_Gui_Widget*
 loadWidget
   (
     Machine_Gui_Context* context,
@@ -91,7 +98,7 @@ loadWidget
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-static Machine_Gui_Widget*
+static Ring3_Gui_Widget*
 loadWidgetByPath
   (
     Machine_Gui_Context* context,
@@ -121,33 +128,26 @@ Scene5_startup
   Ring3_FontsContext* fontsContext = Scene_getFontsContext((Scene*)self);
   //
   self->guiContext = Machine_Gui_Context_create(Machine_Gdl_Context_create(),
-                                                Ring3_Context2_create(visualsContext, imagesContext, fontsContext));
+                                                Ring3_Graphics2_Context_create(visualsContext, imagesContext, fontsContext));
   //
-  self->mainMenu = loadWidgetByPath(self->guiContext, "scenes/scene5/mainMenu.txt");
+#if Scene5_withMainMenu == 1
+  self->mainMenu = loadWidgetByPath(self->guiContext, "Ring4/Scenes/MainScreen/mainMenu.txt");
+#endif
   //
-  self->header = loadWidgetByPath(self->guiContext, "scenes/scene5/header.txt");
+#if Scene5_withHeader == 1
+  self->header = loadWidgetByPath(self->guiContext, "Ring4/Scenes/MainScreen/header.txt");
+#endif
   //
-  self->footer = loadWidgetByPath(self->guiContext, "scenes/scene5/footer.txt");
-  self->group = Machine_Gui_GroupNode_create(self->guiContext);
-  Ring2_Value v;
-  {
-    Ring2_Value_setObject(&v, (Machine_Object*)self->header);
-    Ring2_Collections_List_append((Ring2_Collections_List*)self->group->children, v);
-  }
-  {
-    Ring2_Value_setObject(&v, (Machine_Object*)self->mainMenu);
-    Ring2_Collections_List_append((Ring2_Collections_List*)self->group->children, v);
-  }
-  {
-    Ring2_Value_setObject(&v, (Machine_Object*)self->footer);
-    Ring2_Collections_List_append((Ring2_Collections_List*)self->group->children, v);
-  }
+#if Scene5_withFooter == 1
+  self->footer = loadWidgetByPath(self->guiContext, "Ring4/Scenes/MainScreen/footer.txt");
+#endif
   //
   Ring3_Math_Vector4f32* c = Ring3_Math_Vector4f32_create();
   Ring3_Math_Vector4f32_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
   Ring3_VisualsContext_setClearColor(visualsContext, c);
 }
 
+#if Scene5_withMainMenu == 1
 static void
 updateMainMenu
   (
@@ -157,10 +157,12 @@ updateMainMenu
 {
   Ring3_Math_Vector2f32* v = Ring3_Math_Vector2f32_create();
   Ring3_Math_Vector2f32_set(v, event->width, event->height);
-  Machine_Gui_Widget_setSize((Machine_Gui_Widget*)self->mainMenu, v);
-  Machine_Gui_Widget_layout((Machine_Gui_Widget*)self->mainMenu);
+  Ring3_Gui_Widget_setSize((Ring3_Gui_Widget*)self->mainMenu, v);
+  Ring3_Gui_Widget_layout((Ring3_Gui_Widget*)self->mainMenu);
 }
+#endif
 
+#if Scene5_withHeader == 1
 static void
 updateHeader
   (
@@ -175,7 +177,7 @@ updateHeader
   Ring3_Math_Vector2f32* canvasSize = Ring3_Math_Vector2f32_create();
   Ring3_Math_Vector2f32_set(canvasSize, event->width, event->height);
   // Set the size to the best size.
-  Ring3_Math_Vector2f32 const* preferredSize = Machine_Gui_Widget_getPreferredSize(self->header);
+  Ring3_Math_Vector2f32 const* preferredSize = Ring3_Gui_Widget_getPreferredSize(self->header);
   Ring3_Math_Vector2f32* temporary = Ring3_Math_Vector2f32_create();
   Ring2_Real32 height = Ring3_Math_Vector2f32_getY(canvasSize) * (1.f / 6.f);
   Ring3_Math_Vector2f32_set(temporary,
@@ -183,11 +185,14 @@ updateHeader
                                                   Ring3_Math_Vector2f32_getX(canvasSize))
                             - Ring3_Math_Vector2f32_getX(MARGIN) * 2.f,
                             height);
-  Machine_Gui_Widget_setSize((Machine_Gui_Widget*)self->header, temporary);
+  Ring3_Gui_Widget_setSize((Ring3_Gui_Widget*)self->header, temporary);
   // Set the position to the margins.
-  Machine_Gui_Widget_setPosition((Machine_Gui_Widget*)self->header, MARGIN);
+  Ring3_Gui_Widget_setPosition((Ring3_Gui_Widget*)self->header, MARGIN);
+  Ring3_Gui_Widget_layout((Ring3_Gui_Widget*)self->header);
 }
+#endif
 
+#if Scene5_withFooter == 1
 static void
 updateFooter
   (
@@ -202,63 +207,109 @@ updateFooter
   Ring3_Math_Vector2f32* canvasSize = Ring3_Math_Vector2f32_create();
   Ring3_Math_Vector2f32_set(canvasSize, event->width, event->height);
   // Set the size to the best size.
-  Ring3_Math_Vector2f32 const* preferredSize = Machine_Gui_Widget_getPreferredSize(self->footer);
+  Ring3_Math_Vector2f32 const* preferredSize = Ring3_Gui_Widget_getPreferredSize(self->footer);
   Ring3_Math_Vector2f32* temporary = Ring3_Math_Vector2f32_create();
   Ring2_Real32 height = Ring3_Math_Vector2f32_getY(canvasSize) * (1.f / 6.f);
   Ring3_Math_Vector2f32_set(temporary,
-                            Ring2_Real32_greatest(Ring3_Math_Vector2f32_getX(preferredSize),
+                            Ring2_Real32_greatest(Ring3_Math_Vector2f32_getX(canvasSize),
                                                   Ring3_Math_Vector2f32_getX(canvasSize))
                             - Ring3_Math_Vector2f32_getX(MARGIN) * 2.f,
                             Ring3_Math_Vector2f32_getY(canvasSize) * (1.f / 6.f));
-  Machine_Gui_Widget_setSize((Machine_Gui_Widget*)self->footer, temporary);
+  Ring3_Gui_Widget_setSize((Ring3_Gui_Widget*)self->footer, temporary);
   // Set the position to the margins.
   Ring3_Math_Vector2f32_set(temporary, Ring3_Math_Vector2f32_getX(MARGIN),
                             Ring3_Math_Vector2f32_getY(canvasSize) - height
                             - Ring3_Math_Vector2f32_getY(MARGIN));
-  Machine_Gui_Widget_setPosition((Machine_Gui_Widget*)self->footer, temporary);
+  Ring3_Gui_Widget_setPosition((Ring3_Gui_Widget*)self->footer, temporary);
+  Ring3_Gui_Widget_layout((Ring3_Gui_Widget*)self->footer);
 }
+#endif
 
-static void Scene5_onCanvasSizeChanged(Scene5* self, Ring3_CanvasSizeChangedEvent* event) {
+static void
+Scene5_onCanvasSizeChanged
+  (
+    Scene5* self,
+    Ring3_CanvasSizeChangedEvent* event
+  )
+{
   Machine_Gui_Context_onCanvasSizechanged(self->guiContext, event);
+#if Scene5_withMainMenu == 1
   updateMainMenu(self, event);
+#endif
+#if Scene5_withHeader == 1
   updateHeader(self, event);
+#endif
+#if Scene5_withFooter == 1
   updateFooter(self, event);
+#endif
 }
 
-static void Scene5_update(Scene5* self, Ring2_Real32 width, Ring2_Real32 height) {
+static void
+Scene5_update
+  (
+    Scene5* self,
+    Ring2_Real32 width,
+    Ring2_Real32 height
+  )
+{
   Ring3_VisualsContext* visualsContext = Scene_getVisualsContext((Scene*)self);
 
   // Set the viewport and clear its color buffer.
   Ring3_VisualsContext_setViewportRectangle(visualsContext, 0, 0, width, height);
   Ring3_VisualsContext_clearColorBuffer(visualsContext);
 
-  Ring3_Gui_RenderContext* renderContext = (Ring3_Gui_RenderContext*)Ring3_Gui_DefaultRenderContext_create(self->guiContext->context2);
+  Ring3_Gui_RenderContext* renderContext = (Ring3_Gui_RenderContext*)Ring3_Gui_DefaultRenderContext_create(self->guiContext->graphics2Context);
 
-  Machine_Gui_Widget_render((Machine_Gui_Widget*)self->mainMenu, renderContext);
-  Machine_Gui_Widget_render((Machine_Gui_Widget*)self->header, renderContext);
-  Machine_Gui_Widget_render((Machine_Gui_Widget*)self->footer, renderContext);
+#if Scene5_withMainMenu == 1
+  Ring3_Gui_Widget_render((Ring3_Gui_Widget*)self->mainMenu, renderContext);
+#endif
+#if Scene5_withHeader == 1
+  Ring3_Gui_Widget_render((Ring3_Gui_Widget*)self->header, renderContext);
+#endif
+#if Scene5_withFooter == 1
+  Ring3_Gui_Widget_render((Ring3_Gui_Widget*)self->footer, renderContext);
+#endif
 }
 
-static void Scene5_shutdown(Scene5* self) {
-}
+static void
+Scene5_shutdown
+  (
+    Scene5* self
+  )
+{ }
 
-static void Scene5_constructClass(Scene5_Class* self) {
-  ((Scene_Class*)self)->onCanvasSizeChanged
-      = (Scene_OnCanvaSizeChangedCallback*)&Scene5_onCanvasSizeChanged;
+static void
+Scene5_constructClass
+  (
+    Scene5_Class* self
+  )
+{
+  ((Scene_Class*)self)->onCanvasSizeChanged = (Scene_OnCanvaSizeChangedCallback*)&Scene5_onCanvasSizeChanged;
   ((Scene_Class*)self)->onStartup = (Scene_OnStartupCallback*)&Scene5_startup;
   ((Scene_Class*)self)->onUpdate = (Scene_OnUpdateCallback*)&Scene5_update;
   ((Scene_Class*)self)->onShutdown = (Scene_OnShutdownCallback*)&Scene5_shutdown;
 }
 
-void Scene5_construct(Scene5* self, size_t numberOfArguments, Ring2_Value const* arguments) {
+void 
+Scene5_construct
+  (
+    Scene5* self,
+    size_t numberOfArguments,
+    Ring2_Value const* arguments
+  )
+{
   Scene_construct((Scene*)self, numberOfArguments, arguments);
   Machine_setClassType(Ring1_cast(Machine_Object *, self), Scene5_getType());
 }
 
-void Scene5_destruct(Scene5* self) {
-}
+void
+Scene5_destruct
+  (
+    Scene5* self
+  )
+{ }
 
-Scene5*
+Ring1_NoDiscardReturn() Scene5*
 Scene5_create
   (
     Ring3_VisualsContext* visualsContext,
@@ -266,15 +317,12 @@ Scene5_create
     Ring3_FontsContext* fontsContext
   )
 {
-  Machine_ClassType* ty = Scene5_getType();
+  Machine_Type* ty = Scene5_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 3;
   Ring2_Value ARGUMENTS[3];
-  Ring2_Value_setObject(&(ARGUMENTS[0]), (Machine_Object*)visualsContext);
-  Ring2_Value_setObject(&(ARGUMENTS[1]), (Machine_Object*)imagesContext);
-  Ring2_Value_setObject(&(ARGUMENTS[2]), (Machine_Object*)fontsContext);
-  Scene5* self = (Scene5*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
-  if (!self) {
-    Ring2_jump();
-  }
+  Ring2_Value_setObject(&(ARGUMENTS[0]), Ring1_cast(Machine_Object*,visualsContext));
+  Ring2_Value_setObject(&(ARGUMENTS[1]), Ring1_cast(Machine_Object*,imagesContext));
+  Ring2_Value_setObject(&(ARGUMENTS[2]), Ring1_cast(Machine_Object*,fontsContext));
+  Scene5* self = Ring1_cast(Scene5*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS));
   return self;
 }

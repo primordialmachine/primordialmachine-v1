@@ -37,7 +37,7 @@ struct LayoutScene {
   Scene __parent;
 
   // The 2D context.
-  Ring3_Context2* context2;
+  Ring3_Graphics2_Context* context2;
   // The font.
   Ring3_Font* font;
   /// @brief Text layout #1.
@@ -69,7 +69,7 @@ static void LayoutScene_onStartup(LayoutScene* self) {
   Ring3_ImagesContext* imagesContext = Scene_getImagesContext((Scene*)self);
   Ring3_FontsContext* fontsContext = Scene_getFontsContext((Scene*)self);
   //
-  self->context2 = Ring3_Context2_create(visualsContext, imagesContext, fontsContext);
+  self->context2 = Ring3_Graphics2_Context_create(visualsContext, imagesContext, fontsContext);
   //
   self->font = Ring3_FontsContext_createFont(fontsContext,
                                              Ring2_String_fromC(false, FONT_FILE),
@@ -119,11 +119,16 @@ static void alignCenter(Machine_Text_Layout* layout, Ring2_Real32 width, Ring2_R
   Machine_Text_Layout_setPosition(layout, newPosition);
 }
 
-static void LayoutScene_onCanvasSizeChanged(LayoutScene* self,
-                                            Ring3_CanvasSizeChangedEvent* event) {
+static void
+LayoutScene_onCanvasSizeChanged
+  (
+    LayoutScene* self,
+    Ring3_CanvasSizeChangedEvent* event
+  )
+{
   Ring3_VisualsContext* visualsContext = Scene_getVisualsContext((Scene*)self);
   // Set the 2D context's target size.
-  Ring3_Context2_setTargetSize(self->context2, event->width, event->height);
+  Ring3_Graphics2_Context_setTargetSize(self->context2, event->width, event->height);
   // Set the viewport rectangle.
   Ring3_VisualsContext_setViewportRectangle(visualsContext, 0, 0, event->width, event->height);
   alignCenter(self->textLayout1, event->width, event->height);
@@ -138,8 +143,8 @@ static void LayoutScene_onUpdate(LayoutScene* self, Ring2_Real32 width, Ring2_Re
   Ring3_VisualsContext_setViewportRectangle(visualsContext, 0, 0, width, height);
   Ring3_VisualsContext_clearColorBuffer(visualsContext);
 
-  Ring3_Context2* context2 = Ring3_Context2_create(visualsContext, imagesContext, fontsContext);
-  Ring3_Context2_setTargetSize(context2, width, height);
+  Ring3_Graphics2_Context* context2 = Ring3_Graphics2_Context_create(visualsContext, imagesContext, fontsContext);
+  Ring3_Graphics2_Context_setTargetSize(context2, width, height);
   Machine_Text_Layout_render(self->textLayout1, context2);
   Machine_Text_Layout_render(self->textLayout2, context2);
 }
@@ -180,15 +185,12 @@ LayoutScene_create
     Ring3_FontsContext* fontsContext
   )
 {
-  Machine_ClassType* ty = LayoutScene_getType();
+  Machine_Type* ty = LayoutScene_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 3;
-  Ring2_Value ARGUMENTS[3];
-  Ring2_Value_setObject(&(ARGUMENTS[0]), (Machine_Object*)videoContext);
-  Ring2_Value_setObject(&(ARGUMENTS[1]), (Machine_Object*)imagesContext);
-  Ring2_Value_setObject(&(ARGUMENTS[2]), (Machine_Object*)fontsContext);
-  LayoutScene* self = (LayoutScene*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
-  if (!self) {
-    Ring2_jump();
-  }
+  Ring2_Value arguments[3];
+  Ring2_Value_setObject(&(arguments[0]), Ring1_cast(Machine_Object*,videoContext));
+  Ring2_Value_setObject(&(arguments[1]), Ring1_cast(Machine_Object*,imagesContext));
+  Ring2_Value_setObject(&(arguments[2]), Ring1_cast(Machine_Object*,fontsContext));
+  LayoutScene* self = Ring1_cast(LayoutScene*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
   return self;
 }

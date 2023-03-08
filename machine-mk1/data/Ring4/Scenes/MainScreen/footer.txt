@@ -1,0 +1,38 @@
+{
+  kind : 'Group',
+  layout : {
+    direction : 'row',
+    justification : 'center',
+    interspacing : 5,
+  },
+  children: [
+    {
+      kind : 'Border',
+      name : 'Footer',
+      borderWidth : 4,
+      child : {
+        kind : 'Border',
+        borderWidth : 16,
+        borderColor: [1, 1, 1],
+        child : {
+          kind : 'Text',
+          text : 'Primordial Machine\nVersion 0.0.1'
+        }
+      }
+    },
+    {
+      kind : 'Border',
+      name : 'Footer',
+      borderWidth : 4,
+      child : {
+        kind : 'Border',
+        borderWidth : 16,
+        borderColor: [1, 1, 1],
+        child : {
+          kind : 'Text',
+          text : 'Copyright 2020-2023 Michael Heilmann.\nAll rights reserved.'
+        }
+      }
+    }
+  ]
+}

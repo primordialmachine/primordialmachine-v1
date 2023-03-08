@@ -19,14 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ring4\Scenes\Graphics2\Rectangles1.h" />
+    <ClInclude Include="Ring4\Scenes\Gui\Layout1.h" />
     <ClInclude Include="Ring4\Scenes\LayoutScene.h" />
-    <ClInclude Include="Ring4\Scenes\Rectangle2Scene.h" />
     <ClInclude Include="Ring4\Scenes\Scene.h" />
     <ClInclude Include="Ring4\Scenes\Scene1.h" />
     <ClInclude Include="Ring4\Scenes\Scene2.h" />
     <ClInclude Include="Ring4\Scenes\Scene3.h" />
     <ClInclude Include="Ring4\Scenes\Scene4.h" />
-    <ClInclude Include="Ring4\Scenes\Scene5.h" />
+    <ClInclude Include="Ring4\Scenes\MainScreen.h" />
     <ClInclude Include="Ring4\Scenes\_Include.h" />
   </ItemGroup>
   <ItemGroup>
@@ -65,20 +66,21 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Ring4\Scenes\Graphics2\Rectangles1.c" />
+    <ClCompile Include="Ring4\Scenes\Gui\Layout1.c" />
     <ClCompile Include="Ring4\Scenes\LayoutScene.c" />
-    <ClCompile Include="Ring4\Scenes\Rectangle2Scene.c" />
     <ClCompile Include="Ring4\Scenes\Scene.c" />
     <ClCompile Include="Ring4\Scenes\Scene1.c" />
     <ClCompile Include="Ring4\Scenes\Scene2.c" />
     <ClCompile Include="Ring4\Scenes\Scene3.c" />
     <ClCompile Include="Ring4\Scenes\Scene4.c" />
-    <ClCompile Include="Ring4\Scenes\Scene5.c" />
+    <ClCompile Include="Ring4\Scenes\MainScreen.c" />
     <ClCompile Include="Ring4\Scenes\_Include.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{EF05421B-672E-4AC8-B6CE-4C4309742B76}</ProjectGuid>
+    <ProjectGuid>{FF0CDD29-2E2B-437D-B886-0FB704F1CAE2}</ProjectGuid>
     <RootNamespace>
     </RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>

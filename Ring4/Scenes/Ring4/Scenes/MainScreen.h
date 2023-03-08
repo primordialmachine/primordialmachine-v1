@@ -1,7 +1,13 @@
-#if !defined(SCENE5_H_INCLUDED)
-#define SCENE5_H_INCLUDED
+#if !defined(RING4_SCENES_MAINSCREEN_H_INCLUDED)
+#define RING4_SCENES_MAINSCREEN_H_INCLUDED
 
 #include "Scene.h"
+
+#define Scene5_withHeader (1)
+
+#define Scene5_withMainMenu (1)
+
+#define Scene5_withFooter (1)
 
 MACHINE_DECLARE_CLASSTYPE(Scene5)
 
@@ -21,4 +27,4 @@ Scene5_create
     Ring3_FontsContext* fontsContext
   );
 
-#endif // SCENE5_H_INCLUDED
+#endif // RING4_SCENES_MAINSCREEN_H_INCLUDED

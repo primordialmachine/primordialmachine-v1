@@ -6,6 +6,7 @@
 #include "Ring3/Text/_Include.h"
 #include "Ring3/Visuals/_Include.h"
 #include "Ring3/Gui/_Include.h"
+#include "Ring2/Library/_Include.h"
 
 
 static const struct {
@@ -93,8 +94,6 @@ static void Scene3_visit(Scene3* self) {
 
 MACHINE_DEFINE_CLASSTYPE(Scene3, Scene, &Scene3_visit, &Scene3_construct, NULL,
                          &Scene3_constructClass, NULL)
-
-#include "Ring2/Library/_Include.h"
 
 static void Scene3_startup(Scene3* self) {
   Ring3_VisualsContext* visualsContext = Scene_getVisualsContext((Scene*)self);
@@ -196,15 +195,12 @@ Scene3_create
     Ring3_FontsContext* fontsContext
   )
 {
-  Machine_ClassType* ty = Scene3_getType();
+  Machine_Type* ty = Scene3_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 3;
-  Ring2_Value ARGUMENTS[3];
-  Ring2_Value_setObject(&(ARGUMENTS[0]), (Machine_Object*)visualsContext);
-  Ring2_Value_setObject(&(ARGUMENTS[1]), (Machine_Object*)imagesContext);
-  Ring2_Value_setObject(&(ARGUMENTS[2]), (Machine_Object*)fontsContext);
-  Scene3* self = (Scene3*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
-  if (!self) {
-    Ring2_jump();
-  }
+  Ring2_Value arguments[3];
+  Ring2_Value_setObject(&arguments[0], Ring1_cast(Machine_Object*,visualsContext));
+  Ring2_Value_setObject(&arguments[1], Ring1_cast(Machine_Object*,imagesContext));
+  Ring2_Value_setObject(&arguments[2], Ring1_cast(Machine_Object*,fontsContext));
+  Scene3* self = Ring1_cast(Scene3*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
   return self;
 }

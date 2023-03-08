@@ -25,12 +25,21 @@
     <Filter Include="Quelldateien\Ring4\Scenes">
       <UniqueIdentifier>{faede18f-cc51-41de-bf6e-069bb2401551}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring4\Scenes\Graphics2">
+      <UniqueIdentifier>{74862f0a-87dc-479e-aca8-4171e4790bd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring4\Scenes\Graphics2">
+      <UniqueIdentifier>{4f24b0f9-3654-4a9a-8a23-be7603d9e68b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring4\Scenes\Gui">
+      <UniqueIdentifier>{6ada205a-f8a0-43ce-829f-70db6e7d7d0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring4\Scenes\Gui">
+      <UniqueIdentifier>{2464f8ba-ef65-4f2a-a041-319ba52007c6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring4\Scenes\LayoutScene.h">
-      <Filter>Headerdateien\Ring4\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring4\Scenes\Rectangle2Scene.h">
       <Filter>Headerdateien\Ring4\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Ring4\Scenes\Scene.h">
@@ -48,18 +57,21 @@
     <ClInclude Include="Ring4\Scenes\Scene4.h">
       <Filter>Headerdateien\Ring4\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Ring4\Scenes\Scene5.h">
+    <ClInclude Include="Ring4\Scenes\MainScreen.h">
       <Filter>Headerdateien\Ring4\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Ring4\Scenes\_Include.h">
       <Filter>Headerdateien\Ring4\Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="Ring4\Scenes\Graphics2\Rectangles1.h">
+      <Filter>Headerdateien\Ring4\Scenes\Graphics2</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring4\Scenes\Gui\Layout1.h">
+      <Filter>Headerdateien\Ring4\Scenes\Gui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring4\Scenes\LayoutScene.c">
-      <Filter>Quelldateien\Ring4\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring4\Scenes\Rectangle2Scene.c">
       <Filter>Quelldateien\Ring4\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="Ring4\Scenes\Scene.c">
@@ -77,11 +89,17 @@
     <ClCompile Include="Ring4\Scenes\Scene4.c">
       <Filter>Quelldateien\Ring4\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Ring4\Scenes\Scene5.c">
+    <ClCompile Include="Ring4\Scenes\MainScreen.c">
       <Filter>Quelldateien\Ring4\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="Ring4\Scenes\_Include.c">
       <Filter>Quelldateien\Ring4\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring4\Scenes\Graphics2\Rectangles1.c">
+      <Filter>Quelldateien\Ring4\Scenes\Graphics2</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring4\Scenes\Gui\Layout1.c">
+      <Filter>Quelldateien\Ring4\Scenes\Gui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

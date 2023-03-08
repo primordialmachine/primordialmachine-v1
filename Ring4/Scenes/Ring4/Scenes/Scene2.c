@@ -137,15 +137,12 @@ Scene2_create
     Ring3_FontsContext* fontsContext
   )
 {
-  Machine_ClassType* ty = Scene2_getType();
+  Machine_Type* ty = Scene2_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 3;
   Ring2_Value ARGUMENTS[3];
   Ring2_Value_setObject(&(ARGUMENTS[0]), (Machine_Object*)visualsContext);
   Ring2_Value_setObject(&(ARGUMENTS[1]), (Machine_Object*)imagesContext);
   Ring2_Value_setObject(&(ARGUMENTS[2]), (Machine_Object*)fontsContext);
   Scene2* self = (Scene2*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
-  if (!self) {
-    Ring2_jump();
-  }
   return self;
 }
