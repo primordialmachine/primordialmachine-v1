@@ -4,6 +4,10 @@
 
 #define RING3_GUI_PRIVATE (1)
 #include "Ring3/Gui/ArrayWidgetList.h"
+
+#include "Ring3/Gui/Layout/Layouter.h"
+#include "Ring3/Gui/LayoutModel.h"
+#include "Ring3/Gui/Widget.h"
 #undef RING3_GUI_PRIVATE
 
 
@@ -35,7 +39,7 @@ Machine_Gui_ArrayWidgetList_constructClass
   )
 {/*Intentionally empty.*/}
 
-static int64_t
+static Ring1_NoDiscardReturn() int64_t
 Machine_Gui_ArrayWidgetList_getSizeImpl
   (
     Machine_Gui_ArrayWidgetList const* self
@@ -137,15 +141,54 @@ Machine_Gui_ArrayWidgetList_translateImpl
     Ring3_Math_Vector2f32 const* t
   )
 {
-  for (size_t i = 0, n = Ring2_Collections_Collection_getSize((Ring2_Collections_Collection *)self); i < n; ++i) {
-    Ring2_Value temporary = Ring2_Collections_List_getAt((Ring2_Collections_List *)self, i);
-    Machine_Gui_Widget* widget = (Machine_Gui_Widget*)Ring2_Value_getObject(&temporary);
-    // @todo
-    // Add and utilize
-    // Machine_Gui_Widget_translate(Machine_Gui_Widget*, Ring3_Math_Vector2f32 const*).
-    Ring3_Math_Vector2f32 const* oldPosition = Machine_Gui_Widget_getPosition(widget);
-    Ring3_Math_Vector2f32* newPosition = Ring3_Math_Vector2f32_sum(oldPosition, t);
-    Machine_Gui_Widget_setPosition(widget, newPosition);
+  for (int64_t i = 0, n = Ring2_Collections_Collection_getSize((Ring2_Collections_Collection *)self); i < n; ++i) {
+    Ring2_Value widgetValue = Ring2_Collections_List_getAt((Ring2_Collections_List *)self, i);
+    Ring3_Gui_Widget* widget = (Ring3_Gui_Widget*)Ring2_Value_getObject(&widgetValue);
+    Ring3_Gui_Widget_translate((Ring3_Gui_Widget*)widget, t);
+  }
+}
+
+static void
+Machine_Gui_ArrayWidgetList_centerHorizontallyImpl
+  (
+    Machine_Gui_ArrayWidgetList* self,
+    Ring2_Real32 x
+  )
+{
+  Ring3_Math_Vector2f32* delta = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32* newPosition = Ring3_Math_Vector2f32_create();
+  for (int64_t i = 0, n = Ring2_Collections_Collection_getSize((Ring2_Collections_Collection*)self); i < n; ++i) {
+    Ring2_Value temporary = Ring2_Collections_List_getAt((Ring2_Collections_List*)self, i);
+    Ring3_Gui_Widget* widget = (Ring3_Gui_Widget*)Ring2_Value_getObject(&temporary);
+    Ring3_Math_Rectangle2 const* bounds = Ring3_Gui_Widget_getRectangle((Ring3_Gui_Widget const*)widget);
+    Ring2_Real32 cx = Ring3_Math_Vector2f32_getX(Ring3_Math_Rectangle2_getCenter(bounds));
+    Ring2_Real32 dx = x - cx;
+    Ring3_Math_Vector2f32 const* oldPosition = Ring3_Gui_Widget_getPosition((Ring3_Gui_Widget const*)widget);
+    Ring3_Math_Vector2f32_set(delta, dx, 0.f);
+    Ring3_Math_Vector2f32_add(oldPosition, delta, newPosition);
+    Ring3_Gui_Widget_setPosition((Ring3_Gui_Widget*)widget, newPosition);
+  }
+}
+
+static void
+Machine_Gui_ArrayWidgetList_centerVerticallyImpl
+  (
+    Machine_Gui_ArrayWidgetList* self,
+    Ring2_Real32 y
+  )
+{
+  Ring3_Math_Vector2f32* delta = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32* newPosition = Ring3_Math_Vector2f32_create();
+  for (int64_t i = 0, n = Ring2_Collections_Collection_getSize((Ring2_Collections_Collection*)self); i < n; ++i) {
+    Ring2_Value temporary = Ring2_Collections_List_getAt((Ring2_Collections_List*)self, i);
+    Ring3_Gui_Widget* widget = (Ring3_Gui_Widget*)Ring2_Value_getObject(&temporary);
+    Ring3_Math_Rectangle2 const* bounds = Ring3_Gui_Widget_getRectangle((Ring3_Gui_Widget const*)widget);
+    Ring2_Real32 cy = Ring3_Math_Vector2f32_getY(Ring3_Math_Rectangle2_getCenter(bounds));
+    Ring2_Real32 dy = y - cy;
+    Ring3_Math_Vector2f32 const* oldPosition = Ring3_Gui_Widget_getPosition((Ring3_Gui_Widget const*)widget);
+    Ring3_Math_Vector2f32_set(delta, 0.f, dy);
+    Ring3_Math_Vector2f32_add(oldPosition, delta, newPosition);
+    Ring3_Gui_Widget_setPosition((Ring3_Gui_Widget*)widget, newPosition);
   }
 }
 
@@ -156,6 +199,8 @@ Machine_Gui_ArrayWidgetList_implement_Ring3_Gui_WidgetList
   )
 {
   self->translate = (void (*)(Ring3_Gui_WidgetList*, Ring3_Math_Vector2f32 const*)) & Machine_Gui_ArrayWidgetList_translateImpl;
+  self->centerHorizontally = (void (*)(Ring3_Gui_WidgetList*, Ring2_Real32)) &Machine_Gui_ArrayWidgetList_centerHorizontallyImpl;
+  self->centerVertically = (void (*)(Ring3_Gui_WidgetList*, Ring2_Real32)) &Machine_Gui_ArrayWidgetList_centerVerticallyImpl;
 }
 
 static void
@@ -210,32 +255,9 @@ Machine_Gui_ArrayWidgetList_create
   (
   )
 {
-  Machine_ClassType* ty = Machine_Gui_ArrayWidgetList_getType();
+  Machine_Type* ty = Machine_Gui_ArrayWidgetList_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
   static Ring2_Value const ARGUMENTS[] = { Ring2_Value_StaticInitializerVoid() };
-  Machine_Gui_ArrayWidgetList* self = (Machine_Gui_ArrayWidgetList*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Machine_Gui_ArrayWidgetList* self = Ring1_cast(Machine_Gui_ArrayWidgetList*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS));
   return self;
-}
-
-Ring1_NoDiscardReturn() Machine_Gui_Widget*
-Machine_Gui_ArrayWidgetList_getAt
-  (
-    Machine_Gui_ArrayWidgetList const* self,
-    int64_t index
-  )
-{
-  Ring2_Value t = Ring2_Collections_List_getAt(Ring1_cast(Ring2_Collections_List*, self->backing), index);
-  return Ring1_cast(Machine_Gui_Widget *, Ring2_Value_getObject(&t));
-}
-
-void
-Machine_Gui_ArrayWidgetList_append
-  (
-    Machine_Gui_ArrayWidgetList* self,
-    Machine_Gui_Widget* widget
-  )
-{
-  Ring2_Value t;
-  Ring2_Value_setObject(&t, Ring1_cast(Machine_Object *, widget));
-  Ring2_Collections_List_append(Ring1_cast(Ring2_Collections_List *, self->backing), t);
 }

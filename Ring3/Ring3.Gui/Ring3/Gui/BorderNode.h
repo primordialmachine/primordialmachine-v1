@@ -8,7 +8,7 @@
 #if !defined(RING3_GUI_PRIVATE)
 #error("Do not include `Ring3/Gui/BorderNode.h` directly, include `Ring3/Gui/_Include.h` instead.")
 #endif
-#include "Ring3/Gui/Widget.h"
+#include "Ring3/Gui/WidgetBase.h"
 
 /// @brief A border node.
 /// Surrounds a widget with a border.
@@ -29,7 +29,7 @@ Machine_Gui_BorderNode_create
 /// @brief Get the child.
 /// @param self This border node.
 /// @return A pointer to the child if any, a null pointer otherwise.
-Ring1_NoDiscardReturn() Machine_Gui_Widget*
+Ring1_NoDiscardReturn() Ring3_Gui_Widget*
 Machine_Gui_BorderNode_getChild
   (
     Machine_Gui_BorderNode* self
@@ -42,7 +42,7 @@ void
 Machine_Gui_BorderNode_setChild
   (
     Machine_Gui_BorderNode* self,
-    Machine_Gui_Widget* child
+    Ring3_Gui_Widget* child
   );
 
 /// @brief Get the color of this border.

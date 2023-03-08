@@ -33,38 +33,23 @@ struct Ring4_Scenes_Gui_Layout1_Class {
 
 typedef Ring2_Integer Ring4_Scenes_Gui_Layout1_Mode;
 #define Ring4_Scenes_Gui_Layout1_Mode_DirectionColumn (0)
-#define Ring4_Scenes_Gui_Layout1_Mode_DirectionRow (1)
+#define Ring4_Scenes_Gui_Layout1_Mode_DirectionColumnReverse (1)
+#define Ring4_Scenes_Gui_Layout1_Mode_DirectionRow (2)
+#define Ring4_Scenes_Gui_Layout1_Mode_DirectionRowReverse (3)
+#define Ring4_Scenes_Gui_Layout1_Mode_NumberOFElements (4)
 
 struct Ring4_Scenes_Gui_Layout1 {
   Scene __parent;
   //
   Machine_Gui_Context* guiContext;
-  Machine_Gui_Widget* help;
+  /// @brief The display mode.
   Ring4_Scenes_Gui_Layout1_Mode mode;
-#if Ring4_Scenes_Gui_Layout1_withDirectionColumnJustificationCenter == 1
-  /// @brief Direction column. Justification center.
-  Machine_Gui_Widget* directionColumnJustificationCenter;
-#endif
-#if Ring4_Scenes_Gui_Layout1_withDirectionRowJustificationCenter == 1
-  /// @brief Direction row. Justification center.
-  Machine_Gui_Widget* directionRowJustificationCenter;
-#endif
-#if Ring4_Scenes_Gui_Layout1_withDirectionColumnJustificationStart == 1
-  /// @brief Direction column. Justification start.
-  Machine_Gui_Widget* directionColumnJustificationStart;
-#endif
-#if Ring4_Scenes_Gui_Layout1_withDirectionRowJustificationStart == 1
-  /// @brief Direction row. Justification start.
-  Machine_Gui_Widget* directionRowJustificationStart;
-#endif
-#if Ring4_Scenes_Gui_Layout1_withDirectionColumnJustificationEnd == 1
-  /// @brief Direction column. Justification end.
-  Machine_Gui_Widget* directionColumnJustificationEnd;
-#endif
-#if Ring4_Scenes_Gui_Layout1_withDirectionRowJustificationEnd == 1
-  /// @brief Direction row. Justification end.
-  Machine_Gui_Widget* directionRowJustificationEnd;
-#endif
+  /// @brief The controls.
+  Ring3_Gui_Widget* controls;
+  /// @brief The help on the controls.
+  Ring3_Gui_Widget* help;
+  /// @brief The display of the layout.
+  Ring3_Gui_Widget* display;
 };
 
 static void
@@ -76,39 +61,15 @@ Ring4_Scenes_Gui_Layout1_visit
   if (self->guiContext) {
     Ring2_Gc_visit(Ring2_Gc_get(), self->guiContext);
   }
+  if (self->controls) {
+    Ring2_Gc_visit(Ring2_Gc_get(), self->controls);
+  }
   if (self->help) {
     Ring2_Gc_visit(Ring2_Gc_get(), self->help);
   }
-#if Ring4_Scenes_Gui_Layout1_withDirectionColumnJustificationCenter == 1
-  if (self->directionColumnJustificationCenter) {
-    Ring2_Gc_visit(Ring2_Gc_get(), self->directionColumnJustificationCenter);
+  if (self->display) {
+    Ring2_Gc_visit(Ring2_Gc_get(), self->display);
   }
-#endif
-#if Ring4_Scenes_Gui_Layout1_withDirectionRowJustificationCenter == 1
-  if (self->directionRowJustificationCenter) {
-    Ring2_Gc_visit(Ring2_Gc_get(), self->directionRowJustificationCenter);
-  }
-#endif
-#if Ring4_Scenes_Gui_Layout1_withDirectionColumnJustificationStart == 1
-  if (self->directionColumnJustificationStart) {
-    Ring2_Gc_visit(Ring2_Gc_get(), self->directionColumnJustificationStart);
-  }
-#endif
-#if Ring4_Scenes_Gui_Layout1_withDirectionRowJustificationStart == 1
-  if (self->directionRowJustificationStart) {
-    Ring2_Gc_visit(Ring2_Gc_get(), self->directionRowJustificationStart);
-  }
-#endif
-#if Ring4_Scenes_Gui_Layout1_withDirectionColumnJustificationEnd == 1
-  if (self->directionColumnJustificationEnd) {
-    Ring2_Gc_visit(Ring2_Gc_get(), self->directionColumnJustificationEnd);
-  }
-#endif
-#if Ring4_Scenes_Gui_Layout1_withDirectionRowJustificationEnd == 1
-  if (self->directionRowJustificationEnd) {
-    Ring2_Gc_visit(Ring2_Gc_get(), self->directionRowJustificationEnd);
-  }
-#endif
 }
 
 MACHINE_DEFINE_CLASSTYPE(Ring4_Scenes_Gui_Layout1,
@@ -121,7 +82,7 @@ MACHINE_DEFINE_CLASSTYPE(Ring4_Scenes_Gui_Layout1,
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-static Machine_Gui_Widget*
+static Ring3_Gui_Widget*
 loadWidget
   (
     Machine_Gui_Context* context,
@@ -134,7 +95,7 @@ loadWidget
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-static Machine_Gui_Widget*
+static Ring3_Gui_Widget*
 loadWidgetByPath
   (
     Machine_Gui_Context* context,
@@ -154,6 +115,37 @@ loadWidgetByPath
 }
 
 static void
+onModeChanged
+  (
+    Ring4_Scenes_Gui_Layout1* self
+  )
+{
+  Machine_Gui_LayoutModel* lm = Machine_Gui_GroupNode_getLayoutModel((Machine_Gui_GroupNode*)self->display);
+  switch (self->mode) {
+  case Ring4_Scenes_Gui_Layout1_Mode_DirectionColumn: {
+    Machine_Gui_LayoutModel_setPrimaryDirection(lm, Ring3_Gui_Layout_Direction_Column);
+    Ring3_Gui_Widget_layout((Ring3_Gui_Widget*)self->display);
+  } break;
+  case Ring4_Scenes_Gui_Layout1_Mode_DirectionRow: {
+    Machine_Gui_LayoutModel_setPrimaryDirection(lm, Ring3_Gui_Layout_Direction_Row);
+    Ring3_Gui_Widget_layout((Ring3_Gui_Widget*)self->display);
+  } break;
+  case Ring4_Scenes_Gui_Layout1_Mode_DirectionColumnReverse: {
+    Machine_Gui_LayoutModel_setPrimaryDirection(lm, Ring3_Gui_Layout_Direction_ColumnReverse);
+    Ring3_Gui_Widget_layout((Ring3_Gui_Widget*)self->display);
+  } break;
+  case Ring4_Scenes_Gui_Layout1_Mode_DirectionRowReverse: {
+    Machine_Gui_LayoutModel_setPrimaryDirection(lm, Ring3_Gui_Layout_Direction_RowReverse);
+    Ring3_Gui_Widget_layout((Ring3_Gui_Widget*)self->display);
+  } break;
+  default: {
+      Ring1_Status_set(Ring1_Status_InvalidArgument);
+      Ring2_jump();
+  } break;
+  };
+}
+
+static void
 Ring4_Scenes_Gui_Layout1_startup
   (
     Ring4_Scenes_Gui_Layout1* self
@@ -163,33 +155,16 @@ Ring4_Scenes_Gui_Layout1_startup
   Ring3_ImagesContext* imagesContext = Scene_getImagesContext((Scene*)self);
   Ring3_FontsContext* fontsContext = Scene_getFontsContext((Scene*)self);
   //
-  self->mode = Ring4_Scenes_Gui_Layout1_Mode_DirectionRow;
+  self->mode = Ring4_Scenes_Gui_Layout1_Mode_DirectionColumn;
   //
   self->guiContext = Machine_Gui_Context_create(Machine_Gdl_Context_create(),
                                                 Ring3_Graphics2_Context_create(visualsContext, imagesContext, fontsContext));
   //
+  self->controls = loadWidgetByPath(self->guiContext, "Ring4/Scenes/Gui/Layout1/controls.txt");
   self->help = loadWidgetByPath(self->guiContext, "Ring4/Scenes/Gui/Layout1/help.txt");
   //
-#if Ring4_Scenes_Gui_Layout1_withDirectionColumnJustificationCenter == 1
-  self->directionColumnJustificationCenter = loadWidgetByPath(self->guiContext, "Ring4/Scenes/Gui/Layout1/direction-column-justification-center.txt");
-#endif
-#if Ring4_Scenes_Gui_Layout1_withDirectionRowJustificationCenter == 1
-  self->directionRowJustificationCenter = loadWidgetByPath(self->guiContext, "Ring4/Scenes/Gui/Layout1/direction-row-justification-center.txt");
-#endif
-  //
-#if Ring4_Scenes_Gui_Layout1_withDirectionColumnJustificationStart == 1
-  self->directionColumnJustificationStart = loadWidgetByPath(self->guiContext, "Ring4/Scenes/Gui/Layout1/direction-column-justification-start.txt");
-#endif
-#if Ring4_Scenes_Gui_Layout1_withDirectionRowJustificationStart == 1
-  self->directionRowJustificationStart = loadWidgetByPath(self->guiContext, "Ring4/Scenes/Gui/Layout1/direction-row-justification-start.txt");
-#endif
-  //
-#if Ring4_Scenes_Gui_Layout1_withDirectionColumnJustificationEnd == 1
-  self->directionColumnJustificationEnd = loadWidgetByPath(self->guiContext, "Ring4/Scenes/Gui/Layout1/direction-column-justification-end.txt");
-#endif
-#if Ring4_Scenes_Gui_Layout1_withDirectionRowJustificationEnd == 1
-  self->directionRowJustificationEnd = loadWidgetByPath(self->guiContext, "Ring4/Scenes/Gui/Layout1/direction-row-justification-end.txt");
-#endif
+  self->display = loadWidgetByPath(self->guiContext, "Ring4/Scenes/Gui/Layout1/display.txt");
+  onModeChanged(self);
   //
   Ring3_Math_Vector4f32* c = Ring3_Math_Vector4f32_create();
   Ring3_Math_Vector4f32_set(c, 0.9f, 0.9f, 0.9f, 1.0f);
@@ -197,7 +172,7 @@ Ring4_Scenes_Gui_Layout1_startup
 }
 
 static void
-updateHelp
+onCanvaSizeChangedControls
   (
     Ring4_Scenes_Gui_Layout1* self,
     Ring3_CanvasSizeChangedEvent* event
@@ -211,191 +186,71 @@ updateHelp
 
   Ring3_Math_Rectangle2* r = Ring3_Math_Rectangle2_create();
   Ring3_Math_Rectangle2_setPosition(r, p);
-  Ring3_Math_Rectangle2_setSize(r, Machine_Gui_Widget_getPreferredSize(self->help));
-
-  Ring3_Math_Vector2f32* c = Ring3_Math_Vector2f32_create();
-  Ring3_Math_Vector2f32_set(c, event->width, event->height);
-
-  Ring3_Math_Rectangle2_alignMaxXMaxY(r, c);
-
-  Machine_Gui_Widget_setRectangle((Machine_Gui_Widget*)self->help, r);
-
-  Machine_Gui_Widget_layout((Machine_Gui_Widget*)self->help);
-}
-
-#if Ring4_Scenes_Gui_Layout1_withDirectionColumnJustificationCenter == 1
-static void
-updateDirectionColumnJustificationCenter
-  (
-    Ring4_Scenes_Gui_Layout1* self,
-    Ring3_CanvasSizeChangedEvent* event
-  )
-{
-  Ring3_Math_Vector2f32* s = Ring3_Math_Vector2f32_create();
-  Ring3_Math_Vector2f32_set(s, event->width / 4.f, event->height / 2.f);
-
-  Ring3_Math_Vector2f32* p = Ring3_Math_Vector2f32_create();
-  Ring3_Math_Vector2f32_set(p, 0.f, 0.f);
-  
-  Ring3_Math_Rectangle2* r = Ring3_Math_Rectangle2_create();
-  Ring3_Math_Rectangle2_setPosition(r, p);
-  Ring3_Math_Rectangle2_setSize(r, s);
-
-  Ring3_Math_Vector2f32* c = Ring3_Math_Vector2f32_create();
-  Ring3_Math_Vector2f32_set(c, event->width / 2.f, event->height / 2.f);
-
-  Ring3_Math_Rectangle2_alignCenter(r, c);
-
-  Machine_Gui_Widget_setRectangle((Machine_Gui_Widget*)self->directionColumnJustificationCenter, r);
-
-  Machine_Gui_Widget_layout((Machine_Gui_Widget*)self->directionColumnJustificationCenter);
-}
-#endif
-
-#if Ring4_Scenes_Gui_Layout1_withDirectionRowJustificationCenter == 1
-static void
-updateDirectionRowJustificationCenter
-  (
-    Ring4_Scenes_Gui_Layout1* self,
-    Ring3_CanvasSizeChangedEvent* event
-  )
-{
-  Ring3_Math_Vector2f32* s = Ring3_Math_Vector2f32_create();
-  Ring3_Math_Vector2f32_set(s, event->width / 2.f, event->height / 4.f);
-
-  Ring3_Math_Vector2f32* p = Ring3_Math_Vector2f32_create();
-  Ring3_Math_Vector2f32_set(p, 0.f, 0.f);
-
-  Ring3_Math_Rectangle2* r = Ring3_Math_Rectangle2_create();
-  Ring3_Math_Rectangle2_setPosition(r, p);
-  Ring3_Math_Rectangle2_setSize(r, s);
-
-  Ring3_Math_Vector2f32* c = Ring3_Math_Vector2f32_create();
-  Ring3_Math_Vector2f32_set(c, event->width / 2.f, event->height / 2.f);
-
-  Ring3_Math_Rectangle2_alignCenter(r, c);
-
-  Machine_Gui_Widget_setRectangle((Machine_Gui_Widget*)self->directionRowJustificationCenter, r);
-
-  Machine_Gui_Widget_layout((Machine_Gui_Widget*)self->directionRowJustificationCenter);
-}
-#endif
-
-#if Ring4_Scenes_Gui_Layout1_withDirectionColumnJustificationStart == 1
-static void
-updateDirectionColumnJustificationStart
-  (
-    Ring4_Scenes_Gui_Layout1* self,
-    Ring3_CanvasSizeChangedEvent* event
-  )
-{
-  Ring3_Math_Vector2f32* s = Ring3_Math_Vector2f32_create();
-  Ring3_Math_Vector2f32_set(s, event->width / 4.f, event->height / 2.f);
-
-  Ring3_Math_Vector2f32* p = Ring3_Math_Vector2f32_create();
-  Ring3_Math_Vector2f32_set(p, 0.f, 0.f);
-
-  Ring3_Math_Rectangle2* r = Ring3_Math_Rectangle2_create();
-  Ring3_Math_Rectangle2_setPosition(r, p);
-  Ring3_Math_Rectangle2_setSize(r, s);
-
-  Ring3_Math_Vector2f32* c = Ring3_Math_Vector2f32_create();
-  Ring3_Math_Vector2f32_set(c, 0.f, event->height / 2.f);
-
-  Ring3_Math_Rectangle2_alignMinXCenterY(r, c);
-
-  Machine_Gui_Widget_setRectangle((Machine_Gui_Widget*)self->directionColumnJustificationStart, r);
-
-  Machine_Gui_Widget_layout((Machine_Gui_Widget*)self->directionColumnJustificationStart);
-}
-#endif
-
-#if Ring4_Scenes_Gui_Layout1_withDirectionRowJustificationStart == 1
-static void
-updateDirectionRowJustificationStart
-  (
-    Ring4_Scenes_Gui_Layout1* self,
-    Ring3_CanvasSizeChangedEvent* event
-  )
-{
-  Ring3_Math_Vector2f32* s = Ring3_Math_Vector2f32_create();
-  Ring3_Math_Vector2f32_set(s, event->width / 2.f, event->height / 4.f);
-
-  Ring3_Math_Vector2f32* p = Ring3_Math_Vector2f32_create();
-  Ring3_Math_Vector2f32_set(p, 0.f, 0.f);
-
-  Ring3_Math_Rectangle2* r = Ring3_Math_Rectangle2_create();
-  Ring3_Math_Rectangle2_setPosition(r, p);
-  Ring3_Math_Rectangle2_setSize(r, s);
-
-  Ring3_Math_Vector2f32* c = Ring3_Math_Vector2f32_create();
-  Ring3_Math_Vector2f32_set(c, event->width / 2.f, 0.f);
-
-  Ring3_Math_Rectangle2_alignCenterXMinY(r, c);
-
-  Machine_Gui_Widget_setRectangle((Machine_Gui_Widget*)self->directionRowJustificationStart, r);
-
-  Machine_Gui_Widget_layout((Machine_Gui_Widget*)self->directionRowJustificationStart);
-}
-#endif
-
-#if Ring4_Scenes_Gui_Layout1_withDirectionColumnJustificationEnd == 1
-static void
-updateDirectionColumnJustificationEnd
-  (
-    Ring4_Scenes_Gui_Layout1* self,
-    Ring3_CanvasSizeChangedEvent* event
-  )
-{
-  Ring3_Math_Vector2f32* s = Ring3_Math_Vector2f32_create();
-  Ring3_Math_Vector2f32_set(s, event->width / 4.f, event->height / 2.f);
-
-  Ring3_Math_Vector2f32* p = Ring3_Math_Vector2f32_create();
-  Ring3_Math_Vector2f32_set(p, 0.f, 0.f);
-
-  Ring3_Math_Rectangle2* r = Ring3_Math_Rectangle2_create();
-  Ring3_Math_Rectangle2_setPosition(r, p);
-  Ring3_Math_Rectangle2_setSize(r, s);
-
-  Ring3_Math_Vector2f32* c = Ring3_Math_Vector2f32_create();
-  Ring3_Math_Vector2f32_set(c, event->width, event->height / 2.f);
-
-  Ring3_Math_Rectangle2_alignMaxXCenterY(r, c);
-
-  Machine_Gui_Widget_setRectangle((Machine_Gui_Widget*)self->directionColumnJustificationEnd, r);
-
-  Machine_Gui_Widget_layout((Machine_Gui_Widget*)self->directionColumnJustificationEnd);
-}
-#endif
-
-#if Ring4_Scenes_Gui_Layout1_withDirectionRowJustificationEnd == 1
-static void
-updateDirectionRowJustificationEnd
-  (
-    Ring4_Scenes_Gui_Layout1* self,
-    Ring3_CanvasSizeChangedEvent* event
-  )
-{
-  Ring3_Math_Vector2f32* s = Ring3_Math_Vector2f32_create();
-  Ring3_Math_Vector2f32_set(s, event->width / 2.f, event->height / 4.f);
-
-  Ring3_Math_Vector2f32* p = Ring3_Math_Vector2f32_create();
-  Ring3_Math_Vector2f32_set(p, 0.f, 0.f);
-
-  Ring3_Math_Rectangle2* r = Ring3_Math_Rectangle2_create();
-  Ring3_Math_Rectangle2_setPosition(r, p);
-  Ring3_Math_Rectangle2_setSize(r, s);
+  Ring3_Math_Rectangle2_setSize(r, Ring3_Gui_Widget_getPreferredSize(self->controls));
 
   Ring3_Math_Vector2f32* c = Ring3_Math_Vector2f32_create();
   Ring3_Math_Vector2f32_set(c, event->width / 2.f, event->height);
 
   Ring3_Math_Rectangle2_alignCenterXMaxY(r, c);
 
-  Machine_Gui_Widget_setRectangle((Machine_Gui_Widget*)self->directionRowJustificationEnd, r);
+  Ring3_Gui_Widget_setRectangle((Ring3_Gui_Widget*)self->controls, r);
 
-  Machine_Gui_Widget_layout((Machine_Gui_Widget*)self->directionRowJustificationEnd);
+  Ring3_Gui_Widget_layout((Ring3_Gui_Widget*)self->controls);
 }
-#endif
+
+static void
+onCanvasSizeChangedHelp
+  (
+    Ring4_Scenes_Gui_Layout1* self,
+    Ring3_CanvasSizeChangedEvent* event
+  )
+{
+  Ring3_Math_Vector2f32* s = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(s, event->width / 4.f, event->height / 2.f);
+
+  Ring3_Math_Vector2f32* p = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(p, 0.f, 0.f);
+
+  Ring3_Math_Rectangle2* r = Ring3_Math_Rectangle2_create();
+  Ring3_Math_Rectangle2_setPosition(r, p);
+  Ring3_Math_Rectangle2_setSize(r, Ring3_Gui_Widget_getPreferredSize(self->help));
+
+  Ring3_Math_Vector2f32* c = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(c, event->width, event->height);
+
+  Ring3_Math_Rectangle2_alignMaxXMaxY(r, c);
+
+  Ring3_Gui_Widget_setRectangle((Ring3_Gui_Widget*)self->help, r);
+
+  Ring3_Gui_Widget_layout((Ring3_Gui_Widget*)self->help);
+}
+
+static void
+onCanvasSizeChangedDisplay
+  (
+    Ring4_Scenes_Gui_Layout1* self,
+    Ring3_CanvasSizeChangedEvent* event
+  )
+{
+  Ring3_Math_Vector2f32* s = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(s, event->width / 4.f, event->height / 2.f);
+
+  Ring3_Math_Vector2f32* p = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(p, 0.f, 0.f);
+
+  Ring3_Math_Rectangle2* r = Ring3_Math_Rectangle2_create();
+  Ring3_Math_Rectangle2_setPosition(r, p);
+  Ring3_Math_Rectangle2_setSize(r, s);
+
+  Ring3_Math_Vector2f32* c = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(c, event->width / 2.f, event->height / 2.f);
+
+  Ring3_Math_Rectangle2_alignCenter(r, c);
+
+  Ring3_Gui_Widget_setRectangle((Ring3_Gui_Widget*)self->display, r);
+
+  Ring3_Gui_Widget_layout((Ring3_Gui_Widget*)self->display);
+}
 
 static void
 Ring4_Scenes_Gui_Layout1_onCanvasSizeChanged
@@ -405,25 +260,9 @@ Ring4_Scenes_Gui_Layout1_onCanvasSizeChanged
   )
 {
   Machine_Gui_Context_onCanvasSizechanged(self->guiContext, event);
-  updateHelp(self, event);
-#if Ring4_Scenes_Gui_Layout1_withDirectionColumnJustificationCenter == 1
-  updateDirectionColumnJustificationCenter(self, event);
-#endif
-#if Ring4_Scenes_Gui_Layout1_withDirectionRowJustificationCenter == 1
-  updateDirectionRowJustificationCenter(self, event);
-#endif
-#if Ring4_Scenes_Gui_Layout1_withDirectionColumnJustificationStart == 1
-  updateDirectionColumnJustificationStart(self, event);
-#endif
-#if Ring4_Scenes_Gui_Layout1_withDirectionRowJustificationStart == 1
-  updateDirectionRowJustificationStart(self, event);
-#endif
-#if Ring4_Scenes_Gui_Layout1_withDirectionColumnJustificationEnd == 1
-  updateDirectionColumnJustificationEnd(self, event);
-#endif
-#if Ring4_Scenes_Gui_Layout1_withDirectionRowJustificationEnd == 1
-  updateDirectionRowJustificationEnd(self, event);
-#endif
+  onCanvaSizeChangedControls(self, event);
+  onCanvasSizeChangedHelp(self, event);
+  onCanvasSizeChangedDisplay(self, event);
 }
 
 static void 
@@ -440,39 +279,11 @@ Ring4_Scenes_Gui_Layout1_update
   Ring3_VisualsContext_setViewportRectangle(visualsContext, 0, 0, width, height);
   Ring3_VisualsContext_clearColorBuffer(visualsContext);
 
-  Ring3_Gui_RenderContext* renderContext = (Ring3_Gui_RenderContext*)Ring3_Gui_DefaultRenderContext_create(self->guiContext->context2);
+  Ring3_Gui_RenderContext* renderContext = (Ring3_Gui_RenderContext*)Ring3_Gui_DefaultRenderContext_create(self->guiContext->graphics2Context);
 
-  Machine_Gui_Widget_render(self->help, renderContext);
-#if Ring4_Scenes_Gui_Layout1_withDirectionColumnJustificationCenter == 1
-  if (self->mode == Ring4_Scenes_Gui_Layout1_Mode_DirectionColumn) {
-    Machine_Gui_Widget_render(self->directionColumnJustificationCenter, renderContext);
-  }
-#endif
-#if Ring4_Scenes_Gui_Layout1_withDirectionRowJustificationCenter == 1
-  if (self->mode == Ring4_Scenes_Gui_Layout1_Mode_DirectionRow) {
-    Machine_Gui_Widget_render(self->directionRowJustificationCenter, renderContext);
-  }
-#endif
-#if Ring4_Scenes_Gui_Layout1_withDirectionColumnJustificationStart == 1
-  if (self->mode == Ring4_Scenes_Gui_Layout1_Mode_DirectionColumn) {
-    Machine_Gui_Widget_render(self->directionColumnJustificationStart, renderContext);
-  }
-#endif
-#if Ring4_Scenes_Gui_Layout1_withDirectionRowJustificationStart == 1
-  if (self->mode == Ring4_Scenes_Gui_Layout1_Mode_DirectionRow) {
-    Machine_Gui_Widget_render(self->directionRowJustificationStart, renderContext);
-  }
-#endif
-#if Ring4_Scenes_Gui_Layout1_withDirectionColumnJustificationEnd == 1
-  if (self->mode == Ring4_Scenes_Gui_Layout1_Mode_DirectionColumn) {
-    Machine_Gui_Widget_render(self->directionColumnJustificationEnd, renderContext);
-  }
-#endif
-#if Ring4_Scenes_Gui_Layout1_withDirectionRowJustificationEnd == 1
-  if (self->mode == Ring4_Scenes_Gui_Layout1_Mode_DirectionRow) {
-    Machine_Gui_Widget_render(self->directionRowJustificationEnd, renderContext);
-  }
-#endif
+  Ring3_Gui_Widget_render(self->controls, renderContext);
+  Ring3_Gui_Widget_render(self->help, renderContext);
+  Ring3_Gui_Widget_render(self->display, renderContext);
 }
 
 static void
@@ -490,14 +301,8 @@ Ring4_Scenes_Gui_Layout1_onKeyboardKeyEvent
   )
 {
   if (event->action == Ring3_KeyboardKeyAction_Release && event->key == Ring3_KeyboardKey_F1) {
-    if (self->mode == Ring4_Scenes_Gui_Layout1_Mode_DirectionColumn) {
-      self->mode = Ring4_Scenes_Gui_Layout1_Mode_DirectionRow;
-    } else if (self->mode == Ring4_Scenes_Gui_Layout1_Mode_DirectionRow) {
-      self->mode = Ring4_Scenes_Gui_Layout1_Mode_DirectionColumn;
-    } else {
-      Ring1_Status_set(Ring1_Status_InvalidArgument);
-      Ring2_jump();
-    }
+    self->mode = (self->mode + 1) % Ring4_Scenes_Gui_Layout1_Mode_NumberOFElements;
+    onModeChanged(self);
   }
 }
 

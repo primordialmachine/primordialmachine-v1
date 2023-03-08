@@ -57,10 +57,10 @@ Ring3_Gui_Gdl_Context_create
     Machine_Gdl_Context* context
   )
 {
-  Machine_ClassType* ty = Ring3_Gui_Gdl_Context_getType();
-  static const size_t NUMBER_OF_ARGUMENTS = 1;
-  Ring2_Value ARGUMENTS[1];
-  Ring2_Value_setObject(&ARGUMENTS[0], (Machine_Object*)context);
-  Ring3_Gui_Gdl_Context* self = (Ring3_Gui_Gdl_Context*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Machine_Type* ty = Ring3_Gui_Gdl_Context_getType();
+  static size_t const NUMBER_OF_ARGUMENTS = 1;
+  Ring2_Value arguments[1];
+  Ring2_Value_setObject(&arguments[0], Ring1_cast(Machine_Object*,context));
+  Ring3_Gui_Gdl_Context* self = Ring1_cast(Ring3_Gui_Gdl_Context*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
   return self;
 }

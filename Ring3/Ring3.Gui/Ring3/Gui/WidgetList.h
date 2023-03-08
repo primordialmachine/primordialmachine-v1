@@ -13,6 +13,8 @@ struct Ring3_Gui_WidgetList_Dispatch {
   Machine_InterfaceDispatch parent;
 
   void (*translate)(Ring3_Gui_WidgetList*, Ring3_Math_Vector2f32 const*);
+  void (*centerHorizontally)(Ring3_Gui_WidgetList*, Ring2_Real32 x);
+  void (*centerVertically)(Ring3_Gui_WidgetList*, Ring2_Real32 y);
 };
 
 /// @brief Translate the widgets in this widget list.
@@ -23,6 +25,28 @@ Ring3_Gui_WidgetList_translate
   (
     Ring3_Gui_WidgetList* self,
     Ring3_Math_Vector2f32 const* t
+  );
+
+/// @brief Center the widgets horizontally around the given x-coordinate.
+/// The y-positions of the widgets are not modified.
+/// @param self This widget list.
+/// @param x The x-coordinate.
+void
+Ring3_Gui_WidgetList_centerHorizontally
+  (
+    Ring3_Gui_WidgetList* self,
+    Ring2_Real32 x
+  );
+
+/// @brief Center the widgets vertically around the given y-coordinate.
+/// The x-positions of the widgets are not modified.
+/// @param self This widget list.
+/// @param y The y-coordinate.
+void
+Ring3_Gui_WidgetList_centerVertically
+  (
+    Ring3_Gui_WidgetList* self,
+    Ring2_Real32 y
   );
 
 #endif // RING3_GUI_WIDGETLIST_H_INCLUDED

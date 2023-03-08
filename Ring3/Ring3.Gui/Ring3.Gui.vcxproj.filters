@@ -43,12 +43,18 @@
     <Filter Include="Quelldateien\Ring3\Gui\Signals">
       <UniqueIdentifier>{8f24de1b-25e2-4a33-9dd2-e84b8824531e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring3\Gui\Layout">
+      <UniqueIdentifier>{22e5e50a-3c53-4cf7-b53a-231bddefd0d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring3\Gui\Layout">
+      <UniqueIdentifier>{d5c988c7-2719-4bea-b2ff-a0203a8d52fd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring3\Gui\ArrayWidgetList.c">
       <Filter>Quelldateien\Ring3\Gui</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gui\Widget.c">
+    <ClCompile Include="Ring3\Gui\WidgetBase.c">
       <Filter>Quelldateien\Ring3\Gui</Filter>
     </ClCompile>
     <ClCompile Include="Ring3\Gui\TextNode.c">
@@ -99,12 +105,27 @@
     <ClCompile Include="Ring3\Gui\WidgetList.c">
       <Filter>Quelldateien\Ring3\Gui</Filter>
     </ClCompile>
+    <ClCompile Include="Ring3\Gui\Layout\Direction.c">
+      <Filter>Quelldateien\Ring3\Gui\Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Gui\Layout\Justification.c">
+      <Filter>Quelldateien\Ring3\Gui\Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Gui\Reader\readColor.c">
+      <Filter>Quelldateien\Ring3\Gui\Reader</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Gui\Layout\Layouter.c">
+      <Filter>Quelldateien\Ring3\Gui\Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Gui\Widget.c">
+      <Filter>Quelldateien\Ring3\Gui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring3\Gui\ArrayWidgetList.h">
       <Filter>Headerdateien\Ring3\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gui\Widget.h">
+    <ClInclude Include="Ring3\Gui\WidgetBase.h">
       <Filter>Headerdateien\Ring3\Gui</Filter>
     </ClInclude>
     <ClInclude Include="Ring3\Gui\TextNode.h">
@@ -155,6 +176,21 @@
     <ClInclude Include="Ring3\Gui\WidgetList.h">
       <Filter>Headerdateien\Ring3\Gui</Filter>
     </ClInclude>
+    <ClInclude Include="Ring3\Gui\Layout\Direction.h">
+      <Filter>Headerdateien\Ring3\Gui\Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Gui\Layout\Justification.h">
+      <Filter>Headerdateien\Ring3\Gui\Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Gui\Reader\readColor.h">
+      <Filter>Headerdateien\Ring3\Gui\Reader</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Gui\Layout\Layouter.h">
+      <Filter>Headerdateien\Ring3\Gui\Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Gui\Widget.h">
+      <Filter>Headerdateien\Ring3\Gui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Ring3\Gui\Gdl\Context.i">
@@ -163,7 +199,13 @@
     <None Include="Ring3\Gui\Signals\Context.i">
       <Filter>Quelldateien\Ring3\Gui\Signals</Filter>
     </None>
-    <None Include="Ring3\Gui\header.h.i">
+    <None Include="Ring3\Gui\Layout\Direction.i">
+      <Filter>Headerdateien\Ring3\Gui\Layout</Filter>
+    </None>
+    <None Include="Ring3\Gui\Layout\Justification.i">
+      <Filter>Headerdateien\Ring3\Gui\Layout</Filter>
+    </None>
+    <None Include="Ring3\Gui\Properties.i">
       <Filter>Headerdateien\Ring3\Gui</Filter>
     </None>
   </ItemGroup>

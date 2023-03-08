@@ -76,11 +76,10 @@ Machine_Gui_BorderModel_create
   (
   )
 {
-  Machine_ClassType* ty = Machine_Gui_BorderModel_getType();
+  Machine_Type* ty = Machine_Gui_BorderModel_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Ring2_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
-  Machine_Gui_BorderModel* self
-      = (Machine_Gui_BorderModel*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  static Ring2_Value const ARGUMENTS[] = { Ring2_Value_StaticInitializerVoid() };
+  Machine_Gui_BorderModel* self = Ring1_cast(Machine_Gui_BorderModel*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS));
   return self;
 }
 

@@ -9,7 +9,7 @@
 
 MACHINE_DEFINE_INTERFACETYPE(Ring3_Gui_RenderContext, NULL)
 
-Ring1_NoDiscardReturn() Ring3_Context2*
+Ring1_NoDiscardReturn() Ring3_Graphics2_Context*
 Ring3_Gui_RenderContext_getContext2
   (
     Ring3_Gui_RenderContext* self

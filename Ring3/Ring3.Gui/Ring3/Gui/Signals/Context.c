@@ -31,11 +31,15 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gui_Signals_Context, Machine_Object,
                          &Machine_Gui_Signals_Context_visit, &Machine_Gui_Signals_Context_construct,
                          NULL, NULL, NULL)
 
-Machine_Gui_Signals_Context* Machine_Gui_Signals_Context_create() {
-  Machine_ClassType* ty = Machine_Gui_Signals_Context_getType();
+Ring1_NoDiscardReturn() Machine_Gui_Signals_Context*
+Machine_Gui_Signals_Context_create
+  (
+  )
+{
+  Machine_Type* ty = Machine_Gui_Signals_Context_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Ring2_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
-  Machine_Gui_Signals_Context* self = (Machine_Gui_Signals_Context*)Machine_allocateClassObject(
-      ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  static Ring2_Value const ARGUMENTS[] = { Ring2_Value_StaticInitializerVoid() };
+  Machine_Gui_Signals_Context* self = Ring1_cast(Machine_Gui_Signals_Context*,Machine_allocateClassObject(
+      ty, NUMBER_OF_ARGUMENTS, ARGUMENTS));
   return self;
 }

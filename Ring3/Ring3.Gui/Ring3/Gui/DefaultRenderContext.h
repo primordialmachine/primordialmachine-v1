@@ -8,7 +8,7 @@
 #if !defined(RING3_GUI_PRIVATE)
 #error("Do not include `Ring3/Gui/DefaultRenderContext.h` directly, include `Ring3/Gui/_Include.h` instead.")
 #endif
-#include "Ring3/Gui/header.h.i"
+#include "Ring3/Graphics2/_Include.h"
 
 /// @brief The default render context.
 /// @extends Machine.Object
@@ -21,8 +21,8 @@ struct Ring3_Gui_DefaultRenderContext_Class {
 
 struct Ring3_Gui_DefaultRenderContext {
   Machine_Object __parent;
-  /// @brief The underlaying 2D context.
-  Ring3_Context2* context2;
+  /// @brief The underlaying graphics 2D context.
+  Ring3_Graphics2_Context* graphics2Context;
 };
 
 /// @brief Create a default render context.
@@ -31,7 +31,7 @@ struct Ring3_Gui_DefaultRenderContext {
 Ring1_NoDiscardReturn() Ring3_Gui_DefaultRenderContext*
 Ring3_Gui_DefaultRenderContext_create
   (
-    Ring3_Context2* context2
+    Ring3_Graphics2_Context* graphics2Context
   );
 
 #endif // RING3_GUI_DEFAULTRENDERCONTEXT_H_INCLUDED

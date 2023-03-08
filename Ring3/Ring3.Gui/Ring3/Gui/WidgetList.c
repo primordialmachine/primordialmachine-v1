@@ -24,5 +24,25 @@ Ring3_Gui_WidgetList_translate
     Ring3_Math_Vector2f32 const* t
   )
 {
-  MACHINE_VIRTUALIFACECALL_IMPL(Ring3_Gui_WidgetList, translate, ,self, t);
+  MACHINE_VIRTUALIFACECALL_IMPL(Ring3_Gui_WidgetList, translate, , self, t);
+}
+
+void
+Ring3_Gui_WidgetList_centerHorizontally
+  (
+    Ring3_Gui_WidgetList* self,
+    Ring2_Real32 x
+  )
+{
+  MACHINE_VIRTUALIFACECALL_IMPL(Ring3_Gui_WidgetList, centerHorizontally, , self, x);
+}
+
+void
+Ring3_Gui_WidgetList_centerVertically
+  (
+    Ring3_Gui_WidgetList* self,
+    Ring2_Real32 y
+  )
+{
+  MACHINE_VIRTUALIFACECALL_IMPL(Ring3_Gui_WidgetList, centerVertically, , self, y);
 }

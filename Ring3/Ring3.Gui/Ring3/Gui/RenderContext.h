@@ -16,7 +16,7 @@ MACHINE_DECLARE_INTERFACETYPE(Ring3_Gui_RenderContext)
 struct Ring3_Gui_RenderContext_Dispatch {
   Machine_InterfaceDispatch parent;
 
-  Ring1_NoDiscardReturn() Ring3_Context2* (*getContext2)(Ring3_Gui_RenderContext*);
+  Ring1_NoDiscardReturn() Ring3_Graphics2_Context* (*getContext2)(Ring3_Gui_RenderContext*);
   Ring1_NoDiscardReturn() Ring2_Real32 (*getCanvasWidth)(Ring3_Gui_RenderContext*);
   Ring1_NoDiscardReturn() Ring2_Real32 (*getCanvasHeight)(Ring3_Gui_RenderContext*);
 };
@@ -24,7 +24,7 @@ struct Ring3_Gui_RenderContext_Dispatch {
 /// @brief Get the underlaying 2D context.
 /// @param self This default render context.
 /// @return The underlaying 2D context.
-Ring1_NoDiscardReturn() Ring3_Context2*
+Ring1_NoDiscardReturn() Ring3_Graphics2_Context*
 Ring3_Gui_RenderContext_getContext2
   (
     Ring3_Gui_RenderContext* self

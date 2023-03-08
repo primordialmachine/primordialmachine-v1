@@ -3,15 +3,6 @@
 
 #include "Ring4/Scenes/Scene.h"
 
-#define Ring4_Scenes_Gui_Layout1_withDirectionColumnJustificationStart (1)
-#define Ring4_Scenes_Gui_Layout1_withDirectionRowJustificationStart (1)
-
-#define Ring4_Scenes_Gui_Layout1_withDirectionColumnJustificationCenter (1)
-#define Ring4_Scenes_Gui_Layout1_withDirectionRowJustificationCenter (1)
-
-#define Ring4_Scenes_Gui_Layout1_withDirectionColumnJustificationEnd (1)
-#define Ring4_Scenes_Gui_Layout1_withDirectionRowJustificationEnd (1)
-
 MACHINE_DECLARE_CLASSTYPE(Ring4_Scenes_Gui_Layout1)
 
 void

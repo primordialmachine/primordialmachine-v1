@@ -28,6 +28,9 @@ struct Machine_Gui_Signals_Context {
 
 /// @brief Create a GUI <-> Signals context.
 /// @return The context.
-Machine_Gui_Signals_Context* Machine_Gui_Signals_Context_create();
+Ring1_NoDiscardReturn() Machine_Gui_Signals_Context*
+Machine_Gui_Signals_Context_create
+  (
+  );
 
 #endif // MACHINE_GUI_SIGNALS_CONTEXT_H_INCLUDED

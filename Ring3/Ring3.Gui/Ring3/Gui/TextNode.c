@@ -6,7 +6,7 @@
 #include "Ring3/Gui/TextNode.h"
 
 #include "Ring3/Gui/Context.h"
-#include "Ring3/Gui/Widget.h"
+#include "Ring3/Gui/WidgetBase.h"
 #include "Ring3/Gui/RenderContext.h"
 #undef RING3_GUI_PRIVATE
 
@@ -16,17 +16,17 @@
 
 
 struct Machine_Gui_TextNode_Class {
-  Machine_Gui_Widget_Class __parent;
+  Ring3_Gui_WidgetBase_Class __parent;
 };
 
 struct Machine_Gui_TextNode {
-  Machine_Gui_Widget __parent;
+  Ring3_Gui_WidgetBase __parent;
 
   /// @brief The layout for rendering the text.
   Machine_Text_Layout* foreground;
 
   /// @brief The shape for rendering the background.
-  Ring3_Rectangle2* background;
+  Ring3_Graphics2_Rectangle* background;
 
   bool childDirty;
 };
@@ -45,17 +45,23 @@ Machine_Gui_TextNode_visit
   }
 }
 
-static Ring3_Math_Vector2f32*
-Machine_Gui_TextNode_getPreferredSize
+static Ring1_NoDiscardReturn() Ring3_Math_Vector2f32*
+Machine_Gui_TextNode_getPreferredSizeImpl
   (
     Machine_Gui_TextNode const* self
   );
 
 static void
-Machine_Gui_TextNode_render
+Machine_Gui_TextNode_renderImpl
   (
     Machine_Gui_TextNode* self,
     Ring3_Gui_RenderContext* renderContext
+  );
+
+static Ring1_NoDiscardReturn() Ring2_Collections_List*
+Machine_Gui_TextNode_getChildrenImpl
+  (
+    Machine_Gui_TextNode const* self
   );
 
 static void
@@ -79,13 +85,7 @@ Machine_Gui_TextNode_constructClass
   (
     Machine_Gui_TextNode_Class* self
   )
-{
-  ((Machine_Gui_Widget_Class*)self)->render
-      = (void (*)(Machine_Gui_Widget*, Ring3_Gui_RenderContext*)) & Machine_Gui_TextNode_render;
-  ((Machine_Gui_Widget_Class*)self)->getPreferredSize
-      = (Ring3_Math_Vector2f32* (*)(Machine_Gui_Widget const*))
-        & Machine_Gui_TextNode_getPreferredSize;
-}
+{ }
 
 void
 Machine_Gui_TextNode_construct
@@ -95,32 +95,57 @@ Machine_Gui_TextNode_construct
     Ring2_Value const* arguments
   )
 {
-  Machine_Gui_Widget_construct((Machine_Gui_Widget*)self, numberOfArguments, arguments);
+  Ring3_Gui_WidgetBase_construct((Ring3_Gui_WidgetBase*)self, numberOfArguments, arguments);
   Machine_Gui_Context* guiContext = (Machine_Gui_Context*)Ring2_CallArguments_getObjectArgument(
       numberOfArguments, arguments, 0, Machine_Gui_Context_getType());
-  Ring3_FontsContext* fontsContext = Ring3_Context2_getFontsContext(guiContext->context2);
+  Ring3_FontsContext* fontsContext = Ring3_Graphics2_Context_getFontsContext(guiContext->graphics2Context);
   Ring3_Font* font = Ring3_FontsContext_createFont(fontsContext, guiContext->defaultFontFile, guiContext->defaultFontSize);
   self->foreground = Machine_Text_Layout_create(Ring2_String_fromC(false, ""), font);
-  self->background = Ring3_Rectangle2_create();
+  self->background = Ring3_Graphics2_Rectangle_create();
   self->childDirty = true;
-  Machine_Gui_Widget_subscribe((Machine_Gui_Widget*)self,
-                               ((Machine_Gui_Widget*)self)->context->signalsContext->PositionChanged,
-                               (Machine_Object*)self,
-                               &boundsChangedCallback);
-  Machine_Gui_Widget_subscribe((Machine_Gui_Widget*)self,
-                               ((Machine_Gui_Widget*)self)->context->signalsContext->SizeChanged,
-                               (Machine_Object*)self,
-                               &boundsChangedCallback);
+  Ring3_Gui_Widget_subscribe((Ring3_Gui_Widget*)self,
+                             ((Ring3_Gui_WidgetBase*)self)->context->signalsContext->PositionChanged,
+                             (Machine_Object*)self,
+                             &boundsChangedCallback);
+  Ring3_Gui_Widget_subscribe((Ring3_Gui_Widget*)self,
+                             ((Ring3_Gui_WidgetBase*)self)->context->signalsContext->SizeChanged,
+                             (Machine_Object*)self,
+                             &boundsChangedCallback);
   Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Gui_TextNode_getType());
 }
 
+static void
+Machine_Gui_TextNode_implement_Ring3_Gui_Widget
+  (
+    Ring3_Gui_Widget_Dispatch* self
+  )
+{
+  self->render = (void (*)(Ring3_Gui_Widget*, Ring3_Gui_RenderContext*)) & Machine_Gui_TextNode_renderImpl;
+  self->getPreferredSize = (Ring3_Math_Vector2f32 * (*)(Ring3_Gui_Widget const*)) & Machine_Gui_TextNode_getPreferredSizeImpl;
+  self->getChildren = (Ring2_Collections_List * (*)(Ring3_Gui_Widget const*)) & Machine_Gui_TextNode_getChildrenImpl;
+}
+
+static void
+Machine_Gui_TextNode_implementInterfaces
+  (
+    Machine_ClassType* self
+  )
+{
+  Machine_ClassType_implement
+    (
+      self,
+      Ring3_Gui_Widget_getType(),
+      (Machine_InterfaceConstructCallback*)&Machine_Gui_TextNode_implement_Ring3_Gui_Widget
+    );
+}
+
 MACHINE_DEFINE_CLASSTYPE(Machine_Gui_TextNode,
-                         Machine_Gui_Widget,
+                         Ring3_Gui_WidgetBase,
                          &Machine_Gui_TextNode_visit,
                          &Machine_Gui_TextNode_construct,
                          NULL,
                          &Machine_Gui_TextNode_constructClass,
-                         NULL)
+                         &Machine_Gui_TextNode_implementInterfaces)
 
 Ring1_NoDiscardReturn() Machine_Gui_TextNode*
 Machine_Gui_TextNode_create
@@ -128,23 +153,29 @@ Machine_Gui_TextNode_create
     Machine_Gui_Context* context
   )
 {
-  Machine_ClassType* ty = Machine_Gui_TextNode_getType();
+  Machine_Type* ty = Machine_Gui_TextNode_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 1;
   Ring2_Value arguments[1] = { Ring2_Value_StaticInitializerVoid() };
   Ring2_Value_setObject(&arguments[0], (Machine_Object*)context);
-  Machine_Gui_TextNode* self
-      = (Machine_Gui_TextNode*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments);
+  Machine_Gui_TextNode* self = Ring1_cast(Machine_Gui_TextNode*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
   return self;
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-static Ring3_Math_Vector2f32*
-Machine_Gui_TextNode_getPreferredSize
+static Ring1_NoDiscardReturn() Ring3_Math_Vector2f32*
+Machine_Gui_TextNode_getPreferredSizeImpl
   (
     Machine_Gui_TextNode const* self
   )
 { return Ring3_Math_Rectangle2_getSize(Machine_Text_Layout_getBounds(self->foreground)); }
+
+static Ring1_NoDiscardReturn() Ring2_Collections_List*
+Machine_Gui_TextNode_getChildrenImpl
+  (
+    Machine_Gui_TextNode const* self
+  )
+{ return (Ring2_Collections_List*)Ring2_Collections_ArrayList_create(); }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -156,8 +187,8 @@ Machine_Gui_TextNode_setText
   )
 {
   Machine_Text_Layout_setText(self->foreground, text);
-  Machine_Gui_Widget_emitPositionChangedSignal((Machine_Gui_Widget*)self);
-  Machine_Gui_Widget_emitSizeChangedSignal((Machine_Gui_Widget*)self);
+  Ring3_Gui_WidgetBase_emitPositionChangedSignal((Ring3_Gui_WidgetBase*)self);
+  Ring3_Gui_WidgetBase_emitSizeChangedSignal((Ring3_Gui_WidgetBase*)self);
 }
 
 Ring1_NoDiscardReturn() Ring2_String*
@@ -176,9 +207,9 @@ Machine_Gui_TextNode_setBackgroundColor
     Ring3_Math_Vector4f32 const* backgroundColor
   )
 {
-  Ring3_Rectangle2_setColor(self->background, backgroundColor);
-  Machine_Gui_Widget_emitPositionChangedSignal((Machine_Gui_Widget*)self);
-  Machine_Gui_Widget_emitSizeChangedSignal((Machine_Gui_Widget*)self);
+  Ring3_Graphics2_Rectangle_setColor(self->background, backgroundColor);
+  Ring3_Gui_WidgetBase_emitPositionChangedSignal((Ring3_Gui_WidgetBase*)self);
+  Ring3_Gui_WidgetBase_emitSizeChangedSignal((Ring3_Gui_WidgetBase*)self);
 }
 
 Ring1_NoDiscardReturn() Ring3_Math_Vector4f32*
@@ -186,7 +217,7 @@ Machine_Gui_TextNode_getBackgroundColor
   (
     Machine_Gui_TextNode const* self
   )
-{ return Ring3_Rectangle2_getColor(self->background); }
+{ return Ring3_Graphics2_Rectangle_getColor(self->background); }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -198,8 +229,8 @@ Machine_Gui_TextNode_setForegroundColor
   )
 {
   Machine_Text_Layout_setColor(self->foreground, foregroundColor);
-  Machine_Gui_Widget_emitPositionChangedSignal((Machine_Gui_Widget*)self);
-  Machine_Gui_Widget_emitSizeChangedSignal((Machine_Gui_Widget*)self);
+  Ring3_Gui_WidgetBase_emitPositionChangedSignal((Ring3_Gui_WidgetBase*)self);
+  Ring3_Gui_WidgetBase_emitSizeChangedSignal((Ring3_Gui_WidgetBase*)self);
 }
 
 Ring1_NoDiscardReturn() Ring3_Math_Vector3f32*
@@ -219,15 +250,14 @@ Machine_Gui_TextNode_render2
     Ring2_Real32 height
   )
 {
-  Ring3_Context2* ctx2 = ((Machine_Gui_Widget*)self)->context->context2;
-  Ring3_Context2_setTargetSize(ctx2, width, height);
+  Ring3_Graphics2_Context* ctx2 = ((Ring3_Gui_WidgetBase*)self)->context->graphics2Context;
+  Ring3_Graphics2_Context_setTargetSize(ctx2, width, height);
   if (self->childDirty) {
-    Machine_Gui_Context* ctx = ((Machine_Gui_Widget*)self)->context;
-    Ring3_Rectangle2_setRectangle(self->background, ((Machine_Gui_Widget*)self)->rectangle);
+    Machine_Gui_Context* ctx = ((Ring3_Gui_WidgetBase*)self)->context;
+    Ring3_Graphics2_Rectangle_setRectangle(self->background, Ring3_Gui_Widget_getAbsoluteRectangle((Ring3_Gui_Widget*)self));
     // TODO: Only do this layouting if necessary.
-    Ring3_Math_Rectangle2* clipRect = Ring3_Rectangle2_getRectangle(self->background);
-    Ring3_Math_Vector2f32 const* widgetCenter
-        = Ring3_Math_Rectangle2_getCenter(Ring3_Rectangle2_getRectangle(self->background));
+    Ring3_Math_Rectangle2* clipRect = Ring3_Graphics2_Rectangle_getRectangle(self->background);
+    Ring3_Math_Vector2f32 const* widgetCenter = Ring3_Math_Rectangle2_getCenter(Ring3_Graphics2_Rectangle_getRectangle(self->background));
 
     Ring3_Math_Rectangle2 const* textBounds = Machine_Text_Layout_getBounds(self->foreground);
     Ring3_Math_Vector2f32 const* textCenter = Ring3_Math_Rectangle2_getCenter(textBounds);
@@ -239,12 +269,12 @@ Machine_Gui_TextNode_render2
 
     self->childDirty = false;
   }
-  Ring3_Shape2_render((Ring3_Shape2*)self->background, ctx2);
+  Ring3_Graphics2_Shape_render((Ring3_Graphics2_Shape*)self->background, ctx2);
   Machine_Text_Layout_render(self->foreground, ctx2);
 }
 
 static void
-Machine_Gui_TextNode_render
+Machine_Gui_TextNode_renderImpl
   (
     Machine_Gui_TextNode* self,
     Ring3_Gui_RenderContext* renderContext

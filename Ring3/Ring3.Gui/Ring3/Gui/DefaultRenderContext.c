@@ -24,7 +24,7 @@ Ring3_Gui_DefaultRenderContext_construct
     Ring2_Value const* arguments
   );
 
-static Ring1_NoDiscardReturn() Ring3_Context2*
+static Ring1_NoDiscardReturn() Ring3_Graphics2_Context*
 Ring3_Gui_DefaultRenderContext_getContext2
   (
     Ring3_Gui_DefaultRenderContext* self
@@ -42,16 +42,14 @@ Ring3_Gui_DefaultRenderContext_getCanvasHeight
     Ring3_Gui_DefaultRenderContext* self
   );
 
-
-
 static void
 Ring3_Gui_DefaultRenderContext_visit
   (
     Ring3_Gui_DefaultRenderContext* self
   )
 {
-  if (self->context2) {
-    Ring2_Gc_visit(Ring2_Gc_get(), self->context2);
+  if (self->graphics2Context) {
+    Ring2_Gc_visit(Ring2_Gc_get(), self->graphics2Context);
   }
 }
 
@@ -64,33 +62,30 @@ Ring3_Gui_DefaultRenderContext_construct
   )
 {
   Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
-  self->context2 = (Ring3_Context2*)Ring2_Value_getObject(&arguments[0]);
+  self->graphics2Context = (Ring3_Graphics2_Context*)Ring2_Value_getObject(&arguments[0]);
   Machine_setClassType(Ring1_cast(Machine_Object *, self), Ring3_Gui_DefaultRenderContext_getType());
 }
 
-static Ring1_NoDiscardReturn() Ring3_Context2*
+static Ring1_NoDiscardReturn() Ring3_Graphics2_Context*
 Ring3_Gui_DefaultRenderContext_getContext2
   (
     Ring3_Gui_DefaultRenderContext* self
   )
-{ return self->context2; }
-
+{ return self->graphics2Context; }
 
 static Ring1_NoDiscardReturn() Ring2_Real32
 Ring3_Gui_DefaultRenderContext_getCanvasWidth
   (
     Ring3_Gui_DefaultRenderContext* self
   )
-{ return Ring3_Context2_getTargetWidth(self->context2); }
+{ return Ring3_Graphics2_Context_getTargetWidth(self->graphics2Context); }
 
 static Ring1_NoDiscardReturn() Ring2_Real32
 Ring3_Gui_DefaultRenderContext_getCanvasHeight
   (
     Ring3_Gui_DefaultRenderContext* self
   )
-{ return Ring3_Context2_getTargetHeight(self->context2); }
-
-
+{ return Ring3_Graphics2_Context_getTargetHeight(self->graphics2Context); }
 
 static void
 implement_Ring3_Gui_RenderContext
@@ -98,7 +93,7 @@ implement_Ring3_Gui_RenderContext
     Ring3_Gui_RenderContext_Dispatch* self
   )
 {
-  self->getContext2 = (Ring3_Context2* (*)(Ring3_Gui_RenderContext*)) & Ring3_Gui_DefaultRenderContext_getContext2;
+  self->getContext2 = (Ring3_Graphics2_Context * (*)(Ring3_Gui_RenderContext*)) & Ring3_Gui_DefaultRenderContext_getContext2;
   self->getCanvasWidth = (Ring2_Real32 (*)(Ring3_Gui_RenderContext*)) & Ring3_Gui_DefaultRenderContext_getCanvasWidth;
   self->getCanvasHeight = (Ring2_Real32 (*)(Ring3_Gui_RenderContext*)) & Ring3_Gui_DefaultRenderContext_getCanvasHeight;
 }
@@ -113,8 +108,6 @@ implementInterfaces
     (Machine_InterfaceConstructCallback*)&implement_Ring3_Gui_RenderContext);
 }
 
-
-
 MACHINE_DEFINE_CLASSTYPE(Ring3_Gui_DefaultRenderContext /*type*/,
                          Machine_Object /*parentType*/,
                          &Ring3_Gui_DefaultRenderContext_visit /*visit*/,
@@ -126,13 +119,13 @@ MACHINE_DEFINE_CLASSTYPE(Ring3_Gui_DefaultRenderContext /*type*/,
 Ring1_NoDiscardReturn() Ring3_Gui_DefaultRenderContext*
 Ring3_Gui_DefaultRenderContext_create
   (
-    Ring3_Context2* context2
+    Ring3_Graphics2_Context* graphics2Context
   )
 {
-  Machine_ClassType* ty = Ring3_Gui_DefaultRenderContext_getType();
-  static const size_t NUMBER_OF_ARGUMENTS = 1;
-  Ring2_Value ARGUMENTS[1];
-  Ring2_Value_setObject(&ARGUMENTS[0], (Machine_Object*)context2);
-  Ring3_Gui_DefaultRenderContext* self = (Ring3_Gui_DefaultRenderContext*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Machine_Type* ty = Ring3_Gui_DefaultRenderContext_getType();
+  static size_t const NUMBER_OF_ARGUMENTS = 1;
+  Ring2_Value arguments[1];
+  Ring2_Value_setObject(&arguments[0], Ring1_cast(Machine_Object*,graphics2Context));
+  Ring3_Gui_DefaultRenderContext* self = Ring1_cast(Ring3_Gui_DefaultRenderContext*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
   return self;
 }

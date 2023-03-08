@@ -8,7 +8,7 @@
 #if !defined(RING3_GUI_PRIVATE)
 #error("Do not include `Gui/Reader/Reader.h` directly, include `_Gui.h` instead.")
 #endif
-#include "Ring3/Gui/Widget.h"
+#include "Ring3/Gui/WidgetBase.h"
 
 /// @brief
 /// <code>
@@ -21,7 +21,11 @@
 /// @param source A pointer to the source map.
 /// @return A pointer to the widget.
 /// @todo Restruct visibility to "package".
-Machine_Gui_Widget* Machine_Gui_Reader_readWidget(Machine_Gui_Context* self,
-                                                  Ring2_Collections_Map const* source);
+Ring1_NoDiscardReturn() Ring3_Gui_Widget*
+Machine_Gui_Reader_readWidget
+  (
+    Machine_Gui_Context* self,
+    Ring2_Collections_Map const* source
+  );
 
 #endif // MACHINE_GUI_READER_H_INCLUDED

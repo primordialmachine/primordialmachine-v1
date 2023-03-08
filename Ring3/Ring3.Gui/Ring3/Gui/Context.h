@@ -8,7 +8,7 @@
 #if !defined(RING3_GUI_PRIVATE)
 #error("Do not include `Ring3/Gui/Context.h` directly, include `Ring3/Gui/_Include.h` instead.")
 #endif
-#include "Ring3/Gui/header.h.i"
+#include "Ring3/Graphics2/_Include.h"
 #include "Ring3/Gui/Gdl/Context.h"
 #include "Ring3/Gui/GroupNode.h"
 #include "Ring3/Gui/Signals/Context.h"
@@ -23,8 +23,7 @@ struct Machine_Gui_Context_Class {
 
 struct Machine_Gui_Context {
   Machine_Object __parent;
-  Ring3_Context2* context2;
-  Machine_Gui_Widget* rootWidget;
+  Ring3_Graphics2_Context* graphics2Context;
   Machine_Gui_Signals_Context* signalsContext;
   Ring3_Gui_Gdl_Context* gdlContext;
 
@@ -42,7 +41,7 @@ Ring1_NoDiscardReturn() Machine_Gui_Context*
 Machine_Gui_Context_create
   (
     Machine_Gdl_Context* gdlContext,
-    Ring3_Context2* context2
+    Ring3_Graphics2_Context* context2
   );
 
 void
@@ -64,27 +63,8 @@ Machine_Gui_Context_getCanvasHeight
     Machine_Gui_Context* self
   );
 
-/// @brief Set the root widget.
-/// @param self This GUI context.
-/// @param rootWidge The root widget or null.
-void
-Machine_Gui_Context_setRootWidget
-  (
-    Machine_Gui_Context* self,
-    Machine_Gui_Widget* rootWidget
-  );
-
-/// @brief Get the root widget.
-/// @param self This GUI context.
-/// @return The root widget or null.
-Ring1_NoDiscardReturn() Machine_Gui_Widget*
-Machine_Gui_Context_getRootWidget
-  (
-    Machine_Gui_Context const* self
-  );
-
-void
-Machine_Gui_Context_onRender
+Ring1_NoDiscardReturn() Ring3_Graphics2_Context *
+Machine_Gui_Context_getContext2
   (
     Machine_Gui_Context* self
   );

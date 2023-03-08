@@ -8,8 +8,7 @@
 #if !defined(RING3_GUI_PRIVATE)
 #error("Do not include `Ring3/Gui/TextNode.h` directly, include `Ring3/Gui/_Include.h` instead.")
 #endif
-#include "Ring3/Gui/header.h.i"
-#include "Ring3/Gui/Widget.h"
+#include "Ring3/Gui/WidgetBase.h"
 
 /// @brief A text node.
 /// @extends Machine.Gui.Widget

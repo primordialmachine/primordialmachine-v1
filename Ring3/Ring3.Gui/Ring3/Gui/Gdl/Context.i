@@ -1,4 +1,5 @@
 DEFINE(BORDERCOLOR, "borderColor")
+DEFINE(BACKGROUNDCOLOR, "backgroundColor")
 
 DEFINE(BORDERWIDTH, "borderWidth")
 DEFINE(LEFTBORDERWIDTH, "leftBorderWidth")
@@ -20,14 +21,6 @@ DEFINE(TEXTNODEKIND, "Text")
 DEFINE(LAYOUT, "layout")
 DEFINE(DIRECTION, "direction")
 
-DEFINE(COLUMN, "column")
-DEFINE(COLUMNREVERSE, "columnReverse")
-DEFINE(ROW, "row")
-DEFINE(ROWREVERSE, "rowReverse")
-
 DEFINE(INTERSPACING, "interspacing")
 
 DEFINE(JUSTIFICATION, "justification")
-DEFINE(CENTER, "center")
-DEFINE(START, "start")
-DEFINE(END, "end")
