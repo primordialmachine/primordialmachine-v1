@@ -16,7 +16,11 @@ extern "C" {
 
 static Scene* g_scene = NULL;
 
-static void loadIcons() {
+static void
+loadIcons
+  (
+  )
+{
   static const char* PATHS[] = {
 #define WINDOWS10_BLURRYICONHACK (1)
 #if WINDOWS10_BLURRYICONHACK == 0
@@ -47,7 +51,12 @@ static void loadIcons() {
   Ring3_Canvas_setCanvasIcons(Machine_Launcher_getVideoCanvas(), vals);
 }
 
-static void run(Scene* self) {
+static void
+run
+  (
+    Scene* self
+  )
+{
   Ring2_Integer oldWidth, oldHeight;
   Ring3_Canvas_getFrameBuffersSize(Machine_Launcher_getVideoCanvas(), &oldWidth, &oldHeight);
 
