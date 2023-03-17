@@ -44,9 +44,9 @@ Ring3_Math_Vector4f32_create
   (
   )
 {
-  Machine_ClassType* ty = Ring3_Math_Vector4f32_getType();
-  static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Ring2_Value ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
+  Machine_Type* ty = Ring3_Math_Vector4f32_getType();
+  static size_t const NUMBER_OF_ARGUMENTS = 0;
+  static Ring2_Value const ARGUMENTS[] = { Ring2_Value_StaticInitializerVoid() };
   Ring3_Math_Vector4f32* self = Ring1_cast(Ring3_Math_Vector4f32*, Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS));
   return self;
 }
@@ -54,7 +54,7 @@ Ring3_Math_Vector4f32_create
 Ring1_NoDiscardReturn() Ring3_Math_Vector4f32*
 Ring3_Math_Vector4f32_clone
   (
-    const Ring3_Math_Vector4f32* self
+    Ring3_Math_Vector4f32 const* self
   )
 {
   Ring3_Math_Vector4f32* other = Ring3_Math_Vector4f32_create();

@@ -37,7 +37,7 @@ Ring3_Math_Rectangle2_create
   (
   )
 {
-  Machine_ClassType* ty = Ring3_Math_Rectangle2_getType();
+  Machine_Type* ty = Ring3_Math_Rectangle2_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Ring2_Value ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Ring3_Math_Rectangle2* self = (Ring3_Math_Rectangle2*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
@@ -276,4 +276,137 @@ Ring3_Math_Rectangle2_translate
 {
   self->x += Ring3_Math_Vector2f32_getX(t);
   self->y += Ring3_Math_Vector2f32_getY(t);
+}
+
+void
+Ring3_Math_Rectangle2_alignCenter
+  (
+    Ring3_Math_Rectangle2* self,
+    const Ring3_Math_Vector2f32* p
+  )
+{
+  Ring3_Math_Vector2f32* c = Ring3_Math_Rectangle2_getCenter(self);
+  Ring3_Math_Vector2f32* t = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_subtract(p, c, t);
+  Ring3_Math_Rectangle2_translate(self, t);
+}
+
+void
+Ring3_Math_Rectangle2_alignMinXMinY
+  (
+    Ring3_Math_Rectangle2* self,
+    Ring3_Math_Vector2f32 const* p
+  )
+{
+  Ring3_Math_Vector2f32* q = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(q, Ring3_Math_Rectangle2_getMinX(self),
+                               Ring3_Math_Rectangle2_getMinY(self));
+  Ring3_Math_Vector2f32* t = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_subtract(p, q, t);
+  Ring3_Math_Rectangle2_translate(self, t);
+}
+
+void
+Ring3_Math_Rectangle2_alignMinXMaxY
+  (
+    Ring3_Math_Rectangle2* self,
+    Ring3_Math_Vector2f32 const* p
+  )
+{
+  Ring3_Math_Vector2f32* q = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(q, Ring3_Math_Rectangle2_getMinX(self),
+                               Ring3_Math_Rectangle2_getMaxY(self));
+  Ring3_Math_Vector2f32* t = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_subtract(p, q, t);
+  Ring3_Math_Rectangle2_translate(self, t);
+}
+
+void
+Ring3_Math_Rectangle2_alignMaxXMinY
+  (
+    Ring3_Math_Rectangle2* self,
+    Ring3_Math_Vector2f32 const* p
+  )
+{
+  Ring3_Math_Vector2f32* q = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(q, Ring3_Math_Rectangle2_getMaxX(self),
+                               Ring3_Math_Rectangle2_getMinY(self));
+  Ring3_Math_Vector2f32* t = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_subtract(p, q, t);
+  Ring3_Math_Rectangle2_translate(self, t);
+}
+
+void
+Ring3_Math_Rectangle2_alignMaxXMaxY
+  (
+    Ring3_Math_Rectangle2* self,
+    Ring3_Math_Vector2f32 const* p
+  )
+{
+  Ring3_Math_Vector2f32* q = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(q, Ring3_Math_Rectangle2_getMaxX(self),
+                               Ring3_Math_Rectangle2_getMaxY(self));
+  Ring3_Math_Vector2f32* t = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_subtract(p, q, t);
+  Ring3_Math_Rectangle2_translate(self, t);
+}
+
+void
+Ring3_Math_Rectangle2_alignCenterXMinY
+  (
+    Ring3_Math_Rectangle2* self,
+    Ring3_Math_Vector2f32 const* p
+  )
+{
+  Ring3_Math_Vector2f32* q = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(q, Ring3_Math_Vector2f32_getX(Ring3_Math_Rectangle2_getCenter(self)),
+                               Ring3_Math_Rectangle2_getMinY(self));
+  Ring3_Math_Vector2f32* t = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_subtract(p, q, t);
+  Ring3_Math_Rectangle2_translate(self, t);
+}
+
+void
+Ring3_Math_Rectangle2_alignCenterXMaxY
+  (
+    Ring3_Math_Rectangle2* self,
+    Ring3_Math_Vector2f32 const* p
+  )
+{
+  Ring3_Math_Vector2f32* q = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(q, Ring3_Math_Vector2f32_getX(Ring3_Math_Rectangle2_getCenter(self)),
+                               Ring3_Math_Rectangle2_getMaxY(self));
+  Ring3_Math_Vector2f32* t = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_subtract(p, q, t);
+  Ring3_Math_Rectangle2_translate(self, t);
+}
+
+void
+Ring3_Math_Rectangle2_alignMinXCenterY
+  (
+    Ring3_Math_Rectangle2* self,
+    Ring3_Math_Vector2f32 const* p
+  )
+{
+  Ring3_Math_Vector2f32* q = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(q, Ring3_Math_Rectangle2_getMinX(self),
+                               Ring3_Math_Vector2f32_getY(Ring3_Math_Rectangle2_getCenter(self)));
+  Ring3_Math_Vector2f32* t = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_subtract(p, q, t);
+  Ring3_Math_Rectangle2_translate(self, t);
+}
+
+void
+Ring3_Math_Rectangle2_alignMaxXCenterY
+  (
+    Ring3_Math_Rectangle2* self,
+    Ring3_Math_Vector2f32 const* p
+  )
+{
+  Ring3_Math_Vector2f32* q = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_set(q, Ring3_Math_Rectangle2_getMaxX(self),
+                               Ring3_Math_Vector2f32_getY(Ring3_Math_Rectangle2_getCenter(self)));
+  Ring3_Math_Vector2f32* t = Ring3_Math_Vector2f32_create();
+  Ring3_Math_Vector2f32_subtract(p, q, t);
+  Ring3_Math_Rectangle2_translate(self, t);
 }

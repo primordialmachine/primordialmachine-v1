@@ -31,6 +31,9 @@
     <Filter Include="Quelldateien\Ring3\Math\Kernels">
       <UniqueIdentifier>{d244ec1a-0b23-4990-bd27-f3cd41477dd6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring3\Math\Kernels\Matrix">
+      <UniqueIdentifier>{03033a37-ade0-45f3-a933-04b3bef0e0cd}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Headerdateien\Ring3\Math\Transformations">
       <UniqueIdentifier>{b2019536-3006-4b10-b888-3fdeb727add8}</UniqueIdentifier>
     </Filter>
@@ -96,6 +99,9 @@
     <ClCompile Include="Ring3\Math\Matrix3x3f32.c">
       <Filter>Quelldateien\Ring3\Math</Filter>
     </ClCompile>
+    <ClCompile Include="Ring3\Math\Transformations\Scaling.c">
+      <Filter>Quelldateien\Ring3\Math\Transformations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring3\Math\Rectangle2.h">
@@ -158,5 +164,67 @@
     <ClInclude Include="Ring3\Math\Matrix3x3f32.h">
       <Filter>Headerdateien\Ring3\Math</Filter>
     </ClInclude>
+    <ClInclude Include="Ring3\Math\Transformations\Scaling.h">
+      <Filter>Headerdateien\Ring3\Math\Transformations</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Math\Kernels\MatrixKernel.h">
+      <Filter>Headerdateien\Ring3\Math\Kernels</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ring3\Math\Kernels\Matrix\Adjugate3x3f32.g">
+      <Filter>Headerdateien\Ring3\Math\Kernels\Matrix</Filter>
+    </None>
+    <None Include="Ring3\Math\Kernels\Matrix\Adjugate4x4f32.g">
+      <Filter>Headerdateien\Ring3\Math\Kernels\Matrix</Filter>
+    </None>
+    <None Include="Ring3\Math\Kernels\Matrix\Determinant3x3f32.g">
+      <Filter>Headerdateien\Ring3\Math\Kernels\Matrix</Filter>
+    </None>
+    <None Include="Ring3\Math\Kernels\Matrix\Determinant4x4f32.g">
+      <Filter>Headerdateien\Ring3\Math\Kernels\Matrix</Filter>
+    </None>
+    <None Include="Ring3\Math\Kernels\Matrix\Difference3x3f32.g">
+      <Filter>Headerdateien\Ring3\Math\Kernels\Matrix</Filter>
+    </None>
+    <None Include="Ring3\Math\Kernels\Matrix\Difference4x4f32.g">
+      <Filter>Headerdateien\Ring3\Math\Kernels\Matrix</Filter>
+    </None>
+    <None Include="Ring3\Math\Kernels\Matrix\Identity3x3f32.g">
+      <Filter>Headerdateien\Ring3\Math\Kernels\Matrix</Filter>
+    </None>
+    <None Include="Ring3\Math\Kernels\Matrix\Identity4x4f32.g">
+      <Filter>Headerdateien\Ring3\Math\Kernels\Matrix</Filter>
+    </None>
+    <None Include="Ring3\Math\Kernels\Matrix\Product3x3f32.g">
+      <Filter>Headerdateien\Ring3\Math\Kernels\Matrix</Filter>
+    </None>
+    <None Include="Ring3\Math\Kernels\Matrix\Product4x4f32.g">
+      <Filter>Headerdateien\Ring3\Math\Kernels\Matrix</Filter>
+    </None>
+    <None Include="Ring3\Math\Kernels\Matrix\ScalarMatrixProduct3x3f32.g">
+      <Filter>Headerdateien\Ring3\Math\Kernels\Matrix</Filter>
+    </None>
+    <None Include="Ring3\Math\Kernels\Matrix\ScalarMatrixProduct4x4f32.g">
+      <Filter>Headerdateien\Ring3\Math\Kernels\Matrix</Filter>
+    </None>
+    <None Include="Ring3\Math\Kernels\Matrix\Sum3x3f32.g">
+      <Filter>Headerdateien\Ring3\Math\Kernels\Matrix</Filter>
+    </None>
+    <None Include="Ring3\Math\Kernels\Matrix\Sum4x4f32.g">
+      <Filter>Headerdateien\Ring3\Math\Kernels\Matrix</Filter>
+    </None>
+    <None Include="Ring3\Math\Kernels\Matrix\Transpose3x3f32.g">
+      <Filter>Headerdateien\Ring3\Math\Kernels\Matrix</Filter>
+    </None>
+    <None Include="Ring3\Math\Kernels\Matrix\Transpose4x4f32.g">
+      <Filter>Headerdateien\Ring3\Math\Kernels\Matrix</Filter>
+    </None>
+    <None Include="Ring3\Math\Kernels\Matrix\Zero3x3f32.g">
+      <Filter>Headerdateien\Ring3\Math\Kernels\Matrix</Filter>
+    </None>
+    <None Include="Ring3\Math\Kernels\Matrix\Zero4x4f32.g">
+      <Filter>Headerdateien\Ring3\Math\Kernels\Matrix</Filter>
+    </None>
   </ItemGroup>
 </Project>

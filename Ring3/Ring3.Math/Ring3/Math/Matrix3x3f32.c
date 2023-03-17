@@ -5,8 +5,7 @@
 #define RING3_MATH_PRIVATE (1)
 #include "Ring3/Math/Matrix3x3f32.h"
 
-#include "Ring1/All/_Include.h"
-#include <math.h>
+#include "Ring3/Math/Kernels/MatrixKernel.h"
 
 #define RING3_MATRIX_ROWS 3
 
@@ -52,10 +51,10 @@ Ring3_Math_Matrix3x3f32_create
   (
   )
 {
-  Machine_ClassType* ty = Ring3_Math_Matrix3x3f32_getType();
-  static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Ring2_Value ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
-  Ring3_Math_Matrix3x3f32* self = (Ring3_Math_Matrix3x3f32*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Machine_Type* ty = Ring3_Math_Matrix3x3f32_getType();
+  static size_t const NUMBER_OF_ARGUMENTS = 0;
+  static Ring2_Value const ARGUMENTS[] = { Ring2_Value_StaticInitializerVoid() };
+  Ring3_Math_Matrix3x3f32* self = Ring1_cast(Ring3_Math_Matrix3x3f32*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS));
   return self;
 }
 
@@ -322,11 +321,11 @@ Ring2_Real32 temporary[3][3];
 #undef b
 #undef a
 
-for (size_t i = 0, n = 3; i < n; ++i) {
-  for (size_t j = 0, m = 3; j < m; ++j) {
-    target->e[i][j] = temporary[i][j];
+  for (size_t i = 0, n = 3; i < n; ++i) {
+    for (size_t j = 0, m = 3; j < m; ++j) {
+      target->e[i][j] = temporary[i][j];
+    }
   }
-}
 }
 
 Ring1_CheckReturn() Ring3_Math_Matrix3x3f32*

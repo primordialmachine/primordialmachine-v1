@@ -33,6 +33,7 @@
     <ClCompile Include="Ring3\Math\Sphere2f32.c" />
     <ClCompile Include="Ring3\Math\Sphere3f32.c" />
     <ClCompile Include="Ring3\Math\Transformations\Rotation.c" />
+    <ClCompile Include="Ring3\Math\Transformations\Scaling.c" />
     <ClCompile Include="Ring3\Math\Transformations\_Include.c" />
     <ClCompile Include="Ring3\Math\Vector2f32.c" />
     <ClCompile Include="Ring3\Math\Vector3f32.c" />
@@ -46,6 +47,7 @@
     <ClInclude Include="Ring3\Math\ColorRgbau8Extensions.h" />
     <ClInclude Include="Ring3\Math\ColorRgbu8.h" />
     <ClInclude Include="Ring3\Math\ColorRgbu8Extensions.h" />
+    <ClInclude Include="Ring3\Math\Kernels\MatrixKernel.h" />
     <ClInclude Include="Ring3\Math\Kernels\VectorKernel.h" />
     <ClInclude Include="Ring3\Math\Matrix3x3f32.h" />
     <ClInclude Include="Ring3\Math\Matrix4x4f32.h" />
@@ -55,6 +57,7 @@
     <ClInclude Include="Ring3\Math\Sphere2f32.h" />
     <ClInclude Include="Ring3\Math\Sphere3f32.h" />
     <ClInclude Include="Ring3\Math\Transformations\Rotation.h" />
+    <ClInclude Include="Ring3\Math\Transformations\Scaling.h" />
     <ClInclude Include="Ring3\Math\Transformations\_Include.h" />
     <ClInclude Include="Ring3\Math\Vector2f32.h" />
     <ClInclude Include="Ring3\Math\Vector3f32.h" />
@@ -71,6 +74,26 @@
     <ProjectReference Include="..\..\ring2\Ring2\Ring2.vcxproj">
       <Project>{3ade4501-5d5c-4878-9632-f81c3de2429c}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ring3\Math\Kernels\Matrix\Adjugate3x3f32.g" />
+    <None Include="Ring3\Math\Kernels\Matrix\Adjugate4x4f32.g" />
+    <None Include="Ring3\Math\Kernels\Matrix\Determinant3x3f32.g" />
+    <None Include="Ring3\Math\Kernels\Matrix\Determinant4x4f32.g" />
+    <None Include="Ring3\Math\Kernels\Matrix\Difference3x3f32.g" />
+    <None Include="Ring3\Math\Kernels\Matrix\Difference4x4f32.g" />
+    <None Include="Ring3\Math\Kernels\Matrix\Identity3x3f32.g" />
+    <None Include="Ring3\Math\Kernels\Matrix\Identity4x4f32.g" />
+    <None Include="Ring3\Math\Kernels\Matrix\Product3x3f32.g" />
+    <None Include="Ring3\Math\Kernels\Matrix\Product4x4f32.g" />
+    <None Include="Ring3\Math\Kernels\Matrix\ScalarMatrixProduct3x3f32.g" />
+    <None Include="Ring3\Math\Kernels\Matrix\ScalarMatrixProduct4x4f32.g" />
+    <None Include="Ring3\Math\Kernels\Matrix\Sum3x3f32.g" />
+    <None Include="Ring3\Math\Kernels\Matrix\Sum4x4f32.g" />
+    <None Include="Ring3\Math\Kernels\Matrix\Transpose3x3f32.g" />
+    <None Include="Ring3\Math\Kernels\Matrix\Transpose4x4f32.g" />
+    <None Include="Ring3\Math\Kernels\Matrix\Zero3x3f32.g" />
+    <None Include="Ring3\Math\Kernels\Matrix\Zero4x4f32.g" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

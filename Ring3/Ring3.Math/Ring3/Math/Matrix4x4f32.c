@@ -5,8 +5,7 @@
 #define RING3_MATH_PRIVATE (1)
 #include "Ring3/Math/Matrix4x4f32.h"
 
-#include "Ring1/All/_Include.h"
-#include <math.h>
+#include "Ring3/Math/Kernels/MatrixKernel.h"
 
 #define RING3_MATRIX_ROWS 4
 
@@ -52,9 +51,9 @@ Ring3_Math_Matrix4x4f32_create
   (
   )
 {
-  Machine_ClassType* ty = Ring3_Math_Matrix4x4f32_getType();
-  static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Ring2_Value ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
+  Machine_Type* ty = Ring3_Math_Matrix4x4f32_getType();
+  static size_t const NUMBER_OF_ARGUMENTS = 0;
+  static Ring2_Value const ARGUMENTS[] = { Ring2_Value_StaticInitializerVoid() };
   Ring3_Math_Matrix4x4f32* self = (Ring3_Math_Matrix4x4f32*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   return self;
 }
@@ -62,7 +61,7 @@ Ring3_Math_Matrix4x4f32_create
 Ring1_CheckReturn() Ring3_Math_Matrix4x4f32*
 Ring3_Math_Matrix4x4f32_clone
   (
-    const Ring3_Math_Matrix4x4f32* self
+    Ring3_Math_Matrix4x4f32 const* self
   )
 {
   Ring3_Math_Matrix4x4f32* clone = Ring3_Math_Matrix4x4f32_create();
@@ -287,20 +286,7 @@ Ring3_Math_Matrix4x4f32_setOrtho
     Ring2_Real32 f
   )
 {
-  // Adopted from https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glOrtho.xml.
-  self->e[0][0] = 2.f / (r - l);
-  self->e[1][0] = self->e[2][0] = self->e[3][0] = 0.f;
-
-  self->e[1][1] = 2.f / (t - b);
-  self->e[0][1] = self->e[2][1] = self->e[3][1] = 0.f;
-
-  self->e[2][2] = -2.f / (f - n);
-  self->e[0][2] = self->e[1][2] = self->e[3][2] = 0.f;
-
-  self->e[0][3] = -(r + l) / (r - l);
-  self->e[1][3] = -(t + b) / (t - b);
-  self->e[2][3] = -(f + n) / (f - n);
-  self->e[3][3] = 1.f;
+  ortho_m4x4f32(self->e, l, r, b, t, n, f);
 }
 
 #endif // RING3_MATRIX_ROWS == 4 && RING3_MATRIX_COLUMNS == 4
@@ -335,11 +321,11 @@ Ring2_Real32 temporary[4][4];
 #undef b
 #undef a
 
-for (size_t i = 0, n = 4; i < n; ++i) {
-  for (size_t j = 0, m = 4; j < m; ++j) {
-    target->e[i][j] = temporary[i][j];
+  for (size_t i = 0, n = 4; i < n; ++i) {
+    for (size_t j = 0, m = 4; j < m; ++j) {
+      target->e[i][j] = temporary[i][j];
+    }
   }
-}
 }
 
 Ring1_CheckReturn() Ring3_Math_Matrix4x4f32*

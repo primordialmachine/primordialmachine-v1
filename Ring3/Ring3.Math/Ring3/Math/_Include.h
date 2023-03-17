@@ -12,6 +12,7 @@
 #include "Ring3/Math/ColorRgbau8Extensions.h"
 #include "Ring3/Math/ColorRgbu8.h"
 #include "Ring3/Math/ColorRgbu8Extensions.h"
+#include "Ring3/Math/Matrix3x3f32.h"
 #include "Ring3/Math/Matrix4x4f32.h"
 #include "Ring3/Math/Ray2f32.h"
 #include "Ring3/Math/Ray3f32.h"

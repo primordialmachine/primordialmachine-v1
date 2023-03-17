@@ -39,7 +39,7 @@ Ring3_Math_Sphere2f32_create
     Ring2_Real32 radius
   )
 {
-  Machine_ClassType* ty = Ring3_Math_Sphere2f32_getType();
+  Machine_Type* ty = Ring3_Math_Sphere2f32_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 2;
   Ring2_Value arguments[2];
   Ring2_Value_setObject(&arguments[0], (Machine_Object*)center);

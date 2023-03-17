@@ -176,7 +176,6 @@ Ring3_Math_ColorRgbaU8_Class_construct
 #endif
 }
 
-#if 1
 Ring1_CheckReturn() Ring3_Math_ColorRgbaU8 *
 Ring3_Math_ColorRgbaU8_create
   (
@@ -186,24 +185,22 @@ Ring3_Math_ColorRgbaU8_create
     uint8_t alpha
   )
 {
-  Machine_ClassType* ty = Ring3_Math_ColorRgbaU8_getType();
-
-  static const size_t NUMBER_OF_ARGUMENTS = 4;
-  Ring2_Value ARGUMENTS[4] = {
-    { Ring2_Value_Tag_Void, Ring2_Void_Void },
-    { Ring2_Value_Tag_Void, Ring2_Void_Void },
-    { Ring2_Value_Tag_Void, Ring2_Void_Void },
+  Machine_Type* ty = Ring3_Math_ColorRgbaU8_getType();
+  static size_t const NUMBER_OF_ARGUMENTS = 4;
+  Ring2_Value arguments[4] = {
+    Ring2_Value_StaticInitializerVoid(),
+    Ring2_Value_StaticInitializerVoid(),
+    Ring2_Value_StaticInitializerVoid(),
+    Ring2_Value_StaticInitializerVoid(),
   };
-  Ring2_Value_setInteger(&ARGUMENTS[0], red);
-  Ring2_Value_setInteger(&ARGUMENTS[1], green);
-  Ring2_Value_setInteger(&ARGUMENTS[2], blue);
-  Ring2_Value_setInteger(&ARGUMENTS[3], alpha);
-  Ring3_Math_ColorRgbaU8* self = (Ring3_Math_ColorRgbaU8*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Ring2_Value_setInteger(&arguments[0], red);
+  Ring2_Value_setInteger(&arguments[1], green);
+  Ring2_Value_setInteger(&arguments[2], blue);
+  Ring2_Value_setInteger(&arguments[3], alpha);
+  Ring3_Math_ColorRgbaU8* self = Ring1_cast(Ring3_Math_ColorRgbaU8*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
   return self;
 }
-#endif
 
-#if 1
 Ring1_CheckReturn() Ring3_Math_ColorRgbaU8 *
 Ring3_Math_ColorRgbaU8_clone
   (
@@ -216,7 +213,6 @@ Ring3_Math_ColorRgbaU8_clone
   }
   return Ring3_Math_ColorRgbaU8_create(self->red, self->green, self->blue, self->alpha);
 }
-#endif
 
 Ring1_CheckReturn() uint8_t
 Ring3_Math_ColorRgbaU8_getRed

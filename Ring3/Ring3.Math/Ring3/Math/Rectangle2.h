@@ -207,4 +207,83 @@ Ring3_Math_Rectangle2_translate
     const Ring3_Math_Vector2f32* t
   );
 
+/// @brief Translate this rectangle such that its minimum both along the x axis and the y axis is at the specific position.
+/// @param self This rectangle.
+/// @param p The position.
+void
+Ring3_Math_Rectangle2_alignMinXMinY
+  (
+    Ring3_Math_Rectangle2* self,
+    Ring3_Math_Vector2f32 const* p
+  );
+
+/// @brief Translate this rectangle such that its minimum along the x axis and its maximum along the y axis is at the specific position.
+/// @param self This rectangle.
+/// @param p The position.
+void
+Ring3_Math_Rectangle2_alignMinXMaxY
+  (
+    Ring3_Math_Rectangle2* self,
+    Ring3_Math_Vector2f32 const* p
+  );
+
+/// @brief Translate this rectangle such that its maximum along the x axis and its minimum along the y axis is at the specific position.
+/// @param self This rectangle.
+/// @param p The position.
+void
+Ring3_Math_Rectangle2_alignMaxXMinY
+  (
+    Ring3_Math_Rectangle2* self,
+    Ring3_Math_Vector2f32 const* p
+  );
+
+/// @brief Translate this rectangle such that its maximum both along the x axis and the y axis is at the specific position.
+/// @param self This rectangle.
+/// @param p The position.
+void
+Ring3_Math_Rectangle2_alignMaxXMaxY
+  (
+    Ring3_Math_Rectangle2* self,
+    Ring3_Math_Vector2f32 const* p
+  );
+
+/// @brief Translate this rectangle such that its center is at the specific position.
+/// @param self This rectangle.
+/// @param p The position.
+/// @todo Addd alignLeftTop, alignRightTop, alignLeftBottom, alignRightBottom.
+void
+Ring3_Math_Rectangle2_alignCenter
+  (
+    Ring3_Math_Rectangle2* self,
+    Ring3_Math_Vector2f32 const* p
+  );
+
+void
+Ring3_Math_Rectangle2_alignCenterXMinY
+  (
+    Ring3_Math_Rectangle2* self,
+    Ring3_Math_Vector2f32 const* p
+  );
+
+void
+Ring3_Math_Rectangle2_alignCenterXMaxY
+  (
+    Ring3_Math_Rectangle2* self,
+    Ring3_Math_Vector2f32 const* p
+  );
+
+void
+Ring3_Math_Rectangle2_alignMinXCenterY
+  (
+    Ring3_Math_Rectangle2* self,
+    Ring3_Math_Vector2f32 const* p
+  );
+
+void
+Ring3_Math_Rectangle2_alignMaxXCenterY
+  (
+    Ring3_Math_Rectangle2* self,
+    Ring3_Math_Vector2f32 const* p
+  );
+
 #endif // RING3_MATH_RECTANGLE2_H_INCLUDED
