@@ -119,7 +119,7 @@ Ring2_CallArguments_getObjectArgument
   (
     size_t numberOfArguments,
     Ring2_Value const* arguments, size_t i,
-    Machine_ClassType* t
+    Machine_Type* t
   )
 {
   if (i >= numberOfArguments) {
@@ -131,7 +131,7 @@ Ring2_CallArguments_getObjectArgument
     Ring2_jump();
   }
   Machine_Object* v = (Machine_Object *)Ring2_Value_getObject(arguments + i);
-  if (!Machine_Type_isSubTypeOf((Machine_Type*)Machine_getClassType(v), (Machine_Type*)t)) {
+  if (!Machine_Type_isSubTypeOf((Machine_Type*)Machine_getClassType(v),t)) {
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();
   }

@@ -54,6 +54,12 @@ struct Machine_Type {
   Ring2_Gc_FinalizeCallback* finalize;
   Ring2_Gc_VisitCallback* visit;
 
+  /// The name of the type.
+  struct {
+    char* bytes;
+    size_t numberOfBytes;
+  } name;
+
   /// @brief Either Machine_TypeFlags_Class or Machine_TypeFlags_Interface must be set.
   ///        If the type has been initialized, then Machine_TypeFlags_Initialized must be set.
   uint32_t flags;
@@ -77,6 +83,10 @@ typedef struct Machine_CreateTypeArgs {
 
   /// @brief Pointer to a Machine_ClassTypeRemovedCallback function or a null pointer.
   Machine_TypeRemovedCallback* typeRemoved;
+  struct {
+    char const* bytes;
+    size_t numberOfBytes;
+  } name;
 
 } Machine_CreateTypeArgs;
 

@@ -155,38 +155,44 @@ void* Machine_ClassType_getDispatch(Machine_ClassType* self);
 void* Machine_ClassType_getInterfaceDispatch(Machine_ClassType* self,
                                              Machine_InterfaceType* interfaceType);
 
-#define MACHINE_DECLARE_CLASSTYPE(THIS)                                                            \
-  typedef struct THIS THIS;                                                                        \
-  typedef struct THIS##_Class THIS##_Class;                                                        \
-  Machine_ClassType* THIS##_getType();
+#define MACHINE_DECLARE_CLASSTYPE(THIS_TYPE) \
+  typedef struct THIS_TYPE THIS_TYPE; \
+  typedef struct THIS_TYPE##_Class THIS_TYPE##_Class; \
+  Machine_Type* THIS_TYPE##_getType();
 
-#define MACHINE_DEFINE_CLASSTYPE(THIS, PARENT, VISIT, CONSTRUCT, DESTRUCT, CLASS_CONSTRUCT,        \
-                                 INTERFACES_IMPLEMENT)                                             \
-                                                                                                   \
-  static Machine_ClassType* g_##THIS##_ClassType = NULL;                                           \
-                                                                                                   \
-  static void THIS##_onTypeDestroyed() {                                                           \
-    g_##THIS##_ClassType = NULL;                                                                   \
-  }                                                                                                \
-                                                                                                   \
-  Machine_ClassType* THIS##_getType() {                                                            \
-    if (!g_##THIS##_ClassType) {                                                                   \
+#define MACHINE_DEFINE_CLASSTYPE(THIS_TYPE, \
+                                 PARENT_TYPE, \
+                                 VISIT, \
+                                 CONSTRUCT, \
+                                 DESTRUCT, \
+                                 CLASS_CONSTRUCT, \
+                                 INTERFACES_IMPLEMENT) \
+\
+  static Machine_ClassType* g_##THIS_TYPE##_ClassType = NULL; \
+\
+  static void THIS_TYPE##_onTypeDestroyed() { \
+    g_##THIS_TYPE##_ClassType = NULL; \
+  } \
+ \
+  Machine_Type* THIS_TYPE##_getType() { \
+    if (!g_##THIS_TYPE##_ClassType) { \
       Machine_CreateClassTypeArgs args = { \
         .createTypeArgs = { \
-          .typeRemoved = (Machine_TypeRemovedCallback*)&THIS##_onTypeDestroyed, \
+          .name = { .bytes = #THIS_TYPE, .numberOfBytes = sizeof(#THIS_TYPE) }, \
+          .typeRemoved = (Machine_TypeRemovedCallback*)&THIS_TYPE##_onTypeDestroyed, \
         }, \
-        .parent = PARENT##_getType(), \
-        .object.size = sizeof(THIS), \
+        .parent = (Machine_ClassType*)PARENT_TYPE##_getType(), \
+        .object.size = sizeof(THIS_TYPE), \
         .object.visit = (Machine_ClassObjectVisitCallback*)VISIT, \
         .object.construct = (Machine_ClassObjectConstructCallback*)CONSTRUCT, \
         .object.destruct = (Machine_ClassObjectDestructCallback*)DESTRUCT, \
-        .class.size = sizeof(THIS##_Class), \
+        .class.size = sizeof(THIS_TYPE##_Class), \
         .class.construct = (Machine_ClassConstructCallback*)CLASS_CONSTRUCT, \
         .interfaces.implementInterfaces = (Machine_ImplementInterfacesCallback*)INTERFACES_IMPLEMENT, \
-      };                                                      \
-      g_##THIS##_ClassType = Machine_createClassType(&args);                                       \
-    }                                                                                              \
-    return g_##THIS##_ClassType;                                                                   \
+      }; \
+      g_##THIS_TYPE##_ClassType = Machine_createClassType(&args); \
+    } \
+    return (Machine_Type*)g_##THIS_TYPE##_ClassType; \
   }
 
 #endif // RING2_TYPESYSTEM_CLASSTYPE_H_INCLUDED

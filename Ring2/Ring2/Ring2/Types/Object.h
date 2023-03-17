@@ -39,7 +39,7 @@ struct Machine_Object {
   Machine_ClassType* classType;
 };
 
-Ring1_NoDiscardReturn() Machine_ClassType*
+Ring1_NoDiscardReturn() Machine_Type*
 Machine_Object_getType
   (
   );
@@ -60,22 +60,26 @@ Machine_Object_construct
 /// @param type A pointer to the class type.
 /// @param numberOfArguments The number of elements in the array pointed to by @a arguments.
 /// @param arguments A pointer to an array of @a numberOfArguments elements.
+/// @error #Ring1_Status_InvalidArgument type is null or does not point to a class type
 Ring1_NoDiscardReturn() Machine_Object*
 Machine_allocateClassObject
   (
-    Machine_ClassType* type,
+    Machine_Type* type,
     size_t numberOfArguments,
     Ring2_Value const* arguments
   );
 
 /// @brief Set the class type of an object.
 /// @param object The object.
-/// @param classType The class type.
+/// @param type The class type.
+/// @error Ring1_Status_InvalidArgument object is null
+/// @error Ring1_Status_InvalidArgument type is null
+/// @error Ring1_Status_InvalidArgument type does not refer to a class type
 void
 Machine_setClassType
   (
     Machine_Object* object,
-    Machine_ClassType* classType
+    Machine_Type* type
   );
 
 /// @brief Get the class type of an object.
@@ -108,6 +112,7 @@ Ring2_Object_isInstanceOf
   Ring2_assertNotNull(classType);                                                                  \
   TYPE##_Dispatch* data = Machine_ClassType_getInterfaceDispatch(classType, TYPE##_getType());     \
   Ring2_assertNotNull(data);                                                                       \
+  Ring2_assertNotNull(data->METHODNAME);                                                           \
   RETURN data->METHODNAME(__VA_ARGS__);
 
 #define MACHINE_VIRTUALCALL_IMPL(TYPE, METHODNAME, RETURN, ...)                                    \
@@ -116,6 +121,7 @@ Ring2_Object_isInstanceOf
   Ring2_assertNotNull(classType);                                                                  \
   TYPE##_Class* data = Machine_ClassType_getDispatch(classType);                                   \
   Ring2_assertNotNull(data);                                                                       \
+  Ring2_assertNotNull(data->METHODNAME);                                                           \
   RETURN data->METHODNAME(__VA_ARGS__);
 
 #define MACHINE_VIRTUALCALL_NORETURN_NOARGS(TYPENAME, METHODNAME)                                  \

@@ -65,7 +65,7 @@ Ring2_CallArguments_getObjectArgument
     size_t numberOfArguments,
     Ring2_Value const* arguments,
     size_t argumentIndex,
-    Machine_ClassType* t
+    Machine_Type* t
   );
 
 #endif // RING2_LIBRARY_CALLARGUMENTS_H_INCLUDED

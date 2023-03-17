@@ -64,6 +64,9 @@ Ring2_Type_finalize
   if (self->typeRemoved) {
     self->typeRemoved();
   }
+  Ring1_Memory_deallocate(self->name.bytes);
+  self->name.bytes = NULL;
+  self->name.numberOfBytes = 0;
 }
 
 bool

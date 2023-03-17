@@ -118,6 +118,7 @@ void Machine_InterfaceType_ensureInitialized(Machine_InterfaceType* self);
     if (!g_##THIS_TYPE##_InterfaceType) {                                                          \
       Machine_CreateInterfaceTypeArgs args = {                                                     \
         .createTypeArgs = {                                                                        \
+          .name = { .bytes = #THIS_TYPE, .numberOfBytes = sizeof(#THIS_TYPE) },                    \
           .typeRemoved = (Machine_TypeRemovedCallback*)&THIS_TYPE##_onTypeDestroyed,               \
         },                                                                                         \
         .addPrerequisites = (ADD_PREREQUISITES),                                                   \

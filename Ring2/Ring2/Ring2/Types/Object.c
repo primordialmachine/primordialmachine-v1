@@ -261,7 +261,12 @@ Machine_Object_toStringImpl
   return Ring2_Integer_toString(context, (Ring2_Integer)(intptr_t)self);
 }
 
-static void Machine_Object_constructClass(Machine_Object_Class* self) {
+static void
+Machine_Object_constructClass
+  (
+    Machine_Object_Class* self
+  )
+{
   self->getHashValue = &Machine_Object_getHashValueImpl;
   self->isEqualTo = &Machine_Object_isEqualToImpl;
   self->isNotEqualTo = &Machine_Object_isNotEqualToImpl;
@@ -270,11 +275,19 @@ static void Machine_Object_constructClass(Machine_Object_Class* self) {
 
 static Machine_ClassType* g_Machine_Object_ClassType = NULL;
 
-static void Machine_Object_onTypeDestroyed() {
+static void
+Machine_Object_onTypeDestroyed
+  (
+  )
+{
   g_Machine_Object_ClassType = NULL;
 }
 
-Machine_ClassType* Machine_Object_getType() {
+Ring1_NoDiscardReturn() Machine_Type*
+Machine_Object_getType
+  (
+  )
+{
   if (!g_Machine_Object_ClassType) {
     Machine_CreateClassTypeArgs args = {
       .createTypeArgs = {
@@ -290,11 +303,17 @@ Machine_ClassType* Machine_Object_getType() {
     };
     g_Machine_Object_ClassType = Machine_createClassType(&args);
   }
-  return g_Machine_Object_ClassType;
+  return (Machine_Type*)g_Machine_Object_ClassType;
 }
 
-void Machine_Object_construct(Machine_Object* self, size_t numberOfArguments,
-                              Ring2_Value const* arguments) {
+void
+Machine_Object_construct
+  (
+    Machine_Object* self,
+    size_t numberOfArguments,
+    Ring2_Value const* arguments
+  )
+{
   Ring2_assertNotNull(self);
   Machine_setClassType(self, Machine_Object_getType());
 }
@@ -323,19 +342,33 @@ static void Machine_ClassObject_finalize(void *gc, void* self) {
   Ring2_Gc_unlock(object->classType);
 }
 
-void Machine_setClassType(Machine_Object* object, Machine_ClassType* classType) {
+void
+Machine_setClassType
+  (
+    Machine_Object* object,
+    Machine_Type* type
+  )
+{
+  if (!object || !type) {
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
+    Ring2_jump();
+  }
+  if (!Machine_Type_isClass(type)) {
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
+    Ring2_jump();
+  }
   assert(object != NULL);
-  assert(classType != NULL);
+  assert(type != NULL);
 
-  Machine_Type_ensureInitialized((Machine_Type*)classType);
+  Machine_Type_ensureInitialized(type);
 
-  if (classType) {
-    Ring2_Gc_lock(classType);
+  if (type) {
+    Ring2_Gc_lock(type);
   }
   if (object->classType) {
     Ring2_Gc_unlock(object->classType);
   }
-  object->classType = classType;
+  object->classType = Ring1_cast(Machine_ClassType *, type);
 }
 
 Machine_ClassType* Machine_getClassType(Machine_Object* object) {
@@ -345,17 +378,25 @@ Machine_ClassType* Machine_getClassType(Machine_Object* object) {
 Machine_Object*
 Machine_allocateClassObject
   (
-    Machine_ClassType* type,
+    Machine_Type* type,
     size_t numberOfArguments,
     Ring2_Value const* arguments
   )
 {
+  if (Ring1_Unlikely(!type)) {
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
+    Ring2_jump();
+  }
+  if (Ring1_Unlikely(!Machine_Type_isClass(type))) {
+    Ring1_Status_set(Ring1_Status_InvalidOperation);
+    Ring2_jump();
+  }
   static const Ring2_Gc_Type TYPE = {
     .finalize = &Machine_ClassObject_finalize,
     .visit = &Machine_ClassObject_visit,
   };
   Machine_Object *object = Ring2_Gc_allocate(Ring2_Gc_get(),
-                                             (size_t) type->object.size,
+                                             (size_t) Ring1_cast(Machine_ClassType*,type)->object.size,
                                              &TYPE, 
                                              &g_objectHeap->objects);
   if (Ring1_Unlikely(!object)) {
@@ -363,9 +404,9 @@ Machine_allocateClassObject
     Ring2_jump();
   }
   Ring2_Gc_Tag* t = Ring2_Gc_toTag(object);
-  object->classType = type;
+  object->classType = (Machine_ClassType*)type;
   Ring2_Gc_lock(object->classType);
-  type->object.construct(object, numberOfArguments, arguments);
+  Ring1_cast(Machine_ClassType*, type)->object.construct(object, numberOfArguments, arguments);
   return object;
 }
 

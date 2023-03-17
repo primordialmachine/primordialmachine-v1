@@ -72,12 +72,11 @@ Ring2_Test_create
     Ring2_ForeignProcedure *procedure
   )
 {
-  Machine_ClassType* ty = Ring2_Test_getType();
-  static const size_t NUMBER_OF_ARGUMENTS = 2;
-  Ring2_Value ARGUMENTS[2] = { Ring2_Value_StaticInitializerVoid(),
-                               Ring2_Value_StaticInitializerVoid() };
-  Ring2_Value_setString(&ARGUMENTS[0], name);
-  Ring2_Value_setForeignProcedure(&ARGUMENTS[1], procedure);
-  Ring2_Test* self = (Ring2_Test *)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Machine_Type* ty = Ring2_Test_getType();
+  static size_t const NUMBER_OF_ARGUMENTS = 2;
+  Ring2_Value arguments[2];
+  Ring2_Value_setString(&arguments[0], name);
+  Ring2_Value_setForeignProcedure(&arguments[1], procedure);
+  Ring2_Test* self = Ring1_cast(Ring2_Test*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
   return self;
 }

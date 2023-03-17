@@ -53,6 +53,7 @@ void Machine_EnumerationType_ensureInitialized(Machine_EnumerationType* self);
     if (!g_##THIS_TYPE##_EnumerationType) {                                                        \
       Machine_CreateEnumerationTypeArgs args = {                                                   \
         .createTypeArgs = {                                                                        \
+          .name = { .bytes = #THIS_TYPE, .numberOfBytes = sizeof(#THIS_TYPE) },                    \
           .typeRemoved = (Machine_TypeRemovedCallback*)&THIS_TYPE##_onTypeDestroyed,               \
         },                                                                                         \
       };                                                                                           \

@@ -46,11 +46,10 @@ Ring1_BeginDependencies()
   //
   Ring1_Dependency(Ring2, TypesModule)
   Ring1_Dependency(Ring2, OperationsModule)
-  //
-  Ring1_Dependency(Ring2, StaticVariablesModule)
-  //
-  Ring1_Dependency(Ring2, StackModule)
 Ring1_EndDependencies()
+
+static Ring2_StaticVariablesModule_ModuleHandle g_staticVariablesModuleHandle = Ring2_StaticVariablesModule_ModuleHandle_Invalid;
+static Ring2_StackModule_ModuleHandle g_stackModuleHandle = Ring2_StackModule_ModuleHandle_Invalid;
 
 Ring1_CheckReturn() Ring1_Result
 Ring2_Context_startup
@@ -61,7 +60,28 @@ Ring2_Context_startup
     if (startupDependencies()) {
       return Ring1_Result_Failure;
     }
+    g_staticVariablesModuleHandle = Ring2_StaticVariablesModule_ModuleHandle_acquire();
+    if (!g_staticVariablesModuleHandle) {
+      shutdownDependencies();
+      return Ring1_Result_Failure;
+    }
+    g_stackModuleHandle = Ring2_StackModule_ModuleHandle_acquire();
+    if (!g_stackModuleHandle) {
+      Ring2_notifyStaticVariablesUninitialize();
+
+      Ring2_StaticVariablesModule_ModuleHandle_relinquish(g_staticVariablesModuleHandle);
+      g_staticVariablesModuleHandle = Ring2_StaticVariablesModule_ModuleHandle_Invalid;
+
+      shutdownDependencies();
+      return Ring1_Result_Failure;
+    }
     if (Ring1_Memory_allocate(&g_context, sizeof(Ring2_Context))) {
+      Ring2_StackModule_ModuleHandle_relinquish(g_stackModuleHandle);
+      g_stackModuleHandle = Ring2_StaticVariablesModule_ModuleHandle_Invalid;
+      
+      Ring2_StaticVariablesModule_ModuleHandle_relinquish(g_staticVariablesModuleHandle);
+      g_staticVariablesModuleHandle = Ring2_StaticVariablesModule_ModuleHandle_Invalid;
+      
       shutdownDependencies();
       return Ring1_Result_Failure;
     }
@@ -72,7 +92,6 @@ Ring2_Context_startup
 static void
 runGc
   (
-    Ring2_Context* context,
     int64_t n
   )
 {
@@ -87,9 +106,10 @@ runGc
     } else if (newStatistics.sweep.live == oldStatistics.sweep.live) {
       i++;
       if (i == n) {
-        fprintf(stdout, "%"PRIu64" live objects since %"PRIu64" iterations - retrying", newStatistics.sweep.live, i);
+        fprintf(stdout, "%"PRIu64" live objects since %"PRIu64" iterations - aborting\n", newStatistics.sweep.live, i);
+        break;
       } else {
-        fprintf(stdout, "%"PRIu64" live objects since %"PRIu64" iterations - aborting", newStatistics.sweep.live, i);
+        fprintf(stdout, "%"PRIu64" live objects since %"PRIu64" iterations - retrying\n", newStatistics.sweep.live, i);
       }
     }
     oldStatistics = newStatistics;
@@ -106,9 +126,19 @@ Ring2_Context_shutdown
     // TODO: This should not be necessary once the call stack is implemented unless there is a stack corruption.
     Mkx_Interpreter_Stack_clear(g_context);
     // Iterate the GC until the number of live objects does not change anymore.
-    runGc(g_context, 4);
+    runGc(4);
     // Iterate the GC until the number of live objects does not change anymore.
-    runGc(g_context, 4);
+    runGc(4);
+    //
+    Ring2_StackModule_ModuleHandle_relinquish(g_stackModuleHandle);
+    g_stackModuleHandle = Ring2_StackModule_ModuleHandle_Invalid;
+    //
+    Ring2_notifyStaticVariablesUninitialize();
+    //
+    Ring2_StaticVariablesModule_ModuleHandle_relinquish(g_staticVariablesModuleHandle);
+    g_staticVariablesModuleHandle = Ring2_StaticVariablesModule_ModuleHandle_Invalid;
+    // Iterate the GC until the number of live objects does not change anymore.
+    runGc(4);
     //
     Ring1_Memory_deallocate(g_context);
     g_context = NULL;
