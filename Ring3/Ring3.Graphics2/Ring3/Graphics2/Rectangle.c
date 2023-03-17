@@ -1,19 +1,19 @@
-/// @file Ring3/Graphics2/Rectangle2.c
-/// @copyright Copyright (c) 2021-2022 Michael Heilmann. All rights reserved.
+/// @file Ring3/Graphics2/Rectangle.c
+/// @copyright Copyright (c) 2021-2023 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
 #define RING3_GRAPHICS2_PRIVATE (1)
-#include "Ring3/Graphics2/Rectangle2.h"
+#include "Ring3/Graphics2/Rectangle.h"
 
-#include "Ring3/Graphics2/Context2.h"
+#include "Ring3/Graphics2/Context.h"
 #undef RING3_GRAPHICS2_PRIVATE
 
 #include "Ring1/All/_Include.h"
 
 static void
-Ring3_Rectangle2_visit
+Ring3_Graphics2_Rectangle_visit
   (
-    Ring3_Rectangle2* self
+    Ring3_Graphics2_Rectangle* self
   )
 {
   if (self->position) {
@@ -28,13 +28,13 @@ Ring3_Rectangle2_visit
 }
 
 static void
-Ring3_Rectangle2_render
+Ring3_Graphics2_Rectangle_render
   (
-    Ring3_Rectangle2* self,
-    Ring3_Context2* context
+    Ring3_Graphics2_Rectangle* self,
+    Ring3_Graphics2_Context* context
   )
 {
-  Ring3_Math_Matrix4x4f32 const*wvp2 = Ring3_Context2_getModelSpaceToProjectiveSpaceMatrix(context);
+  Ring3_Math_Matrix4x4f32 const*wvp2 = Ring3_Graphics2_Context_getModelSpaceToProjectiveSpaceMatrix(context);
 
   Ring2_Real32 l = Ring3_Math_Vector2f32_getX(self->position);
   Ring2_Real32 r = l + Ring3_Math_Vector2f32_getX(self->size);
@@ -63,56 +63,56 @@ Ring3_Rectangle2_render
 }
 
 static void
-Ring3_Rectangle2_constructClass
+Ring3_Graphics2_Rectangle_constructClass
   (
-    Ring3_Rectangle2_Class* self
+    Ring3_Graphics2_Rectangle_Class* self
   )
 {
-  ((Ring3_Shape2_Class*)self)->render = (void(*)(Ring3_Shape2*, Ring3_Context2*)) & Ring3_Rectangle2_render;
+  ((Ring3_Graphics2_Shape_Class*)self)->render = (void(*)(Ring3_Graphics2_Shape*, Ring3_Graphics2_Context*)) & Ring3_Graphics2_Rectangle_render;
 }
 
 void
-Ring3_Rectangle2_construct
+Ring3_Graphics2_Rectangle_construct
   (
-    Ring3_Rectangle2* self,
+    Ring3_Graphics2_Rectangle* self,
     size_t numberOfArguments,
     Ring2_Value const* arguments
   )
 {
-  Ring3_Shape2_construct((Ring3_Shape2*)self, numberOfArguments, arguments);
+  Ring3_Graphics2_Shape_construct((Ring3_Graphics2_Shape*)self, numberOfArguments, arguments);
   self->position = Ring3_Math_Vector2f32_create();
   self->size = Ring3_Math_Vector2f32_create();
 
   self->color = Ring3_Math_Vector4f32_create();
   Ring3_Math_Vector4f32_set(self->color, 1.f, 1.f, 1.f, 1.f);
 
-  Machine_setClassType(Ring1_cast(Machine_Object *, self), Ring3_Rectangle2_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Ring3_Graphics2_Rectangle_getType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Ring3_Rectangle2,
-                         Ring3_Shape2,
-                         &Ring3_Rectangle2_visit,
-                         &Ring3_Rectangle2_construct,
+MACHINE_DEFINE_CLASSTYPE(Ring3_Graphics2_Rectangle,
+                         Ring3_Graphics2_Shape,
+                         &Ring3_Graphics2_Rectangle_visit,
+                         &Ring3_Graphics2_Rectangle_construct,
                          NULL,
-                         &Ring3_Rectangle2_constructClass,
+                         &Ring3_Graphics2_Rectangle_constructClass,
                          NULL)
 
-Ring3_Rectangle2*
-Ring3_Rectangle2_create
+Ring1_NoDiscardReturn() Ring3_Graphics2_Rectangle*
+Ring3_Graphics2_Rectangle_create
   (
   )
 {
-  Machine_ClassType* ty = Ring3_Rectangle2_getType();
-  static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Ring2_Value ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
-  Ring3_Rectangle2* self = (Ring3_Rectangle2*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Machine_Type* ty = Ring3_Graphics2_Rectangle_getType();
+  static size_t const NUMBER_OF_ARGUMENTS = 0;
+  static Ring2_Value const ARGUMENTS[] = { Ring2_Value_StaticInitializerVoid() };
+  Ring3_Graphics2_Rectangle* self = Ring1_cast(Ring3_Graphics2_Rectangle*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS));
   return self;
 }
 
 void
-Ring3_Rectangle2_setRectangle
+Ring3_Graphics2_Rectangle_setRectangle
   (
-    Ring3_Rectangle2* self,
+    Ring3_Graphics2_Rectangle* self,
     Ring3_Math_Rectangle2 const* rectangle
   )
 {
@@ -120,10 +120,10 @@ Ring3_Rectangle2_setRectangle
   Ring3_Math_Vector2f32_copy(self->size, Ring3_Math_Rectangle2_getSize(rectangle));
 }
 
-Ring3_Math_Rectangle2*
-Ring3_Rectangle2_getRectangle
+Ring1_NoDiscardReturn() Ring3_Math_Rectangle2*
+Ring3_Graphics2_Rectangle_getRectangle
   (
-    Ring3_Rectangle2 const* self
+    Ring3_Graphics2_Rectangle const* self
   )
 {
   Ring3_Math_Rectangle2* rectangle = Ring3_Math_Rectangle2_create();
@@ -133,46 +133,46 @@ Ring3_Rectangle2_getRectangle
 }
 
 void
-Ring3_Rectangle2_setColor
+Ring3_Graphics2_Rectangle_setColor
   (
-    Ring3_Rectangle2* self,
+    Ring3_Graphics2_Rectangle* self,
     Ring3_Math_Vector4f32 const* color
   )
 { Ring3_Math_Vector4f32_copy(self->color, color); }
 
-Ring3_Math_Vector4f32*
-Ring3_Rectangle2_getColor
+Ring1_NoDiscardReturn() Ring3_Math_Vector4f32*
+Ring3_Graphics2_Rectangle_getColor
   (
-    Ring3_Rectangle2 const* self
+    Ring3_Graphics2_Rectangle const* self
   )
 { return Ring3_Math_Vector4f32_clone(self->color); }
 
 void
-Ring3_Rectangle2_setSize
+Ring3_Graphics2_Rectangle2_setSize
   (
-    Ring3_Rectangle2* self,
+    Ring3_Graphics2_Rectangle* self,
     Ring3_Math_Vector2f32 const* size
   )
 { Ring3_Math_Vector2f32_copy(self->size, size); }
 
-Ring3_Math_Vector2f32*
-Ring3_Rectangle2_getSize
+Ring1_NoDiscardReturn() Ring3_Math_Vector2f32*
+Ring3_Graphics2_Rectangle_getSize
   (
-    Ring3_Rectangle2 const* self
+    Ring3_Graphics2_Rectangle const* self
   )
 { return Ring3_Math_Vector2f32_clone(self->size); }
 
 void
-Ring3_Rectangle2_setPosition
+Ring3_Graphics2_Rectangle_setPosition
   (
-    Ring3_Rectangle2* self,
+    Ring3_Graphics2_Rectangle* self,
     Ring3_Math_Vector2f32 const* position
   )
 { Ring3_Math_Vector2f32_copy(self->position, position); }
 
-Ring3_Math_Vector2f32*
-Machine_Rectangle2_getPosition
+Ring1_NoDiscardReturn() Ring3_Math_Vector2f32*
+Machine_Graphics2_Rectangle_getPosition
   (
-    Ring3_Rectangle2 const* self
+    Ring3_Graphics2_Rectangle const* self
   )
 { return Ring3_Math_Vector2f32_clone(self->position); }

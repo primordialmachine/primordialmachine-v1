@@ -1,15 +1,15 @@
-/// @file Ring3/Graphics2/Shape2.h
-/// @copyright Copyright (c) 2021-2022 Michael Heilmann. All rights reserved.
+/// @file Ring3/Graphics2/Shape.h
+/// @copyright Copyright (c) 2021-2023 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
-#if !defined(RING3_GRAPHICS2_SHAPE2_H_INCLUDED)
-#define RING3_GRAPHICS2_SHAPE2_H_INCLUDED
+#if !defined(RING3_GRAPHICS2_SHAPE_H_INCLUDED)
+#define RING3_GRAPHICS2_SHAPE_H_INCLUDED
 
 #if !defined(RING3_GRAPHICS2_PRIVATE)
-#error("Do not include `Ring3/Graphics2/Shape2.h` directly. Include `Ring3/raphics2/_Include.h` instead.")
+#error("Do not include `Ring3/Graphics2/Shape.h` directly. Include `Ring3/raphics2/_Include.h` instead.")
 #endif
 #include "Ring3/Math/_Include.h"
-typedef struct Ring3_Context2 Ring3_Context2;
+typedef struct Ring3_Graphics2_Context Ring3_Graphics2_Context;
 
 /// @brief
 /// C-level representation of a shape in 2D.
@@ -25,15 +25,15 @@ typedef struct Ring3_Context2 Ring3_Context2;
 /// - rectangle: bounds are the rectangle itself.
 /// - circle: bounds are the smallest rectangle enclosing the circle.
 /// @extends Machine.Object
-MACHINE_DECLARE_CLASSTYPE(Ring3_Shape2);
+MACHINE_DECLARE_CLASSTYPE(Ring3_Graphics2_Shape);
 
-struct Ring3_Shape2_Class {
+struct Ring3_Graphics2_Shape_Class {
   Machine_Object_Class parent;
 
-  void (*render)(Ring3_Shape2* self, Ring3_Context2* context);
+  void (*render)(Ring3_Graphics2_Shape* self, Ring3_Graphics2_Context* context);
 };
 
-struct Ring3_Shape2 {
+struct Ring3_Graphics2_Shape {
   Machine_Object parent;
 };
 
@@ -41,9 +41,9 @@ struct Ring3_Shape2 {
 /// @param self This shape.
 /// @param numberOfArguments, arguments The arguments.
 void
-Ring3_Shape2_construct
+Ring3_Graphics2_Shape_construct
   (
-    Ring3_Shape2* self,
+    Ring3_Graphics2_Shape* self,
     size_t numberOfArguments,
     Ring2_Value const* arguments
   );
@@ -52,10 +52,10 @@ Ring3_Shape2_construct
 /// @param self This shape.
 /// @param context The context.
 void
-Ring3_Shape2_render
+Ring3_Graphics2_Shape_render
   (
-    Ring3_Shape2* self,
-    Ring3_Context2* context
+    Ring3_Graphics2_Shape* self,
+    Ring3_Graphics2_Context* context
   );
 
-#endif // RING3_GRAPHICS2_SHAPE2_H_INCLUDED
+#endif // RING3_GRAPHICS2_SHAPE_H_INCLUDED

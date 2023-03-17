@@ -1,17 +1,17 @@
-/// @file Ring3/Graphics2/Context2.c
-/// @copyright Copyright (c) 2021-2022 Michael Heilmann. All rights reserved.
+/// @file Ring3/Graphics2/Context.c
+/// @copyright Copyright (c) 2021-2023 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
 #define RING3_GRAPHICS2_PRIVATE (1)
-#include "Ring3/Graphics2/Context2.h"
+#include "Ring3/Graphics2/Context.h"
 #undef RING3_GRAPHICS2_PRIVATE
 
 #include "Ring1/All/_Include.h"
 
 static void
-Ring3_Context2_visit
+Ring3_Graphics2_Context_visit
   (
-    Ring3_Context2* self
+    Ring3_Graphics2_Context* self
   )
 {
   if (self->modelSpaceToProjectiveSpace) {
@@ -40,18 +40,18 @@ Ring3_Context2_visit
   }
 }
 
-MACHINE_DEFINE_CLASSTYPE(Ring3_Context2,
+MACHINE_DEFINE_CLASSTYPE(Ring3_Graphics2_Context,
                          Machine_Object,
-                         &Ring3_Context2_visit,
-                         &Ring3_Context2_construct,
+                         &Ring3_Graphics2_Context_visit,
+                         &Ring3_Graphics2_Context_construct,
                          NULL,
                          NULL,
                          NULL)
 
 void
-Ring3_Context2_construct
+Ring3_Graphics2_Context_construct
   (
-    Ring3_Context2* self,
+    Ring3_Graphics2_Context* self,
     size_t numberOfArguments,
     Ring2_Value const* arguments
   )
@@ -92,31 +92,31 @@ Ring3_Context2_construct
                                                   0);
 
   //
-  Machine_setClassType(Ring1_cast(Machine_Object *, self), Ring3_Context2_getType());
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Ring3_Graphics2_Context_getType());
 }
 
-Ring3_Context2*
-Ring3_Context2_create
+Ring1_NoDiscardReturn() Ring3_Graphics2_Context*
+Ring3_Graphics2_Context_create
   (
     Ring3_VisualsContext* visualsContext,
     Ring3_ImagesContext* imagesContext,
     Ring3_FontsContext* fontsContext
   )
 {
-  Machine_ClassType* ty = Ring3_Context2_getType();
-  static const size_t NUMBER_OF_ARGUMENTS = 3;
+  Machine_Type* ty = Ring3_Graphics2_Context_getType();
+  static size_t const NUMBER_OF_ARGUMENTS = 3;
   Ring2_Value arguments[3];
-  Ring2_Value_setObject(&arguments[0], (Machine_Object*)visualsContext);
-  Ring2_Value_setObject(&arguments[1], (Machine_Object*)imagesContext);
-  Ring2_Value_setObject(&arguments[2], (Machine_Object*)fontsContext);
-  Ring3_Context2* self = (Ring3_Context2*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments);
+  Ring2_Value_setObject(&arguments[0], Ring1_cast(Machine_Object*,visualsContext));
+  Ring2_Value_setObject(&arguments[1], Ring1_cast(Machine_Object*,imagesContext));
+  Ring2_Value_setObject(&arguments[2], Ring1_cast(Machine_Object*,fontsContext));
+  Ring3_Graphics2_Context* self = Ring1_cast(Ring3_Graphics2_Context*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
   return self;
 }
 
 static void
 updateModelSpaceToProjectiveSpace
   (
-    Ring3_Context2* self
+    Ring3_Graphics2_Context* self
   )
 {
   if (self->width > 0.f && self->height > 0.f) {
@@ -131,9 +131,9 @@ updateModelSpaceToProjectiveSpace
 }
 
 void
-Ring3_Context2_setTargetSize
+Ring3_Graphics2_Context_setTargetSize
   (
-    Ring3_Context2* self,
+    Ring3_Graphics2_Context* self,
     Ring2_Real32 width,
     Ring2_Real32 height
   )
@@ -146,35 +146,38 @@ Ring3_Context2_setTargetSize
   updateModelSpaceToProjectiveSpace(self);
 }
 
-Ring2_Real32
-Ring3_Context2_getTargetWidth
+Ring1_NoDiscardReturn() Ring2_Real32
+Ring3_Graphics2_Context_getTargetWidth
   (
-    Ring3_Context2 const* self
+    Ring3_Graphics2_Context const* self
   )
 { return self->width; }
 
-Ring2_Real32
-Ring3_Context2_getTargetHeight
+Ring1_NoDiscardReturn() Ring2_Real32
+Ring3_Graphics2_Context_getTargetHeight
   (
-    Ring3_Context2 const* self
+    Ring3_Graphics2_Context const* self
   )
 { return self->height; }
 
-Ring3_Math_Matrix4x4f32*
-Ring3_Context2_getModelSpaceToProjectiveSpaceMatrix
+Ring1_NoDiscardReturn() Ring3_Math_Matrix4x4f32*
+Ring3_Graphics2_Context_getModelSpaceToProjectiveSpaceMatrix
   (
-    Ring3_Context2 const* self
+    Ring3_Graphics2_Context const* self
   )
 { return Ring3_Math_Matrix4x4f32_clone(self->modelSpaceToProjectiveSpace); }
 
-Ring3_Math_Matrix4x4f32 const* Ring3_Context2_getModelSpaceToWorldSpaceMatrix(Ring3_Context2 const* self) {
-  return self->modelSpaceToWorldSpace;
-}
+Ring1_NoDiscardReturn() Ring3_Math_Matrix4x4f32*
+Ring3_Graphics2_Context_getModelSpaceToWorldSpaceMatrix
+  (
+    Ring3_Graphics2_Context const* self
+  )
+{ return Ring3_Math_Matrix4x4f32_clone(self->modelSpaceToWorldSpace); }
 
 void
-Ring3_Context2_setOriginBottomLeft
+Ring3_Graphics2_Context_setOriginBottomLeft
   (
-    Ring3_Context2* self,
+    Ring3_Graphics2_Context* self,
     Ring2_Boolean originBottomLeft
   )
 {
@@ -182,30 +185,30 @@ Ring3_Context2_setOriginBottomLeft
   updateModelSpaceToProjectiveSpace(self);
 }
 
-Ring2_Boolean
-Ring3_Context2_getOriginBottomLeft
+Ring1_NoDiscardReturn() Ring2_Boolean
+Ring3_Graphics2_Context_getOriginBottomLeft
   (
-    Ring3_Context2 const* self
+    Ring3_Graphics2_Context const* self
   )
 { return self->originBottomLeft; }
 
 Ring1_NoDiscardReturn() Ring3_VisualsContext*
-Ring3_Context2_getVisualsContext
+Ring3_Graphics2_Context_getVisualsContext
   (
-    Ring3_Context2 const* self
+    Ring3_Graphics2_Context const* self
   )
 { return self->visualsContext; }
 
 Ring1_NoDiscardReturn() Ring3_ImagesContext*
-Ring3_Context2_getImagesContext
+Ring3_Graphics2_Context_getImagesContext
   (
-    Ring3_Context2 const* self
+    Ring3_Graphics2_Context const* self
   )
 { return self->imagesContext; }
 
 Ring1_NoDiscardReturn() Ring3_FontsContext*
-Ring3_Context2_getFontsContext
+Ring3_Graphics2_Context_getFontsContext
   (
-    Ring3_Context2 const* self
+    Ring3_Graphics2_Context const* self
   )
 { return self->fontsContext; }

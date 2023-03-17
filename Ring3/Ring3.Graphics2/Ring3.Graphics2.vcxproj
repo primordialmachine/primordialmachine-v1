@@ -42,15 +42,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ring3\Graphics2\Context2.h" />
-    <ClInclude Include="Ring3\Graphics2\Rectangle2.h" />
-    <ClInclude Include="Ring3\Graphics2\Shape2.h" />
+    <ClInclude Include="Ring3\Graphics2\Context.h" />
+    <ClInclude Include="Ring3\Graphics2\Rectangle.h" />
+    <ClInclude Include="Ring3\Graphics2\Shape.h" />
     <ClInclude Include="Ring3\Graphics2\_Include.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ring3\Graphics2\Context2.c" />
-    <ClCompile Include="Ring3\Graphics2\Rectangle2.c" />
-    <ClCompile Include="Ring3\Graphics2\Shape2.c" />
+    <ClCompile Include="Ring3\Graphics2\Context.c" />
+    <ClCompile Include="Ring3\Graphics2\Rectangle.c" />
+    <ClCompile Include="Ring3\Graphics2\Shape.c" />
     <ClCompile Include="Ring3\Graphics2\_Include.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

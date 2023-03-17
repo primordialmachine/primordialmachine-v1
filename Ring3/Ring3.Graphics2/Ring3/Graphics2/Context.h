@@ -1,12 +1,12 @@
-/// @file Ring3/Graphics2/Context2.h
-/// @copyright Copyright (c) 2021-2022 Michael Heilmann. All rights reserved.
+/// @file Ring3/Graphics2/Context.h
+/// @copyright Copyright (c) 2021-2023 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
-#if !defined(RING3_GRAPHICS2_CONTEXT2_H_INCLUDED)
-#define RING3_GRAPHICS2_CONTEXT2_H_INCLUDED
+#if !defined(RING3_GRAPHICS2_CONTEXT_H_INCLUDED)
+#define RING3_GRAPHICS2_CONTEXT_H_INCLUDED
 
 #if !defined(RING3_GRAPHICS2_PRIVATE)
-#error("Do not include `Ring3/Graphics2/Context2.h` directly. Include `Ring3/raphics2/_Include.h` instead.")
+#error("Do not include `Ring3/Graphics2/Context.h` directly. Include `Ring3/raphics2/_Include.h` instead.")
 #endif
 #include "Ring3/Math/_Include.h"
 #include "Ring3/Visuals/_Include.h"
@@ -14,13 +14,13 @@
 /// @brief
 /// C-level representation of a graphics context for 2D graphics.
 /// @extends Machine_Object
-MACHINE_DECLARE_CLASSTYPE(Ring3_Context2);
+MACHINE_DECLARE_CLASSTYPE(Ring3_Graphics2_Context);
 
-struct Ring3_Context2_Class {
+struct Ring3_Graphics2_Context_Class {
   Machine_Object_Class parent;
 };
 
-struct Ring3_Context2 {
+struct Ring3_Graphics2_Context {
   Machine_Object parent;
 
   Ring3_VisualsContext* visualsContext;
@@ -70,9 +70,9 @@ struct Ring3_Context2 {
 /// @param self This context.
 /// @param numberOfArguments, arguments The arguments.
 void
-Ring3_Context2_construct
+Ring3_Graphics2_Context_construct
   (
-    Ring3_Context2* self,
+    Ring3_Graphics2_Context* self,
     size_t numberOfArguments,
     Ring2_Value const* arguments
   );
@@ -80,8 +80,8 @@ Ring3_Context2_construct
 /// @brief Create a context with default values.
 /// @param visualsContext The video context.
 /// @return The context.
-Ring3_Context2*
-Ring3_Context2_create
+Ring1_NoDiscardReturn() Ring3_Graphics2_Context*
+Ring3_Graphics2_Context_create
   (
     Ring3_VisualsContext* visualsContext,
     Ring3_ImagesContext* imagesContext,
@@ -92,9 +92,9 @@ Ring3_Context2_create
 /// @param self This context.
 /// @param width, height The width and height of the canvas.
 void
-Ring3_Context2_setTargetSize
+Ring3_Graphics2_Context_setTargetSize
   (
-    Ring3_Context2* self,
+    Ring3_Graphics2_Context* self,
     Ring2_Real32 width,
     Ring2_Real32 height
   );
@@ -102,38 +102,39 @@ Ring3_Context2_setTargetSize
 /// @brief Get the width of the canvas.
 /// @param self This context.
 /// @return The width of the canvas.
-Ring2_Real32
-Ring3_Context2_getTargetWidth
+Ring1_NoDiscardReturn() Ring2_Real32
+Ring3_Graphics2_Context_getTargetWidth
   (
-    Ring3_Context2 const* self
+    Ring3_Graphics2_Context const* self
   );
 
 /// @brief Get the height of the canvas.
 /// @param self This context.
 /// @return The height of the canvas.
-Ring2_Real32
-Ring3_Context2_getTargetHeight
+Ring1_NoDiscardReturn() Ring2_Real32
+Ring3_Graphics2_Context_getTargetHeight
   (
-    Ring3_Context2 const* self
+    Ring3_Graphics2_Context const* self
   );
 
 /// @brief Get the model space to projective space transformation matrix.
 /// @param self This context.
 /// @return The model space to projective space transformation matrix.
 /// A copy of the matrix is returned.
-Ring3_Math_Matrix4x4f32 *
-Ring3_Context2_getModelSpaceToProjectiveSpaceMatrix
+Ring1_NoDiscardReturn() Ring3_Math_Matrix4x4f32 *
+Ring3_Graphics2_Context_getModelSpaceToProjectiveSpaceMatrix
   (
-    Ring3_Context2 const* self
+    Ring3_Graphics2_Context const* self
   );
 
 /// @brief Get the model space to world space transformation matrix.
 /// @param self This context.
 /// @return The model space to world space transformation matrix.
-Ring3_Math_Matrix4x4f32 const*
-Ring3_Context2_getModelSpaceToWorldSpaceMatrix
+/// A copy of the matrix is returned.
+Ring1_NoDiscardReturn() Ring3_Math_Matrix4x4f32*
+Ring3_Graphics2_Context_getModelSpaceToWorldSpaceMatrix
   (
-    Ring3_Context2 const* self
+    Ring3_Graphics2_Context const* self
   );
 
 /// @brief Set if the origin of the coordinate system is mapped to the bottom/left corner or the top/left corner of the canvas.
@@ -142,9 +143,9 @@ Ring3_Context2_getModelSpaceToWorldSpaceMatrix
 /// @a true maps the origin to the bottom/left corner of the canvas,
 /// @a false maps the origin to the top/left corner of the canvas.
 void
-Ring3_Context2_setOriginBottomLeft
+Ring3_Graphics2_Context_setOriginBottomLeft
   (
-    Ring3_Context2* self,
+    Ring3_Graphics2_Context* self,
     Ring2_Boolean originBottomLeft
   );
 
@@ -154,37 +155,37 @@ Ring3_Context2_setOriginBottomLeft
 /// @a true if the origin is mapped to the bottom/left corner of th canvas,
 /// @a false if the origin is mapped to the top/left corner of the canvas.
 /// @default @a true
-Ring2_Boolean
-Ring3_Context2_getOriginBottomLeft
+Ring1_NoDiscardReturn() Ring2_Boolean
+Ring3_Graphics2_Context_getOriginBottomLeft
   (
-    Ring3_Context2 const* self
+    Ring3_Graphics2_Context const* self
   );
 
 /// @brief Get the video context.
 /// @param self This context.
 /// @return The video context.
 Ring1_NoDiscardReturn() Ring3_VisualsContext*
-Ring3_Context2_getVisualsContext
+Ring3_Graphics2_Context_getVisualsContext
   (
-    Ring3_Context2 const* self
+    Ring3_Graphics2_Context const* self
   );
 
 /// @brief Get the images context.
 /// @param self This context.
 /// @return The images context.
 Ring1_NoDiscardReturn() Ring3_ImagesContext*
-Ring3_Context2_getImagesContext
+Ring3_Graphics2_Context_getImagesContext
   (
-    Ring3_Context2 const* self
+    Ring3_Graphics2_Context const* self
   );
 
 /// @brief Get the fonts context.
 /// @param self This context.
 /// @return The fonts context.
 Ring1_NoDiscardReturn() Ring3_FontsContext*
-Ring3_Context2_getFontsContext
+Ring3_Graphics2_Context_getFontsContext
   (
-    Ring3_Context2 const* self
+    Ring3_Graphics2_Context const* self
   );
 
-#endif // RING3_GRAPHICS2_CONTEXT2_H_INCLUDED
+#endif // RING3_GRAPHICS2_CONTEXT_H_INCLUDED
