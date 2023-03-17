@@ -94,7 +94,7 @@ Ring3_MousePointerEvent_create
     Ring2_Real32 y
   )
 {
-  Machine_ClassType* ty = Ring3_MousePointerEvent_getType();
+  Machine_Type* ty = Ring3_MousePointerEvent_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 3;
   Ring2_Value ARGUMENTS[3]
       = { Ring2_Value_StaticInitializerVoid(),

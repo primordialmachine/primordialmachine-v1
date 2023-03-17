@@ -81,7 +81,7 @@ Ring3_KeyboardKeyEvent_create
     Ring3_KeyboardKeyAction keyAction
   )
 {
-  Machine_ClassType* ty = Ring3_KeyboardKeyEvent_getType();
+  Machine_Type* ty = Ring3_KeyboardKeyEvent_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 2;
   Ring2_Value ARGUMENTS[2]
       = { Ring2_Value_StaticInitializerVoid(), Ring2_Value_StaticInitializerVoid() };

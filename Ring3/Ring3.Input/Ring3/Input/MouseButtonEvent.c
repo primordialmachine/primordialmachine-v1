@@ -92,16 +92,19 @@ Ring3_MouseButtonEvent_create
     Ring2_Real32 y
   )
 {
-  Machine_ClassType* ty = Ring3_MouseButtonEvent_getType();
-  static const size_t NUMBER_OF_ARGUMENTS = 4;
-  Ring2_Value ARGUMENTS[4]
-      = { Ring2_Value_StaticInitializerVoid(), Ring2_Value_StaticInitializerVoid(),
-          Ring2_Value_StaticInitializerVoid(), Ring2_Value_StaticInitializerVoid() };
-  Ring2_Value_setInteger(&ARGUMENTS[0], button);
-  Ring2_Value_setInteger(&ARGUMENTS[1], action);
-  Ring2_Value_setReal32(&ARGUMENTS[2], x);
-  Ring2_Value_setReal32(&ARGUMENTS[3], y);
-  Ring3_MouseButtonEvent* self
-      = (Ring3_MouseButtonEvent*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Machine_Type* ty = Ring3_MouseButtonEvent_getType();
+  static size_t const NUMBER_OF_ARGUMENTS = 4;
+  Ring2_Value arguments[] =
+    {
+      Ring2_Value_StaticInitializerVoid(),
+      Ring2_Value_StaticInitializerVoid(),
+      Ring2_Value_StaticInitializerVoid(),
+      Ring2_Value_StaticInitializerVoid(),
+    };
+  Ring2_Value_setInteger(&arguments[0], button);
+  Ring2_Value_setInteger(&arguments[1], action);
+  Ring2_Value_setReal32(&arguments[2], x);
+  Ring2_Value_setReal32(&arguments[3], y);
+  Ring3_MouseButtonEvent* self = Ring1_cast(Ring3_MouseButtonEvent*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
   return self;
 }

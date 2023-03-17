@@ -1,5 +1,18 @@
 DefineKeyboardKey(Escape, "<escape>")
 
+DefineKeyboardKey(F1, "<F1>")
+DefineKeyboardKey(F2, "<F2>")
+DefineKeyboardKey(F3, "<F3>")
+DefineKeyboardKey(F4, "<F4>")
+DefineKeyboardKey(F5, "<F5>")
+DefineKeyboardKey(F6, "<F6>")
+DefineKeyboardKey(F7, "<F7>")
+DefineKeyboardKey(F8, "<F8>")
+DefineKeyboardKey(F9, "<F9>")
+DefineKeyboardKey(F10, "<F10>")
+DefineKeyboardKey(F11, "<F11>")
+DefineKeyboardKey(F12, "<F12>")
+
 DefineKeyboardKey(0, "<0>")
 DefineKeyboardKey(1, "<1>")
 DefineKeyboardKey(2, "<2>")
