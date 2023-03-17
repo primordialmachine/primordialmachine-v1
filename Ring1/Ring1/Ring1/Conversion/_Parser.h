@@ -50,7 +50,8 @@ isDigit
       *new = current;
     return true;
   } else {
-    *new = current;
+    if (new)
+      *new = current;
     return false;
   }
 }

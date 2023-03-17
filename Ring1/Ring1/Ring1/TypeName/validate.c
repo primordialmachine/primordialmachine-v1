@@ -17,7 +17,7 @@ typedef struct State {
   short symbol;
 } State;
 
-Ring1_Inline() Ring1_NoDiscardReturn() void
+Ring1_Inline() void
 next
   (
     State *state

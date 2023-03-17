@@ -339,7 +339,7 @@ normalize
     &normalizeDotDots,
     &normalizeEmpty
   };
-  static const size_t numberOfFunctions = sizeof(functions) / sizeof(NormalizationFunction*);
+  static size_t const numberOfFunctions = sizeof(functions) / sizeof(NormalizationFunction*);
   State state = { .sources = NULL, .targets = NULL, .modified = 1 };
   if (TokenList_create(&state.targets)) {
     return Ring1_Result_Failure;
