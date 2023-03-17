@@ -327,7 +327,7 @@ Ring3_Binding_bindSamplerImpl
   (
     Machine_Gl_Binding* self,
     Ring2_String* targetName,
-    const size_t value
+    size_t const value
   )
 {
   Ring2_Value temporary2;
@@ -414,12 +414,12 @@ Machine_Gl_Binding_create
     Ring3_GpuBuffer* buffer
   )
 {
-  Machine_ClassType* ty = Machine_Gl_Binding_getType();
-  size_t numberOfArguments = 3;
+  Machine_Type* ty = Machine_Gl_Binding_getType();
+  static size_t const NUMBER_OF_ARGUMENTS = 3;
   Ring2_Value arguments[3];
-  Ring2_Value_setObject(&arguments[0], (Machine_Object*)program);
-  Ring2_Value_setObject(&arguments[1], (Machine_Object*)vertexDescriptor);
-  Ring2_Value_setObject(&arguments[2], (Machine_Object*)buffer);
-  Machine_Gl_Binding* self = (Machine_Gl_Binding*)Machine_allocateClassObject(ty, numberOfArguments, arguments);
+  Ring2_Value_setObject(&arguments[0], Ring1_cast(Machine_Object*,program));
+  Ring2_Value_setObject(&arguments[1], Ring1_cast(Machine_Object*,vertexDescriptor));
+  Ring2_Value_setObject(&arguments[2], Ring1_cast(Machine_Object*,buffer));
+  Machine_Gl_Binding* self = Ring1_cast(Machine_Gl_Binding*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
   return self;
 }

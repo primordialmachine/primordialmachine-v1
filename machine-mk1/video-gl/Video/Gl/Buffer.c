@@ -152,9 +152,9 @@ Machine_Gl_VideoBuffer_create
   (
   )
 {
-  Machine_ClassType* ty = Machine_Gl_VideoBuffer_getType();
+  Machine_Type* ty = Machine_Gl_VideoBuffer_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Ring2_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
-  Machine_Gl_VideoBuffer* self = (Machine_Gl_VideoBuffer*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  static Ring2_Value const ARGUMENTS[] = { Ring2_Value_StaticInitializerVoid() };
+  Machine_Gl_VideoBuffer* self = Ring1_cast(Machine_Gl_VideoBuffer*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS));
   return self;
 }

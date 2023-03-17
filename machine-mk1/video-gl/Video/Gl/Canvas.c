@@ -180,10 +180,9 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Video_Gl_Canvas,
                          NULL)
 
 Machine_Video_Gl_Canvas* Machine_Video_Gl_Canvas_create() {
-  Machine_ClassType* ty = Machine_Video_Gl_Canvas_getType();
+  Machine_Type* ty = Machine_Video_Gl_Canvas_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
   static Ring2_Value const ARGUMENTS[] = { Ring2_Value_StaticInitializerVoid() };
-  Machine_Video_Gl_Canvas* self
-      = (Machine_Video_Gl_Canvas*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Machine_Video_Gl_Canvas* self = Ring1_cast(Machine_Video_Gl_Canvas*, Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS));
   return self;
 }

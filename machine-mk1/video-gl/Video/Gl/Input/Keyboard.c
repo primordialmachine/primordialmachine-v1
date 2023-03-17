@@ -16,6 +16,19 @@ static Ring1_Result mapKey(int source, Ring3_KeyboardKey* target) {
 
     MAP(ESCAPE, Escape)
 
+    MAP(F1, F1)
+    MAP(F2, F2)
+    MAP(F3, F3)
+    MAP(F4, F4)
+    MAP(F5, F5)
+    MAP(F6, F6)
+    MAP(F7, F7)
+    MAP(F8, F8)
+    MAP(F9, F9)
+    MAP(F10, F10)
+    MAP(F11, F11)
+    MAP(F12, F12)
+
     MAP(0, 0)
     MAP(1, 1)
     MAP(2, 2)

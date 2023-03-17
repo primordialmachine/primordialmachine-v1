@@ -249,9 +249,9 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gl_ShaderProgram,
                          NULL)
 
 Machine_Gl_ShaderProgram* Machine_Gl_ShaderProgram_create(Ring2_String* vertexProgramText, Ring2_String* geometryProgramText, Ring2_String* fragmentProgramText) {
-  Machine_ClassType* ty = Machine_Gl_ShaderProgram_getType();
+  Machine_Type* ty = Machine_Gl_ShaderProgram_getType();
 
-  static size_t const numberOfArguments = 3;
+  static size_t const NUMBER_OF_ARGUMENTS = 3;
   Ring2_Value arguments[3];
 
   if (vertexProgramText != NULL)
@@ -269,7 +269,7 @@ Machine_Gl_ShaderProgram* Machine_Gl_ShaderProgram_create(Ring2_String* vertexPr
   else
     Ring2_Value_setVoid(&arguments[2], Ring2_Void_Void);
 
-  Machine_Gl_ShaderProgram* self = (Machine_Gl_ShaderProgram*)Machine_allocateClassObject(ty, numberOfArguments, arguments);
+  Machine_Gl_ShaderProgram* self = Ring1_cast(Machine_Gl_ShaderProgram*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
   return self;
 }
 

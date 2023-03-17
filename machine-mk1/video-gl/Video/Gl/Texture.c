@@ -17,7 +17,7 @@ static void Machine_Gl_Texture_destruct(Machine_Gl_Texture* self) {
 
 void Machine_Gl_Texture_construct_fromImage(Machine_Gl_Texture* self, Ring3_Image* image) {
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Ring2_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
+  static Ring2_Value const ARGUMENTS[] = { Ring2_Value_StaticInitializerVoid() };
   Ring3_Texture_construct((Ring3_Texture*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   Machine_UtilitiesGl_call(glGenTextures(1, &self->id));
   Machine_UtilitiesGl_call(glBindTexture(GL_TEXTURE_2D, self->id));
@@ -86,10 +86,10 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gl_Texture, Ring3_Texture, NULL, &Machine_Gl_Te
                          &Machine_Gl_Texture_destruct, NULL, NULL)
 
 Machine_Gl_Texture* Machine_Gl_Texture_create(Ring3_Image* image) {
-  Machine_ClassType* ty = Machine_Gl_Texture_getType();
-  static const size_t NUMBER_OF_ARGUMENTS = 1;
-  Ring2_Value ARGUMENTS[1];
-  Ring2_Value_setObject(&ARGUMENTS[0], (Machine_Object*)image);
-  Machine_Gl_Texture* self = (Machine_Gl_Texture*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Machine_Type* ty = Machine_Gl_Texture_getType();
+  static size_t const NUMBER_OF_ARGUMENTS = 1;
+  Ring2_Value arguments[1];
+  Ring2_Value_setObject(&arguments[0], Ring1_cast(Machine_Object*,image));
+  Machine_Gl_Texture* self = Ring1_cast(Machine_Gl_Texture*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
   return self;
 }
