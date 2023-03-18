@@ -51,10 +51,7 @@ Ring1_NoDiscardReturn() Machine_Gdl_Node*
 Machine_Gdl_Node_create
   (
     Machine_Gdl_NodeKind kind,
-#if RING3_GDL_VERSION == 2
     Ring2_Value const* value
-#else
-#endif
   );
 
 /// @brief Append a node to the node list of this node.

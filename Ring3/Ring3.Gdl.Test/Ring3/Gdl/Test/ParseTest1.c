@@ -14,7 +14,7 @@
   }
 
 static void
-test_1_1
+test1
   (
     Ring2_Context * ctx,
     Ring2_Value * result,
@@ -33,7 +33,7 @@ test_1_1
 }
 
 static void
-test_1_2
+test2
   (
     Ring2_Context* ctx,
     Ring2_Value* result,
@@ -68,11 +68,13 @@ Ring3_Gdl_Test_registerParseTest1
     Ring2_Tests* tests
   )
 {
-  Ring2_String* name;
-  name = Ring2_String_create("Ring3.Gdl.Test.parseTest_1_1",
-                  crt_strlen("Ring3.Gdl.Test.parseTest_1_1"));
-  Ring2_Tests_addTest(tests, name, &test_1_1);
-  name = Ring2_String_create("Ring3.Gdl.Test.parseTest_1_2",
-                  crt_strlen("Ring3.Gdl.Test.parseTest_1_2"));
-  Ring2_Tests_addTest(tests, name, &test_1_2);
+  Ring2_String* prefix = Ring2_String_fromC(false, "Ring3.Gdl.Test.ParseTest");
+  Ring2_Tests_addTest(tests,
+                      Ring2_String_concatenate(Ring2_Context_get(), prefix,
+                                               Ring2_String_fromC(false, "1")),
+                      &test1);
+  Ring2_Tests_addTest(tests,
+                      Ring2_String_concatenate(Ring2_Context_get(), prefix,
+                                               Ring2_String_fromC(false, "2")),
+                      &test2);
 }

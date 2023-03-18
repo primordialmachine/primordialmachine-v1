@@ -40,13 +40,13 @@ Machine_Gdl_Token_create
     Ring2_Integer offset
   )
 {
-  Machine_ClassType* ty = Machine_Gdl_Token_getType();
-  static const size_t NUMBER_OF_ARGUMENTS = 3;
-  Ring2_Value ARGUMENTS[3];
-  Ring2_Value_setInteger(&ARGUMENTS[0], kind);
-  Ring2_Value_setString(&ARGUMENTS[1], text);
-  Ring2_Value_setInteger(&ARGUMENTS[2], offset);
-  Machine_Gdl_Token* self = (Machine_Gdl_Token*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Machine_Type* ty = Machine_Gdl_Token_getType();
+  static size_t const NUMBER_OF_ARGUMENTS = 3;
+  Ring2_Value arguments[3];
+  Ring2_Value_setInteger(&arguments[0], kind);
+  Ring2_Value_setString(&arguments[1], text);
+  Ring2_Value_setInteger(&arguments[2], offset);
+  Machine_Gdl_Token* self = Ring1_cast(Machine_Gdl_Token*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
   return self;
 }
 

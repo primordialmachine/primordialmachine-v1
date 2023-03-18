@@ -45,11 +45,11 @@ Ring3_Gdl_BooleanLiteral_create
     Ring2_String* literalString
   )
 {
-  Machine_ClassType* ty = Ring3_Gdl_BooleanLiteral_getType();
+  Machine_Type* ty = Ring3_Gdl_BooleanLiteral_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 1;
   Ring2_Value arguments[1];
   Ring2_Value_setString(&arguments[0], literalString);
-  Ring3_Gdl_BooleanLiteral* self = (Ring3_Gdl_BooleanLiteral*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments);
+  Ring3_Gdl_BooleanLiteral* self = Ring1_cast(Ring3_Gdl_BooleanLiteral*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
   return self;
 }
 

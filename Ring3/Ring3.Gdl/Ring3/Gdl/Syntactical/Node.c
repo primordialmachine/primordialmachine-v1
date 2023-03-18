@@ -116,13 +116,12 @@ Machine_Gdl_Node_create
     Ring2_Value const* value
   )
 {
-  Machine_ClassType* ty = Machine_Gdl_Node_getType();
-  static const size_t NUMBER_OF_ARGUMENTS = 2;
-  Ring2_Value ARGUMENTS[2];
-  Ring2_Value_setInteger(&(ARGUMENTS[0]), kind);
-  ARGUMENTS[1] = *value;
-  Machine_Gdl_Node* self
-      = (Machine_Gdl_Node*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Machine_Type* ty = Machine_Gdl_Node_getType();
+  static size_t const NUMBER_OF_ARGUMENTS = 2;
+  Ring2_Value arguments[2];
+  Ring2_Value_setInteger(&(arguments[0]), kind);
+  arguments[1] = *value;
+  Machine_Gdl_Node* self = Ring1_cast(Machine_Gdl_Node*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
   return self;
 }
 

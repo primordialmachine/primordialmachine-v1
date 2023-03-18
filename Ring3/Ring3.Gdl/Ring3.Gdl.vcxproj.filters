@@ -137,9 +137,6 @@
     <ClInclude Include="Ring3\Gdl\Literals\StringLiteral.h">
       <Filter>Headerdateien\Ring3\Gdl\Literals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gdl\Literals\VoidLiteral.h">
-      <Filter>Headerdateien\Ring3\Gdl\Literals</Filter>
-    </ClInclude>
     <ClInclude Include="Ring3\Gdl\Name.h">
       <Filter>Headerdateien\Ring3\Gdl</Filter>
     </ClInclude>
@@ -148,6 +145,9 @@
     </ClInclude>
     <ClInclude Include="Ring3\Gdl\Configuration.h">
       <Filter>Headerdateien\Ring3\Gdl</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Gdl\Literals\VoidLiteral.h">
+      <Filter>Headerdateien\Ring3\Gdl\Literals</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -16,12 +16,12 @@ typedef struct KEYWORD {
   Machine_Gdl_TokenKind tokenKind;
 } KEYWORD;
 
-static const KEYWORD keywords[] = {
+static KEYWORD const keywords[] = {
   {"true",  sizeof("true") - 1,  Machine_Gdl_TokenKind_Boolean  },
   {"void",  sizeof("void") - 1,  Machine_Gdl_TokenKind_Void  },
   {"false", sizeof("false") - 1, Machine_Gdl_TokenKind_Boolean },
 };
-static const size_t numberOfKeywords = sizeof(keywords) / sizeof(KEYWORD);
+static size_t const numberOfKeywords = sizeof(keywords) / sizeof(KEYWORD);
 
 static void
 checkKeywords
@@ -94,12 +94,12 @@ Machine_Gdl_Scanner_create
     Ring2_ByteBuffer* inputBytes
   )
 {
-  Machine_ClassType* ty = Machine_Gdl_Scanner_getType();
-  static const size_t NUMBER_OF_ARGUMENTS = 2;
-  Ring2_Value ARGUMENTS[2];
-  Ring2_Value_setString(&ARGUMENTS[0], inputName);
-  Ring2_Value_setObject(&ARGUMENTS[1], (Machine_Object*)inputBytes);
-  Machine_Gdl_Scanner* self = (Machine_Gdl_Scanner*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Machine_Type* ty = Machine_Gdl_Scanner_getType();
+  static size_t const NUMBER_OF_ARGUMENTS = 2;
+  Ring2_Value arguments[2];
+  Ring2_Value_setString(&arguments[0], inputName);
+  Ring2_Value_setObject(&arguments[1], Ring1_cast(Machine_Object*,inputBytes));
+  Machine_Gdl_Scanner* self = Ring1_cast(Machine_Gdl_Scanner*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
   return self;
 }
 

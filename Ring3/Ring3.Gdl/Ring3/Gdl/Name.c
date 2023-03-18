@@ -44,7 +44,7 @@ Ring3_Gdl_Name_create
     Ring2_String *string
   )
 {
-  Machine_ClassType* ty = Ring3_Gdl_Name_getType();
+  Machine_Type* ty = Ring3_Gdl_Name_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 1;
   Ring2_Value arguments[1];
   Ring2_Value_setString(&arguments[0], string);

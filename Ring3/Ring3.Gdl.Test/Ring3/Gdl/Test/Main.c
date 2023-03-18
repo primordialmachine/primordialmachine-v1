@@ -17,11 +17,8 @@ int main() {
   Ring2_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
     Ring2_Tests* tests = Ring2_Tests_create();
-
     Ring3_Gdl_Test_registerParseTest1(tests);
-
     Ring2_Tests_run(tests);
-
     Ring2_popJumpTarget();
   }
   Ring1_Status status = Ring1_Status_get();

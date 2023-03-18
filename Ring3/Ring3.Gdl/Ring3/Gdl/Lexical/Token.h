@@ -32,13 +32,13 @@ Machine_Gdl_Token_create
     Ring2_Integer offset
   );
 
-Machine_Gdl_TokenKind
+Ring1_NoDiscardReturn() Machine_Gdl_TokenKind
 Machine_Gdl_Token_getKind
   (
     Machine_Gdl_Token const* self
   );
 
-Ring2_String*
+Ring1_NoDiscardReturn() Ring2_String*
 Machine_Gdl_Token_getText
   (
     Machine_Gdl_Token const* self

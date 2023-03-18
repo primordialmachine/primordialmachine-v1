@@ -57,7 +57,7 @@ Machine_Gdl_Parser_create
   (
   )
 {
-  Machine_ClassType* ty = Machine_Gdl_Parser_getType();
+  Machine_Type* ty = Machine_Gdl_Parser_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
   static Ring2_Value const ARGUMENTS[] = { Ring2_Value_StaticInitializerVoid() };
   Machine_Gdl_Parser* self = (Machine_Gdl_Parser*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);

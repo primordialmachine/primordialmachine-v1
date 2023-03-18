@@ -56,9 +56,9 @@ Machine_Gdl_Context_create
   (
   )
 {
-  Machine_ClassType* ty = Machine_Gdl_Context_getType();
+  Machine_Type* ty = Machine_Gdl_Context_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Ring2_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
-  Machine_Gdl_Context* self = (Machine_Gdl_Context*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  static Ring2_Value const ARGUMENTS[] = { Ring2_Value_StaticInitializerVoid() };
+  Machine_Gdl_Context* self = Ring1_cast(Machine_Gdl_Context*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS));
   return self;
 }
