@@ -177,9 +177,9 @@ static void updateBounds(Machine_Text_Layout* self) {
   }
 
   if (!self->visualBounds) {
-    self->visualBounds = Ring3_Rectangle2_create();
+    self->visualBounds = Ring3_Graphics2_Rectangle_create();
   }
-  Ring3_Rectangle2_setRectangle(self->visualBounds, bounds);
+  Ring3_Graphics2_Rectangle_setRectangle(self->visualBounds, bounds);
 }
 
 MACHINE_DEFINE_CLASSTYPE(Machine_Text_Layout,
@@ -204,16 +204,22 @@ void Machine_Text_Layout_construct(Machine_Text_Layout* self, size_t numberOfArg
   Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Text_Layout_getType());
 }
 
-Machine_Text_Layout* Machine_Text_Layout_create(Ring2_String* text, Ring3_Font* font) {
+Ring1_NoDiscardReturn() Machine_Text_Layout*
+Machine_Text_Layout_create
+  (
+    Ring2_String* text,
+    Ring3_Font* font
+  )
+{
   Ring2_assertNotNull(text);
   Ring2_assertNotNull(font);
 
-  Machine_ClassType* ty = Machine_Text_Layout_getType();
-  static const size_t NUMBER_OF_ARGUMENTS = 2;
-  Ring2_Value arguments[2] = { Ring2_Value_StaticInitializerVoid(), Ring2_Value_StaticInitializerVoid() };
+  Machine_Type* ty = Machine_Text_Layout_getType();
+  static size_t const NUMBER_OF_ARGUMENTS = 2;
+  Ring2_Value arguments[2];
   Ring2_Value_setString(&arguments[0], text);
-  Ring2_Value_setObject(&arguments[1], (Machine_Object *)font);
-  Machine_Text_Layout* self = (Machine_Text_Layout*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments);
+  Ring2_Value_setObject(&arguments[1], Ring1_cast(Machine_Object*,font));
+  Machine_Text_Layout* self = Ring1_cast(Machine_Text_Layout*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
   return self;
 }
 
@@ -233,10 +239,10 @@ const Ring3_Math_Rectangle2* Machine_Text_Layout_getBounds(Machine_Text_Layout* 
     updateBounds(self);
     self->flags &= ~BOUNDS_DIRTY;
   }
-  return Ring3_Rectangle2_getRectangle(self->visualBounds);
+  return Ring3_Graphics2_Rectangle_getRectangle(self->visualBounds);
 }
 
-void Machine_Text_Layout_render(Machine_Text_Layout* self, Ring3_Context2* context2) {
+void Machine_Text_Layout_render(Machine_Text_Layout* self, Ring3_Graphics2_Context* context2) {
   if ((self->flags & LINES_DIRTY) == LINES_DIRTY) {
     Ring2_Collections_Collection_clear(Ring1_cast(Ring2_Collections_Collection *, self->lines));
     parse(self->text, Ring1_cast(Ring2_Collections_List *, self->lines));
@@ -265,12 +271,13 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Ring3_Context2* conte
     }
     Ring3_Math_Vector4f32* color = Ring3_Math_Vector4f32_create();
     Ring3_Math_Vector4f32_set(color, .3f, .6f, .3f, 1.f);
-    Ring3_Rectangle2_setColor(self->visualBounds, color);
-    Ring3_Context2* context = Ring3_Context2_create(context2->visualsContext,
-                                                    context2->imagesContext,
-                                                    context2->fontsContext);
-    Ring3_Context2_setTargetSize(context, Ring3_Context2_getTargetWidth(context2), Ring3_Context2_getTargetHeight(context2));
-    Ring3_Shape2_render((Ring3_Shape2*)self->visualBounds, context);
+    Ring3_Graphics2_Rectangle_setColor(self->visualBounds, color);
+    Ring3_Graphics2_Context* context = Ring3_Graphics2_Context_create(context2->visualsContext,
+                                                                      context2->imagesContext,
+                                                                      context2->fontsContext);
+    Ring3_Graphics2_Context_setTargetSize(context, Ring3_Graphics2_Context_getTargetWidth(context2),
+                                                   Ring3_Graphics2_Context_getTargetHeight(context2));
+    Ring3_Graphics2_Shape_render((Ring3_Graphics2_Shape*)self->visualBounds, context);
   }
 
 #if defined(WITH_SNAPTOGRID)
@@ -283,9 +290,9 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Ring3_Context2* conte
 #endif
 
   // Set the world matrix, view matrix, and projection matrix.
-  Ring3_Context2_setOriginBottomLeft(context2, Y_UP);
-  Ring3_Math_Matrix4x4f32 const* modelSpaceToProjectiveSpace = Ring3_Context2_getModelSpaceToProjectiveSpaceMatrix(context2);
-  Ring3_Math_Matrix4x4f32 const* modelSpaceToWorldSpace = Ring3_Context2_getModelSpaceToWorldSpaceMatrix(context2);
+  Ring3_Graphics2_Context_setOriginBottomLeft(context2, Y_UP);
+  Ring3_Math_Matrix4x4f32 const* modelSpaceToProjectiveSpace = Ring3_Graphics2_Context_getModelSpaceToProjectiveSpaceMatrix(context2);
+  Ring3_Math_Matrix4x4f32 const* modelSpaceToWorldSpace = Ring3_Graphics2_Context_getModelSpaceToWorldSpaceMatrix(context2);
 
   Ring3_GpuProgram* shaderProgram = Ring3_Font_getVideoShaderProgram(self->font);
   Ring3_Binding* binding = Ring3_Font_getVideoBinding(self->font);
@@ -383,11 +390,11 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Ring3_Context2* conte
 
       Ring3_GpuBuffer_setData(Ring3_Font_getVideoBuffer(self->font), sizeof(vertices), (void const *)vertices);
 
-      static const uint8_t indices[] = {
+      static uint8_t const indices[] = {
         0, 1, 2,
         2, 1, 3,
       };
-      static const size_t UNIT = 0;
+      static size_t const UNIT = 0;
       Ring3_VisualsContext_bindTexture(context2->visualsContext, 0, symbolTexture);
       Ring3_Binding_bindSampler(binding, Ring2_String_create("texture_1", crt_strlen("texture_1") + 1), UNIT);
       Ring3_Binding_activate(binding);

@@ -51,7 +51,7 @@ struct Machine_Text_Layout {
   /// Default is @a false.
   bool renderVisualBounds;
   /// @brief Shape used to render the visual bounds.
-  Ring3_Rectangle2* visualBounds;
+  Ring3_Graphics2_Rectangle* visualBounds;
 };
 
 void Machine_Text_Layout_construct(Machine_Text_Layout* self, size_t numberOfArguments, Ring2_Value const* arguments);
@@ -61,7 +61,12 @@ void Machine_Text_Layout_construct(Machine_Text_Layout* self, size_t numberOfArg
 /// Default color is <code>(0,0,0)</code>.
 /// @param text The text.
 /// @param font The font.
-Machine_Text_Layout* Machine_Text_Layout_create(Ring2_String* text, Ring3_Font* font);
+Ring1_NoDiscardReturn() Machine_Text_Layout*
+Machine_Text_Layout_create
+  (
+    Ring2_String* text,
+    Ring3_Font* font
+  );
 
 /// @brief Get the bounds of this text layout.
 /// @param self This text layout.
@@ -71,7 +76,7 @@ const Ring3_Math_Rectangle2* Machine_Text_Layout_getBounds(Machine_Text_Layout* 
 /// @brief Render this text layout.
 /// @param self This text layout.
 /// @param context2 The 2D context.
-void Machine_Text_Layout_render(Machine_Text_Layout* self, Ring3_Context2* context2);
+void Machine_Text_Layout_render(Machine_Text_Layout* self, Ring3_Graphics2_Context* context2);
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 

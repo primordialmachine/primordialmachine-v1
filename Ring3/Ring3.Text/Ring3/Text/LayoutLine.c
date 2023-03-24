@@ -25,7 +25,7 @@ Machine_Text_LayoutLine* Machine_Text_LayoutLine_create(Ring2_Integer start, Rin
   Ring2_Value arguments[2] = { Ring2_Value_StaticInitializerVoid(), Ring2_Value_StaticInitializerVoid() };
   Ring2_Value_setInteger(&arguments[0], start);
   Ring2_Value_setInteger(&arguments[1], length);
-  Machine_ClassType* ty = Machine_Text_LayoutLine_getType();
+  Machine_Type* ty = Machine_Text_LayoutLine_getType();
   Machine_Text_LayoutLine* self = (Machine_Text_LayoutLine *)Machine_allocateClassObject(ty, 2, arguments);
   return self;
 }
