@@ -90,12 +90,17 @@ static void _Io_read(png_structp pngPtr, png_bytep data, png_size_t length) {
   state->position += length;
 }
 
-void Machine_Images_Image_constructFromByteBuffer(Machine_Images_Image* self,
-                                                  Ring2_ByteBuffer* byteBuffer) {
+void
+Machine_Images_Image_constructFromByteBuffer
+  (
+    Machine_Images_Image* self,
+    Ring2_ByteBuffer* byteBuffer
+  )
+{
   // (1) Supertype constructor.
-  static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Ring2_Value ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
-  Ring3_Image_construct((Ring3_Image*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  static size_t const NUMBER_OF_ARGUMENTS = 0;
+  static Ring2_Value const ARGUMENTS[] = { Ring2_Value_StaticInitializerVoid() };
+  Ring3_Image_construct(Ring1_cast(Ring3_Image*,self), NUMBER_OF_ARGUMENTS, ARGUMENTS);
 
   // (3) Load image data.
   int y, width, height;
@@ -224,13 +229,20 @@ void Machine_Images_Image_constructFromPath(Machine_Images_Image* self, Ring2_St
   Machine_Images_Image_constructFromByteBuffer(self, byteBuffer);
 }
 
-void Machine_Images_Image_constructDirect(Machine_Images_Image* self,
-                                          Ring3_PixelFormat pixelFormat, Ring2_Integer width,
-                                          Ring2_Integer height, Ring2_ByteBuffer* pixels) {
+void
+Machine_Images_Image_constructDirect
+  (
+    Machine_Images_Image* self,
+    Ring3_PixelFormat pixelFormat,
+    Ring2_Integer width,
+    Ring2_Integer height,
+    Ring2_ByteBuffer* pixels
+  )
+{
   // (1) Supertype constructor.
-  static const size_t NUMBER_OF_ARGUMENTS = 0;
-  static const Ring2_Value ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
-  Ring3_Image_construct((Ring3_Image*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  static size_t const NUMBER_OF_ARGUMENTS = 0;
+  static Ring2_Value const ARGUMENTS[] = { Ring2_Value_StaticInitializerVoid() };
+  Ring3_Image_construct(Ring1_cast(Ring3_Image*,self), NUMBER_OF_ARGUMENTS, ARGUMENTS);
 
   // (3) Store.
   self->width = width;
@@ -248,28 +260,36 @@ void Machine_Images_Image_constructDirect(Machine_Images_Image* self,
   Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Images_Image_getType());
 }
 
-Machine_Images_Image* Machine_Images_Image_createImageFromPath(Ring2_String* path) {
-  Machine_ClassType* ty = Machine_Images_Image_getType();
-  static const size_t NUMBER_OF_ARGUMENTS = 1;
-  Ring2_Value ARGUMENTS[1];
-  Ring2_Value_setString(&ARGUMENTS[0], path);
-  Machine_Images_Image* self
-      = (Machine_Images_Image*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+Ring1_NoDiscardReturn() Machine_Images_Image*
+Machine_Images_Image_createImageFromPath
+  (
+    Ring2_String* path
+  )
+{
+  Machine_Type* ty = Machine_Images_Image_getType();
+  static size_t const NUMBER_OF_ARGUMENTS = 1;
+  Ring2_Value arguments[1];
+  Ring2_Value_setString(&arguments[0], path);
+  Machine_Images_Image* self = Ring1_cast(Machine_Images_Image*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
   return self;
 }
 
-Machine_Images_Image* Machine_Images_Image_createImageDirect(Ring3_PixelFormat pixelFormat,
-                                                             Ring2_Integer width,
-                                                             Ring2_Integer height,
-                                                             Ring2_ByteBuffer* pixels) {
-  Machine_ClassType* ty = Machine_Images_Image_getType();
-  static const size_t NUMBER_OF_ARGUMENTS = 4;
-  Ring2_Value ARGUMENTS[4];
-  Ring2_Value_setInteger(&ARGUMENTS[0], pixelFormat);
-  Ring2_Value_setInteger(&ARGUMENTS[1], width);
-  Ring2_Value_setInteger(&ARGUMENTS[2], height);
-  Ring2_Value_setObject(&ARGUMENTS[3], (Machine_Object*)pixels);
-  Machine_Images_Image* self
-      = (Machine_Images_Image*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+Ring1_NoDiscardReturn() Machine_Images_Image*
+Machine_Images_Image_createImageDirect
+  (
+    Ring3_PixelFormat pixelFormat,
+    Ring2_Integer width,
+    Ring2_Integer height,
+    Ring2_ByteBuffer* pixels
+  )
+{
+  Machine_Type* ty = Machine_Images_Image_getType();
+  static size_t const NUMBER_OF_ARGUMENTS = 4;
+  Ring2_Value arguments[4];
+  Ring2_Value_setInteger(&arguments[0], pixelFormat);
+  Ring2_Value_setInteger(&arguments[1], width);
+  Ring2_Value_setInteger(&arguments[2], height);
+  Ring2_Value_setObject(&arguments[3], Ring1_cast(Machine_Object*,pixels));
+  Machine_Images_Image* self = Ring1_cast(Machine_Images_Image*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
   return self;
 }

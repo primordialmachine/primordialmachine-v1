@@ -21,7 +21,11 @@ void Machine_Images_Image_constructDirect(Machine_Images_Image* self, Ring3_Pixe
 /// @brief Create an image from a file.
 /// @param path A pointer to the string denoting the path of the file.
 /// @return A pointer to the image.
-Machine_Images_Image* Machine_Images_Image_createImageFromPath(Ring2_String* path);
+Ring1_NoDiscardReturn() Machine_Images_Image*
+Machine_Images_Image_createImageFromPath
+  (
+    Ring2_String* path
+  );
 
 /// @brief Create an image from pixel data.
 /// @param pixelFormat The pixel format of a pixel.
@@ -29,7 +33,14 @@ Machine_Images_Image* Machine_Images_Image_createImageFromPath(Ring2_String* pat
 /// @param height The number of pixels along the vertical axis.
 /// @param pixels A pointer to a Byte buffer containing the pixels.
 /// @return A pointer to the image.
-Machine_Images_Image* Machine_Images_Image_createImageDirect(Ring3_PixelFormat pixelFormat, Ring2_Integer width, Ring2_Integer height, Ring2_ByteBuffer* pixels);
+Ring1_NoDiscardReturn() Machine_Images_Image*
+Machine_Images_Image_createImageDirect
+  (
+    Ring3_PixelFormat pixelFormat,
+    Ring2_Integer width,
+    Ring2_Integer height,
+    Ring2_ByteBuffer* pixels
+  );
 
 
 
