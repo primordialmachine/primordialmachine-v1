@@ -59,12 +59,12 @@ Machine_Signals_Connection_create
     Ring2_ForeignProcedure* callback
   )
 {
-  Machine_ClassType* ty = Machine_Signals_Connection_getType();
-  static const size_t NUMBER_OF_ARGUMENTS = 3;
-  Ring2_Value ARGUMENTS[3];
-  Ring2_Value_setString(&ARGUMENTS[0], name);
-  Ring2_Value_setObject(&ARGUMENTS[1], context);
-  Ring2_Value_setForeignProcedure(&ARGUMENTS[2], callback);
-  Machine_Signals_Connection* self = (Machine_Signals_Connection*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Machine_Type* ty = Machine_Signals_Connection_getType();
+  static size_t const NUMBER_OF_ARGUMENTS = 3;
+  Ring2_Value arguments[3];
+  Ring2_Value_setString(&arguments[0], name);
+  Ring2_Value_setObject(&arguments[1], context);
+  Ring2_Value_setForeignProcedure(&arguments[2], callback);
+  Machine_Signals_Connection* self = Ring1_cast(Machine_Signals_Connection*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
   return self;
 }

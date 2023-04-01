@@ -53,7 +53,7 @@ Machine_Signals_Signal_create
   (
   )
 {
-  Machine_ClassType* ty = Machine_Signals_Signal_getType();
+  Machine_Type* ty = Machine_Signals_Signal_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 0;
   static const Ring2_Value ARGUMENTS[] = { Ring2_Value_StaticInitializerVoid() };
   Machine_Signals_Signal* self = (Machine_Signals_Signal*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
