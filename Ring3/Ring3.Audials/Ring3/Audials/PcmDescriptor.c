@@ -62,12 +62,12 @@ Ring3_Audials_PcmDescriptor_create
     Ring2_Integer bitsPerSample
   )
 {
-  Machine_ClassType* ty = Ring3_Audials_PcmDescriptor_getType();
-  static const size_t NUMBER_OF_ARGUMENTS = 3;
-  Ring2_Value ARGUMENTS[3];
-  Ring2_Value_setInteger(&ARGUMENTS[0], numberOfChannels);
-  Ring2_Value_setInteger(&ARGUMENTS[1], samplesPerSecondPerChannel);
-  Ring2_Value_setInteger(&ARGUMENTS[2], bitsPerSample);
-  Ring3_Audials_PcmDescriptor* self = Ring1_cast(Ring3_Audials_PcmDescriptor *, Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS));
+  Machine_Type* ty = Ring3_Audials_PcmDescriptor_getType();
+  static size_t const NUMBER_OF_ARGUMENTS = 3;
+  Ring2_Value arguments[3];
+  Ring2_Value_setInteger(&arguments[0], numberOfChannels);
+  Ring2_Value_setInteger(&arguments[1], samplesPerSecondPerChannel);
+  Ring2_Value_setInteger(&arguments[2], bitsPerSample);
+  Ring3_Audials_PcmDescriptor* self = Ring1_cast(Ring3_Audials_PcmDescriptor *, Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
   return self;
 }

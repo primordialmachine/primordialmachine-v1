@@ -204,12 +204,12 @@ Ring3_Audials_PcmBuffer_create
     Mkx_Audials_GeneratorId generatorId
   )
 {
-  Machine_ClassType* ty = Ring3_Audials_PcmBuffer_getType();
+  Machine_Type* ty = Ring3_Audials_PcmBuffer_getType();
   static const size_t NUMBER_OF_ARGUMENTS = 3;
-  Ring2_Value ARGUMENTS[3];
-  Ring2_Value_setInteger(&ARGUMENTS[0], length);
-  Ring2_Value_setObject(&ARGUMENTS[1], Ring1_cast(Machine_Object*, pcmDescriptor));
-  Ring2_Value_setInteger(&ARGUMENTS[2], Ring1_cast(Ring2_Integer, generatorId));
-  Ring3_Audials_PcmBuffer* self = Ring1_cast(Ring3_Audials_PcmBuffer *, Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS));
+  Ring2_Value arguments[3];
+  Ring2_Value_setInteger(&arguments[0], length);
+  Ring2_Value_setObject(&arguments[1], Ring1_cast(Machine_Object*, pcmDescriptor));
+  Ring2_Value_setInteger(&arguments[2], Ring1_cast(Ring2_Integer, generatorId));
+  Ring3_Audials_PcmBuffer* self = Ring1_cast(Ring3_Audials_PcmBuffer *, Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
   return self;
 }
