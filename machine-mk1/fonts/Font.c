@@ -403,12 +403,12 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Fonts_Font,
                          NULL)
 
 Machine_Fonts_Font* Machine_Fonts_Font_create(Ring3_FontsContext* fontsContext, Ring2_String *path, Ring2_Integer pointSize) {
-  Machine_ClassType* ty = Machine_Fonts_Font_getType();
-  size_t numberOfArguments = 3;
+  Machine_Type* ty = Machine_Fonts_Font_getType();
+  static size_t const NUMBER_OF_ARGUMENTS = 3;
   Ring2_Value arguments[3];
-  Ring2_Value_setObject(&arguments[0], (Machine_Object *)fontsContext);
+  Ring2_Value_setObject(&arguments[0], Ring1_cast(Machine_Object*,fontsContext));
   Ring2_Value_setString(&arguments[1], path);
   Ring2_Value_setInteger(&arguments[2], pointSize);
-  Machine_Fonts_Font* self = (Machine_Fonts_Font*)Machine_allocateClassObject(ty, numberOfArguments, arguments);
+  Machine_Fonts_Font* self = Ring1_cast(Machine_Fonts_Font*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
   return self;
 }
