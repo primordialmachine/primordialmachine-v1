@@ -378,10 +378,10 @@ Ring2_Collections_HashSet_create
   (
   )
 {
-  Machine_ClassType* ty = Ring2_Collections_HashSet_getType();
-  static const size_t NUMBER_OF_ARGUMENTS = 0;
-  Ring2_Value ARGUMENTS[1] = { Ring2_Value_StaticInitializerVoid() };
-  Ring2_Collections_HashSet* self = (Ring2_Collections_HashSet*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Machine_Type* ty = Ring2_Collections_HashSet_getType();
+  static size_t const NUMBER_OF_ARGUMENTS = 0;
+  static Ring2_Value const ARGUMENTS[] = { Ring2_Value_StaticInitializerVoid() };
+  Ring2_Collections_HashSet* self = Ring1_cast(Ring2_Collections_HashSet*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS));
   return self;
 }
 

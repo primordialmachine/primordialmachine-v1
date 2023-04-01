@@ -93,8 +93,7 @@ Machine_WeakReference_create
   Machine_Type* ty = Machine_WeakReference_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 1;
   Ring2_Value const ARGUMENTS[] = { value };
-  Machine_WeakReference* self
-      = Ring1_cast(Machine_WeakReference*, Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS));
+  Machine_WeakReference* self = Ring1_cast(Machine_WeakReference*, Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS));
   return self;
 }
 

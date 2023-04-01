@@ -51,9 +51,8 @@ Machine_ByteBufferReader* Machine_ByteBufferReader_create(Ring2_ByteBuffer* byte
   Machine_Type* ty = Machine_ByteBufferReader_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 1;
   Ring2_Value arguments[1];
-  Ring2_Value_setObject(&arguments[0], (Machine_Object*)byteBuffer);
-  Machine_ByteBufferReader* self
-      = (Machine_ByteBufferReader*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments);
+  Ring2_Value_setObject(&arguments[0], Ring1_cast(Machine_Object*,byteBuffer));
+  Machine_ByteBufferReader* self = Ring1_cast(Machine_ByteBufferReader*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
   return self;
 }
 

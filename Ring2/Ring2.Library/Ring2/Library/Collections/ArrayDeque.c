@@ -540,9 +540,9 @@ Ring2_Collections_ArrayDeque_create
   (
   )
 {
-  Machine_ClassType* ty = Ring2_Collections_ArrayDeque_getType();
+  Machine_Type* ty = Ring2_Collections_ArrayDeque_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
   static Ring2_Value const ARGUMENTS[] = { Ring2_Value_StaticInitializerVoid() };
-  Ring2_Collections_ArrayDeque* self = (Ring2_Collections_ArrayDeque*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Ring2_Collections_ArrayDeque* self = Ring1_cast(Ring2_Collections_ArrayDeque*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS));
   return self;
 }

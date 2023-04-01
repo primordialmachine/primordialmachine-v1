@@ -22,7 +22,7 @@ void Machine_ByteBufferReader_construct(Machine_ByteBufferReader* self, size_t n
 /// @brief Create a Byte buffer reader.
 /// @param byteBuffer The byte buffer.
 /// @return The Byte buffer reader.
-Machine_ByteBufferReader*
+Ring1_NoDiscardReturn() Machine_ByteBufferReader*
 Machine_ByteBufferReader_create
   (
     Ring2_ByteBuffer* byteBuffer

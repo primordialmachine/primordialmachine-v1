@@ -36,10 +36,10 @@ Ring2_Collections_Pair_construct
 }
 
 Ring2_Collections_Pair* Ring2_Collections_Pair_create(Ring2_Value first, Ring2_Value second) {
-  Machine_ClassType* ty = Ring2_Collections_Pair_getType();
+  Machine_Type* ty = Ring2_Collections_Pair_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 2;
-  Ring2_Value ARGUMENTS[] = { first, second };
-  Ring2_Collections_Pair* self = (Ring2_Collections_Pair*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Ring2_Value arguments[] = { first, second };
+  Ring2_Collections_Pair* self = Ring1_cast(Ring2_Collections_Pair*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
   return self;
 }
 
