@@ -54,11 +54,11 @@ Ring3_VertexElementDescriptor_create
     Ring3_VertexElementSemantics semantics
   )
 {
-  Machine_ClassType* ty = Ring3_VertexElementDescriptor_getType();
+  Machine_Type* ty = Ring3_VertexElementDescriptor_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 1;
   Ring2_Value ARGUMENTS[1];
   Ring2_Value_setInteger(&(ARGUMENTS[0]), semantics);
-  Ring3_VertexElementDescriptor* self = (Ring3_VertexElementDescriptor*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Ring3_VertexElementDescriptor* self = Ring1_cast(Ring3_VertexElementDescriptor*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS));
   return self;
 }
 

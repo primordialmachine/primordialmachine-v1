@@ -48,7 +48,7 @@ Ring3_GpuProgramInputDescriptor_create
     Ring3_GpuProgramInputKind kind
   )
 {
-  Machine_ClassType* ty = Ring3_GpuProgramInputDescriptor_getType();
+  Machine_Type* ty = Ring3_GpuProgramInputDescriptor_getType();
   Ring2_Value arguments[3];
   Ring2_Value_setString(&arguments[0], name);
   Ring2_Value_setInteger(&arguments[1], type);

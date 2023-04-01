@@ -24,7 +24,7 @@ Ring3_Texture_construct
   )
 {
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Ring2_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
+  static Ring2_Value const ARGUMENTS[] = { Ring2_Value_StaticInitializerVoid() };
   Machine_Object_construct((Machine_Object*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
   Machine_setClassType(Ring1_cast(Machine_Object *, self), Ring3_Texture_getType());
 }

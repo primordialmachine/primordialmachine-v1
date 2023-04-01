@@ -44,11 +44,11 @@ Ring3_CanvasSizeChangedEvent_create
     Ring2_Real32 height
   )
 {
-  Machine_ClassType* ty = Ring3_CanvasSizeChangedEvent_getType();
-  static const size_t NUMBER_OF_ARGUMENTS = 2;
-  Ring2_Value ARGUMENTS[2];
-  Ring2_Value_setReal32(&ARGUMENTS[0], width);
-  Ring2_Value_setReal32(&ARGUMENTS[1], height);
-  Ring3_CanvasSizeChangedEvent* self = Ring1_cast(Ring3_CanvasSizeChangedEvent *, Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS));
+  Machine_Type* ty = Ring3_CanvasSizeChangedEvent_getType();
+  static size_t const NUMBER_OF_ARGUMENTS = 2;
+  Ring2_Value arguments[2];
+  Ring2_Value_setReal32(&arguments[0], width);
+  Ring2_Value_setReal32(&arguments[1], height);
+  Ring3_CanvasSizeChangedEvent* self = Ring1_cast(Ring3_CanvasSizeChangedEvent*, Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
   return self;
 }

@@ -83,7 +83,7 @@ Ring3_Binding_Node_create
   Ring2_Value_setBoolean(&arguments[1], isVariable);
   Ring2_Value_setInteger(&arguments[2], targetType);
   arguments[3] = *value;
-  Machine_ClassType* ty = Ring3_Binding_Node_getType();
+  Machine_Type* ty = Ring3_Binding_Node_getType();
   Ring3_Binding_Node* self = (Ring3_Binding_Node*)Machine_allocateClassObject(ty, numberOfArguments, arguments);
   return self;
 }
@@ -309,6 +309,6 @@ Ring3_Binding_bindSampler
   (
     Ring3_Binding* self,
     Ring2_String* targetName,
-    const size_t value
+    size_t const value
   )
 { MACHINE_VIRTUALCALL_NORETURN_ARGS(Ring3_Binding, bindSampler, targetName, value); }

@@ -140,7 +140,7 @@ Ring3_DefaultMaterialBuilder_create
   (
   )
 {
-  Machine_ClassType* ty = Ring3_DefaultMaterialBuilder_getType();
+  Machine_Type* ty = Ring3_DefaultMaterialBuilder_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
   static Ring2_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
   Ring3_DefaultMaterialBuilder* self = Ring1_cast(Ring3_DefaultMaterialBuilder *, Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS));

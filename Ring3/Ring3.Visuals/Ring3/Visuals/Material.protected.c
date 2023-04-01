@@ -40,7 +40,7 @@ Ring3_Material_create
     Ring3_BlendFunction incomingBlendFunction
   )
 {
-  Machine_ClassType* ty = Ring3_Material_getType();
+  Machine_Type* ty = Ring3_Material_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 4;
   Ring2_Value ARGUMENTS[] = { 
     Ring2_Value_StaticInitializerVoid(),

@@ -82,10 +82,10 @@ Ring3_VertexDescriptor_create
   (
   )
 {
-  Machine_ClassType* ty = Ring3_VertexDescriptor_getType();
+  Machine_Type* ty = Ring3_VertexDescriptor_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
-  static Ring2_Value const ARGUMENTS[] = { { Ring2_Value_Tag_Void, Ring2_Void_Void } };
-  Ring3_VertexDescriptor* self = (Ring3_VertexDescriptor*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  static Ring2_Value const ARGUMENTS[] = { Ring2_Value_StaticInitializerVoid() };
+  Ring3_VertexDescriptor* self = Ring1_cast(Ring3_VertexDescriptor*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS));
   return self;
 }
 

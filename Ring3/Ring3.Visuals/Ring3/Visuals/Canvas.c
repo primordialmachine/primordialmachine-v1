@@ -6,9 +6,6 @@
 #include "Ring3/Visuals/Canvas.h"
 #undef RING3_VISUALS_PRIVATE
 
-//#include "Ring2/Library/_Include.h"
-//#include "Ring3/Input/_Include.h"
-
 static void
 visit
   (
