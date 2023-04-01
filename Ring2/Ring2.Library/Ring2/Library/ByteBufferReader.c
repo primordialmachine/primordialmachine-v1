@@ -48,7 +48,7 @@ MACHINE_DEFINE_CLASSTYPE(Machine_ByteBufferReader, Machine_Object, NULL,
                          NULL)
 
 Machine_ByteBufferReader* Machine_ByteBufferReader_create(Ring2_ByteBuffer* byteBuffer) {
-  Machine_ClassType* ty = Machine_ByteBufferReader_getType();
+  Machine_Type* ty = Machine_ByteBufferReader_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 1;
   Ring2_Value arguments[1];
   Ring2_Value_setObject(&arguments[0], (Machine_Object*)byteBuffer);

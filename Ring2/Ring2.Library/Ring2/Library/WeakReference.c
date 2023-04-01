@@ -90,7 +90,7 @@ Machine_WeakReference_create
     Ring2_Value value
   )
 {
-  Machine_ClassType* ty = Machine_WeakReference_getType();
+  Machine_Type* ty = Machine_WeakReference_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 1;
   Ring2_Value const ARGUMENTS[] = { value };
   Machine_WeakReference* self

@@ -18,7 +18,7 @@ MACHINE_DECLARE_CLASSTYPE(Ring2_ByteBuffer)
 
 /// @brief Create a Byte buffer.
 /// @return The Byte buffer.
-Ring2_ByteBuffer*
+Ring1_NoDiscardReturn() Ring2_ByteBuffer*
 Ring2_ByteBuffer_create
   (
   );

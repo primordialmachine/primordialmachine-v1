@@ -56,7 +56,7 @@ MACHINE_DEFINE_CLASSTYPE(Ring2_ByteBuffer/*type*/,
                          NULL/*constructClasses*/,
                          NULL/*implementInterfaces*/)
 
-Ring2_ByteBuffer*
+Ring1_NoDiscardReturn() Ring2_ByteBuffer*
 Ring2_ByteBuffer_create
   (
   )
