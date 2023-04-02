@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Ressourcendateien">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien\Ring3">
+      <UniqueIdentifier>{4ca7c94f-9f55-46be-837f-2bf9c49aac02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring3\Gdl">
+      <UniqueIdentifier>{6b030912-0cd7-4990-b02e-8a974c7582c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring3\Gdl\Test">
+      <UniqueIdentifier>{bb498786-fee1-49f1-bf0a-090d701e070f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring3">
+      <UniqueIdentifier>{93de0c0e-9800-4739-a824-5652b589c819}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring3\Gdl">
+      <UniqueIdentifier>{308dd482-0dcb-407a-9849-52e67d1c6cd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring3\Gdl\Test">
+      <UniqueIdentifier>{c06dea88-b55e-450a-9cc3-e5d8f415e8a1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Ring3\Gdl\Test\ParseTest1.h">
+      <Filter>Headerdateien\Ring3\Gdl\Test</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Ring3\Gdl\Test\Main.c">
+      <Filter>Quelldateien\Ring3\Gdl\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Gdl\Test\ParseTest1.c">
+      <Filter>Quelldateien\Ring3\Gdl\Test</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

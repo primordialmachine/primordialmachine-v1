@@ -69,6 +69,9 @@ artifacts:
     #
     - path: ring3\Ring3.Gdl.Test\$(CONFIGURATION)\PrimordialMachine.Ring3.Gdl.Test.exe
       name: PrimordialMachine.Ring3.Gdl.Test-$(CONFIGURATION).exe
+    #
+    - path: ring3\Ring3.Math.Test\$(CONFIGURATION)\PrimordialMachine.Ring3.Math.Test.exe
+      name: PrimordialMachine.Ring3.Math.Test-$(CONFIGURATION).exe
 
 # Execute test scripts.
 test_script:
@@ -156,6 +159,21 @@ test_script:
     - ps: |
           $name = "PrimordialMachine.Ring3.Gdl.Test";
           $path = "${env:APPVEYOR_BUILD_FOLDER}\ring3\Ring3.Gdl.Test\${env:CONFIGURATION}";
+          [int]$startMs = (Get-Date).Millisecond
+          cd ${path}
+          Invoke-Expression "./${name}.exe"
+          $code = $LastExitCode
+          [int]$endMs = (Get-Date).Millisecond
+          if ($code -eq 0) {
+            Add-AppveyorTest -Name ${name} -Filename "${name}.exe" -Outcome Passed -Duration $($endMs - $startMs);
+          } else {
+            Add-AppveyorTest -Name ${name} -Filename "${name}.exe" -Outcome Failed -Duration $($endMs - $startMs);
+            $fail = $True;
+          }
+          
+    - ps: |
+          $name = "PrimordialMachine.Ring3.Math.Test";
+          $path = "${env:APPVEYOR_BUILD_FOLDER}\ring3\Ring3.Math.Test\${env:CONFIGURATION}";
           [int]$startMs = (Get-Date).Millisecond
           cd ${path}
           Invoke-Expression "./${name}.exe"
