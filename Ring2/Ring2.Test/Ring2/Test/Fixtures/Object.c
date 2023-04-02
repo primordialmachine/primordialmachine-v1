@@ -34,9 +34,9 @@ Ring2_Test_Fixtures_A_create
   (
   )
 {
-  Machine_ClassType* ty = Ring2_Test_Fixtures_A_getType();
-  static const size_t NUMBER_OF_ARGUMENTS = 0;
-  Ring2_Value ARGUMENTS[1] = { Ring2_Value_StaticInitializerVoid() };
-  Ring2_Test_Fixtures_A* self = (Ring2_Test_Fixtures_A*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Machine_Type* ty = Ring2_Test_Fixtures_A_getType();
+  static size_t const NUMBER_OF_ARGUMENTS = 0;
+  static Ring2_Value const ARGUMENTS[1] = { Ring2_Value_StaticInitializerVoid() };
+  Ring2_Test_Fixtures_A* self = Ring1_cast(Ring2_Test_Fixtures_A*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS));
   return self;
 }
