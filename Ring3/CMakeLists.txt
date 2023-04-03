@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.20)
 
 add_subdirectory("Ring3.Gdl")
 add_subdirectory("Ring3.Gdl.Test")
+add_subdirectory("Ring3.Gui")
 add_subdirectory("Ring3.Math")
 add_subdirectory("Ring3.Math.Test")
 add_subdirectory("Ring3.Signals")
