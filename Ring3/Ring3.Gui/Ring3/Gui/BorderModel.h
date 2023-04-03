@@ -2,8 +2,8 @@
 /// @copyright Copyright (c) 2021-2023 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
-#if !defined(MACHINE_GUI_BORDERMODEL_H_INCLUDED)
-#define MACHINE_GUI_BORDERMODEL_H_INCLUDED
+#if !defined(RING3_GUI_BORDERMODEL_H_INCLUDED)
+#define RING3_GUI_BORDERMODEL_H_INCLUDED
 
 #if !defined(RING3_GUI_PRIVATE)
 #error("Do not include `Ring3/Gui/BorderModel.h` directly, include `Ring3/Gui/_Include.h` instead.")
@@ -11,13 +11,13 @@
 #include "Ring3/Math/_Include.h"
 
 /// @brief Border attributes.
-MACHINE_DECLARE_CLASSTYPE(Machine_Gui_BorderModel)
+MACHINE_DECLARE_CLASSTYPE(Ring3_Gui_BorderModel)
 
-struct Machine_Gui_BorderModel_Class {
+struct Ring3_Gui_BorderModel_Class {
   Machine_Object_Class __parent;
 };
 
-struct Machine_Gui_BorderModel {
+struct Ring3_Gui_BorderModel {
   Machine_Object __parent;
 
   /// @brief The color of the border.
@@ -39,17 +39,17 @@ struct Machine_Gui_BorderModel {
 /// @default The default border color is <code>(0.1, 0.1, 0.1, 1.0)</code>.
 /// @default The default border width for alles sides is <code>0</code>.
 void
-Machine_Gui_BorderModel_construct
+Ring3_Gui_BorderModel_construct
   (
-    Machine_Gui_BorderModel* self,
+    Ring3_Gui_BorderModel* self,
     size_t numberOfArguments,
     Ring2_Value const* arguments
   );
 
 /// @brief Create a border model with default values.
 /// @return The border model.
-Ring1_NoDiscardReturn() Machine_Gui_BorderModel*
-Machine_Gui_BorderModel_create
+Ring1_NoDiscardReturn() Ring3_Gui_BorderModel*
+Ring3_Gui_BorderModel_create
   (
   );
 
@@ -58,18 +58,18 @@ Machine_Gui_BorderModel_create
 /// @return The color.
 /// @remarks A copy of the stored object is returned.
 Ring1_NoDiscardReturn() Ring3_Math_Vector4f32*
-Machine_Gui_BorderModel_getColor
+Ring3_Gui_BorderModel_getColor
   (
-    Machine_Gui_BorderModel const* self
+    Ring3_Gui_BorderModel const* self
   );
 
 /// @brief Set the color of this border model.
 /// @param self This border model.
 /// @param color The color.
 void
-Machine_Gui_BorderModel_setColor
+Ring3_Gui_BorderModel_setColor
   (
-    Machine_Gui_BorderModel* self,
+    Ring3_Gui_BorderModel* self,
     Ring3_Math_Vector4f32 const* color
   );
 
@@ -77,18 +77,18 @@ Machine_Gui_BorderModel_setColor
 /// @param self This border model.
 /// @return The width.
 Ring1_NoDiscardReturn() Ring2_Real32
-Machine_Gui_BorderModel_getLeftWidth
+Ring3_Gui_BorderModel_getLeftWidth
   (
-    Machine_Gui_BorderModel const* self
+    Ring3_Gui_BorderModel const* self
   );
 
 /// @brief Set the width of the left border.
 /// @param self This border model.
 /// @param width The width.
 void
-Machine_Gui_BorderModel_setLeftWidth
+Ring3_Gui_BorderModel_setLeftWidth
   (
-    Machine_Gui_BorderModel* self,
+    Ring3_Gui_BorderModel* self,
     Ring2_Real32 width
   );
 
@@ -96,18 +96,18 @@ Machine_Gui_BorderModel_setLeftWidth
 /// @param self This border model.
 /// @return The width.
 Ring1_NoDiscardReturn() Ring2_Real32
-Machine_Gui_BorderModel_getRightWidth
+Ring3_Gui_BorderModel_getRightWidth
   (
-    Machine_Gui_BorderModel const* self
+    Ring3_Gui_BorderModel const* self
   );
 
 /// @brief Set the width of the right border.
 /// @param self This border model.
 /// @param width The width.
 void
-Machine_Gui_BorderModel_setRightWidth
+Ring3_Gui_BorderModel_setRightWidth
   (
-    Machine_Gui_BorderModel* self,
+    Ring3_Gui_BorderModel* self,
     Ring2_Real32 width
   );
 
@@ -115,18 +115,18 @@ Machine_Gui_BorderModel_setRightWidth
 /// @param self This border model.
 /// @return The width.
 Ring1_NoDiscardReturn() Ring2_Real32
-Machine_Gui_BorderModel_getTopWidth
+Ring3_Gui_BorderModel_getTopWidth
   (
-    Machine_Gui_BorderModel const* self
+    Ring3_Gui_BorderModel const* self
   );
 
 /// @brief Set the width of the top border.
 /// @param self This border model.
 /// @param width The width.
 void
-Machine_Gui_BorderModel_setTopWidth
+Ring3_Gui_BorderModel_setTopWidth
   (
-    Machine_Gui_BorderModel* self,
+    Ring3_Gui_BorderModel* self,
     Ring2_Real32 width
   );
 
@@ -134,18 +134,18 @@ Machine_Gui_BorderModel_setTopWidth
 /// @param self This border model.
 /// @return The width.
 Ring1_NoDiscardReturn() Ring2_Real32
-Machine_Gui_BorderModel_getBottomWidth
+Ring3_Gui_BorderModel_getBottomWidth
   (
-    Machine_Gui_BorderModel const* self
+    Ring3_Gui_BorderModel const* self
   );
 
 /// @brief Set the width of the bottom border.
 /// @param self This border model.
 /// @param width The width.
 void
-Machine_Gui_BorderModel_setBottomWidth
+Ring3_Gui_BorderModel_setBottomWidth
   (
-    Machine_Gui_BorderModel* self,
+    Ring3_Gui_BorderModel* self,
     Ring2_Real32 width
   );
 
@@ -153,10 +153,10 @@ Machine_Gui_BorderModel_setBottomWidth
 /// @param self This border model.
 /// @param width The width.
 void
-Machine_Gui_BorderModel_setWidth
+Ring3_Gui_BorderModel_setWidth
   (
-    Machine_Gui_BorderModel* self,
+    Ring3_Gui_BorderModel* self,
     Ring2_Real32 width
   );
 
-#endif // MACHINE_GUI_BORDERMODEL_H_INCLUDED
+#endif // RING3_GUI_BORDERMODEL_H_INCLUDED

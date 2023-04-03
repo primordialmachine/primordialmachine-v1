@@ -22,7 +22,7 @@ struct Machine_Gui_BorderNode_Class {
 struct Machine_Gui_BorderNode {
   Ring3_Gui_WidgetBase __parent;
 
-  Machine_Gui_BorderModel* borderModel;
+  Ring3_Gui_BorderModel* borderModel;
   Ring3_Gui_Widget* child;
   /// @brief When the child changes or the rectangle changes,
   /// we need to update the childs rectangle accordingly.
@@ -135,8 +135,8 @@ Machine_Gui_BorderNode_construct
   )
 {
   Ring3_Gui_WidgetBase_construct((Ring3_Gui_WidgetBase*)self, numberOfArguments, arguments);
-  self->borderModel = Machine_Gui_BorderModel_create();
-  Machine_Gui_BorderModel_setWidth(self->borderModel, 1.f);
+  self->borderModel = Ring3_Gui_BorderModel_create();
+  Ring3_Gui_BorderModel_setWidth(self->borderModel, 1.f);
   self->borderRectangle = Ring3_Graphics2_Rectangle_create();
   self->childDirty = true;
   Ring3_Gui_Widget_subscribe(
@@ -180,10 +180,10 @@ Machine_Gui_BorderNode_getCanvasRectangle
   )
 {
   Ring3_Math_Rectangle2* rectangle = Ring3_Gui_Widget_getRectangle((Ring3_Gui_Widget*)self);
-  Ring3_Math_Rectangle2_inset(rectangle, Machine_Gui_BorderModel_getLeftWidth(self->borderModel),
-                                         Machine_Gui_BorderModel_getTopWidth(self->borderModel),
-                                         Machine_Gui_BorderModel_getRightWidth(self->borderModel),
-                                         Machine_Gui_BorderModel_getBottomWidth(self->borderModel));
+  Ring3_Math_Rectangle2_inset(rectangle, Ring3_Gui_BorderModel_getLeftWidth(self->borderModel),
+                                         Ring3_Gui_BorderModel_getTopWidth(self->borderModel),
+                                         Ring3_Gui_BorderModel_getRightWidth(self->borderModel),
+                                         Ring3_Gui_BorderModel_getBottomWidth(self->borderModel));
   return rectangle;
 }
 
@@ -213,10 +213,10 @@ Machine_Gui_BorderNode_renderImpl
       Ring3_Math_Rectangle2* selfRectangle = Ring3_Gui_Widget_getRectangle((Ring3_Gui_Widget*)self);
       Ring3_Math_Rectangle2* childRectangle = Ring3_Math_Rectangle2_create();
       Ring3_Math_Rectangle2_setSize(childRectangle, Ring3_Math_Rectangle2_getSize(selfRectangle));
-      Ring3_Math_Rectangle2_inset(childRectangle, Machine_Gui_BorderModel_getLeftWidth(self->borderModel),
-                                                  Machine_Gui_BorderModel_getTopWidth(self->borderModel),
-                                                  Machine_Gui_BorderModel_getRightWidth(self->borderModel),
-                                                  Machine_Gui_BorderModel_getBottomWidth(self->borderModel));
+      Ring3_Math_Rectangle2_inset(childRectangle, Ring3_Gui_BorderModel_getLeftWidth(self->borderModel),
+                                                  Ring3_Gui_BorderModel_getTopWidth(self->borderModel),
+                                                  Ring3_Gui_BorderModel_getRightWidth(self->borderModel),
+                                                  Ring3_Gui_BorderModel_getBottomWidth(self->borderModel));
       Ring3_Gui_Widget_setRectangle((Ring3_Gui_Widget*)self->child, childRectangle);
     }
     self->childDirty = false;
@@ -226,13 +226,13 @@ Machine_Gui_BorderNode_renderImpl
   }
 
   {
-    Ring3_Math_Vector4f32* c = Machine_Gui_BorderModel_getColor(self->borderModel);
+    Ring3_Math_Vector4f32* c = Ring3_Gui_BorderModel_getColor(self->borderModel);
     Ring3_Graphics2_Rectangle_setColor(self->borderRectangle, c);
   }
-  Ring2_Real32 lw = Machine_Gui_BorderModel_getLeftWidth(self->borderModel),
-               tw = Machine_Gui_BorderModel_getTopWidth(self->borderModel),
-               rw = Machine_Gui_BorderModel_getRightWidth(self->borderModel),
-               bw = Machine_Gui_BorderModel_getBottomWidth(self->borderModel);
+  Ring2_Real32 lw = Ring3_Gui_BorderModel_getLeftWidth(self->borderModel),
+               tw = Ring3_Gui_BorderModel_getTopWidth(self->borderModel),
+               rw = Ring3_Gui_BorderModel_getRightWidth(self->borderModel),
+               bw = Ring3_Gui_BorderModel_getBottomWidth(self->borderModel);
   if (lw > 0.f || tw > 0.f || rw > 0.f || bw > 0.f) {
     Ring3_Math_Rectangle2* R = Ring3_Gui_Widget_getAbsoluteRectangle((Ring3_Gui_Widget*)self);
     { // left/top
@@ -428,7 +428,7 @@ Machine_Gui_BorderNode_getBorderColor
   (
     Machine_Gui_BorderNode const* self
   )
-{ return Machine_Gui_BorderModel_getColor(self->borderModel); }
+{ return Ring3_Gui_BorderModel_getColor(self->borderModel); }
 
 void
 Machine_Gui_BorderNode_setBorderColor
@@ -436,35 +436,35 @@ Machine_Gui_BorderNode_setBorderColor
     Machine_Gui_BorderNode* self,
     Ring3_Math_Vector4f32 const* color
   )
-{ Machine_Gui_BorderModel_setColor(self->borderModel, color); }
+{ Ring3_Gui_BorderModel_setColor(self->borderModel, color); }
 
 Ring1_NoDiscardReturn() Ring2_Real32
 Machine_Gui_BorderNode_getBorderLeftWidth
   (
     Machine_Gui_BorderNode const* self
   )
-{ return Machine_Gui_BorderModel_getLeftWidth(self->borderModel); }
+{ return Ring3_Gui_BorderModel_getLeftWidth(self->borderModel); }
 
 Ring1_NoDiscardReturn() Ring2_Real32
 Machine_Gui_BorderNode_getBorderRightWidth
   (
     Machine_Gui_BorderNode const* self
   )
-{ return Machine_Gui_BorderModel_getRightWidth(self->borderModel); }
+{ return Ring3_Gui_BorderModel_getRightWidth(self->borderModel); }
 
 Ring1_NoDiscardReturn() Ring2_Real32
 Machine_Gui_BorderNode_getBorderTopWidth
   (
     Machine_Gui_BorderNode const* self
   )
-{ return Machine_Gui_BorderModel_getTopWidth(self->borderModel); }
+{ return Ring3_Gui_BorderModel_getTopWidth(self->borderModel); }
 
 Ring1_NoDiscardReturn() Ring2_Real32
 Machine_Gui_BorderNode_getBorderBottomWidth
   (
     Machine_Gui_BorderNode const* self
   )
-{ return Machine_Gui_BorderModel_getBottomWidth(self->borderModel); }
+{ return Ring3_Gui_BorderModel_getBottomWidth(self->borderModel); }
 
 void
 Machine_Gui_BorderNode_setBorderWidth
@@ -472,7 +472,7 @@ Machine_Gui_BorderNode_setBorderWidth
     Machine_Gui_BorderNode* self,
     Ring2_Real32 width
   )
-{ Machine_Gui_BorderModel_setWidth(self->borderModel, width); }
+{ Ring3_Gui_BorderModel_setWidth(self->borderModel, width); }
 
 void
 Machine_Gui_BorderNode_setLeftBorderWidth
@@ -480,7 +480,7 @@ Machine_Gui_BorderNode_setLeftBorderWidth
     Machine_Gui_BorderNode* self,
     Ring2_Real32 width
   )
-{ Machine_Gui_BorderModel_setLeftWidth(self->borderModel, width); }
+{ Ring3_Gui_BorderModel_setLeftWidth(self->borderModel, width); }
 
 void
 Machine_Gui_BorderNode_setRightBorderWidth
@@ -488,7 +488,7 @@ Machine_Gui_BorderNode_setRightBorderWidth
     Machine_Gui_BorderNode* self,
     Ring2_Real32 width
   )
-{ Machine_Gui_BorderModel_setRightWidth(self->borderModel, width); }
+{ Ring3_Gui_BorderModel_setRightWidth(self->borderModel, width); }
 
 void
 Machine_Gui_BorderNode_setTopBorderWidth
@@ -496,7 +496,7 @@ Machine_Gui_BorderNode_setTopBorderWidth
     Machine_Gui_BorderNode* self,
     Ring2_Real32 width
   )
-{ Machine_Gui_BorderModel_setTopWidth(self->borderModel, width); }
+{ Ring3_Gui_BorderModel_setTopWidth(self->borderModel, width); }
 
 void
 Machine_Gui_BorderNode_setBottomBorderWidth
@@ -504,7 +504,7 @@ Machine_Gui_BorderNode_setBottomBorderWidth
     Machine_Gui_BorderNode* self,
     Ring2_Real32 width
   )
-{ Machine_Gui_BorderModel_setBottomWidth(self->borderModel, width); }
+{ Ring3_Gui_BorderModel_setBottomWidth(self->borderModel, width); }
 
 static Ring1_NoDiscardReturn() Ring3_Math_Vector2f32*
 Machine_Gui_BorderNode_getPreferredSizeImpl
@@ -516,10 +516,10 @@ Machine_Gui_BorderNode_getPreferredSizeImpl
                                        ? Ring3_Math_Vector2f32_clone(Ring3_Gui_Widget_getPreferredSize(self->child))
                                        : Ring3_Math_Vector2f32_create();
   Ring3_Math_Vector2f32* borderSize = Ring3_Math_Vector2f32_create();
-  Ring2_Real32 w = Machine_Gui_BorderModel_getLeftWidth(self->borderModel)
-                 + Machine_Gui_BorderModel_getRightWidth(self->borderModel);
-  Ring2_Real32 h = Machine_Gui_BorderModel_getTopWidth(self->borderModel)
-                 + Machine_Gui_BorderModel_getBottomWidth(self->borderModel);
+  Ring2_Real32 w = Ring3_Gui_BorderModel_getLeftWidth(self->borderModel)
+                 + Ring3_Gui_BorderModel_getRightWidth(self->borderModel);
+  Ring2_Real32 h = Ring3_Gui_BorderModel_getTopWidth(self->borderModel)
+                 + Ring3_Gui_BorderModel_getBottomWidth(self->borderModel);
   Ring3_Math_Vector2f32_set(borderSize, w, h);
   return Ring3_Math_Vector2f32_sum(preferredSize, borderSize);
 }
