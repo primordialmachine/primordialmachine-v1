@@ -31,7 +31,7 @@ Ring2_ByteBuffer_appendBytes
   (
     Ring2_ByteBuffer* self,
     const char* p,
-    size_t n
+    int64_t n
   );
 
 /// @brief Prepend specified Bytes to this Byte buffer.
@@ -42,7 +42,7 @@ Ring2_ByteBuffer_prependBytes
   (
     Ring2_ByteBuffer* self,
     const char* p,
-    size_t n
+    int64_t n
   );
 
 /// @brief Insert specified Bytes to this Byte buffer.
@@ -53,9 +53,9 @@ void
 Ring2_ByteBuffer_insertBytesAt
   (
     Ring2_ByteBuffer* self,
-    size_t i,
+    int64_t i,
     const char* p,
-    size_t n
+    int64_t n
   );
 
 /// @brief Clear this Byte buffer.
@@ -93,7 +93,7 @@ Ring2_ByteBuffer_compareBytes
   (
     Ring2_ByteBuffer const* self,
     char const* p,
-    size_t n
+    int64_t n
   );
 
 

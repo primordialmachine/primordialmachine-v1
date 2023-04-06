@@ -73,10 +73,15 @@ Ring2_ByteBuffer_appendBytes
   (
     Ring2_ByteBuffer* self,
     char const* p,
-    size_t n
+    int64_t n
   )
 {
-  if (Ring1_ByteBuffer_appendBytes(&self->byteBuffer, p, n)) {
+  /**@todo Ring1_ByteBuffer_appendBytes should provide an API call for n of type int64_t.*/
+  if (n < 0 || n > SIZE_MAX) {
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
+    Ring2_jump();
+  }
+  if (Ring1_ByteBuffer_appendBytes(&self->byteBuffer, p, (size_t)n)) {
     Ring2_jump();
   }
 }
@@ -86,10 +91,15 @@ Ring2_ByteBuffer_prependBytes
   (
     Ring2_ByteBuffer* self,
     char const* p,
-    size_t n
+    int64_t n
   )
 {
-  if (Ring1_ByteBuffer_prependBytes(&self->byteBuffer, p, n)) {
+  /**@todo Ring1_ByteBuffer_appendBytes should provide an API call for n of type int64_t.*/
+  if (n < 0 || n > SIZE_MAX) {
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
+    Ring2_jump();
+  }
+  if (Ring1_ByteBuffer_prependBytes(&self->byteBuffer, p, (size_t)n)) {
     Ring2_jump();
   }
 }
@@ -98,12 +108,21 @@ void
 Ring2_ByteBuffer_insertBytesAt
   (
     Ring2_ByteBuffer* self,
-    size_t i,
+    int64_t i,
     char const* p,
-    size_t n
+    int64_t n
   )
 {
-  if (Ring1_ByteBuffer_insertBytesAt(&self->byteBuffer, i, p, n)) {
+  /**@todo Ring1_ByteBuffer_appendBytes should provide an API call for i and n of type int64_t.*/
+  if (i < 0 || i > SIZE_MAX) {
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
+    Ring2_jump();
+  }
+  if (n < 0 || n > SIZE_MAX) {
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
+    Ring2_jump();
+  }
+  if (Ring1_ByteBuffer_insertBytesAt(&self->byteBuffer, (size_t)i, p, (size_t)n)) {
     Ring2_jump();
   }
 }
@@ -136,11 +155,13 @@ Ring2_ByteBuffer_getNumberOfBytes
     Ring2_ByteBuffer const* self
   )
 {
+  /** @todo Ensure that Ring1_ByteBuffer_getNumbeOfBytes also returns int64_t. */
   size_t numberOfBytes;
   if (Ring1_ByteBuffer_getNumberOfBytes(&numberOfBytes, &self->byteBuffer)) {
     Ring2_jump();
   }
-  return numberOfBytes;
+  /** @todo Remove cast when int64_t is used. */
+  return (int64_t)numberOfBytes;
 }
 
 Ring2_Boolean
@@ -148,15 +169,15 @@ Ring2_ByteBuffer_compareBytes
   (
     Ring2_ByteBuffer const* self,
     char const* p,
-    size_t n
+    int64_t n
   )
 {
-  size_t numberOfBytes = Ring2_ByteBuffer_getNumberOfBytes(self);
+  int64_t numberOfBytes = Ring2_ByteBuffer_getNumberOfBytes(self);
   char const* bytes = Ring2_ByteBuffer_getBytes(self);
   if (n != numberOfBytes) {
     return false;
   }
   int temporary;
-  Ring1_Memory_compare(&temporary, bytes, numberOfBytes, p, n, Ring1_Memory_Compare_Lexicographic);
+  Ring1_Memory_compare(&temporary, bytes, (size_t)numberOfBytes, p, (size_t)n, Ring1_Memory_Compare_Lexicographic);
   return !temporary;
 }

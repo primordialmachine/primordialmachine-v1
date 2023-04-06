@@ -54,7 +54,7 @@ Machine_appendFileContents
 {
   Machine_Io_initialize();
   Ring1_FileSystem_Path* path1;
-  if (Ring1_FileSystem_Path_create(&path1, Ring2_String_getBytes(path), Ring2_String_getNumberOfBytes(path))) {
+  if (Ring1_FileSystem_Path_create(&path1, Ring2_String_getBytes(path), (size_t)Ring2_String_getNumberOfBytes(path))) {
     Ring2_jump();
   }
   if (Ring1_FileSystem_receiveFileContents(path1, byteBuffer, &onReceiveByteBuffer)) {
