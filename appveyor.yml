@@ -123,6 +123,36 @@ test_script:
             Add-AppveyorTest -Name ${name} -Filename "${name}.exe" -Outcome Failed -Duration $($endMs - $startMs);
             $fail = $True;
           }
+          
+    - ps: |
+          $name = "PrimordialMachine.Ring1.FileSystem.Test";
+          $path = "${env:APPVEYOR_BUILD_FOLDER}\ring1\Ring1.FileSystem.Test\${env:CONFIGURATION}";
+          [int]$startMs = (Get-Date).Millisecond
+          cd ${path}
+          Invoke-Expression "./${name}.exe"
+          $code = $LastExitCode
+          [int]$endMs = (Get-Date).Millisecond
+          if ($code -eq 0) {
+            Add-AppveyorTest -Name ${name} -Filename "${name}.exe" -Outcome Passed -Duration $($endMs - $startMs);
+          } else {
+            Add-AppveyorTest -Name ${name} -Filename "${name}.exe" -Outcome Failed -Duration $($endMs - $startMs);
+            $fail = $True;
+          }
+          
+    - ps: |
+          $name = "PrimordialMachine.Ring1.TypeName.Test";
+          $path = "${env:APPVEYOR_BUILD_FOLDER}\ring1\Ring1.TypeName.Test\${env:CONFIGURATION}";
+          [int]$startMs = (Get-Date).Millisecond
+          cd ${path}
+          Invoke-Expression "./${name}.exe"
+          $code = $LastExitCode
+          [int]$endMs = (Get-Date).Millisecond
+          if ($code -eq 0) {
+            Add-AppveyorTest -Name ${name} -Filename "${name}.exe" -Outcome Passed -Duration $($endMs - $startMs);
+          } else {
+            Add-AppveyorTest -Name ${name} -Filename "${name}.exe" -Outcome Failed -Duration $($endMs - $startMs);
+            $fail = $True;
+          }
 
     # Ring2
     - ps: |
