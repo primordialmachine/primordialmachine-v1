@@ -7,11 +7,13 @@
 #include "Ring1/Ap/Test/ApNatTests.h"
 
 
+#include "Ring1/Ap/Test/Nat/Set.h"
 #include "Ring1/Ap/Test/Nat/Add.h"
 #include "Ring1/Ap/Test/Nat/Compare.h"
 #include "Ring1/Ap/Test/Nat/Convert.h"
 #include "Ring1/Ap/Test/Nat/Subtract.h"
 #include "Ring1/Ap/Test/Nat/Multiply.h"
+#include "Ring1/Ap/Test/Nat/Power.h"
 #include "Ring1/Ap/_Include.h"
 #include "Ring1/Status.h"
 #include <stdio.h>
@@ -22,6 +24,9 @@ Ring1_Ap_Test_registerApNatTests
     Ring1_Test_Context* ctx
   )
 {
+  if (Ring1_Ap_Test_Nat_registerSetTests(ctx)) {
+    return Ring1_Result_Failure;
+  }
   if (Ring1_Ap_Test_Nat_registerAddTests(ctx)) {
     return Ring1_Result_Failure;
   }
@@ -36,6 +41,9 @@ Ring1_Ap_Test_registerApNatTests
   }
   if (Ring1_Ap_Test_Nat_registerMultiplyTests(ctx)) {
      return Ring1_Result_Failure;
+  }
+  if (Ring1_Ap_Test_Nat_registerPowerTests(ctx)) {
+    return Ring1_Result_Failure;
   }
   return Ring1_Result_Success;
 }

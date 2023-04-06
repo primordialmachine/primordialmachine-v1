@@ -109,6 +109,13 @@ Ring1_ApNat_setZero
     int64_t numberOfDigits
   );
 
+Ring1_NoDiscardReturn() Ring1_Result
+Ring1_ApNat_power
+  (
+    Ring1_ApNat* self,
+    int64_t n
+  );
+
 /// @brief Compute the sum of this ApNat object and another ApNat object and assign the values of the sum to this ApNat object.
 /// @param self A pointer to this ApNat object.
 /// @param other A pointer to the other ApNat object.

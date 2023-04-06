@@ -143,6 +143,37 @@ Ring1_ApInt_setZero
 }
 
 Ring1_NoDiscardReturn() Ring1_Result
+Ring1_ApInt_negate
+  (
+    Ring1_ApInt* self
+  )
+{
+  if (!self) {
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
+    return Ring1_Result_Failure;
+  }
+  self->sign = !self->sign;
+  return Ring1_Result_Success;
+}
+
+Ring1_NoDiscardReturn() Ring1_Result
+Ring1_ApInt_power
+  (
+    Ring1_ApInt* self,
+    int64_t n
+  )
+{
+  if (!self) {
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
+    return Ring1_Result_Failure;
+  }
+  if (Ring1_ApNat_power(&self->magnitude, n)) {
+    return Ring1_Result_Failure;
+  }
+  return Ring1_Result_Success;
+}
+
+Ring1_NoDiscardReturn() Ring1_Result
 Ring1_ApInt_add
   (
     Ring1_ApInt* self,

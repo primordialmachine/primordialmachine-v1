@@ -172,11 +172,9 @@ Ring1_ApNat_set_u64
     Ring1_Status_set(Ring1_Status_AllocationFailed);
     return Ring1_Result_Failure;
   }
-  if (self->numberOfDigits < numberOfDigits) {
-    for (size_t i = self->numberOfDigits, n = numberOfDigits; i < n; ++i) {
-      self->digits[i] = 0;
-    }
-  }
+  // Initialize array with zeroes.
+  crt_memset(self->digits, 0, sizeof(uint8_t) * numberOfDigits);
+  self->numberOfDigits = numberOfDigits;
   self->numberOfDigits = numberOfDigits;
   size_t i = 0;
   uint64_t t0 = value;
@@ -196,6 +194,47 @@ Ring1_ApNat_setZero
   )
 {
   return Ring1_ApNat_set_u8(self, 0, numberOfDigits);
+}
+
+Ring1_NoDiscardReturn() Ring1_Result
+Ring1_ApNat_power
+  (
+    Ring1_ApNat* self,
+    int64_t n
+  )
+{
+  if (!self || n < 0) {
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
+    return Ring1_Result_Failure;
+  }
+  if (n == 0) {
+    if (Ring1_ApNat_set_u64(self, 1, self->numberOfDigits)) {
+      return Ring1_Result_Failure;
+    }
+  } else {
+    Ring1_ApNat temporary;
+    if (Ring1_ApNat_initialize_u8(&temporary, 0, self->numberOfDigits)) {
+      return Ring1_Result_Failure;
+    }
+    if (Ring1_ApNat_assign(&temporary, self)) {
+      Ring1_ApNat_uninitialize(&temporary);
+      return Ring1_Result_Failure;
+    }
+    // @todo This is slow.
+    while (n > 0) {
+      if (Ring1_ApNat_multiply(&temporary, &temporary)) {
+        Ring1_ApNat_uninitialize(&temporary);
+        return Ring1_Result_Failure;
+      }
+      --n;
+    }
+    if (Ring1_ApNat_assign(self, &temporary)) {
+      Ring1_ApNat_uninitialize(&temporary);
+      return Ring1_Result_Failure;
+    }
+    Ring1_ApNat_uninitialize(&temporary);
+  }
+  return Ring1_Result_Success;
 }
 
 Ring1_NoDiscardReturn() Ring1_Result

@@ -137,6 +137,8 @@
     <ClCompile Include="Ring1\Ap\Test\Nat\Compare.c" />
     <ClCompile Include="Ring1\Ap\Test\Nat\Convert.c" />
     <ClCompile Include="Ring1\Ap\Test\Nat\Multiply.c" />
+    <ClCompile Include="Ring1\Ap\Test\Nat\Power.c" />
+    <ClCompile Include="Ring1\Ap\Test\Nat\Set.c" />
     <ClCompile Include="Ring1\Ap\Test\Nat\Subtract.c" />
   </ItemGroup>
   <ItemGroup>
@@ -147,6 +149,8 @@
     <ClInclude Include="Ring1\Ap\Test\Nat\Compare.h" />
     <ClInclude Include="Ring1\Ap\Test\Nat\Convert.h" />
     <ClInclude Include="Ring1\Ap\Test\Nat\Multiply.h" />
+    <ClInclude Include="Ring1\Ap\Test\Nat\Power.h" />
+    <ClInclude Include="Ring1\Ap\Test\Nat\Set.h" />
     <ClInclude Include="Ring1\Ap\Test\Nat\Subtract.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

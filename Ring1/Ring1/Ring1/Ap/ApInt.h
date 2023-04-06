@@ -104,6 +104,19 @@ Ring1_ApInt_setZero
     int64_t numberOfDigits
   );
 
+Ring1_NoDiscardReturn() Ring1_Result
+Ring1_ApInt_negate
+  (
+    Ring1_ApInt* self
+  );
+
+Ring1_NoDiscardReturn() Ring1_Result
+Ring1_ApInt_power
+  (
+    Ring1_ApInt* self,
+    int64_t n
+  );
+
 /// @brief Compute the sum of this ApInt object and another ApInt object and assign the values of the sum to this ApInt object.
 /// @param self A pointer to this ApInt object.
 /// @param other A pointer to the other ApInt object.

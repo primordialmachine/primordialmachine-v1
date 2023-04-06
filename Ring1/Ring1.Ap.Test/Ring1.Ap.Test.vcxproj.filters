@@ -33,6 +33,12 @@
     <Filter Include="Headerdateien\Ring1\Ap\Test\Nat">
       <UniqueIdentifier>{62084f99-518f-4e84-8af2-28c1860e1c5f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring1\Ap\Test\Int">
+      <UniqueIdentifier>{58e431ff-d29c-485f-bb97-860a6258d12d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Ap\Test\Int">
+      <UniqueIdentifier>{5a50dbcf-2e76-4ef8-b316-4d43c97223bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring1\Ap\Test\Main.c">
@@ -62,6 +68,12 @@
     <ClCompile Include="Ring1\Ap\Test\Nat\Convert.c">
       <Filter>Quelldateien\Ring1\Ap\Test\Nat</Filter>
     </ClCompile>
+    <ClCompile Include="Ring1\Ap\Test\Nat\Power.c">
+      <Filter>Quelldateien\Ring1\Ap\Test\Nat</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Ap\Test\Nat\Set.c">
+      <Filter>Quelldateien\Ring1\Ap\Test\Nat</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ring1\Ap\Test\ApBoolTests.h">
@@ -86,6 +98,12 @@
       <Filter>Headerdateien\Ring1\Ap\Test\Nat</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\Ap\Test\Nat\Convert.h">
+      <Filter>Headerdateien\Ring1\Ap\Test\Nat</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Ap\Test\Nat\Power.h">
+      <Filter>Headerdateien\Ring1\Ap\Test\Nat</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Ap\Test\Nat\Set.h">
       <Filter>Headerdateien\Ring1\Ap\Test\Nat</Filter>
     </ClInclude>
   </ItemGroup>
