@@ -6,7 +6,7 @@
 
 #include "Ring1/Intrinsic/Test/IsPowerOfTwo.h"
 
-#include "Ring1/Intrinsic/isPowerOfTwo.h"
+#include "Ring1/Intrinsic/_Include.h"
 #include <inttypes.h>
 #include "Ring1/Status.h"
 
