@@ -1,5 +1,5 @@
 /// @file Ring3/Gdl/Lexical/Token.c
-/// @copyright Copyright (c) 2021 - 2022 Michael Heilmann. All rights reserved.
+/// @copyright Copyright (c) 2021-2023 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
 #define RING3_GDL_PRIVATE (1)
@@ -10,63 +10,88 @@
 #include "Ring1/All/_Include.h"
 
 
-static void Machine_Gdl_Token_visit(Machine_Gdl_Token *self) {
+static void
+Ring3_Gdl_Token_visit
+  (
+    Ring3_Gdl_Token *self
+  )
+{
   if (self->text) {
     Ring2_Gc_visit(Ring2_Gc_get(), self->text);
   }
 }
 
-static void Machine_Gdl_Token_construct(Machine_Gdl_Token* self, size_t numberOfArguments, Ring2_Value const* arguments) {
-  Machine_Object_construct((Machine_Object*)self, numberOfArguments, arguments);
+static void
+Ring3_Gdl_Token_construct
+  (
+    Ring3_Gdl_Token* self,
+    size_t numberOfArguments,
+    Ring2_Value const* arguments
+  )
+{
+  Machine_Object_construct(Ring1_cast(Machine_Object*, self), numberOfArguments, arguments);
   self->kind = Ring2_Value_getInteger(&arguments[0]);
   self->text = Ring2_Value_getString(&arguments[1]);
-  self->offset = Ring2_Value_getInteger(&arguments[2]);
-  Machine_setClassType(Ring1_cast(Machine_Object *, self), Machine_Gdl_Token_getType());
+  self->start = Ring2_Value_getInteger(&arguments[2]);
+  self->end = Ring2_Value_getInteger(&arguments[3]);
+  Machine_setClassType(Ring1_cast(Machine_Object *, self), Ring3_Gdl_Token_getType());
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Gdl_Token /*type*/,
+MACHINE_DEFINE_CLASSTYPE(Ring3_Gdl_Token /*type*/,
                          Machine_Object /*parentType*/,
-                         &Machine_Gdl_Token_visit /*visit*/,
-                         &Machine_Gdl_Token_construct /*construct*/,
+                         &Ring3_Gdl_Token_visit /*visit*/,
+                         &Ring3_Gdl_Token_construct /*construct*/,
                          NULL /*destruct*/,
                          NULL /*constructClass*/,
                          NULL /*implementInterfaces*/)
 
-Ring1_NoDiscardReturn() Machine_Gdl_Token*
-Machine_Gdl_Token_create
+Ring1_NoDiscardReturn() Ring3_Gdl_Token*
+Ring3_Gdl_Token_create
   (
-    Machine_Gdl_TokenKind kind,
+    Ring3_Gdl_TokenKind kind,
     Ring2_String* text,
-    Ring2_Integer offset
+    Ring2_Integer start,
+    Ring2_Integer end
   )
 {
-  Machine_Type* ty = Machine_Gdl_Token_getType();
+  Machine_Type* ty = Ring3_Gdl_Token_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 3;
-  Ring2_Value arguments[3];
+  Ring2_Value arguments[4];
   Ring2_Value_setInteger(&arguments[0], kind);
   Ring2_Value_setString(&arguments[1], text);
-  Ring2_Value_setInteger(&arguments[2], offset);
-  Machine_Gdl_Token* self = Ring1_cast(Machine_Gdl_Token*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
+  Ring2_Value_setInteger(&arguments[2], start);
+  Ring2_Value_setInteger(&arguments[3], end);
+  Ring3_Gdl_Token* self = Ring1_cast(Ring3_Gdl_Token*,
+                                     Machine_allocateClassObject(ty,
+                                                                 NUMBER_OF_ARGUMENTS,
+                                                                 arguments));
   return self;
 }
 
-Ring1_NoDiscardReturn() Machine_Gdl_TokenKind
-Machine_Gdl_Token_getKind
+Ring1_NoDiscardReturn() Ring3_Gdl_TokenKind
+Ring3_Gdl_Token_getKind
   (
-    Machine_Gdl_Token const* self
+    Ring3_Gdl_Token const* self
   )
 { return self->kind; }
 
 Ring1_NoDiscardReturn() Ring2_String*
-Machine_Gdl_Token_getText
+Ring3_Gdl_Token_getText
   (
-    Machine_Gdl_Token const* self
+    Ring3_Gdl_Token const* self
   )
 { return self->text; }
 
 Ring1_NoDiscardReturn() Ring2_Integer
-Machine_Gdl_Token_getOffset
+Ring3_Gdl_Token_getStart
   (
-    Machine_Gdl_Token const* self
+    Ring3_Gdl_Token const* self
   )
-{ return self->offset; }
+{ return self->start; }
+
+Ring1_NoDiscardReturn() Ring2_Integer
+Ring3_Gdl_Token_getEnd
+  (
+    Ring3_Gdl_Token const* self
+  )
+{ return self->end; }

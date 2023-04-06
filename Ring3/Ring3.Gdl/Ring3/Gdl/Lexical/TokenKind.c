@@ -1,5 +1,5 @@
 /// @file Ring3/Gdl/Lexical/TokenKind.c
-/// @copyright Copyright (c) 2021 - 2022 Michael Heilmann. All rights reserved.
+/// @copyright Copyright (c) 2021-2023 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
 #define RING3_GDL_PRIVATE (1)
@@ -55,9 +55,9 @@ static void ensureInitialized() {
 }
 
 Ring1_CheckReturn() Ring2_String*
-Machine_Gdl_TokenKind_toString
+Ring3_Gdl_TokenKind_toString
   (
-    Machine_Gdl_TokenKind self
+    Ring3_Gdl_TokenKind self
   )
 {
   ensureInitialized();

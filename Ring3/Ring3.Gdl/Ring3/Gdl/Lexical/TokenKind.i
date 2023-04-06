@@ -1,53 +1,53 @@
 /// @brief "start of input".
-Define(Machine_Gdl_TokenKind_StartOfInput, startOfInput, "<start of input>")
+Define(Ring3_Gdl_TokenKind_StartOfInput, startOfInput, "<start of input>")
 
 /// @brief "end of input".
-Define(Machine_Gdl_TokenKind_EndOfInput, endOfInput, "<end of input>")
+Define(Ring3_Gdl_TokenKind_EndOfInput, endOfInput, "<end of input>")
 
 /// @brief "left parenthesis".
-Define(Machine_Gdl_TokenKind_LeftParenthesis, leftParenthesis, "<left parenthesis>")
+Define(Ring3_Gdl_TokenKind_LeftParenthesis, leftParenthesis, "<left parenthesis>")
 
 /// @brief "right parenthesis".
-Define(Machine_Gdl_TokenKind_RightParenthesis, rightParenthesis, "<right parenthesis>")
+Define(Ring3_Gdl_TokenKind_RightParenthesis, rightParenthesis, "<right parenthesis>")
 
 /// @brief "period".
-Define(Machine_Gdl_TokenKind_Period, period, "<period>")
+Define(Ring3_Gdl_TokenKind_Period, period, "<period>")
 
 /// @brief "name".
-Define(Machine_Gdl_TokenKind_Name, name, "<name>")
+Define(Ring3_Gdl_TokenKind_Name, name, "<name>")
 
 /// @brief "semicolon".
-Define(Machine_Gdl_TokenKind_Semicolon, semicolon, "<semicolon>")
+Define(Ring3_Gdl_TokenKind_Semicolon, semicolon, "<semicolon>")
 
 /// @brief "colon".
-Define(Machine_Gdl_TokenKind_Colon, colon, "<colon>")
+Define(Ring3_Gdl_TokenKind_Colon, colon, "<colon>")
 
 /// @brief "comma".
-Define(Machine_Gdl_TokenKind_Comma, comma, "<comma>")
+Define(Ring3_Gdl_TokenKind_Comma, comma, "<comma>")
 
 /// @brief "left curly bracket".
-Define(Machine_Gdl_TokenKind_LeftCurlyBracket, leftCurlyBracket, "<left curly bracket>")
+Define(Ring3_Gdl_TokenKind_LeftCurlyBracket, leftCurlyBracket, "<left curly bracket>")
 
 /// @brief "right curly bracket".
-Define(Machine_Gdl_TokenKind_RightCurlyBracket, rightCurlyBracket, "<right curly bracket>")
+Define(Ring3_Gdl_TokenKind_RightCurlyBracket, rightCurlyBracket, "<right curly bracket>")
 
 /// @brief "left square bracket".
-Define(Machine_Gdl_TokenKind_LeftSquareBracket, leftSquareBracket, "<left square bracket>")
+Define(Ring3_Gdl_TokenKind_LeftSquareBracket, leftSquareBracket, "<left square bracket>")
 
-/// @brief "right sqaure bracket".
-Define(Machine_Gdl_TokenKind_RightSquareBracket, rightSquareBracket, "<right square bracket>")
+/// @brief "right square bracket".
+Define(Ring3_Gdl_TokenKind_RightSquareBracket, rightSquareBracket, "<right square bracket>")
 
 /// @brief "string".
-Define(Machine_Gdl_TokenKind_String, string, "<string>")
+Define(Ring3_Gdl_TokenKind_String, string, "<string>")
 
 /// @brief "integer".
-Define(Machine_Gdl_TokenKind_Integer, integer, "<integer>")
+Define(Ring3_Gdl_TokenKind_Integer, integer, "<integer>")
 
 /// @brief "real".
-Define(Machine_Gdl_TokenKind_Real, real, "<real>")
+Define(Ring3_Gdl_TokenKind_Real, real, "<real>")
 
 /// @brief "boolean".
-Define(Machine_Gdl_TokenKind_Boolean, boolean, "<boolean>")
+Define(Ring3_Gdl_TokenKind_Boolean, boolean, "<boolean>")
 
 /// @brief "void".
-Define(Machine_Gdl_TokenKind_Void, void, "<void>")
+Define(Ring3_Gdl_TokenKind_Void, void, "<void>")

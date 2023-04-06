@@ -6,7 +6,7 @@
 #include "Ring3/Gdl/_Include.h"
 
 #define CHECK(EXPECTED_TOKEN_KIND) \
-  if ((Machine_Gdl_Scanner_getTokenKind(scanner) != (EXPECTED_TOKEN_KIND))) \
+  if ((Ring3_Gdl_Token_getKind(Ring3_Gdl_Scanner_getToken(scanner)) != (EXPECTED_TOKEN_KIND))) \
   { \
     Ring2_log(Ring2_LogFlags_ToErrors, __FILE__, __LINE__, "expected token kind\n"); \
     Ring1_Status_set(Ring1_Status_InvalidLexics); \
@@ -24,12 +24,10 @@ test1
 {
   Ring2_ByteBuffer* inputText = Ring2_ByteBuffer_create();
   Ring2_ByteBuffer_appendBytes(inputText, "", crt_strlen(""));
-  Machine_Gdl_Scanner* scanner = Machine_Gdl_Scanner_create(Ring2_String_fromC(false, ""), inputText);
-  CHECK(Machine_Gdl_TokenKind_StartOfInput);
-  Machine_Gdl_Scanner_step(scanner);
-  CHECK(Machine_Gdl_TokenKind_EndOfInput);
-  Machine_Gdl_Scanner_step(scanner);
-  CHECK(Machine_Gdl_TokenKind_EndOfInput);
+  Ring3_Gdl_Scanner* scanner = Ring1_cast(Ring3_Gdl_Scanner*,Ring3_Gdl_DefaultScanner_create(Ring2_String_fromC(false, ""), inputText));
+  CHECK(Ring3_Gdl_TokenKind_StartOfInput); Ring3_Gdl_Scanner_step(scanner);
+  CHECK(Ring3_Gdl_TokenKind_EndOfInput); Ring3_Gdl_Scanner_step(scanner);
+  CHECK(Ring3_Gdl_TokenKind_EndOfInput);
 }
 
 static void
@@ -43,23 +41,22 @@ test2
 {
   Ring2_ByteBuffer *inputText = Ring2_ByteBuffer_create();
   Ring2_ByteBuffer_appendBytes(inputText, "{:true,false.void;}", crt_strlen("{:true,false.void;}"));
-  Machine_Gdl_Scanner* scanner = Machine_Gdl_Scanner_create(Ring2_String_fromC(false, ""), inputText);
+  Ring3_Gdl_Scanner* scanner = Ring1_cast(Ring3_Gdl_Scanner*,Ring3_Gdl_DefaultScanner_create(Ring2_String_fromC(false, ""), inputText));
 
-  CHECK(Machine_Gdl_TokenKind_StartOfInput); Machine_Gdl_Scanner_step(scanner);
+  CHECK(Ring3_Gdl_TokenKind_StartOfInput); Ring3_Gdl_Scanner_step(scanner);
+  CHECK(Ring3_Gdl_TokenKind_LeftCurlyBracket); Ring3_Gdl_Scanner_step(scanner);
+  CHECK(Ring3_Gdl_TokenKind_Colon); Ring3_Gdl_Scanner_step(scanner);
+  CHECK(Ring3_Gdl_TokenKind_Boolean); Ring3_Gdl_Scanner_step(scanner);
+  CHECK(Ring3_Gdl_TokenKind_Comma); Ring3_Gdl_Scanner_step(scanner);
+  CHECK(Ring3_Gdl_TokenKind_Boolean); Ring3_Gdl_Scanner_step(scanner);
+  CHECK(Ring3_Gdl_TokenKind_Period); Ring3_Gdl_Scanner_step(scanner);
+  CHECK(Ring3_Gdl_TokenKind_Void); Ring3_Gdl_Scanner_step(scanner);
+  CHECK(Ring3_Gdl_TokenKind_Semicolon); Ring3_Gdl_Scanner_step(scanner);
 
-  CHECK(Machine_Gdl_TokenKind_LeftCurlyBracket); Machine_Gdl_Scanner_step(scanner);
-  CHECK(Machine_Gdl_TokenKind_Colon); Machine_Gdl_Scanner_step(scanner);
-  CHECK(Machine_Gdl_TokenKind_Boolean); Machine_Gdl_Scanner_step(scanner);
-  CHECK(Machine_Gdl_TokenKind_Comma); Machine_Gdl_Scanner_step(scanner);
-  CHECK(Machine_Gdl_TokenKind_Boolean); Machine_Gdl_Scanner_step(scanner);
-  CHECK(Machine_Gdl_TokenKind_Period); Machine_Gdl_Scanner_step(scanner);
-  CHECK(Machine_Gdl_TokenKind_Void); Machine_Gdl_Scanner_step(scanner);
-  CHECK(Machine_Gdl_TokenKind_Semicolon); Machine_Gdl_Scanner_step(scanner);
+  CHECK(Ring3_Gdl_TokenKind_RightCurlyBracket); Ring3_Gdl_Scanner_step(scanner);
 
-  CHECK(Machine_Gdl_TokenKind_RightCurlyBracket); Machine_Gdl_Scanner_step(scanner);
-
-  CHECK(Machine_Gdl_TokenKind_EndOfInput);   Machine_Gdl_Scanner_step(scanner);
-  CHECK(Machine_Gdl_TokenKind_EndOfInput);
+  CHECK(Ring3_Gdl_TokenKind_EndOfInput); Ring3_Gdl_Scanner_step(scanner);
+  CHECK(Ring3_Gdl_TokenKind_EndOfInput);
 }
 
 void

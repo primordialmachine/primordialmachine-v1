@@ -45,7 +45,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ring3\Gdl\Lexical\Scanner.c">
+    <ClCompile Include="Ring3\Gdl\Lexical\DefaultScanner.c">
       <Filter>Quelldateien\Ring3\Gdl\Lexical</Filter>
     </ClCompile>
     <ClCompile Include="Ring3\Gdl\Lexical\Token.c">
@@ -96,9 +96,12 @@
     <ClCompile Include="Ring3\Gdl\Configuration.c">
       <Filter>Quelldateien\Ring3\Gdl</Filter>
     </ClCompile>
+    <ClCompile Include="Ring3\Gdl\Lexical\Scanner.c">
+      <Filter>Quelldateien\Ring3\Gdl\Lexical</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ring3\Gdl\Lexical\Scanner.h">
+    <ClInclude Include="Ring3\Gdl\Lexical\DefaultScanner.h">
       <Filter>Headerdateien\Ring3\Gdl\Lexical</Filter>
     </ClInclude>
     <ClInclude Include="Ring3\Gdl\Lexical\Token.h">
@@ -149,11 +152,11 @@
     <ClInclude Include="Ring3\Gdl\Literals\VoidLiteral.h">
       <Filter>Headerdateien\Ring3\Gdl\Literals</Filter>
     </ClInclude>
+    <ClInclude Include="Ring3\Gdl\Lexical\Scanner.h">
+      <Filter>Headerdateien\Ring3\Gdl\Lexical</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Ring3\Gdl\Lexical\Scanner-Inlay.i">
-      <Filter>Quelldateien\Ring3\Gdl\Lexical</Filter>
-    </None>
     <None Include="Ring3\Gdl\Syntactical\Parser-inlay.i">
       <Filter>Quelldateien\Ring3\Gdl\Syntactical</Filter>
     </None>
@@ -165,6 +168,12 @@
     </None>
     <None Include="Ring3\Gdl\header.h.i">
       <Filter>Headerdateien\Ring3\Gdl</Filter>
+    </None>
+    <None Include="Ring3\Gdl\Lexical\DefaultScanner.private.h.i">
+      <Filter>Headerdateien\Ring3\Gdl\Lexical</Filter>
+    </None>
+    <None Include="Ring3\Gdl\Lexical\DefaultScanner.private.c.i">
+      <Filter>Quelldateien\Ring3\Gdl\Lexical</Filter>
     </None>
   </ItemGroup>
 </Project>

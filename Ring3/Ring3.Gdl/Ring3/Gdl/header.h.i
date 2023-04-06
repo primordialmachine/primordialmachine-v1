@@ -4,4 +4,4 @@
 typedef struct Machine_Gdl_Context Machine_Gdl_Context;
 typedef struct Machine_Gdl_Node Machine_Gdl_Node;
 typedef struct Machine_Gdl_Parser Machine_Gdl_Parser;
-typedef struct Machine_Gdl_Scanner Machine_Gdl_Scanner;
+typedef struct Ring3_Gdl_Scanner Ring3_Gdl_Scanner;

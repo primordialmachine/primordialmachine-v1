@@ -9,7 +9,7 @@
 #define RING3_GDL_PRIVATE (1)
 #include "Ring3/Gdl/Context.h"
 #include "Ring3/Gdl/Extensions.h"
-#include "Ring3/Gdl/Lexical/Scanner.h"
+#include "Ring3/Gdl/Lexical/DefaultScanner.h"
 #include "Ring3/Gdl/Syntactical/Node.h"
 #include "Ring3/Gdl/Syntactical/Parser.h"
 #undef RING3_GDL_PRIVATE

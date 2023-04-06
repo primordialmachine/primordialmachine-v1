@@ -124,7 +124,7 @@ Machine_Gdl_Node_toList
   Ring2_assertNotNull(self);
   Ring2_assert(self->kind == Machine_Gdl_NodeKind_List, Ring1_Status_InvalidArgument);
   Ring2_Collections_List* targets = (Ring2_Collections_List *)Ring2_Collections_ArrayList_create();
-  for (size_t i = 0, n = Ring2_Collections_Collection_getSize((Ring2_Collections_Collection*)self->children); i < n; ++i) {
+  for (int64_t i = 0, n = Ring2_Collections_Collection_getSize((Ring2_Collections_Collection*)self->children); i < n; ++i) {
     Ring2_Value v = Ring2_Collections_List_getAt(self->children, i);
     Machine_Gdl_Node* source = (Machine_Gdl_Node*)Ring2_Value_getObject(&v);
     v = convert(source, context);

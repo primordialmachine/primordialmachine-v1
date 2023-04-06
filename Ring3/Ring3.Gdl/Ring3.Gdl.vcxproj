@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Ring3\Gdl\Configuration.c" />
     <ClCompile Include="Ring3\Gdl\Context.c" />
+    <ClCompile Include="Ring3\Gdl\Lexical\DefaultScanner.c" />
     <ClCompile Include="Ring3\Gdl\Lexical\Scanner.c" />
     <ClCompile Include="Ring3\Gdl\Lexical\Token.c" />
     <ClCompile Include="Ring3\Gdl\Lexical\TokenKind.c" />
@@ -40,6 +41,7 @@
   <ItemGroup>
     <ClInclude Include="Ring3\Gdl\Configuration.h" />
     <ClInclude Include="Ring3\Gdl\Context.h" />
+    <ClInclude Include="Ring3\Gdl\Lexical\DefaultScanner.h" />
     <ClInclude Include="Ring3\Gdl\Lexical\Scanner.h" />
     <ClInclude Include="Ring3\Gdl\Lexical\Token.h" />
     <ClInclude Include="Ring3\Gdl\Lexical\TokenKind.h" />
@@ -69,16 +71,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Ring3\Gdl\header.h.i" />
-    <None Include="Ring3\Gdl\Lexical\Scanner-Inlay.i">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DeploymentContent>
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</DeploymentContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DeploymentContent>
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</DeploymentContent>
-    </None>
+    <None Include="Ring3\Gdl\Lexical\DefaultScanner.private.c.i" />
+    <None Include="Ring3\Gdl\Lexical\DefaultScanner.private.h.i" />
     <None Include="Ring3\Gdl\Lexical\TokenKind.i" />
     <None Include="Ring3\Gdl\Syntactical\NodeKind.i" />
     <None Include="Ring3\Gdl\Syntactical\Parser-inlay.i">
