@@ -33,7 +33,7 @@ unparse1
   if (Ring1_PointerList_getSize(&size, &tokenList->elements)) {
     longjmp(*j, -1);
   }
-  for (size_t i = 0, m = size; i < m; ++i) {
+  for (int64_t i = 0, m = size; i < m; ++i) {
     Token* token;
     if (Ring1_PointerList_getAt(&tokenList->elements, i, &token)) {
       longjmp(*j, -1);

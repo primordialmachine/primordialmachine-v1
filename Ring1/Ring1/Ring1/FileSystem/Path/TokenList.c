@@ -83,7 +83,7 @@ TokenList_pushAll
   if (Ring1_PointerList_getSize(&sourceSize, &source->elements)) {
     return Ring1_Result_Failure;
   }
-  for (size_t i = 0, n = sourceSize; i < n; ++i) {
+  for (int64_t i = 0, n = sourceSize; i < n; ++i) {
     Token* token;
     if (Ring1_PointerList_getAt(&source->elements, i, &token)) {
       return Ring1_Result_Failure;

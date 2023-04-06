@@ -53,7 +53,7 @@ normalizeDotDots
   // 4 = FileName BackSlash DotDot BackSlash
   int j = 0;
   Token* buffer[4];
-  for (size_t i = 0, n = size; i < n;) {
+  for (int64_t i = 0, n = size; i < n;) {
     Token* token1;
     if (TokenList_getAt(&token1, state->sources, i)) {
       return Ring1_Result_Failure;
@@ -165,7 +165,7 @@ normalizeDots
   if (TokenList_getSize(&size, state->sources)) {
     return Ring1_Result_Failure;
   }
-  for (size_t i = 0, n = size; i < n;) {
+  for (int64_t i = 0, n = size; i < n;) {
     Token* token1;
     if (TokenList_getAt(&token1, state->sources, i)) {
       return Ring1_Result_Failure;
@@ -247,7 +247,7 @@ normalizeDirectorySeparators
     return Ring1_Result_Failure;
   }
   bool lastWasSlash = false;
-  for (size_t i = 0, n = size; i < n;) {
+  for (int64_t i = 0, n = size; i < n;) {
     Token* token;
     if (TokenList_getAt(&token, state->sources, i)) {
       return Ring1_Result_Failure;
