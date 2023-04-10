@@ -8,8 +8,6 @@ extern "C" {
 #include "Ring1/All/_Include.h"
 #include "Ring2/Library/_Include.h"
 #include "_Launcher.h"
-#include "_Fonts.h"
-#include "_Images.h"
 #include "Ring4/Scenes/_Include.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -42,8 +40,8 @@ loadIcons
   };
   Ring2_Collections_List* vals = Ring1_cast(Ring2_Collections_List *, Ring2_Collections_ArrayList_create());
   for (size_t i = 0, n = (sizeof(PATHS) / sizeof(const char*)); i < n; ++i) {
-    Ring3_Image* image = Ring3_ImagesContext_createFromPath(
-        Machines_DefaultImages_createContext(), Ring2_String_fromC(false, PATHS[i]));
+    Ring3_Image* image = Ring3_ImagesContext_createFromPath(Machine_Launcher_getImagesContext(),
+                                                            Ring2_String_fromC(false, PATHS[i]));
     Ring2_Value val;
     Ring2_Value_setObject(&val, (Machine_Object*)image);
     Ring2_Collections_List_append(vals, val);
