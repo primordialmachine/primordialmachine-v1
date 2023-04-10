@@ -91,25 +91,25 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\external\glad\include;$(ProjectDir)..\..\machine-mk1\external\glfw\$(PlatformTarget)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\external\glad\include;$(ProjectDir)..\..\machine-mk1\external\glfw\$(PlatformTarget)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\machine-mk1\external\glad\include;$(ProjectDir)..\..\machine-mk1\external\glfw\$(PlatformTarget)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\external\glad\include;$(ProjectDir)..\..\external\glfw\$(PlatformTarget)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -131,6 +131,9 @@
     <ProjectReference Include="..\..\ring3\Ring3.Signals\Ring3.Signals.vcxproj">
       <Project>{5f81c516-cce8-4c62-b1e8-22c1ea40a25c}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\Ring3\Ring3.Visuals.Gl\Ring3.Visuals.Gl.vcxproj">
+      <Project>{c6ff90b2-b9d9-4a80-afc2-a71b02aa29c2}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\ring3\Ring3.Visuals\Ring3.Visuals.vcxproj">
       <Project>{fd4c313c-d599-4313-adb7-034796537586}</Project>
     </ProjectReference>
@@ -139,9 +142,6 @@
     </ProjectReference>
     <ProjectReference Include="..\images\machine-mk1-images.vcxproj">
       <Project>{f0b732b5-824d-40ab-aa0a-a067b6a852f9}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\video-gl\machine-mk1-video-gl.vcxproj">
-      <Project>{c6ff90b2-b9d9-4a80-afc2-a71b02aa29c2}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
