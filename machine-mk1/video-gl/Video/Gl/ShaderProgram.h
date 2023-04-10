@@ -6,11 +6,11 @@
 #define MACHINE_GL_SHADERPROGRAM_H_INCLUDED
 
 #if !defined(MACHINE_VIDEO_GL_PRIVATE)
-#error("Do not include `Video/Gl/ShaderProgram.h` directly, include `_Video_Gl.h` instead.")
+#error("Do not include `Video/Gl/ShaderProgram.h` directly. Include `Video/Gl/_Include.h` instead.")
 #endif
 #include "Ring2/Library/_Include.h"
-#include "Video/Gl/UtilitiesGL.h"
 #include "Ring3/Visuals/_Include.h"
+#include "Video/Gl/UtilitiesGL.h"
 
 MACHINE_DECLARE_CLASSTYPE(Machine_Gl_ShaderProgram)
 

@@ -5,12 +5,16 @@
 #define MACHINE_VIDEO_GL_PRIVATE (1)
 #include "Video/Gl/CanvasUtilities.h"
 
-
-#include "Ring2/Library/_Include.h"
 #include "Video/Gl/Input/Keyboard.h"
 #include "Video/Gl/Input/MouseButton.h"
 #include "Video/Gl/Input/MousePointer.h"
 #include "Video/Gl/UtilitiesGl.h"
+#undef MACHINE_VIDEO_GL_PRIVATE
+
+
+#include "Ring1/All/_Include.h"
+#include "Ring2/Library/_Include.h"
+#include <stdio.h>
 #include "Ring3/Input/_Include.h"
 
 

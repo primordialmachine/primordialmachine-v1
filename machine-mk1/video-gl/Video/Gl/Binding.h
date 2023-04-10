@@ -8,7 +8,7 @@
 
 
 #if !defined(MACHINE_VIDEO_GL_PRIVATE)
-#error("Do not include this file directly, include `_Video_Gl.h` instead.")
+#error("Do not include `Video/Gl/Binding.h` directly. Include `Video/Gl/_Include.h` instead.")
 #endif
 #include "Ring3/Visuals/_Include.h"
 #include "Video/Gl/UtilitiesGl.h"

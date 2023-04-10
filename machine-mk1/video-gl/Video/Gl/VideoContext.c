@@ -5,15 +5,19 @@
 #define MACHINE_VIDEO_GL_PRIVATE (1)
 #include "Video/Gl/VideoContext.h"
 
-
-#include "Ring1/All/_Include.h"
-#include "Video/Gl/UtilitiesGL.h"
 #include "Video/Gl/Binding.h"
 #include "Video/Gl/Buffer.h"
 #include "Video/Gl/Canvas.h"
 #include "Video/Gl/CanvasUtilities.h"
 #include "Video/Gl/ShaderProgram.h"
 #include "Video/Gl/Texture.h"
+#include "Video/Gl/UtilitiesGL.h"
+#undef MACHINE_VIDEO_GL_PRIVATE
+
+
+#include "Ring1/All/_Include.h"
+#include "Ring2/Library/_Include.h"
+#include <stdio.h>
 
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

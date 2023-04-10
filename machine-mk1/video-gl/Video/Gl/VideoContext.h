@@ -6,7 +6,7 @@
 #define MACHINE_GL_VIDEOCONTEXT_H_INCLUDED
 
 #if !defined(MACHINE_VIDEO_GL_PRIVATE)
-#error("Do not include `Video/Gl/VideoContext.h` directly, include `_Video_Gl.h` instead.")
+#error("Do not include `Video/Gl/VideoContext.h` directly. Include `Video/Gl/_Include.h` instead.")
 #endif
 #include "Ring3/Visuals/_Include.h"
 

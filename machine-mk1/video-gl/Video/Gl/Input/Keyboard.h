@@ -6,7 +6,7 @@
 #define MACHINE_VIDEO_GL_INPUT_KEYBOARD_H_INCLUDED
 
 #if !defined(MACHINE_VIDEO_GL_PRIVATE)
-#error("Do not include `Video/Gl/Input/Keyboard.h` directly, include `_Video_Gl.h` instead.")
+#error("Do not include `Video/Gl/Input/Keyboard.h` directly. Include `Video/Gl/_Include.h` instead.")
 #endif
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>

@@ -4,8 +4,8 @@
 
 #define MACHINE_VIDEO_GL_PRIVATE (1)
 #include "Video/Gl/Input/Keyboard.h"
+#undef MACHINE_VIDEO_GL_PRIVATE
 
-#include "Ring1/Status.h"
 
 static Ring1_Result mapKey(int source, Ring3_KeyboardKey* target) {
   switch (source) {

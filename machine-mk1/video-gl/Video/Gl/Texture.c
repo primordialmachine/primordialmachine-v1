@@ -4,9 +4,12 @@
 
 #define MACHINE_VIDEO_GL_PRIVATE (1)
 #include "Video/Gl/Texture.h"
+#undef MACHINE_VIDEO_GL_PRIVATE
 
 
 #include "Ring1/All/_Include.h"
+#include "Ring2/Library/_Include.h"
+#include <stdio.h>
 
 
 static void Machine_Gl_Texture_destruct(Machine_Gl_Texture* self) {

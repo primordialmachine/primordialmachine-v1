@@ -4,10 +4,12 @@
 
 #define MACHINE_VIDEO_GL_PRIVATE (1)
 #include "Video/Gl/ShaderProgram.h"
+#undef MACHINE_VIDEO_GL_PRIVATE
 
 
 #include "Ring1/All/_Include.h"
 #include "Ring2/Library/_Include.h"
+#include <stdio.h>
 
 
 static void Machine_Gl_ShaderProgram_visit(Machine_Gl_ShaderProgram* self) {

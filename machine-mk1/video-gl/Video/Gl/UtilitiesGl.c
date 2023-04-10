@@ -4,6 +4,8 @@
 
 #define MACHINE_VIDEO_GL_PRIVATE (1)
 #include "Video/Gl/UtilitiesGl.h"
+#undef MACHINE_VIDEO_GL_PRIVATE
+
 
 char const* Machine_UtilitiesGl_toString(GLenum error);
 

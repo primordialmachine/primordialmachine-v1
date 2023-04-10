@@ -4,6 +4,8 @@
 
 #define MACHINE_VIDEO_GL_PRIVATE (1)
 #include "Video/Gl/Input/MousePointer.h"
+#undef MACHINE_VIDEO_GL_PRIVATE
+
 
 Ring3_MousePointerEvent* Machine_Video_Gl_Input_mapMousePointerEnterExitEvent(GLFWwindow* window,
                                                                                 int entered) {
