@@ -1,6 +1,7 @@
 /// @file Video/Gl/Input/MousePointer.h
-/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
-/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
+/// @copyright Copyright (c) 2021-2023 Michael Heilmann. All rights reserved.
+/// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
+
 #if !defined(MACHINE_VIDEO_GL_INPUT_MOUSEPOINTER_H_INCLUDED)
 #define MACHINE_VIDEO_GL_INPUT_MOUSEPOINTER_H_INCLUDED
 

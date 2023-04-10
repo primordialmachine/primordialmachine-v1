@@ -1,6 +1,7 @@
 /// @file Video/Gl/Buffer.h
-/// @copyright Copyright (c) 2021-2022 Michael Heilmann. All rights reserved.
+/// @copyright Copyright (c) 2021-2023 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
+
 #if !defined(MACHINE_GL_BUFFER_H_INCLUDED)
 #define MACHINE_GL_BUFFER_H_INCLUDED
 
