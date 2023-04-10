@@ -12,14 +12,25 @@
 #include <stdio.h>
 
 
-static void Machine_Gl_Texture_destruct(Machine_Gl_Texture* self) {
+static void
+Machine_Gl_Texture_destruct
+  (
+    Machine_Gl_Texture* self
+  )
+{
   if (self->id) {
     glDeleteTextures(1, &self->id);
     self->id = 0;
   }
 }
 
-void Machine_Gl_Texture_construct_fromImage(Machine_Gl_Texture* self, Ring3_Image* image) {
+void
+Machine_Gl_Texture_construct_fromImage
+  (
+    Machine_Gl_Texture* self,
+    Ring3_Image* image
+  )
+{
   static size_t const NUMBER_OF_ARGUMENTS = 0;
   static Ring2_Value const ARGUMENTS[] = { Ring2_Value_StaticInitializerVoid() };
   Ring3_Texture_construct((Ring3_Texture*)self, NUMBER_OF_ARGUMENTS, ARGUMENTS);
@@ -86,10 +97,20 @@ void Machine_Gl_Texture_construct(Machine_Gl_Texture* self, size_t numberOfArgum
   }
 }
 
-MACHINE_DEFINE_CLASSTYPE(Machine_Gl_Texture, Ring3_Texture, NULL, &Machine_Gl_Texture_construct,
-                         &Machine_Gl_Texture_destruct, NULL, NULL)
+MACHINE_DEFINE_CLASSTYPE(Machine_Gl_Texture,
+                         Ring3_Texture,
+                         NULL,
+                         &Machine_Gl_Texture_construct,
+                         &Machine_Gl_Texture_destruct,
+                         NULL,
+                         NULL)
 
-Machine_Gl_Texture* Machine_Gl_Texture_create(Ring3_Image* image) {
+Machine_Gl_Texture*
+Machine_Gl_Texture_create
+  (
+    Ring3_Image* image
+  )
+{
   Machine_Type* ty = Machine_Gl_Texture_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 1;
   Ring2_Value arguments[1];

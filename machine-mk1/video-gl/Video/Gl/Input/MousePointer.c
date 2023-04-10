@@ -7,8 +7,13 @@
 #undef MACHINE_VIDEO_GL_PRIVATE
 
 
-Ring3_MousePointerEvent* Machine_Video_Gl_Input_mapMousePointerEnterExitEvent(GLFWwindow* window,
-                                                                                int entered) {
+Ring3_MousePointerEvent*
+Machine_Video_Gl_Input_mapMousePointerEnterExitEvent
+  (
+    GLFWwindow* window,
+    int entered
+  )
+{
   double x, y;
   glfwGetCursorPos(window, &x, &y);
   Ring3_MousePointerEvent* event = Ring3_MousePointerEvent_create(
@@ -16,8 +21,14 @@ Ring3_MousePointerEvent* Machine_Video_Gl_Input_mapMousePointerEnterExitEvent(GL
   return event;
 }
 
-Ring3_MousePointerEvent* Machine_Video_Gl_Input_mapMousePointerMoveEvent(GLFWwindow* window,
-                                                                         double x, double y) {
+Ring3_MousePointerEvent*
+Machine_Video_Gl_Input_mapMousePointerMoveEvent
+  (
+    GLFWwindow* window,
+    double x,
+    double y
+  )
+{
   Ring3_MousePointerEvent* event
       = Ring3_MousePointerEvent_create(Ring3_MousePointerAction_Move, x, y);
   return event;

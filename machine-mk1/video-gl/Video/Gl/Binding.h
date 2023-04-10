@@ -6,13 +6,11 @@
 #define MACHINE_GL_BINDING_H_INCLUDED
 
 
-
 #if !defined(MACHINE_VIDEO_GL_PRIVATE)
 #error("Do not include `Video/Gl/Binding.h` directly. Include `Video/Gl/_Include.h` instead.")
 #endif
 #include "Ring3/Visuals/_Include.h"
 #include "Video/Gl/UtilitiesGl.h"
-
 
 
 MACHINE_DECLARE_CLASSTYPE(Machine_Gl_Binding)
@@ -34,7 +32,6 @@ Machine_Gl_Binding_create
     Ring3_VertexDescriptor* vertexDescriptor,
     Ring3_GpuBuffer* buffer
   );
-
 
 
 #endif // MACHINE_GL_BINDING_H_INCLUDED

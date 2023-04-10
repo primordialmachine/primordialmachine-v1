@@ -5,10 +5,12 @@
 #if !defined(MACHINE_GL_VIDEOCONTEXT_H_INCLUDED)
 #define MACHINE_GL_VIDEOCONTEXT_H_INCLUDED
 
+
 #if !defined(MACHINE_VIDEO_GL_PRIVATE)
 #error("Do not include `Video/Gl/VideoContext.h` directly. Include `Video/Gl/_Include.h` instead.")
 #endif
 #include "Ring3/Visuals/_Include.h"
+
 
 typedef struct Machine_Gl_VideoContext_ClipDistance {
   Ring2_Boolean enabled;
@@ -52,5 +54,6 @@ void Machine_Gl_VideoContext_construct(Machine_Gl_VideoContext* self, size_t num
 Machine_Gl_VideoContext* Machine_Gl_VideoContext_create();
 
 void Machine_Gl_VideoContext_write(Machine_Gl_VideoContext const* self);
+
 
 #endif // MACHINE_GL_VIDEOCONTEXT_H_INCLUDED

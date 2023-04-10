@@ -5,15 +5,17 @@
 #if !defined(MACHINE_VIDEO_GL_CANVASUTILITIES_INPUT_H_INCLUDED)
 #define MACHINE_VIDEO_GL_CANVASUTILITIES_INPUT_H_INCLUDED
 
+
 #if !defined(MACHINE_VIDEO_GL_PRIVATE)
 #error("Do not include `Video/Gl/CanvasUtilities.h` directly. Include `Video/Gl/_Include.h` instead.")
 #endif
-#include "Video/Gl/Canvas.h"
 
+#include "Video/Gl/Canvas.h"
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 #undef GLFW_INCLUDE_NONE
 #include <glad/glad.h>
+
 
 /// @brief Get the GLFW window.
 /// @return The GLFW window.
@@ -31,5 +33,6 @@ void Machine_Glfw_shutdownCanvasInput();
 
 /// @brief Poll events from all sources and add them to the event queue.
 void Machine_Glfw_pollEvents();
+
 
 #endif // MACHINE_VIDEO_GL_CANVASUTILITIES_INPUT_H_INCLUDED

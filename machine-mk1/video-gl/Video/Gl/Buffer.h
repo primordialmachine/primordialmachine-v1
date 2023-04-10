@@ -6,13 +6,11 @@
 #define MACHINE_GL_BUFFER_H_INCLUDED
 
 
-
 #if !defined(MACHINE_VIDEO_GL_PRIVATE)
 #error("Do not include `Video/Gl/Buffer.h` directly. Include `Video/Gl/_Include.h` instead.")
 #endif
 #include "Ring3/Visuals/_Include.h"
 #include "Video/Gl/UtilitiesGL.h"
-
 
 
 MACHINE_DECLARE_CLASSTYPE(Machine_Gl_VideoBuffer)

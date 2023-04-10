@@ -63,8 +63,15 @@ static Ring1_Result mapButtonAction(int source, Ring3_MouseButtonAction* target)
   };
 }
 
-Ring3_MouseButtonEvent* Machine_Video_Gl_Input_mapMouseButtonEvent(GLFWwindow* window, int button,
-                                                                   int action, int modifiers) {
+Ring3_MouseButtonEvent*
+Machine_Video_Gl_Input_mapMouseButtonEvent
+  (
+    GLFWwindow* window,
+    int button,
+    int action,
+    int modifiers
+  )
+{
   Ring2_Integer buttonInternal;
   Ring3_MouseButtonAction actionInternal;
   if (mapButton(button, &buttonInternal) || mapButtonAction(action, &actionInternal)) {

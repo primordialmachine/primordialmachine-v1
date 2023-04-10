@@ -7,7 +7,13 @@
 #undef MACHINE_VIDEO_GL_PRIVATE
 
 
-static Ring1_Result mapKey(int source, Ring3_KeyboardKey* target) {
+static Ring1_Result
+mapKey
+  (
+    int source,
+    Ring3_KeyboardKey* target
+  )
+{
   switch (source) {
 #define MAP(FROM, TO)                                                                             \
   case GLFW_KEY_##FROM: {                                                                         \
@@ -80,7 +86,13 @@ static Ring1_Result mapKey(int source, Ring3_KeyboardKey* target) {
   };
 }
 
-static Ring1_Result mapKeyAction(int source, Ring3_KeyboardKeyAction* target) {
+static Ring1_Result
+mapKeyAction
+  (
+    int source,
+    Ring3_KeyboardKeyAction* target
+  )
+{
   switch (source) {
     case GLFW_PRESS: {
       *target = Ring3_KeyboardKeyAction_Press;
@@ -100,9 +112,16 @@ static Ring1_Result mapKeyAction(int source, Ring3_KeyboardKeyAction* target) {
   };
 }
 
-Ring3_KeyboardKeyEvent* Machine_Video_Gl_Input_mapKeyboardKeyEvent(GLFWwindow* window, int key,
-                                                                   int scancode, int action,
-                                                                   int modifiers) {
+Ring3_KeyboardKeyEvent*
+Machine_Video_Gl_Input_mapKeyboardKeyEvent
+  (
+    GLFWwindow* window,
+    int key,
+    int scancode,
+    int action,
+    int modifiers
+  )
+{
   Ring3_KeyboardKey keyInternal;
   Ring3_KeyboardKeyAction actionInternal;
   if (mapKey(key, &keyInternal) || mapKeyAction(action, &actionInternal)) {
