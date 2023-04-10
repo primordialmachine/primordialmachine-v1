@@ -425,6 +425,8 @@ Machine_Gl_Binding_create
   Ring2_Value_setObject(&arguments[0], Ring1_cast(Machine_Object*,program));
   Ring2_Value_setObject(&arguments[1], Ring1_cast(Machine_Object*,vertexDescriptor));
   Ring2_Value_setObject(&arguments[2], Ring1_cast(Machine_Object*,buffer));
-  Machine_Gl_Binding* self = Ring1_cast(Machine_Gl_Binding*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
+  Machine_Gl_Binding* self = Ring1_cast(Machine_Gl_Binding*,Machine_allocateClassObject(ty,
+                                                                                        NUMBER_OF_ARGUMENTS,
+                                                                                        arguments));
   return self;
 }

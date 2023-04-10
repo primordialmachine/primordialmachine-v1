@@ -17,7 +17,13 @@
 #include <glad/glad.h>
 
 
-void Machine_UtilitiesGl_postCall(const char* file, int line, const char* function);
+void
+Machine_UtilitiesGl_postCall
+  (
+    const char* file,
+    int line,
+    const char* function
+  );
 
 #define Machine_UtilitiesGl_call(CALL)                                                             \
   CALL;                                                                                            \

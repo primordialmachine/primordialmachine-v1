@@ -7,11 +7,24 @@
 #undef MACHINE_VIDEO_GL_PRIVATE
 
 
-char const* Machine_UtilitiesGl_toString(GLenum error);
+char const*
+Machine_UtilitiesGl_toString
+  (
+    GLenum error
+  );
 
-Ring1_Status Machine_UtilitiesGl_toStatus(GLenum error);
+Ring1_Status
+Machine_UtilitiesGl_toStatus
+  (
+    GLenum error
+  );
 
-char const* Machine_UtilitiesGl_toString(GLenum error) {
+char const*
+Machine_UtilitiesGl_toString
+  (
+    GLenum error
+  )
+{
   switch (error) {
     case GL_INVALID_ENUM: {
       static char const* STRING = "GL_INVALID_ENUM";
@@ -52,7 +65,12 @@ char const* Machine_UtilitiesGl_toString(GLenum error) {
   };
 }
 
-Ring1_Status Machine_UtilitiesGl_toStatus(GLenum error) {
+Ring1_Status
+Machine_UtilitiesGl_toStatus
+  (
+    GLenum error
+  )
+{
   switch (error) {
     case GL_INVALID_ENUM:
       return Ring1_Status_InvalidArgument;
@@ -73,7 +91,14 @@ Ring1_Status Machine_UtilitiesGl_toStatus(GLenum error) {
   };
 }
 
-void Machine_UtilitiesGl_postCall(char const* file, int line, char const* function) {
+void
+Machine_UtilitiesGl_postCall
+  (
+    char const* file,
+    int line,
+    char const* function
+  )
+{
   GLenum errorCode = glGetError();
   if (errorCode) {
     char const* error = Machine_UtilitiesGl_toString(errorCode);

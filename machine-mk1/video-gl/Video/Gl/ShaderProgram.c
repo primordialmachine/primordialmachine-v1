@@ -12,13 +12,23 @@
 #include <stdio.h>
 
 
-static void Machine_Gl_ShaderProgram_visit(Machine_Gl_ShaderProgram* self) {
+static void
+Machine_Gl_ShaderProgram_visit
+  (
+    Machine_Gl_ShaderProgram* self
+  )
+{
   if (self->inputs) {
     Ring2_Gc_visit(Ring2_Gc_get(), self->inputs);
   }
 }
 
-static void Machine_Gl_ShaderProgram_destruct(Machine_Gl_ShaderProgram* self) {
+static void
+Machine_Gl_ShaderProgram_destruct
+  (
+    Machine_Gl_ShaderProgram* self
+  )
+{
   if (self->fragmentProgramId) {
     glDeleteShader(self->fragmentProgramId);
     self->fragmentProgramId = 0;
@@ -41,7 +51,12 @@ static void Machine_Gl_ShaderProgram_destruct(Machine_Gl_ShaderProgram* self) {
 /// @param id The OpenGL ID of s ahder program.
 /// @return The log string on success, null on failure.
 /// This function sets the by-thread status variable. 
-static Ring2_String* getLog_noraise(GLuint id) {
+static Ring2_String*
+getLog_noraise
+  (
+    GLuint id
+  )
+{
   GLint n;
   glGetProgramiv(id, GL_INFO_LOG_LENGTH, &n);
   if (n == SIZE_MAX) {
@@ -69,16 +84,33 @@ static Ring2_String* getLog_noraise(GLuint id) {
   }
 }
 
-static int64_t Machine_Gl_ShaderProgram_getNumberOfInputsImpl(Machine_Gl_ShaderProgram const* self) {
-  return Ring2_Collections_Collection_getSize((Ring2_Collections_Collection*)self->inputs);
-}
+static int64_t
+Machine_Gl_ShaderProgram_getNumberOfInputsImpl
+  (
+    Machine_Gl_ShaderProgram const* self
+  )
+{ return Ring2_Collections_Collection_getSize((Ring2_Collections_Collection*)self->inputs); }
 
-static Ring3_GpuProgramInputDescriptor* Machine_Gl_ShaderProgram_getInputAtImpl(Machine_Gl_ShaderProgram const* self, int64_t index) {
+static Ring3_GpuProgramInputDescriptor*
+Machine_Gl_ShaderProgram_getInputAtImpl
+  (
+    Machine_Gl_ShaderProgram const* self,
+    int64_t index
+  )
+{
   Ring2_Value temporary = Ring2_Collections_List_getAt(self->inputs, index);
   return (Ring3_GpuProgramInputDescriptor*)Ring2_Value_getObject(&temporary);
 }
 
-static Ring2_Boolean Machine_Gl_ShaderProgram_addUpdateInputImpl(Machine_Gl_ShaderProgram* self, Ring2_String* name, Ring3_GpuProgramInputType type, Ring3_GpuProgramInputKind kind) {
+static Ring2_Boolean
+Machine_Gl_ShaderProgram_addUpdateInputImpl
+  (
+    Machine_Gl_ShaderProgram* self,
+    Ring2_String* name,
+    Ring3_GpuProgramInputType type,
+    Ring3_GpuProgramInputKind kind
+  )
+{
   for (int64_t i = 0, n = Ring3_GpuProgram_getNumberOfInputs((Ring3_GpuProgram*)self); i < n; ++i) {
     Ring3_GpuProgramInputDescriptor* input = Ring3_GpuProgram_getInputAt((Ring3_GpuProgram*)self, i);
     if (Ring2_String_isEqualTo(Ring2_Context_get(), input->name, name)) {
@@ -94,7 +126,13 @@ static Ring2_Boolean Machine_Gl_ShaderProgram_addUpdateInputImpl(Machine_Gl_Shad
   return false;
 }
 
-static GLuint compileShader(char const* programText, Ring3_GpuProgramKind programKind) {
+static GLuint
+compileShader
+  (
+    char const* programText,
+    Ring3_GpuProgramKind programKind
+  )
+{
   GLuint id;
 
   switch (programKind) {
@@ -133,7 +171,15 @@ static GLuint compileShader(char const* programText, Ring3_GpuProgramKind progra
   return id;
 }
 
-static void constructFromText(Machine_Gl_ShaderProgram* self, char const* vertexProgramText, char const* geometryProgramText, char const* fragmentProgramText) {
+static void
+constructFromText
+  (
+    Machine_Gl_ShaderProgram* self,
+    char const* vertexProgramText,
+    char const* geometryProgramText,
+    char const* fragmentProgramText
+  )
+{
   GLuint vertexShaderId = 0, geometryShaderId = 0, fragmentShaderId = 0, programId = 0;
 
 #define ON_ERROR() \
@@ -215,13 +261,25 @@ static void constructFromText(Machine_Gl_ShaderProgram* self, char const* vertex
   self->inputs = Ring1_cast(Ring2_Collections_List *, Ring2_Collections_ArrayList_create());
 }
 
-static void Machine_Gl_ShaderProgram_constructClass(Machine_Gl_ShaderProgram_Class* self) {
+static void
+Machine_Gl_ShaderProgram_constructClass
+  (
+    Machine_Gl_ShaderProgram_Class* self
+  )
+{
   ((Ring3_GpuProgram_Class*)self)->getNumberOfInputs = (int64_t (*)(Ring3_GpuProgram const*)) & Machine_Gl_ShaderProgram_getNumberOfInputsImpl;
   ((Ring3_GpuProgram_Class*)self)->getInputAt = (Ring3_GpuProgramInputDescriptor* (*)(Ring3_GpuProgram const*, int64_t)) & Machine_Gl_ShaderProgram_getInputAtImpl;
   ((Ring3_GpuProgram_Class*)self)->addUpdateInput = (Ring2_Boolean (*)(Ring3_GpuProgram*, Ring2_String*, Ring3_GpuProgramInputType, Ring3_GpuProgramInputKind)) & Machine_Gl_ShaderProgram_addUpdateInputImpl;
 }
 
-void Machine_Gl_ShaderProgram_construct(Machine_Gl_ShaderProgram* self, size_t numberOfArguments, Ring2_Value const* arguments) {
+void
+Machine_Gl_ShaderProgram_construct
+  (
+    Machine_Gl_ShaderProgram* self,
+    size_t numberOfArguments,
+    Ring2_Value const* arguments
+  )
+{
   Ring3_GpuProgram_construct((Ring3_GpuProgram*)self, numberOfArguments, arguments);
   if (numberOfArguments != 3) {
     Ring1_Status_set(Ring1_Status_InvalidNumberOfArguments);
@@ -251,7 +309,14 @@ MACHINE_DEFINE_CLASSTYPE(Machine_Gl_ShaderProgram,
                          &Machine_Gl_ShaderProgram_constructClass,
                          NULL)
 
-Machine_Gl_ShaderProgram* Machine_Gl_ShaderProgram_create(Ring2_String* vertexProgramText, Ring2_String* geometryProgramText, Ring2_String* fragmentProgramText) {
+Machine_Gl_ShaderProgram*
+Machine_Gl_ShaderProgram_create
+  (
+    Ring2_String* vertexProgramText,
+    Ring2_String* geometryProgramText,
+    Ring2_String* fragmentProgramText
+  )
+{
   Machine_Type* ty = Machine_Gl_ShaderProgram_getType();
 
   static size_t const NUMBER_OF_ARGUMENTS = 3;
@@ -279,7 +344,12 @@ Machine_Gl_ShaderProgram* Machine_Gl_ShaderProgram_create(Ring2_String* vertexPr
 /// The shader version string (for fragment, geometry, and vertex shaders).
 #define GLSL_VERSION_STRING "#version 330 core"
 
-static void defineFloatConstants(Ring2_StringBuffer* code) {
+static void
+defineFloatConstants
+  (
+    Ring2_StringBuffer* code
+  )
+{
 #define T(t) t, crt_strlen(t)
   Ring2_StringBuffer_appendBytes(code, T("#define FLT_MAX 3.402823466e+38" "\n"));
   Ring2_StringBuffer_appendBytes(code, T("#define FLT_MIN 1.175494351e-38" "\n"));
@@ -294,7 +364,16 @@ static void defineFloatConstants(Ring2_StringBuffer* code) {
 /// @param worldToView Add uniform <code>uniform mat4 worldToViewMatrix</code>.
 /// @param viewToProjection Add uniform <code>uniform mat4 viewToProjectionMatrix</code>.
 /// @param modelToProjection Add uniform <code>uniform mat4 modelToProjectionMatrix</code>.
-static void defineMatrixUniforms(Ring2_StringBuffer* code, Ring2_Boolean modelToWorld, Ring2_Boolean worldToView, Ring2_Boolean viewToProjection, Ring2_Boolean modelToProjection) {
+static void
+defineMatrixUniforms
+  (
+    Ring2_StringBuffer* code,
+    Ring2_Boolean modelToWorld,
+    Ring2_Boolean worldToView,
+    Ring2_Boolean viewToProjection,
+    Ring2_Boolean modelToProjection
+  )
+{
 #define T(t) t, crt_strlen(t)
   // model -> world
   if (modelToWorld) {

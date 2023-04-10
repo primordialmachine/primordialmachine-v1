@@ -23,20 +23,32 @@
 static size_t g_referenceCount = 0;
 static Ring2_Collections_List* g_events = NULL;
 
-static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int modifiers) {
+static void
+keyCallback
+  (
+    GLFWwindow* window,
+    int key,
+    int scancode,
+    int action,
+    int modifiers
+  )
+{
   Machine_Video_Gl_Canvas* canvas = glfwGetWindowUserPointer(window);
   Ring2_JumpTarget jumpTarget;
   Ring2_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
-    Ring3_KeyboardKeyEvent* event
-        = Machine_Video_Gl_Input_mapKeyboardKeyEvent(window, key, scancode, action, modifiers);
+    Ring3_KeyboardKeyEvent* event = Machine_Video_Gl_Input_mapKeyboardKeyEvent(window,
+                                                                               key,
+                                                                               scancode,
+                                                                               action,
+                                                                               modifiers);
     Ring3_Canvas_addKeyboardKeyEvent((Ring3_Canvas*)canvas, event);
 #if defined(VERBOSE) && 1 == VERBOSE
-    Ring2_String* zeroTerminatorString = Ring2_String_create("", 1);
-    Ring2_String* eventString = Machine_Object_toString((Machine_Object*)event);
-    eventString = Ring2_String_concatenate(eventString, zeroTerminatorString);
-    Ring2_log(Ring2_LogFlags_ToInformations, __FILE__, __LINE__, "%s\n",
-              Ring2_String_getBytes(eventString));
+      Ring2_String* zeroTerminatorString = Ring2_String_create("", 1);
+      Ring2_String* eventString = Machine_Object_toString((Machine_Object*)event);
+      eventString = Ring2_String_concatenate(eventString, zeroTerminatorString);
+      Ring2_log(Ring2_LogFlags_ToInformations, __FILE__, __LINE__, "%s\n",
+                Ring2_String_getBytes(eventString));
 #endif
     if (event->key == Ring3_KeyboardKey_Escape && action == Ring3_KeyboardKeyAction_Press)
       glfwSetWindowShouldClose(window, GLFW_TRUE);
@@ -52,20 +64,28 @@ static void keyCallback(GLFWwindow* window, int key, int scancode, int action, i
   }
 }
 
-static void cursorPositionCallback(GLFWwindow* window, double x, double y) {
+static void
+cursorPositionCallback
+  (
+    GLFWwindow* window,
+    double x,
+    double y
+  )
+{
   Machine_Video_Gl_Canvas* canvas = glfwGetWindowUserPointer(window);
   Ring2_JumpTarget jumpTarget;
   Ring2_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
-    Ring3_MousePointerEvent* event
-        = Machine_Video_Gl_Input_mapMousePointerMoveEvent(window, x, y);
+    Ring3_MousePointerEvent* event = Machine_Video_Gl_Input_mapMousePointerMoveEvent(window,
+                                                                                     x,
+                                                                                     y);
     Ring3_Canvas_addMousePointerEvent((Ring3_Canvas*)canvas, event);
 #if defined(VERBOSE) && 1 == VERBOSE
-    Ring2_String* zeroTerminatorString = Ring2_String_create("", 1);
-    Ring2_String* eventString = Machine_Object_toString((Machine_Object*)event);
-    eventString = Ring2_String_concatenate(eventString, zeroTerminatorString);
-    Ring2_log(Ring2_LogFlags_ToInformations, __FILE__, __LINE__, "%s\n",
-              Ring2_String_getBytes(eventString));
+      Ring2_String* zeroTerminatorString = Ring2_String_create("", 1);
+      Ring2_String* eventString = Machine_Object_toString((Machine_Object*)event);
+      eventString = Ring2_String_concatenate(eventString, zeroTerminatorString);
+      Ring2_log(Ring2_LogFlags_ToInformations, __FILE__, __LINE__, "%s\n",
+                Ring2_String_getBytes(eventString));
 #endif
     Ring2_popJumpTarget();
   } else {
@@ -78,20 +98,26 @@ static void cursorPositionCallback(GLFWwindow* window, double x, double y) {
   }
 }
 
-static void cursorEnterCallback(GLFWwindow* window, int entered) {
+static void 
+cursorEnterCallback
+  (
+    GLFWwindow* window,
+    int entered
+  )
+{
   Machine_Video_Gl_Canvas* canvas = glfwGetWindowUserPointer(window);
   Ring2_JumpTarget jumpTarget;
   Ring2_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
-    Ring3_MousePointerEvent* event
-        = Machine_Video_Gl_Input_mapMousePointerEnterExitEvent(window, entered);
+    Ring3_MousePointerEvent* event = Machine_Video_Gl_Input_mapMousePointerEnterExitEvent(window,
+                                                                                          entered);
     Ring3_Canvas_addMousePointerEvent((Ring3_Canvas*)canvas, event);
 #if defined(VERBOSE) && 1 == VERBOSE
-    Ring2_String* zeroTerminatorString = Ring2_String_create("", 1);
-    Ring2_String* eventString = Machine_Object_toString((Machine_Object*)event);
-    eventString = Ring2_String_concatenate(eventString, zeroTerminatorString);
-    Ring2_log(Ring2_LogFlags_ToInformations, __FILE__, __LINE__, "%s\n",
-              Ring2_String_getBytes(eventString));
+      Ring2_String* zeroTerminatorString = Ring2_String_create("", 1);
+      Ring2_String* eventString = Machine_Object_toString((Machine_Object*)event);
+      eventString = Ring2_String_concatenate(eventString, zeroTerminatorString);
+      Ring2_log(Ring2_LogFlags_ToInformations, __FILE__, __LINE__, "%s\n",
+                Ring2_String_getBytes(eventString));
 #endif
     Ring2_popJumpTarget();
   } else {
@@ -104,20 +130,30 @@ static void cursorEnterCallback(GLFWwindow* window, int entered) {
   }
 }
 
-static void mouseButtonCallback(GLFWwindow* window, int button, int action, int modifiers) {
+static void
+mouseButtonCallback
+  (
+    GLFWwindow* window,
+    int button,
+    int action,
+    int modifiers
+  )
+{
   Machine_Video_Gl_Canvas* canvas = glfwGetWindowUserPointer(window);
   Ring2_JumpTarget jumpTarget;
   Ring2_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
-    Ring3_MouseButtonEvent* event
-        = Machine_Video_Gl_Input_mapMouseButtonEvent(window, button, action, modifiers);
+    Ring3_MouseButtonEvent* event = Machine_Video_Gl_Input_mapMouseButtonEvent(window,
+                                                                               button,
+                                                                               action,
+                                                                               modifiers);
     Ring3_Canvas_addMouseButtonEvent((Ring3_Canvas*)canvas, event);
 #if defined(VERBOSE) && 1 == VERBOSE
-    Ring2_String* zeroTerminatorString = Ring2_String_create("", 1);
-    Ring2_String* eventString = Machine_Object_toString((Machine_Object*)event);
-    eventString = Ring2_String_concatenate(eventString, zeroTerminatorString);
-    Ring2_log(Ring2_LogFlags_ToInformations, __FILE__, __LINE__, "%s\n",
-              Ring2_String_getBytes(eventString));
+      Ring2_String* zeroTerminatorString = Ring2_String_create("", 1);
+      Ring2_String* eventString = Machine_Object_toString((Machine_Object*)event);
+      eventString = Ring2_String_concatenate(eventString, zeroTerminatorString);
+      Ring2_log(Ring2_LogFlags_ToInformations, __FILE__, __LINE__, "%s\n",
+                Ring2_String_getBytes(eventString));
 #endif
     Ring2_popJumpTarget();
   } else {
@@ -130,7 +166,11 @@ static void mouseButtonCallback(GLFWwindow* window, int button, int action, int 
   }
 }
 
-void Machine_Glfw_startupCanvasInput() {
+void
+Machine_Glfw_startupCanvasInput
+  (
+  )
+{
   if (0 == g_referenceCount) {
     glfwSetKeyCallback(Machine_Glfw_getWindow(), keyCallback);
     glfwSetMouseButtonCallback(Machine_Glfw_getWindow(), mouseButtonCallback);
@@ -150,14 +190,22 @@ void Machine_Glfw_startupCanvasInput() {
   }
 }
 
-void Machine_Glfw_shutdownCanvasInput() {
+void
+Machine_Glfw_shutdownCanvasInput
+  (
+  )
+{
   if (0 == --g_referenceCount) {
     Ring2_Gc_unlock(g_events);
     g_events = NULL;
   }
 }
 
-void Machine_Glfw_pollEvents() {
+void
+Machine_Glfw_pollEvents
+  (
+  )
+{
   glfwPollEvents();
   if (Ring1_Status_get() != Ring1_Status_Success) {
     Ring2_jump();

@@ -82,7 +82,14 @@ Machine_Gl_Texture_construct_fromImage
   Machine_setClassType(Ring1_cast(Machine_Object *, self), Ring3_Texture_getType());
 }
 
-void Machine_Gl_Texture_construct(Machine_Gl_Texture* self, size_t numberOfArguments, Ring2_Value const* arguments) {
+void
+Machine_Gl_Texture_construct
+  (
+    Machine_Gl_Texture* self,
+    size_t numberOfArguments,
+    Ring2_Value const* arguments
+  )
+{
   if (numberOfArguments == 1) {
     Ring3_Image* image =
       (Ring3_Image*)
@@ -115,6 +122,9 @@ Machine_Gl_Texture_create
   static size_t const NUMBER_OF_ARGUMENTS = 1;
   Ring2_Value arguments[1];
   Ring2_Value_setObject(&arguments[0], Ring1_cast(Machine_Object*,image));
-  Machine_Gl_Texture* self = Ring1_cast(Machine_Gl_Texture*,Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
+  Machine_Gl_Texture* self = Ring1_cast(Machine_Gl_Texture*,
+                                        Machine_allocateClassObject(ty,
+                                                                    NUMBER_OF_ARGUMENTS,
+                                                                    arguments));
   return self;
 }

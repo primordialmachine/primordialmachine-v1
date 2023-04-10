@@ -7,7 +7,13 @@
 #undef MACHINE_VIDEO_GL_PRIVATE
 
 
-static Ring1_Result mapButton(int source, Ring2_Integer* target) {
+static Ring1_Result
+mapButton
+  (
+    int source,
+    Ring2_Integer* target
+  )
+{
   switch (source) {
     case GLFW_MOUSE_BUTTON_1: {
       *target = 0;
@@ -47,7 +53,13 @@ static Ring1_Result mapButton(int source, Ring2_Integer* target) {
   };
 }
 
-static Ring1_Result mapButtonAction(int source, Ring3_MouseButtonAction* target) {
+static Ring1_Result
+mapButtonAction
+  (
+    int source,
+    Ring3_MouseButtonAction* target
+  )
+{
   switch (source) {
     case GLFW_PRESS: {
       *target = Ring3_MouseButtonAction_Press;
