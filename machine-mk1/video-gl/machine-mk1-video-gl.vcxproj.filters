@@ -75,9 +75,6 @@
     <ClInclude Include="Video\GL\VideoContext.h">
       <Filter>Headerdateien\Video\Gl</Filter>
     </ClInclude>
-    <ClInclude Include="_Video_Gl.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="..\external\glad\include\glad\glad.h">
       <Filter>Headerdateien\external\glad</Filter>
     </ClInclude>
@@ -89,6 +86,9 @@
     </ClInclude>
     <ClInclude Include="Video\Gl\Input\MouseButton.h">
       <Filter>Headerdateien\Video\Gl\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Video\Gl\_Include.h">
+      <Filter>Headerdateien\Video\Gl</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -116,9 +116,6 @@
     <ClCompile Include="Video\GL\VideoContext.c">
       <Filter>Quelldateien\Video\Gl</Filter>
     </ClCompile>
-    <ClCompile Include="_Video_Gl.c">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="..\external\glad\src\glad.c">
       <Filter>Quelldateien\external\glad</Filter>
     </ClCompile>
@@ -136,6 +133,9 @@
     </ClCompile>
     <ClCompile Include="Video\Gl\Input\MouseButton.c">
       <Filter>Quelldateien\Video\Gl\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Video\Gl\_Include.c">
+      <Filter>Quelldateien\Video\Gl</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

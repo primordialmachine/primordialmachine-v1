@@ -2,7 +2,7 @@
 
 #include "_Fonts.h"
 #include "_Images.h"
-#include "_Video_Gl.h"
+#include "Video/Gl/_Include.h"
 
 static Ring3_VisualsContext* g_visualsContext = NULL;
 static Ring3_Canvas* g_videoCanvas = NULL;

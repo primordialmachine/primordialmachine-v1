@@ -174,7 +174,7 @@
     <ClInclude Include="Video\GL\Texture.h" />
     <ClInclude Include="Video\GL\UtilitiesGL.h" />
     <ClInclude Include="Video\GL\VideoContext.h" />
-    <ClInclude Include="_Video_Gl.h" />
+    <ClInclude Include="Video\Gl\_Include.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\external\glad\src\glad.c" />
@@ -201,7 +201,7 @@
     <ClCompile Include="Video\GL\Texture.c" />
     <ClCompile Include="Video\Gl\UtilitiesGl.c" />
     <ClCompile Include="Video\GL\VideoContext.c" />
-    <ClCompile Include="_Video_Gl.c" />
+    <ClCompile Include="Video\Gl\_Include.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
