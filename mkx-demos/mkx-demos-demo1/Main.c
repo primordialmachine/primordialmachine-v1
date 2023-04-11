@@ -40,8 +40,8 @@ loadIcons
   };
   Ring2_Collections_List* vals = Ring1_cast(Ring2_Collections_List *, Ring2_Collections_ArrayList_create());
   for (size_t i = 0, n = (sizeof(PATHS) / sizeof(const char*)); i < n; ++i) {
-    Ring3_Image* image = Ring3_ImagesContext_createFromPath(Machine_Launcher_getImagesContext(),
-                                                            Ring2_String_fromC(false, PATHS[i]));
+    Ring3_Image* image = Ring3_ImagesContext_createImageFromPath(Machine_Launcher_getImagesContext(),
+                                                                 Ring2_String_fromC(false, PATHS[i]));
     Ring2_Value val;
     Ring2_Value_setObject(&val, (Machine_Object*)image);
     Ring2_Collections_List_append(vals, val);

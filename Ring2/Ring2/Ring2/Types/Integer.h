@@ -16,7 +16,29 @@
 
 #if defined(Ring2_Configuration_withInteger) && 1 == Ring2_Configuration_withInteger
 
+
 #include <inttypes.h>
+
+
+/// @brief The C-level representation of the "Integer32" type.
+typedef int32_t Ring2_Integer32;
+
+/// @brief Symbolic constant evaluating to the C-level representation of the "Integer32.Greatest" value.
+#define Ring2_Integer32_Greatest (INT32_MAX)
+
+/// @brief Symbolic constant evaluating to the C-level representation of the "Integer32.Least" value.
+#define Ring2_Integer32_Least (INT32_MIN)
+
+
+/// @brief The C-level representation of the "Integer64" type.
+typedef int64_t Ring2_Integer64;
+
+/// @brief Symbolic constant evaluating to the C-level representation of the "Integer64.Greatest" value.
+#define Ring2_Integer64_Greatest (INT64_MAX)
+
+/// @brief Symbolic constant evaluating to the C-level representation of the "Integer64.Least" value.
+#define Ring2_Integer64_Least (INT64_MIN)
+
 
 /// @brief The C-level representation of the "Integer" type.
 typedef int64_t Ring2_Integer;
@@ -26,6 +48,7 @@ typedef int64_t Ring2_Integer;
 
 /// @brief Symbolic constant evaluating to the C-level representation of the "Integer.Least" value.
 #define Ring2_Integer_Least (INT64_MIN)
+
 
 #endif // Ring2_Configuration_withInteger
 

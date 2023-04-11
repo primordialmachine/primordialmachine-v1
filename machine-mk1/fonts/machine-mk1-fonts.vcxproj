@@ -40,9 +40,6 @@
     <ProjectReference Include="..\..\ring3\Ring3.Visuals\Ring3.Visuals.vcxproj">
       <Project>{fd4c313c-d599-4313-adb7-034796537586}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\images\machine-mk1-images.vcxproj">
-      <Project>{f0b732b5-824d-40ab-aa0a-a067b6a852f9}</Project>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Font.h" />

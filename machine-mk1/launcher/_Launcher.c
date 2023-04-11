@@ -1,7 +1,7 @@
 #include "_Launcher.h"
 
 #include "_Fonts.h"
-#include "_Images.h"
+#include "Ring3/ImagesTranscoders/LibPng/_Include.h"
 #include "Ring3/Visuals/Gl/_Include.h"
 
 static Ring3_VisualsContext* g_visualsContext = NULL;
@@ -18,11 +18,17 @@ static void shutdownImages() {
   }
 }
 
+#include "Ring3/Visuals/_Include.h"
+
 static void startupImages() {
   Ring2_JumpTarget jumpTarget;
   Ring2_pushJumpTarget(&jumpTarget);
   if (!setjmp(jumpTarget.environment)) {
-    g_imagesContext = (Ring3_ImagesContext*)Machines_DefaultImages_createContext();
+    g_imagesContext = Ring3_ImagesContext_create();
+    {
+      Ring3_ImagesDecoder* decoder = Ring1_cast(Ring3_ImagesDecoder*, Ring3_ImagesTranscoders_LibPng_ImagesDecoder_create());
+      Ring3_ImagesContext_addDecoder(g_imagesContext, decoder);
+    }
     Ring2_Gc_lock(g_imagesContext);
     Ring2_popJumpTarget();
   } else {

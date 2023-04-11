@@ -99,8 +99,8 @@ static void Scene3_startup(Scene3* self) {
   Ring3_VisualsContext* visualsContext = Scene_getVisualsContext((Scene*)self);
   Ring3_ImagesContext* imagesContext = Scene_getImagesContext((Scene*)self);
 
-  self->image = Ring3_ImagesContext_createFromPath(imagesContext,
-                                                   Ring2_String_fromC(false, "test-transparency-1.png"));
+  self->image = Ring3_ImagesContext_createImageFromPath(imagesContext,
+                                                        Ring2_String_fromC(false, "test-transparency-1.png"));
   self->texture = Ring3_VisualsContext_createTextureFromImage(visualsContext, self->image);
 
   self->vertices = Ring3_VisualsContext_createBuffer(visualsContext);

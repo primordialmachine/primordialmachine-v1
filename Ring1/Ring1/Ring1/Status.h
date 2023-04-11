@@ -111,6 +111,10 @@ typedef int Ring1_Status;
 
 #define Ring1_Status_FileNotFound (33)
 
+#define Ring1_Status_EncodingError (34)
+
+#define Ring1_Status_DecodingError (35)
+
 // https://primordialmachine.com/api/ring1-library/status-library/Ring1_Status_get
 Ring1_NoDiscardReturn() Ring1_Status
 Ring1_Status_get

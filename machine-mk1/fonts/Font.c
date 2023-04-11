@@ -371,7 +371,7 @@ void Machine_Fonts_Font_construct(Machine_Fonts_Font* self, size_t numberOfArgum
         Ring2_ByteBuffer_appendBytes(temporary, self->face->glyph->bitmap.buffer,
                                      (size_t)self->face->glyph->bitmap.width * (size_t)self->face->glyph->bitmap.rows);
       }
-      Ring3_Image* image = Ring3_ImagesContext_createDirect(
+      Ring3_Image* image = Ring3_ImagesContext_createImage(
           fontsContext->imageContext, Ring3_PixelFormat_GRAYSCALE,
           self->face->glyph->bitmap.width, self->face->glyph->bitmap.rows, temporary);
       Ring3_Texture* texture = Ring3_VisualsContext_createTextureFromImage(fontsContext->videoContext, image);
