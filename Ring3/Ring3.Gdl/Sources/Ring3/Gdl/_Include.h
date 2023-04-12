@@ -12,6 +12,7 @@
 #include "Ring3/Gdl/Lexical/DefaultScanner.h"
 #include "Ring3/Gdl/Syntactical/Node.h"
 #include "Ring3/Gdl/Syntactical/Parser.h"
+#include "Ring3/Gdl/Syntactical/Unparser.h"
 #undef RING3_GDL_PRIVATE
 #pragma pop_macro("RING3_GDL_PRIVATE")
 
