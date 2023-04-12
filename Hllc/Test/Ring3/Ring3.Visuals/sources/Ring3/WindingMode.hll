@@ -1,0 +1,16 @@
+// Copyright (c) 2020-2022 Michael Heilmann. All rights reserved.
+module Ring3.Visuals { namespace Ring3 {
+
+/// @brief
+/// An enumeration of winding modes.
+enumeration WindingMode {
+
+  /// @brief Clockwise winding mode.
+  Clockwise,
+
+  /// @brief Counter clockwise winding mode.
+  CounterClockwise,
+
+} // enum WindingMode
+
+} }

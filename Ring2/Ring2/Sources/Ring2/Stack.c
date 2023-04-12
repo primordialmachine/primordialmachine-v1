@@ -9,6 +9,7 @@
 #undef RING2_PRIVATE
 
 
+#include "Ring1/Log.h"
 #include "Ring1/All/_Include.h"
 #define RING2_PRIVATE (1)
 #include "Ring2/JumpTarget.h"

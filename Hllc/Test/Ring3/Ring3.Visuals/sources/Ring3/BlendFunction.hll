@@ -1,0 +1,63 @@
+// Copyright (c) 2021-2022 Michael Heilmann. All rights reserved.
+module Ring3.Visuals { namespace Ring3 {
+
+/// @brief
+/// Enumeration of blend functions.
+/// @remarks
+/// To blend together the incoming color <code>a</code> and the existing color <code>b</code> in a
+/// color buffer, the formula <code>f(a) + g(b)</code> is used.
+/// - <code>f</code> is the blend function for the incoming color <code>a</code>,
+/// - <code>g</code>is the blend function for the existing color <code>b</code>.
+/// This enumeration enumerates symbolic constants denoting the possible blend functions
+/// for <code>f</code> and <code>g</code>, respectively.
+/// @remark
+/// Important configurations are
+/// - "transparency" disabled:
+///   incoming color blend mode is Ring3.BlendFunction.One and existing color blend mode is Ring3.BlendFunction.Zero.
+/// - "transparency" enabled:
+///   incoming color blend mode is Ring3.BlendFunction.IncomingAlpha and existing color blend mode is Ring3.BlendFunction.OneMinusIncomingAlpha.
+enumeration BlendFunction {
+
+  /// @brief The colour is the incoming colour.
+  /// (i_r, i_g, i_b, i_a)
+  IncomingColour,
+  
+  /// @brief The colour is multiplied by one minus the incoming colour.
+  /// (1, 1, 1 ,1) - (i_r, i_g, i_b, i_a)
+  OneMinusIncomingColour,
+  
+  /// @brief The colour is the existing colour.
+  /// (e_r, e_g, e_b, e_a)
+  ExistingColour,
+  
+  /// @brief The colour is multiplied by one minus the incoming color.
+  /// (1, 1, 1, 1) - (i_r, i_g, i_b, i_a)
+  OneMinusExistingColour,
+  
+  /// @brief The color is multiplied by the incoming alpha.
+  /// (i_a, i_a, i_a, i_a, i_a)
+  IncomingAlpha,
+
+  /// @brief The color is multipled by one minus the incoming alpha.
+  /// (1 - i_a, 1 - i_a, 1 - i_a, 1 - i_a)
+  OneMinusIncomingAlpha,
+  
+  /// @brief The color is multiplied by the existing alpha.
+  /// (e_a, e_a, e_a, e_a)
+  ExistingAlpha,
+  
+  /// @brief The color is multiplied by one minus the existing alpha.
+  /// (1, 1, 1, 1) - (e_a, e_a, e_a, e_a)
+  OneMinusExistingAlpha,
+
+  /// @brief The color is multiplied by zero.
+  /// (0, 0, 0)
+  Zero,
+
+  /// @brief The color is multiplied by one.
+  /// (1, 1, 1)
+  One
+
+} // enumeration BlendFunction
+
+} }
