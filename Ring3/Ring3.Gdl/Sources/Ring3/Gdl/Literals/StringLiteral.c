@@ -53,6 +53,7 @@ Ring3_Gdl_StringLiteral_create
   return self;
 }
 
+/// @param canonicalize Remove the opening and closing delimiters.
 Ring1_NoDiscardReturn() Ring2_String*
 Ring3_Gdl_StringLiteral_toString
   (

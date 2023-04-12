@@ -7,6 +7,8 @@ extern "C" {
 #endif
 
 #include "Ring3/Gdl/Test/ParseTest1.h"
+#include "Ring3/Gdl/Test/UnparseTest1.h"
+#include "Ring3/Gdl/Test/UnparseTest2.h"
 #include <stdlib.h>
 
 int main() {
@@ -18,6 +20,8 @@ int main() {
   if (!setjmp(jumpTarget.environment)) {
     Ring2_Tests* tests = Ring2_Tests_create();
     Ring3_Gdl_Test_registerParseTest1(tests);
+    Ring3_Gdl_Test_registerUnparseTest1(tests);
+    Ring3_Gdl_Test_registerUnparseTest2(tests);
     Ring2_Tests_run(tests);
     Ring2_popJumpTarget();
   }

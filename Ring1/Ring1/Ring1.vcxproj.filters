@@ -941,6 +941,12 @@
     <ClInclude Include="Ring1\Crt\_Include.h">
       <Filter>Headerdateien\Ring1\Crt</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\Ap\parse.h">
+      <Filter>Headerdateien\Ring1\Ap</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Ap\ApReal.h">
+      <Filter>Headerdateien\Ring1\Ap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ring1\Intrinsic\ThreadLocal.c">
@@ -1347,6 +1353,12 @@
     </ClCompile>
     <ClCompile Include="Ring1\FileSystem\Path\unparse.c">
       <Filter>Quelldateien\Ring1\FileSystem\Path</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Ap\parse.c">
+      <Filter>Quelldateien\Ring1\Ap</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Ap\ApReal.c">
+      <Filter>Quelldateien\Ring1\Ap</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

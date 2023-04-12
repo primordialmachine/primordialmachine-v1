@@ -1,5 +1,5 @@
 /// @file Ring3/Gdl/Syntactical/Node.c
-/// @copyright Copyright (c) 2021-2022 Michael Heilmann. All rights reserved.
+/// @copyright Copyright (c) 2021-2023 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
 #define RING3_GDL_PRIVATE (1)

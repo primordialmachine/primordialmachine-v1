@@ -53,6 +53,9 @@
     <ClCompile Include="Ring1\Ap\Test\ApIntTests.c">
       <Filter>Quelldateien\Ring1\Ap\Test</Filter>
     </ClCompile>
+    <ClCompile Include="Ring1\Ap\Test\ApRealTests.c">
+      <Filter>Quelldateien\Ring1\Ap\Test</Filter>
+    </ClCompile>
     <ClCompile Include="Ring1\Ap\Test\Nat\Add.c">
       <Filter>Quelldateien\Ring1\Ap\Test\Nat</Filter>
     </ClCompile>
@@ -83,6 +86,9 @@
       <Filter>Headerdateien\Ring1\Ap\Test</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\Ap\Test\ApIntTests.h">
+      <Filter>Headerdateien\Ring1\Ap\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Ap\Test\ApRealTests.h">
       <Filter>Headerdateien\Ring1\Ap\Test</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\Ap\Test\Nat\Add.h">

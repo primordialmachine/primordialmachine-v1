@@ -132,6 +132,7 @@
     <ClCompile Include="Ring1\Ap\Test\ApBoolTests.c" />
     <ClCompile Include="Ring1\Ap\Test\ApIntTests.c" />
     <ClCompile Include="Ring1\Ap\Test\ApNatTests.c" />
+    <ClCompile Include="Ring1\Ap\Test\ApRealTests.c" />
     <ClCompile Include="Ring1\Ap\Test\Main.c" />
     <ClCompile Include="Ring1\Ap\Test\Nat\Add.c" />
     <ClCompile Include="Ring1\Ap\Test\Nat\Compare.c" />
@@ -145,6 +146,7 @@
     <ClInclude Include="Ring1\Ap\Test\ApBoolTests.h" />
     <ClInclude Include="Ring1\Ap\Test\ApIntTests.h" />
     <ClInclude Include="Ring1\Ap\Test\ApNatTests.h" />
+    <ClInclude Include="Ring1\Ap\Test\ApRealTests.h" />
     <ClInclude Include="Ring1\Ap\Test\Nat\Add.h" />
     <ClInclude Include="Ring1\Ap\Test\Nat\Compare.h" />
     <ClInclude Include="Ring1\Ap\Test\Nat\Convert.h" />

@@ -95,7 +95,14 @@ static void Scene4_onStartup(Scene4* self) {
   Ring3_VisualsContext_setClearColor(visualsContext, c);
 }
 
-static void alignLeftTop(Machine_Text_Layout* layout, Ring2_Real32 width, Ring2_Real32 height) {
+static void
+alignLeftTop
+  (
+    Machine_Text_Layout* layout,
+    Ring2_Real32 width,
+    Ring2_Real32 height
+  )
+{
   Ring3_Math_Vector2f32* MARGIN = Ring3_Math_Vector2f32_create();
   Ring3_Math_Vector2f32_set(MARGIN, 5.f, 5.f);
 
@@ -106,7 +113,14 @@ static void alignLeftTop(Machine_Text_Layout* layout, Ring2_Real32 width, Ring2_
   Machine_Text_Layout_setPosition(layout, position2);
 }
 
-static void alignCenter(Machine_Text_Layout* layout, Ring2_Real32 width, Ring2_Real32 height) {
+static void
+alignCenter
+  (
+    Machine_Text_Layout* layout,
+    Ring2_Real32 width,
+    Ring2_Real32 height
+  )
+{
   Ring3_Math_Vector2f32* HALF = Ring3_Math_Vector2f32_create();
   Ring3_Math_Vector2f32_set(HALF, 0.5f, 0.5f);
   Ring3_Math_Vector2f32* CANVAS_SIZE = Ring3_Math_Vector2f32_create();
@@ -122,15 +136,32 @@ static void alignCenter(Machine_Text_Layout* layout, Ring2_Real32 width, Ring2_R
   Machine_Text_Layout_setPosition(layout, newPosition);
 }
 
-static void updateText1(Scene4* self, Ring2_Real32 width, Ring2_Real32 height) {
-  alignCenter(self->text1, width, height);
-}
+static void
+updateText1
+  (
+    Scene4* self,
+    Ring2_Real32 width,
+    Ring2_Real32 height
+  )
+{ alignCenter(self->text1, width, height); }
 
-static void updateText2(Scene4* self, Ring2_Real32 width, Ring2_Real32 height) {
-  alignLeftTop(self->text2, width, height);
-}
+static void
+updateText2
+  (
+    Scene4* self,
+    Ring2_Real32 width,
+    Ring2_Real32 height
+  )
+{ alignLeftTop(self->text2, width, height); }
 
-static void updateText3(Scene4* self, Ring2_Real32 width, Ring2_Real32 height) {
+static void
+updateText3
+  (
+    Scene4* self,
+    Ring2_Real32 width,
+    Ring2_Real32 height
+  )
+{
   Ring3_Math_Vector2f32* MARGIN = Ring3_Math_Vector2f32_create();
   Ring3_Math_Vector2f32_set(MARGIN, 5.f, height * 0.5f);
   Ring3_Math_Vector2f32* SIZE = Ring3_Math_Vector2f32_create();
@@ -147,14 +178,27 @@ static void updateText3(Scene4* self, Ring2_Real32 width, Ring2_Real32 height) {
   Ring3_Gui_Widget_setPosition((Ring3_Gui_Widget*)self->textNode1, newPosition);
 }
 
-static void Scene4_onCanvasSizeChanged(Scene4* self, Ring3_CanvasSizeChangedEvent* event) {
+static void
+Scene4_onCanvasSizeChanged
+  (
+    Scene4* self,
+    Ring3_CanvasSizeChangedEvent* event
+  )
+{
   Machine_Gui_Context_onCanvasSizechanged(self->guiContext, event);
   updateText1(self, event->width, event->height);
   updateText2(self, event->width, event->height);
   updateText3(self, event->width, event->height);
 }
 
-static void Scene4_onUpdate(Scene4* self, Ring2_Real32 width, Ring2_Real32 height) {
+static void
+Scene4_onUpdate
+  (
+    Scene4* self,
+    Ring2_Real32 width,
+    Ring2_Real32 height
+  )
+{
   Ring3_VisualsContext* visualsContext = Scene_getVisualsContext((Scene*)self);
   Ring3_ImagesContext* imagesContext = Scene_getImagesContext((Scene*)self);
   Ring3_FontsContext* fontsContext = Scene_getFontsContext((Scene*)self);
@@ -170,19 +214,35 @@ static void Scene4_onUpdate(Scene4* self, Ring2_Real32 width, Ring2_Real32 heigh
   Ring3_Gui_Widget_render((Ring3_Gui_Widget*)self->textNode1, (Ring3_Gui_RenderContext*)defaultRenderContext);
 }
 
-static void Scene4_onShutdown(Scene4* self) {
+static void
+Scene4_onShutdown
+  (
+    Scene4* self
+  )
+{
   self->font = NULL;
 }
 
-static void Scene4_constructClass(Scene4_Class* self) {
-  ((Scene_Class*)self)->onCanvasSizeChanged
-      = (Scene_OnCanvaSizeChangedCallback*)&Scene4_onCanvasSizeChanged;
+static void
+Scene4_constructClass
+  (
+    Scene4_Class* self
+  )
+{
+  ((Scene_Class*)self)->onCanvasSizeChanged = (Scene_OnCanvaSizeChangedCallback*)&Scene4_onCanvasSizeChanged;
   ((Scene_Class*)self)->onStartup = (Scene_OnStartupCallback*)&Scene4_onStartup;
   ((Scene_Class*)self)->onUpdate = (Scene_OnUpdateCallback*)&Scene4_onUpdate;
   ((Scene_Class*)self)->onShutdown = (Scene_OnShutdownCallback*)&Scene4_onShutdown;
 }
 
-void Scene4_construct(Scene4* self, size_t numberOfArguments, Ring2_Value const* arguments) {
+void
+Scene4_construct
+  (
+    Scene4* self,
+    size_t numberOfArguments,
+    Ring2_Value const* arguments
+  )
+{
   Scene_construct((Scene*)self, numberOfArguments, arguments);
   Machine_setClassType(Ring1_cast(Machine_Object *, self), Scene4_getType());
 }
