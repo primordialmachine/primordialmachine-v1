@@ -102,6 +102,10 @@
       <AdditionalDependencies>glfw3.lib;freetyped.lib;libpng16_staticd.lib;zlibstaticd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib />
+    <Lib>
+      <AdditionalLibraryDirectories>$(ProjectDir)external\glfw\$(PlatformTarget)\$(Configuration.toLower())</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -115,6 +119,10 @@
       <AdditionalDependencies>glfw3.lib;freetyped.lib;libpng16_staticd.lib;zlibstaticd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib />
+    <Lib>
+      <AdditionalLibraryDirectories>$(ProjectDir)external\glfw\$(PlatformTarget)\$(Configuration.toLower())</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -126,6 +134,10 @@
       <AdditionalLibraryDirectories>$(SolutionDir)external\glfw\x64\release;$(SolutionDir)external\freetype\release;$(SolutionDir)external\libpng\release;$(SolutionDir)external\zlib\release</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;freetype.lib;libpng16_static.lib;zlibstatic.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>$(ProjectDir)external\glfw\$(PlatformTarget)\$(Configuration.toLower())</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -137,6 +149,10 @@
       <AdditionalLibraryDirectories>$(SolutionDir)external\glfw\x64\release;$(SolutionDir)external\freetype\release;$(SolutionDir)external\libpng\release;$(SolutionDir)external\zlib\release</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;freetype.lib;libpng16_static.lib;zlibstatic.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>$(ProjectDir)external\glfw\$(PlatformTarget)\$(Configuration.toLower())</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ring1\Ring1\Ring1.vcxproj">
