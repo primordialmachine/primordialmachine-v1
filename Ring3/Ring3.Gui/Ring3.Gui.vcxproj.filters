@@ -51,161 +51,161 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ring3\Gui\ArrayWidgetList.c">
+    <ClCompile Include="Sources\Ring3\Gui\ArrayWidgetList.c">
       <Filter>Quelldateien\Ring3\Gui</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gui\WidgetBase.c">
+    <ClCompile Include="Sources\Ring3\Gui\WidgetBase.c">
       <Filter>Quelldateien\Ring3\Gui</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gui\TextNode.c">
+    <ClCompile Include="Sources\Ring3\Gui\TextNode.c">
       <Filter>Quelldateien\Ring3\Gui</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gui\LayoutModel.c">
+    <ClCompile Include="Sources\Ring3\Gui\LayoutModel.c">
       <Filter>Quelldateien\Ring3\Gui</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gui\GroupNode.c">
+    <ClCompile Include="Sources\Ring3\Gui\GroupNode.c">
       <Filter>Quelldateien\Ring3\Gui</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gui\Context.c">
+    <ClCompile Include="Sources\Ring3\Gui\Context.c">
       <Filter>Quelldateien\Ring3\Gui</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gui\BorderNode.c">
+    <ClCompile Include="Sources\Ring3\Gui\BorderNode.c">
       <Filter>Quelldateien\Ring3\Gui</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gui\BorderModel.c">
+    <ClCompile Include="Sources\Ring3\Gui\BorderModel.c">
       <Filter>Quelldateien\Ring3\Gui</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gui\Gdl\Context.c">
+    <ClCompile Include="Sources\Ring3\Gui\Gdl\Context.c">
       <Filter>Quelldateien\Ring3\Gui\Gdl</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gui\Gdl\ListToVector.c">
+    <ClCompile Include="Sources\Ring3\Gui\Gdl\ListToVector.c">
       <Filter>Quelldateien\Ring3\Gui\Gdl</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gui\Gdl\ValueToReal.c">
+    <ClCompile Include="Sources\Ring3\Gui\Gdl\ValueToReal.c">
       <Filter>Quelldateien\Ring3\Gui\Gdl</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gui\Signals\Context.c">
+    <ClCompile Include="Sources\Ring3\Gui\Signals\Context.c">
       <Filter>Quelldateien\Ring3\Gui\Signals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gui\Reader\Reader.c">
+    <ClCompile Include="Sources\Ring3\Gui\Reader\Reader.c">
       <Filter>Quelldateien\Ring3\Gui\Reader</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gui\Reader\Reader.package.c">
+    <ClCompile Include="Sources\Ring3\Gui\Reader\Reader.package.c">
       <Filter>Quelldateien\Ring3\Gui\Reader</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gui\_Include.c">
+    <ClCompile Include="Sources\Ring3\Gui\_Include.c">
       <Filter>Quelldateien\Ring3\Gui</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gui\RenderContext.c">
+    <ClCompile Include="Sources\Ring3\Gui\RenderContext.c">
       <Filter>Quelldateien\Ring3\Gui</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gui\DefaultRenderContext.c">
+    <ClCompile Include="Sources\Ring3\Gui\DefaultRenderContext.c">
       <Filter>Quelldateien\Ring3\Gui</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gui\WidgetList.c">
+    <ClCompile Include="Sources\Ring3\Gui\WidgetList.c">
       <Filter>Quelldateien\Ring3\Gui</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gui\Layout\Direction.c">
+    <ClCompile Include="Sources\Ring3\Gui\Layout\Direction.c">
       <Filter>Quelldateien\Ring3\Gui\Layout</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gui\Layout\Justification.c">
+    <ClCompile Include="Sources\Ring3\Gui\Layout\Justification.c">
       <Filter>Quelldateien\Ring3\Gui\Layout</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gui\Reader\readColor.c">
+    <ClCompile Include="Sources\Ring3\Gui\Reader\readColor.c">
       <Filter>Quelldateien\Ring3\Gui\Reader</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gui\Layout\Layouter.c">
+    <ClCompile Include="Sources\Ring3\Gui\Layout\Layouter.c">
       <Filter>Quelldateien\Ring3\Gui\Layout</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gui\Widget.c">
+    <ClCompile Include="Sources\Ring3\Gui\Widget.c">
       <Filter>Quelldateien\Ring3\Gui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ring3\Gui\ArrayWidgetList.h">
+    <ClInclude Include="Sources\Ring3\Gui\ArrayWidgetList.h">
       <Filter>Headerdateien\Ring3\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gui\WidgetBase.h">
+    <ClInclude Include="Sources\Ring3\Gui\WidgetBase.h">
       <Filter>Headerdateien\Ring3\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gui\TextNode.h">
+    <ClInclude Include="Sources\Ring3\Gui\TextNode.h">
       <Filter>Headerdateien\Ring3\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gui\LayoutModel.h">
+    <ClInclude Include="Sources\Ring3\Gui\LayoutModel.h">
       <Filter>Headerdateien\Ring3\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gui\GroupNode.h">
+    <ClInclude Include="Sources\Ring3\Gui\GroupNode.h">
       <Filter>Headerdateien\Ring3\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gui\Context.h">
+    <ClInclude Include="Sources\Ring3\Gui\Context.h">
       <Filter>Headerdateien\Ring3\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gui\BorderNode.h">
+    <ClInclude Include="Sources\Ring3\Gui\BorderNode.h">
       <Filter>Headerdateien\Ring3\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gui\BorderModel.h">
+    <ClInclude Include="Sources\Ring3\Gui\BorderModel.h">
       <Filter>Headerdateien\Ring3\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gui\Gdl\Context.h">
+    <ClInclude Include="Sources\Ring3\Gui\Gdl\Context.h">
       <Filter>Headerdateien\Ring3\Gui\Gdl</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gui\Gdl\ListToVector.h">
+    <ClInclude Include="Sources\Ring3\Gui\Gdl\ListToVector.h">
       <Filter>Headerdateien\Ring3\Gui\Gdl</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gui\Gdl\ValueToReal.h">
+    <ClInclude Include="Sources\Ring3\Gui\Gdl\ValueToReal.h">
       <Filter>Headerdateien\Ring3\Gui\Gdl</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gui\Signals\Context.h">
+    <ClInclude Include="Sources\Ring3\Gui\Signals\Context.h">
       <Filter>Headerdateien\Ring3\Gui\Signals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gui\Reader\Reader.h">
+    <ClInclude Include="Sources\Ring3\Gui\Reader\Reader.h">
       <Filter>Headerdateien\Ring3\Gui\Reader</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gui\Reader\Reader.package.h">
+    <ClInclude Include="Sources\Ring3\Gui\Reader\Reader.package.h">
       <Filter>Headerdateien\Ring3\Gui\Reader</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gui\_Include.h">
+    <ClInclude Include="Sources\Ring3\Gui\_Include.h">
       <Filter>Headerdateien\Ring3\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gui\RenderContext.h">
+    <ClInclude Include="Sources\Ring3\Gui\RenderContext.h">
       <Filter>Headerdateien\Ring3\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gui\DefaultRenderContext.h">
+    <ClInclude Include="Sources\Ring3\Gui\DefaultRenderContext.h">
       <Filter>Headerdateien\Ring3\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gui\WidgetList.h">
+    <ClInclude Include="Sources\Ring3\Gui\WidgetList.h">
       <Filter>Headerdateien\Ring3\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gui\Layout\Direction.h">
+    <ClInclude Include="Sources\Ring3\Gui\Layout\Direction.h">
       <Filter>Headerdateien\Ring3\Gui\Layout</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gui\Layout\Justification.h">
+    <ClInclude Include="Sources\Ring3\Gui\Layout\Justification.h">
       <Filter>Headerdateien\Ring3\Gui\Layout</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gui\Reader\readColor.h">
+    <ClInclude Include="Sources\Ring3\Gui\Reader\readColor.h">
       <Filter>Headerdateien\Ring3\Gui\Reader</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gui\Layout\Layouter.h">
+    <ClInclude Include="Sources\Ring3\Gui\Layout\Layouter.h">
       <Filter>Headerdateien\Ring3\Gui\Layout</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gui\Widget.h">
+    <ClInclude Include="Sources\Ring3\Gui\Widget.h">
       <Filter>Headerdateien\Ring3\Gui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Ring3\Gui\Gdl\Context.i">
+    <None Include="Sources\Ring3\Gui\Gdl\Context.i">
       <Filter>Quelldateien\Ring3\Gui\Gdl</Filter>
     </None>
-    <None Include="Ring3\Gui\Signals\Context.i">
+    <None Include="Sources\Ring3\Gui\Signals\Context.i">
       <Filter>Quelldateien\Ring3\Gui\Signals</Filter>
     </None>
-    <None Include="Ring3\Gui\Layout\Direction.i">
+    <None Include="Sources\Ring3\Gui\Layout\Direction.i">
       <Filter>Headerdateien\Ring3\Gui\Layout</Filter>
     </None>
-    <None Include="Ring3\Gui\Layout\Justification.i">
+    <None Include="Sources\Ring3\Gui\Layout\Justification.i">
       <Filter>Headerdateien\Ring3\Gui\Layout</Filter>
     </None>
-    <None Include="Ring3\Gui\Properties.i">
+    <None Include="Sources\Ring3\Gui\Properties.i">
       <Filter>Headerdateien\Ring3\Gui</Filter>
     </None>
   </ItemGroup>

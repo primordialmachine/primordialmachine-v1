@@ -51,76 +51,76 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ring3\Gui\BorderModel.h" />
-    <ClInclude Include="Ring3\Gui\BorderNode.h" />
-    <ClInclude Include="Ring3\Gui\Context.h" />
-    <ClInclude Include="Ring3\Gui\DefaultRenderContext.h" />
-    <ClInclude Include="Ring3\Gui\Gdl\Context.h" />
-    <ClInclude Include="Ring3\Gui\Gdl\ListToVector.h" />
-    <ClInclude Include="Ring3\Gui\Gdl\ValueToReal.h" />
-    <ClInclude Include="Ring3\Gui\GroupNode.h" />
-    <ClInclude Include="Ring3\Gui\LayoutModel.h" />
-    <ClInclude Include="Ring3\Gui\Layout\Direction.h" />
-    <ClInclude Include="Ring3\Gui\Layout\Layouter.h" />
-    <ClInclude Include="Ring3\Gui\Layout\Justification.h" />
-    <ClInclude Include="Ring3\Gui\Reader\readColor.h" />
-    <ClInclude Include="Ring3\Gui\Reader\Reader.h" />
-    <ClInclude Include="Ring3\Gui\Reader\Reader.package.h" />
-    <ClInclude Include="Ring3\Gui\RenderContext.h" />
-    <ClInclude Include="Ring3\Gui\Signals\Context.h" />
-    <ClInclude Include="Ring3\Gui\TextNode.h" />
-    <ClInclude Include="Ring3\Gui\Widget.h" />
-    <ClInclude Include="Ring3\Gui\WidgetBase.h" />
-    <ClInclude Include="Ring3\Gui\ArrayWidgetList.h" />
-    <ClInclude Include="Ring3\Gui\WidgetList.h" />
-    <ClInclude Include="Ring3\Gui\_Include.h" />
+    <ClInclude Include="Sources\Ring3\Gui\BorderModel.h" />
+    <ClInclude Include="Sources\Ring3\Gui\BorderNode.h" />
+    <ClInclude Include="Sources\Ring3\Gui\Context.h" />
+    <ClInclude Include="Sources\Ring3\Gui\DefaultRenderContext.h" />
+    <ClInclude Include="Sources\Ring3\Gui\Gdl\Context.h" />
+    <ClInclude Include="Sources\Ring3\Gui\Gdl\ListToVector.h" />
+    <ClInclude Include="Sources\Ring3\Gui\Gdl\ValueToReal.h" />
+    <ClInclude Include="Sources\Ring3\Gui\GroupNode.h" />
+    <ClInclude Include="Sources\Ring3\Gui\LayoutModel.h" />
+    <ClInclude Include="Sources\Ring3\Gui\Layout\Direction.h" />
+    <ClInclude Include="Sources\Ring3\Gui\Layout\Layouter.h" />
+    <ClInclude Include="Sources\Ring3\Gui\Layout\Justification.h" />
+    <ClInclude Include="Sources\Ring3\Gui\Reader\readColor.h" />
+    <ClInclude Include="Sources\Ring3\Gui\Reader\Reader.h" />
+    <ClInclude Include="Sources\Ring3\Gui\Reader\Reader.package.h" />
+    <ClInclude Include="Sources\Ring3\Gui\RenderContext.h" />
+    <ClInclude Include="Sources\Ring3\Gui\Signals\Context.h" />
+    <ClInclude Include="Sources\Ring3\Gui\TextNode.h" />
+    <ClInclude Include="Sources\Ring3\Gui\Widget.h" />
+    <ClInclude Include="Sources\Ring3\Gui\WidgetBase.h" />
+    <ClInclude Include="Sources\Ring3\Gui\ArrayWidgetList.h" />
+    <ClInclude Include="Sources\Ring3\Gui\WidgetList.h" />
+    <ClInclude Include="Sources\Ring3\Gui\_Include.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ring3\Gui\BorderModel.c" />
-    <ClCompile Include="Ring3\Gui\BorderNode.c" />
-    <ClCompile Include="Ring3\Gui\Context.c" />
-    <ClCompile Include="Ring3\Gui\DefaultRenderContext.c" />
-    <ClCompile Include="Ring3\Gui\Gdl\Context.c">
+    <ClCompile Include="Sources\Ring3\Gui\BorderModel.c" />
+    <ClCompile Include="Sources\Ring3\Gui\BorderNode.c" />
+    <ClCompile Include="Sources\Ring3\Gui\Context.c" />
+    <ClCompile Include="Sources\Ring3\Gui\DefaultRenderContext.c" />
+    <ClCompile Include="Sources\Ring3\Gui\Gdl\Context.c">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)Gdl\Context.o</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Gdl\Context.o</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)Gdl\Context.o</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)Gdl\Context.o</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="Ring3\Gui\Gdl\ListToVector.c" />
-    <ClCompile Include="Ring3\Gui\Gdl\ValueToReal.c" />
-    <ClCompile Include="Ring3\Gui\GroupNode.c" />
-    <ClCompile Include="Ring3\Gui\LayoutModel.c" />
-    <ClCompile Include="Ring3\Gui\Layout\Direction.c" />
-    <ClCompile Include="Ring3\Gui\Layout\Justification.c" />
-    <ClCompile Include="Ring3\Gui\Layout\Layouter.c" />
-    <ClCompile Include="Ring3\Gui\Reader\readColor.c" />
-    <ClCompile Include="Ring3\Gui\Reader\Reader.c" />
-    <ClCompile Include="Ring3\Gui\Reader\Reader.package.c" />
-    <ClCompile Include="Ring3\Gui\RenderContext.c" />
-    <ClCompile Include="Ring3\Gui\Signals\Context.c">
+    <ClCompile Include="Sources\Ring3\Gui\Gdl\ListToVector.c" />
+    <ClCompile Include="Sources\Ring3\Gui\Gdl\ValueToReal.c" />
+    <ClCompile Include="Sources\Ring3\Gui\GroupNode.c" />
+    <ClCompile Include="Sources\Ring3\Gui\LayoutModel.c" />
+    <ClCompile Include="Sources\Ring3\Gui\Layout\Direction.c" />
+    <ClCompile Include="Sources\Ring3\Gui\Layout\Justification.c" />
+    <ClCompile Include="Sources\Ring3\Gui\Layout\Layouter.c" />
+    <ClCompile Include="Sources\Ring3\Gui\Reader\readColor.c" />
+    <ClCompile Include="Sources\Ring3\Gui\Reader\Reader.c" />
+    <ClCompile Include="Sources\Ring3\Gui\Reader\Reader.package.c" />
+    <ClCompile Include="Sources\Ring3\Gui\RenderContext.c" />
+    <ClCompile Include="Sources\Ring3\Gui\Signals\Context.c">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)Signals\Context.o</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Signals\Context.o</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)Signals\Context.o</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)Signals\Context.o</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="Ring3\Gui\TextNode.c" />
-    <ClCompile Include="Ring3\Gui\Widget.c" />
-    <ClCompile Include="Ring3\Gui\WidgetBase.c" />
-    <ClCompile Include="Ring3\Gui\ArrayWidgetList.c" />
-    <ClCompile Include="Ring3\Gui\WidgetList.c" />
-    <ClCompile Include="Ring3\Gui\_Include.c" />
+    <ClCompile Include="Sources\Ring3\Gui\TextNode.c" />
+    <ClCompile Include="Sources\Ring3\Gui\Widget.c" />
+    <ClCompile Include="Sources\Ring3\Gui\WidgetBase.c" />
+    <ClCompile Include="Sources\Ring3\Gui\ArrayWidgetList.c" />
+    <ClCompile Include="Sources\Ring3\Gui\WidgetList.c" />
+    <ClCompile Include="Sources\Ring3\Gui\_Include.c" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Ring3\Gui\Gdl\Context.i">
+    <None Include="Sources\Ring3\Gui\Gdl\Context.i">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </None>
-    <None Include="Ring3\Gui\Layout\Direction.i" />
-    <None Include="Ring3\Gui\Layout\Justification.i" />
-    <None Include="Ring3\Gui\Properties.i" />
-    <None Include="Ring3\Gui\Signals\Context.i">
+    <None Include="Sources\Ring3\Gui\Layout\Direction.i" />
+    <None Include="Sources\Ring3\Gui\Layout\Justification.i" />
+    <None Include="Sources\Ring3\Gui\Properties.i" />
+    <None Include="Sources\Ring3\Gui\Signals\Context.i">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
@@ -186,35 +186,39 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)Sources</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)Sources</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)Sources</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)Sources</PublicIncludeDirectories>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
