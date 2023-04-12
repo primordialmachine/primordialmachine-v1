@@ -27,30 +27,30 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ring3\Graphics2\_Include.h">
+    <ClInclude Include="Sources\Ring3\Graphics2\_Include.h">
       <Filter>Headerdateien\Ring3\Graphics2</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Graphics2\Context.h">
+    <ClInclude Include="Sources\Ring3\Graphics2\Context.h">
       <Filter>Headerdateien\Ring3\Graphics2</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Graphics2\Rectangle.h">
+    <ClInclude Include="Sources\Ring3\Graphics2\Rectangle.h">
       <Filter>Headerdateien\Ring3\Graphics2</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Graphics2\Shape.h">
+    <ClInclude Include="Sources\Ring3\Graphics2\Shape.h">
       <Filter>Headerdateien\Ring3\Graphics2</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ring3\Graphics2\_Include.c">
+    <ClCompile Include="Sources\Ring3\Graphics2\_Include.c">
       <Filter>Quelldateien\Ring3\Graphics2</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Graphics2\Context.c">
+    <ClCompile Include="Sources\Ring3\Graphics2\Context.c">
       <Filter>Quelldateien\Ring3\Graphics2</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Graphics2\Rectangle.c">
+    <ClCompile Include="Sources\Ring3\Graphics2\Rectangle.c">
       <Filter>Quelldateien\Ring3\Graphics2</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Graphics2\Shape.c">
+    <ClCompile Include="Sources\Ring3\Graphics2\Shape.c">
       <Filter>Quelldateien\Ring3\Graphics2</Filter>
     </ClCompile>
   </ItemGroup>

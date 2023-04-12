@@ -42,16 +42,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ring3\Graphics2\Context.h" />
-    <ClInclude Include="Ring3\Graphics2\Rectangle.h" />
-    <ClInclude Include="Ring3\Graphics2\Shape.h" />
-    <ClInclude Include="Ring3\Graphics2\_Include.h" />
+    <ClInclude Include="Sources\Ring3\Graphics2\Context.h" />
+    <ClInclude Include="Sources\Ring3\Graphics2\Rectangle.h" />
+    <ClInclude Include="Sources\Ring3\Graphics2\Shape.h" />
+    <ClInclude Include="Sources\Ring3\Graphics2\_Include.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ring3\Graphics2\Context.c" />
-    <ClCompile Include="Ring3\Graphics2\Rectangle.c" />
-    <ClCompile Include="Ring3\Graphics2\Shape.c" />
-    <ClCompile Include="Ring3\Graphics2\_Include.c" />
+    <ClCompile Include="Sources\Ring3\Graphics2\Context.c" />
+    <ClCompile Include="Sources\Ring3\Graphics2\Rectangle.c" />
+    <ClCompile Include="Sources\Ring3\Graphics2\Shape.c" />
+    <ClCompile Include="Sources\Ring3\Graphics2\_Include.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -112,36 +112,40 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)Sources</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)Sources</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)Sources</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)Sources</PublicIncludeDirectories>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
