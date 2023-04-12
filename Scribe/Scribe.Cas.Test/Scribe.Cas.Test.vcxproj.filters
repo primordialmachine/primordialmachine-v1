@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Quelldateien\Mkx">
+      <UniqueIdentifier>{329dc1e4-c744-497c-a323-146288e453c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Mkx">
+      <UniqueIdentifier>{581f30db-7e9f-46c5-b177-ad09b541f257}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Mkx\Scribe">
+      <UniqueIdentifier>{32def080-75c7-40bd-8cc3-463e76e241d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Mkx\Scribe">
+      <UniqueIdentifier>{a90443b8-20ff-4ab7-9836-20b38ff5e9cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Mkx\Scribe\Test">
+      <UniqueIdentifier>{4857d4dc-a787-47ae-ad2d-e47caaa03ecf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Mkx\Scribe\Test">
+      <UniqueIdentifier>{01a07f15-a5fd-4b62-b92b-eadef7256600}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Mkx\Scribe\Test\Cas">
+      <UniqueIdentifier>{7225e367-e4d0-441a-89bd-fe2dc0c72a80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Mkx\Scribe\Test\Cas">
+      <UniqueIdentifier>{b8dd7330-6b4c-4897-a13f-f0e2e0a82dae}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Mkx\Scribe\Test\Main.c">
+      <Filter>Quelldateien\Mkx\Scribe\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Test\Cas\CasAdjugateTests.c">
+      <Filter>Quelldateien\Mkx\Scribe\Test\Cas</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Test\Cas\CasCofactorMatrixTests.c">
+      <Filter>Quelldateien\Mkx\Scribe\Test\Cas</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Test\Cas\CasConstantFoldingTests.c">
+      <Filter>Quelldateien\Mkx\Scribe\Test\Cas</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Test\Cas\CasDeleteColumnTests.c">
+      <Filter>Quelldateien\Mkx\Scribe\Test\Cas</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Test\Cas\CasDeleteRowTests.c">
+      <Filter>Quelldateien\Mkx\Scribe\Test\Cas</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Test\Cas\CasDeterminantTests.c">
+      <Filter>Quelldateien\Mkx\Scribe\Test\Cas</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Test\Cas\CasMatrixAdditionTests.c">
+      <Filter>Quelldateien\Mkx\Scribe\Test\Cas</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Test\Cas\CasMatrixMultiplicationTests.c">
+      <Filter>Quelldateien\Mkx\Scribe\Test\Cas</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Test\Cas\CasMatrixSubtractionTests.c">
+      <Filter>Quelldateien\Mkx\Scribe\Test\Cas</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Test\Cas\CasTests.c">
+      <Filter>Quelldateien\Mkx\Scribe\Test\Cas</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Test\Cas\CasTransposeTests.c">
+      <Filter>Quelldateien\Mkx\Scribe\Test\Cas</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Test\Cas\SafeExecute.c">
+      <Filter>Quelldateien\Mkx\Scribe\Test\Cas</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Test\SafeExecute.c">
+      <Filter>Quelldateien\Mkx\Scribe\Test</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Mkx\Scribe\Test\Cas\CasMatrixAdditionTests.h">
+      <Filter>Headerdateien\Mkx\Scribe\Test\Cas</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Test\Cas\CasCofactorMatrixTests.h">
+      <Filter>Headerdateien\Mkx\Scribe\Test\Cas</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Test\Cas\CasConstantFoldingTests.h">
+      <Filter>Headerdateien\Mkx\Scribe\Test\Cas</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Test\Cas\CasDeleteColumnTests.h">
+      <Filter>Headerdateien\Mkx\Scribe\Test\Cas</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Test\Cas\CasDeleteRowTests.h">
+      <Filter>Headerdateien\Mkx\Scribe\Test\Cas</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Test\Cas\CasDeterminantTests.h">
+      <Filter>Headerdateien\Mkx\Scribe\Test\Cas</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Test\Cas\CasAdjugateTests.h">
+      <Filter>Headerdateien\Mkx\Scribe\Test\Cas</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Test\Cas\CasMatrixMultiplicationTests.h">
+      <Filter>Headerdateien\Mkx\Scribe\Test\Cas</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Test\Cas\CasMatrixSubtractionTests.h">
+      <Filter>Headerdateien\Mkx\Scribe\Test\Cas</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Test\Cas\CasTests.h">
+      <Filter>Headerdateien\Mkx\Scribe\Test\Cas</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Test\Cas\CasTransposeTests.h">
+      <Filter>Headerdateien\Mkx\Scribe\Test\Cas</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Test\Cas\SafeExecute.h">
+      <Filter>Headerdateien\Mkx\Scribe\Test\Cas</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Test\SafeExecute.h">
+      <Filter>Headerdateien\Mkx\Scribe\Test</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

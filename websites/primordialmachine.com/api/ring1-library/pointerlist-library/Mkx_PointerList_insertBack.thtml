@@ -1,0 +1,36 @@
+@{title = "Ring 1 :: Pointer List Library"}
+@{tableOfContents = "./api/ring1-library/_toc.ihtml"}
+@(>"./_header.html.t")
+
+<h3 id="mkx_pointerlist_insertback">Mkx_PointerList_insertBack</h3>
+<p>Append a pointer to a pointer list.</p>
+<p><code class="block">
+int<br/>
+Mkx_PointerList_insertBack<br/>
+&nbsp;&nbsp;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mkx_PointerList *pointerList,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;int64_t index,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;void *element<br/>
+&nbsp;&nbsp;)
+</code></p>
+
+<p>
+This function inserts the specified pointer into a pointer list at the specified position.
+If this function succeeds, then all of the following conditions apply:</p>
+<ul>
+  <li>The pointer is inserted behind all other pointers in the pointer list.</li>
+  <li>If an "added" callback is associated with the pointer list, then this function is invoked invoked with the pointer as its first argument.</li>
+</ul>
+<p>
+A call <code class="inline">Mkx_PointerList_insertBack(o, p)</code> is equivalent to a call <code class="inline">Mkx_PointerList_insert(o, p, n)</code> where <code>n</code>
+is the size of the pointer list.
+</p>
+
+<h4>Parameter variables</h4>
+<dl>
+  <dt><code class="inline">pointerList</code></dt><dd>A pointer to the pointer list.</dd>
+  <dt><code class="inline">element</code></dt><dd>The pointer to append.</dd>
+</dl>
+
+<h4>Return value</h4>
+<p><code class="inline">0</code> on success, a non-zero value on failure.</p>

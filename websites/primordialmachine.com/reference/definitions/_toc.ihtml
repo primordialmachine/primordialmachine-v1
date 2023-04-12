@@ -1,0 +1,17 @@
+<div class="nav-item">
+  <a class="nav-link my-toggle" href="@(baseurl)reference/definitions">
+    <span>Definitions</span>
+    <span><i class="fa fa-caret-right" aria-hidden="true"></i></span> 
+  </a>
+</div>
+<div data-my-nav-id="@(baseurl)reference/definitions" class="@(toc_collapsible_classes) my-toggle-collapsible my-toggle-collapsed">
+  <div class="nav-item"><a class="nav-link" href="@(baseurl)reference/definitions/axis-aligned-box">Definition: Axis Aligned Box</a></div>
+  <div class="nav-item"><a class="nav-link" href="@(baseurl)reference/definitions/sphere">Definition: Sphere</a></div>
+  <div class="nav-item"><a class="nav-link" href="@(baseurl)reference/definitions/ray">Definition: Ray</a></div>
+  <div class="nav-item"><a class="nav-link" href="@(baseurl)reference/definitions/line-segment">Definition: Line Segment</a></div>
+  <div class="nav-item"><a class="nav-link" href="@(baseurl)reference/definitions/line">Definition: Line</a></div>
+  <div class="nav-item"><a class="nav-link" href="@(baseurl)reference/definitions/cross-product">Cross product</a></div>
+  <div class="nav-item"><a class="nav-link" href="@(baseurl)reference/definitions/cross-product-matrix">Cross product matrix</a></div>
+  <div class="nav-item"><a class="nav-link" href="@(baseurl)reference/definitions/second-power-of-the-cross-product-matrix">Second power of the cross product matrix</a></div>
+  <div class="nav-item"><a class="nav-link" href="@(baseurl)reference/definitions/vector-projection-and-rejection">Definition: Vector projection and rejection</a></div>
+</div>

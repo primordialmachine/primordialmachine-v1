@@ -1,0 +1,9 @@
+<h3 id="mkx_enumerationtype-struct">Mkx_EnumerationType</h3>
+<p>Struct holding data of a enumeration type.</p>
+<p><code class="block">
+typedef struct Mkx_EnumerationType { Mkx_Type parent; ... } Mkx_EnumerationType;
+</code></p>
+
+<p>
+This struct holds the data of an enumeration type registered with the type system.
+</p>

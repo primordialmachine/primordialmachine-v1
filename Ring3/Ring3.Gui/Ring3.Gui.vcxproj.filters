@@ -49,6 +49,12 @@
     <Filter Include="Quelldateien\Ring3\Gui\Layout">
       <UniqueIdentifier>{d5c988c7-2719-4bea-b2ff-a0203a8d52fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring3\Gui\Selectors">
+      <UniqueIdentifier>{79578cc6-ed61-47d4-aeb1-ab99e2503ab3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring3\Gui\Selectors">
+      <UniqueIdentifier>{569584b9-d9f0-4709-8798-431950909927}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Ring3\Gui\ArrayWidgetList.c">
@@ -120,6 +126,24 @@
     <ClCompile Include="Sources\Ring3\Gui\Widget.c">
       <Filter>Quelldateien\Ring3\Gui</Filter>
     </ClCompile>
+    <ClCompile Include="Ring3\Gui\Selectors\SelectorKind.c">
+      <Filter>Quelldateien\Ring3\Gui\Selectors</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Gui\Selectors\IthChildSelector.c">
+      <Filter>Quelldateien\Ring3\Gui\Selectors</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Gui\Selectors\NameSelector.c">
+      <Filter>Quelldateien\Ring3\Gui\Selectors</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Gui\Selectors\Selector.c">
+      <Filter>Quelldateien\Ring3\Gui\Selectors</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Gui\Selectors\UniversalSelector.c">
+      <Filter>Quelldateien\Ring3\Gui\Selectors</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Gui\DefaultMatcher.c">
+      <Filter>Quelldateien\Ring3\Gui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Ring3\Gui\ArrayWidgetList.h">
@@ -189,6 +213,24 @@
       <Filter>Headerdateien\Ring3\Gui\Layout</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Ring3\Gui\Widget.h">
+      <Filter>Headerdateien\Ring3\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Gui\Selectors\SelectorKind.h">
+      <Filter>Headerdateien\Ring3\Gui\Selectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Gui\Selectors\Selector.h">
+      <Filter>Headerdateien\Ring3\Gui\Selectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Gui\Selectors\IthChildSelector.h">
+      <Filter>Headerdateien\Ring3\Gui\Selectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Gui\Selectors\NameSelector.h">
+      <Filter>Headerdateien\Ring3\Gui\Selectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Gui\Selectors\UniversalSelector.h">
+      <Filter>Headerdateien\Ring3\Gui\Selectors</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Gui\DefaultMatcher.h">
       <Filter>Headerdateien\Ring3\Gui</Filter>
     </ClInclude>
   </ItemGroup>

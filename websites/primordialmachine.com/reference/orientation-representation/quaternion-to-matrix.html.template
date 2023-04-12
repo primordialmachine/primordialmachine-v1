@@ -1,0 +1,147 @@
+@{title = "Rotation formula matrix representation"}
+@{tableOfContents = "./reference/_toc.ihtml"}
+@(>"./_header.html.t")
+ 
+<h2>Quaternion to matrix</h2>
+<p>A unit quaternion \(\mathbf{q}=\group{q_w, \vec{q}}\) represents a rotation by an angle
+\(\alpha) around an axis \(\hat{r}\) with
+<div class="row mt-2">
+  @(beginResult)@(beginFormula)
+  &amp;\alpha = 2\acos{q_w}
+  @(endFormula)@(endResult)
+</div>
+<div class="row mt-2">
+  @(beginResult)@(beginFormula)
+  &amp;\hat{r} = \frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}
+  @(endFormula)@(endResult)
+</div>
+The matrix representing the same transformation is given by
+\[\begin{align*}
+R =&amp;
+\left[\begin{matrix}
+1 - 2\vec{q}_y^2 - 2\vec{q}_z^2               & 2 \vec{q}_x \vec{q}_y - 2 \vec{q}_w \vec{q}_z & 2 \vec{q}_x \vec{q}_z + 2 \vec{q}_w \vec{q}_y \\
+2 \vec{q}_x \vec{q}_y + 2 \vec{q}_w \vec{q}_z & 1 - 2\vec{q}_x^2 - 2\vec{q}_z^2               & 2 \vec{q}_y \vec{q}_z - 2 \vec{q}_w \vec{q}_x \\
+2 \vec{q}_x \vec{q}_z - 2 \vec{q}_w \vec{q}_y & 2 \vec{q}_y \vec{q}_z + 2 \vec{q}_w \vec{q}_x & 1 - 2\vec{q}_x^2 - 2\vec{q}_y^2  
+\end{matrix}\right]
+\end{align*}\]
+<p>
+
+<h3>Proof</h3>
+<h5>Step 1</h5>
+
+<p>A unit quaternion \(\mathbf{q}=\group{q_w, \vec{q}}\) represents a rotation around a rotation by an angle \(\alpha\) around an axis \(\hat{r}\) with
+<div class="row mt-2">
+  @(beginResult)@(beginFormula)
+  &amp;\alpha = 2\acos{q_w}
+  @(endFormula)@(endResult)
+</div>
+<div class="row mt-2">
+  @(beginResult)@(beginFormula)
+  &amp;\hat{r} = \frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}
+  @(endFormula)@(endResult)
+</div>
+
+<p>Substitute these values into the <a href="@(baseurl)/reference/transformations/rotation-around-an-arbitrary-axis/explicit-matrix-representation">
+matrix</a> representing such a transformation we obtain</p>
+\[\begin{align*}
+R =&amp;
+\left[\begin{matrix}
+t \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_x^2                                              + c                                          & t \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_x \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_y - s \group{\frac{q_x}{\sqrt{1-\vec{q}_w^2}}}_z & t \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_x \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_z + s \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_y    \\
+t \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_x \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_y + s \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_z & t \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_y^2                                        + c                                      & t \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_y \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_z - s \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_x    \\
+t \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_x \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_z - s \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_y & t \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_y \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_z + s \group{\frac{q_x}{\sqrt{1-\vec{q}_w^2}}}_x & t \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_z^2                                        + c
+\end{matrix}\right]\\
+t =&amp; 1 - c^2\\
+c =&amp; \cos\group{2\cos^{-1}\group{\vec{q}_w}}\\
+s =&amp; \sin\group{2\cos^{-1}\group{\vec{q}_w}}
+\end{align*}\]
+
+<p>There is potential for simplification</p>
+
+<h5>Step 1</h5>
+<p>First we simplify the terms \(s\), \(c\), and \(1 - c\).</p>
+\[\begin{align*}
+c &amp;= \cos\group{2\cos^{-1}\group{q_w}}                                     \\                                     @* cos(2x) = cos(x)^2 - sin(x)^2 *@
+  &amp;= \cos^2\group{\cos^{-1}\group{q_w}} - \sin^2\group{\cos^{-1}\group{q_w}} \\ 
+  &amp;= q_w^2 - \sin^2\group{\cos^{-1}(q_w)}                                  \\                                     @* sin(x)^2 = 1 - cos(x)^2 *@ 
+  &amp;= q_w^2 - 1 + \cos^2\group{\cos^{-1}\group{q_w}}                        \\
+  &amp;= q_w^2 - 1 + q_w^2\\
+  &amp;= 2 q_w^2 - 1
+\end{align*}\]
+
+\[\begin{align*}
+t &amp;= \group{1 - c}\\
+  &amp;= 1 - 2 \vec{q}_w^2 + 1\\
+  &amp;= 2 - 2 \vec{q}_w^2 \\
+  &amp;= 2\group{1 - \vec{q}_w^2} \\
+\end{align*}\]
+
+\[\begin{align*}
+s &amp;= \sin\group{2\cos^{-1}\group{\vec{q}_w}}\\ @* sin(2x) = 2cos(x)sin(x) *@
+  &amp;= 2\cos\group{\cos^{-1}\group{\vec{q}_w}}\sin\group{\cos^{-1}\group{\vec{q}_w}}\\
+  &amp;= 2 \vec{q}_w \sin \group{\cos^{-1}\group{\vec{q}_w}}\\ @* sin(acos(x)) = sqrt(1-x)sqrt(x+1) *@
+  &amp;= 2 \vec{q}_w \sqrt{1-\vec{q}_w^2} \\
+\end{align*}\]
+
+<h5>Step 2</h5>
+<p>We simplify the elements along the main diagonal \(R_{0,0}\), \(R_{1,1}\), and \(R_{2,2}\).</p>
+\[\begin{align*}
+R_{0,0} =&amp; 2 \group{1 - \vec{q}_w^2} \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_x^2  + 2 \vec{q}_w^2 - 1\\
+R_{0,0} =&amp; 2 \group{1 - \vec{q}_w^2} \frac{\vec{q}_x}{\sqrt{1-\vec{q}_w^2}}^2 + 2 \vec{q}_w^2 - 1\\
+R_{0,0} =&amp; 2 \group{1 - \vec{q}_w^2} \frac{\vec{q}_x^2}{1-\vec{q}_w^2} + 2 \vec{q}_w^2 - 1\\
+R_{0,0} =&amp; 2 \vec{q}_x^2 + 2 \vec{q}_w^2 - 1\\
+R_{0,0} =&amp; 2 \group{\vec{q}_x^2 + \vec{q}_w^2} - 1\\
+@* \vec{q}_x^2 + \vec{q}_y^2 + \vec{q}_z^2 + vec{q}_w^2 = 1 *@
+@* \vec{q}_x^2 + \vec{q}_w^2 = 1 - \vec{q}_y^2 - \vec{q}_z^2 *@
+R_{0,0} =&amp; 2 \group{1 - \vec{q}_y^2 - \vec{q}_z^2} - 1\\
+R_{0,0} =&amp; 2 - 2\vec{q}_y^2 - 2\vec{q}_z^2 - 1\\
+R_{0,0} =&amp; 1 - 2\vec{q}_y^2 - 2\vec{q}_z^2\\
+\end{align*}\]
+<p>The approach for the elements \(R_{1}{1}\) and \(R_{2,2}\) is similar. Hence we obtain</p>
+\[\begin{align*}
+R =&amp;
+\left[\begin{matrix}
+1 - 2\vec{q}_y^2 - 2\vec{q}_z^2                                                                                                              & t \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_x \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_y - s \group{\frac{\vec{q}_x}{\sqrt{1-\vec{q}_w^2}}}_z & t \group{\frac{\vec{q}}{\sqrt{1 - \vec{q}_w^2}}}_x \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_z + s \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_y    \\
+t \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_x \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_y + s \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_z & 1 - 2\vec{q}_x^2 - 2\vec{q}_z^2                                                                                                                      & t \group{\frac{\vec{q}}{\sqrt{1 - \vec{q}_w^2}}}_y \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_z - s \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_x    \\
+t \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_x \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_z - s \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_y & t \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_y \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_z + s \group{\frac{\vec{q}_x}{\sqrt{1-\vec{q}_w^2}}}_x & 1 - 2\vec{q}_x^2 - 2\vec{q}_y^2  
+\end{matrix}\right]\\
+t =&amp; 2\group{1 - q_w^2}\\
+c =&amp; 2 q_w^2 - 1\\
+s =&amp; 2 q_w \sqrt{1-\vec{q}_w^2} 
+\end{align*}\]
+
+<h5>Step 3</h5>
+<p>We simplify the subterm</p>
+\[
+t\group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_i \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_j, i, k \in \{x,y,z\}, i \neq k
+\]
+<p>as follows</p>
+\[\begin{align*}
+  &amp;t\group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_i \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_j\\
+= &amp;2\group{1 - \vec{q}_w^2}\frac{\vec{q}_i}{\sqrt{1-\vec{q}_w^2}} \frac{\vec{q}_j}{\sqrt{1-\vec{q}_w^2}}\\
+= &amp;2 \vec{q}_i \vec{q}_j
+\end{align*}\]
+
+<h5>Step 4</h5>
+<p>We simplify the subterm</p>
+\[
+s \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_i, i \in \{x,y,z\}
+\]
+<p>as follows</p>
+\[\begin{align*}
+  &amp;s \group{\frac{\vec{q}}{\sqrt{1-\vec{q}_w^2}}}_i\\
+= &amp;2 \vec{q}_w \sqrt{1-\vec{q}_w^2} \frac{\vec{q}_i}{\sqrt{1-\vec{q}_w^2}}\\
+= &amp;2 \vec{q}_w \vec{q}_i
+\end{align*}\]
+
+<h5>Final result</h5>
+<p>As the final result we obtain</p>
+\[\begin{align*}
+R =&amp;
+\left[\begin{matrix}
+1 - 2\vec{q}_y^2 - 2\vec{q}_z^2               & 2 \vec{q}_x \vec{q}_y - 2 \vec{q}_w \vec{q}_z & 2 \vec{q}_x \vec{q}_z + 2 \vec{q}_w \vec{q}_y \\
+2 \vec{q}_x \vec{q}_y + 2 \vec{q}_w \vec{q}_z & 1 - 2\vec{q}_x^2 - 2\vec{q}_z^2               & 2 \vec{q}_y \vec{q}_z - 2 \vec{q}_w \vec{q}_x \\
+2 \vec{q}_x \vec{q}_z - 2 \vec{q}_w \vec{q}_y & 2 \vec{q}_y \vec{q}_z + 2 \vec{q}_w \vec{q}_x & 1 - 2\vec{q}_x^2 - 2\vec{q}_y^2  
+\end{matrix}\right]
+\end{align*}\]
+  
+@(>"./_footer.html.t")

@@ -1,0 +1,44 @@
+<h3 id="mkx_registerclasstype">Mkx_registerClassType</h3>
+<p>Register a class type.</p>
+<p><code class="block">
+Mkx_Type *<br/>
+Mkx_registerClassType<br/>
+&nbsp;&nbsp;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const char *name,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;bool instantiable,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;void (*notifyTypeRemoved)(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mkx_Type *parent,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;size_t size,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;void (*destruct)(void *),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;size_t dispatchSize,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;void (*constructDispatch)(void *),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;void (*destructDispatch)(void *),<br/>
+&nbsp;&nbsp;)
+</code></p>
+
+<p>
+This function registers a class type.
+If a type of the same name is already registered, this function fails.
+It returns a pointer to the memory block on success and a null pointer on failure.
+</p>
+
+<h4>Parameter variables</h4>
+<dl>
+  <dt><code class="inline">name</code></dt><dd>A pointer to the name of the type.</dd>
+  <dt><code class="inline">instantiable</code></dt><dd><code class="inline">true</code> if this class type is instantiable, <code class="inline">false</code> otherwise.</dd>
+  <dt><code class="inline">notifyTypeRemoved</code></dt><dd>A pointer to a callback function or a null pointer.
+  This function is invoked when the type is removed from the type system.</dd>
+
+  <dt><code class="inline">parent</code></dt><dd>A pointer to the parent type or a null pointer.</dd>
+
+  <dt><code class="inline">size</code></dt><dd>The size, in Bytes, of the value of this type.
+  Must be greater than or equal to the value size of the parent type if a parent type is specified.</dd>
+  <dt><code class="inline">destruct</code></dt><dd>A pointer to the value destruct function of this type or a null pointer.</dd>
+
+  <dt><code class="inline">dispatchSize</code></dt><dd>A pointer to a <code class="inline">Mkx_NotifyTypeDestroyed</code> callback function or a null pointer.</dd>
+  <dt><code class="inline">constructDispatch</code></dt><dd>A pointer to the dispatch construct function of this type or a null pointer.</dd>
+  <dt><code class="inline">destructDispatch</code></dt><dd>A pointer to the dispatch destruct function of this type or an null pointer.</dd>
+</dl>
+
+<h4>Return value</h4>
+<p>A pointer to the type on success, a null pointer on failure.</p>

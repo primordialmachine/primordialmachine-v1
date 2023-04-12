@@ -11,8 +11,9 @@
 #error("Do not include `Ring2/Library/Collections/CollectionUtilities.h` directly. Include `Ring2/Library/Collections/_Include.h` instead.")
 #endif
 
-#include <stdio.h>
+
 #include "Ring1/All/_Include.h"
+#include "Ring1/Log.h"
 #include "Ring2/_Include.h"
 #include <assert.h>
 
@@ -43,7 +44,7 @@ CollectionUtilities_grow
   int64_t oldCapacity = *capacity,
           newCapacity = 0;
   if (Ring1_Memory_recomputeSize_s64(MIN_CAPACITY, MAX_CAPACITY, oldCapacity, required, &newCapacity, true)) {
-    fprintf(stderr, "unable to increase capacity");
+    Ring1_Log_error("unable to increase capacity");
     Ring2_jump();
   }
   // Perform reallocation.
@@ -77,7 +78,7 @@ CollectionUtilities_ensureFreeCapacity
   if (!required)
   { return; }
   if (required < 0) {
-    fprintf(stderr, "invalid argument");
+    Ring1_Log_error("invalid argument");
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();
   }
@@ -101,7 +102,7 @@ CollectionUtilities_insertAt
   assert(NULL != context);
   assert(NULL != values);
   if (index < 0 || index > *size) {
-    fprintf(stderr, "index out of bounds");
+    Ring1_Log_error("index out of bounds");
     Ring1_Status_set(Ring1_Status_IndexOutOfBounds);
     Ring2_jump();
   }
@@ -126,7 +127,7 @@ CollectionUtilities_removeAt
   assert(NULL != context);
   assert(NULL != values);
   if (index < 0 || index >= *size) {
-    fprintf(stderr, "index out of bounds");
+    Ring1_Log_error("index out of bounds");
     Ring1_Status_set(Ring1_Status_IndexOutOfBounds);
     Ring2_jump();
   }
@@ -149,7 +150,7 @@ CollectionUtilities_removeAtFast
   assert(NULL != context);
   assert(NULL != values);
   if (index < 0 || index >= *size) {
-    fprintf(stderr, "index out of bounds");
+    Ring1_Log_error("index out of bounds");
     Ring1_Status_set(Ring1_Status_IndexOutOfBounds);
     Ring2_jump();
   }

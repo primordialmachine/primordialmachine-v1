@@ -1,0 +1,11 @@
+@* Copyright (c) 2020 Simulacrum Technology. All rights reserved. *@
+<DOCTYPE html>
+<html lang="en">
+  <head>
+    @* Lorem Ipsum ...
+    <title>Hello, World!</title>
+  </head>
+  <body>
+    <h1>Hello, World!</title>
+  </body>
+</html>

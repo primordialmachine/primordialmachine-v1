@@ -19,26 +19,57 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ring2\Test\Common.c" />
     <ClCompile Include="Ring2\Test\Fixtures\ForeignProcedure.c" />
     <ClCompile Include="Ring2\Test\Fixtures\Object.c" />
+    <ClCompile Include="Ring2\Test\Instructions.c" />
+    <ClCompile Include="Ring2\Test\Instructions\Arithmetic.c" />
+    <ClCompile Include="Ring2\Test\Instructions\Logical.c" />
+    <ClCompile Include="Ring2\Test\Instructions\Relational.c" />
+    <ClCompile Include="Ring2\Test\Instructions\Relational\EqualTo.c" />
+    <ClCompile Include="Ring2\Test\Instructions\Relational\GreaterThan.c" />
+    <ClCompile Include="Ring2\Test\Instructions\Relational\GreaterThanOrEqualTo.c" />
+    <ClCompile Include="Ring2\Test\Instructions\Relational\LowerThan.c" />
+    <ClCompile Include="Ring2\Test\Instructions\Relational\LowerThanOrEqualTo.c" />
+    <ClCompile Include="Ring2\Test\Instructions\Relational\NotEqualTo.c" />
+    <ClCompile Include="Ring2\Test\Stack\pushReal.c" />
+    <ClCompile Include="Ring2\Test\Stack\pushString.c" />
+    <ClCompile Include="Ring2\Test\String.c" />
+    <ClCompile Include="Ring2\Test\String\concatenate.c" />
+    <ClCompile Include="Ring2\Test\String\firstOccurrenceOf.c" />
+    <ClCompile Include="Ring2\Test\Common.c" />
     <ClCompile Include="Ring2\Test\Main.c" />
     <ClCompile Include="Ring2\Test\Stack.c" />
     <ClCompile Include="Ring2\Test\Stack\pushArray.c" />
     <ClCompile Include="Ring2\Test\Stack\pushBoolean.c" />
     <ClCompile Include="Ring2\Test\Stack\pushInteger.c" />
-    <ClCompile Include="Ring2\Test\Stack\pushReal.c" />
-    <ClCompile Include="Ring2\Test\Stack\pushString.c" />
     <ClCompile Include="Ring2\Test\Stack\pushVoid.c" />
-    <ClCompile Include="Ring2\Test\String.c" />
-    <ClCompile Include="Ring2\Test\String\concatenate.c" />
-    <ClCompile Include="Ring2\Test\String\firstOccurrenceOf.c" />
     <ClCompile Include="Ring2\Test\Value.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ring2\Test\Common.h" />
     <ClInclude Include="Ring2\Test\Fixtures\ForeignProcedure.h" />
     <ClInclude Include="Ring2\Test\Fixtures\Object.h" />
+    <ClInclude Include="Ring2\Test\Instructions.h" />
+    <ClInclude Include="Ring2\Test\Instructions\Arithmetic.h" />
+    <ClInclude Include="Ring2\Test\Instructions\Logical.h" />
+    <ClInclude Include="Ring2\Test\Instructions\Relational.h" />
+    <ClInclude Include="Ring2\Test\Instructions\Relational\EqualTo.h" />
+    <ClInclude Include="Ring2\Test\Instructions\Relational\GreaterThan.h" />
+    <ClInclude Include="Ring2\Test\Instructions\Relational\GreaterThanOrEqualTo.h" />
+    <ClInclude Include="Ring2\Test\Instructions\Relational\LowerThan.h" />
+    <ClInclude Include="Ring2\Test\Instructions\Relational\LowerThanOrEqualTo.h" />
+    <ClInclude Include="Ring2\Test\Instructions\Relational\NotEqualTo.h" />
+    <ClInclude Include="Ring2\Test\Stack\pushReal.h" />
+    <ClInclude Include="Ring2\Test\Stack\pushString.h" />
+    <ClInclude Include="Ring2\Test\String.h" />
+    <ClInclude Include="Ring2\Test\String\concatenate.h" />
+    <ClInclude Include="Ring2\Test\String\firstOccurrenceOf.h" />
+    <ClInclude Include="Ring2\Test\Common.h" />
+    <ClInclude Include="Ring2\Test\Stack.h" />
+    <ClInclude Include="Ring2\Test\Stack\pushArray.h" />
+    <ClInclude Include="Ring2\Test\Stack\pushBoolean.h" />
+    <ClInclude Include="Ring2\Test\Stack\pushInteger.h" />
+    <ClInclude Include="Ring2\Test\Stack\pushVoid.h" />
+    <ClInclude Include="Ring2\Test\Value.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ring1\Ring1\Ring1.vcxproj">
@@ -47,19 +78,6 @@
     <ProjectReference Include="..\..\ring2\Ring2\Ring2.vcxproj">
       <Project>{3ade4501-5d5c-4878-9632-f81c3de2429c}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Ring2\Test\Stack.h" />
-    <ClInclude Include="Ring2\Test\Stack\pushArray.h" />
-    <ClInclude Include="Ring2\Test\Stack\pushBoolean.h" />
-    <ClInclude Include="Ring2\Test\Stack\pushInteger.h" />
-    <ClInclude Include="Ring2\Test\Stack\pushReal.h" />
-    <ClInclude Include="Ring2\Test\Stack\pushString.h" />
-    <ClInclude Include="Ring2\Test\Stack\pushVoid.h" />
-    <ClInclude Include="Ring2\Test\String.h" />
-    <ClInclude Include="Ring2\Test\String\concatenate.h" />
-    <ClInclude Include="Ring2\Test\String\firstOccurrenceOf.h" />
-    <ClInclude Include="Ring2\Test\Value.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

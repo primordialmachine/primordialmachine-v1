@@ -1,0 +1,14 @@
+@* Copyright (c) 2020 Simulacrum Technology. All rights reserved. *@
+<DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Hello, World!</title>
+  </head>
+  <body>
+    <h1>Hello, World!</title>
+  </body>
+  @*
+  Thank you for using Scribe Template.
+  We hope you have great time!
+  *@
+</html>

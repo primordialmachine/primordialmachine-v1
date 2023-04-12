@@ -1,0 +1,74 @@
+@{title = "Quaternions"}
+@{tableOfContents = "./reference/_toc.ihtml"}
+@(>"./_header.html.t")
+
+  <h2>Quaternion sum</h2>
+  <p>The sum of two quaternions \(\group{w_1,v_1}\) and \(\group{w_2,v_2}\)
+  is defined as a quaternion \(\group{w_1+w_2,v_1+v_2}\).
+  The sum is associative i.e. \((x+y)+z = x+(y+z)\) holds and commutative i.e. \(x+y = y+x\) holds 
+  for any quaternions \(x\),\(y\), and \(z\).</p>
+  
+  <h2>Scalar quaternion product</h2>
+  <p>The product of a scalar \(s\) and a quaternion \(\group{w,v}\)
+  is defined as a quaternion \(\group{sw,sv}\).</p>
+  
+  <h2>Quaternion product</h2>
+  <p>The product of two quaternions \(\group{w_1,v_1}\) and \(\group{w_2,v_2}\)
+  is defined as a quaternion \(\group{w_1 w_2 - \dot{v_1}{v_2}, w_1 v_2 + w_2 v_1 + \cross{v_1}{v_2}}\).</p>
+  
+  <h2>Unit quaternion</h2>
+  <p>A quaternion \(\group{1,\vec{0}}\) is called the unit quaternion.</p>
+  <p>The unit quaternion has the following properties:</p>
+  <ul>
+    <li>\(\group{w,v} \group{1,\vec{0}} = \group{1,\vec{0}} \group{w,v}\) (Commutativity)</li>
+    <li>\(\group{w,v} \group{1,\vec{0}} = \group{w,v}\) (Multiplicative identity)</li>
+  </ul>
+  
+  <h3>Proof</h3>
+  <p>We proof \(\group{w,v} \group{1,\vec{0}} = \group{1,\vec{0}} \group{w,v}\) holds.</p>
+  <div class="row mt-2">
+    @(beginReason)
+    Quaternion product where
+    \(\group{w_1,v_1}=\group{w,v}\)
+    and
+    \(\group{w_2,v_2}=\group{1,\vec{0}}\).
+    @(endReason)
+    @(beginResult)@(beginFormula)
+    &amp;=\group{w 1 - \dot{v}{\vec{0}}, \dot{w}{\vec{0}} + 1 v + \cross{v}{\vec{0}}}
+    @(endFormula)@(endResult)
+  </div>
+  
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    &amp;=\group{w, v}
+    @(endFormula)@(endResult)
+  </div>
+  
+  <h3>Proof</h3>
+  <p>We proof \(\group{w,v} \group{1,\vec{0}} = \group{w,v}\)</p>
+  <div class="row mt-2">
+    @(beginReason)
+    Quaternion product where
+    =\(\group{w_1,v_1}=\group{1,\vec{0}}\)
+    and
+    \(\group{w_2,v_2}=\group{w,v}\).
+    @(endReason)
+    @(beginResult)@(beginFormula)
+    &amp;=\group{1 w - \dot{\vec{0}}{v}, 1 v + w \vec{0} + \cross{\vec{0}}{v}}
+    @(endFormula)@(endResult)
+  </div>
+  
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    &amp;=\group{w, v}
+    @(endFormula)@(endResult)
+  </div>
+  
+  <h2>Quaternion dot product</h2>
+  <p>The dot product of two quaternions \(\group{w_1,v_1}\) and \(\group{w_2,v_2}\)
+  is defined as a scalar \(w_1 w_2 + \dot{v_1}{v_2}\).</p>
+  
+  <h2>Quaternion corresponding to a vector</h2>
+  <p>\(q=\group{0,v}\) is the quaternion corresponding to a vector \(v\).</p>
+  
+@(>"./_footer.html.t")

@@ -1,0 +1,61 @@
+@{title = "Atom Library"}
+@{tableOfContents = "./ring1-library/_toc.ihtml"}
+@(>"./_header.html.t")
+  <section>
+    <h2>Overview</h2>
+    <p>
+    The <em>Atom</em> library provides <em>representations of equivalence classes of arrays of Bytes</em>.
+    </p>
+    <p>
+    Two different arrays of Bytes are in the same equivalence class if they have the same length and the same element values.
+    </p>
+    <p>
+    An atom is created from an array of Bytes using <code>Mkx_Atom_getOrCreate(Mkx_Atom **, const char *, size_t)</code>.
+    As long as this atom lives, that same atom is returned by each invocation of <code>Mkx_Atom_getOrCreate</code> for an equivalent array of Bytes.
+    Consequently, an atom represents the equivalence class arrays of Bytes which are of the same length and have the same element values.
+    </p>
+    <p>
+    An atom provides
+    </p>
+    <ul class="cutelist">
+      <li>the element values (<code>Mkx_Atom_getBytes</code>),</li>
+      <li>the number of element values (<code>Mkx_Atom_getNumberOfBytes</code>), and</li>
+      <li>and the hash value (<code>Mkx_Atom_getHashValue</code>)</li>
+    </ul>
+    <p>
+    of its equivalence class of arrays of Bytes.
+    </p>
+
+    <p>
+    Atoms are reference counted;
+    the caller of <code>Mkx_Atom_getOrCreate</code> acquires a reference to the returned atom.
+    Additional references can be acquired by calls to <code>Mkx_Atom_reference</code>.
+    Acquired references can be relinquished by calling <code>Mkx_Atom_unreference</code>.
+    </p>
+
+    <p>The <em>Atom</em> library fulfils the <a href="@(baseurl)ring1-library/introduction.html">module concept</a>
+    i.e. provides
+    the type <code class="inline">Mkx_Atom_ModuleHandle</code>,
+    the constant <code class="inline">Mkx_Atom_ModuleHandle_Invalid</code>, and
+    the functions <code class="inline">Mkx_Atom_ModuleHandle_acquire</code> and <code class="inline">Mkx_Atom_ModuleHandle_relinquish</code>.</p>
+
+    <p>The include file of the <em>Atom</em> library is <code class="inline">Mkx/Atom.h</code>, its library file is <code class="inline">Mkx-Atom.lib</code>.</p>
+  </section>
+
+  <section>
+    <h2>Documentation</h2>
+    @(>"./ring1-library/atom-library/Mkx_Atom.thtml")
+    @(>"./ring1-library/atom-library/Mkx_Atom_getBytes.thtml")
+    @(>"./ring1-library/atom-library/Mkx_Atom_getHashValue.thtml")
+    @(>"./ring1-library/atom-library/Mkx_Atom_getNumberOfBytes.thtml")
+    @(>"./ring1-library/atom-library/Mkx_Atom_getOrCreate.thtml")
+    @(>"./ring1-library/atom-library/Mkx_Atom_reference.thtml")
+    @(>"./ring1-library/atom-library/Mkx_Atom_unreference.thtml")
+  </section>
+
+  <section>
+    <h2>Sources and references</h2>
+    <p>The <a href="@(repositoryUrl)/src/master">reference repository</a> provides non-authoritive
+    <a href="@(repositoryUrl)/src/master/mkx/Atom/">sample implementations</a>.</p>
+  </section>
+@(>"./_footer.html.t")

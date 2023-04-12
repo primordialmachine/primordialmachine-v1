@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Quelldateien\Mkx">
+      <UniqueIdentifier>{1831d8c5-bfef-4e8c-95d1-a6b4e4da9000}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Mkx">
+      <UniqueIdentifier>{e67b7bec-b14b-4bf4-853e-dbaa9db02999}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Mkx\Interpreter">
+      <UniqueIdentifier>{48ddce3d-8719-482a-9e95-6574a2fda0b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Mkx\Interpreter">
+      <UniqueIdentifier>{f97de76d-9a0f-49a3-b5b4-62cbd54dfb66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Mkx\Interpreter\Library">
+      <UniqueIdentifier>{3b8fcad0-a1b2-483e-96b2-1dad3534dd34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Mkx\Interpreter\Library">
+      <UniqueIdentifier>{aa1408d4-e9a1-45b9-bdfe-60a067d634bc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Mkx\Interpreter\Library\CommandLine.h">
+      <Filter>Headerdateien\Mkx\Interpreter\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Interpreter\Library.h">
+      <Filter>Headerdateien\Mkx\Interpreter</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Mkx\Interpreter\Library\CommandLine.c">
+      <Filter>Quelldateien\Mkx\Interpreter\Library</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

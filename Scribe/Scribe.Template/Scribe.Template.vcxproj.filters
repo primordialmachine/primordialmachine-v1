@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien\Mkx">
+      <UniqueIdentifier>{4a3fe68b-24fe-440d-acdb-42727147e289}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Mkx\Scribe">
+      <UniqueIdentifier>{c3896f5e-f1ad-4589-9c37-286ac3cb6d6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Mkx\Scribe\Template">
+      <UniqueIdentifier>{c9e4fe00-6031-4885-9286-3f1a9becb949}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Quelldateien\Mkx">
+      <UniqueIdentifier>{9e45dda9-0dda-40b5-b733-b92e95f4ea53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Mkx\Scribe">
+      <UniqueIdentifier>{37d7996d-635b-4003-8538-9ee43638aa3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Mkx\Scribe\Template">
+      <UniqueIdentifier>{c62672d4-4981-443f-a41f-f3d227ae4622}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Mkx\Scribe\Template\ExpressionScanner.h">
+      <Filter>Headerdateien\Mkx\Scribe\Template</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Template\parseAndEvalTemplate.h">
+      <Filter>Headerdateien\Mkx\Scribe\Template</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Template\parseEnvironment.h">
+      <Filter>Headerdateien\Mkx\Scribe\Template</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Template\parseExpression.h">
+      <Filter>Headerdateien\Mkx\Scribe\Template</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Template\parseTemplate.h">
+      <Filter>Headerdateien\Mkx\Scribe\Template</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Template\Tool.h">
+      <Filter>Headerdateien\Mkx\Scribe\Template</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Template.h">
+      <Filter>Headerdateien\Mkx\Scribe</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Template\TemplateScanner.h">
+      <Filter>Headerdateien\Mkx\Scribe\Template</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Template\ExpressionParser.h">
+      <Filter>Headerdateien\Mkx\Scribe\Template</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Template\TemplateParser.h">
+      <Filter>Headerdateien\Mkx\Scribe\Template</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Template\EvaluateNode.h">
+      <Filter>Headerdateien\Mkx\Scribe\Template</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Template\Library.h">
+      <Filter>Headerdateien\Mkx\Scribe\Template</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Mkx\Scribe\Template\ExpressionScanner.c">
+      <Filter>Quelldateien\Mkx\Scribe\Template</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Template\parseAndEvalTemplate.c">
+      <Filter>Quelldateien\Mkx\Scribe\Template</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Template\parseEnvironment.c">
+      <Filter>Quelldateien\Mkx\Scribe\Template</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Template\parseExpression.c">
+      <Filter>Quelldateien\Mkx\Scribe\Template</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Template\parseTemplate.c">
+      <Filter>Quelldateien\Mkx\Scribe\Template</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Template\Tool.c">
+      <Filter>Quelldateien\Mkx\Scribe\Template</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Template\TemplateScanner.c">
+      <Filter>Quelldateien\Mkx\Scribe\Template</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Template\ExpressionParser.c">
+      <Filter>Quelldateien\Mkx\Scribe\Template</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Template\EvaluateNode.c">
+      <Filter>Quelldateien\Mkx\Scribe\Template</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Template\TemplateParser.c">
+      <Filter>Quelldateien\Mkx\Scribe\Template</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Template\Library.c">
+      <Filter>Quelldateien\Mkx\Scribe\Template</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

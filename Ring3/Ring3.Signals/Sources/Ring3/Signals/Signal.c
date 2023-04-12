@@ -120,7 +120,7 @@ Machine_Signals_Signal_emit
     Ring2_JumpTarget jt;
     Ring2_pushJumpTarget(&jt);
     if (!setjmp(jt.environment)) {
-      for (size_t i = 0, n = Ring2_Collections_Collection_getSize((Ring2_Collections_Collection*)self->connections);
+      for (int64_t i = 0, n = Ring2_Collections_Collection_getSize((Ring2_Collections_Collection*)self->connections);
            i < n; ++i) {
         Ring2_Value temporary = Ring2_Collections_List_getAt(self->connections, i);
         Machine_Signals_Connection* c

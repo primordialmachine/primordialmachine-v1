@@ -31,19 +31,19 @@ struct Ring4_Scenes_Gui_Layout1_Class {
   Scene_Class __parent;
 };
 
-typedef Ring2_Integer Ring4_Scenes_Gui_Layout1_Mode;
-#define Ring4_Scenes_Gui_Layout1_Mode_DirectionColumn (0)
-#define Ring4_Scenes_Gui_Layout1_Mode_DirectionColumnReverse (1)
-#define Ring4_Scenes_Gui_Layout1_Mode_DirectionRow (2)
-#define Ring4_Scenes_Gui_Layout1_Mode_DirectionRowReverse (3)
-#define Ring4_Scenes_Gui_Layout1_Mode_NumberOFElements (4)
+typedef Ring2_Integer Ring4_Scenes_Gui_Layout1_Direction;
+#define Ring4_Scenes_Gui_Layout1_Direction_NumberOFElements (4)
+
+typedef Ring2_Integer Ring4_Scenes_Gui_Layout1_Justification;
+#define Ring4_Scenes_Gui_Layout1_Justification_NumberOFElements (3)
 
 struct Ring4_Scenes_Gui_Layout1 {
   Scene __parent;
-  //
   Machine_Gui_Context* guiContext;
-  /// @brief The display mode.
-  Ring4_Scenes_Gui_Layout1_Mode mode;
+  /// @brief The direction (see Ring4_Gui_Layout_Direction).
+  Ring4_Scenes_Gui_Layout1_Direction direction;
+  /// @brief The justification (see Ring4_Gui_Layout_Justification).
+  Ring4_Scenes_Gui_Layout1_Justification justification;
   /// @brief The controls.
   Ring3_Gui_Widget* controls;
   /// @brief The help on the controls.
@@ -121,28 +121,13 @@ onModeChanged
   )
 {
   Machine_Gui_LayoutModel* lm = Machine_Gui_GroupNode_getLayoutModel((Machine_Gui_GroupNode*)self->display);
-  switch (self->mode) {
-  case Ring4_Scenes_Gui_Layout1_Mode_DirectionColumn: {
-    Machine_Gui_LayoutModel_setPrimaryDirection(lm, Ring3_Gui_Layout_Direction_Column);
-    Ring3_Gui_Widget_layout((Ring3_Gui_Widget*)self->display);
-  } break;
-  case Ring4_Scenes_Gui_Layout1_Mode_DirectionRow: {
-    Machine_Gui_LayoutModel_setPrimaryDirection(lm, Ring3_Gui_Layout_Direction_Row);
-    Ring3_Gui_Widget_layout((Ring3_Gui_Widget*)self->display);
-  } break;
-  case Ring4_Scenes_Gui_Layout1_Mode_DirectionColumnReverse: {
-    Machine_Gui_LayoutModel_setPrimaryDirection(lm, Ring3_Gui_Layout_Direction_ColumnReverse);
-    Ring3_Gui_Widget_layout((Ring3_Gui_Widget*)self->display);
-  } break;
-  case Ring4_Scenes_Gui_Layout1_Mode_DirectionRowReverse: {
-    Machine_Gui_LayoutModel_setPrimaryDirection(lm, Ring3_Gui_Layout_Direction_RowReverse);
-    Ring3_Gui_Widget_layout((Ring3_Gui_Widget*)self->display);
-  } break;
-  default: {
-      Ring1_Status_set(Ring1_Status_InvalidArgument);
-      Ring2_jump();
-  } break;
-  };
+  Machine_Gui_LayoutModel_setPrimaryDirection(lm, self->direction);
+  Machine_Gui_LayoutModel_setPrimaryJustification(lm, self->justification);
+  //
+  //Ring3_Gui_Layout_Direction_unparse(self->direction);
+  //Ring3_Gui_Layout_Justification_unparse(self->justification);
+  //
+  Ring3_Gui_Widget_layout((Ring3_Gui_Widget*)self->display);
 }
 
 static void
@@ -155,7 +140,8 @@ Ring4_Scenes_Gui_Layout1_startup
   Ring3_ImagesContext* imagesContext = Scene_getImagesContext((Scene*)self);
   Ring3_FontsContext* fontsContext = Scene_getFontsContext((Scene*)self);
   //
-  self->mode = Ring4_Scenes_Gui_Layout1_Mode_DirectionColumn;
+  self->direction = Ring3_Gui_Layout_Direction_Column;
+  self->justification = Ring3_Gui_Layout_Justification_Start;
   //
   self->guiContext = Machine_Gui_Context_create(Machine_Gdl_Context_create(),
                                                 Ring3_Graphics2_Context_create(visualsContext, imagesContext, fontsContext));
@@ -300,8 +286,29 @@ Ring4_Scenes_Gui_Layout1_onKeyboardKeyEvent
     Ring3_KeyboardKeyEvent* event
   )
 {
+  bool modified = false;
+  if (event->action == Ring3_KeyboardKeyAction_Release && event->key == Ring3_KeyboardKey_F2) {
+    self->justification = (self->justification + 1) % Ring4_Scenes_Gui_Layout1_Justification_NumberOFElements;
+    modified = true;
+  }
   if (event->action == Ring3_KeyboardKeyAction_Release && event->key == Ring3_KeyboardKey_F1) {
-    self->mode = (self->mode + 1) % Ring4_Scenes_Gui_Layout1_Mode_NumberOFElements;
+    self->direction = (self->direction + 1) % Ring4_Scenes_Gui_Layout1_Direction_NumberOFElements;
+    modified = true;
+  }
+  if (modified) {
+    // Given set of nodes, select any node with the specified name.
+    Ring3_Gui_NameSelector* selector = Ring3_Gui_NameSelector_create(Ring2_String_fromC(false, "MyDisplayDescription"));
+
+    Ring2_StringBuffer* sb = Ring2_StringBuffer_create();
+
+    Ring2_StringBuffer_appendBytes(sb, "direction: ", crt_strlen("direction: "));
+    Ring2_StringBuffer_appendString(sb, Ring3_Gui_Layout_Direction_unparse(self->direction));
+
+    Ring2_StringBuffer_appendBytes(sb, "justification: ", crt_strlen("justification: "));
+    Ring2_StringBuffer_appendString(sb, Ring3_Gui_Layout_Justification_unparse(self->justification));
+    
+    Ring2_String_create(Ring2_StringBuffer_getBytes(sb), Ring2_StringBuffer_getNumberOfBytes(sb));
+
     onModeChanged(self);
   }
 }

@@ -1,0 +1,66 @@
+@{title = "Ring 1 Library"}
+@{tableOfContents = "./api/ring1-library/_toc.ihtml"}
+@(>"./_header.html.t")
+  <h2>Concepts</h2>
+  <h3>Modules</h3>
+  <p>
+  Programs (libraries and executables) are structured into modules each of which can be maintained and consumed individually.
+  A <em>module</em> provides a compile-time and run-time protocol for its consumption by other programs.    The foremost goal
+  of these libraries are that each of them can be understood, maintained, and consumed on its own.
+  </p>
+
+  <h4>Names of modules</h4>
+  <p>
+  A module has a <em>canonical name</em> which is of the form <code class="inline">[A-Z]([A-Z]|[a-z]|[0-9])*</code>
+  and should follow <em>pascal case conventions</em>. This canonical name gives raise to the naming the executables and
+  libraries, files, and folders of the module as well as the names of functions, types, and macros provided by the module.
+  </p>
+
+  <h3>Consuming a modules at compile-time</h3>
+  <p>A library with a name <code class="inline">Name</code> provides a single header file
+  <code class="inline">Name.h</code> and a static library file <code class="inline">[Name].lib</code>.
+  To consume a library, you need to make sure both files are found by the compiler of the consuming program.
+  Also note that <code class="inline">Name.h</code> may include other header files of the library.
+  Usually, there proper way to consume a library is descibed for supported compilers.
+  Next step is to include the header file where required and link the consuming program with the static library.</p>
+
+  <h3>Consuming a modules at run-time</h3>
+  <p>A library provides declarations of functions, definitions of types, and macros - in short everything a normal C library offers.
+  There is a restriction though: Functions of a libraries may only be used while a library handle is held.
+  That is, before functions of a library are called, at least one library handle must be acquired by the process.
+  When all calls have terminated and the handle is no longer required the library handle must be relinquished.
+  You can acquire another library handle at any later point of time again.</p>
+
+  <p>Acquire a library handle for a library <code class="inline">[Name]</code> by calling the function
+  <code class="inline">Ring1_[Name]_ModuleHandle Mkx_[name]_ModuleHandle_acquire()</code>
+  and relinquish the library handle by calling
+  <code class="inline">void Ring1_[Name]_ModuleHandle_relinquish(Ring1_[Name]_ModuleHandle)</code>.
+  Both functions are provided by every library.
+  Acquisition might fail: In that case <code class="inline">Ring1_[Name]_ModuleHandle_acquire</code> returns <code class="inline">Ring1_[Name]_ModuleHandle_Invalid</code>.
+  <code class="inline">Ring_[Name]_ModuleHandle_relinquish</code> silently ignores an invalid library handle.</p>
+
+  <h2>Example: The filesystem library</h2>
+  <p>The following example demonstrates how to acquire and relinquish a handle for the <code class="inline">FileSystem</code> library.</p>
+
+  <p><code class="block">
+    #incude "Ring1/FileSystem.h"<br/>
+    #include &lt;stdlib.h&gt;<br/>
+    <br/>
+    int<br/>
+    main<br/>
+    &nbsp;&nbsp;(<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;int argc,<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;char **argv<br/>
+    &nbsp;&nbsp;)<br/>
+    {<br/>
+    &nbsp;&nbsp;Ring1_FileSystem_ModuleHandle handle = Ring1_FileSystem_ModuleHandle_acquire();<br/>
+    &nbsp;&nbsp;if (!handle) /* Or equivalently: if (Ring1_FileSystem_ModuleHandle_Invalid == handle) */<br/>
+    &nbsp;&nbsp;{<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;return EXIT_FAILURE;<br/>
+    &nbsp;&nbsp;}<br/>
+    &nbsp;&nbsp;Ring1_FileSystem_ModuleHandle_relinquish(handle);<br/>
+    &nbsp;&nbsp;return EXIT_SUCCESS;<br/>
+    }
+  </code></p>
+  </section>
+@(>"./_footer.html.t")

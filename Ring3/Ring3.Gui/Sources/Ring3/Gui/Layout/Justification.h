@@ -20,6 +20,15 @@ enum Ring3_Gui_Layout_Justification {
   /// @brief Elements are packed towards the end of the axis.
   Ring3_Gui_Layout_Justification_End,
 
+#if 0
+  /// @brief The space is evenly distributed between the elements.
+  /// If there are at least two items:
+  /// The first item's start is at the start of the axis.
+  /// The last item's end is at the end of the box.
+  /// If there is one item:
+  /// Equivalent to Ring3_Gui_Layout_Justification_Start.
+  Ring3_Gui_Layout_Justification_SpaceBetween,
+#endif
 };
 
 /// @brief

@@ -1,0 +1,9 @@
+<h3 id="mkx_interfacetype-struct">Mkx_InterfaceType</h3>
+<p>Struct holding data of an interface type.</p>
+<p><code class="block">
+typedef struct Mkx_InterfaceType { Mkx_Type parent; ... } Mkx_InterfaceType;
+</code></p>
+
+<p>
+This struct holds the data of an interface type registered with the type system.
+</p>

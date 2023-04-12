@@ -1,0 +1,9 @@
+@{title = "Definition: Line"}
+@{tableOfContents = "./_toc.ihtml"}
+@(>"./_header.html.t")
+
+  <h2>Definition of a line</h2>
+  <p>A line in \(\mathbb{R}^3\) is defined by two points \(\mathbf{p} \in \mathbb{R}^3\) and \(\mathbf{q} \in \mathbb{R}^3\).
+  The line is the set of all points \( \left\{ \mathbf{p} + t \group{\mathbf{p} - \mathbf{q}} | t \in \mathbb{R} \right\} \).</p>
+
+@(>"./_footer.html.t")

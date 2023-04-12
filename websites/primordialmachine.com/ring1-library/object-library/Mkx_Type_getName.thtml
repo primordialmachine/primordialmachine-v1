@@ -1,0 +1,30 @@
+<h3 id="mkx_type_getname">Mkx_Type_getName</h3>
+<p>Get if a type is an array type.</p>
+<p><code class="block">
+int<br/>
+Mkx_Type_getName<br/>
+&nbsp;&nbsp;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mkx_Atom **result,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mkx_Type *type<br/>
+&nbsp;&nbsp;)
+</code></p>
+
+<p>
+This function gets the name of a type.
+</p>
+
+<h4>Parameter variables</h4>
+<dl>
+  <dt><code class="inline">result</code></dt><dd>A pointer to a <code class="inline">Mkx_Atom *</code> variable.</dd>
+  <dt><code class="inline">type</code></dt><dd>A pointer to a <code class="inline">Mkx_Type</code> object.</dd>
+</dl>
+
+<h4>Success</h4>
+<p><code class="inline">*result</code> is assigned a pointer to the atom of the name of the type.
+The caller acquired a reference to the atom.</p>
+   
+<h4>Failure</h4>
+<p><code class="inline">result</code> was not dereferenced.</p>
+
+<h4>Return value</h4>
+<p><code class="inline">0</code> on success, a non-zero value on failure.</p>

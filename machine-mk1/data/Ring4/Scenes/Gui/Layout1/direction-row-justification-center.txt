@@ -1,0 +1,64 @@
+{
+  kind : 'Group',
+  name : 'Direction row. Justification center.',
+  layout : {
+    direction : 'row',
+    justification : 'center',
+    interspacing : 5,
+  },
+  backgroundColor : [0.5, 1, 1],
+  children: [
+    {
+      kind : 'Border',
+      borderWidth : 4,
+      child : {
+        kind : 'Border',
+        borderWidth : 16,
+        borderColor: [1, 1, 1],
+        child : {
+          kind : 'Text',
+          text : '1'
+        }
+      }
+    },
+    {
+      kind : 'Border',
+      borderWidth : 4,
+      child : {
+        kind : 'Border',
+        borderWidth : 16,
+        borderColor: [1, 1, 1],
+        child : {
+          kind : 'Text',
+          text : '2'
+        }
+      }
+    },
+    {
+      kind : 'Border',
+      borderWidth : 4,
+      child : {
+        kind : 'Border',
+        borderWidth : 16,
+        borderColor: [1, 1, 1],
+        child : {
+          kind : 'Text',
+          text : '3'
+        }
+      }
+    },
+    {
+      kind : 'Border',
+      borderWidth : 4,
+      child : {
+        kind : 'Border',
+        borderWidth : 16,
+        borderColor: [1, 1, 1],
+        child : {
+          kind : 'Text',
+          text : '4'
+        }
+      }
+    },
+  ]
+}

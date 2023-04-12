@@ -1,0 +1,18 @@
+@{title = "Cross product"}
+@{tableOfContents = "./_toc.ihtml"}
+@(>"./_header.html.t")
+
+  <h2>Cross product</h2>
+  The cross product \(\vec{v} \times \vec{w}\) of two vector \(\vec{v}\) and \(\vec{w}\)
+  in \(\mathbb{R}^3\) is defined as
+  \[
+  \vec{v} \times \vec{w}
+  =
+  \left[\begin{matrix}
+  v_y w_z - v_z w_y \\
+  v_z w_x - v_x w_z \\
+  v_x w_y - v_y w_x  
+  \end{matrix}\right]          
+  \]
+          
+@(>"./_footer.html.t")

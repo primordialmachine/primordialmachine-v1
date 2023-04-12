@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien\Mkx">
+      <UniqueIdentifier>{4a3fe68b-24fe-440d-acdb-42727147e289}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Mkx\Scribe">
+      <UniqueIdentifier>{c3896f5e-f1ad-4589-9c37-286ac3cb6d6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Quelldateien\Mkx">
+      <UniqueIdentifier>{9e45dda9-0dda-40b5-b733-b92e95f4ea53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Mkx\Scribe">
+      <UniqueIdentifier>{37d7996d-635b-4003-8538-9ee43638aa3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Mkx\Scribe\Common">
+      <UniqueIdentifier>{2bab4218-d69a-4dfd-b8a1-fdc5b3fd4a87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Mkx\Scribe\Common">
+      <UniqueIdentifier>{f42d1b01-60f9-45de-a0d9-506233bdaeeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Mkx\Scribe\Hll">
+      <UniqueIdentifier>{3ddcdd90-d082-499f-9d44-96c3a2950d39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Mkx\Scribe\Hll">
+      <UniqueIdentifier>{917895c4-6d4a-4010-bd02-f209216a6b7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Mkx\Scribe\Environment">
+      <UniqueIdentifier>{bb52662a-166d-4eef-8587-68d2fa159503}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Mkx\Scribe\Environment">
+      <UniqueIdentifier>{12c064bd-a6cd-4fdf-8b3d-8ca7d880bfe5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Mkx\Scribe\Common\Includes.h">
+      <Filter>Headerdateien\Mkx\Scribe\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Common\SymbolScanner.h">
+      <Filter>Headerdateien\Mkx\Scribe\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Common\Node.h">
+      <Filter>Headerdateien\Mkx\Scribe\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Environment.h">
+      <Filter>Headerdateien\Mkx\Scribe</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Environment\Environment.h">
+      <Filter>Headerdateien\Mkx\Scribe\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Environment\Variable.h">
+      <Filter>Headerdateien\Mkx\Scribe\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Common\Position.h">
+      <Filter>Headerdateien\Mkx\Scribe\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Hll\Node.h">
+      <Filter>Headerdateien\Mkx\Scribe\Hll</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Hll.h">
+      <Filter>Headerdateien\Mkx\Scribe</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Common.h">
+      <Filter>Headerdateien\Mkx\Scribe</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Common\Diagnostics.h">
+      <Filter>Headerdateien\Mkx\Scribe\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Hll\LiteralNode.h">
+      <Filter>Headerdateien\Mkx\Scribe\Hll</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Hll\NodeFactory.h">
+      <Filter>Headerdateien\Mkx\Scribe\Hll</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Hll\TokenType.h">
+      <Filter>Headerdateien\Mkx\Scribe\Hll</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Hll\NodeType.h">
+      <Filter>Headerdateien\Mkx\Scribe\Hll</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Environment\EnvironmentParser.h">
+      <Filter>Headerdateien\Mkx\Scribe\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Environment\EnvironmentScanner.h">
+      <Filter>Headerdateien\Mkx\Scribe\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Hll\Scanner.h">
+      <Filter>Headerdateien\Mkx\Scribe\Hll</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Mkx\Scribe\Hll\TokenType.i">
+      <Filter>Headerdateien\Mkx\Scribe\Hll</Filter>
+    </None>
+    <None Include="Mkx\Scribe\Hll\NodeType.i">
+      <Filter>Headerdateien\Mkx\Scribe\Hll</Filter>
+    </None>
+    <None Include="Mkx\Scribe\Hll\Parselets.Core.i">
+      <Filter>Headerdateien\Mkx\Scribe\Hll</Filter>
+    </None>
+    <None Include="Mkx\Scribe\Hll\Scanlets.Core.i">
+      <Filter>Headerdateien\Mkx\Scribe\Hll</Filter>
+    </None>
+    <None Include="Mkx\Scribe\Hll\Scanlets.scanInteger.i">
+      <Filter>Headerdateien\Mkx\Scribe\Hll</Filter>
+    </None>
+    <None Include="Mkx\Scribe\Hll\Scanlets.scanName.i">
+      <Filter>Headerdateien\Mkx\Scribe\Hll</Filter>
+    </None>
+    <None Include="Mkx\Scribe\Hll\Scanlets.scanNewLinesWhiteSpaces.i">
+      <Filter>Headerdateien\Mkx\Scribe\Hll</Filter>
+    </None>
+    <None Include="Mkx\Scribe\Hll\Scanlets.scanString.i">
+      <Filter>Headerdateien\Mkx\Scribe\Hll</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Mkx\Scribe\Common\Includes.c">
+      <Filter>Quelldateien\Mkx\Scribe\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Common\SymbolScanner.c">
+      <Filter>Quelldateien\Mkx\Scribe\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Common\Node.c">
+      <Filter>Quelldateien\Mkx\Scribe\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Environment\Environment.c">
+      <Filter>Quelldateien\Mkx\Scribe\Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Environment\Variable.c">
+      <Filter>Quelldateien\Mkx\Scribe\Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Common\Position.c">
+      <Filter>Quelldateien\Mkx\Scribe\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Hll\Node.c">
+      <Filter>Quelldateien\Mkx\Scribe\Hll</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Common\Diagnostics.c">
+      <Filter>Quelldateien\Mkx\Scribe\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Hll\LiteralNode.c">
+      <Filter>Quelldateien\Mkx\Scribe\Hll</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Hll\NodeFactory.c">
+      <Filter>Quelldateien\Mkx\Scribe\Hll</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Hll\TokenType.c">
+      <Filter>Quelldateien\Mkx\Scribe\Hll</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Hll\NodeType.c">
+      <Filter>Quelldateien\Mkx\Scribe\Hll</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Hll\Scanner.c">
+      <Filter>Quelldateien\Mkx\Scribe\Hll</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Environment\EnvironmentParser.c">
+      <Filter>Quelldateien\Mkx\Scribe\Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Environment\EnvironmentScanner.c">
+      <Filter>Quelldateien\Mkx\Scribe\Environment</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

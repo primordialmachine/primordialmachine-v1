@@ -1,0 +1,33 @@
+@{title = "Pointer Hash Map Library"}
+@{tableOfContents = "./ring1-library/_toc.ihtml"}
+@(>"./_header.html.t")
+  <section>
+    <h2>Overview</h2>
+    <p>The <em>Pointer Hash Map</em> library provides <em>a dynamically growing pointer hash maps.</em>.</p>
+
+    <p>The <em>Pointer Hash Map</em> library fulfils the <a href="@(baseurl)utility-libraries/introduction.html">module concept</a>
+    i.e. provides
+    the type <code class="inline">Mkx_PointerHashMap_ModuleHandle</code>,
+    the constant <code class="inline">Mkx_PointerHashMap_ModuleHandle_Invalid</code>, and
+    the functions <code class="inline">Mkx_PointerHashMap_ModuleHandle_acquire</code> and <code class="inline">Mkx_PointerHashMap_ModuleHandle_relinquish</code>.</p>
+
+    <p>The include file of the <em>PointerHashMap</em> module is <code class="inline">Mkx/PointerHashMap.h</code>, its library is <code class="inline">Mkx-PointerHashMap.lib</code>.</p>
+  </section>
+
+  <section>
+    <h2>Documentation</h2>
+    @(>"./ring1-library/pointerhashmap-library/Mkx_PointerHashMap.thtml")
+    @(>"./ring1-library/pointerhashmap-library/Mkx_PointerHashMap_add.thtml")
+    @(>"./ring1-library/pointerhashmap-library/Mkx_PointerHashMap_clear.thtml")
+    @(>"./ring1-library/pointerhashmap-library/Mkx_PointerHashMap_getSize.thtml")
+    @(>"./ring1-library/pointerhashmap-library/Mkx_PointerHashMap_initialize.thtml")
+    @(>"./ring1-library/pointerhashmap-library/Mkx_PointerHashMap_set.thtml")
+    @(>"./ring1-library/pointerhashmap-library/Mkx_PointerHashMap_uninitialize.thtml")
+  </section>
+
+  <section>
+    <h2>Sources and references</h2>
+    <p>The <a href="@(repositoryUrl)/src/master">reference repository</a> provides non-authoritive
+    <a href="@(repositoryUrl)/src/master/mkx/PointerHashMap/">sample implementations</a>.</p>
+  </section>
+@(>"./_footer.html.t")

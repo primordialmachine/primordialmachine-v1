@@ -1,0 +1,56 @@
+@{title = "Reference"}
+@{tableOfContents = "./reference/_toc.ihtml"}
+@(>"./_header.html.t")
+          <section>
+          <h2>Introduction</h2>
+          <p>The programming language C does not provide relevant reifications for structuring programs into modular pieces of which each can be understood, maintained, and consumed on its own.
+          For our pieces of software, it was decided to introduce the concept of modules to give our libraries and the programs building upon these libraries a modular structure.
+          A *module* provides a compile-time and run-time protocol for its consumption by a program consuming the module.
+          The foremost goal of these modules are that each of them can be understood, maintained, and consumed on its own.</p>
+
+          <h2>Names of modules</h2>
+          <p>A module has a <em>canonical name</em> which is of the form <code class="inline">[A-Z]([A-Z]|[a-z]|[0-9])*</code> and should follow <em>pascal case conventions</em>.
+          This canonical name gives raise to the naming the libraries, files, and folders of the module as well as the names of functions, types, and macros provided by the module.</p>
+
+          <h2>Consuming a module at compile-time</h2>
+          <p>A module always provides a single header file <code class="inline">Mkx/[name].h*</code> and a static library file <code class="inline">Mkx-[name].lib</code>.
+          To consume a module, you need to make sure both files are found by the compiler of the consuming program.
+          Next step is to include the header file where required and link the consuming program with the static library.</p>
+
+          <h2>Consuming a module at run-time</h2>
+          <p>A module provides declarations of functions, definitions of types, and macros - in short everything a normal C library offers.
+          There is a restriction though: Functions of a module may only be used while a module handle is held.
+          That is, before functions of a module are called, at least one module handle must be acquired by the process.
+          When all calls have terminated and the handle is no longer required the module handle must be relinquished.
+          You can acquire anothe module handle at any later point of time again.</p>
+
+          <p>Acquire a module handle for a module <code class="inline">[name]</code> by calling the function <code class="inline">Mkx_[name]_ModuleHandle Mkx_[name]_ModuleHandle_acquire()</code>
+          and relinquish the module handle by calling <code class="inline">void Mkx_[name]_ModuleHandle_relinquish(Mkx_[name]_ModuleHandle)</code>.
+          Both functions are provided by every module. Acquisition might fail: In that case <code class="inline">Mkx_[name]_ModuleHandle_acquire</code> returns <code class="inline">Mkx_[name]_ModuleHandle_Invalid</code>.
+          <code class="inline">Mkx_[name]_ModuleHandle_relinquish</code> silently ignores an invalid module handle.</p>
+
+          <h2>Example: The filesystem module</h2>
+          <p>The following example demonstrates how to acquire and relinquish a handle for the <code class="inline">FileSystem</code> module.</p>
+
+          <p><code class="block">
+            #incude "Mkx/FileSystem.h"<br/>
+            #include &lt;stdlib.h&gt;<br/>
+            <br/>
+            int<br/>
+            main<br/>
+            &nbsp;&nbsp;(<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;int argc,<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;char **argv<br/>
+            &nbsp;&nbsp;)<br/>
+            {<br/>
+            &nbsp;&nbsp;Mkx_FileSystem_ModuleHandle handle = Mkx_FileSystem_ModuleHandle_acquire();<br/>
+            &nbsp;&nbsp;if (!handle) /* Or equivalently: if (Mkx_FileSystem_ModuleHandle_Invalid == handle) */<br/>
+            &nbsp;&nbsp;{<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;return EXIT_FAILURE;<br/>
+            &nbsp;&nbsp;}<br/>
+            &nbsp;&nbsp;Mkx_FileSystem_ModuleHandle_relinquish(handle);<br/>
+            &nbsp;&nbsp;return EXIT_SUCCESS;<br/>
+            }
+          </code></p>
+          </section>
+@(>"./_footer.html.t")

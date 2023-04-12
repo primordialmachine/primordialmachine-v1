@@ -14,6 +14,7 @@ extern "C" {
 #include "Ring2/Test/Value.h"
 #include "Ring2/Test/Stack.h"
 #include "Ring2/Test/String.h"
+#include "Ring2/Test/Instructions.h"
 #include <stdlib.h>
 
 
@@ -46,6 +47,7 @@ main
       Ring2_Test_registerValueTests(tests);
       Ring2_Test_registerStackTests(tests);
       Ring2_Test_registerStringTests(tests);
+      Ring2_Test_registerInstructionTests(tests);
       Ring2_Tests_run(tests);
       Ring2_popJumpTarget();
       Ring2_Gc_unlock(tests);

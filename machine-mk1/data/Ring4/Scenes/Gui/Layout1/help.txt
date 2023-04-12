@@ -7,7 +7,7 @@
     borderColor: [1, 1, 1],
     child : {
       kind : 'Text',
-      text : 'F1: Switch between directions\n  "column",\n  "column reverse",\n  "row",\n  "row reverse".'
+      text : 'F1: Switch between directions\n  "column",\n  "column reverse",\n  "row",\n  "row reverse".\nF2: Switch between justifications\n  "start",\n  "center",\n  "end".'
     }
   }
 }

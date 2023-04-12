@@ -1,0 +1,12 @@
+@{title = "Reference: Transform line segments"}
+@{tableOfContents = "./reference/_toc.ihtml"}
+@(>"./_header.html.t")
+
+  <h2>Translate transformation of a line segment</h2>
+  <p>A line segment \( \left\{ \mathbf{p} + t \group{\mathbf{p} - \mathbf{q}} | t \in \mathbb{R}, 0 \leq t \leq 1 \right\} \) in \(\mathbb{R}^3\)
+  subjected to
+  a translate transformation represented by a vector \(\vec{t} \in \mathbb{R}^3\)
+  yields
+  a line segment \( \left\{ \mathbf{p} + \vec{t} + t \group{\mathbf{p} - \mathbf{q}} | t \in \mathbb{R}, 0 \leq t \leq 1 \right\} \).</p>
+
+@(>"./_footer.html.t")

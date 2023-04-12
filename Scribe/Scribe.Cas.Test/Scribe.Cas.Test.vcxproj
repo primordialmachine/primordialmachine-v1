@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Mkx\Scribe\Test\Cas\CasAdjugateTests.h" />
+    <ClInclude Include="Mkx\Scribe\Test\Cas\CasConstantFoldingTests.h" />
+    <ClInclude Include="Mkx\Scribe\Test\Cas\CasDeleteColumnTests.h" />
+    <ClInclude Include="Mkx\Scribe\Test\Cas\CasDeleteRowTests.h" />
+    <ClInclude Include="Mkx\Scribe\Test\Cas\CasDeterminantTests.h" />
+    <ClInclude Include="Mkx\Scribe\Test\Cas\CasMatrixAdditionTests.h" />
+    <ClInclude Include="Mkx\Scribe\Test\Cas\CasMatrixMultiplicationTests.h" />
+    <ClInclude Include="Mkx\Scribe\Test\Cas\CasMatrixSubtractionTests.h" />
+    <ClInclude Include="Mkx\Scribe\Test\Cas\CasTests.h" />
+    <ClInclude Include="Mkx\Scribe\Test\Cas\CasTransposeTests.h" />
+    <ClInclude Include="Mkx\Scribe\Test\Cas\CasCofactorMatrixTests.h" />
+    <ClInclude Include="Mkx\Scribe\Test\Cas\SafeExecute.h" />
+    <ClInclude Include="Mkx\Scribe\Test\SafeExecute.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Mkx\Scribe\Test\Cas\CasAdjugateTests.c" />
+    <ClCompile Include="Mkx\Scribe\Test\Cas\CasConstantFoldingTests.c" />
+    <ClCompile Include="Mkx\Scribe\Test\Cas\CasDeleteColumnTests.c" />
+    <ClCompile Include="Mkx\Scribe\Test\Cas\CasDeleteRowTests.c" />
+    <ClCompile Include="Mkx\Scribe\Test\Cas\CasDeterminantTests.c" />
+    <ClCompile Include="Mkx\Scribe\Test\Cas\CasMatrixAdditionTests.c" />
+    <ClCompile Include="Mkx\Scribe\Test\Cas\CasMatrixMultiplicationTests.c" />
+    <ClCompile Include="Mkx\Scribe\Test\Cas\CasMatrixSubtractionTests.c" />
+    <ClCompile Include="Mkx\Scribe\Test\Cas\CasTransposeTests.c" />
+    <ClCompile Include="Mkx\Scribe\Test\Cas\CasCofactorMatrixTests.c" />
+    <ClCompile Include="Mkx\Scribe\Test\Main.c" />
+    <ClCompile Include="Mkx\Scribe\Test\Cas\CasTests.c" />
+    <ClCompile Include="Mkx\Scribe\Test\Cas\SafeExecute.c" />
+    <ClCompile Include="Mkx\Scribe\Test\SafeExecute.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ring1\Ring1\Ring1.vcxproj">
+      <Project>{d7db575d-7eaa-47de-8999-44f4e1361d34}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ring2\Ring2.Library\Ring2.Library.vcxproj">
+      <Project>{793157ce-6f58-4c53-bf1e-15716a4ce6bf}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ring2\Ring2\Ring2.vcxproj">
+      <Project>{3ade4501-5d5c-4878-9632-f81c3de2429c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Interpreter.Library\Interpreter.Library.vcxproj">
+      <Project>{f09c839a-7636-4440-92fd-e3605a68ae2c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Scribe.Cas\Scribe.Cas.vcxproj">
+      <Project>{b9b03ee8-d460-439f-b409-693cdc0be5ac}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Scribe.Core\Scribe.Core.vcxproj">
+      <Project>{c766501f-cd5b-4240-8140-3ad65ac942b5}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{18F8F002-EFC4-4592-909E-4E1558E980C8}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>
+    </RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Scribe.Cas.Test</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\build\vs2019\Debug.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\build\vs2019\Release.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\build\vs2019\Debug.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\build\vs2019\Release.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>kernel32.lib;user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>_CONSOLE;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>kernel32.lib;user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>_CONSOLE;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>kernel32.lib;user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>kernel32.lib;user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

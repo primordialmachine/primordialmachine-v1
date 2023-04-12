@@ -1,0 +1,10 @@
+@{title = "Definition: Axis aligned box"}
+@{tableOfContents = "./_toc.ihtml"}
+@(>"./_header.html.t")
+
+  <h2>Definition of an axis aligned box</h2>
+  <p>An axis aligned box in \(\mathbb{R}^3\) is defined by a point vector \(\mathbf{min}\) and a point vector \(\mathbf{max}\) such that \(\forall_{i=1}^3 \mathbf{min}_i \leq \mathbf{max}_i\).
+  \(\mathbf{min}\) is called the minimal point of the axis aligned box, \(\mathbf{max}\) is called the maximal point of the axis aligned box.
+  The axis aligned box is the set of points \( \left\{ \mathbf{p} \in \mathbb{R}^3 \;|\; \forall_{i=1}^3 \mathbf{min}_i \leq \mathbf{p}_i \leq \mathbf{max}_i \right\} \).</p>	
+
+@(>"./_footer.html.t")

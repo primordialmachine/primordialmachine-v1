@@ -1,0 +1,34 @@
+@{title = "Ring 1 :: Pointer List Library"}
+@{tableOfContents = "./api/ring1-library/_toc.ihtml"}
+@(>"./_header.html.t")
+
+<h3 id="mkx_pointerlist_insertat">Mkx_PointerList_insertAt</h3>
+<p>Insert a pointer at the specified position in a pointer list.</p>
+<p><code class="block">
+int<br/>
+Mkx_PointerList_insertAt<br/>
+&nbsp;&nbsp;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mkx_PointerList *pointerList,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;int64_t index,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;void *element<br/>
+&nbsp;&nbsp;)
+</code></p>
+
+<p>
+This function inserts a pointer at the specified position in a pointer list.
+If this function succeeds, then all of the following conditions apply:</p>
+<ul>
+  <li>The pointer is inserted at the position denoted by the index <code class="inline">index</code>.</li>
+  <li>If an "added" callback is associated with the pointer list, then this function is invoked invoked with the pointer as its first argument.</li>
+</ul>
+
+<h4>Parameter variables</h4>
+<dl>
+  <dt><code class="inline">pointerList</code></dt><dd>A pointer to the pointer list.</dd>
+  <dt><code class="inline">index</code></dt><dd>The index denoting the position of the insertion.
+  Must be within the bounds of <code class="inline">[0,n]</code> where <code class="inline">n</code> is the size of the pointer list.</dd>
+  <dt><code class="inline">element</code></dt><dd>The pointer to insert.</dd>
+</dl>
+
+<h4>Return value</h4>
+<p><code class="inline">0</code> on success, a non-zero value on failure.</p>

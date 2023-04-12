@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{fa290146-7e1c-418a-a969-eba406f821fd}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{5c391820-e429-4b49-86a5-98fa9fbd06c6}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien\Mkx">
+      <UniqueIdentifier>{f5eb5bad-4795-42a6-a9ef-2d0f70f7285c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Mkx">
+      <UniqueIdentifier>{def0fd58-086d-40e9-babd-9f560573bc29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Mkx\Scribe">
+      <UniqueIdentifier>{4c9468b9-fe4f-4b9c-a4b5-34119c44fd6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Mkx\Scribe">
+      <UniqueIdentifier>{4453f361-c979-4aa9-b2f8-919c37a5e167}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Mkx\Scribe\Main.c">
+      <Filter>Quelldateien\Mkx\Scribe</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\SafeExecute.c">
+      <Filter>Quelldateien\Mkx\Scribe</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Mkx\Scribe\SafeExecute.h">
+      <Filter>Headerdateien\Mkx\Scribe</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

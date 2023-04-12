@@ -65,8 +65,8 @@ struct Scenes_Graphics2_Rectangles1_Class {
 
 struct Scenes_Graphics2_Rectangles1 {
   Scene parent;
-  // The 2D context.
-  Ring3_Graphics2_Context* context2;
+  // The graphics 2 context.
+  Ring3_Graphics2_Context * graphics2Context;
   // The first rectangle.
   Ring3_Graphics2_Rectangle* rectangle1;
   // The second rectangle.
@@ -79,8 +79,8 @@ Scenes_Graphics2_Rectangles1_visit
     Scenes_Graphics2_Rectangles1* self
   )
 {
-  if (self->context2) {
-    Ring2_Gc_visit(Ring2_Gc_get(), self->context2);
+  if (self->graphics2Context) {
+    Ring2_Gc_visit(Ring2_Gc_get(), self->graphics2Context);
   }
   if (self->rectangle1) {
     Ring2_Gc_visit(Ring2_Gc_get(), self->rectangle1);
@@ -119,7 +119,7 @@ Scenes_Graphics2_Rectangles1_destruct
 {
   self->rectangle1 = NULL;
   self->rectangle2 = NULL;
-  self->context2 = NULL;
+  self->graphics2Context = NULL;
 }
 
 static void
@@ -131,7 +131,7 @@ Scenes_Graphics2_Rectangles1_onCanvasSizeChanged
 {
   Ring3_VisualsContext* visualsContext = Scene_getVisualsContext((Scene*)self);
   // Set the 2D context's target size.
-  Ring3_Graphics2_Context_setTargetSize(self->context2, event->width, event->height);
+  Ring3_Graphics2_Context_setTargetSize(self->graphics2Context, event->width, event->height);
   // Set the viewport rectangle.
   Ring3_VisualsContext_setViewportRectangle(visualsContext, 0, 0, event->width, event->height);
 
@@ -171,8 +171,8 @@ Scenes_Graphics2_Rectangles1_onUpdate
   // Clear color buffer.
   Ring3_VisualsContext_clearColorBuffer(visualsContext);
   // Render the rectangles.
-  Ring3_Graphics2_Shape_render((Ring3_Graphics2_Shape*)self->rectangle1, self->context2);
-  Ring3_Graphics2_Shape_render((Ring3_Graphics2_Shape*)self->rectangle2, self->context2);
+  Ring3_Graphics2_Shape_render((Ring3_Graphics2_Shape*)self->rectangle1, self->graphics2Context);
+  Ring3_Graphics2_Shape_render((Ring3_Graphics2_Shape*)self->rectangle2, self->graphics2Context);
 }
 
 static void
@@ -183,7 +183,7 @@ Scenes_Graphics2_Rectangles1_onShutdown
 {
   self->rectangle2 = NULL;
   self->rectangle1 = NULL;
-  self->context2 = NULL;
+  self->graphics2Context = NULL;
 }
 
 static void
@@ -196,7 +196,7 @@ Scenes_Graphics2_Rectangles1_onStartup
   Ring3_ImagesContext* imagesContext = Scene_getImagesContext((Scene*)self);
   Ring3_FontsContext* fontsContext = Scene_getFontsContext((Scene*)self);
   // Create the 2D context.
-  self->context2 = Ring3_Graphics2_Context_create(visualsContext, imagesContext, fontsContext);
+  self->graphics2Context = Ring3_Graphics2_Context_create(visualsContext, imagesContext, fontsContext);
   // Create the rectangles.
   self->rectangle1 = Ring3_Graphics2_Rectangle_create();
   self->rectangle2 = Ring3_Graphics2_Rectangle_create();

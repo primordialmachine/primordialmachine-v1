@@ -1,0 +1,17 @@
+@{title = "Reference: Transform axis aligned boxes"}
+@{tableOfContents = "./reference/_toc.ihtml"}
+@(>"./_header.html.t")
+
+  <h2>Uniform scale transformation of an axis aligned box</h2>
+  <p>An axis aligned box \((Min,Max)\) in \(\mathbb{R}^3\) subjected to a uniform scale transformation represented by a scalar \(s \in \mathbb{R}\)
+  yields an axis aligned box \((Min',Max')\) where \(Min'_i = \min\{ s Min_i, s Max_i \}\) and \(Max'_i = \max\{ s Min_i, s Max_i \}\).</p>
+
+  <h2>Scale transformation of an axis aligned box</h2>
+  <p>An axis aligned box \((Min,Max)\) in \(\mathbb{R}^3\) subjected to a scale transformation represented by a vector \(\vec{s} \in \mathbb{R}^3\)
+  yields an axis aligned box \((Min',Max')\) where \(Min'_i = \min\{ s_i Min_i, s_i Max_i \}\) and \(Max'_i = \max\{ s_i Min_i, s_i Max_i \}\).</p>
+
+  <h2>Translate transformation of an axis aligned box</h2>
+  <p>An axis aligned box \((Min,Max)\) in \(\mathbb{R}^3\) subjected to a translate transformation represented by a vector \(\vec{t} \in \mathbb{R}^3\)
+  yields an axis aligned box \((Min',Max')\) where \(Min' = Min + t\) and \(Max' = Max + t\).</p>
+
+@(>"./_footer.html.t")

@@ -15,11 +15,35 @@
     <Filter Include="Quelldateien\Ring2\Test">
       <UniqueIdentifier>{1b69d6d8-2432-4d7d-9aaa-d8f6beaad757}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Quelldateien\Ring2\Test\Instructions">
+      <UniqueIdentifier>{94c05a22-eee6-4691-9931-6efcec144260}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring2\Test\Instructions\Relational">
+      <UniqueIdentifier>{f3c9dedb-6410-41ac-8b3b-3914003f9496}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring2\Test\Stack">
+      <UniqueIdentifier>{72a9b44c-1392-4c87-98af-a2099e32788a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring2\Test\String">
+      <UniqueIdentifier>{d391c2d4-879e-40d7-a7a6-7161934cb047}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Headerdateien\Ring2">
       <UniqueIdentifier>{312fe4ae-00d6-4ed1-ba26-5826d91b9aea}</UniqueIdentifier>
     </Filter>
     <Filter Include="Headerdateien\Ring2\Test">
-      <UniqueIdentifier>{d80d6b21-5f51-499b-983a-a85f6bd682cc}</UniqueIdentifier>
+      <UniqueIdentifier>{da9b2f4d-b49a-45bd-acf3-2bae5705aef4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring2\Test\Instructions">
+      <UniqueIdentifier>{0e01923c-4921-47b8-8302-cd6aa5df542e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring2\Test\Instructions\Relational">
+      <UniqueIdentifier>{8076617c-b4b1-4369-a8ca-86b0b1fdbb00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring2\Test\Stack">
+      <UniqueIdentifier>{c71b2398-7e97-4355-b2de-d2f89e49b0ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring2\Test\String">
+      <UniqueIdentifier>{47534f76-d778-4158-bf31-1d35c252dae7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Headerdateien\Ring2\Test\Fixtures">
       <UniqueIdentifier>{bb396e57-2fff-40f7-9676-1befa97f4e6b}</UniqueIdentifier>
@@ -41,6 +65,69 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Ring2\Test\Stack\pushArray.c">
+      <Filter>Quelldateien\Ring2\Test\Stack</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\Stack\pushBoolean.c">
+      <Filter>Quelldateien\Ring2\Test\Stack</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\Stack\pushInteger.c">
+      <Filter>Quelldateien\Ring2\Test\Stack</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\Stack\pushVoid.c">
+      <Filter>Quelldateien\Ring2\Test\Stack</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\Stack\pushString.c">
+      <Filter>Quelldateien\Ring2\Test\Stack</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\Stack\pushReal.c">
+      <Filter>Quelldateien\Ring2\Test\Stack</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\Instructions\Arithmetic.c">
+      <Filter>Quelldateien\Ring2\Test\Instructions</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\Instructions\Logical.c">
+      <Filter>Quelldateien\Ring2\Test\Instructions</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\Instructions\Relational.c">
+      <Filter>Quelldateien\Ring2\Test\Instructions</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\Instructions\Relational\EqualTo.c">
+      <Filter>Quelldateien\Ring2\Test\Instructions\Relational</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\Instructions\Relational\NotEqualTo.c">
+      <Filter>Quelldateien\Ring2\Test\Instructions\Relational</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\Instructions\Relational\GreaterThan.c">
+      <Filter>Quelldateien\Ring2\Test\Instructions\Relational</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\Instructions\Relational\LowerThan.c">
+      <Filter>Quelldateien\Ring2\Test\Instructions\Relational</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\Instructions\Relational\GreaterThanOrEqualTo.c">
+      <Filter>Quelldateien\Ring2\Test\Instructions\Relational</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\Instructions\Relational\LowerThanOrEqualTo.c">
+      <Filter>Quelldateien\Ring2\Test\Instructions\Relational</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\String\concatenate.c">
+      <Filter>Quelldateien\Ring2\Test\String</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\String\firstOccurrenceOf.c">
+      <Filter>Quelldateien\Ring2\Test\String</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\String.c">
+      <Filter>Quelldateien\Ring2\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\Instructions.c">
+      <Filter>Quelldateien\Ring2\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\Stack.c">
+      <Filter>Quelldateien\Ring2\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Test\Common.c">
+      <Filter>Quelldateien\Ring2\Test</Filter>
+    </ClCompile>
     <ClCompile Include="Ring2\Test\Main.c">
       <Filter>Quelldateien\Ring2\Test</Filter>
     </ClCompile>
@@ -88,6 +175,69 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ring2\Test\Stack\pushVoid.h">
+      <Filter>Headerdateien\Ring2\Test\Stack</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\Stack\pushInteger.h">
+      <Filter>Headerdateien\Ring2\Test\Stack</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\Stack\pushBoolean.h">
+      <Filter>Headerdateien\Ring2\Test\Stack</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\Stack\pushArray.h">
+      <Filter>Headerdateien\Ring2\Test\Stack</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\Stack\pushString.h">
+      <Filter>Headerdateien\Ring2\Test\Stack</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\Stack\pushReal.h">
+      <Filter>Headerdateien\Ring2\Test\Stack</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\Instructions\Arithmetic.h">
+      <Filter>Headerdateien\Ring2\Test\Instructions</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\Instructions\Logical.h">
+      <Filter>Headerdateien\Ring2\Test\Instructions</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\Instructions\Relational.h">
+      <Filter>Headerdateien\Ring2\Test\Instructions</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\Instructions\Relational\EqualTo.h">
+      <Filter>Headerdateien\Ring2\Test\Instructions\Relational</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\Instructions\Relational\NotEqualTo.h">
+      <Filter>Headerdateien\Ring2\Test\Instructions\Relational</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\Instructions\Relational\GreaterThan.h">
+      <Filter>Headerdateien\Ring2\Test\Instructions\Relational</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\Instructions\Relational\LowerThan.h">
+      <Filter>Headerdateien\Ring2\Test\Instructions\Relational</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\Instructions\Relational\GreaterThanOrEqualTo.h">
+      <Filter>Headerdateien\Ring2\Test\Instructions\Relational</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\Instructions\Relational\LowerThanOrEqualTo.h">
+      <Filter>Headerdateien\Ring2\Test\Instructions\Relational</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\String\concatenate.h">
+      <Filter>Headerdateien\Ring2\Test\String</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\String\firstOccurrenceOf.h">
+      <Filter>Headerdateien\Ring2\Test\String</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\Instructions.h">
+      <Filter>Headerdateien\Ring2\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\Stack.h">
+      <Filter>Headerdateien\Ring2\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\String.h">
+      <Filter>Headerdateien\Ring2\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Test\Common.h">
+      <Filter>Headerdateien\Ring2\Test</Filter>
+    </ClInclude>
     <ClInclude Include="Ring2\Test\Value.h">
       <Filter>Headerdateien\Ring2\Test</Filter>
     </ClInclude>

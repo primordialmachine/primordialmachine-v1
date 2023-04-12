@@ -1,6 +1,6 @@
 {
   kind : 'Group',
-  name : 'Direction column. Justification start.',
+  name : 'MyDisplayGroup',
   layout : {
     direction : 'column',
     justification : 'start',

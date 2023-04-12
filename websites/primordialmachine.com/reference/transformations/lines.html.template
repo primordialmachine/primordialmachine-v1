@@ -1,0 +1,12 @@
+@{title = "Reference: Transform lines"}
+@{tableOfContents = "./reference/_toc.ihtml"}
+@(>"./_header.html.t")
+
+  <h2>Translate transformation of a line</h2>
+  <p>A line \( \left\{ \mathbf{p} + t \group{\mathbf{p} - \mathbf{q}} | t \in \mathbb{R} \right\} \)
+  subjected to
+  a translate transformation represented by a vector \(\vec{t} \in \mathbb{R}^3\)
+  yields
+  a line \( \left\{ \mathbf{p} + \vec{t} + t \group{\mathbf{p} - \mathbf{q}} | t \in \mathbb{R} \right\} \).</p>
+
+@(>"./_footer.html.t")

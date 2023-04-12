@@ -1,0 +1,11 @@
+<h2 id="or"><code class="inline">or</code></h2>
+<p>Compute the logical or of two <code class="inline">Boolean</code> values.</p>
+
+<p><code class="block">
+Σ.stack<sub>0</sub> = s ○ [x, y]<br/>
+Σ.stack<sub>1</sub> = s ○ [x <span class="meta">∨</span> y]<br/>
+Σ.instructionIndex<sub>1</sub> = Σ.instructionIndex<sub>0</sub> + 1
+</code></p>
+<p>for some <code class="inline">s &isin; Stack</code> and some values <code class="inline">x, y &isin; Boolean</code>.</p>
+
+<p>The usual rules for invalid instructions apply.</p>

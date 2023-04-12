@@ -29,6 +29,14 @@
     <ClInclude Include="Ring2\Gc\SweepStatistics.h" />
     <ClInclude Include="Ring2\Gc\Tag.h" />
     <ClInclude Include="Ring2\Gc\Type.h" />
+    <ClInclude Include="Ring2\Instructions.h" />
+    <ClInclude Include="Ring2\Instructions\Affirmate.h" />
+    <ClInclude Include="Ring2\Instructions\Arithmetic.h" />
+    <ClInclude Include="Ring2\Instructions\Concatenate.h" />
+    <ClInclude Include="Ring2\Instructions\GetOps.h" />
+    <ClInclude Include="Ring2\Instructions\Logical.h" />
+    <ClInclude Include="Ring2\Instructions\Negate.h" />
+    <ClInclude Include="Ring2\Instructions\Relational.h" />
     <ClInclude Include="Ring2\JumpTarget.h" />
     <ClInclude Include="Ring2\JumpTarget\JumpTarget1.h" />
     <ClInclude Include="Ring2\Log.h" />
@@ -75,6 +83,13 @@
     <ClCompile Include="Ring2\Gc\SweepStatistics.c" />
     <ClCompile Include="Ring2\Gc\Tag.c" />
     <ClCompile Include="Ring2\Gc\Type.c" />
+    <ClCompile Include="Ring2\Instructions.c" />
+    <ClCompile Include="Ring2\Instructions\Affirmate.c" />
+    <ClCompile Include="Ring2\Instructions\Arithmetic.c" />
+    <ClCompile Include="Ring2\Instructions\Concatenate.c" />
+    <ClCompile Include="Ring2\Instructions\Logical.c" />
+    <ClCompile Include="Ring2\Instructions\Negate.c" />
+    <ClCompile Include="Ring2\Instructions\Relational.c" />
     <ClCompile Include="Ring2\JumpTarget.c" />
     <ClCompile Include="Ring2\JumpTarget\JumpTarget1.c" />
     <ClCompile Include="Ring2\Log.c" />
@@ -126,7 +141,6 @@
     <RootNamespace>
     </RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Ring2</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

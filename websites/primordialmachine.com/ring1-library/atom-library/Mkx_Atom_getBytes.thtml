@@ -1,0 +1,20 @@
+<h3 id="mkx_atom_getbytes">Mkx_Atom_getBytes</h3>
+<p>Get the Bytes of an atom.</p>
+<p><code class="block">
+int<br/>
+Mkx_Atom_getBytes<br/>
+&nbsp;&nbsp;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const char **result,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mkx_Atom *atom<br/>
+&nbsp;&nbsp;)
+</code></p>
+
+<p>
+This function gets the Bytes of an atom.
+</p>
+
+<h4>Parameter variables</h4>
+<dl>
+  <dt><code class="inline">result</code></dt><dd>A pointer to a <code>const char *</code> variable.</dd>
+  <dt><code class="inline">atom</code></dt><dd>A pointer to the pointer deque.</dd>
+</dl>

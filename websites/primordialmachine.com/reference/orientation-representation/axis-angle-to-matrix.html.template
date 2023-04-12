@@ -1,0 +1,32 @@
+@{title = "Axis angle to matrix"}
+@{tableOfContents = "./reference/_toc.ihtml"}
+@(>"./_header.html.t")
+
+  <h2>Axis angle to matrix</h2>
+  <p>An <a href="@(baseurl)/reference/orientation-representation/axis-angle">axis angle</a> \(\left(\hat{r},\alpha\right)\) represents a rotation by
+  an angle \(\alpha\) around an axis \(\hat{r}\). The matrix representing the same transformation is given by a rotation matrix
+  \[
+  R =
+  \left[\begin{matrix}
+  t \hat{r}_x^2         + c           & t \hat{r}_x \hat{r}_y - s \hat{r}_z & t \hat{r}_x \hat{r}_z + s \hat{r}_y    \\
+  t \hat{r}_x \hat{r}_y + s \hat{r}_z & t \hat{r}_y^2         + c           & t \hat{r}_y \hat{r}_z - s \hat{r}_x    \\
+  t \hat{r}_x \hat{r}_z - s \hat{r}_y & t \hat{r}_y \hat{r}_z + s \hat{r}_x & t \hat{r}_z^2   + c
+  \end{matrix}\right]
+  \]
+  with \(c = \cos\group{\alpha}\), \(s = \sin\group{\alpha}\), and \(t = 1 - \cos\group{\alpha}\).
+
+  <h3>Proof</h3>
+  An <a href="@(baseurl)/reference/orientation-representation/axis-angle">axis angle</a> \(\left(\hat{r},\alpha\right)\) represents a rotation by
+  an angle \(\alpha\) around an axis \(\hat{r}\). Furthermore, we have an <a href="@(baseurl)/reference/transformations/rotation-around-an-arbitrary-axis/explicit-matrix-representation">
+  explicit matrix representation</a> for such transformations. Substituting the \(\alpha\) and \(\hat{r}\) into that matrix gives
+  \[
+  R =
+  \left[\begin{matrix}
+  t \hat{r}_x^2         + c           & t \hat{r}_x \hat{r}_y - s \hat{r}_z & t \hat{r}_x \hat{r}_z + s \hat{r}_y    \\
+  t \hat{r}_x \hat{r}_y + s \hat{r}_z & t \hat{r}_y^2         + c           & t \hat{r}_y \hat{r}_z - s \hat{r}_x    \\
+  t \hat{r}_x \hat{r}_z - s \hat{r}_y & t \hat{r}_y \hat{r}_z + s \hat{r}_x & t \hat{r}_z^2   + c
+  \end{matrix}\right] 
+  \]
+  with \(c = \cos\group{\alpha}\), \(s = \sin\group{\alpha}\), and \(t = 1 - \cos\group{\alpha}\).
+
+@(>"./_footer.html.t")

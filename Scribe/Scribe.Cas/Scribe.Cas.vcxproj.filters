@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien\Mkx">
+      <UniqueIdentifier>{4a3fe68b-24fe-440d-acdb-42727147e289}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Mkx\Scribe">
+      <UniqueIdentifier>{c3896f5e-f1ad-4589-9c37-286ac3cb6d6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Quelldateien\Mkx">
+      <UniqueIdentifier>{9e45dda9-0dda-40b5-b733-b92e95f4ea53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Mkx\Scribe">
+      <UniqueIdentifier>{37d7996d-635b-4003-8538-9ee43638aa3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Mkx\Scribe\Cas">
+      <UniqueIdentifier>{c9e4fe00-6031-4885-9286-3f1a9becb949}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Mkx\Scribe\Cas">
+      <UniqueIdentifier>{c62672d4-4981-443f-a41f-f3d227ae4622}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Mkx\Scribe\Cas\Extensions">
+      <UniqueIdentifier>{c4695c7c-3803-4f5d-8450-75060b8025ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Mkx\Scribe\Cas\Extensions">
+      <UniqueIdentifier>{8d906378-d64d-46ba-bfff-e594ad80206d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Mkx\Scribe\Cas\Nodes">
+      <UniqueIdentifier>{d79ff7cf-7a33-4e11-8f14-99fbf9e84160}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Mkx\Scribe\Cas\Nodes">
+      <UniqueIdentifier>{ea72c7ef-4b26-4226-ab63-2a85718a49c5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Mkx\Scribe\Cas\EmissionContext.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\EvaluationContext.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\EvaluationVisitor.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Extensions.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Node.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\NodeKind.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Tool.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Extensions\CreateIdentityMatrix.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Extensions\CreateMatrix1d.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Extensions\CreateMatrix2d.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Extensions\CreateVector.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas\Extensions</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\AdjugateNode.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\BinaryMinusNode.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\BinaryPlusNode.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\BinarySlashNode.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\BinaryStarNode.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\CofactorMatrixNode.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\CofactorNode.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\DeleteColumnNode.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\DeleteRowNode.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\DeterminantNode.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\DotProductNode.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\GroupNode.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\Index1dNode.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\Index2dNode.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\MatrixNode.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\MinorNode.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\OneNode.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\OutputNode.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\TransposeNode.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\UnaryMinusNode.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\UnaryPlusNode.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\VariableNode.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\VectorNode.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\ZeroNode.c">
+      <Filter>Quelldateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Mkx\Scribe\Cas\EmissionContext.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\EvaluationContext.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\EvaluationVisitor.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Extensions.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Node.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\NodeKind.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Tool.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Extensions\CreateIdentityMatrix.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Extensions\CreateMatrix1d.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Extensions\CreateMatrix2d.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Extensions\CreateVector.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas\Extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\AdjugateNode.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\BinaryMinusNode.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\BinaryPlusNode.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\BinarySlashNode.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\BinaryStarNode.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\CofactorMatrixNode.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\CofactorNode.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\DeleteColumnNode.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\DeleteRowNode.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\DeterminantNode.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\DotProductNode.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\GroupNode.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\Index1dNode.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\Index2dNode.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\MatrixNode.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\MinorNode.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\OneNode.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\OutputNode.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\TransposeNode.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\UnaryMinusNode.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\UnaryPlusNode.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\VariableNode.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\VectorNode.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\ZeroNode.h">
+      <Filter>Headerdateien\Mkx\Scribe\Cas\Nodes</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Mkx\Scribe\Cas\NodeKind.i">
+      <Filter>Headerdateien\Mkx\Scribe\Cas</Filter>
+    </None>
+  </ItemGroup>
+</Project>

@@ -45,8 +45,20 @@
     <Filter Include="Headerdateien\Ring1\Memory\Windows">
       <UniqueIdentifier>{c8f4955e-f467-4f28-a113-f99aafb5f0a5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring1\Object">
+      <UniqueIdentifier>{ef461f48-1a4e-48ff-ace3-d4dcbdfb47d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\Object\Utilities">
+      <UniqueIdentifier>{e972a4c3-ea50-4551-84ce-283c849b209e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\Log">
+      <UniqueIdentifier>{c9d5cfbe-8910-4536-912c-60ec87351296}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Headerdateien\Ring1\Test">
       <UniqueIdentifier>{354fd9aa-8357-4157-80dc-de4cb74f6aa8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Ring1\CommandLine">
+      <UniqueIdentifier>{f964f894-5266-4079-b081-a90bf5db2b67}</UniqueIdentifier>
     </Filter>
     <Filter Include="Quelldateien\Ring1">
       <UniqueIdentifier>{cb8e3f96-fe83-49b6-9904-e9ebb2fa5114}</UniqueIdentifier>
@@ -114,8 +126,20 @@
     <Filter Include="Quelldateien\Ring1\Memory\Windows">
       <UniqueIdentifier>{ea8e54c4-3bbc-4415-963b-e0a47599d9cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Quelldateien\Ring1\Object">
+      <UniqueIdentifier>{cfd66fec-7881-4d66-a8b9-6d729bfb041f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Object\Utilities">
+      <UniqueIdentifier>{f9b70e73-a0ef-454e-8590-827017cbe136}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\Log">
+      <UniqueIdentifier>{3c0d419c-af5d-4878-9d8c-31178635b4f6}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Quelldateien\Ring1\Test">
       <UniqueIdentifier>{a75f57ae-7ec2-4320-99d7-edcea69258c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring1\CommandLine">
+      <UniqueIdentifier>{6959d46e-cb5a-4c67-8fa8-c3f767a951e4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Headerdateien\Ring1\Intrinsic\Add\X86">
       <UniqueIdentifier>{b81f66de-2d7a-4aac-9436-ac4d61808672}</UniqueIdentifier>
@@ -359,6 +383,15 @@
     <ClInclude Include="Ring1\Intrinsic\Concurrency\ReadWriteLock.h">
       <Filter>Headerdateien\Ring1\Intrinsic\Concurrency</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Environment.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\FloatingPointTypes.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\ByteOrder.h">
+      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    </ClInclude>
     <ClInclude Include="Ring1\Module\Configuration.h">
       <Filter>Headerdateien\Ring1\Module</Filter>
     </ClInclude>
@@ -380,8 +413,134 @@
     <ClInclude Include="Ring1\Memory\Windows\getPageSize.h">
       <Filter>Headerdateien\Ring1\Memory\Windows</Filter>
     </ClInclude>
+    <ClInclude Include="Mkx\Object\ArrayType.h">
+      <Filter>Headerdateien\Ring1\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Object\ArrayType.internal.h">
+      <Filter>Headerdateien\Ring1\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Object\BoxedValue.h">
+      <Filter>Headerdateien\Ring1\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Object\ClassType.h">
+      <Filter>Headerdateien\Ring1\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Object\ClassType.internal.h">
+      <Filter>Headerdateien\Ring1\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Object\Dispatch.h">
+      <Filter>Headerdateien\Ring1\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Object\EnumerationType.h">
+      <Filter>Headerdateien\Ring1\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Object\EnumerationType.internal.h">
+      <Filter>Headerdateien\Ring1\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Object\Interface.h">
+      <Filter>Headerdateien\Ring1\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Object\Interface.internal.h">
+      <Filter>Headerdateien\Ring1\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Object\InterfaceImplementation.h">
+      <Filter>Headerdateien\Ring1\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Object\InterfaceType.h">
+      <Filter>Headerdateien\Ring1\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Object\InterfaceType.internal.h">
+      <Filter>Headerdateien\Ring1\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Object\MemoryManager.h">
+      <Filter>Headerdateien\Ring1\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Object\Object.h">
+      <Filter>Headerdateien\Ring1\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Object\ScalarType.h">
+      <Filter>Headerdateien\Ring1\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Object\ScalarType.internal.h">
+      <Filter>Headerdateien\Ring1\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Object\ScalarTypes.h">
+      <Filter>Headerdateien\Ring1\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Object\Type.h">
+      <Filter>Headerdateien\Ring1\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Object\Type.internal.h">
+      <Filter>Headerdateien\Ring1\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Object\TypeDeclaration.h">
+      <Filter>Headerdateien\Ring1\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Object\TypeDefinition.h">
+      <Filter>Headerdateien\Ring1\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Object\Types.h">
+      <Filter>Headerdateien\Ring1\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Object\Types.internal.h">
+      <Filter>Headerdateien\Ring1\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Object.h">
+      <Filter>Headerdateien\Ring1</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Object\Utilities\error.h">
+      <Filter>Headerdateien\Ring1\Object\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Log\Buffer.h">
+      <Filter>Headerdateien\Ring1\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Log\Configuration.h">
+      <Filter>Headerdateien\Ring1\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Log\ConsoleLogger.h">
+      <Filter>Headerdateien\Ring1\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Log\DefaultConsoleLogger.h">
+      <Filter>Headerdateien\Ring1\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Log\Event.h">
+      <Filter>Headerdateien\Ring1\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Log\Logger.h">
+      <Filter>Headerdateien\Ring1\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Log\Loggers.h">
+      <Filter>Headerdateien\Ring1\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Log.h">
+      <Filter>Headerdateien\Ring1</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Closure.h">
+      <Filter>Headerdateien\Ring1</Filter>
+    </ClInclude>
     <ClInclude Include="Ring1\Test.h">
       <Filter>Headerdateien\Ring1</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\CommandLine.h">
+      <Filter>Headerdateien\Ring1</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\CommandLine\Argument.h">
+      <Filter>Headerdateien\Ring1\CommandLine</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\CommandLine\ArgumentList.h">
+      <Filter>Headerdateien\Ring1\CommandLine</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\CommandLine\Configuration.h">
+      <Filter>Headerdateien\Ring1\CommandLine</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\CommandLine\Parser.h">
+      <Filter>Headerdateien\Ring1\CommandLine</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Object\WeakReference.h">
+      <Filter>Headerdateien\Ring1\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Mkx\Object\WeakReference.Module.h">
+      <Filter>Headerdateien\Ring1\Object</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\Result.h">
       <Filter>Headerdateien\Ring1</Filter>
@@ -446,10 +605,10 @@
     <ClInclude Include="Ring1\Intrinsic\countLeadingZeroes.h">
       <Filter>Headerdateien\Ring1\Intrinsic</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\Environment.h">
-      <Filter>Headerdateien\Ring1\Intrinsic</Filter>
+    <ClInclude Include="Ring1\Intrinsic\Multiply\multiply.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Multiply</Filter>
     </ClInclude>
-    <ClInclude Include="Ring1\Intrinsic\FloatingPointTypes.h">
+    <ClInclude Include="Ring1\Intrinsic\ThreadLocal.h">
       <Filter>Headerdateien\Ring1\Intrinsic</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\Intrinsic\isPowerOfTwo.h">
@@ -698,11 +857,17 @@
     <ClInclude Include="Ring1\Conversion\stringToInt.h">
       <Filter>Headerdateien\Ring1\Conversion</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\Conversion\_Buffer.h">
+      <Filter>Headerdateien\Ring1\Conversion</Filter>
+    </ClInclude>
     <ClInclude Include="Ring1\Conversion\stringToUint.h">
       <Filter>Headerdateien\Ring1\Conversion</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\Conversion\_Parser.h">
       <Filter>Headerdateien\Ring1\Conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Assertions.h">
+      <Filter>Headerdateien\Ring1</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\FileSystem\ExistingFilePolicy.h">
       <Filter>Headerdateien\Ring1\FileSystem</Filter>
@@ -799,6 +964,15 @@
     </ClInclude>
     <ClInclude Include="Ring1\Module\Handle.h">
       <Filter>Headerdateien\Ring1\Module</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Concurrency\GetCurrentThreadId.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Concurrency</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Concurrency\Mutex.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Concurrency</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Concurrency\ThreadId.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Concurrency</Filter>
     </ClInclude>
     <ClInclude Include="Ring1\Collections\InlineArray.h">
       <Filter>Headerdateien\Ring1\Collections</Filter>
@@ -902,6 +1076,9 @@
     <ClInclude Include="Ring1\FileSystem\Path\parse.h">
       <Filter>Headerdateien\Ring1\FileSystem\Path</Filter>
     </ClInclude>
+    <ClInclude Include="Ring1\Intrinsic\Concurrency\ThreadLocal.h">
+      <Filter>Headerdateien\Ring1\Intrinsic\Concurrency</Filter>
+    </ClInclude>
     <ClInclude Include="Ring1\FileSystem\Path\unparse.h">
       <Filter>Headerdateien\Ring1\FileSystem\Path</Filter>
     </ClInclude>
@@ -982,8 +1159,113 @@
     <ClCompile Include="Ring1\Intrinsic\Concurrency\ReadWriteLock.c">
       <Filter>Quelldateien\Ring1\Intrinsic\Concurrency</Filter>
     </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\ByteOrder.c">
+      <Filter>Quelldateien\Ring1\Intrinsic</Filter>
+    </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo_u64.c">
       <Filter>Quelldateien\Ring1\Intrinsic\NextPowerOfTwo</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Object\ArrayType.c">
+      <Filter>Quelldateien\Ring1\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Object\ArrayType.internal.c">
+      <Filter>Quelldateien\Ring1\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Object\BoxedValue.c">
+      <Filter>Quelldateien\Ring1\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Object\ClassType.c">
+      <Filter>Quelldateien\Ring1\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Object\ClassType.internal.c">
+      <Filter>Quelldateien\Ring1\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Object\Dispatch.c">
+      <Filter>Quelldateien\Ring1\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Object\EnumerationType.c">
+      <Filter>Quelldateien\Ring1\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Object\EnumerationType.internal.c">
+      <Filter>Quelldateien\Ring1\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Object\Interface.c">
+      <Filter>Quelldateien\Ring1\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Object\Interface.internal.c">
+      <Filter>Quelldateien\Ring1\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Object\InterfaceType.c">
+      <Filter>Quelldateien\Ring1\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Object\InterfaceType.internal.c">
+      <Filter>Quelldateien\Ring1\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Object\MemoryManager.c">
+      <Filter>Quelldateien\Ring1\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Object\Object.c">
+      <Filter>Quelldateien\Ring1\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Object\ScalarType.c">
+      <Filter>Quelldateien\Ring1\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Object\ScalarType.internal.c">
+      <Filter>Quelldateien\Ring1\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Object\ScalarTypes.c">
+      <Filter>Quelldateien\Ring1\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Object\Type.c">
+      <Filter>Quelldateien\Ring1\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Object\Type.internal.c">
+      <Filter>Quelldateien\Ring1\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Object\Types.c">
+      <Filter>Quelldateien\Ring1\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Object\Types.internal.c">
+      <Filter>Quelldateien\Ring1\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Log\Buffer.c">
+      <Filter>Quelldateien\Ring1\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Log\ConsoleLogger.c">
+      <Filter>Quelldateien\Ring1\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Log\DefaultConsoleLogger.c">
+      <Filter>Quelldateien\Ring1\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Log\Logger.c">
+      <Filter>Quelldateien\Ring1\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Log\Loggers.c">
+      <Filter>Quelldateien\Ring1\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Test\Context.c">
+      <Filter>Quelldateien\Ring1\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Test\Node.c">
+      <Filter>Quelldateien\Ring1\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\CommandLine\Argument.c">
+      <Filter>Quelldateien\Ring1\CommandLine</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\CommandLine\ArgumentList.c">
+      <Filter>Quelldateien\Ring1\CommandLine</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\CommandLine\Parser.c">
+      <Filter>Quelldateien\Ring1\CommandLine</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Object\WeakReference.c">
+      <Filter>Quelldateien\Ring1\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Object\WeakReference.Module.c">
+      <Filter>Quelldateien\Ring1\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Add\add.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\Add</Filter>
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\NextPowerOfTwo\nextPowerOfTwo_s16.c">
       <Filter>Quelldateien\Ring1\Intrinsic\NextPowerOfTwo</Filter>
@@ -1093,10 +1375,19 @@
     <ClCompile Include="Ring1\Memory\recomputeSize.c">
       <Filter>Quelldateien\Ring1\Memory</Filter>
     </ClCompile>
+    <ClCompile Include="Mkx\Closure.c">
+      <Filter>Quelldateien\Ring1</Filter>
+    </ClCompile>
     <ClCompile Include="Ring1\Memory\Statistics.c">
       <Filter>Quelldateien\Ring1\Memory</Filter>
     </ClCompile>
+    <ClCompile Include="Mkx\CommandLine.c">
+      <Filter>Quelldateien\Ring1</Filter>
+    </ClCompile>
     <ClCompile Include="Ring1\ByteBuffer.c">
+      <Filter>Quelldateien\Ring1</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkx\Object.c">
       <Filter>Quelldateien\Ring1</Filter>
     </ClCompile>
     <ClCompile Include="Ring1\Hash.c">
@@ -1119,6 +1410,9 @@
     </ClCompile>
     <ClCompile Include="Ring1\Conversion\_Parser.c">
       <Filter>Quelldateien\Ring1\Conversion</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Assertions.c">
+      <Filter>Quelldateien\Ring1</Filter>
     </ClCompile>
     <ClCompile Include="Ring1\FileSystem\ExistingFilePolicy.c">
       <Filter>Quelldateien\Ring1\FileSystem</Filter>
@@ -1161,6 +1455,9 @@
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\atomicCompareExchange.c">
       <Filter>Quelldateien\Ring1\Intrinsic</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Log.c">
+      <Filter>Quelldateien\Ring1</Filter>
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\lerp.c">
       <Filter>Quelldateien\Ring1\Intrinsic</Filter>
@@ -1206,6 +1503,18 @@
     </ClCompile>
     <ClCompile Include="Ring1\Module\Handle.c">
       <Filter>Quelldateien\Ring1\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Concurrency\GetCurrentThreadId.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\Concurrency</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Concurrency\Mutex.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\Concurrency</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Concurrency\ReadWriteLock.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\Concurrency</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Concurrency\ThreadId.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\Concurrency</Filter>
     </ClCompile>
     <ClCompile Include="Ring1\Collections\InlineArray.c">
       <Filter>Quelldateien\Ring1\Collections</Filter>
@@ -1282,6 +1591,9 @@
     <ClCompile Include="Ring1\FileSystem\getCurrentDirectory.c">
       <Filter>Quelldateien\Ring1\FileSystem</Filter>
     </ClCompile>
+    <ClCompile Include="Ring1\Intrinsic\Concurrency\ThreadLocal.c">
+      <Filter>Quelldateien\Ring1\Intrinsic\Concurrency</Filter>
+    </ClCompile>
     <ClCompile Include="Ring1\Memory\_Include.c">
       <Filter>Quelldateien\Ring1\Memory</Filter>
     </ClCompile>
@@ -1296,6 +1608,9 @@
     </ClCompile>
     <ClCompile Include="Ring1\Intrinsic\ByteOrder.c">
       <Filter>Quelldateien\Ring1\Intrinsic</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring1\Memory\Statistics.c">
+      <Filter>Quelldateien\Ring1\Memory</Filter>
     </ClCompile>
     <ClCompile Include="Ring1\Crt\free.c">
       <Filter>Quelldateien\Ring1\Crt</Filter>
@@ -1333,6 +1648,11 @@
     <ClCompile Include="Ring1\Crt\_Include.c">
       <Filter>Quelldateien\Ring1\Crt</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Mkx\Intrinsic\README.md">
+      <Filter>Quelldateien\Ring1\Intrinsic</Filter>
+    </Text>
     <ClCompile Include="Ring1\FileSystem\Path\Token.c">
       <Filter>Quelldateien\Ring1\FileSystem\Path</Filter>
     </ClCompile>
@@ -1386,6 +1706,12 @@
     <MASM Include="Ring1\Intrinsic\Multiply\X64\multiply_u32.asm">
       <Filter>Quelldateien\Ring1\Intrinsic\Multiply\X64</Filter>
     </MASM>
+    <None Include="Mkx\Object\BoxedValue.i">
+      <Filter>Headerdateien\Ring1\Object</Filter>
+    </None>
+    <None Include="Mkx\Object\ScalarTypes.i">
+      <Filter>Headerdateien\Ring1\Object</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Ring1\Console\Windows\Color.i">

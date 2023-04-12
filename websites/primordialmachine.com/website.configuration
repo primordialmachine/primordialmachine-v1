@@ -1,0 +1,71 @@
+# The site's URL.
+# A site’s full URL including protocol, domain, and port (if applicable).
+# TODO
+# Should be named "site.url".
+# EXAMPLES
+# "https://mysubdomain.mydomain.com:4096/"
+"hostname" : "https://documentation.primordialmachine.com/",
+"siteurl" : "https://documentation.primordialmachine.com/",
+
+# The site's base URL.
+# Name of sub-directory the site is served from e.g., /blog.
+# TODO
+# Should be named "site.baseurl".
+# EXAMPLES
+# "/"
+# "/mysubdirectory/"
+"baseurl" : "/",
+
+# The site's title.
+# TODO
+# Should be named "site.title".
+"websiteTitle" : "Primordial Machine",
+
+#################################################################################################################################################################
+
+# The BitBucket repository associate with this site.
+"repositoryUrl" : "https://bitbucket.org/primordialmachine/primordialmachine",
+
+#################################################################################################################################################################
+
+"article_class" : "documentation col col-sm-9 pl-md-5 pr-md-5",
+
+"toc_collapsible_classes" : "nav toc flex-column pl-3",
+
+beginReason : "<div class=\"my-formula my-reason col-12\">",
+endReason : "</div>",
+
+beginFormula : "\\[\\begin{aligned}",
+endFormula : "\\end{aligned}\\]",
+
+beginResult : "<div class=\"my-formula my-result col-12\">",
+endResult : "</div>",
+
+#################################################################################################################################################################
+
+"jsjquery" :
+  "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js\" integrity=\"sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==\" crossorigin=\"anonymous\"></script>",
+
+"jsbootstrap" :
+  "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js\" integrity=\"sha512-I5TkutApDjnWuX+smLIPZNhw+LhTd8WrQhdCKsxCFRSvhFx2km8ZfEpNIhF9nq04msHhOkE8BMOBj5QE07yhMA==\" crossorigin=\"anonymous\"></script>",
+
+"cssbootstrap" :
+  "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css\" integrity=\"sha512-rO2SXEKBSICa/AfyhEK5ZqWFCOok1rcgPYfGOqtX35OyiraBg6Xa4NnBJwXgpIRoXeWjcAmcQniMhp22htDc6g==\" crossorigin=\"anonymous\" />",
+
+"jspopperjs" :
+  "<script async src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.js\" integrity=\"sha256-7BfFV/dSvQT4pGBvRAIt6JDXsehb92DQqpGUndLCPQ4=\" crossorigin=\"anonymous\"></script>",
+
+"jsmathjax" :
+  "<script async src=\"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.5/es5/tex-mml-chtml.js\" integrity=\"sha512-HN09AiBpdgsW5Ra+746NP7orEp1tgDwhGyPHdXQuaJlwMjNE09JgvOdhObB9erDUSvx64BdFdtmm0UKbxvUJXg==\" crossorigin=\"anonymous\"></script>",
+
+"fontawesome" :
+  "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css\" integrity=\"sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=\" crossorigin=\"anonymous\"/>",
+
+
+#################################################################################################################################################################
+
+"white" : "rgb(253, 253, 253)",
+
+"black" : "rgb(58, 58, 58)",
+
+"blue" : "rgb(0, 105, 217)",

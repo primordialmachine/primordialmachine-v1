@@ -1,0 +1,76 @@
+@{title = "Reference: Transform spheres"}
+@{tableOfContents = "./reference/_toc.ihtml"}
+@(>"./_header.html.t")
+
+  <h2>Uniform scale transformation of a sphere</h2>
+  <p>
+  A sphere \(\left\{ \mathbf{p} \in \mathbb{R}^3 \;|\; |\mathbf{p} - \mathbf{c}| \leq r \right\}\) in \(\mathbb{R}^3\) subjected to a uniform scale transformation represented by a scalar \(s \in \mathbb{R}\)
+  is a sphere \(\left\{ \mathbf{p} \in \mathbb{R}^3 \;|\; |\mathbf{p} - \mathbf{c}'| \leq r' \right\}\) with \(\mathbf{c}' = s\mathbf{c}\) and \(r' = |s|r\).
+  </p>
+  
+  <p><b>Reasoning</b>: For the case of \(s \neq 0\), the idea is now to pick a point on the hull of the sphere \(\mathbf{q}\) in the direction \(\group{s,s,s}\) from the center
+  e.g. \(\mathbf{q} = r\frac{\vec{s}}{|\vec{s}|} + \mathbf{c}\). \(\mathbf{q}\) and \(\mathbf{c}\) are subjected to the scale transformation which gives the center of the new
+  sphere \(\mathbf{c}' = s\mathbf{c}\) and a point \(\mathbf{q}' = s\mathbf{q}\) on the hull of the new sphere such that the radius of the new sphere is \(r' = \norm{\mathbf{q}'
+  - \mathbf{c}'}\). For the case of  \(s = 0\), the idea is the same. However, we pick \(\mathbf{q} = \mathbf{c}\) as the point on the hull of the sphere.</p>
+
+  <p>In the above definition, \(r'\) is defined as \(r' = |s|r\) instead of \(r' = \norm{\mathbf{q}' - \mathbf{c}'}\).
+  We show that both definitions are equivalent.</p>
+
+  <p>For the case of \(s = 0\) it is easy to see that \(|s|r\) and \(\norm{\mathbf{q}' - \mathbf{c}'}\) both yield the same result \(0\).</p>
+  
+  <p>Let's assume \(s \neq 0\).</p>
+  
+  @(beginResult)@(beginFormula)
+  &amp;&amp;\norm{\mathbf{q}' - \mathbf{c}'}
+  @(endFormula)@(endResult)
+  
+  @(beginReason)
+  By the definition of \(\mathbf{q}'\) and \(\mathbf{c}'\).
+  @(endReason)
+  
+  @(beginResult)@(beginFormula)
+    &amp;=\norm{s\mathbf{q} - s\mathbf{c}}\\
+    &amp;=\norm{s\group{\mathbf{q} - \mathbf{c}}}
+  @(endFormula)@(endResult)
+  
+  @(beginReason)
+  Property of norms \(\norm{s\vec{v}} = |s|\norm{\vec{v}}\).
+  @(endReason)
+  
+  @(beginResult)@(beginFormula)
+    &amp;=|s|\norm{\mathbf{q} - \mathbf{c}} 
+  @(endFormula)@(endResult)
+  
+  @(beginReason)
+  Definition of \(\mathbf{q}\).
+  @(endReason)
+ 
+  @(beginResult)@(beginFormula)
+    &amp;=|s|\norm{r\frac{\vec{s}}{|\vec{s}|} + \mathbf{c} - \mathbf{c}}\\
+    &amp;=|s|\norm{r\frac{\vec{s}}{|\vec{s}|}}\\
+  @(endFormula)@(endResult)
+  
+  @(beginReason)
+  Property of norms \(\norm{s\vec{v}} = |s|\norm{\vec{v}}\).
+  @(endReason)
+ 
+  @(beginResult)@(beginFormula)  
+    &amp;=|s||r|\norm{\frac{\vec{s}}{|\vec{s}|}}\\
+  @(endFormula)@(endResult)
+  
+  @(beginReason)
+  As \(\frac{\vec{s}}{|\vec{s}|}\) is unit and the Euclidean norm of a unit vector is \(1\).
+  @(endReason)
+ 
+   @(beginResult)@(beginFormula)   
+    &amp;=|s||r|1\\
+    &amp;=|s|r   
+  @(endFormula)@(endResult)
+  
+  <h2>Translate transformation of a sphere</h2>
+  <p>
+  A sphere \(\left\{ \mathbf{p} \in \mathbb{R}^3 \;|\; |\mathbf{p} - \mathbf{c}| \leq r \right\}\) in \(\mathbb{R}^3\) subjected to a translation transformation represented by a vector \(\vec{t} \in \mathbb{R}\)
+  is a sphere \(\left\{ \mathbf{p} \in \mathbb{R}^3 \;|\; |\mathbf{p} - \mathbf{c}'| \leq r \right\}\) with \(\mathbf{c}' = \mathbf{c} + \vec{t}\).
+  </p>  
+
+@(>"./_footer.html.t")

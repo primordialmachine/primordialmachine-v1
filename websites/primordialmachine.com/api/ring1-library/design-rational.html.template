@@ -1,0 +1,12 @@
+@{title = "Ring 1 Library"}
+@{tableOfContents = "./api/ring1-library/_toc.ihtml"}
+@(>"./_header.html.t")
+<h2>Design Rational</h2>
+<h3>Modules: Support for large-scale software development</h3>
+<p>The concept of modules was introduced as the C programming language does not provide relevant reifications for
+structuring large-scale programs into modular pieces which each can be maintained and consumed      individually.
+For our pieces of software, we decided to introduce the concept of modules to give our programs    (libraries and
+executables) a modular structure. A <em>module</em> provides a compile-time and run-time protocol for         its
+consumption by other programs. The foremost goal of these modules are that each of them can be maintained     and
+consumed individually.</p>
+@(>"./_footer.html.t")

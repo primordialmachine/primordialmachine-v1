@@ -1,0 +1,34 @@
+@{title = "Log Library"}
+@{tableOfContents = "./ring1-library/_toc.ihtml"}
+@(>"./_header.html.t")
+  <section>
+    <h2>Overview</h2>
+    <p>The <em>Log</em> library provides <em>log functionality</em>.
+    Log messages are written to the standard output stream and the standard error stream.
+    Writing log messages is <em>thread safe</em>.
+    That means if multiple threads write log messages, then the console output is not interleaved.
+    However, the order in which they are written is left to the implementation.</p>
+    <p>The output will be colored if the standard streams operate on terminals supporting colors.</p>
+
+    <p>The <em>Log</em> library fulfils the <a href="@(baseurl)utility-libraries/introduction.html">module concept</a>
+    i.e. provides
+    the type <code class="inline">Mkx_Log_ModuleHandle</code>,
+    the constant <code class="inline">Mkx_Log_ModuleHandle_Invalid</code>, and
+    the functions <code class="inline">Mkx_Log_ModuleHandle_acquire</code> and <code class="inline">Mkx_Log_ModuleHandle_relinquish</code>.</p>
+
+    <p>The include file of the `Log` module is <code class="inline">Mkx/Log.h</code>, its library file is <code class="inline">Mkx-Log.lib</code>.</p>
+  </section>
+
+  <section>
+    <h2>Documentation</h2>
+    @(>"./ring1-library/log-library/Mkx_Log_information.thtml")
+    @(>"./ring1-library/log-library/Mkx_Log_warning.thtml")
+    @(>"./ring1-library/log-library/Mkx_Log_error.thtml")
+  </section>
+
+  <section>
+    <h2>Sources and references</h2>
+    <p>The <a href="@(repositoryUrl)/src/master">reference repository</a> provides non-authoritive
+    <a href="@(repositoryUrl)/src/master/ring1/Ring1/Log/">sample implementations</a>.</p>
+  </section>
+@(>"./_footer.html.t")

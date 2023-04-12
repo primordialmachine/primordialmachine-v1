@@ -1,0 +1,13 @@
+<h2 id="loadLocal"><code class="inline">loadLocal i</code></h2>
+<p>Load the local variable of the specified index.</p>
+
+<p>
+This opcode loads the value of the local variable with index <code class="inline">i</code>.
+The value is pushed on the stack.
+</p>
+
+<p><code class="block">
+local<sub>0</sub>(i) = v, s<sub>0</sub> = s<br/>
+s<sub>1</sub> = s<sub>0</sub> ○ [v]
+</code></p>
+<p>for some <code class="inline">s &isin; Stack</code>.</p>

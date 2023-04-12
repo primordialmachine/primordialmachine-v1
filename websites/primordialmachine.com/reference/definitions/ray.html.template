@@ -1,0 +1,10 @@
+@{title = "Definition: Ray"}
+@{tableOfContents = "./_toc.ihtml"}
+@(>"./_header.html.t")
+
+  <h2>Definition of a ray</h2>
+  <p>A ray in \(\mathbb{R}^3\) is defined by a point vector \(\mathbf{o} \in \mathbb{R}^3\) and a unit direction vector \(\hat{d}\).
+  \(\mathbf{o}\) is called the origin of the ray and \(\hat{d}\) is caled the direction of the ray.
+  The ray is the set of all points \( \left\{ \mathbf{o} + t \hat{d} | t \in \mathbb{R}, t \geq 0 \right\} \).</p>
+
+@(>"./_footer.html.t")

@@ -8,8 +8,8 @@
 #include "Ring2/Context.h"
 #undef RING2_PRIVATE
 
-#include <stdio.h>
 #include "Ring1/All/_Include.h"
+#include "Ring1/Log.h"
 #include "Ring1/Status.h"
 
 #define RING2_PRIVATE (1)
@@ -106,10 +106,10 @@ runGc
     } else if (newStatistics.sweep.live == oldStatistics.sweep.live) {
       i++;
       if (i == n) {
-        fprintf(stdout, "%"PRIu64" live objects since %"PRIu64" iterations - aborting\n", newStatistics.sweep.live, i);
+        Ring1_Log_warning("%"PRIu64" live objects since %"PRIu64" iterations - retrying", newStatistics.sweep.live, i);
         break;
       } else {
-        fprintf(stdout, "%"PRIu64" live objects since %"PRIu64" iterations - retrying\n", newStatistics.sweep.live, i);
+        Ring1_Log_warning("%"PRIu64" live objects since %"PRIu64" iterations - aborting", newStatistics.sweep.live, i);
       }
     }
     oldStatistics = newStatistics;

@@ -41,7 +41,7 @@ Ring2_Collections_ArrayStack_construct
   self->capacity = MIN_CAPACITY;
   self->values = NULL;
   if (Ring1_Memory_allocateArray(&self->values, (size_t)self->capacity, sizeof(Ring2_Value))) {
-    fprintf(stderr, "allocation failed");
+    Ring1_Log_error("allocation failed");
     Ring2_jump();
   }
   Machine_setClassType(Ring1_cast(Machine_Object*, self), Ring2_Collections_ArrayStack_getType());

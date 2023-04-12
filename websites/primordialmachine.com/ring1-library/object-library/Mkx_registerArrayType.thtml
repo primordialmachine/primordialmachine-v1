@@ -1,0 +1,25 @@
+<h3 id="mkx_registerarraytype">Mkx_registerArrayType</h3>
+<p>Register an array type.</p>
+<p><code class="block">
+Mkx_Type *<br/>
+Mkx_registerArrayType<br/>
+&nbsp;&nbsp;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;void (*notifyTypeRemoved)()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mkx_Type *elementType<br/>
+&nbsp;&nbsp;)
+</code></p>
+
+<p>
+This function registers an array type.
+If the type is already registered, that type is returned.
+</p>
+
+<h4>Parameter variables</h4>
+<dl>
+  <dt><code class="inline">notifyTypeRemoved</code></dt><dd>A pointer to a callback function or a null pointer.
+  This function is invoked when the type is removed from the type system.</dd>
+  <dt><code class="inline">elementType</code></dt><dd>The type of the element of the array type.</dd>
+</dl>
+
+<h4>Return value</h4>
+<p>A pointer to the type on success, a null pointer on failure.</p>

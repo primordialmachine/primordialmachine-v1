@@ -8,6 +8,10 @@
 #            - Removal of the 'intermediates' and 'products' as well as '.vs' directories of all solutions.
 #            - Removal of all empty directories.
 
+param(
+   [string] $workingDirectory
+)
+
 # @brief Ensure a directory does not exist.
 # @param $path The path to the directory.
 function RemoveDirIfExists {
@@ -41,13 +45,18 @@ function ClearSolution {
 
 $projects = @(
   '.\machine-mk1',
-  '.\mkx-demos',
-  '.\ring1',
-  '.\ring2',
-  '.\ring3',
-  '.\scribe'
+  '.\Ring1',
+  '.\Ring2',
+  '.\Ring3',
+  '.\Scribe',
+  '.\mkx-demos'
 );
 
+if (!$workingDirectory) {
+  $workingDirectory = Get-Location;
+}
+Write-Host('working directory: ' + $workingDirectory);
+
 foreach($project in $projects) {
-  ClearSolution($project)
+  ClearSolution($workingDirectory + '\' + $project)
 }

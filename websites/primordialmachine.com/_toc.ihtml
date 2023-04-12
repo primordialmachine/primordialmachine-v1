@@ -1,0 +1,4 @@
+<div class="nav toc flex-column pb-1">
+  @(>"./api/ring1-library/_toc.ihtml")
+  @(>"./reference/_toc.ihtml")
+</div>

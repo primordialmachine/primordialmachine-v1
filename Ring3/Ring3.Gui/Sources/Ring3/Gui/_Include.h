@@ -14,6 +14,10 @@
 #include "Ring3/Gui/TextNode.h"
 
 #include "Ring3/Gui/Reader/Reader.h"
+
+#include "Ring3/Gui/Selectors/IthChildSelector.h"
+#include "Ring3/Gui/Selectors/NameSelector.h"
+#include "Ring3/Gui/Selectors/UniversalSelector.h"
 #undef RING3_GUI_PRIVATE
 
 #endif // GUI__INCLUDE_H_INCLUDED

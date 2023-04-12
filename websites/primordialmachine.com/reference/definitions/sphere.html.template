@@ -1,0 +1,11 @@
+@{title = "Definition: Sphere"}
+@{tableOfContents = "./_toc.ihtml"}
+@(>"./_header.html.t")
+
+  <h2>Definition of a sphere</h2>
+  <p>A sphere in \(\mathbb{R}^3\) is defined by point vector \(\mathbf{c} \in \mathbb{R}^3\) and a scalar \(r \in \mathbb{R}, r \geq 0\).
+  \(\mathbf{c}\) is called the center of the sphere, \(r\) is called the radius of the sphere.
+  The sphere is the set of all point with a distance to \(\mathbf{c}\) smaller than or equal to the radius \(r\)
+  i.e. \( \left\{ \mathbf{p} \in \mathbb{R}^3 \;|\; |\mathbf{p} - \mathbf{c}| \leq r \right\} \).</p>
+
+@(>"./_footer.html.t")

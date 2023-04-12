@@ -1,0 +1,21 @@
+@{title = "Ring 1 Library"}
+@{tableOfContents = "./api/ring1-library/_toc.ihtml"}
+@(>"./_header.html.t")
+  <h2>Introduction</h2>
+  <p>
+  <em>Primordial Machine's Ring 1</em> library is a library written in the C programming language.
+  Below is a non-exhaustive list of functionalities  the library provides:
+  </p>
+  <ul>
+    <li>collections,</li>
+    <li>console output,</li>
+    <li>file system operations,</li>
+    <li>logging,</li>
+    <li>memory management, and</li>
+    <li>safe arithmetic operations</li>
+  </ul>
+  <p>
+  In addition, <em>Primordial Machine's Ring 1</em> provides concepts and patterns to aid its consumers
+  to build C programs that fulfil high standards in terms of safety, performance, and  maintainability.
+  </p>
+@(>"./_footer.html.t")

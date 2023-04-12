@@ -1,0 +1,23 @@
+<h3 id="mkx_atom_getorcreate">Mkx_Atom_getOrCreate</h3>
+<p>Get or create the atom for an array of Bytes.</p>
+<p><code class="block">
+int<br/>
+Mkx_Atom_getOrCreate<br/>
+&nbsp;&nbsp;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mkx_Atom **result,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const char *bytes,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;int64_t numberOfBytes<br/>
+&nbsp;&nbsp;)
+</code></p>
+
+<p>
+This function clears a pointer deque.
+If a "removed" callback is associated with the pointer deque object, then this function will be invoked on each removed pointer.
+</p>
+
+<h4>Parameter variables</h4>
+<dl>
+  <dt><code class="inline">result</code></dt><dd>A pointer to an <code>Mkx_Atom *</code> variable.</dd>
+  <dt><code class="inline">bytes</code></dt><dd>A pointer to the array of Bytes.</dd>
+  <dt><code class="inline">numberOfBytes</code></dt><dd>The number of Bytes in the array.</dd>
+</dl>

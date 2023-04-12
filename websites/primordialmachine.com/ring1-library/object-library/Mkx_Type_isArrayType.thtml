@@ -1,0 +1,30 @@
+<h3 id="mkx_type_isarraytype">Mkx_Type_isArrayType</h3>
+<p>Get if a type is an array type.</p>
+<p><code class="block">
+int<br/>
+Mkx_Type_isArrayType<br/>
+&nbsp;&nbsp;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;bool *result,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mkx_Type *type<br/>
+&nbsp;&nbsp;)
+</code></p>
+
+<p>
+This function gets if a type is an array type.
+</p>
+
+<h4>Parameter variables</h4>
+<dl>
+  <dt><code class="inline">result</code></dt><dd>A pointer to a <code class="inline">bool</code> variable.</dd>
+  <dt><code class="inline">type</code></dt><dd>A pointer to a <code class="inline">Mkx_Type</code> object.</dd>
+</dl>
+
+<h4>Success</h4>
+<p><code class="inline">*result</code> is assigned <code class="inline">true</code> if the type pointed to by <code class="inline">type</code> is an array type.
+Otherwise it is assigned <code class="inline">false</code>.</p>
+   
+<h4>Failure</h4>
+<p><code class="inline">result</code> was not dereferenced.</p>
+
+<h4>Return value</h4>
+<p><code class="inline">0</code> on success, a non-zero value on failure.</p>

@@ -1,0 +1,150 @@
+@{title = "Quaternion to axis angle"}
+@{tableOfContents = "./reference/_toc.ihtml"}
+@(>"./_header.html.t")
+
+  <h2>Quaternion to axis angle</h2>
+  <p>A unit quaternion \(\mathbf{q}=\group{\cos\group{\frac{\alpha}{2}},\hat{r}\sin\group{\frac{\alpha}{2}}}\) represents a rotation by an angle \(\alpha\) around an axis \(\hat{r}\)
+  where</p>
+  
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    &amp;\alpha = 2\acos{q_w}
+    @(endFormula)@(endResult)
+  </div>
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    &amp;\hat{v}_x = \frac{q_x}{\sqrt{1-q_w^2}}
+    @(endFormula)@(endResult)
+  </div>
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    &amp;\hat{v}_y = \frac{q_y}{\sqrt{1-q_w^2}}
+    @(endFormula)@(endResult)
+  </div>
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    &amp;\hat{v}_z = \frac{q_z}{\sqrt{1-q_w^2}}
+    @(endFormula)@(endResult)
+  </div>
+  
+  <h3>Proof</h3>
+  <p>Recall how an axis angle \(\hat{a},\alpha\) is converted to a unit quaternion \(q\):
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    &amp;q_x = \hat{a}_x \sin\left(\alpha/2\right)
+    @(endFormula)@(endResult)
+  </div>
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    &amp;q_y = \hat{a}_y \sin(\alpha/2)
+    @(endFormula)@(endResult)
+  </div>    
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    &amp;q_z = \hat{a}_z \sin(\alpha/2)
+    @(endFormula)@(endResult)
+  </div>
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    &amp;q_w = \cos(\alpha/2)
+    @(endFormula)@(endResult)
+  </div>
+
+  To obtain \(\alpha\) from the quaternion solve
+  \(q_w = \cos(\alpha/2)\) for \(\alpha\):
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    q_w = \cos(\alpha/2)
+    @(endFormula)@(endResult)
+  </div>
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    &amp;\acos{q_w} = \acos{\cos(\alpha/2)}
+    @(endFormula)@(endResult)
+  </div>
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    &amp;\acos{q_w} = \frac{\alpha}{2}
+    @(endFormula)@(endResult)
+  </div>
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    &amp;2\acos{q_w} = \alpha
+    @(endFormula)@(endResult)
+  </div>   
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    &amp;\alpha = 2\acos{q_w}
+    @(endFormula)@(endResult)
+  </div>
+  To obtain \(\hat{v}_{k}\) solve
+  \(q_k = \hat{v}_k \sin(\alpha/2)\)
+  for \(\hat{v}_k\):
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    &amp;q_k = \hat{v}_k \sin(\alpha/2)
+    @(endFormula)@(endResult)
+  </div>
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    &amp;\frac{q_k}{\sin(\alpha/2)} = \hat{v}_k
+    @(endFormula)@(endResult)
+  </div>
+  <div class="row mt-2">
+    @(beginReason)
+    As
+    @(beginFormula)
+    &amp;\frac{\alpha}{2} = \frac{2\acos{q_w}}{2} = \acos{q_w}
+    @(endFormula)
+    @(endReason)
+    @(beginResult)@(beginFormula)
+    &amp;\frac{q_k}{\sin(\acos{q_w})} = \hat{v}_k
+    @(endFormula)@(endResult)
+  </div>
+  <div class="row mt-2">
+    @(beginReason)
+    As
+    @(beginFormula)
+    &\sin(\acos{q_w}) = \sqrt{1 - q_w^2}
+    @(endFormula)
+    @(endReason)
+    @(beginResult)@(beginFormula)
+    &\frac{q_k}{\sqrt{1 - q_w^2}} = \hat{v}_k
+    @(endFormula)@(endResult)
+  </div>
+  <div class="row mt-2">
+    @(beginReason)
+    As
+    @(beginFormula)
+    &\sin(\acos{q_w}) = \sqrt{1 - q_w^2}
+    @(endFormula)
+    @(endReason)
+    @(beginResult)@(beginFormula)
+    &\hat{v}_k = \frac{q_k}{\sqrt{1 - q_w^2}}
+    @(endFormula)@(endResult)
+  </div>
+
+  <p>
+  The expression \(\hat{v}_k=\frac{q_k}{\sqrt{1-q_w^2}}\) for
+  \(q_w = \pm1\) is undefined. However, we claim that a
+  unit quaterion with \(q_w = \pm 1\) represents a rotation
+  by zero degrees. If that claim holds, we can avoid the
+  evaluation of the undefined expression by picking an
+  arbitrary unit vector for \(\hat{v}\).
+  </p>
+  
+  <p>We convince us that for \(q_w = \pm 1\), \(\alpha\) is some integer multiple of \(2\pi\)
+  and hence the quaternion represents a rotation by zero degrees:
+  
+  First, observe the cosine is one at even non-negative integer multiples of \(pi\) e.g.
+  \(0\), \(2\pi\), \(4\pi\), \(6\pi\), \(8\pi\), ... Second, the cosine is minus one at odd
+  positive integer multiples of \(pi\) e.g. \(1 \pi\), \(3 \pi\), \(5 \pi\), ... Because of
+  \(\cos(-x)) = cos(x)\) all this is also true for negative multiples.
+  
+  Hence \(\alpha/2\) must be some integer multiple of \(0,\pm\pi,
+  \pm 2\pi, \pm 3\pi,\ldots\) for that \(\pm 1 = \cos\left(\alpha/2\right)\) holds.
+  Consequently \(\alpha\) must be  \(0\), \(\pm 2\pi\), \(\pm 4\pi\), \(\pm 6\pi\), ...
+  Hence a unit quaternion with \(q_w = 1\) represents a rotation by \(\alpha = 2 n \pi\)
+  radians. And these rotations are all equivalent to the rotation by zero degrees.</p>
+  @*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*@
+@(>"./_footer.html.t")

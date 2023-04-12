@@ -1,0 +1,107 @@
+@{title = "Rotation around an arbitrary axis - Implicit matrix representation"}
+@{tableOfContents = "./reference/_toc.ihtml"}
+@(>"./_header.html.t")
+
+<h3>@(title)</h2>
+The rotation formula (as derived <a href="@(baseurl)transformations/rotation-around-an-arbitrary-axis">here</a>)
+
+\[
+\vec{v}'=\rejection{\vec{v}}{u}\cos(\alpha) + (\cross{\vec{u}}{\vec{v}}) \sin(\alpha)  + \projection{\vec{v}}{\vec{u}}
+\]
+can be restated as
+\[
+\vec{v}' = R \vec{v}
+\]
+using a matrix
+\[
+R = \cos(\alpha) I + \sin(\alpha) \widetilde{U} + \left(1 - \cos(\alpha)\right)\left(\widetilde{U}^2 + I\right)
+\]
+
+<h4>Proof</h4>
+<div class="row mt-2">
+  @(beginResult)@(beginFormula)
+  \vec{v}'
+  @(endFormula)@(endResult)
+</div>
+
+<div class="row mt-2">
+  @(beginReason)
+  Definition of \(\vec{v}'\).
+  @(endReason)
+  @(beginResult)@(beginFormula)
+  &amp;=\rejection{\vec{v}}{u}\cos(\alpha) + \cross{\vec{u}}{\vec{v}}\sin(\alpha)  + \projection{\vec{v}}{\vec{u}}
+  @(endFormula)@(endResult)
+</div>
+
+<div class="row mt-2">
+  @(beginReason)
+  Commutativity.
+  @(endReason)
+  @(beginResult)@(beginFormula)
+  &amp;=\cos(\alpha) \rejection{\vec{v}}{u}+ \sin(\alpha) \cross{\vec{u}}{\vec{v}}  + \projection{\vec{v}}{\vec{u}}
+  @(endFormula)@(endResult)
+</div>
+
+<div class="row mt-2">
+  @(beginReason)
+  <a href="@(baseurl)reference/definition/vector-projection-and-rejection.html">Definition of the vector projection</a><br/>
+  Definition of \(\rejection{\vec{v}}{u}=\vec{v}-\projection{\vec{v}}{\vec{u}}\).
+  @(endReason)
+  @(beginResult)@(beginFormula)
+  &amp;=\cos(\alpha) (\vec{v} - \projection{\vec{v}}{\vec{u}}) + \sin(\alpha)\cross{\vec{u}}{\vec{v}}  + \projection{\vec{v}}{\vec{u}}
+  @(endFormula)@(endResult)
+</div>
+<div class="row mt-2">
+  @(beginReason)
+  Distributivity of multiplication over addition.
+  @(endReason)
+  @(beginResult)@(beginFormula)
+  &amp;=\cos(\alpha)\vec{v} - \cos(\alpha)\projection{\vec{v}}{\vec{u}} + \sin(\alpha)\cross{\vec{u}}{\vec{v}} + \projection{\vec{v}}{\vec{u}}
+  @(endFormula)@(endResult)
+</div>
+<div class="row mt-2">
+  @(beginReason)
+  Commutativity of addition.
+  @(endReason)
+  @(beginResult)@(beginFormula)
+  &amp;=\cos(\alpha)\vec{v} + \sin(\alpha)\cross{\vec{u}}{\vec{v}} + \projection{\vec{v}}{\vec{u}} - \projection{\vec{v}}{\vec{u}}\cos(\alpha)
+  @(endFormula)@(endResult)
+</div>
+<div class="row mt-2">
+  @(beginReason)
+  Distributivity of multiplication over addition.
+  @(endReason)
+  @(beginResult)@(beginFormula)
+  &amp;=\cos(\alpha)\vec{v} + \sin(\alpha)(\cross{\vec{u}}{\vec{v}}) + (1 - \cos(\alpha))\projection{\vec{v}}{\vec{u}}
+  @(endFormula)@(endResult)
+</div>
+
+<div class="row mt-2">
+  @(beginReason)
+  <a href="@(baseurl)reference/definitions/cross-product.html">Definition of the cross product</a><br/>
+  \(\cross{\vec{u}}{\vec{v}} = \widetilde{U}\vec{v}\).</br>
+  <a href="@(baseurl)reference/definitions/vector-projection-and-rejection.html">Definition of the vector projection</a><br/>
+  \(\projection{\vec{v}}{\vec{u}} = \left(\widetilde{U}^2 + I\right)\vec{v}\).</br>
+  \(\vec{v}\cos(\alpha) = I \vec{v} \cos(\alpha)\)
+  @(endReason)
+  @(beginResult)@(beginFormula)
+  &amp;=\cos(\alpha) I \vec{v} + \sin(\alpha)\widetilde{U}\vec{v} + (1 - \cos(\alpha))\left(\widetilde{U}^2 + I\right)\vec{v}
+  @(endFormula)@(endResult)
+</div>
+
+<div class="row mt-2">
+  @(beginResult)@(beginFormula)
+  &amp;= \cos(\alpha) I \vec{v} + \sin(\alpha) \widetilde{U}\vec{v} + (1 - \cos(\alpha))\left(\widetilde{U}^2 + I\right)\vec{v}
+  @(endFormula)@(endResult)
+</div>
+
+<div class="row mt-2">
+  @(beginReason)
+  Distributivity of vector - matrix multiplication.
+  @(endReason)
+  @(beginResult)@(beginFormula)
+  &amp;= \left[\cos(\alpha) I + \sin(\alpha) \widetilde{U} + (1 - \cos(\alpha))\left(\widetilde{U}^2 + I\right)\right]\vec{v}
+  @(endFormula)@(endResult)
+</div>      
+
+@(>"./_footer.html.t")

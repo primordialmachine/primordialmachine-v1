@@ -1,0 +1,12 @@
+<h2 id="not"><code class="inline">not</code></h2>
+<p>Compute the logical not of a <code class="inline">Boolean</code> value.</p>
+
+<p><code class="block">
+Σ.stack<sub>0</sub> = s ○ [x]<br/>
+Σ.stack<sub>1</sub> = s ○ [<span class="meta">¬</span>x]<br/>
+Σ.instructionIndex<sub>1</sub> = Σ.instructionIndex<sub>0</sub> + 1
+</code></p>
+
+<p>for some <code class="inline">s &isin; Stack</code> and some value <code class="inline">x &isin; Boolean</code>.</p>
+
+<p>The usual rules for invalid instructions apply.</p>

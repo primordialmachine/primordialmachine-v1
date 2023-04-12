@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{B9B03EE8-D460-439F-B409-693CDC0BE5AC}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>
+    </RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\build\vs2019\Debug.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\build\vs2019\Release.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\build\vs2019\Debug.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\build\vs2019\Release.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>_LIB;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>_LIB;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Mkx\Scribe\Cas\EmissionContext.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\EvaluationContext.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\EvaluationVisitor.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Extensions.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Extensions\CreateIdentityMatrix.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Extensions\CreateMatrix1d.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Extensions\CreateMatrix2d.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Extensions\CreateVector.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Node.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\NodeKind.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\AdjugateNode.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\BinaryMinusNode.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\BinaryPlusNode.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\BinarySlashNode.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\BinaryStarNode.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\CofactorMatrixNode.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\CofactorNode.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\DeleteColumnNode.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\DeleteRowNode.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\DeterminantNode.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\DotProductNode.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\GroupNode.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\Index1dNode.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\Index2dNode.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\MatrixNode.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\MinorNode.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\OneNode.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\OutputNode.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\TransposeNode.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\UnaryMinusNode.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\UnaryPlusNode.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\VariableNode.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\VectorNode.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Nodes\ZeroNode.c" />
+    <ClCompile Include="Mkx\Scribe\Cas\Tool.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Mkx\Scribe\Cas\EmissionContext.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\EvaluationContext.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\EvaluationVisitor.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Extensions.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Extensions\CreateIdentityMatrix.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Extensions\CreateMatrix1d.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Extensions\CreateMatrix2d.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Extensions\CreateVector.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Node.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\NodeKind.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\AdjugateNode.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\BinaryMinusNode.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\BinaryPlusNode.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\BinarySlashNode.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\BinaryStarNode.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\CofactorMatrixNode.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\CofactorNode.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\DeleteColumnNode.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\DeleteRowNode.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\DeterminantNode.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\DotProductNode.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\GroupNode.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\Index1dNode.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\Index2dNode.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\MatrixNode.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\MinorNode.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\OneNode.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\OutputNode.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\TransposeNode.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\UnaryMinusNode.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\UnaryPlusNode.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\VariableNode.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\VectorNode.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Nodes\ZeroNode.h" />
+    <ClInclude Include="Mkx\Scribe\Cas\Tool.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Mkx\Scribe\Cas\NodeKind.i" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ring1\Ring1\Ring1.vcxproj">
+      <Project>{d7db575d-7eaa-47de-8999-44f4e1361d34}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ring2\Ring2.Library\Ring2.Library.vcxproj">
+      <Project>{793157ce-6f58-4c53-bf1e-15716a4ce6bf}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ring2\Ring2\Ring2.vcxproj">
+      <Project>{3ade4501-5d5c-4878-9632-f81c3de2429c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Interpreter.Library\Interpreter.Library.vcxproj">
+      <Project>{f09c839a-7636-4440-92fd-e3605a68ae2c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Scribe.Core\Scribe.Core.vcxproj">
+      <Project>{c766501f-cd5b-4240-8140-3ad65ac942b5}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,6 @@
+<h3 id="mkx_log_information">Mkx_Log_information</h3>
+<p>Macro receiving a printf-style format string and format arguments list. Emits an information message.</p>
+
+<p><code class="block">
+#define Mkx_Log_information(format, ...) /* Implementation specific. */
+</code></p>

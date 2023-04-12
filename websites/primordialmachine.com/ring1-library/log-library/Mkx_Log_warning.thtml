@@ -1,0 +1,6 @@
+<h3 id="mkx_log_warning">Mkx_Log_warning</h3>
+<p>Macro receiving a printf-style format string and format arguments list. Emits a warning message.</p>
+
+<p><code class="block">
+#define Mkx_Log_error(format, ...) /* Implementation specific. */
+</code></p>

@@ -1,0 +1,72 @@
+@{title = "Reference: 3D projections"}
+@{tableOfContents = "./_toc.ihtml"}
+@(>"./_header.html.t")
+        <section>
+          <!-- -->
+          <h2>Window to Canvas projection</h2>
+          <p>
+          Window coordinate space is a coordinate system with the origin \f$(0,0)\f$ in the top-left corner of the window with y-axis pointing down.
+          Canvas coordinate space is a coordinate system with the origin \f$(0,0)\f$ in the bottom-left corner of the window with the y-axis pointing up.
+          Both in window coordinate space and canvas coordinate space, the x-axis is pointing right.</p>
+          <p>
+          The function to convert \(\langle x_0, y_0 \rangle\) <em>window</em> coordinates to \(\langle x_1, y_1\rangle\) <em>canvas</em> coordinates is given by
+          \[
+            \langle x_1, y_1 \rangle = \langle x_0, H_w - y_0\rangle
+          \]
+          where \(H_w\) is the height of the window.
+          </p>
+        </section>
+        <section>
+          <!-- -->
+          <h2>Canvas space to normalized device space</h2>
+          <p>Normalized device space is a coordinate system with the origin \(0,0\) is at the center of the viewport in the canvas.
+          The y-axis is pointing up, the x-axis is pointing right.
+          The bottom left corner of the viewport rectangle on the canvas is at \(-1,-1\) and its right top corner at \(+1,+1\).
+          <p>
+          The function to convert \(\langle x_1, y_1 \rangle\) <em>canvas</em> coordinates to \(\langle x_2, y_2\rangle\) <em>normalized device space</em> coordinates is given by
+          \[
+             \langle x_2, y_2 \rangle = \left\langle 2 \cdot \frac{x_1 - X_{avp}}{W_{avp}} - 1, 2 \cdot \frac{y_1 - Y_{avp}}{H_{avp}} - 1, -1\right\rangle
+          \]
+          where
+          \(X_{avp}\) is the left position and \(Y_{avp}\) the botttom position of the viewport on the canvas,
+          \(W_{avp}\) is the width and \(H_{avp}\) the height of the viewport on the canvas.
+          \(-1\) is
+          </p>
+        </section>
+
+        <section>
+          <h2>Normalized device space to clip space</h2>
+          <p>Clip space is a coordinate system suitable for performing clipping operations.
+          Clip space is a 3D coordinate system, unlike normalized device space which is a 2D coordinate system.
+          </p>
+          <p>
+          The function to convert \(\langle x_{ndc}, y_{ndc}\rangle\) <em>normalized device</em> coordinates to \(\langle , x_{cs}, y_{cs}\rangle\)
+          <em>clip</em> coordinates is given by
+          \[
+            \langle a_x, a_y, a_z \rangle = \langle x_2, y_2, -1\rangle\\
+            \langle b_x, b_y, b_z \rangle = \langle x_2, y_2, +1\rangle
+          \]
+          </p>
+        </section>
+
+        <section>
+          <h2>Combined Clip to Canvas projection</h2>
+          <p>
+          The function to convert \(\langle x_4, y_4\rangle\) <em>clip</em> coordinates to \(\langle x_1, y_1\rangle\)
+          <em>canvas</em> coordinates is given by
+          \[\begin{align*}
+            \langle x_1, y_1 \rangle &amp;= f^2 \circ f^1 \circ f^0(\langle x_4,y_4 \rangle)\\
+                                     &amp;= f^2 \circ f^1 \left(\left\langle \frac{x_4 + 1}{2}, \frac{x_4 + 1}{2}\right\rangle\right)\\
+                                     &amp;= f^2 \left(\left\langle \frac{x_4 + 1}{2} \cdot W_{avp}, \frac{x_4 + 1}{2} \cdot H_{avp}\right\rangle\right)
+                                     &amp;= \left\langle \frac{x_4 + 1}{2} \cdot W_{avp} + X_{avp}, \frac{x_4 + 1}{2} \cdot H_{avp} + Y_{avp}\right\rangle
+          \end{align*}\]
+          </p>
+          <p>This result can be more rewritten as
+          \[\begin{align*}
+            \langle x_1, y_1 \rangle &amp;= \left\langle \left(x_4 + 1\right) \cdot \frac{W_{avp}}{2} + X_{avp}, \left(x_4 + 1\right) \cdot \frac{H_{avp}}{2} + Y_{avp}\right\rangle
+          \end{align*}\]
+          which is actually the form used in the <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/">OpenGL 4 Reference Documentation</a> of <code class="inline">glViewport</code>.
+          Note that there (to add confusion), window coordinates are actually canvas coordinates and clip coordinates are actually ndc coordinates.
+          </p>
+        </section>
+@(>"./_footer.html.t")

@@ -36,6 +36,12 @@
     <Filter Include="Quelldateien\Ring2\Gc">
       <UniqueIdentifier>{d4235fd5-6736-4d92-90b7-43283dfdd1b7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Ring2\Instructions">
+      <UniqueIdentifier>{903eb18c-b69a-4a8f-9962-3aa1d351913a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring2\Instructions">
+      <UniqueIdentifier>{60028fc1-2e8d-4a00-8c9e-a159f21352a7}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Headerdateien\Ring2\Gc">
       <UniqueIdentifier>{3dcedddc-c1f0-4ed8-b060-456bac048214}</UniqueIdentifier>
     </Filter>
@@ -108,6 +114,30 @@
       <Filter>Headerdateien\Ring2\Operations</Filter>
     </ClInclude>
     <ClInclude Include="Ring2\Gc.h">
+      <Filter>Headerdateien\Ring2</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Instructions\Affirmate.h">
+      <Filter>Headerdateien\Ring2\Instructions</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Instructions\Arithmetic.h">
+      <Filter>Headerdateien\Ring2\Instructions</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Instructions\Concatenate.h">
+      <Filter>Headerdateien\Ring2\Instructions</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Instructions\GetOps.h">
+      <Filter>Headerdateien\Ring2\Instructions</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Instructions\Logical.h">
+      <Filter>Headerdateien\Ring2\Instructions</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Instructions\Negate.h">
+      <Filter>Headerdateien\Ring2\Instructions</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Instructions\Relational.h">
+      <Filter>Headerdateien\Ring2\Instructions</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring2\Instructions.h">
       <Filter>Headerdateien\Ring2</Filter>
     </ClInclude>
     <ClInclude Include="Ring2\Gc\Configuration.h">
@@ -242,6 +272,27 @@
       <Filter>Quelldateien\Ring2</Filter>
     </ClCompile>
     <ClCompile Include="Ring2\Gc.c">
+      <Filter>Quelldateien\Ring2</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Instructions\Affirmate.c">
+      <Filter>Quelldateien\Ring2\Instructions</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Instructions\Arithmetic.c">
+      <Filter>Quelldateien\Ring2\Instructions</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Instructions\Concatenate.c">
+      <Filter>Quelldateien\Ring2\Instructions</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Instructions\Logical.c">
+      <Filter>Quelldateien\Ring2\Instructions</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Instructions\Negate.c">
+      <Filter>Quelldateien\Ring2\Instructions</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Instructions\Relational.c">
+      <Filter>Quelldateien\Ring2\Instructions</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring2\Instructions.c">
       <Filter>Quelldateien\Ring2</Filter>
     </ClCompile>
     <ClCompile Include="Ring2\Gc\RunStatistics.c">

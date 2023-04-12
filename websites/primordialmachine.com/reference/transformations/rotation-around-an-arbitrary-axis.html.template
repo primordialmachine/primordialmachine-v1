@@ -1,0 +1,72 @@
+@{title = "Rotation around an arbitrary axis"}
+@{tableOfContents = "./reference/_toc.ihtml"}
+@(>"./_header.html.t")
+
+  <h2>Rotation around an arbitrary axis</h2>
+  <p>Let \(\vec{p}\) be a point vector, \(\alpha\) an angle, \(\hat{r}\) a unit axis vector.
+  The expression
+  \[
+  \vec{p}' = \vec{p}\cos\left(\alpha\right)
+           + \cross{\hat{r}}{\vec{p}} \sin\left(\alpha\right) 
+           + \hat{r} \left(\dot{\hat{r}}{\vec{p}}\right)\left(1-\cos\left(\alpha\right)\right)
+  \]
+  is called the <em>Rodrigues' Rotation Formula</em> and representation a rotation by the
+  angle \(\alpha\) around the axis \(\hat{r}\).</p>
+  
+  <p>We derive an alternative form 
+   \[
+  \vec{p}' = \rejection{\vec{p}}{\hat{r}}\cos\left(\alpha\right)
+           + \cross{\hat{r}}{\vec{p}} \sin\left(\alpha\right)
+           + \projection{\vec{p}}{\hat{r}}
+  \] 
+  of the <em>Rodrigues' Rotation Formula</em>.</p>
+  
+  <h3>Proof</h3>
+
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    &amp;\vec{p}'\\
+    &amp;=\vec{p}\cos\left(\alpha\right)
+         +\cross{\hat{r}}{\vec{p}} \sin\left(\alpha\right)
+         +\hat{r} (\dot{\hat{r}}{\vec{p}})\left(1-\cos\left(\alpha\right)\right)\\
+    &amp;=\vec{p}\cos(\alpha)
+         +\cross{\hat{r}}{\vec{p}} \sin(\alpha)
+         +\hat{r} (\dot{\hat{r}}{\vec{p}}) - \hat{r} (\dot{\hat{r}}{\vec{p}}) \cos(\alpha)\\
+    &amp;=\left(\vec{p} - \hat{r} (\dot{\hat{r}}{\vec{p}})\right) \cos(\alpha)
+         +\cross{\hat{r}}{\vec{p}} \sin(\alpha)
+         +\hat{r} (\dot{\hat{r}}{\vec{p}})\\
+    @(endFormula)@(endResult)
+  </div>
+  <div class="row mt-2">
+    @(beginReason)
+    By the definition of the <a href="@(baseurl)/reference/vector-projection-and-rejection.html">vector projection
+    and rejection</a> projection is defined as
+    @(beginFormula)
+    &amp;\projection{\vec{p}}{\hat{r}} = \frac{\dot{\vec{p}}{\hat{r}}}{\norm{\hat{r}}^2}\hat{r} = \hat{r} (\dot{\hat{r}}{\vec{p}})\\
+    @(endFormula)
+    @(endReason)
+  </div>
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    &amp;=\left(\vec{p} - \projection{\vec{p}}{\hat{r}}\right) \cos(\alpha)
+         +\cross{\hat{r}}{\vec{p}} \sin(\alpha)
+         +\projection{\vec{p}}{\hat{r}}\\
+    @(endFormula)@(endResult)
+  </div>
+  <div class="row mt-2">
+    @(beginReason)
+    By the definition of the <a href="@(baseurl)/reference/vector-projection-and-rejection.html">vector projection
+    and rejection</a> rejection is defined as
+    @(beginFormula)
+    &amp;\rejection{\vec{p}}{\hat{r}} = \vec{p} - \projection{\vec{p}}{\hat{r}}
+    @(endFormula)
+    @(endReason)
+  </div>
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    &amp;=\rejection{\vec{p}}{\hat{r}} \cos(\alpha)
+         +\cross{\hat{r}}{\vec{p}} \sin(\alpha)
+         +\projection{\vec{p}}{\hat{r}}\\
+    @(endFormula)@(endResult)
+  </div>
+@(>"./_footer.html.t")

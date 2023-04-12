@@ -1,0 +1,17 @@
+<h3 id="mkx_pointerdeque_visitcallback">Mkx_PointerDeque_VisitCallback</h3>
+<p>The type of n "visit" callback function of pointer deques.</p>
+<p><code class="block">
+typedef void (Mkx_PointerDeque_VisitCallback)(void *context, void* element);
+</code></p>
+
+<p>
+This callback is invoked for each element in the deque exactly once with the specified opaque context pointer as its 1st argument the deque element as its 2nd argumnt.
+A "visit" callback function must not mutate the deque on which elements it is invoked on.
+One can safely define a "visit" callback with a more specialized pointer type than <code class="inline">void</code>.
+</p>
+
+<h4>Parameter variables</h4>
+<dl>
+  <dt><code class="inline">element</code></dt><dd>The opaque context pointer.</dd>
+  <dt><code class="inline">element</code></dt><dd>The pointer which is visited.</dd>
+</dl>

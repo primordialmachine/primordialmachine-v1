@@ -112,6 +112,10 @@
     <ClInclude Include="Ring1\Intrinsic\Add\X86\add_u8.h" />
     <ClInclude Include="Ring1\Intrinsic\atomicCompareExchange.h" />
     <ClInclude Include="Ring1\Intrinsic\ByteOrder.h" />
+    <ClInclude Include="Ring1\Intrinsic\Concurrency\GetCurrentThreadId.h" />
+    <ClInclude Include="Ring1\Intrinsic\Concurrency\Mutex.h" />
+    <ClInclude Include="Ring1\Intrinsic\Concurrency\ThreadId.h" />
+    <ClInclude Include="Ring1\Intrinsic\Concurrency\ThreadLocal.h" />
     <ClInclude Include="Ring1\Intrinsic\countDecimalDigits.h" />
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u16.h" />
     <ClInclude Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u32.h" />
@@ -457,6 +461,15 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </MASM>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Ring1\Assertions.h" />
+    <ClInclude Include="Mkx\Closure.h" />
+    <ClInclude Include="Mkx\CommandLine.h" />
+    <ClInclude Include="Mkx\CommandLine\Argument.h" />
+    <ClInclude Include="Mkx\CommandLine\ArgumentList.h" />
+    <ClInclude Include="Mkx\CommandLine\Configuration.h" />
+    <ClInclude Include="Mkx\CommandLine\Parser.h" />
     <ClInclude Include="Ring1\Intrinsic\Add\add.h" />
     <ClInclude Include="Ring1\Intrinsic\Add\Configuration.h" />
     <ClInclude Include="Ring1\Intrinsic\atomicDecrement.h" />
@@ -478,11 +491,47 @@
     <ClInclude Include="Ring1\Intrinsic\Subtract\Configuration.h" />
     <ClInclude Include="Ring1\Intrinsic\Subtract\subtract.h" />
     <ClInclude Include="Ring1\Intrinsic\ThreadLocal.h" />
+    <ClInclude Include="Ring1\Log.h" />
+    <ClInclude Include="Ring1\Log\Buffer.h" />
+    <ClInclude Include="Ring1\Log\Configuration.h" />
+    <ClInclude Include="Ring1\Log\ConsoleLogger.h" />
+    <ClInclude Include="Ring1\Log\DefaultConsoleLogger.h" />
+    <ClInclude Include="Ring1\Log\Event.h" />
+    <ClInclude Include="Ring1\Log\Logger.h" />
+    <ClInclude Include="Ring1\Log\Loggers.h" />
     <ClInclude Include="Ring1\Memory\Configuration.h" />
     <ClInclude Include="Ring1\Memory\recomputeSize.h" />
     <ClInclude Include="Ring1\Memory\Statistics.h" />
     <ClInclude Include="Ring1\Memory\Windows\getPageSize.h" />
     <ClInclude Include="Ring1\Module\Configuration.h" />
+    <ClInclude Include="Mkx\Object.h" />
+    <ClInclude Include="Mkx\Object\ArrayType.h" />
+    <ClInclude Include="Mkx\Object\ArrayType.internal.h" />
+    <ClInclude Include="Mkx\Object\BoxedValue.h" />
+    <ClInclude Include="Mkx\Object\ClassType.h" />
+    <ClInclude Include="Mkx\Object\ClassType.internal.h" />
+    <ClInclude Include="Mkx\Object\Dispatch.h" />
+    <ClInclude Include="Mkx\Object\EnumerationType.h" />
+    <ClInclude Include="Mkx\Object\EnumerationType.internal.h" />
+    <ClInclude Include="Mkx\Object\Interface.h" />
+    <ClInclude Include="Mkx\Object\Interface.internal.h" />
+    <ClInclude Include="Mkx\Object\InterfaceImplementation.h" />
+    <ClInclude Include="Mkx\Object\InterfaceType.h" />
+    <ClInclude Include="Mkx\Object\InterfaceType.internal.h" />
+    <ClInclude Include="Mkx\Object\MemoryManager.h" />
+    <ClInclude Include="Mkx\Object\Object.h" />
+    <ClInclude Include="Mkx\Object\ScalarType.h" />
+    <ClInclude Include="Mkx\Object\ScalarType.internal.h" />
+    <ClInclude Include="Mkx\Object\ScalarTypes.h" />
+    <ClInclude Include="Mkx\Object\Type.h" />
+    <ClInclude Include="Mkx\Object\Type.internal.h" />
+    <ClInclude Include="Mkx\Object\TypeDeclaration.h" />
+    <ClInclude Include="Mkx\Object\TypeDefinition.h" />
+    <ClInclude Include="Mkx\Object\Types.h" />
+    <ClInclude Include="Mkx\Object\Types.internal.h" />
+    <ClInclude Include="Mkx\Object\Utilities\error.h" />
+    <ClInclude Include="Mkx\Object\WeakReference.h" />
+    <ClInclude Include="Mkx\Object\WeakReference.Module.h" />
     <ClInclude Include="Ring1\ReferenceCounter.h" />
     <ClInclude Include="Ring1\Module.h" />
     <ClInclude Include="Ring1\Result.h" />
@@ -505,8 +554,11 @@
     <ClCompile Include="Ring1\Ap\ApNat.c" />
     <ClCompile Include="Ring1\Ap\ApNat.private.c" />
     <ClCompile Include="Ring1\Ap\_Include.c" />
+    <ClCompile Include="Ring1\Assertions.c" />
     <ClCompile Include="Ring1\Atom\_Include.c" />
     <ClCompile Include="Ring1\ByteBuffer.c" />
+    <ClCompile Include="Mkx\Closure.c" />
+    <ClCompile Include="Mkx\CommandLine.c" />
     <ClCompile Include="Ring1\Collections\InlineArray.c" />
     <ClCompile Include="Ring1\Collections\PointerDeque.c" />
     <ClCompile Include="Ring1\Collections\PointerHashMap.c" />
@@ -528,6 +580,13 @@
     <ClCompile Include="Ring1\Crt\strlen.c" />
     <ClCompile Include="Ring1\Crt\strndup.c" />
     <ClCompile Include="Ring1\Crt\_Include.c" />
+    <ClCompile Include="Ring1\Intrinsic\Concurrency\GetCurrentThreadId.c" />
+    <ClCompile Include="Ring1\Intrinsic\Concurrency\Mutex.c" />
+    <ClCompile Include="Ring1\Intrinsic\Concurrency\ReadWriteLock.c" />
+    <ClCompile Include="Ring1\Intrinsic\Concurrency\ThreadId.c" />
+    <ClCompile Include="Ring1\Intrinsic\Concurrency\ThreadLocal.c" />
+    <ClCompile Include="Ring1\Log.c" />
+    <ClCompile Include="Mkx\Object.c" />
     <ClCompile Include="Ring1\Conversion.c" />
     <ClCompile Include="Ring1\Conversion\stringToBool.c" />
     <ClCompile Include="Ring1\Conversion\stringToFloat.c" />
@@ -578,9 +637,14 @@
     <ClCompile Include="Ring1\Intrinsic\Multiply\X64\multiply_u64.c" />
     <ClCompile Include="Ring1\Intrinsic\Multiply\X86\multiply_s64.c" />
     <ClCompile Include="Ring1\Intrinsic\Multiply\X86\multiply_u64.c" />
+    <Text Include="Mkx\Intrinsic\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Mkx\CommandLine\Argument.c" />
+    <ClCompile Include="Mkx\CommandLine\ArgumentList.c" />
+    <ClCompile Include="Mkx\CommandLine\Parser.c" />
     <ClCompile Include="Ring1\Intrinsic\Add\add.c" />
     <ClCompile Include="Ring1\Intrinsic\atomicGet.c" />
-    <ClCompile Include="Ring1\Intrinsic\Concurrency\ReadWriteLock.c" />
     <ClCompile Include="Ring1\Intrinsic\CountLeadingZeroes\countLeadingZeroes.c" />
     <ClCompile Include="Ring1\Intrinsic\CountLeadingZeroes\X64\countLeadingZeroes_u16.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -649,9 +713,38 @@
     <ClCompile Include="Ring1\Intrinsic\ThreadLocal.c" />
     <ClCompile Include="Ring1\Intrinsic\_Include.c" />
     <ClCompile Include="Ring1\Memory\_Include.c" />
+    <ClCompile Include="Ring1\Log\Buffer.c" />
+    <ClCompile Include="Ring1\Log\ConsoleLogger.c" />
+    <ClCompile Include="Ring1\Log\DefaultConsoleLogger.c" />
+    <ClCompile Include="Ring1\Log\Logger.c" />
+    <ClCompile Include="Ring1\Log\Loggers.c" />
     <ClCompile Include="Ring1\Memory\recomputeSize.c" />
     <ClCompile Include="Ring1\Memory\Statistics.c" />
     <ClCompile Include="Ring1\Memory\Windows\getPageSize.c" />
+    <ClCompile Include="Mkx\Object\ArrayType.c" />
+    <ClCompile Include="Mkx\Object\ArrayType.internal.c" />
+    <ClCompile Include="Mkx\Object\BoxedValue.c" />
+    <ClCompile Include="Mkx\Object\ClassType.c" />
+    <ClCompile Include="Mkx\Object\ClassType.internal.c" />
+    <ClCompile Include="Mkx\Object\Dispatch.c" />
+    <ClCompile Include="Mkx\Object\EnumerationType.c" />
+    <ClCompile Include="Mkx\Object\EnumerationType.internal.c" />
+    <ClCompile Include="Mkx\Object\Interface.c" />
+    <ClCompile Include="Mkx\Object\Interface.internal.c" />
+    <ClCompile Include="Mkx\Object\InterfaceType.c" />
+    <ClCompile Include="Mkx\Object\InterfaceType.internal.c" />
+    <ClCompile Include="Mkx\Object\MemoryManager.c" />
+    <ClCompile Include="Mkx\Object\Object.c">
+    </ClCompile>
+    <ClCompile Include="Mkx\Object\ScalarType.c" />
+    <ClCompile Include="Mkx\Object\ScalarType.internal.c" />
+    <ClCompile Include="Mkx\Object\ScalarTypes.c" />
+    <ClCompile Include="Mkx\Object\Type.c" />
+    <ClCompile Include="Mkx\Object\Type.internal.c" />
+    <ClCompile Include="Mkx\Object\Types.c" />
+    <ClCompile Include="Mkx\Object\Types.internal.c" />
+    <ClCompile Include="Mkx\Object\WeakReference.c" />
+    <ClCompile Include="Mkx\Object\WeakReference.Module.c" />
     <ClCompile Include="Ring1\Module.c" />
     <ClCompile Include="Ring1\Module\Dependencies.c" />
     <ClCompile Include="Ring1\Module\Handle.c" />
@@ -668,6 +761,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Ring1\Console\Windows\Color.i" />
+    <None Include="Mkx\Object\BoxedValue.i" />
+    <None Include="Mkx\Object\ScalarTypes.i" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

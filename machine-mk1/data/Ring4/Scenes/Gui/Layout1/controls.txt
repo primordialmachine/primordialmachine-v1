@@ -6,7 +6,7 @@
     borderWidth : 16,
     borderColor: [1, 1, 1],
     child : {
-      name : 'status-text',
+      name : 'MyDisplayDescription',
       kind : 'Text',
       text : 'F1: Switch between directions\n  "column",\n  "column reverse",\n  "row",\n  "row reverse".'
     }

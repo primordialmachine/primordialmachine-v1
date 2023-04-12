@@ -1,0 +1,9 @@
+@{title = "Definition: Axis Angle"}
+@{tableOfContents = "./reference/_toc.ihtml"}
+@(>"./_header.html.t")
+
+<h2>Definition of an axis angle</h2>
+<p>An axis angle \((\hat{r},\alpha)\) in \(\mathbb{R}^3\) is defined by a unit axis vector \(\hat{r} \in \mathbb{R}^3\) and an angle in degrees \(\alpha\).
+Such an axis angle denotes a rotation by an angle \(\alpha\) around the axis \(\hat{r}\).</p>
+
+@(>"./_footer.html.t")

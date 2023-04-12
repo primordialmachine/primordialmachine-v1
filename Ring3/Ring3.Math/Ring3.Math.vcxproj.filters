@@ -102,6 +102,15 @@
     <ClCompile Include="Sources\Ring3\Math\Transformations\Scaling.c">
       <Filter>Quelldateien\Ring3\Math\Transformations</Filter>
     </ClCompile>
+    <ClCompile Include="Ring3\Math\abs.c">
+      <Filter>Quelldateien\Ring3\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Math\cos.c">
+      <Filter>Quelldateien\Ring3\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring3\Math\sin.c">
+      <Filter>Quelldateien\Ring3\Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Ring3\Math\Rectangle2.h">
@@ -169,6 +178,15 @@
     </ClInclude>
     <ClInclude Include="Sources\Ring3\Math\Kernels\MatrixKernel.h">
       <Filter>Headerdateien\Ring3\Math\Kernels</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Math\abs.h">
+      <Filter>Headerdateien\Ring3\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Math\cos.h">
+      <Filter>Headerdateien\Ring3\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring3\Math\sin.h">
+      <Filter>Headerdateien\Ring3\Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
