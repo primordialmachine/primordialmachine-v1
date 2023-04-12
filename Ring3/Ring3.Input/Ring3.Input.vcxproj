@@ -77,22 +77,23 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)Sources</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)Sources</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)Sources</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)Sources</PublicIncludeDirectories>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -105,6 +106,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -117,6 +119,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,6 +130,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -135,25 +139,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Ring3\Input\KeyboardKeyAction.c" />
-    <ClCompile Include="Ring3\Input\KeyboardKeyEvent.c" />
-    <ClCompile Include="Ring3\Input\KeyboardKey.c" />
-    <ClCompile Include="Ring3\Input\MouseButtonAction.c" />
-    <ClCompile Include="Ring3\Input\MouseButtonEvent.c" />
-    <ClCompile Include="Ring3\Input\MousePointerAction.c" />
-    <ClCompile Include="Ring3\Input\MousePointerEvent.c" />
-    <ClCompile Include="Ring3\Input\Signals.c" />
-    <ClCompile Include="Ring3\Input\_Include.c" />
+    <ClCompile Include="Sources\Ring3\Input\KeyboardKeyAction.c" />
+    <ClCompile Include="Sources\Ring3\Input\KeyboardKeyEvent.c" />
+    <ClCompile Include="Sources\Ring3\Input\KeyboardKey.c" />
+    <ClCompile Include="Sources\Ring3\Input\MouseButtonAction.c" />
+    <ClCompile Include="Sources\Ring3\Input\MouseButtonEvent.c" />
+    <ClCompile Include="Sources\Ring3\Input\MousePointerAction.c" />
+    <ClCompile Include="Sources\Ring3\Input\MousePointerEvent.c" />
+    <ClCompile Include="Sources\Ring3\Input\Signals.c" />
+    <ClCompile Include="Sources\Ring3\Input\_Include.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ring3\Input\KeyboardKeyAction.h" />
-    <ClInclude Include="Ring3\Input\KeyboardKeyEvent.h" />
-    <ClInclude Include="Ring3\Input\KeyboardKey.h" />
-    <ClInclude Include="Ring3\Input\MouseButtonAction.h" />
-    <ClInclude Include="Ring3\Input\MouseButtonEvent.h" />
-    <ClInclude Include="Ring3\Input\MousePointerAction.h" />
-    <ClInclude Include="Ring3\Input\MousePointerEvent.h" />
-    <ClInclude Include="Ring3\Input\Signals.h" />
+    <ClInclude Include="Sources\Ring3\Input\KeyboardKeyAction.h" />
+    <ClInclude Include="Sources\Ring3\Input\KeyboardKeyEvent.h" />
+    <ClInclude Include="Sources\Ring3\Input\KeyboardKey.h" />
+    <ClInclude Include="Sources\Ring3\Input\MouseButtonAction.h" />
+    <ClInclude Include="Sources\Ring3\Input\MouseButtonEvent.h" />
+    <ClInclude Include="Sources\Ring3\Input\MousePointerAction.h" />
+    <ClInclude Include="Sources\Ring3\Input\MousePointerEvent.h" />
+    <ClInclude Include="Sources\Ring3\Input\Signals.h" />
     <ClInclude Include="Ring3\Input\_Include.h" />
   </ItemGroup>
   <ItemGroup>
@@ -168,7 +172,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Ring3\Input\KeyboardKey.i">
+    <None Include="Sources\Ring3\Input\KeyboardKey.i">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DeploymentContent>
@@ -178,7 +182,7 @@
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</DeploymentContent>
     </None>
-    <None Include="Ring3\Input\Signals.i">
+    <None Include="Sources\Ring3\Input\Signals.i">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DeploymentContent>

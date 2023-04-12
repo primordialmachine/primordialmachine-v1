@@ -27,68 +27,68 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ring3\Input\_Include.c">
+    <ClCompile Include="Sources\Ring3\Input\_Include.c">
       <Filter>Quelldateien\Ring3\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Input\KeyboardKeyEvent.c">
+    <ClCompile Include="Sources\Ring3\Input\KeyboardKeyEvent.c">
       <Filter>Quelldateien\Ring3\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Input\KeyboardKey.c">
+    <ClCompile Include="Sources\Ring3\Input\KeyboardKey.c">
       <Filter>Quelldateien\Ring3\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Input\MouseButtonEvent.c">
+    <ClCompile Include="Sources\Ring3\Input\MouseButtonEvent.c">
       <Filter>Quelldateien\Ring3\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Input\MousePointerEvent.c">
+    <ClCompile Include="Sources\Ring3\Input\MousePointerEvent.c">
       <Filter>Quelldateien\Ring3\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Input\Signals.c">
+    <ClCompile Include="Sources\Ring3\Input\Signals.c">
       <Filter>Quelldateien\Ring3\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Input\MouseButtonAction.c">
+    <ClCompile Include="Sources\Ring3\Input\MouseButtonAction.c">
       <Filter>Quelldateien\Ring3\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Input\KeyboardKeyAction.c">
+    <ClCompile Include="Sources\Ring3\Input\KeyboardKeyAction.c">
       <Filter>Quelldateien\Ring3\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Input\MousePointerAction.c">
+    <ClCompile Include="Sources\Ring3\Input\MousePointerAction.c">
       <Filter>Quelldateien\Ring3\Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Sources\Ring3\Input\KeyboardKeyEvent.h">
+      <Filter>Headerdateien\Ring3\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Ring3\Input\KeyboardKey.h">
+      <Filter>Headerdateien\Ring3\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Ring3\Input\MouseButtonEvent.h">
+      <Filter>Headerdateien\Ring3\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Ring3\Input\MousePointerEvent.h">
+      <Filter>Headerdateien\Ring3\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Ring3\Input\Signals.h">
+      <Filter>Headerdateien\Ring3\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Ring3\Input\MouseButtonAction.h">
+      <Filter>Headerdateien\Ring3\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Ring3\Input\KeyboardKeyAction.h">
+      <Filter>Headerdateien\Ring3\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Ring3\Input\MousePointerAction.h">
+      <Filter>Headerdateien\Ring3\Input</Filter>
+    </ClInclude>
     <ClInclude Include="Ring3\Input\_Include.h">
-      <Filter>Headerdateien\Ring3\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring3\Input\KeyboardKeyEvent.h">
-      <Filter>Headerdateien\Ring3\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring3\Input\KeyboardKey.h">
-      <Filter>Headerdateien\Ring3\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring3\Input\MouseButtonEvent.h">
-      <Filter>Headerdateien\Ring3\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring3\Input\MousePointerEvent.h">
-      <Filter>Headerdateien\Ring3\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring3\Input\Signals.h">
-      <Filter>Headerdateien\Ring3\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring3\Input\MouseButtonAction.h">
-      <Filter>Headerdateien\Ring3\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring3\Input\KeyboardKeyAction.h">
-      <Filter>Headerdateien\Ring3\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring3\Input\MousePointerAction.h">
-      <Filter>Headerdateien\Ring3\Input</Filter>
+      <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Ring3\Input\KeyboardKey.i">
+    <None Include="Sources\Ring3\Input\KeyboardKey.i">
       <Filter>Headerdateien\Ring3\Input</Filter>
     </None>
-    <None Include="Ring3\Input\Signals.i">
+    <None Include="Sources\Ring3\Input\Signals.i">
       <Filter>Headerdateien\Ring3\Input</Filter>
     </None>
   </ItemGroup>
