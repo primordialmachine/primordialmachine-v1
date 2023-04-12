@@ -27,13 +27,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ring3\Launcher\_Include.h">
-      <Filter>Headerdateien\Ring3\Launcher</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Ring3\Launcher\_Include.c">
+    <ClCompile Include="Sources\Ring3\Launcher\_Include.c">
       <Filter>Quelldateien\Ring3\Launcher</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Sources\Ring3\Launcher\_Include.h">
+      <Filter>Headerdateien\Ring3\Launcher</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
