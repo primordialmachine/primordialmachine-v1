@@ -39,72 +39,72 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ring3\Visuals\BlendFunction.h" />
-    <ClInclude Include="Ring3\Visuals\Canvas.h" />
-    <ClInclude Include="Ring3\Visuals\CanvasSizeChangedEvent.h" />
-    <ClInclude Include="Ring3\Visuals\CullingMode.h" />
-    <ClInclude Include="Ring3\Visuals\DefaultImage.h" />
-    <ClInclude Include="Ring3\Visuals\DefaultMaterialBuilder.h" />
-    <ClInclude Include="Ring3\Visuals\DepthTestFunction.h" />
-    <ClInclude Include="Ring3\Visuals\Font.h" />
-    <ClInclude Include="Ring3\Visuals\FontsContext.h" />
-    <ClInclude Include="Ring3\Visuals\GpuBuffer.h" />
-    <ClInclude Include="Ring3\Visuals\GpuProgram.h" />
-    <ClInclude Include="Ring3\Visuals\GpuProgramBinding.h" />
-    <ClInclude Include="Ring3\Visuals\GpuProgramInputDescriptor.h" />
-    <ClInclude Include="Ring3\Visuals\Image.h" />
-    <ClInclude Include="Ring3\Visuals\ImagesContext.h" />
-    <ClInclude Include="Ring3\Visuals\ImagesDecoder.h" />
-    <ClInclude Include="Ring3\Visuals\LightType.h" />
-    <ClInclude Include="Ring3\Visuals\Material.h" />
-    <ClInclude Include="Ring3\Visuals\Material.protected.h" />
-    <ClInclude Include="Ring3\Visuals\MaterialBuilder.h" />
-    <ClInclude Include="Ring3\Visuals\PixelFormat.h" />
-    <ClInclude Include="Ring3\Visuals\GpuProgramInputKind.h" />
-    <ClInclude Include="Ring3\Visuals\GpuProgramInputType.h" />
-    <ClInclude Include="Ring3\Visuals\GpuProgramKind.h" />
-    <ClInclude Include="Ring3\Visuals\PrimitiveType.h" />
-    <ClInclude Include="Ring3\Visuals\Texture.h" />
-    <ClInclude Include="Ring3\Visuals\VertexDescriptor.h" />
-    <ClInclude Include="Ring3\Visuals\VertexElementDescriptor.h" />
-    <ClInclude Include="Ring3\Visuals\VertexElementSemantics.h" />
-    <ClInclude Include="Ring3\Visuals\VisualsContext.h" />
-    <ClInclude Include="Ring3\Visuals\WindingMode.h" />
-    <ClInclude Include="Ring3\Visuals\_Include.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\BlendFunction.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\Canvas.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\CanvasSizeChangedEvent.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\CullingMode.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\DefaultImage.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\DefaultMaterialBuilder.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\DepthTestFunction.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\Font.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\FontsContext.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\GpuBuffer.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\GpuProgram.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\GpuProgramBinding.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\GpuProgramInputDescriptor.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\Image.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\ImagesContext.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\ImagesDecoder.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\LightType.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\Material.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\Material.protected.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\MaterialBuilder.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\PixelFormat.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\GpuProgramInputKind.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\GpuProgramInputType.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\GpuProgramKind.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\PrimitiveType.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\Texture.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\VertexDescriptor.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\VertexElementDescriptor.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\VertexElementSemantics.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\VisualsContext.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\WindingMode.h" />
+    <ClInclude Include="Sources\Ring3\Visuals\_Include.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ring3\Visuals\BlendFunction.c" />
-    <ClCompile Include="Ring3\Visuals\Canvas.c" />
-    <ClCompile Include="Ring3\Visuals\CanvasSizeChangedEvent.c" />
-    <ClCompile Include="Ring3\Visuals\CullingMode.c" />
-    <ClCompile Include="Ring3\Visuals\DefaultImage.c" />
-    <ClCompile Include="Ring3\Visuals\DefaultMaterialBuilder.c" />
-    <ClCompile Include="Ring3\Visuals\DepthTestFunction.c" />
-    <ClCompile Include="Ring3\Visuals\Font.c" />
-    <ClCompile Include="Ring3\Visuals\FontsContext.c" />
-    <ClCompile Include="Ring3\Visuals\GpuBuffer.c" />
-    <ClCompile Include="Ring3\Visuals\GpuProgram.c" />
-    <ClCompile Include="Ring3\Visuals\GpuProgramBinding.c" />
-    <ClCompile Include="Ring3\Visuals\GpuProgramInputDescriptor.c" />
-    <ClCompile Include="Ring3\Visuals\Image.c" />
-    <ClCompile Include="Ring3\Visuals\ImagesContext.c" />
-    <ClCompile Include="Ring3\Visuals\ImagesDecoder.c" />
-    <ClCompile Include="Ring3\Visuals\LightType.c" />
-    <ClCompile Include="Ring3\Visuals\Material.c" />
-    <ClCompile Include="Ring3\Visuals\Material.protected.c" />
-    <ClCompile Include="Ring3\Visuals\MaterialBuilder.c" />
-    <ClCompile Include="Ring3\Visuals\PixelFormat.c" />
-    <ClCompile Include="Ring3\Visuals\GpuProgramInputKind.c" />
-    <ClCompile Include="Ring3\Visuals\GpuProgramInputType.c" />
-    <ClCompile Include="Ring3\Visuals\GpuProgramKind.c" />
-    <ClCompile Include="Ring3\Visuals\PrimitiveType.c" />
-    <ClCompile Include="Ring3\Visuals\Texture.c" />
-    <ClCompile Include="Ring3\Visuals\VertexDescriptor.c" />
-    <ClCompile Include="Ring3\Visuals\VertexElementDescriptor.c" />
-    <ClCompile Include="Ring3\Visuals\VertexElementSemantics.c" />
-    <ClCompile Include="Ring3\Visuals\VisualsContext.c" />
-    <ClCompile Include="Ring3\Visuals\WindingMode.c" />
-    <ClCompile Include="Ring3\Visuals\_Include.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\BlendFunction.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\Canvas.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\CanvasSizeChangedEvent.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\CullingMode.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\DefaultImage.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\DefaultMaterialBuilder.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\DepthTestFunction.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\Font.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\FontsContext.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\GpuBuffer.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\GpuProgram.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\GpuProgramBinding.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\GpuProgramInputDescriptor.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\Image.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\ImagesContext.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\ImagesDecoder.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\LightType.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\Material.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\Material.protected.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\MaterialBuilder.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\PixelFormat.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\GpuProgramInputKind.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\GpuProgramInputType.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\GpuProgramKind.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\PrimitiveType.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\Texture.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\VertexDescriptor.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\VertexElementDescriptor.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\VertexElementSemantics.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\VisualsContext.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\WindingMode.c" />
+    <ClCompile Include="Sources\Ring3\Visuals\_Include.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -165,23 +165,24 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)Sources</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)Sources</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)Sources</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)Sources</PublicIncludeDirectories>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -193,6 +194,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -204,6 +206,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -216,6 +219,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>

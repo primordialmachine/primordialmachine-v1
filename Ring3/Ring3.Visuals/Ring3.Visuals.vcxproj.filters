@@ -27,198 +27,198 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ring3\Visuals\_Include.h">
+    <ClInclude Include="Sources\Ring3\Visuals\_Include.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\BlendFunction.h">
+    <ClInclude Include="Sources\Ring3\Visuals\BlendFunction.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\CanvasSizeChangedEvent.h">
+    <ClInclude Include="Sources\Ring3\Visuals\CanvasSizeChangedEvent.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\DepthTestFunction.h">
+    <ClInclude Include="Sources\Ring3\Visuals\DepthTestFunction.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\PixelFormat.h">
+    <ClInclude Include="Sources\Ring3\Visuals\PixelFormat.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\VertexElementSemantics.h">
+    <ClInclude Include="Sources\Ring3\Visuals\VertexElementSemantics.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\MaterialBuilder.h">
+    <ClInclude Include="Sources\Ring3\Visuals\MaterialBuilder.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\DefaultMaterialBuilder.h">
+    <ClInclude Include="Sources\Ring3\Visuals\DefaultMaterialBuilder.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\Material.h">
+    <ClInclude Include="Sources\Ring3\Visuals\Material.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\Material.protected.h">
+    <ClInclude Include="Sources\Ring3\Visuals\Material.protected.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\GpuProgramInputKind.h">
+    <ClInclude Include="Sources\Ring3\Visuals\GpuProgramInputKind.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\GpuProgramInputType.h">
+    <ClInclude Include="Sources\Ring3\Visuals\GpuProgramInputType.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\GpuProgramKind.h">
+    <ClInclude Include="Sources\Ring3\Visuals\GpuProgramInputDescriptor.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\GpuProgramInputDescriptor.h">
+    <ClInclude Include="Sources\Ring3\Visuals\VertexDescriptor.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\VertexDescriptor.h">
+    <ClInclude Include="Sources\Ring3\Visuals\VertexElementDescriptor.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\VertexElementDescriptor.h">
+    <ClInclude Include="Sources\Ring3\Visuals\Image.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\Image.h">
+    <ClInclude Include="Sources\Ring3\Visuals\Texture.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\Texture.h">
+    <ClInclude Include="Sources\Ring3\Visuals\ImagesContext.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\ImagesContext.h">
+    <ClInclude Include="Sources\Ring3\Visuals\GpuBuffer.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\GpuBuffer.h">
+    <ClInclude Include="Sources\Ring3\Visuals\PrimitiveType.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\PrimitiveType.h">
+    <ClInclude Include="Sources\Ring3\Visuals\CullingMode.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\CullingMode.h">
+    <ClInclude Include="Sources\Ring3\Visuals\WindingMode.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\WindingMode.h">
+    <ClInclude Include="Sources\Ring3\Visuals\FontsContext.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\FontsContext.h">
+    <ClInclude Include="Sources\Ring3\Visuals\Canvas.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\Canvas.h">
+    <ClInclude Include="Sources\Ring3\Visuals\GpuProgramBinding.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\GpuProgramBinding.h">
+    <ClInclude Include="Sources\Ring3\Visuals\GpuProgram.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\GpuProgram.h">
+    <ClInclude Include="Sources\Ring3\Visuals\VisualsContext.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\VisualsContext.h">
+    <ClInclude Include="Sources\Ring3\Visuals\Font.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\Font.h">
+    <ClInclude Include="Sources\Ring3\Visuals\LightType.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\LightType.h">
+    <ClInclude Include="Sources\Ring3\Visuals\ImagesDecoder.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\ImagesDecoder.h">
+    <ClInclude Include="Sources\Ring3\Visuals\DefaultImage.h">
       <Filter>Headerdateien\Ring3\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Visuals\DefaultImage.h">
-      <Filter>Headerdateien\Ring3\Visuals</Filter>
+    <ClInclude Include="Sources\Ring3\Visuals\GpuProgramKind.h">
+      <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ring3\Visuals\_Include.c">
+    <ClCompile Include="Sources\Ring3\Visuals\_Include.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\BlendFunction.c">
+    <ClCompile Include="Sources\Ring3\Visuals\BlendFunction.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\CanvasSizeChangedEvent.c">
+    <ClCompile Include="Sources\Ring3\Visuals\CanvasSizeChangedEvent.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\DepthTestFunction.c">
+    <ClCompile Include="Sources\Ring3\Visuals\DepthTestFunction.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\PixelFormat.c">
+    <ClCompile Include="Sources\Ring3\Visuals\PixelFormat.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\VertexElementSemantics.c">
+    <ClCompile Include="Sources\Ring3\Visuals\VertexElementSemantics.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\MaterialBuilder.c">
+    <ClCompile Include="Sources\Ring3\Visuals\MaterialBuilder.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\DefaultMaterialBuilder.c">
+    <ClCompile Include="Sources\Ring3\Visuals\DefaultMaterialBuilder.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\Material.c">
+    <ClCompile Include="Sources\Ring3\Visuals\Material.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\Material.protected.c">
+    <ClCompile Include="Sources\Ring3\Visuals\Material.protected.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\GpuProgramInputKind.c">
+    <ClCompile Include="Sources\Ring3\Visuals\GpuProgramInputKind.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\GpuProgramInputType.c">
+    <ClCompile Include="Sources\Ring3\Visuals\GpuProgramInputType.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\GpuProgramKind.c">
+    <ClCompile Include="Sources\Ring3\Visuals\GpuProgramKind.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\GpuProgramInputDescriptor.c">
+    <ClCompile Include="Sources\Ring3\Visuals\GpuProgramInputDescriptor.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\VertexDescriptor.c">
+    <ClCompile Include="Sources\Ring3\Visuals\VertexDescriptor.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\VertexElementDescriptor.c">
+    <ClCompile Include="Sources\Ring3\Visuals\VertexElementDescriptor.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\Image.c">
+    <ClCompile Include="Sources\Ring3\Visuals\Image.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\Texture.c">
+    <ClCompile Include="Sources\Ring3\Visuals\Texture.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\ImagesContext.c">
+    <ClCompile Include="Sources\Ring3\Visuals\ImagesContext.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\GpuBuffer.c">
+    <ClCompile Include="Sources\Ring3\Visuals\GpuBuffer.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\PrimitiveType.c">
+    <ClCompile Include="Sources\Ring3\Visuals\PrimitiveType.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\CullingMode.c">
+    <ClCompile Include="Sources\Ring3\Visuals\CullingMode.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\WindingMode.c">
+    <ClCompile Include="Sources\Ring3\Visuals\WindingMode.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\FontsContext.c">
+    <ClCompile Include="Sources\Ring3\Visuals\FontsContext.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\Canvas.c">
+    <ClCompile Include="Sources\Ring3\Visuals\Canvas.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\GpuProgramBinding.c">
+    <ClCompile Include="Sources\Ring3\Visuals\GpuProgramBinding.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\GpuProgram.c">
+    <ClCompile Include="Sources\Ring3\Visuals\GpuProgram.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\Font.c">
+    <ClCompile Include="Sources\Ring3\Visuals\Font.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\VisualsContext.c">
+    <ClCompile Include="Sources\Ring3\Visuals\VisualsContext.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\LightType.c">
+    <ClCompile Include="Sources\Ring3\Visuals\LightType.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\ImagesDecoder.c">
+    <ClCompile Include="Sources\Ring3\Visuals\ImagesDecoder.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Visuals\DefaultImage.c">
+    <ClCompile Include="Sources\Ring3\Visuals\DefaultImage.c">
       <Filter>Quelldateien\Ring3\Visuals</Filter>
     </ClCompile>
   </ItemGroup>
