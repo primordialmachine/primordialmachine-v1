@@ -27,24 +27,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ring3\Signals\Connection.c">
+    <ClCompile Include="Sources\Ring3\Signals\Connection.c">
       <Filter>Quelldateien\Ring3\Signals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Signals\Signal.c">
+    <ClCompile Include="Sources\Ring3\Signals\Signal.c">
       <Filter>Quelldateien\Ring3\Signals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Signals\_Include.c">
+    <ClCompile Include="Sources\Ring3\Signals\_Include.c">
       <Filter>Quelldateien\Ring3\Signals</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ring3\Signals\Connection.h">
+    <ClInclude Include="Sources\Ring3\Signals\Connection.h">
       <Filter>Headerdateien\Ring3\Signals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Signals\Signal.h">
+    <ClInclude Include="Sources\Ring3\Signals\Signal.h">
       <Filter>Headerdateien\Ring3\Signals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Signals\_Include.h">
+    <ClInclude Include="Sources\Ring3\Signals\_Include.h">
       <Filter>Headerdateien\Ring3\Signals</Filter>
     </ClInclude>
   </ItemGroup>
