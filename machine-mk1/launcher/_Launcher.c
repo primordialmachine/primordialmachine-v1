@@ -1,6 +1,6 @@
 #include "_Launcher.h"
 
-#include "_Fonts.h"
+#include "Ring3/Fonts/FreeType2/_Include.h"
 #include "Ring3/ImagesTranscoders/LibPng/_Include.h"
 #include "Ring3/Visuals/Gl/_Include.h"
 

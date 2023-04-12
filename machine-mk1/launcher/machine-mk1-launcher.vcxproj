@@ -122,6 +122,9 @@
     <ProjectReference Include="..\..\ring2\Ring2\Ring2.vcxproj">
       <Project>{3ade4501-5d5c-4878-9632-f81c3de2429c}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\Ring3\Ring3.Fonts.FreeType2\Ring3.Fonts.FreeType2.vcxproj">
+      <Project>{36897cc2-2e49-4ce8-804d-aa172ec849e0}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\Ring3\Ring3.ImagesTranscoders.LibPng\Ring3.ImagesTranscoders.LibPng.vcxproj">
       <Project>{f0b732b5-824d-40ab-aa0a-a067b6a852f9}</Project>
     </ProjectReference>
@@ -139,9 +142,6 @@
     </ProjectReference>
     <ProjectReference Include="..\..\ring3\Ring3.Visuals\Ring3.Visuals.vcxproj">
       <Project>{fd4c313c-d599-4313-adb7-034796537586}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\fonts\machine-mk1-fonts.vcxproj">
-      <Project>{36897cc2-2e49-4ce8-804d-aa172ec849e0}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

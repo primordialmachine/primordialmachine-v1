@@ -1,13 +1,16 @@
-/// @file Font.c
-/// @author Michael Heilmann <michaelheilmann@primordialmachine.com>
-/// @copyright Copyright (c) 2021 Michael Heilmann. All rights reserved.
-#define MACHINE_FONTS_PRIVATE (1)
-#include "Font.h"
+/// @file Ring3/Fonts/FreeType2/Font.c
+/// @copyright Copyright (c) 2021-2023 Michael Heilmann. All rights reserved.
+/// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
+#define RING3_FONTS_FREETYPE2_PRIVATE (1)
+#include "Ring3/Fonts/FreeType2/Font.h"
+
+#include "Ring3/Fonts/FreeType2/FontsContext.h"
+#undef RING3_FONTS_FREETYPE2_PRIVATE
 
 #include "Ring1/All/_Include.h"
-#include "FontsContext.h"
 #include <inttypes.h>
+
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
