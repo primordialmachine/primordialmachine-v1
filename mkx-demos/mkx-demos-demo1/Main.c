@@ -39,7 +39,7 @@ loadIcons
     "primordialmachine-256x256.png",
   };
   Ring2_Collections_List* vals = Ring1_cast(Ring2_Collections_List *, Ring2_Collections_ArrayList_create());
-  for (size_t i = 0, n = (sizeof(PATHS) / sizeof(const char*)); i < n; ++i) {
+  for (Ring2_Integer64 i = 0, n = Ring1_cast(Ring2_Integer64, sizeof(PATHS) / sizeof(const char*)); i < n; ++i) {
     Ring3_Image* image = Ring3_ImagesContext_createImageFromPath(Ring3_Launcher_getImagesContext(),
                                                                  Ring2_String_fromC(false, PATHS[i]));
     Ring2_Value val;
@@ -153,9 +153,9 @@ main0
   Ring2_JumpTarget jumpTarget1; // To shutdown input.
   Ring2_pushJumpTarget(&jumpTarget1);
   if (!setjmp(jumpTarget1.environment)) {
-    g_scene = (Scene*)Scene5_create(Ring3_Launcher_getVisualsContext(),
-                                    Ring3_Launcher_getImagesContext(),
-                                    Ring3_Launcher_getFontsContext());
+    g_scene = Ring1_cast(Scene*,Scene5_create(Ring3_Launcher_getVisualsContext(),
+                                              Ring3_Launcher_getImagesContext(),
+                                              Ring3_Launcher_getFontsContext()));
     Ring3_Canvas_subscribeKeyboardKeyPressedEvent(Ring3_Launcher_getCanvas(),
                                                   Ring1_cast(Machine_Object*, g_scene), &onKeyboardKeyEvent);
     Ring3_Canvas_subscribeKeyboardKeyReleasedEvent(Ring3_Launcher_getCanvas(),
