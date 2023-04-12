@@ -2,5 +2,6 @@
 cmake_minimum_required(VERSION 3.20)
 
 include("${CMAKE_SOURCE_DIR}/PrimordialMachine.cmake")
-MyLibrary("PrimordialMachine.Ring3.Math")
-target_link_libraries("PrimordialMachine.Ring3.Math" "PrimordialMachine.Ring2.Library")
+set(name "PrimordialMachine.Ring3.Math")
+MyLibrary2(${name})
+target_link_libraries(${name} "PrimordialMachine.Ring2.Library")
