@@ -223,7 +223,12 @@ Machine_Text_Layout_create
   return self;
 }
 
-const Ring3_Math_Rectangle2* Machine_Text_Layout_getBounds(Machine_Text_Layout* self) {
+Ring1_NoDiscardReturn() Ring3_Math_Rectangle2*
+Machine_Text_Layout_getBounds
+  (
+    Machine_Text_Layout* self
+  )
+{
   if ((self->flags & LINES_DIRTY) == LINES_DIRTY) {
     Ring2_Collections_Collection_clear(Ring1_cast(Ring2_Collections_Collection *, self->lines));
     parse(self->text, Ring1_cast(Ring2_Collections_List *, self->lines));
@@ -242,7 +247,13 @@ const Ring3_Math_Rectangle2* Machine_Text_Layout_getBounds(Machine_Text_Layout* 
   return Ring3_Graphics2_Rectangle_getRectangle(self->visualBounds);
 }
 
-void Machine_Text_Layout_render(Machine_Text_Layout* self, Ring3_Graphics2_Context* context2) {
+void
+Machine_Text_Layout_render
+  (
+    Machine_Text_Layout* self,
+    Ring3_Graphics2_Context* context2
+  )
+{
   if ((self->flags & LINES_DIRTY) == LINES_DIRTY) {
     Ring2_Collections_Collection_clear(Ring1_cast(Ring2_Collections_Collection *, self->lines));
     parse(self->text, Ring1_cast(Ring2_Collections_List *, self->lines));
@@ -414,7 +425,13 @@ void Machine_Text_Layout_render(Machine_Text_Layout* self, Ring3_Graphics2_Conte
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-void Machine_Text_Layout_setText(Machine_Text_Layout* self, Ring2_String* text) {
+void
+Machine_Text_Layout_setText
+  (
+    Machine_Text_Layout* self,
+    Ring2_String* text
+  )
+{
   Ring2_assertNotNull(self);
   Ring2_assertNotNull(text);
 
@@ -424,13 +441,22 @@ void Machine_Text_Layout_setText(Machine_Text_Layout* self, Ring2_String* text) 
   }
 }
 
-Ring2_String* Machine_Text_Layout_getText(Machine_Text_Layout* self) {
-  return self->text;
-}
+Ring1_NoDiscardReturn() Ring2_String*
+Machine_Text_Layout_getText
+  (
+    Machine_Text_Layout* self
+  )
+{ return self->text; }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-void Machine_Text_Layout_setPosition(Machine_Text_Layout* self, Ring3_Math_Vector2f32 const* position) {
+void
+Machine_Text_Layout_setPosition
+  (
+    Machine_Text_Layout* self,
+    Ring3_Math_Vector2f32 const* position
+  )
+{
   Ring2_assertNotNull(self);
   Ring2_assertNotNull(position);
 

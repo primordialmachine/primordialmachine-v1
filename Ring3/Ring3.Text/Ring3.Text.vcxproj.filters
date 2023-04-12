@@ -21,24 +21,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ring3\Text\_Include.h">
+    <ClInclude Include="Sources\Ring3\Text\_Include.h">
       <Filter>Headerdateien\Text</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Text\Layout.h">
+    <ClInclude Include="Sources\Ring3\Text\Layout.h">
       <Filter>Headerdateien\Text</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Text\LayoutLine.h">
+    <ClInclude Include="Sources\Ring3\Text\LayoutLine.h">
       <Filter>Headerdateien\Text</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ring3\Text\_Include.c">
+    <ClCompile Include="Sources\Ring3\Text\_Include.c">
       <Filter>Quelldateien\Text</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Text\Layout.c">
+    <ClCompile Include="Sources\Ring3\Text\Layout.c">
       <Filter>Quelldateien\Text</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Text\LayoutLine.c">
+    <ClCompile Include="Sources\Ring3\Text\LayoutLine.c">
       <Filter>Quelldateien\Text</Filter>
     </ClCompile>
   </ItemGroup>

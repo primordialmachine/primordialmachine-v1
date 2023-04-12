@@ -54,7 +54,13 @@ struct Machine_Text_Layout {
   Ring3_Graphics2_Rectangle* visualBounds;
 };
 
-void Machine_Text_Layout_construct(Machine_Text_Layout* self, size_t numberOfArguments, Ring2_Value const* arguments);
+void
+Machine_Text_Layout_construct
+  (
+    Machine_Text_Layout* self,
+    size_t numberOfArguments,
+    Ring2_Value const* arguments
+  );
 
 /// @brief Create a layout with the specified text.
 /// Default position is <code>(0,0)</code>.
@@ -71,24 +77,42 @@ Machine_Text_Layout_create
 /// @brief Get the bounds of this text layout.
 /// @param self This text layout.
 /// @return The bounds of this text layout.
-const Ring3_Math_Rectangle2* Machine_Text_Layout_getBounds(Machine_Text_Layout* self);
+Ring1_NoDiscardReturn() Ring3_Math_Rectangle2*
+Machine_Text_Layout_getBounds
+  (
+    Machine_Text_Layout* self
+  );
 
 /// @brief Render this text layout.
 /// @param self This text layout.
 /// @param context2 The 2D context.
-void Machine_Text_Layout_render(Machine_Text_Layout* self, Ring3_Graphics2_Context* context2);
+void
+Machine_Text_Layout_render
+  (
+    Machine_Text_Layout* self,
+    Ring3_Graphics2_Context* context2
+  );
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 /// @brief Set the text of this text layout.
 /// @param self This text layout.
 /// @param text The text.
-void Machine_Text_Layout_setText(Machine_Text_Layout* self, Ring2_String* text);
+void
+Machine_Text_Layout_setText
+  (
+    Machine_Text_Layout* self,
+    Ring2_String* text
+  );
 
 /// @brief Get the text of this text layout.
 /// @param self This text layout.
 /// @return The text.
-Ring2_String* Machine_Text_Layout_getText(Machine_Text_Layout* self);
+Ring1_NoDiscardReturn() Ring2_String*
+Machine_Text_Layout_getText
+  (
+    Machine_Text_Layout* self
+  );
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
