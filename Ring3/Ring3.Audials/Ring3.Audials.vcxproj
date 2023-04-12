@@ -30,14 +30,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ring3\Audials\PcmBuffer.h" />
-    <ClInclude Include="Ring3\Audials\PcmDescriptor.h" />
-    <ClInclude Include="Ring3\Audials\_Include.h" />
+    <ClCompile Include="Sources\Ring3\Audials\PcmBuffer.c" />
+    <ClCompile Include="Sources\Ring3\Audials\PcmDescriptor.c" />
+    <ClCompile Include="Sources\Ring3\Audials\_Include.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ring3\Audials\PcmBuffer.c" />
-    <ClCompile Include="Ring3\Audials\PcmDescriptor.c" />
-    <ClCompile Include="Ring3\Audials\_Include.c" />
+    <ClInclude Include="Sources\Ring3\Audials\PcmBuffer.h" />
+    <ClInclude Include="Sources\Ring3\Audials\PcmDescriptor.h" />
+    <ClInclude Include="Sources\Ring3\Audials\_Include.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -98,36 +98,40 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)Sources</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)Sources</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)Sources</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)Sources</PublicIncludeDirectories>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

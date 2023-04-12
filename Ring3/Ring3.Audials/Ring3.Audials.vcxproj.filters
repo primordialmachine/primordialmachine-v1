@@ -27,25 +27,25 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ring3\Audials\_Include.h">
-      <Filter>Headerdateien\Ring3\Audials</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring3\Audials\PcmDescriptor.h">
-      <Filter>Headerdateien\Ring3\Audials</Filter>
-    </ClInclude>
-    <ClInclude Include="Ring3\Audials\PcmBuffer.h">
-      <Filter>Headerdateien\Ring3\Audials</Filter>
-    </ClInclude>
+    <ClCompile Include="Sources\Ring3\Audials\_Include.c">
+      <Filter>Quelldateien\Ring3\Audials</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Ring3\Audials\PcmBuffer.c">
+      <Filter>Quelldateien\Ring3\Audials</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Ring3\Audials\PcmDescriptor.c">
+      <Filter>Quelldateien\Ring3\Audials</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ring3\Audials\_Include.c">
-      <Filter>Quelldateien\Ring3\Audials</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring3\Audials\PcmDescriptor.c">
-      <Filter>Quelldateien\Ring3\Audials</Filter>
-    </ClCompile>
-    <ClCompile Include="Ring3\Audials\PcmBuffer.c">
-      <Filter>Quelldateien\Ring3\Audials</Filter>
-    </ClCompile>
+    <ClInclude Include="Sources\Ring3\Audials\_Include.h">
+      <Filter>Headerdateien\Ring3\Audials</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Ring3\Audials\PcmBuffer.h">
+      <Filter>Headerdateien\Ring3\Audials</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Ring3\Audials\PcmDescriptor.h">
+      <Filter>Headerdateien\Ring3\Audials</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
