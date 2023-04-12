@@ -64,7 +64,7 @@ getAt
   )
 {
   if (index < 0 || index >= self->size) {
-    fprintf(stderr, "index out of bounds");
+    Ring1_Log_error("index out of bounds");
     Ring1_Status_set(Ring1_Status_IndexOutOfBounds);
     Ring2_jump();
   }

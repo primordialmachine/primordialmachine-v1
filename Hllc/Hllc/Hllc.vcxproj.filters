@@ -1,0 +1,521 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Ressourcendateien">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien\spectre">
+      <UniqueIdentifier>{7fe49f7e-f2f7-403e-9765-f616e7a70555}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\spectre">
+      <UniqueIdentifier>{2c69cc88-783d-46b7-8827-675f4bd5553c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\spectre\emit">
+      <UniqueIdentifier>{3f644c59-0176-485b-a77c-cdb649f0059e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\spectre\emit">
+      <UniqueIdentifier>{fa902cb8-6a69-471c-811d-c9d96e6e5657}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\spectre\c99">
+      <UniqueIdentifier>{9234b070-415a-448e-aa2e-1c3b5cf98815}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\spectre\c99">
+      <UniqueIdentifier>{e66e2b62-8fc2-43cd-aafe-5ea81a526201}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\c99">
+      <UniqueIdentifier>{ee207793-0153-4928-8006-4913df99f3ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\c99">
+      <UniqueIdentifier>{422f1303-4ef3-44cb-ad50-90dd73d8825f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\c99\type">
+      <UniqueIdentifier>{00903d4d-48c9-4be0-b2b2-30713aa7525b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\c99\type">
+      <UniqueIdentifier>{0f828ae4-9093-4b1a-8fcd-0ecb7ab39152}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\c99\ast">
+      <UniqueIdentifier>{3b8c3682-d5f7-4461-84c4-bb1f4ef02ea7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\c99\ast">
+      <UniqueIdentifier>{642f29c5-2b00-4220-bca8-359f02da1793}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\spectre\cc_ascii.h">
+      <Filter>Headerdateien\spectre</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spectre\cc_emit.h">
+      <Filter>Headerdateien\spectre</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spectre\cc_emit_class_constructor.h">
+      <Filter>Headerdateien\spectre</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spectre\cc_emit_constructors.h">
+      <Filter>Headerdateien\spectre</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spectre\cc_emit_create_operators.h">
+      <Filter>Headerdateien\spectre</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spectre\cc_emit_destructor.h">
+      <Filter>Headerdateien\spectre</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spectre\cc_emit_expression.h">
+      <Filter>Headerdateien\spectre</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spectre\cc_emit_member_variable.h">
+      <Filter>Headerdateien\spectre</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spectre\cc_emit_method.h">
+      <Filter>Headerdateien\spectre</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spectre\cc_emit-protected.h">
+      <Filter>Headerdateien\spectre</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spectre\cc_enter.h">
+      <Filter>Headerdateien\spectre</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spectre\cc_options.h">
+      <Filter>Headerdateien\spectre</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spectre\cc_parser.h">
+      <Filter>Headerdateien\spectre</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spectre\cc_resolve.h">
+      <Filter>Headerdateien\spectre</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spectre\cc_scanner.h">
+      <Filter>Headerdateien\spectre</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spectre\cc_sym.h">
+      <Filter>Headerdateien\spectre</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cc_os.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cc_os_lib.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cc_context.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spectre\_tool.h">
+      <Filter>Headerdateien\spectre</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spectre\cc_names.h">
+      <Filter>Headerdateien\spectre</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cc_file_manager.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cc_os_memory.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cc_os_hash.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cc_os_arraylist.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cc_os_hashmap.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cc_os_bytebuffer.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spectre\cc_c99_node.h">
+      <Filter>Headerdateien\spectre</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spectre\cc_tree.h">
+      <Filter>Headerdateien\spectre</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spectre\emit\referenced_symbols.h">
+      <Filter>Headerdateien\spectre\emit</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spectre\emit\includes.h">
+      <Filter>Headerdateien\spectre\emit</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spectre\emit\dispatch.h">
+      <Filter>Headerdateien\spectre\emit</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spectre\c99\type_node.h">
+      <Filter>Headerdateien\spectre\c99</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spectre\cc_emit_class_struct.h">
+      <Filter>Headerdateien\spectre</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spectre\emit\class.h">
+      <Filter>Headerdateien\spectre\emit</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spectre\emit\enumeration.h">
+      <Filter>Headerdateien\spectre\emit</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spectre\c99\names.h">
+      <Filter>Headerdateien\spectre\c99</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cc_names.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spectre\emit\configuration.h">
+      <Filter>Headerdateien\spectre\emit</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\cc_c99_function_declaration_node.h">
+      <Filter>Headerdateien\c99</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\cc_c99_function_definition_node.h">
+      <Filter>Headerdateien\c99</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\cc_c99_struct_declarator_node.h">
+      <Filter>Headerdateien\c99</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\cc_c99_struct_definition_node.h">
+      <Filter>Headerdateien\c99</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\cc_c99_pp_include_directive.h">
+      <Filter>Headerdateien\c99</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\cc_c99_enum_element_declarator_node.h">
+      <Filter>Headerdateien\c99</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\cc_c99_struct_declaration_node.h">
+      <Filter>Headerdateien\c99</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\cc_c99_function_declarator_node.h">
+      <Filter>Headerdateien\c99</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\cc_c99_enum_declarator_node.h">
+      <Filter>Headerdateien\c99</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\cc_c99_pp_inclusion_guard.h">
+      <Filter>Headerdateien\c99</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\cc_c99_group_node.h">
+      <Filter>Headerdateien\c99</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\cc_c99_pp_extern_c.h">
+      <Filter>Headerdateien\c99</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\cc_c99_param_node.h">
+      <Filter>Headerdateien\c99</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\cc_c99_param_list_node.h">
+      <Filter>Headerdateien\c99</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\cc_c99_var_declarator_node.h">
+      <Filter>Headerdateien\c99</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\cc_c99_typedef_declarator_node.h">
+      <Filter>Headerdateien\c99</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\type\_include.h">
+      <Filter>Headerdateien\c99\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\type\type.h">
+      <Filter>Headerdateien\c99\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\type\enum_type.h">
+      <Filter>Headerdateien\c99\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\type\struct_type.h">
+      <Filter>Headerdateien\c99\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\type\bool_type.h">
+      <Filter>Headerdateien\c99\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\type\floating_point_type.h">
+      <Filter>Headerdateien\c99\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\type\integer_type.h">
+      <Filter>Headerdateien\c99\type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\ast\exp_node.h">
+      <Filter>Headerdateien\c99\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\ast\binexp_node.h">
+      <Filter>Headerdateien\c99\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\ast\unexp_node.h">
+      <Filter>Headerdateien\c99\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\ast\nameexp_node.h">
+      <Filter>Headerdateien\c99\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\ast\intlitexp_node.h">
+      <Filter>Headerdateien\c99\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\ast\stringlitexp_node.h">
+      <Filter>Headerdateien\c99\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\ast\castexp_node.h">
+      <Filter>Headerdateien\c99\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\ast\_include.h">
+      <Filter>Headerdateien\c99\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\ast\callexp_node.h">
+      <Filter>Headerdateien\c99\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\ast\node.h">
+      <Filter>Headerdateien\c99\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\ast\ifstat_node.h">
+      <Filter>Headerdateien\c99\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\ast\returnstat_node.h">
+      <Filter>Headerdateien\c99\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\ast\expstat_node.h">
+      <Filter>Headerdateien\c99\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c99\ast\blockstat_node.h">
+      <Filter>Headerdateien\c99\ast</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\spectre\cc_tree_kind.i">
+      <Filter>Headerdateien\spectre</Filter>
+    </None>
+    <None Include="src\spectre\cc_token_kind.i">
+      <Filter>Headerdateien\spectre</Filter>
+    </None>
+    <None Include="src\spectre\cc_names.i">
+      <Filter>Headerdateien\spectre</Filter>
+    </None>
+    <None Include="src\spectre\c99\names.i">
+      <Filter>Headerdateien\spectre\c99</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\spectre\cc_emit.c">
+      <Filter>Quelldateien\spectre</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spectre\cc_emit_class_constructor.c">
+      <Filter>Quelldateien\spectre</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spectre\cc_emit_constructors.c">
+      <Filter>Quelldateien\spectre</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spectre\cc_emit_create_operators.c">
+      <Filter>Quelldateien\spectre</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spectre\cc_emit_destructor.c">
+      <Filter>Quelldateien\spectre</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spectre\cc_emit_expression.c">
+      <Filter>Quelldateien\spectre</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spectre\cc_emit_member_variable.c">
+      <Filter>Quelldateien\spectre</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spectre\cc_emit_method.c">
+      <Filter>Quelldateien\spectre</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spectre\cc_emit-protected.c">
+      <Filter>Quelldateien\spectre</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spectre\cc_enter.c">
+      <Filter>Quelldateien\spectre</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spectre\cc_options.c">
+      <Filter>Quelldateien\spectre</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spectre\cc_parser.c">
+      <Filter>Quelldateien\spectre</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spectre\cc_resolve.c">
+      <Filter>Quelldateien\spectre</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spectre\cc_scanner.c">
+      <Filter>Quelldateien\spectre</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spectre\cc_sym.c">
+      <Filter>Quelldateien\spectre</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cc_os.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cc_os_lib.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cc_context.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spectre\_tool.c">
+      <Filter>Quelldateien\spectre</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spectre\cc_names.c">
+      <Filter>Quelldateien\spectre</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cc_file_manager.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cc_os_memory.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cc_os_hash.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cc_os_arraylist.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cc_os_hashmap.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cc_os_bytebuffer.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spectre\cc_c99_node.c">
+      <Filter>Quelldateien\spectre</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spectre\cc_tree.c">
+      <Filter>Quelldateien\spectre</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spectre\emit\referenced_symbols.c">
+      <Filter>Quelldateien\spectre\emit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spectre\emit\includes.c">
+      <Filter>Quelldateien\spectre\emit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spectre\emit\dispatch.c">
+      <Filter>Quelldateien\spectre\emit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spectre\c99\type_node.c">
+      <Filter>Quelldateien\spectre\c99</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spectre\cc_emit_class_struct.c">
+      <Filter>Quelldateien\spectre</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spectre\emit\class.c">
+      <Filter>Quelldateien\spectre\emit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spectre\emit\enumeration.c">
+      <Filter>Quelldateien\spectre\emit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spectre\c99\names.c">
+      <Filter>Quelldateien\spectre\c99</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cc_names.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\cc_c99_group_node.c">
+      <Filter>Quelldateien\c99</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\cc_c99_pp_extern_c.c">
+      <Filter>Quelldateien\c99</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\cc_c99_pp_include_directive.c">
+      <Filter>Quelldateien\c99</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\cc_c99_struct_definition_node.c">
+      <Filter>Quelldateien\c99</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\cc_c99_struct_declarator_node.c">
+      <Filter>Quelldateien\c99</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\cc_c99_struct_declaration_node.c">
+      <Filter>Quelldateien\c99</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\cc_c99_pp_inclusion_guard.c">
+      <Filter>Quelldateien\c99</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\cc_c99_function_definition_node.c">
+      <Filter>Quelldateien\c99</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\cc_c99_function_declarator_node.c">
+      <Filter>Quelldateien\c99</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\cc_c99_function_declaration_node.c">
+      <Filter>Quelldateien\c99</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\cc_c99_enum_element_declarator_node.c">
+      <Filter>Quelldateien\c99</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\cc_c99_enum_declarator_node.c">
+      <Filter>Quelldateien\c99</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\cc_c99_param_node.c">
+      <Filter>Quelldateien\c99</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\cc_c99_param_list_node.c">
+      <Filter>Quelldateien\c99</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\cc_c99_var_declarator_node.c">
+      <Filter>Quelldateien\c99</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\cc_c99_typedef_declarator_node.c">
+      <Filter>Quelldateien\c99</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\type\_include.c">
+      <Filter>Quelldateien\c99\type</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\type\type.c">
+      <Filter>Quelldateien\c99\type</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\type\enum_type.c">
+      <Filter>Quelldateien\c99\type</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\type\struct_type.c">
+      <Filter>Quelldateien\c99\type</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\type\bool_type.c">
+      <Filter>Quelldateien\c99\type</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\type\floating_point_type.c">
+      <Filter>Quelldateien\c99\type</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\type\integer_type.c">
+      <Filter>Quelldateien\c99\type</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\ast\exp_node.c">
+      <Filter>Quelldateien\c99\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\ast\binexp_node.c">
+      <Filter>Quelldateien\c99\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\ast\unexp_node.c">
+      <Filter>Quelldateien\c99\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\ast\nameexp_node.c">
+      <Filter>Quelldateien\c99\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\ast\intlitexp_node.c">
+      <Filter>Quelldateien\c99\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\ast\stringlitexp_node.c">
+      <Filter>Quelldateien\c99\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\ast\castexp_node.c">
+      <Filter>Quelldateien\c99\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\ast\callexp_node.c">
+      <Filter>Quelldateien\c99\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\ast\node.c">
+      <Filter>Quelldateien\c99\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\ast\ifstat_node.c">
+      <Filter>Quelldateien\c99\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\ast\returnstat_node.c">
+      <Filter>Quelldateien\c99\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\ast\expstat_node.c">
+      <Filter>Quelldateien\c99\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\ast\_include.c">
+      <Filter>Quelldateien\c99\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c99\ast\blockstat_node.c">
+      <Filter>Quelldateien\c99\ast</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

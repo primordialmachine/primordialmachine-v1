@@ -200,7 +200,7 @@ add
   }
   if (!node) {
     if (Ring1_Memory_allocate(&node, sizeof(Node))) {
-      fprintf(stderr, "unable to allocate node");
+      Ring1_Log_error("unable to allocate node");
       Ring2_jump();
     }
     node->next = self->buckets[hashIndex]; self->buckets[hashIndex] = node;
@@ -366,7 +366,7 @@ Ring2_Collections_HashSet_construct
   self->capacity = 8;
   self->buckets = NULL;
   if (Ring1_Memory_allocateArray((void **)&self->buckets, (size_t)self->capacity, sizeof(Node*))) {
-    fprintf(stderr, "unable to allocate buckets");
+    Ring1_Log_error("unable to allocate buckets");
     Ring2_jump();
   }
   Ring1_Memory_zeroFillArray(self->buckets, (size_t)self->capacity, sizeof(Node*));

@@ -1,0 +1,21 @@
+// Copyright (c) 2021-2022 Michael Heilmann. All rights reserved.
+module Ring3.Visuals { namespace Ring3 {
+
+/// @brief Semantics of a vertex element.
+enumeration VertexElementSemantics {
+
+  /// @brief Vertex element consists of sub-elements "x" and "y" in that order.
+  /// All sub-elements are of type float.
+  XfYf,
+
+  /// @brief Vertex element consists of sub-elements "r", "g", and "b" in that order.
+  /// All sub-elements are of type float and within the bounds of 0 (inclusive) and 1 (inclusive).
+  RfGfBf,
+
+  /// @brief Vertex element consists of sub-elements "u" and "v" in that order.
+  /// All sub-elements are of type float.
+  UfVf,
+
+}
+
+} }

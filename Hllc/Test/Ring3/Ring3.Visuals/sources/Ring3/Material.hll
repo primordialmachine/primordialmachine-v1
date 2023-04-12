@@ -1,0 +1,25 @@
+// Copyright (c) 2021-2022 Michael Heilmann. All rights reserved.
+module Ring3.Visuals { namespace Ring3 {
+
+/// @brief A material.
+class Material {
+
+  /// @brief Get the depth test function.
+  /// @return The depth test function.
+  getDepthTestFunction() Ring3.DepthTestFunction
+
+  /// @brief Get the blend function for the existing color.
+  /// @return The blend function for the existing color.
+  getExistingBlendFunction() Ring3.BlendFunction
+  
+  /// @brief Get the blend function for the incoming color.
+  /// @return The blend function for the incoming color.
+  getIncomingBlendFunction() Ring3.BlendFunction
+  
+  /// @brief Get if depth write is enabled/disabled.
+  /// @return @a true if depth write is enabled, @a false if depth write is disabled.
+  getDepthTestEnabled() Ring2.Boolean
+
+}
+
+} }

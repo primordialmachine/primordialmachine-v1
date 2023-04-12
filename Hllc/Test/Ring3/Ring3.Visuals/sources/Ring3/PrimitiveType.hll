@@ -1,0 +1,21 @@
+// Copyright (c) 2020-2022 Michael Heilmann. All rights reserved.
+module Ring3.Visuals{ namespace Ring3  {
+
+/// @brief
+/// Enumeration of primitive types.
+enumeration PrimitiveType {
+
+  /// @brief List of quadriliterals. Number of vertices must be divisible by
+  /// four. Given \f$4N\f$ vetices, \f$N\f$ quadriliterals are rendered where
+  /// vertices \f$3i + 0\f$, \f$3i + 1\f$, \f$3i + 2\f$, \f$3i + 3\f$ constitute
+  /// quadriliteral \f$i\f$.
+  Quadriliterals,
+
+  /// @brief List of triangles. Number of vertices must be divisible by three.
+  /// Given \f$3N\f$ vertices, \f$N\f$ triangles are rendered where vertices
+  /// \f$3i + 0\f$, \f$3i + 1\f$, \f$3i + 2\f$ constitute triangle \f$i\f$.
+  Triangles,
+
+} // enumeration PrimitiveType
+
+} }

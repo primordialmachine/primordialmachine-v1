@@ -1,0 +1,41 @@
+// Copyright (c) 2020-2022 Michael Heilmann. All rights reserved.
+module Ring3.Visuals { namespace Ring3 {
+
+/// @brief
+/// Enumeration of depth test functions.
+/// @remark
+/// A fragment is passed on in the pipeline if its depth test succeeds, otherwise it is discarded.
+/// A fragment is passed /is discarded depends on three factors:
+/// - the depth value of the fragment
+/// - the depth value in the depth buffer
+/// - the depth test function used to compare the depth values.
+/// This enumeration enumerates symbolic constants denoting the possible depth test functions.
+enumeration DepthTestFunction {
+
+  /// @brief Fragment passes if its depth value is less than the depth value in the depth buffer.
+  LessThan,
+
+  /// @brief Fragment passes if its depth value is less than or equal to the depth value in the depth buffer.
+  LessThanOrEqualTo,
+
+  /// @brief Fragment passes if its depth value is equal to the depth value in the depth buffer.
+  EqualTo,
+
+  /// @brief Fragment passes if its depth value if greater than the depth value in the depth buffer.
+  GreaterThan,
+
+  /// @brief Fragment passes if its depth value is greater than or equal to the depth value in the depth buffer.
+  GreaterThanOrEqualTo,
+
+  /// @brief Fragment always passes.
+  Always,
+
+  /// @brief Fragment nwever passes.
+  Never,
+  
+  /// @brief Fragment passes if its dpeth value is not equal to the depth value in the depth buffer.
+  NotEqual,
+
+}
+
+} }

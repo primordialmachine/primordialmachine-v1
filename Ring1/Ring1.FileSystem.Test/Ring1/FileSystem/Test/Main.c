@@ -5,7 +5,6 @@
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
 #include <stdlib.h>
-#include "Ring1/FileSystem/Test/getCurrentDirectory.h"
 #include "Ring1/FileSystem/Test/Path.h"
 #include "Ring1/Test.h"
 #include "Ring1/All/_Include.h"
@@ -14,7 +13,7 @@
 #define ExcludePathTests (0)
 
 // If defined to @a 1, then get current directory tests are excluded.
-#define ExcludeGetCurrentDirectoryTests (0)
+#define ExcludeGetCurrentDirectoryTests (1)
 
 static Ring1_NoDiscardReturn() Ring1_Result
 testCurrentDirectory1

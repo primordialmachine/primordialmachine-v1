@@ -1,0 +1,11 @@
+#if !defined(CC_EMIT_CONFIGURATION_H_INCLUDED)
+#define CC_EMIT_CONFIGURATION_H_INCLUDED
+
+/// Make all uppercase.
+#define C99_CASING_UPPER (1)
+/// Keep the supplied casing.
+#define C99_CASING_RETAIN (2)
+
+#define C99_ENUM_VARIABLES_CASING (C99_CASING_RETAIN)
+
+#endif // CC_EMIT_CONFIGURATION_H_INCLUDED

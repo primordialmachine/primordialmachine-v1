@@ -1,0 +1,29 @@
+// Copyright (c) 2020-2022 Michael Heilmann. All rights reserved.
+module Ring3.Visuals { namespace Ring3 {
+
+/// @brief
+/// An enumeration of pixel formats.
+enumeration PixelFormat {
+
+  /// @brief A pixel is three consecutive Bytes: 1st Byte is "red", 2dn Byte is "green", and 3rd
+  /// Byte is "blue".
+  Rgb,
+
+  /// @brief A pixel is four consecutive Bytes: 1st Byte is "red", 2dn Byte is "green", 3rd Byte is
+  /// "blue", and 4th Byte is "alpha".
+  Rgba,
+
+  /// @brief A pixel is three consecutive Bytes: 1st Byte is "blue", 2dn Byte is "green", and 3rd
+  /// Byte is "red".
+  Bgr,
+  
+  /// @brief A pixel is four consecutive Bytes: 1st Byte is "blue", 2dn Byte is "green", 3rd Byte is
+  /// "red", and 4th Byte is "alpha".
+  Bgra,
+
+  /// @brief A pixel is one Byte: That Byte is "gray".
+  Grayscale,
+
+}
+
+} }
