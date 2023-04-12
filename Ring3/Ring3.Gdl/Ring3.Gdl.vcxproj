@@ -19,44 +19,44 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ring3\Gdl\Configuration.c" />
-    <ClCompile Include="Ring3\Gdl\Context.c" />
-    <ClCompile Include="Ring3\Gdl\Lexical\DefaultScanner.c" />
-    <ClCompile Include="Ring3\Gdl\Lexical\Scanner.c" />
-    <ClCompile Include="Ring3\Gdl\Lexical\Token.c" />
-    <ClCompile Include="Ring3\Gdl\Lexical\TokenKind.c" />
-    <ClCompile Include="Ring3\Gdl\Extensions.c" />
-    <ClCompile Include="Ring3\Gdl\Literal.c" />
-    <ClCompile Include="Ring3\Gdl\Literals\BooleanLiteral.c" />
-    <ClCompile Include="Ring3\Gdl\Literals\IntegerLiteral.c" />
-    <ClCompile Include="Ring3\Gdl\Literals\RealLiteral.c" />
-    <ClCompile Include="Ring3\Gdl\Literals\StringLiteral.c" />
-    <ClCompile Include="Ring3\Gdl\Literals\VoidLiteral.c" />
-    <ClCompile Include="Ring3\Gdl\Name.c" />
-    <ClCompile Include="Ring3\Gdl\Syntactical\Node.c" />
-    <ClCompile Include="Ring3\Gdl\Syntactical\NodeKind.c" />
-    <ClCompile Include="Ring3\Gdl\Syntactical\Parser.c" />
-    <ClCompile Include="Ring3\Gdl\_Include.c" />
+    <ClCompile Include="Sources\Ring3\Gdl\Configuration.c" />
+    <ClCompile Include="Sources\Ring3\Gdl\Context.c" />
+    <ClCompile Include="Sources\Ring3\Gdl\Lexical\DefaultScanner.c" />
+    <ClCompile Include="Sources\Ring3\Gdl\Lexical\Scanner.c" />
+    <ClCompile Include="Sources\Ring3\Gdl\Lexical\Token.c" />
+    <ClCompile Include="Sources\Ring3\Gdl\Lexical\TokenKind.c" />
+    <ClCompile Include="Sources\Ring3\Gdl\Extensions.c" />
+    <ClCompile Include="Sources\Ring3\Gdl\Literal.c" />
+    <ClCompile Include="Sources\Ring3\Gdl\Literals\BooleanLiteral.c" />
+    <ClCompile Include="Sources\Ring3\Gdl\Literals\IntegerLiteral.c" />
+    <ClCompile Include="Sources\Ring3\Gdl\Literals\RealLiteral.c" />
+    <ClCompile Include="Sources\Ring3\Gdl\Literals\StringLiteral.c" />
+    <ClCompile Include="Sources\Ring3\Gdl\Literals\VoidLiteral.c" />
+    <ClCompile Include="Sources\Ring3\Gdl\Name.c" />
+    <ClCompile Include="Sources\Ring3\Gdl\Syntactical\Node.c" />
+    <ClCompile Include="Sources\Ring3\Gdl\Syntactical\NodeKind.c" />
+    <ClCompile Include="Sources\Ring3\Gdl\Syntactical\Parser.c" />
+    <ClCompile Include="Sources\Ring3\Gdl\_Include.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ring3\Gdl\Configuration.h" />
-    <ClInclude Include="Ring3\Gdl\Context.h" />
-    <ClInclude Include="Ring3\Gdl\Lexical\DefaultScanner.h" />
-    <ClInclude Include="Ring3\Gdl\Lexical\Scanner.h" />
-    <ClInclude Include="Ring3\Gdl\Lexical\Token.h" />
-    <ClInclude Include="Ring3\Gdl\Lexical\TokenKind.h" />
-    <ClInclude Include="Ring3\Gdl\Extensions.h" />
-    <ClInclude Include="Ring3\Gdl\Literals\BooleanLiteral.h" />
-    <ClInclude Include="Ring3\Gdl\Literals\IntegerLiteral.h" />
-    <ClInclude Include="Ring3\Gdl\Literals\RealLiteral.h" />
-    <ClInclude Include="Ring3\Gdl\Literals\StringLiteral.h" />
-    <ClInclude Include="Ring3\Gdl\Literals\VoidLiteral.h" />
-    <ClInclude Include="Ring3\Gdl\Name.h" />
-    <ClInclude Include="Ring3\Gdl\parse.h" />
-    <ClInclude Include="Ring3\Gdl\Syntactical\Node.h" />
-    <ClInclude Include="Ring3\Gdl\Syntactical\NodeKind.h" />
-    <ClInclude Include="Ring3\Gdl\Syntactical\Parser.h" />
-    <ClInclude Include="Ring3\Gdl\_Include.h" />
+    <ClInclude Include="Sources\Ring3\Gdl\Configuration.h" />
+    <ClInclude Include="Sources\Ring3\Gdl\Context.h" />
+    <ClInclude Include="Sources\Ring3\Gdl\Lexical\DefaultScanner.h" />
+    <ClInclude Include="Sources\Ring3\Gdl\Lexical\Scanner.h" />
+    <ClInclude Include="Sources\Ring3\Gdl\Lexical\Token.h" />
+    <ClInclude Include="Sources\Ring3\Gdl\Lexical\TokenKind.h" />
+    <ClInclude Include="Sources\Ring3\Gdl\Extensions.h" />
+    <ClInclude Include="Sources\Ring3\Gdl\Literals\BooleanLiteral.h" />
+    <ClInclude Include="Sources\Ring3\Gdl\Literals\IntegerLiteral.h" />
+    <ClInclude Include="Sources\Ring3\Gdl\Literals\RealLiteral.h" />
+    <ClInclude Include="Sources\Ring3\Gdl\Literals\StringLiteral.h" />
+    <ClInclude Include="Sources\Ring3\Gdl\Literals\VoidLiteral.h" />
+    <ClInclude Include="Sources\Ring3\Gdl\Name.h" />
+    <ClInclude Include="Sources\Ring3\Gdl\parse.h" />
+    <ClInclude Include="Sources\Ring3\Gdl\Syntactical\Node.h" />
+    <ClInclude Include="Sources\Ring3\Gdl\Syntactical\NodeKind.h" />
+    <ClInclude Include="Sources\Ring3\Gdl\Syntactical\Parser.h" />
+    <ClInclude Include="Sources\Ring3\Gdl\_Include.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ring1\Ring1\Ring1.vcxproj">
@@ -70,12 +70,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Ring3\Gdl\header.h.i" />
-    <None Include="Ring3\Gdl\Lexical\DefaultScanner.private.c.i" />
-    <None Include="Ring3\Gdl\Lexical\DefaultScanner.private.h.i" />
-    <None Include="Ring3\Gdl\Lexical\TokenKind.i" />
-    <None Include="Ring3\Gdl\Syntactical\NodeKind.i" />
-    <None Include="Ring3\Gdl\Syntactical\Parser-inlay.i">
+    <None Include="Sources\Ring3\Gdl\header.h.i" />
+    <None Include="Sources\Ring3\Gdl\Lexical\DefaultScanner.private.c.i" />
+    <None Include="Sources\Ring3\Gdl\Lexical\DefaultScanner.private.h.i" />
+    <None Include="Sources\Ring3\Gdl\Lexical\TokenKind.i" />
+    <None Include="Sources\Ring3\Gdl\Syntactical\NodeKind.i" />
+    <None Include="Sources\Ring3\Gdl\Syntactical\Parser-inlay.i">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DeploymentContent>
@@ -145,36 +145,40 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)Sources</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)Sources</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)Sources</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)Sources</PublicIncludeDirectories>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

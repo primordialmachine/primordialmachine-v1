@@ -45,135 +45,123 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ring3\Gdl\Lexical\DefaultScanner.c">
+    <ClCompile Include="Sources\Ring3\Gdl\Lexical\DefaultScanner.c">
       <Filter>Quelldateien\Ring3\Gdl\Lexical</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gdl\Lexical\Token.c">
+    <ClCompile Include="Sources\Ring3\Gdl\Lexical\Token.c">
       <Filter>Quelldateien\Ring3\Gdl\Lexical</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gdl\Lexical\TokenKind.c">
+    <ClCompile Include="Sources\Ring3\Gdl\Lexical\TokenKind.c">
       <Filter>Quelldateien\Ring3\Gdl\Lexical</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gdl\Syntactical\Node.c">
+    <ClCompile Include="Sources\Ring3\Gdl\Syntactical\Node.c">
       <Filter>Quelldateien\Ring3\Gdl\Syntactical</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gdl\Syntactical\Parser.c">
+    <ClCompile Include="Sources\Ring3\Gdl\Syntactical\Parser.c">
       <Filter>Quelldateien\Ring3\Gdl\Syntactical</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gdl\Syntactical\NodeKind.c">
+    <ClCompile Include="Sources\Ring3\Gdl\Syntactical\NodeKind.c">
       <Filter>Quelldateien\Ring3\Gdl\Syntactical</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gdl\Extensions.c">
+    <ClCompile Include="Sources\Ring3\Gdl\Extensions.c">
       <Filter>Quelldateien\Ring3\Gdl</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gdl\Context.c">
+    <ClCompile Include="Sources\Ring3\Gdl\Context.c">
       <Filter>Quelldateien\Ring3\Gdl</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gdl\_Include.c">
+    <ClCompile Include="Sources\Ring3\Gdl\_Include.c">
       <Filter>Quelldateien\Ring3\Gdl</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gdl\Literals\BooleanLiteral.c">
+    <ClCompile Include="Sources\Ring3\Gdl\Literals\BooleanLiteral.c">
       <Filter>Quelldateien\Ring3\Gdl\Literals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gdl\Literals\IntegerLiteral.c">
+    <ClCompile Include="Sources\Ring3\Gdl\Literals\IntegerLiteral.c">
       <Filter>Quelldateien\Ring3\Gdl\Literals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gdl\Literals\RealLiteral.c">
+    <ClCompile Include="Sources\Ring3\Gdl\Literals\RealLiteral.c">
       <Filter>Quelldateien\Ring3\Gdl\Literals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gdl\Literals\StringLiteral.c">
+    <ClCompile Include="Sources\Ring3\Gdl\Literals\StringLiteral.c">
       <Filter>Quelldateien\Ring3\Gdl\Literals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gdl\Literal.c">
+    <ClCompile Include="Sources\Ring3\Gdl\Literal.c">
       <Filter>Quelldateien\Ring3\Gdl</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gdl\Literals\VoidLiteral.c">
+    <ClCompile Include="Sources\Ring3\Gdl\Literals\VoidLiteral.c">
       <Filter>Quelldateien\Ring3\Gdl\Literals</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gdl\Name.c">
+    <ClCompile Include="Sources\Ring3\Gdl\Name.c">
       <Filter>Quelldateien\Ring3\Gdl</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gdl\Configuration.c">
+    <ClCompile Include="Sources\Ring3\Gdl\Configuration.c">
       <Filter>Quelldateien\Ring3\Gdl</Filter>
     </ClCompile>
-    <ClCompile Include="Ring3\Gdl\Lexical\Scanner.c">
+    <ClCompile Include="Sources\Ring3\Gdl\Lexical\Scanner.c">
       <Filter>Quelldateien\Ring3\Gdl\Lexical</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ring3\Gdl\Lexical\DefaultScanner.h">
+    <ClInclude Include="Sources\Ring3\Gdl\Lexical\DefaultScanner.h">
       <Filter>Headerdateien\Ring3\Gdl\Lexical</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gdl\Lexical\Token.h">
+    <ClInclude Include="Sources\Ring3\Gdl\Lexical\Token.h">
       <Filter>Headerdateien\Ring3\Gdl\Lexical</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gdl\Lexical\TokenKind.h">
+    <ClInclude Include="Sources\Ring3\Gdl\Lexical\TokenKind.h">
       <Filter>Headerdateien\Ring3\Gdl\Lexical</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gdl\Syntactical\Node.h">
+    <ClInclude Include="Sources\Ring3\Gdl\Syntactical\Node.h">
       <Filter>Headerdateien\Ring3\Gdl\Syntactical</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gdl\Syntactical\Parser.h">
+    <ClInclude Include="Sources\Ring3\Gdl\Syntactical\Parser.h">
       <Filter>Headerdateien\Ring3\Gdl\Syntactical</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gdl\Syntactical\NodeKind.h">
+    <ClInclude Include="Sources\Ring3\Gdl\Syntactical\NodeKind.h">
       <Filter>Headerdateien\Ring3\Gdl\Syntactical</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gdl\Extensions.h">
+    <ClInclude Include="Sources\Ring3\Gdl\Extensions.h">
       <Filter>Headerdateien\Ring3\Gdl</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gdl\Context.h">
+    <ClInclude Include="Sources\Ring3\Gdl\Context.h">
       <Filter>Headerdateien\Ring3\Gdl</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gdl\_Include.h">
+    <ClInclude Include="Sources\Ring3\Gdl\_Include.h">
       <Filter>Headerdateien\Ring3\Gdl</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gdl\Literals\BooleanLiteral.h">
+    <ClInclude Include="Sources\Ring3\Gdl\Literals\BooleanLiteral.h">
       <Filter>Headerdateien\Ring3\Gdl\Literals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gdl\Literals\IntegerLiteral.h">
+    <ClInclude Include="Sources\Ring3\Gdl\Literals\IntegerLiteral.h">
       <Filter>Headerdateien\Ring3\Gdl\Literals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gdl\Literals\RealLiteral.h">
+    <ClInclude Include="Sources\Ring3\Gdl\Literals\RealLiteral.h">
       <Filter>Headerdateien\Ring3\Gdl\Literals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gdl\Literals\StringLiteral.h">
+    <ClInclude Include="Sources\Ring3\Gdl\Literals\StringLiteral.h">
       <Filter>Headerdateien\Ring3\Gdl\Literals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gdl\Name.h">
+    <ClInclude Include="Sources\Ring3\Gdl\Name.h">
       <Filter>Headerdateien\Ring3\Gdl</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gdl\parse.h">
+    <ClInclude Include="Sources\Ring3\Gdl\parse.h">
       <Filter>Headerdateien\Ring3\Gdl</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gdl\Configuration.h">
+    <ClInclude Include="Sources\Ring3\Gdl\Configuration.h">
       <Filter>Headerdateien\Ring3\Gdl</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gdl\Literals\VoidLiteral.h">
+    <ClInclude Include="Sources\Ring3\Gdl\Literals\VoidLiteral.h">
       <Filter>Headerdateien\Ring3\Gdl\Literals</Filter>
     </ClInclude>
-    <ClInclude Include="Ring3\Gdl\Lexical\Scanner.h">
+    <ClInclude Include="Sources\Ring3\Gdl\Lexical\Scanner.h">
       <Filter>Headerdateien\Ring3\Gdl\Lexical</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Ring3\Gdl\Syntactical\Parser-inlay.i">
-      <Filter>Quelldateien\Ring3\Gdl\Syntactical</Filter>
-    </None>
-    <None Include="Ring3\Gdl\Syntactical\NodeKind.i">
-      <Filter>Headerdateien\Ring3\Gdl\Syntactical</Filter>
-    </None>
-    <None Include="Ring3\Gdl\Lexical\TokenKind.i">
-      <Filter>Headerdateien\Ring3\Gdl\Lexical</Filter>
-    </None>
-    <None Include="Ring3\Gdl\header.h.i">
-      <Filter>Headerdateien\Ring3\Gdl</Filter>
-    </None>
-    <None Include="Ring3\Gdl\Lexical\DefaultScanner.private.h.i">
-      <Filter>Headerdateien\Ring3\Gdl\Lexical</Filter>
-    </None>
-    <None Include="Ring3\Gdl\Lexical\DefaultScanner.private.c.i">
-      <Filter>Quelldateien\Ring3\Gdl\Lexical</Filter>
-    </None>
+    <None Include="Sources\Ring3\Gdl\header.h.i" />
+    <None Include="Sources\Ring3\Gdl\Lexical\DefaultScanner.private.c.i" />
+    <None Include="Sources\Ring3\Gdl\Lexical\DefaultScanner.private.h.i" />
+    <None Include="Sources\Ring3\Gdl\Lexical\TokenKind.i" />
+    <None Include="Sources\Ring3\Gdl\Syntactical\NodeKind.i" />
+    <None Include="Sources\Ring3\Gdl\Syntactical\Parser-inlay.i" />
   </ItemGroup>
 </Project>
