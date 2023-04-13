@@ -13,10 +13,16 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Quelldateien\Ring4">
+      <UniqueIdentifier>{6adef202-8b7e-4bee-9f35-5b3e13a7b998}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ring4\Demos">
+      <UniqueIdentifier>{ee1e8257-42c5-44af-b000-a23b50232893}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.c">
-      <Filter>Quelldateien</Filter>
+    <ClCompile Include="Sources\Ring4\Demos\Main.c">
+      <Filter>Quelldateien\Ring4\Demos</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

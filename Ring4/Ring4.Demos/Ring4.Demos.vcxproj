@@ -24,7 +24,7 @@
     <ProjectGuid>{f979d1c3-9323-41f7-9c34-f05f7516103a}</ProjectGuid>
     <RootNamespace>
     </RootNamespace>
-    <ProjectName>mkx-demos-demo1</ProjectName>
+    <ProjectName>Ring4.Demos</ProjectName>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -125,9 +125,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Main.c" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\ring1\Ring1\Ring1.vcxproj">
       <Project>{d7db575d-7eaa-47de-8999-44f4e1361d34}</Project>
     </ProjectReference>
@@ -155,6 +152,9 @@
     <ProjectReference Include="..\..\Ring4\Ring4.Scenes\Ring4.Scenes.vcxproj">
       <Project>{ff0cdd29-2e2b-437d-b886-0fb704f1cae2}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Sources\Ring4\Demos\Main.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
