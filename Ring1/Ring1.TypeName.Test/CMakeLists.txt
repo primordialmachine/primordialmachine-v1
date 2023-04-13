@@ -2,5 +2,5 @@
 cmake_minimum_required(VERSION 3.20)
 
 include("${CMAKE_SOURCE_DIR}/PrimordialMachine.cmake")
-MyExecutable("PrimordialMachine.Ring1.TypeName.Test")
+MyExecutable2("PrimordialMachine.Ring1.TypeName.Test")
 target_link_libraries("PrimordialMachine.Ring1.TypeName.Test" "PrimordialMachine.Ring1")
