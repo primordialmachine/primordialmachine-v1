@@ -26,11 +26,6 @@ Thumbs.db
 # Per project specific files         #
 ######################################
 
-# Mkx.
-machine-mk1/.vs/
-machine-mk1/products/
-machine-mk1/intermediates/
-
 # Mkx Demos.
 mkx-demos/.vs/
 mkx-demos/products/
@@ -50,3 +45,8 @@ ring2/intermediates/
 ring3/.vs/
 ring3/products/
 ring3/intermediates/
+
+# Ring 4.
+ring4/.vs/
+ring4/products/
+ring4/intermediates/

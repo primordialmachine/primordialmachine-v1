@@ -152,7 +152,7 @@
     <ProjectReference Include="..\..\ring3\Ring3.Visuals\Ring3.Visuals.vcxproj">
       <Project>{fd4c313c-d599-4313-adb7-034796537586}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\Ring4\Scenes\Ring4.Scenes.vcxproj">
+    <ProjectReference Include="..\..\Ring4\Ring4.Scenes\Ring4.Scenes.vcxproj">
       <Project>{ff0cdd29-2e2b-437d-b886-0fb704f1cae2}</Project>
     </ProjectReference>
   </ItemGroup>

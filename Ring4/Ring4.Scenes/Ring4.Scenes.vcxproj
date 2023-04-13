@@ -19,16 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ring4\Scenes\Graphics2\Rectangles1.h" />
-    <ClInclude Include="Ring4\Scenes\Gui\Layout1.h" />
-    <ClInclude Include="Ring4\Scenes\LayoutScene.h" />
-    <ClInclude Include="Ring4\Scenes\Scene.h" />
-    <ClInclude Include="Ring4\Scenes\Scene1.h" />
-    <ClInclude Include="Ring4\Scenes\Scene2.h" />
-    <ClInclude Include="Ring4\Scenes\Scene3.h" />
-    <ClInclude Include="Ring4\Scenes\Scene4.h" />
-    <ClInclude Include="Ring4\Scenes\MainScreen.h" />
-    <ClInclude Include="Ring4\Scenes\_Include.h" />
+    <ClInclude Include="Sources\Ring4\Scenes\Graphics2\Rectangles1.h" />
+    <ClInclude Include="Sources\Ring4\Scenes\Gui\Layout1.h" />
+    <ClInclude Include="Sources\Ring4\Scenes\LayoutScene.h" />
+    <ClInclude Include="Sources\Ring4\Scenes\Scene.h" />
+    <ClInclude Include="Sources\Ring4\Scenes\Scene1.h" />
+    <ClInclude Include="Sources\Ring4\Scenes\Scene2.h" />
+    <ClInclude Include="Sources\Ring4\Scenes\Scene3.h" />
+    <ClInclude Include="Sources\Ring4\Scenes\Scene4.h" />
+    <ClInclude Include="Sources\Ring4\Scenes\MainScreen.h" />
+    <ClInclude Include="Sources\Ring4\Scenes\_Include.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ring1\Ring1\Ring1.vcxproj">
@@ -66,16 +66,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ring4\Scenes\Graphics2\Rectangles1.c" />
-    <ClCompile Include="Ring4\Scenes\Gui\Layout1.c" />
-    <ClCompile Include="Ring4\Scenes\LayoutScene.c" />
-    <ClCompile Include="Ring4\Scenes\Scene.c" />
-    <ClCompile Include="Ring4\Scenes\Scene1.c" />
-    <ClCompile Include="Ring4\Scenes\Scene2.c" />
-    <ClCompile Include="Ring4\Scenes\Scene3.c" />
-    <ClCompile Include="Ring4\Scenes\Scene4.c" />
-    <ClCompile Include="Ring4\Scenes\MainScreen.c" />
-    <ClCompile Include="Ring4\Scenes\_Include.c" />
+    <ClCompile Include="Sources\Ring4\Scenes\Graphics2\Rectangles1.c" />
+    <ClCompile Include="Sources\Ring4\Scenes\Gui\Layout1.c" />
+    <ClCompile Include="Sources\Ring4\Scenes\LayoutScene.c" />
+    <ClCompile Include="Sources\Ring4\Scenes\Scene.c" />
+    <ClCompile Include="Sources\Ring4\Scenes\Scene1.c" />
+    <ClCompile Include="Sources\Ring4\Scenes\Scene2.c" />
+    <ClCompile Include="Sources\Ring4\Scenes\Scene3.c" />
+    <ClCompile Include="Sources\Ring4\Scenes\Scene4.c" />
+    <ClCompile Include="Sources\Ring4\Scenes\MainScreen.c" />
+    <ClCompile Include="Sources\Ring4\Scenes\_Include.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -135,35 +135,39 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)Sources</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)Sources</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)Sources</PublicIncludeDirectories>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <PublicIncludeDirectories>$(ProjectDir)</PublicIncludeDirectories>
+    <PublicIncludeDirectories>$(ProjectDir)Sources</PublicIncludeDirectories>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <PreprocessorDefinitions>_LIB;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

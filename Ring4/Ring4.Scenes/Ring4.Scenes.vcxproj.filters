@@ -39,66 +39,66 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ring4\Scenes\LayoutScene.h">
+    <ClInclude Include="Sources\Ring4\Scenes\LayoutScene.h">
       <Filter>Headerdateien\Ring4\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Ring4\Scenes\Scene.h">
+    <ClInclude Include="Sources\Ring4\Scenes\Scene.h">
       <Filter>Headerdateien\Ring4\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Ring4\Scenes\Scene1.h">
+    <ClInclude Include="Sources\Ring4\Scenes\Scene1.h">
       <Filter>Headerdateien\Ring4\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Ring4\Scenes\Scene2.h">
+    <ClInclude Include="Sources\Ring4\Scenes\Scene2.h">
       <Filter>Headerdateien\Ring4\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Ring4\Scenes\Scene3.h">
+    <ClInclude Include="Sources\Ring4\Scenes\Scene3.h">
       <Filter>Headerdateien\Ring4\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Ring4\Scenes\Scene4.h">
+    <ClInclude Include="Sources\Ring4\Scenes\Scene4.h">
       <Filter>Headerdateien\Ring4\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Ring4\Scenes\MainScreen.h">
+    <ClInclude Include="Sources\Ring4\Scenes\MainScreen.h">
       <Filter>Headerdateien\Ring4\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Ring4\Scenes\_Include.h">
+    <ClInclude Include="Sources\Ring4\Scenes\_Include.h">
       <Filter>Headerdateien\Ring4\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Ring4\Scenes\Graphics2\Rectangles1.h">
+    <ClInclude Include="Sources\Ring4\Scenes\Graphics2\Rectangles1.h">
       <Filter>Headerdateien\Ring4\Scenes\Graphics2</Filter>
     </ClInclude>
-    <ClInclude Include="Ring4\Scenes\Gui\Layout1.h">
+    <ClInclude Include="Sources\Ring4\Scenes\Gui\Layout1.h">
       <Filter>Headerdateien\Ring4\Scenes\Gui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ring4\Scenes\LayoutScene.c">
+    <ClCompile Include="Sources\Ring4\Scenes\LayoutScene.c">
       <Filter>Quelldateien\Ring4\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Ring4\Scenes\Scene.c">
+    <ClCompile Include="Sources\Ring4\Scenes\Scene.c">
       <Filter>Quelldateien\Ring4\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Ring4\Scenes\Scene1.c">
+    <ClCompile Include="Sources\Ring4\Scenes\Scene1.c">
       <Filter>Quelldateien\Ring4\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Ring4\Scenes\Scene2.c">
+    <ClCompile Include="Sources\Ring4\Scenes\Scene2.c">
       <Filter>Quelldateien\Ring4\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Ring4\Scenes\Scene3.c">
+    <ClCompile Include="Sources\Ring4\Scenes\Scene3.c">
       <Filter>Quelldateien\Ring4\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Ring4\Scenes\Scene4.c">
+    <ClCompile Include="Sources\Ring4\Scenes\Scene4.c">
       <Filter>Quelldateien\Ring4\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Ring4\Scenes\MainScreen.c">
+    <ClCompile Include="Sources\Ring4\Scenes\MainScreen.c">
       <Filter>Quelldateien\Ring4\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Ring4\Scenes\_Include.c">
+    <ClCompile Include="Sources\Ring4\Scenes\_Include.c">
       <Filter>Quelldateien\Ring4\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Ring4\Scenes\Graphics2\Rectangles1.c">
+    <ClCompile Include="Sources\Ring4\Scenes\Graphics2\Rectangles1.c">
       <Filter>Quelldateien\Ring4\Scenes\Graphics2</Filter>
     </ClCompile>
-    <ClCompile Include="Ring4\Scenes\Gui\Layout1.c">
+    <ClCompile Include="Sources\Ring4\Scenes\Gui\Layout1.c">
       <Filter>Quelldateien\Ring4\Scenes\Gui</Filter>
     </ClCompile>
   </ItemGroup>
