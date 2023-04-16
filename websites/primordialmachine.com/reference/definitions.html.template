@@ -1,0 +1,5 @@
+@{title = "Definitions"}
+@{tableOfContents = "./_toc.ihtml"}
+@(>"./_header.html.t")
+  <p>This chapter provides definitions required by many parts of this reference.</p>
+@(>"./_footer.html.t")

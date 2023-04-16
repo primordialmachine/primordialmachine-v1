@@ -1,0 +1,41 @@
+@{title = "Pointer Deque Library"}
+@{tableOfContents = "./ring1-library/_toc.ihtml"}
+@(>"./_header.html.t")
+  <section>
+    <h2>Overview</h2>
+    <p>The <em>Pointer Deque</em> library provides <em>a dynamically growing pointer deques.</em>.</p>
+
+    <p>The <em>Pointer Deque</em> library fulfils the <a href="@(baseurl)ring1-library/introduction.html">module concept</a>
+    i.e. provides
+    the type <code class="inline">Mkx_PointerDeque_ModuleHandle</code>,
+    the constant <code class="inline">Mkx_PointerDeque_ModuleHandle_Invalid</code>, and
+    the functions <code class="inline">Mkx_PointerDeque_ModuleHandle_acquire</code> and <code class="inline">Mkx_PointerDeque_ModuleHandle_relinquish</code>.</p>
+
+    <p>The include file of the <em>PointerDeque</em> module is <code class="inline">Mkx/PointerDeque.h</code>, its library file is <code class="inline">Mkx-PointerDeque.lib</code>.</p>
+  </section>
+
+  <section>
+    <h2>Documentation</h2>
+    @(>"./ring1-library/pointerdeque-library/Mkx_PointerDeque.thtml")
+    @(>"./ring1-library/pointerdeque-library/Mkx_PointerDeque_AddedCallback.thtml")
+    @(>"./ring1-library/pointerdeque-library/Mkx_PointerDeque_Capacity_Default.thtml")
+    @(>"./ring1-library/pointerdeque-library/Mkx_PointerDeque_Capacity_Maximum.thtml")
+    @(>"./ring1-library/pointerdeque-library/Mkx_PointerDeque_Capacity_Minimum.thtml")
+    @(>"./ring1-library/pointerdeque-library/Mkx_PointerDeque_clear.thtml")
+    @(>"./ring1-library/pointerdeque-library/Mkx_PointerDeque_getAt.thtml")
+    @(>"./ring1-library/pointerdeque-library/Mkx_PointerDeque_getSize.thtml")
+    @(>"./ring1-library/pointerdeque-library/Mkx_PointerDeque_initialize.thtml")
+    @(>"./ring1-library/pointerdeque-library/Mkx_PointerDeque_insertAt.thtml")
+    @(>"./ring1-library/pointerdeque-library/Mkx_PointerDeque_insertBack.thtml")
+    @(>"./ring1-library/pointerdeque-library/Mkx_PointerDeque_insertFront.thtml")
+    @(>"./ring1-library/pointerdeque-library/Mkx_PointerDeque_RemovedCallback.thtml")
+    @(>"./ring1-library/pointerdeque-library/Mkx_PointerDeque_uninitialize.thtml")
+    @(>"./ring1-library/pointerdeque-library/Mkx_PointerDeque_VisitCallback.thtml")
+  </section>
+
+  <section>
+    <h2>Sources and references</h2>
+    <p>The <a href="@(repositoryUrl)/src/master">reference repository</a> provides non-authoritive
+    <a href="@(repositoryUrl)/src/master/mkx/PointerDeque/">sample implementations</a>.</p>
+  </section>
+@(>"./_footer.html.t")

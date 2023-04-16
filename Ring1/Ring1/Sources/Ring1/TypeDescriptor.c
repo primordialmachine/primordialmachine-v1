@@ -1,7 +1,9 @@
 #include "Ring1/TypeDescriptor.h"
 
 #include "Ring1/Collections/PointerHashMap.h"
+#include "Ring1/Crt/_Include.h"
 #include "Ring1/Memory/_Include.h"
+#include "Ring1/Module.h"
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
@@ -65,13 +67,13 @@ initializeModule
   if (Ring1_Memory_allocate(&g_types, sizeof(Ring1_TypeDescriptor))) {
     return Ring1_Result_Failure;
   }
-  if (Mkx_PointerHashMap_initialize(g_types, 0,
-                                    NULL /*keyAdded*/,
-                                    NULL /*keyRemoved*/,
-                                    &hashName /*hashKey*/,
-                                    &areNamesEqual /*areKeysEqual*/,
-                                    NULL,
-                                    &valueRemoved/*valueRemoved*/)) {
+  if (Ring1_PointerHashMap_initialize(g_types, 0,
+                                      NULL /*keyAdded*/,
+                                      NULL /*keyRemoved*/,
+                                      &hashName /*hashKey*/,
+                                      &areNamesEqual /*areKeysEqual*/,
+                                      NULL,
+                                      &valueRemoved/*valueRemoved*/)) {
     Ring1_Memory_deallocate(g_types);
     g_types = NULL;
     return Ring1_Result_Failure;
@@ -84,7 +86,7 @@ uninitializeModule
   (
   )
 { 
-  Mkx_PointerHashMap_uninitialize(g_types);
+  Ring1_PointerHashMap_uninitialize(g_types);
   Ring1_Memory_deallocate(g_types);
   g_types = NULL;
 }

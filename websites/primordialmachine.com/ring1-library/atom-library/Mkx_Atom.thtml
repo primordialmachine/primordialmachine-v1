@@ -1,0 +1,5 @@
+<h3 id="mkx_atom">Mkx_Atom</h3>
+<p>The type of an atom.</p>
+<p><code class="block">
+typedef struct Mkx_Atom Mkx_Atom;<br/>
+</code></p>

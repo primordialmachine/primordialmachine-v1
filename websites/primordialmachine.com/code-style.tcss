@@ -1,0 +1,22 @@
+@* Copyright (c) 2019-2022 Michael Heilmann. All rights reserved. *@
+
+@*
+Define css classes ".block" and ".inline" for "<code>" elements.
+"<code>" is equivalent to "<code class="block">.
+
+".block" displays the code as block text,
+".inline" display the code as inline text.
+*@
+
+code {
+  color: black;
+}
+
+code.block {
+  display: block;
+}
+
+code.inline {
+  word-break: break-all;
+  display: inline;
+}

@@ -1,0 +1,24 @@
+<h3 id="mkx_pointerhashmap_getsize">Mkx_PointerHashMap_getSize</h3>
+<p>Get the size of a pointer hash map.</p>
+<p><code class="block">
+int<br/>
+Mkx_PointerHashMap_getSize<br/>
+&nbsp;&nbsp;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;int64_t *size,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mkx_PointerHashMap *pointerHashMap<br/>
+&nbsp;&nbsp;)
+</code></p>
+
+<p>
+This function gets the size of a pointer hash map.
+</p>
+
+<h4>Parameter variables</h4>
+<dl>
+  <dt><code class="inline">size</code></dt><dd>A pointer to a <code class="inline">int64_t</code> variable.
+  If this function succeeds, that variable is assigned the size.</dd>
+  <dt><code class="inline">pointerHashMap</code></dt><dd>A pointer to the pointer hash map.</dd>
+</dl>
+
+<h4>Return value</h4>
+<p><code class="inline">0</code> on success, a non-zero value on failure.</p>

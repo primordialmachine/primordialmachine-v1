@@ -1,0 +1,6 @@
+@{title = "Point to point collision detection"}
+@{tableOfContents = "./reference/_toc.ihtml"}
+@(>"./_header.html.t")
+  <p>If the distance of two points is zero, then we say the points collide.
+  Otherwise we say the points do not collide.</p>
+@(>"./_footer.html.t")

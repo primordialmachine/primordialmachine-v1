@@ -1,0 +1,13 @@
+<h2 id="storeLocal"><code class="inline">storeLocal i</code></h2>
+<p>Store a local variable.</p>
+
+<p>
+This opcode pops the value on the stack.
+The value is stored in the local variable of index <code class="inline">i</code>.
+</p>
+
+<p><code>
+local<sub>0</sub>(i) = u, s<sub>0</sub> = s ○ [v]<br/>
+s<sub>1</sub> = s, local<sub>1</sub>(i) = v
+</code></p>
+<p>for some <code class="inline">s &isin; Stack</code>.</p>

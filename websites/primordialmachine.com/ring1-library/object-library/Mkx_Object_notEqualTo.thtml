@@ -1,0 +1,41 @@
+<h3 id="mkx_object_notequalto">Mkx_Object_notEqualTo</h3>
+<p>Function to get if this object is not equal to another object.</p>
+<p><code class="block">
+int<br/>
+Mkx_Object_notEqualTo<br/>
+&nbsp;&nbsp;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;bool *result,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mkx_Object *self,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mkx_Object *other<br/>
+&nbsp;&nbsp;)
+</code></p>
+
+<p>
+This function gets if two objects are not equal.
+</p>
+
+<p>
+The default implementation is invoking <code class="inline"><a href="@(baseurl)/utility-libraries/object-library#mkx_object_equalto">Mkx_Object_equalTo</a></code> to determine if the objects are equal.
+If that call fails, then this function fails as well.
+succeeds 
+
+<h4>Parameter variables</h4>
+<dl>
+  <dt><code class="inline">result</code></dt><dd>A pointer to a <code class="inline">bool</code> variable.</dd>
+  <dt><code class="inline">self</code></dt><dd>A pointer to this object.</dd>
+  <dt><code class="inline">other</code></dt><dd>A pointer to another object.</dd>
+</dl>
+
+<h4>Return value</h4>
+<p><code class="inline">0</code> on success, a non-zero value on failure.</p>
+
+<h4>Postcondition (success)</h4>
+<p>
+<code class="inline">*result</code> was assigned <code class="inline">true</code> if this object is not equal to the other object.
+Otherwise it was assigned <code class="inline">false</code>.
+</p>
+
+<h4>Postcondition (failure)</h4>
+<p>
+<code class="inline">result</code> was not dereferenced.
+</p>

@@ -1,0 +1,67 @@
+<h3 id="mkx_pointerhashmap_initialize">Mkx_PointerHashMap_initialize</h3>
+<p>Initialize a pointer hashmap.</p>
+<p><code class="block">
+void *<br/>
+Mkx_PointerHashMap_initialize<br/>
+&nbsp;&nbsp;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mkx_PointerHashMap *pointerHashMap,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;int64_t initialCapacity,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mkx_Collection_AddedCallback *keyAdded,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mkx_Collection_RemovedCallback *keyRemoved,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mkx_Collection_HashCallback *hashKey,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mkx_Collection_EqualCallback *areKeysEqual,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mkx_Collection_AddedCallback *valueAdded,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mkx_Collection_RemovedCallback *valueRemoved,<br/>
+&nbsp;&nbsp;)
+</code></p>
+
+<p>
+This function initializes an uninitialized pointer hash map with the specified capacity and the specified "added" and "removed" callbacks.
+</p>
+
+<h4>Parameter variables</h4>
+<dl>
+  <dt><code class="inline">pointerHashMap</code></dt><dd>A pointer to the pointer hash map.</dd>
+  <dt><code class="inline">initialCapacity</code></dt><dd>The initial capacity of this pointer hash map.
+  If this value is negative, the default capacity <code class="inline">Mkx_PointerHashMap_Capacity_Default</code> is used.
+  This function fails if this value is smaller than <code class="inline">Mkx_PointerHashMap_Capacity_Minimum</code> or
+  greater than <code class="inline">Mkx_PointerHashMap_Capacity_Maximum</code>.</dd>
+  
+  <dt><code class="inline">keyAdded</code></dt>
+  <dd>
+  A pointer to an <code class="inline"><a href="@(baseurl)utility-libraries/collections-commons-library#mkx_collection_addedcallback">Mkx_Collection_AddedCallback</a></code> function or a null pointer.
+  This function is invoked on a key pointer if it is added to the pointer hash map.
+  </dd>
+
+  <dt><code class="inline">keyRemoved</code></dt>
+  <dd>
+  A pointer to an <code class="inline"><a href="@(baseurl)utility-libraries/collections-commons-library#mkx_collection_removedcallback">Mkx_Collection_RemovedCallback</a></code> function or a null pointer.
+  This function is invoked on a key pointer if it is removed from the pointer hash map.
+  </dd>
+
+  <dt><code class="inline">hashKey</code></dt>
+  <dd>
+  A pointer to <code class="inline"><a href="@(baseurl)utility-libraries/collections-commons-library#mkx_collection_hashcallback">Mkx_Collection_HashCallback</a></code> function.
+  This function is invoked on a key pointer if the hash value of that key pointer needs to be computed.
+  </dd>
+  
+  <dt><code class="inline">areKeysEqual</code></dt>
+  <dd>
+  A pointer to an <code class="inline"><a href="@(baseurl)utility-libraries/collections-commons-library#mkx_collection_equalcallback">Mkx_Collection_EqualCallback</a></code> function.
+  </dd>
+  
+  <dt><code class="inline">valueAdded</code></dt>
+  <dd>
+  A pointer to an <code class="inline"><a href="@(baseurl)utility-libraries/collections-commons-library#mkx_collection_addedcallback">Mkx_Collection_AddedCallback</a></code> function or a null pointer.
+  This function is invoked on a value pointer when it is added to the pointer hash map.
+  </dd>
+ 
+  <dt><code class="inline">valueRemoved</code></dt>
+  <dd>
+  A pointer to a <code class="inline"><a href="@(baseurl)utility-libraries/collections-commons-library#mkx_collection_removedcallback">Mkx_Collection_RemovedCallback</a></code> function or a null pointer.
+  This function is invoked on a value pointer if it is removed from the pointer hash map.
+  </dd>
+</dl>
+
+<h4>Return value</h4>
+<p><code class="inline">0</code> on success, a non-zero value on failure.</p>

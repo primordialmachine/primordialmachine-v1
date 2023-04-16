@@ -17,6 +17,7 @@
 #include "Ring1/Memory/_Include.h"
 #include "Ring1/Module.h"
 #include "Ring1/Time/_Include.h"
+#include "Ring1/Status.h"
 #include "Ring1/TypeName/_Include.h"
 
 Ring1_Module_Declare(Ring1, All)

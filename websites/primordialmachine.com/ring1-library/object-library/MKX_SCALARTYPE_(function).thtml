@@ -1,0 +1,21 @@
+<h3 id="mkx_scalartype-function">MKX_SCALARTYPE</h3>
+<p>Function to unconditionally cast a pointer into a <code class="inline">Mkx_ScalarType</code> pointer.</p>
+<p><code class="block">
+Mkx_ScalarType *<br/>
+MKX_SCALARTYPE<br/>
+&nbsp;&nbsp;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;void *pointer<br/>
+&nbsp;&nbsp;)
+</code></p>
+
+<p>
+This function unconditionally casts a pointer into a <code class="inline">Mkx_ScalarType</code> pointer.
+</p>
+
+<h4>Parameter variables</h4>
+<dl>
+  <dt><code class="inline">pointer</code></dt><dd>A pointer.</dd>
+</dl>
+
+<h4>Return value</h4>
+<p><code class="inline">pointer</code> cast into a <code class="inline">Mkx_ScalarType</code> pointer.</p>

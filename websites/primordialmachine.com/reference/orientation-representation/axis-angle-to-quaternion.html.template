@@ -1,0 +1,13 @@
+@{title = "Axis angle to quaternion"}
+@{tableOfContents = "./reference/_toc.ihtml"}
+@(>"./_header.html.t")
+<h2>Axis angle to quaternion</h2>
+<p>Let \(\langle\hat{a},\alpha\rangle\) be an axis angle representing a counter-clockwise rotation around the axis \(\hat{a}\) by \(\alpha\) degrees.
+The quaternion \(q\) representing the same transformation is defined as</p>
+\[\begin{align*}
+q_x &amp;= \hat{a}_x \sin\left(\alpha/2\right)\\
+q_y &amp;= \hat{a}_y \sin\left(\alpha/2\right)\\
+q_z &amp;= \hat{a}_z \sin\left(\alpha/2\right)\\
+q_w &amp;= \cos\left(\alpha/2\right)
+\end{align*}\]
+@(>"./_footer.html.t")

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>@(siteurl)api/ring1-library</loc>
+  </url>
+  <url>
+    <loc>@(siteurl)api/ring1-library/atom-library</loc>
+  </url>
+  <url>
+    <loc>@(siteurl)api/ring1-library/log-library</loc>
+  </url>
+  <url>
+    <loc>@(siteurl)api/ring1-library/object-library</loc>
+  </url>
+  <url>
+    <loc>@(siteurl)api/ring1-library/pointerlist-library</loc>
+  </url>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  
+  @(>"./api/ring1-library/bytebuffer-library/sitemap.xml.t")
+  @(>"./api/ring1-library/collections-library/sitemap.xml.t")
+  @(>"./api/ring1-library/filesystem-library/sitemap.xml.t")
+  @(>"./api/ring1-library/hash-library/sitemap.xml.t")
+  @(>"./api/ring1-library/intrinsic-library/sitemap.xml.t")
+  @(>"./api/ring1-library/memory-library/sitemap.xml.t")
+  @(>"./api/ring1-library/pointerlist-library/sitemap.xml.t")
+  @(>"./api/ring1-library/result-library/sitemap.xml.t")
+  @(>"./api/ring1-library/status-library/sitemap.xml.t")
+  @(>"./api/ring1-library/time-library/sitemap.xml.t")
+</urlset>

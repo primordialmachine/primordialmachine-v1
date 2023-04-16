@@ -1,0 +1,28 @@
+
+<div style="display: none">
+\(
+  % Arcus cosine.
+  \def\acos{\cos^{-1}}
+  
+  % Vector projection.
+  \def\projection#1#2{{proj_{#1}\left(#2\right)}}
+  
+  % Vector rejection.
+  \def\rejection#1#2{{rej_{#1}\left(#2\right)}}
+  
+  % Norm.
+  \def\norm#1{{\left\|#1\right\|}}
+  
+  % Cross product.
+  \def\cross#1#2{\mathit{cross}\left(#1,#2\right)}
+  
+  % Dot product.
+  \def\dot#1#2{{#1 \cdot #2}}
+  
+  % Magnitude.
+  \def\mag#1{{\left|#1\right}}
+  
+  \def\group#1{\left(#1\right)}}
+  \def\sbgrp#1{\left\{#1\right\}}
+\)
+</div>

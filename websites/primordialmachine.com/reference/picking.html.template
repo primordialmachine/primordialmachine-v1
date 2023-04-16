@@ -1,0 +1,88 @@
+@{title = "Reference: Picking"}
+@{tableOfContents = "./_toc.ihtml"}
+@(>"./_header.html.t")
+
+          <section>
+          <!-- -->
+          <h2 id="window-space-to-canvas-space">Window to Canvas projection</h2>
+          <p>
+          Window coordinate space is a coordinate system with the origin \f$(0,0)\f$ in the top-left corner of the window with y-axis pointing down.
+          Canvas coordinate space is a coordinate system with the origin \f$(0,0)\f$ in the bottom-left corner of the window with the y-axis pointing up.
+          Both in window coordinate space and canvas coordinate space, the x-axis is pointing right.</p>
+          <p>
+          The function to convert \(\langle x_0, y_0 \rangle\) <em>window</em> coordinates to \(\langle x_1, y_1\rangle\) <em>canvas</em> coordinates is given by
+          \[
+            \langle x_1, y_1 \rangle = \langle x_0, H_w - y_0\rangle
+          \]
+          where \(H_w\) is the height of the window.
+          </p>
+          </section>
+
+          <section>
+          <h2 id="canvas-space-to-normalized-device-space">Canvas space to normalized device space</h2>
+          <p>
+          Normalized device space is a coordinate system with the origin \(0,0,0\) is at the center of the viewport in the canvas.
+          The y-axis is pointing up, the x-axis is pointing right.
+          The z-axis is pointing away.
+          The front bottom left corner of the viewport rectangle on the canvas is at \(-1,-1,-1\) and its back right top corner at \(+1,+1,+1\).
+          </p>
+          <p>
+          As a point \( \langle p_x,p_y \rangle \) in CS is not equipped with depth information,
+          it is mapped to a line segment in NDC starting at \( \langle a_x, a_y, -1 \rangle \)
+          and ending at \( \langle b_x, b_y, +1 \rangle \).
+          </p>
+          <p>
+          The function to convert \(\langle p_x, p_y \rangle\) <em>canvas</em> space to \(\langle a_x, a_y, a_z \rangle\) and \(\langle b_x, b_y, b_z\rangle \)
+          in <em>normalized device space</em> space is given by
+          \[
+             \langle a_x, a_y, a_z \rangle = \left\langle 2 \cdot \frac{p_x - X_{avp}}{W_{avp}} - 1, 2 \cdot \frac{p_y - Y_{avp}}{H_{avp}} - 1, -1\right\rangle\\
+             \langle b_x, b_y, b_z \rangle = \left\langle 2 \cdot \frac{p_x - X_{avp}}{W_{avp}} - 1, 2 \cdot \frac{p_y - Y_{avp}}{H_{avp}} - 1, +1\right\rangle
+          \]
+          where
+          \(X_{avp}\) is the left position and \(Y_{avp}\) the botttom position of the viewport on the canvas,
+          \(W_{avp}\) is the width and \(H_{avp}\) the height of the viewport on the canvas.
+          </p>
+          </section>
+
+          <section>
+          <h2 id="normalized-device-space-to-clip-space">Normalized device space to clip space</h2>
+          <p>
+          Clip space is a 3D coordinate system with the origin at \(0,0,0\) with the positive x-axis pointing right and the positive y-axis pointing up.
+          The positive z-axis is pointing forward.
+          </p>
+
+          A point within the interval \([-1,+1]\) along all axes is visible, otherwise it is not visible. If a
+          point is visible in normalize device space, it must be mapped to some poins
+          </p>
+          <p>
+          The function to convert a point \(\langle p_x, p_y\rangle\) in <em>normalized device</em> space
+          to a line segment given by the points \(\langle a_x, a_y, a_z\rangle\) and \(\langle b_x, b_y, b_z\rangle\)
+          in <em>clip space</em> is given by
+          \[
+            \langle a_x, a_y, a_z \rangle = \langle p_x, p_y, -1\rangle\\
+            \langle b_x, b_y, b_z \rangle = \langle p_x, p_y, +1\rangle
+          \]
+          </p>
+          <p>-1 and +1 are decent choices as for the most common projection matrices -1 corresponds to the near clipping plane
+          and +1 corresponds to the far clipping plane.</p>
+          <p>Given \(a\) and \(b\) one can decide what to do with them.
+          </section>
+
+          <section>
+          <h2>Clip space to view/world/object/</h2>
+          <p>\(a\) and \(b\) are subjected to the inverse projection transformation to obtain two points in view space.
+          From this point on there are many valid situational choices on how to proceed. A common method for picking is:
+          <ul>
+            <li>
+            create
+            a line segment \( \{ a + t (b-a) | t \in [0,1] \} \)
+            or
+            a ray \(\left\{a + t \frac{b-a}{|b-a|} | t \in [0,\inf[ \right\}\)
+            </li>
+            <li>transform the line segment/ray from view space to world space</li>
+            <li>check for an intersection of the line segment/ray with some approximation of the mesh bounds in world space</li>
+          </ul>
+          </p>
+          </section>
+
+@(>"./_footer.html.t")

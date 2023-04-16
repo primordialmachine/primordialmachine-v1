@@ -1,0 +1,51 @@
+@{title = "Object Library"}
+@{tableOfContents = "./ring1-library/_toc.ihtml"}
+@(>"./_header.html.t")
+  <section>
+    <h2>Overview</h2>
+    <p>The <em>Object</em> library provides <em>object oriented programming functionality for C programs</em>.</p>
+
+    <p>The <em>Object</em> library fulfils the <a href="@(baseurl)ring1-library/introduction.html">module concept</a>
+    i.e. provides
+    the type <code class="inline">Mkx_Object_ModuleHandle</code>,
+    the constant <code class="inline">Mkx_Object_ModuleHandle_Invalid</code>, and
+    the functions <code class="inline">Mkx_Object_ModuleHandle_acquire</code> and <code class="inline">Mkx_Object_ModuleHandle_relinquish</code>.</p>
+
+    <p>The include file of the <em>Object</em> module is <code class="inline">Mkx/Object.h</code>, its library file is <code class="inline">Mkx-Object.lib</code>.</p>
+  </section>
+
+  <section>
+    <h2>Documentation</h2>
+    @(>"./ring1-library/object-library/MKX_CLASSTYPE_(function).thtml")
+    @(>"./ring1-library/object-library/Mkx_ClassType_(struct).thtml")
+    @(>"./ring1-library/object-library/MKX_ENUMERATIONTYPE_(function).thtml")
+    @(>"./ring1-library/object-library/Mkx_EnumerationType_(struct).thtml")
+    @(>"./ring1-library/object-library/MKX_INTERFACETYPE_(function).thtml")
+    @(>"./ring1-library/object-library/Mkx_InterfaceType_(struct).thtml")
+    @(>"./ring1-library/object-library/MKX_OBJECT_(function).thtml")
+    @(>"./ring1-library/object-library/Mkx_Object_equalTo.thtml")
+    @(>"./ring1-library/object-library/Mkx_Object_hashValue.thtml")
+    @(>"./ring1-library/object-library/Mkx_Object_notEqualTo.thtml")
+    @(>"./ring1-library/object-library/Mkx_registerArrayType.thtml")
+    @(>"./ring1-library/object-library/Mkx_registerClassType.thtml")
+    @(>"./ring1-library/object-library/Mkx_registerEnumerationType.thtml")
+    @(>"./ring1-library/object-library/Mkx_registerInterfaceType.thtml")
+    @(>"./ring1-library/object-library/Mkx_registerScalarType.thtml")
+    @(>"./ring1-library/object-library/MKX_SCALARTYPE_(function).thtml")
+    @(>"./ring1-library/object-library/Mkx_ScalarType_(struct).thtml")
+    @(>"./ring1-library/object-library/MKX_TYPE_(function).thtml")
+    @(>"./ring1-library/object-library/Mkx_Type_(struct).thtml")
+    @(>"./ring1-library/object-library/Mkx_Type_getName.thtml")
+    @(>"./ring1-library/object-library/Mkx_Type_isArrayType.thtml")
+    @(>"./ring1-library/object-library/Mkx_Type_isClassType.thtml")
+    @(>"./ring1-library/object-library/Mkx_Type_isEnumerationType.thtml")
+    @(>"./ring1-library/object-library/Mkx_Type_isInterfaceType.thtml")
+    @(>"./ring1-library/object-library/Mkx_Type_isScalarType.thtml")
+  </section>
+
+  <section>
+    <h3>Sources and references</h3>
+    <p>The <a href="@(repositoryUrl)/src/master">reference repository</a> provides non-authoritive
+    <a href="@(repositoryUrl)/src/master/mkx/Object/">sample implementations</a>.</p>
+  </section>
+@(>"./_footer.html.t")

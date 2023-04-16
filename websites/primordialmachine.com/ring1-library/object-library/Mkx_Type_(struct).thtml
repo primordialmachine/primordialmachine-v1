@@ -1,0 +1,9 @@
+<h3 id="mkx_type-struct">Mkx_Type</h3>
+<p>Struct holding common data of a type registered with the type system.</p>
+<p><code class="block">
+typedef struct Mkx_Type { ... } Mkx_Type<br/>
+</code></p>
+
+<p>
+This struct holds common data of a type registered with the type system.
+</p>

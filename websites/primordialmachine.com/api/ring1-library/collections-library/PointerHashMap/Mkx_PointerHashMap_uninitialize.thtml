@@ -1,0 +1,19 @@
+<h3 id="mkx_pointerhashmap_uninitialize">Mkx_PointerHashMap_uninitialize</h3>
+<p>Uninitialize a pointer hash map.</p>
+<p><code class="block">
+void<br/>
+Mkx_PointerHashMap_uninitialize<br/>
+&nbsp;&nbsp;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mkx_PointerHashMap *pointerHashMap<br/>
+&nbsp;&nbsp;)
+</code></p>
+
+<p>
+This function uninitializes an initialized pointer hash map.
+The hash map is cleared as if <code class="inline">Mkx_PointerHashMap_clear</code> was invoked on the pointer hash map.
+</p>
+
+<h4>Parameter variables</h4>
+<dl>
+  <dt><code class="inline">pointerHashMap</code></dt><dd>A pointer to the pointer hash map.</dd>
+</dl>

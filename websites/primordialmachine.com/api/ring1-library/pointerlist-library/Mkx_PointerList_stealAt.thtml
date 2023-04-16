@@ -1,0 +1,40 @@
+@{title = "Ring 1 :: Pointer List Library"}
+@{tableOfContents = "./api/ring1-library/_toc.ihtml"}
+@(>"./_header.html.t")
+
+<h3 id="mkx_pointerlist_stealat">Mkx_PointerList_stealAt</h3>
+<p>Steal the pointer at a specified position in a pointer list.</p>
+<p><code class="block">
+int<br/>
+Mkx_PointerList_stealAt<br/>
+&nbsp;&nbsp;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mkx_PointerList *pointerList,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;int64_t index,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;void **element<br/>
+&nbsp;&nbsp;)
+</code></p>
+
+<p>
+This function steals the pointer at the specified position in the specified pointer list.
+If <code>element</code> is not a null pointer, then the removed pointer is assigned to <code>*element</code>.
+This function only fails if the specified index is out of bounds or <code class="inline">pointerList</code> is a null pointer.
+</p>
+
+<p>Unlike <code class="inline">Mkx_PointerList_removeAt</code>, a "removed" callback associated with the pointer list is not invoked on the pointer.</p>
+
+<h4>Parameter variables</h4>
+<dl>
+  <dt><code class="inline">pointerList</code></dt><dd>A pointer to the pointer list.</dd>
+  <dt><code class="inline">index</code></dt><dd>The index denoting the position of the pointer to be removed.
+  Must be within the bounds of <code class="inline">[0, n - 1]</code> where <code class="inline">n</code> is the size of the pointer list.</dd>
+  <dt><code class="inline">element</code></dt><dd>A pointer to a <code>void *</code> variable or a null pointer.</dd>
+</dl>
+
+<h4>Return value</h4>
+<p>This function returns <code class="inline">0</code> on success.</p>
+<p>On failure, one of the following status codes is returned:</p>
+<dl>
+  <dt><code class="inline">Mkx_PointerList_Status_InvalidArgument</code></dt><dd><code class="inline">pointerList</code> is a null pointer.</dd>
+  <dt><code class="inline">Mkx_PointerList_Status_Empty</code></dt><dd>The pointer list is empty.</dd>
+  <dt><code class="inline">Mkx_PointerList_Status_ArgumentOutOfRange</code></dt><dd>The pointer list is not empty but the index is out of range.</dd>
+</dl>

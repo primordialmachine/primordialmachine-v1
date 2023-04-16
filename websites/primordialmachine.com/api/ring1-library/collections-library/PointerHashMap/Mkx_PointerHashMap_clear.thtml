@@ -1,0 +1,20 @@
+<h3 id="mkx_pointerhashmap_clear">Mkx_PointerHashMap_clear</h3>
+<p>Clear a pointer hash map.</p>
+<p><code class="block">
+void *<br/>
+Mkx_PointerHashMap_clear<br/>
+&nbsp;&nbsp;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mkx_PointerHashMap *pointerHashMap<br/>
+&nbsp;&nbsp;)
+</code></p>
+
+<p>
+This function clears a pointer hash map.
+If a "key removed" callback is associated with the pointer hash map object, then this function will be invoked on each key removed.
+If a "value removed" callback is associated with the pointer hash map object, then this function will be invoked on each removed value.
+</p>
+
+<h4>Parameter variables</h4>
+<dl>
+  <dt><code class="inline">pointerHashMap</code></dt><dd>A pointer to the pointer hash map.</dd>
+</dl>

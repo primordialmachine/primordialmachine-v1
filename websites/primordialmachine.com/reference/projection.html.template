@@ -1,0 +1,25 @@
+@{title = "Reference: 3D projections"}
+@{tableOfContents = "./_toc.ihtml"}
+@(>"./_header.html.t")
+
+  <section>
+  <h2>Perspective projection</h2>
+  <p>
+  \[
+    \left(\begin{matrix}
+    \end{matrix}\right)
+  \]
+  </p>
+  </section>
+
+  <section>
+  <h2>Orthographic projection</h2>
+  <p>
+  \[
+     \left(\begin{matrix}
+     \end{matrix}\right)
+  \]
+  </p>
+  </section>
+
+@(>"./_footer.html.t")

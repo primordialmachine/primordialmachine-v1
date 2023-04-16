@@ -1,0 +1,68 @@
+@{title = "Rotation around an arbitrary axis - Explicit matrix representation"}
+@{tableOfContents = "./reference/_toc.ihtml"}
+@(>"./_header.html.t")
+
+<h3>@(title)</h3>
+The rotation formula implicit matrix representation (as derived here <a href="@(baseurl)transformations/rotation-around-an-arbitrary-axis/implicit-matrix-representation">here</a>) 
+\[
+\vec{p}'=\rejection{\vec{p}}{\hat{r}}\cos(\alpha) + (\cross{\hat{r}}{\vec{p}}) \sin(\alpha)  + \projection{\vec{p}}{\vec{\hat{r}}}
+\]
+can be restated as
+\[
+\vec{p}' = R \vec{p}
+\]
+using a matrix
+\[
+R =
+\left[\begin{matrix}
+t \hat{r}_x^2         + c            & t \hat{r}_y \hat{r}_x - s \hat{r}_z & t \hat{r}_x \hat{r}_z + s \hat{r}_y    \\
+t \hat{r}_x \hat{r}_y + s \hat{r}_z  & t \hat{r}_y^2         + c           & t \hat{r}_y \hat{r}_z - s \hat{r}_x    \\
+t \hat{r}_x \hat{r}_z - s \hat{r}_y  & t \hat{r}_y \hat{r}_z + s \hat{r}_x & t \hat{r}_z^2         + c
+\end{matrix}\right]
+\]
+with \(c = \cos\alpha\), \(s = \sin\alpha\), and \(t = 1 - \cos\alpha\).
+
+<h4>Proof</h4>
+Given
+\[
+R = \cos(\alpha) I + \sin(\alpha) \widetilde{R} + \group{1 - \cos\group{\alpha}}\group{\widetilde{R}^2 + I}
+\]
+let \(c = \cos\alpha\), \(s = \sin\alpha\), and \(t = 1 - \cos\alpha\) and obtain
+\[
+R = c I + s \widetilde{R} + t \group{\widetilde{R}^2 + I}
+\]
+Expand
+\[
+R =
+c 
+\left[\begin{matrix}
+  1 & 0 & 0 \\
+  0 & 1 & 0 \\
+  0 & 0 & 1 \\
+\end{matrix}\right]
++
+s
+\left[\begin{matrix}
+   0         & -\hat{r}_z &  \hat{r}_y \\
+   \hat{r}_z &          0 & -\hat{r}_x \\
+  -\hat{r}_y &  \hat{r}_x &          0 \\
+\end{matrix}\right]
++ 
+t
+\left[\begin{matrix}
+\hat{r}_x^2         & \hat{r}_x \hat{r}_y & \hat{r}_x \hat{r}_z\\
+\hat{r}_x \hat{r}_y & \hat{r}_y^2         & \hat{r}_y \hat{r}_z\\
+\hat{r}_x \hat{r}_z & \hat{r}_y \hat{r}_z & \hat{r}_z^2
+\end{matrix}\right]
+\]
+and rewrite to
+\[
+R =
+\left[\begin{matrix}
+t \hat{r}_x^2   + c                  & t \hat{r}_x \hat{r}_y - s \hat{r}_z & t \hat{r}_x \hat{r}_z + s \hat{r}_y    \\
+t \hat{r}_x \hat{r}_y + s \hat{r}_z  & t \hat{r}_y^2         + c           & t \hat{r}_y \hat{r}_z - s \hat{r}_x    \\
+t \hat{r}_x \hat{r}_z - s \hat{r}_y  & t \hat{r}_y \hat{r}_z + s \hat{r}_x & t \hat{r}_z^2         + c
+\end{matrix}\right]
+\]       
+
+@(>"./_footer.html.t")

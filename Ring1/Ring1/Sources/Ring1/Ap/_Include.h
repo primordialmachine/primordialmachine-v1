@@ -10,6 +10,7 @@ Ring1_Module_Declare(Ring1, Ap)
 #include "Ring1/Ap/ApBool.h"
 #include "Ring1/Ap/ApInt.h"
 #include "Ring1/Ap/ApNat.h"
+#include "Ring1/Ap/ApReal.h"
 #undef RING1_AP_PRIVATE
 #pragma pop_macro("RING1_AP_PRIVATE")
 

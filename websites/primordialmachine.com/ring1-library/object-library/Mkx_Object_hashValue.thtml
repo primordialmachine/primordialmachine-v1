@@ -1,0 +1,33 @@
+<h3 id="mkx_object_hashvalue">Mkx_Object_hashValue</h3>
+<p>Function to get the hash value of an object.</p>
+<p><code class="block">
+int<br/>
+Mkx_Object_hashValue<br/>
+&nbsp;&nbsp;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;int64_t *result,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mkx_Object *self<br/>
+&nbsp;&nbsp;)
+</code></p>
+
+<p>
+This function unconditionally casts a pointer into a <code class="inline">Mkx_Object</code> pointer.
+</p>
+
+<h4>Parameter variables</h4>
+<dl>
+  <dt><code class="inline">result</code></dt><dd>A pointer to a <code class="inline">bool</code> variable.</dd>
+  <dt><code class="inline">self</code></dt><dd>A pointer to this object.</dd>
+</dl>
+
+<h4>Return value</h4>
+<p><code class="inline">0</code> on success, a non-zero value on failure.</p>
+
+<h4>Postcondition (success)</h4>
+<p>
+<code class="inline">*result</code> was assigned the hash value of this object.
+</p>
+
+<h4>Postcondition (failure)</h4>
+<p>
+<code class="inline">result</code> was not dereferenced.
+</p>

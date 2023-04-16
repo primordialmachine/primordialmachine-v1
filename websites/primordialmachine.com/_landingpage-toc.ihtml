@@ -1,0 +1,17 @@
+@* Table of contents for the landing page. *@
+<div class="nav toc flex-column pb-1">
+  <div class="nav-item">
+    <a class="nav-link" href="@(baseurl)api/ring1-library">
+      <div>Source Code Base</dV<
+      <div></div>
+      <div style="font-size: 0.75rem">The documentation of the source code base of this project.</div>
+    </a>
+  </div>
+  <div class="nav-item">
+    <a class="nav-link" href="@(baseurl)reference">
+      <div>Approaches, principles, methods, and techniques</div>
+      <div></div>
+      <div style="font-size: 0.75rem">The documentation of approaches, principles, methods, and techniques pertaining to this project.</div>
+    </a>
+  </div>
+</div>

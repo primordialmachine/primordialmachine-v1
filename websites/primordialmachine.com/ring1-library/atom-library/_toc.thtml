@@ -1,0 +1,15 @@
+<div class="nav-item">
+  <a class="nav-link my-toggle" href="@(baseurl)utility-libraries/atom-library">
+    <span>Atom Library</span>
+    <span><i class="fa fa-caret-right" aria-hidden="true"></i></span>
+  </a>
+</div>
+<div data-my-nav-id="utility-libraries/atom-library" class="@(toc_collapsible_classes) my-toggle-collapsible my-toggle-collapsed">
+  <div class="nav-item"><a class="nav-link" href="@(baseurl)utility-libraries/atom-library#mkx_atom">Mkx_Atom</a></div>
+  <div class="nav-item"><a class="nav-link" href="@(baseurl)utility-libraries/atom-library#mkx_atom_getbytes">Mkx_Atom_getBytes</a></div>
+  <div class="nav-item"><a class="nav-link" href="@(baseurl)utility-libraries/atom-library#mkx_atom_gethashvalue">Mkx_Atom_getHashValue</a></div>
+  <div class="nav-item"><a class="nav-link" href="@(baseurl)utility-libraries/atom-library#mkx_atom_getnumberofbytes">Mkx_Atom_getNumberOfBytes</a></div>
+  <div class="nav-item"><a class="nav-link" href="@(baseurl)utility-libraries/atom-library#mkx_atom_getorcreate">Mkx_Atom_getOrCreate</a></div>
+  <div class="nav-item"><a class="nav-link" href="@(baseurl)utility-libraries/atom-library#mkx_atom_reference">Mkx_Atom_reference</a></div>
+  <div class="nav-item"><a class="nav-link" href="@(baseurl)utility-libraries/atom-library#mkx_atom_unreference">Mkx_Atom_unreference</a></div>
+</div>

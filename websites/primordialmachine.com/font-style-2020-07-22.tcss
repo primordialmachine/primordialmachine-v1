@@ -1,0 +1,76 @@
+@* Copyright (c) 2019-2022 Michael Heilmann. All rights reserved. *@
+
+@*
+Use "&display=swap" to avoid "flash of invisble text".
+https://web.dev/font-display/
+
+The popularity of fonts.
+https://fonts.google.com/analytics
+
+We propose a line height from 1.3 and 1.5 em and a font size 0.9em.
+*@
+
+@* Get "Roboto" for navigation and headline text. *@
+@@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+@* Get "Open Sans" for normal text. *@
+@@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+@* Get "Cutive Mono" for code text. *@
+@@import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap');
+
+
+@*
+Font family, font size, and line height for all elements.
+Can be overriden for descendant elements.
+*@
+body
+{
+  font-family: 'Open Sans', sans-serif;
+  font-size: calc(1rem * 0.975);
+  font-weight: normal;
+  line-height: calc(1rem * 1.675);
+}
+
+@*
+Font family and font size for HEADLINE elements below MAIN elements.
+Can be overriden for descendant elements.
+*@
+body main h1, h2, h3, h4, h5, h6
+{
+  font-family: 'Roboto', 'Arial', sans-serif;
+}
+
+@*
+Font family and font size for CODE elements.
+Can be overriden for descendant elements.
+*@
+code
+{
+  font-family: 'Cutive Mono', monospace;
+}
+
+@* Text decoration and font-weight for SPAN CLASS="META" below CODE elements. *@
+code > span.meta
+{
+  text-decoration: underline;
+  font-weight: bold
+}
+
+@*
+Exception for HEADLINE(S) IN MAIN SECTION(S).
+Do not handle code in headline elements as code.
+*@
+main h1, h2, h3, h4, h5 > code
+{
+  font-family: 'Roboto', 'Arial', sans-serif;
+}
+
+@*
+Font family and font size for NAVIGATION SECTION(S).
+Can be overriden for descendant elements.
+*@
+nav
+{
+  font-family: 'Roboto', 'Arial', sans-serif;
+}

@@ -1,0 +1,400 @@
+/// @@file Ring3/Math/Vector@(dimensionality)@(scalarTypeSuffix).h
+/// @@copyright Copyright (c) 2021-2022 Michael Heilmann. All rights reserved.
+/// @@author Michael Heilmann (michaelheilmann@@primordialmachine.com)
+
+#if !defined(RING3_MATH_VECTOR@(dimensionality)@(scalarTypeSuffixUppercase)_H_INCLUDED)
+#define RING3_MATH_VECTOR@(dimensionality)@(scalarTypeSuffixUppercase)_H_INCLUDED
+
+#if !defined(RING3_MATH_PRIVATE)
+#error("Do not include `Ring3/Math/Vector@(dimensionality)@(scalarTypeSuffix).h` directly, include `Ring3/Math/_Include.h` instead.")
+#endif
+
+#include "Ring2/Library/_Include.h"
+
+#define RING3_MATH_VECTOR_DIMENSIONALITY (@(dimensionality))
+
+/// C-level definition of a @(dimensionality)D vector.
+/// The HLL-level definition is
+/// @@code
+/// class Ring3.Math.Vector@(dimensionality)@(scalarTypeSuffix) { ... }
+/// @@endcode
+MACHINE_DECLARE_CLASSTYPE(Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix))
+
+struct Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_Class {
+  Machine_Object_Class parent;
+};
+
+struct Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) {
+  Machine_Object parent;
+  @(scalarType) e[@(dimensionality)];
+};
+
+Ring1_NoDiscardReturn() Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)*
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_create
+  (
+  );
+
+Ring1_NoDiscardReturn() Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)*
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_clone
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* self
+  );
+
+/// @@brief Copy the values of another vector into this vector.
+/// @@param self This vector.
+/// @@param other The other vector.
+void
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_copy
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)* self,
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* other
+  );
+
+/// @@brief Compute the sum of two vectors.
+/// @@param self This vector.
+/// @@param other The other vector.
+/// @@param target The vector to store the result in.
+void
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_add
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* self,
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* other,
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)* target
+  );
+
+/// @@brief Compute the sum of this vector and another vector.
+/// @@param self This vector.
+/// @@param other The other vector.
+/// @@return The sum vector.
+Ring1_NoDiscardReturn() Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)*
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_sum
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* self,
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* other
+  );
+
+/// @@brief Compute the difference of this vector and another vector.
+/// @@param self This vector.
+/// @@param other The other vector.
+/// @@param target The vector to store the result in.
+void
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_subtract
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* self,
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* other,
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)* target
+  );
+
+/// @@brief Compute the difference of this vector and another vector.
+/// @@param self This vector.
+/// @@param other The other vector.
+/// @@return The difference vector.
+Ring1_NoDiscardReturn() Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)*
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_difference
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* self,
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* other
+  );
+
+/// @@brief Compute the component-wise product of this vector and another vector.
+/// @@param target The vector to store the result in.
+/// @@param self This vector.
+/// @@param other The other vector.
+void
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_multiply
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)* target,
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* self,
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* other
+  );
+
+/// @@brief Compute the component-wise product of this vector with another vector.
+/// @@param self This vector.
+/// @@param other The other vector.
+/// @@return The component-wise product vector.
+Ring1_NoDiscardReturn() Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)*
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_product
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* self,
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* other
+  );
+
+/// @@brief Compute the component-wise quotient of two vectors.
+/// @@param target The vector to store the result in.
+/// @@param self This vector.
+/// @@param other The other vector.
+void
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_divide
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)* target,
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* self,
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* other
+  );
+
+/// @@brief Compute the component-wise quotient of this vector and another vectors.
+/// @@param self This vector.
+/// @@param other The other vector.
+/// @@return The component-wise quotient vector.
+Ring1_NoDiscardReturn() Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)*
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_quotient
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* self,
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* other
+  );
+
+/// @@brief Compute the dot product of two vectors.
+/// @@param self This vector.
+/// @@param other The other vector.
+/// @@return The dot product of the vectors.
+Ring1_NoDiscardReturn() @(scalarType)
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_dot
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* self,
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* other
+  );
+
+/// @@brief Get the component-wise maxima of this vector and another vector i.e. a vector \f$c_i = \max(a_i,b_i)\f$
+/// @@param target The vector to store the result in.
+/// @@param self This vector.
+/// @@param other The other vector.
+void
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_maxima
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)* target,
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* self,
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* other
+  );
+
+/// @@brief Get the component-wise minima vector of this vector and another vector i.e. a vector \f$c_i = \min(a_i,b_i)\f$
+/// @@param target The vector to store the result in.
+/// @@param self This vector.
+/// @@param other The other vector.
+void
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_minima
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)* target,
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* self,
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* other
+  );
+
+/// @@brief Compute the product of this vector and a scalar.
+/// @@param self The vector.
+/// @@param other The scalar.
+/// @@return The product.
+Ring1_NoDiscardReturn() Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)*
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_multiplyScalar
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* self,
+    @(scalarType) other
+  );
+
+/// @@brief Compute the product of this vector and a scalar.
+/// Store the result in this vector.
+/// @@param self This vector.
+/// @@param other The scalar.
+void
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_multiplyScalarInSitu
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)* self,
+    @(scalarType) other
+  );
+
+/// @@brief Compute the quotient of this vector and a scalar.
+/// @@param self This vector.
+/// @@param other The scalar.
+/// @@return The quotient.
+Ring1_NoDiscardReturn() Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)*
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_divideScalar
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* self,
+    Ring2_Real32 other
+  );
+
+/// @@brief Compute the quotient of this vector and a scalar.
+/// Store the result in this vector.
+/// @@param self This vector.
+/// @@param other The scalar.
+void
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_divideScalarInSitu
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)* self,
+    Ring2_Real32 other
+  );
+
+/// @@brief Get the length of this vector.
+/// @@param self This vector.
+/// @@return The length of this vector.
+Ring1_NoDiscardReturn() Ring2_Real32
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_length
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* self
+  );
+
+/// @@brief Get the squared length of this vector.
+/// @@param self This vector.
+/// @@return The squared length of this vector.
+Ring1_NoDiscardReturn() Ring2_Real32
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_squaredLength
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* self
+  );
+
+/// @@brief Compute the normalized vector of this vector.
+/// @@param self This vector.
+/// @@return The normalized vector.
+Ring1_NoDiscardReturn() Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)*
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_normalize
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* self
+  );
+
+/// @@brief Compute the normalized vector of this vector.
+/// Store the result in this vector.
+/// @@param self This vector.
+void
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_normalizeInSitu
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)* self
+  );
+
+/// @@brief Compare this vector and another vector with tolerance.
+/// @@param self This vector.
+/// @@param other The other vector.
+/// @@param absolute, relative The absolute tolerance and the relative tolerance. Must be non-negative.
+/// @@return @@a true if the vectors are equal. @@a false otherwise.
+/// @@remark See Ring1_Fp_equalToWithTolerance_f32 for information the comparison function.
+Ring1_NoDiscardReturn() Ring2_Boolean
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_isEqualToWithTolerance
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* self,
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* other,
+    Ring2_Real32 absolute,
+    Ring2_Real32 relative
+  );
+
+/// @@brief Swap the component of this vector with the component of another vector depending on which component value is greater.
+/// That is, given two vectors $u$ and $v$, compute \f$u'\f$ and \f$v'\f$ such that \f$u'_i = \min(u_i, v_i)\f$ and \f$v'_i = \max(u_i, v_i)\f$.
+/// @@param self This vector.
+/// @@param other The other vector.
+/// @@param min, max Pointers to vectors variables.
+/// @@success @@a *min was assigned the minimum vector, @@a *max was assigned the maximum vector.
+void
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_extrema
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* self,
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* other,
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)* min,
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)* max
+  );
+
+#if RING3_MATH_VECTOR_DIMENSIONALITY == 1
+void
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_set
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)* self,
+    @(scalarType) x
+  );
+#endif
+
+#if RING3_MATH_VECTOR_DIMENSIONALITY == 2
+void
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_set
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)* self,
+    @(scalarType) x,
+    @(scalarType) y
+  );
+#endif
+
+#if RING3_MATH_VECTOR_DIMENSIONALITY == 3
+void
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_set
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)* self,
+    @(scalarType) x,
+    @(scalarType) y,
+    @(scalarType) z
+  );
+#endif
+
+#if RING3_MATH_VECTOR_DIMENSIONALITY == 4
+void
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_set
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)* self,
+    @(scalarType) x,
+    @(scalarType) y,
+    @(scalarType) z,
+    @(scalarType) w
+  );
+#endif
+
+#if RING3_MATH_VECTOR_DIMENSIONALITY > 0
+
+Ring1_NoDiscardReturn() @(scalarType)
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_getX
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* self
+  );
+
+#endif
+
+#if RING3_MATH_VECTOR_DIMENSIONALITY > 1
+
+Ring1_NoDiscardReturn() @(scalarType)
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_getY
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* self
+  );
+
+#endif
+
+#if RING3_MATH_VECTOR_DIMENSIONALITY > 2
+
+Ring1_NoDiscardReturn() @(scalarType)
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_getZ
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* self
+  );
+
+#endif
+
+#if RING3_MATH_VECTOR_DIMENSIONALITY > 3
+
+Ring1_NoDiscardReturn() @(scalarType)
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_getW
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* self
+  );
+
+#endif
+
+#if RING3_MATH_VECTOR_DIMENSIONALITY == 3
+
+/// @@brief Compute the cross product of this vector and another vectors.
+/// @@param self This vector.
+/// @@param other The other vector.
+/// @@return The cross product of this vector and another vector.
+Ring1_NoDiscardReturn() Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)*
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_cross
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* self,
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* other
+  );
+
+/// @@brief Compute the cross product of this vector and another vector.
+/// Store the result in this vector.
+/// @@param self This vector.
+/// @@param other The other vector.
+void
+Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)_crossInSitu
+  (
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix)* self,
+    Ring3_Math_Vector@(dimensionality)@(scalarTypeSuffix) const* other
+  );
+
+#endif
+
+#undef RING3_MATH_VECTOR_DIMENSIONALITY
+
+#endif // RING3_MATH_VECTOR@(dimensionality)@(scalarTypeSuffixUppercase)_H_INCLUDED

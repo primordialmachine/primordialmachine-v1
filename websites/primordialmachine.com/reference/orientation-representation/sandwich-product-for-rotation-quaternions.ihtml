@@ -1,0 +1,123 @@
+  <hr>
+ 
+  <h2>The sandwich product for rotation quaternions</h2>
+  Let \(\mathbf{p}=(0,\vec{p})\) a point quaternion and \(\mathbf{q}=(\cos\left(\frac{\alpha}{2}\right),\hat{r}\sin\left(\frac{\alpha}{2}\right))\) a rotation quaternion.
+  We show that the result of
+  \[
+  \mathbf{q} \mathbf{p} \mathbf{q}^{-1}
+  \]
+  is a point vector
+  \[
+  \vec{p}' = 
+      2\group{\vec{v}\vec{p}} \vec{v}
+      + \cross{\vec{v}}{\vec{p}}2w 
+      + \vec{p}(2w^2 - 1)
+  \]
+  </p>
+
+  <h3>Proof</h3>
+
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    &amp;\mathbf{q} \mathbf{p} \mathbf{q}^-1
+    @(endFormula)@(endResult)
+  </div> 
+  <div class="row mt-2">
+    @(beginReason)
+    By "The sandwich product for unit quaternions" and with 
+    \(w = \cos\left(\frac{\alpha}{2}\right)\) and \(\vec{v} = \hat{r}\sin\left(\frac{\alpha}{2}\right)\) we obtain.
+    @(endReason)
+    @(beginResult)@(beginFormula)
+    2\group{\hat{r}\sin\left(\frac{\alpha}{2}\right)\vec{p}}\hat{r}\sin\left(\frac{\alpha}{2}\right)
+    + \cross{\hat{r}\sin\left(\frac{\alpha}{2}\right)}{\vec{p}}2\cos\left(\frac{\alpha}{2}\right)
+    + \vec{p}\group{2\cos^2\left(\frac{\alpha}{2}\right) - 1}
+    @(endFormula)
+    @(endResult)
+  </div>
+  
+
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    \group{\hat{r}\vec{p}}\hat{r}2\sin^2\left(\frac{\alpha}{2}\right)
+    + \cross{\hat{r}}{\vec{p}}2\cos\left(\frac{\alpha}{2}\right)\sin\left(\frac{\alpha}{2}\right)
+    + \vec{p}\group{2\cos^2\left(\frac{\alpha}{2}\right) - 1}
+    @(endFormula)
+    @(endResult)
+  </div>
+  
+  <div class="row mt-2">
+    @(beginReason)
+    \(\cos\left(2\omega\right) = 2\cos^2\left(\omega\right) - 1\)<br/>
+    \(\sin\left(2\omega\right) = 2\cos\left(\omega\right)\sin\left(\omega\right)\)<br/>
+    \(\sin^2\left(\frac{\omega}{2}\right) = \frac{1-\cos\left(\omega\right)}{2}\)<br/>
+    @(endReason)
+  </div> 
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    \group{\hat{r}\vec{p}}\hat{r}\left(1-\cos\left(\alpha\right)\right)
+    + \cross{\hat{r}}{\vec{p}}\sin\left(\alpha\right)
+    + \vec{p}\cos\left(\alpha\right)
+    @(endFormula)
+    @(endResult)
+  </div>
+  
+  <div class="row mt-2">
+    @(beginReason)
+    \(\projection{\vec{p}}{\hat{r}} = \left(\dot{\vec{p}}{\hat{r}}\right)\hat{r} = \left(\dot{\hat{r}}{\vec{p}}\right)\hat{r}\)
+    @(endReason)
+  </div>
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    \projection{\vec{p}}{\hat{r}}\left(1-\cos\left(\alpha\right)\right)
+    + \cross{\hat{r}}{\vec{p}}\sin\left(\alpha\right)
+    + \vec{p}\cos\left(\alpha\right)
+    @(endFormula)
+    @(endResult)
+  </div>
+  
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    \projection{\vec{p}}{\hat{r}}
+    - \projection{\vec{p}}{\hat{r}}\cos\left(\alpha\right)
+    + \cross{\hat{r}}{\vec{p}}\sin\left(\alpha\right)
+    + \vec{p}\cos\left(\alpha\right)
+    @(endFormula)
+    @(endResult)
+  </div>
+  
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    \projection{\vec{p}}{\hat{r}}
+    + \cross{\hat{r}}{\vec{p}}\sin\left(\alpha\right)
+    + \left(\vec{p} -\projection{\vec{p}}{\hat{r}}\right)\cos\left(\alpha\right)
+    @(endFormula)
+    @(endResult)
+  </div>
+  
+  <div class="row mt-2">
+    @(beginReason)
+    \(\rejection{\vec{p}}{\hat{r}} = \vec{p} - \projection{\vec{p}}{\hat{r}}\)
+    @(endReason)
+  </div>
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    \projection{\vec{p}}{\hat{r}}
+    + \cross{\hat{r}}{\vec{p}}\sin\left(\alpha\right)
+    + \rejection{\vec{p}}{\hat{r}}\cos\left(\alpha\right)
+    @(endFormula)
+    @(endResult)
+  </div>
+  
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    \rejection{\vec{p}}{\hat{r}}\cos\left(\alpha\right)
+    + \cross{\hat{r}}{\vec{p}}\sin\left(\alpha\right)
+    + \projection{\vec{p}}{\hat{r}}
+    @(endFormula)
+    @(endResult)
+  </div>
+  
+  <p>Observe this is the same formula as in <a href="@(baseurl)reference/rotate-points-using-axis-angles.html">Rotate points using axis-angles</a>.</p>
+  
+  <hr>
+  

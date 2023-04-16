@@ -1,0 +1,12 @@
+<div class="nav-item">
+  <a class="nav-link my-toggle" href="@(baseurl)reference/">
+    <span>Reference</span>
+    <span><i class="fa fa-caret-right" aria-hidden="true"></i></span>
+  </a>
+</div>
+<div data-my-nav-id="@(baseurl)reference" class="@(toc_collapsible_classes) my-toggle-collapsible my-toggle-collapsed">
+  @(>"./reference/definitions/_toc.ihtml")
+  @(>"./reference/transformations/_toc.ihtml")
+  @(>"./reference/collision-detection/_toc.ihtml")
+  @(>"./reference/orientation-representation/_toc.ihtml")
+</div>

@@ -1,0 +1,20 @@
+<h3 id="mkx_atom_gethashvalue">Mkx_Atom_getHashValue</h3>
+<p>Get the hash value of an atom.</p>
+<p><code class="block">
+int<br/>
+Mkx_Atom_getHashValue<br/>
+&nbsp;&nbsp;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;int64_t *result,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mkx_Atom *atom<br/>
+&nbsp;&nbsp;)
+</code></p>
+
+<p>
+This function gets the hash value of an atom.
+</p>
+
+<h4>Parameter variables</h4>
+<dl>
+  <dt><code class="inline">atom</code></dt><dd>A pointer to a <code>int64_t</code> variable.</dd>
+  <dt><code class="inline">atom</code></dt><dd>A pointer to the atom.</dd>
+</dl>

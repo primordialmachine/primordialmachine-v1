@@ -144,6 +144,7 @@ Ring3_Math_Matrix4x4f32_isEqualToWithTolerance
 /// @brief Assign this matrix the values for an orthographic projection transformation.
 /// @param self This matrix.
 /// @param l, r, b, t, n, f The distance from the origin of the left, right, bottom, top, near, and far clip planes.
+/// @undefined <code>r - l</code>, <code>t - b</code>, or <code>f - n</code> is @a 0.
 void
 Ring3_Math_Matrix4x4f32_setOrtho
   (
@@ -158,6 +159,18 @@ Ring3_Math_Matrix4x4f32_setOrtho
 
 #endif // RING3_MATRIX_ROWS == 4 && RING3_MATRIX_COLUMNS == 4
 
+/// @brief Compute the product of this matrix and a scalar.
+/// @param self This matrix.
+/// @param other The scalar.
+/// @param target The matrix to assign the product to.
+void
+Ring3_Math_Matrix4x4f32_multiplyScalar
+  (
+    Ring3_Math_Matrix4x4f32 const* self,
+    Ring2_Real32 other,
+    Ring3_Math_Matrix4x4f32* target
+  );
+
 /// @brief Compute the product of this matrix and another matrix.
 /// @param self This matrix.
 /// @param other The other matrix.
@@ -168,6 +181,17 @@ Ring3_Math_Matrix4x4f32_multiply
     Ring3_Math_Matrix4x4f32 const* self,
     Ring3_Math_Matrix4x4f32 const* other,
     Ring3_Math_Matrix4x4f32* target
+  );
+
+/// @brief Compute the product of this matrix and a scalar.
+/// @param self This matrix.
+/// @param other The scalar.
+/// @return The product matrix.
+Ring1_CheckReturn() Ring3_Math_Matrix4x4f32*
+Ring3_Math_Matrix4x4f32_productScalar
+  (
+    Ring3_Math_Matrix4x4f32 const* self,
+    Ring2_Real32 other
   );
 
 /// @brief Compute the product of this matrix and another matrix.

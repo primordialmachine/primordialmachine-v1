@@ -1,0 +1,10 @@
+<h2 id="subtract"><code class="inline">subtract</code></h2>
+<p>Compute the difference of two numeric values.</p>
+
+<p><code class="block">
+Σ.stack<sub>0</sub> = s ○ [x, y]<br/>
+Σ.stack<sub>1</sub> = s ○ [x <span class="meta">-</span> y]
+</code>
+for some <code class="inline">s &isin; Stack</code> and some <code class="inline">x, y &isin; T, T &isin; {Integer} ∪ {Real}</code>.</p>
+
+<p>The usual rules for invalid instructions apply.</p>

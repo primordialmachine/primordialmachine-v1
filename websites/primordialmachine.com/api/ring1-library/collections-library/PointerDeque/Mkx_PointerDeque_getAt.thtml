@@ -1,0 +1,28 @@
+<h3 id="mkx_pointerdeque_getat">Mkx_PointerDeque_getAt</h3>
+<p>Get the pointer at the specified index in a pointer deque.</p>
+<p><code class="block">
+int<br/>
+Mkx_PointerDeque_getAt<br/>
+&nbsp;&nbsp;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mkx_PointerDeque *pointerDeque,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;int64_t index,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;void **element<br/>
+&nbsp;&nbsp;)
+</code></p>
+
+<p>
+This function gets the pointer at the specified index in a pointer deque.
+The pointer at the index <code class="inline">index</code> in the pointer deque is assigned to the variable <code class="inline">*element</code> on success.
+On failure, <code class="inline">element</code> is not dereferenced.
+</p>
+
+<h4>Parameter variables</h4>
+<dl>
+  <dt><code class="inline">pointerDeque</code></dt><dd>A pointer to the pointer deque.</dd>
+  <dt><code class="inline">index</code></dt><dd>The index denoting the position of the pointer to get.
+  Must be within the bounds of <code class="inline">[0,n-1]</code> where <code class="inline">n</code> is the size of the pointer deque.</dd>
+  <dt><code class="inline">element</code></dt><dd>A pointer to a <code class="inline">void *</code> variable.</dd>
+</dl>
+
+<h4>Return value</h4>
+<p><code class="inline">0</code> on success, a non-zero value on failure.</p>

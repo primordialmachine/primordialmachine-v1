@@ -46,7 +46,7 @@ ring3/.vs/
 ring3/products/
 ring3/intermediates/
 
-# Ring 4.
-ring4/.vs/
-ring4/products/
-ring4/intermediates/
+# Scribe.
+scribe/.vs/
+scribe/products/
+scribe/intermediates/

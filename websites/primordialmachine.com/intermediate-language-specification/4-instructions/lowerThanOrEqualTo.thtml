@@ -1,0 +1,12 @@
+<h2 id="lowerThanOrEqualTo"><code class="inline">lowerThanOrEqualTo</code></h2>
+<p>Compute if a value is lower than or equal to another value.</p>
+
+<p><code class="block">
+Σ.stack<sub>0</sub> = s ○ [x, y]<br/>
+Σ.stack<sub>1</sub> = s ○ [x <span class="meta">&le;</span> y]<br/>
+Σ.instructionIndex<sub>1</sub> = Σ.instructionIndex<sub>0</sub> + 1
+</code></p>
+<p>for some <code class="inline">s &isin; Stack</code> and some <code class="inline">x, y &isin; T</code>
+with <code class="inline">T &isin; {Boolean}  ∪ {Integer} ∪ {Real} ∪ {String} ∪ {Void}</code>.</p>
+
+<p>The usual rules for invalid instructions apply.</p>

@@ -1,0 +1,87 @@
+@{title = "Definition: Vector projection and rejection"}
+@{tableOfContents = "./_toc.ihtml"}
+@(>"./_header.html.t")
+
+  <h2>Definition: Vector projection and rejection</h2>
+  The projection of a vector \(\vec{v}\) onto a vector \(\vec{w}\) in \(\mathbb{R}^3\) is
+  defined as
+  \[
+  \projection{\vec{v}}{\vec{w}} = \frac{\dot{\vec{v}}{\vec{w}}}{\norm{\vec{w}}^2}\vec{w}
+  \]
+  If \(\vec{w}\) is unitary, then this simplifies to
+  \[
+  \projection{\vec{v}}{\vec{w}} = \left(\dot{\vec{v}}{\vec{w}}\right)\vec{w}
+  \]
+  The rejection of a vector \(\vec{v}\) onto a vector \(\vec{w}\) in \(\mathbb{R}^3\) is
+  defined as
+  \[
+  \rejection{\vec{v}}{\vec{w}} = \vec{v} - \projection{\vec{v}}{\vec{w}}
+  \]
+  
+  <div class="claim">
+  
+  <h2>Vector projection matrix form</h2>
+    <b>Claim</b>
+    The projection \(\projection{\vec{v}}{\vec{w}}\) of a vector \(\vec{v}\) into a unitary vector \(\hat{w}\) 
+    can be written in terms of a matrix vector product \((\widetilde{W}^2 - I)\vec{v}\) where \(\widetilde{W}\)
+    is the <a href="@(baseurl)reference/definitions/cross-product-matrix">cross-product matrix</a>.
+  </div>
+  
+  <div class="proof">
+    <b>Proof</b>
+    <div class="row mt-2">
+      @(beginResult)@(beginFormula)
+      &amp;=\projection{\vec{v}}{\vec{w}}
+      @(endFormula)@(endResult)
+    </div>
+    <div class="row mt-2">
+      @(beginResult)@(beginFormula)
+      &amp;=\left(\dot{\vec{v}}{\vec{w}}\right)\vec{w}
+      @(endFormula)@(endResult)
+    </div>
+    <div class="row mt-2">
+      @(beginResult)@(beginFormula)
+      &amp;=          
+      \left[\begin{matrix}
+      (v_x w_x + v_y w_y + v_z w_z)w_x\\
+      (v_x w_x + v_y w_y + v_z w_z)w_y\\
+      (v_x w_x + v_y w_y + v_z w_z)w_z
+      \end{matrix}\right]
+      @(endFormula)@(endResult)
+    </div>
+    <div class="row mt-2">
+      @(beginResult)@(beginFormula)
+      &amp;=          
+      \left[\begin{matrix}
+      v_x w_x^2   + v_y w_y w_x + v_z w_z w_x\\
+      v_x w_x w_y + v_y w_y^2   + v_z w_z w_y\\
+      v_x w_x w_z + v_y w_y w_z + v_z w_z^2
+      \end{matrix}\right]
+      @(endFormula)@(endResult)
+    </div>
+    <div class="row mt-2">
+      @(beginResult)@(beginFormula)
+      &amp;=          
+      \left[\begin{matrix}
+      w_x^2   & w_x w_y & w_x w_z\\
+      w_x w_y & w_y^2   & w_y w_z\\
+      w_x w_z & w_y w_z & w_z^2
+      \end{matrix}\right]
+      \left[\begin{matrix}
+      v_x\\
+      v_x\\
+      v_x
+      \end{matrix}\right]
+      @(endFormula)@(endResult)
+    </div>  
+    <div class="row mt-2">
+      @(beginResult)@(beginFormula)
+      &amp;=\widetilde{W}^2 + I)\vec{v}
+      @(endFormula)@(endResult)
+      @(beginReason)@(beginFormula)
+      <a href="@(baseurl)reference/cross-product.html">Definition of \(\widetilde{W}^2\)</a>.
+      @(endFormula)@(endReason)
+    </div>                  
+  </div>
+      
+@(>"./_footer.html.t")

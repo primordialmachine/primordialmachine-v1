@@ -1,0 +1,94 @@
+@{title = "Second power of the cross product matrix"}
+@{tableOfContents = "./_toc.ihtml"}
+@(>"./_header.html.t")
+
+  <h2>Second power of the cross product matrix</h2>
+  
+  The 2nd power of the cross product matrix
+  \[
+    \widetilde{V} =
+    \left[\begin{matrix}
+       0   & -v_z &  v_y \\
+       v_z &    0 & -v_x \\
+      -v_y &  v_x &    0 \\
+    \end{matrix}\right]                  
+  \]
+  is
+  \[
+    \widetilde{V}^2 =
+    \left[\begin{matrix}
+    -v_z^2 - v_y^2 & v_x v_y        & v_x v_z \\
+    v_x v_y        & -v_x^2 - v_z^2 & v_y v_z \\
+    v_x v_z        & v_y v_z        & -v_x^2 - v_y^2
+    \end{matrix}\right]          
+  \]
+  Furthemore if \(v\) is unit then
+  \[
+    \widetilde{V}^2 = 
+    \left[\begin{matrix}
+    v_x^2 - 1 & v_x v_y   & v_x v_z \\
+    v_x v_y   & v_y^2 - 1 & v_y v_z \\
+    v_x v_z   & v_y v_z   & v_z^2 - 1
+    \end{matrix}\right]         
+  \]
+  
+  <h3>Proof</h3>
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    &amp;\widetilde{V}^2 = \widetilde{V}\widetilde{V}
+    @(endFormula)@(endResult)
+  </div>
+  
+  <div class="row mt-2">
+    @(beginReason)
+    Definition of \(\widetilde{V}\).
+    @(endReason)
+    @(beginResult)@(beginFormula)
+    &amp;=
+    \left[\begin{matrix}
+     0   & -v_z &  v_y \\
+     v_z &    0 & -v_x \\
+    -v_y &  v_x &    0 \\
+    \end{matrix}\right]
+    \left[\begin{matrix}
+     0   & -v_z &  v_y \\
+     v_z &    0 & -v_x \\
+    -v_y &  v_x &    0 \\
+    \end{matrix}\right]
+    @(endFormula)@(endResult)
+  </div>    
+  
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    &amp;=
+    \left[\begin{matrix}
+    0 \cdot 0 + -v_z \cdot v_z + v_y \cdot -v_y & 0 \cdot -v_z + -v_z \cdot 0 + v_y \cdot v_x & 0 \cdot v_y + -v_z \cdot -v_x +  v_y \cdot 0 \\
+    v_z \cdot 0 + 0 \cdot v_z + -v_x \cdot -v_y & v_z \cdot -v_z + 0 \cdot 0 + -v_x \cdot v_x & v_z \cdot v_y + 0 \cdot -v_x + -v_x \cdot 0  \\
+    -v_y \cdot 0 + v_x \cdot v_z + 0 \cdot -v_y & -v_y \cdot -v_z + v_x \cdot 0 + 0 \cdot v_x & -v_y \cdot v_y + v_x \cdot -v_x + 0 \cdot 0
+    \end{matrix}\right]
+    @(endFormula)@(endResult)
+  </div>
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    &amp;=
+    \left[\begin{matrix}
+    -v_z^2 - v_y^2 & v_x v_y        & v_x v_z \\
+    v_x v_y        & -v_x^2 - v_z^2 & v_y v_z \\
+    v_x v_z        & v_y v_z        & -v_x^2 - v_y^2
+    \end{matrix}\right]
+    @(endFormula)@(endResult)
+  </div>
+  
+  If \(v\) is unit then
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    &amp;=          
+    \left[\begin{matrix}
+    v_x^2 - 1 & v_x v_y   & v_x v_z \\
+    v_x v_y   & v_y^2 - 1 & v_y v_z \\
+    v_x v_z   & v_y v_z   & v_z^2 - 1
+    \end{matrix}\right]
+    @(endFormula)@(endResult)
+  </div>
+          
+@(>"./_footer.html.t")

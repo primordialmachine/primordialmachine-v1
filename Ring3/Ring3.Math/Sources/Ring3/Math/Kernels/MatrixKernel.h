@@ -1,5 +1,8 @@
 #include "Ring1/All/_Include.h"
 #include <math.h>
+#include "Ring3/Math/abs.h"
+#include "Ring3/Math/cos.h"
+#include "Ring3/Math/sin.h"
 
 #if defined(INLINE)
 #error("symbol INLINE already defined")
@@ -146,94 +149,6 @@ copy_m3x3f32_m3x3f32
 }
 #endif
 
-#if 0
-/**
- * @param source1, source2 the source matrices
- * @param target the target matrix
- * @detail target[i][j] is assigned add(source1[i][j], source2[i][j])
- */
-INLINE void
-add_m4x4f32_m4x4f32
-  (
-    SQUAREMATRIX4X4F32 const source1,
-    SQUAREMATRIX4X4F32 const source2,
-    SQUAREMATRIX4X4F32 target
-  )
-{
-  for (size_t i = 0; i < 4; ++i) {
-    for (size_t j = 0; j < 4; ++j) {
-      target[i][j] = source1[i][j] + source2[i][j];
-    }
-  }
-}
-#endif
-
-#if 0
-/**
- * @param source1, source2 the source matrices
- * @param target the target matrix
- * @detail target[i][j] is assigned add(source1[i][j], source2[i][j])
- */
-INLINE void
-add_m3x3f32_m3x3f32
-  (
-    SQUAREMATRIX3X3F32 const source1,
-    SQUAREMATRIX3X3F32 const source2,
-    SQUAREMATRIX3X3F32 target
-  )
-{
-  for (size_t i = 0; i < 3; ++i) {
-    for (size_t j = 0; j < 3; ++j) {
-      target[i][j] = source1[i][j] + source2[i][j];
-    }
-  }
-}
-#endif
-
-#if 0
-/**
- * @param source1, source2 the source matrices
- * @param target the target matrix
- * @detail target[i][j] is assigned sub(source1[i][j], source2[i][j])
- */
-INLINE void
-sub_m4x4f32_m4x4f32
-  (
-    SQUAREMATRIX4X4F32 const source1,
-    SQUAREMATRIX4X4F32 const source2,
-    SQUAREMATRIX4X4F32 target
-  )
-{
-  for (size_t i = 0; i < 4; ++i) {
-    for (size_t j = 0; j < 4; ++j) {
-      target[i][j] = source1[i][j] - source2[i][j];
-    }
-  }
-}
-#endif
-
-#if 0
-/**
- * @param source1, source2 the source matrices
- * @param target the target matrix
- * @detail target[i][j] is assigned sub(source1[i][j], source2[i][j])
- */
-INLINE void
-sub_m3x3f32_m3x3f32
-  (
-    SQUAREMATRIX3X3F32 const source1,
-    SQUAREMATRIX3X3F32 const source2,
-    SQUAREMATRIX3X3F32 target
-  )
-{
-  for (size_t i = 0; i < 3; ++i) {
-    for (size_t j = 0; j < 3; ++j) {
-      target[i][j] = source1[i][j] - source2[i][j];
-    }
-  }
-}
-#endif
-
 /**
  * @param target the target matrix
  * @detail target is assigned transpose(target)
@@ -272,109 +187,8 @@ transpose_m3x3f32
   }
 }
 
-/**
- * @pre matrix must be a 4x4 matrix.
- * @param target the target matrix.
- * @param left, right, bottom, top the signed distance from the origin to the left, right, bottom, and top clip plane.
- * @param near, far the signed distance to the near and far clip plane.
- */
-INLINE void
-ortho_m4x4f32
-  (
-    SQUAREMATRIX4X4F32 target,
-    float left,
-    float right,
-    float bottom,
-    float top,
-    float near,
-    float far
-  )
-{
-  // Adopted from https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glOrtho.xml.
-  target[0][0] = 2.f / (right - left);
-  target[1][0] = target[2][0] = target[3][0] = 0.f;
-
-  target[1][1] = 2.f / (top - bottom);
-  target[0][1] = target[2][1] = target[3][1] = 0.f;
-
-  target[2][2] = -2.f / (far - near);
-  target[0][2] = target[1][2] = target[3][2] = 0.f;
-
-  target[0][3] = -(right + left) / (right - left);
-  target[1][3] = -(top + bottom) / (top - bottom);
-  target[2][3] = -(far + near) / (far - near);
-  target[3][3] = 1.f;
-}
-
-INLINE void
-multiply_m4x4f32_m4x4f32
-  (
-    SQUAREMATRIX4X4F32 const a,
-    SQUAREMATRIX4X4F32 const b,
-    SQUAREMATRIX4X4F32 c
-  )
-{
-  if (c == a || c == b) {
-    float t[4][4];
-    for (size_t i = 0; i < 4; ++i) {
-      for (size_t j = 0; j < 4; ++j) {
-        t[i][j] = 0.0f;
-        for (size_t k = 0; k < 4; ++k) {
-          t[i][j] += a[i][k] * b[k][j];
-        }
-      }
-    }
-    for (size_t i = 0; i < 4; ++i) {
-      for (size_t j = 0; j < 4; ++j) {
-        c[i][j] = t[i][j];
-      }
-    }
-  } else {
-    for (size_t i = 0; i < 4; ++i) {
-      for (size_t j = 0; j < 4; ++j) {
-        c[i][j] = 0.0f;
-        for (size_t k = 0; k < 4; ++k) {
-          c[i][j] += a[i][k] * b[k][j];
-        }
-      }
-    }
-  }
-}
-
-INLINE void
-multiply_m3x3f32_m3x3f32
-  (
-    SQUAREMATRIX3X3F32 const a,
-    SQUAREMATRIX3X3F32 const b,
-    SQUAREMATRIX3X3F32 c
-  )
-{
-  if (c == a || c == b) {
-    float t[3][3];
-    for (size_t i = 0; i < 3; ++i) {
-      for (size_t j = 0; j < 3; ++j) {
-        t[i][j] = 0.0f;
-        for (size_t k = 0; k < 3; ++k) {
-          t[i][j] += a[i][k] * b[k][j];
-        }
-      }
-    }
-    for (size_t i = 0; i < 3; ++i) {
-      for (size_t j = 0; j < 3; ++j) {
-        c[i][j] = t[i][j];
-      }
-    }
-  } else {
-    for (size_t i = 0; i < 3; ++i) {
-      for (size_t j = 0; j < 3; ++j) {
-        c[i][j] = 0.0f;
-        for (size_t k = 0; k < 3; ++k) {
-          c[i][j] += a[i][k] * b[k][j];
-        }
-      }
-    }
-  }
-}
+#include "Ring3/Math/Kernels/Matrix/Ortho.i"
+#include "Ring3/Math/Kernels/Matrix/Perspective.i"
 
 /**
  * @details

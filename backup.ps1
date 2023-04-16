@@ -66,9 +66,8 @@ If (!(test-path '.\.backup')) {
 Write-Host ('copying files')
 Copy-Item -Path (Get-Item -Force -Path '.\*' -Exclude ('.backup')).FullName -Destination '.\.backup' -Recurse -Force
 
-Remove '.\.backup\machine-mk1\.vs'
-Remove '.\.backup\machine-mk1\intermediates'
-Remove '.\.backup\machine-mk1\products'
+.\clean.ps1 -workingDirectory '.\.backup'
+
 Remove '.\.backup\.git'
 Remove '.\.backup\PrimordialMachine-*.zip'
 

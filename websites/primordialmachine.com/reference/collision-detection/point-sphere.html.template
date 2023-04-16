@@ -1,0 +1,9 @@
+@{title = "Point to sphere collision detection"}
+@{tableOfContents = "./reference/_toc.ihtml"}
+@(>"./_header.html.t")
+  <p>If the distance of a point is equal to the radius of the sphere, then we say it is on the sphere.
+  If the distance of a point is smaller than the radius, then we say the point is inside the sphere.
+  Otherwise it is outside of the sphere.</p>
+  <p>If the point is inside or on the sphere, then we say the point and the sphere collide.
+  Otherwise we say the point and the sphere do not collide.</p>
+@(>"./_footer.html.t")

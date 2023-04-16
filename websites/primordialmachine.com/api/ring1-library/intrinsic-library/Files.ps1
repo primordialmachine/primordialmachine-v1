@@ -1,0 +1,75 @@
+# Copyright (c) 2022 Michael Heilmann. All rights reserved.
+$prefix = './api/ring1-library/intrinsic-library/';
+$jobs +=
+  @(
+    # Ring 1 - Intrinsic Library.
+    @(-join($prefix,'index.html.t'),
+      -join($prefix,'index.html')),
+    @(-join($prefix,'Ring1_Intrinsic_add.html.t'),
+      -join($prefix,'Ring1_Intrinsic_add.html')),
+    @(-join($prefix,'Ring1_Intrinsic_CheckReturn.html.t'),
+      -join($prefix,'Ring1_Intrinsic_CheckReturn.html')),
+    @(-join($prefix,'Ring1_Intrinsic_countLeadingZeroes.html.t'),
+      -join($prefix,'Ring1_Intrinsic_countLeadingZeroes.html')),
+    @(-join($prefix,'Ring1_Intrinsic_Deprecated.html.t'),
+      -join($prefix,'Ring1_Intrinsic_Deprecated.html')),
+    @(-join($prefix,'Ring1_Intrinsic_isPowerOfTwo.html.t'),
+      -join($prefix,'Ring1_Intrinsic_isPowerOfTwo.html')),
+    @(-join($prefix,'Ring1_Intrinsic_Inline.html.t'),
+      -join($prefix,'Ring1_Intrinsic_Inline.html')),
+    @(-join($prefix,'Ring1_Intrinsic_multiply.html.t'),
+      -join($prefix,'Ring1_Intrinsic_multiply.html')),
+    @(-join($prefix,'Ring1_Intrinsic_NoReturn.html.t'),
+      -join($prefix,'Ring1_Intrinsic_NoReturn.html')),
+    @(-join($prefix,'Ring1_Intrinsic_nextPowerOfTwo.html.t'),
+      -join($prefix,'Ring1_Intrinsic_nextPowerOfTwo.html')),
+    @(-join($prefix,'Ring1_Intrinsic_subtract.html.t'),
+      -join($prefix,'Ring1_Intrinsic_subtract.html')),
+    @(-join($prefix,'Ring1_Intrinsic_ThreadLocal.html.t'),
+      -join($prefix,'Ring1_Intrinsic_ThreadLocal.html')),
+    @(-join($prefix,'Ring1_Intrinsic_atomicGet_s32.html.t'),
+      -join($prefix,'Ring1_Intrinsic_atomicGet_s32.html')),
+    @(-join($prefix,'Ring1_Intrinsic_atomicIncrement_s32.html.t'),
+      -join($prefix,'Ring1_Intrinsic_atomicIncrement_s32.html')),
+    @(-join($prefix,'Ring1_Intrinsic_atomicDecrement_s32.html.t'),
+      -join($prefix,'Ring1_Intrinsic_atomicDecrement_s32.html')),
+    @(-join($prefix,'Ring1_Intrinsic_maximum.html.t'),
+      -join($prefix,'Ring1_Intrinsic_maximum.html')),
+    @(-join($prefix,'Ring1_Intrinsic_minimum.html.t'),
+      -join($prefix,'Ring1_Intrinsic_minimum.html')),
+    @(-join($prefix,'Ring1_Intrinsic_clamp.html.t'),
+      -join($prefix,'Ring1_Intrinsic_clamp.html')),
+
+    @(-join($prefix,'Ring1_Intrinsic_Fp_ExponentBits.html.t'),
+      -join($prefix,'Ring1_Intrinsic_Fp_ExponentBits.html')),
+    @(-join($prefix,'Ring1_Intrinsic_Fp_SignBits.html.t'),
+      -join($prefix,'Ring1_Intrinsic_Fp_SignBits.html')),
+    @(-join($prefix,'Ring1_Intrinsic_Fp_SignificantBits.html.t'),
+      -join($prefix,'Ring1_Intrinsic_Fp_SignificantBits.html')),
+
+    @(-join($prefix,'Ring1_Intrinsic_Fp_ExponentMask.html.t'),
+      -join($prefix,'Ring1_Intrinsic_Fp_ExponentMask.html')),
+    @(-join($prefix,'Ring1_Intrinsic_Fp_SignMask.html.t'),
+      -join($prefix,'Ring1_Intrinsic_Fp_SignMask.html')),
+    @(-join($prefix,'Ring1_Intrinsic_Fp_SignificantMask.html.t'),
+      -join($prefix,'Ring1_Intrinsic_Fp_SignificantMask.html')),
+
+    @(-join($prefix,'Ring1_Intrinsic_Fp_PositiveZeroBits.html.t'),
+      -join($prefix,'Ring1_Intrinsic_Fp_PositiveZeroBits.html')),
+    @(-join($prefix,'Ring1_Intrinsic_Fp_NegativeZeroBits.html.t'),
+      -join($prefix,'Ring1_Intrinsic_Fp_NegativeZeroBits.html')),
+
+    @(-join($prefix,'Ring1_Intrinsic_Fp_NoNumber.html.t'),
+      -join($prefix,'Ring1_Intrinsic_Fp_NoNumber.html')),
+
+    @(-join($prefix,'Ring1_Intrinsic_Fp_Infinity.html.t'),
+      -join($prefix,'Ring1_Intrinsic_Fp_Infinity.html')),
+
+    @(-join($prefix,'Ring1_Intrinsic_Fp_getBits.html.t'),
+      -join($prefix,'Ring1_Intrinsic_Fp_getBits.html')),
+    @(-join($prefix,'Ring1_Intrinsic_Fp_getRawBits.html.t'),
+      -join($prefix,'Ring1_Intrinsic_Fp_getRawBits.html')),
+
+    @(-join($prefix,'Ring1_Intrinsic_ByteOrder.html.t'),
+      -join($prefix,'Ring1_Intrinsic_ByteOrder.html'))
+  );

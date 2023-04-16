@@ -1,0 +1,184 @@
+  <hr>
+  <h2>The sandwich product for unit quaternions</h2>
+  Let \(\mathbf{p}=(0,\vec{p})\) a point quaternion and \(\mathbf{q}=(w,\vec{v})\) a unit quaternion.
+  We show that the result of
+  \[
+  \mathbf{q} \mathbf{p} \mathbf{q}^{-1}
+  \]
+  is a point vector
+  \[
+  \vec{p}' = 
+      2\group{\vec{v}\vec{p}} \vec{v}
+      + \vec{p}(2w^2 - 1)
+      + \cross{\vec{v}}{\vec{p}}2w 
+  \]
+  </p>
+
+  <h3>Proof</h3>
+
+  <div class="row mt-2">
+    @(beginResult)@(beginFormula)
+    &amp;\mathbf{q} \mathbf{p} \mathbf{q}^-1
+    @(endFormula)@(endResult)
+  </div>
+  
+  <div class="row mt-2">
+    @(beginReason)
+    See "Quaternion corresponding to a vector".
+    Quaternion multiplication is associative.
+    @(endReason)
+    @(beginResult)@(beginFormula)
+    &amp;=\group{w,\vec{v}}
+          \group{0,\vec{p}}
+          \group{w,-\vec{v}}\\
+    &amp;=\group{\group{w,\vec{v}}
+                 \group{0,\vec{p}}}
+          \group{w,-\vec{v}}
+    @(endFormula)@(endResult)
+  </div> 
+  
+  <div class="row mt-2">
+    @(beginReason)
+    The definition of the Quaternion product
+    @(beginFormula)
+    \group{w_1 w_2 - v_1 v_2, w_1 v_2 + w_2 v_1 + \cross{v_1}{v_2}}
+    @(endFormula)
+    with \(w_2 = 0\) reduces to
+    @(beginFormula)
+    \group{-v_1 v_2, w_1 v_2 + \cross{v_1}{v_2}}
+    @(endFormula)
+    With \(w_1 = w\), \(v_1 = \vec{v}\), and \(v_2 = \vec{p}\) we obtain
+    @(endReason)
+    @(beginResult)@(beginFormula)
+    &amp;=\group{-\vec{v}\vec{p}, w\vec{p} + \cross{\vec{v}}{\vec{p}}}
+          \group{w, -\vec{v}}
+    @(endFormula)@(endResult)
+  </div>
+  
+  <div class="row mt-2">
+    @(beginReason)
+    The definition of the Quaternion product
+    @(beginFormula)
+    \group{w_1 w_2 - v_1 v_2, w_1 v_2 + w_2 v_1 + \cross{v_1}{v_2}}
+    @(endFormula)
+    With \(w_1 = -\vec{v}\vec{p}\), \(w_2 = w\), \(v_1 = w\vec{p} + \cross{\vec{v}}{\vec{p}}\), and \(v_2 = -\vec{v}\) we obtain
+    @(endReason)
+    @(beginResult)@(beginFormula)
+    &amp;=\group{-\vec{v}\vec{p} w - \group{w\vec{p} + \cross{\vec{v}}{\vec{p}}} \group{-\vec{v}},
+                 \group{-\vec{v}\vec{p}} \group{-\vec{v}} + 
+                  w \group{w\vec{p} + \cross{\vec{v}}{\vec{p}}} + 
+                 \cross{\group{-\vec{v}}}{\left(w\vec{p} + \cross{\vec{v}}{\vec{p}\right)}}}\\
+    @(endFormula)@(endResult)
+  </div>
+  
+  <div class="row mt-2">
+    @(beginReason)
+    By
+    @(beginFormula)
+       &amp;-\vec{v}\vec{p} w - \group{w\vec{p} + \cross{\vec{v}}{\vec{p}}} \group{-\vec{v}}\\
+      =&amp;-\vec{v}\vec{p} w - w\vec{p}\group{-\vec{v}} - \cross{\vec{v}}{\vec{p}}\group{-\vec{v}}\\
+      =&amp;-\vec{v}\vec{p} w + \vec{p}\group{\vec{v}} w + \cross{\vec{v}}{\vec{p}}\group{\vec{v}}\\
+      =&amp;\cross{\vec{v}}{\vec{p}}\group{\vec{v}}\\
+    @(endFormula)
+    As \(\vec{v}\) is orthogonal to \(\cross{\vec{v}}{\vec{p}}\), it follows that \(\cross{\vec{v}}{\vec{p}}\group{\vec{v}} = 0\).
+    Hence we obtain
+    @(endReason)
+    @(beginResult)@(beginFormula)
+    &amp;=\group{0,
+                 \group{-\vec{v}\vec{p}} \group{-\vec{v}} + 
+                  w \group{w\vec{p} + \cross{\vec{v}}{\vec{p}}} + 
+                 \cross{\group{-\vec{v}}}{\left(w\vec{p} + \cross{\vec{v}}{\vec{p}\right)}}}\\
+    @(endFormula)@(endResult)
+  </div>
+    
+  <div class="row mt-2">
+    @(beginReason)
+    The imaginary part is \(0\) hence this simplifies to
+    @(endReason)
+    @(beginResult)@(beginFormula)
+    &amp;= \group{-\vec{v}\vec{p}} \group{-\vec{v}} + 
+           w \group{w\vec{p} + \cross{\vec{v}}{\vec{p}}} + 
+           \cross{-\vec{v}}{w\vec{p} + \cross{\vec{v}}{\vec{p}}}
+    @(endFormula)@(endResult)
+  </div>
+  
+ <div class="row mt-2">
+    @(beginReason)
+    \(\group{-\vec{v}\vec{p}} \group{-\vec{v}} = \group{\vec{v}\vec{p}} \group{\vec{v}}\)<br/>
+    \(w \group{w\vec{p} + \cross{\vec{v}}{\vec{p}}} = \vec{p}w^2 + \cross{\vec{v}}{\vec{p}}w\)
+    @(endReason)
+    @(beginResult)@(beginFormula)
+    &amp;=
+                 \group{\vec{v}\vec{p}} \vec{v} + 
+                 \vec{p}w^2 + \cross{\vec{v}}{\vec{p}}w + 
+                 \cross{-\vec{v}}{w\vec{p} + \cross{\vec{v}}{\vec{p}}}
+    @(endFormula)@(endResult)
+  </div>
+  
+ <div class="row mt-2">
+    @(beginReason)
+    \(\cross{a}{b+c} = \cross{a}{b}+\cross{a}{c}\) (Cross product is distributive over addition)
+    @(endReason)
+    @(beginResult)@(beginFormula)
+    &amp;=
+      \group{\vec{v}\vec{p}} \vec{v}
+      + \vec{p}w^2 + \cross{\vec{v}}{\vec{p}}w
+      + \cross{-\vec{v}}{w\vec{p}}
+      + \cross{-\vec{v}}{\cross{\vec{v}}{\vec{p}}}
+    @(endFormula)@(endResult)
+  </div>
+  
+ <div class="row mt-2">
+    @(beginReason)
+    \(\cross{sa}{b} = \cross{a}{sb} = s\cross{a}{b}\) (Cross product is compatible with scalar multiplication)
+    @(endReason)
+    @(beginResult)@(beginFormula)
+    &amp;=
+      \group{\vec{v}\vec{p}} \vec{v}
+      + \vec{p}w^2
+      + \cross{\vec{p}}{\vec{v}}w - \cross{\vec{v}}{\vec{p}}w
+      - \cross{\vec{v}}{\cross{\vec{p}}{\vec{v}}}
+    @(endFormula)@(endResult)
+  </div>
+  
+ <div class="row mt-2">
+    @(beginReason)
+    \(\cross{a}{\cross{b}{c}} = b(ac) - c(ab)\) (Triple product)<br/>
+    with \(a = c = \vec{v}\) and \(b = \vec{p}\) gives
+    \(\vec{p}(\vec{v}\vec{v}) - \vec{v}(\vec{v}\vec{p}) = \vec{p}(\vec{v}\vec{v}) - (\vec{v}\vec{p})\vec{v}\)
+    We obtain
+    @(endReason)
+    @(beginResult)@(beginFormula)
+    &amp;= 
+      \group{\vec{v}\vec{p}} \vec{v}
+      + \vec{p}w^2
+      + \cross{\vec{p}}{\vec{v}}2w
+      - \vec{p}(\vec{v}\vec{v}) + (\vec{v}\vec{p})\vec{v}
+    @(endFormula)@(endResult)
+  </div>
+  
+ <div class="row mt-2">
+    @(beginReason)
+    \(\mathbf{q}\) is a unit quaternion, \(\vec{v}\vec{v} = 1 - w^2\) holds. We obtain
+    @(endReason)
+    @(beginResult)@(beginFormula)
+    &amp;= 
+      2\group{\vec{v}\vec{p}} \vec{v}
+      + \vec{p}w^2
+      + \cross{\vec{v}}{\vec{p}}2w
+      - \vec{p}(1 - w^2)\\
+    &amp;= 
+      2\group{\vec{v}\vec{p}} \vec{v}
+      + \cross{\vec{v}}{\vec{p}}2w
+      + \vec{p}w^2
+      - \vec{p} + \vec{p}w^2\\
+    &amp;= 
+      2\group{\vec{v}\vec{p}} \vec{v}
+      + \cross{\vec{v}}{\vec{p}}2w
+      + \vec{p}(2w^2 - 1)
+    @(endFormula)@(endResult)
+  </div>
+
+
+  <hr>
+  

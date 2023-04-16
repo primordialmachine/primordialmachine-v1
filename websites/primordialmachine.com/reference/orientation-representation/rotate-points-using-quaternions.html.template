@@ -1,0 +1,22 @@
+<div style="display: none">
+\(
+  \def\complex#1#2{\left(#1,#2\right)}
+  \def\real#1{\complex{#1}{\vec{0}}}
+  \def\img#1{\complex{0}{#1}}
+  \def\tuple#1#2{\left(#1,#2\right)}
+  \def\Cos#1{\cos\left(#1\right)}
+  \def\Sin#1{\sin\left(#1\right)}
+    \def\group#1{\left(#1\right)}
+  
+\)
+</div>
+
+
+@{title = "Rotate points using quaternions"}
+@{tableOfContents = "./reference/_toc.ihtml"}
+@(>"./_header.html.t")
+
+  @(>"./reference/orientation-representation/sandwich-product-for-unit-quaternions.ihtml")
+  @(>"./reference/orientation-representation/sandwich-product-for-rotation-quaternions.ihtml")
+
+@(>"./_footer.html.t")

@@ -8,6 +8,7 @@
 #include "Ring1/Ap/Test/ApBoolTests.h"
 #include "Ring1/Ap/Test/ApIntTests.h"
 #include "Ring1/Ap/Test/ApNatTests.h"
+#include "Ring1/Ap/Test/ApRealTests.h"
 
 Ring1_NoDiscardReturn() Ring1_Result
 Ring1_Ap_Test_run
@@ -20,7 +21,8 @@ Ring1_Ap_Test_run
   }
   if (Ring1_Ap_Test_registerApBoolTests(ctx) ||
       Ring1_Ap_Test_registerApIntTests(ctx) ||
-      Ring1_Ap_Test_registerApNatTests(ctx)) {
+      Ring1_Ap_Test_registerApNatTests(ctx) ||
+      Ring1_Ap_Test_registerApRealTests(ctx)) {
     Ring1_Test_Context_destroy(ctx);
     ctx = NULL;
     return Ring1_Result_Failure;

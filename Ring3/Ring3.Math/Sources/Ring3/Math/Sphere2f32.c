@@ -40,11 +40,14 @@ Ring3_Math_Sphere2f32_create
   )
 {
   Machine_Type* ty = Ring3_Math_Sphere2f32_getType();
-  static const size_t NUMBER_OF_ARGUMENTS = 2;
+  static size_t const NUMBER_OF_ARGUMENTS = 2;
   Ring2_Value arguments[2];
-  Ring2_Value_setObject(&arguments[0], (Machine_Object*)center);
+  Ring2_Value_setObject(&arguments[0], Ring1_cast(Machine_Object*,center));
   Ring2_Value_setReal32(&arguments[1], radius);
-  Ring3_Math_Sphere2f32* self = Ring1_cast(Ring3_Math_Sphere2f32*, Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, arguments));
+  Ring3_Math_Sphere2f32* self = Ring1_cast(Ring3_Math_Sphere2f32*,
+                                                                           Machine_allocateClassObject(ty,
+                                                                                                       NUMBER_OF_ARGUMENTS,
+                                                                                                       arguments));
   return self;
 }
 
@@ -114,7 +117,7 @@ Ring3_Math_Sphere2f32_isEqualToWithTolerance
     Ring2_Real32 relative
   )
 {
-  if (!!self || !other) { 
+  if (!self || !other) { 
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     Ring2_jump();
   }

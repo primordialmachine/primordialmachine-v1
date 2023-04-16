@@ -1,0 +1,33 @@
+<ul class="@(tableOfContents_nav_class) pb-1">
+  <li>
+    <a class="nav-link" href="@(baseurl)intermediate-language-specification/1-introduction.html">Introduction</a>
+  </li>
+  <li>
+    <a class="nav-link" href="@(baseurl)intermediate-language-specification/2-method-of-description-and-notation.html">Method of Description and Notation</a>
+  </li>
+  <li>
+    <a class="nav-link" href="@(baseurl)intermediate-language-specification/3-types-and-values.html">Types and Values</a>
+  </li>
+  <li>
+    <a class="nav-link" href="@(baseurl)intermediate-language-specification/4-instructions.html">Instructions</a>
+    <ul>
+      <li class="nav-item"><a class="nav-link" href="@(baseurl)intermediate-language-specification/4-instructions.html#and">and</a></li>
+      <li class="nav-item"><a class="nav-link" href="@(baseurl)intermediate-language-specification/4-instructions.html#or">or</a></li>
+      <li class="nav-item"><a class="nav-link" href="@(baseurl)intermediate-language-specification/4-instructions.html#not">not</a></li>
+      <li class="nav-item"><a class="nav-link" href="@(baseurl)intermediate-language-specification/4-instructions.html#affirmate">affirmate</a></li>
+      <li class="nav-item"><a class="nav-link" href="@(baseurl)intermediate-language-specification/4-instructions.html#negate">negate</a></li>
+      <li class="nav-item"><a class="nav-link" href="@(baseurl)intermediate-language-specification/4-instructions.html#equalTo">equalTo</a></li>
+      <li class="nav-item"><a class="nav-link" href="@(baseurl)intermediate-language-specification/4-instructions.html#notEqualTo">notEqualTo</a></li>
+      <li class="nav-item"><a class="nav-link" href="@(baseurl)intermediate-language-specification/4-instructions.html#lowerThan">lowerThan</a></li>
+      <li class="nav-item"><a class="nav-link" href="@(baseurl)intermediate-language-specification/4-instructions.html#lowerThanOrEqualTo">lowerThanOrEqualTo</a></li>
+      <li class="nav-item"><a class="nav-link" href="@(baseurl)intermediate-language-specification/4-instructions.html#greaterThan">greaterThan</a></li>
+      <li class="nav-item"><a class="nav-link" href="@(baseurl)intermediate-language-specification/4-instructions.html#greaterThanOrEqualTo">greaterThanOrEqualTo</a></li>
+      <li class="nav-item"><a class="nav-link" href="@(baseurl)intermediate-language-specification/4-instructions.html#add">add</a></li>
+      <li class="nav-item"><a class="nav-link" href="@(baseurl)intermediate-language-specification/4-instructions.html#subtract">subtract</a></li>
+      <li class="nav-item"><a class="nav-link" href="@(baseurl)intermediate-language-specification/4-instructions.html#multiply">multiply</a></li>
+      <li class="nav-item"><a class="nav-link" href="@(baseurl)intermediate-language-specification/4-instructions.html#divide">divide</a></li>
+      <li class="nav-item"><a class="nav-link" href="@(baseurl)intermediate-language-specification/4-instructions.html#loadLocal">loadLocal</a></li>
+      <li class="nav-item"><a class="nav-link" href="@(baseurl)intermediate-language-specification/4-instructions.html#storeLocal">storeLocal</a></li>
+    </ul>
+  </li>
+</ul>

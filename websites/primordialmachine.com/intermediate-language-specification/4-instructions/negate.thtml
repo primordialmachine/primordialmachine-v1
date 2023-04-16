@@ -1,0 +1,30 @@
+<h2 id="negate"><code class="inline">negate</code></h2>
+<h3>Logical Negation</h3>
+<p>Computes the (logical) negation of a <code class="inline">Boolean</code> value.</p>
+
+<p>This instruction is an alias of <a href="{{hostname}}intermediate-language-specification/instructions#Logical-Instructions-not">Logical Instruction not</a>.</p>
+
+<p><code class="block">
+Σ.stack<sub>0</sub> = s ○ [x]</br>
+Σ.stack<sub>1</sub> = s ○ [<span class="meta">¬</span>x]<br/>
+Σ.instructionIndex<sub>1</sub> = Σ.instructionIndex<sub>0</sub> + 1
+</code>
+</p>
+
+<p>for some <code class="inline">s &isin; Stack</code> and some value <code class="inline">x &isin; Boolean</code>.</p>
+
+<p>The usual rules for invalid instructions apply.</p>
+
+<h3>Arithmetic Negation</h3>
+<h3><code class="inline">negate</code></h3>
+<p>Computes the (arithmetic) negation of an <code class="inline">Integer</code> value or a <code class="inline">Real</code> value.</p>
+
+<p><code class="block">
+s<sub>0</sub> = s ○ [x]</br>
+s<sub>1</sub> = s ○ [<span class="meta">-</span>x]
+</code>
+</p>
+
+<p>for some <code class="inline">s &isin; Stack</code> and some value <code class="inline">x &isin; Integer ∪ Real</code>.</p>
+
+<p>The usual rules for invalid instructions apply.</p>

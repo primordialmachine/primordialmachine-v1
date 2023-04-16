@@ -16,7 +16,7 @@ Ring3_Math_Matrix4x4f32_construct
   (
     Ring3_Math_Matrix4x4f32* self,
     size_t numberOfArguments,
-    const Ring2_Value* arguments
+    Ring2_Value const* arguments
   )
 {
   Machine_Object_construct(Ring1_cast(Machine_Object*, self), numberOfArguments, arguments);
@@ -54,7 +54,10 @@ Ring3_Math_Matrix4x4f32_create
   Machine_Type* ty = Ring3_Math_Matrix4x4f32_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
   static Ring2_Value const ARGUMENTS[] = { Ring2_Value_StaticInitializerVoid() };
-  Ring3_Math_Matrix4x4f32* self = (Ring3_Math_Matrix4x4f32*)Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS);
+  Ring3_Math_Matrix4x4f32* self = Ring1_cast(Ring3_Math_Matrix4x4f32*,
+                                                                            Machine_allocateClassObject(ty,
+                                                                                                        NUMBER_OF_ARGUMENTS,
+                                                                                                        ARGUMENTS));
   return self;
 }
 
@@ -73,7 +76,7 @@ void
 Ring3_Math_Matrix4x4f32_copy
   (
     Ring3_Math_Matrix4x4f32* self,
-    const Ring3_Math_Matrix4x4f32* other
+    Ring3_Math_Matrix4x4f32 const* other
   )
 {
   if (self != other) {
@@ -292,6 +295,14 @@ Ring3_Math_Matrix4x4f32_setOrtho
 #endif // RING3_MATRIX_ROWS == 4 && RING3_MATRIX_COLUMNS == 4
 
 void
+Ring3_Math_Matrix4x4f32_multiplyScalar
+  (
+    Ring3_Math_Matrix4x4f32 const* self,
+    Ring2_Real32 other,
+    Ring3_Math_Matrix4x4f32* target
+  );
+
+void
 Ring3_Math_Matrix4x4f32_multiply
   (
     Ring3_Math_Matrix4x4f32 const* self,
@@ -327,6 +338,13 @@ Ring2_Real32 temporary[4][4];
     }
   }
 }
+
+Ring1_CheckReturn() Ring3_Math_Matrix4x4f32*
+Ring3_Math_Matrix4x4f32_productScalar
+  (
+    Ring3_Math_Matrix4x4f32 const* self,
+    Ring2_Real32 other
+  );
 
 Ring1_CheckReturn() Ring3_Math_Matrix4x4f32*
 Ring3_Math_Matrix4x4f32_product

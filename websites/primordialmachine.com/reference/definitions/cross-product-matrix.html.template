@@ -1,0 +1,89 @@
+@{title = "Cross product matrix"}
+@{tableOfContents = "./_toc.ihtml"}
+@(>"./_header.html.t")
+
+<h2>Cross product matrix</h2>
+
+The cross product \(\cross{\vec{v}}{\vec{v}}\) can be written as the multiplication of a matrix and a vector \(\widetilde{V} \vec{w}\)
+where
+\[
+\widetilde{V} =
+\left[\begin{matrix}
+   0   & -v_z &  v_y \\
+   v_z &    0 & -v_x \\
+  -v_y &  v_x &    0 \\
+\end{matrix}\right]                  
+\]
+\(\widetilde{w}\) is called the <em>cross product matrix</em>.
+
+<h3>Proof</h3>   
+
+<div class="row mt-2">
+
+  @(beginResult)@(beginFormula)
+  \widetilde{V}\vec{v}
+  @(endFormula)@(endReason)
+
+</div>
+
+<div class="row mt-2">
+
+  @(beginReason)
+  By definition of \(\widetilde{V}\) and \(\vec{w}\).
+  @(endReason)
+
+  @(beginResult)@(beginFormula)
+  &amp;=
+  \left[\begin{matrix}
+   0   & -v_z &  v_y \\
+   v_z &    0 & -v_x \\
+  -v_y &  v_x &    0 \\
+  \end{matrix}\right]
+  \left[\begin{matrix}
+  w_x \\
+  w_y \\
+  w_z
+  \end{matrix}\right]
+  @(endFormula)@(endResult)
+
+</div>
+
+<div class="row mt-2">
+  @(beginReason)
+  Matrix vector multiplication.
+  @(endReason)
+
+  @(beginResult)@(beginFormula)
+  &amp;=
+  \left[\begin{matrix}
+  0 \cdot w_x - v_z w_y     + v_y w_z     \\
+  v_z  w_x    + 0 \cdot w_y - v_x w_z     \\
+  -v_y w_x    + v_x w_y     - 0 \cdot w_z
+  \end{matrix}\right]
+  @(endFormula)@(endResult)
+</div>
+
+<div class="row mt-2">
+  @(beginResult)@(beginFormula)
+  &amp;=
+  \left[\begin{matrix}
+  v_y w_z - v_z w_y \\
+  v_z w_x - v_x w_z \\
+  v_x w_y - v_y w_x  
+  \end{matrix}\right]
+  @(endFormula)@(endResult)
+</div>
+
+<div class="row mt-2">
+  @(beginReason)
+  Definition of the <a href="@(baseurl)reference/definitions/second-power-of-the-cross-product-matrix">second power of the cross product matrix</a>.
+  @(endReason)
+</div>
+
+<div class="row mt-2">
+  @(beginResult)@(beginFormula)
+  =\vec{v}\times\vec{w}
+  @(endFormula)@(endResult)
+</div>
+
+@(>"./_footer.html.t")

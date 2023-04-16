@@ -1,0 +1,106 @@
+@{title = "Reference: Grammars"}
+@{tableOfContents = "./_toc.ihtml"}
+@(>"./_header.html.t")
+				<section>
+					<h1>3D Projections</h1>
+					<!-- -->
+					<h2>Window to Canvas projection</h2>
+					<p>
+					The function to convert \(\langle x_0, y_0 \rangle\) <em>window</em> coordinates to \(\langle x_1, y_1\rangle\) <em>canvas</em> coordinates is given by
+					\[
+					\langle x_1, y_1 \rangle = \langle x_0, H_w - y_0\rangle
+					\]
+					where \(H_w\) is the height of the window in window coordinates.
+					</p>
+					<h2>Canvas to Window projection</h2>
+					<p>
+					The function to convert \(\langle x_1, y_1 \rangle\) <em>canvas</em> coordinates to \(\langle x_0, y_0\rangle\) <em>window</em> coordinates is given by
+					\[
+					\langle x_0, y_0 \rangle = \langle x_1, H_w + y_1\rangle
+					\]
+					where \(H_w\) is the height of the window in window coordinates.
+					</p>
+							
+					<!-- -->
+					<h2>Canvas to Absolute Viewport projection</h2>
+					<p>
+					The function to convert \(\langle x_1, y_1 \rangle\) <em>canvas</em> coordinates to \(\langle x_2, y_2\rangle\) <em>absolute viewport</em> coordinates is given by
+					\[
+					 \langle x_2, y_2 \rangle = \langle x_1 - X_{avp}, y_1 - Y_{avp}\rangle         
+					\]
+					where \(X_{avp}\) and \(Y_{avp}\) are the left and bottom coordinate of the viewport in absolute viewport coordinates.
+					</p>
+
+					<h2>Absolute Viewport to Canvas projection</h2>
+					<p>
+					The function to convert \(\langle x_2, y_2 \rangle\) <em>absolute viewport</em> coordinates to \(\langle x_1, y_1\rangle\) <em>canvas</em> coordinates is given by
+					\[
+					 \langle x_1, y_1 \rangle = \langle x_2 + X_{avp}, y_2 + Y_{avp}\rangle         
+					\]
+					where \(X_{avp}\) and \(Y_{avp}\) are the left and bottom coordinate of the viewport in absolute viewport coordinates.
+					</p>
+			  
+					<!-- -->
+					<h2>Absolute Viewport to Relative Viewport projection</h2>
+					<p>
+					The function to convert \(\langle x_2, y_2\rangle\) <em>absolute viewport</em> coordinates to \(\langle x_3, y_3\rangle\)
+					<em>relative viewport</em> coordinates is given by
+					\[
+					\langle x_3, y_3 \rangle := \langle x_2 / W_{avp}, y_2 / H_{avp} \rangle
+					\]
+					where \(W_avp\) and \(H_avp\) are the width and height of the viewport in absolute viewport coordinates.
+					</p>
+
+					<h2>Relative Viewport to Absolute Viewport projection</h2>
+					<p>
+					The function to convert \(\langle x_3, y_3\rangle\) <em>relative viewport</em> coordinates to \(\langle x_4, y_4\rangle\)
+					<em>absolute viewport</em> coordinates is given by
+					\[
+					\langle x_3, y_3 \rangle := \langle x_2 \cdot W_{avp}, y_2  \cdot H_{avp} \rangle
+					\]
+					where \(W_avp\) and \(H_avp\) are the width and height of the viewport in absolute viewport coordinates.
+					</p>
+
+					<!-- -->
+					<h2>Relative Viewport to Clip projection</h2>
+					<p>
+					The function to convert \(\langle x_3, y_3\rangle\) <em>relative viewport</em> coordinates to \(\langle x_4, y_4\rangle\)
+					<em>clip</em> coordinates is given by
+					\[
+					\langle x_4, y_4 \rangle = \langle 2\;x_3 - 1, 2\;y_3 - 1\rangle
+					\]
+					</p>
+
+					<h2>Clip to Relative Viewport projection</h2>
+					<p>
+					The function to convert \(\langle x_4, y_4\rangle\) <em>clip</em> coordinates to \(\langle x_3, y_3\rangle\)
+					<em>relative viewport</em> coordinates is given by
+					\[
+					\langle x_3, y_3 \rangle = \left\langle \frac{x_4 + 1}{2}, \frac{y_4 + 1}{2}\right\rangle
+					\]
+					</p>
+			  
+					<!--
+					COMBINED TRANSFORMATIONS
+					-->
+
+					<h2>Combined Clip to Canvas projection</h2>
+					<p>
+					The function to convert \(\langle x_4, y_4\rangle\) <em>clip</em> coordinates to \(\langle x_1, y_1\rangle\)
+					<em>canvas</em> coordinates is given by
+					\[\begin{align*}
+					\langle x_1, y_1 \rangle &amp;= f^2 \circ f^1 \circ f^0(\langle x_4,y_4 \rangle)\\
+											 &amp;= f^2 \circ f^1 \left(\left\langle \frac{x_4 + 1}{2}, \frac{x_4 + 1}{2}\right\rangle\right)\\
+											 &amp;= f^2 \left(\left\langle \frac{x_4 + 1}{2} \cdot W_{avp}, \frac{x_4 + 1}{2} \cdot H_{avp}\right\rangle\right)
+											 &amp;= \left\langle \frac{x_4 + 1}{2} \cdot W_{avp} + X_{avp}, \frac{x_4 + 1}{2} \cdot H_{avp} + Y_{avp}\right\rangle
+					\end{align*}\]
+					</p>
+					<p>This result can be more rewritten as
+					\[\begin{align*}
+					\langle x_1, y_1 \rangle &amp;= \left\langle \left(x_4 + 1\right) \cdot \frac{W_{avp}}{2} + X_{avp}, \left(x_4 + 1\right) \cdot \frac{H_{avp}}{2} + Y_{avp}\right\rangle
+					\end{align*}\]
+					which is actually the form used in the <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/">OpenGL 4 Reference Documentation</a> of <code class="inline">glViewport</code>.
+					Note that there (to add confusion), window coordinates are actually canvas coordinates and clip coordinates are actually ndc coordinates.
+					</p>
+				</section>
+@(>"./_footer.html.t")

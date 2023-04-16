@@ -47,14 +47,17 @@ Ring3_Math_Vector3f32_create
   Machine_Type* ty = Ring3_Math_Vector3f32_getType();
   static size_t const NUMBER_OF_ARGUMENTS = 0;
   static Ring2_Value const ARGUMENTS[] = { Ring2_Value_StaticInitializerVoid() };
-  Ring3_Math_Vector3f32* self = Ring1_cast(Ring3_Math_Vector3f32*, Machine_allocateClassObject(ty, NUMBER_OF_ARGUMENTS, ARGUMENTS));
+  Ring3_Math_Vector3f32* self = Ring1_cast(Ring3_Math_Vector3f32*,
+                                                                           Machine_allocateClassObject(ty,
+                                                                                                       NUMBER_OF_ARGUMENTS,
+                                                                                                       ARGUMENTS));
   return self;
 }
 
 Ring1_NoDiscardReturn() Ring3_Math_Vector3f32*
 Ring3_Math_Vector3f32_clone
   (
-    const Ring3_Math_Vector3f32* self
+    Ring3_Math_Vector3f32 const* self
   )
 {
   Ring3_Math_Vector3f32* other = Ring3_Math_Vector3f32_create();

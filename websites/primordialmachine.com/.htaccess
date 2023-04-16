@@ -1,0 +1,56 @@
+# Copyright (c) 2020-2022 Michael Heilmann. All rights reserved.
+
+# This ".htaccess" sets up the rewrite configuration.
+# For more information on rewrite see https://httpd.apache.org/docs/2.4/expr.html
+# and https://httpd.apache.org/docs/current/mod/mod_rewrite.html.
+#
+# The result of our efforts are internal and external redirects:
+# Here are some examples of what this ".htaccess" does:
+# 
+# * Input:    https://localhost:449/ring1-library/atom-library.html#mkx_atom
+#   Expected: https://localhost:449/ring1-library/atom-library#mkx_atom
+#   Status:   Passed
+#
+# * Input:    https://localhost:449/ring1-library/atom-library/#mkx_atom
+#   Expected: https://localhost:449/ring1-library/atom-library#mkx_atom
+#   Status:   Passed
+#
+# * Input:    https://localhost:449/ring1-library/atom-library.html/#mkx_atom
+#   Expected: https://localhost:449/ring1-library/atom-library#mkx_atom
+#   Status:   Passed
+#
+
+# Enable the rewrite engine.
+RewriteEngine On
+
+DirectorySlash Off
+
+# Remove ".html" suffix.
+# Non-internal redirect.
+RewriteEngine On                                  # Enable the rewrite engine.
+RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]    # If the request ends with ".html".
+RewriteRule ^ /%1 [NC,L,R]                        # Take request wit
+
+# Remove "/" suffix.
+# Non-internal redirect.
+RewriteEngine On
+RewriteRule ^(.*)/$ /$1 [L,R] # <- for test, for prod use [L,R=301]
+
+# If the requested filename is "/bar" such that 
+# - a directory "/bar" exists, and
+# - no file "/bar.html" exists
+# then get the content as if the same request with "/bar/index.html".
+# Internal redirect.
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteCond %{REQUEST_FILENAME}.html !-f
+RewriteRule ^([^.]+)$ $1/index.html [NC,L]
+
+# If the request uri (e.g. "/bar" of "/bar?x=y") 
+# - is not a regular file (e.g. a directory or link) or
+# - does not exist,
+# then get the content as if the same request with ".html" appended (e.g. "/bar.html?x=y") was issued.
+# Internal redirect.
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^.]+)$ $1.html [NC,L]

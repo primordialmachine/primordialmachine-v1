@@ -1,0 +1,9 @@
+<h3 id="mkx_scalartype-struct">Mkx_ScalarType</h3>
+<p>Struct holding data of a scalar type.</p>
+<p><code class="block">
+typedef struct Mkx_ScalarType { Mkx_Type parent; ... } Mkx_ScalarType;
+</code></p>
+
+<p>
+This struct holds the data of a scalar type registered with the type system.
+</p>

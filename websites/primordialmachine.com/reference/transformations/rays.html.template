@@ -1,0 +1,22 @@
+@{title = "Reference: Transform rays"}
+@{tableOfContents = "./reference/_toc.ihtml"}
+@(>"./_header.html.t")
+
+            <h2>Uniform scale transformation of a ray</h2>
+            <p>
+            A ray \((O,\vec{d})\) in \(\mathbb{R}^3\) subjected to a uniform scale transformation represented by a scalar \(s \in \mathbb{R}\)
+            yields a ray \((O',\vec{d}')\) where \(O' := s O\) and \(\vec{d}' := s (\vec{d} + O) - O'\).
+            </p>
+
+            <h2>Scale transformation of a ray</h2>
+            <p>
+            An ray \((O,\vec{d})\) in \(\mathbb{R}^3\) subjected to a scale transformation represented by a vector \(\vec{s} \in \mathbb{R}^3\)
+            yields a ray \((O', \vec{d})\) where \(O' := \vec{s} \cdot O \) and \(\vec{d}' := \vec{d} \cdot (\vec{d} + O) - O'\).</p>
+
+            <h2>Translate transformation of a ray</h2>
+            <p>
+            A ray \((O,\vec{d})\) in \(\mathbb{R}^3\) subjected to translate transformation represented by a vector \(\vec{t} \in \mathbb{R}^3\)
+            yields a ray \((O',\vec{d}')\) where \(O' := O + \vec{t}\) and \(\vec{d}' := \vec{d}\).
+            </p>
+
+@(>"./_footer.html.t")

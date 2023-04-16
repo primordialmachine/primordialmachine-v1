@@ -1,0 +1,27 @@
+<h2 id="affirmate"><code class="inline">affirmate</code></h2>
+<h3>Logical affirmation</h3>
+<p>Computes the (logical) affirmation of a <code class="inline">Boolean</code> value.
+
+<p><code class="block">
+Σ.stack<sub>0</sub> = s ○ [x]</br>
+Σ.stack<sub>1</sub> = s ○ [x]<br/>
+Σ.instructionIndex<sub>1</sub> = Σ.instructionIndex<sub>0</sub> + 1
+</code>
+</p>
+
+<p>for some <code class="inline">s &isin; Stack</code> and some value <code class="inline">x &isin; Boolean</code>.</p>
+
+<p>The usual rules for invalid instructions apply.</p>
+
+<h3>Arithmetic affirmation</h3>
+<p>Computes the (arithmetic) affirmation of an <code class="inline">Integer</code> or a <code class="inline">Real</code> value.</p>
+
+<p><code class="block">
+s<sub>0</sub> = s ○ [x]</br>
+s<sub>1</sub> = s ○ [<span class="meta">+</span>x]
+</code>
+</p>
+
+<p>for some <code class="inline">s &isin; Stack</code> and some value <code class="inline">x &isin; Integer ∪ Real</code>.</p>
+
+<p>The usual rules for invalid instructions apply.</p>

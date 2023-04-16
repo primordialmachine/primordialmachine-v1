@@ -1,0 +1,49 @@
+// Copyright (c) 2020-2022 Michael Heilmann. All rights reserved.
+
+/**
+ * @@brief The "my.memory" library.
+ * @@details Provides functionality to read (my.memory.get) and write (my.memory.set) data from and to the local storage.
+ */
+$(document).ready(function() {
+  $.my = $.my || {};
+
+  $.my.memory = {
+    /**
+     * @@brief Add or update the entry for they @@a k with the value @@a v.
+     * @@param {string} k The key.
+     * @@param {string} v The value.
+     */
+    'set' : (k, v) => {
+      if (!k || !v) {
+        throw new Error("invalid argument");
+      }
+      window.localStorage.setItem(k, v);
+    },
+    /**
+     * @@brief Get the value of the entry for the key @@a k.
+     * @@param {string} k The key.
+     * @@return {string|undefined} The value of the entry for the key @@a k if the entry exists.
+     * If the entry does not exist, @@a undefined otherwise.
+     */
+    'get' : (k) => {
+      if (!k) {
+        throw new Error("invalid argument");
+      }
+      return window.localStorage.getItem(k);
+    },
+    /**
+     * @@brief Get the value of the entry for the key @@a k.
+     * @@param {string} k The key.
+     * @@return {string|undefined} The value of the entry for the key @@a k if the entry exists and its value can be converted to a number.
+     * @@a undefined otherwise.
+     */
+    'getNumber' : (k) => {
+      if (!k) {
+        throw new Error("invalid argument");
+      }
+      var v = window.localStorage.getItem(k);
+      if (null === v) return null;
+      return Number(v);
+    },
+  };
+});

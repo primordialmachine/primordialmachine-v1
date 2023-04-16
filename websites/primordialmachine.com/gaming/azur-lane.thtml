@@ -1,0 +1,6 @@
+@{title = "Azure Lane Guide"}
+@{tableOfContents = "./gaming/_toc.ihtml"}
+@(>"./_header.html.t")
+          @(>"./gaming/fleet1.ihtml")
+          @(>"./gaming/fleet2.ihtml")
+@(>"./_footer.html.t")

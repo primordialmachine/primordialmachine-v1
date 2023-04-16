@@ -1,0 +1,9 @@
+@{title = "Definition: Line Segment"}
+@{tableOfContents = "./_toc.ihtml"}
+@(>"./_header.html.t")
+
+  <h2>Definition of a line segment</h2>
+  <p>A line segment in \(\mathbb{R}^3\) is defined by two points \(\mathbf{p} \in \mathbb{R}^3\) and \(\mathbf{q} \in \mathbb{R}^3\).
+  The line segment is the set of all points \( \left\{ \mathbf{p} + t \group{\mathbf{p} - \mathbf{q}} | t \in \mathbb{R}, 0 \leq t \leq 1 \right\} \).</p>
+
+@(>"./_footer.html.t")

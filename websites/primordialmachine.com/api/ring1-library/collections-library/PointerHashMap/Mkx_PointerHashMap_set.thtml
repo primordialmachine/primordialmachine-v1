@@ -1,0 +1,31 @@
+<h3 id="mkx_pointerhashmap_set">Mkx_PointerHashMap_set</h3>
+<p>Set an entry in a pointer hash map.</p>
+<p><code class="block">
+Mkx_Status<br/>
+Mkx_PointerHashMap_set<br/>
+&nbsp;&nbsp;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Mkx_PointerHashMap *pointerHashMap,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;void *key,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;void *value<br/>
+&nbsp;&nbsp;)
+</code></p>
+
+<p>
+This function sets the <code>(key, value)</code> entry in the pointer hash map.
+If an equivalent entry <code>(key', value')</code> already exists, that entry is replaced by <code>(key, value)</code>.
+</p>
+
+<h4>Parameter variables</h4>
+<dl> 
+  <dt><code class="inline">pointerHashMap</code></dt>
+  <dd>A pointer to the pointer hash map.</dd>
+
+  <dt><code class="inline">key</code></dt>
+  <dd>The key pointer.</dd>
+  
+  <dt><code class="inline">value</code></dt>
+  <dd>The value pointer.</dd>
+</dl>
+
+<h4>Return value</h4>
+<p><code class="inline">Mkx_Status_Success</code> on success, a failure status code on failure.</p>

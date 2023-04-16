@@ -1,0 +1,28 @@
+<h3 id="mkx_registerinterfacetype">Mkx_registerInterfaceType</h3>
+<p>Register an interface type.</p>
+<p><code class="block">
+Mkx_Type *<br/>
+Mkx_registerInterfaceType<br/>
+&nbsp;&nbsp;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const char *name,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;void (*notifyTypeRemoved)(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;size_t dispatchSize<br/>
+&nbsp;&nbsp;)
+</code></p>
+
+<p>
+This function registers an interface type.
+If a type of the same name is already registered, this function fails.
+It returns a pointer to the type on success and a null pointer on failure.
+</p>
+
+<h4>Parameter variables</h4>
+<dl>
+  <dt><code class="inline">name</code></dt><dd>A pointer to the name of the type.</dd>
+  <dt><code class="inline">notifyTypeRemoved</code></dt><dd>A pointer to a callback function or a null pointer.
+  This function is invoked when the type is removed from the type system.</dd>
+  <dt><code class="inline">dispatchSize</code></dt><dd>The size, in Bytes, of the dispatch of the interface type.</dd>
+</dl>
+
+<h4>Return value</h4>
+<p>A pointer to the type on success, a null pointer on failure.</p>
