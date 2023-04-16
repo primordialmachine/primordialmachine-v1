@@ -9,7 +9,6 @@
 #undef RING2_PRIVATE
 
 
-#include <stdio.h>
 #include "Ring1/All/_Include.h"
 #define RING2_PRIVATE (1)
 #include "Ring2/JumpTarget.h"
@@ -82,7 +81,7 @@ grow
   Ring2_Integer oldCapacity = g_stack->capacity,
                 newCapacity = 0;
   if (Ring1_Memory_recomputeSize_s64(MIN_CAPACITY, MAX_CAPACITY, oldCapacity, required, &newCapacity, true)) {
-    fprintf(stderr, "unable to increase capacity");
+    Ring1_Log_error("unable to increase capacity");
     Ring2_jump();
   }
   // Perform reallocation.
@@ -111,7 +110,7 @@ ensureFreeCapacity
     return;
   }
   if (required < 0) {
-    fprintf(stderr, "invalid argument");
+    Ring1_Log_error("invalid argument");
     Ring1_Status_set(Ring1_Status_ArgumentOutOfRange);
     Ring2_jump();
   }
