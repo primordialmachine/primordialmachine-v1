@@ -13,6 +13,7 @@
 #include "Ring1/Crt/_Include.h"
 #include "Ring1/FileSystem/_Include.h"
 #include "Ring1/Intrinsic/_Include.h"
+#include "Ring1/Log/_Include.h"
 #include "Ring1/Memory/_Include.h"
 #include "Ring1/Module.h"
 #include "Ring1/Time/_Include.h"

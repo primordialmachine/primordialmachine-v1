@@ -11,6 +11,7 @@ Ring1_BeginDependencies()
   Ring1_Dependency(Ring1, Time)
   Ring1_Dependency(Ring1, Atom)
   Ring1_Dependency(Ring1, FileSystem)
+  Ring1_Dependency(Ring1, Log)
 Ring1_EndDependencies()
 
 static Ring1_NoDiscardReturn() Ring1_Result

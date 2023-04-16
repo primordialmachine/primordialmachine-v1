@@ -15,7 +15,7 @@ elseif(CMAKE_SIZEOF_VOID_P EQUAL 4)
       COMPILE_FLAGS "/safeseh"
   )
 endif()
-source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${asm_files})
+source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Sources FILES ${asm_files})
 message(STATUS "ASM: ${asm_files}")
 #Enable ASM provided by MASM
 enable_language(ASM_MASM)

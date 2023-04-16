@@ -12,7 +12,7 @@
 #include "Ring1/Memory/_Include.h"
 
 
-static Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 initializeDependencies
   (
   );
@@ -30,7 +30,7 @@ Ring1_BeginDependencies()
   Ring1_Dependency(Ring1, PointerList)
 Ring1_EndDependencies()
 
-static Ring1_Result
+static Ring1_NoDiscardReturn() Ring1_Result
 initializeDependencies
   (
   )
