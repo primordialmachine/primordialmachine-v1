@@ -1,7 +1,7 @@
 /// @file Ring3/Audials/Backends/OpenAL/OpenAL.c
 /// @copyright Copyright (c) 2022-2023 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
-/// @brief OpenAL Backed.
+/// @brief OpenAL Backend.
 /// See https://www.openal-soft.org/ for more information on OpenAL.
 
 #include "Ring3/Audials/Backends/OpenAL/OpenAL.h"
@@ -22,11 +22,6 @@
 
 // For "assert".
 #include <assert.h>
-
-#if 0
-// For fprintf, stdout, and stderr.
-#include <stdio.h>
-#endif
 
 // For malloc, realloc, and free.
 #include <malloc.h>

@@ -1,7 +1,7 @@
 /// @file Ring3/Audials/Backends/XAudio2/XAudio2.c
 /// @copyright Copyright (c) 2022-2023 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
-/// @brief XAudio2 Backed.
+/// @brief XAudio2 Backend.
 /// See https://docs.microsoft.com/en-us/windows/win32/xaudio2/ for more information on XAudio 2.
 
 #include "Ring3/Audials/Backends/XAudio2/XAudio2.h"

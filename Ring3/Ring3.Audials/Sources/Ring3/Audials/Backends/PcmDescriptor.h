@@ -1,8 +1,19 @@
+/// @file Ring3/Audials/Demo/Backends/PcmDescriptor.h
+/// @copyright Copyright (c) 2022-2023 Michael Heilmann. All rights reserved.
+/// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
+/// @brief Part of the interface of an audio backend.
+
 #if !defined(RING3_AUDIALS_BACKENDS_PCMDESCRIPTOR_H_INCLUDED)
 #define RING3_AUDIALS_BACKENDS_PCMDESCRIPTOR_H_INCLUDED
 
+#include "Ring1/All/_Include.h"
+
 // For "int64_t".
 #include <inttypes.h>
+
+// for "bool", "true", "false".
+#include <stdbool.h>
+
 
 typedef struct _PcmDescriptor {
   
@@ -19,5 +30,6 @@ typedef struct _PcmDescriptor {
   int64_t bitsPerSample;
   
 } _PcmDescriptor;
+
 
 #endif // RING3_AUDIALS_BACKENDS_PCMDESCRIPTOR_H_INCLUDED

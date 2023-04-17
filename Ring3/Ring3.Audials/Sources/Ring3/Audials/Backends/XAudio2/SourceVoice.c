@@ -2,8 +2,9 @@
 
 #if Ring3_Audials_Backend == Ring3_Audials_Backend_XAudio2
 
-#include "Ring3/Audials/Backends/XAudio2/XAudio2.h"
+#include "Ring3/Audials/Backends/Buffer.h"
 #include "Ring3/Audials/Backends/XAudio2/Diagnostics.h"
+
 
 /*callback*/ static inline void
 _SourceVoice_onBufferEnd
