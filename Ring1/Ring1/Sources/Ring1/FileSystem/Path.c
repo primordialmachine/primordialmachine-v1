@@ -56,7 +56,7 @@ Ring1_CheckReturn() Ring1_Result
 Ring1_FileSystem_Path_create
   (
     Ring1_FileSystem_Path** result,
-    const char* bytes,
+    char const* bytes,
     size_t numberOfBytes
   )
 {

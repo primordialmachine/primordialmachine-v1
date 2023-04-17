@@ -10,7 +10,7 @@
 #include "Ring1/Collections/_Include.h"
 #include "Ring1/FileSystem/Path.h"
 
-// https://documentation.primordialmachine.com/ring1-library/filesystem-library/Ring1_FileSystem_getDirectoryContents
+// https://primordialmachine.com/api/ring1-library/filesystem-library/Ring1_FileSystem_getDirectoryContents
 Ring1_CheckReturn() Ring1_Result
 Ring1_FileSystem_getDirectoryContents
   (

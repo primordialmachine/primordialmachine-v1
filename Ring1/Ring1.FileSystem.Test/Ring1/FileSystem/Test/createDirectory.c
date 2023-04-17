@@ -12,7 +12,7 @@
 #include "Ring1/All/_Include.h"
 
 static Ring1_NoDiscardReturn() Ring1_Result
-testGetCurrentDirectory1
+testCreateDirectory1
   (
     Ring1_Test_Context* ctx
   )
@@ -27,12 +27,12 @@ testGetCurrentDirectory1
 }
 
 Ring1_NoDiscardReturn() Ring1_Result
-Ring1_FileSystem_Test_registerGetCurrentDirectoryTests
+Ring1_FileSystem_Test_registerCreateDirectoryTests
   (
     Ring1_Test_Context* ctx
   )
-{ 
-  if (Ring1_Test_Context_addTest(ctx, "Ring1.FileSystem.getCurrentDirectoryTest1", &testGetCurrentDirectory1)) {
+{
+  if (Ring1_Test_Context_addTest(ctx, "Ring1.FileSystem.createDirectoryTest", &testCreateDirectory1)) {
     return Ring1_Result_Failure;
   }
   return Ring1_Result_Success;

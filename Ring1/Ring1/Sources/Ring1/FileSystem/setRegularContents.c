@@ -1,18 +1,18 @@
 // Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 
-/// @file Ring1/FileSystem/getFileContents.c
+/// @file Ring1/FileSystem/setRegularContents.c
 /// @copyright Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
-#include "Ring1/FileSystem/getFileContents.h"
+#include "Ring1/FileSystem/setRegularContents.h"
 
 #include "Ring1/FileSystem/Configuration.h"
 #include <stdio.h>
 
 #if defined(RING1_FILESYSTEM_CONFIGURATION_BACKEND) && RING1_FILESYSTEM_CONFIGURATION_BACKEND_LINUX == RING1_FILESYSTEM_CONFIGURATION_BACKEND
-  #include "Ring1/FileSystem/Linux/getFileContents.h"
+  #include "Ring1/FileSystem/Linux/setRegularContents.h"
 #elif defined(RING1_FILESYSTEM_CONFIGURATION_BACKEND) && RING1_FILESYSTEM_CONFIGURATION_BACKEND_WINDOWS == RING1_FILESYSTEM_CONFIGURATION_BACKEND
-  #include "Ring1/FileSystem/Windows/getFileContents.h"
+  #include "Ring1/FileSystem/Windows/setRegularContents.h"
 #else
   #error("RING1_FILESYSTEM_CONFIGURATION_BACKEND must be defined to RING1_FILESYSTEM_CONFIGURATION_BACKEND_LINUNX, RING1_FILESYSTEM_CONFIGURATION_BACKEND_OSX, or RING1_FILESYSTEM_CONFIGURATION_BACKEND_WINDOWS")
 #endif
@@ -20,13 +20,11 @@
 #include "Ring1/Memory/_Include.h"
 
 Ring1_NoDiscardReturn() Ring1_Result
-Ring1_FileSystem_getFileContents
+Ring1_FileSystem_setRegularContents
   (
     Ring1_FileSystem_Path* path,
-    Ring1_FileSystem_AllocateCallback* allocate,
-    Ring1_FileSystem_DeallocateCallback* deallocate,
-    char** bytes,
-    size_t* numberOfBytes
+    void const* bytes,
+    size_t numberOfBytes
   )
 {
   char* p; size_t n;
@@ -34,19 +32,19 @@ Ring1_FileSystem_getFileContents
     return Ring1_Result_Failure;
   }
 #if defined(RING1_FILESYSTEM_CONFIGURATION_BACKEND) && RING1_FILESYSTEM_CONFIGURATION_BACKEND_LINUX == RING1_FILESYSTEM_CONFIGURATION_BACKEND
-  if (Ring1_FileSystem_Linux_getFileContents(p, allocate, deallocate, bytes, numberOfBytes)) {
+  if (Ring1_FileSystem_Linux_setRegularContents(p, bytes, numberOfBytes)) {
     Ring1_Memory_deallocate(p);
     p = NULL;
     return Ring1_Result_Failure;
   }
 #elif defined(RING1_FILESYSTEM_CONFIGURATION_BACKEND) && RING1_FILESYSTEM_CONFIGURATION_BACKEND_WINDOWS == RING1_FILESYSTEM_CONFIGURATION_BACKEND
-  if (Ring1_FileSystem_Windows_getFileContents(p, allocate, deallocate, bytes, numberOfBytes)) {
+  if (Ring1_FileSystem_Windows_setRegularContents(p, bytes, numberOfBytes)) {
     Ring1_Memory_deallocate(p);
     p = NULL;
     return Ring1_Result_Failure;
   }
 #else
-  #error("RING1_FILESYSTEM_CONFIGURATION_BACKEND must be defined to RING1_FILESYSTEM_CONFIGURATION_BACKEND_LIBC or RING1_FILESYSTEM_CONFIGURATION_BACKEND_WINAPI")
+  #error("RING1_FILESYSTEM_CONFIGURATION_BACKEND must be defined to RING1_FILESYSTEM_CONFIGURATION_BACKEND_LINUNX, RING1_FILESYSTEM_CONFIGURATION_BACKEND_OSX, or RING1_FILESYSTEM_CONFIGURATION_BACKEND_WINDOWS")
 #endif
   Ring1_Memory_deallocate(p);
   p = NULL;
