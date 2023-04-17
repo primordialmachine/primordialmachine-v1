@@ -48,6 +48,31 @@ TokenList_push
 }
 
 Ring1_NoDiscardReturn() Ring1_Result
+TokenList_removeAt
+  (
+    Token** result,
+    TokenList* self,
+    bool ownership,
+    size_t index
+  )
+{
+  if (index > INT64_MAX) {
+    Ring1_Status_set(Ring1_Status_InvalidArgument);
+    return Ring1_Result_Failure;
+  }
+  if (ownership) {
+    if (Ring1_PointerList_removeAt(&self->elements, index, result)) {
+      return Ring1_Result_Failure;
+    }
+  } else {
+    if (Ring1_PointerList_stealAt(&self->elements, index, result)) {
+      return Ring1_Result_Failure;
+    }
+  }
+  return Ring1_Result_Success;
+}
+
+Ring1_NoDiscardReturn() Ring1_Result
 TokenList_getAt
   (
     Token** result,

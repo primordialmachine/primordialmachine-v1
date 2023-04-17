@@ -1,9 +1,5 @@
 #include "Ring1/FileSystem/Path/normalize.h"
 
-#if 0
-#include "Ring1/FileSystem/Path/unparse.h"
-#include "Ring1/Memory/_Include.h"
-#endif
 
 typedef struct State {
   TokenList* sources;
@@ -252,51 +248,52 @@ normalizeDirectorySeparators
     if (TokenList_getAt(&token, state->sources, i)) {
       return Ring1_Result_Failure;
     }
-if (token->type == TokenType_BackSlash || token->type == TokenType_Slash) {
-  if (lastWasSlash) {
-    state->modified++;
-    // Skip.
-  }
-  else {
-    if (token->type == TokenType_Slash) {
-      state->modified++;
+    if (token->type == TokenType_BackSlash || token->type == TokenType_Slash) {
+      if (lastWasSlash) {
+        state->modified++;
+        // Skip.
+      }
+      else {
+        if (token->type == TokenType_Slash) {
+          state->modified++;
+        }
+        // Emit backslash.
+        Token* newToken;
+        if (Token_create(&newToken, TokenType_BackSlash, token->start, token->length, "\\", sizeof("\\") - 1)) {
+          return Ring1_Result_Failure;
+        }
+        if (TokenList_push(state->targets, true, newToken)) {
+          Token_unref(newToken);
+          newToken = NULL;
+          return Ring1_Result_Failure;
+        }
+        lastWasSlash = true;
+      }
     }
-    // Emit backslash.
-    Token* newToken;
-    if (Token_create(&newToken, TokenType_BackSlash, token->start, token->length, "\\", sizeof("\\") - 1)) {
-      return Ring1_Result_Failure;
+    else {
+      lastWasSlash = false;
+      Token* newToken;
+      if (Token_create(&newToken, token->type, token->start, token->length, token->p, token->n)) {
+        return Ring1_Result_Failure;
+      }
+      if (TokenList_push(state->targets, true, newToken)) {
+        Token_unref(newToken);
+        newToken = NULL;
+        return Ring1_Result_Failure;
+      }
     }
-    if (TokenList_push(state->targets, true, newToken)) {
-      Token_unref(newToken);
-      newToken = NULL;
-      return Ring1_Result_Failure;
-    }
-    lastWasSlash = true;
-  }
-}
-else {
-  lastWasSlash = false;
-  Token* newToken;
-  if (Token_create(&newToken, token->type, token->start, token->length, token->p, token->n)) {
-    return Ring1_Result_Failure;
-  }
-  if (TokenList_push(state->targets, true, newToken)) {
-    Token_unref(newToken);
-    newToken = NULL;
-    return Ring1_Result_Failure;
-  }
-}
-++i;
+    ++i;
   }
   return Ring1_Result_Success;
 }
+
 /// @details
 /// - if <code>w = e</code> then <code>w = .</code>
 static Ring1_NoDiscardReturn() Ring1_Result
 normalizeEmpty
-(
-  State* state
-)
+  (
+    State* state
+  )
 {
   int64_t size;
   if (TokenList_getSize(&size, state->sources)) {
@@ -319,11 +316,43 @@ normalizeEmpty
   }
 }
 
+/// @details
+/// - if <code>w = v BACKSLASH</code> then <code>w = v</code>
+static Ring1_NoDiscardReturn() Ring1_Result
+removeTrailingSlash
+  (
+    State* state
+  )
+{
+  int64_t size;
+  if (TokenList_getSize(&size, state->sources)) {
+    return Ring1_Result_Failure;
+  }
+  if (size > 0) {
+    Token* token;
+    if (TokenList_getAt(&token, state->sources, size - 1)) {
+      return Ring1_Result_Failure;
+    }
+    if (token->type == TokenType_BackSlash) {
+      if (TokenList_pushAll(state->targets, state->sources)) {
+        return Ring1_Result_Failure;
+      }
+      if (TokenList_removeAt(NULL, state->targets, true, size - 1)) {
+        return Ring1_Result_Failure;
+      }
+    } else {
+      return TokenList_pushAll(state->targets, state->sources);
+    }
+  } else {
+    return TokenList_pushAll(state->targets, state->sources);
+  }
+}
+
 Ring1_NoDiscardReturn() Ring1_Result
 normalize
-(
-  TokenList* tokens
-)
+  (
+    TokenList* tokens
+  )
 {
   // Do nothing if the path is the empty path.
   int64_t size;
@@ -353,21 +382,44 @@ normalize
         state.targets = NULL;
         return Ring1_Result_Failure;
       }
-#if 0
-      char* p; size_t n;
-      if (unparse(state.targets, true, &p, &n)) {
+      if (TokenList_clear(state.sources)) {
         TokenList_destroy(state.targets);
         state.targets = NULL;
         return Ring1_Result_Failure;
       }
-      Ring1_Memory_deallocate(p);
-#endif
-      TokenList_clear(state.sources);
-      TokenList_pushAll(state.sources, state.targets);
-      TokenList_clear(state.targets);
+      if (TokenList_pushAll(state.sources, state.targets)) {
+        TokenList_destroy(state.targets);
+        state.targets = NULL;
+        return Ring1_Result_Failure;
+      }
+      if (TokenList_clear(state.targets)) {
+        TokenList_destroy(state.targets);
+        state.targets = NULL;
+        return Ring1_Result_Failure;
+      }
     }
   }
   TokenList_destroy(state.targets);
   state.targets = NULL;
+#if 1
+  // If there is a trailing slash, remove it.
+  {
+    size_t size;
+    if (TokenList_getSize(&size, state.sources)) {
+      return Ring1_Result_Failure;
+    }
+    if (size > 0) {
+      Token* token;
+      if (TokenList_getAt(&token, state.sources, size - 1)) {
+        return Ring1_Result_Failure;
+      }
+      if (token->type == TokenType_BackSlash) {
+        if (TokenList_removeAt(NULL, state.sources, true, size - 1)) {
+          return Ring1_Result_Failure;
+        }
+      }
+    }
+  }
+#endif
   return Ring1_Result_Success;
 }

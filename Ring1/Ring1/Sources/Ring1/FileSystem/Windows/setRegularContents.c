@@ -1,10 +1,10 @@
 // Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 
-/// @file Ring1/FileSystem/Windows/setFileContents.c
+/// @file Ring1/FileSystem/Windows/setRegularContents.c
 /// @copyright Copyright (c) 2019-2022 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
-#include "Ring1/FileSystem/Windows/setFileContents.h"
+#include "Ring1/FileSystem/Windows/setRegularContents.h"
 
 #include "Ring1/Status.h"
 #include "Ring1/FileSystem/Windows/FileHandle.h"
@@ -12,10 +12,10 @@
 #include <stdio.h>
 
 Ring1_NoDiscardReturn() Ring1_Result
-Ring1_FileSystem_Windows_setFileContents
+Ring1_FileSystem_Windows_setRegularContents
   (
-    const char* pathname,
-    const char* bytes,
+    char const* pathname,
+    char const* bytes,
     size_t numberOfBytes
   )
 {

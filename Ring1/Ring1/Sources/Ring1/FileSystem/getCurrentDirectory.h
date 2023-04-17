@@ -11,7 +11,7 @@
 #include "Ring1/Annotations/_Include.h"
 #include "Ring1/Result.h"
 
-// https://documentation.primordialmachine.com/ring1-library/filesystem-library/Ring1_FileSystem_getCurrentDirectory
+// https://primordialmachine.com/api/ring1-library/filesystem-library/Ring1_FileSystem_getCurrentDirectory
 Ring1_CheckReturn() Ring1_Result
 Ring1_FileSystem_getCurrentDirectory
   (

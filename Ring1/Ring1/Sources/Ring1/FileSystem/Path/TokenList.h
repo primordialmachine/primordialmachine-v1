@@ -31,6 +31,15 @@ TokenList_push
   );
 
 Ring1_NoDiscardReturn() Ring1_Result
+TokenList_removeAt
+  (
+    Token** result,
+    TokenList* self,
+    bool ownership,
+    size_t index
+  );
+
+Ring1_NoDiscardReturn() Ring1_Result
 TokenList_getAt
   (
     Token** result,

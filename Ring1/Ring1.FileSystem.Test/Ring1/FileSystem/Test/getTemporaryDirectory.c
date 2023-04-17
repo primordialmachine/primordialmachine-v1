@@ -12,13 +12,13 @@
 #include "Ring1/All/_Include.h"
 
 static Ring1_NoDiscardReturn() Ring1_Result
-testGetCurrentDirectory1
+testGetTemporaryDirectory1
   (
     Ring1_Test_Context* ctx
   )
 {
   Ring1_FileSystem_Path* path;
-  if (Ring1_FileSystem_getCurrentDirectory(&path)) {
+  if (Ring1_FileSystem_getTemporaryDirectory(&path)) {
     return Ring1_Result_Failure;
   }
   Ring1_FileSystem_Path_unref(path);
@@ -27,12 +27,12 @@ testGetCurrentDirectory1
 }
 
 Ring1_NoDiscardReturn() Ring1_Result
-Ring1_FileSystem_Test_registerGetCurrentDirectoryTests
+Ring1_FileSystem_Test_registerGetTemporaryDirectoryTests
   (
     Ring1_Test_Context* ctx
   )
 { 
-  if (Ring1_Test_Context_addTest(ctx, "Ring1.FileSystem.getCurrentDirectoryTest1", &testGetCurrentDirectory1)) {
+  if (Ring1_Test_Context_addTest(ctx, "Ring1.FileSystem.getTemporaryDirectoryTest1", &testGetTemporaryDirectory1)) {
     return Ring1_Result_Failure;
   }
   return Ring1_Result_Success;

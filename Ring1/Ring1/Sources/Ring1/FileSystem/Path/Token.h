@@ -14,7 +14,7 @@
 #define TokenType_DrivePrefix (5)
 #define TokenType_Text (6)
 #define TokenType_Empty (7)
-// We parse '"', '*', ':', '<', '>', and '|' are not allowed in paths.
+// '"', '*', ':', '<', '>', and '|' are not allowed in paths.
 #define TokenType_Forbidden (8)
 
 typedef struct Token {

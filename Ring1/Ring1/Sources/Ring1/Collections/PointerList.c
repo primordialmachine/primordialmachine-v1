@@ -473,7 +473,7 @@ Ring1_PointerList_removeAt
     Ring1_Status_set(Ring1_Status_InvalidArgument);
     return Ring1_Result_Failure;
   }
-  return removeAt(self->pimpl, index, false, element);
+  return removeAt(self->pimpl, index, true, element);
 }
 
 Ring1_NoDiscardReturn() Ring1_Result

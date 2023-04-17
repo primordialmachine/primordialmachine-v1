@@ -152,6 +152,9 @@ Ring1_PointerList_getAt
 /// @param pointerList A pointer to the pointer list.
 /// @param index The index of the element to be removed.
 /// @remark If a Ring1_PointerList_RemovedCallback is specified, it is invoked on the element.
+/// @remark If @a element is not null, it is assigned a pointer to the element that was removed.
+/// If that element was destroyed by the call to the Ring1_PointerList_RemovedCallback,
+/// then <code>*element</code> does not refer to that object.
 Ring1_NoDiscardReturn() Ring1_Result
 Ring1_PointerList_removeAt
   (

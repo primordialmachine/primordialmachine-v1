@@ -7,13 +7,7 @@
 #if !defined(RING1_FILESYSTEM_TEST_PATH_H_INCLUDED)
 #define RING1_FILESYSTEM_TEST_PATH_H_INCLUDED
 
-#include "Ring1/Test.h"
-#include "Ring1/All/_Include.h"
-
-Ring1_NoDiscardReturn() Ring1_Result
-Ring1_FileSystem_Test_registerPathTests
-  (
-    Ring1_Test_Context* ctx
-  );
+#include "Ring1/FileSystem/Test/Path/create.h"
+#include "Ring1/FileSystem/Test/Path/concatenate.h"
 
 #endif // RING1_FILESYSTEM_TEST_PATH_H_INCLUDED
