@@ -1,5 +1,5 @@
 /// @file Ring3/Gdl/_Include.c
-/// @copyright Copyright (c) 2022 Michael Heilmann. All rights reserved.
+/// @copyright Copyright (c) 2022-2023 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
 #define RING3_GDL_PRIVATE (1)

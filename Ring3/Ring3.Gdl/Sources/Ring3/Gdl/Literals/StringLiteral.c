@@ -1,3 +1,7 @@
+// @file Ring3/Gdl/Literals/StringLiteral.c
+/// @copyright Copyright (c) 2021-2023 Michael Heilmann. All rights reserved.
+/// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
+
 #define RING3_GDL_PRIVATE (1)
 #include "Ring3/Gdl/Literals/StringLiteral.h"
 #undef RING3_GDL_PRIVATE
@@ -53,6 +57,7 @@ Ring3_Gdl_StringLiteral_create
   return self;
 }
 
+/// @param canonicalize Remove the opening and closing delimiters.
 Ring1_NoDiscardReturn() Ring2_String*
 Ring3_Gdl_StringLiteral_toString
   (

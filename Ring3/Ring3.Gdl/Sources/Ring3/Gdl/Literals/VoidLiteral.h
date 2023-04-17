@@ -1,3 +1,7 @@
+// @file Ring3/Gdl/Literals/VoidLiteral.h
+/// @copyright Copyright (c) 2021-2023 Michael Heilmann. All rights reserved.
+/// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
+
 #if !defined(RING3_GDL_LITERAL_VOIDLITERAL_H_INCLUDED)
 #define RING3_GDL_LITERAL_VOIDLITERAL_H_INCLUDED
 

@@ -1,3 +1,6 @@
+// @file Ring3/Gdl/parse.h
+/// @copyright Copyright (c) 2021-2023 Michael Heilmann. All rights reserved.
+/// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
 #include "Ring2/_Include.h"
 

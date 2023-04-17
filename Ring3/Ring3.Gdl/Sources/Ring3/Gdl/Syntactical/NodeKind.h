@@ -1,5 +1,5 @@
 /// @file Ring3/Gdl/Syntactical/NodeKind.h
-/// @copyright Copyright (c) 2021 - 2022 Michael Heilmann. All rights reserved.
+/// @copyright Copyright (c) 2021-2023 Michael Heilmann. All rights reserved.
 /// @author Michael Heilmann (michaelheilmann@primordialmachine.com)
 
 #if !defined(RING3_GDL_SYNTACTICAL_NODEKIND_H_INCLUDED)
