@@ -6,8 +6,6 @@
 
 #include "Ring2/_Include.h"
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
 /// @brie
 /// We support up to 255 channels.
 /// This does not mean, Ring3_Audials_MaximumNumberOfChannels channels are supported in all cases.
